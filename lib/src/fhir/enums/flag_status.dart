@@ -7,6 +7,17 @@ class FlagStatus {
   // Private constructor for internal use (like enum)
   FlagStatus._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [FlagStatus] from JSON.
+  factory FlagStatus.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return FlagStatus.elementOnly.withElement(element);
+    }
+    return FlagStatus._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,22 +26,16 @@ class FlagStatus {
 
   /// FlagStatus values
   /// active
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final FlagStatus active = FlagStatus._(
     'active',
   );
 
   /// inactive
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final FlagStatus inactive = FlagStatus._(
     'inactive',
   );
 
   /// entered_in_error
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final FlagStatus entered_in_error = FlagStatus._(
     'entered-in-error',
   );
@@ -56,17 +61,6 @@ class FlagStatus {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [FlagStatus] from JSON.
-  static FlagStatus fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return FlagStatus.elementOnly.withElement(element);
-    }
-    return FlagStatus._(value!, element: element);
-  }
 
   /// String representation
   @override

@@ -7,6 +7,17 @@ class Diet {
   // Private constructor for internal use (like enum)
   Diet._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [Diet] from JSON.
+  factory Diet.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return Diet.elementOnly.withElement(element);
+    }
+    return Diet._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,50 +26,36 @@ class Diet {
 
   /// Diet values
   /// vegetarian
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final Diet vegetarian = Diet._(
     'vegetarian',
   );
 
   /// dairy_free
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final Diet dairy_free = Diet._(
     'dairy-free',
   );
 
   /// nut_free
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final Diet nut_free = Diet._(
     'nut-free',
   );
 
   /// gluten_free
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final Diet gluten_free = Diet._(
     'gluten-free',
   );
 
   /// vegan
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final Diet vegan = Diet._(
     'vegan',
   );
 
   /// halal
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final Diet halal = Diet._(
     'halal',
   );
 
   /// kosher
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final Diet kosher = Diet._(
     'kosher',
   );
@@ -88,17 +85,6 @@ class Diet {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [Diet] from JSON.
-  static Diet fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return Diet.elementOnly.withElement(element);
-    }
-    return Diet._(value!, element: element);
-  }
 
   /// String representation
   @override

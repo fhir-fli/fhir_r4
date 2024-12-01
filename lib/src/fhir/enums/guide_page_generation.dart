@@ -7,6 +7,17 @@ class GuidePageGeneration {
   // Private constructor for internal use (like enum)
   GuidePageGeneration._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [GuidePageGeneration] from JSON.
+  factory GuidePageGeneration.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return GuidePageGeneration.elementOnly.withElement(element);
+    }
+    return GuidePageGeneration._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,29 +26,21 @@ class GuidePageGeneration {
 
   /// GuidePageGeneration values
   /// html
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final GuidePageGeneration html = GuidePageGeneration._(
     'html',
   );
 
   /// markdown
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final GuidePageGeneration markdown = GuidePageGeneration._(
     'markdown',
   );
 
   /// xml
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final GuidePageGeneration xml = GuidePageGeneration._(
     'xml',
   );
 
   /// generated
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final GuidePageGeneration generated = GuidePageGeneration._(
     'generated',
   );
@@ -64,17 +67,6 @@ class GuidePageGeneration {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [GuidePageGeneration] from JSON.
-  static GuidePageGeneration fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return GuidePageGeneration.elementOnly.withElement(element);
-    }
-    return GuidePageGeneration._(value!, element: element);
-  }
 
   /// String representation
   @override

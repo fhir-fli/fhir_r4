@@ -7,6 +7,19 @@ class ContractResourceExpirationTypeCodes {
   // Private constructor for internal use (like enum)
   ContractResourceExpirationTypeCodes._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ContractResourceExpirationTypeCodes] from JSON.
+  factory ContractResourceExpirationTypeCodes.fromJson(
+      Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ContractResourceExpirationTypeCodes.elementOnly
+          .withElement(element);
+    }
+    return ContractResourceExpirationTypeCodes._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,8 +28,6 @@ class ContractResourceExpirationTypeCodes {
 
   /// ContractResourceExpirationTypeCodes values
   /// breach
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ContractResourceExpirationTypeCodes breach =
       ContractResourceExpirationTypeCodes._(
     'breach',
@@ -42,19 +53,6 @@ class ContractResourceExpirationTypeCodes {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ContractResourceExpirationTypeCodes] from JSON.
-  static ContractResourceExpirationTypeCodes fromJson(
-      Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ContractResourceExpirationTypeCodes.elementOnly
-          .withElement(element);
-    }
-    return ContractResourceExpirationTypeCodes._(value!, element: element);
-  }
 
   /// String representation
   @override

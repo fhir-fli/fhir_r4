@@ -7,6 +7,17 @@ class SubstanceGrade {
   // Private constructor for internal use (like enum)
   SubstanceGrade._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [SubstanceGrade] from JSON.
+  factory SubstanceGrade.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return SubstanceGrade.elementOnly.withElement(element);
+    }
+    return SubstanceGrade._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,36 +26,26 @@ class SubstanceGrade {
 
   /// SubstanceGrade values
   /// USP_NF
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SubstanceGrade USP_NF = SubstanceGrade._(
     'USP-NF',
   );
 
   /// Ph_Eur
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SubstanceGrade Ph_Eur = SubstanceGrade._(
     'Ph.Eur',
   );
 
   /// JP
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SubstanceGrade JP = SubstanceGrade._(
     'JP',
   );
 
   /// BP
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SubstanceGrade BP = SubstanceGrade._(
     'BP',
   );
 
   /// CompanyStandard
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SubstanceGrade CompanyStandard = SubstanceGrade._(
     'CompanyStandard',
   );
@@ -72,17 +73,6 @@ class SubstanceGrade {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [SubstanceGrade] from JSON.
-  static SubstanceGrade fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return SubstanceGrade.elementOnly.withElement(element);
-    }
-    return SubstanceGrade._(value!, element: element);
-  }
 
   /// String representation
   @override

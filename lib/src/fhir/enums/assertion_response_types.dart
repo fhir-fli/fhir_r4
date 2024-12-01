@@ -7,6 +7,17 @@ class AssertionResponseTypes {
   // Private constructor for internal use (like enum)
   AssertionResponseTypes._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [AssertionResponseTypes] from JSON.
+  factory AssertionResponseTypes.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return AssertionResponseTypes.elementOnly.withElement(element);
+    }
+    return AssertionResponseTypes._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,87 +26,63 @@ class AssertionResponseTypes {
 
   /// AssertionResponseTypes values
   /// okay
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AssertionResponseTypes okay = AssertionResponseTypes._(
     'okay',
   );
 
   /// created
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AssertionResponseTypes created = AssertionResponseTypes._(
     'created',
   );
 
   /// noContent
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AssertionResponseTypes noContent = AssertionResponseTypes._(
     'noContent',
   );
 
   /// notModified
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AssertionResponseTypes notModified = AssertionResponseTypes._(
     'notModified',
   );
 
   /// bad
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AssertionResponseTypes bad = AssertionResponseTypes._(
     'bad',
   );
 
   /// forbidden
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AssertionResponseTypes forbidden = AssertionResponseTypes._(
     'forbidden',
   );
 
   /// notFound
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AssertionResponseTypes notFound = AssertionResponseTypes._(
     'notFound',
   );
 
   /// methodNotAllowed
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AssertionResponseTypes methodNotAllowed =
       AssertionResponseTypes._(
     'methodNotAllowed',
   );
 
   /// conflict
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AssertionResponseTypes conflict = AssertionResponseTypes._(
     'conflict',
   );
 
   /// gone
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AssertionResponseTypes gone = AssertionResponseTypes._(
     'gone',
   );
 
   /// preconditionFailed
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AssertionResponseTypes preconditionFailed =
       AssertionResponseTypes._(
     'preconditionFailed',
   );
 
   /// unprocessable
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AssertionResponseTypes unprocessable = AssertionResponseTypes._(
     'unprocessable',
   );
@@ -131,17 +118,6 @@ class AssertionResponseTypes {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [AssertionResponseTypes] from JSON.
-  static AssertionResponseTypes fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return AssertionResponseTypes.elementOnly.withElement(element);
-    }
-    return AssertionResponseTypes._(value!, element: element);
-  }
 
   /// String representation
   @override

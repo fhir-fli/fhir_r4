@@ -7,6 +7,17 @@ class ContactEntityType {
   // Private constructor for internal use (like enum)
   ContactEntityType._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ContactEntityType] from JSON.
+  factory ContactEntityType.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ContactEntityType.elementOnly.withElement(element);
+    }
+    return ContactEntityType._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,43 +26,31 @@ class ContactEntityType {
 
   /// ContactEntityType values
   /// BILL
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ContactEntityType BILL = ContactEntityType._(
     'BILL',
   );
 
   /// ADMIN
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ContactEntityType ADMIN = ContactEntityType._(
     'ADMIN',
   );
 
   /// HR
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ContactEntityType HR = ContactEntityType._(
     'HR',
   );
 
   /// PAYOR
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ContactEntityType PAYOR = ContactEntityType._(
     'PAYOR',
   );
 
   /// PATINF
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ContactEntityType PATINF = ContactEntityType._(
     'PATINF',
   );
 
   /// PRESS
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ContactEntityType PRESS = ContactEntityType._(
     'PRESS',
   );
@@ -80,17 +79,6 @@ class ContactEntityType {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ContactEntityType] from JSON.
-  static ContactEntityType fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ContactEntityType.elementOnly.withElement(element);
-    }
-    return ContactEntityType._(value!, element: element);
-  }
 
   /// String representation
   @override

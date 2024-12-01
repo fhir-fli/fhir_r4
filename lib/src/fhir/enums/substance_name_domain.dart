@@ -7,6 +7,17 @@ class SubstanceNameDomain {
   // Private constructor for internal use (like enum)
   SubstanceNameDomain._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [SubstanceNameDomain] from JSON.
+  factory SubstanceNameDomain.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return SubstanceNameDomain.elementOnly.withElement(element);
+    }
+    return SubstanceNameDomain._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,15 +26,11 @@ class SubstanceNameDomain {
 
   /// SubstanceNameDomain values
   /// ActiveIngredient
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SubstanceNameDomain ActiveIngredient = SubstanceNameDomain._(
     'ActiveIngredient',
   );
 
   /// FoodColorAdditive
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SubstanceNameDomain FoodColorAdditive = SubstanceNameDomain._(
     'FoodColorAdditive',
   );
@@ -48,17 +55,6 @@ class SubstanceNameDomain {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [SubstanceNameDomain] from JSON.
-  static SubstanceNameDomain fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return SubstanceNameDomain.elementOnly.withElement(element);
-    }
-    return SubstanceNameDomain._(value!, element: element);
-  }
 
   /// String representation
   @override

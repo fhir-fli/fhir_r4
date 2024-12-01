@@ -7,6 +7,17 @@ class ResearchStudyReasonStopped {
   // Private constructor for internal use (like enum)
   ResearchStudyReasonStopped._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ResearchStudyReasonStopped] from JSON.
+  factory ResearchStudyReasonStopped.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ResearchStudyReasonStopped.elementOnly.withElement(element);
+    }
+    return ResearchStudyReasonStopped._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,32 +26,24 @@ class ResearchStudyReasonStopped {
 
   /// ResearchStudyReasonStopped values
   /// accrual_goal_met
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ResearchStudyReasonStopped accrual_goal_met =
       ResearchStudyReasonStopped._(
     'accrual-goal-met',
   );
 
   /// closed_due_to_toxicity
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ResearchStudyReasonStopped closed_due_to_toxicity =
       ResearchStudyReasonStopped._(
     'closed-due-to-toxicity',
   );
 
   /// closed_due_to_lack_of_study_progress
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ResearchStudyReasonStopped closed_due_to_lack_of_study_progress =
       ResearchStudyReasonStopped._(
     'closed-due-to-lack-of-study-progress',
   );
 
   /// temporarily_closed_per_study_design
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ResearchStudyReasonStopped temporarily_closed_per_study_design =
       ResearchStudyReasonStopped._(
     'temporarily-closed-per-study-design',
@@ -69,17 +72,6 @@ class ResearchStudyReasonStopped {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ResearchStudyReasonStopped] from JSON.
-  static ResearchStudyReasonStopped fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ResearchStudyReasonStopped.elementOnly.withElement(element);
-    }
-    return ResearchStudyReasonStopped._(value!, element: element);
-  }
 
   /// String representation
   @override

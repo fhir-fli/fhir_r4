@@ -7,6 +7,17 @@ class FinancialResourceStatusCodes {
   // Private constructor for internal use (like enum)
   FinancialResourceStatusCodes._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [FinancialResourceStatusCodes] from JSON.
+  factory FinancialResourceStatusCodes.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return FinancialResourceStatusCodes.elementOnly.withElement(element);
+    }
+    return FinancialResourceStatusCodes._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,32 +26,24 @@ class FinancialResourceStatusCodes {
 
   /// FinancialResourceStatusCodes values
   /// active
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final FinancialResourceStatusCodes active =
       FinancialResourceStatusCodes._(
     'active',
   );
 
   /// cancelled
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final FinancialResourceStatusCodes cancelled =
       FinancialResourceStatusCodes._(
     'cancelled',
   );
 
   /// draft
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final FinancialResourceStatusCodes draft =
       FinancialResourceStatusCodes._(
     'draft',
   );
 
   /// entered_in_error
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final FinancialResourceStatusCodes entered_in_error =
       FinancialResourceStatusCodes._(
     'entered-in-error',
@@ -69,17 +72,6 @@ class FinancialResourceStatusCodes {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [FinancialResourceStatusCodes] from JSON.
-  static FinancialResourceStatusCodes fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return FinancialResourceStatusCodes.elementOnly.withElement(element);
-    }
-    return FinancialResourceStatusCodes._(value!, element: element);
-  }
 
   /// String representation
   @override

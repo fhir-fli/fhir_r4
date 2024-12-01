@@ -7,6 +7,17 @@ class GuidanceResponseStatus {
   // Private constructor for internal use (like enum)
   GuidanceResponseStatus._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [GuidanceResponseStatus] from JSON.
+  factory GuidanceResponseStatus.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return GuidanceResponseStatus.elementOnly.withElement(element);
+    }
+    return GuidanceResponseStatus._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,43 +26,31 @@ class GuidanceResponseStatus {
 
   /// GuidanceResponseStatus values
   /// success
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final GuidanceResponseStatus success = GuidanceResponseStatus._(
     'success',
   );
 
   /// data_requested
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final GuidanceResponseStatus data_requested = GuidanceResponseStatus._(
     'data-requested',
   );
 
   /// data_required
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final GuidanceResponseStatus data_required = GuidanceResponseStatus._(
     'data-required',
   );
 
   /// in_progress
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final GuidanceResponseStatus in_progress = GuidanceResponseStatus._(
     'in-progress',
   );
 
   /// failure
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final GuidanceResponseStatus failure = GuidanceResponseStatus._(
     'failure',
   );
 
   /// entered_in_error
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final GuidanceResponseStatus entered_in_error =
       GuidanceResponseStatus._(
     'entered-in-error',
@@ -82,17 +81,6 @@ class GuidanceResponseStatus {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [GuidanceResponseStatus] from JSON.
-  static GuidanceResponseStatus fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return GuidanceResponseStatus.elementOnly.withElement(element);
-    }
-    return GuidanceResponseStatus._(value!, element: element);
-  }
 
   /// String representation
   @override

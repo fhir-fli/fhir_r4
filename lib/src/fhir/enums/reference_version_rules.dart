@@ -7,6 +7,17 @@ class ReferenceVersionRules {
   // Private constructor for internal use (like enum)
   ReferenceVersionRules._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ReferenceVersionRules] from JSON.
+  factory ReferenceVersionRules.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ReferenceVersionRules.elementOnly.withElement(element);
+    }
+    return ReferenceVersionRules._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,22 +26,16 @@ class ReferenceVersionRules {
 
   /// ReferenceVersionRules values
   /// either
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ReferenceVersionRules either = ReferenceVersionRules._(
     'either',
   );
 
   /// independent
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ReferenceVersionRules independent = ReferenceVersionRules._(
     'independent',
   );
 
   /// specific
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ReferenceVersionRules specific = ReferenceVersionRules._(
     'specific',
   );
@@ -56,17 +61,6 @@ class ReferenceVersionRules {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ReferenceVersionRules] from JSON.
-  static ReferenceVersionRules fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ReferenceVersionRules.elementOnly.withElement(element);
-    }
-    return ReferenceVersionRules._(value!, element: element);
-  }
 
   /// String representation
   @override

@@ -7,6 +7,20 @@ class ImmunizationRecommendationDateCriterionCodes {
   // Private constructor for internal use (like enum)
   ImmunizationRecommendationDateCriterionCodes._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ImmunizationRecommendationDateCriterionCodes] from JSON.
+  factory ImmunizationRecommendationDateCriterionCodes.fromJson(
+      Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ImmunizationRecommendationDateCriterionCodes.elementOnly
+          .withElement(element);
+    }
+    return ImmunizationRecommendationDateCriterionCodes._(value!,
+        element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,32 +29,24 @@ class ImmunizationRecommendationDateCriterionCodes {
 
   /// ImmunizationRecommendationDateCriterionCodes values
   /// value30981_5
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ImmunizationRecommendationDateCriterionCodes value30981_5 =
       ImmunizationRecommendationDateCriterionCodes._(
     '30981-5',
   );
 
   /// value30980_7
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ImmunizationRecommendationDateCriterionCodes value30980_7 =
       ImmunizationRecommendationDateCriterionCodes._(
     '30980-7',
   );
 
   /// value59777_3
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ImmunizationRecommendationDateCriterionCodes value59777_3 =
       ImmunizationRecommendationDateCriterionCodes._(
     '59777-3',
   );
 
   /// value59778_1
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ImmunizationRecommendationDateCriterionCodes value59778_1 =
       ImmunizationRecommendationDateCriterionCodes._(
     '59778-1',
@@ -71,20 +77,6 @@ class ImmunizationRecommendationDateCriterionCodes {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ImmunizationRecommendationDateCriterionCodes] from JSON.
-  static ImmunizationRecommendationDateCriterionCodes fromJson(
-      Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ImmunizationRecommendationDateCriterionCodes.elementOnly
-          .withElement(element);
-    }
-    return ImmunizationRecommendationDateCriterionCodes._(value!,
-        element: element);
-  }
 
   /// String representation
   @override

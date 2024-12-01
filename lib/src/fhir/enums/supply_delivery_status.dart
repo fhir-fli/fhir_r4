@@ -7,6 +7,17 @@ class SupplyDeliveryStatus {
   // Private constructor for internal use (like enum)
   SupplyDeliveryStatus._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [SupplyDeliveryStatus] from JSON.
+  factory SupplyDeliveryStatus.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return SupplyDeliveryStatus.elementOnly.withElement(element);
+    }
+    return SupplyDeliveryStatus._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,29 +26,21 @@ class SupplyDeliveryStatus {
 
   /// SupplyDeliveryStatus values
   /// in_progress
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SupplyDeliveryStatus in_progress = SupplyDeliveryStatus._(
     'in-progress',
   );
 
   /// completed
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SupplyDeliveryStatus completed = SupplyDeliveryStatus._(
     'completed',
   );
 
   /// abandoned
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SupplyDeliveryStatus abandoned = SupplyDeliveryStatus._(
     'abandoned',
   );
 
   /// entered_in_error
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SupplyDeliveryStatus entered_in_error = SupplyDeliveryStatus._(
     'entered-in-error',
   );
@@ -64,17 +67,6 @@ class SupplyDeliveryStatus {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [SupplyDeliveryStatus] from JSON.
-  static SupplyDeliveryStatus fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return SupplyDeliveryStatus.elementOnly.withElement(element);
-    }
-    return SupplyDeliveryStatus._(value!, element: element);
-  }
 
   /// String representation
   @override

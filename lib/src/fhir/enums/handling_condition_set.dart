@@ -7,6 +7,17 @@ class HandlingConditionSet {
   // Private constructor for internal use (like enum)
   HandlingConditionSet._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [HandlingConditionSet] from JSON.
+  factory HandlingConditionSet.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return HandlingConditionSet.elementOnly.withElement(element);
+    }
+    return HandlingConditionSet._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,22 +26,16 @@ class HandlingConditionSet {
 
   /// HandlingConditionSet values
   /// room
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final HandlingConditionSet room = HandlingConditionSet._(
     'room',
   );
 
   /// refrigerated
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final HandlingConditionSet refrigerated = HandlingConditionSet._(
     'refrigerated',
   );
 
   /// frozen
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final HandlingConditionSet frozen = HandlingConditionSet._(
     'frozen',
   );
@@ -56,17 +61,6 @@ class HandlingConditionSet {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [HandlingConditionSet] from JSON.
-  static HandlingConditionSet fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return HandlingConditionSet.elementOnly.withElement(element);
-    }
-    return HandlingConditionSet._(value!, element: element);
-  }
 
   /// String representation
   @override

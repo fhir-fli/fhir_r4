@@ -7,6 +7,17 @@ class SpecialCourtesy {
   // Private constructor for internal use (like enum)
   SpecialCourtesy._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [SpecialCourtesy] from JSON.
+  factory SpecialCourtesy.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return SpecialCourtesy.elementOnly.withElement(element);
+    }
+    return SpecialCourtesy._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,43 +26,31 @@ class SpecialCourtesy {
 
   /// SpecialCourtesy values
   /// EXT
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SpecialCourtesy EXT = SpecialCourtesy._(
     'EXT',
   );
 
   /// NRM
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SpecialCourtesy NRM = SpecialCourtesy._(
     'NRM',
   );
 
   /// PRF
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SpecialCourtesy PRF = SpecialCourtesy._(
     'PRF',
   );
 
   /// STF
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SpecialCourtesy STF = SpecialCourtesy._(
     'STF',
   );
 
   /// VIP
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SpecialCourtesy VIP = SpecialCourtesy._(
     'VIP',
   );
 
   /// UNK
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SpecialCourtesy UNK = SpecialCourtesy._(
     'UNK',
   );
@@ -80,17 +79,6 @@ class SpecialCourtesy {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [SpecialCourtesy] from JSON.
-  static SpecialCourtesy fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return SpecialCourtesy.elementOnly.withElement(element);
-    }
-    return SpecialCourtesy._(value!, element: element);
-  }
 
   /// String representation
   @override

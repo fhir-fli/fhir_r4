@@ -7,6 +7,19 @@ class MedicationAdministrationStatusCodes {
   // Private constructor for internal use (like enum)
   MedicationAdministrationStatusCodes._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [MedicationAdministrationStatusCodes] from JSON.
+  factory MedicationAdministrationStatusCodes.fromJson(
+      Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return MedicationAdministrationStatusCodes.elementOnly
+          .withElement(element);
+    }
+    return MedicationAdministrationStatusCodes._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,56 +28,42 @@ class MedicationAdministrationStatusCodes {
 
   /// MedicationAdministrationStatusCodes values
   /// in_progress
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicationAdministrationStatusCodes in_progress =
       MedicationAdministrationStatusCodes._(
     'in-progress',
   );
 
   /// not_done
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicationAdministrationStatusCodes not_done =
       MedicationAdministrationStatusCodes._(
     'not-done',
   );
 
   /// on_hold
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicationAdministrationStatusCodes on_hold =
       MedicationAdministrationStatusCodes._(
     'on-hold',
   );
 
   /// completed
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicationAdministrationStatusCodes completed =
       MedicationAdministrationStatusCodes._(
     'completed',
   );
 
   /// entered_in_error
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicationAdministrationStatusCodes entered_in_error =
       MedicationAdministrationStatusCodes._(
     'entered-in-error',
   );
 
   /// stopped
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicationAdministrationStatusCodes stopped =
       MedicationAdministrationStatusCodes._(
     'stopped',
   );
 
   /// unknown
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicationAdministrationStatusCodes unknown =
       MedicationAdministrationStatusCodes._(
     'unknown',
@@ -96,19 +95,6 @@ class MedicationAdministrationStatusCodes {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [MedicationAdministrationStatusCodes] from JSON.
-  static MedicationAdministrationStatusCodes fromJson(
-      Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return MedicationAdministrationStatusCodes.elementOnly
-          .withElement(element);
-    }
-    return MedicationAdministrationStatusCodes._(value!, element: element);
-  }
 
   /// String representation
   @override

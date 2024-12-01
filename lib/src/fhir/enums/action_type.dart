@@ -7,6 +7,17 @@ class ActionType {
   // Private constructor for internal use (like enum)
   ActionType._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ActionType] from JSON.
+  factory ActionType.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ActionType.elementOnly.withElement(element);
+    }
+    return ActionType._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,29 +26,21 @@ class ActionType {
 
   /// ActionType values
   /// create
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ActionType create = ActionType._(
     'create',
   );
 
   /// update
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ActionType update = ActionType._(
     'update',
   );
 
   /// remove
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ActionType remove = ActionType._(
     'remove',
   );
 
   /// fire_event
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ActionType fire_event = ActionType._(
     'fire-event',
   );
@@ -64,17 +67,6 @@ class ActionType {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ActionType] from JSON.
-  static ActionType fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ActionType.elementOnly.withElement(element);
-    }
-    return ActionType._(value!, element: element);
-  }
 
   /// String representation
   @override

@@ -7,6 +7,19 @@ class BiologicallyDerivedProductStorageScale {
   // Private constructor for internal use (like enum)
   BiologicallyDerivedProductStorageScale._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [BiologicallyDerivedProductStorageScale] from JSON.
+  factory BiologicallyDerivedProductStorageScale.fromJson(
+      Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return BiologicallyDerivedProductStorageScale.elementOnly
+          .withElement(element);
+    }
+    return BiologicallyDerivedProductStorageScale._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,24 +28,18 @@ class BiologicallyDerivedProductStorageScale {
 
   /// BiologicallyDerivedProductStorageScale values
   /// farenheit
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final BiologicallyDerivedProductStorageScale farenheit =
       BiologicallyDerivedProductStorageScale._(
     'farenheit',
   );
 
   /// celsius
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final BiologicallyDerivedProductStorageScale celsius =
       BiologicallyDerivedProductStorageScale._(
     'celsius',
   );
 
   /// kelvin
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final BiologicallyDerivedProductStorageScale kelvin =
       BiologicallyDerivedProductStorageScale._(
     'kelvin',
@@ -61,19 +68,6 @@ class BiologicallyDerivedProductStorageScale {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [BiologicallyDerivedProductStorageScale] from JSON.
-  static BiologicallyDerivedProductStorageScale fromJson(
-      Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return BiologicallyDerivedProductStorageScale.elementOnly
-          .withElement(element);
-    }
-    return BiologicallyDerivedProductStorageScale._(value!, element: element);
-  }
 
   /// String representation
   @override

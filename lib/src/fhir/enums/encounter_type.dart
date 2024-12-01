@@ -7,6 +7,17 @@ class EncounterType {
   // Private constructor for internal use (like enum)
   EncounterType._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [EncounterType] from JSON.
+  factory EncounterType.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return EncounterType.elementOnly.withElement(element);
+    }
+    return EncounterType._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,29 +26,21 @@ class EncounterType {
 
   /// EncounterType values
   /// ADMS
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final EncounterType ADMS = EncounterType._(
     'ADMS',
   );
 
   /// BD_BM_clin
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final EncounterType BD_BM_clin = EncounterType._(
     'BD/BM-clin',
   );
 
   /// CCS60
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final EncounterType CCS60 = EncounterType._(
     'CCS60',
   );
 
   /// OKI
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final EncounterType OKI = EncounterType._(
     'OKI',
   );
@@ -64,17 +67,6 @@ class EncounterType {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [EncounterType] from JSON.
-  static EncounterType fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return EncounterType.elementOnly.withElement(element);
-    }
-    return EncounterType._(value!, element: element);
-  }
 
   /// String representation
   @override

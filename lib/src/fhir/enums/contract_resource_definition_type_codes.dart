@@ -7,6 +7,19 @@ class ContractResourceDefinitionTypeCodes {
   // Private constructor for internal use (like enum)
   ContractResourceDefinitionTypeCodes._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ContractResourceDefinitionTypeCodes] from JSON.
+  factory ContractResourceDefinitionTypeCodes.fromJson(
+      Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ContractResourceDefinitionTypeCodes.elementOnly
+          .withElement(element);
+    }
+    return ContractResourceDefinitionTypeCodes._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,8 +28,6 @@ class ContractResourceDefinitionTypeCodes {
 
   /// ContractResourceDefinitionTypeCodes values
   /// temp
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ContractResourceDefinitionTypeCodes temp =
       ContractResourceDefinitionTypeCodes._(
     'temp',
@@ -42,19 +53,6 @@ class ContractResourceDefinitionTypeCodes {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ContractResourceDefinitionTypeCodes] from JSON.
-  static ContractResourceDefinitionTypeCodes fromJson(
-      Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ContractResourceDefinitionTypeCodes.elementOnly
-          .withElement(element);
-    }
-    return ContractResourceDefinitionTypeCodes._(value!, element: element);
-  }
 
   /// String representation
   @override

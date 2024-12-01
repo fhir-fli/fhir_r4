@@ -7,6 +7,17 @@ class EligibilityResponsePurpose {
   // Private constructor for internal use (like enum)
   EligibilityResponsePurpose._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [EligibilityResponsePurpose] from JSON.
+  factory EligibilityResponsePurpose.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return EligibilityResponsePurpose.elementOnly.withElement(element);
+    }
+    return EligibilityResponsePurpose._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,32 +26,24 @@ class EligibilityResponsePurpose {
 
   /// EligibilityResponsePurpose values
   /// auth_requirements
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final EligibilityResponsePurpose auth_requirements =
       EligibilityResponsePurpose._(
     'auth-requirements',
   );
 
   /// benefits
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final EligibilityResponsePurpose benefits =
       EligibilityResponsePurpose._(
     'benefits',
   );
 
   /// discovery
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final EligibilityResponsePurpose discovery =
       EligibilityResponsePurpose._(
     'discovery',
   );
 
   /// validation
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final EligibilityResponsePurpose validation =
       EligibilityResponsePurpose._(
     'validation',
@@ -69,17 +72,6 @@ class EligibilityResponsePurpose {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [EligibilityResponsePurpose] from JSON.
-  static EligibilityResponsePurpose fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return EligibilityResponsePurpose.elementOnly.withElement(element);
-    }
-    return EligibilityResponsePurpose._(value!, element: element);
-  }
 
   /// String representation
   @override

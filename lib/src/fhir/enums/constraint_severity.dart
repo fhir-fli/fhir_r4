@@ -7,6 +7,17 @@ class ConstraintSeverity {
   // Private constructor for internal use (like enum)
   ConstraintSeverity._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ConstraintSeverity] from JSON.
+  factory ConstraintSeverity.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ConstraintSeverity.elementOnly.withElement(element);
+    }
+    return ConstraintSeverity._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,15 +26,11 @@ class ConstraintSeverity {
 
   /// ConstraintSeverity values
   /// error
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ConstraintSeverity error = ConstraintSeverity._(
     'error',
   );
 
   /// warning
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ConstraintSeverity warning = ConstraintSeverity._(
     'warning',
   );
@@ -48,17 +55,6 @@ class ConstraintSeverity {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ConstraintSeverity] from JSON.
-  static ConstraintSeverity fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ConstraintSeverity.elementOnly.withElement(element);
-    }
-    return ConstraintSeverity._(value!, element: element);
-  }
 
   /// String representation
   @override

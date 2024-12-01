@@ -7,6 +7,17 @@ class BiologicallyDerivedProductStatus {
   // Private constructor for internal use (like enum)
   BiologicallyDerivedProductStatus._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [BiologicallyDerivedProductStatus] from JSON.
+  factory BiologicallyDerivedProductStatus.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return BiologicallyDerivedProductStatus.elementOnly.withElement(element);
+    }
+    return BiologicallyDerivedProductStatus._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,16 +26,12 @@ class BiologicallyDerivedProductStatus {
 
   /// BiologicallyDerivedProductStatus values
   /// available
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final BiologicallyDerivedProductStatus available =
       BiologicallyDerivedProductStatus._(
     'available',
   );
 
   /// unavailable
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final BiologicallyDerivedProductStatus unavailable =
       BiologicallyDerivedProductStatus._(
     'unavailable',
@@ -51,17 +58,6 @@ class BiologicallyDerivedProductStatus {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [BiologicallyDerivedProductStatus] from JSON.
-  static BiologicallyDerivedProductStatus fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return BiologicallyDerivedProductStatus.elementOnly.withElement(element);
-    }
-    return BiologicallyDerivedProductStatus._(value!, element: element);
-  }
 
   /// String representation
   @override

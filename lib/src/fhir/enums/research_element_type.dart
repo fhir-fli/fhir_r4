@@ -7,6 +7,17 @@ class ResearchElementType {
   // Private constructor for internal use (like enum)
   ResearchElementType._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ResearchElementType] from JSON.
+  factory ResearchElementType.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ResearchElementType.elementOnly.withElement(element);
+    }
+    return ResearchElementType._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,22 +26,16 @@ class ResearchElementType {
 
   /// ResearchElementType values
   /// population
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ResearchElementType population = ResearchElementType._(
     'population',
   );
 
   /// exposure
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ResearchElementType exposure = ResearchElementType._(
     'exposure',
   );
 
   /// outcome
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ResearchElementType outcome = ResearchElementType._(
     'outcome',
   );
@@ -56,17 +61,6 @@ class ResearchElementType {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ResearchElementType] from JSON.
-  static ResearchElementType fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ResearchElementType.elementOnly.withElement(element);
-    }
-    return ResearchElementType._(value!, element: element);
-  }
 
   /// String representation
   @override

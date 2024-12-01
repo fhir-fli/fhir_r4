@@ -7,6 +7,17 @@ class ResearchStudyStatus {
   // Private constructor for internal use (like enum)
   ResearchStudyStatus._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ResearchStudyStatus] from JSON.
+  factory ResearchStudyStatus.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ResearchStudyStatus.elementOnly.withElement(element);
+    }
+    return ResearchStudyStatus._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,82 +26,60 @@ class ResearchStudyStatus {
 
   /// ResearchStudyStatus values
   /// active
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ResearchStudyStatus active = ResearchStudyStatus._(
     'active',
   );
 
   /// administratively_completed
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ResearchStudyStatus administratively_completed =
       ResearchStudyStatus._(
     'administratively-completed',
   );
 
   /// approved
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ResearchStudyStatus approved = ResearchStudyStatus._(
     'approved',
   );
 
   /// closed_to_accrual
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ResearchStudyStatus closed_to_accrual = ResearchStudyStatus._(
     'closed-to-accrual',
   );
 
   /// closed_to_accrual_and_intervention
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ResearchStudyStatus closed_to_accrual_and_intervention =
       ResearchStudyStatus._(
     'closed-to-accrual-and-intervention',
   );
 
   /// completed
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ResearchStudyStatus completed = ResearchStudyStatus._(
     'completed',
   );
 
   /// disapproved
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ResearchStudyStatus disapproved = ResearchStudyStatus._(
     'disapproved',
   );
 
   /// in_review
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ResearchStudyStatus in_review = ResearchStudyStatus._(
     'in-review',
   );
 
   /// temporarily_closed_to_accrual
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ResearchStudyStatus temporarily_closed_to_accrual =
       ResearchStudyStatus._(
     'temporarily-closed-to-accrual',
   );
 
   /// temporarily_closed_to_accrual_and_intervention
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ResearchStudyStatus
       temporarily_closed_to_accrual_and_intervention = ResearchStudyStatus._(
     'temporarily-closed-to-accrual-and-intervention',
   );
 
   /// withdrawn
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ResearchStudyStatus withdrawn = ResearchStudyStatus._(
     'withdrawn',
   );
@@ -124,17 +113,6 @@ class ResearchStudyStatus {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ResearchStudyStatus] from JSON.
-  static ResearchStudyStatus fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ResearchStudyStatus.elementOnly.withElement(element);
-    }
-    return ResearchStudyStatus._(value!, element: element);
-  }
 
   /// String representation
   @override

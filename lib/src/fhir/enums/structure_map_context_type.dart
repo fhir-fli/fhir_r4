@@ -7,6 +7,17 @@ class StructureMapContextType {
   // Private constructor for internal use (like enum)
   StructureMapContextType._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [StructureMapContextType] from JSON.
+  factory StructureMapContextType.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return StructureMapContextType.elementOnly.withElement(element);
+    }
+    return StructureMapContextType._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,15 +26,11 @@ class StructureMapContextType {
 
   /// StructureMapContextType values
   /// type
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final StructureMapContextType type = StructureMapContextType._(
     'type',
   );
 
   /// variable
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final StructureMapContextType variable = StructureMapContextType._(
     'variable',
   );
@@ -49,17 +56,6 @@ class StructureMapContextType {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [StructureMapContextType] from JSON.
-  static StructureMapContextType fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return StructureMapContextType.elementOnly.withElement(element);
-    }
-    return StructureMapContextType._(value!, element: element);
-  }
 
   /// String representation
   @override

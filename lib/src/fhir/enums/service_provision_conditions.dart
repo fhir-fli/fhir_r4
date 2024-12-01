@@ -7,6 +7,17 @@ class ServiceProvisionConditions {
   // Private constructor for internal use (like enum)
   ServiceProvisionConditions._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ServiceProvisionConditions] from JSON.
+  factory ServiceProvisionConditions.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ServiceProvisionConditions.elementOnly.withElement(element);
+    }
+    return ServiceProvisionConditions._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,22 +26,16 @@ class ServiceProvisionConditions {
 
   /// ServiceProvisionConditions values
   /// free
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ServiceProvisionConditions free = ServiceProvisionConditions._(
     'free',
   );
 
   /// disc
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ServiceProvisionConditions disc = ServiceProvisionConditions._(
     'disc',
   );
 
   /// cost
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ServiceProvisionConditions cost = ServiceProvisionConditions._(
     'cost',
   );
@@ -57,17 +62,6 @@ class ServiceProvisionConditions {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ServiceProvisionConditions] from JSON.
-  static ServiceProvisionConditions fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ServiceProvisionConditions.elementOnly.withElement(element);
-    }
-    return ServiceProvisionConditions._(value!, element: element);
-  }
 
   /// String representation
   @override

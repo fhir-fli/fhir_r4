@@ -7,6 +7,17 @@ class EncounterLocationStatus {
   // Private constructor for internal use (like enum)
   EncounterLocationStatus._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [EncounterLocationStatus] from JSON.
+  factory EncounterLocationStatus.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return EncounterLocationStatus.elementOnly.withElement(element);
+    }
+    return EncounterLocationStatus._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,29 +26,21 @@ class EncounterLocationStatus {
 
   /// EncounterLocationStatus values
   /// planned
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final EncounterLocationStatus planned = EncounterLocationStatus._(
     'planned',
   );
 
   /// active
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final EncounterLocationStatus active = EncounterLocationStatus._(
     'active',
   );
 
   /// reserved
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final EncounterLocationStatus reserved = EncounterLocationStatus._(
     'reserved',
   );
 
   /// completed
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final EncounterLocationStatus completed = EncounterLocationStatus._(
     'completed',
   );
@@ -65,17 +68,6 @@ class EncounterLocationStatus {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [EncounterLocationStatus] from JSON.
-  static EncounterLocationStatus fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return EncounterLocationStatus.elementOnly.withElement(element);
-    }
-    return EncounterLocationStatus._(value!, element: element);
-  }
 
   /// String representation
   @override

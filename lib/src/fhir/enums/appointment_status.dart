@@ -7,6 +7,17 @@ class AppointmentStatus {
   // Private constructor for internal use (like enum)
   AppointmentStatus._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [AppointmentStatus] from JSON.
+  factory AppointmentStatus.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return AppointmentStatus.elementOnly.withElement(element);
+    }
+    return AppointmentStatus._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,71 +26,51 @@ class AppointmentStatus {
 
   /// AppointmentStatus values
   /// proposed
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AppointmentStatus proposed = AppointmentStatus._(
     'proposed',
   );
 
   /// pending
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AppointmentStatus pending = AppointmentStatus._(
     'pending',
   );
 
   /// booked
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AppointmentStatus booked = AppointmentStatus._(
     'booked',
   );
 
   /// arrived
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AppointmentStatus arrived = AppointmentStatus._(
     'arrived',
   );
 
   /// fulfilled
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AppointmentStatus fulfilled = AppointmentStatus._(
     'fulfilled',
   );
 
   /// cancelled
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AppointmentStatus cancelled = AppointmentStatus._(
     'cancelled',
   );
 
   /// noshow
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AppointmentStatus noshow = AppointmentStatus._(
     'noshow',
   );
 
   /// entered_in_error
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AppointmentStatus entered_in_error = AppointmentStatus._(
     'entered-in-error',
   );
 
   /// checked_in
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AppointmentStatus checked_in = AppointmentStatus._(
     'checked-in',
   );
 
   /// waitlist
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AppointmentStatus waitlist = AppointmentStatus._(
     'waitlist',
   );
@@ -112,17 +103,6 @@ class AppointmentStatus {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [AppointmentStatus] from JSON.
-  static AppointmentStatus fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return AppointmentStatus.elementOnly.withElement(element);
-    }
-    return AppointmentStatus._(value!, element: element);
-  }
 
   /// String representation
   @override

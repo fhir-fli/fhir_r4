@@ -7,6 +7,17 @@ class DeviceMetricCalibrationState {
   // Private constructor for internal use (like enum)
   DeviceMetricCalibrationState._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [DeviceMetricCalibrationState] from JSON.
+  factory DeviceMetricCalibrationState.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return DeviceMetricCalibrationState.elementOnly.withElement(element);
+    }
+    return DeviceMetricCalibrationState._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,32 +26,24 @@ class DeviceMetricCalibrationState {
 
   /// DeviceMetricCalibrationState values
   /// not_calibrated
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final DeviceMetricCalibrationState not_calibrated =
       DeviceMetricCalibrationState._(
     'not-calibrated',
   );
 
   /// calibration_required
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final DeviceMetricCalibrationState calibration_required =
       DeviceMetricCalibrationState._(
     'calibration-required',
   );
 
   /// calibrated
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final DeviceMetricCalibrationState calibrated =
       DeviceMetricCalibrationState._(
     'calibrated',
   );
 
   /// unspecified
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final DeviceMetricCalibrationState unspecified =
       DeviceMetricCalibrationState._(
     'unspecified',
@@ -69,17 +72,6 @@ class DeviceMetricCalibrationState {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [DeviceMetricCalibrationState] from JSON.
-  static DeviceMetricCalibrationState fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return DeviceMetricCalibrationState.elementOnly.withElement(element);
-    }
-    return DeviceMetricCalibrationState._(value!, element: element);
-  }
 
   /// String representation
   @override

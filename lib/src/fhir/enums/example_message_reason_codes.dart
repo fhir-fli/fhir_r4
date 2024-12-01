@@ -7,6 +7,17 @@ class ExampleMessageReasonCodes {
   // Private constructor for internal use (like enum)
   ExampleMessageReasonCodes._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ExampleMessageReasonCodes] from JSON.
+  factory ExampleMessageReasonCodes.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ExampleMessageReasonCodes.elementOnly.withElement(element);
+    }
+    return ExampleMessageReasonCodes._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,44 +26,32 @@ class ExampleMessageReasonCodes {
 
   /// ExampleMessageReasonCodes values
   /// admit
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ExampleMessageReasonCodes admit = ExampleMessageReasonCodes._(
     'admit',
   );
 
   /// discharge
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ExampleMessageReasonCodes discharge =
       ExampleMessageReasonCodes._(
     'discharge',
   );
 
   /// absent
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ExampleMessageReasonCodes absent = ExampleMessageReasonCodes._(
     'absent',
   );
 
   /// return_
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ExampleMessageReasonCodes return_ = ExampleMessageReasonCodes._(
     'return',
   );
 
   /// moved
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ExampleMessageReasonCodes moved = ExampleMessageReasonCodes._(
     'moved',
   );
 
   /// edit
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ExampleMessageReasonCodes edit = ExampleMessageReasonCodes._(
     'edit',
   );
@@ -82,17 +81,6 @@ class ExampleMessageReasonCodes {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ExampleMessageReasonCodes] from JSON.
-  static ExampleMessageReasonCodes fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ExampleMessageReasonCodes.elementOnly.withElement(element);
-    }
-    return ExampleMessageReasonCodes._(value!, element: element);
-  }
 
   /// String representation
   @override

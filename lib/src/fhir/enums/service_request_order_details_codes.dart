@@ -7,6 +7,17 @@ class ServiceRequestOrderDetailsCodes {
   // Private constructor for internal use (like enum)
   ServiceRequestOrderDetailsCodes._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ServiceRequestOrderDetailsCodes] from JSON.
+  factory ServiceRequestOrderDetailsCodes.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ServiceRequestOrderDetailsCodes.elementOnly.withElement(element);
+    }
+    return ServiceRequestOrderDetailsCodes._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,40 +26,30 @@ class ServiceRequestOrderDetailsCodes {
 
   /// ServiceRequestOrderDetailsCodes values
   /// value47545007
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ServiceRequestOrderDetailsCodes value47545007 =
       ServiceRequestOrderDetailsCodes._(
     '47545007',
   );
 
   /// value286812008
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ServiceRequestOrderDetailsCodes value286812008 =
       ServiceRequestOrderDetailsCodes._(
     '286812008',
   );
 
   /// value243144002
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ServiceRequestOrderDetailsCodes value243144002 =
       ServiceRequestOrderDetailsCodes._(
     '243144002',
   );
 
   /// value243150007
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ServiceRequestOrderDetailsCodes value243150007 =
       ServiceRequestOrderDetailsCodes._(
     '243150007',
   );
 
   /// value59427005
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ServiceRequestOrderDetailsCodes value59427005 =
       ServiceRequestOrderDetailsCodes._(
     '59427005',
@@ -78,17 +79,6 @@ class ServiceRequestOrderDetailsCodes {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ServiceRequestOrderDetailsCodes] from JSON.
-  static ServiceRequestOrderDetailsCodes fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ServiceRequestOrderDetailsCodes.elementOnly.withElement(element);
-    }
-    return ServiceRequestOrderDetailsCodes._(value!, element: element);
-  }
 
   /// String representation
   @override

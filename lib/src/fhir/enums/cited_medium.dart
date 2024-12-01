@@ -7,6 +7,17 @@ class CitedMedium {
   // Private constructor for internal use (like enum)
   CitedMedium._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [CitedMedium] from JSON.
+  factory CitedMedium.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return CitedMedium.elementOnly.withElement(element);
+    }
+    return CitedMedium._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,43 +26,31 @@ class CitedMedium {
 
   /// CitedMedium values
   /// internet
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CitedMedium internet = CitedMedium._(
     'internet',
   );
 
   /// print
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CitedMedium print = CitedMedium._(
     'print',
   );
 
   /// offline_digital_storage
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CitedMedium offline_digital_storage = CitedMedium._(
     'offline-digital-storage',
   );
 
   /// internet_without_issue
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CitedMedium internet_without_issue = CitedMedium._(
     'internet-without-issue',
   );
 
   /// print_without_issue
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CitedMedium print_without_issue = CitedMedium._(
     'print-without-issue',
   );
 
   /// offline_digital_storage_without_issue
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CitedMedium offline_digital_storage_without_issue =
       CitedMedium._(
     'offline-digital-storage-without-issue',
@@ -81,17 +80,6 @@ class CitedMedium {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [CitedMedium] from JSON.
-  static CitedMedium fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return CitedMedium.elementOnly.withElement(element);
-    }
-    return CitedMedium._(value!, element: element);
-  }
 
   /// String representation
   @override

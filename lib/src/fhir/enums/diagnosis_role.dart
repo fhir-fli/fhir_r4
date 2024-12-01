@@ -7,6 +7,17 @@ class DiagnosisRole {
   // Private constructor for internal use (like enum)
   DiagnosisRole._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [DiagnosisRole] from JSON.
+  factory DiagnosisRole.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return DiagnosisRole.elementOnly.withElement(element);
+    }
+    return DiagnosisRole._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,50 +26,36 @@ class DiagnosisRole {
 
   /// DiagnosisRole values
   /// AD
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final DiagnosisRole AD = DiagnosisRole._(
     'AD',
   );
 
   /// DD
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final DiagnosisRole DD = DiagnosisRole._(
     'DD',
   );
 
   /// CC
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final DiagnosisRole CC = DiagnosisRole._(
     'CC',
   );
 
   /// CM
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final DiagnosisRole CM = DiagnosisRole._(
     'CM',
   );
 
   /// pre_op
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final DiagnosisRole pre_op = DiagnosisRole._(
     'pre-op',
   );
 
   /// post_op
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final DiagnosisRole post_op = DiagnosisRole._(
     'post-op',
   );
 
   /// billing
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final DiagnosisRole billing = DiagnosisRole._(
     'billing',
   );
@@ -88,17 +85,6 @@ class DiagnosisRole {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [DiagnosisRole] from JSON.
-  static DiagnosisRole fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return DiagnosisRole.elementOnly.withElement(element);
-    }
-    return DiagnosisRole._(value!, element: element);
-  }
 
   /// String representation
   @override

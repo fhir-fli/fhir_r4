@@ -7,6 +7,17 @@ class Status {
   // Private constructor for internal use (like enum)
   Status._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [Status] from JSON.
+  factory Status.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return Status.elementOnly.withElement(element);
+    }
+    return Status._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,43 +26,31 @@ class Status {
 
   /// Status values
   /// attested
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final Status attested = Status._(
     'attested',
   );
 
   /// validated
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final Status validated = Status._(
     'validated',
   );
 
   /// in_process
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final Status in_process = Status._(
     'in-process',
   );
 
   /// req_revalid
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final Status req_revalid = Status._(
     'req-revalid',
   );
 
   /// val_fail
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final Status val_fail = Status._(
     'val-fail',
   );
 
   /// reval_fail
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final Status reval_fail = Status._(
     'reval-fail',
   );
@@ -80,17 +79,6 @@ class Status {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [Status] from JSON.
-  static Status fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return Status.elementOnly.withElement(element);
-    }
-    return Status._(value!, element: element);
-  }
 
   /// String representation
   @override

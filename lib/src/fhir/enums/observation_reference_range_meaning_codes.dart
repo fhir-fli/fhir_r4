@@ -7,6 +7,19 @@ class ObservationReferenceRangeMeaningCodes {
   // Private constructor for internal use (like enum)
   ObservationReferenceRangeMeaningCodes._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ObservationReferenceRangeMeaningCodes] from JSON.
+  factory ObservationReferenceRangeMeaningCodes.fromJson(
+      Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ObservationReferenceRangeMeaningCodes.elementOnly
+          .withElement(element);
+    }
+    return ObservationReferenceRangeMeaningCodes._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,104 +28,78 @@ class ObservationReferenceRangeMeaningCodes {
 
   /// ObservationReferenceRangeMeaningCodes values
   /// type
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ObservationReferenceRangeMeaningCodes type =
       ObservationReferenceRangeMeaningCodes._(
     'type',
   );
 
   /// normal
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ObservationReferenceRangeMeaningCodes normal =
       ObservationReferenceRangeMeaningCodes._(
     'normal',
   );
 
   /// recommended
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ObservationReferenceRangeMeaningCodes recommended =
       ObservationReferenceRangeMeaningCodes._(
     'recommended',
   );
 
   /// treatment
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ObservationReferenceRangeMeaningCodes treatment =
       ObservationReferenceRangeMeaningCodes._(
     'treatment',
   );
 
   /// therapeutic
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ObservationReferenceRangeMeaningCodes therapeutic =
       ObservationReferenceRangeMeaningCodes._(
     'therapeutic',
   );
 
   /// pre
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ObservationReferenceRangeMeaningCodes pre =
       ObservationReferenceRangeMeaningCodes._(
     'pre',
   );
 
   /// post
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ObservationReferenceRangeMeaningCodes post =
       ObservationReferenceRangeMeaningCodes._(
     'post',
   );
 
   /// endocrine
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ObservationReferenceRangeMeaningCodes endocrine =
       ObservationReferenceRangeMeaningCodes._(
     'endocrine',
   );
 
   /// pre_puberty
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ObservationReferenceRangeMeaningCodes pre_puberty =
       ObservationReferenceRangeMeaningCodes._(
     'pre-puberty',
   );
 
   /// follicular
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ObservationReferenceRangeMeaningCodes follicular =
       ObservationReferenceRangeMeaningCodes._(
     'follicular',
   );
 
   /// midcycle
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ObservationReferenceRangeMeaningCodes midcycle =
       ObservationReferenceRangeMeaningCodes._(
     'midcycle',
   );
 
   /// luteal
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ObservationReferenceRangeMeaningCodes luteal =
       ObservationReferenceRangeMeaningCodes._(
     'luteal',
   );
 
   /// postmenopausal
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ObservationReferenceRangeMeaningCodes postmenopausal =
       ObservationReferenceRangeMeaningCodes._(
     'postmenopausal',
@@ -151,19 +138,6 @@ class ObservationReferenceRangeMeaningCodes {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ObservationReferenceRangeMeaningCodes] from JSON.
-  static ObservationReferenceRangeMeaningCodes fromJson(
-      Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ObservationReferenceRangeMeaningCodes.elementOnly
-          .withElement(element);
-    }
-    return ObservationReferenceRangeMeaningCodes._(value!, element: element);
-  }
 
   /// String representation
   @override

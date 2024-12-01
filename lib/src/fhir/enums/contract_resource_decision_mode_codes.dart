@@ -7,6 +7,18 @@ class ContractResourceDecisionModeCodes {
   // Private constructor for internal use (like enum)
   ContractResourceDecisionModeCodes._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ContractResourceDecisionModeCodes] from JSON.
+  factory ContractResourceDecisionModeCodes.fromJson(
+      Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ContractResourceDecisionModeCodes.elementOnly.withElement(element);
+    }
+    return ContractResourceDecisionModeCodes._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,8 +27,6 @@ class ContractResourceDecisionModeCodes {
 
   /// ContractResourceDecisionModeCodes values
   /// policy
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ContractResourceDecisionModeCodes policy =
       ContractResourceDecisionModeCodes._(
     'policy',
@@ -42,17 +52,6 @@ class ContractResourceDecisionModeCodes {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ContractResourceDecisionModeCodes] from JSON.
-  static ContractResourceDecisionModeCodes fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ContractResourceDecisionModeCodes.elementOnly.withElement(element);
-    }
-    return ContractResourceDecisionModeCodes._(value!, element: element);
-  }
 
   /// String representation
   @override

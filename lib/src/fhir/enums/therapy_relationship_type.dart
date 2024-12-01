@@ -7,6 +7,17 @@ class TherapyRelationshipType {
   // Private constructor for internal use (like enum)
   TherapyRelationshipType._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [TherapyRelationshipType] from JSON.
+  factory TherapyRelationshipType.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return TherapyRelationshipType.elementOnly.withElement(element);
+    }
+    return TherapyRelationshipType._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,72 +26,54 @@ class TherapyRelationshipType {
 
   /// TherapyRelationshipType values
   /// contraindicated_only_with
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final TherapyRelationshipType contraindicated_only_with =
       TherapyRelationshipType._(
     'contraindicated-only-with',
   );
 
   /// contraindicated_except_with
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final TherapyRelationshipType contraindicated_except_with =
       TherapyRelationshipType._(
     'contraindicated-except-with',
   );
 
   /// indicated_only_with
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final TherapyRelationshipType indicated_only_with =
       TherapyRelationshipType._(
     'indicated-only-with',
   );
 
   /// indicated_except_with
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final TherapyRelationshipType indicated_except_with =
       TherapyRelationshipType._(
     'indicated-except-with',
   );
 
   /// indicated_only_before
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final TherapyRelationshipType indicated_only_before =
       TherapyRelationshipType._(
     'indicated-only-before',
   );
 
   /// replace_other_therapy
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final TherapyRelationshipType replace_other_therapy =
       TherapyRelationshipType._(
     'replace-other-therapy',
   );
 
   /// replace_other_therapy_contraindicated
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final TherapyRelationshipType replace_other_therapy_contraindicated =
       TherapyRelationshipType._(
     'replace-other-therapy-contraindicated',
   );
 
   /// replace_other_therapy_not_tolerated
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final TherapyRelationshipType replace_other_therapy_not_tolerated =
       TherapyRelationshipType._(
     'replace-other-therapy-not-tolerated',
   );
 
   /// replace_other_therapy_not_effective
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final TherapyRelationshipType replace_other_therapy_not_effective =
       TherapyRelationshipType._(
     'replace-other-therapy-not-effective',
@@ -114,17 +107,6 @@ class TherapyRelationshipType {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [TherapyRelationshipType] from JSON.
-  static TherapyRelationshipType fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return TherapyRelationshipType.elementOnly.withElement(element);
-    }
-    return TherapyRelationshipType._(value!, element: element);
-  }
 
   /// String representation
   @override

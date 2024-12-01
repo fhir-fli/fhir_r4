@@ -7,6 +7,17 @@ class RequestPriority {
   // Private constructor for internal use (like enum)
   RequestPriority._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [RequestPriority] from JSON.
+  factory RequestPriority.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return RequestPriority.elementOnly.withElement(element);
+    }
+    return RequestPriority._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,29 +26,21 @@ class RequestPriority {
 
   /// RequestPriority values
   /// routine
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final RequestPriority routine = RequestPriority._(
     'routine',
   );
 
   /// urgent
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final RequestPriority urgent = RequestPriority._(
     'urgent',
   );
 
   /// asap
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final RequestPriority asap = RequestPriority._(
     'asap',
   );
 
   /// stat
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final RequestPriority stat = RequestPriority._(
     'stat',
   );
@@ -64,17 +67,6 @@ class RequestPriority {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [RequestPriority] from JSON.
-  static RequestPriority fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return RequestPriority.elementOnly.withElement(element);
-    }
-    return RequestPriority._(value!, element: element);
-  }
 
   /// String representation
   @override

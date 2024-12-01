@@ -7,6 +7,17 @@ class MediaType {
   // Private constructor for internal use (like enum)
   MediaType._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [MediaType] from JSON.
+  factory MediaType.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return MediaType.elementOnly.withElement(element);
+    }
+    return MediaType._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,22 +26,16 @@ class MediaType {
 
   /// MediaType values
   /// image
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MediaType image = MediaType._(
     'image',
   );
 
   /// video
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MediaType video = MediaType._(
     'video',
   );
 
   /// audio
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MediaType audio = MediaType._(
     'audio',
   );
@@ -56,17 +61,6 @@ class MediaType {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [MediaType] from JSON.
-  static MediaType fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return MediaType.elementOnly.withElement(element);
-    }
-    return MediaType._(value!, element: element);
-  }
 
   /// String representation
   @override

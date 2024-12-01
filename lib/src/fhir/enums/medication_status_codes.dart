@@ -7,6 +7,17 @@ class MedicationStatusCodes {
   // Private constructor for internal use (like enum)
   MedicationStatusCodes._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [MedicationStatusCodes] from JSON.
+  factory MedicationStatusCodes.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return MedicationStatusCodes.elementOnly.withElement(element);
+    }
+    return MedicationStatusCodes._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,22 +26,16 @@ class MedicationStatusCodes {
 
   /// MedicationStatusCodes values
   /// active
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicationStatusCodes active = MedicationStatusCodes._(
     'active',
   );
 
   /// inactive
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicationStatusCodes inactive = MedicationStatusCodes._(
     'inactive',
   );
 
   /// entered_in_error
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicationStatusCodes entered_in_error = MedicationStatusCodes._(
     'entered-in-error',
   );
@@ -56,17 +61,6 @@ class MedicationStatusCodes {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [MedicationStatusCodes] from JSON.
-  static MedicationStatusCodes fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return MedicationStatusCodes.elementOnly.withElement(element);
-    }
-    return MedicationStatusCodes._(value!, element: element);
-  }
 
   /// String representation
   @override

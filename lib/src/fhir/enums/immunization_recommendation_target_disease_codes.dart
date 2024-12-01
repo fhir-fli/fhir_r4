@@ -7,6 +7,20 @@ class ImmunizationRecommendationTargetDiseaseCodes {
   // Private constructor for internal use (like enum)
   ImmunizationRecommendationTargetDiseaseCodes._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ImmunizationRecommendationTargetDiseaseCodes] from JSON.
+  factory ImmunizationRecommendationTargetDiseaseCodes.fromJson(
+      Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ImmunizationRecommendationTargetDiseaseCodes.elementOnly
+          .withElement(element);
+    }
+    return ImmunizationRecommendationTargetDiseaseCodes._(value!,
+        element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,72 +29,54 @@ class ImmunizationRecommendationTargetDiseaseCodes {
 
   /// ImmunizationRecommendationTargetDiseaseCodes values
   /// value1857005
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ImmunizationRecommendationTargetDiseaseCodes value1857005 =
       ImmunizationRecommendationTargetDiseaseCodes._(
     '1857005',
   );
 
   /// value397430003
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ImmunizationRecommendationTargetDiseaseCodes value397430003 =
       ImmunizationRecommendationTargetDiseaseCodes._(
     '397430003',
   );
 
   /// value14189004
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ImmunizationRecommendationTargetDiseaseCodes value14189004 =
       ImmunizationRecommendationTargetDiseaseCodes._(
     '14189004',
   );
 
   /// value36989005
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ImmunizationRecommendationTargetDiseaseCodes value36989005 =
       ImmunizationRecommendationTargetDiseaseCodes._(
     '36989005',
   );
 
   /// value36653000
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ImmunizationRecommendationTargetDiseaseCodes value36653000 =
       ImmunizationRecommendationTargetDiseaseCodes._(
     '36653000',
   );
 
   /// value76902006
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ImmunizationRecommendationTargetDiseaseCodes value76902006 =
       ImmunizationRecommendationTargetDiseaseCodes._(
     '76902006',
   );
 
   /// value709410003
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ImmunizationRecommendationTargetDiseaseCodes value709410003 =
       ImmunizationRecommendationTargetDiseaseCodes._(
     '709410003',
   );
 
   /// value27836007
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ImmunizationRecommendationTargetDiseaseCodes value27836007 =
       ImmunizationRecommendationTargetDiseaseCodes._(
     '27836007',
   );
 
   /// value398102009
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ImmunizationRecommendationTargetDiseaseCodes value398102009 =
       ImmunizationRecommendationTargetDiseaseCodes._(
     '398102009',
@@ -116,20 +112,6 @@ class ImmunizationRecommendationTargetDiseaseCodes {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ImmunizationRecommendationTargetDiseaseCodes] from JSON.
-  static ImmunizationRecommendationTargetDiseaseCodes fromJson(
-      Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ImmunizationRecommendationTargetDiseaseCodes.elementOnly
-          .withElement(element);
-    }
-    return ImmunizationRecommendationTargetDiseaseCodes._(value!,
-        element: element);
-  }
 
   /// String representation
   @override

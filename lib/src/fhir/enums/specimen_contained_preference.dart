@@ -7,6 +7,17 @@ class SpecimenContainedPreference {
   // Private constructor for internal use (like enum)
   SpecimenContainedPreference._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [SpecimenContainedPreference] from JSON.
+  factory SpecimenContainedPreference.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return SpecimenContainedPreference.elementOnly.withElement(element);
+    }
+    return SpecimenContainedPreference._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,16 +26,12 @@ class SpecimenContainedPreference {
 
   /// SpecimenContainedPreference values
   /// preferred
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SpecimenContainedPreference preferred =
       SpecimenContainedPreference._(
     'preferred',
   );
 
   /// alternate
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SpecimenContainedPreference alternate =
       SpecimenContainedPreference._(
     'alternate',
@@ -51,17 +58,6 @@ class SpecimenContainedPreference {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [SpecimenContainedPreference] from JSON.
-  static SpecimenContainedPreference fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return SpecimenContainedPreference.elementOnly.withElement(element);
-    }
-    return SpecimenContainedPreference._(value!, element: element);
-  }
 
   /// String representation
   @override

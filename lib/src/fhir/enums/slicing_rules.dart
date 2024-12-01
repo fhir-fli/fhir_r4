@@ -7,6 +7,17 @@ class SlicingRules {
   // Private constructor for internal use (like enum)
   SlicingRules._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [SlicingRules] from JSON.
+  factory SlicingRules.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return SlicingRules.elementOnly.withElement(element);
+    }
+    return SlicingRules._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,22 +26,16 @@ class SlicingRules {
 
   /// SlicingRules values
   /// closed
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SlicingRules closed = SlicingRules._(
     'closed',
   );
 
   /// open
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SlicingRules open = SlicingRules._(
     'open',
   );
 
   /// openAtEnd
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SlicingRules openAtEnd = SlicingRules._(
     'openAtEnd',
   );
@@ -56,17 +61,6 @@ class SlicingRules {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [SlicingRules] from JSON.
-  static SlicingRules fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return SlicingRules.elementOnly.withElement(element);
-    }
-    return SlicingRules._(value!, element: element);
-  }
 
   /// String representation
   @override

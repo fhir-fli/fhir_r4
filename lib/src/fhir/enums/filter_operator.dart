@@ -7,6 +7,17 @@ class FilterOperator {
   // Private constructor for internal use (like enum)
   FilterOperator._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [FilterOperator] from JSON.
+  factory FilterOperator.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return FilterOperator.elementOnly.withElement(element);
+    }
+    return FilterOperator._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,64 +26,46 @@ class FilterOperator {
 
   /// FilterOperator values
   /// eq
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final FilterOperator eq = FilterOperator._(
     '=',
   );
 
   /// is_a
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final FilterOperator is_a = FilterOperator._(
     'is-a',
   );
 
   /// descendent_of
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final FilterOperator descendent_of = FilterOperator._(
     'descendent-of',
   );
 
   /// is_not_a
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final FilterOperator is_not_a = FilterOperator._(
     'is-not-a',
   );
 
   /// regex
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final FilterOperator regex = FilterOperator._(
     'regex',
   );
 
   /// in_
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final FilterOperator in_ = FilterOperator._(
     'in',
   );
 
   /// not_in
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final FilterOperator not_in = FilterOperator._(
     'not-in',
   );
 
   /// generalizes
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final FilterOperator generalizes = FilterOperator._(
     'generalizes',
   );
 
   /// exists
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final FilterOperator exists = FilterOperator._(
     'exists',
   );
@@ -104,17 +97,6 @@ class FilterOperator {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [FilterOperator] from JSON.
-  static FilterOperator fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return FilterOperator.elementOnly.withElement(element);
-    }
-    return FilterOperator._(value!, element: element);
-  }
 
   /// String representation
   @override

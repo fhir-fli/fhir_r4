@@ -7,6 +7,17 @@ class MedicationRequestIntent {
   // Private constructor for internal use (like enum)
   MedicationRequestIntent._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [MedicationRequestIntent] from JSON.
+  factory MedicationRequestIntent.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return MedicationRequestIntent.elementOnly.withElement(element);
+    }
+    return MedicationRequestIntent._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,59 +26,43 @@ class MedicationRequestIntent {
 
   /// MedicationRequestIntent values
   /// proposal
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicationRequestIntent proposal = MedicationRequestIntent._(
     'proposal',
   );
 
   /// plan
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicationRequestIntent plan = MedicationRequestIntent._(
     'plan',
   );
 
   /// order
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicationRequestIntent order = MedicationRequestIntent._(
     'order',
   );
 
   /// original_order
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicationRequestIntent original_order =
       MedicationRequestIntent._(
     'original-order',
   );
 
   /// reflex_order
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicationRequestIntent reflex_order = MedicationRequestIntent._(
     'reflex-order',
   );
 
   /// filler_order
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicationRequestIntent filler_order = MedicationRequestIntent._(
     'filler-order',
   );
 
   /// instance_order
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicationRequestIntent instance_order =
       MedicationRequestIntent._(
     'instance-order',
   );
 
   /// option
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicationRequestIntent option = MedicationRequestIntent._(
     'option',
   );
@@ -99,17 +94,6 @@ class MedicationRequestIntent {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [MedicationRequestIntent] from JSON.
-  static MedicationRequestIntent fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return MedicationRequestIntent.elementOnly.withElement(element);
-    }
-    return MedicationRequestIntent._(value!, element: element);
-  }
 
   /// String representation
   @override

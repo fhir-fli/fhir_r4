@@ -7,6 +7,17 @@ class ProcedureOutcomeCodesSNOMEDCT {
   // Private constructor for internal use (like enum)
   ProcedureOutcomeCodesSNOMEDCT._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ProcedureOutcomeCodesSNOMEDCT] from JSON.
+  factory ProcedureOutcomeCodesSNOMEDCT.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ProcedureOutcomeCodesSNOMEDCT.elementOnly.withElement(element);
+    }
+    return ProcedureOutcomeCodesSNOMEDCT._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,24 +26,18 @@ class ProcedureOutcomeCodesSNOMEDCT {
 
   /// ProcedureOutcomeCodesSNOMEDCT values
   /// value385669000
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ProcedureOutcomeCodesSNOMEDCT value385669000 =
       ProcedureOutcomeCodesSNOMEDCT._(
     '385669000',
   );
 
   /// value385671000
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ProcedureOutcomeCodesSNOMEDCT value385671000 =
       ProcedureOutcomeCodesSNOMEDCT._(
     '385671000',
   );
 
   /// value385670004
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ProcedureOutcomeCodesSNOMEDCT value385670004 =
       ProcedureOutcomeCodesSNOMEDCT._(
     '385670004',
@@ -60,17 +65,6 @@ class ProcedureOutcomeCodesSNOMEDCT {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ProcedureOutcomeCodesSNOMEDCT] from JSON.
-  static ProcedureOutcomeCodesSNOMEDCT fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ProcedureOutcomeCodesSNOMEDCT.elementOnly.withElement(element);
-    }
-    return ProcedureOutcomeCodesSNOMEDCT._(value!, element: element);
-  }
 
   /// String representation
   @override

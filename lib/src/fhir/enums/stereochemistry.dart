@@ -7,6 +7,17 @@ class Stereochemistry {
   // Private constructor for internal use (like enum)
   Stereochemistry._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [Stereochemistry] from JSON.
+  factory Stereochemistry.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return Stereochemistry.elementOnly.withElement(element);
+    }
+    return Stereochemistry._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,22 +26,16 @@ class Stereochemistry {
 
   /// Stereochemistry values
   /// ConstitutionalIsomer
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final Stereochemistry ConstitutionalIsomer = Stereochemistry._(
     'ConstitutionalIsomer',
   );
 
   /// Stereoisomer
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final Stereochemistry Stereoisomer = Stereochemistry._(
     'Stereoisomer',
   );
 
   /// Enantiomer
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final Stereochemistry Enantiomer = Stereochemistry._(
     'Enantiomer',
   );
@@ -56,17 +61,6 @@ class Stereochemistry {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [Stereochemistry] from JSON.
-  static Stereochemistry fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return Stereochemistry.elementOnly.withElement(element);
-    }
-    return Stereochemistry._(value!, element: element);
-  }
 
   /// String representation
   @override

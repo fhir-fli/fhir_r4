@@ -7,6 +7,17 @@ class LibraryType {
   // Private constructor for internal use (like enum)
   LibraryType._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [LibraryType] from JSON.
+  factory LibraryType.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return LibraryType.elementOnly.withElement(element);
+    }
+    return LibraryType._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,29 +26,21 @@ class LibraryType {
 
   /// LibraryType values
   /// logic_library
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final LibraryType logic_library = LibraryType._(
     'logic-library',
   );
 
   /// model_definition
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final LibraryType model_definition = LibraryType._(
     'model-definition',
   );
 
   /// asset_collection
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final LibraryType asset_collection = LibraryType._(
     'asset-collection',
   );
 
   /// module_definition
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final LibraryType module_definition = LibraryType._(
     'module-definition',
   );
@@ -64,17 +67,6 @@ class LibraryType {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [LibraryType] from JSON.
-  static LibraryType fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return LibraryType.elementOnly.withElement(element);
-    }
-    return LibraryType._(value!, element: element);
-  }
 
   /// String representation
   @override

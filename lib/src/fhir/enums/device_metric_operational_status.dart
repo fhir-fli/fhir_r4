@@ -7,6 +7,17 @@ class DeviceMetricOperationalStatus {
   // Private constructor for internal use (like enum)
   DeviceMetricOperationalStatus._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [DeviceMetricOperationalStatus] from JSON.
+  factory DeviceMetricOperationalStatus.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return DeviceMetricOperationalStatus.elementOnly.withElement(element);
+    }
+    return DeviceMetricOperationalStatus._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,32 +26,24 @@ class DeviceMetricOperationalStatus {
 
   /// DeviceMetricOperationalStatus values
   /// on_
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final DeviceMetricOperationalStatus on_ =
       DeviceMetricOperationalStatus._(
     'on',
   );
 
   /// off
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final DeviceMetricOperationalStatus off =
       DeviceMetricOperationalStatus._(
     'off',
   );
 
   /// standby
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final DeviceMetricOperationalStatus standby =
       DeviceMetricOperationalStatus._(
     'standby',
   );
 
   /// entered_in_error
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final DeviceMetricOperationalStatus entered_in_error =
       DeviceMetricOperationalStatus._(
     'entered-in-error',
@@ -69,17 +72,6 @@ class DeviceMetricOperationalStatus {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [DeviceMetricOperationalStatus] from JSON.
-  static DeviceMetricOperationalStatus fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return DeviceMetricOperationalStatus.elementOnly.withElement(element);
-    }
-    return DeviceMetricOperationalStatus._(value!, element: element);
-  }
 
   /// String representation
   @override

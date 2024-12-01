@@ -7,6 +7,17 @@ class ActionRelationshipType {
   // Private constructor for internal use (like enum)
   ActionRelationshipType._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ActionRelationshipType] from JSON.
+  factory ActionRelationshipType.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ActionRelationshipType.elementOnly.withElement(element);
+    }
+    return ActionRelationshipType._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,66 +26,48 @@ class ActionRelationshipType {
 
   /// ActionRelationshipType values
   /// before_start
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ActionRelationshipType before_start = ActionRelationshipType._(
     'before-start',
   );
 
   /// before
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ActionRelationshipType before = ActionRelationshipType._(
     'before',
   );
 
   /// before_end
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ActionRelationshipType before_end = ActionRelationshipType._(
     'before-end',
   );
 
   /// concurrent_with_start
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ActionRelationshipType concurrent_with_start =
       ActionRelationshipType._(
     'concurrent-with-start',
   );
 
   /// concurrent
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ActionRelationshipType concurrent = ActionRelationshipType._(
     'concurrent',
   );
 
   /// concurrent_with_end
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ActionRelationshipType concurrent_with_end =
       ActionRelationshipType._(
     'concurrent-with-end',
   );
 
   /// after_start
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ActionRelationshipType after_start = ActionRelationshipType._(
     'after-start',
   );
 
   /// after
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ActionRelationshipType after = ActionRelationshipType._(
     'after',
   );
 
   /// after_end
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ActionRelationshipType after_end = ActionRelationshipType._(
     'after-end',
   );
@@ -107,17 +100,6 @@ class ActionRelationshipType {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ActionRelationshipType] from JSON.
-  static ActionRelationshipType fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ActionRelationshipType.elementOnly.withElement(element);
-    }
-    return ActionRelationshipType._(value!, element: element);
-  }
 
   /// String representation
   @override

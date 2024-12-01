@@ -7,6 +7,17 @@ class MedicationRequestCategoryCodes {
   // Private constructor for internal use (like enum)
   MedicationRequestCategoryCodes._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [MedicationRequestCategoryCodes] from JSON.
+  factory MedicationRequestCategoryCodes.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return MedicationRequestCategoryCodes.elementOnly.withElement(element);
+    }
+    return MedicationRequestCategoryCodes._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,32 +26,24 @@ class MedicationRequestCategoryCodes {
 
   /// MedicationRequestCategoryCodes values
   /// inpatient
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicationRequestCategoryCodes inpatient =
       MedicationRequestCategoryCodes._(
     'inpatient',
   );
 
   /// outpatient
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicationRequestCategoryCodes outpatient =
       MedicationRequestCategoryCodes._(
     'outpatient',
   );
 
   /// community
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicationRequestCategoryCodes community =
       MedicationRequestCategoryCodes._(
     'community',
   );
 
   /// discharge
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicationRequestCategoryCodes discharge =
       MedicationRequestCategoryCodes._(
     'discharge',
@@ -69,17 +72,6 @@ class MedicationRequestCategoryCodes {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [MedicationRequestCategoryCodes] from JSON.
-  static MedicationRequestCategoryCodes fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return MedicationRequestCategoryCodes.elementOnly.withElement(element);
-    }
-    return MedicationRequestCategoryCodes._(value!, element: element);
-  }
 
   /// String representation
   @override

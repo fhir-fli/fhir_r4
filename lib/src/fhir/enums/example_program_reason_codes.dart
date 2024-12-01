@@ -7,6 +7,17 @@ class ExampleProgramReasonCodes {
   // Private constructor for internal use (like enum)
   ExampleProgramReasonCodes._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ExampleProgramReasonCodes] from JSON.
+  factory ExampleProgramReasonCodes.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ExampleProgramReasonCodes.elementOnly.withElement(element);
+    }
+    return ExampleProgramReasonCodes._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,29 +26,21 @@ class ExampleProgramReasonCodes {
 
   /// ExampleProgramReasonCodes values
   /// as_
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ExampleProgramReasonCodes as_ = ExampleProgramReasonCodes._(
     'as',
   );
 
   /// hd
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ExampleProgramReasonCodes hd = ExampleProgramReasonCodes._(
     'hd',
   );
 
   /// auscr
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ExampleProgramReasonCodes auscr = ExampleProgramReasonCodes._(
     'auscr',
   );
 
   /// none
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ExampleProgramReasonCodes none = ExampleProgramReasonCodes._(
     'none',
   );
@@ -65,17 +68,6 @@ class ExampleProgramReasonCodes {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ExampleProgramReasonCodes] from JSON.
-  static ExampleProgramReasonCodes fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ExampleProgramReasonCodes.elementOnly.withElement(element);
-    }
-    return ExampleProgramReasonCodes._(value!, element: element);
-  }
 
   /// String representation
   @override

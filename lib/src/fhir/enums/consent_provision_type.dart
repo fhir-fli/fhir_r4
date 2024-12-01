@@ -7,6 +7,17 @@ class ConsentProvisionType {
   // Private constructor for internal use (like enum)
   ConsentProvisionType._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ConsentProvisionType] from JSON.
+  factory ConsentProvisionType.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ConsentProvisionType.elementOnly.withElement(element);
+    }
+    return ConsentProvisionType._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,15 +26,11 @@ class ConsentProvisionType {
 
   /// ConsentProvisionType values
   /// deny
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ConsentProvisionType deny = ConsentProvisionType._(
     'deny',
   );
 
   /// permit
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ConsentProvisionType permit = ConsentProvisionType._(
     'permit',
   );
@@ -48,17 +55,6 @@ class ConsentProvisionType {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ConsentProvisionType] from JSON.
-  static ConsentProvisionType fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ConsentProvisionType.elementOnly.withElement(element);
-    }
-    return ConsentProvisionType._(value!, element: element);
-  }
 
   /// String representation
   @override

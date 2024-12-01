@@ -7,6 +7,17 @@ class AdmitSource {
   // Private constructor for internal use (like enum)
   AdmitSource._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [AdmitSource] from JSON.
+  factory AdmitSource.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return AdmitSource.elementOnly.withElement(element);
+    }
+    return AdmitSource._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,71 +26,51 @@ class AdmitSource {
 
   /// AdmitSource values
   /// hosp_trans
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AdmitSource hosp_trans = AdmitSource._(
     'hosp-trans',
   );
 
   /// emd
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AdmitSource emd = AdmitSource._(
     'emd',
   );
 
   /// outp
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AdmitSource outp = AdmitSource._(
     'outp',
   );
 
   /// born
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AdmitSource born = AdmitSource._(
     'born',
   );
 
   /// gp
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AdmitSource gp = AdmitSource._(
     'gp',
   );
 
   /// mp
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AdmitSource mp = AdmitSource._(
     'mp',
   );
 
   /// nursing
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AdmitSource nursing = AdmitSource._(
     'nursing',
   );
 
   /// psych
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AdmitSource psych = AdmitSource._(
     'psych',
   );
 
   /// rehab
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AdmitSource rehab = AdmitSource._(
     'rehab',
   );
 
   /// other
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AdmitSource other = AdmitSource._(
     'other',
   );
@@ -112,17 +103,6 @@ class AdmitSource {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [AdmitSource] from JSON.
-  static AdmitSource fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return AdmitSource.elementOnly.withElement(element);
-    }
-    return AdmitSource._(value!, element: element);
-  }
 
   /// String representation
   @override

@@ -7,6 +7,17 @@ class FHIRDeviceStatusReason {
   // Private constructor for internal use (like enum)
   FHIRDeviceStatusReason._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [FHIRDeviceStatusReason] from JSON.
+  factory FHIRDeviceStatusReason.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return FHIRDeviceStatusReason.elementOnly.withElement(element);
+    }
+    return FHIRDeviceStatusReason._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,58 +26,42 @@ class FHIRDeviceStatusReason {
 
   /// FHIRDeviceStatusReason values
   /// online
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final FHIRDeviceStatusReason online = FHIRDeviceStatusReason._(
     'online',
   );
 
   /// paused
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final FHIRDeviceStatusReason paused = FHIRDeviceStatusReason._(
     'paused',
   );
 
   /// standby
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final FHIRDeviceStatusReason standby = FHIRDeviceStatusReason._(
     'standby',
   );
 
   /// offline
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final FHIRDeviceStatusReason offline = FHIRDeviceStatusReason._(
     'offline',
   );
 
   /// not_ready
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final FHIRDeviceStatusReason not_ready = FHIRDeviceStatusReason._(
     'not-ready',
   );
 
   /// transduc_discon
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final FHIRDeviceStatusReason transduc_discon =
       FHIRDeviceStatusReason._(
     'transduc-discon',
   );
 
   /// hw_discon
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final FHIRDeviceStatusReason hw_discon = FHIRDeviceStatusReason._(
     'hw-discon',
   );
 
   /// off
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final FHIRDeviceStatusReason off = FHIRDeviceStatusReason._(
     'off',
   );
@@ -98,17 +93,6 @@ class FHIRDeviceStatusReason {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [FHIRDeviceStatusReason] from JSON.
-  static FHIRDeviceStatusReason fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return FHIRDeviceStatusReason.elementOnly.withElement(element);
-    }
-    return FHIRDeviceStatusReason._(value!, element: element);
-  }
 
   /// String representation
   @override

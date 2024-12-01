@@ -7,6 +7,17 @@ class EpisodeOfCareType {
   // Private constructor for internal use (like enum)
   EpisodeOfCareType._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [EpisodeOfCareType] from JSON.
+  factory EpisodeOfCareType.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return EpisodeOfCareType.elementOnly.withElement(element);
+    }
+    return EpisodeOfCareType._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,36 +26,26 @@ class EpisodeOfCareType {
 
   /// EpisodeOfCareType values
   /// hacc
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final EpisodeOfCareType hacc = EpisodeOfCareType._(
     'hacc',
   );
 
   /// pac
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final EpisodeOfCareType pac = EpisodeOfCareType._(
     'pac',
   );
 
   /// diab
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final EpisodeOfCareType diab = EpisodeOfCareType._(
     'diab',
   );
 
   /// da
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final EpisodeOfCareType da = EpisodeOfCareType._(
     'da',
   );
 
   /// cacp
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final EpisodeOfCareType cacp = EpisodeOfCareType._(
     'cacp',
   );
@@ -72,17 +73,6 @@ class EpisodeOfCareType {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [EpisodeOfCareType] from JSON.
-  static EpisodeOfCareType fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return EpisodeOfCareType.elementOnly.withElement(element);
-    }
-    return EpisodeOfCareType._(value!, element: element);
-  }
 
   /// String representation
   @override

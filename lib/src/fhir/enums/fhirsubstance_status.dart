@@ -7,6 +7,17 @@ class FHIRSubstanceStatus {
   // Private constructor for internal use (like enum)
   FHIRSubstanceStatus._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [FHIRSubstanceStatus] from JSON.
+  factory FHIRSubstanceStatus.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return FHIRSubstanceStatus.elementOnly.withElement(element);
+    }
+    return FHIRSubstanceStatus._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,22 +26,16 @@ class FHIRSubstanceStatus {
 
   /// FHIRSubstanceStatus values
   /// active
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final FHIRSubstanceStatus active = FHIRSubstanceStatus._(
     'active',
   );
 
   /// inactive
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final FHIRSubstanceStatus inactive = FHIRSubstanceStatus._(
     'inactive',
   );
 
   /// entered_in_error
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final FHIRSubstanceStatus entered_in_error = FHIRSubstanceStatus._(
     'entered-in-error',
   );
@@ -56,17 +61,6 @@ class FHIRSubstanceStatus {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [FHIRSubstanceStatus] from JSON.
-  static FHIRSubstanceStatus fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return FHIRSubstanceStatus.elementOnly.withElement(element);
-    }
-    return FHIRSubstanceStatus._(value!, element: element);
-  }
 
   /// String representation
   @override

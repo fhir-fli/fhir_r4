@@ -7,6 +7,19 @@ class ImmunizationEvaluationTargetDiseaseCodes {
   // Private constructor for internal use (like enum)
   ImmunizationEvaluationTargetDiseaseCodes._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ImmunizationEvaluationTargetDiseaseCodes] from JSON.
+  factory ImmunizationEvaluationTargetDiseaseCodes.fromJson(
+      Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ImmunizationEvaluationTargetDiseaseCodes.elementOnly
+          .withElement(element);
+    }
+    return ImmunizationEvaluationTargetDiseaseCodes._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,72 +28,54 @@ class ImmunizationEvaluationTargetDiseaseCodes {
 
   /// ImmunizationEvaluationTargetDiseaseCodes values
   /// value1857005
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ImmunizationEvaluationTargetDiseaseCodes value1857005 =
       ImmunizationEvaluationTargetDiseaseCodes._(
     '1857005',
   );
 
   /// value397430003
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ImmunizationEvaluationTargetDiseaseCodes value397430003 =
       ImmunizationEvaluationTargetDiseaseCodes._(
     '397430003',
   );
 
   /// value14189004
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ImmunizationEvaluationTargetDiseaseCodes value14189004 =
       ImmunizationEvaluationTargetDiseaseCodes._(
     '14189004',
   );
 
   /// value36989005
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ImmunizationEvaluationTargetDiseaseCodes value36989005 =
       ImmunizationEvaluationTargetDiseaseCodes._(
     '36989005',
   );
 
   /// value36653000
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ImmunizationEvaluationTargetDiseaseCodes value36653000 =
       ImmunizationEvaluationTargetDiseaseCodes._(
     '36653000',
   );
 
   /// value76902006
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ImmunizationEvaluationTargetDiseaseCodes value76902006 =
       ImmunizationEvaluationTargetDiseaseCodes._(
     '76902006',
   );
 
   /// value709410003
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ImmunizationEvaluationTargetDiseaseCodes value709410003 =
       ImmunizationEvaluationTargetDiseaseCodes._(
     '709410003',
   );
 
   /// value27836007
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ImmunizationEvaluationTargetDiseaseCodes value27836007 =
       ImmunizationEvaluationTargetDiseaseCodes._(
     '27836007',
   );
 
   /// value398102009
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ImmunizationEvaluationTargetDiseaseCodes value398102009 =
       ImmunizationEvaluationTargetDiseaseCodes._(
     '398102009',
@@ -115,19 +110,6 @@ class ImmunizationEvaluationTargetDiseaseCodes {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ImmunizationEvaluationTargetDiseaseCodes] from JSON.
-  static ImmunizationEvaluationTargetDiseaseCodes fromJson(
-      Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ImmunizationEvaluationTargetDiseaseCodes.elementOnly
-          .withElement(element);
-    }
-    return ImmunizationEvaluationTargetDiseaseCodes._(value!, element: element);
-  }
 
   /// String representation
   @override

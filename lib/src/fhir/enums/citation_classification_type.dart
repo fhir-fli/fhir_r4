@@ -7,6 +7,17 @@ class CitationClassificationType {
   // Private constructor for internal use (like enum)
   CitationClassificationType._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [CitationClassificationType] from JSON.
+  factory CitationClassificationType.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return CitationClassificationType.elementOnly.withElement(element);
+    }
+    return CitationClassificationType._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,24 +26,18 @@ class CitationClassificationType {
 
   /// CitationClassificationType values
   /// citation_source
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CitationClassificationType citation_source =
       CitationClassificationType._(
     'citation-source',
   );
 
   /// medline_owner
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CitationClassificationType medline_owner =
       CitationClassificationType._(
     'medline-owner',
   );
 
   /// fevir_platform_use
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CitationClassificationType fevir_platform_use =
       CitationClassificationType._(
     'fevir-platform-use',
@@ -60,17 +65,6 @@ class CitationClassificationType {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [CitationClassificationType] from JSON.
-  static CitationClassificationType fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return CitationClassificationType.elementOnly.withElement(element);
-    }
-    return CitationClassificationType._(value!, element: element);
-  }
 
   /// String representation
   @override

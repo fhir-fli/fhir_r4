@@ -7,6 +7,17 @@ class EventCapabilityMode {
   // Private constructor for internal use (like enum)
   EventCapabilityMode._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [EventCapabilityMode] from JSON.
+  factory EventCapabilityMode.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return EventCapabilityMode.elementOnly.withElement(element);
+    }
+    return EventCapabilityMode._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,15 +26,11 @@ class EventCapabilityMode {
 
   /// EventCapabilityMode values
   /// sender
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final EventCapabilityMode sender = EventCapabilityMode._(
     'sender',
   );
 
   /// receiver
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final EventCapabilityMode receiver = EventCapabilityMode._(
     'receiver',
   );
@@ -48,17 +55,6 @@ class EventCapabilityMode {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [EventCapabilityMode] from JSON.
-  static EventCapabilityMode fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return EventCapabilityMode.elementOnly.withElement(element);
-    }
-    return EventCapabilityMode._(value!, element: element);
-  }
 
   /// String representation
   @override

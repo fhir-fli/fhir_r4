@@ -7,6 +7,17 @@ class RegulatedAuthorizationCaseType {
   // Private constructor for internal use (like enum)
   RegulatedAuthorizationCaseType._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [RegulatedAuthorizationCaseType] from JSON.
+  factory RegulatedAuthorizationCaseType.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return RegulatedAuthorizationCaseType.elementOnly.withElement(element);
+    }
+    return RegulatedAuthorizationCaseType._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,176 +26,132 @@ class RegulatedAuthorizationCaseType {
 
   /// RegulatedAuthorizationCaseType values
   /// InitialMAA
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final RegulatedAuthorizationCaseType InitialMAA =
       RegulatedAuthorizationCaseType._(
     'InitialMAA',
   );
 
   /// Variation
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final RegulatedAuthorizationCaseType Variation =
       RegulatedAuthorizationCaseType._(
     'Variation',
   );
 
   /// LineExtension
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final RegulatedAuthorizationCaseType LineExtension =
       RegulatedAuthorizationCaseType._(
     'LineExtension',
   );
 
   /// PSUR
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final RegulatedAuthorizationCaseType PSUR =
       RegulatedAuthorizationCaseType._(
     'PSUR',
   );
 
   /// Renewal
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final RegulatedAuthorizationCaseType Renewal =
       RegulatedAuthorizationCaseType._(
     'Renewal',
   );
 
   /// Follow_up
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final RegulatedAuthorizationCaseType Follow_up =
       RegulatedAuthorizationCaseType._(
     'Follow-up',
   );
 
   /// value100000155699
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final RegulatedAuthorizationCaseType value100000155699 =
       RegulatedAuthorizationCaseType._(
     '100000155699',
   );
 
   /// AnnualReassessment
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final RegulatedAuthorizationCaseType AnnualReassessment =
       RegulatedAuthorizationCaseType._(
     'AnnualReassessment',
   );
 
   /// UrgentSafetyRestriction
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final RegulatedAuthorizationCaseType UrgentSafetyRestriction =
       RegulatedAuthorizationCaseType._(
     'UrgentSafetyRestriction',
   );
 
   /// PaediatricSubmission
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final RegulatedAuthorizationCaseType PaediatricSubmission =
       RegulatedAuthorizationCaseType._(
     'PaediatricSubmission',
   );
 
   /// TransferMA
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final RegulatedAuthorizationCaseType TransferMA =
       RegulatedAuthorizationCaseType._(
     'TransferMA',
   );
 
   /// LiftingSuspension
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final RegulatedAuthorizationCaseType LiftingSuspension =
       RegulatedAuthorizationCaseType._(
     'LiftingSuspension',
   );
 
   /// Withdrawal
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final RegulatedAuthorizationCaseType Withdrawal =
       RegulatedAuthorizationCaseType._(
     'Withdrawal',
   );
 
   /// Reformatting
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final RegulatedAuthorizationCaseType Reformatting =
       RegulatedAuthorizationCaseType._(
     'Reformatting',
   );
 
   /// RMP
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final RegulatedAuthorizationCaseType RMP =
       RegulatedAuthorizationCaseType._(
     'RMP',
   );
 
   /// ReviewSuspension
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final RegulatedAuthorizationCaseType ReviewSuspension =
       RegulatedAuthorizationCaseType._(
     'ReviewSuspension',
   );
 
   /// SupplementalInformation
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final RegulatedAuthorizationCaseType SupplementalInformation =
       RegulatedAuthorizationCaseType._(
     'SupplementalInformation',
   );
 
   /// RepeatUse
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final RegulatedAuthorizationCaseType RepeatUse =
       RegulatedAuthorizationCaseType._(
     'RepeatUse',
   );
 
   /// SignalDetection
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final RegulatedAuthorizationCaseType SignalDetection =
       RegulatedAuthorizationCaseType._(
     'SignalDetection',
   );
 
   /// FLU
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final RegulatedAuthorizationCaseType FLU =
       RegulatedAuthorizationCaseType._(
     'FLU',
   );
 
   /// PANDEMIC
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final RegulatedAuthorizationCaseType PANDEMIC =
       RegulatedAuthorizationCaseType._(
     'PANDEMIC',
   );
 
   /// Orphan
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final RegulatedAuthorizationCaseType Orphan =
       RegulatedAuthorizationCaseType._(
     'Orphan',
@@ -231,17 +198,6 @@ class RegulatedAuthorizationCaseType {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [RegulatedAuthorizationCaseType] from JSON.
-  static RegulatedAuthorizationCaseType fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return RegulatedAuthorizationCaseType.elementOnly.withElement(element);
-    }
-    return RegulatedAuthorizationCaseType._(value!, element: element);
-  }
 
   /// String representation
   @override

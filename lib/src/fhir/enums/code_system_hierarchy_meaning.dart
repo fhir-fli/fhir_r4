@@ -7,6 +7,17 @@ class CodeSystemHierarchyMeaning {
   // Private constructor for internal use (like enum)
   CodeSystemHierarchyMeaning._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [CodeSystemHierarchyMeaning] from JSON.
+  factory CodeSystemHierarchyMeaning.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return CodeSystemHierarchyMeaning.elementOnly.withElement(element);
+    }
+    return CodeSystemHierarchyMeaning._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,31 +26,23 @@ class CodeSystemHierarchyMeaning {
 
   /// CodeSystemHierarchyMeaning values
   /// grouped_by
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CodeSystemHierarchyMeaning grouped_by =
       CodeSystemHierarchyMeaning._(
     'grouped-by',
   );
 
   /// is_a
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CodeSystemHierarchyMeaning is_a = CodeSystemHierarchyMeaning._(
     'is-a',
   );
 
   /// part_of
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CodeSystemHierarchyMeaning part_of =
       CodeSystemHierarchyMeaning._(
     'part-of',
   );
 
   /// classified_with
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CodeSystemHierarchyMeaning classified_with =
       CodeSystemHierarchyMeaning._(
     'classified-with',
@@ -68,17 +71,6 @@ class CodeSystemHierarchyMeaning {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [CodeSystemHierarchyMeaning] from JSON.
-  static CodeSystemHierarchyMeaning fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return CodeSystemHierarchyMeaning.elementOnly.withElement(element);
-    }
-    return CodeSystemHierarchyMeaning._(value!, element: element);
-  }
 
   /// String representation
   @override

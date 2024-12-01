@@ -7,6 +7,17 @@ class DiscriminatorType {
   // Private constructor for internal use (like enum)
   DiscriminatorType._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [DiscriminatorType] from JSON.
+  factory DiscriminatorType.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return DiscriminatorType.elementOnly.withElement(element);
+    }
+    return DiscriminatorType._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,36 +26,26 @@ class DiscriminatorType {
 
   /// DiscriminatorType values
   /// value
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final DiscriminatorType value = DiscriminatorType._(
     'value',
   );
 
   /// exists
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final DiscriminatorType exists = DiscriminatorType._(
     'exists',
   );
 
   /// pattern
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final DiscriminatorType pattern = DiscriminatorType._(
     'pattern',
   );
 
   /// type
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final DiscriminatorType type = DiscriminatorType._(
     'type',
   );
 
   /// profile
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final DiscriminatorType profile = DiscriminatorType._(
     'profile',
   );
@@ -72,17 +73,6 @@ class DiscriminatorType {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [DiscriminatorType] from JSON.
-  static DiscriminatorType fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return DiscriminatorType.elementOnly.withElement(element);
-    }
-    return DiscriminatorType._(value!, element: element);
-  }
 
   /// String representation
   @override

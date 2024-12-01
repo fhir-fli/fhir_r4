@@ -7,6 +7,19 @@ class MedicationDispensePerformerFunctionCodes {
   // Private constructor for internal use (like enum)
   MedicationDispensePerformerFunctionCodes._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [MedicationDispensePerformerFunctionCodes] from JSON.
+  factory MedicationDispensePerformerFunctionCodes.fromJson(
+      Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return MedicationDispensePerformerFunctionCodes.elementOnly
+          .withElement(element);
+    }
+    return MedicationDispensePerformerFunctionCodes._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,32 +28,24 @@ class MedicationDispensePerformerFunctionCodes {
 
   /// MedicationDispensePerformerFunctionCodes values
   /// dataenterer
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicationDispensePerformerFunctionCodes dataenterer =
       MedicationDispensePerformerFunctionCodes._(
     'dataenterer',
   );
 
   /// packager
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicationDispensePerformerFunctionCodes packager =
       MedicationDispensePerformerFunctionCodes._(
     'packager',
   );
 
   /// checker
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicationDispensePerformerFunctionCodes checker =
       MedicationDispensePerformerFunctionCodes._(
     'checker',
   );
 
   /// finalchecker
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicationDispensePerformerFunctionCodes finalchecker =
       MedicationDispensePerformerFunctionCodes._(
     'finalchecker',
@@ -70,19 +75,6 @@ class MedicationDispensePerformerFunctionCodes {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [MedicationDispensePerformerFunctionCodes] from JSON.
-  static MedicationDispensePerformerFunctionCodes fromJson(
-      Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return MedicationDispensePerformerFunctionCodes.elementOnly
-          .withElement(element);
-    }
-    return MedicationDispensePerformerFunctionCodes._(value!, element: element);
-  }
 
   /// String representation
   @override

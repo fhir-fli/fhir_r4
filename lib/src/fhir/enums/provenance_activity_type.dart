@@ -7,6 +7,17 @@ class ProvenanceActivityType {
   // Private constructor for internal use (like enum)
   ProvenanceActivityType._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ProvenanceActivityType] from JSON.
+  factory ProvenanceActivityType.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ProvenanceActivityType.elementOnly.withElement(element);
+    }
+    return ProvenanceActivityType._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,78 +26,56 @@ class ProvenanceActivityType {
 
   /// ProvenanceActivityType values
   /// LA
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ProvenanceActivityType LA = ProvenanceActivityType._(
     'LA',
   );
 
   /// ANONY
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ProvenanceActivityType ANONY = ProvenanceActivityType._(
     'ANONY',
   );
 
   /// DEID
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ProvenanceActivityType DEID = ProvenanceActivityType._(
     'DEID',
   );
 
   /// MASK
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ProvenanceActivityType MASK = ProvenanceActivityType._(
     'MASK',
   );
 
   /// LABEL
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ProvenanceActivityType LABEL = ProvenanceActivityType._(
     'LABEL',
   );
 
   /// PSEUD
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ProvenanceActivityType PSEUD = ProvenanceActivityType._(
     'PSEUD',
   );
 
   /// CREATE
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ProvenanceActivityType CREATE = ProvenanceActivityType._(
     'CREATE',
   );
 
   /// DELETE
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ProvenanceActivityType DELETE = ProvenanceActivityType._(
     'DELETE',
   );
 
   /// UPDATE
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ProvenanceActivityType UPDATE = ProvenanceActivityType._(
     'UPDATE',
   );
 
   /// APPEND
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ProvenanceActivityType APPEND = ProvenanceActivityType._(
     'APPEND',
   );
 
   /// NULLIFY
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ProvenanceActivityType NULLIFY = ProvenanceActivityType._(
     'NULLIFY',
   );
@@ -121,17 +110,6 @@ class ProvenanceActivityType {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ProvenanceActivityType] from JSON.
-  static ProvenanceActivityType fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ProvenanceActivityType.elementOnly.withElement(element);
-    }
-    return ProvenanceActivityType._(value!, element: element);
-  }
 
   /// String representation
   @override

@@ -7,6 +7,17 @@ class IssueSeverity {
   // Private constructor for internal use (like enum)
   IssueSeverity._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [IssueSeverity] from JSON.
+  factory IssueSeverity.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return IssueSeverity.elementOnly.withElement(element);
+    }
+    return IssueSeverity._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,29 +26,21 @@ class IssueSeverity {
 
   /// IssueSeverity values
   /// fatal
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final IssueSeverity fatal = IssueSeverity._(
     'fatal',
   );
 
   /// error
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final IssueSeverity error = IssueSeverity._(
     'error',
   );
 
   /// warning
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final IssueSeverity warning = IssueSeverity._(
     'warning',
   );
 
   /// information
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final IssueSeverity information = IssueSeverity._(
     'information',
   );
@@ -64,17 +67,6 @@ class IssueSeverity {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [IssueSeverity] from JSON.
-  static IssueSeverity fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return IssueSeverity.elementOnly.withElement(element);
-    }
-    return IssueSeverity._(value!, element: element);
-  }
 
   /// String representation
   @override

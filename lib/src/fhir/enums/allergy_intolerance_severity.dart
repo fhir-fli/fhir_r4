@@ -7,6 +7,17 @@ class AllergyIntoleranceSeverity {
   // Private constructor for internal use (like enum)
   AllergyIntoleranceSeverity._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [AllergyIntoleranceSeverity] from JSON.
+  factory AllergyIntoleranceSeverity.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return AllergyIntoleranceSeverity.elementOnly.withElement(element);
+    }
+    return AllergyIntoleranceSeverity._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,23 +26,17 @@ class AllergyIntoleranceSeverity {
 
   /// AllergyIntoleranceSeverity values
   /// mild
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AllergyIntoleranceSeverity mild = AllergyIntoleranceSeverity._(
     'mild',
   );
 
   /// moderate
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AllergyIntoleranceSeverity moderate =
       AllergyIntoleranceSeverity._(
     'moderate',
   );
 
   /// severe
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AllergyIntoleranceSeverity severe = AllergyIntoleranceSeverity._(
     'severe',
   );
@@ -58,17 +63,6 @@ class AllergyIntoleranceSeverity {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [AllergyIntoleranceSeverity] from JSON.
-  static AllergyIntoleranceSeverity fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return AllergyIntoleranceSeverity.elementOnly.withElement(element);
-    }
-    return AllergyIntoleranceSeverity._(value!, element: element);
-  }
 
   /// String representation
   @override

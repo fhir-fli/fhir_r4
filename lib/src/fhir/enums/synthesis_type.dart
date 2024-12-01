@@ -7,6 +7,17 @@ class SynthesisType {
   // Private constructor for internal use (like enum)
   SynthesisType._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [SynthesisType] from JSON.
+  factory SynthesisType.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return SynthesisType.elementOnly.withElement(element);
+    }
+    return SynthesisType._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,50 +26,36 @@ class SynthesisType {
 
   /// SynthesisType values
   /// std_MA
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SynthesisType std_MA = SynthesisType._(
     'std-MA',
   );
 
   /// IPD_MA
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SynthesisType IPD_MA = SynthesisType._(
     'IPD-MA',
   );
 
   /// indirect_NMA
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SynthesisType indirect_NMA = SynthesisType._(
     'indirect-NMA',
   );
 
   /// combined_NMA
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SynthesisType combined_NMA = SynthesisType._(
     'combined-NMA',
   );
 
   /// range
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SynthesisType range = SynthesisType._(
     'range',
   );
 
   /// classification
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SynthesisType classification = SynthesisType._(
     'classification',
   );
 
   /// NotApplicable
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SynthesisType NotApplicable = SynthesisType._(
     'NotApplicable',
   );
@@ -88,17 +85,6 @@ class SynthesisType {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [SynthesisType] from JSON.
-  static SynthesisType fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return SynthesisType.elementOnly.withElement(element);
-    }
-    return SynthesisType._(value!, element: element);
-  }
 
   /// String representation
   @override

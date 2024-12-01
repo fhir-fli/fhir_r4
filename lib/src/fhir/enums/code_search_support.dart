@@ -7,6 +7,17 @@ class CodeSearchSupport {
   // Private constructor for internal use (like enum)
   CodeSearchSupport._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [CodeSearchSupport] from JSON.
+  factory CodeSearchSupport.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return CodeSearchSupport.elementOnly.withElement(element);
+    }
+    return CodeSearchSupport._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,15 +26,11 @@ class CodeSearchSupport {
 
   /// CodeSearchSupport values
   /// explicit
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CodeSearchSupport explicit = CodeSearchSupport._(
     'explicit',
   );
 
   /// all
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CodeSearchSupport all = CodeSearchSupport._(
     'all',
   );
@@ -48,17 +55,6 @@ class CodeSearchSupport {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [CodeSearchSupport] from JSON.
-  static CodeSearchSupport fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return CodeSearchSupport.elementOnly.withElement(element);
-    }
-    return CodeSearchSupport._(value!, element: element);
-  }
 
   /// String representation
   @override

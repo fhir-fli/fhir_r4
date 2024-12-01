@@ -7,6 +7,17 @@ class MeasureReportStatus {
   // Private constructor for internal use (like enum)
   MeasureReportStatus._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [MeasureReportStatus] from JSON.
+  factory MeasureReportStatus.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return MeasureReportStatus.elementOnly.withElement(element);
+    }
+    return MeasureReportStatus._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,22 +26,16 @@ class MeasureReportStatus {
 
   /// MeasureReportStatus values
   /// complete
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MeasureReportStatus complete = MeasureReportStatus._(
     'complete',
   );
 
   /// pending
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MeasureReportStatus pending = MeasureReportStatus._(
     'pending',
   );
 
   /// error
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MeasureReportStatus error = MeasureReportStatus._(
     'error',
   );
@@ -56,17 +61,6 @@ class MeasureReportStatus {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [MeasureReportStatus] from JSON.
-  static MeasureReportStatus fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return MeasureReportStatus.elementOnly.withElement(element);
-    }
-    return MeasureReportStatus._(value!, element: element);
-  }
 
   /// String representation
   @override

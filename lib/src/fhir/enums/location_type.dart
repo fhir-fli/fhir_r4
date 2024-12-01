@@ -7,6 +7,17 @@ class LocationType {
   // Private constructor for internal use (like enum)
   LocationType._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [LocationType] from JSON.
+  factory LocationType.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return LocationType.elementOnly.withElement(element);
+    }
+    return LocationType._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,99 +26,71 @@ class LocationType {
 
   /// LocationType values
   /// si
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final LocationType si = LocationType._(
     'si',
   );
 
   /// bu
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final LocationType bu = LocationType._(
     'bu',
   );
 
   /// wi
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final LocationType wi = LocationType._(
     'wi',
   );
 
   /// wa
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final LocationType wa = LocationType._(
     'wa',
   );
 
   /// lvl
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final LocationType lvl = LocationType._(
     'lvl',
   );
 
   /// co
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final LocationType co = LocationType._(
     'co',
   );
 
   /// ro
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final LocationType ro = LocationType._(
     'ro',
   );
 
   /// bd
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final LocationType bd = LocationType._(
     'bd',
   );
 
   /// ve
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final LocationType ve = LocationType._(
     've',
   );
 
   /// ho
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final LocationType ho = LocationType._(
     'ho',
   );
 
   /// ca
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final LocationType ca = LocationType._(
     'ca',
   );
 
   /// rd
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final LocationType rd = LocationType._(
     'rd',
   );
 
   /// area
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final LocationType area = LocationType._(
     'area',
   );
 
   /// jdn
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final LocationType jdn = LocationType._(
     'jdn',
   );
@@ -144,17 +127,6 @@ class LocationType {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [LocationType] from JSON.
-  static LocationType fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return LocationType.elementOnly.withElement(element);
-    }
-    return LocationType._(value!, element: element);
-  }
 
   /// String representation
   @override

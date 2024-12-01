@@ -7,6 +7,17 @@ class FluidConsistencyTypeCodes {
   // Private constructor for internal use (like enum)
   FluidConsistencyTypeCodes._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [FluidConsistencyTypeCodes] from JSON.
+  factory FluidConsistencyTypeCodes.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return FluidConsistencyTypeCodes.elementOnly.withElement(element);
+    }
+    return FluidConsistencyTypeCodes._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,32 +26,24 @@ class FluidConsistencyTypeCodes {
 
   /// FluidConsistencyTypeCodes values
   /// value439031000124108
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final FluidConsistencyTypeCodes value439031000124108 =
       FluidConsistencyTypeCodes._(
     '439031000124108',
   );
 
   /// value439021000124105
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final FluidConsistencyTypeCodes value439021000124105 =
       FluidConsistencyTypeCodes._(
     '439021000124105',
   );
 
   /// value439041000124103
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final FluidConsistencyTypeCodes value439041000124103 =
       FluidConsistencyTypeCodes._(
     '439041000124103',
   );
 
   /// value439081000124109
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final FluidConsistencyTypeCodes value439081000124109 =
       FluidConsistencyTypeCodes._(
     '439081000124109',
@@ -69,17 +72,6 @@ class FluidConsistencyTypeCodes {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [FluidConsistencyTypeCodes] from JSON.
-  static FluidConsistencyTypeCodes fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return FluidConsistencyTypeCodes.elementOnly.withElement(element);
-    }
-    return FluidConsistencyTypeCodes._(value!, element: element);
-  }
 
   /// String representation
   @override

@@ -7,6 +7,17 @@ class ParticipantType {
   // Private constructor for internal use (like enum)
   ParticipantType._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ParticipantType] from JSON.
+  factory ParticipantType.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ParticipantType.elementOnly.withElement(element);
+    }
+    return ParticipantType._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,36 +26,26 @@ class ParticipantType {
 
   /// ParticipantType values
   /// SPRF
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ParticipantType SPRF = ParticipantType._(
     'SPRF',
   );
 
   /// PPRF
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ParticipantType PPRF = ParticipantType._(
     'PPRF',
   );
 
   /// PART
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ParticipantType PART = ParticipantType._(
     'PART',
   );
 
   /// translator
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ParticipantType translator = ParticipantType._(
     'translator',
   );
 
   /// emergency
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ParticipantType emergency = ParticipantType._(
     'emergency',
   );
@@ -72,17 +73,6 @@ class ParticipantType {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ParticipantType] from JSON.
-  static ParticipantType fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ParticipantType.elementOnly.withElement(element);
-    }
-    return ParticipantType._(value!, element: element);
-  }
 
   /// String representation
   @override

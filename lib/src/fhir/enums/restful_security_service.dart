@@ -7,6 +7,17 @@ class RestfulSecurityService {
   // Private constructor for internal use (like enum)
   RestfulSecurityService._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [RestfulSecurityService] from JSON.
+  factory RestfulSecurityService.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return RestfulSecurityService.elementOnly.withElement(element);
+    }
+    return RestfulSecurityService._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,43 +26,31 @@ class RestfulSecurityService {
 
   /// RestfulSecurityService values
   /// OAuth
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final RestfulSecurityService OAuth = RestfulSecurityService._(
     'OAuth',
   );
 
   /// SMART_on_FHIR
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final RestfulSecurityService SMART_on_FHIR = RestfulSecurityService._(
     'SMART-on-FHIR',
   );
 
   /// NTLM
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final RestfulSecurityService NTLM = RestfulSecurityService._(
     'NTLM',
   );
 
   /// Basic
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final RestfulSecurityService Basic = RestfulSecurityService._(
     'Basic',
   );
 
   /// Kerberos
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final RestfulSecurityService Kerberos = RestfulSecurityService._(
     'Kerberos',
   );
 
   /// Certificates
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final RestfulSecurityService Certificates = RestfulSecurityService._(
     'Certificates',
   );
@@ -81,17 +80,6 @@ class RestfulSecurityService {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [RestfulSecurityService] from JSON.
-  static RestfulSecurityService fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return RestfulSecurityService.elementOnly.withElement(element);
-    }
-    return RestfulSecurityService._(value!, element: element);
-  }
 
   /// String representation
   @override

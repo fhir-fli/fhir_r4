@@ -7,6 +7,17 @@ class AssertionOperatorType {
   // Private constructor for internal use (like enum)
   AssertionOperatorType._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [AssertionOperatorType] from JSON.
+  factory AssertionOperatorType.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return AssertionOperatorType.elementOnly.withElement(element);
+    }
+    return AssertionOperatorType._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,78 +26,56 @@ class AssertionOperatorType {
 
   /// AssertionOperatorType values
   /// equals
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AssertionOperatorType equals = AssertionOperatorType._(
     'equals',
   );
 
   /// notEquals
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AssertionOperatorType notEquals = AssertionOperatorType._(
     'notEquals',
   );
 
   /// in_
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AssertionOperatorType in_ = AssertionOperatorType._(
     'in',
   );
 
   /// notIn
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AssertionOperatorType notIn = AssertionOperatorType._(
     'notIn',
   );
 
   /// greaterThan
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AssertionOperatorType greaterThan = AssertionOperatorType._(
     'greaterThan',
   );
 
   /// lessThan
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AssertionOperatorType lessThan = AssertionOperatorType._(
     'lessThan',
   );
 
   /// empty
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AssertionOperatorType empty = AssertionOperatorType._(
     'empty',
   );
 
   /// notEmpty
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AssertionOperatorType notEmpty = AssertionOperatorType._(
     'notEmpty',
   );
 
   /// contains
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AssertionOperatorType contains = AssertionOperatorType._(
     'contains',
   );
 
   /// notContains
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AssertionOperatorType notContains = AssertionOperatorType._(
     'notContains',
   );
 
   /// eval
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AssertionOperatorType eval = AssertionOperatorType._(
     'eval',
   );
@@ -120,17 +109,6 @@ class AssertionOperatorType {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [AssertionOperatorType] from JSON.
-  static AssertionOperatorType fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return AssertionOperatorType.elementOnly.withElement(element);
-    }
-    return AssertionOperatorType._(value!, element: element);
-  }
 
   /// String representation
   @override

@@ -7,6 +7,17 @@ class SupplyRequestReason {
   // Private constructor for internal use (like enum)
   SupplyRequestReason._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [SupplyRequestReason] from JSON.
+  factory SupplyRequestReason.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return SupplyRequestReason.elementOnly.withElement(element);
+    }
+    return SupplyRequestReason._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,15 +26,11 @@ class SupplyRequestReason {
 
   /// SupplyRequestReason values
   /// patient_care
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SupplyRequestReason patient_care = SupplyRequestReason._(
     'patient-care',
   );
 
   /// ward_stock
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SupplyRequestReason ward_stock = SupplyRequestReason._(
     'ward-stock',
   );
@@ -48,17 +55,6 @@ class SupplyRequestReason {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [SupplyRequestReason] from JSON.
-  static SupplyRequestReason fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return SupplyRequestReason.elementOnly.withElement(element);
-    }
-    return SupplyRequestReason._(value!, element: element);
-  }
 
   /// String representation
   @override

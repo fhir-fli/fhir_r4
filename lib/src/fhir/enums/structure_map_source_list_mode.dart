@@ -7,6 +7,17 @@ class StructureMapSourceListMode {
   // Private constructor for internal use (like enum)
   StructureMapSourceListMode._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [StructureMapSourceListMode] from JSON.
+  factory StructureMapSourceListMode.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return StructureMapSourceListMode.elementOnly.withElement(element);
+    }
+    return StructureMapSourceListMode._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,38 +26,28 @@ class StructureMapSourceListMode {
 
   /// StructureMapSourceListMode values
   /// first
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final StructureMapSourceListMode first = StructureMapSourceListMode._(
     'first',
   );
 
   /// not_first
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final StructureMapSourceListMode not_first =
       StructureMapSourceListMode._(
     'not_first',
   );
 
   /// last
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final StructureMapSourceListMode last = StructureMapSourceListMode._(
     'last',
   );
 
   /// not_last
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final StructureMapSourceListMode not_last =
       StructureMapSourceListMode._(
     'not_last',
   );
 
   /// only_one
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final StructureMapSourceListMode only_one =
       StructureMapSourceListMode._(
     'only_one',
@@ -76,17 +77,6 @@ class StructureMapSourceListMode {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [StructureMapSourceListMode] from JSON.
-  static StructureMapSourceListMode fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return StructureMapSourceListMode.elementOnly.withElement(element);
-    }
-    return StructureMapSourceListMode._(value!, element: element);
-  }
 
   /// String representation
   @override

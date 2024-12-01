@@ -7,6 +7,17 @@ class InvoicePriceComponentType {
   // Private constructor for internal use (like enum)
   InvoicePriceComponentType._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [InvoicePriceComponentType] from JSON.
+  factory InvoicePriceComponentType.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return InvoicePriceComponentType.elementOnly.withElement(element);
+    }
+    return InvoicePriceComponentType._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,45 +26,33 @@ class InvoicePriceComponentType {
 
   /// InvoicePriceComponentType values
   /// base
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final InvoicePriceComponentType base = InvoicePriceComponentType._(
     'base',
   );
 
   /// surcharge
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final InvoicePriceComponentType surcharge =
       InvoicePriceComponentType._(
     'surcharge',
   );
 
   /// deduction
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final InvoicePriceComponentType deduction =
       InvoicePriceComponentType._(
     'deduction',
   );
 
   /// discount
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final InvoicePriceComponentType discount = InvoicePriceComponentType._(
     'discount',
   );
 
   /// tax
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final InvoicePriceComponentType tax = InvoicePriceComponentType._(
     'tax',
   );
 
   /// informational
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final InvoicePriceComponentType informational =
       InvoicePriceComponentType._(
     'informational',
@@ -84,17 +83,6 @@ class InvoicePriceComponentType {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [InvoicePriceComponentType] from JSON.
-  static InvoicePriceComponentType fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return InvoicePriceComponentType.elementOnly.withElement(element);
-    }
-    return InvoicePriceComponentType._(value!, element: element);
-  }
 
   /// String representation
   @override

@@ -7,6 +7,17 @@ class ServiceCategory {
   // Private constructor for internal use (like enum)
   ServiceCategory._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ServiceCategory] from JSON.
+  factory ServiceCategory.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ServiceCategory.elementOnly.withElement(element);
+    }
+    return ServiceCategory._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,267 +26,191 @@ class ServiceCategory {
 
   /// ServiceCategory values
   /// value1
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ServiceCategory value1 = ServiceCategory._(
     '1',
   );
 
   /// value2
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ServiceCategory value2 = ServiceCategory._(
     '2',
   );
 
   /// value34
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ServiceCategory value34 = ServiceCategory._(
     '34',
   );
 
   /// value3
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ServiceCategory value3 = ServiceCategory._(
     '3',
   );
 
   /// value4
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ServiceCategory value4 = ServiceCategory._(
     '4',
   );
 
   /// value5
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ServiceCategory value5 = ServiceCategory._(
     '5',
   );
 
   /// value6
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ServiceCategory value6 = ServiceCategory._(
     '6',
   );
 
   /// value7
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ServiceCategory value7 = ServiceCategory._(
     '7',
   );
 
   /// value8
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ServiceCategory value8 = ServiceCategory._(
     '8',
   );
 
   /// value36
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ServiceCategory value36 = ServiceCategory._(
     '36',
   );
 
   /// value9
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ServiceCategory value9 = ServiceCategory._(
     '9',
   );
 
   /// value10
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ServiceCategory value10 = ServiceCategory._(
     '10',
   );
 
   /// value11
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ServiceCategory value11 = ServiceCategory._(
     '11',
   );
 
   /// value12
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ServiceCategory value12 = ServiceCategory._(
     '12',
   );
 
   /// value13
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ServiceCategory value13 = ServiceCategory._(
     '13',
   );
 
   /// value14
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ServiceCategory value14 = ServiceCategory._(
     '14',
   );
 
   /// value15
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ServiceCategory value15 = ServiceCategory._(
     '15',
   );
 
   /// value16
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ServiceCategory value16 = ServiceCategory._(
     '16',
   );
 
   /// value17
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ServiceCategory value17 = ServiceCategory._(
     '17',
   );
 
   /// value35
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ServiceCategory value35 = ServiceCategory._(
     '35',
   );
 
   /// value18
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ServiceCategory value18 = ServiceCategory._(
     '18',
   );
 
   /// value19
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ServiceCategory value19 = ServiceCategory._(
     '19',
   );
 
   /// value20
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ServiceCategory value20 = ServiceCategory._(
     '20',
   );
 
   /// value21
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ServiceCategory value21 = ServiceCategory._(
     '21',
   );
 
   /// value22
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ServiceCategory value22 = ServiceCategory._(
     '22',
   );
 
   /// value38
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ServiceCategory value38 = ServiceCategory._(
     '38',
   );
 
   /// value23
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ServiceCategory value23 = ServiceCategory._(
     '23',
   );
 
   /// value24
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ServiceCategory value24 = ServiceCategory._(
     '24',
   );
 
   /// value25
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ServiceCategory value25 = ServiceCategory._(
     '25',
   );
 
   /// value26
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ServiceCategory value26 = ServiceCategory._(
     '26',
   );
 
   /// value27
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ServiceCategory value27 = ServiceCategory._(
     '27',
   );
 
   /// value28
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ServiceCategory value28 = ServiceCategory._(
     '28',
   );
 
   /// value29
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ServiceCategory value29 = ServiceCategory._(
     '29',
   );
 
   /// value30
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ServiceCategory value30 = ServiceCategory._(
     '30',
   );
 
   /// value31
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ServiceCategory value31 = ServiceCategory._(
     '31',
   );
 
   /// value32
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ServiceCategory value32 = ServiceCategory._(
     '32',
   );
 
   /// value37
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ServiceCategory value37 = ServiceCategory._(
     '37',
   );
 
   /// value33
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ServiceCategory value33 = ServiceCategory._(
     '33',
   );
@@ -336,17 +271,6 @@ class ServiceCategory {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ServiceCategory] from JSON.
-  static ServiceCategory fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ServiceCategory.elementOnly.withElement(element);
-    }
-    return ServiceCategory._(value!, element: element);
-  }
 
   /// String representation
   @override

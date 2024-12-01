@@ -7,6 +7,17 @@ class SubstanceNameAuthority {
   // Private constructor for internal use (like enum)
   SubstanceNameAuthority._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [SubstanceNameAuthority] from JSON.
+  factory SubstanceNameAuthority.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return SubstanceNameAuthority.elementOnly.withElement(element);
+    }
+    return SubstanceNameAuthority._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,106 +26,76 @@ class SubstanceNameAuthority {
 
   /// SubstanceNameAuthority values
   /// BAN
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SubstanceNameAuthority BAN = SubstanceNameAuthority._(
     'BAN',
   );
 
   /// COSING
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SubstanceNameAuthority COSING = SubstanceNameAuthority._(
     'COSING',
   );
 
   /// Ph_Eur_
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SubstanceNameAuthority Ph_Eur_ = SubstanceNameAuthority._(
     'Ph.Eur.',
   );
 
   /// FCC
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SubstanceNameAuthority FCC = SubstanceNameAuthority._(
     'FCC',
   );
 
   /// INCI
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SubstanceNameAuthority INCI = SubstanceNameAuthority._(
     'INCI',
   );
 
   /// INN
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SubstanceNameAuthority INN = SubstanceNameAuthority._(
     'INN',
   );
 
   /// JAN
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SubstanceNameAuthority JAN = SubstanceNameAuthority._(
     'JAN',
   );
 
   /// JECFA
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SubstanceNameAuthority JECFA = SubstanceNameAuthority._(
     'JECFA',
   );
 
   /// MARTINDALE
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SubstanceNameAuthority MARTINDALE = SubstanceNameAuthority._(
     'MARTINDALE',
   );
 
   /// USAN
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SubstanceNameAuthority USAN = SubstanceNameAuthority._(
     'USAN',
   );
 
   /// USP
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SubstanceNameAuthority USP = SubstanceNameAuthority._(
     'USP',
   );
 
   /// PHF
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SubstanceNameAuthority PHF = SubstanceNameAuthority._(
     'PHF',
   );
 
   /// HAB
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SubstanceNameAuthority HAB = SubstanceNameAuthority._(
     'HAB',
   );
 
   /// PhF
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SubstanceNameAuthority PhF = SubstanceNameAuthority._(
     'PhF',
   );
 
   /// IUIS
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SubstanceNameAuthority IUIS = SubstanceNameAuthority._(
     'IUIS',
   );
@@ -153,17 +134,6 @@ class SubstanceNameAuthority {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [SubstanceNameAuthority] from JSON.
-  static SubstanceNameAuthority fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return SubstanceNameAuthority.elementOnly.withElement(element);
-    }
-    return SubstanceNameAuthority._(value!, element: element);
-  }
 
   /// String representation
   @override

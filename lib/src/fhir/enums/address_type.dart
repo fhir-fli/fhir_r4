@@ -7,6 +7,17 @@ class AddressType {
   // Private constructor for internal use (like enum)
   AddressType._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [AddressType] from JSON.
+  factory AddressType.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return AddressType.elementOnly.withElement(element);
+    }
+    return AddressType._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,22 +26,16 @@ class AddressType {
 
   /// AddressType values
   /// postal
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AddressType postal = AddressType._(
     'postal',
   );
 
   /// physical
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AddressType physical = AddressType._(
     'physical',
   );
 
   /// both
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AddressType both = AddressType._(
     'both',
   );
@@ -56,17 +61,6 @@ class AddressType {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [AddressType] from JSON.
-  static AddressType fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return AddressType.elementOnly.withElement(element);
-    }
-    return AddressType._(value!, element: element);
-  }
 
   /// String representation
   @override

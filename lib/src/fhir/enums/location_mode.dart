@@ -7,6 +7,17 @@ class LocationMode {
   // Private constructor for internal use (like enum)
   LocationMode._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [LocationMode] from JSON.
+  factory LocationMode.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return LocationMode.elementOnly.withElement(element);
+    }
+    return LocationMode._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,15 +26,11 @@ class LocationMode {
 
   /// LocationMode values
   /// instance
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final LocationMode instance = LocationMode._(
     'instance',
   );
 
   /// kind
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final LocationMode kind = LocationMode._(
     'kind',
   );
@@ -48,17 +55,6 @@ class LocationMode {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [LocationMode] from JSON.
-  static LocationMode fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return LocationMode.elementOnly.withElement(element);
-    }
-    return LocationMode._(value!, element: element);
-  }
 
   /// String representation
   @override

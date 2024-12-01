@@ -7,6 +7,17 @@ class AllergyIntoleranceCriticality {
   // Private constructor for internal use (like enum)
   AllergyIntoleranceCriticality._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [AllergyIntoleranceCriticality] from JSON.
+  factory AllergyIntoleranceCriticality.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return AllergyIntoleranceCriticality.elementOnly.withElement(element);
+    }
+    return AllergyIntoleranceCriticality._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,24 +26,18 @@ class AllergyIntoleranceCriticality {
 
   /// AllergyIntoleranceCriticality values
   /// low
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AllergyIntoleranceCriticality low =
       AllergyIntoleranceCriticality._(
     'low',
   );
 
   /// high
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AllergyIntoleranceCriticality high =
       AllergyIntoleranceCriticality._(
     'high',
   );
 
   /// unable_to_assess
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AllergyIntoleranceCriticality unable_to_assess =
       AllergyIntoleranceCriticality._(
     'unable-to-assess',
@@ -60,17 +65,6 @@ class AllergyIntoleranceCriticality {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [AllergyIntoleranceCriticality] from JSON.
-  static AllergyIntoleranceCriticality fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return AllergyIntoleranceCriticality.elementOnly.withElement(element);
-    }
-    return AllergyIntoleranceCriticality._(value!, element: element);
-  }
 
   /// String representation
   @override

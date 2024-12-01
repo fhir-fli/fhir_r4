@@ -7,6 +7,17 @@ class TestReportParticipantType {
   // Private constructor for internal use (like enum)
   TestReportParticipantType._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [TestReportParticipantType] from JSON.
+  factory TestReportParticipantType.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return TestReportParticipantType.elementOnly.withElement(element);
+    }
+    return TestReportParticipantType._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,23 +26,17 @@ class TestReportParticipantType {
 
   /// TestReportParticipantType values
   /// test_engine
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final TestReportParticipantType test_engine =
       TestReportParticipantType._(
     'test-engine',
   );
 
   /// client
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final TestReportParticipantType client = TestReportParticipantType._(
     'client',
   );
 
   /// server
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final TestReportParticipantType server = TestReportParticipantType._(
     'server',
   );
@@ -58,17 +63,6 @@ class TestReportParticipantType {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [TestReportParticipantType] from JSON.
-  static TestReportParticipantType fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return TestReportParticipantType.elementOnly.withElement(element);
-    }
-    return TestReportParticipantType._(value!, element: element);
-  }
 
   /// String representation
   @override

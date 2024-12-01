@@ -7,6 +7,17 @@ class FHIRSpecimenCollectionMethod {
   // Private constructor for internal use (like enum)
   FHIRSpecimenCollectionMethod._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [FHIRSpecimenCollectionMethod] from JSON.
+  factory FHIRSpecimenCollectionMethod.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return FHIRSpecimenCollectionMethod.elementOnly.withElement(element);
+    }
+    return FHIRSpecimenCollectionMethod._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,80 +26,60 @@ class FHIRSpecimenCollectionMethod {
 
   /// FHIRSpecimenCollectionMethod values
   /// value129316008
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final FHIRSpecimenCollectionMethod value129316008 =
       FHIRSpecimenCollectionMethod._(
     '129316008',
   );
 
   /// value129314006
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final FHIRSpecimenCollectionMethod value129314006 =
       FHIRSpecimenCollectionMethod._(
     '129314006',
   );
 
   /// value129300006
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final FHIRSpecimenCollectionMethod value129300006 =
       FHIRSpecimenCollectionMethod._(
     '129300006',
   );
 
   /// value129304002
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final FHIRSpecimenCollectionMethod value129304002 =
       FHIRSpecimenCollectionMethod._(
     '129304002',
   );
 
   /// value129323009
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final FHIRSpecimenCollectionMethod value129323009 =
       FHIRSpecimenCollectionMethod._(
     '129323009',
   );
 
   /// value73416001
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final FHIRSpecimenCollectionMethod value73416001 =
       FHIRSpecimenCollectionMethod._(
     '73416001',
   );
 
   /// value225113003
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final FHIRSpecimenCollectionMethod value225113003 =
       FHIRSpecimenCollectionMethod._(
     '225113003',
   );
 
   /// value70777001
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final FHIRSpecimenCollectionMethod value70777001 =
       FHIRSpecimenCollectionMethod._(
     '70777001',
   );
 
   /// value386089008
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final FHIRSpecimenCollectionMethod value386089008 =
       FHIRSpecimenCollectionMethod._(
     '386089008',
   );
 
   /// value278450005
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final FHIRSpecimenCollectionMethod value278450005 =
       FHIRSpecimenCollectionMethod._(
     '278450005',
@@ -123,17 +114,6 @@ class FHIRSpecimenCollectionMethod {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [FHIRSpecimenCollectionMethod] from JSON.
-  static FHIRSpecimenCollectionMethod fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return FHIRSpecimenCollectionMethod.elementOnly.withElement(element);
-    }
-    return FHIRSpecimenCollectionMethod._(value!, element: element);
-  }
 
   /// String representation
   @override

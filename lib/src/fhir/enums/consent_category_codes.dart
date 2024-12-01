@@ -7,6 +7,17 @@ class ConsentCategoryCodes {
   // Private constructor for internal use (like enum)
   ConsentCategoryCodes._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ConsentCategoryCodes] from JSON.
+  factory ConsentCategoryCodes.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ConsentCategoryCodes.elementOnly.withElement(element);
+    }
+    return ConsentCategoryCodes._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,92 +26,66 @@ class ConsentCategoryCodes {
 
   /// ConsentCategoryCodes values
   /// acd
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ConsentCategoryCodes acd = ConsentCategoryCodes._(
     'acd',
   );
 
   /// dnr
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ConsentCategoryCodes dnr = ConsentCategoryCodes._(
     'dnr',
   );
 
   /// emrgonly
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ConsentCategoryCodes emrgonly = ConsentCategoryCodes._(
     'emrgonly',
   );
 
   /// hcd
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ConsentCategoryCodes hcd = ConsentCategoryCodes._(
     'hcd',
   );
 
   /// npp
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ConsentCategoryCodes npp = ConsentCategoryCodes._(
     'npp',
   );
 
   /// polst
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ConsentCategoryCodes polst = ConsentCategoryCodes._(
     'polst',
   );
 
   /// research
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ConsentCategoryCodes research = ConsentCategoryCodes._(
     'research',
   );
 
   /// rsdid
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ConsentCategoryCodes rsdid = ConsentCategoryCodes._(
     'rsdid',
   );
 
   /// rsreid
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ConsentCategoryCodes rsreid = ConsentCategoryCodes._(
     'rsreid',
   );
 
   /// value59284_0
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ConsentCategoryCodes value59284_0 = ConsentCategoryCodes._(
     '59284-0',
   );
 
   /// value57016_8
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ConsentCategoryCodes value57016_8 = ConsentCategoryCodes._(
     '57016-8',
   );
 
   /// value57017_6
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ConsentCategoryCodes value57017_6 = ConsentCategoryCodes._(
     '57017-6',
   );
 
   /// value64292_6
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ConsentCategoryCodes value64292_6 = ConsentCategoryCodes._(
     '64292-6',
   );
@@ -136,17 +121,6 @@ class ConsentCategoryCodes {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ConsentCategoryCodes] from JSON.
-  static ConsentCategoryCodes fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ConsentCategoryCodes.elementOnly.withElement(element);
-    }
-    return ConsentCategoryCodes._(value!, element: element);
-  }
 
   /// String representation
   @override

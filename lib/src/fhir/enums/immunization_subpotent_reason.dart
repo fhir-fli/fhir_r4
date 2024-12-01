@@ -7,6 +7,17 @@ class ImmunizationSubpotentReason {
   // Private constructor for internal use (like enum)
   ImmunizationSubpotentReason._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ImmunizationSubpotentReason] from JSON.
+  factory ImmunizationSubpotentReason.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ImmunizationSubpotentReason.elementOnly.withElement(element);
+    }
+    return ImmunizationSubpotentReason._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,24 +26,18 @@ class ImmunizationSubpotentReason {
 
   /// ImmunizationSubpotentReason values
   /// partial
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ImmunizationSubpotentReason partial =
       ImmunizationSubpotentReason._(
     'partial',
   );
 
   /// coldchainbreak
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ImmunizationSubpotentReason coldchainbreak =
       ImmunizationSubpotentReason._(
     'coldchainbreak',
   );
 
   /// recall
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ImmunizationSubpotentReason recall =
       ImmunizationSubpotentReason._(
     'recall',
@@ -60,17 +65,6 @@ class ImmunizationSubpotentReason {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ImmunizationSubpotentReason] from JSON.
-  static ImmunizationSubpotentReason fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ImmunizationSubpotentReason.elementOnly.withElement(element);
-    }
-    return ImmunizationSubpotentReason._(value!, element: element);
-  }
 
   /// String representation
   @override

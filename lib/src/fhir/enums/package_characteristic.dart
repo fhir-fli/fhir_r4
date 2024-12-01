@@ -7,6 +7,17 @@ class PackageCharacteristic {
   // Private constructor for internal use (like enum)
   PackageCharacteristic._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [PackageCharacteristic] from JSON.
+  factory PackageCharacteristic.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return PackageCharacteristic.elementOnly.withElement(element);
+    }
+    return PackageCharacteristic._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,23 +26,17 @@ class PackageCharacteristic {
 
   /// PackageCharacteristic values
   /// HospitalPack
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final PackageCharacteristic HospitalPack = PackageCharacteristic._(
     'HospitalPack',
   );
 
   /// NursePrescribable
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final PackageCharacteristic NursePrescribable =
       PackageCharacteristic._(
     'NursePrescribable',
   );
 
   /// CalendarPack
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final PackageCharacteristic CalendarPack = PackageCharacteristic._(
     'CalendarPack',
   );
@@ -57,17 +62,6 @@ class PackageCharacteristic {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [PackageCharacteristic] from JSON.
-  static PackageCharacteristic fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return PackageCharacteristic.elementOnly.withElement(element);
-    }
-    return PackageCharacteristic._(value!, element: element);
-  }
 
   /// String representation
   @override

@@ -7,6 +7,17 @@ class VariableType {
   // Private constructor for internal use (like enum)
   VariableType._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [VariableType] from JSON.
+  factory VariableType.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return VariableType.elementOnly.withElement(element);
+    }
+    return VariableType._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,22 +26,16 @@ class VariableType {
 
   /// VariableType values
   /// dichotomous
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final VariableType dichotomous = VariableType._(
     'dichotomous',
   );
 
   /// continuous
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final VariableType continuous = VariableType._(
     'continuous',
   );
 
   /// descriptive
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final VariableType descriptive = VariableType._(
     'descriptive',
   );
@@ -56,17 +61,6 @@ class VariableType {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [VariableType] from JSON.
-  static VariableType fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return VariableType.elementOnly.withElement(element);
-    }
-    return VariableType._(value!, element: element);
-  }
 
   /// String representation
   @override

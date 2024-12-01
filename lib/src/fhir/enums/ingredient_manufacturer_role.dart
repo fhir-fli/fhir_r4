@@ -7,6 +7,17 @@ class IngredientManufacturerRole {
   // Private constructor for internal use (like enum)
   IngredientManufacturerRole._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [IngredientManufacturerRole] from JSON.
+  factory IngredientManufacturerRole.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return IngredientManufacturerRole.elementOnly.withElement(element);
+    }
+    return IngredientManufacturerRole._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,24 +26,18 @@ class IngredientManufacturerRole {
 
   /// IngredientManufacturerRole values
   /// allowed
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final IngredientManufacturerRole allowed =
       IngredientManufacturerRole._(
     'allowed',
   );
 
   /// possible
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final IngredientManufacturerRole possible =
       IngredientManufacturerRole._(
     'possible',
   );
 
   /// actual
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final IngredientManufacturerRole actual = IngredientManufacturerRole._(
     'actual',
   );
@@ -59,17 +64,6 @@ class IngredientManufacturerRole {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [IngredientManufacturerRole] from JSON.
-  static IngredientManufacturerRole fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return IngredientManufacturerRole.elementOnly.withElement(element);
-    }
-    return IngredientManufacturerRole._(value!, element: element);
-  }
 
   /// String representation
   @override

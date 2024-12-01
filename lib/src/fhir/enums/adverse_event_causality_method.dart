@@ -7,6 +7,17 @@ class AdverseEventCausalityMethod {
   // Private constructor for internal use (like enum)
   AdverseEventCausalityMethod._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [AdverseEventCausalityMethod] from JSON.
+  factory AdverseEventCausalityMethod.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return AdverseEventCausalityMethod.elementOnly.withElement(element);
+    }
+    return AdverseEventCausalityMethod._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,24 +26,18 @@ class AdverseEventCausalityMethod {
 
   /// AdverseEventCausalityMethod values
   /// ProbabilityScale
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AdverseEventCausalityMethod ProbabilityScale =
       AdverseEventCausalityMethod._(
     'ProbabilityScale',
   );
 
   /// Bayesian
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AdverseEventCausalityMethod Bayesian =
       AdverseEventCausalityMethod._(
     'Bayesian',
   );
 
   /// Checklist
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AdverseEventCausalityMethod Checklist =
       AdverseEventCausalityMethod._(
     'Checklist',
@@ -60,17 +65,6 @@ class AdverseEventCausalityMethod {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [AdverseEventCausalityMethod] from JSON.
-  static AdverseEventCausalityMethod fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return AdverseEventCausalityMethod.elementOnly.withElement(element);
-    }
-    return AdverseEventCausalityMethod._(value!, element: element);
-  }
 
   /// String representation
   @override

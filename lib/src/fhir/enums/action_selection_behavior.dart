@@ -7,6 +7,17 @@ class ActionSelectionBehavior {
   // Private constructor for internal use (like enum)
   ActionSelectionBehavior._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ActionSelectionBehavior] from JSON.
+  factory ActionSelectionBehavior.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ActionSelectionBehavior.elementOnly.withElement(element);
+    }
+    return ActionSelectionBehavior._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,43 +26,31 @@ class ActionSelectionBehavior {
 
   /// ActionSelectionBehavior values
   /// any
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ActionSelectionBehavior any = ActionSelectionBehavior._(
     'any',
   );
 
   /// all
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ActionSelectionBehavior all = ActionSelectionBehavior._(
     'all',
   );
 
   /// all_or_none
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ActionSelectionBehavior all_or_none = ActionSelectionBehavior._(
     'all-or-none',
   );
 
   /// exactly_one
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ActionSelectionBehavior exactly_one = ActionSelectionBehavior._(
     'exactly-one',
   );
 
   /// at_most_one
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ActionSelectionBehavior at_most_one = ActionSelectionBehavior._(
     'at-most-one',
   );
 
   /// one_or_more
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ActionSelectionBehavior one_or_more = ActionSelectionBehavior._(
     'one-or-more',
   );
@@ -81,17 +80,6 @@ class ActionSelectionBehavior {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ActionSelectionBehavior] from JSON.
-  static ActionSelectionBehavior fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ActionSelectionBehavior.elementOnly.withElement(element);
-    }
-    return ActionSelectionBehavior._(value!, element: element);
-  }
 
   /// String representation
   @override

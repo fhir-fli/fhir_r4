@@ -7,6 +7,17 @@ class ConsentDataMeaning {
   // Private constructor for internal use (like enum)
   ConsentDataMeaning._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ConsentDataMeaning] from JSON.
+  factory ConsentDataMeaning.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ConsentDataMeaning.elementOnly.withElement(element);
+    }
+    return ConsentDataMeaning._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,29 +26,21 @@ class ConsentDataMeaning {
 
   /// ConsentDataMeaning values
   /// instance
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ConsentDataMeaning instance = ConsentDataMeaning._(
     'instance',
   );
 
   /// related
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ConsentDataMeaning related = ConsentDataMeaning._(
     'related',
   );
 
   /// dependents
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ConsentDataMeaning dependents = ConsentDataMeaning._(
     'dependents',
   );
 
   /// authoredby
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ConsentDataMeaning authoredby = ConsentDataMeaning._(
     'authoredby',
   );
@@ -64,17 +67,6 @@ class ConsentDataMeaning {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ConsentDataMeaning] from JSON.
-  static ConsentDataMeaning fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ConsentDataMeaning.elementOnly.withElement(element);
-    }
-    return ConsentDataMeaning._(value!, element: element);
-  }
 
   /// String representation
   @override

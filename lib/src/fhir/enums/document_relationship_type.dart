@@ -7,6 +7,17 @@ class DocumentRelationshipType {
   // Private constructor for internal use (like enum)
   DocumentRelationshipType._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [DocumentRelationshipType] from JSON.
+  factory DocumentRelationshipType.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return DocumentRelationshipType.elementOnly.withElement(element);
+    }
+    return DocumentRelationshipType._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,29 +26,21 @@ class DocumentRelationshipType {
 
   /// DocumentRelationshipType values
   /// replaces
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final DocumentRelationshipType replaces = DocumentRelationshipType._(
     'replaces',
   );
 
   /// transforms
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final DocumentRelationshipType transforms = DocumentRelationshipType._(
     'transforms',
   );
 
   /// signs
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final DocumentRelationshipType signs = DocumentRelationshipType._(
     'signs',
   );
 
   /// appends
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final DocumentRelationshipType appends = DocumentRelationshipType._(
     'appends',
   );
@@ -65,17 +68,6 @@ class DocumentRelationshipType {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [DocumentRelationshipType] from JSON.
-  static DocumentRelationshipType fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return DocumentRelationshipType.elementOnly.withElement(element);
-    }
-    return DocumentRelationshipType._(value!, element: element);
-  }
 
   /// String representation
   @override

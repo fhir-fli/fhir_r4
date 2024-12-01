@@ -7,6 +7,17 @@ class ExplanationOfBenefitStatus {
   // Private constructor for internal use (like enum)
   ExplanationOfBenefitStatus._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ExplanationOfBenefitStatus] from JSON.
+  factory ExplanationOfBenefitStatus.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ExplanationOfBenefitStatus.elementOnly.withElement(element);
+    }
+    return ExplanationOfBenefitStatus._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,30 +26,22 @@ class ExplanationOfBenefitStatus {
 
   /// ExplanationOfBenefitStatus values
   /// active
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ExplanationOfBenefitStatus active = ExplanationOfBenefitStatus._(
     'active',
   );
 
   /// cancelled
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ExplanationOfBenefitStatus cancelled =
       ExplanationOfBenefitStatus._(
     'cancelled',
   );
 
   /// draft
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ExplanationOfBenefitStatus draft = ExplanationOfBenefitStatus._(
     'draft',
   );
 
   /// entered_in_error
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ExplanationOfBenefitStatus entered_in_error =
       ExplanationOfBenefitStatus._(
     'entered-in-error',
@@ -67,17 +70,6 @@ class ExplanationOfBenefitStatus {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ExplanationOfBenefitStatus] from JSON.
-  static ExplanationOfBenefitStatus fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ExplanationOfBenefitStatus.elementOnly.withElement(element);
-    }
-    return ExplanationOfBenefitStatus._(value!, element: element);
-  }
 
   /// String representation
   @override

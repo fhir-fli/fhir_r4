@@ -7,6 +7,17 @@ class FocusCharacteristicCode {
   // Private constructor for internal use (like enum)
   FocusCharacteristicCode._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [FocusCharacteristicCode] from JSON.
+  factory FocusCharacteristicCode.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return FocusCharacteristicCode.elementOnly.withElement(element);
+    }
+    return FocusCharacteristicCode._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,59 +26,43 @@ class FocusCharacteristicCode {
 
   /// FocusCharacteristicCode values
   /// citation
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final FocusCharacteristicCode citation = FocusCharacteristicCode._(
     'citation',
   );
 
   /// clinical_outcomes_observed
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final FocusCharacteristicCode clinical_outcomes_observed =
       FocusCharacteristicCode._(
     'clinical-outcomes-observed',
   );
 
   /// population
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final FocusCharacteristicCode population = FocusCharacteristicCode._(
     'population',
   );
 
   /// exposure
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final FocusCharacteristicCode exposure = FocusCharacteristicCode._(
     'exposure',
   );
 
   /// comparator
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final FocusCharacteristicCode comparator = FocusCharacteristicCode._(
     'comparator',
   );
 
   /// outcome
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final FocusCharacteristicCode outcome = FocusCharacteristicCode._(
     'outcome',
   );
 
   /// medication_exposures
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final FocusCharacteristicCode medication_exposures =
       FocusCharacteristicCode._(
     'medication-exposures',
   );
 
   /// study_type
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final FocusCharacteristicCode study_type = FocusCharacteristicCode._(
     'study-type',
   );
@@ -99,17 +94,6 @@ class FocusCharacteristicCode {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [FocusCharacteristicCode] from JSON.
-  static FocusCharacteristicCode fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return FocusCharacteristicCode.elementOnly.withElement(element);
-    }
-    return FocusCharacteristicCode._(value!, element: element);
-  }
 
   /// String representation
   @override

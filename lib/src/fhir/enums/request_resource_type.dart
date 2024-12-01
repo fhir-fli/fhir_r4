@@ -7,6 +7,17 @@ class RequestResourceType {
   // Private constructor for internal use (like enum)
   RequestResourceType._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [RequestResourceType] from JSON.
+  factory RequestResourceType.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return RequestResourceType.elementOnly.withElement(element);
+    }
+    return RequestResourceType._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,107 +26,77 @@ class RequestResourceType {
 
   /// RequestResourceType values
   /// Appointment
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final RequestResourceType Appointment = RequestResourceType._(
     'Appointment',
   );
 
   /// AppointmentResponse
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final RequestResourceType AppointmentResponse = RequestResourceType._(
     'AppointmentResponse',
   );
 
   /// CarePlan
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final RequestResourceType CarePlan = RequestResourceType._(
     'CarePlan',
   );
 
   /// Claim
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final RequestResourceType Claim = RequestResourceType._(
     'Claim',
   );
 
   /// CommunicationRequest
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final RequestResourceType CommunicationRequest = RequestResourceType._(
     'CommunicationRequest',
   );
 
   /// Contract
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final RequestResourceType Contract = RequestResourceType._(
     'Contract',
   );
 
   /// DeviceRequest
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final RequestResourceType DeviceRequest = RequestResourceType._(
     'DeviceRequest',
   );
 
   /// EnrollmentRequest
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final RequestResourceType EnrollmentRequest = RequestResourceType._(
     'EnrollmentRequest',
   );
 
   /// ImmunizationRecommendation
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final RequestResourceType ImmunizationRecommendation =
       RequestResourceType._(
     'ImmunizationRecommendation',
   );
 
   /// MedicationRequest
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final RequestResourceType MedicationRequest = RequestResourceType._(
     'MedicationRequest',
   );
 
   /// NutritionOrder
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final RequestResourceType NutritionOrder = RequestResourceType._(
     'NutritionOrder',
   );
 
   /// ServiceRequest
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final RequestResourceType ServiceRequest = RequestResourceType._(
     'ServiceRequest',
   );
 
   /// SupplyRequest
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final RequestResourceType SupplyRequest = RequestResourceType._(
     'SupplyRequest',
   );
 
   /// Task
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final RequestResourceType Task = RequestResourceType._(
     'Task',
   );
 
   /// VisionPrescription
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final RequestResourceType VisionPrescription = RequestResourceType._(
     'VisionPrescription',
   );
@@ -153,17 +134,6 @@ class RequestResourceType {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [RequestResourceType] from JSON.
-  static RequestResourceType fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return RequestResourceType.elementOnly.withElement(element);
-    }
-    return RequestResourceType._(value!, element: element);
-  }
 
   /// String representation
   @override

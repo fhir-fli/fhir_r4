@@ -7,6 +7,17 @@ class ImmunizationOriginCodes {
   // Private constructor for internal use (like enum)
   ImmunizationOriginCodes._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ImmunizationOriginCodes] from JSON.
+  factory ImmunizationOriginCodes.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ImmunizationOriginCodes.elementOnly.withElement(element);
+    }
+    return ImmunizationOriginCodes._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,36 +26,26 @@ class ImmunizationOriginCodes {
 
   /// ImmunizationOriginCodes values
   /// provider
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ImmunizationOriginCodes provider = ImmunizationOriginCodes._(
     'provider',
   );
 
   /// record
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ImmunizationOriginCodes record = ImmunizationOriginCodes._(
     'record',
   );
 
   /// recall
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ImmunizationOriginCodes recall = ImmunizationOriginCodes._(
     'recall',
   );
 
   /// school
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ImmunizationOriginCodes school = ImmunizationOriginCodes._(
     'school',
   );
 
   /// jurisdiction
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ImmunizationOriginCodes jurisdiction = ImmunizationOriginCodes._(
     'jurisdiction',
   );
@@ -73,17 +74,6 @@ class ImmunizationOriginCodes {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ImmunizationOriginCodes] from JSON.
-  static ImmunizationOriginCodes fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ImmunizationOriginCodes.elementOnly.withElement(element);
-    }
-    return ImmunizationOriginCodes._(value!, element: element);
-  }
 
   /// String representation
   @override

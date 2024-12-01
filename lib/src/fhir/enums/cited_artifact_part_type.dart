@@ -7,6 +7,17 @@ class CitedArtifactPartType {
   // Private constructor for internal use (like enum)
   CitedArtifactPartType._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [CitedArtifactPartType] from JSON.
+  factory CitedArtifactPartType.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return CitedArtifactPartType.elementOnly.withElement(element);
+    }
+    return CitedArtifactPartType._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,65 +26,47 @@ class CitedArtifactPartType {
 
   /// CitedArtifactPartType values
   /// pages
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CitedArtifactPartType pages = CitedArtifactPartType._(
     'pages',
   );
 
   /// sections
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CitedArtifactPartType sections = CitedArtifactPartType._(
     'sections',
   );
 
   /// paragraphs
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CitedArtifactPartType paragraphs = CitedArtifactPartType._(
     'paragraphs',
   );
 
   /// lines
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CitedArtifactPartType lines = CitedArtifactPartType._(
     'lines',
   );
 
   /// tables
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CitedArtifactPartType tables = CitedArtifactPartType._(
     'tables',
   );
 
   /// figures
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CitedArtifactPartType figures = CitedArtifactPartType._(
     'figures',
   );
 
   /// supplement
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CitedArtifactPartType supplement = CitedArtifactPartType._(
     'supplement',
   );
 
   /// supplement_subpart
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CitedArtifactPartType supplement_subpart =
       CitedArtifactPartType._(
     'supplement-subpart',
   );
 
   /// article_set
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CitedArtifactPartType article_set = CitedArtifactPartType._(
     'article-set',
   );
@@ -105,17 +98,6 @@ class CitedArtifactPartType {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [CitedArtifactPartType] from JSON.
-  static CitedArtifactPartType fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return CitedArtifactPartType.elementOnly.withElement(element);
-    }
-    return CitedArtifactPartType._(value!, element: element);
-  }
 
   /// String representation
   @override

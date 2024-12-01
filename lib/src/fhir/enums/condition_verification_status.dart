@@ -7,6 +7,17 @@ class ConditionVerificationStatus {
   // Private constructor for internal use (like enum)
   ConditionVerificationStatus._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ConditionVerificationStatus] from JSON.
+  factory ConditionVerificationStatus.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ConditionVerificationStatus.elementOnly.withElement(element);
+    }
+    return ConditionVerificationStatus._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,48 +26,36 @@ class ConditionVerificationStatus {
 
   /// ConditionVerificationStatus values
   /// unconfirmed
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ConditionVerificationStatus unconfirmed =
       ConditionVerificationStatus._(
     'unconfirmed',
   );
 
   /// provisional
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ConditionVerificationStatus provisional =
       ConditionVerificationStatus._(
     'provisional',
   );
 
   /// differential
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ConditionVerificationStatus differential =
       ConditionVerificationStatus._(
     'differential',
   );
 
   /// confirmed
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ConditionVerificationStatus confirmed =
       ConditionVerificationStatus._(
     'confirmed',
   );
 
   /// refuted
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ConditionVerificationStatus refuted =
       ConditionVerificationStatus._(
     'refuted',
   );
 
   /// entered_in_error
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ConditionVerificationStatus entered_in_error =
       ConditionVerificationStatus._(
     'entered-in-error',
@@ -87,17 +86,6 @@ class ConditionVerificationStatus {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ConditionVerificationStatus] from JSON.
-  static ConditionVerificationStatus fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ConditionVerificationStatus.elementOnly.withElement(element);
-    }
-    return ConditionVerificationStatus._(value!, element: element);
-  }
 
   /// String representation
   @override

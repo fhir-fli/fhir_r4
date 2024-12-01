@@ -7,6 +7,19 @@ class ExampleRelatedClaimRelationshipCodes {
   // Private constructor for internal use (like enum)
   ExampleRelatedClaimRelationshipCodes._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ExampleRelatedClaimRelationshipCodes] from JSON.
+  factory ExampleRelatedClaimRelationshipCodes.fromJson(
+      Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ExampleRelatedClaimRelationshipCodes.elementOnly
+          .withElement(element);
+    }
+    return ExampleRelatedClaimRelationshipCodes._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,16 +28,12 @@ class ExampleRelatedClaimRelationshipCodes {
 
   /// ExampleRelatedClaimRelationshipCodes values
   /// prior
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ExampleRelatedClaimRelationshipCodes prior =
       ExampleRelatedClaimRelationshipCodes._(
     'prior',
   );
 
   /// associated
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ExampleRelatedClaimRelationshipCodes associated =
       ExampleRelatedClaimRelationshipCodes._(
     'associated',
@@ -52,19 +61,6 @@ class ExampleRelatedClaimRelationshipCodes {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ExampleRelatedClaimRelationshipCodes] from JSON.
-  static ExampleRelatedClaimRelationshipCodes fromJson(
-      Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ExampleRelatedClaimRelationshipCodes.elementOnly
-          .withElement(element);
-    }
-    return ExampleRelatedClaimRelationshipCodes._(value!, element: element);
-  }
 
   /// String representation
   @override

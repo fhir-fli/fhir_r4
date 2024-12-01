@@ -7,6 +7,17 @@ class ContributorSummaryType {
   // Private constructor for internal use (like enum)
   ContributorSummaryType._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ContributorSummaryType] from JSON.
+  factory ContributorSummaryType.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ContributorSummaryType.elementOnly.withElement(element);
+    }
+    return ContributorSummaryType._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,55 +26,41 @@ class ContributorSummaryType {
 
   /// ContributorSummaryType values
   /// author_string
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ContributorSummaryType author_string = ContributorSummaryType._(
     'author-string',
   );
 
   /// contributorship_list
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ContributorSummaryType contributorship_list =
       ContributorSummaryType._(
     'contributorship-list',
   );
 
   /// contributorship_statement
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ContributorSummaryType contributorship_statement =
       ContributorSummaryType._(
     'contributorship-statement',
   );
 
   /// acknowledgement_list
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ContributorSummaryType acknowledgement_list =
       ContributorSummaryType._(
     'acknowledgement-list',
   );
 
   /// acknowledgment_statement
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ContributorSummaryType acknowledgment_statement =
       ContributorSummaryType._(
     'acknowledgment-statement',
   );
 
   /// funding_statement
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ContributorSummaryType funding_statement =
       ContributorSummaryType._(
     'funding-statement',
   );
 
   /// competing_interests_statement
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ContributorSummaryType competing_interests_statement =
       ContributorSummaryType._(
     'competing-interests-statement',
@@ -95,17 +92,6 @@ class ContributorSummaryType {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ContributorSummaryType] from JSON.
-  static ContributorSummaryType fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ContributorSummaryType.elementOnly.withElement(element);
-    }
-    return ContributorSummaryType._(value!, element: element);
-  }
 
   /// String representation
   @override

@@ -7,6 +7,17 @@ class InvoiceStatus {
   // Private constructor for internal use (like enum)
   InvoiceStatus._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [InvoiceStatus] from JSON.
+  factory InvoiceStatus.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return InvoiceStatus.elementOnly.withElement(element);
+    }
+    return InvoiceStatus._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,36 +26,26 @@ class InvoiceStatus {
 
   /// InvoiceStatus values
   /// draft
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final InvoiceStatus draft = InvoiceStatus._(
     'draft',
   );
 
   /// issued
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final InvoiceStatus issued = InvoiceStatus._(
     'issued',
   );
 
   /// balanced
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final InvoiceStatus balanced = InvoiceStatus._(
     'balanced',
   );
 
   /// cancelled
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final InvoiceStatus cancelled = InvoiceStatus._(
     'cancelled',
   );
 
   /// entered_in_error
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final InvoiceStatus entered_in_error = InvoiceStatus._(
     'entered-in-error',
   );
@@ -72,17 +73,6 @@ class InvoiceStatus {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [InvoiceStatus] from JSON.
-  static InvoiceStatus fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return InvoiceStatus.elementOnly.withElement(element);
-    }
-    return InvoiceStatus._(value!, element: element);
-  }
 
   /// String representation
   @override

@@ -7,6 +7,17 @@ class CapabilityStatementKind {
   // Private constructor for internal use (like enum)
   CapabilityStatementKind._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [CapabilityStatementKind] from JSON.
+  factory CapabilityStatementKind.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return CapabilityStatementKind.elementOnly.withElement(element);
+    }
+    return CapabilityStatementKind._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,22 +26,16 @@ class CapabilityStatementKind {
 
   /// CapabilityStatementKind values
   /// instance
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CapabilityStatementKind instance = CapabilityStatementKind._(
     'instance',
   );
 
   /// capability
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CapabilityStatementKind capability = CapabilityStatementKind._(
     'capability',
   );
 
   /// requirements
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CapabilityStatementKind requirements = CapabilityStatementKind._(
     'requirements',
   );
@@ -57,17 +62,6 @@ class CapabilityStatementKind {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [CapabilityStatementKind] from JSON.
-  static CapabilityStatementKind fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return CapabilityStatementKind.elementOnly.withElement(element);
-    }
-    return CapabilityStatementKind._(value!, element: element);
-  }
 
   /// String representation
   @override

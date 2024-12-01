@@ -7,6 +7,17 @@ class ExampleClaimSubTypeCodes {
   // Private constructor for internal use (like enum)
   ExampleClaimSubTypeCodes._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ExampleClaimSubTypeCodes] from JSON.
+  factory ExampleClaimSubTypeCodes.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ExampleClaimSubTypeCodes.elementOnly.withElement(element);
+    }
+    return ExampleClaimSubTypeCodes._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,15 +26,11 @@ class ExampleClaimSubTypeCodes {
 
   /// ExampleClaimSubTypeCodes values
   /// ortho
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ExampleClaimSubTypeCodes ortho = ExampleClaimSubTypeCodes._(
     'ortho',
   );
 
   /// emergency
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ExampleClaimSubTypeCodes emergency = ExampleClaimSubTypeCodes._(
     'emergency',
   );
@@ -49,17 +56,6 @@ class ExampleClaimSubTypeCodes {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ExampleClaimSubTypeCodes] from JSON.
-  static ExampleClaimSubTypeCodes fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ExampleClaimSubTypeCodes.elementOnly.withElement(element);
-    }
-    return ExampleClaimSubTypeCodes._(value!, element: element);
-  }
 
   /// String representation
   @override

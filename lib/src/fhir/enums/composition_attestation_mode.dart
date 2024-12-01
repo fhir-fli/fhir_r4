@@ -7,6 +7,17 @@ class CompositionAttestationMode {
   // Private constructor for internal use (like enum)
   CompositionAttestationMode._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [CompositionAttestationMode] from JSON.
+  factory CompositionAttestationMode.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return CompositionAttestationMode.elementOnly.withElement(element);
+    }
+    return CompositionAttestationMode._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,31 +26,23 @@ class CompositionAttestationMode {
 
   /// CompositionAttestationMode values
   /// personal
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CompositionAttestationMode personal =
       CompositionAttestationMode._(
     'personal',
   );
 
   /// professional
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CompositionAttestationMode professional =
       CompositionAttestationMode._(
     'professional',
   );
 
   /// legal
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CompositionAttestationMode legal = CompositionAttestationMode._(
     'legal',
   );
 
   /// official
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CompositionAttestationMode official =
       CompositionAttestationMode._(
     'official',
@@ -68,17 +71,6 @@ class CompositionAttestationMode {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [CompositionAttestationMode] from JSON.
-  static CompositionAttestationMode fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return CompositionAttestationMode.elementOnly.withElement(element);
-    }
-    return CompositionAttestationMode._(value!, element: element);
-  }
 
   /// String representation
   @override

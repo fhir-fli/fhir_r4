@@ -7,6 +7,17 @@ class ImmunizationReasonCodes {
   // Private constructor for internal use (like enum)
   ImmunizationReasonCodes._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ImmunizationReasonCodes] from JSON.
+  factory ImmunizationReasonCodes.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ImmunizationReasonCodes.elementOnly.withElement(element);
+    }
+    return ImmunizationReasonCodes._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,16 +26,12 @@ class ImmunizationReasonCodes {
 
   /// ImmunizationReasonCodes values
   /// value429060002
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ImmunizationReasonCodes value429060002 =
       ImmunizationReasonCodes._(
     '429060002',
   );
 
   /// value281657000
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ImmunizationReasonCodes value281657000 =
       ImmunizationReasonCodes._(
     '281657000',
@@ -51,17 +58,6 @@ class ImmunizationReasonCodes {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ImmunizationReasonCodes] from JSON.
-  static ImmunizationReasonCodes fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ImmunizationReasonCodes.elementOnly.withElement(element);
-    }
-    return ImmunizationReasonCodes._(value!, element: element);
-  }
 
   /// String representation
   @override

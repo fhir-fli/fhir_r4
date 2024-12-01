@@ -7,6 +7,17 @@ class ObservationCategoryCodes {
   // Private constructor for internal use (like enum)
   ObservationCategoryCodes._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ObservationCategoryCodes] from JSON.
+  factory ObservationCategoryCodes.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ObservationCategoryCodes.elementOnly.withElement(element);
+    }
+    return ObservationCategoryCodes._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,66 +26,48 @@ class ObservationCategoryCodes {
 
   /// ObservationCategoryCodes values
   /// social_history
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ObservationCategoryCodes social_history =
       ObservationCategoryCodes._(
     'social-history',
   );
 
   /// vital_signs
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ObservationCategoryCodes vital_signs =
       ObservationCategoryCodes._(
     'vital-signs',
   );
 
   /// imaging
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ObservationCategoryCodes imaging = ObservationCategoryCodes._(
     'imaging',
   );
 
   /// laboratory
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ObservationCategoryCodes laboratory = ObservationCategoryCodes._(
     'laboratory',
   );
 
   /// procedure
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ObservationCategoryCodes procedure = ObservationCategoryCodes._(
     'procedure',
   );
 
   /// survey
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ObservationCategoryCodes survey = ObservationCategoryCodes._(
     'survey',
   );
 
   /// exam
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ObservationCategoryCodes exam = ObservationCategoryCodes._(
     'exam',
   );
 
   /// therapy
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ObservationCategoryCodes therapy = ObservationCategoryCodes._(
     'therapy',
   );
 
   /// activity
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ObservationCategoryCodes activity = ObservationCategoryCodes._(
     'activity',
   );
@@ -107,17 +100,6 @@ class ObservationCategoryCodes {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ObservationCategoryCodes] from JSON.
-  static ObservationCategoryCodes fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ObservationCategoryCodes.elementOnly.withElement(element);
-    }
-    return ObservationCategoryCodes._(value!, element: element);
-  }
 
   /// String representation
   @override

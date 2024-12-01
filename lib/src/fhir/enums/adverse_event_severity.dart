@@ -7,6 +7,17 @@ class AdverseEventSeverity {
   // Private constructor for internal use (like enum)
   AdverseEventSeverity._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [AdverseEventSeverity] from JSON.
+  factory AdverseEventSeverity.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return AdverseEventSeverity.elementOnly.withElement(element);
+    }
+    return AdverseEventSeverity._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,22 +26,16 @@ class AdverseEventSeverity {
 
   /// AdverseEventSeverity values
   /// mild
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AdverseEventSeverity mild = AdverseEventSeverity._(
     'mild',
   );
 
   /// moderate
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AdverseEventSeverity moderate = AdverseEventSeverity._(
     'moderate',
   );
 
   /// severe
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AdverseEventSeverity severe = AdverseEventSeverity._(
     'severe',
   );
@@ -56,17 +61,6 @@ class AdverseEventSeverity {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [AdverseEventSeverity] from JSON.
-  static AdverseEventSeverity fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return AdverseEventSeverity.elementOnly.withElement(element);
-    }
-    return AdverseEventSeverity._(value!, element: element);
-  }
 
   /// String representation
   @override

@@ -7,6 +7,17 @@ class NutrientModifierCodes {
   // Private constructor for internal use (like enum)
   NutrientModifierCodes._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [NutrientModifierCodes] from JSON.
+  factory NutrientModifierCodes.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return NutrientModifierCodes.elementOnly.withElement(element);
+    }
+    return NutrientModifierCodes._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,22 +26,16 @@ class NutrientModifierCodes {
 
   /// NutrientModifierCodes values
   /// value33463005
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final NutrientModifierCodes value33463005 = NutrientModifierCodes._(
     '33463005',
   );
 
   /// value39972003
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final NutrientModifierCodes value39972003 = NutrientModifierCodes._(
     '39972003',
   );
 
   /// value88480006
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final NutrientModifierCodes value88480006 = NutrientModifierCodes._(
     '88480006',
   );
@@ -56,17 +61,6 @@ class NutrientModifierCodes {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [NutrientModifierCodes] from JSON.
-  static NutrientModifierCodes fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return NutrientModifierCodes.elementOnly.withElement(element);
-    }
-    return NutrientModifierCodes._(value!, element: element);
-  }
 
   /// String representation
   @override

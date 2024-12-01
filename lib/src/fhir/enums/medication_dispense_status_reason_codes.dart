@@ -7,6 +7,19 @@ class MedicationDispenseStatusReasonCodes {
   // Private constructor for internal use (like enum)
   MedicationDispenseStatusReasonCodes._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [MedicationDispenseStatusReasonCodes] from JSON.
+  factory MedicationDispenseStatusReasonCodes.fromJson(
+      Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return MedicationDispenseStatusReasonCodes.elementOnly
+          .withElement(element);
+    }
+    return MedicationDispenseStatusReasonCodes._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,168 +28,126 @@ class MedicationDispenseStatusReasonCodes {
 
   /// MedicationDispenseStatusReasonCodes values
   /// frr01
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicationDispenseStatusReasonCodes frr01 =
       MedicationDispenseStatusReasonCodes._(
     'frr01',
   );
 
   /// frr02
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicationDispenseStatusReasonCodes frr02 =
       MedicationDispenseStatusReasonCodes._(
     'frr02',
   );
 
   /// frr03
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicationDispenseStatusReasonCodes frr03 =
       MedicationDispenseStatusReasonCodes._(
     'frr03',
   );
 
   /// frr04
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicationDispenseStatusReasonCodes frr04 =
       MedicationDispenseStatusReasonCodes._(
     'frr04',
   );
 
   /// frr05
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicationDispenseStatusReasonCodes frr05 =
       MedicationDispenseStatusReasonCodes._(
     'frr05',
   );
 
   /// frr06
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicationDispenseStatusReasonCodes frr06 =
       MedicationDispenseStatusReasonCodes._(
     'frr06',
   );
 
   /// altchoice
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicationDispenseStatusReasonCodes altchoice =
       MedicationDispenseStatusReasonCodes._(
     'altchoice',
   );
 
   /// clarif
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicationDispenseStatusReasonCodes clarif =
       MedicationDispenseStatusReasonCodes._(
     'clarif',
   );
 
   /// drughigh
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicationDispenseStatusReasonCodes drughigh =
       MedicationDispenseStatusReasonCodes._(
     'drughigh',
   );
 
   /// hospadm
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicationDispenseStatusReasonCodes hospadm =
       MedicationDispenseStatusReasonCodes._(
     'hospadm',
   );
 
   /// labint
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicationDispenseStatusReasonCodes labint =
       MedicationDispenseStatusReasonCodes._(
     'labint',
   );
 
   /// non_avail
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicationDispenseStatusReasonCodes non_avail =
       MedicationDispenseStatusReasonCodes._(
     'non-avail',
   );
 
   /// preg
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicationDispenseStatusReasonCodes preg =
       MedicationDispenseStatusReasonCodes._(
     'preg',
   );
 
   /// saig
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicationDispenseStatusReasonCodes saig =
       MedicationDispenseStatusReasonCodes._(
     'saig',
   );
 
   /// sddi
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicationDispenseStatusReasonCodes sddi =
       MedicationDispenseStatusReasonCodes._(
     'sddi',
   );
 
   /// sdupther
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicationDispenseStatusReasonCodes sdupther =
       MedicationDispenseStatusReasonCodes._(
     'sdupther',
   );
 
   /// sintol
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicationDispenseStatusReasonCodes sintol =
       MedicationDispenseStatusReasonCodes._(
     'sintol',
   );
 
   /// surg
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicationDispenseStatusReasonCodes surg =
       MedicationDispenseStatusReasonCodes._(
     'surg',
   );
 
   /// washout
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicationDispenseStatusReasonCodes washout =
       MedicationDispenseStatusReasonCodes._(
     'washout',
   );
 
   /// outofstock
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicationDispenseStatusReasonCodes outofstock =
       MedicationDispenseStatusReasonCodes._(
     'outofstock',
   );
 
   /// offmarket
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicationDispenseStatusReasonCodes offmarket =
       MedicationDispenseStatusReasonCodes._(
     'offmarket',
@@ -222,19 +193,6 @@ class MedicationDispenseStatusReasonCodes {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [MedicationDispenseStatusReasonCodes] from JSON.
-  static MedicationDispenseStatusReasonCodes fromJson(
-      Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return MedicationDispenseStatusReasonCodes.elementOnly
-          .withElement(element);
-    }
-    return MedicationDispenseStatusReasonCodes._(value!, element: element);
-  }
 
   /// String representation
   @override

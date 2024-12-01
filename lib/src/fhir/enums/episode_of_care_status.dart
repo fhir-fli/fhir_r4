@@ -7,6 +7,17 @@ class EpisodeOfCareStatus {
   // Private constructor for internal use (like enum)
   EpisodeOfCareStatus._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [EpisodeOfCareStatus] from JSON.
+  factory EpisodeOfCareStatus.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return EpisodeOfCareStatus.elementOnly.withElement(element);
+    }
+    return EpisodeOfCareStatus._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,50 +26,36 @@ class EpisodeOfCareStatus {
 
   /// EpisodeOfCareStatus values
   /// planned
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final EpisodeOfCareStatus planned = EpisodeOfCareStatus._(
     'planned',
   );
 
   /// waitlist
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final EpisodeOfCareStatus waitlist = EpisodeOfCareStatus._(
     'waitlist',
   );
 
   /// active
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final EpisodeOfCareStatus active = EpisodeOfCareStatus._(
     'active',
   );
 
   /// onhold
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final EpisodeOfCareStatus onhold = EpisodeOfCareStatus._(
     'onhold',
   );
 
   /// finished
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final EpisodeOfCareStatus finished = EpisodeOfCareStatus._(
     'finished',
   );
 
   /// cancelled
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final EpisodeOfCareStatus cancelled = EpisodeOfCareStatus._(
     'cancelled',
   );
 
   /// entered_in_error
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final EpisodeOfCareStatus entered_in_error = EpisodeOfCareStatus._(
     'entered-in-error',
   );
@@ -88,17 +85,6 @@ class EpisodeOfCareStatus {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [EpisodeOfCareStatus] from JSON.
-  static EpisodeOfCareStatus fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return EpisodeOfCareStatus.elementOnly.withElement(element);
-    }
-    return EpisodeOfCareStatus._(value!, element: element);
-  }
 
   /// String representation
   @override

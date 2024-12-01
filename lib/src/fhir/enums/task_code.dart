@@ -7,6 +7,17 @@ class TaskCode {
   // Private constructor for internal use (like enum)
   TaskCode._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [TaskCode] from JSON.
+  factory TaskCode.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return TaskCode.elementOnly.withElement(element);
+    }
+    return TaskCode._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,50 +26,36 @@ class TaskCode {
 
   /// TaskCode values
   /// approve
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final TaskCode approve = TaskCode._(
     'approve',
   );
 
   /// fulfill
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final TaskCode fulfill = TaskCode._(
     'fulfill',
   );
 
   /// abort
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final TaskCode abort = TaskCode._(
     'abort',
   );
 
   /// replace
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final TaskCode replace = TaskCode._(
     'replace',
   );
 
   /// change
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final TaskCode change = TaskCode._(
     'change',
   );
 
   /// suspend
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final TaskCode suspend = TaskCode._(
     'suspend',
   );
 
   /// resume
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final TaskCode resume = TaskCode._(
     'resume',
   );
@@ -88,17 +85,6 @@ class TaskCode {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [TaskCode] from JSON.
-  static TaskCode fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return TaskCode.elementOnly.withElement(element);
-    }
-    return TaskCode._(value!, element: element);
-  }
 
   /// String representation
   @override

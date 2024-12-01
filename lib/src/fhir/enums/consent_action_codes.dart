@@ -7,6 +7,17 @@ class ConsentActionCodes {
   // Private constructor for internal use (like enum)
   ConsentActionCodes._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ConsentActionCodes] from JSON.
+  factory ConsentActionCodes.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ConsentActionCodes.elementOnly.withElement(element);
+    }
+    return ConsentActionCodes._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,36 +26,26 @@ class ConsentActionCodes {
 
   /// ConsentActionCodes values
   /// collect
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ConsentActionCodes collect = ConsentActionCodes._(
     'collect',
   );
 
   /// access
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ConsentActionCodes access = ConsentActionCodes._(
     'access',
   );
 
   /// use
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ConsentActionCodes use = ConsentActionCodes._(
     'use',
   );
 
   /// disclose
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ConsentActionCodes disclose = ConsentActionCodes._(
     'disclose',
   );
 
   /// correct
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ConsentActionCodes correct = ConsentActionCodes._(
     'correct',
   );
@@ -72,17 +73,6 @@ class ConsentActionCodes {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ConsentActionCodes] from JSON.
-  static ConsentActionCodes fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ConsentActionCodes.elementOnly.withElement(element);
-    }
-    return ConsentActionCodes._(value!, element: element);
-  }
 
   /// String representation
   @override

@@ -7,6 +7,17 @@ class TaskStatus {
   // Private constructor for internal use (like enum)
   TaskStatus._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [TaskStatus] from JSON.
+  factory TaskStatus.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return TaskStatus.elementOnly.withElement(element);
+    }
+    return TaskStatus._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,85 +26,61 @@ class TaskStatus {
 
   /// TaskStatus values
   /// draft
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final TaskStatus draft = TaskStatus._(
     'draft',
   );
 
   /// requested
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final TaskStatus requested = TaskStatus._(
     'requested',
   );
 
   /// received
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final TaskStatus received = TaskStatus._(
     'received',
   );
 
   /// accepted
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final TaskStatus accepted = TaskStatus._(
     'accepted',
   );
 
   /// rejected
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final TaskStatus rejected = TaskStatus._(
     'rejected',
   );
 
   /// ready
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final TaskStatus ready = TaskStatus._(
     'ready',
   );
 
   /// cancelled
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final TaskStatus cancelled = TaskStatus._(
     'cancelled',
   );
 
   /// in_progress
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final TaskStatus in_progress = TaskStatus._(
     'in-progress',
   );
 
   /// on_hold
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final TaskStatus on_hold = TaskStatus._(
     'on-hold',
   );
 
   /// failed
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final TaskStatus failed = TaskStatus._(
     'failed',
   );
 
   /// completed
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final TaskStatus completed = TaskStatus._(
     'completed',
   );
 
   /// entered_in_error
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final TaskStatus entered_in_error = TaskStatus._(
     'entered-in-error',
   );
@@ -128,17 +115,6 @@ class TaskStatus {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [TaskStatus] from JSON.
-  static TaskStatus fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return TaskStatus.elementOnly.withElement(element);
-    }
-    return TaskStatus._(value!, element: element);
-  }
 
   /// String representation
   @override

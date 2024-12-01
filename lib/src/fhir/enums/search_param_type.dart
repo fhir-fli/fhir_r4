@@ -7,6 +7,17 @@ class SearchParamType {
   // Private constructor for internal use (like enum)
   SearchParamType._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [SearchParamType] from JSON.
+  factory SearchParamType.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return SearchParamType.elementOnly.withElement(element);
+    }
+    return SearchParamType._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,64 +26,46 @@ class SearchParamType {
 
   /// SearchParamType values
   /// number
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SearchParamType number = SearchParamType._(
     'number',
   );
 
   /// date
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SearchParamType date = SearchParamType._(
     'date',
   );
 
   /// string
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SearchParamType string = SearchParamType._(
     'string',
   );
 
   /// token
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SearchParamType token = SearchParamType._(
     'token',
   );
 
   /// reference
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SearchParamType reference = SearchParamType._(
     'reference',
   );
 
   /// composite
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SearchParamType composite = SearchParamType._(
     'composite',
   );
 
   /// quantity
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SearchParamType quantity = SearchParamType._(
     'quantity',
   );
 
   /// uri
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SearchParamType uri = SearchParamType._(
     'uri',
   );
 
   /// special
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SearchParamType special = SearchParamType._(
     'special',
   );
@@ -104,17 +97,6 @@ class SearchParamType {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [SearchParamType] from JSON.
-  static SearchParamType fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return SearchParamType.elementOnly.withElement(element);
-    }
-    return SearchParamType._(value!, element: element);
-  }
 
   /// String representation
   @override

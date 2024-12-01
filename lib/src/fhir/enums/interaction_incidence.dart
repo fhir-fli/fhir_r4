@@ -7,6 +7,17 @@ class InteractionIncidence {
   // Private constructor for internal use (like enum)
   InteractionIncidence._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [InteractionIncidence] from JSON.
+  factory InteractionIncidence.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return InteractionIncidence.elementOnly.withElement(element);
+    }
+    return InteractionIncidence._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,15 +26,11 @@ class InteractionIncidence {
 
   /// InteractionIncidence values
   /// Theoretical
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final InteractionIncidence Theoretical = InteractionIncidence._(
     'Theoretical',
   );
 
   /// Observed
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final InteractionIncidence Observed = InteractionIncidence._(
     'Observed',
   );
@@ -48,17 +55,6 @@ class InteractionIncidence {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [InteractionIncidence] from JSON.
-  static InteractionIncidence fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return InteractionIncidence.elementOnly.withElement(element);
-    }
-    return InteractionIncidence._(value!, element: element);
-  }
 
   /// String representation
   @override

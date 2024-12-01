@@ -7,6 +7,17 @@ class ResponseType {
   // Private constructor for internal use (like enum)
   ResponseType._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ResponseType] from JSON.
+  factory ResponseType.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ResponseType.elementOnly.withElement(element);
+    }
+    return ResponseType._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,22 +26,16 @@ class ResponseType {
 
   /// ResponseType values
   /// ok
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ResponseType ok = ResponseType._(
     'ok',
   );
 
   /// transient_error
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ResponseType transient_error = ResponseType._(
     'transient-error',
   );
 
   /// fatal_error
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ResponseType fatal_error = ResponseType._(
     'fatal-error',
   );
@@ -56,17 +61,6 @@ class ResponseType {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ResponseType] from JSON.
-  static ResponseType fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ResponseType.elementOnly.withElement(element);
-    }
-    return ResponseType._(value!, element: element);
-  }
 
   /// String representation
   @override

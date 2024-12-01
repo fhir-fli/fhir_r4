@@ -7,6 +7,17 @@ class LocationStatus {
   // Private constructor for internal use (like enum)
   LocationStatus._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [LocationStatus] from JSON.
+  factory LocationStatus.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return LocationStatus.elementOnly.withElement(element);
+    }
+    return LocationStatus._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,22 +26,16 @@ class LocationStatus {
 
   /// LocationStatus values
   /// active
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final LocationStatus active = LocationStatus._(
     'active',
   );
 
   /// suspended
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final LocationStatus suspended = LocationStatus._(
     'suspended',
   );
 
   /// inactive
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final LocationStatus inactive = LocationStatus._(
     'inactive',
   );
@@ -56,17 +61,6 @@ class LocationStatus {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [LocationStatus] from JSON.
-  static LocationStatus fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return LocationStatus.elementOnly.withElement(element);
-    }
-    return LocationStatus._(value!, element: element);
-  }
 
   /// String representation
   @override

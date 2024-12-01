@@ -7,6 +7,17 @@ class MedicinalProductDomain {
   // Private constructor for internal use (like enum)
   MedicinalProductDomain._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [MedicinalProductDomain] from JSON.
+  factory MedicinalProductDomain.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return MedicinalProductDomain.elementOnly.withElement(element);
+    }
+    return MedicinalProductDomain._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,22 +26,16 @@ class MedicinalProductDomain {
 
   /// MedicinalProductDomain values
   /// Human
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicinalProductDomain Human = MedicinalProductDomain._(
     'Human',
   );
 
   /// Veterinary
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicinalProductDomain Veterinary = MedicinalProductDomain._(
     'Veterinary',
   );
 
   /// HumanAndVeterinary
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicinalProductDomain HumanAndVeterinary =
       MedicinalProductDomain._(
     'HumanAndVeterinary',
@@ -58,17 +63,6 @@ class MedicinalProductDomain {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [MedicinalProductDomain] from JSON.
-  static MedicinalProductDomain fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return MedicinalProductDomain.elementOnly.withElement(element);
-    }
-    return MedicinalProductDomain._(value!, element: element);
-  }
 
   /// String representation
   @override

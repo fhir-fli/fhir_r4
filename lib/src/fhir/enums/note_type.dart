@@ -7,6 +7,17 @@ class NoteType {
   // Private constructor for internal use (like enum)
   NoteType._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [NoteType] from JSON.
+  factory NoteType.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return NoteType.elementOnly.withElement(element);
+    }
+    return NoteType._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,22 +26,16 @@ class NoteType {
 
   /// NoteType values
   /// display
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final NoteType display = NoteType._(
     'display',
   );
 
   /// print
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final NoteType print = NoteType._(
     'print',
   );
 
   /// printoper
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final NoteType printoper = NoteType._(
     'printoper',
   );
@@ -56,17 +61,6 @@ class NoteType {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [NoteType] from JSON.
-  static NoteType fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return NoteType.elementOnly.withElement(element);
-    }
-    return NoteType._(value!, element: element);
-  }
 
   /// String representation
   @override

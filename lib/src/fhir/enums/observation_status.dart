@@ -7,6 +7,17 @@ class ObservationStatus {
   // Private constructor for internal use (like enum)
   ObservationStatus._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ObservationStatus] from JSON.
+  factory ObservationStatus.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ObservationStatus.elementOnly.withElement(element);
+    }
+    return ObservationStatus._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,57 +26,41 @@ class ObservationStatus {
 
   /// ObservationStatus values
   /// registered
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ObservationStatus registered = ObservationStatus._(
     'registered',
   );
 
   /// preliminary
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ObservationStatus preliminary = ObservationStatus._(
     'preliminary',
   );
 
   /// final_
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ObservationStatus final_ = ObservationStatus._(
     'final',
   );
 
   /// amended
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ObservationStatus amended = ObservationStatus._(
     'amended',
   );
 
   /// corrected
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ObservationStatus corrected = ObservationStatus._(
     'corrected',
   );
 
   /// cancelled
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ObservationStatus cancelled = ObservationStatus._(
     'cancelled',
   );
 
   /// entered_in_error
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ObservationStatus entered_in_error = ObservationStatus._(
     'entered-in-error',
   );
 
   /// unknown
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ObservationStatus unknown = ObservationStatus._(
     'unknown',
   );
@@ -96,17 +91,6 @@ class ObservationStatus {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ObservationStatus] from JSON.
-  static ObservationStatus fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ObservationStatus.elementOnly.withElement(element);
-    }
-    return ObservationStatus._(value!, element: element);
-  }
 
   /// String representation
   @override

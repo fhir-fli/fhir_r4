@@ -7,6 +7,17 @@ class ConsentScopeCodes {
   // Private constructor for internal use (like enum)
   ConsentScopeCodes._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ConsentScopeCodes] from JSON.
+  factory ConsentScopeCodes.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ConsentScopeCodes.elementOnly.withElement(element);
+    }
+    return ConsentScopeCodes._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,29 +26,21 @@ class ConsentScopeCodes {
 
   /// ConsentScopeCodes values
   /// adr
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ConsentScopeCodes adr = ConsentScopeCodes._(
     'adr',
   );
 
   /// research
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ConsentScopeCodes research = ConsentScopeCodes._(
     'research',
   );
 
   /// patient_privacy
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ConsentScopeCodes patient_privacy = ConsentScopeCodes._(
     'patient-privacy',
   );
 
   /// treatment
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ConsentScopeCodes treatment = ConsentScopeCodes._(
     'treatment',
   );
@@ -64,17 +67,6 @@ class ConsentScopeCodes {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ConsentScopeCodes] from JSON.
-  static ConsentScopeCodes fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ConsentScopeCodes.elementOnly.withElement(element);
-    }
-    return ConsentScopeCodes._(value!, element: element);
-  }
 
   /// String representation
   @override

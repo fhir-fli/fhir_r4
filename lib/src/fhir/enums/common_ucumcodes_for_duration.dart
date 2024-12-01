@@ -7,6 +7,17 @@ class CommonUCUMCodesForDuration {
   // Private constructor for internal use (like enum)
   CommonUCUMCodesForDuration._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [CommonUCUMCodesForDuration] from JSON.
+  factory CommonUCUMCodesForDuration.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return CommonUCUMCodesForDuration.elementOnly.withElement(element);
+    }
+    return CommonUCUMCodesForDuration._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,57 +26,41 @@ class CommonUCUMCodesForDuration {
 
   /// CommonUCUMCodesForDuration values
   /// ms
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CommonUCUMCodesForDuration ms = CommonUCUMCodesForDuration._(
     'ms',
   );
 
   /// s
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CommonUCUMCodesForDuration s = CommonUCUMCodesForDuration._(
     's',
   );
 
   /// min
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CommonUCUMCodesForDuration min = CommonUCUMCodesForDuration._(
     'min',
   );
 
   /// h
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CommonUCUMCodesForDuration h = CommonUCUMCodesForDuration._(
     'h',
   );
 
   /// d
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CommonUCUMCodesForDuration d = CommonUCUMCodesForDuration._(
     'd',
   );
 
   /// wk
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CommonUCUMCodesForDuration wk = CommonUCUMCodesForDuration._(
     'wk',
   );
 
   /// mo
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CommonUCUMCodesForDuration mo = CommonUCUMCodesForDuration._(
     'mo',
   );
 
   /// a
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CommonUCUMCodesForDuration a = CommonUCUMCodesForDuration._(
     'a',
   );
@@ -97,17 +92,6 @@ class CommonUCUMCodesForDuration {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [CommonUCUMCodesForDuration] from JSON.
-  static CommonUCUMCodesForDuration fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return CommonUCUMCodesForDuration.elementOnly.withElement(element);
-    }
-    return CommonUCUMCodesForDuration._(value!, element: element);
-  }
 
   /// String representation
   @override

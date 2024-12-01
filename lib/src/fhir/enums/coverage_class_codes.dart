@@ -7,6 +7,17 @@ class CoverageClassCodes {
   // Private constructor for internal use (like enum)
   CoverageClassCodes._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [CoverageClassCodes] from JSON.
+  factory CoverageClassCodes.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return CoverageClassCodes.elementOnly.withElement(element);
+    }
+    return CoverageClassCodes._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,78 +26,56 @@ class CoverageClassCodes {
 
   /// CoverageClassCodes values
   /// group
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CoverageClassCodes group = CoverageClassCodes._(
     'group',
   );
 
   /// subgroup
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CoverageClassCodes subgroup = CoverageClassCodes._(
     'subgroup',
   );
 
   /// plan
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CoverageClassCodes plan = CoverageClassCodes._(
     'plan',
   );
 
   /// subplan
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CoverageClassCodes subplan = CoverageClassCodes._(
     'subplan',
   );
 
   /// class_
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CoverageClassCodes class_ = CoverageClassCodes._(
     'class',
   );
 
   /// subclass
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CoverageClassCodes subclass = CoverageClassCodes._(
     'subclass',
   );
 
   /// sequence
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CoverageClassCodes sequence = CoverageClassCodes._(
     'sequence',
   );
 
   /// rxbin
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CoverageClassCodes rxbin = CoverageClassCodes._(
     'rxbin',
   );
 
   /// rxpcn
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CoverageClassCodes rxpcn = CoverageClassCodes._(
     'rxpcn',
   );
 
   /// rxid
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CoverageClassCodes rxid = CoverageClassCodes._(
     'rxid',
   );
 
   /// rxgroup
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CoverageClassCodes rxgroup = CoverageClassCodes._(
     'rxgroup',
   );
@@ -120,17 +109,6 @@ class CoverageClassCodes {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [CoverageClassCodes] from JSON.
-  static CoverageClassCodes fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return CoverageClassCodes.elementOnly.withElement(element);
-    }
-    return CoverageClassCodes._(value!, element: element);
-  }
 
   /// String representation
   @override

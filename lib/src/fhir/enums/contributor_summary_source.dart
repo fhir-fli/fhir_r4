@@ -7,6 +7,17 @@ class ContributorSummarySource {
   // Private constructor for internal use (like enum)
   ContributorSummarySource._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ContributorSummarySource] from JSON.
+  factory ContributorSummarySource.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ContributorSummarySource.elementOnly.withElement(element);
+    }
+    return ContributorSummarySource._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,32 +26,24 @@ class ContributorSummarySource {
 
   /// ContributorSummarySource values
   /// publisher_data
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ContributorSummarySource publisher_data =
       ContributorSummarySource._(
     'publisher-data',
   );
 
   /// article_copy
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ContributorSummarySource article_copy =
       ContributorSummarySource._(
     'article-copy',
   );
 
   /// citation_manager
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ContributorSummarySource citation_manager =
       ContributorSummarySource._(
     'citation-manager',
   );
 
   /// custom
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ContributorSummarySource custom = ContributorSummarySource._(
     'custom',
   );
@@ -68,17 +71,6 @@ class ContributorSummarySource {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ContributorSummarySource] from JSON.
-  static ContributorSummarySource fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ContributorSummarySource.elementOnly.withElement(element);
-    }
-    return ContributorSummarySource._(value!, element: element);
-  }
 
   /// String representation
   @override

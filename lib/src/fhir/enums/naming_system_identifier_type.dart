@@ -7,6 +7,17 @@ class NamingSystemIdentifierType {
   // Private constructor for internal use (like enum)
   NamingSystemIdentifierType._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [NamingSystemIdentifierType] from JSON.
+  factory NamingSystemIdentifierType.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return NamingSystemIdentifierType.elementOnly.withElement(element);
+    }
+    return NamingSystemIdentifierType._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,29 +26,21 @@ class NamingSystemIdentifierType {
 
   /// NamingSystemIdentifierType values
   /// oid
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final NamingSystemIdentifierType oid = NamingSystemIdentifierType._(
     'oid',
   );
 
   /// uuid
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final NamingSystemIdentifierType uuid = NamingSystemIdentifierType._(
     'uuid',
   );
 
   /// uri
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final NamingSystemIdentifierType uri = NamingSystemIdentifierType._(
     'uri',
   );
 
   /// other
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final NamingSystemIdentifierType other = NamingSystemIdentifierType._(
     'other',
   );
@@ -65,17 +68,6 @@ class NamingSystemIdentifierType {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [NamingSystemIdentifierType] from JSON.
-  static NamingSystemIdentifierType fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return NamingSystemIdentifierType.elementOnly.withElement(element);
-    }
-    return NamingSystemIdentifierType._(value!, element: element);
-  }
 
   /// String representation
   @override

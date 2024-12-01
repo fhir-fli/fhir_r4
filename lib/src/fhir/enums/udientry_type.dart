@@ -7,6 +7,17 @@ class UDIEntryType {
   // Private constructor for internal use (like enum)
   UDIEntryType._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [UDIEntryType] from JSON.
+  factory UDIEntryType.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return UDIEntryType.elementOnly.withElement(element);
+    }
+    return UDIEntryType._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,43 +26,31 @@ class UDIEntryType {
 
   /// UDIEntryType values
   /// barcode
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final UDIEntryType barcode = UDIEntryType._(
     'barcode',
   );
 
   /// rfid
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final UDIEntryType rfid = UDIEntryType._(
     'rfid',
   );
 
   /// manual
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final UDIEntryType manual = UDIEntryType._(
     'manual',
   );
 
   /// card
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final UDIEntryType card = UDIEntryType._(
     'card',
   );
 
   /// self_reported
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final UDIEntryType self_reported = UDIEntryType._(
     'self-reported',
   );
 
   /// unknown
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final UDIEntryType unknown = UDIEntryType._(
     'unknown',
   );
@@ -80,17 +79,6 @@ class UDIEntryType {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [UDIEntryType] from JSON.
-  static UDIEntryType fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return UDIEntryType.elementOnly.withElement(element);
-    }
-    return UDIEntryType._(value!, element: element);
-  }
 
   /// String representation
   @override

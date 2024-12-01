@@ -7,6 +7,17 @@ class AdjudicationValueCodes {
   // Private constructor for internal use (like enum)
   AdjudicationValueCodes._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [AdjudicationValueCodes] from JSON.
+  factory AdjudicationValueCodes.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return AdjudicationValueCodes.elementOnly.withElement(element);
+    }
+    return AdjudicationValueCodes._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,57 +26,41 @@ class AdjudicationValueCodes {
 
   /// AdjudicationValueCodes values
   /// submitted
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AdjudicationValueCodes submitted = AdjudicationValueCodes._(
     'submitted',
   );
 
   /// copay
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AdjudicationValueCodes copay = AdjudicationValueCodes._(
     'copay',
   );
 
   /// eligible
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AdjudicationValueCodes eligible = AdjudicationValueCodes._(
     'eligible',
   );
 
   /// deductible
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AdjudicationValueCodes deductible = AdjudicationValueCodes._(
     'deductible',
   );
 
   /// unallocdeduct
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AdjudicationValueCodes unallocdeduct = AdjudicationValueCodes._(
     'unallocdeduct',
   );
 
   /// eligpercent
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AdjudicationValueCodes eligpercent = AdjudicationValueCodes._(
     'eligpercent',
   );
 
   /// tax
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AdjudicationValueCodes tax = AdjudicationValueCodes._(
     'tax',
   );
 
   /// benefit
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AdjudicationValueCodes benefit = AdjudicationValueCodes._(
     'benefit',
   );
@@ -97,17 +92,6 @@ class AdjudicationValueCodes {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [AdjudicationValueCodes] from JSON.
-  static AdjudicationValueCodes fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return AdjudicationValueCodes.elementOnly.withElement(element);
-    }
-    return AdjudicationValueCodes._(value!, element: element);
-  }
 
   /// String representation
   @override

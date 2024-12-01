@@ -7,6 +7,17 @@ class DaysOfWeek {
   // Private constructor for internal use (like enum)
   DaysOfWeek._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [DaysOfWeek] from JSON.
+  factory DaysOfWeek.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return DaysOfWeek.elementOnly.withElement(element);
+    }
+    return DaysOfWeek._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,50 +26,36 @@ class DaysOfWeek {
 
   /// DaysOfWeek values
   /// mon
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final DaysOfWeek mon = DaysOfWeek._(
     'mon',
   );
 
   /// tue
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final DaysOfWeek tue = DaysOfWeek._(
     'tue',
   );
 
   /// wed
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final DaysOfWeek wed = DaysOfWeek._(
     'wed',
   );
 
   /// thu
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final DaysOfWeek thu = DaysOfWeek._(
     'thu',
   );
 
   /// fri
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final DaysOfWeek fri = DaysOfWeek._(
     'fri',
   );
 
   /// sat
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final DaysOfWeek sat = DaysOfWeek._(
     'sat',
   );
 
   /// sun
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final DaysOfWeek sun = DaysOfWeek._(
     'sun',
   );
@@ -88,17 +85,6 @@ class DaysOfWeek {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [DaysOfWeek] from JSON.
-  static DaysOfWeek fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return DaysOfWeek.elementOnly.withElement(element);
-    }
-    return DaysOfWeek._(value!, element: element);
-  }
 
   /// String representation
   @override

@@ -7,6 +7,17 @@ class CommonUCUMCodesForDistance {
   // Private constructor for internal use (like enum)
   CommonUCUMCodesForDistance._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [CommonUCUMCodesForDistance] from JSON.
+  factory CommonUCUMCodesForDistance.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return CommonUCUMCodesForDistance.elementOnly.withElement(element);
+    }
+    return CommonUCUMCodesForDistance._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,36 +26,26 @@ class CommonUCUMCodesForDistance {
 
   /// CommonUCUMCodesForDistance values
   /// nm
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CommonUCUMCodesForDistance nm = CommonUCUMCodesForDistance._(
     'nm',
   );
 
   /// um
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CommonUCUMCodesForDistance um = CommonUCUMCodesForDistance._(
     'um',
   );
 
   /// mm
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CommonUCUMCodesForDistance mm = CommonUCUMCodesForDistance._(
     'mm',
   );
 
   /// m
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CommonUCUMCodesForDistance m = CommonUCUMCodesForDistance._(
     'm',
   );
 
   /// km
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CommonUCUMCodesForDistance km = CommonUCUMCodesForDistance._(
     'km',
   );
@@ -73,17 +74,6 @@ class CommonUCUMCodesForDistance {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [CommonUCUMCodesForDistance] from JSON.
-  static CommonUCUMCodesForDistance fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return CommonUCUMCodesForDistance.elementOnly.withElement(element);
-    }
-    return CommonUCUMCodesForDistance._(value!, element: element);
-  }
 
   /// String representation
   @override

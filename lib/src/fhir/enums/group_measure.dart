@@ -7,6 +7,17 @@ class GroupMeasure {
   // Private constructor for internal use (like enum)
   GroupMeasure._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [GroupMeasure] from JSON.
+  factory GroupMeasure.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return GroupMeasure.elementOnly.withElement(element);
+    }
+    return GroupMeasure._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,43 +26,31 @@ class GroupMeasure {
 
   /// GroupMeasure values
   /// mean
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final GroupMeasure mean = GroupMeasure._(
     'mean',
   );
 
   /// median
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final GroupMeasure median = GroupMeasure._(
     'median',
   );
 
   /// mean_of_mean
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final GroupMeasure mean_of_mean = GroupMeasure._(
     'mean-of-mean',
   );
 
   /// mean_of_median
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final GroupMeasure mean_of_median = GroupMeasure._(
     'mean-of-median',
   );
 
   /// median_of_mean
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final GroupMeasure median_of_mean = GroupMeasure._(
     'median-of-mean',
   );
 
   /// median_of_median
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final GroupMeasure median_of_median = GroupMeasure._(
     'median-of-median',
   );
@@ -80,17 +79,6 @@ class GroupMeasure {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [GroupMeasure] from JSON.
-  static GroupMeasure fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return GroupMeasure.elementOnly.withElement(element);
-    }
-    return GroupMeasure._(value!, element: element);
-  }
 
   /// String representation
   @override

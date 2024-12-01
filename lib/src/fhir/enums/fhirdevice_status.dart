@@ -7,6 +7,17 @@ class FHIRDeviceStatus {
   // Private constructor for internal use (like enum)
   FHIRDeviceStatus._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [FHIRDeviceStatus] from JSON.
+  factory FHIRDeviceStatus.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return FHIRDeviceStatus.elementOnly.withElement(element);
+    }
+    return FHIRDeviceStatus._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,29 +26,21 @@ class FHIRDeviceStatus {
 
   /// FHIRDeviceStatus values
   /// active
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final FHIRDeviceStatus active = FHIRDeviceStatus._(
     'active',
   );
 
   /// inactive
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final FHIRDeviceStatus inactive = FHIRDeviceStatus._(
     'inactive',
   );
 
   /// entered_in_error
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final FHIRDeviceStatus entered_in_error = FHIRDeviceStatus._(
     'entered-in-error',
   );
 
   /// unknown
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final FHIRDeviceStatus unknown = FHIRDeviceStatus._(
     'unknown',
   );
@@ -64,17 +67,6 @@ class FHIRDeviceStatus {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [FHIRDeviceStatus] from JSON.
-  static FHIRDeviceStatus fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return FHIRDeviceStatus.elementOnly.withElement(element);
-    }
-    return FHIRDeviceStatus._(value!, element: element);
-  }
 
   /// String representation
   @override

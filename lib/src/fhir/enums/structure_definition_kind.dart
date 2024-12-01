@@ -7,6 +7,17 @@ class StructureDefinitionKind {
   // Private constructor for internal use (like enum)
   StructureDefinitionKind._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [StructureDefinitionKind] from JSON.
+  factory StructureDefinitionKind.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return StructureDefinitionKind.elementOnly.withElement(element);
+    }
+    return StructureDefinitionKind._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,30 +26,22 @@ class StructureDefinitionKind {
 
   /// StructureDefinitionKind values
   /// primitive_type
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final StructureDefinitionKind primitive_type =
       StructureDefinitionKind._(
     'primitive-type',
   );
 
   /// complex_type
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final StructureDefinitionKind complex_type = StructureDefinitionKind._(
     'complex-type',
   );
 
   /// resource
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final StructureDefinitionKind resource = StructureDefinitionKind._(
     'resource',
   );
 
   /// logical
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final StructureDefinitionKind logical = StructureDefinitionKind._(
     'logical',
   );
@@ -66,17 +69,6 @@ class StructureDefinitionKind {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [StructureDefinitionKind] from JSON.
-  static StructureDefinitionKind fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return StructureDefinitionKind.elementOnly.withElement(element);
-    }
-    return StructureDefinitionKind._(value!, element: element);
-  }
 
   /// String representation
   @override

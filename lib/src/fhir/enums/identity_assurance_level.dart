@@ -7,6 +7,17 @@ class IdentityAssuranceLevel {
   // Private constructor for internal use (like enum)
   IdentityAssuranceLevel._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [IdentityAssuranceLevel] from JSON.
+  factory IdentityAssuranceLevel.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return IdentityAssuranceLevel.elementOnly.withElement(element);
+    }
+    return IdentityAssuranceLevel._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,29 +26,21 @@ class IdentityAssuranceLevel {
 
   /// IdentityAssuranceLevel values
   /// level1
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final IdentityAssuranceLevel level1 = IdentityAssuranceLevel._(
     'level1',
   );
 
   /// level2
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final IdentityAssuranceLevel level2 = IdentityAssuranceLevel._(
     'level2',
   );
 
   /// level3
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final IdentityAssuranceLevel level3 = IdentityAssuranceLevel._(
     'level3',
   );
 
   /// level4
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final IdentityAssuranceLevel level4 = IdentityAssuranceLevel._(
     'level4',
   );
@@ -65,17 +68,6 @@ class IdentityAssuranceLevel {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [IdentityAssuranceLevel] from JSON.
-  static IdentityAssuranceLevel fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return IdentityAssuranceLevel.elementOnly.withElement(element);
-    }
-    return IdentityAssuranceLevel._(value!, element: element);
-  }
 
   /// String representation
   @override

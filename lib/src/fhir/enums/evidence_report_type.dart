@@ -7,6 +7,17 @@ class EvidenceReportType {
   // Private constructor for internal use (like enum)
   EvidenceReportType._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [EvidenceReportType] from JSON.
+  factory EvidenceReportType.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return EvidenceReportType.elementOnly.withElement(element);
+    }
+    return EvidenceReportType._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,29 +26,21 @@ class EvidenceReportType {
 
   /// EvidenceReportType values
   /// classification
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final EvidenceReportType classification = EvidenceReportType._(
     'classification',
   );
 
   /// search_results
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final EvidenceReportType search_results = EvidenceReportType._(
     'search-results',
   );
 
   /// resources_compiled
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final EvidenceReportType resources_compiled = EvidenceReportType._(
     'resources-compiled',
   );
 
   /// text_structured
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final EvidenceReportType text_structured = EvidenceReportType._(
     'text-structured',
   );
@@ -64,17 +67,6 @@ class EvidenceReportType {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [EvidenceReportType] from JSON.
-  static EvidenceReportType fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return EvidenceReportType.elementOnly.withElement(element);
-    }
-    return EvidenceReportType._(value!, element: element);
-  }
 
   /// String representation
   @override

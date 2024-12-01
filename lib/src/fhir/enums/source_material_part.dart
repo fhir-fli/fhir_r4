@@ -7,6 +7,17 @@ class SourceMaterialPart {
   // Private constructor for internal use (like enum)
   SourceMaterialPart._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [SourceMaterialPart] from JSON.
+  factory SourceMaterialPart.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return SourceMaterialPart.elementOnly.withElement(element);
+    }
+    return SourceMaterialPart._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,22 +26,16 @@ class SourceMaterialPart {
 
   /// SourceMaterialPart values
   /// Animal
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SourceMaterialPart Animal = SourceMaterialPart._(
     'Animal',
   );
 
   /// Plant
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SourceMaterialPart Plant = SourceMaterialPart._(
     'Plant',
   );
 
   /// Mineral
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SourceMaterialPart Mineral = SourceMaterialPart._(
     'Mineral',
   );
@@ -56,17 +61,6 @@ class SourceMaterialPart {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [SourceMaterialPart] from JSON.
-  static SourceMaterialPart fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return SourceMaterialPart.elementOnly.withElement(element);
-    }
-    return SourceMaterialPart._(value!, element: element);
-  }
 
   /// String representation
   @override

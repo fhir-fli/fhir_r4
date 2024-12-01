@@ -7,6 +7,17 @@ class AdverseEventCategory {
   // Private constructor for internal use (like enum)
   AdverseEventCategory._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [AdverseEventCategory] from JSON.
+  factory AdverseEventCategory.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return AdverseEventCategory.elementOnly.withElement(element);
+    }
+    return AdverseEventCategory._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,103 +26,75 @@ class AdverseEventCategory {
 
   /// AdverseEventCategory values
   /// product_problem
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AdverseEventCategory product_problem = AdverseEventCategory._(
     'product-problem',
   );
 
   /// product_quality
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AdverseEventCategory product_quality = AdverseEventCategory._(
     'product-quality',
   );
 
   /// product_use_error
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AdverseEventCategory product_use_error = AdverseEventCategory._(
     'product-use-error',
   );
 
   /// wrong_dose
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AdverseEventCategory wrong_dose = AdverseEventCategory._(
     'wrong-dose',
   );
 
   /// incorrect_prescribing_information
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AdverseEventCategory incorrect_prescribing_information =
       AdverseEventCategory._(
     'incorrect-prescribing-information',
   );
 
   /// wrong_technique
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AdverseEventCategory wrong_technique = AdverseEventCategory._(
     'wrong-technique',
   );
 
   /// wrong_route_of_administration
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AdverseEventCategory wrong_route_of_administration =
       AdverseEventCategory._(
     'wrong-route-of-administration',
   );
 
   /// wrong_rate
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AdverseEventCategory wrong_rate = AdverseEventCategory._(
     'wrong-rate',
   );
 
   /// wrong_duration
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AdverseEventCategory wrong_duration = AdverseEventCategory._(
     'wrong-duration',
   );
 
   /// wrong_time
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AdverseEventCategory wrong_time = AdverseEventCategory._(
     'wrong-time',
   );
 
   /// expired_drug
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AdverseEventCategory expired_drug = AdverseEventCategory._(
     'expired-drug',
   );
 
   /// medical_device_use_error
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AdverseEventCategory medical_device_use_error =
       AdverseEventCategory._(
     'medical-device-use-error',
   );
 
   /// problem_different_manufacturer
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AdverseEventCategory problem_different_manufacturer =
       AdverseEventCategory._(
     'problem-different-manufacturer',
   );
 
   /// unsafe_physical_environment
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AdverseEventCategory unsafe_physical_environment =
       AdverseEventCategory._(
     'unsafe-physical-environment',
@@ -149,17 +132,6 @@ class AdverseEventCategory {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [AdverseEventCategory] from JSON.
-  static AdverseEventCategory fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return AdverseEventCategory.elementOnly.withElement(element);
-    }
-    return AdverseEventCategory._(value!, element: element);
-  }
 
   /// String representation
   @override

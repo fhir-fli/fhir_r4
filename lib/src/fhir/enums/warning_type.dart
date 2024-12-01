@@ -7,6 +7,17 @@ class WarningType {
   // Private constructor for internal use (like enum)
   WarningType._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [WarningType] from JSON.
+  factory WarningType.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return WarningType.elementOnly.withElement(element);
+    }
+    return WarningType._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,71 +26,51 @@ class WarningType {
 
   /// WarningType values
   /// P313
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final WarningType P313 = WarningType._(
     'P313',
   );
 
   /// P314
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final WarningType P314 = WarningType._(
     'P314',
   );
 
   /// P315
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final WarningType P315 = WarningType._(
     'P315',
   );
 
   /// P320
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final WarningType P320 = WarningType._(
     'P320',
   );
 
   /// P321
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final WarningType P321 = WarningType._(
     'P321',
   );
 
   /// P322
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final WarningType P322 = WarningType._(
     'P322',
   );
 
   /// P330
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final WarningType P330 = WarningType._(
     'P330',
   );
 
   /// P331
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final WarningType P331 = WarningType._(
     'P331',
   );
 
   /// P361
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final WarningType P361 = WarningType._(
     'P361',
   );
 
   /// P363
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final WarningType P363 = WarningType._(
     'P363',
   );
@@ -112,17 +103,6 @@ class WarningType {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [WarningType] from JSON.
-  static WarningType fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return WarningType.elementOnly.withElement(element);
-    }
-    return WarningType._(value!, element: element);
-  }
 
   /// String representation
   @override

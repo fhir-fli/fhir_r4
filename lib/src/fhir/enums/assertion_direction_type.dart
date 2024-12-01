@@ -7,6 +7,17 @@ class AssertionDirectionType {
   // Private constructor for internal use (like enum)
   AssertionDirectionType._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [AssertionDirectionType] from JSON.
+  factory AssertionDirectionType.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return AssertionDirectionType.elementOnly.withElement(element);
+    }
+    return AssertionDirectionType._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,15 +26,11 @@ class AssertionDirectionType {
 
   /// AssertionDirectionType values
   /// response
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AssertionDirectionType response = AssertionDirectionType._(
     'response',
   );
 
   /// request
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AssertionDirectionType request = AssertionDirectionType._(
     'request',
   );
@@ -49,17 +56,6 @@ class AssertionDirectionType {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [AssertionDirectionType] from JSON.
-  static AssertionDirectionType fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return AssertionDirectionType.elementOnly.withElement(element);
-    }
-    return AssertionDirectionType._(value!, element: element);
-  }
 
   /// String representation
   @override

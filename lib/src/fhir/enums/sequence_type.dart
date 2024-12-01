@@ -7,6 +7,17 @@ class SequenceType {
   // Private constructor for internal use (like enum)
   SequenceType._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [SequenceType] from JSON.
+  factory SequenceType.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return SequenceType.elementOnly.withElement(element);
+    }
+    return SequenceType._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,22 +26,16 @@ class SequenceType {
 
   /// SequenceType values
   /// aa
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SequenceType aa = SequenceType._(
     'aa',
   );
 
   /// dna
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SequenceType dna = SequenceType._(
     'dna',
   );
 
   /// rna
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SequenceType rna = SequenceType._(
     'rna',
   );
@@ -56,17 +61,6 @@ class SequenceType {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [SequenceType] from JSON.
-  static SequenceType fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return SequenceType.elementOnly.withElement(element);
-    }
-    return SequenceType._(value!, element: element);
-  }
 
   /// String representation
   @override

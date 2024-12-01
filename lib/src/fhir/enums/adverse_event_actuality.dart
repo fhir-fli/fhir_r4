@@ -7,6 +7,17 @@ class AdverseEventActuality {
   // Private constructor for internal use (like enum)
   AdverseEventActuality._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [AdverseEventActuality] from JSON.
+  factory AdverseEventActuality.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return AdverseEventActuality.elementOnly.withElement(element);
+    }
+    return AdverseEventActuality._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,15 +26,11 @@ class AdverseEventActuality {
 
   /// AdverseEventActuality values
   /// actual
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AdverseEventActuality actual = AdverseEventActuality._(
     'actual',
   );
 
   /// potential
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AdverseEventActuality potential = AdverseEventActuality._(
     'potential',
   );
@@ -48,17 +55,6 @@ class AdverseEventActuality {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [AdverseEventActuality] from JSON.
-  static AdverseEventActuality fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return AdverseEventActuality.elementOnly.withElement(element);
-    }
-    return AdverseEventActuality._(value!, element: element);
-  }
 
   /// String representation
   @override

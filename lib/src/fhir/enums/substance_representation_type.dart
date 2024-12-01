@@ -7,6 +7,17 @@ class SubstanceRepresentationType {
   // Private constructor for internal use (like enum)
   SubstanceRepresentationType._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [SubstanceRepresentationType] from JSON.
+  factory SubstanceRepresentationType.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return SubstanceRepresentationType.elementOnly.withElement(element);
+    }
+    return SubstanceRepresentationType._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,24 +26,18 @@ class SubstanceRepresentationType {
 
   /// SubstanceRepresentationType values
   /// Systematic
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SubstanceRepresentationType Systematic =
       SubstanceRepresentationType._(
     'Systematic',
   );
 
   /// Scientific
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SubstanceRepresentationType Scientific =
       SubstanceRepresentationType._(
     'Scientific',
   );
 
   /// Brand
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SubstanceRepresentationType Brand =
       SubstanceRepresentationType._(
     'Brand',
@@ -60,17 +65,6 @@ class SubstanceRepresentationType {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [SubstanceRepresentationType] from JSON.
-  static SubstanceRepresentationType fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return SubstanceRepresentationType.elementOnly.withElement(element);
-    }
-    return SubstanceRepresentationType._(value!, element: element);
-  }
 
   /// String representation
   @override

@@ -7,6 +7,17 @@ class CompositionStatus {
   // Private constructor for internal use (like enum)
   CompositionStatus._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [CompositionStatus] from JSON.
+  factory CompositionStatus.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return CompositionStatus.elementOnly.withElement(element);
+    }
+    return CompositionStatus._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,29 +26,21 @@ class CompositionStatus {
 
   /// CompositionStatus values
   /// preliminary
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CompositionStatus preliminary = CompositionStatus._(
     'preliminary',
   );
 
   /// final_
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CompositionStatus final_ = CompositionStatus._(
     'final',
   );
 
   /// amended
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CompositionStatus amended = CompositionStatus._(
     'amended',
   );
 
   /// entered_in_error
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CompositionStatus entered_in_error = CompositionStatus._(
     'entered-in-error',
   );
@@ -64,17 +67,6 @@ class CompositionStatus {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [CompositionStatus] from JSON.
-  static CompositionStatus fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return CompositionStatus.elementOnly.withElement(element);
-    }
-    return CompositionStatus._(value!, element: element);
-  }
 
   /// String representation
   @override

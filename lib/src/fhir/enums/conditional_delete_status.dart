@@ -7,6 +7,17 @@ class ConditionalDeleteStatus {
   // Private constructor for internal use (like enum)
   ConditionalDeleteStatus._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ConditionalDeleteStatus] from JSON.
+  factory ConditionalDeleteStatus.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ConditionalDeleteStatus.elementOnly.withElement(element);
+    }
+    return ConditionalDeleteStatus._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,23 +26,17 @@ class ConditionalDeleteStatus {
 
   /// ConditionalDeleteStatus values
   /// not_supported
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ConditionalDeleteStatus not_supported =
       ConditionalDeleteStatus._(
     'not-supported',
   );
 
   /// single
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ConditionalDeleteStatus single = ConditionalDeleteStatus._(
     'single',
   );
 
   /// multiple
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ConditionalDeleteStatus multiple = ConditionalDeleteStatus._(
     'multiple',
   );
@@ -58,17 +63,6 @@ class ConditionalDeleteStatus {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ConditionalDeleteStatus] from JSON.
-  static ConditionalDeleteStatus fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ConditionalDeleteStatus.elementOnly.withElement(element);
-    }
-    return ConditionalDeleteStatus._(value!, element: element);
-  }
 
   /// String representation
   @override

@@ -7,6 +7,17 @@ class AdditionalMonitoring {
   // Private constructor for internal use (like enum)
   AdditionalMonitoring._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [AdditionalMonitoring] from JSON.
+  factory AdditionalMonitoring.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return AdditionalMonitoring.elementOnly.withElement(element);
+    }
+    return AdditionalMonitoring._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,8 +26,6 @@ class AdditionalMonitoring {
 
   /// AdditionalMonitoring values
   /// BlackTriangleMonitoring
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AdditionalMonitoring BlackTriangleMonitoring =
       AdditionalMonitoring._(
     'BlackTriangleMonitoring',
@@ -41,17 +50,6 @@ class AdditionalMonitoring {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [AdditionalMonitoring] from JSON.
-  static AdditionalMonitoring fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return AdditionalMonitoring.elementOnly.withElement(element);
-    }
-    return AdditionalMonitoring._(value!, element: element);
-  }
 
   /// String representation
   @override

@@ -7,6 +7,17 @@ class FormCodes {
   // Private constructor for internal use (like enum)
   FormCodes._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [FormCodes] from JSON.
+  factory FormCodes.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return FormCodes.elementOnly.withElement(element);
+    }
+    return FormCodes._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,15 +26,11 @@ class FormCodes {
 
   /// FormCodes values
   /// value1
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final FormCodes value1 = FormCodes._(
     '1',
   );
 
   /// value2
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final FormCodes value2 = FormCodes._(
     '2',
   );
@@ -48,17 +55,6 @@ class FormCodes {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [FormCodes] from JSON.
-  static FormCodes fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return FormCodes.elementOnly.withElement(element);
-    }
-    return FormCodes._(value!, element: element);
-  }
 
   /// String representation
   @override

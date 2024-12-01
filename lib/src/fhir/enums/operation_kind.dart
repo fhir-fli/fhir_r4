@@ -7,6 +7,17 @@ class OperationKind {
   // Private constructor for internal use (like enum)
   OperationKind._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [OperationKind] from JSON.
+  factory OperationKind.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return OperationKind.elementOnly.withElement(element);
+    }
+    return OperationKind._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,15 +26,11 @@ class OperationKind {
 
   /// OperationKind values
   /// operation
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final OperationKind operation = OperationKind._(
     'operation',
   );
 
   /// query
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final OperationKind query = OperationKind._(
     'query',
   );
@@ -48,17 +55,6 @@ class OperationKind {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [OperationKind] from JSON.
-  static OperationKind fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return OperationKind.elementOnly.withElement(element);
-    }
-    return OperationKind._(value!, element: element);
-  }
 
   /// String representation
   @override

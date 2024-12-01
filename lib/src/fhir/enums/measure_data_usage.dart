@@ -7,6 +7,17 @@ class MeasureDataUsage {
   // Private constructor for internal use (like enum)
   MeasureDataUsage._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [MeasureDataUsage] from JSON.
+  factory MeasureDataUsage.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return MeasureDataUsage.elementOnly.withElement(element);
+    }
+    return MeasureDataUsage._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,15 +26,11 @@ class MeasureDataUsage {
 
   /// MeasureDataUsage values
   /// supplemental_data
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MeasureDataUsage supplemental_data = MeasureDataUsage._(
     'supplemental-data',
   );
 
   /// risk_adjustment_factor
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MeasureDataUsage risk_adjustment_factor = MeasureDataUsage._(
     'risk-adjustment-factor',
   );
@@ -48,17 +55,6 @@ class MeasureDataUsage {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [MeasureDataUsage] from JSON.
-  static MeasureDataUsage fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return MeasureDataUsage.elementOnly.withElement(element);
-    }
-    return MeasureDataUsage._(value!, element: element);
-  }
 
   /// String representation
   @override

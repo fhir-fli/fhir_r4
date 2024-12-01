@@ -7,6 +7,17 @@ class ProcedureCategoryCodesSNOMEDCT {
   // Private constructor for internal use (like enum)
   ProcedureCategoryCodesSNOMEDCT._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ProcedureCategoryCodesSNOMEDCT] from JSON.
+  factory ProcedureCategoryCodesSNOMEDCT.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ProcedureCategoryCodesSNOMEDCT.elementOnly.withElement(element);
+    }
+    return ProcedureCategoryCodesSNOMEDCT._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,56 +26,42 @@ class ProcedureCategoryCodesSNOMEDCT {
 
   /// ProcedureCategoryCodesSNOMEDCT values
   /// value24642003
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ProcedureCategoryCodesSNOMEDCT value24642003 =
       ProcedureCategoryCodesSNOMEDCT._(
     '24642003',
   );
 
   /// value409063005
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ProcedureCategoryCodesSNOMEDCT value409063005 =
       ProcedureCategoryCodesSNOMEDCT._(
     '409063005',
   );
 
   /// value409073007
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ProcedureCategoryCodesSNOMEDCT value409073007 =
       ProcedureCategoryCodesSNOMEDCT._(
     '409073007',
   );
 
   /// value387713003
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ProcedureCategoryCodesSNOMEDCT value387713003 =
       ProcedureCategoryCodesSNOMEDCT._(
     '387713003',
   );
 
   /// value103693007
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ProcedureCategoryCodesSNOMEDCT value103693007 =
       ProcedureCategoryCodesSNOMEDCT._(
     '103693007',
   );
 
   /// value46947000
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ProcedureCategoryCodesSNOMEDCT value46947000 =
       ProcedureCategoryCodesSNOMEDCT._(
     '46947000',
   );
 
   /// value410606002
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ProcedureCategoryCodesSNOMEDCT value410606002 =
       ProcedureCategoryCodesSNOMEDCT._(
     '410606002',
@@ -96,17 +93,6 @@ class ProcedureCategoryCodesSNOMEDCT {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ProcedureCategoryCodesSNOMEDCT] from JSON.
-  static ProcedureCategoryCodesSNOMEDCT fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ProcedureCategoryCodesSNOMEDCT.elementOnly.withElement(element);
-    }
-    return ProcedureCategoryCodesSNOMEDCT._(value!, element: element);
-  }
 
   /// String representation
   @override

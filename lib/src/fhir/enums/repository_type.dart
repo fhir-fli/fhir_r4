@@ -7,6 +7,17 @@ class RepositoryType {
   // Private constructor for internal use (like enum)
   RepositoryType._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [RepositoryType] from JSON.
+  factory RepositoryType.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return RepositoryType.elementOnly.withElement(element);
+    }
+    return RepositoryType._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,36 +26,26 @@ class RepositoryType {
 
   /// RepositoryType values
   /// directlink
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final RepositoryType directlink = RepositoryType._(
     'directlink',
   );
 
   /// openapi
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final RepositoryType openapi = RepositoryType._(
     'openapi',
   );
 
   /// login
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final RepositoryType login = RepositoryType._(
     'login',
   );
 
   /// oauth
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final RepositoryType oauth = RepositoryType._(
     'oauth',
   );
 
   /// other
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final RepositoryType other = RepositoryType._(
     'other',
   );
@@ -72,17 +73,6 @@ class RepositoryType {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [RepositoryType] from JSON.
-  static RepositoryType fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return RepositoryType.elementOnly.withElement(element);
-    }
-    return RepositoryType._(value!, element: element);
-  }
 
   /// String representation
   @override

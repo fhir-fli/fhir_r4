@@ -7,6 +7,17 @@ class IngredientRole {
   // Private constructor for internal use (like enum)
   IngredientRole._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [IngredientRole] from JSON.
+  factory IngredientRole.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return IngredientRole.elementOnly.withElement(element);
+    }
+    return IngredientRole._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,64 +26,46 @@ class IngredientRole {
 
   /// IngredientRole values
   /// value100000072072
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final IngredientRole value100000072072 = IngredientRole._(
     '100000072072',
   );
 
   /// value100000072073
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final IngredientRole value100000072073 = IngredientRole._(
     '100000072073',
   );
 
   /// value100000072082
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final IngredientRole value100000072082 = IngredientRole._(
     '100000072082',
   );
 
   /// value100000136065
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final IngredientRole value100000136065 = IngredientRole._(
     '100000136065',
   );
 
   /// value100000136066
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final IngredientRole value100000136066 = IngredientRole._(
     '100000136066',
   );
 
   /// value100000136178
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final IngredientRole value100000136178 = IngredientRole._(
     '100000136178',
   );
 
   /// value100000136179
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final IngredientRole value100000136179 = IngredientRole._(
     '100000136179',
   );
 
   /// value100000136561
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final IngredientRole value100000136561 = IngredientRole._(
     '100000136561',
   );
 
   /// value200000003427
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final IngredientRole value200000003427 = IngredientRole._(
     '200000003427',
   );
@@ -104,17 +97,6 @@ class IngredientRole {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [IngredientRole] from JSON.
-  static IngredientRole fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return IngredientRole.elementOnly.withElement(element);
-    }
-    return IngredientRole._(value!, element: element);
-  }
 
   /// String representation
   @override

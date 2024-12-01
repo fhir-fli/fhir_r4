@@ -7,6 +7,17 @@ class StructureTechnique {
   // Private constructor for internal use (like enum)
   StructureTechnique._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [StructureTechnique] from JSON.
+  factory StructureTechnique.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return StructureTechnique.elementOnly.withElement(element);
+    }
+    return StructureTechnique._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,36 +26,26 @@ class StructureTechnique {
 
   /// StructureTechnique values
   /// X_Ray
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final StructureTechnique X_Ray = StructureTechnique._(
     'X-Ray',
   );
 
   /// HPLC
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final StructureTechnique HPLC = StructureTechnique._(
     'HPLC',
   );
 
   /// NMR
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final StructureTechnique NMR = StructureTechnique._(
     'NMR',
   );
 
   /// PeptideMapping
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final StructureTechnique PeptideMapping = StructureTechnique._(
     'PeptideMapping',
   );
 
   /// LigandBindingAssay
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final StructureTechnique LigandBindingAssay = StructureTechnique._(
     'LigandBindingAssay',
   );
@@ -72,17 +73,6 @@ class StructureTechnique {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [StructureTechnique] from JSON.
-  static StructureTechnique fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return StructureTechnique.elementOnly.withElement(element);
-    }
-    return StructureTechnique._(value!, element: element);
-  }
 
   /// String representation
   @override

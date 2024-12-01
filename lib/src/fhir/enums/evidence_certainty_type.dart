@@ -7,6 +7,17 @@ class EvidenceCertaintyType {
   // Private constructor for internal use (like enum)
   EvidenceCertaintyType._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [EvidenceCertaintyType] from JSON.
+  factory EvidenceCertaintyType.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return EvidenceCertaintyType.elementOnly.withElement(element);
+    }
+    return EvidenceCertaintyType._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,66 +26,48 @@ class EvidenceCertaintyType {
 
   /// EvidenceCertaintyType values
   /// Overall
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final EvidenceCertaintyType Overall = EvidenceCertaintyType._(
     'Overall',
   );
 
   /// RiskOfBias
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final EvidenceCertaintyType RiskOfBias = EvidenceCertaintyType._(
     'RiskOfBias',
   );
 
   /// Inconsistency
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final EvidenceCertaintyType Inconsistency = EvidenceCertaintyType._(
     'Inconsistency',
   );
 
   /// Indirectness
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final EvidenceCertaintyType Indirectness = EvidenceCertaintyType._(
     'Indirectness',
   );
 
   /// Imprecision
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final EvidenceCertaintyType Imprecision = EvidenceCertaintyType._(
     'Imprecision',
   );
 
   /// PublicationBias
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final EvidenceCertaintyType PublicationBias = EvidenceCertaintyType._(
     'PublicationBias',
   );
 
   /// DoseResponseGradient
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final EvidenceCertaintyType DoseResponseGradient =
       EvidenceCertaintyType._(
     'DoseResponseGradient',
   );
 
   /// PlausibleConfounding
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final EvidenceCertaintyType PlausibleConfounding =
       EvidenceCertaintyType._(
     'PlausibleConfounding',
   );
 
   /// LargeEffect
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final EvidenceCertaintyType LargeEffect = EvidenceCertaintyType._(
     'LargeEffect',
   );
@@ -106,17 +99,6 @@ class EvidenceCertaintyType {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [EvidenceCertaintyType] from JSON.
-  static EvidenceCertaintyType fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return EvidenceCertaintyType.elementOnly.withElement(element);
-    }
-    return EvidenceCertaintyType._(value!, element: element);
-  }
 
   /// String representation
   @override

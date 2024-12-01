@@ -7,6 +7,17 @@ class CommonTags {
   // Private constructor for internal use (like enum)
   CommonTags._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [CommonTags] from JSON.
+  factory CommonTags.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return CommonTags.elementOnly.withElement(element);
+    }
+    return CommonTags._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,8 +26,6 @@ class CommonTags {
 
   /// CommonTags values
   /// actionable
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CommonTags actionable = CommonTags._(
     'actionable',
   );
@@ -40,17 +49,6 @@ class CommonTags {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [CommonTags] from JSON.
-  static CommonTags fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return CommonTags.elementOnly.withElement(element);
-    }
-    return CommonTags._(value!, element: element);
-  }
 
   /// String representation
   @override

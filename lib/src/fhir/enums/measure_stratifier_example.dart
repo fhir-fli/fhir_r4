@@ -7,6 +7,17 @@ class MeasureStratifierExample {
   // Private constructor for internal use (like enum)
   MeasureStratifierExample._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [MeasureStratifierExample] from JSON.
+  factory MeasureStratifierExample.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return MeasureStratifierExample.elementOnly.withElement(element);
+    }
+    return MeasureStratifierExample._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,22 +26,16 @@ class MeasureStratifierExample {
 
   /// MeasureStratifierExample values
   /// age
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MeasureStratifierExample age = MeasureStratifierExample._(
     'age',
   );
 
   /// gender
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MeasureStratifierExample gender = MeasureStratifierExample._(
     'gender',
   );
 
   /// region
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MeasureStratifierExample region = MeasureStratifierExample._(
     'region',
   );
@@ -57,17 +62,6 @@ class MeasureStratifierExample {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [MeasureStratifierExample] from JSON.
-  static MeasureStratifierExample fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return MeasureStratifierExample.elementOnly.withElement(element);
-    }
-    return MeasureStratifierExample._(value!, element: element);
-  }
 
   /// String representation
   @override

@@ -7,6 +7,17 @@ class RejectionCriterion {
   // Private constructor for internal use (like enum)
   RejectionCriterion._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [RejectionCriterion] from JSON.
+  factory RejectionCriterion.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return RejectionCriterion.elementOnly.withElement(element);
+    }
+    return RejectionCriterion._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,36 +26,26 @@ class RejectionCriterion {
 
   /// RejectionCriterion values
   /// hemolized
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final RejectionCriterion hemolized = RejectionCriterion._(
     'hemolized',
   );
 
   /// insufficient
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final RejectionCriterion insufficient = RejectionCriterion._(
     'insufficient',
   );
 
   /// broken
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final RejectionCriterion broken = RejectionCriterion._(
     'broken',
   );
 
   /// clotted
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final RejectionCriterion clotted = RejectionCriterion._(
     'clotted',
   );
 
   /// wrong_temperature
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final RejectionCriterion wrong_temperature = RejectionCriterion._(
     'wrong-temperature',
   );
@@ -72,17 +73,6 @@ class RejectionCriterion {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [RejectionCriterion] from JSON.
-  static RejectionCriterion fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return RejectionCriterion.elementOnly.withElement(element);
-    }
-    return RejectionCriterion._(value!, element: element);
-  }
 
   /// String representation
   @override

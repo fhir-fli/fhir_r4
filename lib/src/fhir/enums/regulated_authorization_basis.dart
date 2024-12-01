@@ -7,6 +7,17 @@ class RegulatedAuthorizationBasis {
   // Private constructor for internal use (like enum)
   RegulatedAuthorizationBasis._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [RegulatedAuthorizationBasis] from JSON.
+  factory RegulatedAuthorizationBasis.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return RegulatedAuthorizationBasis.elementOnly.withElement(element);
+    }
+    return RegulatedAuthorizationBasis._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,79 +26,59 @@ class RegulatedAuthorizationBasis {
 
   /// RegulatedAuthorizationBasis values
   /// Full
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final RegulatedAuthorizationBasis Full = RegulatedAuthorizationBasis._(
     'Full',
   );
 
   /// NewSubstance
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final RegulatedAuthorizationBasis NewSubstance =
       RegulatedAuthorizationBasis._(
     'NewSubstance',
   );
 
   /// KnownSubstance
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final RegulatedAuthorizationBasis KnownSubstance =
       RegulatedAuthorizationBasis._(
     'KnownSubstance',
   );
 
   /// SimilarBiological
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final RegulatedAuthorizationBasis SimilarBiological =
       RegulatedAuthorizationBasis._(
     'SimilarBiological',
   );
 
   /// Well_establishedUse
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final RegulatedAuthorizationBasis Well_establishedUse =
       RegulatedAuthorizationBasis._(
     'Well-establishedUse',
   );
 
   /// TraditionalUse
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final RegulatedAuthorizationBasis TraditionalUse =
       RegulatedAuthorizationBasis._(
     'TraditionalUse',
   );
 
   /// Bibliographical
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final RegulatedAuthorizationBasis Bibliographical =
       RegulatedAuthorizationBasis._(
     'Bibliographical',
   );
 
   /// KnownHumanBlood
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final RegulatedAuthorizationBasis KnownHumanBlood =
       RegulatedAuthorizationBasis._(
     'KnownHumanBlood',
   );
 
   /// TemporaryUse
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final RegulatedAuthorizationBasis TemporaryUse =
       RegulatedAuthorizationBasis._(
     'TemporaryUse',
   );
 
   /// ParallelTrade
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final RegulatedAuthorizationBasis ParallelTrade =
       RegulatedAuthorizationBasis._(
     'ParallelTrade',
@@ -122,17 +113,6 @@ class RegulatedAuthorizationBasis {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [RegulatedAuthorizationBasis] from JSON.
-  static RegulatedAuthorizationBasis fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return RegulatedAuthorizationBasis.elementOnly.withElement(element);
-    }
-    return RegulatedAuthorizationBasis._(value!, element: element);
-  }
 
   /// String representation
   @override

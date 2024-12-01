@@ -7,6 +7,17 @@ class ObservationRangeCategory {
   // Private constructor for internal use (like enum)
   ObservationRangeCategory._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ObservationRangeCategory] from JSON.
+  factory ObservationRangeCategory.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ObservationRangeCategory.elementOnly.withElement(element);
+    }
+    return ObservationRangeCategory._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,22 +26,16 @@ class ObservationRangeCategory {
 
   /// ObservationRangeCategory values
   /// reference
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ObservationRangeCategory reference = ObservationRangeCategory._(
     'reference',
   );
 
   /// critical
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ObservationRangeCategory critical = ObservationRangeCategory._(
     'critical',
   );
 
   /// absolute
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ObservationRangeCategory absolute = ObservationRangeCategory._(
     'absolute',
   );
@@ -57,17 +62,6 @@ class ObservationRangeCategory {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ObservationRangeCategory] from JSON.
-  static ObservationRangeCategory fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ObservationRangeCategory.elementOnly.withElement(element);
-    }
-    return ObservationRangeCategory._(value!, element: element);
-  }
 
   /// String representation
   @override

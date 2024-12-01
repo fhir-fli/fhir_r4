@@ -7,6 +7,19 @@ class ImmunizationRecommendationReasonCodes {
   // Private constructor for internal use (like enum)
   ImmunizationRecommendationReasonCodes._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ImmunizationRecommendationReasonCodes] from JSON.
+  factory ImmunizationRecommendationReasonCodes.fromJson(
+      Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ImmunizationRecommendationReasonCodes.elementOnly
+          .withElement(element);
+    }
+    return ImmunizationRecommendationReasonCodes._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,16 +28,12 @@ class ImmunizationRecommendationReasonCodes {
 
   /// ImmunizationRecommendationReasonCodes values
   /// value77176002
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ImmunizationRecommendationReasonCodes value77176002 =
       ImmunizationRecommendationReasonCodes._(
     '77176002',
   );
 
   /// value77386006
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ImmunizationRecommendationReasonCodes value77386006 =
       ImmunizationRecommendationReasonCodes._(
     '77386006',
@@ -52,19 +61,6 @@ class ImmunizationRecommendationReasonCodes {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ImmunizationRecommendationReasonCodes] from JSON.
-  static ImmunizationRecommendationReasonCodes fromJson(
-      Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ImmunizationRecommendationReasonCodes.elementOnly
-          .withElement(element);
-    }
-    return ImmunizationRecommendationReasonCodes._(value!, element: element);
-  }
 
   /// String representation
   @override

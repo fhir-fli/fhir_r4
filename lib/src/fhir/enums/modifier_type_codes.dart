@@ -7,6 +7,17 @@ class ModifierTypeCodes {
   // Private constructor for internal use (like enum)
   ModifierTypeCodes._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ModifierTypeCodes] from JSON.
+  factory ModifierTypeCodes.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ModifierTypeCodes.elementOnly.withElement(element);
+    }
+    return ModifierTypeCodes._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,43 +26,31 @@ class ModifierTypeCodes {
 
   /// ModifierTypeCodes values
   /// a
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ModifierTypeCodes a = ModifierTypeCodes._(
     'a',
   );
 
   /// b
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ModifierTypeCodes b = ModifierTypeCodes._(
     'b',
   );
 
   /// c
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ModifierTypeCodes c = ModifierTypeCodes._(
     'c',
   );
 
   /// e
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ModifierTypeCodes e = ModifierTypeCodes._(
     'e',
   );
 
   /// rooh
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ModifierTypeCodes rooh = ModifierTypeCodes._(
     'rooh',
   );
 
   /// x
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ModifierTypeCodes x = ModifierTypeCodes._(
     'x',
   );
@@ -80,17 +79,6 @@ class ModifierTypeCodes {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ModifierTypeCodes] from JSON.
-  static ModifierTypeCodes fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ModifierTypeCodes.elementOnly.withElement(element);
-    }
-    return ModifierTypeCodes._(value!, element: element);
-  }
 
   /// String representation
   @override

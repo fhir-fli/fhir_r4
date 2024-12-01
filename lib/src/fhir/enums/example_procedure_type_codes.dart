@@ -7,6 +7,17 @@ class ExampleProcedureTypeCodes {
   // Private constructor for internal use (like enum)
   ExampleProcedureTypeCodes._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ExampleProcedureTypeCodes] from JSON.
+  factory ExampleProcedureTypeCodes.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ExampleProcedureTypeCodes.elementOnly.withElement(element);
+    }
+    return ExampleProcedureTypeCodes._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,15 +26,11 @@ class ExampleProcedureTypeCodes {
 
   /// ExampleProcedureTypeCodes values
   /// primary
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ExampleProcedureTypeCodes primary = ExampleProcedureTypeCodes._(
     'primary',
   );
 
   /// secondary
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ExampleProcedureTypeCodes secondary =
       ExampleProcedureTypeCodes._(
     'secondary',
@@ -50,17 +57,6 @@ class ExampleProcedureTypeCodes {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ExampleProcedureTypeCodes] from JSON.
-  static ExampleProcedureTypeCodes fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ExampleProcedureTypeCodes.elementOnly.withElement(element);
-    }
-    return ExampleProcedureTypeCodes._(value!, element: element);
-  }
 
   /// String representation
   @override

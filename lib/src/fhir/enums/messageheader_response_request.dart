@@ -7,6 +7,17 @@ class MessageheaderResponseRequest {
   // Private constructor for internal use (like enum)
   MessageheaderResponseRequest._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [MessageheaderResponseRequest] from JSON.
+  factory MessageheaderResponseRequest.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return MessageheaderResponseRequest.elementOnly.withElement(element);
+    }
+    return MessageheaderResponseRequest._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,32 +26,24 @@ class MessageheaderResponseRequest {
 
   /// MessageheaderResponseRequest values
   /// always
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MessageheaderResponseRequest always =
       MessageheaderResponseRequest._(
     'always',
   );
 
   /// on_error
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MessageheaderResponseRequest on_error =
       MessageheaderResponseRequest._(
     'on-error',
   );
 
   /// never
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MessageheaderResponseRequest never =
       MessageheaderResponseRequest._(
     'never',
   );
 
   /// on_success
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MessageheaderResponseRequest on_success =
       MessageheaderResponseRequest._(
     'on-success',
@@ -69,17 +72,6 @@ class MessageheaderResponseRequest {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [MessageheaderResponseRequest] from JSON.
-  static MessageheaderResponseRequest fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return MessageheaderResponseRequest.elementOnly.withElement(element);
-    }
-    return MessageheaderResponseRequest._(value!, element: element);
-  }
 
   /// String representation
   @override

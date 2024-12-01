@@ -7,6 +7,17 @@ class StructureMapTransform {
   // Private constructor for internal use (like enum)
   StructureMapTransform._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [StructureMapTransform] from JSON.
+  factory StructureMapTransform.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return StructureMapTransform.elementOnly.withElement(element);
+    }
+    return StructureMapTransform._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,120 +26,86 @@ class StructureMapTransform {
 
   /// StructureMapTransform values
   /// create
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final StructureMapTransform create = StructureMapTransform._(
     'create',
   );
 
   /// copy
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final StructureMapTransform copy = StructureMapTransform._(
     'copy',
   );
 
   /// truncate
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final StructureMapTransform truncate = StructureMapTransform._(
     'truncate',
   );
 
   /// escape
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final StructureMapTransform escape = StructureMapTransform._(
     'escape',
   );
 
   /// cast
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final StructureMapTransform cast = StructureMapTransform._(
     'cast',
   );
 
   /// append
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final StructureMapTransform append = StructureMapTransform._(
     'append',
   );
 
   /// translate
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final StructureMapTransform translate = StructureMapTransform._(
     'translate',
   );
 
   /// reference
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final StructureMapTransform reference = StructureMapTransform._(
     'reference',
   );
 
   /// dateOp
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final StructureMapTransform dateOp = StructureMapTransform._(
     'dateOp',
   );
 
   /// uuid
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final StructureMapTransform uuid = StructureMapTransform._(
     'uuid',
   );
 
   /// pointer
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final StructureMapTransform pointer = StructureMapTransform._(
     'pointer',
   );
 
   /// evaluate
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final StructureMapTransform evaluate = StructureMapTransform._(
     'evaluate',
   );
 
   /// cc
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final StructureMapTransform cc = StructureMapTransform._(
     'cc',
   );
 
   /// c
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final StructureMapTransform c = StructureMapTransform._(
     'c',
   );
 
   /// qty
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final StructureMapTransform qty = StructureMapTransform._(
     'qty',
   );
 
   /// id
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final StructureMapTransform id = StructureMapTransform._(
     'id',
   );
 
   /// cp
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final StructureMapTransform cp = StructureMapTransform._(
     'cp',
   );
@@ -168,17 +145,6 @@ class StructureMapTransform {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [StructureMapTransform] from JSON.
-  static StructureMapTransform fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return StructureMapTransform.elementOnly.withElement(element);
-    }
-    return StructureMapTransform._(value!, element: element);
-  }
 
   /// String representation
   @override

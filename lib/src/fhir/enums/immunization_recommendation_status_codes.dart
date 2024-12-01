@@ -7,6 +7,19 @@ class ImmunizationRecommendationStatusCodes {
   // Private constructor for internal use (like enum)
   ImmunizationRecommendationStatusCodes._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ImmunizationRecommendationStatusCodes] from JSON.
+  factory ImmunizationRecommendationStatusCodes.fromJson(
+      Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ImmunizationRecommendationStatusCodes.elementOnly
+          .withElement(element);
+    }
+    return ImmunizationRecommendationStatusCodes._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,40 +28,30 @@ class ImmunizationRecommendationStatusCodes {
 
   /// ImmunizationRecommendationStatusCodes values
   /// due
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ImmunizationRecommendationStatusCodes due =
       ImmunizationRecommendationStatusCodes._(
     'due',
   );
 
   /// overdue
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ImmunizationRecommendationStatusCodes overdue =
       ImmunizationRecommendationStatusCodes._(
     'overdue',
   );
 
   /// immune
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ImmunizationRecommendationStatusCodes immune =
       ImmunizationRecommendationStatusCodes._(
     'immune',
   );
 
   /// contraindicated
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ImmunizationRecommendationStatusCodes contraindicated =
       ImmunizationRecommendationStatusCodes._(
     'contraindicated',
   );
 
   /// complete
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ImmunizationRecommendationStatusCodes complete =
       ImmunizationRecommendationStatusCodes._(
     'complete',
@@ -79,19 +82,6 @@ class ImmunizationRecommendationStatusCodes {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ImmunizationRecommendationStatusCodes] from JSON.
-  static ImmunizationRecommendationStatusCodes fromJson(
-      Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ImmunizationRecommendationStatusCodes.elementOnly
-          .withElement(element);
-    }
-    return ImmunizationRecommendationStatusCodes._(value!, element: element);
-  }
 
   /// String representation
   @override

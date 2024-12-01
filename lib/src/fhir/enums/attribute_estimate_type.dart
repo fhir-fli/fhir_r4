@@ -7,6 +7,17 @@ class AttributeEstimateType {
   // Private constructor for internal use (like enum)
   AttributeEstimateType._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [AttributeEstimateType] from JSON.
+  factory AttributeEstimateType.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return AttributeEstimateType.elementOnly.withElement(element);
+    }
+    return AttributeEstimateType._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,78 +26,56 @@ class AttributeEstimateType {
 
   /// AttributeEstimateType values
   /// value0000419
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AttributeEstimateType value0000419 = AttributeEstimateType._(
     '0000419',
   );
 
   /// C53324
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AttributeEstimateType C53324 = AttributeEstimateType._(
     'C53324',
   );
 
   /// value0000455
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AttributeEstimateType value0000455 = AttributeEstimateType._(
     '0000455',
   );
 
   /// value0000420
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AttributeEstimateType value0000420 = AttributeEstimateType._(
     '0000420',
   );
 
   /// C53245
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AttributeEstimateType C53245 = AttributeEstimateType._(
     'C53245',
   );
 
   /// C44185
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AttributeEstimateType C44185 = AttributeEstimateType._(
     'C44185',
   );
 
   /// C38013
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AttributeEstimateType C38013 = AttributeEstimateType._(
     'C38013',
   );
 
   /// C53322
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AttributeEstimateType C53322 = AttributeEstimateType._(
     'C53322',
   );
 
   /// value0000037
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AttributeEstimateType value0000037 = AttributeEstimateType._(
     '0000037',
   );
 
   /// value0000421
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AttributeEstimateType value0000421 = AttributeEstimateType._(
     '0000421',
   );
 
   /// C48918
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AttributeEstimateType C48918 = AttributeEstimateType._(
     'C48918',
   );
@@ -120,17 +109,6 @@ class AttributeEstimateType {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [AttributeEstimateType] from JSON.
-  static AttributeEstimateType fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return AttributeEstimateType.elementOnly.withElement(element);
-    }
-    return AttributeEstimateType._(value!, element: element);
-  }
 
   /// String representation
   @override

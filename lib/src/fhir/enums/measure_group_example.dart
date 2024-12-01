@@ -7,6 +7,17 @@ class MeasureGroupExample {
   // Private constructor for internal use (like enum)
   MeasureGroupExample._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [MeasureGroupExample] from JSON.
+  factory MeasureGroupExample.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return MeasureGroupExample.elementOnly.withElement(element);
+    }
+    return MeasureGroupExample._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,15 +26,11 @@ class MeasureGroupExample {
 
   /// MeasureGroupExample values
   /// primary_rate
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MeasureGroupExample primary_rate = MeasureGroupExample._(
     'primary-rate',
   );
 
   /// secondary_rate
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MeasureGroupExample secondary_rate = MeasureGroupExample._(
     'secondary-rate',
   );
@@ -48,17 +55,6 @@ class MeasureGroupExample {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [MeasureGroupExample] from JSON.
-  static MeasureGroupExample fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return MeasureGroupExample.elementOnly.withElement(element);
-    }
-    return MeasureGroupExample._(value!, element: element);
-  }
 
   /// String representation
   @override

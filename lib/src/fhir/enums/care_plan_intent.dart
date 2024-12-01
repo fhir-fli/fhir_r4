@@ -7,6 +7,17 @@ class CarePlanIntent {
   // Private constructor for internal use (like enum)
   CarePlanIntent._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [CarePlanIntent] from JSON.
+  factory CarePlanIntent.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return CarePlanIntent.elementOnly.withElement(element);
+    }
+    return CarePlanIntent._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,64 +26,46 @@ class CarePlanIntent {
 
   /// CarePlanIntent values
   /// proposal
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CarePlanIntent proposal = CarePlanIntent._(
     'proposal',
   );
 
   /// plan
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CarePlanIntent plan = CarePlanIntent._(
     'plan',
   );
 
   /// directive
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CarePlanIntent directive = CarePlanIntent._(
     'directive',
   );
 
   /// order
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CarePlanIntent order = CarePlanIntent._(
     'order',
   );
 
   /// original_order
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CarePlanIntent original_order = CarePlanIntent._(
     'original-order',
   );
 
   /// reflex_order
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CarePlanIntent reflex_order = CarePlanIntent._(
     'reflex-order',
   );
 
   /// filler_order
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CarePlanIntent filler_order = CarePlanIntent._(
     'filler-order',
   );
 
   /// instance_order
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CarePlanIntent instance_order = CarePlanIntent._(
     'instance-order',
   );
 
   /// option
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CarePlanIntent option = CarePlanIntent._(
     'option',
   );
@@ -104,17 +97,6 @@ class CarePlanIntent {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [CarePlanIntent] from JSON.
-  static CarePlanIntent fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return CarePlanIntent.elementOnly.withElement(element);
-    }
-    return CarePlanIntent._(value!, element: element);
-  }
 
   /// String representation
   @override

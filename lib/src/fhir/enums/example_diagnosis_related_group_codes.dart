@@ -7,6 +7,18 @@ class ExampleDiagnosisRelatedGroupCodes {
   // Private constructor for internal use (like enum)
   ExampleDiagnosisRelatedGroupCodes._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ExampleDiagnosisRelatedGroupCodes] from JSON.
+  factory ExampleDiagnosisRelatedGroupCodes.fromJson(
+      Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ExampleDiagnosisRelatedGroupCodes.elementOnly.withElement(element);
+    }
+    return ExampleDiagnosisRelatedGroupCodes._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,32 +27,24 @@ class ExampleDiagnosisRelatedGroupCodes {
 
   /// ExampleDiagnosisRelatedGroupCodes values
   /// value100
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ExampleDiagnosisRelatedGroupCodes value100 =
       ExampleDiagnosisRelatedGroupCodes._(
     '100',
   );
 
   /// value101
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ExampleDiagnosisRelatedGroupCodes value101 =
       ExampleDiagnosisRelatedGroupCodes._(
     '101',
   );
 
   /// value300
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ExampleDiagnosisRelatedGroupCodes value300 =
       ExampleDiagnosisRelatedGroupCodes._(
     '300',
   );
 
   /// value400
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ExampleDiagnosisRelatedGroupCodes value400 =
       ExampleDiagnosisRelatedGroupCodes._(
     '400',
@@ -69,17 +73,6 @@ class ExampleDiagnosisRelatedGroupCodes {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ExampleDiagnosisRelatedGroupCodes] from JSON.
-  static ExampleDiagnosisRelatedGroupCodes fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ExampleDiagnosisRelatedGroupCodes.elementOnly.withElement(element);
-    }
-    return ExampleDiagnosisRelatedGroupCodes._(value!, element: element);
-  }
 
   /// String representation
   @override

@@ -7,6 +7,20 @@ class ImmunizationEvaluationDoseStatusReasonCodes {
   // Private constructor for internal use (like enum)
   ImmunizationEvaluationDoseStatusReasonCodes._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ImmunizationEvaluationDoseStatusReasonCodes] from JSON.
+  factory ImmunizationEvaluationDoseStatusReasonCodes.fromJson(
+      Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ImmunizationEvaluationDoseStatusReasonCodes.elementOnly
+          .withElement(element);
+    }
+    return ImmunizationEvaluationDoseStatusReasonCodes._(value!,
+        element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,40 +29,30 @@ class ImmunizationEvaluationDoseStatusReasonCodes {
 
   /// ImmunizationEvaluationDoseStatusReasonCodes values
   /// advstorage
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ImmunizationEvaluationDoseStatusReasonCodes advstorage =
       ImmunizationEvaluationDoseStatusReasonCodes._(
     'advstorage',
   );
 
   /// coldchbrk
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ImmunizationEvaluationDoseStatusReasonCodes coldchbrk =
       ImmunizationEvaluationDoseStatusReasonCodes._(
     'coldchbrk',
   );
 
   /// explot
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ImmunizationEvaluationDoseStatusReasonCodes explot =
       ImmunizationEvaluationDoseStatusReasonCodes._(
     'explot',
   );
 
   /// outsidesched
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ImmunizationEvaluationDoseStatusReasonCodes outsidesched =
       ImmunizationEvaluationDoseStatusReasonCodes._(
     'outsidesched',
   );
 
   /// prodrecall
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ImmunizationEvaluationDoseStatusReasonCodes prodrecall =
       ImmunizationEvaluationDoseStatusReasonCodes._(
     'prodrecall',
@@ -79,20 +83,6 @@ class ImmunizationEvaluationDoseStatusReasonCodes {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ImmunizationEvaluationDoseStatusReasonCodes] from JSON.
-  static ImmunizationEvaluationDoseStatusReasonCodes fromJson(
-      Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ImmunizationEvaluationDoseStatusReasonCodes.elementOnly
-          .withElement(element);
-    }
-    return ImmunizationEvaluationDoseStatusReasonCodes._(value!,
-        element: element);
-  }
 
   /// String representation
   @override

@@ -7,6 +7,17 @@ class ProcessPriorityCodes {
   // Private constructor for internal use (like enum)
   ProcessPriorityCodes._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ProcessPriorityCodes] from JSON.
+  factory ProcessPriorityCodes.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ProcessPriorityCodes.elementOnly.withElement(element);
+    }
+    return ProcessPriorityCodes._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,22 +26,16 @@ class ProcessPriorityCodes {
 
   /// ProcessPriorityCodes values
   /// stat
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ProcessPriorityCodes stat = ProcessPriorityCodes._(
     'stat',
   );
 
   /// normal
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ProcessPriorityCodes normal = ProcessPriorityCodes._(
     'normal',
   );
 
   /// deferred_
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ProcessPriorityCodes deferred_ = ProcessPriorityCodes._(
     'deferred',
   );
@@ -56,17 +61,6 @@ class ProcessPriorityCodes {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ProcessPriorityCodes] from JSON.
-  static ProcessPriorityCodes fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ProcessPriorityCodes.elementOnly.withElement(element);
-    }
-    return ProcessPriorityCodes._(value!, element: element);
-  }
 
   /// String representation
   @override

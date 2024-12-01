@@ -7,6 +7,17 @@ class ContainerCap {
   // Private constructor for internal use (like enum)
   ContainerCap._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ContainerCap] from JSON.
+  factory ContainerCap.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ContainerCap.elementOnly.withElement(element);
+    }
+    return ContainerCap._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,85 +26,61 @@ class ContainerCap {
 
   /// ContainerCap values
   /// red
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ContainerCap red = ContainerCap._(
     'red',
   );
 
   /// yellow
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ContainerCap yellow = ContainerCap._(
     'yellow',
   );
 
   /// dark_yellow
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ContainerCap dark_yellow = ContainerCap._(
     'dark-yellow',
   );
 
   /// grey
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ContainerCap grey = ContainerCap._(
     'grey',
   );
 
   /// light_blue
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ContainerCap light_blue = ContainerCap._(
     'light-blue',
   );
 
   /// black
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ContainerCap black = ContainerCap._(
     'black',
   );
 
   /// green
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ContainerCap green = ContainerCap._(
     'green',
   );
 
   /// light_green
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ContainerCap light_green = ContainerCap._(
     'light-green',
   );
 
   /// lavender
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ContainerCap lavender = ContainerCap._(
     'lavender',
   );
 
   /// brown
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ContainerCap brown = ContainerCap._(
     'brown',
   );
 
   /// white
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ContainerCap white = ContainerCap._(
     'white',
   );
 
   /// pink
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ContainerCap pink = ContainerCap._(
     'pink',
   );
@@ -128,17 +115,6 @@ class ContainerCap {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ContainerCap] from JSON.
-  static ContainerCap fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ContainerCap.elementOnly.withElement(element);
-    }
-    return ContainerCap._(value!, element: element);
-  }
 
   /// String representation
   @override

@@ -7,6 +7,19 @@ class MedicationRequestStatusReasonCodes {
   // Private constructor for internal use (like enum)
   MedicationRequestStatusReasonCodes._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [MedicationRequestStatusReasonCodes] from JSON.
+  factory MedicationRequestStatusReasonCodes.fromJson(
+      Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return MedicationRequestStatusReasonCodes.elementOnly
+          .withElement(element);
+    }
+    return MedicationRequestStatusReasonCodes._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,104 +28,78 @@ class MedicationRequestStatusReasonCodes {
 
   /// MedicationRequestStatusReasonCodes values
   /// altchoice
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicationRequestStatusReasonCodes altchoice =
       MedicationRequestStatusReasonCodes._(
     'altchoice',
   );
 
   /// clarif
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicationRequestStatusReasonCodes clarif =
       MedicationRequestStatusReasonCodes._(
     'clarif',
   );
 
   /// drughigh
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicationRequestStatusReasonCodes drughigh =
       MedicationRequestStatusReasonCodes._(
     'drughigh',
   );
 
   /// hospadm
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicationRequestStatusReasonCodes hospadm =
       MedicationRequestStatusReasonCodes._(
     'hospadm',
   );
 
   /// labint
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicationRequestStatusReasonCodes labint =
       MedicationRequestStatusReasonCodes._(
     'labint',
   );
 
   /// non_avail
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicationRequestStatusReasonCodes non_avail =
       MedicationRequestStatusReasonCodes._(
     'non-avail',
   );
 
   /// preg
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicationRequestStatusReasonCodes preg =
       MedicationRequestStatusReasonCodes._(
     'preg',
   );
 
   /// salg
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicationRequestStatusReasonCodes salg =
       MedicationRequestStatusReasonCodes._(
     'salg',
   );
 
   /// sddi
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicationRequestStatusReasonCodes sddi =
       MedicationRequestStatusReasonCodes._(
     'sddi',
   );
 
   /// sdupther
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicationRequestStatusReasonCodes sdupther =
       MedicationRequestStatusReasonCodes._(
     'sdupther',
   );
 
   /// sintol
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicationRequestStatusReasonCodes sintol =
       MedicationRequestStatusReasonCodes._(
     'sintol',
   );
 
   /// surg
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicationRequestStatusReasonCodes surg =
       MedicationRequestStatusReasonCodes._(
     'surg',
   );
 
   /// washout
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicationRequestStatusReasonCodes washout =
       MedicationRequestStatusReasonCodes._(
     'washout',
@@ -150,19 +137,6 @@ class MedicationRequestStatusReasonCodes {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [MedicationRequestStatusReasonCodes] from JSON.
-  static MedicationRequestStatusReasonCodes fromJson(
-      Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return MedicationRequestStatusReasonCodes.elementOnly
-          .withElement(element);
-    }
-    return MedicationRequestStatusReasonCodes._(value!, element: element);
-  }
 
   /// String representation
   @override

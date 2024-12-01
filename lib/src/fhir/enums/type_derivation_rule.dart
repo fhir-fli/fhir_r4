@@ -7,6 +7,17 @@ class TypeDerivationRule {
   // Private constructor for internal use (like enum)
   TypeDerivationRule._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [TypeDerivationRule] from JSON.
+  factory TypeDerivationRule.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return TypeDerivationRule.elementOnly.withElement(element);
+    }
+    return TypeDerivationRule._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,15 +26,11 @@ class TypeDerivationRule {
 
   /// TypeDerivationRule values
   /// specialization
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final TypeDerivationRule specialization = TypeDerivationRule._(
     'specialization',
   );
 
   /// constraint
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final TypeDerivationRule constraint = TypeDerivationRule._(
     'constraint',
   );
@@ -48,17 +55,6 @@ class TypeDerivationRule {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [TypeDerivationRule] from JSON.
-  static TypeDerivationRule fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return TypeDerivationRule.elementOnly.withElement(element);
-    }
-    return TypeDerivationRule._(value!, element: element);
-  }
 
   /// String representation
   @override

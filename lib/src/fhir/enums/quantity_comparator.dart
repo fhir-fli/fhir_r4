@@ -7,6 +7,17 @@ class QuantityComparator {
   // Private constructor for internal use (like enum)
   QuantityComparator._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [QuantityComparator] from JSON.
+  factory QuantityComparator.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return QuantityComparator.elementOnly.withElement(element);
+    }
+    return QuantityComparator._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,29 +26,21 @@ class QuantityComparator {
 
   /// QuantityComparator values
   /// lt
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final QuantityComparator lt = QuantityComparator._(
     '<',
   );
 
   /// le
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final QuantityComparator le = QuantityComparator._(
     '<=',
   );
 
   /// ge
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final QuantityComparator ge = QuantityComparator._(
     '>=',
   );
 
   /// gt
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final QuantityComparator gt = QuantityComparator._(
     '>',
   );
@@ -64,17 +67,6 @@ class QuantityComparator {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [QuantityComparator] from JSON.
-  static QuantityComparator fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return QuantityComparator.elementOnly.withElement(element);
-    }
-    return QuantityComparator._(value!, element: element);
-  }
 
   /// String representation
   @override

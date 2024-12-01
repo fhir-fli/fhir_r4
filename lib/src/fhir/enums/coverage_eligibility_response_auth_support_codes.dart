@@ -7,6 +7,20 @@ class CoverageEligibilityResponseAuthSupportCodes {
   // Private constructor for internal use (like enum)
   CoverageEligibilityResponseAuthSupportCodes._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [CoverageEligibilityResponseAuthSupportCodes] from JSON.
+  factory CoverageEligibilityResponseAuthSupportCodes.fromJson(
+      Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return CoverageEligibilityResponseAuthSupportCodes.elementOnly
+          .withElement(element);
+    }
+    return CoverageEligibilityResponseAuthSupportCodes._(value!,
+        element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,64 +29,48 @@ class CoverageEligibilityResponseAuthSupportCodes {
 
   /// CoverageEligibilityResponseAuthSupportCodes values
   /// laborder
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CoverageEligibilityResponseAuthSupportCodes laborder =
       CoverageEligibilityResponseAuthSupportCodes._(
     'laborder',
   );
 
   /// labreport
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CoverageEligibilityResponseAuthSupportCodes labreport =
       CoverageEligibilityResponseAuthSupportCodes._(
     'labreport',
   );
 
   /// diagnosticimageorder
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CoverageEligibilityResponseAuthSupportCodes
       diagnosticimageorder = CoverageEligibilityResponseAuthSupportCodes._(
     'diagnosticimageorder',
   );
 
   /// diagnosticimagereport
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CoverageEligibilityResponseAuthSupportCodes
       diagnosticimagereport = CoverageEligibilityResponseAuthSupportCodes._(
     'diagnosticimagereport',
   );
 
   /// professionalreport
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CoverageEligibilityResponseAuthSupportCodes professionalreport =
       CoverageEligibilityResponseAuthSupportCodes._(
     'professionalreport',
   );
 
   /// accidentreport
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CoverageEligibilityResponseAuthSupportCodes accidentreport =
       CoverageEligibilityResponseAuthSupportCodes._(
     'accidentreport',
   );
 
   /// model
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CoverageEligibilityResponseAuthSupportCodes model =
       CoverageEligibilityResponseAuthSupportCodes._(
     'model',
   );
 
   /// picture
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CoverageEligibilityResponseAuthSupportCodes picture =
       CoverageEligibilityResponseAuthSupportCodes._(
     'picture',
@@ -106,20 +104,6 @@ class CoverageEligibilityResponseAuthSupportCodes {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [CoverageEligibilityResponseAuthSupportCodes] from JSON.
-  static CoverageEligibilityResponseAuthSupportCodes fromJson(
-      Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return CoverageEligibilityResponseAuthSupportCodes.elementOnly
-          .withElement(element);
-    }
-    return CoverageEligibilityResponseAuthSupportCodes._(value!,
-        element: element);
-  }
 
   /// String representation
   @override

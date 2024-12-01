@@ -7,6 +7,19 @@ class MeasureReportStratifierValueExample {
   // Private constructor for internal use (like enum)
   MeasureReportStratifierValueExample._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [MeasureReportStratifierValueExample] from JSON.
+  factory MeasureReportStratifierValueExample.fromJson(
+      Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return MeasureReportStratifierValueExample.elementOnly
+          .withElement(element);
+    }
+    return MeasureReportStratifierValueExample._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,32 +28,24 @@ class MeasureReportStratifierValueExample {
 
   /// MeasureReportStratifierValueExample values
   /// northwest
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MeasureReportStratifierValueExample northwest =
       MeasureReportStratifierValueExample._(
     'northwest',
   );
 
   /// northeast
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MeasureReportStratifierValueExample northeast =
       MeasureReportStratifierValueExample._(
     'northeast',
   );
 
   /// southwest
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MeasureReportStratifierValueExample southwest =
       MeasureReportStratifierValueExample._(
     'southwest',
   );
 
   /// southeast
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MeasureReportStratifierValueExample southeast =
       MeasureReportStratifierValueExample._(
     'southeast',
@@ -69,19 +74,6 @@ class MeasureReportStratifierValueExample {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [MeasureReportStratifierValueExample] from JSON.
-  static MeasureReportStratifierValueExample fromJson(
-      Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return MeasureReportStratifierValueExample.elementOnly
-          .withElement(element);
-    }
-    return MeasureReportStratifierValueExample._(value!, element: element);
-  }
 
   /// String representation
   @override

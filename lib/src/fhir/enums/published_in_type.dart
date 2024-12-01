@@ -7,6 +7,17 @@ class PublishedInType {
   // Private constructor for internal use (like enum)
   PublishedInType._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [PublishedInType] from JSON.
+  factory PublishedInType.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return PublishedInType.elementOnly.withElement(element);
+    }
+    return PublishedInType._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,29 +26,21 @@ class PublishedInType {
 
   /// PublishedInType values
   /// D020492
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final PublishedInType D020492 = PublishedInType._(
     'D020492',
   );
 
   /// D019991
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final PublishedInType D019991 = PublishedInType._(
     'D019991',
   );
 
   /// D001877
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final PublishedInType D001877 = PublishedInType._(
     'D001877',
   );
 
   /// D064886
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final PublishedInType D064886 = PublishedInType._(
     'D064886',
   );
@@ -64,17 +67,6 @@ class PublishedInType {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [PublishedInType] from JSON.
-  static PublishedInType fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return PublishedInType.elementOnly.withElement(element);
-    }
-    return PublishedInType._(value!, element: element);
-  }
 
   /// String representation
   @override

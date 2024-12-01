@@ -7,6 +7,17 @@ class GuideParameterCode {
   // Private constructor for internal use (like enum)
   GuideParameterCode._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [GuideParameterCode] from JSON.
+  factory GuideParameterCode.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return GuideParameterCode.elementOnly.withElement(element);
+    }
+    return GuideParameterCode._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,71 +26,51 @@ class GuideParameterCode {
 
   /// GuideParameterCode values
   /// apply
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final GuideParameterCode apply = GuideParameterCode._(
     'apply',
   );
 
   /// path_resource
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final GuideParameterCode path_resource = GuideParameterCode._(
     'path-resource',
   );
 
   /// path_pages
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final GuideParameterCode path_pages = GuideParameterCode._(
     'path-pages',
   );
 
   /// path_tx_cache
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final GuideParameterCode path_tx_cache = GuideParameterCode._(
     'path-tx-cache',
   );
 
   /// expansion_parameter
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final GuideParameterCode expansion_parameter = GuideParameterCode._(
     'expansion-parameter',
   );
 
   /// rule_broken_links
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final GuideParameterCode rule_broken_links = GuideParameterCode._(
     'rule-broken-links',
   );
 
   /// generate_xml
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final GuideParameterCode generate_xml = GuideParameterCode._(
     'generate-xml',
   );
 
   /// generate_json
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final GuideParameterCode generate_json = GuideParameterCode._(
     'generate-json',
   );
 
   /// generate_turtle
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final GuideParameterCode generate_turtle = GuideParameterCode._(
     'generate-turtle',
   );
 
   /// html_template
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final GuideParameterCode html_template = GuideParameterCode._(
     'html-template',
   );
@@ -112,17 +103,6 @@ class GuideParameterCode {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [GuideParameterCode] from JSON.
-  static GuideParameterCode fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return GuideParameterCode.elementOnly.withElement(element);
-    }
-    return GuideParameterCode._(value!, element: element);
-  }
 
   /// String representation
   @override

@@ -7,6 +7,17 @@ class EvidenceVariableRole {
   // Private constructor for internal use (like enum)
   EvidenceVariableRole._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [EvidenceVariableRole] from JSON.
+  factory EvidenceVariableRole.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return EvidenceVariableRole.elementOnly.withElement(element);
+    }
+    return EvidenceVariableRole._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,43 +26,31 @@ class EvidenceVariableRole {
 
   /// EvidenceVariableRole values
   /// population
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final EvidenceVariableRole population = EvidenceVariableRole._(
     'population',
   );
 
   /// subpopulation
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final EvidenceVariableRole subpopulation = EvidenceVariableRole._(
     'subpopulation',
   );
 
   /// exposure
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final EvidenceVariableRole exposure = EvidenceVariableRole._(
     'exposure',
   );
 
   /// referenceExposure
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final EvidenceVariableRole referenceExposure = EvidenceVariableRole._(
     'referenceExposure',
   );
 
   /// measuredVariable
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final EvidenceVariableRole measuredVariable = EvidenceVariableRole._(
     'measuredVariable',
   );
 
   /// confounder
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final EvidenceVariableRole confounder = EvidenceVariableRole._(
     'confounder',
   );
@@ -80,17 +79,6 @@ class EvidenceVariableRole {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [EvidenceVariableRole] from JSON.
-  static EvidenceVariableRole fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return EvidenceVariableRole.elementOnly.withElement(element);
-    }
-    return EvidenceVariableRole._(value!, element: element);
-  }
 
   /// String representation
   @override

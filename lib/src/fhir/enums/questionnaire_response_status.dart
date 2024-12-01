@@ -7,6 +7,17 @@ class QuestionnaireResponseStatus {
   // Private constructor for internal use (like enum)
   QuestionnaireResponseStatus._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [QuestionnaireResponseStatus] from JSON.
+  factory QuestionnaireResponseStatus.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return QuestionnaireResponseStatus.elementOnly.withElement(element);
+    }
+    return QuestionnaireResponseStatus._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,40 +26,30 @@ class QuestionnaireResponseStatus {
 
   /// QuestionnaireResponseStatus values
   /// in_progress
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final QuestionnaireResponseStatus in_progress =
       QuestionnaireResponseStatus._(
     'in-progress',
   );
 
   /// completed
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final QuestionnaireResponseStatus completed =
       QuestionnaireResponseStatus._(
     'completed',
   );
 
   /// amended
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final QuestionnaireResponseStatus amended =
       QuestionnaireResponseStatus._(
     'amended',
   );
 
   /// entered_in_error
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final QuestionnaireResponseStatus entered_in_error =
       QuestionnaireResponseStatus._(
     'entered-in-error',
   );
 
   /// stopped
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final QuestionnaireResponseStatus stopped =
       QuestionnaireResponseStatus._(
     'stopped',
@@ -78,17 +79,6 @@ class QuestionnaireResponseStatus {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [QuestionnaireResponseStatus] from JSON.
-  static QuestionnaireResponseStatus fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return QuestionnaireResponseStatus.elementOnly.withElement(element);
-    }
-    return QuestionnaireResponseStatus._(value!, element: element);
-  }
 
   /// String representation
   @override

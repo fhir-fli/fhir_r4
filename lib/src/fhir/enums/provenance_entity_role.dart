@@ -7,6 +7,17 @@ class ProvenanceEntityRole {
   // Private constructor for internal use (like enum)
   ProvenanceEntityRole._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ProvenanceEntityRole] from JSON.
+  factory ProvenanceEntityRole.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ProvenanceEntityRole.elementOnly.withElement(element);
+    }
+    return ProvenanceEntityRole._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,36 +26,26 @@ class ProvenanceEntityRole {
 
   /// ProvenanceEntityRole values
   /// derivation
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ProvenanceEntityRole derivation = ProvenanceEntityRole._(
     'derivation',
   );
 
   /// revision
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ProvenanceEntityRole revision = ProvenanceEntityRole._(
     'revision',
   );
 
   /// quotation
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ProvenanceEntityRole quotation = ProvenanceEntityRole._(
     'quotation',
   );
 
   /// source
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ProvenanceEntityRole source = ProvenanceEntityRole._(
     'source',
   );
 
   /// removal
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ProvenanceEntityRole removal = ProvenanceEntityRole._(
     'removal',
   );
@@ -72,17 +73,6 @@ class ProvenanceEntityRole {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ProvenanceEntityRole] from JSON.
-  static ProvenanceEntityRole fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ProvenanceEntityRole.elementOnly.withElement(element);
-    }
-    return ProvenanceEntityRole._(value!, element: element);
-  }
 
   /// String representation
   @override

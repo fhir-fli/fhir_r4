@@ -7,6 +7,17 @@ class ContactPointSystem {
   // Private constructor for internal use (like enum)
   ContactPointSystem._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ContactPointSystem] from JSON.
+  factory ContactPointSystem.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ContactPointSystem.elementOnly.withElement(element);
+    }
+    return ContactPointSystem._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,50 +26,36 @@ class ContactPointSystem {
 
   /// ContactPointSystem values
   /// phone
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ContactPointSystem phone = ContactPointSystem._(
     'phone',
   );
 
   /// fax
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ContactPointSystem fax = ContactPointSystem._(
     'fax',
   );
 
   /// email
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ContactPointSystem email = ContactPointSystem._(
     'email',
   );
 
   /// pager
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ContactPointSystem pager = ContactPointSystem._(
     'pager',
   );
 
   /// url
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ContactPointSystem url = ContactPointSystem._(
     'url',
   );
 
   /// sms
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ContactPointSystem sms = ContactPointSystem._(
     'sms',
   );
 
   /// other
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ContactPointSystem other = ContactPointSystem._(
     'other',
   );
@@ -88,17 +85,6 @@ class ContactPointSystem {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ContactPointSystem] from JSON.
-  static ContactPointSystem fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ContactPointSystem.elementOnly.withElement(element);
-    }
-    return ContactPointSystem._(value!, element: element);
-  }
 
   /// String representation
   @override

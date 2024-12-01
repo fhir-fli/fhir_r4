@@ -7,6 +7,17 @@ class CommunicationCategory {
   // Private constructor for internal use (like enum)
   CommunicationCategory._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [CommunicationCategory] from JSON.
+  factory CommunicationCategory.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return CommunicationCategory.elementOnly.withElement(element);
+    }
+    return CommunicationCategory._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,29 +26,21 @@ class CommunicationCategory {
 
   /// CommunicationCategory values
   /// alert
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CommunicationCategory alert = CommunicationCategory._(
     'alert',
   );
 
   /// notification
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CommunicationCategory notification = CommunicationCategory._(
     'notification',
   );
 
   /// reminder
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CommunicationCategory reminder = CommunicationCategory._(
     'reminder',
   );
 
   /// instruction
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CommunicationCategory instruction = CommunicationCategory._(
     'instruction',
   );
@@ -64,17 +67,6 @@ class CommunicationCategory {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [CommunicationCategory] from JSON.
-  static CommunicationCategory fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return CommunicationCategory.elementOnly.withElement(element);
-    }
-    return CommunicationCategory._(value!, element: element);
-  }
 
   /// String representation
   @override

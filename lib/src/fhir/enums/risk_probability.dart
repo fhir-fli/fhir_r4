@@ -7,6 +7,17 @@ class RiskProbability {
   // Private constructor for internal use (like enum)
   RiskProbability._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [RiskProbability] from JSON.
+  factory RiskProbability.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return RiskProbability.elementOnly.withElement(element);
+    }
+    return RiskProbability._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,36 +26,26 @@ class RiskProbability {
 
   /// RiskProbability values
   /// negligible
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final RiskProbability negligible = RiskProbability._(
     'negligible',
   );
 
   /// low
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final RiskProbability low = RiskProbability._(
     'low',
   );
 
   /// moderate
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final RiskProbability moderate = RiskProbability._(
     'moderate',
   );
 
   /// high
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final RiskProbability high = RiskProbability._(
     'high',
   );
 
   /// certain
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final RiskProbability certain = RiskProbability._(
     'certain',
   );
@@ -72,17 +73,6 @@ class RiskProbability {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [RiskProbability] from JSON.
-  static RiskProbability fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return RiskProbability.elementOnly.withElement(element);
-    }
-    return RiskProbability._(value!, element: element);
-  }
 
   /// String representation
   @override

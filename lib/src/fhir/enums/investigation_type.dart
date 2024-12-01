@@ -7,6 +7,17 @@ class InvestigationType {
   // Private constructor for internal use (like enum)
   InvestigationType._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [InvestigationType] from JSON.
+  factory InvestigationType.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return InvestigationType.elementOnly.withElement(element);
+    }
+    return InvestigationType._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,15 +26,11 @@ class InvestigationType {
 
   /// InvestigationType values
   /// value271336007
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final InvestigationType value271336007 = InvestigationType._(
     '271336007',
   );
 
   /// value160237006
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final InvestigationType value160237006 = InvestigationType._(
     '160237006',
   );
@@ -48,17 +55,6 @@ class InvestigationType {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [InvestigationType] from JSON.
-  static InvestigationType fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return InvestigationType.elementOnly.withElement(element);
-    }
-    return InvestigationType._(value!, element: element);
-  }
 
   /// String representation
   @override

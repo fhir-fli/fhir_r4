@@ -7,6 +7,17 @@ class ListOrderCodes {
   // Private constructor for internal use (like enum)
   ListOrderCodes._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ListOrderCodes] from JSON.
+  factory ListOrderCodes.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ListOrderCodes.elementOnly.withElement(element);
+    }
+    return ListOrderCodes._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,57 +26,41 @@ class ListOrderCodes {
 
   /// ListOrderCodes values
   /// user
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ListOrderCodes user = ListOrderCodes._(
     'user',
   );
 
   /// system
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ListOrderCodes system = ListOrderCodes._(
     'system',
   );
 
   /// event_date
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ListOrderCodes event_date = ListOrderCodes._(
     'event-date',
   );
 
   /// entry_date
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ListOrderCodes entry_date = ListOrderCodes._(
     'entry-date',
   );
 
   /// priority
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ListOrderCodes priority = ListOrderCodes._(
     'priority',
   );
 
   /// alphabetic
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ListOrderCodes alphabetic = ListOrderCodes._(
     'alphabetic',
   );
 
   /// category
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ListOrderCodes category = ListOrderCodes._(
     'category',
   );
 
   /// patient
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ListOrderCodes patient = ListOrderCodes._(
     'patient',
   );
@@ -96,17 +91,6 @@ class ListOrderCodes {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ListOrderCodes] from JSON.
-  static ListOrderCodes fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ListOrderCodes.elementOnly.withElement(element);
-    }
-    return ListOrderCodes._(value!, element: element);
-  }
 
   /// String representation
   @override

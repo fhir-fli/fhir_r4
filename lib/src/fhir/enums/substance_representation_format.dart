@@ -7,6 +7,17 @@ class SubstanceRepresentationFormat {
   // Private constructor for internal use (like enum)
   SubstanceRepresentationFormat._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [SubstanceRepresentationFormat] from JSON.
+  factory SubstanceRepresentationFormat.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return SubstanceRepresentationFormat.elementOnly.withElement(element);
+    }
+    return SubstanceRepresentationFormat._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,56 +26,42 @@ class SubstanceRepresentationFormat {
 
   /// SubstanceRepresentationFormat values
   /// InChI
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SubstanceRepresentationFormat InChI =
       SubstanceRepresentationFormat._(
     'InChI',
   );
 
   /// SMILES
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SubstanceRepresentationFormat SMILES =
       SubstanceRepresentationFormat._(
     'SMILES',
   );
 
   /// MOLFILE
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SubstanceRepresentationFormat MOLFILE =
       SubstanceRepresentationFormat._(
     'MOLFILE',
   );
 
   /// CDX
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SubstanceRepresentationFormat CDX =
       SubstanceRepresentationFormat._(
     'CDX',
   );
 
   /// SDF
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SubstanceRepresentationFormat SDF =
       SubstanceRepresentationFormat._(
     'SDF',
   );
 
   /// PDB
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SubstanceRepresentationFormat PDB =
       SubstanceRepresentationFormat._(
     'PDB',
   );
 
   /// mmCIF
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SubstanceRepresentationFormat mmCIF =
       SubstanceRepresentationFormat._(
     'mmCIF',
@@ -96,17 +93,6 @@ class SubstanceRepresentationFormat {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [SubstanceRepresentationFormat] from JSON.
-  static SubstanceRepresentationFormat fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return SubstanceRepresentationFormat.elementOnly.withElement(element);
-    }
-    return SubstanceRepresentationFormat._(value!, element: element);
-  }
 
   /// String representation
   @override

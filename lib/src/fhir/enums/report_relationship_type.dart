@@ -7,6 +7,17 @@ class ReportRelationshipType {
   // Private constructor for internal use (like enum)
   ReportRelationshipType._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ReportRelationshipType] from JSON.
+  factory ReportRelationshipType.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ReportRelationshipType.elementOnly.withElement(element);
+    }
+    return ReportRelationshipType._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,57 +26,41 @@ class ReportRelationshipType {
 
   /// ReportRelationshipType values
   /// replaces
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ReportRelationshipType replaces = ReportRelationshipType._(
     'replaces',
   );
 
   /// amends
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ReportRelationshipType amends = ReportRelationshipType._(
     'amends',
   );
 
   /// appends
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ReportRelationshipType appends = ReportRelationshipType._(
     'appends',
   );
 
   /// transforms
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ReportRelationshipType transforms = ReportRelationshipType._(
     'transforms',
   );
 
   /// replacedWith
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ReportRelationshipType replacedWith = ReportRelationshipType._(
     'replacedWith',
   );
 
   /// amendedWith
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ReportRelationshipType amendedWith = ReportRelationshipType._(
     'amendedWith',
   );
 
   /// appendedWith
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ReportRelationshipType appendedWith = ReportRelationshipType._(
     'appendedWith',
   );
 
   /// transformedWith
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ReportRelationshipType transformedWith =
       ReportRelationshipType._(
     'transformedWith',
@@ -98,17 +93,6 @@ class ReportRelationshipType {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ReportRelationshipType] from JSON.
-  static ReportRelationshipType fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ReportRelationshipType.elementOnly.withElement(element);
-    }
-    return ReportRelationshipType._(value!, element: element);
-  }
 
   /// String representation
   @override

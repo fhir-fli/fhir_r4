@@ -7,6 +7,17 @@ class FundsReservationCodes {
   // Private constructor for internal use (like enum)
   FundsReservationCodes._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [FundsReservationCodes] from JSON.
+  factory FundsReservationCodes.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return FundsReservationCodes.elementOnly.withElement(element);
+    }
+    return FundsReservationCodes._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,22 +26,16 @@ class FundsReservationCodes {
 
   /// FundsReservationCodes values
   /// patient
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final FundsReservationCodes patient = FundsReservationCodes._(
     'patient',
   );
 
   /// provider
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final FundsReservationCodes provider = FundsReservationCodes._(
     'provider',
   );
 
   /// none
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final FundsReservationCodes none = FundsReservationCodes._(
     'none',
   );
@@ -56,17 +61,6 @@ class FundsReservationCodes {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [FundsReservationCodes] from JSON.
-  static FundsReservationCodes fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return FundsReservationCodes.elementOnly.withElement(element);
-    }
-    return FundsReservationCodes._(value!, element: element);
-  }
 
   /// String representation
   @override

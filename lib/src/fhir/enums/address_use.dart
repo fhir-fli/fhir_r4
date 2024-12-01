@@ -7,6 +7,17 @@ class AddressUse {
   // Private constructor for internal use (like enum)
   AddressUse._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [AddressUse] from JSON.
+  factory AddressUse.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return AddressUse.elementOnly.withElement(element);
+    }
+    return AddressUse._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,36 +26,26 @@ class AddressUse {
 
   /// AddressUse values
   /// home
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AddressUse home = AddressUse._(
     'home',
   );
 
   /// work
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AddressUse work = AddressUse._(
     'work',
   );
 
   /// temp
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AddressUse temp = AddressUse._(
     'temp',
   );
 
   /// old
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AddressUse old = AddressUse._(
     'old',
   );
 
   /// billing
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AddressUse billing = AddressUse._(
     'billing',
   );
@@ -72,17 +73,6 @@ class AddressUse {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [AddressUse] from JSON.
-  static AddressUse fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return AddressUse.elementOnly.withElement(element);
-    }
-    return AddressUse._(value!, element: element);
-  }
 
   /// String representation
   @override

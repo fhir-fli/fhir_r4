@@ -7,6 +7,17 @@ class ExampleRevenueCenterCodes {
   // Private constructor for internal use (like enum)
   ExampleRevenueCenterCodes._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ExampleRevenueCenterCodes] from JSON.
+  factory ExampleRevenueCenterCodes.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ExampleRevenueCenterCodes.elementOnly.withElement(element);
+    }
+    return ExampleRevenueCenterCodes._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,72 +26,54 @@ class ExampleRevenueCenterCodes {
 
   /// ExampleRevenueCenterCodes values
   /// value0370
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ExampleRevenueCenterCodes value0370 =
       ExampleRevenueCenterCodes._(
     '0370',
   );
 
   /// value0420
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ExampleRevenueCenterCodes value0420 =
       ExampleRevenueCenterCodes._(
     '0420',
   );
 
   /// value0421
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ExampleRevenueCenterCodes value0421 =
       ExampleRevenueCenterCodes._(
     '0421',
   );
 
   /// value0440
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ExampleRevenueCenterCodes value0440 =
       ExampleRevenueCenterCodes._(
     '0440',
   );
 
   /// value0441
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ExampleRevenueCenterCodes value0441 =
       ExampleRevenueCenterCodes._(
     '0441',
   );
 
   /// value0450
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ExampleRevenueCenterCodes value0450 =
       ExampleRevenueCenterCodes._(
     '0450',
   );
 
   /// value0451
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ExampleRevenueCenterCodes value0451 =
       ExampleRevenueCenterCodes._(
     '0451',
   );
 
   /// value0452
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ExampleRevenueCenterCodes value0452 =
       ExampleRevenueCenterCodes._(
     '0452',
   );
 
   /// value0010
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ExampleRevenueCenterCodes value0010 =
       ExampleRevenueCenterCodes._(
     '0010',
@@ -114,17 +107,6 @@ class ExampleRevenueCenterCodes {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ExampleRevenueCenterCodes] from JSON.
-  static ExampleRevenueCenterCodes fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ExampleRevenueCenterCodes.elementOnly.withElement(element);
-    }
-    return ExampleRevenueCenterCodes._(value!, element: element);
-  }
 
   /// String representation
   @override

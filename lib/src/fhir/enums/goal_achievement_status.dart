@@ -7,6 +7,17 @@ class GoalAchievementStatus {
   // Private constructor for internal use (like enum)
   GoalAchievementStatus._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [GoalAchievementStatus] from JSON.
+  factory GoalAchievementStatus.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return GoalAchievementStatus.elementOnly.withElement(element);
+    }
+    return GoalAchievementStatus._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,64 +26,46 @@ class GoalAchievementStatus {
 
   /// GoalAchievementStatus values
   /// in_progress
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final GoalAchievementStatus in_progress = GoalAchievementStatus._(
     'in-progress',
   );
 
   /// improving
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final GoalAchievementStatus improving = GoalAchievementStatus._(
     'improving',
   );
 
   /// worsening
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final GoalAchievementStatus worsening = GoalAchievementStatus._(
     'worsening',
   );
 
   /// no_change
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final GoalAchievementStatus no_change = GoalAchievementStatus._(
     'no-change',
   );
 
   /// achieved
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final GoalAchievementStatus achieved = GoalAchievementStatus._(
     'achieved',
   );
 
   /// sustaining
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final GoalAchievementStatus sustaining = GoalAchievementStatus._(
     'sustaining',
   );
 
   /// not_achieved
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final GoalAchievementStatus not_achieved = GoalAchievementStatus._(
     'not-achieved',
   );
 
   /// no_progress
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final GoalAchievementStatus no_progress = GoalAchievementStatus._(
     'no-progress',
   );
 
   /// not_attainable
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final GoalAchievementStatus not_attainable = GoalAchievementStatus._(
     'not-attainable',
   );
@@ -104,17 +97,6 @@ class GoalAchievementStatus {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [GoalAchievementStatus] from JSON.
-  static GoalAchievementStatus fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return GoalAchievementStatus.elementOnly.withElement(element);
-    }
-    return GoalAchievementStatus._(value!, element: element);
-  }
 
   /// String representation
   @override

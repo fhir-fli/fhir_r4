@@ -7,6 +7,17 @@ class AdverseEventCausalityAssessment {
   // Private constructor for internal use (like enum)
   AdverseEventCausalityAssessment._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [AdverseEventCausalityAssessment] from JSON.
+  factory AdverseEventCausalityAssessment.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return AdverseEventCausalityAssessment.elementOnly.withElement(element);
+    }
+    return AdverseEventCausalityAssessment._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,48 +26,36 @@ class AdverseEventCausalityAssessment {
 
   /// AdverseEventCausalityAssessment values
   /// Certain
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AdverseEventCausalityAssessment Certain =
       AdverseEventCausalityAssessment._(
     'Certain',
   );
 
   /// Probably_Likely
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AdverseEventCausalityAssessment Probably_Likely =
       AdverseEventCausalityAssessment._(
     'Probably-Likely',
   );
 
   /// Possible
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AdverseEventCausalityAssessment Possible =
       AdverseEventCausalityAssessment._(
     'Possible',
   );
 
   /// Unlikely
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AdverseEventCausalityAssessment Unlikely =
       AdverseEventCausalityAssessment._(
     'Unlikely',
   );
 
   /// Conditional_Classified
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AdverseEventCausalityAssessment Conditional_Classified =
       AdverseEventCausalityAssessment._(
     'Conditional-Classified',
   );
 
   /// Unassessable_Unclassifiable
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AdverseEventCausalityAssessment Unassessable_Unclassifiable =
       AdverseEventCausalityAssessment._(
     'Unassessable-Unclassifiable',
@@ -87,17 +86,6 @@ class AdverseEventCausalityAssessment {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [AdverseEventCausalityAssessment] from JSON.
-  static AdverseEventCausalityAssessment fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return AdverseEventCausalityAssessment.elementOnly.withElement(element);
-    }
-    return AdverseEventCausalityAssessment._(value!, element: element);
-  }
 
   /// String representation
   @override

@@ -7,6 +7,19 @@ class BiologicallyDerivedProductCategory {
   // Private constructor for internal use (like enum)
   BiologicallyDerivedProductCategory._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [BiologicallyDerivedProductCategory] from JSON.
+  factory BiologicallyDerivedProductCategory.fromJson(
+      Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return BiologicallyDerivedProductCategory.elementOnly
+          .withElement(element);
+    }
+    return BiologicallyDerivedProductCategory._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,40 +28,30 @@ class BiologicallyDerivedProductCategory {
 
   /// BiologicallyDerivedProductCategory values
   /// organ
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final BiologicallyDerivedProductCategory organ =
       BiologicallyDerivedProductCategory._(
     'organ',
   );
 
   /// tissue
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final BiologicallyDerivedProductCategory tissue =
       BiologicallyDerivedProductCategory._(
     'tissue',
   );
 
   /// fluid
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final BiologicallyDerivedProductCategory fluid =
       BiologicallyDerivedProductCategory._(
     'fluid',
   );
 
   /// cells
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final BiologicallyDerivedProductCategory cells =
       BiologicallyDerivedProductCategory._(
     'cells',
   );
 
   /// biologicalAgent
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final BiologicallyDerivedProductCategory biologicalAgent =
       BiologicallyDerivedProductCategory._(
     'biologicalAgent',
@@ -78,19 +81,6 @@ class BiologicallyDerivedProductCategory {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [BiologicallyDerivedProductCategory] from JSON.
-  static BiologicallyDerivedProductCategory fromJson(
-      Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return BiologicallyDerivedProductCategory.elementOnly
-          .withElement(element);
-    }
-    return BiologicallyDerivedProductCategory._(value!, element: element);
-  }
 
   /// String representation
   @override

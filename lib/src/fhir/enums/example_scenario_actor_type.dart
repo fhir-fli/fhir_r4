@@ -7,6 +7,17 @@ class ExampleScenarioActorType {
   // Private constructor for internal use (like enum)
   ExampleScenarioActorType._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ExampleScenarioActorType] from JSON.
+  factory ExampleScenarioActorType.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ExampleScenarioActorType.elementOnly.withElement(element);
+    }
+    return ExampleScenarioActorType._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,15 +26,11 @@ class ExampleScenarioActorType {
 
   /// ExampleScenarioActorType values
   /// person
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ExampleScenarioActorType person = ExampleScenarioActorType._(
     'person',
   );
 
   /// entity
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ExampleScenarioActorType entity = ExampleScenarioActorType._(
     'entity',
   );
@@ -49,17 +56,6 @@ class ExampleScenarioActorType {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ExampleScenarioActorType] from JSON.
-  static ExampleScenarioActorType fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ExampleScenarioActorType.elementOnly.withElement(element);
-    }
-    return ExampleScenarioActorType._(value!, element: element);
-  }
 
   /// String representation
   @override

@@ -7,6 +7,17 @@ class ReferralMethod {
   // Private constructor for internal use (like enum)
   ReferralMethod._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ReferralMethod] from JSON.
+  factory ReferralMethod.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ReferralMethod.elementOnly.withElement(element);
+    }
+    return ReferralMethod._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,36 +26,26 @@ class ReferralMethod {
 
   /// ReferralMethod values
   /// fax
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ReferralMethod fax = ReferralMethod._(
     'fax',
   );
 
   /// phone
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ReferralMethod phone = ReferralMethod._(
     'phone',
   );
 
   /// elec
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ReferralMethod elec = ReferralMethod._(
     'elec',
   );
 
   /// semail
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ReferralMethod semail = ReferralMethod._(
     'semail',
   );
 
   /// mail
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ReferralMethod mail = ReferralMethod._(
     'mail',
   );
@@ -72,17 +73,6 @@ class ReferralMethod {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ReferralMethod] from JSON.
-  static ReferralMethod fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ReferralMethod.elementOnly.withElement(element);
-    }
-    return ReferralMethod._(value!, element: element);
-  }
 
   /// String representation
   @override

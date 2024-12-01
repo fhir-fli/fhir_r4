@@ -7,6 +7,17 @@ class MeasureScoring {
   // Private constructor for internal use (like enum)
   MeasureScoring._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [MeasureScoring] from JSON.
+  factory MeasureScoring.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return MeasureScoring.elementOnly.withElement(element);
+    }
+    return MeasureScoring._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,29 +26,21 @@ class MeasureScoring {
 
   /// MeasureScoring values
   /// proportion
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MeasureScoring proportion = MeasureScoring._(
     'proportion',
   );
 
   /// ratio
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MeasureScoring ratio = MeasureScoring._(
     'ratio',
   );
 
   /// continuous_variable
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MeasureScoring continuous_variable = MeasureScoring._(
     'continuous-variable',
   );
 
   /// cohort
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MeasureScoring cohort = MeasureScoring._(
     'cohort',
   );
@@ -64,17 +67,6 @@ class MeasureScoring {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [MeasureScoring] from JSON.
-  static MeasureScoring fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return MeasureScoring.elementOnly.withElement(element);
-    }
-    return MeasureScoring._(value!, element: element);
-  }
 
   /// String representation
   @override

@@ -7,6 +7,17 @@ class DischargeDisposition {
   // Private constructor for internal use (like enum)
   DischargeDisposition._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [DischargeDisposition] from JSON.
+  factory DischargeDisposition.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return DischargeDisposition.elementOnly.withElement(element);
+    }
+    return DischargeDisposition._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,78 +26,56 @@ class DischargeDisposition {
 
   /// DischargeDisposition values
   /// home
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final DischargeDisposition home = DischargeDisposition._(
     'home',
   );
 
   /// alt_home
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final DischargeDisposition alt_home = DischargeDisposition._(
     'alt-home',
   );
 
   /// other_hcf
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final DischargeDisposition other_hcf = DischargeDisposition._(
     'other-hcf',
   );
 
   /// hosp
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final DischargeDisposition hosp = DischargeDisposition._(
     'hosp',
   );
 
   /// long
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final DischargeDisposition long = DischargeDisposition._(
     'long',
   );
 
   /// aadvice
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final DischargeDisposition aadvice = DischargeDisposition._(
     'aadvice',
   );
 
   /// exp
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final DischargeDisposition exp = DischargeDisposition._(
     'exp',
   );
 
   /// psy
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final DischargeDisposition psy = DischargeDisposition._(
     'psy',
   );
 
   /// rehab
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final DischargeDisposition rehab = DischargeDisposition._(
     'rehab',
   );
 
   /// snf
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final DischargeDisposition snf = DischargeDisposition._(
     'snf',
   );
 
   /// oth
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final DischargeDisposition oth = DischargeDisposition._(
     'oth',
   );
@@ -120,17 +109,6 @@ class DischargeDisposition {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [DischargeDisposition] from JSON.
-  static DischargeDisposition fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return DischargeDisposition.elementOnly.withElement(element);
-    }
-    return DischargeDisposition._(value!, element: element);
-  }
 
   /// String representation
   @override

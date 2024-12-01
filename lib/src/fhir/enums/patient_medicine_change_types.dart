@@ -7,6 +7,17 @@ class PatientMedicineChangeTypes {
   // Private constructor for internal use (like enum)
   PatientMedicineChangeTypes._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [PatientMedicineChangeTypes] from JSON.
+  factory PatientMedicineChangeTypes.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return PatientMedicineChangeTypes.elementOnly.withElement(element);
+    }
+    return PatientMedicineChangeTypes._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,48 +26,36 @@ class PatientMedicineChangeTypes {
 
   /// PatientMedicineChangeTypes values
   /// value01
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final PatientMedicineChangeTypes value01 =
       PatientMedicineChangeTypes._(
     '01',
   );
 
   /// value02
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final PatientMedicineChangeTypes value02 =
       PatientMedicineChangeTypes._(
     '02',
   );
 
   /// value03
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final PatientMedicineChangeTypes value03 =
       PatientMedicineChangeTypes._(
     '03',
   );
 
   /// value04
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final PatientMedicineChangeTypes value04 =
       PatientMedicineChangeTypes._(
     '04',
   );
 
   /// value05
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final PatientMedicineChangeTypes value05 =
       PatientMedicineChangeTypes._(
     '05',
   );
 
   /// value06
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final PatientMedicineChangeTypes value06 =
       PatientMedicineChangeTypes._(
     '06',
@@ -87,17 +86,6 @@ class PatientMedicineChangeTypes {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [PatientMedicineChangeTypes] from JSON.
-  static PatientMedicineChangeTypes fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return PatientMedicineChangeTypes.elementOnly.withElement(element);
-    }
-    return PatientMedicineChangeTypes._(value!, element: element);
-  }
 
   /// String representation
   @override

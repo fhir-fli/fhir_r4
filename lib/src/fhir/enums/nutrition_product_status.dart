@@ -7,6 +7,17 @@ class NutritionProductStatus {
   // Private constructor for internal use (like enum)
   NutritionProductStatus._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [NutritionProductStatus] from JSON.
+  factory NutritionProductStatus.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return NutritionProductStatus.elementOnly.withElement(element);
+    }
+    return NutritionProductStatus._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,22 +26,16 @@ class NutritionProductStatus {
 
   /// NutritionProductStatus values
   /// active
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final NutritionProductStatus active = NutritionProductStatus._(
     'active',
   );
 
   /// inactive
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final NutritionProductStatus inactive = NutritionProductStatus._(
     'inactive',
   );
 
   /// entered_in_error
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final NutritionProductStatus entered_in_error =
       NutritionProductStatus._(
     'entered-in-error',
@@ -58,17 +63,6 @@ class NutritionProductStatus {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [NutritionProductStatus] from JSON.
-  static NutritionProductStatus fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return NutritionProductStatus.elementOnly.withElement(element);
-    }
-    return NutritionProductStatus._(value!, element: element);
-  }
 
   /// String representation
   @override

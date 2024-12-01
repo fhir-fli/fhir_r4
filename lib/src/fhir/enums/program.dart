@@ -7,6 +7,17 @@ class Program {
   // Private constructor for internal use (like enum)
   Program._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [Program] from JSON.
+  factory Program.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return Program.elementOnly.withElement(element);
+    }
+    return Program._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,316 +26,226 @@ class Program {
 
   /// Program values
   /// value1
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final Program value1 = Program._(
     '1',
   );
 
   /// value2
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final Program value2 = Program._(
     '2',
   );
 
   /// value3
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final Program value3 = Program._(
     '3',
   );
 
   /// value4
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final Program value4 = Program._(
     '4',
   );
 
   /// value5
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final Program value5 = Program._(
     '5',
   );
 
   /// value6
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final Program value6 = Program._(
     '6',
   );
 
   /// value7
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final Program value7 = Program._(
     '7',
   );
 
   /// value8
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final Program value8 = Program._(
     '8',
   );
 
   /// value9
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final Program value9 = Program._(
     '9',
   );
 
   /// value10
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final Program value10 = Program._(
     '10',
   );
 
   /// value11
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final Program value11 = Program._(
     '11',
   );
 
   /// value12
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final Program value12 = Program._(
     '12',
   );
 
   /// value13
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final Program value13 = Program._(
     '13',
   );
 
   /// value14
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final Program value14 = Program._(
     '14',
   );
 
   /// value15
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final Program value15 = Program._(
     '15',
   );
 
   /// value16
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final Program value16 = Program._(
     '16',
   );
 
   /// value17
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final Program value17 = Program._(
     '17',
   );
 
   /// value18
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final Program value18 = Program._(
     '18',
   );
 
   /// value19
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final Program value19 = Program._(
     '19',
   );
 
   /// value20
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final Program value20 = Program._(
     '20',
   );
 
   /// value21
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final Program value21 = Program._(
     '21',
   );
 
   /// value22
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final Program value22 = Program._(
     '22',
   );
 
   /// value23
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final Program value23 = Program._(
     '23',
   );
 
   /// value24
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final Program value24 = Program._(
     '24',
   );
 
   /// value25
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final Program value25 = Program._(
     '25',
   );
 
   /// value26
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final Program value26 = Program._(
     '26',
   );
 
   /// value27
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final Program value27 = Program._(
     '27',
   );
 
   /// value28
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final Program value28 = Program._(
     '28',
   );
 
   /// value29
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final Program value29 = Program._(
     '29',
   );
 
   /// value30
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final Program value30 = Program._(
     '30',
   );
 
   /// value31
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final Program value31 = Program._(
     '31',
   );
 
   /// value32
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final Program value32 = Program._(
     '32',
   );
 
   /// value33
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final Program value33 = Program._(
     '33',
   );
 
   /// value34
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final Program value34 = Program._(
     '34',
   );
 
   /// value35
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final Program value35 = Program._(
     '35',
   );
 
   /// value36
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final Program value36 = Program._(
     '36',
   );
 
   /// value37
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final Program value37 = Program._(
     '37',
   );
 
   /// value38
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final Program value38 = Program._(
     '38',
   );
 
   /// value39
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final Program value39 = Program._(
     '39',
   );
 
   /// value40
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final Program value40 = Program._(
     '40',
   );
 
   /// value41
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final Program value41 = Program._(
     '41',
   );
 
   /// value42
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final Program value42 = Program._(
     '42',
   );
 
   /// value43
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final Program value43 = Program._(
     '43',
   );
 
   /// value44
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final Program value44 = Program._(
     '44',
   );
 
   /// value45
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final Program value45 = Program._(
     '45',
   );
@@ -392,17 +313,6 @@ class Program {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [Program] from JSON.
-  static Program fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return Program.elementOnly.withElement(element);
-    }
-    return Program._(value!, element: element);
-  }
 
   /// String representation
   @override

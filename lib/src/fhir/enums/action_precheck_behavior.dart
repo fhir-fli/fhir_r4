@@ -7,6 +7,17 @@ class ActionPrecheckBehavior {
   // Private constructor for internal use (like enum)
   ActionPrecheckBehavior._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ActionPrecheckBehavior] from JSON.
+  factory ActionPrecheckBehavior.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ActionPrecheckBehavior.elementOnly.withElement(element);
+    }
+    return ActionPrecheckBehavior._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,15 +26,11 @@ class ActionPrecheckBehavior {
 
   /// ActionPrecheckBehavior values
   /// yes
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ActionPrecheckBehavior yes = ActionPrecheckBehavior._(
     'yes',
   );
 
   /// no
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ActionPrecheckBehavior no = ActionPrecheckBehavior._(
     'no',
   );
@@ -49,17 +56,6 @@ class ActionPrecheckBehavior {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ActionPrecheckBehavior] from JSON.
-  static ActionPrecheckBehavior fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ActionPrecheckBehavior.elementOnly.withElement(element);
-    }
-    return ActionPrecheckBehavior._(value!, element: element);
-  }
 
   /// String representation
   @override

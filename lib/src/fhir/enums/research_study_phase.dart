@@ -7,6 +7,17 @@ class ResearchStudyPhase {
   // Private constructor for internal use (like enum)
   ResearchStudyPhase._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ResearchStudyPhase] from JSON.
+  factory ResearchStudyPhase.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ResearchStudyPhase.elementOnly.withElement(element);
+    }
+    return ResearchStudyPhase._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,57 +26,41 @@ class ResearchStudyPhase {
 
   /// ResearchStudyPhase values
   /// n_a
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ResearchStudyPhase n_a = ResearchStudyPhase._(
     'n-a',
   );
 
   /// early_phase_1
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ResearchStudyPhase early_phase_1 = ResearchStudyPhase._(
     'early-phase-1',
   );
 
   /// phase_1
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ResearchStudyPhase phase_1 = ResearchStudyPhase._(
     'phase-1',
   );
 
   /// phase_1_phase_2
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ResearchStudyPhase phase_1_phase_2 = ResearchStudyPhase._(
     'phase-1-phase-2',
   );
 
   /// phase_2
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ResearchStudyPhase phase_2 = ResearchStudyPhase._(
     'phase-2',
   );
 
   /// phase_2_phase_3
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ResearchStudyPhase phase_2_phase_3 = ResearchStudyPhase._(
     'phase-2-phase-3',
   );
 
   /// phase_3
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ResearchStudyPhase phase_3 = ResearchStudyPhase._(
     'phase-3',
   );
 
   /// phase_4
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ResearchStudyPhase phase_4 = ResearchStudyPhase._(
     'phase-4',
   );
@@ -96,17 +91,6 @@ class ResearchStudyPhase {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ResearchStudyPhase] from JSON.
-  static ResearchStudyPhase fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ResearchStudyPhase.elementOnly.withElement(element);
-    }
-    return ResearchStudyPhase._(value!, element: element);
-  }
 
   /// String representation
   @override

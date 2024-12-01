@@ -7,6 +7,17 @@ class EvidenceDirectness {
   // Private constructor for internal use (like enum)
   EvidenceDirectness._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [EvidenceDirectness] from JSON.
+  factory EvidenceDirectness.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return EvidenceDirectness.elementOnly.withElement(element);
+    }
+    return EvidenceDirectness._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,29 +26,21 @@ class EvidenceDirectness {
 
   /// EvidenceDirectness values
   /// low
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final EvidenceDirectness low = EvidenceDirectness._(
     'low',
   );
 
   /// moderate
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final EvidenceDirectness moderate = EvidenceDirectness._(
     'moderate',
   );
 
   /// high
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final EvidenceDirectness high = EvidenceDirectness._(
     'high',
   );
 
   /// exact
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final EvidenceDirectness exact = EvidenceDirectness._(
     'exact',
   );
@@ -64,17 +67,6 @@ class EvidenceDirectness {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [EvidenceDirectness] from JSON.
-  static EvidenceDirectness fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return EvidenceDirectness.elementOnly.withElement(element);
-    }
-    return EvidenceDirectness._(value!, element: element);
-  }
 
   /// String representation
   @override

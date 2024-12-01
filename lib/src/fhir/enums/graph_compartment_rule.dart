@@ -7,6 +7,17 @@ class GraphCompartmentRule {
   // Private constructor for internal use (like enum)
   GraphCompartmentRule._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [GraphCompartmentRule] from JSON.
+  factory GraphCompartmentRule.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return GraphCompartmentRule.elementOnly.withElement(element);
+    }
+    return GraphCompartmentRule._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,29 +26,21 @@ class GraphCompartmentRule {
 
   /// GraphCompartmentRule values
   /// identical
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final GraphCompartmentRule identical = GraphCompartmentRule._(
     'identical',
   );
 
   /// matching
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final GraphCompartmentRule matching = GraphCompartmentRule._(
     'matching',
   );
 
   /// different
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final GraphCompartmentRule different = GraphCompartmentRule._(
     'different',
   );
 
   /// custom
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final GraphCompartmentRule custom = GraphCompartmentRule._(
     'custom',
   );
@@ -64,17 +67,6 @@ class GraphCompartmentRule {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [GraphCompartmentRule] from JSON.
-  static GraphCompartmentRule fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return GraphCompartmentRule.elementOnly.withElement(element);
-    }
-    return GraphCompartmentRule._(value!, element: element);
-  }
 
   /// String representation
   @override

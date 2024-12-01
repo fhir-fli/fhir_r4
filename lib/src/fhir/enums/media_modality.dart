@@ -7,6 +7,17 @@ class MediaModality {
   // Private constructor for internal use (like enum)
   MediaModality._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [MediaModality] from JSON.
+  factory MediaModality.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return MediaModality.elementOnly.withElement(element);
+    }
+    return MediaModality._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,57 +26,41 @@ class MediaModality {
 
   /// MediaModality values
   /// diagram
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MediaModality diagram = MediaModality._(
     'diagram',
   );
 
   /// fax
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MediaModality fax = MediaModality._(
     'fax',
   );
 
   /// scan
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MediaModality scan = MediaModality._(
     'scan',
   );
 
   /// retina
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MediaModality retina = MediaModality._(
     'retina',
   );
 
   /// fingerprint
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MediaModality fingerprint = MediaModality._(
     'fingerprint',
   );
 
   /// iris
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MediaModality iris = MediaModality._(
     'iris',
   );
 
   /// palm
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MediaModality palm = MediaModality._(
     'palm',
   );
 
   /// face
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MediaModality face = MediaModality._(
     'face',
   );
@@ -96,17 +91,6 @@ class MediaModality {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [MediaModality] from JSON.
-  static MediaModality fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return MediaModality.elementOnly.withElement(element);
-    }
-    return MediaModality._(value!, element: element);
-  }
 
   /// String representation
   @override

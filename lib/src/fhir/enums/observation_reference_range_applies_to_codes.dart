@@ -7,6 +7,19 @@ class ObservationReferenceRangeAppliesToCodes {
   // Private constructor for internal use (like enum)
   ObservationReferenceRangeAppliesToCodes._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ObservationReferenceRangeAppliesToCodes] from JSON.
+  factory ObservationReferenceRangeAppliesToCodes.fromJson(
+      Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ObservationReferenceRangeAppliesToCodes.elementOnly
+          .withElement(element);
+    }
+    return ObservationReferenceRangeAppliesToCodes._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,24 +28,18 @@ class ObservationReferenceRangeAppliesToCodes {
 
   /// ObservationReferenceRangeAppliesToCodes values
   /// value248153007
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ObservationReferenceRangeAppliesToCodes value248153007 =
       ObservationReferenceRangeAppliesToCodes._(
     '248153007',
   );
 
   /// value248152002
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ObservationReferenceRangeAppliesToCodes value248152002 =
       ObservationReferenceRangeAppliesToCodes._(
     '248152002',
   );
 
   /// value77386006
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ObservationReferenceRangeAppliesToCodes value77386006 =
       ObservationReferenceRangeAppliesToCodes._(
     '77386006',
@@ -61,19 +68,6 @@ class ObservationReferenceRangeAppliesToCodes {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ObservationReferenceRangeAppliesToCodes] from JSON.
-  static ObservationReferenceRangeAppliesToCodes fromJson(
-      Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ObservationReferenceRangeAppliesToCodes.elementOnly
-          .withElement(element);
-    }
-    return ObservationReferenceRangeAppliesToCodes._(value!, element: element);
-  }
 
   /// String representation
   @override

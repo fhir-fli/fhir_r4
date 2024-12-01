@@ -7,6 +7,17 @@ class ImmunizationStatusReasonCodes {
   // Private constructor for internal use (like enum)
   ImmunizationStatusReasonCodes._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ImmunizationStatusReasonCodes] from JSON.
+  factory ImmunizationStatusReasonCodes.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ImmunizationStatusReasonCodes.elementOnly.withElement(element);
+    }
+    return ImmunizationStatusReasonCodes._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,32 +26,24 @@ class ImmunizationStatusReasonCodes {
 
   /// ImmunizationStatusReasonCodes values
   /// IMMUNE
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ImmunizationStatusReasonCodes IMMUNE =
       ImmunizationStatusReasonCodes._(
     'IMMUNE',
   );
 
   /// MEDPREC
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ImmunizationStatusReasonCodes MEDPREC =
       ImmunizationStatusReasonCodes._(
     'MEDPREC',
   );
 
   /// OSTOCK
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ImmunizationStatusReasonCodes OSTOCK =
       ImmunizationStatusReasonCodes._(
     'OSTOCK',
   );
 
   /// PATOBJ
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ImmunizationStatusReasonCodes PATOBJ =
       ImmunizationStatusReasonCodes._(
     'PATOBJ',
@@ -69,17 +72,6 @@ class ImmunizationStatusReasonCodes {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ImmunizationStatusReasonCodes] from JSON.
-  static ImmunizationStatusReasonCodes fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ImmunizationStatusReasonCodes.elementOnly.withElement(element);
-    }
-    return ImmunizationStatusReasonCodes._(value!, element: element);
-  }
 
   /// String representation
   @override

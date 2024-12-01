@@ -7,6 +7,17 @@ class AuditEventAction {
   // Private constructor for internal use (like enum)
   AuditEventAction._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [AuditEventAction] from JSON.
+  factory AuditEventAction.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return AuditEventAction.elementOnly.withElement(element);
+    }
+    return AuditEventAction._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,36 +26,26 @@ class AuditEventAction {
 
   /// AuditEventAction values
   /// C
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AuditEventAction C = AuditEventAction._(
     'C',
   );
 
   /// R
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AuditEventAction R = AuditEventAction._(
     'R',
   );
 
   /// U
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AuditEventAction U = AuditEventAction._(
     'U',
   );
 
   /// D
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AuditEventAction D = AuditEventAction._(
     'D',
   );
 
   /// E
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AuditEventAction E = AuditEventAction._(
     'E',
   );
@@ -72,17 +73,6 @@ class AuditEventAction {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [AuditEventAction] from JSON.
-  static AuditEventAction fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return AuditEventAction.elementOnly.withElement(element);
-    }
-    return AuditEventAction._(value!, element: element);
-  }
 
   /// String representation
   @override

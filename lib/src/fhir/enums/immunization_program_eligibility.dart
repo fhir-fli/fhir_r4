@@ -7,6 +7,17 @@ class ImmunizationProgramEligibility {
   // Private constructor for internal use (like enum)
   ImmunizationProgramEligibility._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ImmunizationProgramEligibility] from JSON.
+  factory ImmunizationProgramEligibility.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ImmunizationProgramEligibility.elementOnly.withElement(element);
+    }
+    return ImmunizationProgramEligibility._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,16 +26,12 @@ class ImmunizationProgramEligibility {
 
   /// ImmunizationProgramEligibility values
   /// ineligible
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ImmunizationProgramEligibility ineligible =
       ImmunizationProgramEligibility._(
     'ineligible',
   );
 
   /// uninsured
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ImmunizationProgramEligibility uninsured =
       ImmunizationProgramEligibility._(
     'uninsured',
@@ -51,17 +58,6 @@ class ImmunizationProgramEligibility {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ImmunizationProgramEligibility] from JSON.
-  static ImmunizationProgramEligibility fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ImmunizationProgramEligibility.elementOnly.withElement(element);
-    }
-    return ImmunizationProgramEligibility._(value!, element: element);
-  }
 
   /// String representation
   @override

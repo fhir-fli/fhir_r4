@@ -7,6 +7,17 @@ class ProductIntendedUse {
   // Private constructor for internal use (like enum)
   ProductIntendedUse._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ProductIntendedUse] from JSON.
+  factory ProductIntendedUse.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ProductIntendedUse.elementOnly.withElement(element);
+    }
+    return ProductIntendedUse._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,36 +26,26 @@ class ProductIntendedUse {
 
   /// ProductIntendedUse values
   /// Prevention
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ProductIntendedUse Prevention = ProductIntendedUse._(
     'Prevention',
   );
 
   /// Treatment
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ProductIntendedUse Treatment = ProductIntendedUse._(
     'Treatment',
   );
 
   /// Alleviation
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ProductIntendedUse Alleviation = ProductIntendedUse._(
     'Alleviation',
   );
 
   /// Diagnosis
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ProductIntendedUse Diagnosis = ProductIntendedUse._(
     'Diagnosis',
   );
 
   /// Monitoring
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ProductIntendedUse Monitoring = ProductIntendedUse._(
     'Monitoring',
   );
@@ -72,17 +73,6 @@ class ProductIntendedUse {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ProductIntendedUse] from JSON.
-  static ProductIntendedUse fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ProductIntendedUse.elementOnly.withElement(element);
-    }
-    return ProductIntendedUse._(value!, element: element);
-  }
 
   /// String representation
   @override

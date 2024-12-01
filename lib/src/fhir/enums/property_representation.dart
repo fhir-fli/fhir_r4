@@ -7,6 +7,17 @@ class PropertyRepresentation {
   // Private constructor for internal use (like enum)
   PropertyRepresentation._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [PropertyRepresentation] from JSON.
+  factory PropertyRepresentation.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return PropertyRepresentation.elementOnly.withElement(element);
+    }
+    return PropertyRepresentation._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,36 +26,26 @@ class PropertyRepresentation {
 
   /// PropertyRepresentation values
   /// xmlAttr
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final PropertyRepresentation xmlAttr = PropertyRepresentation._(
     'xmlAttr',
   );
 
   /// xmlText
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final PropertyRepresentation xmlText = PropertyRepresentation._(
     'xmlText',
   );
 
   /// typeAttr
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final PropertyRepresentation typeAttr = PropertyRepresentation._(
     'typeAttr',
   );
 
   /// cdaText
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final PropertyRepresentation cdaText = PropertyRepresentation._(
     'cdaText',
   );
 
   /// xhtml
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final PropertyRepresentation xhtml = PropertyRepresentation._(
     'xhtml',
   );
@@ -73,17 +74,6 @@ class PropertyRepresentation {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [PropertyRepresentation] from JSON.
-  static PropertyRepresentation fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return PropertyRepresentation.elementOnly.withElement(element);
-    }
-    return PropertyRepresentation._(value!, element: element);
-  }
 
   /// String representation
   @override

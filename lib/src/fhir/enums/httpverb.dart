@@ -7,6 +7,17 @@ class HTTPVerb {
   // Private constructor for internal use (like enum)
   HTTPVerb._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [HTTPVerb] from JSON.
+  factory HTTPVerb.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return HTTPVerb.elementOnly.withElement(element);
+    }
+    return HTTPVerb._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,43 +26,31 @@ class HTTPVerb {
 
   /// HTTPVerb values
   /// GET
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final HTTPVerb GET = HTTPVerb._(
     'GET',
   );
 
   /// HEAD
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final HTTPVerb HEAD = HTTPVerb._(
     'HEAD',
   );
 
   /// POST
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final HTTPVerb POST = HTTPVerb._(
     'POST',
   );
 
   /// PUT
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final HTTPVerb PUT = HTTPVerb._(
     'PUT',
   );
 
   /// DELETE
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final HTTPVerb DELETE = HTTPVerb._(
     'DELETE',
   );
 
   /// PATCH
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final HTTPVerb PATCH = HTTPVerb._(
     'PATCH',
   );
@@ -80,17 +79,6 @@ class HTTPVerb {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [HTTPVerb] from JSON.
-  static HTTPVerb fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return HTTPVerb.elementOnly.withElement(element);
-    }
-    return HTTPVerb._(value!, element: element);
-  }
 
   /// String representation
   @override

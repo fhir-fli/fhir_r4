@@ -7,6 +7,17 @@ class ClaimInformationCategoryCodes {
   // Private constructor for internal use (like enum)
   ClaimInformationCategoryCodes._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ClaimInformationCategoryCodes] from JSON.
+  factory ClaimInformationCategoryCodes.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ClaimInformationCategoryCodes.elementOnly.withElement(element);
+    }
+    return ClaimInformationCategoryCodes._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,112 +26,84 @@ class ClaimInformationCategoryCodes {
 
   /// ClaimInformationCategoryCodes values
   /// info
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ClaimInformationCategoryCodes info =
       ClaimInformationCategoryCodes._(
     'info',
   );
 
   /// discharge
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ClaimInformationCategoryCodes discharge =
       ClaimInformationCategoryCodes._(
     'discharge',
   );
 
   /// onset
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ClaimInformationCategoryCodes onset =
       ClaimInformationCategoryCodes._(
     'onset',
   );
 
   /// related
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ClaimInformationCategoryCodes related =
       ClaimInformationCategoryCodes._(
     'related',
   );
 
   /// exception
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ClaimInformationCategoryCodes exception =
       ClaimInformationCategoryCodes._(
     'exception',
   );
 
   /// material
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ClaimInformationCategoryCodes material =
       ClaimInformationCategoryCodes._(
     'material',
   );
 
   /// attachment
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ClaimInformationCategoryCodes attachment =
       ClaimInformationCategoryCodes._(
     'attachment',
   );
 
   /// missingtooth
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ClaimInformationCategoryCodes missingtooth =
       ClaimInformationCategoryCodes._(
     'missingtooth',
   );
 
   /// prosthesis
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ClaimInformationCategoryCodes prosthesis =
       ClaimInformationCategoryCodes._(
     'prosthesis',
   );
 
   /// other
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ClaimInformationCategoryCodes other =
       ClaimInformationCategoryCodes._(
     'other',
   );
 
   /// hospitalized
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ClaimInformationCategoryCodes hospitalized =
       ClaimInformationCategoryCodes._(
     'hospitalized',
   );
 
   /// employmentimpacted
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ClaimInformationCategoryCodes employmentimpacted =
       ClaimInformationCategoryCodes._(
     'employmentimpacted',
   );
 
   /// externalcause
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ClaimInformationCategoryCodes externalcause =
       ClaimInformationCategoryCodes._(
     'externalcause',
   );
 
   /// patientreasonforvisit
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ClaimInformationCategoryCodes patientreasonforvisit =
       ClaimInformationCategoryCodes._(
     'patientreasonforvisit',
@@ -159,17 +142,6 @@ class ClaimInformationCategoryCodes {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ClaimInformationCategoryCodes] from JSON.
-  static ClaimInformationCategoryCodes fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ClaimInformationCategoryCodes.elementOnly.withElement(element);
-    }
-    return ClaimInformationCategoryCodes._(value!, element: element);
-  }
 
   /// String representation
   @override

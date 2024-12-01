@@ -7,6 +7,17 @@ class SupplementTypeCodes {
   // Private constructor for internal use (like enum)
   SupplementTypeCodes._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [SupplementTypeCodes] from JSON.
+  factory SupplementTypeCodes.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return SupplementTypeCodes.elementOnly.withElement(element);
+    }
+    return SupplementTypeCodes._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,316 +26,226 @@ class SupplementTypeCodes {
 
   /// SupplementTypeCodes values
   /// value442901000124106
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SupplementTypeCodes value442901000124106 = SupplementTypeCodes._(
     '442901000124106',
   );
 
   /// value443031000124106
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SupplementTypeCodes value443031000124106 = SupplementTypeCodes._(
     '443031000124106',
   );
 
   /// value443051000124104
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SupplementTypeCodes value443051000124104 = SupplementTypeCodes._(
     '443051000124104',
   );
 
   /// value442911000124109
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SupplementTypeCodes value442911000124109 = SupplementTypeCodes._(
     '442911000124109',
   );
 
   /// value443021000124108
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SupplementTypeCodes value443021000124108 = SupplementTypeCodes._(
     '443021000124108',
   );
 
   /// value442971000124100
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SupplementTypeCodes value442971000124100 = SupplementTypeCodes._(
     '442971000124100',
   );
 
   /// value442981000124102
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SupplementTypeCodes value442981000124102 = SupplementTypeCodes._(
     '442981000124102',
   );
 
   /// value442991000124104
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SupplementTypeCodes value442991000124104 = SupplementTypeCodes._(
     '442991000124104',
   );
 
   /// value443011000124100
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SupplementTypeCodes value443011000124100 = SupplementTypeCodes._(
     '443011000124100',
   );
 
   /// value442961000124107
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SupplementTypeCodes value442961000124107 = SupplementTypeCodes._(
     '442961000124107',
   );
 
   /// value442951000124105
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SupplementTypeCodes value442951000124105 = SupplementTypeCodes._(
     '442951000124105',
   );
 
   /// value442941000124108
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SupplementTypeCodes value442941000124108 = SupplementTypeCodes._(
     '442941000124108',
   );
 
   /// value442921000124101
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SupplementTypeCodes value442921000124101 = SupplementTypeCodes._(
     '442921000124101',
   );
 
   /// value442931000124103
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SupplementTypeCodes value442931000124103 = SupplementTypeCodes._(
     '442931000124103',
   );
 
   /// value444331000124106
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SupplementTypeCodes value444331000124106 = SupplementTypeCodes._(
     '444331000124106',
   );
 
   /// value443361000124100
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SupplementTypeCodes value443361000124100 = SupplementTypeCodes._(
     '443361000124100',
   );
 
   /// value443391000124108
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SupplementTypeCodes value443391000124108 = SupplementTypeCodes._(
     '443391000124108',
   );
 
   /// value443401000124105
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SupplementTypeCodes value443401000124105 = SupplementTypeCodes._(
     '443401000124105',
   );
 
   /// value443491000124103
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SupplementTypeCodes value443491000124103 = SupplementTypeCodes._(
     '443491000124103',
   );
 
   /// value443501000124106
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SupplementTypeCodes value443501000124106 = SupplementTypeCodes._(
     '443501000124106',
   );
 
   /// value443421000124100
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SupplementTypeCodes value443421000124100 = SupplementTypeCodes._(
     '443421000124100',
   );
 
   /// value443471000124104
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SupplementTypeCodes value443471000124104 = SupplementTypeCodes._(
     '443471000124104',
   );
 
   /// value444431000124104
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SupplementTypeCodes value444431000124104 = SupplementTypeCodes._(
     '444431000124104',
   );
 
   /// value443451000124109
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SupplementTypeCodes value443451000124109 = SupplementTypeCodes._(
     '443451000124109',
   );
 
   /// value444321000124108
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SupplementTypeCodes value444321000124108 = SupplementTypeCodes._(
     '444321000124108',
   );
 
   /// value441561000124106
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SupplementTypeCodes value441561000124106 = SupplementTypeCodes._(
     '441561000124106',
   );
 
   /// value443461000124106
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SupplementTypeCodes value443461000124106 = SupplementTypeCodes._(
     '443461000124106',
   );
 
   /// value441531000124102
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SupplementTypeCodes value441531000124102 = SupplementTypeCodes._(
     '441531000124102',
   );
 
   /// value443561000124107
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SupplementTypeCodes value443561000124107 = SupplementTypeCodes._(
     '443561000124107',
   );
 
   /// value443481000124101
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SupplementTypeCodes value443481000124101 = SupplementTypeCodes._(
     '443481000124101',
   );
 
   /// value441571000124104
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SupplementTypeCodes value441571000124104 = SupplementTypeCodes._(
     '441571000124104',
   );
 
   /// value441591000124103
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SupplementTypeCodes value441591000124103 = SupplementTypeCodes._(
     '441591000124103',
   );
 
   /// value441601000124106
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SupplementTypeCodes value441601000124106 = SupplementTypeCodes._(
     '441601000124106',
   );
 
   /// value443351000124102
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SupplementTypeCodes value443351000124102 = SupplementTypeCodes._(
     '443351000124102',
   );
 
   /// value443771000124106
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SupplementTypeCodes value443771000124106 = SupplementTypeCodes._(
     '443771000124106',
   );
 
   /// value441671000124100
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SupplementTypeCodes value441671000124100 = SupplementTypeCodes._(
     '441671000124100',
   );
 
   /// value443111000124101
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SupplementTypeCodes value443111000124101 = SupplementTypeCodes._(
     '443111000124101',
   );
 
   /// value443431000124102
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SupplementTypeCodes value443431000124102 = SupplementTypeCodes._(
     '443431000124102',
   );
 
   /// value443411000124108
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SupplementTypeCodes value443411000124108 = SupplementTypeCodes._(
     '443411000124108',
   );
 
   /// value444361000124102
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SupplementTypeCodes value444361000124102 = SupplementTypeCodes._(
     '444361000124102',
   );
 
   /// value444401000124107
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SupplementTypeCodes value444401000124107 = SupplementTypeCodes._(
     '444401000124107',
   );
 
   /// value444381000124107
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SupplementTypeCodes value444381000124107 = SupplementTypeCodes._(
     '444381000124107',
   );
 
   /// value444371000124109
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SupplementTypeCodes value444371000124109 = SupplementTypeCodes._(
     '444371000124109',
   );
 
   /// value443441000124107
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SupplementTypeCodes value443441000124107 = SupplementTypeCodes._(
     '443441000124107',
   );
 
   /// value442651000124102
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SupplementTypeCodes value442651000124102 = SupplementTypeCodes._(
     '442651000124102',
   );
@@ -392,17 +313,6 @@ class SupplementTypeCodes {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [SupplementTypeCodes] from JSON.
-  static SupplementTypeCodes fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return SupplementTypeCodes.elementOnly.withElement(element);
-    }
-    return SupplementTypeCodes._(value!, element: element);
-  }
 
   /// String representation
   @override

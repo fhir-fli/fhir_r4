@@ -7,6 +7,17 @@ class VisionBase {
   // Private constructor for internal use (like enum)
   VisionBase._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [VisionBase] from JSON.
+  factory VisionBase.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return VisionBase.elementOnly.withElement(element);
+    }
+    return VisionBase._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,29 +26,21 @@ class VisionBase {
 
   /// VisionBase values
   /// up
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final VisionBase up = VisionBase._(
     'up',
   );
 
   /// down
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final VisionBase down = VisionBase._(
     'down',
   );
 
   /// in_
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final VisionBase in_ = VisionBase._(
     'in',
   );
 
   /// out
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final VisionBase out = VisionBase._(
     'out',
   );
@@ -64,17 +67,6 @@ class VisionBase {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [VisionBase] from JSON.
-  static VisionBase fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return VisionBase.elementOnly.withElement(element);
-    }
-    return VisionBase._(value!, element: element);
-  }
 
   /// String representation
   @override

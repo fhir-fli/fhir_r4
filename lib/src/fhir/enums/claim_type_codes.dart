@@ -7,6 +7,17 @@ class ClaimTypeCodes {
   // Private constructor for internal use (like enum)
   ClaimTypeCodes._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ClaimTypeCodes] from JSON.
+  factory ClaimTypeCodes.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ClaimTypeCodes.elementOnly.withElement(element);
+    }
+    return ClaimTypeCodes._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,36 +26,26 @@ class ClaimTypeCodes {
 
   /// ClaimTypeCodes values
   /// institutional
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ClaimTypeCodes institutional = ClaimTypeCodes._(
     'institutional',
   );
 
   /// oral
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ClaimTypeCodes oral = ClaimTypeCodes._(
     'oral',
   );
 
   /// pharmacy
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ClaimTypeCodes pharmacy = ClaimTypeCodes._(
     'pharmacy',
   );
 
   /// professional
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ClaimTypeCodes professional = ClaimTypeCodes._(
     'professional',
   );
 
   /// vision
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ClaimTypeCodes vision = ClaimTypeCodes._(
     'vision',
   );
@@ -72,17 +73,6 @@ class ClaimTypeCodes {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ClaimTypeCodes] from JSON.
-  static ClaimTypeCodes fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ClaimTypeCodes.elementOnly.withElement(element);
-    }
-    return ClaimTypeCodes._(value!, element: element);
-  }
 
   /// String representation
   @override

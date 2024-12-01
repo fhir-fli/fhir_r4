@@ -7,6 +7,17 @@ class GoalStartEvent {
   // Private constructor for internal use (like enum)
   GoalStartEvent._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [GoalStartEvent] from JSON.
+  factory GoalStartEvent.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return GoalStartEvent.elementOnly.withElement(element);
+    }
+    return GoalStartEvent._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,29 +26,21 @@ class GoalStartEvent {
 
   /// GoalStartEvent values
   /// value32485007
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final GoalStartEvent value32485007 = GoalStartEvent._(
     '32485007',
   );
 
   /// value308283009
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final GoalStartEvent value308283009 = GoalStartEvent._(
     '308283009',
   );
 
   /// value442137000
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final GoalStartEvent value442137000 = GoalStartEvent._(
     '442137000',
   );
 
   /// value386216000
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final GoalStartEvent value386216000 = GoalStartEvent._(
     '386216000',
   );
@@ -64,17 +67,6 @@ class GoalStartEvent {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [GoalStartEvent] from JSON.
-  static GoalStartEvent fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return GoalStartEvent.elementOnly.withElement(element);
-    }
-    return GoalStartEvent._(value!, element: element);
-  }
 
   /// String representation
   @override

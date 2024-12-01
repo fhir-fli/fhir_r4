@@ -7,6 +7,17 @@ class DocumentMode {
   // Private constructor for internal use (like enum)
   DocumentMode._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [DocumentMode] from JSON.
+  factory DocumentMode.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return DocumentMode.elementOnly.withElement(element);
+    }
+    return DocumentMode._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,15 +26,11 @@ class DocumentMode {
 
   /// DocumentMode values
   /// producer
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final DocumentMode producer = DocumentMode._(
     'producer',
   );
 
   /// consumer
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final DocumentMode consumer = DocumentMode._(
     'consumer',
   );
@@ -48,17 +55,6 @@ class DocumentMode {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [DocumentMode] from JSON.
-  static DocumentMode fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return DocumentMode.elementOnly.withElement(element);
-    }
-    return DocumentMode._(value!, element: element);
-  }
 
   /// String representation
   @override

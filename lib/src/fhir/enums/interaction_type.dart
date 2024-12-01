@@ -7,6 +7,17 @@ class InteractionType {
   // Private constructor for internal use (like enum)
   InteractionType._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [InteractionType] from JSON.
+  factory InteractionType.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return InteractionType.elementOnly.withElement(element);
+    }
+    return InteractionType._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,29 +26,21 @@ class InteractionType {
 
   /// InteractionType values
   /// drug_drug
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final InteractionType drug_drug = InteractionType._(
     'drug-drug',
   );
 
   /// drug_food
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final InteractionType drug_food = InteractionType._(
     'drug-food',
   );
 
   /// drug_test
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final InteractionType drug_test = InteractionType._(
     'drug-test',
   );
 
   /// other
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final InteractionType other = InteractionType._(
     'other',
   );
@@ -64,17 +67,6 @@ class InteractionType {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [InteractionType] from JSON.
-  static InteractionType fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return InteractionType.elementOnly.withElement(element);
-    }
-    return InteractionType._(value!, element: element);
-  }
 
   /// String representation
   @override

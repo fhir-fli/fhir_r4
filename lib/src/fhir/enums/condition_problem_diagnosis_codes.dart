@@ -7,6 +7,17 @@ class ConditionProblemDiagnosisCodes {
   // Private constructor for internal use (like enum)
   ConditionProblemDiagnosisCodes._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ConditionProblemDiagnosisCodes] from JSON.
+  factory ConditionProblemDiagnosisCodes.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ConditionProblemDiagnosisCodes.elementOnly.withElement(element);
+    }
+    return ConditionProblemDiagnosisCodes._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,8 +26,6 @@ class ConditionProblemDiagnosisCodes {
 
   /// ConditionProblemDiagnosisCodes values
   /// value160245001
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ConditionProblemDiagnosisCodes value160245001 =
       ConditionProblemDiagnosisCodes._(
     '160245001',
@@ -42,17 +51,6 @@ class ConditionProblemDiagnosisCodes {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ConditionProblemDiagnosisCodes] from JSON.
-  static ConditionProblemDiagnosisCodes fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ConditionProblemDiagnosisCodes.elementOnly.withElement(element);
-    }
-    return ConditionProblemDiagnosisCodes._(value!, element: element);
-  }
 
   /// String representation
   @override

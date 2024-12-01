@@ -7,6 +7,17 @@ class ActionGroupingBehavior {
   // Private constructor for internal use (like enum)
   ActionGroupingBehavior._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ActionGroupingBehavior] from JSON.
+  factory ActionGroupingBehavior.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ActionGroupingBehavior.elementOnly.withElement(element);
+    }
+    return ActionGroupingBehavior._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,22 +26,16 @@ class ActionGroupingBehavior {
 
   /// ActionGroupingBehavior values
   /// visual_group
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ActionGroupingBehavior visual_group = ActionGroupingBehavior._(
     'visual-group',
   );
 
   /// logical_group
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ActionGroupingBehavior logical_group = ActionGroupingBehavior._(
     'logical-group',
   );
 
   /// sentence_group
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ActionGroupingBehavior sentence_group = ActionGroupingBehavior._(
     'sentence-group',
   );
@@ -57,17 +62,6 @@ class ActionGroupingBehavior {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ActionGroupingBehavior] from JSON.
-  static ActionGroupingBehavior fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ActionGroupingBehavior.elementOnly.withElement(element);
-    }
-    return ActionGroupingBehavior._(value!, element: element);
-  }
 
   /// String representation
   @override

@@ -7,6 +7,17 @@ class ProductCrossReferenceType {
   // Private constructor for internal use (like enum)
   ProductCrossReferenceType._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ProductCrossReferenceType] from JSON.
+  factory ProductCrossReferenceType.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ProductCrossReferenceType.elementOnly.withElement(element);
+    }
+    return ProductCrossReferenceType._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,48 +26,36 @@ class ProductCrossReferenceType {
 
   /// ProductCrossReferenceType values
   /// InvestigationalProduct
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ProductCrossReferenceType InvestigationalProduct =
       ProductCrossReferenceType._(
     'InvestigationalProduct',
   );
 
   /// VirtualProduct
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ProductCrossReferenceType VirtualProduct =
       ProductCrossReferenceType._(
     'VirtualProduct',
   );
 
   /// ActualProduct
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ProductCrossReferenceType ActualProduct =
       ProductCrossReferenceType._(
     'ActualProduct',
   );
 
   /// BrandedProduct
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ProductCrossReferenceType BrandedProduct =
       ProductCrossReferenceType._(
     'BrandedProduct',
   );
 
   /// GenericProduct
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ProductCrossReferenceType GenericProduct =
       ProductCrossReferenceType._(
     'GenericProduct',
   );
 
   /// Parallel
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ProductCrossReferenceType Parallel = ProductCrossReferenceType._(
     'Parallel',
   );
@@ -86,17 +85,6 @@ class ProductCrossReferenceType {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ProductCrossReferenceType] from JSON.
-  static ProductCrossReferenceType fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ProductCrossReferenceType.elementOnly.withElement(element);
-    }
-    return ProductCrossReferenceType._(value!, element: element);
-  }
 
   /// String representation
   @override

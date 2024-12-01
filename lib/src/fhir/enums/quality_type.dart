@@ -7,6 +7,17 @@ class QualityType {
   // Private constructor for internal use (like enum)
   QualityType._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [QualityType] from JSON.
+  factory QualityType.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return QualityType.elementOnly.withElement(element);
+    }
+    return QualityType._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,22 +26,16 @@ class QualityType {
 
   /// QualityType values
   /// indel
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final QualityType indel = QualityType._(
     'indel',
   );
 
   /// snp
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final QualityType snp = QualityType._(
     'snp',
   );
 
   /// unknown
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final QualityType unknown = QualityType._(
     'unknown',
   );
@@ -56,17 +61,6 @@ class QualityType {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [QualityType] from JSON.
-  static QualityType fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return QualityType.elementOnly.withElement(element);
-    }
-    return QualityType._(value!, element: element);
-  }
 
   /// String representation
   @override

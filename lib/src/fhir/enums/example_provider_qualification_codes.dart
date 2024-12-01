@@ -7,6 +7,18 @@ class ExampleProviderQualificationCodes {
   // Private constructor for internal use (like enum)
   ExampleProviderQualificationCodes._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ExampleProviderQualificationCodes] from JSON.
+  factory ExampleProviderQualificationCodes.fromJson(
+      Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ExampleProviderQualificationCodes.elementOnly.withElement(element);
+    }
+    return ExampleProviderQualificationCodes._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,24 +27,18 @@ class ExampleProviderQualificationCodes {
 
   /// ExampleProviderQualificationCodes values
   /// value311405
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ExampleProviderQualificationCodes value311405 =
       ExampleProviderQualificationCodes._(
     '311405',
   );
 
   /// value604215
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ExampleProviderQualificationCodes value604215 =
       ExampleProviderQualificationCodes._(
     '604215',
   );
 
   /// value604210
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ExampleProviderQualificationCodes value604210 =
       ExampleProviderQualificationCodes._(
     '604210',
@@ -60,17 +66,6 @@ class ExampleProviderQualificationCodes {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ExampleProviderQualificationCodes] from JSON.
-  static ExampleProviderQualificationCodes fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ExampleProviderQualificationCodes.elementOnly.withElement(element);
-    }
-    return ExampleProviderQualificationCodes._(value!, element: element);
-  }
 
   /// String representation
   @override

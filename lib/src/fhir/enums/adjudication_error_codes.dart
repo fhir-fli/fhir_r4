@@ -7,6 +7,17 @@ class AdjudicationErrorCodes {
   // Private constructor for internal use (like enum)
   AdjudicationErrorCodes._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [AdjudicationErrorCodes] from JSON.
+  factory AdjudicationErrorCodes.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return AdjudicationErrorCodes.elementOnly.withElement(element);
+    }
+    return AdjudicationErrorCodes._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,15 +26,11 @@ class AdjudicationErrorCodes {
 
   /// AdjudicationErrorCodes values
   /// a001
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AdjudicationErrorCodes a001 = AdjudicationErrorCodes._(
     'a001',
   );
 
   /// a002
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AdjudicationErrorCodes a002 = AdjudicationErrorCodes._(
     'a002',
   );
@@ -49,17 +56,6 @@ class AdjudicationErrorCodes {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [AdjudicationErrorCodes] from JSON.
-  static AdjudicationErrorCodes fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return AdjudicationErrorCodes.elementOnly.withElement(element);
-    }
-    return AdjudicationErrorCodes._(value!, element: element);
-  }
 
   /// String representation
   @override

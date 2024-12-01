@@ -7,6 +7,17 @@ class EligibilityRequestPurpose {
   // Private constructor for internal use (like enum)
   EligibilityRequestPurpose._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [EligibilityRequestPurpose] from JSON.
+  factory EligibilityRequestPurpose.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return EligibilityRequestPurpose.elementOnly.withElement(element);
+    }
+    return EligibilityRequestPurpose._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,31 +26,23 @@ class EligibilityRequestPurpose {
 
   /// EligibilityRequestPurpose values
   /// auth_requirements
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final EligibilityRequestPurpose auth_requirements =
       EligibilityRequestPurpose._(
     'auth-requirements',
   );
 
   /// benefits
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final EligibilityRequestPurpose benefits = EligibilityRequestPurpose._(
     'benefits',
   );
 
   /// discovery
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final EligibilityRequestPurpose discovery =
       EligibilityRequestPurpose._(
     'discovery',
   );
 
   /// validation
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final EligibilityRequestPurpose validation =
       EligibilityRequestPurpose._(
     'validation',
@@ -68,17 +71,6 @@ class EligibilityRequestPurpose {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [EligibilityRequestPurpose] from JSON.
-  static EligibilityRequestPurpose fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return EligibilityRequestPurpose.elementOnly.withElement(element);
-    }
-    return EligibilityRequestPurpose._(value!, element: element);
-  }
 
   /// String representation
   @override

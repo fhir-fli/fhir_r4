@@ -7,6 +7,17 @@ class ExampleDiagnosisOnAdmissionCodes {
   // Private constructor for internal use (like enum)
   ExampleDiagnosisOnAdmissionCodes._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ExampleDiagnosisOnAdmissionCodes] from JSON.
+  factory ExampleDiagnosisOnAdmissionCodes.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ExampleDiagnosisOnAdmissionCodes.elementOnly.withElement(element);
+    }
+    return ExampleDiagnosisOnAdmissionCodes._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,32 +26,24 @@ class ExampleDiagnosisOnAdmissionCodes {
 
   /// ExampleDiagnosisOnAdmissionCodes values
   /// y
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ExampleDiagnosisOnAdmissionCodes y =
       ExampleDiagnosisOnAdmissionCodes._(
     'y',
   );
 
   /// n
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ExampleDiagnosisOnAdmissionCodes n =
       ExampleDiagnosisOnAdmissionCodes._(
     'n',
   );
 
   /// u
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ExampleDiagnosisOnAdmissionCodes u =
       ExampleDiagnosisOnAdmissionCodes._(
     'u',
   );
 
   /// w
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ExampleDiagnosisOnAdmissionCodes w =
       ExampleDiagnosisOnAdmissionCodes._(
     'w',
@@ -69,17 +72,6 @@ class ExampleDiagnosisOnAdmissionCodes {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ExampleDiagnosisOnAdmissionCodes] from JSON.
-  static ExampleDiagnosisOnAdmissionCodes fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ExampleDiagnosisOnAdmissionCodes.elementOnly.withElement(element);
-    }
-    return ExampleDiagnosisOnAdmissionCodes._(value!, element: element);
-  }
 
   /// String representation
   @override

@@ -7,6 +7,17 @@ class AllergyIntoleranceType {
   // Private constructor for internal use (like enum)
   AllergyIntoleranceType._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [AllergyIntoleranceType] from JSON.
+  factory AllergyIntoleranceType.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return AllergyIntoleranceType.elementOnly.withElement(element);
+    }
+    return AllergyIntoleranceType._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,15 +26,11 @@ class AllergyIntoleranceType {
 
   /// AllergyIntoleranceType values
   /// allergy
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AllergyIntoleranceType allergy = AllergyIntoleranceType._(
     'allergy',
   );
 
   /// intolerance
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AllergyIntoleranceType intolerance = AllergyIntoleranceType._(
     'intolerance',
   );
@@ -49,17 +56,6 @@ class AllergyIntoleranceType {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [AllergyIntoleranceType] from JSON.
-  static AllergyIntoleranceType fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return AllergyIntoleranceType.elementOnly.withElement(element);
-    }
-    return AllergyIntoleranceType._(value!, element: element);
-  }
 
   /// String representation
   @override

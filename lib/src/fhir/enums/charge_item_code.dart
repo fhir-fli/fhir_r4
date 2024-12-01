@@ -7,6 +7,17 @@ class ChargeItemCode {
   // Private constructor for internal use (like enum)
   ChargeItemCode._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ChargeItemCode] from JSON.
+  factory ChargeItemCode.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ChargeItemCode.elementOnly.withElement(element);
+    }
+    return ChargeItemCode._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,22 +26,16 @@ class ChargeItemCode {
 
   /// ChargeItemCode values
   /// value1100
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ChargeItemCode value1100 = ChargeItemCode._(
     '1100',
   );
 
   /// value1210
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ChargeItemCode value1210 = ChargeItemCode._(
     '1210',
   );
 
   /// value1320
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ChargeItemCode value1320 = ChargeItemCode._(
     '1320',
   );
@@ -56,17 +61,6 @@ class ChargeItemCode {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ChargeItemCode] from JSON.
-  static ChargeItemCode fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ChargeItemCode.elementOnly.withElement(element);
-    }
-    return ChargeItemCode._(value!, element: element);
-  }
 
   /// String representation
   @override

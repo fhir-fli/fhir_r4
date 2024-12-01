@@ -7,6 +7,17 @@ class LinkType {
   // Private constructor for internal use (like enum)
   LinkType._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [LinkType] from JSON.
+  factory LinkType.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return LinkType.elementOnly.withElement(element);
+    }
+    return LinkType._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,29 +26,21 @@ class LinkType {
 
   /// LinkType values
   /// replaced_by
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final LinkType replaced_by = LinkType._(
     'replaced-by',
   );
 
   /// replaces
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final LinkType replaces = LinkType._(
     'replaces',
   );
 
   /// refer
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final LinkType refer = LinkType._(
     'refer',
   );
 
   /// seealso
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final LinkType seealso = LinkType._(
     'seealso',
   );
@@ -64,17 +67,6 @@ class LinkType {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [LinkType] from JSON.
-  static LinkType fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return LinkType.elementOnly.withElement(element);
-    }
-    return LinkType._(value!, element: element);
-  }
 
   /// String representation
   @override

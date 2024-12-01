@@ -7,6 +7,17 @@ class CatalogEntryRelationType {
   // Private constructor for internal use (like enum)
   CatalogEntryRelationType._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [CatalogEntryRelationType] from JSON.
+  factory CatalogEntryRelationType.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return CatalogEntryRelationType.elementOnly.withElement(element);
+    }
+    return CatalogEntryRelationType._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,15 +26,11 @@ class CatalogEntryRelationType {
 
   /// CatalogEntryRelationType values
   /// triggers
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CatalogEntryRelationType triggers = CatalogEntryRelationType._(
     'triggers',
   );
 
   /// is_replaced_by
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CatalogEntryRelationType is_replaced_by =
       CatalogEntryRelationType._(
     'is-replaced-by',
@@ -50,17 +57,6 @@ class CatalogEntryRelationType {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [CatalogEntryRelationType] from JSON.
-  static CatalogEntryRelationType fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return CatalogEntryRelationType.elementOnly.withElement(element);
-    }
-    return CatalogEntryRelationType._(value!, element: element);
-  }
 
   /// String representation
   @override

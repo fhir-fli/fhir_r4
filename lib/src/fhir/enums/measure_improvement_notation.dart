@@ -7,6 +7,17 @@ class MeasureImprovementNotation {
   // Private constructor for internal use (like enum)
   MeasureImprovementNotation._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [MeasureImprovementNotation] from JSON.
+  factory MeasureImprovementNotation.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return MeasureImprovementNotation.elementOnly.withElement(element);
+    }
+    return MeasureImprovementNotation._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,16 +26,12 @@ class MeasureImprovementNotation {
 
   /// MeasureImprovementNotation values
   /// increase
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MeasureImprovementNotation increase =
       MeasureImprovementNotation._(
     'increase',
   );
 
   /// decrease
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MeasureImprovementNotation decrease =
       MeasureImprovementNotation._(
     'decrease',
@@ -51,17 +58,6 @@ class MeasureImprovementNotation {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [MeasureImprovementNotation] from JSON.
-  static MeasureImprovementNotation fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return MeasureImprovementNotation.elementOnly.withElement(element);
-    }
-    return MeasureImprovementNotation._(value!, element: element);
-  }
 
   /// String representation
   @override

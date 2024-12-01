@@ -7,6 +7,17 @@ class BundleType {
   // Private constructor for internal use (like enum)
   BundleType._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [BundleType] from JSON.
+  factory BundleType.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return BundleType.elementOnly.withElement(element);
+    }
+    return BundleType._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,64 +26,46 @@ class BundleType {
 
   /// BundleType values
   /// document
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final BundleType document = BundleType._(
     'document',
   );
 
   /// message
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final BundleType message = BundleType._(
     'message',
   );
 
   /// transaction
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final BundleType transaction = BundleType._(
     'transaction',
   );
 
   /// transaction_response
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final BundleType transaction_response = BundleType._(
     'transaction-response',
   );
 
   /// batch
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final BundleType batch = BundleType._(
     'batch',
   );
 
   /// batch_response
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final BundleType batch_response = BundleType._(
     'batch-response',
   );
 
   /// history
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final BundleType history = BundleType._(
     'history',
   );
 
   /// searchset
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final BundleType searchset = BundleType._(
     'searchset',
   );
 
   /// collection
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final BundleType collection = BundleType._(
     'collection',
   );
@@ -104,17 +97,6 @@ class BundleType {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [BundleType] from JSON.
-  static BundleType fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return BundleType.elementOnly.withElement(element);
-    }
-    return BundleType._(value!, element: element);
-  }
 
   /// String representation
   @override

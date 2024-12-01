@@ -7,6 +7,17 @@ class QuestionnaireItemOperator {
   // Private constructor for internal use (like enum)
   QuestionnaireItemOperator._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [QuestionnaireItemOperator] from JSON.
+  factory QuestionnaireItemOperator.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return QuestionnaireItemOperator.elementOnly.withElement(element);
+    }
+    return QuestionnaireItemOperator._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,50 +26,36 @@ class QuestionnaireItemOperator {
 
   /// QuestionnaireItemOperator values
   /// exists
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final QuestionnaireItemOperator exists = QuestionnaireItemOperator._(
     'exists',
   );
 
   /// eq
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final QuestionnaireItemOperator eq = QuestionnaireItemOperator._(
     '=',
   );
 
   /// ne
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final QuestionnaireItemOperator ne = QuestionnaireItemOperator._(
     '!=',
   );
 
   /// gt
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final QuestionnaireItemOperator gt = QuestionnaireItemOperator._(
     '>',
   );
 
   /// lt
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final QuestionnaireItemOperator lt = QuestionnaireItemOperator._(
     '<',
   );
 
   /// ge
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final QuestionnaireItemOperator ge = QuestionnaireItemOperator._(
     '>=',
   );
 
   /// le
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final QuestionnaireItemOperator le = QuestionnaireItemOperator._(
     '<=',
   );
@@ -89,17 +86,6 @@ class QuestionnaireItemOperator {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [QuestionnaireItemOperator] from JSON.
-  static QuestionnaireItemOperator fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return QuestionnaireItemOperator.elementOnly.withElement(element);
-    }
-    return QuestionnaireItemOperator._(value!, element: element);
-  }
 
   /// String representation
   @override

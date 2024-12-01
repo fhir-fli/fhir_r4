@@ -7,6 +7,17 @@ class CommunicationNotDoneReason {
   // Private constructor for internal use (like enum)
   CommunicationNotDoneReason._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [CommunicationNotDoneReason] from JSON.
+  factory CommunicationNotDoneReason.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return CommunicationNotDoneReason.elementOnly.withElement(element);
+    }
+    return CommunicationNotDoneReason._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,48 +26,36 @@ class CommunicationNotDoneReason {
 
   /// CommunicationNotDoneReason values
   /// unknown
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CommunicationNotDoneReason unknown =
       CommunicationNotDoneReason._(
     'unknown',
   );
 
   /// system_error
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CommunicationNotDoneReason system_error =
       CommunicationNotDoneReason._(
     'system-error',
   );
 
   /// invalid_phone_number
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CommunicationNotDoneReason invalid_phone_number =
       CommunicationNotDoneReason._(
     'invalid-phone-number',
   );
 
   /// recipient_unavailable
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CommunicationNotDoneReason recipient_unavailable =
       CommunicationNotDoneReason._(
     'recipient-unavailable',
   );
 
   /// family_objection
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CommunicationNotDoneReason family_objection =
       CommunicationNotDoneReason._(
     'family-objection',
   );
 
   /// patient_objection
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CommunicationNotDoneReason patient_objection =
       CommunicationNotDoneReason._(
     'patient-objection',
@@ -87,17 +86,6 @@ class CommunicationNotDoneReason {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [CommunicationNotDoneReason] from JSON.
-  static CommunicationNotDoneReason fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return CommunicationNotDoneReason.elementOnly.withElement(element);
-    }
-    return CommunicationNotDoneReason._(value!, element: element);
-  }
 
   /// String representation
   @override

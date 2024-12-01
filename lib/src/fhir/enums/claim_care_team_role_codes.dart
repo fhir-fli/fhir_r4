@@ -7,6 +7,17 @@ class ClaimCareTeamRoleCodes {
   // Private constructor for internal use (like enum)
   ClaimCareTeamRoleCodes._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ClaimCareTeamRoleCodes] from JSON.
+  factory ClaimCareTeamRoleCodes.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ClaimCareTeamRoleCodes.elementOnly.withElement(element);
+    }
+    return ClaimCareTeamRoleCodes._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,29 +26,21 @@ class ClaimCareTeamRoleCodes {
 
   /// ClaimCareTeamRoleCodes values
   /// primary
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ClaimCareTeamRoleCodes primary = ClaimCareTeamRoleCodes._(
     'primary',
   );
 
   /// assist
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ClaimCareTeamRoleCodes assist = ClaimCareTeamRoleCodes._(
     'assist',
   );
 
   /// supervisor
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ClaimCareTeamRoleCodes supervisor = ClaimCareTeamRoleCodes._(
     'supervisor',
   );
 
   /// other
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ClaimCareTeamRoleCodes other = ClaimCareTeamRoleCodes._(
     'other',
   );
@@ -65,17 +68,6 @@ class ClaimCareTeamRoleCodes {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ClaimCareTeamRoleCodes] from JSON.
-  static ClaimCareTeamRoleCodes fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ClaimCareTeamRoleCodes.elementOnly.withElement(element);
-    }
-    return ClaimCareTeamRoleCodes._(value!, element: element);
-  }
 
   /// String representation
   @override

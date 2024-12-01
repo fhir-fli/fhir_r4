@@ -7,6 +7,17 @@ class UnitTypeCodes {
   // Private constructor for internal use (like enum)
   UnitTypeCodes._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [UnitTypeCodes] from JSON.
+  factory UnitTypeCodes.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return UnitTypeCodes.elementOnly.withElement(element);
+    }
+    return UnitTypeCodes._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,15 +26,11 @@ class UnitTypeCodes {
 
   /// UnitTypeCodes values
   /// individual
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final UnitTypeCodes individual = UnitTypeCodes._(
     'individual',
   );
 
   /// family
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final UnitTypeCodes family = UnitTypeCodes._(
     'family',
   );
@@ -48,17 +55,6 @@ class UnitTypeCodes {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [UnitTypeCodes] from JSON.
-  static UnitTypeCodes fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return UnitTypeCodes.elementOnly.withElement(element);
-    }
-    return UnitTypeCodes._(value!, element: element);
-  }
 
   /// String representation
   @override

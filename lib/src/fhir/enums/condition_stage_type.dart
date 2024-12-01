@@ -7,6 +7,17 @@ class ConditionStageType {
   // Private constructor for internal use (like enum)
   ConditionStageType._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ConditionStageType] from JSON.
+  factory ConditionStageType.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ConditionStageType.elementOnly.withElement(element);
+    }
+    return ConditionStageType._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,15 +26,11 @@ class ConditionStageType {
 
   /// ConditionStageType values
   /// value261023001
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ConditionStageType value261023001 = ConditionStageType._(
     '261023001',
   );
 
   /// value260998006
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ConditionStageType value260998006 = ConditionStageType._(
     '260998006',
   );
@@ -48,17 +55,6 @@ class ConditionStageType {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ConditionStageType] from JSON.
-  static ConditionStageType fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ConditionStageType.elementOnly.withElement(element);
-    }
-    return ConditionStageType._(value!, element: element);
-  }
 
   /// String representation
   @override

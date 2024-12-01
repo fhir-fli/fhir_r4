@@ -7,6 +7,17 @@ class TestScriptProfileOriginType {
   // Private constructor for internal use (like enum)
   TestScriptProfileOriginType._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [TestScriptProfileOriginType] from JSON.
+  factory TestScriptProfileOriginType.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return TestScriptProfileOriginType.elementOnly.withElement(element);
+    }
+    return TestScriptProfileOriginType._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,16 +26,12 @@ class TestScriptProfileOriginType {
 
   /// TestScriptProfileOriginType values
   /// FHIR_Client
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final TestScriptProfileOriginType FHIR_Client =
       TestScriptProfileOriginType._(
     'FHIR-Client',
   );
 
   /// FHIR_SDC_FormFiller
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final TestScriptProfileOriginType FHIR_SDC_FormFiller =
       TestScriptProfileOriginType._(
     'FHIR-SDC-FormFiller',
@@ -51,17 +58,6 @@ class TestScriptProfileOriginType {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [TestScriptProfileOriginType] from JSON.
-  static TestScriptProfileOriginType fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return TestScriptProfileOriginType.elementOnly.withElement(element);
-    }
-    return TestScriptProfileOriginType._(value!, element: element);
-  }
 
   /// String representation
   @override

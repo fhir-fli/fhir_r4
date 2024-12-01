@@ -7,6 +7,17 @@ class FamilyHistoryAbsentReason {
   // Private constructor for internal use (like enum)
   FamilyHistoryAbsentReason._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [FamilyHistoryAbsentReason] from JSON.
+  factory FamilyHistoryAbsentReason.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return FamilyHistoryAbsentReason.elementOnly.withElement(element);
+    }
+    return FamilyHistoryAbsentReason._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,31 +26,23 @@ class FamilyHistoryAbsentReason {
 
   /// FamilyHistoryAbsentReason values
   /// subject_unknown
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final FamilyHistoryAbsentReason subject_unknown =
       FamilyHistoryAbsentReason._(
     'subject-unknown',
   );
 
   /// withheld
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final FamilyHistoryAbsentReason withheld = FamilyHistoryAbsentReason._(
     'withheld',
   );
 
   /// unable_to_obtain
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final FamilyHistoryAbsentReason unable_to_obtain =
       FamilyHistoryAbsentReason._(
     'unable-to-obtain',
   );
 
   /// deferred_
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final FamilyHistoryAbsentReason deferred_ =
       FamilyHistoryAbsentReason._(
     'deferred',
@@ -68,17 +71,6 @@ class FamilyHistoryAbsentReason {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [FamilyHistoryAbsentReason] from JSON.
-  static FamilyHistoryAbsentReason fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return FamilyHistoryAbsentReason.elementOnly.withElement(element);
-    }
-    return FamilyHistoryAbsentReason._(value!, element: element);
-  }
 
   /// String representation
   @override

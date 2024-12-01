@@ -7,6 +7,17 @@ class CommunicationTopic {
   // Private constructor for internal use (like enum)
   CommunicationTopic._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [CommunicationTopic] from JSON.
+  factory CommunicationTopic.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return CommunicationTopic.elementOnly.withElement(element);
+    }
+    return CommunicationTopic._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,44 +26,32 @@ class CommunicationTopic {
 
   /// CommunicationTopic values
   /// prescription_refill_request
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CommunicationTopic prescription_refill_request =
       CommunicationTopic._(
     'prescription-refill-request',
   );
 
   /// progress_update
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CommunicationTopic progress_update = CommunicationTopic._(
     'progress-update',
   );
 
   /// report_labs
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CommunicationTopic report_labs = CommunicationTopic._(
     'report-labs',
   );
 
   /// appointment_reminder
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CommunicationTopic appointment_reminder = CommunicationTopic._(
     'appointment-reminder',
   );
 
   /// phone_consult
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CommunicationTopic phone_consult = CommunicationTopic._(
     'phone-consult',
   );
 
   /// summary_report
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CommunicationTopic summary_report = CommunicationTopic._(
     'summary-report',
   );
@@ -81,17 +80,6 @@ class CommunicationTopic {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [CommunicationTopic] from JSON.
-  static CommunicationTopic fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return CommunicationTopic.elementOnly.withElement(element);
-    }
-    return CommunicationTopic._(value!, element: element);
-  }
 
   /// String representation
   @override

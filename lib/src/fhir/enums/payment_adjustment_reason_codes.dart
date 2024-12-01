@@ -7,6 +7,17 @@ class PaymentAdjustmentReasonCodes {
   // Private constructor for internal use (like enum)
   PaymentAdjustmentReasonCodes._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [PaymentAdjustmentReasonCodes] from JSON.
+  factory PaymentAdjustmentReasonCodes.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return PaymentAdjustmentReasonCodes.elementOnly.withElement(element);
+    }
+    return PaymentAdjustmentReasonCodes._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,16 +26,12 @@ class PaymentAdjustmentReasonCodes {
 
   /// PaymentAdjustmentReasonCodes values
   /// a001
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final PaymentAdjustmentReasonCodes a001 =
       PaymentAdjustmentReasonCodes._(
     'a001',
   );
 
   /// a002
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final PaymentAdjustmentReasonCodes a002 =
       PaymentAdjustmentReasonCodes._(
     'a002',
@@ -51,17 +58,6 @@ class PaymentAdjustmentReasonCodes {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [PaymentAdjustmentReasonCodes] from JSON.
-  static PaymentAdjustmentReasonCodes fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return PaymentAdjustmentReasonCodes.elementOnly.withElement(element);
-    }
-    return PaymentAdjustmentReasonCodes._(value!, element: element);
-  }
 
   /// String representation
   @override

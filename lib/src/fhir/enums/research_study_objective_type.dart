@@ -7,6 +7,17 @@ class ResearchStudyObjectiveType {
   // Private constructor for internal use (like enum)
   ResearchStudyObjectiveType._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ResearchStudyObjectiveType] from JSON.
+  factory ResearchStudyObjectiveType.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ResearchStudyObjectiveType.elementOnly.withElement(element);
+    }
+    return ResearchStudyObjectiveType._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,24 +26,18 @@ class ResearchStudyObjectiveType {
 
   /// ResearchStudyObjectiveType values
   /// primary
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ResearchStudyObjectiveType primary =
       ResearchStudyObjectiveType._(
     'primary',
   );
 
   /// secondary
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ResearchStudyObjectiveType secondary =
       ResearchStudyObjectiveType._(
     'secondary',
   );
 
   /// exploratory
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ResearchStudyObjectiveType exploratory =
       ResearchStudyObjectiveType._(
     'exploratory',
@@ -60,17 +65,6 @@ class ResearchStudyObjectiveType {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ResearchStudyObjectiveType] from JSON.
-  static ResearchStudyObjectiveType fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ResearchStudyObjectiveType.elementOnly.withElement(element);
-    }
-    return ResearchStudyObjectiveType._(value!, element: element);
-  }
 
   /// String representation
   @override

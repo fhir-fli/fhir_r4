@@ -7,6 +7,17 @@ class ImmunizationTargetDiseaseCodes {
   // Private constructor for internal use (like enum)
   ImmunizationTargetDiseaseCodes._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ImmunizationTargetDiseaseCodes] from JSON.
+  factory ImmunizationTargetDiseaseCodes.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ImmunizationTargetDiseaseCodes.elementOnly.withElement(element);
+    }
+    return ImmunizationTargetDiseaseCodes._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,72 +26,54 @@ class ImmunizationTargetDiseaseCodes {
 
   /// ImmunizationTargetDiseaseCodes values
   /// value1857005
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ImmunizationTargetDiseaseCodes value1857005 =
       ImmunizationTargetDiseaseCodes._(
     '1857005',
   );
 
   /// value397430003
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ImmunizationTargetDiseaseCodes value397430003 =
       ImmunizationTargetDiseaseCodes._(
     '397430003',
   );
 
   /// value14189004
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ImmunizationTargetDiseaseCodes value14189004 =
       ImmunizationTargetDiseaseCodes._(
     '14189004',
   );
 
   /// value36989005
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ImmunizationTargetDiseaseCodes value36989005 =
       ImmunizationTargetDiseaseCodes._(
     '36989005',
   );
 
   /// value36653000
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ImmunizationTargetDiseaseCodes value36653000 =
       ImmunizationTargetDiseaseCodes._(
     '36653000',
   );
 
   /// value76902006
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ImmunizationTargetDiseaseCodes value76902006 =
       ImmunizationTargetDiseaseCodes._(
     '76902006',
   );
 
   /// value709410003
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ImmunizationTargetDiseaseCodes value709410003 =
       ImmunizationTargetDiseaseCodes._(
     '709410003',
   );
 
   /// value27836007
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ImmunizationTargetDiseaseCodes value27836007 =
       ImmunizationTargetDiseaseCodes._(
     '27836007',
   );
 
   /// value398102009
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ImmunizationTargetDiseaseCodes value398102009 =
       ImmunizationTargetDiseaseCodes._(
     '398102009',
@@ -114,17 +107,6 @@ class ImmunizationTargetDiseaseCodes {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ImmunizationTargetDiseaseCodes] from JSON.
-  static ImmunizationTargetDiseaseCodes fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ImmunizationTargetDiseaseCodes.elementOnly.withElement(element);
-    }
-    return ImmunizationTargetDiseaseCodes._(value!, element: element);
-  }
 
   /// String representation
   @override

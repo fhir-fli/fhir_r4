@@ -8,6 +8,20 @@ class MedicationAdministrationPerformerFunctionCodes {
   MedicationAdministrationPerformerFunctionCodes._(this.fhirCode,
       {this.element});
 
+  /// Factory constructor to create [MedicationAdministrationPerformerFunctionCodes] from JSON.
+  factory MedicationAdministrationPerformerFunctionCodes.fromJson(
+      Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return MedicationAdministrationPerformerFunctionCodes.elementOnly
+          .withElement(element);
+    }
+    return MedicationAdministrationPerformerFunctionCodes._(value!,
+        element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -16,24 +30,18 @@ class MedicationAdministrationPerformerFunctionCodes {
 
   /// MedicationAdministrationPerformerFunctionCodes values
   /// performer
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicationAdministrationPerformerFunctionCodes performer =
       MedicationAdministrationPerformerFunctionCodes._(
     'performer',
   );
 
   /// verifier
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicationAdministrationPerformerFunctionCodes verifier =
       MedicationAdministrationPerformerFunctionCodes._(
     'verifier',
   );
 
   /// witness
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicationAdministrationPerformerFunctionCodes witness =
       MedicationAdministrationPerformerFunctionCodes._(
     'witness',
@@ -63,20 +71,6 @@ class MedicationAdministrationPerformerFunctionCodes {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [MedicationAdministrationPerformerFunctionCodes] from JSON.
-  static MedicationAdministrationPerformerFunctionCodes fromJson(
-      Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return MedicationAdministrationPerformerFunctionCodes.elementOnly
-          .withElement(element);
-    }
-    return MedicationAdministrationPerformerFunctionCodes._(value!,
-        element: element);
-  }
 
   /// String representation
   @override

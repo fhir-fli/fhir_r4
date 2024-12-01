@@ -7,6 +7,17 @@ class TestReportResult {
   // Private constructor for internal use (like enum)
   TestReportResult._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [TestReportResult] from JSON.
+  factory TestReportResult.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return TestReportResult.elementOnly.withElement(element);
+    }
+    return TestReportResult._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,22 +26,16 @@ class TestReportResult {
 
   /// TestReportResult values
   /// pass
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final TestReportResult pass = TestReportResult._(
     'pass',
   );
 
   /// fail
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final TestReportResult fail = TestReportResult._(
     'fail',
   );
 
   /// pending
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final TestReportResult pending = TestReportResult._(
     'pending',
   );
@@ -56,17 +61,6 @@ class TestReportResult {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [TestReportResult] from JSON.
-  static TestReportResult fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return TestReportResult.elementOnly.withElement(element);
-    }
-    return TestReportResult._(value!, element: element);
-  }
 
   /// String representation
   @override

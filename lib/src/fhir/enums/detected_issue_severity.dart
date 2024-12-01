@@ -7,6 +7,17 @@ class DetectedIssueSeverity {
   // Private constructor for internal use (like enum)
   DetectedIssueSeverity._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [DetectedIssueSeverity] from JSON.
+  factory DetectedIssueSeverity.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return DetectedIssueSeverity.elementOnly.withElement(element);
+    }
+    return DetectedIssueSeverity._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,22 +26,16 @@ class DetectedIssueSeverity {
 
   /// DetectedIssueSeverity values
   /// high
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final DetectedIssueSeverity high = DetectedIssueSeverity._(
     'high',
   );
 
   /// moderate
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final DetectedIssueSeverity moderate = DetectedIssueSeverity._(
     'moderate',
   );
 
   /// low
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final DetectedIssueSeverity low = DetectedIssueSeverity._(
     'low',
   );
@@ -56,17 +61,6 @@ class DetectedIssueSeverity {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [DetectedIssueSeverity] from JSON.
-  static DetectedIssueSeverity fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return DetectedIssueSeverity.elementOnly.withElement(element);
-    }
-    return DetectedIssueSeverity._(value!, element: element);
-  }
 
   /// String representation
   @override

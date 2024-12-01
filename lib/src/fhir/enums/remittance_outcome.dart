@@ -7,6 +7,17 @@ class RemittanceOutcome {
   // Private constructor for internal use (like enum)
   RemittanceOutcome._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [RemittanceOutcome] from JSON.
+  factory RemittanceOutcome.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return RemittanceOutcome.elementOnly.withElement(element);
+    }
+    return RemittanceOutcome._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,29 +26,21 @@ class RemittanceOutcome {
 
   /// RemittanceOutcome values
   /// queued
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final RemittanceOutcome queued = RemittanceOutcome._(
     'queued',
   );
 
   /// complete
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final RemittanceOutcome complete = RemittanceOutcome._(
     'complete',
   );
 
   /// error
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final RemittanceOutcome error = RemittanceOutcome._(
     'error',
   );
 
   /// partial
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final RemittanceOutcome partial = RemittanceOutcome._(
     'partial',
   );
@@ -64,17 +67,6 @@ class RemittanceOutcome {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [RemittanceOutcome] from JSON.
-  static RemittanceOutcome fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return RemittanceOutcome.elementOnly.withElement(element);
-    }
-    return RemittanceOutcome._(value!, element: element);
-  }
 
   /// String representation
   @override

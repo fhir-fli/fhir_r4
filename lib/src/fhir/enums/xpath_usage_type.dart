@@ -7,6 +7,17 @@ class XPathUsageType {
   // Private constructor for internal use (like enum)
   XPathUsageType._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [XPathUsageType] from JSON.
+  factory XPathUsageType.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return XPathUsageType.elementOnly.withElement(element);
+    }
+    return XPathUsageType._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,36 +26,26 @@ class XPathUsageType {
 
   /// XPathUsageType values
   /// normal
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final XPathUsageType normal = XPathUsageType._(
     'normal',
   );
 
   /// phonetic
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final XPathUsageType phonetic = XPathUsageType._(
     'phonetic',
   );
 
   /// nearby
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final XPathUsageType nearby = XPathUsageType._(
     'nearby',
   );
 
   /// distance
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final XPathUsageType distance = XPathUsageType._(
     'distance',
   );
 
   /// other
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final XPathUsageType other = XPathUsageType._(
     'other',
   );
@@ -72,17 +73,6 @@ class XPathUsageType {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [XPathUsageType] from JSON.
-  static XPathUsageType fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return XPathUsageType.elementOnly.withElement(element);
-    }
-    return XPathUsageType._(value!, element: element);
-  }
 
   /// String representation
   @override

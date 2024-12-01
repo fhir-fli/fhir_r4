@@ -7,6 +7,17 @@ class ProductConfidentiality {
   // Private constructor for internal use (like enum)
   ProductConfidentiality._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ProductConfidentiality] from JSON.
+  factory ProductConfidentiality.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ProductConfidentiality.elementOnly.withElement(element);
+    }
+    return ProductConfidentiality._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,16 +26,12 @@ class ProductConfidentiality {
 
   /// ProductConfidentiality values
   /// CommerciallySensitive
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ProductConfidentiality CommerciallySensitive =
       ProductConfidentiality._(
     'CommerciallySensitive',
   );
 
   /// NotCommerciallySensitive
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ProductConfidentiality NotCommerciallySensitive =
       ProductConfidentiality._(
     'NotCommerciallySensitive',
@@ -51,17 +58,6 @@ class ProductConfidentiality {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ProductConfidentiality] from JSON.
-  static ProductConfidentiality fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ProductConfidentiality.elementOnly.withElement(element);
-    }
-    return ProductConfidentiality._(value!, element: element);
-  }
 
   /// String representation
   @override

@@ -7,6 +7,17 @@ class RequestStatus {
   // Private constructor for internal use (like enum)
   RequestStatus._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [RequestStatus] from JSON.
+  factory RequestStatus.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return RequestStatus.elementOnly.withElement(element);
+    }
+    return RequestStatus._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,50 +26,36 @@ class RequestStatus {
 
   /// RequestStatus values
   /// draft
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final RequestStatus draft = RequestStatus._(
     'draft',
   );
 
   /// active
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final RequestStatus active = RequestStatus._(
     'active',
   );
 
   /// on_hold
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final RequestStatus on_hold = RequestStatus._(
     'on-hold',
   );
 
   /// revoked
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final RequestStatus revoked = RequestStatus._(
     'revoked',
   );
 
   /// completed
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final RequestStatus completed = RequestStatus._(
     'completed',
   );
 
   /// entered_in_error
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final RequestStatus entered_in_error = RequestStatus._(
     'entered-in-error',
   );
 
   /// unknown
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final RequestStatus unknown = RequestStatus._(
     'unknown',
   );
@@ -88,17 +85,6 @@ class RequestStatus {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [RequestStatus] from JSON.
-  static RequestStatus fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return RequestStatus.elementOnly.withElement(element);
-    }
-    return RequestStatus._(value!, element: element);
-  }
 
   /// String representation
   @override

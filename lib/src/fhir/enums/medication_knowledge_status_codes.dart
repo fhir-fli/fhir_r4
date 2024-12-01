@@ -7,6 +7,17 @@ class MedicationKnowledgeStatusCodes {
   // Private constructor for internal use (like enum)
   MedicationKnowledgeStatusCodes._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [MedicationKnowledgeStatusCodes] from JSON.
+  factory MedicationKnowledgeStatusCodes.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return MedicationKnowledgeStatusCodes.elementOnly.withElement(element);
+    }
+    return MedicationKnowledgeStatusCodes._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,24 +26,18 @@ class MedicationKnowledgeStatusCodes {
 
   /// MedicationKnowledgeStatusCodes values
   /// active
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicationKnowledgeStatusCodes active =
       MedicationKnowledgeStatusCodes._(
     'active',
   );
 
   /// inactive
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicationKnowledgeStatusCodes inactive =
       MedicationKnowledgeStatusCodes._(
     'inactive',
   );
 
   /// entered_in_error
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicationKnowledgeStatusCodes entered_in_error =
       MedicationKnowledgeStatusCodes._(
     'entered-in-error',
@@ -60,17 +65,6 @@ class MedicationKnowledgeStatusCodes {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [MedicationKnowledgeStatusCodes] from JSON.
-  static MedicationKnowledgeStatusCodes fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return MedicationKnowledgeStatusCodes.elementOnly.withElement(element);
-    }
-    return MedicationKnowledgeStatusCodes._(value!, element: element);
-  }
 
   /// String representation
   @override

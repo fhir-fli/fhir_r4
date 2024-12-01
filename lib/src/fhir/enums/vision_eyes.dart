@@ -7,6 +7,17 @@ class VisionEyes {
   // Private constructor for internal use (like enum)
   VisionEyes._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [VisionEyes] from JSON.
+  factory VisionEyes.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return VisionEyes.elementOnly.withElement(element);
+    }
+    return VisionEyes._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,15 +26,11 @@ class VisionEyes {
 
   /// VisionEyes values
   /// right
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final VisionEyes right = VisionEyes._(
     'right',
   );
 
   /// left
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final VisionEyes left = VisionEyes._(
     'left',
   );
@@ -48,17 +55,6 @@ class VisionEyes {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [VisionEyes] from JSON.
-  static VisionEyes fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return VisionEyes.elementOnly.withElement(element);
-    }
-    return VisionEyes._(value!, element: element);
-  }
 
   /// String representation
   @override

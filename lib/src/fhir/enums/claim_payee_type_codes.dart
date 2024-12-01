@@ -7,6 +7,17 @@ class ClaimPayeeTypeCodes {
   // Private constructor for internal use (like enum)
   ClaimPayeeTypeCodes._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ClaimPayeeTypeCodes] from JSON.
+  factory ClaimPayeeTypeCodes.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ClaimPayeeTypeCodes.elementOnly.withElement(element);
+    }
+    return ClaimPayeeTypeCodes._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,22 +26,16 @@ class ClaimPayeeTypeCodes {
 
   /// ClaimPayeeTypeCodes values
   /// subscriber
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ClaimPayeeTypeCodes subscriber = ClaimPayeeTypeCodes._(
     'subscriber',
   );
 
   /// provider
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ClaimPayeeTypeCodes provider = ClaimPayeeTypeCodes._(
     'provider',
   );
 
   /// other
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ClaimPayeeTypeCodes other = ClaimPayeeTypeCodes._(
     'other',
   );
@@ -56,17 +61,6 @@ class ClaimPayeeTypeCodes {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ClaimPayeeTypeCodes] from JSON.
-  static ClaimPayeeTypeCodes fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ClaimPayeeTypeCodes.elementOnly.withElement(element);
-    }
-    return ClaimPayeeTypeCodes._(value!, element: element);
-  }
 
   /// String representation
   @override

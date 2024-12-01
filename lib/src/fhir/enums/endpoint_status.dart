@@ -7,6 +7,17 @@ class EndpointStatus {
   // Private constructor for internal use (like enum)
   EndpointStatus._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [EndpointStatus] from JSON.
+  factory EndpointStatus.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return EndpointStatus.elementOnly.withElement(element);
+    }
+    return EndpointStatus._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,43 +26,31 @@ class EndpointStatus {
 
   /// EndpointStatus values
   /// active
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final EndpointStatus active = EndpointStatus._(
     'active',
   );
 
   /// suspended
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final EndpointStatus suspended = EndpointStatus._(
     'suspended',
   );
 
   /// error
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final EndpointStatus error = EndpointStatus._(
     'error',
   );
 
   /// off
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final EndpointStatus off = EndpointStatus._(
     'off',
   );
 
   /// entered_in_error
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final EndpointStatus entered_in_error = EndpointStatus._(
     'entered-in-error',
   );
 
   /// test
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final EndpointStatus test = EndpointStatus._(
     'test',
   );
@@ -80,17 +79,6 @@ class EndpointStatus {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [EndpointStatus] from JSON.
-  static EndpointStatus fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return EndpointStatus.elementOnly.withElement(element);
-    }
-    return EndpointStatus._(value!, element: element);
-  }
 
   /// String representation
   @override

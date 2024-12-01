@@ -7,6 +7,17 @@ class ExceptionCodes {
   // Private constructor for internal use (like enum)
   ExceptionCodes._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ExceptionCodes] from JSON.
+  factory ExceptionCodes.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ExceptionCodes.elementOnly.withElement(element);
+    }
+    return ExceptionCodes._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,15 +26,11 @@ class ExceptionCodes {
 
   /// ExceptionCodes values
   /// student
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ExceptionCodes student = ExceptionCodes._(
     'student',
   );
 
   /// disabled
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ExceptionCodes disabled = ExceptionCodes._(
     'disabled',
   );
@@ -48,17 +55,6 @@ class ExceptionCodes {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ExceptionCodes] from JSON.
-  static ExceptionCodes fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ExceptionCodes.elementOnly.withElement(element);
-    }
-    return ExceptionCodes._(value!, element: element);
-  }
 
   /// String representation
   @override

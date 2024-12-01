@@ -7,6 +7,19 @@ class AllergyIntoleranceClinicalStatusCodes {
   // Private constructor for internal use (like enum)
   AllergyIntoleranceClinicalStatusCodes._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [AllergyIntoleranceClinicalStatusCodes] from JSON.
+  factory AllergyIntoleranceClinicalStatusCodes.fromJson(
+      Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return AllergyIntoleranceClinicalStatusCodes.elementOnly
+          .withElement(element);
+    }
+    return AllergyIntoleranceClinicalStatusCodes._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,24 +28,18 @@ class AllergyIntoleranceClinicalStatusCodes {
 
   /// AllergyIntoleranceClinicalStatusCodes values
   /// active
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AllergyIntoleranceClinicalStatusCodes active =
       AllergyIntoleranceClinicalStatusCodes._(
     'active',
   );
 
   /// inactive
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AllergyIntoleranceClinicalStatusCodes inactive =
       AllergyIntoleranceClinicalStatusCodes._(
     'inactive',
   );
 
   /// resolved
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AllergyIntoleranceClinicalStatusCodes resolved =
       AllergyIntoleranceClinicalStatusCodes._(
     'resolved',
@@ -61,19 +68,6 @@ class AllergyIntoleranceClinicalStatusCodes {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [AllergyIntoleranceClinicalStatusCodes] from JSON.
-  static AllergyIntoleranceClinicalStatusCodes fromJson(
-      Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return AllergyIntoleranceClinicalStatusCodes.elementOnly
-          .withElement(element);
-    }
-    return AllergyIntoleranceClinicalStatusCodes._(value!, element: element);
-  }
 
   /// String representation
   @override

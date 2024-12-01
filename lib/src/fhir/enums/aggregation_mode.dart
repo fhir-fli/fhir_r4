@@ -7,6 +7,17 @@ class AggregationMode {
   // Private constructor for internal use (like enum)
   AggregationMode._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [AggregationMode] from JSON.
+  factory AggregationMode.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return AggregationMode.elementOnly.withElement(element);
+    }
+    return AggregationMode._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,22 +26,16 @@ class AggregationMode {
 
   /// AggregationMode values
   /// contained
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AggregationMode contained = AggregationMode._(
     'contained',
   );
 
   /// referenced
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AggregationMode referenced = AggregationMode._(
     'referenced',
   );
 
   /// bundled
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AggregationMode bundled = AggregationMode._(
     'bundled',
   );
@@ -56,17 +61,6 @@ class AggregationMode {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [AggregationMode] from JSON.
-  static AggregationMode fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return AggregationMode.elementOnly.withElement(element);
-    }
-    return AggregationMode._(value!, element: element);
-  }
 
   /// String representation
   @override

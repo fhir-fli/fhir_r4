@@ -7,6 +7,17 @@ class UsageContextType {
   // Private constructor for internal use (like enum)
   UsageContextType._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [UsageContextType] from JSON.
+  factory UsageContextType.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return UsageContextType.elementOnly.withElement(element);
+    }
+    return UsageContextType._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,64 +26,46 @@ class UsageContextType {
 
   /// UsageContextType values
   /// gender
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final UsageContextType gender = UsageContextType._(
     'gender',
   );
 
   /// age
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final UsageContextType age = UsageContextType._(
     'age',
   );
 
   /// focus
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final UsageContextType focus = UsageContextType._(
     'focus',
   );
 
   /// user
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final UsageContextType user = UsageContextType._(
     'user',
   );
 
   /// workflow
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final UsageContextType workflow = UsageContextType._(
     'workflow',
   );
 
   /// task
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final UsageContextType task = UsageContextType._(
     'task',
   );
 
   /// venue
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final UsageContextType venue = UsageContextType._(
     'venue',
   );
 
   /// species
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final UsageContextType species = UsageContextType._(
     'species',
   );
 
   /// program
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final UsageContextType program = UsageContextType._(
     'program',
   );
@@ -104,17 +97,6 @@ class UsageContextType {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [UsageContextType] from JSON.
-  static UsageContextType fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return UsageContextType.elementOnly.withElement(element);
-    }
-    return UsageContextType._(value!, element: element);
-  }
 
   /// String representation
   @override

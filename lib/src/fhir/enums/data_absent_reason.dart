@@ -7,6 +7,17 @@ class DataAbsentReason {
   // Private constructor for internal use (like enum)
   DataAbsentReason._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [DataAbsentReason] from JSON.
+  factory DataAbsentReason.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return DataAbsentReason.elementOnly.withElement(element);
+    }
+    return DataAbsentReason._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,106 +26,76 @@ class DataAbsentReason {
 
   /// DataAbsentReason values
   /// unknown
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final DataAbsentReason unknown = DataAbsentReason._(
     'unknown',
   );
 
   /// asked_unknown
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final DataAbsentReason asked_unknown = DataAbsentReason._(
     'asked-unknown',
   );
 
   /// temp_unknown
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final DataAbsentReason temp_unknown = DataAbsentReason._(
     'temp-unknown',
   );
 
   /// not_asked
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final DataAbsentReason not_asked = DataAbsentReason._(
     'not-asked',
   );
 
   /// asked_declined
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final DataAbsentReason asked_declined = DataAbsentReason._(
     'asked-declined',
   );
 
   /// masked
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final DataAbsentReason masked = DataAbsentReason._(
     'masked',
   );
 
   /// not_applicable
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final DataAbsentReason not_applicable = DataAbsentReason._(
     'not-applicable',
   );
 
   /// unsupported
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final DataAbsentReason unsupported = DataAbsentReason._(
     'unsupported',
   );
 
   /// as_text
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final DataAbsentReason as_text = DataAbsentReason._(
     'as-text',
   );
 
   /// error
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final DataAbsentReason error = DataAbsentReason._(
     'error',
   );
 
   /// not_a_number
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final DataAbsentReason not_a_number = DataAbsentReason._(
     'not-a-number',
   );
 
   /// negative_infinity
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final DataAbsentReason negative_infinity = DataAbsentReason._(
     'negative-infinity',
   );
 
   /// positive_infinity
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final DataAbsentReason positive_infinity = DataAbsentReason._(
     'positive-infinity',
   );
 
   /// not_performed
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final DataAbsentReason not_performed = DataAbsentReason._(
     'not-performed',
   );
 
   /// not_permitted
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final DataAbsentReason not_permitted = DataAbsentReason._(
     'not-permitted',
   );
@@ -152,17 +133,6 @@ class DataAbsentReason {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [DataAbsentReason] from JSON.
-  static DataAbsentReason fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return DataAbsentReason.elementOnly.withElement(element);
-    }
-    return DataAbsentReason._(value!, element: element);
-  }
 
   /// String representation
   @override

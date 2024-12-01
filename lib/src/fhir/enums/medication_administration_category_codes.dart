@@ -7,6 +7,19 @@ class MedicationAdministrationCategoryCodes {
   // Private constructor for internal use (like enum)
   MedicationAdministrationCategoryCodes._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [MedicationAdministrationCategoryCodes] from JSON.
+  factory MedicationAdministrationCategoryCodes.fromJson(
+      Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return MedicationAdministrationCategoryCodes.elementOnly
+          .withElement(element);
+    }
+    return MedicationAdministrationCategoryCodes._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,24 +28,18 @@ class MedicationAdministrationCategoryCodes {
 
   /// MedicationAdministrationCategoryCodes values
   /// inpatient
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicationAdministrationCategoryCodes inpatient =
       MedicationAdministrationCategoryCodes._(
     'inpatient',
   );
 
   /// outpatient
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicationAdministrationCategoryCodes outpatient =
       MedicationAdministrationCategoryCodes._(
     'outpatient',
   );
 
   /// community
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicationAdministrationCategoryCodes community =
       MedicationAdministrationCategoryCodes._(
     'community',
@@ -61,19 +68,6 @@ class MedicationAdministrationCategoryCodes {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [MedicationAdministrationCategoryCodes] from JSON.
-  static MedicationAdministrationCategoryCodes fromJson(
-      Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return MedicationAdministrationCategoryCodes.elementOnly
-          .withElement(element);
-    }
-    return MedicationAdministrationCategoryCodes._(value!, element: element);
-  }
 
   /// String representation
   @override

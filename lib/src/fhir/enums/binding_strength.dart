@@ -7,6 +7,17 @@ class BindingStrength {
   // Private constructor for internal use (like enum)
   BindingStrength._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [BindingStrength] from JSON.
+  factory BindingStrength.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return BindingStrength.elementOnly.withElement(element);
+    }
+    return BindingStrength._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,29 +26,21 @@ class BindingStrength {
 
   /// BindingStrength values
   /// required_
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final BindingStrength required_ = BindingStrength._(
     'required',
   );
 
   /// extensible
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final BindingStrength extensible = BindingStrength._(
     'extensible',
   );
 
   /// preferred
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final BindingStrength preferred = BindingStrength._(
     'preferred',
   );
 
   /// example
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final BindingStrength example = BindingStrength._(
     'example',
   );
@@ -64,17 +67,6 @@ class BindingStrength {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [BindingStrength] from JSON.
-  static BindingStrength fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return BindingStrength.elementOnly.withElement(element);
-    }
-    return BindingStrength._(value!, element: element);
-  }
 
   /// String representation
   @override

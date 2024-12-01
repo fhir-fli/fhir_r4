@@ -7,6 +7,17 @@ class SpecialArrangements {
   // Private constructor for internal use (like enum)
   SpecialArrangements._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [SpecialArrangements] from JSON.
+  factory SpecialArrangements.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return SpecialArrangements.elementOnly.withElement(element);
+    }
+    return SpecialArrangements._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,36 +26,26 @@ class SpecialArrangements {
 
   /// SpecialArrangements values
   /// wheel
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SpecialArrangements wheel = SpecialArrangements._(
     'wheel',
   );
 
   /// add_bed
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SpecialArrangements add_bed = SpecialArrangements._(
     'add-bed',
   );
 
   /// int_
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SpecialArrangements int_ = SpecialArrangements._(
     'int',
   );
 
   /// att
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SpecialArrangements att = SpecialArrangements._(
     'att',
   );
 
   /// dog
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SpecialArrangements dog = SpecialArrangements._(
     'dog',
   );
@@ -72,17 +73,6 @@ class SpecialArrangements {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [SpecialArrangements] from JSON.
-  static SpecialArrangements fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return SpecialArrangements.elementOnly.withElement(element);
-    }
-    return SpecialArrangements._(value!, element: element);
-  }
 
   /// String representation
   @override

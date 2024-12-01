@@ -7,6 +7,17 @@ class TaskIntent {
   // Private constructor for internal use (like enum)
   TaskIntent._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [TaskIntent] from JSON.
+  factory TaskIntent.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return TaskIntent.elementOnly.withElement(element);
+    }
+    return TaskIntent._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,71 +26,51 @@ class TaskIntent {
 
   /// TaskIntent values
   /// unknown
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final TaskIntent unknown = TaskIntent._(
     'unknown',
   );
 
   /// proposal
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final TaskIntent proposal = TaskIntent._(
     'proposal',
   );
 
   /// plan
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final TaskIntent plan = TaskIntent._(
     'plan',
   );
 
   /// directive
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final TaskIntent directive = TaskIntent._(
     'directive',
   );
 
   /// order
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final TaskIntent order = TaskIntent._(
     'order',
   );
 
   /// original_order
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final TaskIntent original_order = TaskIntent._(
     'original-order',
   );
 
   /// reflex_order
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final TaskIntent reflex_order = TaskIntent._(
     'reflex-order',
   );
 
   /// filler_order
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final TaskIntent filler_order = TaskIntent._(
     'filler-order',
   );
 
   /// instance_order
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final TaskIntent instance_order = TaskIntent._(
     'instance-order',
   );
 
   /// option
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final TaskIntent option = TaskIntent._(
     'option',
   );
@@ -112,17 +103,6 @@ class TaskIntent {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [TaskIntent] from JSON.
-  static TaskIntent fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return TaskIntent.elementOnly.withElement(element);
-    }
-    return TaskIntent._(value!, element: element);
-  }
 
   /// String representation
   @override

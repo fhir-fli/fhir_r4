@@ -7,6 +7,17 @@ class ClinicalUseDefinitionCategory {
   // Private constructor for internal use (like enum)
   ClinicalUseDefinitionCategory._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ClinicalUseDefinitionCategory] from JSON.
+  factory ClinicalUseDefinitionCategory.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ClinicalUseDefinitionCategory.elementOnly.withElement(element);
+    }
+    return ClinicalUseDefinitionCategory._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,24 +26,18 @@ class ClinicalUseDefinitionCategory {
 
   /// ClinicalUseDefinitionCategory values
   /// Pregnancy
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ClinicalUseDefinitionCategory Pregnancy =
       ClinicalUseDefinitionCategory._(
     'Pregnancy',
   );
 
   /// Overdose
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ClinicalUseDefinitionCategory Overdose =
       ClinicalUseDefinitionCategory._(
     'Overdose',
   );
 
   /// DriveAndMachines
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ClinicalUseDefinitionCategory DriveAndMachines =
       ClinicalUseDefinitionCategory._(
     'DriveAndMachines',
@@ -60,17 +65,6 @@ class ClinicalUseDefinitionCategory {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ClinicalUseDefinitionCategory] from JSON.
-  static ClinicalUseDefinitionCategory fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ClinicalUseDefinitionCategory.elementOnly.withElement(element);
-    }
-    return ClinicalUseDefinitionCategory._(value!, element: element);
-  }
 
   /// String representation
   @override

@@ -7,6 +7,17 @@ class DeviceUseStatementStatus {
   // Private constructor for internal use (like enum)
   DeviceUseStatementStatus._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [DeviceUseStatementStatus] from JSON.
+  factory DeviceUseStatementStatus.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return DeviceUseStatementStatus.elementOnly.withElement(element);
+    }
+    return DeviceUseStatementStatus._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,44 +26,32 @@ class DeviceUseStatementStatus {
 
   /// DeviceUseStatementStatus values
   /// active
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final DeviceUseStatementStatus active = DeviceUseStatementStatus._(
     'active',
   );
 
   /// completed
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final DeviceUseStatementStatus completed = DeviceUseStatementStatus._(
     'completed',
   );
 
   /// entered_in_error
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final DeviceUseStatementStatus entered_in_error =
       DeviceUseStatementStatus._(
     'entered-in-error',
   );
 
   /// intended
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final DeviceUseStatementStatus intended = DeviceUseStatementStatus._(
     'intended',
   );
 
   /// stopped
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final DeviceUseStatementStatus stopped = DeviceUseStatementStatus._(
     'stopped',
   );
 
   /// on_hold
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final DeviceUseStatementStatus on_hold = DeviceUseStatementStatus._(
     'on-hold',
   );
@@ -82,17 +81,6 @@ class DeviceUseStatementStatus {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [DeviceUseStatementStatus] from JSON.
-  static DeviceUseStatementStatus fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return DeviceUseStatementStatus.elementOnly.withElement(element);
-    }
-    return DeviceUseStatementStatus._(value!, element: element);
-  }
 
   /// String representation
   @override

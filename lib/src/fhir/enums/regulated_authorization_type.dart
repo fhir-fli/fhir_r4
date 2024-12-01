@@ -7,6 +7,17 @@ class RegulatedAuthorizationType {
   // Private constructor for internal use (like enum)
   RegulatedAuthorizationType._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [RegulatedAuthorizationType] from JSON.
+  factory RegulatedAuthorizationType.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return RegulatedAuthorizationType.elementOnly.withElement(element);
+    }
+    return RegulatedAuthorizationType._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,23 +26,17 @@ class RegulatedAuthorizationType {
 
   /// RegulatedAuthorizationType values
   /// MarketingAuth
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final RegulatedAuthorizationType MarketingAuth =
       RegulatedAuthorizationType._(
     'MarketingAuth',
   );
 
   /// Orphan
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final RegulatedAuthorizationType Orphan = RegulatedAuthorizationType._(
     'Orphan',
   );
 
   /// Pediatric
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final RegulatedAuthorizationType Pediatric =
       RegulatedAuthorizationType._(
     'Pediatric',
@@ -59,17 +64,6 @@ class RegulatedAuthorizationType {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [RegulatedAuthorizationType] from JSON.
-  static RegulatedAuthorizationType fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return RegulatedAuthorizationType.elementOnly.withElement(element);
-    }
-    return RegulatedAuthorizationType._(value!, element: element);
-  }
 
   /// String representation
   @override

@@ -7,6 +7,17 @@ class EvidenceCertaintyRating {
   // Private constructor for internal use (like enum)
   EvidenceCertaintyRating._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [EvidenceCertaintyRating] from JSON.
+  factory EvidenceCertaintyRating.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return EvidenceCertaintyRating.elementOnly.withElement(element);
+    }
+    return EvidenceCertaintyRating._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,116 +26,84 @@ class EvidenceCertaintyRating {
 
   /// EvidenceCertaintyRating values
   /// high
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final EvidenceCertaintyRating high = EvidenceCertaintyRating._(
     'high',
   );
 
   /// moderate
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final EvidenceCertaintyRating moderate = EvidenceCertaintyRating._(
     'moderate',
   );
 
   /// low
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final EvidenceCertaintyRating low = EvidenceCertaintyRating._(
     'low',
   );
 
   /// very_low
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final EvidenceCertaintyRating very_low = EvidenceCertaintyRating._(
     'very-low',
   );
 
   /// no_concern
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final EvidenceCertaintyRating no_concern = EvidenceCertaintyRating._(
     'no-concern',
   );
 
   /// serious_concern
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final EvidenceCertaintyRating serious_concern =
       EvidenceCertaintyRating._(
     'serious-concern',
   );
 
   /// very_serious_concern
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final EvidenceCertaintyRating very_serious_concern =
       EvidenceCertaintyRating._(
     'very-serious-concern',
   );
 
   /// extremely_serious_concern
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final EvidenceCertaintyRating extremely_serious_concern =
       EvidenceCertaintyRating._(
     'extremely-serious-concern',
   );
 
   /// present
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final EvidenceCertaintyRating present = EvidenceCertaintyRating._(
     'present',
   );
 
   /// absent
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final EvidenceCertaintyRating absent = EvidenceCertaintyRating._(
     'absent',
   );
 
   /// no_change
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final EvidenceCertaintyRating no_change = EvidenceCertaintyRating._(
     'no-change',
   );
 
   /// downcode1
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final EvidenceCertaintyRating downcode1 = EvidenceCertaintyRating._(
     'downcode1',
   );
 
   /// downcode2
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final EvidenceCertaintyRating downcode2 = EvidenceCertaintyRating._(
     'downcode2',
   );
 
   /// downcode3
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final EvidenceCertaintyRating downcode3 = EvidenceCertaintyRating._(
     'downcode3',
   );
 
   /// upcode1
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final EvidenceCertaintyRating upcode1 = EvidenceCertaintyRating._(
     'upcode1',
   );
 
   /// upcode2
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final EvidenceCertaintyRating upcode2 = EvidenceCertaintyRating._(
     'upcode2',
   );
@@ -164,17 +143,6 @@ class EvidenceCertaintyRating {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [EvidenceCertaintyRating] from JSON.
-  static EvidenceCertaintyRating fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return EvidenceCertaintyRating.elementOnly.withElement(element);
-    }
-    return EvidenceCertaintyRating._(value!, element: element);
-  }
 
   /// String representation
   @override

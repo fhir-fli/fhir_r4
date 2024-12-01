@@ -7,6 +7,17 @@ class ProductContactType {
   // Private constructor for internal use (like enum)
   ProductContactType._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ProductContactType] from JSON.
+  factory ProductContactType.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ProductContactType.elementOnly.withElement(element);
+    }
+    return ProductContactType._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,36 +26,26 @@ class ProductContactType {
 
   /// ProductContactType values
   /// ProposedMAH
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ProductContactType ProposedMAH = ProductContactType._(
     'ProposedMAH',
   );
 
   /// ProcedureContactDuring
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ProductContactType ProcedureContactDuring = ProductContactType._(
     'ProcedureContactDuring',
   );
 
   /// ProcedureContactAfter
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ProductContactType ProcedureContactAfter = ProductContactType._(
     'ProcedureContactAfter',
   );
 
   /// QPPV
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ProductContactType QPPV = ProductContactType._(
     'QPPV',
   );
 
   /// PVEnquiries
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ProductContactType PVEnquiries = ProductContactType._(
     'PVEnquiries',
   );
@@ -72,17 +73,6 @@ class ProductContactType {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ProductContactType] from JSON.
-  static ProductContactType fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ProductContactType.elementOnly.withElement(element);
-    }
-    return ProductContactType._(value!, element: element);
-  }
 
   /// String representation
   @override

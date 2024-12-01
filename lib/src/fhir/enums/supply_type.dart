@@ -7,6 +7,17 @@ class SupplyType {
   // Private constructor for internal use (like enum)
   SupplyType._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [SupplyType] from JSON.
+  factory SupplyType.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return SupplyType.elementOnly.withElement(element);
+    }
+    return SupplyType._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,15 +26,11 @@ class SupplyType {
 
   /// SupplyType values
   /// central
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SupplyType central = SupplyType._(
     'central',
   );
 
   /// nonstock
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SupplyType nonstock = SupplyType._(
     'nonstock',
   );
@@ -48,17 +55,6 @@ class SupplyType {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [SupplyType] from JSON.
-  static SupplyType fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return SupplyType.elementOnly.withElement(element);
-    }
-    return SupplyType._(value!, element: element);
-  }
 
   /// String representation
   @override

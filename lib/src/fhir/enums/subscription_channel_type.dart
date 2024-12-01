@@ -7,6 +7,17 @@ class SubscriptionChannelType {
   // Private constructor for internal use (like enum)
   SubscriptionChannelType._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [SubscriptionChannelType] from JSON.
+  factory SubscriptionChannelType.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return SubscriptionChannelType.elementOnly.withElement(element);
+    }
+    return SubscriptionChannelType._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,36 +26,26 @@ class SubscriptionChannelType {
 
   /// SubscriptionChannelType values
   /// rest_hook
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SubscriptionChannelType rest_hook = SubscriptionChannelType._(
     'rest-hook',
   );
 
   /// websocket
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SubscriptionChannelType websocket = SubscriptionChannelType._(
     'websocket',
   );
 
   /// email
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SubscriptionChannelType email = SubscriptionChannelType._(
     'email',
   );
 
   /// sms
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SubscriptionChannelType sms = SubscriptionChannelType._(
     'sms',
   );
 
   /// message
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SubscriptionChannelType message = SubscriptionChannelType._(
     'message',
   );
@@ -73,17 +74,6 @@ class SubscriptionChannelType {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [SubscriptionChannelType] from JSON.
-  static SubscriptionChannelType fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return SubscriptionChannelType.elementOnly.withElement(element);
-    }
-    return SubscriptionChannelType._(value!, element: element);
-  }
 
   /// String representation
   @override

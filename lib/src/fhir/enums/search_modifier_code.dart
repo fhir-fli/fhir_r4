@@ -7,6 +7,17 @@ class SearchModifierCode {
   // Private constructor for internal use (like enum)
   SearchModifierCode._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [SearchModifierCode] from JSON.
+  factory SearchModifierCode.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return SearchModifierCode.elementOnly.withElement(element);
+    }
+    return SearchModifierCode._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,85 +26,61 @@ class SearchModifierCode {
 
   /// SearchModifierCode values
   /// missing
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SearchModifierCode missing = SearchModifierCode._(
     'missing',
   );
 
   /// exact
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SearchModifierCode exact = SearchModifierCode._(
     'exact',
   );
 
   /// contains
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SearchModifierCode contains = SearchModifierCode._(
     'contains',
   );
 
   /// not
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SearchModifierCode not = SearchModifierCode._(
     'not',
   );
 
   /// text
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SearchModifierCode text = SearchModifierCode._(
     'text',
   );
 
   /// in_
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SearchModifierCode in_ = SearchModifierCode._(
     'in',
   );
 
   /// not_in
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SearchModifierCode not_in = SearchModifierCode._(
     'not-in',
   );
 
   /// below
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SearchModifierCode below = SearchModifierCode._(
     'below',
   );
 
   /// above
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SearchModifierCode above = SearchModifierCode._(
     'above',
   );
 
   /// type
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SearchModifierCode type = SearchModifierCode._(
     'type',
   );
 
   /// identifier
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SearchModifierCode identifier = SearchModifierCode._(
     'identifier',
   );
 
   /// ofType
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SearchModifierCode ofType = SearchModifierCode._(
     'ofType',
   );
@@ -128,17 +115,6 @@ class SearchModifierCode {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [SearchModifierCode] from JSON.
-  static SearchModifierCode fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return SearchModifierCode.elementOnly.withElement(element);
-    }
-    return SearchModifierCode._(value!, element: element);
-  }
 
   /// String representation
   @override

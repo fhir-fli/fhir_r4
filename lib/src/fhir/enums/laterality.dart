@@ -7,6 +7,17 @@ class Laterality {
   // Private constructor for internal use (like enum)
   Laterality._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [Laterality] from JSON.
+  factory Laterality.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return Laterality.elementOnly.withElement(element);
+    }
+    return Laterality._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,22 +26,16 @@ class Laterality {
 
   /// Laterality values
   /// value419161000
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final Laterality value419161000 = Laterality._(
     '419161000',
   );
 
   /// value419465000
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final Laterality value419465000 = Laterality._(
     '419465000',
   );
 
   /// value51440002
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final Laterality value51440002 = Laterality._(
     '51440002',
   );
@@ -56,17 +61,6 @@ class Laterality {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [Laterality] from JSON.
-  static Laterality fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return Laterality.elementOnly.withElement(element);
-    }
-    return Laterality._(value!, element: element);
-  }
 
   /// String representation
   @override

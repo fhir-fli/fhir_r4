@@ -7,6 +7,17 @@ class TestReportStatus {
   // Private constructor for internal use (like enum)
   TestReportStatus._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [TestReportStatus] from JSON.
+  factory TestReportStatus.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return TestReportStatus.elementOnly.withElement(element);
+    }
+    return TestReportStatus._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,36 +26,26 @@ class TestReportStatus {
 
   /// TestReportStatus values
   /// completed
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final TestReportStatus completed = TestReportStatus._(
     'completed',
   );
 
   /// in_progress
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final TestReportStatus in_progress = TestReportStatus._(
     'in-progress',
   );
 
   /// waiting
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final TestReportStatus waiting = TestReportStatus._(
     'waiting',
   );
 
   /// stopped
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final TestReportStatus stopped = TestReportStatus._(
     'stopped',
   );
 
   /// entered_in_error
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final TestReportStatus entered_in_error = TestReportStatus._(
     'entered-in-error',
   );
@@ -72,17 +73,6 @@ class TestReportStatus {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [TestReportStatus] from JSON.
-  static TestReportStatus fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return TestReportStatus.elementOnly.withElement(element);
-    }
-    return TestReportStatus._(value!, element: element);
-  }
 
   /// String representation
   @override

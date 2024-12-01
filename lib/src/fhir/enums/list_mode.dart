@@ -7,6 +7,17 @@ class ListMode {
   // Private constructor for internal use (like enum)
   ListMode._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ListMode] from JSON.
+  factory ListMode.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ListMode.elementOnly.withElement(element);
+    }
+    return ListMode._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,22 +26,16 @@ class ListMode {
 
   /// ListMode values
   /// working
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ListMode working = ListMode._(
     'working',
   );
 
   /// snapshot
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ListMode snapshot = ListMode._(
     'snapshot',
   );
 
   /// changes
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ListMode changes = ListMode._(
     'changes',
   );
@@ -56,17 +61,6 @@ class ListMode {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ListMode] from JSON.
-  static ListMode fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ListMode.elementOnly.withElement(element);
-    }
-    return ListMode._(value!, element: element);
-  }
 
   /// String representation
   @override

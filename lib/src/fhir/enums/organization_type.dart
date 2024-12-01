@@ -7,6 +7,17 @@ class OrganizationType {
   // Private constructor for internal use (like enum)
   OrganizationType._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [OrganizationType] from JSON.
+  factory OrganizationType.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return OrganizationType.elementOnly.withElement(element);
+    }
+    return OrganizationType._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,85 +26,61 @@ class OrganizationType {
 
   /// OrganizationType values
   /// prov
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final OrganizationType prov = OrganizationType._(
     'prov',
   );
 
   /// dept
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final OrganizationType dept = OrganizationType._(
     'dept',
   );
 
   /// team
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final OrganizationType team = OrganizationType._(
     'team',
   );
 
   /// govt
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final OrganizationType govt = OrganizationType._(
     'govt',
   );
 
   /// ins
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final OrganizationType ins = OrganizationType._(
     'ins',
   );
 
   /// pay
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final OrganizationType pay = OrganizationType._(
     'pay',
   );
 
   /// edu
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final OrganizationType edu = OrganizationType._(
     'edu',
   );
 
   /// reli
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final OrganizationType reli = OrganizationType._(
     'reli',
   );
 
   /// crs
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final OrganizationType crs = OrganizationType._(
     'crs',
   );
 
   /// cg
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final OrganizationType cg = OrganizationType._(
     'cg',
   );
 
   /// bus
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final OrganizationType bus = OrganizationType._(
     'bus',
   );
 
   /// other
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final OrganizationType other = OrganizationType._(
     'other',
   );
@@ -128,17 +115,6 @@ class OrganizationType {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [OrganizationType] from JSON.
-  static OrganizationType fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return OrganizationType.elementOnly.withElement(element);
-    }
-    return OrganizationType._(value!, element: element);
-  }
 
   /// String representation
   @override

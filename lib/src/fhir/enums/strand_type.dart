@@ -7,6 +7,17 @@ class StrandType {
   // Private constructor for internal use (like enum)
   StrandType._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [StrandType] from JSON.
+  factory StrandType.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return StrandType.elementOnly.withElement(element);
+    }
+    return StrandType._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,15 +26,11 @@ class StrandType {
 
   /// StrandType values
   /// watson
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final StrandType watson = StrandType._(
     'watson',
   );
 
   /// crick
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final StrandType crick = StrandType._(
     'crick',
   );
@@ -48,17 +55,6 @@ class StrandType {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [StrandType] from JSON.
-  static StrandType fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return StrandType.elementOnly.withElement(element);
-    }
-    return StrandType._(value!, element: element);
-  }
 
   /// String representation
   @override

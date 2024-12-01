@@ -7,6 +7,17 @@ class OrganizationAffiliationRole {
   // Private constructor for internal use (like enum)
   OrganizationAffiliationRole._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [OrganizationAffiliationRole] from JSON.
+  factory OrganizationAffiliationRole.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return OrganizationAffiliationRole.elementOnly.withElement(element);
+    }
+    return OrganizationAffiliationRole._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,64 +26,48 @@ class OrganizationAffiliationRole {
 
   /// OrganizationAffiliationRole values
   /// provider
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final OrganizationAffiliationRole provider =
       OrganizationAffiliationRole._(
     'provider',
   );
 
   /// agency
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final OrganizationAffiliationRole agency =
       OrganizationAffiliationRole._(
     'agency',
   );
 
   /// research
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final OrganizationAffiliationRole research =
       OrganizationAffiliationRole._(
     'research',
   );
 
   /// payer
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final OrganizationAffiliationRole payer =
       OrganizationAffiliationRole._(
     'payer',
   );
 
   /// diagnostics
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final OrganizationAffiliationRole diagnostics =
       OrganizationAffiliationRole._(
     'diagnostics',
   );
 
   /// supplier
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final OrganizationAffiliationRole supplier =
       OrganizationAffiliationRole._(
     'supplier',
   );
 
   /// HIE_HIO
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final OrganizationAffiliationRole HIE_HIO =
       OrganizationAffiliationRole._(
     'HIE/HIO',
   );
 
   /// member
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final OrganizationAffiliationRole member =
       OrganizationAffiliationRole._(
     'member',
@@ -105,17 +100,6 @@ class OrganizationAffiliationRole {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [OrganizationAffiliationRole] from JSON.
-  static OrganizationAffiliationRole fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return OrganizationAffiliationRole.elementOnly.withElement(element);
-    }
-    return OrganizationAffiliationRole._(value!, element: element);
-  }
 
   /// String representation
   @override

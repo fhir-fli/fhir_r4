@@ -7,6 +7,17 @@ class ConditionalReadStatus {
   // Private constructor for internal use (like enum)
   ConditionalReadStatus._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ConditionalReadStatus] from JSON.
+  factory ConditionalReadStatus.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ConditionalReadStatus.elementOnly.withElement(element);
+    }
+    return ConditionalReadStatus._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,29 +26,21 @@ class ConditionalReadStatus {
 
   /// ConditionalReadStatus values
   /// not_supported
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ConditionalReadStatus not_supported = ConditionalReadStatus._(
     'not-supported',
   );
 
   /// modified_since
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ConditionalReadStatus modified_since = ConditionalReadStatus._(
     'modified-since',
   );
 
   /// not_match
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ConditionalReadStatus not_match = ConditionalReadStatus._(
     'not-match',
   );
 
   /// full_support
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ConditionalReadStatus full_support = ConditionalReadStatus._(
     'full-support',
   );
@@ -64,17 +67,6 @@ class ConditionalReadStatus {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ConditionalReadStatus] from JSON.
-  static ConditionalReadStatus fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ConditionalReadStatus.elementOnly.withElement(element);
-    }
-    return ConditionalReadStatus._(value!, element: element);
-  }
 
   /// String representation
   @override

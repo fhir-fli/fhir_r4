@@ -7,6 +7,17 @@ class DiagnosticReportStatus {
   // Private constructor for internal use (like enum)
   DiagnosticReportStatus._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [DiagnosticReportStatus] from JSON.
+  factory DiagnosticReportStatus.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return DiagnosticReportStatus.elementOnly.withElement(element);
+    }
+    return DiagnosticReportStatus._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,72 +26,52 @@ class DiagnosticReportStatus {
 
   /// DiagnosticReportStatus values
   /// registered
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final DiagnosticReportStatus registered = DiagnosticReportStatus._(
     'registered',
   );
 
   /// partial
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final DiagnosticReportStatus partial = DiagnosticReportStatus._(
     'partial',
   );
 
   /// preliminary
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final DiagnosticReportStatus preliminary = DiagnosticReportStatus._(
     'preliminary',
   );
 
   /// final_
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final DiagnosticReportStatus final_ = DiagnosticReportStatus._(
     'final',
   );
 
   /// amended
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final DiagnosticReportStatus amended = DiagnosticReportStatus._(
     'amended',
   );
 
   /// corrected
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final DiagnosticReportStatus corrected = DiagnosticReportStatus._(
     'corrected',
   );
 
   /// appended
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final DiagnosticReportStatus appended = DiagnosticReportStatus._(
     'appended',
   );
 
   /// cancelled
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final DiagnosticReportStatus cancelled = DiagnosticReportStatus._(
     'cancelled',
   );
 
   /// entered_in_error
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final DiagnosticReportStatus entered_in_error =
       DiagnosticReportStatus._(
     'entered-in-error',
   );
 
   /// unknown
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final DiagnosticReportStatus unknown = DiagnosticReportStatus._(
     'unknown',
   );
@@ -114,17 +105,6 @@ class DiagnosticReportStatus {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [DiagnosticReportStatus] from JSON.
-  static DiagnosticReportStatus fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return DiagnosticReportStatus.elementOnly.withElement(element);
-    }
-    return DiagnosticReportStatus._(value!, element: element);
-  }
 
   /// String representation
   @override

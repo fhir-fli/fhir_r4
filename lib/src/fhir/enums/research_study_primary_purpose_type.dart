@@ -7,6 +7,17 @@ class ResearchStudyPrimaryPurposeType {
   // Private constructor for internal use (like enum)
   ResearchStudyPrimaryPurposeType._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ResearchStudyPrimaryPurposeType] from JSON.
+  factory ResearchStudyPrimaryPurposeType.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ResearchStudyPrimaryPurposeType.elementOnly.withElement(element);
+    }
+    return ResearchStudyPrimaryPurposeType._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,64 +26,48 @@ class ResearchStudyPrimaryPurposeType {
 
   /// ResearchStudyPrimaryPurposeType values
   /// treatment
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ResearchStudyPrimaryPurposeType treatment =
       ResearchStudyPrimaryPurposeType._(
     'treatment',
   );
 
   /// prevention
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ResearchStudyPrimaryPurposeType prevention =
       ResearchStudyPrimaryPurposeType._(
     'prevention',
   );
 
   /// diagnostic
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ResearchStudyPrimaryPurposeType diagnostic =
       ResearchStudyPrimaryPurposeType._(
     'diagnostic',
   );
 
   /// supportive_care
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ResearchStudyPrimaryPurposeType supportive_care =
       ResearchStudyPrimaryPurposeType._(
     'supportive-care',
   );
 
   /// screening
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ResearchStudyPrimaryPurposeType screening =
       ResearchStudyPrimaryPurposeType._(
     'screening',
   );
 
   /// health_services_research
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ResearchStudyPrimaryPurposeType health_services_research =
       ResearchStudyPrimaryPurposeType._(
     'health-services-research',
   );
 
   /// basic_science
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ResearchStudyPrimaryPurposeType basic_science =
       ResearchStudyPrimaryPurposeType._(
     'basic-science',
   );
 
   /// device_feasibility
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ResearchStudyPrimaryPurposeType device_feasibility =
       ResearchStudyPrimaryPurposeType._(
     'device-feasibility',
@@ -105,17 +100,6 @@ class ResearchStudyPrimaryPurposeType {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ResearchStudyPrimaryPurposeType] from JSON.
-  static ResearchStudyPrimaryPurposeType fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ResearchStudyPrimaryPurposeType.elementOnly.withElement(element);
-    }
-    return ResearchStudyPrimaryPurposeType._(value!, element: element);
-  }
 
   /// String representation
   @override

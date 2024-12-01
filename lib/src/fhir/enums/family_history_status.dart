@@ -7,6 +7,17 @@ class FamilyHistoryStatus {
   // Private constructor for internal use (like enum)
   FamilyHistoryStatus._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [FamilyHistoryStatus] from JSON.
+  factory FamilyHistoryStatus.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return FamilyHistoryStatus.elementOnly.withElement(element);
+    }
+    return FamilyHistoryStatus._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,29 +26,21 @@ class FamilyHistoryStatus {
 
   /// FamilyHistoryStatus values
   /// partial
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final FamilyHistoryStatus partial = FamilyHistoryStatus._(
     'partial',
   );
 
   /// completed
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final FamilyHistoryStatus completed = FamilyHistoryStatus._(
     'completed',
   );
 
   /// entered_in_error
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final FamilyHistoryStatus entered_in_error = FamilyHistoryStatus._(
     'entered-in-error',
   );
 
   /// health_unknown
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final FamilyHistoryStatus health_unknown = FamilyHistoryStatus._(
     'health-unknown',
   );
@@ -64,17 +67,6 @@ class FamilyHistoryStatus {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [FamilyHistoryStatus] from JSON.
-  static FamilyHistoryStatus fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return FamilyHistoryStatus.elementOnly.withElement(element);
-    }
-    return FamilyHistoryStatus._(value!, element: element);
-  }
 
   /// String representation
   @override

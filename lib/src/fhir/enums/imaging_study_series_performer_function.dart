@@ -7,6 +7,19 @@ class ImagingStudySeriesPerformerFunction {
   // Private constructor for internal use (like enum)
   ImagingStudySeriesPerformerFunction._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ImagingStudySeriesPerformerFunction] from JSON.
+  factory ImagingStudySeriesPerformerFunction.fromJson(
+      Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ImagingStudySeriesPerformerFunction.elementOnly
+          .withElement(element);
+    }
+    return ImagingStudySeriesPerformerFunction._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,40 +28,30 @@ class ImagingStudySeriesPerformerFunction {
 
   /// ImagingStudySeriesPerformerFunction values
   /// CON
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ImagingStudySeriesPerformerFunction CON =
       ImagingStudySeriesPerformerFunction._(
     'CON',
   );
 
   /// VRF
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ImagingStudySeriesPerformerFunction VRF =
       ImagingStudySeriesPerformerFunction._(
     'VRF',
   );
 
   /// PRF
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ImagingStudySeriesPerformerFunction PRF =
       ImagingStudySeriesPerformerFunction._(
     'PRF',
   );
 
   /// SPRF
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ImagingStudySeriesPerformerFunction SPRF =
       ImagingStudySeriesPerformerFunction._(
     'SPRF',
   );
 
   /// REF
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ImagingStudySeriesPerformerFunction REF =
       ImagingStudySeriesPerformerFunction._(
     'REF',
@@ -78,19 +81,6 @@ class ImagingStudySeriesPerformerFunction {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ImagingStudySeriesPerformerFunction] from JSON.
-  static ImagingStudySeriesPerformerFunction fromJson(
-      Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ImagingStudySeriesPerformerFunction.elementOnly
-          .withElement(element);
-    }
-    return ImagingStudySeriesPerformerFunction._(value!, element: element);
-  }
 
   /// String representation
   @override

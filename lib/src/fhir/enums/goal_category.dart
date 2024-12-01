@@ -7,6 +7,17 @@ class GoalCategory {
   // Private constructor for internal use (like enum)
   GoalCategory._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [GoalCategory] from JSON.
+  factory GoalCategory.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return GoalCategory.elementOnly.withElement(element);
+    }
+    return GoalCategory._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,36 +26,26 @@ class GoalCategory {
 
   /// GoalCategory values
   /// dietary
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final GoalCategory dietary = GoalCategory._(
     'dietary',
   );
 
   /// safety
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final GoalCategory safety = GoalCategory._(
     'safety',
   );
 
   /// behavioral
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final GoalCategory behavioral = GoalCategory._(
     'behavioral',
   );
 
   /// nursing
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final GoalCategory nursing = GoalCategory._(
     'nursing',
   );
 
   /// physiotherapy
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final GoalCategory physiotherapy = GoalCategory._(
     'physiotherapy',
   );
@@ -72,17 +73,6 @@ class GoalCategory {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [GoalCategory] from JSON.
-  static GoalCategory fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return GoalCategory.elementOnly.withElement(element);
-    }
-    return GoalCategory._(value!, element: element);
-  }
 
   /// String representation
   @override

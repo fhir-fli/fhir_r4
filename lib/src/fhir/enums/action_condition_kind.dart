@@ -7,6 +7,17 @@ class ActionConditionKind {
   // Private constructor for internal use (like enum)
   ActionConditionKind._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ActionConditionKind] from JSON.
+  factory ActionConditionKind.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ActionConditionKind.elementOnly.withElement(element);
+    }
+    return ActionConditionKind._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,22 +26,16 @@ class ActionConditionKind {
 
   /// ActionConditionKind values
   /// applicability
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ActionConditionKind applicability = ActionConditionKind._(
     'applicability',
   );
 
   /// start
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ActionConditionKind start = ActionConditionKind._(
     'start',
   );
 
   /// stop
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ActionConditionKind stop = ActionConditionKind._(
     'stop',
   );
@@ -56,17 +61,6 @@ class ActionConditionKind {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ActionConditionKind] from JSON.
-  static ActionConditionKind fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ActionConditionKind.elementOnly.withElement(element);
-    }
-    return ActionConditionKind._(value!, element: element);
-  }
 
   /// String representation
   @override

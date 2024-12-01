@@ -7,6 +7,17 @@ class SubstanceRelationshipType {
   // Private constructor for internal use (like enum)
   SubstanceRelationshipType._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [SubstanceRelationshipType] from JSON.
+  factory SubstanceRelationshipType.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return SubstanceRelationshipType.elementOnly.withElement(element);
+    }
+    return SubstanceRelationshipType._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,39 +26,29 @@ class SubstanceRelationshipType {
 
   /// SubstanceRelationshipType values
   /// Salt
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SubstanceRelationshipType Salt = SubstanceRelationshipType._(
     'Salt',
   );
 
   /// ActiveMoiety
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SubstanceRelationshipType ActiveMoiety =
       SubstanceRelationshipType._(
     'ActiveMoiety',
   );
 
   /// StartingMaterial
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SubstanceRelationshipType StartingMaterial =
       SubstanceRelationshipType._(
     'StartingMaterial',
   );
 
   /// Polymorph
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SubstanceRelationshipType Polymorph =
       SubstanceRelationshipType._(
     'Polymorph',
   );
 
   /// Impurity
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SubstanceRelationshipType Impurity = SubstanceRelationshipType._(
     'Impurity',
   );
@@ -76,17 +77,6 @@ class SubstanceRelationshipType {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [SubstanceRelationshipType] from JSON.
-  static SubstanceRelationshipType fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return SubstanceRelationshipType.elementOnly.withElement(element);
-    }
-    return SubstanceRelationshipType._(value!, element: element);
-  }
 
   /// String representation
   @override

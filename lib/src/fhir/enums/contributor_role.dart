@@ -7,6 +7,17 @@ class ContributorRole {
   // Private constructor for internal use (like enum)
   ContributorRole._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ContributorRole] from JSON.
+  factory ContributorRole.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ContributorRole.elementOnly.withElement(element);
+    }
+    return ContributorRole._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,50 +26,36 @@ class ContributorRole {
 
   /// ContributorRole values
   /// publisher
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ContributorRole publisher = ContributorRole._(
     'publisher',
   );
 
   /// author
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ContributorRole author = ContributorRole._(
     'author',
   );
 
   /// reviewer
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ContributorRole reviewer = ContributorRole._(
     'reviewer',
   );
 
   /// endorser
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ContributorRole endorser = ContributorRole._(
     'endorser',
   );
 
   /// editor
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ContributorRole editor = ContributorRole._(
     'editor',
   );
 
   /// informant
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ContributorRole informant = ContributorRole._(
     'informant',
   );
 
   /// funder
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ContributorRole funder = ContributorRole._(
     'funder',
   );
@@ -88,17 +85,6 @@ class ContributorRole {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ContributorRole] from JSON.
-  static ContributorRole fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ContributorRole.elementOnly.withElement(element);
-    }
-    return ContributorRole._(value!, element: element);
-  }
 
   /// String representation
   @override

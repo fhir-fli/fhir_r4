@@ -7,6 +7,17 @@ class CodeSystemContentMode {
   // Private constructor for internal use (like enum)
   CodeSystemContentMode._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [CodeSystemContentMode] from JSON.
+  factory CodeSystemContentMode.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return CodeSystemContentMode.elementOnly.withElement(element);
+    }
+    return CodeSystemContentMode._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,36 +26,26 @@ class CodeSystemContentMode {
 
   /// CodeSystemContentMode values
   /// not_present
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CodeSystemContentMode not_present = CodeSystemContentMode._(
     'not-present',
   );
 
   /// example
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CodeSystemContentMode example = CodeSystemContentMode._(
     'example',
   );
 
   /// fragment
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CodeSystemContentMode fragment = CodeSystemContentMode._(
     'fragment',
   );
 
   /// complete
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CodeSystemContentMode complete = CodeSystemContentMode._(
     'complete',
   );
 
   /// supplement
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CodeSystemContentMode supplement = CodeSystemContentMode._(
     'supplement',
   );
@@ -72,17 +73,6 @@ class CodeSystemContentMode {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [CodeSystemContentMode] from JSON.
-  static CodeSystemContentMode fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return CodeSystemContentMode.elementOnly.withElement(element);
-    }
-    return CodeSystemContentMode._(value!, element: element);
-  }
 
   /// String representation
   @override

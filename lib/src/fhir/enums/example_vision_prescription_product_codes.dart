@@ -7,6 +7,19 @@ class ExampleVisionPrescriptionProductCodes {
   // Private constructor for internal use (like enum)
   ExampleVisionPrescriptionProductCodes._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ExampleVisionPrescriptionProductCodes] from JSON.
+  factory ExampleVisionPrescriptionProductCodes.fromJson(
+      Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ExampleVisionPrescriptionProductCodes.elementOnly
+          .withElement(element);
+    }
+    return ExampleVisionPrescriptionProductCodes._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,16 +28,12 @@ class ExampleVisionPrescriptionProductCodes {
 
   /// ExampleVisionPrescriptionProductCodes values
   /// lens
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ExampleVisionPrescriptionProductCodes lens =
       ExampleVisionPrescriptionProductCodes._(
     'lens',
   );
 
   /// contact
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ExampleVisionPrescriptionProductCodes contact =
       ExampleVisionPrescriptionProductCodes._(
     'contact',
@@ -52,19 +61,6 @@ class ExampleVisionPrescriptionProductCodes {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ExampleVisionPrescriptionProductCodes] from JSON.
-  static ExampleVisionPrescriptionProductCodes fromJson(
-      Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ExampleVisionPrescriptionProductCodes.elementOnly
-          .withElement(element);
-    }
-    return ExampleVisionPrescriptionProductCodes._(value!, element: element);
-  }
 
   /// String representation
   @override

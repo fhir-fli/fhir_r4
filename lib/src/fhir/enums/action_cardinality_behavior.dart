@@ -7,6 +7,17 @@ class ActionCardinalityBehavior {
   // Private constructor for internal use (like enum)
   ActionCardinalityBehavior._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ActionCardinalityBehavior] from JSON.
+  factory ActionCardinalityBehavior.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ActionCardinalityBehavior.elementOnly.withElement(element);
+    }
+    return ActionCardinalityBehavior._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,15 +26,11 @@ class ActionCardinalityBehavior {
 
   /// ActionCardinalityBehavior values
   /// single
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ActionCardinalityBehavior single = ActionCardinalityBehavior._(
     'single',
   );
 
   /// multiple
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ActionCardinalityBehavior multiple = ActionCardinalityBehavior._(
     'multiple',
   );
@@ -49,17 +56,6 @@ class ActionCardinalityBehavior {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ActionCardinalityBehavior] from JSON.
-  static ActionCardinalityBehavior fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ActionCardinalityBehavior.elementOnly.withElement(element);
-    }
-    return ActionCardinalityBehavior._(value!, element: element);
-  }
 
   /// String representation
   @override

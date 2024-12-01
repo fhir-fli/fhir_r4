@@ -7,6 +7,17 @@ class ConditionClinicalStatusCodes {
   // Private constructor for internal use (like enum)
   ConditionClinicalStatusCodes._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ConditionClinicalStatusCodes] from JSON.
+  factory ConditionClinicalStatusCodes.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ConditionClinicalStatusCodes.elementOnly.withElement(element);
+    }
+    return ConditionClinicalStatusCodes._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,48 +26,36 @@ class ConditionClinicalStatusCodes {
 
   /// ConditionClinicalStatusCodes values
   /// active
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ConditionClinicalStatusCodes active =
       ConditionClinicalStatusCodes._(
     'active',
   );
 
   /// recurrence
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ConditionClinicalStatusCodes recurrence =
       ConditionClinicalStatusCodes._(
     'recurrence',
   );
 
   /// relapse
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ConditionClinicalStatusCodes relapse =
       ConditionClinicalStatusCodes._(
     'relapse',
   );
 
   /// inactive
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ConditionClinicalStatusCodes inactive =
       ConditionClinicalStatusCodes._(
     'inactive',
   );
 
   /// remission
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ConditionClinicalStatusCodes remission =
       ConditionClinicalStatusCodes._(
     'remission',
   );
 
   /// resolved
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ConditionClinicalStatusCodes resolved =
       ConditionClinicalStatusCodes._(
     'resolved',
@@ -87,17 +86,6 @@ class ConditionClinicalStatusCodes {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ConditionClinicalStatusCodes] from JSON.
-  static ConditionClinicalStatusCodes fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ConditionClinicalStatusCodes.elementOnly.withElement(element);
-    }
-    return ConditionClinicalStatusCodes._(value!, element: element);
-  }
 
   /// String representation
   @override

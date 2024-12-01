@@ -7,6 +7,17 @@ class FlagCategory {
   // Private constructor for internal use (like enum)
   FlagCategory._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [FlagCategory] from JSON.
+  factory FlagCategory.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return FlagCategory.elementOnly.withElement(element);
+    }
+    return FlagCategory._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,71 +26,51 @@ class FlagCategory {
 
   /// FlagCategory values
   /// diet
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final FlagCategory diet = FlagCategory._(
     'diet',
   );
 
   /// drug
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final FlagCategory drug = FlagCategory._(
     'drug',
   );
 
   /// lab
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final FlagCategory lab = FlagCategory._(
     'lab',
   );
 
   /// admin
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final FlagCategory admin = FlagCategory._(
     'admin',
   );
 
   /// contact
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final FlagCategory contact = FlagCategory._(
     'contact',
   );
 
   /// clinical
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final FlagCategory clinical = FlagCategory._(
     'clinical',
   );
 
   /// behavioral
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final FlagCategory behavioral = FlagCategory._(
     'behavioral',
   );
 
   /// research
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final FlagCategory research = FlagCategory._(
     'research',
   );
 
   /// advance_directive
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final FlagCategory advance_directive = FlagCategory._(
     'advance-directive',
   );
 
   /// safety
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final FlagCategory safety = FlagCategory._(
     'safety',
   );
@@ -112,17 +103,6 @@ class FlagCategory {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [FlagCategory] from JSON.
-  static FlagCategory fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return FlagCategory.elementOnly.withElement(element);
-    }
-    return FlagCategory._(value!, element: element);
-  }
 
   /// String representation
   @override

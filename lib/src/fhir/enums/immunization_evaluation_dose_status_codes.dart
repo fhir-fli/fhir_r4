@@ -7,6 +7,19 @@ class ImmunizationEvaluationDoseStatusCodes {
   // Private constructor for internal use (like enum)
   ImmunizationEvaluationDoseStatusCodes._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ImmunizationEvaluationDoseStatusCodes] from JSON.
+  factory ImmunizationEvaluationDoseStatusCodes.fromJson(
+      Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ImmunizationEvaluationDoseStatusCodes.elementOnly
+          .withElement(element);
+    }
+    return ImmunizationEvaluationDoseStatusCodes._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,16 +28,12 @@ class ImmunizationEvaluationDoseStatusCodes {
 
   /// ImmunizationEvaluationDoseStatusCodes values
   /// valid
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ImmunizationEvaluationDoseStatusCodes valid =
       ImmunizationEvaluationDoseStatusCodes._(
     'valid',
   );
 
   /// notvalid
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ImmunizationEvaluationDoseStatusCodes notvalid =
       ImmunizationEvaluationDoseStatusCodes._(
     'notvalid',
@@ -52,19 +61,6 @@ class ImmunizationEvaluationDoseStatusCodes {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ImmunizationEvaluationDoseStatusCodes] from JSON.
-  static ImmunizationEvaluationDoseStatusCodes fromJson(
-      Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ImmunizationEvaluationDoseStatusCodes.elementOnly
-          .withElement(element);
-    }
-    return ImmunizationEvaluationDoseStatusCodes._(value!, element: element);
-  }
 
   /// String representation
   @override

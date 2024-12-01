@@ -7,6 +7,17 @@ class ContributorType {
   // Private constructor for internal use (like enum)
   ContributorType._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ContributorType] from JSON.
+  factory ContributorType.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ContributorType.elementOnly.withElement(element);
+    }
+    return ContributorType._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,29 +26,21 @@ class ContributorType {
 
   /// ContributorType values
   /// author
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ContributorType author = ContributorType._(
     'author',
   );
 
   /// editor
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ContributorType editor = ContributorType._(
     'editor',
   );
 
   /// reviewer
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ContributorType reviewer = ContributorType._(
     'reviewer',
   );
 
   /// endorser
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ContributorType endorser = ContributorType._(
     'endorser',
   );
@@ -64,17 +67,6 @@ class ContributorType {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ContributorType] from JSON.
-  static ContributorType fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ContributorType.elementOnly.withElement(element);
-    }
-    return ContributorType._(value!, element: element);
-  }
 
   /// String representation
   @override

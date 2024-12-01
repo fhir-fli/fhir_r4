@@ -7,6 +7,17 @@ class DeviceMetricCategory {
   // Private constructor for internal use (like enum)
   DeviceMetricCategory._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [DeviceMetricCategory] from JSON.
+  factory DeviceMetricCategory.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return DeviceMetricCategory.elementOnly.withElement(element);
+    }
+    return DeviceMetricCategory._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,29 +26,21 @@ class DeviceMetricCategory {
 
   /// DeviceMetricCategory values
   /// measurement
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final DeviceMetricCategory measurement = DeviceMetricCategory._(
     'measurement',
   );
 
   /// setting
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final DeviceMetricCategory setting = DeviceMetricCategory._(
     'setting',
   );
 
   /// calculation
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final DeviceMetricCategory calculation = DeviceMetricCategory._(
     'calculation',
   );
 
   /// unspecified
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final DeviceMetricCategory unspecified = DeviceMetricCategory._(
     'unspecified',
   );
@@ -64,17 +67,6 @@ class DeviceMetricCategory {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [DeviceMetricCategory] from JSON.
-  static DeviceMetricCategory fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return DeviceMetricCategory.elementOnly.withElement(element);
-    }
-    return DeviceMetricCategory._(value!, element: element);
-  }
 
   /// String representation
   @override

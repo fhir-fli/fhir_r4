@@ -7,6 +7,17 @@ class StudyType {
   // Private constructor for internal use (like enum)
   StudyType._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [StudyType] from JSON.
+  factory StudyType.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return StudyType.elementOnly.withElement(element);
+    }
+    return StudyType._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,50 +26,36 @@ class StudyType {
 
   /// StudyType values
   /// RCT
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final StudyType RCT = StudyType._(
     'RCT',
   );
 
   /// CCT
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final StudyType CCT = StudyType._(
     'CCT',
   );
 
   /// cohort
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final StudyType cohort = StudyType._(
     'cohort',
   );
 
   /// case_control
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final StudyType case_control = StudyType._(
     'case-control',
   );
 
   /// series
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final StudyType series = StudyType._(
     'series',
   );
 
   /// case_report
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final StudyType case_report = StudyType._(
     'case-report',
   );
 
   /// mixed
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final StudyType mixed = StudyType._(
     'mixed',
   );
@@ -88,17 +85,6 @@ class StudyType {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [StudyType] from JSON.
-  static StudyType fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return StudyType.elementOnly.withElement(element);
-    }
-    return StudyType._(value!, element: element);
-  }
 
   /// String representation
   @override

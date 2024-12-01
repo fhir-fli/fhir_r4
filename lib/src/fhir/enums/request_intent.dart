@@ -7,6 +7,17 @@ class RequestIntent {
   // Private constructor for internal use (like enum)
   RequestIntent._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [RequestIntent] from JSON.
+  factory RequestIntent.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return RequestIntent.elementOnly.withElement(element);
+    }
+    return RequestIntent._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,64 +26,46 @@ class RequestIntent {
 
   /// RequestIntent values
   /// proposal
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final RequestIntent proposal = RequestIntent._(
     'proposal',
   );
 
   /// plan
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final RequestIntent plan = RequestIntent._(
     'plan',
   );
 
   /// directive
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final RequestIntent directive = RequestIntent._(
     'directive',
   );
 
   /// order
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final RequestIntent order = RequestIntent._(
     'order',
   );
 
   /// original_order
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final RequestIntent original_order = RequestIntent._(
     'original-order',
   );
 
   /// reflex_order
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final RequestIntent reflex_order = RequestIntent._(
     'reflex-order',
   );
 
   /// filler_order
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final RequestIntent filler_order = RequestIntent._(
     'filler-order',
   );
 
   /// instance_order
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final RequestIntent instance_order = RequestIntent._(
     'instance-order',
   );
 
   /// option
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final RequestIntent option = RequestIntent._(
     'option',
   );
@@ -104,17 +97,6 @@ class RequestIntent {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [RequestIntent] from JSON.
-  static RequestIntent fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return RequestIntent.elementOnly.withElement(element);
-    }
-    return RequestIntent._(value!, element: element);
-  }
 
   /// String representation
   @override

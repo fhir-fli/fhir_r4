@@ -7,6 +7,17 @@ class CompartmentType {
   // Private constructor for internal use (like enum)
   CompartmentType._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [CompartmentType] from JSON.
+  factory CompartmentType.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return CompartmentType.elementOnly.withElement(element);
+    }
+    return CompartmentType._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,36 +26,26 @@ class CompartmentType {
 
   /// CompartmentType values
   /// Patient
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CompartmentType Patient = CompartmentType._(
     'Patient',
   );
 
   /// Encounter
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CompartmentType Encounter = CompartmentType._(
     'Encounter',
   );
 
   /// RelatedPerson
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CompartmentType RelatedPerson = CompartmentType._(
     'RelatedPerson',
   );
 
   /// Practitioner
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CompartmentType Practitioner = CompartmentType._(
     'Practitioner',
   );
 
   /// Device
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CompartmentType Device = CompartmentType._(
     'Device',
   );
@@ -72,17 +73,6 @@ class CompartmentType {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [CompartmentType] from JSON.
-  static CompartmentType fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return CompartmentType.elementOnly.withElement(element);
-    }
-    return CompartmentType._(value!, element: element);
-  }
 
   /// String representation
   @override

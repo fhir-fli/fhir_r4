@@ -7,6 +7,17 @@ class Use {
   // Private constructor for internal use (like enum)
   Use._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [Use] from JSON.
+  factory Use.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return Use.elementOnly.withElement(element);
+    }
+    return Use._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,22 +26,16 @@ class Use {
 
   /// Use values
   /// claim
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final Use claim = Use._(
     'claim',
   );
 
   /// preauthorization
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final Use preauthorization = Use._(
     'preauthorization',
   );
 
   /// predetermination
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final Use predetermination = Use._(
     'predetermination',
   );
@@ -56,17 +61,6 @@ class Use {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [Use] from JSON.
-  static Use fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return Use.elementOnly.withElement(element);
-    }
-    return Use._(value!, element: element);
-  }
 
   /// String representation
   @override

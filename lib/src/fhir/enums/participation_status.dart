@@ -7,6 +7,17 @@ class ParticipationStatus {
   // Private constructor for internal use (like enum)
   ParticipationStatus._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ParticipationStatus] from JSON.
+  factory ParticipationStatus.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ParticipationStatus.elementOnly.withElement(element);
+    }
+    return ParticipationStatus._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,29 +26,21 @@ class ParticipationStatus {
 
   /// ParticipationStatus values
   /// accepted
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ParticipationStatus accepted = ParticipationStatus._(
     'accepted',
   );
 
   /// declined
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ParticipationStatus declined = ParticipationStatus._(
     'declined',
   );
 
   /// tentative
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ParticipationStatus tentative = ParticipationStatus._(
     'tentative',
   );
 
   /// needs_action
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ParticipationStatus needs_action = ParticipationStatus._(
     'needs-action',
   );
@@ -64,17 +67,6 @@ class ParticipationStatus {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ParticipationStatus] from JSON.
-  static ParticipationStatus fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ParticipationStatus.elementOnly.withElement(element);
-    }
-    return ParticipationStatus._(value!, element: element);
-  }
 
   /// String representation
   @override

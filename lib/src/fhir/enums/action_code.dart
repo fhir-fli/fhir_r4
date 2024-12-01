@@ -7,6 +7,17 @@ class ActionCode {
   // Private constructor for internal use (like enum)
   ActionCode._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ActionCode] from JSON.
+  factory ActionCode.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ActionCode.elementOnly.withElement(element);
+    }
+    return ActionCode._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,64 +26,46 @@ class ActionCode {
 
   /// ActionCode values
   /// send_message
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ActionCode send_message = ActionCode._(
     'send-message',
   );
 
   /// collect_information
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ActionCode collect_information = ActionCode._(
     'collect-information',
   );
 
   /// prescribe_medication
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ActionCode prescribe_medication = ActionCode._(
     'prescribe-medication',
   );
 
   /// recommend_immunization
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ActionCode recommend_immunization = ActionCode._(
     'recommend-immunization',
   );
 
   /// order_service
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ActionCode order_service = ActionCode._(
     'order-service',
   );
 
   /// propose_diagnosis
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ActionCode propose_diagnosis = ActionCode._(
     'propose-diagnosis',
   );
 
   /// record_detected_issue
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ActionCode record_detected_issue = ActionCode._(
     'record-detected-issue',
   );
 
   /// record_inference
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ActionCode record_inference = ActionCode._(
     'record-inference',
   );
 
   /// report_flag
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ActionCode report_flag = ActionCode._(
     'report-flag',
   );
@@ -104,17 +97,6 @@ class ActionCode {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ActionCode] from JSON.
-  static ActionCode fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ActionCode.elementOnly.withElement(element);
-    }
-    return ActionCode._(value!, element: element);
-  }
 
   /// String representation
   @override

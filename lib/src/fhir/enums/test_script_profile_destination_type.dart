@@ -7,6 +7,17 @@ class TestScriptProfileDestinationType {
   // Private constructor for internal use (like enum)
   TestScriptProfileDestinationType._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [TestScriptProfileDestinationType] from JSON.
+  factory TestScriptProfileDestinationType.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return TestScriptProfileDestinationType.elementOnly.withElement(element);
+    }
+    return TestScriptProfileDestinationType._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,32 +26,24 @@ class TestScriptProfileDestinationType {
 
   /// TestScriptProfileDestinationType values
   /// FHIR_Server
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final TestScriptProfileDestinationType FHIR_Server =
       TestScriptProfileDestinationType._(
     'FHIR-Server',
   );
 
   /// FHIR_SDC_FormManager
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final TestScriptProfileDestinationType FHIR_SDC_FormManager =
       TestScriptProfileDestinationType._(
     'FHIR-SDC-FormManager',
   );
 
   /// FHIR_SDC_FormProcessor
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final TestScriptProfileDestinationType FHIR_SDC_FormProcessor =
       TestScriptProfileDestinationType._(
     'FHIR-SDC-FormProcessor',
   );
 
   /// FHIR_SDC_FormReceiver
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final TestScriptProfileDestinationType FHIR_SDC_FormReceiver =
       TestScriptProfileDestinationType._(
     'FHIR-SDC-FormReceiver',
@@ -69,17 +72,6 @@ class TestScriptProfileDestinationType {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [TestScriptProfileDestinationType] from JSON.
-  static TestScriptProfileDestinationType fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return TestScriptProfileDestinationType.elementOnly.withElement(element);
-    }
-    return TestScriptProfileDestinationType._(value!, element: element);
-  }
 
   /// String representation
   @override

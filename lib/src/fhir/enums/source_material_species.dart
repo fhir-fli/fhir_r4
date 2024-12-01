@@ -7,6 +7,17 @@ class SourceMaterialSpecies {
   // Private constructor for internal use (like enum)
   SourceMaterialSpecies._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [SourceMaterialSpecies] from JSON.
+  factory SourceMaterialSpecies.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return SourceMaterialSpecies.elementOnly.withElement(element);
+    }
+    return SourceMaterialSpecies._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,15 +26,11 @@ class SourceMaterialSpecies {
 
   /// SourceMaterialSpecies values
   /// GinkgoBiloba
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SourceMaterialSpecies GinkgoBiloba = SourceMaterialSpecies._(
     'GinkgoBiloba',
   );
 
   /// OleaEuropaea
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SourceMaterialSpecies OleaEuropaea = SourceMaterialSpecies._(
     'OleaEuropaea',
   );
@@ -48,17 +55,6 @@ class SourceMaterialSpecies {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [SourceMaterialSpecies] from JSON.
-  static SourceMaterialSpecies fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return SourceMaterialSpecies.elementOnly.withElement(element);
-    }
-    return SourceMaterialSpecies._(value!, element: element);
-  }
 
   /// String representation
   @override

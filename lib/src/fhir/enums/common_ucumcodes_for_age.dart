@@ -7,6 +7,17 @@ class CommonUCUMCodesForAge {
   // Private constructor for internal use (like enum)
   CommonUCUMCodesForAge._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [CommonUCUMCodesForAge] from JSON.
+  factory CommonUCUMCodesForAge.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return CommonUCUMCodesForAge.elementOnly.withElement(element);
+    }
+    return CommonUCUMCodesForAge._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,43 +26,31 @@ class CommonUCUMCodesForAge {
 
   /// CommonUCUMCodesForAge values
   /// min
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CommonUCUMCodesForAge min = CommonUCUMCodesForAge._(
     'min',
   );
 
   /// h
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CommonUCUMCodesForAge h = CommonUCUMCodesForAge._(
     'h',
   );
 
   /// d
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CommonUCUMCodesForAge d = CommonUCUMCodesForAge._(
     'd',
   );
 
   /// wk
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CommonUCUMCodesForAge wk = CommonUCUMCodesForAge._(
     'wk',
   );
 
   /// mo
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CommonUCUMCodesForAge mo = CommonUCUMCodesForAge._(
     'mo',
   );
 
   /// a
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CommonUCUMCodesForAge a = CommonUCUMCodesForAge._(
     'a',
   );
@@ -80,17 +79,6 @@ class CommonUCUMCodesForAge {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [CommonUCUMCodesForAge] from JSON.
-  static CommonUCUMCodesForAge fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return CommonUCUMCodesForAge.elementOnly.withElement(element);
-    }
-    return CommonUCUMCodesForAge._(value!, element: element);
-  }
 
   /// String representation
   @override

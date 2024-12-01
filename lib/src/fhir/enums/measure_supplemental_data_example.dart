@@ -7,6 +7,17 @@ class MeasureSupplementalDataExample {
   // Private constructor for internal use (like enum)
   MeasureSupplementalDataExample._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [MeasureSupplementalDataExample] from JSON.
+  factory MeasureSupplementalDataExample.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return MeasureSupplementalDataExample.elementOnly.withElement(element);
+    }
+    return MeasureSupplementalDataExample._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,32 +26,24 @@ class MeasureSupplementalDataExample {
 
   /// MeasureSupplementalDataExample values
   /// age
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MeasureSupplementalDataExample age =
       MeasureSupplementalDataExample._(
     'age',
   );
 
   /// gender
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MeasureSupplementalDataExample gender =
       MeasureSupplementalDataExample._(
     'gender',
   );
 
   /// ethnicity
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MeasureSupplementalDataExample ethnicity =
       MeasureSupplementalDataExample._(
     'ethnicity',
   );
 
   /// payer
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MeasureSupplementalDataExample payer =
       MeasureSupplementalDataExample._(
     'payer',
@@ -69,17 +72,6 @@ class MeasureSupplementalDataExample {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [MeasureSupplementalDataExample] from JSON.
-  static MeasureSupplementalDataExample fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return MeasureSupplementalDataExample.elementOnly.withElement(element);
-    }
-    return MeasureSupplementalDataExample._(value!, element: element);
-  }
 
   /// String representation
   @override

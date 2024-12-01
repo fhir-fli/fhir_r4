@@ -7,6 +7,19 @@ class MedicationRequestCourseOfTherapyCodes {
   // Private constructor for internal use (like enum)
   MedicationRequestCourseOfTherapyCodes._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [MedicationRequestCourseOfTherapyCodes] from JSON.
+  factory MedicationRequestCourseOfTherapyCodes.fromJson(
+      Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return MedicationRequestCourseOfTherapyCodes.elementOnly
+          .withElement(element);
+    }
+    return MedicationRequestCourseOfTherapyCodes._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,24 +28,18 @@ class MedicationRequestCourseOfTherapyCodes {
 
   /// MedicationRequestCourseOfTherapyCodes values
   /// continuous
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicationRequestCourseOfTherapyCodes continuous =
       MedicationRequestCourseOfTherapyCodes._(
     'continuous',
   );
 
   /// acute
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicationRequestCourseOfTherapyCodes acute =
       MedicationRequestCourseOfTherapyCodes._(
     'acute',
   );
 
   /// seasonal
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicationRequestCourseOfTherapyCodes seasonal =
       MedicationRequestCourseOfTherapyCodes._(
     'seasonal',
@@ -61,19 +68,6 @@ class MedicationRequestCourseOfTherapyCodes {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [MedicationRequestCourseOfTherapyCodes] from JSON.
-  static MedicationRequestCourseOfTherapyCodes fromJson(
-      Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return MedicationRequestCourseOfTherapyCodes.elementOnly
-          .withElement(element);
-    }
-    return MedicationRequestCourseOfTherapyCodes._(value!, element: element);
-  }
 
   /// String representation
   @override

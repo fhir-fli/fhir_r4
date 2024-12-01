@@ -7,6 +7,17 @@ class PublicationStatus {
   // Private constructor for internal use (like enum)
   PublicationStatus._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [PublicationStatus] from JSON.
+  factory PublicationStatus.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return PublicationStatus.elementOnly.withElement(element);
+    }
+    return PublicationStatus._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,29 +26,21 @@ class PublicationStatus {
 
   /// PublicationStatus values
   /// draft
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final PublicationStatus draft = PublicationStatus._(
     'draft',
   );
 
   /// active
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final PublicationStatus active = PublicationStatus._(
     'active',
   );
 
   /// retired
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final PublicationStatus retired = PublicationStatus._(
     'retired',
   );
 
   /// unknown
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final PublicationStatus unknown = PublicationStatus._(
     'unknown',
   );
@@ -64,17 +67,6 @@ class PublicationStatus {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [PublicationStatus] from JSON.
-  static PublicationStatus fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return PublicationStatus.elementOnly.withElement(element);
-    }
-    return PublicationStatus._(value!, element: element);
-  }
 
   /// String representation
   @override

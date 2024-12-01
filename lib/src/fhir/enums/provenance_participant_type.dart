@@ -7,6 +7,17 @@ class ProvenanceParticipantType {
   // Private constructor for internal use (like enum)
   ProvenanceParticipantType._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ProvenanceParticipantType] from JSON.
+  factory ProvenanceParticipantType.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ProvenanceParticipantType.elementOnly.withElement(element);
+    }
+    return ProvenanceParticipantType._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,75 +26,55 @@ class ProvenanceParticipantType {
 
   /// ProvenanceParticipantType values
   /// enterer
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ProvenanceParticipantType enterer = ProvenanceParticipantType._(
     'enterer',
   );
 
   /// performer
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ProvenanceParticipantType performer =
       ProvenanceParticipantType._(
     'performer',
   );
 
   /// author
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ProvenanceParticipantType author = ProvenanceParticipantType._(
     'author',
   );
 
   /// verifier
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ProvenanceParticipantType verifier = ProvenanceParticipantType._(
     'verifier',
   );
 
   /// legal
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ProvenanceParticipantType legal = ProvenanceParticipantType._(
     'legal',
   );
 
   /// attester
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ProvenanceParticipantType attester = ProvenanceParticipantType._(
     'attester',
   );
 
   /// informant
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ProvenanceParticipantType informant =
       ProvenanceParticipantType._(
     'informant',
   );
 
   /// custodian
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ProvenanceParticipantType custodian =
       ProvenanceParticipantType._(
     'custodian',
   );
 
   /// assembler
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ProvenanceParticipantType assembler =
       ProvenanceParticipantType._(
     'assembler',
   );
 
   /// composer
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ProvenanceParticipantType composer = ProvenanceParticipantType._(
     'composer',
   );
@@ -117,17 +108,6 @@ class ProvenanceParticipantType {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ProvenanceParticipantType] from JSON.
-  static ProvenanceParticipantType fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ProvenanceParticipantType.elementOnly.withElement(element);
-    }
-    return ProvenanceParticipantType._(value!, element: element);
-  }
 
   /// String representation
   @override

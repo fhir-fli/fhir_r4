@@ -7,6 +7,17 @@ class ProductNameType {
   // Private constructor for internal use (like enum)
   ProductNameType._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ProductNameType] from JSON.
+  factory ProductNameType.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ProductNameType.elementOnly.withElement(element);
+    }
+    return ProductNameType._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,36 +26,26 @@ class ProductNameType {
 
   /// ProductNameType values
   /// BAN
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ProductNameType BAN = ProductNameType._(
     'BAN',
   );
 
   /// INN
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ProductNameType INN = ProductNameType._(
     'INN',
   );
 
   /// INNM
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ProductNameType INNM = ProductNameType._(
     'INNM',
   );
 
   /// pINN
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ProductNameType pINN = ProductNameType._(
     'pINN',
   );
 
   /// rINN
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ProductNameType rINN = ProductNameType._(
     'rINN',
   );
@@ -72,17 +73,6 @@ class ProductNameType {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ProductNameType] from JSON.
-  static ProductNameType fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ProductNameType.elementOnly.withElement(element);
-    }
-    return ProductNameType._(value!, element: element);
-  }
 
   /// String representation
   @override

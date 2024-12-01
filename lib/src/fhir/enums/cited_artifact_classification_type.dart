@@ -7,6 +7,17 @@ class CitedArtifactClassificationType {
   // Private constructor for internal use (like enum)
   CitedArtifactClassificationType._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [CitedArtifactClassificationType] from JSON.
+  factory CitedArtifactClassificationType.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return CitedArtifactClassificationType.elementOnly.withElement(element);
+    }
+    return CitedArtifactClassificationType._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,88 +26,66 @@ class CitedArtifactClassificationType {
 
   /// CitedArtifactClassificationType values
   /// publication_type
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CitedArtifactClassificationType publication_type =
       CitedArtifactClassificationType._(
     'publication-type',
   );
 
   /// mesh_heading
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CitedArtifactClassificationType mesh_heading =
       CitedArtifactClassificationType._(
     'mesh-heading',
   );
 
   /// supplemental_mesh_protocol
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CitedArtifactClassificationType supplemental_mesh_protocol =
       CitedArtifactClassificationType._(
     'supplemental-mesh-protocol',
   );
 
   /// supplemental_mesh_disease
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CitedArtifactClassificationType supplemental_mesh_disease =
       CitedArtifactClassificationType._(
     'supplemental-mesh-disease',
   );
 
   /// supplemental_mesh_organism
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CitedArtifactClassificationType supplemental_mesh_organism =
       CitedArtifactClassificationType._(
     'supplemental-mesh-organism',
   );
 
   /// keyword
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CitedArtifactClassificationType keyword =
       CitedArtifactClassificationType._(
     'keyword',
   );
 
   /// citation_subset
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CitedArtifactClassificationType citation_subset =
       CitedArtifactClassificationType._(
     'citation-subset',
   );
 
   /// chemical
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CitedArtifactClassificationType chemical =
       CitedArtifactClassificationType._(
     'chemical',
   );
 
   /// publishing_model
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CitedArtifactClassificationType publishing_model =
       CitedArtifactClassificationType._(
     'publishing-model',
   );
 
   /// knowledge_artifact_type
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CitedArtifactClassificationType knowledge_artifact_type =
       CitedArtifactClassificationType._(
     'knowledge-artifact-type',
   );
 
   /// coverage
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CitedArtifactClassificationType coverage =
       CitedArtifactClassificationType._(
     'coverage',
@@ -132,17 +121,6 @@ class CitedArtifactClassificationType {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [CitedArtifactClassificationType] from JSON.
-  static CitedArtifactClassificationType fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return CitedArtifactClassificationType.elementOnly.withElement(element);
-    }
-    return CitedArtifactClassificationType._(value!, element: element);
-  }
 
   /// String representation
   @override

@@ -7,6 +7,17 @@ class SearchEntryMode {
   // Private constructor for internal use (like enum)
   SearchEntryMode._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [SearchEntryMode] from JSON.
+  factory SearchEntryMode.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return SearchEntryMode.elementOnly.withElement(element);
+    }
+    return SearchEntryMode._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,22 +26,16 @@ class SearchEntryMode {
 
   /// SearchEntryMode values
   /// match
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SearchEntryMode match = SearchEntryMode._(
     'match',
   );
 
   /// include
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SearchEntryMode include = SearchEntryMode._(
     'include',
   );
 
   /// outcome
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SearchEntryMode outcome = SearchEntryMode._(
     'outcome',
   );
@@ -56,17 +61,6 @@ class SearchEntryMode {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [SearchEntryMode] from JSON.
-  static SearchEntryMode fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return SearchEntryMode.elementOnly.withElement(element);
-    }
-    return SearchEntryMode._(value!, element: element);
-  }
 
   /// String representation
   @override

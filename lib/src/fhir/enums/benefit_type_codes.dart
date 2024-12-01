@@ -7,6 +7,17 @@ class BenefitTypeCodes {
   // Private constructor for internal use (like enum)
   BenefitTypeCodes._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [BenefitTypeCodes] from JSON.
+  factory BenefitTypeCodes.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return BenefitTypeCodes.elementOnly.withElement(element);
+    }
+    return BenefitTypeCodes._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,85 +26,61 @@ class BenefitTypeCodes {
 
   /// BenefitTypeCodes values
   /// benefit
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final BenefitTypeCodes benefit = BenefitTypeCodes._(
     'benefit',
   );
 
   /// deductible
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final BenefitTypeCodes deductible = BenefitTypeCodes._(
     'deductible',
   );
 
   /// visit
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final BenefitTypeCodes visit = BenefitTypeCodes._(
     'visit',
   );
 
   /// room
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final BenefitTypeCodes room = BenefitTypeCodes._(
     'room',
   );
 
   /// copay
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final BenefitTypeCodes copay = BenefitTypeCodes._(
     'copay',
   );
 
   /// copay_percent
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final BenefitTypeCodes copay_percent = BenefitTypeCodes._(
     'copay-percent',
   );
 
   /// copay_maximum
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final BenefitTypeCodes copay_maximum = BenefitTypeCodes._(
     'copay-maximum',
   );
 
   /// vision_exam
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final BenefitTypeCodes vision_exam = BenefitTypeCodes._(
     'vision-exam',
   );
 
   /// vision_glasses
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final BenefitTypeCodes vision_glasses = BenefitTypeCodes._(
     'vision-glasses',
   );
 
   /// vision_contacts
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final BenefitTypeCodes vision_contacts = BenefitTypeCodes._(
     'vision-contacts',
   );
 
   /// medical_primarycare
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final BenefitTypeCodes medical_primarycare = BenefitTypeCodes._(
     'medical-primarycare',
   );
 
   /// pharmacy_dispense
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final BenefitTypeCodes pharmacy_dispense = BenefitTypeCodes._(
     'pharmacy-dispense',
   );
@@ -128,17 +115,6 @@ class BenefitTypeCodes {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [BenefitTypeCodes] from JSON.
-  static BenefitTypeCodes fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return BenefitTypeCodes.elementOnly.withElement(element);
-    }
-    return BenefitTypeCodes._(value!, element: element);
-  }
 
   /// String representation
   @override

@@ -7,6 +7,17 @@ class GoalPriority {
   // Private constructor for internal use (like enum)
   GoalPriority._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [GoalPriority] from JSON.
+  factory GoalPriority.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return GoalPriority.elementOnly.withElement(element);
+    }
+    return GoalPriority._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,22 +26,16 @@ class GoalPriority {
 
   /// GoalPriority values
   /// high_priority
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final GoalPriority high_priority = GoalPriority._(
     'high-priority',
   );
 
   /// medium_priority
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final GoalPriority medium_priority = GoalPriority._(
     'medium-priority',
   );
 
   /// low_priority
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final GoalPriority low_priority = GoalPriority._(
     'low-priority',
   );
@@ -56,17 +61,6 @@ class GoalPriority {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [GoalPriority] from JSON.
-  static GoalPriority fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return GoalPriority.elementOnly.withElement(element);
-    }
-    return GoalPriority._(value!, element: element);
-  }
 
   /// String representation
   @override

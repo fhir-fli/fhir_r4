@@ -7,6 +7,17 @@ class ExamplePaymentTypeCodes {
   // Private constructor for internal use (like enum)
   ExamplePaymentTypeCodes._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ExamplePaymentTypeCodes] from JSON.
+  factory ExamplePaymentTypeCodes.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ExamplePaymentTypeCodes.elementOnly.withElement(element);
+    }
+    return ExamplePaymentTypeCodes._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,15 +26,11 @@ class ExamplePaymentTypeCodes {
 
   /// ExamplePaymentTypeCodes values
   /// complete
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ExamplePaymentTypeCodes complete = ExamplePaymentTypeCodes._(
     'complete',
   );
 
   /// partial
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ExamplePaymentTypeCodes partial = ExamplePaymentTypeCodes._(
     'partial',
   );
@@ -49,17 +56,6 @@ class ExamplePaymentTypeCodes {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ExamplePaymentTypeCodes] from JSON.
-  static ExamplePaymentTypeCodes fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ExamplePaymentTypeCodes.elementOnly.withElement(element);
-    }
-    return ExamplePaymentTypeCodes._(value!, element: element);
-  }
 
   /// String representation
   @override

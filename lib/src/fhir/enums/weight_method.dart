@@ -7,6 +7,17 @@ class WeightMethod {
   // Private constructor for internal use (like enum)
   WeightMethod._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [WeightMethod] from JSON.
+  factory WeightMethod.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return WeightMethod.elementOnly.withElement(element);
+    }
+    return WeightMethod._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,57 +26,41 @@ class WeightMethod {
 
   /// WeightMethod values
   /// SDS_PAGE
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final WeightMethod SDS_PAGE = WeightMethod._(
     'SDS-PAGE',
   );
 
   /// Calculated
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final WeightMethod Calculated = WeightMethod._(
     'Calculated',
   );
 
   /// LighScattering
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final WeightMethod LighScattering = WeightMethod._(
     'LighScattering',
   );
 
   /// Viscosity
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final WeightMethod Viscosity = WeightMethod._(
     'Viscosity',
   );
 
   /// GelPermeationCentrifugation
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final WeightMethod GelPermeationCentrifugation = WeightMethod._(
     'GelPermeationCentrifugation',
   );
 
   /// End_groupAnalysis
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final WeightMethod End_groupAnalysis = WeightMethod._(
     'End-groupAnalysis',
   );
 
   /// End_groupTitration
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final WeightMethod End_groupTitration = WeightMethod._(
     'End-groupTitration',
   );
 
   /// Size_ExclusionChromatography
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final WeightMethod Size_ExclusionChromatography = WeightMethod._(
     'Size-ExclusionChromatography',
   );
@@ -96,17 +91,6 @@ class WeightMethod {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [WeightMethod] from JSON.
-  static WeightMethod fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return WeightMethod.elementOnly.withElement(element);
-    }
-    return WeightMethod._(value!, element: element);
-  }
 
   /// String representation
   @override

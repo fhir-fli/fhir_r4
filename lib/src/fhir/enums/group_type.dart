@@ -7,6 +7,17 @@ class GroupType {
   // Private constructor for internal use (like enum)
   GroupType._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [GroupType] from JSON.
+  factory GroupType.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return GroupType.elementOnly.withElement(element);
+    }
+    return GroupType._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,43 +26,31 @@ class GroupType {
 
   /// GroupType values
   /// person
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final GroupType person = GroupType._(
     'person',
   );
 
   /// animal
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final GroupType animal = GroupType._(
     'animal',
   );
 
   /// practitioner
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final GroupType practitioner = GroupType._(
     'practitioner',
   );
 
   /// device
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final GroupType device = GroupType._(
     'device',
   );
 
   /// medication
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final GroupType medication = GroupType._(
     'medication',
   );
 
   /// substance
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final GroupType substance = GroupType._(
     'substance',
   );
@@ -80,17 +79,6 @@ class GroupType {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [GroupType] from JSON.
-  static GroupType fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return GroupType.elementOnly.withElement(element);
-    }
-    return GroupType._(value!, element: element);
-  }
 
   /// String representation
   @override

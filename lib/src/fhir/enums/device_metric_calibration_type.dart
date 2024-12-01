@@ -7,6 +7,17 @@ class DeviceMetricCalibrationType {
   // Private constructor for internal use (like enum)
   DeviceMetricCalibrationType._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [DeviceMetricCalibrationType] from JSON.
+  factory DeviceMetricCalibrationType.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return DeviceMetricCalibrationType.elementOnly.withElement(element);
+    }
+    return DeviceMetricCalibrationType._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,31 +26,23 @@ class DeviceMetricCalibrationType {
 
   /// DeviceMetricCalibrationType values
   /// unspecified
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final DeviceMetricCalibrationType unspecified =
       DeviceMetricCalibrationType._(
     'unspecified',
   );
 
   /// offset
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final DeviceMetricCalibrationType offset =
       DeviceMetricCalibrationType._(
     'offset',
   );
 
   /// gain
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final DeviceMetricCalibrationType gain = DeviceMetricCalibrationType._(
     'gain',
   );
 
   /// two_point
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final DeviceMetricCalibrationType two_point =
       DeviceMetricCalibrationType._(
     'two-point',
@@ -68,17 +71,6 @@ class DeviceMetricCalibrationType {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [DeviceMetricCalibrationType] from JSON.
-  static DeviceMetricCalibrationType fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return DeviceMetricCalibrationType.elementOnly.withElement(element);
-    }
-    return DeviceMetricCalibrationType._(value!, element: element);
-  }
 
   /// String representation
   @override

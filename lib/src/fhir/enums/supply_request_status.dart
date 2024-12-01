@@ -7,6 +7,17 @@ class SupplyRequestStatus {
   // Private constructor for internal use (like enum)
   SupplyRequestStatus._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [SupplyRequestStatus] from JSON.
+  factory SupplyRequestStatus.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return SupplyRequestStatus.elementOnly.withElement(element);
+    }
+    return SupplyRequestStatus._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,50 +26,36 @@ class SupplyRequestStatus {
 
   /// SupplyRequestStatus values
   /// draft
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SupplyRequestStatus draft = SupplyRequestStatus._(
     'draft',
   );
 
   /// active
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SupplyRequestStatus active = SupplyRequestStatus._(
     'active',
   );
 
   /// suspended
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SupplyRequestStatus suspended = SupplyRequestStatus._(
     'suspended',
   );
 
   /// cancelled
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SupplyRequestStatus cancelled = SupplyRequestStatus._(
     'cancelled',
   );
 
   /// completed
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SupplyRequestStatus completed = SupplyRequestStatus._(
     'completed',
   );
 
   /// entered_in_error
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SupplyRequestStatus entered_in_error = SupplyRequestStatus._(
     'entered-in-error',
   );
 
   /// unknown
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SupplyRequestStatus unknown = SupplyRequestStatus._(
     'unknown',
   );
@@ -88,17 +85,6 @@ class SupplyRequestStatus {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [SupplyRequestStatus] from JSON.
-  static SupplyRequestStatus fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return SupplyRequestStatus.elementOnly.withElement(element);
-    }
-    return SupplyRequestStatus._(value!, element: element);
-  }
 
   /// String representation
   @override

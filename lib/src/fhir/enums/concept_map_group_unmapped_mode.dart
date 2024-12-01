@@ -7,6 +7,17 @@ class ConceptMapGroupUnmappedMode {
   // Private constructor for internal use (like enum)
   ConceptMapGroupUnmappedMode._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ConceptMapGroupUnmappedMode] from JSON.
+  factory ConceptMapGroupUnmappedMode.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ConceptMapGroupUnmappedMode.elementOnly.withElement(element);
+    }
+    return ConceptMapGroupUnmappedMode._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,24 +26,18 @@ class ConceptMapGroupUnmappedMode {
 
   /// ConceptMapGroupUnmappedMode values
   /// provided
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ConceptMapGroupUnmappedMode provided =
       ConceptMapGroupUnmappedMode._(
     'provided',
   );
 
   /// fixed
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ConceptMapGroupUnmappedMode fixed =
       ConceptMapGroupUnmappedMode._(
     'fixed',
   );
 
   /// other_map
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ConceptMapGroupUnmappedMode other_map =
       ConceptMapGroupUnmappedMode._(
     'other-map',
@@ -60,17 +65,6 @@ class ConceptMapGroupUnmappedMode {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ConceptMapGroupUnmappedMode] from JSON.
-  static ConceptMapGroupUnmappedMode fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ConceptMapGroupUnmappedMode.elementOnly.withElement(element);
-    }
-    return ConceptMapGroupUnmappedMode._(value!, element: element);
-  }
 
   /// String representation
   @override

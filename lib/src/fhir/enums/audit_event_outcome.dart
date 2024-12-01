@@ -7,6 +7,17 @@ class AuditEventOutcome {
   // Private constructor for internal use (like enum)
   AuditEventOutcome._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [AuditEventOutcome] from JSON.
+  factory AuditEventOutcome.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return AuditEventOutcome.elementOnly.withElement(element);
+    }
+    return AuditEventOutcome._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,29 +26,21 @@ class AuditEventOutcome {
 
   /// AuditEventOutcome values
   /// value0
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AuditEventOutcome value0 = AuditEventOutcome._(
     '0',
   );
 
   /// value4
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AuditEventOutcome value4 = AuditEventOutcome._(
     '4',
   );
 
   /// value8
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AuditEventOutcome value8 = AuditEventOutcome._(
     '8',
   );
 
   /// value12
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AuditEventOutcome value12 = AuditEventOutcome._(
     '12',
   );
@@ -64,17 +67,6 @@ class AuditEventOutcome {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [AuditEventOutcome] from JSON.
-  static AuditEventOutcome fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return AuditEventOutcome.elementOnly.withElement(element);
-    }
-    return AuditEventOutcome._(value!, element: element);
-  }
 
   /// String representation
   @override

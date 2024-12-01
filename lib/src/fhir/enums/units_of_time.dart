@@ -7,6 +7,17 @@ class UnitsOfTime {
   // Private constructor for internal use (like enum)
   UnitsOfTime._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [UnitsOfTime] from JSON.
+  factory UnitsOfTime.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return UnitsOfTime.elementOnly.withElement(element);
+    }
+    return UnitsOfTime._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,50 +26,36 @@ class UnitsOfTime {
 
   /// UnitsOfTime values
   /// s
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final UnitsOfTime s = UnitsOfTime._(
     's',
   );
 
   /// min
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final UnitsOfTime min = UnitsOfTime._(
     'min',
   );
 
   /// h
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final UnitsOfTime h = UnitsOfTime._(
     'h',
   );
 
   /// d
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final UnitsOfTime d = UnitsOfTime._(
     'd',
   );
 
   /// wk
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final UnitsOfTime wk = UnitsOfTime._(
     'wk',
   );
 
   /// mo
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final UnitsOfTime mo = UnitsOfTime._(
     'mo',
   );
 
   /// a
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final UnitsOfTime a = UnitsOfTime._(
     'a',
   );
@@ -88,17 +85,6 @@ class UnitsOfTime {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [UnitsOfTime] from JSON.
-  static UnitsOfTime fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return UnitsOfTime.elementOnly.withElement(element);
-    }
-    return UnitsOfTime._(value!, element: element);
-  }
 
   /// String representation
   @override

@@ -7,6 +7,17 @@ class ImagingStudyStatus {
   // Private constructor for internal use (like enum)
   ImagingStudyStatus._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ImagingStudyStatus] from JSON.
+  factory ImagingStudyStatus.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ImagingStudyStatus.elementOnly.withElement(element);
+    }
+    return ImagingStudyStatus._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,36 +26,26 @@ class ImagingStudyStatus {
 
   /// ImagingStudyStatus values
   /// registered
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ImagingStudyStatus registered = ImagingStudyStatus._(
     'registered',
   );
 
   /// available
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ImagingStudyStatus available = ImagingStudyStatus._(
     'available',
   );
 
   /// cancelled
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ImagingStudyStatus cancelled = ImagingStudyStatus._(
     'cancelled',
   );
 
   /// entered_in_error
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ImagingStudyStatus entered_in_error = ImagingStudyStatus._(
     'entered-in-error',
   );
 
   /// unknown
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ImagingStudyStatus unknown = ImagingStudyStatus._(
     'unknown',
   );
@@ -72,17 +73,6 @@ class ImagingStudyStatus {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ImagingStudyStatus] from JSON.
-  static ImagingStudyStatus fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ImagingStudyStatus.elementOnly.withElement(element);
-    }
-    return ImagingStudyStatus._(value!, element: element);
-  }
 
   /// String representation
   @override

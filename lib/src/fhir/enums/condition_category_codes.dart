@@ -7,6 +7,17 @@ class ConditionCategoryCodes {
   // Private constructor for internal use (like enum)
   ConditionCategoryCodes._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ConditionCategoryCodes] from JSON.
+  factory ConditionCategoryCodes.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ConditionCategoryCodes.elementOnly.withElement(element);
+    }
+    return ConditionCategoryCodes._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,16 +26,12 @@ class ConditionCategoryCodes {
 
   /// ConditionCategoryCodes values
   /// problem_list_item
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ConditionCategoryCodes problem_list_item =
       ConditionCategoryCodes._(
     'problem-list-item',
   );
 
   /// encounter_diagnosis
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ConditionCategoryCodes encounter_diagnosis =
       ConditionCategoryCodes._(
     'encounter-diagnosis',
@@ -51,17 +58,6 @@ class ConditionCategoryCodes {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ConditionCategoryCodes] from JSON.
-  static ConditionCategoryCodes fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ConditionCategoryCodes.elementOnly.withElement(element);
-    }
-    return ConditionCategoryCodes._(value!, element: element);
-  }
 
   /// String representation
   @override

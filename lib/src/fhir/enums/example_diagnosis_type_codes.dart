@@ -7,6 +7,17 @@ class ExampleDiagnosisTypeCodes {
   // Private constructor for internal use (like enum)
   ExampleDiagnosisTypeCodes._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ExampleDiagnosisTypeCodes] from JSON.
+  factory ExampleDiagnosisTypeCodes.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ExampleDiagnosisTypeCodes.elementOnly.withElement(element);
+    }
+    return ExampleDiagnosisTypeCodes._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,92 +26,68 @@ class ExampleDiagnosisTypeCodes {
 
   /// ExampleDiagnosisTypeCodes values
   /// admitting
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ExampleDiagnosisTypeCodes admitting =
       ExampleDiagnosisTypeCodes._(
     'admitting',
   );
 
   /// clinical
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ExampleDiagnosisTypeCodes clinical = ExampleDiagnosisTypeCodes._(
     'clinical',
   );
 
   /// differential
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ExampleDiagnosisTypeCodes differential =
       ExampleDiagnosisTypeCodes._(
     'differential',
   );
 
   /// discharge
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ExampleDiagnosisTypeCodes discharge =
       ExampleDiagnosisTypeCodes._(
     'discharge',
   );
 
   /// laboratory
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ExampleDiagnosisTypeCodes laboratory =
       ExampleDiagnosisTypeCodes._(
     'laboratory',
   );
 
   /// nursing
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ExampleDiagnosisTypeCodes nursing = ExampleDiagnosisTypeCodes._(
     'nursing',
   );
 
   /// prenatal
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ExampleDiagnosisTypeCodes prenatal = ExampleDiagnosisTypeCodes._(
     'prenatal',
   );
 
   /// principal
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ExampleDiagnosisTypeCodes principal =
       ExampleDiagnosisTypeCodes._(
     'principal',
   );
 
   /// radiology
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ExampleDiagnosisTypeCodes radiology =
       ExampleDiagnosisTypeCodes._(
     'radiology',
   );
 
   /// remote
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ExampleDiagnosisTypeCodes remote = ExampleDiagnosisTypeCodes._(
     'remote',
   );
 
   /// retrospective
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ExampleDiagnosisTypeCodes retrospective =
       ExampleDiagnosisTypeCodes._(
     'retrospective',
   );
 
   /// self
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ExampleDiagnosisTypeCodes self = ExampleDiagnosisTypeCodes._(
     'self',
   );
@@ -136,17 +123,6 @@ class ExampleDiagnosisTypeCodes {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ExampleDiagnosisTypeCodes] from JSON.
-  static ExampleDiagnosisTypeCodes fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ExampleDiagnosisTypeCodes.elementOnly.withElement(element);
-    }
-    return ExampleDiagnosisTypeCodes._(value!, element: element);
-  }
 
   /// String representation
   @override

@@ -7,6 +7,17 @@ class ReasonMedicationGivenCodes {
   // Private constructor for internal use (like enum)
   ReasonMedicationGivenCodes._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ReasonMedicationGivenCodes] from JSON.
+  factory ReasonMedicationGivenCodes.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ReasonMedicationGivenCodes.elementOnly.withElement(element);
+    }
+    return ReasonMedicationGivenCodes._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,22 +26,16 @@ class ReasonMedicationGivenCodes {
 
   /// ReasonMedicationGivenCodes values
   /// a
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ReasonMedicationGivenCodes a = ReasonMedicationGivenCodes._(
     'a',
   );
 
   /// b
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ReasonMedicationGivenCodes b = ReasonMedicationGivenCodes._(
     'b',
   );
 
   /// c
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ReasonMedicationGivenCodes c = ReasonMedicationGivenCodes._(
     'c',
   );
@@ -57,17 +62,6 @@ class ReasonMedicationGivenCodes {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ReasonMedicationGivenCodes] from JSON.
-  static ReasonMedicationGivenCodes fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ReasonMedicationGivenCodes.elementOnly.withElement(element);
-    }
-    return ReasonMedicationGivenCodes._(value!, element: element);
-  }
 
   /// String representation
   @override

@@ -7,6 +7,17 @@ class EncounterStatus {
   // Private constructor for internal use (like enum)
   EncounterStatus._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [EncounterStatus] from JSON.
+  factory EncounterStatus.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return EncounterStatus.elementOnly.withElement(element);
+    }
+    return EncounterStatus._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,64 +26,46 @@ class EncounterStatus {
 
   /// EncounterStatus values
   /// planned
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final EncounterStatus planned = EncounterStatus._(
     'planned',
   );
 
   /// arrived
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final EncounterStatus arrived = EncounterStatus._(
     'arrived',
   );
 
   /// triaged
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final EncounterStatus triaged = EncounterStatus._(
     'triaged',
   );
 
   /// in_progress
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final EncounterStatus in_progress = EncounterStatus._(
     'in-progress',
   );
 
   /// onleave
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final EncounterStatus onleave = EncounterStatus._(
     'onleave',
   );
 
   /// finished
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final EncounterStatus finished = EncounterStatus._(
     'finished',
   );
 
   /// cancelled
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final EncounterStatus cancelled = EncounterStatus._(
     'cancelled',
   );
 
   /// entered_in_error
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final EncounterStatus entered_in_error = EncounterStatus._(
     'entered-in-error',
   );
 
   /// unknown
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final EncounterStatus unknown = EncounterStatus._(
     'unknown',
   );
@@ -104,17 +97,6 @@ class EncounterStatus {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [EncounterStatus] from JSON.
-  static EncounterStatus fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return EncounterStatus.elementOnly.withElement(element);
-    }
-    return EncounterStatus._(value!, element: element);
-  }
 
   /// String representation
   @override

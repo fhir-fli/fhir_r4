@@ -7,6 +7,17 @@ class SpecimenStatus {
   // Private constructor for internal use (like enum)
   SpecimenStatus._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [SpecimenStatus] from JSON.
+  factory SpecimenStatus.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return SpecimenStatus.elementOnly.withElement(element);
+    }
+    return SpecimenStatus._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,29 +26,21 @@ class SpecimenStatus {
 
   /// SpecimenStatus values
   /// available
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SpecimenStatus available = SpecimenStatus._(
     'available',
   );
 
   /// unavailable
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SpecimenStatus unavailable = SpecimenStatus._(
     'unavailable',
   );
 
   /// unsatisfactory
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SpecimenStatus unsatisfactory = SpecimenStatus._(
     'unsatisfactory',
   );
 
   /// entered_in_error
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SpecimenStatus entered_in_error = SpecimenStatus._(
     'entered-in-error',
   );
@@ -64,17 +67,6 @@ class SpecimenStatus {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [SpecimenStatus] from JSON.
-  static SpecimenStatus fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return SpecimenStatus.elementOnly.withElement(element);
-    }
-    return SpecimenStatus._(value!, element: element);
-  }
 
   /// String representation
   @override

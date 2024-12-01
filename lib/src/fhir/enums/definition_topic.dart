@@ -7,6 +7,17 @@ class DefinitionTopic {
   // Private constructor for internal use (like enum)
   DefinitionTopic._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [DefinitionTopic] from JSON.
+  factory DefinitionTopic.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return DefinitionTopic.elementOnly.withElement(element);
+    }
+    return DefinitionTopic._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,22 +26,16 @@ class DefinitionTopic {
 
   /// DefinitionTopic values
   /// treatment
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final DefinitionTopic treatment = DefinitionTopic._(
     'treatment',
   );
 
   /// education
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final DefinitionTopic education = DefinitionTopic._(
     'education',
   );
 
   /// assessment
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final DefinitionTopic assessment = DefinitionTopic._(
     'assessment',
   );
@@ -56,17 +61,6 @@ class DefinitionTopic {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [DefinitionTopic] from JSON.
-  static DefinitionTopic fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return DefinitionTopic.elementOnly.withElement(element);
-    }
-    return DefinitionTopic._(value!, element: element);
-  }
 
   /// String representation
   @override

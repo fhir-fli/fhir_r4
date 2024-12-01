@@ -7,6 +7,17 @@ class EnteralFormulaAdditiveTypeCode {
   // Private constructor for internal use (like enum)
   EnteralFormulaAdditiveTypeCode._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [EnteralFormulaAdditiveTypeCode] from JSON.
+  factory EnteralFormulaAdditiveTypeCode.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return EnteralFormulaAdditiveTypeCode.elementOnly.withElement(element);
+    }
+    return EnteralFormulaAdditiveTypeCode._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,40 +26,30 @@ class EnteralFormulaAdditiveTypeCode {
 
   /// EnteralFormulaAdditiveTypeCode values
   /// lipid
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final EnteralFormulaAdditiveTypeCode lipid =
       EnteralFormulaAdditiveTypeCode._(
     'lipid',
   );
 
   /// protein
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final EnteralFormulaAdditiveTypeCode protein =
       EnteralFormulaAdditiveTypeCode._(
     'protein',
   );
 
   /// carbohydrate
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final EnteralFormulaAdditiveTypeCode carbohydrate =
       EnteralFormulaAdditiveTypeCode._(
     'carbohydrate',
   );
 
   /// fiber
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final EnteralFormulaAdditiveTypeCode fiber =
       EnteralFormulaAdditiveTypeCode._(
     'fiber',
   );
 
   /// water
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final EnteralFormulaAdditiveTypeCode water =
       EnteralFormulaAdditiveTypeCode._(
     'water',
@@ -78,17 +79,6 @@ class EnteralFormulaAdditiveTypeCode {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [EnteralFormulaAdditiveTypeCode] from JSON.
-  static EnteralFormulaAdditiveTypeCode fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return EnteralFormulaAdditiveTypeCode.elementOnly.withElement(element);
-    }
-    return EnteralFormulaAdditiveTypeCode._(value!, element: element);
-  }
 
   /// String representation
   @override

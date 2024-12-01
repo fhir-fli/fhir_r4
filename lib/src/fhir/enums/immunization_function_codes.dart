@@ -7,6 +7,17 @@ class ImmunizationFunctionCodes {
   // Private constructor for internal use (like enum)
   ImmunizationFunctionCodes._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ImmunizationFunctionCodes] from JSON.
+  factory ImmunizationFunctionCodes.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ImmunizationFunctionCodes.elementOnly.withElement(element);
+    }
+    return ImmunizationFunctionCodes._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,15 +26,11 @@ class ImmunizationFunctionCodes {
 
   /// ImmunizationFunctionCodes values
   /// OP
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ImmunizationFunctionCodes OP = ImmunizationFunctionCodes._(
     'OP',
   );
 
   /// AP
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ImmunizationFunctionCodes AP = ImmunizationFunctionCodes._(
     'AP',
   );
@@ -49,17 +56,6 @@ class ImmunizationFunctionCodes {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ImmunizationFunctionCodes] from JSON.
-  static ImmunizationFunctionCodes fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ImmunizationFunctionCodes.elementOnly.withElement(element);
-    }
-    return ImmunizationFunctionCodes._(value!, element: element);
-  }
 
   /// String representation
   @override

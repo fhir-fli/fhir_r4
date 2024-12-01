@@ -7,6 +7,17 @@ class ReferenceHandlingPolicy {
   // Private constructor for internal use (like enum)
   ReferenceHandlingPolicy._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ReferenceHandlingPolicy] from JSON.
+  factory ReferenceHandlingPolicy.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ReferenceHandlingPolicy.elementOnly.withElement(element);
+    }
+    return ReferenceHandlingPolicy._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,36 +26,26 @@ class ReferenceHandlingPolicy {
 
   /// ReferenceHandlingPolicy values
   /// literal
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ReferenceHandlingPolicy literal = ReferenceHandlingPolicy._(
     'literal',
   );
 
   /// logical
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ReferenceHandlingPolicy logical = ReferenceHandlingPolicy._(
     'logical',
   );
 
   /// resolves
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ReferenceHandlingPolicy resolves = ReferenceHandlingPolicy._(
     'resolves',
   );
 
   /// enforced
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ReferenceHandlingPolicy enforced = ReferenceHandlingPolicy._(
     'enforced',
   );
 
   /// local
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ReferenceHandlingPolicy local = ReferenceHandlingPolicy._(
     'local',
   );
@@ -73,17 +74,6 @@ class ReferenceHandlingPolicy {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ReferenceHandlingPolicy] from JSON.
-  static ReferenceHandlingPolicy fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ReferenceHandlingPolicy.elementOnly.withElement(element);
-    }
-    return ReferenceHandlingPolicy._(value!, element: element);
-  }
 
   /// String representation
   @override

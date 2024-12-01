@@ -7,6 +7,17 @@ class IdentifierUse {
   // Private constructor for internal use (like enum)
   IdentifierUse._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [IdentifierUse] from JSON.
+  factory IdentifierUse.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return IdentifierUse.elementOnly.withElement(element);
+    }
+    return IdentifierUse._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,36 +26,26 @@ class IdentifierUse {
 
   /// IdentifierUse values
   /// usual
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final IdentifierUse usual = IdentifierUse._(
     'usual',
   );
 
   /// official
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final IdentifierUse official = IdentifierUse._(
     'official',
   );
 
   /// temp
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final IdentifierUse temp = IdentifierUse._(
     'temp',
   );
 
   /// secondary
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final IdentifierUse secondary = IdentifierUse._(
     'secondary',
   );
 
   /// old
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final IdentifierUse old = IdentifierUse._(
     'old',
   );
@@ -72,17 +73,6 @@ class IdentifierUse {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [IdentifierUse] from JSON.
-  static IdentifierUse fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return IdentifierUse.elementOnly.withElement(element);
-    }
-    return IdentifierUse._(value!, element: element);
-  }
 
   /// String representation
   @override

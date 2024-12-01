@@ -7,6 +7,17 @@ class DocumentReferenceStatus {
   // Private constructor for internal use (like enum)
   DocumentReferenceStatus._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [DocumentReferenceStatus] from JSON.
+  factory DocumentReferenceStatus.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return DocumentReferenceStatus.elementOnly.withElement(element);
+    }
+    return DocumentReferenceStatus._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,22 +26,16 @@ class DocumentReferenceStatus {
 
   /// DocumentReferenceStatus values
   /// current
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final DocumentReferenceStatus current = DocumentReferenceStatus._(
     'current',
   );
 
   /// superseded
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final DocumentReferenceStatus superseded = DocumentReferenceStatus._(
     'superseded',
   );
 
   /// entered_in_error
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final DocumentReferenceStatus entered_in_error =
       DocumentReferenceStatus._(
     'entered-in-error',
@@ -58,17 +63,6 @@ class DocumentReferenceStatus {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [DocumentReferenceStatus] from JSON.
-  static DocumentReferenceStatus fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return DocumentReferenceStatus.elementOnly.withElement(element);
-    }
-    return DocumentReferenceStatus._(value!, element: element);
-  }
 
   /// String representation
   @override

@@ -7,6 +7,17 @@ class SubscriptionNotificationType {
   // Private constructor for internal use (like enum)
   SubscriptionNotificationType._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [SubscriptionNotificationType] from JSON.
+  factory SubscriptionNotificationType.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return SubscriptionNotificationType.elementOnly.withElement(element);
+    }
+    return SubscriptionNotificationType._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,40 +26,30 @@ class SubscriptionNotificationType {
 
   /// SubscriptionNotificationType values
   /// handshake
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SubscriptionNotificationType handshake =
       SubscriptionNotificationType._(
     'handshake',
   );
 
   /// heartbeat
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SubscriptionNotificationType heartbeat =
       SubscriptionNotificationType._(
     'heartbeat',
   );
 
   /// event_notification
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SubscriptionNotificationType event_notification =
       SubscriptionNotificationType._(
     'event-notification',
   );
 
   /// query_status
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SubscriptionNotificationType query_status =
       SubscriptionNotificationType._(
     'query-status',
   );
 
   /// query_event
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final SubscriptionNotificationType query_event =
       SubscriptionNotificationType._(
     'query-event',
@@ -78,17 +79,6 @@ class SubscriptionNotificationType {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [SubscriptionNotificationType] from JSON.
-  static SubscriptionNotificationType fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return SubscriptionNotificationType.elementOnly.withElement(element);
-    }
-    return SubscriptionNotificationType._(value!, element: element);
-  }
 
   /// String representation
   @override

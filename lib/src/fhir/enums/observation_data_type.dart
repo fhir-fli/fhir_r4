@@ -7,6 +7,17 @@ class ObservationDataType {
   // Private constructor for internal use (like enum)
   ObservationDataType._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ObservationDataType] from JSON.
+  factory ObservationDataType.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ObservationDataType.elementOnly.withElement(element);
+    }
+    return ObservationDataType._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,78 +26,56 @@ class ObservationDataType {
 
   /// ObservationDataType values
   /// Quantity
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ObservationDataType Quantity = ObservationDataType._(
     'Quantity',
   );
 
   /// CodeableConcept
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ObservationDataType CodeableConcept = ObservationDataType._(
     'CodeableConcept',
   );
 
   /// string
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ObservationDataType string = ObservationDataType._(
     'string',
   );
 
   /// boolean
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ObservationDataType boolean = ObservationDataType._(
     'boolean',
   );
 
   /// integer
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ObservationDataType integer = ObservationDataType._(
     'integer',
   );
 
   /// Range
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ObservationDataType Range = ObservationDataType._(
     'Range',
   );
 
   /// Ratio
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ObservationDataType Ratio = ObservationDataType._(
     'Ratio',
   );
 
   /// SampledData
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ObservationDataType SampledData = ObservationDataType._(
     'SampledData',
   );
 
   /// time
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ObservationDataType time = ObservationDataType._(
     'time',
   );
 
   /// dateTime
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ObservationDataType dateTime = ObservationDataType._(
     'dateTime',
   );
 
   /// Period
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ObservationDataType Period = ObservationDataType._(
     'Period',
   );
@@ -120,17 +109,6 @@ class ObservationDataType {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ObservationDataType] from JSON.
-  static ObservationDataType fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ObservationDataType.elementOnly.withElement(element);
-    }
-    return ObservationDataType._(value!, element: element);
-  }
 
   /// String representation
   @override

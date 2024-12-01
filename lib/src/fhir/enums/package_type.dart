@@ -7,6 +7,17 @@ class PackageType {
   // Private constructor for internal use (like enum)
   PackageType._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [PackageType] from JSON.
+  factory PackageType.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return PackageType.elementOnly.withElement(element);
+    }
+    return PackageType._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,22 +26,16 @@ class PackageType {
 
   /// PackageType values
   /// MedicinalProductPack
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final PackageType MedicinalProductPack = PackageType._(
     'MedicinalProductPack',
   );
 
   /// RawMaterialPackage
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final PackageType RawMaterialPackage = PackageType._(
     'RawMaterialPackage',
   );
 
   /// Shipping_TransportContainer
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final PackageType Shipping_TransportContainer = PackageType._(
     'Shipping-TransportContainer',
   );
@@ -56,17 +61,6 @@ class PackageType {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [PackageType] from JSON.
-  static PackageType fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return PackageType.elementOnly.withElement(element);
-    }
-    return PackageType._(value!, element: element);
-  }
 
   /// String representation
   @override

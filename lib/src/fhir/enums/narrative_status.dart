@@ -7,6 +7,17 @@ class NarrativeStatus {
   // Private constructor for internal use (like enum)
   NarrativeStatus._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [NarrativeStatus] from JSON.
+  factory NarrativeStatus.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return NarrativeStatus.elementOnly.withElement(element);
+    }
+    return NarrativeStatus._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,29 +26,21 @@ class NarrativeStatus {
 
   /// NarrativeStatus values
   /// generated
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final NarrativeStatus generated = NarrativeStatus._(
     'generated',
   );
 
   /// extensions
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final NarrativeStatus extensions = NarrativeStatus._(
     'extensions',
   );
 
   /// additional
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final NarrativeStatus additional = NarrativeStatus._(
     'additional',
   );
 
   /// empty
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final NarrativeStatus empty = NarrativeStatus._(
     'empty',
   );
@@ -64,17 +67,6 @@ class NarrativeStatus {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [NarrativeStatus] from JSON.
-  static NarrativeStatus fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return NarrativeStatus.elementOnly.withElement(element);
-    }
-    return NarrativeStatus._(value!, element: element);
-  }
 
   /// String representation
   @override

@@ -7,6 +7,17 @@ class ClinicalUseDefinitionType {
   // Private constructor for internal use (like enum)
   ClinicalUseDefinitionType._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ClinicalUseDefinitionType] from JSON.
+  factory ClinicalUseDefinitionType.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ClinicalUseDefinitionType.elementOnly.withElement(element);
+    }
+    return ClinicalUseDefinitionType._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,40 +26,30 @@ class ClinicalUseDefinitionType {
 
   /// ClinicalUseDefinitionType values
   /// indication
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ClinicalUseDefinitionType indication =
       ClinicalUseDefinitionType._(
     'indication',
   );
 
   /// contraindication
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ClinicalUseDefinitionType contraindication =
       ClinicalUseDefinitionType._(
     'contraindication',
   );
 
   /// interaction
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ClinicalUseDefinitionType interaction =
       ClinicalUseDefinitionType._(
     'interaction',
   );
 
   /// undesirable_effect
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ClinicalUseDefinitionType undesirable_effect =
       ClinicalUseDefinitionType._(
     'undesirable-effect',
   );
 
   /// warning
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ClinicalUseDefinitionType warning = ClinicalUseDefinitionType._(
     'warning',
   );
@@ -77,17 +78,6 @@ class ClinicalUseDefinitionType {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ClinicalUseDefinitionType] from JSON.
-  static ClinicalUseDefinitionType fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ClinicalUseDefinitionType.elementOnly.withElement(element);
-    }
-    return ClinicalUseDefinitionType._(value!, element: element);
-  }
 
   /// String representation
   @override

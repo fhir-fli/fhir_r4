@@ -7,6 +7,17 @@ class BenefitTermCodes {
   // Private constructor for internal use (like enum)
   BenefitTermCodes._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [BenefitTermCodes] from JSON.
+  factory BenefitTermCodes.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return BenefitTermCodes.elementOnly.withElement(element);
+    }
+    return BenefitTermCodes._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,22 +26,16 @@ class BenefitTermCodes {
 
   /// BenefitTermCodes values
   /// annual
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final BenefitTermCodes annual = BenefitTermCodes._(
     'annual',
   );
 
   /// day
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final BenefitTermCodes day = BenefitTermCodes._(
     'day',
   );
 
   /// lifetime
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final BenefitTermCodes lifetime = BenefitTermCodes._(
     'lifetime',
   );
@@ -56,17 +61,6 @@ class BenefitTermCodes {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [BenefitTermCodes] from JSON.
-  static BenefitTermCodes fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return BenefitTermCodes.elementOnly.withElement(element);
-    }
-    return BenefitTermCodes._(value!, element: element);
-  }
 
   /// String representation
   @override

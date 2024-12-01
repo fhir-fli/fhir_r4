@@ -7,6 +7,17 @@ class StructureMapInputMode {
   // Private constructor for internal use (like enum)
   StructureMapInputMode._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [StructureMapInputMode] from JSON.
+  factory StructureMapInputMode.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return StructureMapInputMode.elementOnly.withElement(element);
+    }
+    return StructureMapInputMode._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,15 +26,11 @@ class StructureMapInputMode {
 
   /// StructureMapInputMode values
   /// source
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final StructureMapInputMode source = StructureMapInputMode._(
     'source',
   );
 
   /// target
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final StructureMapInputMode target = StructureMapInputMode._(
     'target',
   );
@@ -48,17 +55,6 @@ class StructureMapInputMode {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [StructureMapInputMode] from JSON.
-  static StructureMapInputMode fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return StructureMapInputMode.elementOnly.withElement(element);
-    }
-    return StructureMapInputMode._(value!, element: element);
-  }
 
   /// String representation
   @override

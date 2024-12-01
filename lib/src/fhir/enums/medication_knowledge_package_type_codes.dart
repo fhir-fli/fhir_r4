@@ -7,6 +7,19 @@ class MedicationKnowledgePackageTypeCodes {
   // Private constructor for internal use (like enum)
   MedicationKnowledgePackageTypeCodes._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [MedicationKnowledgePackageTypeCodes] from JSON.
+  factory MedicationKnowledgePackageTypeCodes.fromJson(
+      Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return MedicationKnowledgePackageTypeCodes.elementOnly
+          .withElement(element);
+    }
+    return MedicationKnowledgePackageTypeCodes._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,176 +28,132 @@ class MedicationKnowledgePackageTypeCodes {
 
   /// MedicationKnowledgePackageTypeCodes values
   /// amp
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicationKnowledgePackageTypeCodes amp =
       MedicationKnowledgePackageTypeCodes._(
     'amp',
   );
 
   /// bag
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicationKnowledgePackageTypeCodes bag =
       MedicationKnowledgePackageTypeCodes._(
     'bag',
   );
 
   /// blstrpk
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicationKnowledgePackageTypeCodes blstrpk =
       MedicationKnowledgePackageTypeCodes._(
     'blstrpk',
   );
 
   /// bot
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicationKnowledgePackageTypeCodes bot =
       MedicationKnowledgePackageTypeCodes._(
     'bot',
   );
 
   /// box
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicationKnowledgePackageTypeCodes box =
       MedicationKnowledgePackageTypeCodes._(
     'box',
   );
 
   /// can
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicationKnowledgePackageTypeCodes can =
       MedicationKnowledgePackageTypeCodes._(
     'can',
   );
 
   /// cart
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicationKnowledgePackageTypeCodes cart =
       MedicationKnowledgePackageTypeCodes._(
     'cart',
   );
 
   /// disk
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicationKnowledgePackageTypeCodes disk =
       MedicationKnowledgePackageTypeCodes._(
     'disk',
   );
 
   /// doset
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicationKnowledgePackageTypeCodes doset =
       MedicationKnowledgePackageTypeCodes._(
     'doset',
   );
 
   /// jar
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicationKnowledgePackageTypeCodes jar =
       MedicationKnowledgePackageTypeCodes._(
     'jar',
   );
 
   /// jug
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicationKnowledgePackageTypeCodes jug =
       MedicationKnowledgePackageTypeCodes._(
     'jug',
   );
 
   /// minim
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicationKnowledgePackageTypeCodes minim =
       MedicationKnowledgePackageTypeCodes._(
     'minim',
   );
 
   /// nebamp
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicationKnowledgePackageTypeCodes nebamp =
       MedicationKnowledgePackageTypeCodes._(
     'nebamp',
   );
 
   /// ovul
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicationKnowledgePackageTypeCodes ovul =
       MedicationKnowledgePackageTypeCodes._(
     'ovul',
   );
 
   /// pch
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicationKnowledgePackageTypeCodes pch =
       MedicationKnowledgePackageTypeCodes._(
     'pch',
   );
 
   /// pkt
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicationKnowledgePackageTypeCodes pkt =
       MedicationKnowledgePackageTypeCodes._(
     'pkt',
   );
 
   /// sash
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicationKnowledgePackageTypeCodes sash =
       MedicationKnowledgePackageTypeCodes._(
     'sash',
   );
 
   /// strip
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicationKnowledgePackageTypeCodes strip =
       MedicationKnowledgePackageTypeCodes._(
     'strip',
   );
 
   /// tin
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicationKnowledgePackageTypeCodes tin =
       MedicationKnowledgePackageTypeCodes._(
     'tin',
   );
 
   /// tub
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicationKnowledgePackageTypeCodes tub =
       MedicationKnowledgePackageTypeCodes._(
     'tub',
   );
 
   /// tube
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicationKnowledgePackageTypeCodes tube =
       MedicationKnowledgePackageTypeCodes._(
     'tube',
   );
 
   /// vial
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MedicationKnowledgePackageTypeCodes vial =
       MedicationKnowledgePackageTypeCodes._(
     'vial',
@@ -231,19 +200,6 @@ class MedicationKnowledgePackageTypeCodes {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [MedicationKnowledgePackageTypeCodes] from JSON.
-  static MedicationKnowledgePackageTypeCodes fromJson(
-      Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return MedicationKnowledgePackageTypeCodes.elementOnly
-          .withElement(element);
-    }
-    return MedicationKnowledgePackageTypeCodes._(value!, element: element);
-  }
 
   /// String representation
   @override

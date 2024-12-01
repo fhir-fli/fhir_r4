@@ -7,6 +7,17 @@ class ImmunizationRouteCodes {
   // Private constructor for internal use (like enum)
   ImmunizationRouteCodes._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ImmunizationRouteCodes] from JSON.
+  factory ImmunizationRouteCodes.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ImmunizationRouteCodes.elementOnly.withElement(element);
+    }
+    return ImmunizationRouteCodes._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,50 +26,36 @@ class ImmunizationRouteCodes {
 
   /// ImmunizationRouteCodes values
   /// IDINJ
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ImmunizationRouteCodes IDINJ = ImmunizationRouteCodes._(
     'IDINJ',
   );
 
   /// IM
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ImmunizationRouteCodes IM = ImmunizationRouteCodes._(
     'IM',
   );
 
   /// NASINHLC
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ImmunizationRouteCodes NASINHLC = ImmunizationRouteCodes._(
     'NASINHLC',
   );
 
   /// IVINJ
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ImmunizationRouteCodes IVINJ = ImmunizationRouteCodes._(
     'IVINJ',
   );
 
   /// PO
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ImmunizationRouteCodes PO = ImmunizationRouteCodes._(
     'PO',
   );
 
   /// SQ
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ImmunizationRouteCodes SQ = ImmunizationRouteCodes._(
     'SQ',
   );
 
   /// TRNSDERM
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ImmunizationRouteCodes TRNSDERM = ImmunizationRouteCodes._(
     'TRNSDERM',
   );
@@ -89,17 +86,6 @@ class ImmunizationRouteCodes {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ImmunizationRouteCodes] from JSON.
-  static ImmunizationRouteCodes fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ImmunizationRouteCodes.elementOnly.withElement(element);
-    }
-    return ImmunizationRouteCodes._(value!, element: element);
-  }
 
   /// String representation
   @override

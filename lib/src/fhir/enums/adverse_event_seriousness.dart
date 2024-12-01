@@ -7,6 +7,17 @@ class AdverseEventSeriousness {
   // Private constructor for internal use (like enum)
   AdverseEventSeriousness._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [AdverseEventSeriousness] from JSON.
+  factory AdverseEventSeriousness.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return AdverseEventSeriousness.elementOnly.withElement(element);
+    }
+    return AdverseEventSeriousness._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,62 +26,46 @@ class AdverseEventSeriousness {
 
   /// AdverseEventSeriousness values
   /// Non_serious
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AdverseEventSeriousness Non_serious = AdverseEventSeriousness._(
     'Non-serious',
   );
 
   /// Serious
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AdverseEventSeriousness Serious = AdverseEventSeriousness._(
     'Serious',
   );
 
   /// SeriousResultsInDeath
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AdverseEventSeriousness SeriousResultsInDeath =
       AdverseEventSeriousness._(
     'SeriousResultsInDeath',
   );
 
   /// SeriousIsLifeThreatening
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AdverseEventSeriousness SeriousIsLifeThreatening =
       AdverseEventSeriousness._(
     'SeriousIsLifeThreatening',
   );
 
   /// SeriousResultsInHospitalization
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AdverseEventSeriousness SeriousResultsInHospitalization =
       AdverseEventSeriousness._(
     'SeriousResultsInHospitalization',
   );
 
   /// SeriousResultsInDisability
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AdverseEventSeriousness SeriousResultsInDisability =
       AdverseEventSeriousness._(
     'SeriousResultsInDisability',
   );
 
   /// SeriousIsBirthDefect
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AdverseEventSeriousness SeriousIsBirthDefect =
       AdverseEventSeriousness._(
     'SeriousIsBirthDefect',
   );
 
   /// SeriousRequiresPreventImpairment
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final AdverseEventSeriousness SeriousRequiresPreventImpairment =
       AdverseEventSeriousness._(
     'SeriousRequiresPreventImpairment',
@@ -103,17 +98,6 @@ class AdverseEventSeriousness {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [AdverseEventSeriousness] from JSON.
-  static AdverseEventSeriousness fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return AdverseEventSeriousness.elementOnly.withElement(element);
-    }
-    return AdverseEventSeriousness._(value!, element: element);
-  }
 
   /// String representation
   @override

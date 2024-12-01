@@ -7,6 +7,17 @@ class ExampleServicePlaceCodes {
   // Private constructor for internal use (like enum)
   ExampleServicePlaceCodes._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ExampleServicePlaceCodes] from JSON.
+  factory ExampleServicePlaceCodes.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ExampleServicePlaceCodes.elementOnly.withElement(element);
+    }
+    return ExampleServicePlaceCodes._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,120 +26,86 @@ class ExampleServicePlaceCodes {
 
   /// ExampleServicePlaceCodes values
   /// value01
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ExampleServicePlaceCodes value01 = ExampleServicePlaceCodes._(
     '01',
   );
 
   /// value03
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ExampleServicePlaceCodes value03 = ExampleServicePlaceCodes._(
     '03',
   );
 
   /// value04
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ExampleServicePlaceCodes value04 = ExampleServicePlaceCodes._(
     '04',
   );
 
   /// value05
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ExampleServicePlaceCodes value05 = ExampleServicePlaceCodes._(
     '05',
   );
 
   /// value06
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ExampleServicePlaceCodes value06 = ExampleServicePlaceCodes._(
     '06',
   );
 
   /// value07
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ExampleServicePlaceCodes value07 = ExampleServicePlaceCodes._(
     '07',
   );
 
   /// value08
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ExampleServicePlaceCodes value08 = ExampleServicePlaceCodes._(
     '08',
   );
 
   /// value09
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ExampleServicePlaceCodes value09 = ExampleServicePlaceCodes._(
     '09',
   );
 
   /// value11
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ExampleServicePlaceCodes value11 = ExampleServicePlaceCodes._(
     '11',
   );
 
   /// value12
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ExampleServicePlaceCodes value12 = ExampleServicePlaceCodes._(
     '12',
   );
 
   /// value13
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ExampleServicePlaceCodes value13 = ExampleServicePlaceCodes._(
     '13',
   );
 
   /// value14
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ExampleServicePlaceCodes value14 = ExampleServicePlaceCodes._(
     '14',
   );
 
   /// value15
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ExampleServicePlaceCodes value15 = ExampleServicePlaceCodes._(
     '15',
   );
 
   /// value19
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ExampleServicePlaceCodes value19 = ExampleServicePlaceCodes._(
     '19',
   );
 
   /// value20
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ExampleServicePlaceCodes value20 = ExampleServicePlaceCodes._(
     '20',
   );
 
   /// value21
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ExampleServicePlaceCodes value21 = ExampleServicePlaceCodes._(
     '21',
   );
 
   /// value41
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ExampleServicePlaceCodes value41 = ExampleServicePlaceCodes._(
     '41',
   );
@@ -169,17 +146,6 @@ class ExampleServicePlaceCodes {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ExampleServicePlaceCodes] from JSON.
-  static ExampleServicePlaceCodes fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ExampleServicePlaceCodes.elementOnly.withElement(element);
-    }
-    return ExampleServicePlaceCodes._(value!, element: element);
-  }
 
   /// String representation
   @override

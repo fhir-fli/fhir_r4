@@ -7,6 +7,17 @@ class CharacteristicCombination {
   // Private constructor for internal use (like enum)
   CharacteristicCombination._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [CharacteristicCombination] from JSON.
+  factory CharacteristicCombination.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return CharacteristicCombination.elementOnly.withElement(element);
+    }
+    return CharacteristicCombination._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,16 +26,12 @@ class CharacteristicCombination {
 
   /// CharacteristicCombination values
   /// intersection
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CharacteristicCombination intersection =
       CharacteristicCombination._(
     'intersection',
   );
 
   /// union
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CharacteristicCombination union = CharacteristicCombination._(
     'union',
   );
@@ -50,17 +57,6 @@ class CharacteristicCombination {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [CharacteristicCombination] from JSON.
-  static CharacteristicCombination fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return CharacteristicCombination.elementOnly.withElement(element);
-    }
-    return CharacteristicCombination._(value!, element: element);
-  }
 
   /// String representation
   @override

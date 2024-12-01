@@ -7,6 +7,17 @@ class ServiceRequestCategoryCodes {
   // Private constructor for internal use (like enum)
   ServiceRequestCategoryCodes._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ServiceRequestCategoryCodes] from JSON.
+  factory ServiceRequestCategoryCodes.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ServiceRequestCategoryCodes.elementOnly.withElement(element);
+    }
+    return ServiceRequestCategoryCodes._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,40 +26,30 @@ class ServiceRequestCategoryCodes {
 
   /// ServiceRequestCategoryCodes values
   /// value108252007
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ServiceRequestCategoryCodes value108252007 =
       ServiceRequestCategoryCodes._(
     '108252007',
   );
 
   /// value363679005
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ServiceRequestCategoryCodes value363679005 =
       ServiceRequestCategoryCodes._(
     '363679005',
   );
 
   /// value409063005
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ServiceRequestCategoryCodes value409063005 =
       ServiceRequestCategoryCodes._(
     '409063005',
   );
 
   /// value409073007
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ServiceRequestCategoryCodes value409073007 =
       ServiceRequestCategoryCodes._(
     '409073007',
   );
 
   /// value387713003
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ServiceRequestCategoryCodes value387713003 =
       ServiceRequestCategoryCodes._(
     '387713003',
@@ -78,17 +79,6 @@ class ServiceRequestCategoryCodes {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ServiceRequestCategoryCodes] from JSON.
-  static ServiceRequestCategoryCodes fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ServiceRequestCategoryCodes.elementOnly.withElement(element);
-    }
-    return ServiceRequestCategoryCodes._(value!, element: element);
-  }
 
   /// String representation
   @override

@@ -7,6 +7,17 @@ class StructureMapGroupTypeMode {
   // Private constructor for internal use (like enum)
   StructureMapGroupTypeMode._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [StructureMapGroupTypeMode] from JSON.
+  factory StructureMapGroupTypeMode.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return StructureMapGroupTypeMode.elementOnly.withElement(element);
+    }
+    return StructureMapGroupTypeMode._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,22 +26,16 @@ class StructureMapGroupTypeMode {
 
   /// StructureMapGroupTypeMode values
   /// none
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final StructureMapGroupTypeMode none = StructureMapGroupTypeMode._(
     'none',
   );
 
   /// types
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final StructureMapGroupTypeMode types = StructureMapGroupTypeMode._(
     'types',
   );
 
   /// type_and_types
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final StructureMapGroupTypeMode type_and_types =
       StructureMapGroupTypeMode._(
     'type-and-types',
@@ -58,17 +63,6 @@ class StructureMapGroupTypeMode {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [StructureMapGroupTypeMode] from JSON.
-  static StructureMapGroupTypeMode fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return StructureMapGroupTypeMode.elementOnly.withElement(element);
-    }
-    return StructureMapGroupTypeMode._(value!, element: element);
-  }
 
   /// String representation
   @override

@@ -7,6 +7,17 @@ class MissingToothReasonCodes {
   // Private constructor for internal use (like enum)
   MissingToothReasonCodes._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [MissingToothReasonCodes] from JSON.
+  factory MissingToothReasonCodes.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return MissingToothReasonCodes.elementOnly.withElement(element);
+    }
+    return MissingToothReasonCodes._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,29 +26,21 @@ class MissingToothReasonCodes {
 
   /// MissingToothReasonCodes values
   /// e
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MissingToothReasonCodes e = MissingToothReasonCodes._(
     'e',
   );
 
   /// c
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MissingToothReasonCodes c = MissingToothReasonCodes._(
     'c',
   );
 
   /// u
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MissingToothReasonCodes u = MissingToothReasonCodes._(
     'u',
   );
 
   /// o
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final MissingToothReasonCodes o = MissingToothReasonCodes._(
     'o',
   );
@@ -65,17 +68,6 @@ class MissingToothReasonCodes {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [MissingToothReasonCodes] from JSON.
-  static MissingToothReasonCodes fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return MissingToothReasonCodes.elementOnly.withElement(element);
-    }
-    return MissingToothReasonCodes._(value!, element: element);
-  }
 
   /// String representation
   @override

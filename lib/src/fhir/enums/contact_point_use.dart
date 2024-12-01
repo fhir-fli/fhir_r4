@@ -7,6 +7,17 @@ class ContactPointUse {
   // Private constructor for internal use (like enum)
   ContactPointUse._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ContactPointUse] from JSON.
+  factory ContactPointUse.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ContactPointUse.elementOnly.withElement(element);
+    }
+    return ContactPointUse._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,36 +26,26 @@ class ContactPointUse {
 
   /// ContactPointUse values
   /// home
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ContactPointUse home = ContactPointUse._(
     'home',
   );
 
   /// work
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ContactPointUse work = ContactPointUse._(
     'work',
   );
 
   /// temp
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ContactPointUse temp = ContactPointUse._(
     'temp',
   );
 
   /// old
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ContactPointUse old = ContactPointUse._(
     'old',
   );
 
   /// mobile
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ContactPointUse mobile = ContactPointUse._(
     'mobile',
   );
@@ -72,17 +73,6 @@ class ContactPointUse {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ContactPointUse] from JSON.
-  static ContactPointUse fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ContactPointUse.elementOnly.withElement(element);
-    }
-    return ContactPointUse._(value!, element: element);
-  }
 
   /// String representation
   @override

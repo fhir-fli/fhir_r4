@@ -7,6 +7,17 @@ class ArticleUrlType {
   // Private constructor for internal use (like enum)
   ArticleUrlType._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ArticleUrlType] from JSON.
+  factory ArticleUrlType.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ArticleUrlType.elementOnly.withElement(element);
+    }
+    return ArticleUrlType._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,113 +26,81 @@ class ArticleUrlType {
 
   /// ArticleUrlType values
   /// abstract_
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ArticleUrlType abstract_ = ArticleUrlType._(
     'abstract',
   );
 
   /// abstract_version
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ArticleUrlType abstract_version = ArticleUrlType._(
     'abstract-version',
   );
 
   /// doi_based
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ArticleUrlType doi_based = ArticleUrlType._(
     'doi-based',
   );
 
   /// full_text
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ArticleUrlType full_text = ArticleUrlType._(
     'full-text',
   );
 
   /// full_text_version
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ArticleUrlType full_text_version = ArticleUrlType._(
     'full-text-version',
   );
 
   /// pdf
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ArticleUrlType pdf = ArticleUrlType._(
     'pdf',
   );
 
   /// pdf_version
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ArticleUrlType pdf_version = ArticleUrlType._(
     'pdf-version',
   );
 
   /// webpage
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ArticleUrlType webpage = ArticleUrlType._(
     'webpage',
   );
 
   /// not_specified
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ArticleUrlType not_specified = ArticleUrlType._(
     'not-specified',
   );
 
   /// json
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ArticleUrlType json = ArticleUrlType._(
     'json',
   );
 
   /// json_version
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ArticleUrlType json_version = ArticleUrlType._(
     'json-version',
   );
 
   /// xml
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ArticleUrlType xml = ArticleUrlType._(
     'xml',
   );
 
   /// xml_version
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ArticleUrlType xml_version = ArticleUrlType._(
     'xml-version',
   );
 
   /// supplement
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ArticleUrlType supplement = ArticleUrlType._(
     'supplement',
   );
 
   /// supplementary_file_directory
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ArticleUrlType supplementary_file_directory = ArticleUrlType._(
     'supplementary-file-directory',
   );
 
   /// compressed_file
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ArticleUrlType compressed_file = ArticleUrlType._(
     'compressed-file',
   );
@@ -160,17 +139,6 @@ class ArticleUrlType {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ArticleUrlType] from JSON.
-  static ArticleUrlType fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ArticleUrlType.elementOnly.withElement(element);
-    }
-    return ArticleUrlType._(value!, element: element);
-  }
 
   /// String representation
   @override

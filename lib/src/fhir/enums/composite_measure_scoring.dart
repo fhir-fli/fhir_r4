@@ -7,6 +7,17 @@ class CompositeMeasureScoring {
   // Private constructor for internal use (like enum)
   CompositeMeasureScoring._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [CompositeMeasureScoring] from JSON.
+  factory CompositeMeasureScoring.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return CompositeMeasureScoring.elementOnly.withElement(element);
+    }
+    return CompositeMeasureScoring._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,30 +26,22 @@ class CompositeMeasureScoring {
 
   /// CompositeMeasureScoring values
   /// opportunity
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CompositeMeasureScoring opportunity = CompositeMeasureScoring._(
     'opportunity',
   );
 
   /// all_or_nothing
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CompositeMeasureScoring all_or_nothing =
       CompositeMeasureScoring._(
     'all-or-nothing',
   );
 
   /// linear
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CompositeMeasureScoring linear = CompositeMeasureScoring._(
     'linear',
   );
 
   /// weighted
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final CompositeMeasureScoring weighted = CompositeMeasureScoring._(
     'weighted',
   );
@@ -66,17 +69,6 @@ class CompositeMeasureScoring {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [CompositeMeasureScoring] from JSON.
-  static CompositeMeasureScoring fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return CompositeMeasureScoring.elementOnly.withElement(element);
-    }
-    return CompositeMeasureScoring._(value!, element: element);
-  }
 
   /// String representation
   @override

@@ -7,6 +7,17 @@ class ArtifactContributionInstanceType {
   // Private constructor for internal use (like enum)
   ArtifactContributionInstanceType._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ArtifactContributionInstanceType] from JSON.
+  factory ArtifactContributionInstanceType.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ArtifactContributionInstanceType.elementOnly.withElement(element);
+    }
+    return ArtifactContributionInstanceType._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,24 +26,18 @@ class ArtifactContributionInstanceType {
 
   /// ArtifactContributionInstanceType values
   /// reviewed
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ArtifactContributionInstanceType reviewed =
       ArtifactContributionInstanceType._(
     'reviewed',
   );
 
   /// approved
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ArtifactContributionInstanceType approved =
       ArtifactContributionInstanceType._(
     'approved',
   );
 
   /// edited
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ArtifactContributionInstanceType edited =
       ArtifactContributionInstanceType._(
     'edited',
@@ -60,17 +65,6 @@ class ArtifactContributionInstanceType {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ArtifactContributionInstanceType] from JSON.
-  static ArtifactContributionInstanceType fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ArtifactContributionInstanceType.elementOnly.withElement(element);
-    }
-    return ArtifactContributionInstanceType._(value!, element: element);
-  }
 
   /// String representation
   @override

@@ -7,6 +7,17 @@ class ParticipantRequired {
   // Private constructor for internal use (like enum)
   ParticipantRequired._(this.fhirCode, {this.element});
 
+  /// Factory constructor to create [ParticipantRequired] from JSON.
+  factory ParticipantRequired.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ParticipantRequired.elementOnly.withElement(element);
+    }
+    return ParticipantRequired._(value!, element: element);
+  }
+
   /// The String value of this enum (FHIR code)
   final String fhirCode;
 
@@ -15,22 +26,16 @@ class ParticipantRequired {
 
   /// ParticipantRequired values
   /// required_
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ParticipantRequired required_ = ParticipantRequired._(
     'required',
   );
 
   /// optional
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ParticipantRequired optional = ParticipantRequired._(
     'optional',
   );
 
   /// information_only
-  /// Instance of 'EnumValue'.display
-  /// Instance of 'EnumValue'.definition
   static final ParticipantRequired information_only = ParticipantRequired._(
     'information-only',
   );
@@ -56,17 +61,6 @@ class ParticipantRequired {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
-
-  /// Factory constructor to create [ParticipantRequired] from JSON.
-  static ParticipantRequired fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return ParticipantRequired.elementOnly.withElement(element);
-    }
-    return ParticipantRequired._(value!, element: element);
-  }
 
   /// String representation
   @override
