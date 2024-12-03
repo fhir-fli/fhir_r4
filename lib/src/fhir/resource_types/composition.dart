@@ -212,20 +212,22 @@ class Composition extends DomainResource {
   /// from a [String] or [YamlMap] object
   factory Composition.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? Composition.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? Composition.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'Composition '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return Composition.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return Composition.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'Composition cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [Composition]
   /// that takes in a [String]
@@ -545,20 +547,22 @@ class CompositionAttester extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory CompositionAttester.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? CompositionAttester.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? CompositionAttester.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'CompositionAttester '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return CompositionAttester.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return CompositionAttester.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'CompositionAttester cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [CompositionAttester]
   /// that takes in a [String]
@@ -724,20 +728,22 @@ class CompositionRelatesTo extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory CompositionRelatesTo.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? CompositionRelatesTo.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? CompositionRelatesTo.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'CompositionRelatesTo '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return CompositionRelatesTo.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return CompositionRelatesTo.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'CompositionRelatesTo cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [CompositionRelatesTo]
   /// that takes in a [String]
@@ -916,20 +922,22 @@ class CompositionEvent extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory CompositionEvent.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? CompositionEvent.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? CompositionEvent.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'CompositionEvent '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return CompositionEvent.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return CompositionEvent.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'CompositionEvent cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [CompositionEvent]
   /// that takes in a [String]
@@ -1165,20 +1173,22 @@ class CompositionSection extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory CompositionSection.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? CompositionSection.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? CompositionSection.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'CompositionSection '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return CompositionSection.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return CompositionSection.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'CompositionSection cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [CompositionSection]
   /// that takes in a [String]

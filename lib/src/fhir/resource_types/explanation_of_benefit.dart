@@ -398,20 +398,22 @@ class ExplanationOfBenefit extends DomainResource {
   /// from a [String] or [YamlMap] object
   factory ExplanationOfBenefit.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? ExplanationOfBenefit.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? ExplanationOfBenefit.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'ExplanationOfBenefit '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return ExplanationOfBenefit.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return ExplanationOfBenefit.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'ExplanationOfBenefit cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [ExplanationOfBenefit]
   /// that takes in a [String]
@@ -1021,20 +1023,22 @@ class ExplanationOfBenefitRelated extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory ExplanationOfBenefitRelated.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? ExplanationOfBenefitRelated.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? ExplanationOfBenefitRelated.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'ExplanationOfBenefitRelated '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return ExplanationOfBenefitRelated.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return ExplanationOfBenefitRelated.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'ExplanationOfBenefitRelated cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [ExplanationOfBenefitRelated]
   /// that takes in a [String]
@@ -1202,20 +1206,22 @@ class ExplanationOfBenefitPayee extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory ExplanationOfBenefitPayee.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? ExplanationOfBenefitPayee.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? ExplanationOfBenefitPayee.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'ExplanationOfBenefitPayee '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return ExplanationOfBenefitPayee.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return ExplanationOfBenefitPayee.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'ExplanationOfBenefitPayee cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [ExplanationOfBenefitPayee]
   /// that takes in a [String]
@@ -1388,20 +1394,22 @@ class ExplanationOfBenefitCareTeam extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory ExplanationOfBenefitCareTeam.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? ExplanationOfBenefitCareTeam.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? ExplanationOfBenefitCareTeam.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'ExplanationOfBenefitCareTeam '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return ExplanationOfBenefitCareTeam.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return ExplanationOfBenefitCareTeam.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'ExplanationOfBenefitCareTeam cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [ExplanationOfBenefitCareTeam]
   /// that takes in a [String]
@@ -1638,20 +1646,22 @@ class ExplanationOfBenefitSupportingInfo extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory ExplanationOfBenefitSupportingInfo.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? ExplanationOfBenefitSupportingInfo.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? ExplanationOfBenefitSupportingInfo.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'ExplanationOfBenefitSupportingInfo '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return ExplanationOfBenefitSupportingInfo.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return ExplanationOfBenefitSupportingInfo.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'ExplanationOfBenefitSupportingInfo cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [ExplanationOfBenefitSupportingInfo]
   /// that takes in a [String]
@@ -1924,20 +1934,22 @@ class ExplanationOfBenefitDiagnosis extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory ExplanationOfBenefitDiagnosis.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? ExplanationOfBenefitDiagnosis.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? ExplanationOfBenefitDiagnosis.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'ExplanationOfBenefitDiagnosis '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return ExplanationOfBenefitDiagnosis.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return ExplanationOfBenefitDiagnosis.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'ExplanationOfBenefitDiagnosis cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [ExplanationOfBenefitDiagnosis]
   /// that takes in a [String]
@@ -2169,20 +2181,22 @@ class ExplanationOfBenefitProcedure extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory ExplanationOfBenefitProcedure.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? ExplanationOfBenefitProcedure.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? ExplanationOfBenefitProcedure.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'ExplanationOfBenefitProcedure '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return ExplanationOfBenefitProcedure.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return ExplanationOfBenefitProcedure.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'ExplanationOfBenefitProcedure cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [ExplanationOfBenefitProcedure]
   /// that takes in a [String]
@@ -2379,20 +2393,22 @@ class ExplanationOfBenefitInsurance extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory ExplanationOfBenefitInsurance.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? ExplanationOfBenefitInsurance.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? ExplanationOfBenefitInsurance.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'ExplanationOfBenefitInsurance '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return ExplanationOfBenefitInsurance.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return ExplanationOfBenefitInsurance.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'ExplanationOfBenefitInsurance cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [ExplanationOfBenefitInsurance]
   /// that takes in a [String]
@@ -2577,20 +2593,22 @@ class ExplanationOfBenefitAccident extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory ExplanationOfBenefitAccident.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? ExplanationOfBenefitAccident.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? ExplanationOfBenefitAccident.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'ExplanationOfBenefitAccident '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return ExplanationOfBenefitAccident.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return ExplanationOfBenefitAccident.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'ExplanationOfBenefitAccident cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [ExplanationOfBenefitAccident]
   /// that takes in a [String]
@@ -2939,20 +2957,22 @@ class ExplanationOfBenefitItem extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory ExplanationOfBenefitItem.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? ExplanationOfBenefitItem.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? ExplanationOfBenefitItem.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'ExplanationOfBenefitItem '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return ExplanationOfBenefitItem.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return ExplanationOfBenefitItem.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'ExplanationOfBenefitItem cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [ExplanationOfBenefitItem]
   /// that takes in a [String]
@@ -3393,20 +3413,22 @@ class ExplanationOfBenefitAdjudication extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory ExplanationOfBenefitAdjudication.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? ExplanationOfBenefitAdjudication.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? ExplanationOfBenefitAdjudication.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'ExplanationOfBenefitAdjudication '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return ExplanationOfBenefitAdjudication.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return ExplanationOfBenefitAdjudication.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'ExplanationOfBenefitAdjudication cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [ExplanationOfBenefitAdjudication]
   /// that takes in a [String]
@@ -3673,20 +3695,22 @@ class ExplanationOfBenefitDetail extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory ExplanationOfBenefitDetail.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? ExplanationOfBenefitDetail.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? ExplanationOfBenefitDetail.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'ExplanationOfBenefitDetail '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return ExplanationOfBenefitDetail.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return ExplanationOfBenefitDetail.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'ExplanationOfBenefitDetail cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [ExplanationOfBenefitDetail]
   /// that takes in a [String]
@@ -4051,20 +4075,22 @@ class ExplanationOfBenefitSubDetail extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory ExplanationOfBenefitSubDetail.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? ExplanationOfBenefitSubDetail.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? ExplanationOfBenefitSubDetail.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'ExplanationOfBenefitSubDetail '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return ExplanationOfBenefitSubDetail.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return ExplanationOfBenefitSubDetail.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'ExplanationOfBenefitSubDetail cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [ExplanationOfBenefitSubDetail]
   /// that takes in a [String]
@@ -4479,20 +4505,22 @@ class ExplanationOfBenefitAddItem extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory ExplanationOfBenefitAddItem.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? ExplanationOfBenefitAddItem.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? ExplanationOfBenefitAddItem.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'ExplanationOfBenefitAddItem '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return ExplanationOfBenefitAddItem.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return ExplanationOfBenefitAddItem.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'ExplanationOfBenefitAddItem cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [ExplanationOfBenefitAddItem]
   /// that takes in a [String]
@@ -4917,20 +4945,22 @@ class ExplanationOfBenefitDetail1 extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory ExplanationOfBenefitDetail1.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? ExplanationOfBenefitDetail1.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? ExplanationOfBenefitDetail1.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'ExplanationOfBenefitDetail1 '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return ExplanationOfBenefitDetail1.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return ExplanationOfBenefitDetail1.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'ExplanationOfBenefitDetail1 cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [ExplanationOfBenefitDetail1]
   /// that takes in a [String]
@@ -5208,20 +5238,22 @@ class ExplanationOfBenefitSubDetail1 extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory ExplanationOfBenefitSubDetail1.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? ExplanationOfBenefitSubDetail1.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? ExplanationOfBenefitSubDetail1.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'ExplanationOfBenefitSubDetail1 '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return ExplanationOfBenefitSubDetail1.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return ExplanationOfBenefitSubDetail1.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'ExplanationOfBenefitSubDetail1 cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [ExplanationOfBenefitSubDetail1]
   /// that takes in a [String]
@@ -5442,20 +5474,22 @@ class ExplanationOfBenefitTotal extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory ExplanationOfBenefitTotal.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? ExplanationOfBenefitTotal.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? ExplanationOfBenefitTotal.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'ExplanationOfBenefitTotal '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return ExplanationOfBenefitTotal.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return ExplanationOfBenefitTotal.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'ExplanationOfBenefitTotal cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [ExplanationOfBenefitTotal]
   /// that takes in a [String]
@@ -5636,20 +5670,22 @@ class ExplanationOfBenefitPayment extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory ExplanationOfBenefitPayment.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? ExplanationOfBenefitPayment.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? ExplanationOfBenefitPayment.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'ExplanationOfBenefitPayment '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return ExplanationOfBenefitPayment.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return ExplanationOfBenefitPayment.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'ExplanationOfBenefitPayment cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [ExplanationOfBenefitPayment]
   /// that takes in a [String]
@@ -5861,20 +5897,22 @@ class ExplanationOfBenefitProcessNote extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory ExplanationOfBenefitProcessNote.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? ExplanationOfBenefitProcessNote.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? ExplanationOfBenefitProcessNote.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'ExplanationOfBenefitProcessNote '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return ExplanationOfBenefitProcessNote.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return ExplanationOfBenefitProcessNote.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'ExplanationOfBenefitProcessNote cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [ExplanationOfBenefitProcessNote]
   /// that takes in a [String]
@@ -6082,20 +6120,22 @@ class ExplanationOfBenefitBenefitBalance extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory ExplanationOfBenefitBenefitBalance.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? ExplanationOfBenefitBenefitBalance.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? ExplanationOfBenefitBenefitBalance.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'ExplanationOfBenefitBenefitBalance '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return ExplanationOfBenefitBenefitBalance.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return ExplanationOfBenefitBenefitBalance.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'ExplanationOfBenefitBenefitBalance cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [ExplanationOfBenefitBenefitBalance]
   /// that takes in a [String]
@@ -6333,20 +6373,22 @@ class ExplanationOfBenefitFinancial extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory ExplanationOfBenefitFinancial.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? ExplanationOfBenefitFinancial.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? ExplanationOfBenefitFinancial.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'ExplanationOfBenefitFinancial '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return ExplanationOfBenefitFinancial.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return ExplanationOfBenefitFinancial.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'ExplanationOfBenefitFinancial cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [ExplanationOfBenefitFinancial]
   /// that takes in a [String]

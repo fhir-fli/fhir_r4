@@ -225,20 +225,22 @@ class RiskAssessment extends DomainResource {
   /// from a [String] or [YamlMap] object
   factory RiskAssessment.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? RiskAssessment.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? RiskAssessment.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'RiskAssessment '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return RiskAssessment.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return RiskAssessment.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'RiskAssessment cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [RiskAssessment]
   /// that takes in a [String]
@@ -615,20 +617,22 @@ class RiskAssessmentPrediction extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory RiskAssessmentPrediction.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? RiskAssessmentPrediction.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? RiskAssessmentPrediction.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'RiskAssessmentPrediction '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return RiskAssessmentPrediction.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return RiskAssessmentPrediction.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'RiskAssessmentPrediction cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [RiskAssessmentPrediction]
   /// that takes in a [String]

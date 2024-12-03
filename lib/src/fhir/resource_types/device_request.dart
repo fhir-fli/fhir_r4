@@ -298,20 +298,22 @@ class DeviceRequest extends DomainResource {
   /// from a [String] or [YamlMap] object
   factory DeviceRequest.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? DeviceRequest.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? DeviceRequest.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'DeviceRequest '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return DeviceRequest.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return DeviceRequest.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'DeviceRequest cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [DeviceRequest]
   /// that takes in a [String]
@@ -785,20 +787,22 @@ class DeviceRequestParameter extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory DeviceRequestParameter.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? DeviceRequestParameter.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? DeviceRequestParameter.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'DeviceRequestParameter '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return DeviceRequestParameter.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return DeviceRequestParameter.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'DeviceRequestParameter cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [DeviceRequestParameter]
   /// that takes in a [String]

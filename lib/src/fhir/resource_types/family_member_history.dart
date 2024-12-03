@@ -277,20 +277,22 @@ class FamilyMemberHistory extends DomainResource {
   /// from a [String] or [YamlMap] object
   factory FamilyMemberHistory.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? FamilyMemberHistory.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? FamilyMemberHistory.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'FamilyMemberHistory '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return FamilyMemberHistory.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return FamilyMemberHistory.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'FamilyMemberHistory cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [FamilyMemberHistory]
   /// that takes in a [String]
@@ -758,20 +760,22 @@ class FamilyMemberHistoryCondition extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory FamilyMemberHistoryCondition.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? FamilyMemberHistoryCondition.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? FamilyMemberHistoryCondition.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'FamilyMemberHistoryCondition '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return FamilyMemberHistoryCondition.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return FamilyMemberHistoryCondition.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'FamilyMemberHistoryCondition cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [FamilyMemberHistoryCondition]
   /// that takes in a [String]

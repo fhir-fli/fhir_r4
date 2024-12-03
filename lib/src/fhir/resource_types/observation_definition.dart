@@ -185,20 +185,22 @@ class ObservationDefinition extends DomainResource {
   /// from a [String] or [YamlMap] object
   factory ObservationDefinition.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? ObservationDefinition.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? ObservationDefinition.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'ObservationDefinition '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return ObservationDefinition.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return ObservationDefinition.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'ObservationDefinition cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [ObservationDefinition]
   /// that takes in a [String]
@@ -515,20 +517,22 @@ class ObservationDefinitionQuantitativeDetails extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory ObservationDefinitionQuantitativeDetails.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? ObservationDefinitionQuantitativeDetails.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? ObservationDefinitionQuantitativeDetails.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'ObservationDefinitionQuantitativeDetails '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return ObservationDefinitionQuantitativeDetails.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return ObservationDefinitionQuantitativeDetails.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'ObservationDefinitionQuantitativeDetails cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [ObservationDefinitionQuantitativeDetails]
   /// that takes in a [String]
@@ -747,20 +751,22 @@ class ObservationDefinitionQualifiedInterval extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory ObservationDefinitionQualifiedInterval.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? ObservationDefinitionQualifiedInterval.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? ObservationDefinitionQualifiedInterval.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'ObservationDefinitionQualifiedInterval '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return ObservationDefinitionQualifiedInterval.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return ObservationDefinitionQualifiedInterval.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'ObservationDefinitionQualifiedInterval cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [ObservationDefinitionQualifiedInterval]
   /// that takes in a [String]

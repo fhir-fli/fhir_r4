@@ -256,20 +256,22 @@ class DiagnosticReport extends DomainResource {
   /// from a [String] or [YamlMap] object
   factory DiagnosticReport.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? DiagnosticReport.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? DiagnosticReport.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'DiagnosticReport '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return DiagnosticReport.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return DiagnosticReport.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'DiagnosticReport cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [DiagnosticReport]
   /// that takes in a [String]
@@ -632,20 +634,22 @@ class DiagnosticReportMedia extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory DiagnosticReportMedia.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? DiagnosticReportMedia.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? DiagnosticReportMedia.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'DiagnosticReportMedia '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return DiagnosticReportMedia.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return DiagnosticReportMedia.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'DiagnosticReportMedia cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [DiagnosticReportMedia]
   /// that takes in a [String]

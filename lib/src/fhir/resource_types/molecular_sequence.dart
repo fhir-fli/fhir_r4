@@ -215,20 +215,22 @@ class MolecularSequence extends DomainResource {
   /// from a [String] or [YamlMap] object
   factory MolecularSequence.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? MolecularSequence.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? MolecularSequence.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'MolecularSequence '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return MolecularSequence.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return MolecularSequence.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'MolecularSequence cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [MolecularSequence]
   /// that takes in a [String]
@@ -602,20 +604,22 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory MolecularSequenceReferenceSeq.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? MolecularSequenceReferenceSeq.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? MolecularSequenceReferenceSeq.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'MolecularSequenceReferenceSeq '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return MolecularSequenceReferenceSeq.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return MolecularSequenceReferenceSeq.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'MolecularSequenceReferenceSeq cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [MolecularSequenceReferenceSeq]
   /// that takes in a [String]
@@ -876,20 +880,22 @@ class MolecularSequenceVariant extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory MolecularSequenceVariant.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? MolecularSequenceVariant.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? MolecularSequenceVariant.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'MolecularSequenceVariant '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return MolecularSequenceVariant.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return MolecularSequenceVariant.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'MolecularSequenceVariant cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [MolecularSequenceVariant]
   /// that takes in a [String]
@@ -1178,20 +1184,22 @@ class MolecularSequenceQuality extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory MolecularSequenceQuality.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? MolecularSequenceQuality.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? MolecularSequenceQuality.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'MolecularSequenceQuality '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return MolecularSequenceQuality.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return MolecularSequenceQuality.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'MolecularSequenceQuality cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [MolecularSequenceQuality]
   /// that takes in a [String]
@@ -1497,20 +1505,22 @@ class MolecularSequenceRoc extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory MolecularSequenceRoc.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? MolecularSequenceRoc.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? MolecularSequenceRoc.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'MolecularSequenceRoc '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return MolecularSequenceRoc.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return MolecularSequenceRoc.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'MolecularSequenceRoc cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [MolecularSequenceRoc]
   /// that takes in a [String]
@@ -1781,20 +1791,22 @@ class MolecularSequenceRepository extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory MolecularSequenceRepository.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? MolecularSequenceRepository.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? MolecularSequenceRepository.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'MolecularSequenceRepository '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return MolecularSequenceRepository.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return MolecularSequenceRepository.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'MolecularSequenceRepository cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [MolecularSequenceRepository]
   /// that takes in a [String]
@@ -1999,20 +2011,22 @@ class MolecularSequenceStructureVariant extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory MolecularSequenceStructureVariant.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? MolecularSequenceStructureVariant.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? MolecularSequenceStructureVariant.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'MolecularSequenceStructureVariant '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return MolecularSequenceStructureVariant.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return MolecularSequenceStructureVariant.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'MolecularSequenceStructureVariant cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [MolecularSequenceStructureVariant]
   /// that takes in a [String]
@@ -2195,20 +2209,22 @@ class MolecularSequenceOuter extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory MolecularSequenceOuter.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? MolecularSequenceOuter.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? MolecularSequenceOuter.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'MolecularSequenceOuter '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return MolecularSequenceOuter.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return MolecularSequenceOuter.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'MolecularSequenceOuter cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [MolecularSequenceOuter]
   /// that takes in a [String]
@@ -2364,20 +2380,22 @@ class MolecularSequenceInner extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory MolecularSequenceInner.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? MolecularSequenceInner.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? MolecularSequenceInner.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'MolecularSequenceInner '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return MolecularSequenceInner.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return MolecularSequenceInner.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'MolecularSequenceInner cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [MolecularSequenceInner]
   /// that takes in a [String]

@@ -176,20 +176,22 @@ class MessageHeader extends DomainResource {
   /// from a [String] or [YamlMap] object
   factory MessageHeader.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? MessageHeader.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? MessageHeader.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'MessageHeader '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return MessageHeader.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return MessageHeader.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'MessageHeader cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [MessageHeader]
   /// that takes in a [String]
@@ -492,20 +494,22 @@ class MessageHeaderDestination extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory MessageHeaderDestination.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? MessageHeaderDestination.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? MessageHeaderDestination.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'MessageHeaderDestination '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return MessageHeaderDestination.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return MessageHeaderDestination.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'MessageHeaderDestination cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [MessageHeaderDestination]
   /// that takes in a [String]
@@ -698,20 +702,22 @@ class MessageHeaderSource extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory MessageHeaderSource.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? MessageHeaderSource.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? MessageHeaderSource.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'MessageHeaderSource '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return MessageHeaderSource.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return MessageHeaderSource.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'MessageHeaderSource cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [MessageHeaderSource]
   /// that takes in a [String]
@@ -892,20 +898,22 @@ class MessageHeaderResponse extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory MessageHeaderResponse.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? MessageHeaderResponse.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? MessageHeaderResponse.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'MessageHeaderResponse '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return MessageHeaderResponse.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return MessageHeaderResponse.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'MessageHeaderResponse cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [MessageHeaderResponse]
   /// that takes in a [String]

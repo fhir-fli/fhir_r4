@@ -244,20 +244,22 @@ class AdverseEvent extends DomainResource {
   /// from a [String] or [YamlMap] object
   factory AdverseEvent.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? AdverseEvent.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? AdverseEvent.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'AdverseEvent '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return AdverseEvent.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return AdverseEvent.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'AdverseEvent cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [AdverseEvent]
   /// that takes in a [String]
@@ -629,20 +631,22 @@ class AdverseEventSuspectEntity extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory AdverseEventSuspectEntity.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? AdverseEventSuspectEntity.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? AdverseEventSuspectEntity.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'AdverseEventSuspectEntity '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return AdverseEventSuspectEntity.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return AdverseEventSuspectEntity.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'AdverseEventSuspectEntity cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [AdverseEventSuspectEntity]
   /// that takes in a [String]
@@ -812,20 +816,22 @@ class AdverseEventCausality extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory AdverseEventCausality.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? AdverseEventCausality.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? AdverseEventCausality.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'AdverseEventCausality '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return AdverseEventCausality.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return AdverseEventCausality.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'AdverseEventCausality cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [AdverseEventCausality]
   /// that takes in a [String]

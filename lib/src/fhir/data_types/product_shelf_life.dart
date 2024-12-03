@@ -78,20 +78,22 @@ class ProductShelfLife extends BackboneType {
   /// from a [String] or [YamlMap] object
   factory ProductShelfLife.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? ProductShelfLife.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? ProductShelfLife.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'ProductShelfLife '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return ProductShelfLife.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return ProductShelfLife.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'ProductShelfLife cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [ProductShelfLife]
   /// that takes in a [String]

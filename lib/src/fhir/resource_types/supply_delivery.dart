@@ -189,20 +189,22 @@ class SupplyDelivery extends DomainResource {
   /// from a [String] or [YamlMap] object
   factory SupplyDelivery.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? SupplyDelivery.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? SupplyDelivery.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'SupplyDelivery '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return SupplyDelivery.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return SupplyDelivery.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'SupplyDelivery cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [SupplyDelivery]
   /// that takes in a [String]
@@ -500,20 +502,22 @@ class SupplyDeliverySuppliedItem extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory SupplyDeliverySuppliedItem.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? SupplyDeliverySuppliedItem.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? SupplyDeliverySuppliedItem.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'SupplyDeliverySuppliedItem '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return SupplyDeliverySuppliedItem.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return SupplyDeliverySuppliedItem.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'SupplyDeliverySuppliedItem cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [SupplyDeliverySuppliedItem]
   /// that takes in a [String]

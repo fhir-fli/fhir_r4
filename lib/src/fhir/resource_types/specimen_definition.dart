@@ -141,20 +141,22 @@ class SpecimenDefinition extends DomainResource {
   /// from a [String] or [YamlMap] object
   factory SpecimenDefinition.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? SpecimenDefinition.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? SpecimenDefinition.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'SpecimenDefinition '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return SpecimenDefinition.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return SpecimenDefinition.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'SpecimenDefinition cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [SpecimenDefinition]
   /// that takes in a [String]
@@ -420,20 +422,22 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory SpecimenDefinitionTypeTested.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? SpecimenDefinitionTypeTested.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? SpecimenDefinitionTypeTested.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'SpecimenDefinitionTypeTested '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return SpecimenDefinitionTypeTested.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return SpecimenDefinitionTypeTested.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'SpecimenDefinitionTypeTested cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [SpecimenDefinitionTypeTested]
   /// that takes in a [String]
@@ -695,20 +699,22 @@ class SpecimenDefinitionContainer extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory SpecimenDefinitionContainer.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? SpecimenDefinitionContainer.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? SpecimenDefinitionContainer.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'SpecimenDefinitionContainer '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return SpecimenDefinitionContainer.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return SpecimenDefinitionContainer.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'SpecimenDefinitionContainer cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [SpecimenDefinitionContainer]
   /// that takes in a [String]
@@ -929,20 +935,22 @@ class SpecimenDefinitionAdditive extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory SpecimenDefinitionAdditive.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? SpecimenDefinitionAdditive.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? SpecimenDefinitionAdditive.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'SpecimenDefinitionAdditive '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return SpecimenDefinitionAdditive.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return SpecimenDefinitionAdditive.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'SpecimenDefinitionAdditive cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [SpecimenDefinitionAdditive]
   /// that takes in a [String]
@@ -1115,20 +1123,22 @@ class SpecimenDefinitionHandling extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory SpecimenDefinitionHandling.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? SpecimenDefinitionHandling.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? SpecimenDefinitionHandling.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'SpecimenDefinitionHandling '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return SpecimenDefinitionHandling.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return SpecimenDefinitionHandling.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'SpecimenDefinitionHandling cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [SpecimenDefinitionHandling]
   /// that takes in a [String]

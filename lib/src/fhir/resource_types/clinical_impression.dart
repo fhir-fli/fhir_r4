@@ -259,20 +259,22 @@ class ClinicalImpression extends DomainResource {
   /// from a [String] or [YamlMap] object
   factory ClinicalImpression.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? ClinicalImpression.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? ClinicalImpression.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'ClinicalImpression '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return ClinicalImpression.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return ClinicalImpression.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'ClinicalImpression cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [ClinicalImpression]
   /// that takes in a [String]
@@ -656,20 +658,22 @@ class ClinicalImpressionInvestigation extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory ClinicalImpressionInvestigation.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? ClinicalImpressionInvestigation.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? ClinicalImpressionInvestigation.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'ClinicalImpressionInvestigation '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return ClinicalImpressionInvestigation.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return ClinicalImpressionInvestigation.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'ClinicalImpressionInvestigation cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [ClinicalImpressionInvestigation]
   /// that takes in a [String]
@@ -834,20 +838,22 @@ class ClinicalImpressionFinding extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory ClinicalImpressionFinding.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? ClinicalImpressionFinding.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? ClinicalImpressionFinding.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'ClinicalImpressionFinding '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return ClinicalImpressionFinding.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return ClinicalImpressionFinding.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'ClinicalImpressionFinding cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [ClinicalImpressionFinding]
   /// that takes in a [String]

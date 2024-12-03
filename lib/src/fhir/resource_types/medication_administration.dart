@@ -261,20 +261,22 @@ class MedicationAdministration extends DomainResource {
   /// from a [String] or [YamlMap] object
   factory MedicationAdministration.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? MedicationAdministration.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? MedicationAdministration.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'MedicationAdministration '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return MedicationAdministration.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return MedicationAdministration.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'MedicationAdministration cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [MedicationAdministration]
   /// that takes in a [String]
@@ -675,20 +677,22 @@ class MedicationAdministrationPerformer extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory MedicationAdministrationPerformer.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? MedicationAdministrationPerformer.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? MedicationAdministrationPerformer.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'MedicationAdministrationPerformer '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return MedicationAdministrationPerformer.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return MedicationAdministrationPerformer.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'MedicationAdministrationPerformer cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [MedicationAdministrationPerformer]
   /// that takes in a [String]
@@ -875,20 +879,22 @@ class MedicationAdministrationDosage extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory MedicationAdministrationDosage.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? MedicationAdministrationDosage.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? MedicationAdministrationDosage.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'MedicationAdministrationDosage '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return MedicationAdministrationDosage.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return MedicationAdministrationDosage.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'MedicationAdministrationDosage cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [MedicationAdministrationDosage]
   /// that takes in a [String]

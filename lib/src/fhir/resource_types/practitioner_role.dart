@@ -216,20 +216,22 @@ class PractitionerRole extends DomainResource {
   /// from a [String] or [YamlMap] object
   factory PractitionerRole.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? PractitionerRole.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? PractitionerRole.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'PractitionerRole '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return PractitionerRole.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return PractitionerRole.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'PractitionerRole cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [PractitionerRole]
   /// that takes in a [String]
@@ -554,20 +556,22 @@ class PractitionerRoleAvailableTime extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory PractitionerRoleAvailableTime.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? PractitionerRoleAvailableTime.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? PractitionerRoleAvailableTime.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'PractitionerRoleAvailableTime '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return PractitionerRoleAvailableTime.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return PractitionerRoleAvailableTime.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'PractitionerRoleAvailableTime cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [PractitionerRoleAvailableTime]
   /// that takes in a [String]
@@ -742,20 +746,22 @@ class PractitionerRoleNotAvailable extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory PractitionerRoleNotAvailable.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? PractitionerRoleNotAvailable.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? PractitionerRoleNotAvailable.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'PractitionerRoleNotAvailable '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return PractitionerRoleNotAvailable.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return PractitionerRoleNotAvailable.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'PractitionerRoleNotAvailable cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [PractitionerRoleNotAvailable]
   /// that takes in a [String]

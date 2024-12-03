@@ -258,20 +258,22 @@ class EvidenceReport extends DomainResource {
   /// from a [String] or [YamlMap] object
   factory EvidenceReport.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? EvidenceReport.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? EvidenceReport.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'EvidenceReport '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return EvidenceReport.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return EvidenceReport.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'EvidenceReport cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [EvidenceReport]
   /// that takes in a [String]
@@ -642,20 +644,22 @@ class EvidenceReportSubject extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory EvidenceReportSubject.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? EvidenceReportSubject.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? EvidenceReportSubject.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'EvidenceReportSubject '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return EvidenceReportSubject.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return EvidenceReportSubject.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'EvidenceReportSubject cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [EvidenceReportSubject]
   /// that takes in a [String]
@@ -848,20 +852,22 @@ class EvidenceReportCharacteristic extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory EvidenceReportCharacteristic.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? EvidenceReportCharacteristic.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? EvidenceReportCharacteristic.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'EvidenceReportCharacteristic '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return EvidenceReportCharacteristic.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return EvidenceReportCharacteristic.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'EvidenceReportCharacteristic cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [EvidenceReportCharacteristic]
   /// that takes in a [String]
@@ -1075,20 +1081,22 @@ class EvidenceReportRelatesTo extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory EvidenceReportRelatesTo.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? EvidenceReportRelatesTo.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? EvidenceReportRelatesTo.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'EvidenceReportRelatesTo '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return EvidenceReportRelatesTo.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return EvidenceReportRelatesTo.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'EvidenceReportRelatesTo cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [EvidenceReportRelatesTo]
   /// that takes in a [String]
@@ -1334,20 +1342,22 @@ class EvidenceReportSection extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory EvidenceReportSection.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? EvidenceReportSection.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? EvidenceReportSection.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'EvidenceReportSection '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return EvidenceReportSection.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return EvidenceReportSection.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'EvidenceReportSection cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [EvidenceReportSection]
   /// that takes in a [String]

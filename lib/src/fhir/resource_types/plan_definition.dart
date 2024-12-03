@@ -360,20 +360,22 @@ class PlanDefinition extends DomainResource {
   /// from a [String] or [YamlMap] object
   factory PlanDefinition.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? PlanDefinition.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? PlanDefinition.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'PlanDefinition '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return PlanDefinition.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return PlanDefinition.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'PlanDefinition cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [PlanDefinition]
   /// that takes in a [String]
@@ -945,20 +947,22 @@ class PlanDefinitionGoal extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory PlanDefinitionGoal.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? PlanDefinitionGoal.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? PlanDefinitionGoal.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'PlanDefinitionGoal '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return PlanDefinitionGoal.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return PlanDefinitionGoal.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'PlanDefinitionGoal cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [PlanDefinitionGoal]
   /// that takes in a [String]
@@ -1187,20 +1191,22 @@ class PlanDefinitionTarget extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory PlanDefinitionTarget.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? PlanDefinitionTarget.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? PlanDefinitionTarget.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'PlanDefinitionTarget '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return PlanDefinitionTarget.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return PlanDefinitionTarget.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'PlanDefinitionTarget cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [PlanDefinitionTarget]
   /// that takes in a [String]
@@ -1678,20 +1684,22 @@ class PlanDefinitionAction extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory PlanDefinitionAction.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? PlanDefinitionAction.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? PlanDefinitionAction.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'PlanDefinitionAction '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return PlanDefinitionAction.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return PlanDefinitionAction.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'PlanDefinitionAction cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [PlanDefinitionAction]
   /// that takes in a [String]
@@ -2186,20 +2194,22 @@ class PlanDefinitionCondition extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory PlanDefinitionCondition.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? PlanDefinitionCondition.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? PlanDefinitionCondition.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'PlanDefinitionCondition '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return PlanDefinitionCondition.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return PlanDefinitionCondition.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'PlanDefinitionCondition cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [PlanDefinitionCondition]
   /// that takes in a [String]
@@ -2364,20 +2374,22 @@ class PlanDefinitionRelatedAction extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory PlanDefinitionRelatedAction.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? PlanDefinitionRelatedAction.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? PlanDefinitionRelatedAction.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'PlanDefinitionRelatedAction '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return PlanDefinitionRelatedAction.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return PlanDefinitionRelatedAction.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'PlanDefinitionRelatedAction cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [PlanDefinitionRelatedAction]
   /// that takes in a [String]
@@ -2548,20 +2560,22 @@ class PlanDefinitionParticipant extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory PlanDefinitionParticipant.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? PlanDefinitionParticipant.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? PlanDefinitionParticipant.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'PlanDefinitionParticipant '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return PlanDefinitionParticipant.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return PlanDefinitionParticipant.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'PlanDefinitionParticipant cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [PlanDefinitionParticipant]
   /// that takes in a [String]
@@ -2720,20 +2734,22 @@ class PlanDefinitionDynamicValue extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory PlanDefinitionDynamicValue.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? PlanDefinitionDynamicValue.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? PlanDefinitionDynamicValue.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'PlanDefinitionDynamicValue '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return PlanDefinitionDynamicValue.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return PlanDefinitionDynamicValue.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'PlanDefinitionDynamicValue cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [PlanDefinitionDynamicValue]
   /// that takes in a [String]

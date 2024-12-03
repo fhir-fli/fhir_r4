@@ -309,20 +309,22 @@ class ChargeItem extends DomainResource {
   /// from a [String] or [YamlMap] object
   factory ChargeItem.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? ChargeItem.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? ChargeItem.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'ChargeItem '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return ChargeItem.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return ChargeItem.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'ChargeItem cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [ChargeItem]
   /// that takes in a [String]
@@ -778,20 +780,22 @@ class ChargeItemPerformer extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory ChargeItemPerformer.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? ChargeItemPerformer.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? ChargeItemPerformer.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'ChargeItemPerformer '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return ChargeItemPerformer.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return ChargeItemPerformer.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'ChargeItemPerformer cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [ChargeItemPerformer]
   /// that takes in a [String]

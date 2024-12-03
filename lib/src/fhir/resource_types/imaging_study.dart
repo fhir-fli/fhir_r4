@@ -260,20 +260,22 @@ class ImagingStudy extends DomainResource {
   /// from a [String] or [YamlMap] object
   factory ImagingStudy.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? ImagingStudy.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? ImagingStudy.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'ImagingStudy '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return ImagingStudy.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return ImagingStudy.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'ImagingStudy cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [ImagingStudy]
   /// that takes in a [String]
@@ -716,20 +718,22 @@ class ImagingStudySeries extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory ImagingStudySeries.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? ImagingStudySeries.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? ImagingStudySeries.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'ImagingStudySeries '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return ImagingStudySeries.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return ImagingStudySeries.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'ImagingStudySeries cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [ImagingStudySeries]
   /// that takes in a [String]
@@ -980,20 +984,22 @@ class ImagingStudyPerformer extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory ImagingStudyPerformer.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? ImagingStudyPerformer.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? ImagingStudyPerformer.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'ImagingStudyPerformer '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return ImagingStudyPerformer.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return ImagingStudyPerformer.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'ImagingStudyPerformer cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [ImagingStudyPerformer]
   /// that takes in a [String]
@@ -1159,20 +1165,22 @@ class ImagingStudyInstance extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory ImagingStudyInstance.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? ImagingStudyInstance.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? ImagingStudyInstance.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'ImagingStudyInstance '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return ImagingStudyInstance.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return ImagingStudyInstance.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'ImagingStudyInstance cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [ImagingStudyInstance]
   /// that takes in a [String]

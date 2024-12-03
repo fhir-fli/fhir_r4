@@ -283,20 +283,22 @@ class MedicationKnowledge extends DomainResource {
   /// from a [String] or [YamlMap] object
   factory MedicationKnowledge.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? MedicationKnowledge.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? MedicationKnowledge.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'MedicationKnowledge '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return MedicationKnowledge.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return MedicationKnowledge.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'MedicationKnowledge cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [MedicationKnowledge]
   /// that takes in a [String]
@@ -716,20 +718,22 @@ class MedicationKnowledgeRelatedMedicationKnowledge extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory MedicationKnowledgeRelatedMedicationKnowledge.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? MedicationKnowledgeRelatedMedicationKnowledge.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? MedicationKnowledgeRelatedMedicationKnowledge.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'MedicationKnowledgeRelatedMedicationKnowledge '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return MedicationKnowledgeRelatedMedicationKnowledge.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return MedicationKnowledgeRelatedMedicationKnowledge.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'MedicationKnowledgeRelatedMedicationKnowledge cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [MedicationKnowledgeRelatedMedicationKnowledge]
   /// that takes in a [String]
@@ -884,20 +888,22 @@ class MedicationKnowledgeMonograph extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory MedicationKnowledgeMonograph.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? MedicationKnowledgeMonograph.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? MedicationKnowledgeMonograph.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'MedicationKnowledgeMonograph '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return MedicationKnowledgeMonograph.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return MedicationKnowledgeMonograph.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'MedicationKnowledgeMonograph cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [MedicationKnowledgeMonograph]
   /// that takes in a [String]
@@ -1067,20 +1073,22 @@ class MedicationKnowledgeIngredient extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory MedicationKnowledgeIngredient.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? MedicationKnowledgeIngredient.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? MedicationKnowledgeIngredient.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'MedicationKnowledgeIngredient '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return MedicationKnowledgeIngredient.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return MedicationKnowledgeIngredient.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'MedicationKnowledgeIngredient cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [MedicationKnowledgeIngredient]
   /// that takes in a [String]
@@ -1261,20 +1269,22 @@ class MedicationKnowledgeCost extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory MedicationKnowledgeCost.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? MedicationKnowledgeCost.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? MedicationKnowledgeCost.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'MedicationKnowledgeCost '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return MedicationKnowledgeCost.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return MedicationKnowledgeCost.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'MedicationKnowledgeCost cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [MedicationKnowledgeCost]
   /// that takes in a [String]
@@ -1435,20 +1445,22 @@ class MedicationKnowledgeMonitoringProgram extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory MedicationKnowledgeMonitoringProgram.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? MedicationKnowledgeMonitoringProgram.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? MedicationKnowledgeMonitoringProgram.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'MedicationKnowledgeMonitoringProgram '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return MedicationKnowledgeMonitoringProgram.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return MedicationKnowledgeMonitoringProgram.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'MedicationKnowledgeMonitoringProgram cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [MedicationKnowledgeMonitoringProgram]
   /// that takes in a [String]
@@ -1621,20 +1633,22 @@ class MedicationKnowledgeAdministrationGuidelines extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory MedicationKnowledgeAdministrationGuidelines.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? MedicationKnowledgeAdministrationGuidelines.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? MedicationKnowledgeAdministrationGuidelines.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'MedicationKnowledgeAdministrationGuidelines '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return MedicationKnowledgeAdministrationGuidelines.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return MedicationKnowledgeAdministrationGuidelines.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'MedicationKnowledgeAdministrationGuidelines cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [MedicationKnowledgeAdministrationGuidelines]
   /// that takes in a [String]
@@ -1819,20 +1833,22 @@ class MedicationKnowledgeDosage extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory MedicationKnowledgeDosage.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? MedicationKnowledgeDosage.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? MedicationKnowledgeDosage.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'MedicationKnowledgeDosage '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return MedicationKnowledgeDosage.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return MedicationKnowledgeDosage.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'MedicationKnowledgeDosage cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [MedicationKnowledgeDosage]
   /// that takes in a [String]
@@ -1995,20 +2011,22 @@ class MedicationKnowledgePatientCharacteristics extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory MedicationKnowledgePatientCharacteristics.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? MedicationKnowledgePatientCharacteristics.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? MedicationKnowledgePatientCharacteristics.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'MedicationKnowledgePatientCharacteristics '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return MedicationKnowledgePatientCharacteristics.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return MedicationKnowledgePatientCharacteristics.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'MedicationKnowledgePatientCharacteristics cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [MedicationKnowledgePatientCharacteristics]
   /// that takes in a [String]
@@ -2187,20 +2205,22 @@ class MedicationKnowledgeMedicineClassification extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory MedicationKnowledgeMedicineClassification.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? MedicationKnowledgeMedicineClassification.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? MedicationKnowledgeMedicineClassification.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'MedicationKnowledgeMedicineClassification '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return MedicationKnowledgeMedicineClassification.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return MedicationKnowledgeMedicineClassification.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'MedicationKnowledgeMedicineClassification cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [MedicationKnowledgeMedicineClassification]
   /// that takes in a [String]
@@ -2357,20 +2377,22 @@ class MedicationKnowledgePackaging extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory MedicationKnowledgePackaging.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? MedicationKnowledgePackaging.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? MedicationKnowledgePackaging.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'MedicationKnowledgePackaging '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return MedicationKnowledgePackaging.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return MedicationKnowledgePackaging.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'MedicationKnowledgePackaging cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [MedicationKnowledgePackaging]
   /// that takes in a [String]
@@ -2549,20 +2571,22 @@ class MedicationKnowledgeDrugCharacteristic extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory MedicationKnowledgeDrugCharacteristic.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? MedicationKnowledgeDrugCharacteristic.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? MedicationKnowledgeDrugCharacteristic.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'MedicationKnowledgeDrugCharacteristic '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return MedicationKnowledgeDrugCharacteristic.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return MedicationKnowledgeDrugCharacteristic.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'MedicationKnowledgeDrugCharacteristic cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [MedicationKnowledgeDrugCharacteristic]
   /// that takes in a [String]
@@ -2761,20 +2785,22 @@ class MedicationKnowledgeRegulatory extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory MedicationKnowledgeRegulatory.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? MedicationKnowledgeRegulatory.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? MedicationKnowledgeRegulatory.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'MedicationKnowledgeRegulatory '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return MedicationKnowledgeRegulatory.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return MedicationKnowledgeRegulatory.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'MedicationKnowledgeRegulatory cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [MedicationKnowledgeRegulatory]
   /// that takes in a [String]
@@ -2948,20 +2974,22 @@ class MedicationKnowledgeSubstitution extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory MedicationKnowledgeSubstitution.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? MedicationKnowledgeSubstitution.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? MedicationKnowledgeSubstitution.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'MedicationKnowledgeSubstitution '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return MedicationKnowledgeSubstitution.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return MedicationKnowledgeSubstitution.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'MedicationKnowledgeSubstitution cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [MedicationKnowledgeSubstitution]
   /// that takes in a [String]
@@ -3105,20 +3133,22 @@ class MedicationKnowledgeSchedule extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory MedicationKnowledgeSchedule.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? MedicationKnowledgeSchedule.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? MedicationKnowledgeSchedule.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'MedicationKnowledgeSchedule '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return MedicationKnowledgeSchedule.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return MedicationKnowledgeSchedule.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'MedicationKnowledgeSchedule cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [MedicationKnowledgeSchedule]
   /// that takes in a [String]
@@ -3261,20 +3291,22 @@ class MedicationKnowledgeMaxDispense extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory MedicationKnowledgeMaxDispense.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? MedicationKnowledgeMaxDispense.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? MedicationKnowledgeMaxDispense.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'MedicationKnowledgeMaxDispense '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return MedicationKnowledgeMaxDispense.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return MedicationKnowledgeMaxDispense.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'MedicationKnowledgeMaxDispense cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [MedicationKnowledgeMaxDispense]
   /// that takes in a [String]
@@ -3443,20 +3475,22 @@ class MedicationKnowledgeKinetics extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory MedicationKnowledgeKinetics.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? MedicationKnowledgeKinetics.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? MedicationKnowledgeKinetics.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'MedicationKnowledgeKinetics '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return MedicationKnowledgeKinetics.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return MedicationKnowledgeKinetics.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'MedicationKnowledgeKinetics cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [MedicationKnowledgeKinetics]
   /// that takes in a [String]

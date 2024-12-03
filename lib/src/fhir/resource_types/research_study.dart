@@ -303,20 +303,22 @@ class ResearchStudy extends DomainResource {
   /// from a [String] or [YamlMap] object
   factory ResearchStudy.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? ResearchStudy.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? ResearchStudy.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'ResearchStudy '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return ResearchStudy.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return ResearchStudy.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'ResearchStudy cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [ResearchStudy]
   /// that takes in a [String]
@@ -745,20 +747,22 @@ class ResearchStudyArm extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory ResearchStudyArm.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? ResearchStudyArm.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? ResearchStudyArm.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'ResearchStudyArm '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return ResearchStudyArm.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return ResearchStudyArm.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'ResearchStudyArm cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [ResearchStudyArm]
   /// that takes in a [String]
@@ -923,20 +927,22 @@ class ResearchStudyObjective extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory ResearchStudyObjective.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? ResearchStudyObjective.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? ResearchStudyObjective.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'ResearchStudyObjective '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return ResearchStudyObjective.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return ResearchStudyObjective.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'ResearchStudyObjective cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [ResearchStudyObjective]
   /// that takes in a [String]

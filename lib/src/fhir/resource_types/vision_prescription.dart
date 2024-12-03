@@ -142,20 +142,22 @@ class VisionPrescription extends DomainResource {
   /// from a [String] or [YamlMap] object
   factory VisionPrescription.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? VisionPrescription.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? VisionPrescription.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'VisionPrescription '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return VisionPrescription.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return VisionPrescription.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'VisionPrescription cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [VisionPrescription]
   /// that takes in a [String]
@@ -476,20 +478,22 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory VisionPrescriptionLensSpecification.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? VisionPrescriptionLensSpecification.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? VisionPrescriptionLensSpecification.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'VisionPrescriptionLensSpecification '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return VisionPrescriptionLensSpecification.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return VisionPrescriptionLensSpecification.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'VisionPrescriptionLensSpecification cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [VisionPrescriptionLensSpecification]
   /// that takes in a [String]
@@ -733,20 +737,22 @@ class VisionPrescriptionPrism extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory VisionPrescriptionPrism.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? VisionPrescriptionPrism.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? VisionPrescriptionPrism.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'VisionPrescriptionPrism '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return VisionPrescriptionPrism.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return VisionPrescriptionPrism.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'VisionPrescriptionPrism cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [VisionPrescriptionPrism]
   /// that takes in a [String]

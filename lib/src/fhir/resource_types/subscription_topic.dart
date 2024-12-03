@@ -268,20 +268,22 @@ class SubscriptionTopic extends DomainResource {
   /// from a [String] or [YamlMap] object
   factory SubscriptionTopic.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? SubscriptionTopic.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? SubscriptionTopic.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'SubscriptionTopic '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return SubscriptionTopic.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return SubscriptionTopic.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'SubscriptionTopic cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [SubscriptionTopic]
   /// that takes in a [String]
@@ -697,20 +699,22 @@ class SubscriptionTopicResourceTrigger extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory SubscriptionTopicResourceTrigger.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? SubscriptionTopicResourceTrigger.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? SubscriptionTopicResourceTrigger.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'SubscriptionTopicResourceTrigger '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return SubscriptionTopicResourceTrigger.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return SubscriptionTopicResourceTrigger.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'SubscriptionTopicResourceTrigger cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [SubscriptionTopicResourceTrigger]
   /// that takes in a [String]
@@ -930,20 +934,22 @@ class SubscriptionTopicQueryCriteria extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory SubscriptionTopicQueryCriteria.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? SubscriptionTopicQueryCriteria.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? SubscriptionTopicQueryCriteria.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'SubscriptionTopicQueryCriteria '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return SubscriptionTopicQueryCriteria.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return SubscriptionTopicQueryCriteria.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'SubscriptionTopicQueryCriteria cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [SubscriptionTopicQueryCriteria]
   /// that takes in a [String]
@@ -1124,20 +1130,22 @@ class SubscriptionTopicEventTrigger extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory SubscriptionTopicEventTrigger.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? SubscriptionTopicEventTrigger.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? SubscriptionTopicEventTrigger.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'SubscriptionTopicEventTrigger '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return SubscriptionTopicEventTrigger.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return SubscriptionTopicEventTrigger.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'SubscriptionTopicEventTrigger cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [SubscriptionTopicEventTrigger]
   /// that takes in a [String]
@@ -1329,20 +1337,22 @@ class SubscriptionTopicCanFilterBy extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory SubscriptionTopicCanFilterBy.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? SubscriptionTopicCanFilterBy.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? SubscriptionTopicCanFilterBy.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'SubscriptionTopicCanFilterBy '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return SubscriptionTopicCanFilterBy.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return SubscriptionTopicCanFilterBy.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'SubscriptionTopicCanFilterBy cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [SubscriptionTopicCanFilterBy]
   /// that takes in a [String]
@@ -1539,20 +1549,22 @@ class SubscriptionTopicNotificationShape extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory SubscriptionTopicNotificationShape.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? SubscriptionTopicNotificationShape.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? SubscriptionTopicNotificationShape.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'SubscriptionTopicNotificationShape '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return SubscriptionTopicNotificationShape.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return SubscriptionTopicNotificationShape.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'SubscriptionTopicNotificationShape cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [SubscriptionTopicNotificationShape]
   /// that takes in a [String]

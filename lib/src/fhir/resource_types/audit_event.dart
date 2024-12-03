@@ -174,20 +174,22 @@ class AuditEvent extends DomainResource {
   /// from a [String] or [YamlMap] object
   factory AuditEvent.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? AuditEvent.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? AuditEvent.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'AuditEvent '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return AuditEvent.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return AuditEvent.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'AuditEvent cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [AuditEvent]
   /// that takes in a [String]
@@ -509,20 +511,22 @@ class AuditEventAgent extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory AuditEventAgent.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? AuditEventAgent.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? AuditEventAgent.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'AuditEventAgent '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return AuditEventAgent.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return AuditEventAgent.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'AuditEventAgent cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [AuditEventAgent]
   /// that takes in a [String]
@@ -779,20 +783,22 @@ class AuditEventNetwork extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory AuditEventNetwork.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? AuditEventNetwork.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? AuditEventNetwork.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'AuditEventNetwork '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return AuditEventNetwork.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return AuditEventNetwork.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'AuditEventNetwork cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [AuditEventNetwork]
   /// that takes in a [String]
@@ -953,20 +959,22 @@ class AuditEventSource extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory AuditEventSource.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? AuditEventSource.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? AuditEventSource.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'AuditEventSource '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return AuditEventSource.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return AuditEventSource.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'AuditEventSource cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [AuditEventSource]
   /// that takes in a [String]
@@ -1182,20 +1190,22 @@ class AuditEventEntity extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory AuditEventEntity.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? AuditEventEntity.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? AuditEventEntity.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'AuditEventEntity '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return AuditEventEntity.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return AuditEventEntity.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'AuditEventEntity cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [AuditEventEntity]
   /// that takes in a [String]
@@ -1424,20 +1434,22 @@ class AuditEventDetail extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory AuditEventDetail.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? AuditEventDetail.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? AuditEventDetail.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'AuditEventDetail '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return AuditEventDetail.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return AuditEventDetail.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'AuditEventDetail cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [AuditEventDetail]
   /// that takes in a [String]

@@ -178,20 +178,22 @@ class AdministrableProductDefinition extends DomainResource {
   /// from a [String] or [YamlMap] object
   factory AdministrableProductDefinition.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? AdministrableProductDefinition.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? AdministrableProductDefinition.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'AdministrableProductDefinition '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return AdministrableProductDefinition.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return AdministrableProductDefinition.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'AdministrableProductDefinition cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [AdministrableProductDefinition]
   /// that takes in a [String]
@@ -518,20 +520,22 @@ class AdministrableProductDefinitionProperty extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory AdministrableProductDefinitionProperty.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? AdministrableProductDefinitionProperty.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? AdministrableProductDefinitionProperty.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'AdministrableProductDefinitionProperty '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return AdministrableProductDefinitionProperty.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return AdministrableProductDefinitionProperty.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'AdministrableProductDefinitionProperty cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [AdministrableProductDefinitionProperty]
   /// that takes in a [String]
@@ -765,20 +769,22 @@ class AdministrableProductDefinitionRouteOfAdministration
   /// from a [String] or [YamlMap] object
   factory AdministrableProductDefinitionRouteOfAdministration.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? AdministrableProductDefinitionRouteOfAdministration.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? AdministrableProductDefinitionRouteOfAdministration.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'AdministrableProductDefinitionRouteOfAdministration '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return AdministrableProductDefinitionRouteOfAdministration.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return AdministrableProductDefinitionRouteOfAdministration.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'AdministrableProductDefinitionRouteOfAdministration cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [AdministrableProductDefinitionRouteOfAdministration]
   /// that takes in a [String]
@@ -990,20 +996,22 @@ class AdministrableProductDefinitionTargetSpecies extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory AdministrableProductDefinitionTargetSpecies.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? AdministrableProductDefinitionTargetSpecies.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? AdministrableProductDefinitionTargetSpecies.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'AdministrableProductDefinitionTargetSpecies '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return AdministrableProductDefinitionTargetSpecies.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return AdministrableProductDefinitionTargetSpecies.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'AdministrableProductDefinitionTargetSpecies cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [AdministrableProductDefinitionTargetSpecies]
   /// that takes in a [String]
@@ -1165,20 +1173,22 @@ class AdministrableProductDefinitionWithdrawalPeriod extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory AdministrableProductDefinitionWithdrawalPeriod.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? AdministrableProductDefinitionWithdrawalPeriod.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? AdministrableProductDefinitionWithdrawalPeriod.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'AdministrableProductDefinitionWithdrawalPeriod '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return AdministrableProductDefinitionWithdrawalPeriod.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return AdministrableProductDefinitionWithdrawalPeriod.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'AdministrableProductDefinitionWithdrawalPeriod cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [AdministrableProductDefinitionWithdrawalPeriod]
   /// that takes in a [String]

@@ -195,20 +195,22 @@ class CatalogEntry extends DomainResource {
   /// from a [String] or [YamlMap] object
   factory CatalogEntry.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? CatalogEntry.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? CatalogEntry.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'CatalogEntry '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return CatalogEntry.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return CatalogEntry.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'CatalogEntry cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [CatalogEntry]
   /// that takes in a [String]
@@ -494,20 +496,22 @@ class CatalogEntryRelatedEntry extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory CatalogEntryRelatedEntry.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? CatalogEntryRelatedEntry.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? CatalogEntryRelatedEntry.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'CatalogEntryRelatedEntry '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return CatalogEntryRelatedEntry.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return CatalogEntryRelatedEntry.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'CatalogEntryRelatedEntry cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [CatalogEntryRelatedEntry]
   /// that takes in a [String]

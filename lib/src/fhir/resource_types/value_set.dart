@@ -230,20 +230,22 @@ class ValueSet extends DomainResource {
   /// from a [String] or [YamlMap] object
   factory ValueSet.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? ValueSet.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? ValueSet.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'ValueSet '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return ValueSet.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return ValueSet.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'ValueSet cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [ValueSet]
   /// that takes in a [String]
@@ -613,20 +615,22 @@ class ValueSetCompose extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory ValueSetCompose.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? ValueSetCompose.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? ValueSetCompose.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'ValueSetCompose '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return ValueSetCompose.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return ValueSetCompose.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'ValueSetCompose cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [ValueSetCompose]
   /// that takes in a [String]
@@ -833,20 +837,22 @@ class ValueSetInclude extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory ValueSetInclude.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? ValueSetInclude.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? ValueSetInclude.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'ValueSetInclude '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return ValueSetInclude.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return ValueSetInclude.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'ValueSetInclude cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [ValueSetInclude]
   /// that takes in a [String]
@@ -1048,20 +1054,22 @@ class ValueSetConcept extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory ValueSetConcept.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? ValueSetConcept.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? ValueSetConcept.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'ValueSetConcept '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return ValueSetConcept.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return ValueSetConcept.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'ValueSetConcept cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [ValueSetConcept]
   /// that takes in a [String]
@@ -1233,20 +1241,22 @@ class ValueSetDesignation extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory ValueSetDesignation.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? ValueSetDesignation.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? ValueSetDesignation.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'ValueSetDesignation '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return ValueSetDesignation.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return ValueSetDesignation.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'ValueSetDesignation cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [ValueSetDesignation]
   /// that takes in a [String]
@@ -1412,20 +1422,22 @@ class ValueSetFilter extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory ValueSetFilter.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? ValueSetFilter.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? ValueSetFilter.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'ValueSetFilter '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return ValueSetFilter.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return ValueSetFilter.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'ValueSetFilter cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [ValueSetFilter]
   /// that takes in a [String]
@@ -1624,20 +1636,22 @@ class ValueSetExpansion extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory ValueSetExpansion.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? ValueSetExpansion.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? ValueSetExpansion.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'ValueSetExpansion '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return ValueSetExpansion.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return ValueSetExpansion.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'ValueSetExpansion cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [ValueSetExpansion]
   /// that takes in a [String]
@@ -1880,20 +1894,22 @@ class ValueSetParameter extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory ValueSetParameter.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? ValueSetParameter.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? ValueSetParameter.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'ValueSetParameter '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return ValueSetParameter.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return ValueSetParameter.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'ValueSetParameter cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [ValueSetParameter]
   /// that takes in a [String]
@@ -2137,20 +2153,22 @@ class ValueSetContains extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory ValueSetContains.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? ValueSetContains.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? ValueSetContains.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'ValueSetContains '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return ValueSetContains.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return ValueSetContains.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'ValueSetContains cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [ValueSetContains]
   /// that takes in a [String]

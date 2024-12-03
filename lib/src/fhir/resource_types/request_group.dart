@@ -230,20 +230,22 @@ class RequestGroup extends DomainResource {
   /// from a [String] or [YamlMap] object
   factory RequestGroup.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? RequestGroup.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? RequestGroup.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'RequestGroup '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return RequestGroup.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return RequestGroup.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'RequestGroup cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [RequestGroup]
   /// that takes in a [String]
@@ -772,20 +774,22 @@ class RequestGroupAction extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory RequestGroupAction.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? RequestGroupAction.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? RequestGroupAction.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'RequestGroupAction '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return RequestGroupAction.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return RequestGroupAction.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'RequestGroupAction cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [RequestGroupAction]
   /// that takes in a [String]
@@ -1140,20 +1144,22 @@ class RequestGroupCondition extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory RequestGroupCondition.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? RequestGroupCondition.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? RequestGroupCondition.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'RequestGroupCondition '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return RequestGroupCondition.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return RequestGroupCondition.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'RequestGroupCondition cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [RequestGroupCondition]
   /// that takes in a [String]
@@ -1318,20 +1324,22 @@ class RequestGroupRelatedAction extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory RequestGroupRelatedAction.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? RequestGroupRelatedAction.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? RequestGroupRelatedAction.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'RequestGroupRelatedAction '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return RequestGroupRelatedAction.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return RequestGroupRelatedAction.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'RequestGroupRelatedAction cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [RequestGroupRelatedAction]
   /// that takes in a [String]

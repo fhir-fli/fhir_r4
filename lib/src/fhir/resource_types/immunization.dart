@@ -314,20 +314,22 @@ class Immunization extends DomainResource {
   /// from a [String] or [YamlMap] object
   factory Immunization.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? Immunization.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? Immunization.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'Immunization '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return Immunization.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return Immunization.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'Immunization cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [Immunization]
   /// that takes in a [String]
@@ -768,20 +770,22 @@ class ImmunizationPerformer extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory ImmunizationPerformer.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? ImmunizationPerformer.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? ImmunizationPerformer.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'ImmunizationPerformer '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return ImmunizationPerformer.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return ImmunizationPerformer.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'ImmunizationPerformer cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [ImmunizationPerformer]
   /// that takes in a [String]
@@ -956,20 +960,22 @@ class ImmunizationEducation extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory ImmunizationEducation.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? ImmunizationEducation.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? ImmunizationEducation.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'ImmunizationEducation '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return ImmunizationEducation.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return ImmunizationEducation.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'ImmunizationEducation cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [ImmunizationEducation]
   /// that takes in a [String]
@@ -1143,20 +1149,22 @@ class ImmunizationReaction extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory ImmunizationReaction.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? ImmunizationReaction.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? ImmunizationReaction.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'ImmunizationReaction '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return ImmunizationReaction.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return ImmunizationReaction.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'ImmunizationReaction cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [ImmunizationReaction]
   /// that takes in a [String]
@@ -1360,20 +1368,22 @@ class ImmunizationProtocolApplied extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory ImmunizationProtocolApplied.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? ImmunizationProtocolApplied.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? ImmunizationProtocolApplied.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'ImmunizationProtocolApplied '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return ImmunizationProtocolApplied.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return ImmunizationProtocolApplied.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'ImmunizationProtocolApplied cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [ImmunizationProtocolApplied]
   /// that takes in a [String]

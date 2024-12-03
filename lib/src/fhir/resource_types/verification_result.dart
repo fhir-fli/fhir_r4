@@ -197,20 +197,22 @@ class VerificationResult extends DomainResource {
   /// from a [String] or [YamlMap] object
   factory VerificationResult.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? VerificationResult.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? VerificationResult.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'VerificationResult '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return VerificationResult.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return VerificationResult.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'VerificationResult cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [VerificationResult]
   /// that takes in a [String]
@@ -553,20 +555,22 @@ class VerificationResultPrimarySource extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory VerificationResultPrimarySource.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? VerificationResultPrimarySource.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? VerificationResultPrimarySource.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'VerificationResultPrimarySource '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return VerificationResultPrimarySource.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return VerificationResultPrimarySource.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'VerificationResultPrimarySource cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [VerificationResultPrimarySource]
   /// that takes in a [String]
@@ -817,20 +821,22 @@ class VerificationResultAttestation extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory VerificationResultAttestation.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? VerificationResultAttestation.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? VerificationResultAttestation.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'VerificationResultAttestation '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return VerificationResultAttestation.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return VerificationResultAttestation.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'VerificationResultAttestation cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [VerificationResultAttestation]
   /// that takes in a [String]
@@ -1051,20 +1057,22 @@ class VerificationResultValidator extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory VerificationResultValidator.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? VerificationResultValidator.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? VerificationResultValidator.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'VerificationResultValidator '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return VerificationResultValidator.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return VerificationResultValidator.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'VerificationResultValidator cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [VerificationResultValidator]
   /// that takes in a [String]

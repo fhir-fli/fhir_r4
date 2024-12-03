@@ -359,20 +359,22 @@ class ResearchElementDefinition extends DomainResource {
   /// from a [String] or [YamlMap] object
   factory ResearchElementDefinition.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? ResearchElementDefinition.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? ResearchElementDefinition.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'ResearchElementDefinition '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return ResearchElementDefinition.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return ResearchElementDefinition.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'ResearchElementDefinition cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [ResearchElementDefinition]
   /// that takes in a [String]
@@ -1033,20 +1035,22 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory ResearchElementDefinitionCharacteristic.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? ResearchElementDefinitionCharacteristic.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? ResearchElementDefinitionCharacteristic.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'ResearchElementDefinitionCharacteristic '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return ResearchElementDefinitionCharacteristic.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return ResearchElementDefinitionCharacteristic.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'ResearchElementDefinitionCharacteristic cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [ResearchElementDefinitionCharacteristic]
   /// that takes in a [String]

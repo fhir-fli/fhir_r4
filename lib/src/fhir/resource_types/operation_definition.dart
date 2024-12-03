@@ -279,20 +279,22 @@ class OperationDefinition extends DomainResource {
   /// from a [String] or [YamlMap] object
   factory OperationDefinition.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? OperationDefinition.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? OperationDefinition.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'OperationDefinition '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return OperationDefinition.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return OperationDefinition.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'OperationDefinition cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [OperationDefinition]
   /// that takes in a [String]
@@ -762,20 +764,22 @@ class OperationDefinitionParameter extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory OperationDefinitionParameter.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? OperationDefinitionParameter.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? OperationDefinitionParameter.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'OperationDefinitionParameter '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return OperationDefinitionParameter.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return OperationDefinitionParameter.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'OperationDefinitionParameter cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [OperationDefinitionParameter]
   /// that takes in a [String]
@@ -1015,20 +1019,22 @@ class OperationDefinitionBinding extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory OperationDefinitionBinding.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? OperationDefinitionBinding.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? OperationDefinitionBinding.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'OperationDefinitionBinding '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return OperationDefinitionBinding.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return OperationDefinitionBinding.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'OperationDefinitionBinding cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [OperationDefinitionBinding]
   /// that takes in a [String]
@@ -1182,20 +1188,22 @@ class OperationDefinitionReferencedFrom extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory OperationDefinitionReferencedFrom.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? OperationDefinitionReferencedFrom.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? OperationDefinitionReferencedFrom.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'OperationDefinitionReferencedFrom '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return OperationDefinitionReferencedFrom.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return OperationDefinitionReferencedFrom.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'OperationDefinitionReferencedFrom cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [OperationDefinitionReferencedFrom]
   /// that takes in a [String]
@@ -1351,20 +1359,22 @@ class OperationDefinitionOverload extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory OperationDefinitionOverload.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? OperationDefinitionOverload.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? OperationDefinitionOverload.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'OperationDefinitionOverload '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return OperationDefinitionOverload.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return OperationDefinitionOverload.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'OperationDefinitionOverload cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [OperationDefinitionOverload]
   /// that takes in a [String]

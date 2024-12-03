@@ -207,20 +207,22 @@ class GraphDefinition extends DomainResource {
   /// from a [String] or [YamlMap] object
   factory GraphDefinition.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? GraphDefinition.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? GraphDefinition.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'GraphDefinition '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return GraphDefinition.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return GraphDefinition.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'GraphDefinition cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [GraphDefinition]
   /// that takes in a [String]
@@ -560,20 +562,22 @@ class GraphDefinitionLink extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory GraphDefinitionLink.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? GraphDefinitionLink.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? GraphDefinitionLink.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'GraphDefinitionLink '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return GraphDefinitionLink.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return GraphDefinitionLink.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'GraphDefinitionLink cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [GraphDefinitionLink]
   /// that takes in a [String]
@@ -783,20 +787,22 @@ class GraphDefinitionTarget extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory GraphDefinitionTarget.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? GraphDefinitionTarget.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? GraphDefinitionTarget.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'GraphDefinitionTarget '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return GraphDefinitionTarget.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return GraphDefinitionTarget.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'GraphDefinitionTarget cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [GraphDefinitionTarget]
   /// that takes in a [String]
@@ -990,20 +996,22 @@ class GraphDefinitionCompartment extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory GraphDefinitionCompartment.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? GraphDefinitionCompartment.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? GraphDefinitionCompartment.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'GraphDefinitionCompartment '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return GraphDefinitionCompartment.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return GraphDefinitionCompartment.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'GraphDefinitionCompartment cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [GraphDefinitionCompartment]
   /// that takes in a [String]

@@ -149,20 +149,22 @@ class Ingredient extends DomainResource {
   /// from a [String] or [YamlMap] object
   factory Ingredient.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? Ingredient.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? Ingredient.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'Ingredient '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return Ingredient.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return Ingredient.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'Ingredient cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [Ingredient]
   /// that takes in a [String]
@@ -411,20 +413,22 @@ class IngredientManufacturer extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory IngredientManufacturer.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? IngredientManufacturer.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? IngredientManufacturer.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'IngredientManufacturer '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return IngredientManufacturer.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return IngredientManufacturer.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'IngredientManufacturer cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [IngredientManufacturer]
   /// that takes in a [String]
@@ -580,20 +584,22 @@ class IngredientSubstance extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory IngredientSubstance.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? IngredientSubstance.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? IngredientSubstance.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'IngredientSubstance '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return IngredientSubstance.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return IngredientSubstance.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'IngredientSubstance cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [IngredientSubstance]
   /// that takes in a [String]
@@ -811,20 +817,22 @@ class IngredientStrength extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory IngredientStrength.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? IngredientStrength.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? IngredientStrength.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'IngredientStrength '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return IngredientStrength.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return IngredientStrength.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'IngredientStrength cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [IngredientStrength]
   /// that takes in a [String]
@@ -1097,20 +1105,22 @@ class IngredientReferenceStrength extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory IngredientReferenceStrength.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? IngredientReferenceStrength.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? IngredientReferenceStrength.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'IngredientReferenceStrength '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return IngredientReferenceStrength.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return IngredientReferenceStrength.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'IngredientReferenceStrength cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [IngredientReferenceStrength]
   /// that takes in a [String]

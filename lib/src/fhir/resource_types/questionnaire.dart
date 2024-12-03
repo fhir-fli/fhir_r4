@@ -265,20 +265,22 @@ class Questionnaire extends DomainResource {
   /// from a [String] or [YamlMap] object
   factory Questionnaire.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? Questionnaire.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? Questionnaire.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'Questionnaire '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return Questionnaire.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return Questionnaire.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'Questionnaire cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [Questionnaire]
   /// that takes in a [String]
@@ -783,20 +785,22 @@ class QuestionnaireItem extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory QuestionnaireItem.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? QuestionnaireItem.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? QuestionnaireItem.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'QuestionnaireItem '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return QuestionnaireItem.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return QuestionnaireItem.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'QuestionnaireItem cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [QuestionnaireItem]
   /// that takes in a [String]
@@ -1165,20 +1169,22 @@ class QuestionnaireEnableWhen extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory QuestionnaireEnableWhen.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? QuestionnaireEnableWhen.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? QuestionnaireEnableWhen.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'QuestionnaireEnableWhen '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return QuestionnaireEnableWhen.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return QuestionnaireEnableWhen.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'QuestionnaireEnableWhen cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [QuestionnaireEnableWhen]
   /// that takes in a [String]
@@ -1455,20 +1461,22 @@ class QuestionnaireAnswerOption extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory QuestionnaireAnswerOption.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? QuestionnaireAnswerOption.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? QuestionnaireAnswerOption.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'QuestionnaireAnswerOption '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return QuestionnaireAnswerOption.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return QuestionnaireAnswerOption.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'QuestionnaireAnswerOption cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [QuestionnaireAnswerOption]
   /// that takes in a [String]
@@ -1733,20 +1741,22 @@ class QuestionnaireInitial extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory QuestionnaireInitial.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? QuestionnaireInitial.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? QuestionnaireInitial.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'QuestionnaireInitial '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return QuestionnaireInitial.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return QuestionnaireInitial.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'QuestionnaireInitial cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [QuestionnaireInitial]
   /// that takes in a [String]

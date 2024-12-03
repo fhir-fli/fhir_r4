@@ -187,20 +187,22 @@ class DocumentManifest extends DomainResource {
   /// from a [String] or [YamlMap] object
   factory DocumentManifest.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? DocumentManifest.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? DocumentManifest.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'DocumentManifest '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return DocumentManifest.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return DocumentManifest.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'DocumentManifest cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [DocumentManifest]
   /// that takes in a [String]
@@ -483,20 +485,22 @@ class DocumentManifestRelated extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory DocumentManifestRelated.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? DocumentManifestRelated.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? DocumentManifestRelated.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'DocumentManifestRelated '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return DocumentManifestRelated.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return DocumentManifestRelated.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'DocumentManifestRelated cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [DocumentManifestRelated]
   /// that takes in a [String]

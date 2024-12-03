@@ -210,20 +210,22 @@ class InsurancePlan extends DomainResource {
   /// from a [String] or [YamlMap] object
   factory InsurancePlan.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? InsurancePlan.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? InsurancePlan.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'InsurancePlan '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return InsurancePlan.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return InsurancePlan.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'InsurancePlan cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [InsurancePlan]
   /// that takes in a [String]
@@ -549,20 +551,22 @@ class InsurancePlanContact extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory InsurancePlanContact.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? InsurancePlanContact.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? InsurancePlanContact.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'InsurancePlanContact '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return InsurancePlanContact.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return InsurancePlanContact.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'InsurancePlanContact cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [InsurancePlanContact]
   /// that takes in a [String]
@@ -751,20 +755,22 @@ class InsurancePlanCoverage extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory InsurancePlanCoverage.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? InsurancePlanCoverage.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? InsurancePlanCoverage.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'InsurancePlanCoverage '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return InsurancePlanCoverage.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return InsurancePlanCoverage.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'InsurancePlanCoverage cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [InsurancePlanCoverage]
   /// that takes in a [String]
@@ -938,20 +944,22 @@ class InsurancePlanBenefit extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory InsurancePlanBenefit.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? InsurancePlanBenefit.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? InsurancePlanBenefit.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'InsurancePlanBenefit '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return InsurancePlanBenefit.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return InsurancePlanBenefit.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'InsurancePlanBenefit cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [InsurancePlanBenefit]
   /// that takes in a [String]
@@ -1112,20 +1120,22 @@ class InsurancePlanLimit extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory InsurancePlanLimit.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? InsurancePlanLimit.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? InsurancePlanLimit.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'InsurancePlanLimit '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return InsurancePlanLimit.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return InsurancePlanLimit.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'InsurancePlanLimit cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [InsurancePlanLimit]
   /// that takes in a [String]
@@ -1326,20 +1336,22 @@ class InsurancePlanPlan extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory InsurancePlanPlan.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? InsurancePlanPlan.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? InsurancePlanPlan.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'InsurancePlanPlan '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return InsurancePlanPlan.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return InsurancePlanPlan.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'InsurancePlanPlan cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [InsurancePlanPlan]
   /// that takes in a [String]
@@ -1552,20 +1564,22 @@ class InsurancePlanGeneralCost extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory InsurancePlanGeneralCost.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? InsurancePlanGeneralCost.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? InsurancePlanGeneralCost.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'InsurancePlanGeneralCost '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return InsurancePlanGeneralCost.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return InsurancePlanGeneralCost.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'InsurancePlanGeneralCost cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [InsurancePlanGeneralCost]
   /// that takes in a [String]
@@ -1738,20 +1752,22 @@ class InsurancePlanSpecificCost extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory InsurancePlanSpecificCost.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? InsurancePlanSpecificCost.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? InsurancePlanSpecificCost.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'InsurancePlanSpecificCost '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return InsurancePlanSpecificCost.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return InsurancePlanSpecificCost.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'InsurancePlanSpecificCost cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [InsurancePlanSpecificCost]
   /// that takes in a [String]
@@ -1908,20 +1924,22 @@ class InsurancePlanBenefit1 extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory InsurancePlanBenefit1.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? InsurancePlanBenefit1.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? InsurancePlanBenefit1.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'InsurancePlanBenefit1 '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return InsurancePlanBenefit1.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return InsurancePlanBenefit1.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'InsurancePlanBenefit1 cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [InsurancePlanBenefit1]
   /// that takes in a [String]
@@ -2090,20 +2108,22 @@ class InsurancePlanCost extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory InsurancePlanCost.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? InsurancePlanCost.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? InsurancePlanCost.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'InsurancePlanCost '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return InsurancePlanCost.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return InsurancePlanCost.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'InsurancePlanCost cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [InsurancePlanCost]
   /// that takes in a [String]

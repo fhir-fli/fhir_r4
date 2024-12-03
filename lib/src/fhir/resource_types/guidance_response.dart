@@ -224,20 +224,22 @@ class GuidanceResponse extends DomainResource {
   /// from a [String] or [YamlMap] object
   factory GuidanceResponse.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? GuidanceResponse.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? GuidanceResponse.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'GuidanceResponse '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return GuidanceResponse.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return GuidanceResponse.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'GuidanceResponse cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [GuidanceResponse]
   /// that takes in a [String]

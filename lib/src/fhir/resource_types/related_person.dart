@@ -195,20 +195,22 @@ class RelatedPerson extends DomainResource {
   /// from a [String] or [YamlMap] object
   factory RelatedPerson.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? RelatedPerson.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? RelatedPerson.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'RelatedPerson '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return RelatedPerson.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return RelatedPerson.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'RelatedPerson cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [RelatedPerson]
   /// that takes in a [String]
@@ -483,20 +485,22 @@ class RelatedPersonCommunication extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory RelatedPersonCommunication.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? RelatedPersonCommunication.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? RelatedPersonCommunication.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'RelatedPersonCommunication '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return RelatedPersonCommunication.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return RelatedPersonCommunication.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'RelatedPersonCommunication cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [RelatedPersonCommunication]
   /// that takes in a [String]

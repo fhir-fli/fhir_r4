@@ -219,20 +219,22 @@ class DocumentReference extends DomainResource {
   /// from a [String] or [YamlMap] object
   factory DocumentReference.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? DocumentReference.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? DocumentReference.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'DocumentReference '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return DocumentReference.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return DocumentReference.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'DocumentReference cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [DocumentReference]
   /// that takes in a [String]
@@ -558,20 +560,22 @@ class DocumentReferenceRelatesTo extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory DocumentReferenceRelatesTo.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? DocumentReferenceRelatesTo.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? DocumentReferenceRelatesTo.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'DocumentReferenceRelatesTo '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return DocumentReferenceRelatesTo.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return DocumentReferenceRelatesTo.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'DocumentReferenceRelatesTo cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [DocumentReferenceRelatesTo]
   /// that takes in a [String]
@@ -721,20 +725,22 @@ class DocumentReferenceContent extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory DocumentReferenceContent.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? DocumentReferenceContent.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? DocumentReferenceContent.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'DocumentReferenceContent '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return DocumentReferenceContent.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return DocumentReferenceContent.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'DocumentReferenceContent cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [DocumentReferenceContent]
   /// that takes in a [String]
@@ -933,20 +939,22 @@ class DocumentReferenceContext extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory DocumentReferenceContext.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? DocumentReferenceContext.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? DocumentReferenceContext.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'DocumentReferenceContext '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return DocumentReferenceContext.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return DocumentReferenceContext.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'DocumentReferenceContext cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [DocumentReferenceContext]
   /// that takes in a [String]

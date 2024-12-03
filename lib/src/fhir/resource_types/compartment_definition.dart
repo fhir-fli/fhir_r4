@@ -191,20 +191,22 @@ class CompartmentDefinition extends DomainResource {
   /// from a [String] or [YamlMap] object
   factory CompartmentDefinition.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? CompartmentDefinition.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? CompartmentDefinition.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'CompartmentDefinition '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return CompartmentDefinition.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return CompartmentDefinition.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'CompartmentDefinition cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [CompartmentDefinition]
   /// that takes in a [String]
@@ -508,20 +510,22 @@ class CompartmentDefinitionResource extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory CompartmentDefinitionResource.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? CompartmentDefinitionResource.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? CompartmentDefinitionResource.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'CompartmentDefinitionResource '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return CompartmentDefinitionResource.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return CompartmentDefinitionResource.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'CompartmentDefinitionResource cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [CompartmentDefinitionResource]
   /// that takes in a [String]

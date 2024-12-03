@@ -279,20 +279,22 @@ class TestScript extends DomainResource {
   /// from a [String] or [YamlMap] object
   factory TestScript.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? TestScript.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? TestScript.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'TestScript '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return TestScript.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return TestScript.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'TestScript cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [TestScript]
   /// that takes in a [String]
@@ -696,20 +698,22 @@ class TestScriptOrigin extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory TestScriptOrigin.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? TestScriptOrigin.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? TestScriptOrigin.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'TestScriptOrigin '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return TestScriptOrigin.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return TestScriptOrigin.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'TestScriptOrigin cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [TestScriptOrigin]
   /// that takes in a [String]
@@ -859,20 +863,22 @@ class TestScriptDestination extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory TestScriptDestination.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? TestScriptDestination.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? TestScriptDestination.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'TestScriptDestination '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return TestScriptDestination.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return TestScriptDestination.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'TestScriptDestination cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [TestScriptDestination]
   /// that takes in a [String]
@@ -1033,20 +1039,22 @@ class TestScriptMetadata extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory TestScriptMetadata.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? TestScriptMetadata.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? TestScriptMetadata.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'TestScriptMetadata '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return TestScriptMetadata.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return TestScriptMetadata.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'TestScriptMetadata cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [TestScriptMetadata]
   /// that takes in a [String]
@@ -1203,20 +1211,22 @@ class TestScriptLink extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory TestScriptLink.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? TestScriptLink.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? TestScriptLink.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'TestScriptLink '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return TestScriptLink.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return TestScriptLink.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'TestScriptLink cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [TestScriptLink]
   /// that takes in a [String]
@@ -1397,20 +1407,22 @@ class TestScriptCapability extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory TestScriptCapability.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? TestScriptCapability.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? TestScriptCapability.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'TestScriptCapability '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return TestScriptCapability.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return TestScriptCapability.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'TestScriptCapability cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [TestScriptCapability]
   /// that takes in a [String]
@@ -1620,20 +1632,22 @@ class TestScriptFixture extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory TestScriptFixture.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? TestScriptFixture.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? TestScriptFixture.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'TestScriptFixture '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return TestScriptFixture.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return TestScriptFixture.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'TestScriptFixture cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [TestScriptFixture]
   /// that takes in a [String]
@@ -1844,20 +1858,22 @@ class TestScriptVariable extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory TestScriptVariable.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? TestScriptVariable.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? TestScriptVariable.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'TestScriptVariable '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return TestScriptVariable.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return TestScriptVariable.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'TestScriptVariable cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [TestScriptVariable]
   /// that takes in a [String]
@@ -2055,20 +2071,22 @@ class TestScriptSetup extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory TestScriptSetup.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? TestScriptSetup.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? TestScriptSetup.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'TestScriptSetup '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return TestScriptSetup.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return TestScriptSetup.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'TestScriptSetup cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [TestScriptSetup]
   /// that takes in a [String]
@@ -2214,20 +2232,22 @@ class TestScriptAction extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory TestScriptAction.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? TestScriptAction.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? TestScriptAction.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'TestScriptAction '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return TestScriptAction.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return TestScriptAction.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'TestScriptAction cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [TestScriptAction]
   /// that takes in a [String]
@@ -2491,20 +2511,22 @@ class TestScriptOperation extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory TestScriptOperation.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? TestScriptOperation.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? TestScriptOperation.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'TestScriptOperation '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return TestScriptOperation.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return TestScriptOperation.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'TestScriptOperation cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [TestScriptOperation]
   /// that takes in a [String]
@@ -2773,20 +2795,22 @@ class TestScriptRequestHeader extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory TestScriptRequestHeader.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? TestScriptRequestHeader.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? TestScriptRequestHeader.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'TestScriptRequestHeader '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return TestScriptRequestHeader.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return TestScriptRequestHeader.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'TestScriptRequestHeader cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [TestScriptRequestHeader]
   /// that takes in a [String]
@@ -3084,20 +3108,22 @@ class TestScriptAssert extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory TestScriptAssert.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? TestScriptAssert.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? TestScriptAssert.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'TestScriptAssert '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return TestScriptAssert.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return TestScriptAssert.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'TestScriptAssert cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [TestScriptAssert]
   /// that takes in a [String]
@@ -3417,20 +3443,22 @@ class TestScriptTest extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory TestScriptTest.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? TestScriptTest.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? TestScriptTest.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'TestScriptTest '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return TestScriptTest.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return TestScriptTest.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'TestScriptTest cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [TestScriptTest]
   /// that takes in a [String]
@@ -3592,20 +3620,22 @@ class TestScriptAction1 extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory TestScriptAction1.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? TestScriptAction1.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? TestScriptAction1.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'TestScriptAction1 '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return TestScriptAction1.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return TestScriptAction1.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'TestScriptAction1 cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [TestScriptAction1]
   /// that takes in a [String]
@@ -3761,20 +3791,22 @@ class TestScriptTeardown extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory TestScriptTeardown.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? TestScriptTeardown.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? TestScriptTeardown.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'TestScriptTeardown '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return TestScriptTeardown.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return TestScriptTeardown.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'TestScriptTeardown cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [TestScriptTeardown]
   /// that takes in a [String]
@@ -3912,20 +3944,22 @@ class TestScriptAction2 extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory TestScriptAction2.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? TestScriptAction2.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? TestScriptAction2.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'TestScriptAction2 '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return TestScriptAction2.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return TestScriptAction2.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'TestScriptAction2 cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [TestScriptAction2]
   /// that takes in a [String]

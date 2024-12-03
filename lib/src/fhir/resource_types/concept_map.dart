@@ -246,20 +246,22 @@ class ConceptMap extends DomainResource {
   /// from a [String] or [YamlMap] object
   factory ConceptMap.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? ConceptMap.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? ConceptMap.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'ConceptMap '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return ConceptMap.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return ConceptMap.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'ConceptMap cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [ConceptMap]
   /// that takes in a [String]
@@ -649,20 +651,22 @@ class ConceptMapGroup extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory ConceptMapGroup.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? ConceptMapGroup.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? ConceptMapGroup.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'ConceptMapGroup '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return ConceptMapGroup.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return ConceptMapGroup.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'ConceptMapGroup cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [ConceptMapGroup]
   /// that takes in a [String]
@@ -866,20 +870,22 @@ class ConceptMapElement extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory ConceptMapElement.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? ConceptMapElement.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? ConceptMapElement.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'ConceptMapElement '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return ConceptMapElement.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return ConceptMapElement.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'ConceptMapElement cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [ConceptMapElement]
   /// that takes in a [String]
@@ -1074,20 +1080,22 @@ class ConceptMapTarget extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory ConceptMapTarget.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? ConceptMapTarget.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? ConceptMapTarget.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'ConceptMapTarget '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return ConceptMapTarget.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return ConceptMapTarget.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'ConceptMapTarget cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [ConceptMapTarget]
   /// that takes in a [String]
@@ -1295,20 +1303,22 @@ class ConceptMapDependsOn extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory ConceptMapDependsOn.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? ConceptMapDependsOn.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? ConceptMapDependsOn.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'ConceptMapDependsOn '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return ConceptMapDependsOn.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return ConceptMapDependsOn.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'ConceptMapDependsOn cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [ConceptMapDependsOn]
   /// that takes in a [String]
@@ -1494,20 +1504,22 @@ class ConceptMapUnmapped extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory ConceptMapUnmapped.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? ConceptMapUnmapped.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? ConceptMapUnmapped.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'ConceptMapUnmapped '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return ConceptMapUnmapped.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return ConceptMapUnmapped.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'ConceptMapUnmapped cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [ConceptMapUnmapped]
   /// that takes in a [String]

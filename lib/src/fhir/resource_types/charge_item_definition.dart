@@ -272,20 +272,22 @@ class ChargeItemDefinition extends DomainResource {
   /// from a [String] or [YamlMap] object
   factory ChargeItemDefinition.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? ChargeItemDefinition.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? ChargeItemDefinition.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'ChargeItemDefinition '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return ChargeItemDefinition.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return ChargeItemDefinition.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'ChargeItemDefinition cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [ChargeItemDefinition]
   /// that takes in a [String]
@@ -711,20 +713,22 @@ class ChargeItemDefinitionApplicability extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory ChargeItemDefinitionApplicability.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? ChargeItemDefinitionApplicability.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? ChargeItemDefinitionApplicability.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'ChargeItemDefinitionApplicability '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return ChargeItemDefinitionApplicability.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return ChargeItemDefinitionApplicability.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'ChargeItemDefinitionApplicability cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [ChargeItemDefinitionApplicability]
   /// that takes in a [String]
@@ -897,20 +901,22 @@ class ChargeItemDefinitionPropertyGroup extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory ChargeItemDefinitionPropertyGroup.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? ChargeItemDefinitionPropertyGroup.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? ChargeItemDefinitionPropertyGroup.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'ChargeItemDefinitionPropertyGroup '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return ChargeItemDefinitionPropertyGroup.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return ChargeItemDefinitionPropertyGroup.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'ChargeItemDefinitionPropertyGroup cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [ChargeItemDefinitionPropertyGroup]
   /// that takes in a [String]
@@ -1089,20 +1095,22 @@ class ChargeItemDefinitionPriceComponent extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory ChargeItemDefinitionPriceComponent.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? ChargeItemDefinitionPriceComponent.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? ChargeItemDefinitionPriceComponent.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'ChargeItemDefinitionPriceComponent '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return ChargeItemDefinitionPriceComponent.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return ChargeItemDefinitionPriceComponent.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'ChargeItemDefinitionPriceComponent cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [ChargeItemDefinitionPriceComponent]
   /// that takes in a [String]

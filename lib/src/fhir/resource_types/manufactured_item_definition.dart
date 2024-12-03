@@ -149,20 +149,22 @@ class ManufacturedItemDefinition extends DomainResource {
   /// from a [String] or [YamlMap] object
   factory ManufacturedItemDefinition.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? ManufacturedItemDefinition.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? ManufacturedItemDefinition.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'ManufacturedItemDefinition '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return ManufacturedItemDefinition.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return ManufacturedItemDefinition.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'ManufacturedItemDefinition cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [ManufacturedItemDefinition]
   /// that takes in a [String]
@@ -419,20 +421,22 @@ class ManufacturedItemDefinitionProperty extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory ManufacturedItemDefinitionProperty.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? ManufacturedItemDefinitionProperty.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? ManufacturedItemDefinitionProperty.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'ManufacturedItemDefinitionProperty '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return ManufacturedItemDefinitionProperty.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return ManufacturedItemDefinitionProperty.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'ManufacturedItemDefinitionProperty cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [ManufacturedItemDefinitionProperty]
   /// that takes in a [String]

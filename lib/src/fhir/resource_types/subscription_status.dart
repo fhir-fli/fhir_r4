@@ -145,20 +145,22 @@ class SubscriptionStatus extends DomainResource {
   /// from a [String] or [YamlMap] object
   factory SubscriptionStatus.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? SubscriptionStatus.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? SubscriptionStatus.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'SubscriptionStatus '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return SubscriptionStatus.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return SubscriptionStatus.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'SubscriptionStatus cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [SubscriptionStatus]
   /// that takes in a [String]
@@ -401,20 +403,22 @@ class SubscriptionStatusNotificationEvent extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory SubscriptionStatusNotificationEvent.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? SubscriptionStatusNotificationEvent.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? SubscriptionStatusNotificationEvent.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'SubscriptionStatusNotificationEvent '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return SubscriptionStatusNotificationEvent.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return SubscriptionStatusNotificationEvent.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'SubscriptionStatusNotificationEvent cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [SubscriptionStatusNotificationEvent]
   /// that takes in a [String]

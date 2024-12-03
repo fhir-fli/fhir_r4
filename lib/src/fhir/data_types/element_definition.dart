@@ -1429,20 +1429,22 @@ class ElementDefinition extends BackboneType {
   /// from a [String] or [YamlMap] object
   factory ElementDefinition.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? ElementDefinition.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? ElementDefinition.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'ElementDefinition '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return ElementDefinition.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return ElementDefinition.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'ElementDefinition cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [ElementDefinition]
   /// that takes in a [String]
@@ -4593,20 +4595,22 @@ class ElementDefinitionSlicing extends Element {
   /// from a [String] or [YamlMap] object
   factory ElementDefinitionSlicing.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? ElementDefinitionSlicing.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? ElementDefinitionSlicing.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'ElementDefinitionSlicing '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return ElementDefinitionSlicing.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return ElementDefinitionSlicing.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'ElementDefinitionSlicing cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [ElementDefinitionSlicing]
   /// that takes in a [String]
@@ -4767,20 +4771,22 @@ class ElementDefinitionDiscriminator extends Element {
   /// from a [String] or [YamlMap] object
   factory ElementDefinitionDiscriminator.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? ElementDefinitionDiscriminator.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? ElementDefinitionDiscriminator.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'ElementDefinitionDiscriminator '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return ElementDefinitionDiscriminator.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return ElementDefinitionDiscriminator.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'ElementDefinitionDiscriminator cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [ElementDefinitionDiscriminator]
   /// that takes in a [String]
@@ -4925,20 +4931,22 @@ class ElementDefinitionBase extends Element {
   /// from a [String] or [YamlMap] object
   factory ElementDefinitionBase.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? ElementDefinitionBase.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? ElementDefinitionBase.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'ElementDefinitionBase '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return ElementDefinitionBase.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return ElementDefinitionBase.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'ElementDefinitionBase cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [ElementDefinitionBase]
   /// that takes in a [String]
@@ -5101,20 +5109,22 @@ class ElementDefinitionType extends Element {
   /// from a [String] or [YamlMap] object
   factory ElementDefinitionType.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? ElementDefinitionType.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? ElementDefinitionType.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'ElementDefinitionType '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return ElementDefinitionType.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return ElementDefinitionType.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'ElementDefinitionType cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [ElementDefinitionType]
   /// that takes in a [String]
@@ -5638,20 +5648,22 @@ class ElementDefinitionExample extends Element {
   /// from a [String] or [YamlMap] object
   factory ElementDefinitionExample.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? ElementDefinitionExample.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? ElementDefinitionExample.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'ElementDefinitionExample '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return ElementDefinitionExample.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return ElementDefinitionExample.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'ElementDefinitionExample cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [ElementDefinitionExample]
   /// that takes in a [String]
@@ -6317,20 +6329,22 @@ class ElementDefinitionConstraint extends Element {
   /// from a [String] or [YamlMap] object
   factory ElementDefinitionConstraint.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? ElementDefinitionConstraint.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? ElementDefinitionConstraint.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'ElementDefinitionConstraint '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return ElementDefinitionConstraint.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return ElementDefinitionConstraint.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'ElementDefinitionConstraint cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [ElementDefinitionConstraint]
   /// that takes in a [String]
@@ -6513,20 +6527,22 @@ class ElementDefinitionBinding extends Element {
   /// from a [String] or [YamlMap] object
   factory ElementDefinitionBinding.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? ElementDefinitionBinding.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? ElementDefinitionBinding.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'ElementDefinitionBinding '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return ElementDefinitionBinding.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return ElementDefinitionBinding.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'ElementDefinitionBinding cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [ElementDefinitionBinding]
   /// that takes in a [String]
@@ -6682,20 +6698,22 @@ class ElementDefinitionMapping extends Element {
   /// from a [String] or [YamlMap] object
   factory ElementDefinitionMapping.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? ElementDefinitionMapping.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? ElementDefinitionMapping.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'ElementDefinitionMapping '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return ElementDefinitionMapping.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return ElementDefinitionMapping.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'ElementDefinitionMapping cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [ElementDefinitionMapping]
   /// that takes in a [String]

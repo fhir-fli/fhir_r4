@@ -291,20 +291,22 @@ class StructureDefinition extends DomainResource {
   /// from a [String] or [YamlMap] object
   factory StructureDefinition.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? StructureDefinition.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? StructureDefinition.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'StructureDefinition '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return StructureDefinition.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return StructureDefinition.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'StructureDefinition cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [StructureDefinition]
   /// that takes in a [String]
@@ -758,20 +760,22 @@ class StructureDefinitionMapping extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory StructureDefinitionMapping.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? StructureDefinitionMapping.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? StructureDefinitionMapping.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'StructureDefinitionMapping '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return StructureDefinitionMapping.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return StructureDefinitionMapping.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'StructureDefinitionMapping cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [StructureDefinitionMapping]
   /// that takes in a [String]
@@ -937,20 +941,22 @@ class StructureDefinitionContext extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory StructureDefinitionContext.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? StructureDefinitionContext.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? StructureDefinitionContext.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'StructureDefinitionContext '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return StructureDefinitionContext.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return StructureDefinitionContext.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'StructureDefinitionContext cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [StructureDefinitionContext]
   /// that takes in a [String]
@@ -1100,20 +1106,22 @@ class StructureDefinitionSnapshot extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory StructureDefinitionSnapshot.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? StructureDefinitionSnapshot.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? StructureDefinitionSnapshot.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'StructureDefinitionSnapshot '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return StructureDefinitionSnapshot.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return StructureDefinitionSnapshot.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'StructureDefinitionSnapshot cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [StructureDefinitionSnapshot]
   /// that takes in a [String]
@@ -1258,20 +1266,22 @@ class StructureDefinitionDifferential extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory StructureDefinitionDifferential.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? StructureDefinitionDifferential.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? StructureDefinitionDifferential.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'StructureDefinitionDifferential '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return StructureDefinitionDifferential.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return StructureDefinitionDifferential.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'StructureDefinitionDifferential cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [StructureDefinitionDifferential]
   /// that takes in a [String]

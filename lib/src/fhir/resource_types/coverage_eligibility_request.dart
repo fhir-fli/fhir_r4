@@ -200,20 +200,22 @@ class CoverageEligibilityRequest extends DomainResource {
   /// from a [String] or [YamlMap] object
   factory CoverageEligibilityRequest.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? CoverageEligibilityRequest.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? CoverageEligibilityRequest.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'CoverageEligibilityRequest '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return CoverageEligibilityRequest.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return CoverageEligibilityRequest.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'CoverageEligibilityRequest cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [CoverageEligibilityRequest]
   /// that takes in a [String]
@@ -533,20 +535,22 @@ class CoverageEligibilityRequestSupportingInfo extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory CoverageEligibilityRequestSupportingInfo.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? CoverageEligibilityRequestSupportingInfo.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? CoverageEligibilityRequestSupportingInfo.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'CoverageEligibilityRequestSupportingInfo '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return CoverageEligibilityRequestSupportingInfo.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return CoverageEligibilityRequestSupportingInfo.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'CoverageEligibilityRequestSupportingInfo cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [CoverageEligibilityRequestSupportingInfo]
   /// that takes in a [String]
@@ -716,20 +720,22 @@ class CoverageEligibilityRequestInsurance extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory CoverageEligibilityRequestInsurance.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? CoverageEligibilityRequestInsurance.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? CoverageEligibilityRequestInsurance.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'CoverageEligibilityRequestInsurance '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return CoverageEligibilityRequestInsurance.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return CoverageEligibilityRequestInsurance.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'CoverageEligibilityRequestInsurance cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [CoverageEligibilityRequestInsurance]
   /// that takes in a [String]
@@ -954,20 +960,22 @@ class CoverageEligibilityRequestItem extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory CoverageEligibilityRequestItem.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? CoverageEligibilityRequestItem.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? CoverageEligibilityRequestItem.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'CoverageEligibilityRequestItem '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return CoverageEligibilityRequestItem.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return CoverageEligibilityRequestItem.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'CoverageEligibilityRequestItem cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [CoverageEligibilityRequestItem]
   /// that takes in a [String]
@@ -1216,20 +1224,22 @@ class CoverageEligibilityRequestDiagnosis extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory CoverageEligibilityRequestDiagnosis.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? CoverageEligibilityRequestDiagnosis.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? CoverageEligibilityRequestDiagnosis.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'CoverageEligibilityRequestDiagnosis '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return CoverageEligibilityRequestDiagnosis.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return CoverageEligibilityRequestDiagnosis.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'CoverageEligibilityRequestDiagnosis cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [CoverageEligibilityRequestDiagnosis]
   /// that takes in a [String]

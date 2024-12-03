@@ -193,20 +193,22 @@ class DetectedIssue extends DomainResource {
   /// from a [String] or [YamlMap] object
   factory DetectedIssue.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? DetectedIssue.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? DetectedIssue.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'DetectedIssue '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return DetectedIssue.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return DetectedIssue.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'DetectedIssue cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [DetectedIssue]
   /// that takes in a [String]
@@ -503,20 +505,22 @@ class DetectedIssueEvidence extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory DetectedIssueEvidence.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? DetectedIssueEvidence.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? DetectedIssueEvidence.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'DetectedIssueEvidence '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return DetectedIssueEvidence.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return DetectedIssueEvidence.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'DetectedIssueEvidence cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [DetectedIssueEvidence]
   /// that takes in a [String]
@@ -681,20 +685,22 @@ class DetectedIssueMitigation extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory DetectedIssueMitigation.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? DetectedIssueMitigation.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? DetectedIssueMitigation.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'DetectedIssueMitigation '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return DetectedIssueMitigation.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return DetectedIssueMitigation.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'DetectedIssueMitigation cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [DetectedIssueMitigation]
   /// that takes in a [String]

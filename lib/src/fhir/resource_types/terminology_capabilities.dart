@@ -264,20 +264,22 @@ class TerminologyCapabilities extends DomainResource {
   /// from a [String] or [YamlMap] object
   factory TerminologyCapabilities.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? TerminologyCapabilities.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? TerminologyCapabilities.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'TerminologyCapabilities '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return TerminologyCapabilities.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return TerminologyCapabilities.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'TerminologyCapabilities cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [TerminologyCapabilities]
   /// that takes in a [String]
@@ -689,20 +691,22 @@ class TerminologyCapabilitiesSoftware extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory TerminologyCapabilitiesSoftware.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? TerminologyCapabilitiesSoftware.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? TerminologyCapabilitiesSoftware.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'TerminologyCapabilitiesSoftware '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return TerminologyCapabilitiesSoftware.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return TerminologyCapabilitiesSoftware.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'TerminologyCapabilitiesSoftware cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [TerminologyCapabilitiesSoftware]
   /// that takes in a [String]
@@ -854,20 +858,22 @@ class TerminologyCapabilitiesImplementation extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory TerminologyCapabilitiesImplementation.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? TerminologyCapabilitiesImplementation.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? TerminologyCapabilitiesImplementation.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'TerminologyCapabilitiesImplementation '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return TerminologyCapabilitiesImplementation.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return TerminologyCapabilitiesImplementation.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'TerminologyCapabilitiesImplementation cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [TerminologyCapabilitiesImplementation]
   /// that takes in a [String]
@@ -1032,20 +1038,22 @@ class TerminologyCapabilitiesCodeSystem extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory TerminologyCapabilitiesCodeSystem.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? TerminologyCapabilitiesCodeSystem.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? TerminologyCapabilitiesCodeSystem.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'TerminologyCapabilitiesCodeSystem '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return TerminologyCapabilitiesCodeSystem.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return TerminologyCapabilitiesCodeSystem.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'TerminologyCapabilitiesCodeSystem cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [TerminologyCapabilitiesCodeSystem]
   /// that takes in a [String]
@@ -1239,20 +1247,22 @@ class TerminologyCapabilitiesVersion extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory TerminologyCapabilitiesVersion.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? TerminologyCapabilitiesVersion.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? TerminologyCapabilitiesVersion.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'TerminologyCapabilitiesVersion '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return TerminologyCapabilitiesVersion.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return TerminologyCapabilitiesVersion.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'TerminologyCapabilitiesVersion cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [TerminologyCapabilitiesVersion]
   /// that takes in a [String]
@@ -1449,20 +1459,22 @@ class TerminologyCapabilitiesFilter extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory TerminologyCapabilitiesFilter.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? TerminologyCapabilitiesFilter.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? TerminologyCapabilitiesFilter.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'TerminologyCapabilitiesFilter '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return TerminologyCapabilitiesFilter.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return TerminologyCapabilitiesFilter.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'TerminologyCapabilitiesFilter cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [TerminologyCapabilitiesFilter]
   /// that takes in a [String]
@@ -1647,20 +1659,22 @@ class TerminologyCapabilitiesExpansion extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory TerminologyCapabilitiesExpansion.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? TerminologyCapabilitiesExpansion.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? TerminologyCapabilitiesExpansion.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'TerminologyCapabilitiesExpansion '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return TerminologyCapabilitiesExpansion.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return TerminologyCapabilitiesExpansion.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'TerminologyCapabilitiesExpansion cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [TerminologyCapabilitiesExpansion]
   /// that takes in a [String]
@@ -1835,20 +1849,22 @@ class TerminologyCapabilitiesParameter extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory TerminologyCapabilitiesParameter.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? TerminologyCapabilitiesParameter.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? TerminologyCapabilitiesParameter.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'TerminologyCapabilitiesParameter '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return TerminologyCapabilitiesParameter.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return TerminologyCapabilitiesParameter.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'TerminologyCapabilitiesParameter cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [TerminologyCapabilitiesParameter]
   /// that takes in a [String]
@@ -1993,20 +2009,22 @@ class TerminologyCapabilitiesValidateCode extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory TerminologyCapabilitiesValidateCode.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? TerminologyCapabilitiesValidateCode.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? TerminologyCapabilitiesValidateCode.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'TerminologyCapabilitiesValidateCode '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return TerminologyCapabilitiesValidateCode.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return TerminologyCapabilitiesValidateCode.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'TerminologyCapabilitiesValidateCode cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [TerminologyCapabilitiesValidateCode]
   /// that takes in a [String]
@@ -2143,20 +2161,22 @@ class TerminologyCapabilitiesTranslation extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory TerminologyCapabilitiesTranslation.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? TerminologyCapabilitiesTranslation.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? TerminologyCapabilitiesTranslation.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'TerminologyCapabilitiesTranslation '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return TerminologyCapabilitiesTranslation.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return TerminologyCapabilitiesTranslation.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'TerminologyCapabilitiesTranslation cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [TerminologyCapabilitiesTranslation]
   /// that takes in a [String]
@@ -2294,20 +2314,22 @@ class TerminologyCapabilitiesClosure extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory TerminologyCapabilitiesClosure.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? TerminologyCapabilitiesClosure.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? TerminologyCapabilitiesClosure.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'TerminologyCapabilitiesClosure '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return TerminologyCapabilitiesClosure.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return TerminologyCapabilitiesClosure.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'TerminologyCapabilitiesClosure cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [TerminologyCapabilitiesClosure]
   /// that takes in a [String]

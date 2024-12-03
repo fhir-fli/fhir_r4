@@ -168,20 +168,22 @@ class MeasureReport extends DomainResource {
   /// from a [String] or [YamlMap] object
   factory MeasureReport.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? MeasureReport.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? MeasureReport.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'MeasureReport '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return MeasureReport.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return MeasureReport.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'MeasureReport cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [MeasureReport]
   /// that takes in a [String]
@@ -473,20 +475,22 @@ class MeasureReportGroup extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory MeasureReportGroup.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? MeasureReportGroup.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? MeasureReportGroup.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'MeasureReportGroup '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return MeasureReportGroup.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return MeasureReportGroup.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'MeasureReportGroup cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [MeasureReportGroup]
   /// that takes in a [String]
@@ -675,20 +679,22 @@ class MeasureReportPopulation extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory MeasureReportPopulation.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? MeasureReportPopulation.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? MeasureReportPopulation.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'MeasureReportPopulation '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return MeasureReportPopulation.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return MeasureReportPopulation.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'MeasureReportPopulation cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [MeasureReportPopulation]
   /// that takes in a [String]
@@ -861,20 +867,22 @@ class MeasureReportStratifier extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory MeasureReportStratifier.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? MeasureReportStratifier.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? MeasureReportStratifier.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'MeasureReportStratifier '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return MeasureReportStratifier.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return MeasureReportStratifier.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'MeasureReportStratifier cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [MeasureReportStratifier]
   /// that takes in a [String]
@@ -1054,20 +1062,22 @@ class MeasureReportStratum extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory MeasureReportStratum.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? MeasureReportStratum.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? MeasureReportStratum.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'MeasureReportStratum '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return MeasureReportStratum.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return MeasureReportStratum.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'MeasureReportStratum cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [MeasureReportStratum]
   /// that takes in a [String]
@@ -1244,20 +1254,22 @@ class MeasureReportComponent extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory MeasureReportComponent.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? MeasureReportComponent.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? MeasureReportComponent.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'MeasureReportComponent '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return MeasureReportComponent.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return MeasureReportComponent.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'MeasureReportComponent cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [MeasureReportComponent]
   /// that takes in a [String]
@@ -1417,20 +1429,22 @@ class MeasureReportPopulation1 extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory MeasureReportPopulation1.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? MeasureReportPopulation1.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? MeasureReportPopulation1.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'MeasureReportPopulation1 '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return MeasureReportPopulation1.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return MeasureReportPopulation1.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'MeasureReportPopulation1 cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [MeasureReportPopulation1]
   /// that takes in a [String]

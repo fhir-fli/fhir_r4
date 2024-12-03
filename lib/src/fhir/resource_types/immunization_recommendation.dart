@@ -129,20 +129,22 @@ class ImmunizationRecommendation extends DomainResource {
   /// from a [String] or [YamlMap] object
   factory ImmunizationRecommendation.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? ImmunizationRecommendation.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? ImmunizationRecommendation.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'ImmunizationRecommendation '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return ImmunizationRecommendation.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return ImmunizationRecommendation.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'ImmunizationRecommendation cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [ImmunizationRecommendation]
   /// that takes in a [String]
@@ -452,20 +454,22 @@ class ImmunizationRecommendationRecommendation extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory ImmunizationRecommendationRecommendation.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? ImmunizationRecommendationRecommendation.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? ImmunizationRecommendationRecommendation.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'ImmunizationRecommendationRecommendation '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return ImmunizationRecommendationRecommendation.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return ImmunizationRecommendationRecommendation.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'ImmunizationRecommendationRecommendation cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [ImmunizationRecommendationRecommendation]
   /// that takes in a [String]
@@ -739,20 +743,22 @@ class ImmunizationRecommendationDateCriterion extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory ImmunizationRecommendationDateCriterion.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? ImmunizationRecommendationDateCriterion.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? ImmunizationRecommendationDateCriterion.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'ImmunizationRecommendationDateCriterion '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return ImmunizationRecommendationDateCriterion.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return ImmunizationRecommendationDateCriterion.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'ImmunizationRecommendationDateCriterion cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [ImmunizationRecommendationDateCriterion]
   /// that takes in a [String]

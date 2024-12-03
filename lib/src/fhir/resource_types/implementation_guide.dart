@@ -243,20 +243,22 @@ class ImplementationGuide extends DomainResource {
   /// from a [String] or [YamlMap] object
   factory ImplementationGuide.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? ImplementationGuide.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? ImplementationGuide.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'ImplementationGuide '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return ImplementationGuide.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return ImplementationGuide.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'ImplementationGuide cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [ImplementationGuide]
   /// that takes in a [String]
@@ -637,20 +639,22 @@ class ImplementationGuideDependsOn extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory ImplementationGuideDependsOn.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? ImplementationGuideDependsOn.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? ImplementationGuideDependsOn.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'ImplementationGuideDependsOn '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return ImplementationGuideDependsOn.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return ImplementationGuideDependsOn.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'ImplementationGuideDependsOn cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [ImplementationGuideDependsOn]
   /// that takes in a [String]
@@ -808,20 +812,22 @@ class ImplementationGuideGlobal extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory ImplementationGuideGlobal.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? ImplementationGuideGlobal.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? ImplementationGuideGlobal.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'ImplementationGuideGlobal '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return ImplementationGuideGlobal.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return ImplementationGuideGlobal.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'ImplementationGuideGlobal cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [ImplementationGuideGlobal]
   /// that takes in a [String]
@@ -1006,20 +1012,22 @@ class ImplementationGuideDefinition extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory ImplementationGuideDefinition.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? ImplementationGuideDefinition.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? ImplementationGuideDefinition.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'ImplementationGuideDefinition '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return ImplementationGuideDefinition.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return ImplementationGuideDefinition.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'ImplementationGuideDefinition cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [ImplementationGuideDefinition]
   /// that takes in a [String]
@@ -1211,20 +1219,22 @@ class ImplementationGuideGrouping extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory ImplementationGuideGrouping.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? ImplementationGuideGrouping.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? ImplementationGuideGrouping.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'ImplementationGuideGrouping '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return ImplementationGuideGrouping.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return ImplementationGuideGrouping.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'ImplementationGuideGrouping cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [ImplementationGuideGrouping]
   /// that takes in a [String]
@@ -1413,20 +1423,22 @@ class ImplementationGuideResource extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory ImplementationGuideResource.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? ImplementationGuideResource.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? ImplementationGuideResource.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'ImplementationGuideResource '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return ImplementationGuideResource.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return ImplementationGuideResource.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'ImplementationGuideResource cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [ImplementationGuideResource]
   /// that takes in a [String]
@@ -1650,20 +1662,22 @@ class ImplementationGuidePage extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory ImplementationGuidePage.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? ImplementationGuidePage.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? ImplementationGuidePage.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'ImplementationGuidePage '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return ImplementationGuidePage.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return ImplementationGuidePage.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'ImplementationGuidePage cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [ImplementationGuidePage]
   /// that takes in a [String]
@@ -1839,20 +1853,22 @@ class ImplementationGuideParameter extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory ImplementationGuideParameter.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? ImplementationGuideParameter.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? ImplementationGuideParameter.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'ImplementationGuideParameter '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return ImplementationGuideParameter.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return ImplementationGuideParameter.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'ImplementationGuideParameter cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [ImplementationGuideParameter]
   /// that takes in a [String]
@@ -2009,20 +2025,22 @@ class ImplementationGuideTemplate extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory ImplementationGuideTemplate.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? ImplementationGuideTemplate.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? ImplementationGuideTemplate.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'ImplementationGuideTemplate '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return ImplementationGuideTemplate.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return ImplementationGuideTemplate.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'ImplementationGuideTemplate cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [ImplementationGuideTemplate]
   /// that takes in a [String]
@@ -2207,20 +2225,22 @@ class ImplementationGuideManifest extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory ImplementationGuideManifest.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? ImplementationGuideManifest.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? ImplementationGuideManifest.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'ImplementationGuideManifest '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return ImplementationGuideManifest.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return ImplementationGuideManifest.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'ImplementationGuideManifest cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [ImplementationGuideManifest]
   /// that takes in a [String]
@@ -2436,20 +2456,22 @@ class ImplementationGuideResource1 extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory ImplementationGuideResource1.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? ImplementationGuideResource1.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? ImplementationGuideResource1.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'ImplementationGuideResource1 '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return ImplementationGuideResource1.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return ImplementationGuideResource1.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'ImplementationGuideResource1 cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [ImplementationGuideResource1]
   /// that takes in a [String]
@@ -2624,20 +2646,22 @@ class ImplementationGuidePage1 extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory ImplementationGuidePage1.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? ImplementationGuidePage1.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? ImplementationGuidePage1.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'ImplementationGuidePage1 '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return ImplementationGuidePage1.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return ImplementationGuidePage1.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'ImplementationGuidePage1 cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [ImplementationGuidePage1]
   /// that takes in a [String]

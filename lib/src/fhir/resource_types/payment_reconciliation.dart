@@ -192,20 +192,22 @@ class PaymentReconciliation extends DomainResource {
   /// from a [String] or [YamlMap] object
   factory PaymentReconciliation.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? PaymentReconciliation.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? PaymentReconciliation.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'PaymentReconciliation '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return PaymentReconciliation.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return PaymentReconciliation.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'PaymentReconciliation cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [PaymentReconciliation]
   /// that takes in a [String]
@@ -552,20 +554,22 @@ class PaymentReconciliationDetail extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory PaymentReconciliationDetail.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? PaymentReconciliationDetail.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? PaymentReconciliationDetail.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'PaymentReconciliationDetail '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return PaymentReconciliationDetail.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return PaymentReconciliationDetail.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'PaymentReconciliationDetail cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [PaymentReconciliationDetail]
   /// that takes in a [String]
@@ -804,20 +808,22 @@ class PaymentReconciliationProcessNote extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory PaymentReconciliationProcessNote.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? PaymentReconciliationProcessNote.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? PaymentReconciliationProcessNote.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'PaymentReconciliationProcessNote '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return PaymentReconciliationProcessNote.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return PaymentReconciliationProcessNote.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'PaymentReconciliationProcessNote cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [PaymentReconciliationProcessNote]
   /// that takes in a [String]

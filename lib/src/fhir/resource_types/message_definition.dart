@@ -281,20 +281,22 @@ class MessageDefinition extends DomainResource {
   /// from a [String] or [YamlMap] object
   factory MessageDefinition.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? MessageDefinition.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? MessageDefinition.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'MessageDefinition '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return MessageDefinition.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return MessageDefinition.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'MessageDefinition cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [MessageDefinition]
   /// that takes in a [String]
@@ -725,20 +727,22 @@ class MessageDefinitionFocus extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory MessageDefinitionFocus.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? MessageDefinitionFocus.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? MessageDefinitionFocus.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'MessageDefinitionFocus '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return MessageDefinitionFocus.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return MessageDefinitionFocus.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'MessageDefinitionFocus cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [MessageDefinitionFocus]
   /// that takes in a [String]
@@ -908,20 +912,22 @@ class MessageDefinitionAllowedResponse extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory MessageDefinitionAllowedResponse.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? MessageDefinitionAllowedResponse.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? MessageDefinitionAllowedResponse.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'MessageDefinitionAllowedResponse '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return MessageDefinitionAllowedResponse.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return MessageDefinitionAllowedResponse.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'MessageDefinitionAllowedResponse cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [MessageDefinitionAllowedResponse]
   /// that takes in a [String]

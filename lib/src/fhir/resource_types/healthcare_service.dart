@@ -309,20 +309,22 @@ class HealthcareService extends DomainResource {
   /// from a [String] or [YamlMap] object
   factory HealthcareService.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? HealthcareService.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? HealthcareService.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'HealthcareService '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return HealthcareService.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return HealthcareService.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'HealthcareService cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [HealthcareService]
   /// that takes in a [String]
@@ -733,20 +735,22 @@ class HealthcareServiceEligibility extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory HealthcareServiceEligibility.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? HealthcareServiceEligibility.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? HealthcareServiceEligibility.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'HealthcareServiceEligibility '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return HealthcareServiceEligibility.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return HealthcareServiceEligibility.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'HealthcareServiceEligibility cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [HealthcareServiceEligibility]
   /// that takes in a [String]
@@ -916,20 +920,22 @@ class HealthcareServiceAvailableTime extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory HealthcareServiceAvailableTime.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? HealthcareServiceAvailableTime.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? HealthcareServiceAvailableTime.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'HealthcareServiceAvailableTime '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return HealthcareServiceAvailableTime.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return HealthcareServiceAvailableTime.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'HealthcareServiceAvailableTime cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [HealthcareServiceAvailableTime]
   /// that takes in a [String]
@@ -1104,20 +1110,22 @@ class HealthcareServiceNotAvailable extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory HealthcareServiceNotAvailable.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? HealthcareServiceNotAvailable.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? HealthcareServiceNotAvailable.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'HealthcareServiceNotAvailable '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return HealthcareServiceNotAvailable.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return HealthcareServiceNotAvailable.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'HealthcareServiceNotAvailable cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [HealthcareServiceNotAvailable]
   /// that takes in a [String]

@@ -340,20 +340,22 @@ class MedicinalProductDefinition extends DomainResource {
   /// from a [String] or [YamlMap] object
   factory MedicinalProductDefinition.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? MedicinalProductDefinition.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? MedicinalProductDefinition.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'MedicinalProductDefinition '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return MedicinalProductDefinition.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return MedicinalProductDefinition.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'MedicinalProductDefinition cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [MedicinalProductDefinition]
   /// that takes in a [String]
@@ -844,20 +846,22 @@ class MedicinalProductDefinitionContact extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory MedicinalProductDefinitionContact.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? MedicinalProductDefinitionContact.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? MedicinalProductDefinitionContact.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'MedicinalProductDefinitionContact '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return MedicinalProductDefinitionContact.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return MedicinalProductDefinitionContact.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'MedicinalProductDefinitionContact cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [MedicinalProductDefinitionContact]
   /// that takes in a [String]
@@ -1031,20 +1035,22 @@ class MedicinalProductDefinitionName extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory MedicinalProductDefinitionName.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? MedicinalProductDefinitionName.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? MedicinalProductDefinitionName.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'MedicinalProductDefinitionName '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return MedicinalProductDefinitionName.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return MedicinalProductDefinitionName.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'MedicinalProductDefinitionName cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [MedicinalProductDefinitionName]
   /// that takes in a [String]
@@ -1216,20 +1222,22 @@ class MedicinalProductDefinitionNamePart extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory MedicinalProductDefinitionNamePart.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? MedicinalProductDefinitionNamePart.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? MedicinalProductDefinitionNamePart.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'MedicinalProductDefinitionNamePart '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return MedicinalProductDefinitionNamePart.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return MedicinalProductDefinitionNamePart.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'MedicinalProductDefinitionNamePart cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [MedicinalProductDefinitionNamePart]
   /// that takes in a [String]
@@ -1383,20 +1391,22 @@ class MedicinalProductDefinitionCountryLanguage extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory MedicinalProductDefinitionCountryLanguage.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? MedicinalProductDefinitionCountryLanguage.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? MedicinalProductDefinitionCountryLanguage.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'MedicinalProductDefinitionCountryLanguage '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return MedicinalProductDefinitionCountryLanguage.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return MedicinalProductDefinitionCountryLanguage.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'MedicinalProductDefinitionCountryLanguage cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [MedicinalProductDefinitionCountryLanguage]
   /// that takes in a [String]
@@ -1559,20 +1569,22 @@ class MedicinalProductDefinitionCrossReference extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory MedicinalProductDefinitionCrossReference.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? MedicinalProductDefinitionCrossReference.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? MedicinalProductDefinitionCrossReference.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'MedicinalProductDefinitionCrossReference '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return MedicinalProductDefinitionCrossReference.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return MedicinalProductDefinitionCrossReference.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'MedicinalProductDefinitionCrossReference cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [MedicinalProductDefinitionCrossReference]
   /// that takes in a [String]
@@ -1747,20 +1759,22 @@ class MedicinalProductDefinitionOperation extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory MedicinalProductDefinitionOperation.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? MedicinalProductDefinitionOperation.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? MedicinalProductDefinitionOperation.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'MedicinalProductDefinitionOperation '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return MedicinalProductDefinitionOperation.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return MedicinalProductDefinitionOperation.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'MedicinalProductDefinitionOperation cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [MedicinalProductDefinitionOperation]
   /// that takes in a [String]
@@ -1968,20 +1982,22 @@ class MedicinalProductDefinitionCharacteristic extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory MedicinalProductDefinitionCharacteristic.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? MedicinalProductDefinitionCharacteristic.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? MedicinalProductDefinitionCharacteristic.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'MedicinalProductDefinitionCharacteristic '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return MedicinalProductDefinitionCharacteristic.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return MedicinalProductDefinitionCharacteristic.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'MedicinalProductDefinitionCharacteristic cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [MedicinalProductDefinitionCharacteristic]
   /// that takes in a [String]

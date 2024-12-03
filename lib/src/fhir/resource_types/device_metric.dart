@@ -161,20 +161,22 @@ class DeviceMetric extends DomainResource {
   /// from a [String] or [YamlMap] object
   factory DeviceMetric.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? DeviceMetric.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? DeviceMetric.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'DeviceMetric '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return DeviceMetric.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return DeviceMetric.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'DeviceMetric cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [DeviceMetric]
   /// that takes in a [String]
@@ -460,20 +462,22 @@ class DeviceMetricCalibration extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory DeviceMetricCalibration.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? DeviceMetricCalibration.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? DeviceMetricCalibration.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'DeviceMetricCalibration '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return DeviceMetricCalibration.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return DeviceMetricCalibration.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'DeviceMetricCalibration cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [DeviceMetricCalibration]
   /// that takes in a [String]

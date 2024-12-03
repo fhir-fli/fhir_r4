@@ -513,20 +513,22 @@ class ActivityDefinition extends DomainResource {
   /// from a [String] or [YamlMap] object
   factory ActivityDefinition.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? ActivityDefinition.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? ActivityDefinition.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'ActivityDefinition '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return ActivityDefinition.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return ActivityDefinition.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'ActivityDefinition cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [ActivityDefinition]
   /// that takes in a [String]
@@ -1272,20 +1274,22 @@ class ActivityDefinitionParticipant extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory ActivityDefinitionParticipant.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? ActivityDefinitionParticipant.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? ActivityDefinitionParticipant.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'ActivityDefinitionParticipant '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return ActivityDefinitionParticipant.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return ActivityDefinitionParticipant.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'ActivityDefinitionParticipant cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [ActivityDefinitionParticipant]
   /// that takes in a [String]
@@ -1440,20 +1444,22 @@ class ActivityDefinitionDynamicValue extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory ActivityDefinitionDynamicValue.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? ActivityDefinitionDynamicValue.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? ActivityDefinitionDynamicValue.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'ActivityDefinitionDynamicValue '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return ActivityDefinitionDynamicValue.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return ActivityDefinitionDynamicValue.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'ActivityDefinitionDynamicValue cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [ActivityDefinitionDynamicValue]
   /// that takes in a [String]

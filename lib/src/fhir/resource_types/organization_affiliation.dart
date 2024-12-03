@@ -199,20 +199,22 @@ class OrganizationAffiliation extends DomainResource {
   /// from a [String] or [YamlMap] object
   factory OrganizationAffiliation.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? OrganizationAffiliation.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? OrganizationAffiliation.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'OrganizationAffiliation '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return OrganizationAffiliation.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return OrganizationAffiliation.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'OrganizationAffiliation cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [OrganizationAffiliation]
   /// that takes in a [String]

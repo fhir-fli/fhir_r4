@@ -232,20 +232,22 @@ class AllergyIntolerance extends DomainResource {
   /// from a [String] or [YamlMap] object
   factory AllergyIntolerance.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? AllergyIntolerance.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? AllergyIntolerance.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'AllergyIntolerance '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return AllergyIntolerance.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return AllergyIntolerance.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'AllergyIntolerance cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [AllergyIntolerance]
   /// that takes in a [String]
@@ -664,20 +666,22 @@ class AllergyIntoleranceReaction extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory AllergyIntoleranceReaction.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? AllergyIntoleranceReaction.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? AllergyIntoleranceReaction.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'AllergyIntoleranceReaction '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return AllergyIntoleranceReaction.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return AllergyIntoleranceReaction.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'AllergyIntoleranceReaction cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [AllergyIntoleranceReaction]
   /// that takes in a [String]

@@ -281,20 +281,22 @@ class CommunicationRequest extends DomainResource {
   /// from a [String] or [YamlMap] object
   factory CommunicationRequest.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? CommunicationRequest.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? CommunicationRequest.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'CommunicationRequest '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return CommunicationRequest.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return CommunicationRequest.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'CommunicationRequest cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [CommunicationRequest]
   /// that takes in a [String]
@@ -698,20 +700,22 @@ class CommunicationRequestPayload extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory CommunicationRequestPayload.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? CommunicationRequestPayload.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? CommunicationRequestPayload.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'CommunicationRequestPayload '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return CommunicationRequestPayload.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return CommunicationRequestPayload.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'CommunicationRequestPayload cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [CommunicationRequestPayload]
   /// that takes in a [String]

@@ -184,20 +184,22 @@ class BiologicallyDerivedProduct extends DomainResource {
   /// from a [String] or [YamlMap] object
   factory BiologicallyDerivedProduct.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? BiologicallyDerivedProduct.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? BiologicallyDerivedProduct.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'BiologicallyDerivedProduct '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return BiologicallyDerivedProduct.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return BiologicallyDerivedProduct.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'BiologicallyDerivedProduct cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [BiologicallyDerivedProduct]
   /// that takes in a [String]
@@ -482,20 +484,22 @@ class BiologicallyDerivedProductCollection extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory BiologicallyDerivedProductCollection.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? BiologicallyDerivedProductCollection.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? BiologicallyDerivedProductCollection.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'BiologicallyDerivedProductCollection '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return BiologicallyDerivedProductCollection.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return BiologicallyDerivedProductCollection.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'BiologicallyDerivedProductCollection cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [BiologicallyDerivedProductCollection]
   /// that takes in a [String]
@@ -692,20 +696,22 @@ class BiologicallyDerivedProductProcessing extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory BiologicallyDerivedProductProcessing.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? BiologicallyDerivedProductProcessing.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? BiologicallyDerivedProductProcessing.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'BiologicallyDerivedProductProcessing '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return BiologicallyDerivedProductProcessing.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return BiologicallyDerivedProductProcessing.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'BiologicallyDerivedProductProcessing cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [BiologicallyDerivedProductProcessing]
   /// that takes in a [String]
@@ -896,20 +902,22 @@ class BiologicallyDerivedProductManipulation extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory BiologicallyDerivedProductManipulation.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? BiologicallyDerivedProductManipulation.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? BiologicallyDerivedProductManipulation.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'BiologicallyDerivedProductManipulation '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return BiologicallyDerivedProductManipulation.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return BiologicallyDerivedProductManipulation.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'BiologicallyDerivedProductManipulation cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [BiologicallyDerivedProductManipulation]
   /// that takes in a [String]
@@ -1084,20 +1092,22 @@ class BiologicallyDerivedProductStorage extends BackboneElement {
   /// from a [String] or [YamlMap] object
   factory BiologicallyDerivedProductStorage.fromYaml(
     dynamic yaml,
-  ) =>
-      yaml is String
-          ? BiologicallyDerivedProductStorage.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
-            )
-          : yaml is YamlMap
-              ? BiologicallyDerivedProductStorage.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
-                )
-              : throw ArgumentError(
-                  'BiologicallyDerivedProductStorage '
-                  'cannot be constructed from input provided, '
-                  'it is neither a yaml string nor a yaml map.',
-                );
+  ) {
+    if (yaml is String) {
+      return BiologicallyDerivedProductStorage.fromJson(
+        yamlToJson(yaml) as Map<String, Object?>,
+      );
+    } else if (yaml is YamlMap) {
+      return BiologicallyDerivedProductStorage.fromJson(
+        yamlMapToJson(yaml) as Map<String, Object?>,
+      );
+    } else {
+      throw ArgumentError(
+        'BiologicallyDerivedProductStorage cannot be constructed from the provided input. '
+        'It must be a YAML string or YAML map.',
+      );
+    }
+  }
 
   /// Factory constructor for [BiologicallyDerivedProductStorage]
   /// that takes in a [String]
