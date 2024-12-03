@@ -3,9 +3,10 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The value set to instantiate this attribute should be drawn from a terminologically robust code system that consists of or contains concepts to support describing the reason why an administered dose has been assigned a particular status. Often, this reason describes why a dose is considered invalid. This value set is provided as a suggestive example.
-class ImmunizationEvaluationDoseStatusReasonCodes {
+class ImmunizationEvaluationDoseStatusReasonCodes
+    extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ImmunizationEvaluationDoseStatusReasonCodes._(this.fhirCode, {this.element});
+  ImmunizationEvaluationDoseStatusReasonCodes._(super.value, [super.element]);
 
   /// Factory constructor to create [ImmunizationEvaluationDoseStatusReasonCodes] from JSON.
   factory ImmunizationEvaluationDoseStatusReasonCodes.fromJson(
@@ -17,17 +18,9 @@ class ImmunizationEvaluationDoseStatusReasonCodes {
       return ImmunizationEvaluationDoseStatusReasonCodes.elementOnly
           .withElement(element);
     }
-    return ImmunizationEvaluationDoseStatusReasonCodes._(value!,
-        element: element);
+    return ImmunizationEvaluationDoseStatusReasonCodes._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ImmunizationEvaluationDoseStatusReasonCodes values
   /// advstorage
   static final ImmunizationEvaluationDoseStatusReasonCodes advstorage =
       ImmunizationEvaluationDoseStatusReasonCodes._(
@@ -72,19 +65,65 @@ class ImmunizationEvaluationDoseStatusReasonCodes {
     prodrecall,
   ];
 
+  /// Clones the current instance
+  @override
+  ImmunizationEvaluationDoseStatusReasonCodes clone() =>
+      ImmunizationEvaluationDoseStatusReasonCodes._(
+          value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  ImmunizationEvaluationDoseStatusReasonCodes setElement(
+      String name, dynamic elementValue) {
+    return ImmunizationEvaluationDoseStatusReasonCodes._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   ImmunizationEvaluationDoseStatusReasonCodes withElement(Element? newElement) {
-    return ImmunizationEvaluationDoseStatusReasonCodes._(fhirCode,
-        element: newElement);
+    return ImmunizationEvaluationDoseStatusReasonCodes._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  ImmunizationEvaluationDoseStatusReasonCodes copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return ImmunizationEvaluationDoseStatusReasonCodes._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

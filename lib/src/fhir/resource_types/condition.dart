@@ -443,31 +443,23 @@ class Condition extends DomainResource {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    json['resourceType'] = resourceType.toJson();
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    json['resourceType'] = resourceType.toJson();
+    addField('id', id);
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    if (implicitRules != null) {
-      final fieldJson1 = implicitRules!.toJson();
-      json['implicitRules'] = fieldJson1['value'];
-      if (fieldJson1['_value'] != null) {
-        json['_implicitRules'] = fieldJson1['_value'];
-      }
-    }
-
-    if (language != null) {
-      final fieldJson2 = language!.toJson();
-      json['language'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_language'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('implicitRules', implicitRules);
+    addField('language', language);
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -519,14 +511,7 @@ class Condition extends DomainResource {
       json['encounter'] = encounter!.toJson();
     }
 
-    if (onsetDateTime != null) {
-      final fieldJson16 = onsetDateTime!.toJson();
-      json['onsetDateTime'] = fieldJson16['value'];
-      if (fieldJson16['_value'] != null) {
-        json['_onsetDateTime'] = fieldJson16['_value'];
-      }
-    }
-
+    addField('onsetDateTime', onsetDateTime);
     if (onsetAge != null) {
       json['onsetAge'] = onsetAge!.toJson();
     }
@@ -539,22 +524,8 @@ class Condition extends DomainResource {
       json['onsetRange'] = onsetRange!.toJson();
     }
 
-    if (onsetString != null) {
-      final fieldJson20 = onsetString!.toJson();
-      json['onsetString'] = fieldJson20['value'];
-      if (fieldJson20['_value'] != null) {
-        json['_onsetString'] = fieldJson20['_value'];
-      }
-    }
-
-    if (abatementDateTime != null) {
-      final fieldJson21 = abatementDateTime!.toJson();
-      json['abatementDateTime'] = fieldJson21['value'];
-      if (fieldJson21['_value'] != null) {
-        json['_abatementDateTime'] = fieldJson21['_value'];
-      }
-    }
-
+    addField('onsetString', onsetString);
+    addField('abatementDateTime', abatementDateTime);
     if (abatementAge != null) {
       json['abatementAge'] = abatementAge!.toJson();
     }
@@ -567,22 +538,8 @@ class Condition extends DomainResource {
       json['abatementRange'] = abatementRange!.toJson();
     }
 
-    if (abatementString != null) {
-      final fieldJson25 = abatementString!.toJson();
-      json['abatementString'] = fieldJson25['value'];
-      if (fieldJson25['_value'] != null) {
-        json['_abatementString'] = fieldJson25['_value'];
-      }
-    }
-
-    if (recordedDate != null) {
-      final fieldJson26 = recordedDate!.toJson();
-      json['recordedDate'] = fieldJson26['value'];
-      if (fieldJson26['_value'] != null) {
-        json['_recordedDate'] = fieldJson26['_value'];
-      }
-    }
-
+    addField('abatementString', abatementString);
+    addField('recordedDate', recordedDate);
     if (recorder != null) {
       json['recorder'] = recorder!.toJson();
     }
@@ -818,10 +775,16 @@ class ConditionStage extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -997,10 +960,16 @@ class ConditionEvidence extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }

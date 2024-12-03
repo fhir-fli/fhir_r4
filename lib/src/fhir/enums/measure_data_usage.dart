@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The intended usage for supplemental data elements in the measure.
-class MeasureDataUsage {
+class MeasureDataUsage extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  MeasureDataUsage._(this.fhirCode, {this.element});
+  MeasureDataUsage._(super.value, [super.element]);
 
   /// Factory constructor to create [MeasureDataUsage] from JSON.
   factory MeasureDataUsage.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class MeasureDataUsage {
     if (value == null && element != null) {
       return MeasureDataUsage.elementOnly.withElement(element);
     }
-    return MeasureDataUsage._(value!, element: element);
+    return MeasureDataUsage._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// MeasureDataUsage values
   /// supplemental_data
   static final MeasureDataUsage supplemental_data = MeasureDataUsage._(
     'supplemental-data',
@@ -45,18 +38,63 @@ class MeasureDataUsage {
     risk_adjustment_factor,
   ];
 
+  /// Clones the current instance
+  @override
+  MeasureDataUsage clone() =>
+      MeasureDataUsage._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  MeasureDataUsage setElement(String name, dynamic elementValue) {
+    return MeasureDataUsage._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   MeasureDataUsage withElement(Element? newElement) {
-    return MeasureDataUsage._(fhirCode, element: newElement);
+    return MeasureDataUsage._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  MeasureDataUsage copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return MeasureDataUsage._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

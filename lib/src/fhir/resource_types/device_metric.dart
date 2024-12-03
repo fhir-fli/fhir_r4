@@ -263,31 +263,23 @@ class DeviceMetric extends DomainResource {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    json['resourceType'] = resourceType.toJson();
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    json['resourceType'] = resourceType.toJson();
+    addField('id', id);
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    if (implicitRules != null) {
-      final fieldJson1 = implicitRules!.toJson();
-      json['implicitRules'] = fieldJson1['value'];
-      if (fieldJson1['_value'] != null) {
-        json['_implicitRules'] = fieldJson1['_value'];
-      }
-    }
-
-    if (language != null) {
-      final fieldJson2 = language!.toJson();
-      json['language'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_language'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('implicitRules', implicitRules);
+    addField('language', language);
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -323,28 +315,9 @@ class DeviceMetric extends DomainResource {
       json['parent'] = parent!.toJson();
     }
 
-    if (operationalStatus != null) {
-      final fieldJson12 = operationalStatus!.toJson();
-      json['operationalStatus'] = fieldJson12['value'];
-      if (fieldJson12['_value'] != null) {
-        json['_operationalStatus'] = fieldJson12['_value'];
-      }
-    }
-
-    if (color != null) {
-      final fieldJson13 = color!.toJson();
-      json['color'] = fieldJson13['value'];
-      if (fieldJson13['_value'] != null) {
-        json['_color'] = fieldJson13['_value'];
-      }
-    }
-
-    final fieldJson14 = category.toJson();
-    json['category'] = fieldJson14['value'];
-    if (fieldJson14['_value'] != null) {
-      json['_category'] = fieldJson14['_value'];
-    }
-
+    addField('operationalStatus', operationalStatus);
+    addField('color', color);
+    addField('category', category);
     if (measurementPeriod != null) {
       json['measurementPeriod'] = measurementPeriod!.toJson();
     }
@@ -535,10 +508,16 @@ class DeviceMetricCalibration extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -548,30 +527,9 @@ class DeviceMetricCalibration extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    if (type != null) {
-      final fieldJson2 = type!.toJson();
-      json['type'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_type'] = fieldJson2['_value'];
-      }
-    }
-
-    if (state != null) {
-      final fieldJson3 = state!.toJson();
-      json['state'] = fieldJson3['value'];
-      if (fieldJson3['_value'] != null) {
-        json['_state'] = fieldJson3['_value'];
-      }
-    }
-
-    if (time != null) {
-      final fieldJson4 = time!.toJson();
-      json['time'] = fieldJson4['value'];
-      if (fieldJson4['_value'] != null) {
-        json['_time'] = fieldJson4['_value'];
-      }
-    }
-
+    addField('type', type);
+    addField('state', state);
+    addField('time', time);
     return json;
   }
 

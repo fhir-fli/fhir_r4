@@ -219,31 +219,23 @@ class ManufacturedItemDefinition extends DomainResource {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    json['resourceType'] = resourceType.toJson();
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    json['resourceType'] = resourceType.toJson();
+    addField('id', id);
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    if (implicitRules != null) {
-      final fieldJson1 = implicitRules!.toJson();
-      json['implicitRules'] = fieldJson1['value'];
-      if (fieldJson1['_value'] != null) {
-        json['_implicitRules'] = fieldJson1['_value'];
-      }
-    }
-
-    if (language != null) {
-      final fieldJson2 = language!.toJson();
-      json['language'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_language'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('implicitRules', implicitRules);
+    addField('language', language);
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -265,12 +257,7 @@ class ManufacturedItemDefinition extends DomainResource {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
 
-    final fieldJson8 = status.toJson();
-    json['status'] = fieldJson8['value'];
-    if (fieldJson8['_value'] != null) {
-      json['_status'] = fieldJson8['_value'];
-    }
-
+    addField('status', status);
     json['manufacturedDoseForm'] = manufacturedDoseForm.toJson();
 
     if (unitOfPresentation != null) {
@@ -492,10 +479,16 @@ class ManufacturedItemDefinitionProperty extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -515,22 +508,8 @@ class ManufacturedItemDefinitionProperty extends BackboneElement {
       json['valueQuantity'] = valueQuantity!.toJson();
     }
 
-    if (valueDate != null) {
-      final fieldJson5 = valueDate!.toJson();
-      json['valueDate'] = fieldJson5['value'];
-      if (fieldJson5['_value'] != null) {
-        json['_valueDate'] = fieldJson5['_value'];
-      }
-    }
-
-    if (valueBoolean != null) {
-      final fieldJson6 = valueBoolean!.toJson();
-      json['valueBoolean'] = fieldJson6['value'];
-      if (fieldJson6['_value'] != null) {
-        json['_valueBoolean'] = fieldJson6['_value'];
-      }
-    }
-
+    addField('valueDate', valueDate);
+    addField('valueBoolean', valueBoolean);
     if (valueAttachment != null) {
       json['valueAttachment'] = valueAttachment!.toJson();
     }

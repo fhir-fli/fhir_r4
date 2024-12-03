@@ -230,31 +230,23 @@ class Medication extends DomainResource {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    json['resourceType'] = resourceType.toJson();
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    json['resourceType'] = resourceType.toJson();
+    addField('id', id);
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    if (implicitRules != null) {
-      final fieldJson1 = implicitRules!.toJson();
-      json['implicitRules'] = fieldJson1['value'];
-      if (fieldJson1['_value'] != null) {
-        json['_implicitRules'] = fieldJson1['_value'];
-      }
-    }
-
-    if (language != null) {
-      final fieldJson2 = language!.toJson();
-      json['language'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_language'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('implicitRules', implicitRules);
+    addField('language', language);
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -280,14 +272,7 @@ class Medication extends DomainResource {
       json['code'] = code!.toJson();
     }
 
-    if (status != null) {
-      final fieldJson9 = status!.toJson();
-      json['status'] = fieldJson9['value'];
-      if (fieldJson9['_value'] != null) {
-        json['_status'] = fieldJson9['_value'];
-      }
-    }
-
+    addField('status', status);
     if (manufacturer != null) {
       json['manufacturer'] = manufacturer!.toJson();
     }
@@ -498,10 +483,16 @@ class MedicationIngredient extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -519,14 +510,7 @@ class MedicationIngredient extends BackboneElement {
       json['itemReference'] = itemReference!.toJson();
     }
 
-    if (isActive != null) {
-      final fieldJson4 = isActive!.toJson();
-      json['isActive'] = fieldJson4['value'];
-      if (fieldJson4['_value'] != null) {
-        json['_isActive'] = fieldJson4['_value'];
-      }
-    }
-
+    addField('isActive', isActive);
     if (strength != null) {
       json['strength'] = strength!.toJson();
     }
@@ -680,10 +664,16 @@ class MedicationBatch extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -693,22 +683,8 @@ class MedicationBatch extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    if (lotNumber != null) {
-      final fieldJson2 = lotNumber!.toJson();
-      json['lotNumber'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_lotNumber'] = fieldJson2['_value'];
-      }
-    }
-
-    if (expirationDate != null) {
-      final fieldJson3 = expirationDate!.toJson();
-      json['expirationDate'] = fieldJson3['value'];
-      if (fieldJson3['_value'] != null) {
-        json['_expirationDate'] = fieldJson3['_value'];
-      }
-    }
-
+    addField('lotNumber', lotNumber);
+    addField('expirationDate', expirationDate);
     return json;
   }
 

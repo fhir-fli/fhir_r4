@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Applicable domain for this product (e.g. human, veterinary)
-class MedicinalProductDomain {
+class MedicinalProductDomain extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  MedicinalProductDomain._(this.fhirCode, {this.element});
+  MedicinalProductDomain._(super.value, [super.element]);
 
   /// Factory constructor to create [MedicinalProductDomain] from JSON.
   factory MedicinalProductDomain.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class MedicinalProductDomain {
     if (value == null && element != null) {
       return MedicinalProductDomain.elementOnly.withElement(element);
     }
-    return MedicinalProductDomain._(value!, element: element);
+    return MedicinalProductDomain._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// MedicinalProductDomain values
   /// Human
   static final MedicinalProductDomain Human = MedicinalProductDomain._(
     'Human',
@@ -53,18 +46,63 @@ class MedicinalProductDomain {
     HumanAndVeterinary,
   ];
 
+  /// Clones the current instance
+  @override
+  MedicinalProductDomain clone() =>
+      MedicinalProductDomain._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  MedicinalProductDomain setElement(String name, dynamic elementValue) {
+    return MedicinalProductDomain._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   MedicinalProductDomain withElement(Element? newElement) {
-    return MedicinalProductDomain._(fhirCode, element: newElement);
+    return MedicinalProductDomain._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  MedicinalProductDomain copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return MedicinalProductDomain._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

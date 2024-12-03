@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Defines behavior for an action or a group for how many times that item may be repeated.
-class ActionCardinalityBehavior {
+class ActionCardinalityBehavior extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ActionCardinalityBehavior._(this.fhirCode, {this.element});
+  ActionCardinalityBehavior._(super.value, [super.element]);
 
   /// Factory constructor to create [ActionCardinalityBehavior] from JSON.
   factory ActionCardinalityBehavior.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class ActionCardinalityBehavior {
     if (value == null && element != null) {
       return ActionCardinalityBehavior.elementOnly.withElement(element);
     }
-    return ActionCardinalityBehavior._(value!, element: element);
+    return ActionCardinalityBehavior._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ActionCardinalityBehavior values
   /// single
   static final ActionCardinalityBehavior single = ActionCardinalityBehavior._(
     'single',
@@ -46,18 +39,63 @@ class ActionCardinalityBehavior {
     multiple,
   ];
 
+  /// Clones the current instance
+  @override
+  ActionCardinalityBehavior clone() =>
+      ActionCardinalityBehavior._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  ActionCardinalityBehavior setElement(String name, dynamic elementValue) {
+    return ActionCardinalityBehavior._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   ActionCardinalityBehavior withElement(Element? newElement) {
-    return ActionCardinalityBehavior._(fhirCode, element: newElement);
+    return ActionCardinalityBehavior._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  ActionCardinalityBehavior copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return ActionCardinalityBehavior._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

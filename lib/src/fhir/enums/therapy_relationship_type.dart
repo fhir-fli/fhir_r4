@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Classification of relationship between a therapy and a contraindication or an indication.
-class TherapyRelationshipType {
+class TherapyRelationshipType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  TherapyRelationshipType._(this.fhirCode, {this.element});
+  TherapyRelationshipType._(super.value, [super.element]);
 
   /// Factory constructor to create [TherapyRelationshipType] from JSON.
   factory TherapyRelationshipType.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class TherapyRelationshipType {
     if (value == null && element != null) {
       return TherapyRelationshipType.elementOnly.withElement(element);
     }
-    return TherapyRelationshipType._(value!, element: element);
+    return TherapyRelationshipType._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// TherapyRelationshipType values
   /// contraindicated_only_with
   static final TherapyRelationshipType contraindicated_only_with =
       TherapyRelationshipType._(
@@ -97,18 +90,63 @@ class TherapyRelationshipType {
     replace_other_therapy_not_effective,
   ];
 
+  /// Clones the current instance
+  @override
+  TherapyRelationshipType clone() =>
+      TherapyRelationshipType._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  TherapyRelationshipType setElement(String name, dynamic elementValue) {
+    return TherapyRelationshipType._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   TherapyRelationshipType withElement(Element? newElement) {
-    return TherapyRelationshipType._(fhirCode, element: newElement);
+    return TherapyRelationshipType._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  TherapyRelationshipType copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return TherapyRelationshipType._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

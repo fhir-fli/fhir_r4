@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Codes identifying the lifecycle stage of an Invoice.
-class InvoiceStatus {
+class InvoiceStatus extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  InvoiceStatus._(this.fhirCode, {this.element});
+  InvoiceStatus._(super.value, [super.element]);
 
   /// Factory constructor to create [InvoiceStatus] from JSON.
   factory InvoiceStatus.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class InvoiceStatus {
     if (value == null && element != null) {
       return InvoiceStatus.elementOnly.withElement(element);
     }
-    return InvoiceStatus._(value!, element: element);
+    return InvoiceStatus._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// InvoiceStatus values
   /// draft
   static final InvoiceStatus draft = InvoiceStatus._(
     'draft',
@@ -63,18 +56,62 @@ class InvoiceStatus {
     entered_in_error,
   ];
 
+  /// Clones the current instance
+  @override
+  InvoiceStatus clone() => InvoiceStatus._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  InvoiceStatus setElement(String name, dynamic elementValue) {
+    return InvoiceStatus._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   InvoiceStatus withElement(Element? newElement) {
-    return InvoiceStatus._(fhirCode, element: newElement);
+    return InvoiceStatus._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  InvoiceStatus copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return InvoiceStatus._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The type of response code to use for assertion.
-class AssertionResponseTypes {
+class AssertionResponseTypes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  AssertionResponseTypes._(this.fhirCode, {this.element});
+  AssertionResponseTypes._(super.value, [super.element]);
 
   /// Factory constructor to create [AssertionResponseTypes] from JSON.
   factory AssertionResponseTypes.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class AssertionResponseTypes {
     if (value == null && element != null) {
       return AssertionResponseTypes.elementOnly.withElement(element);
     }
-    return AssertionResponseTypes._(value!, element: element);
+    return AssertionResponseTypes._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// AssertionResponseTypes values
   /// okay
   static final AssertionResponseTypes okay = AssertionResponseTypes._(
     'okay',
@@ -108,18 +101,63 @@ class AssertionResponseTypes {
     unprocessable,
   ];
 
+  /// Clones the current instance
+  @override
+  AssertionResponseTypes clone() =>
+      AssertionResponseTypes._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  AssertionResponseTypes setElement(String name, dynamic elementValue) {
+    return AssertionResponseTypes._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   AssertionResponseTypes withElement(Element? newElement) {
-    return AssertionResponseTypes._(fhirCode, element: newElement);
+    return AssertionResponseTypes._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  AssertionResponseTypes copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return AssertionResponseTypes._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

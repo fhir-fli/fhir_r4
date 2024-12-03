@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Codes representing the likelihood of a particular outcome in a risk assessment.
-class RiskProbability {
+class RiskProbability extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  RiskProbability._(this.fhirCode, {this.element});
+  RiskProbability._(super.value, [super.element]);
 
   /// Factory constructor to create [RiskProbability] from JSON.
   factory RiskProbability.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class RiskProbability {
     if (value == null && element != null) {
       return RiskProbability.elementOnly.withElement(element);
     }
-    return RiskProbability._(value!, element: element);
+    return RiskProbability._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// RiskProbability values
   /// negligible
   static final RiskProbability negligible = RiskProbability._(
     'negligible',
@@ -63,18 +56,63 @@ class RiskProbability {
     certain,
   ];
 
+  /// Clones the current instance
+  @override
+  RiskProbability clone() =>
+      RiskProbability._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  RiskProbability setElement(String name, dynamic elementValue) {
+    return RiskProbability._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   RiskProbability withElement(Element? newElement) {
-    return RiskProbability._(fhirCode, element: newElement);
+    return RiskProbability._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  RiskProbability copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return RiskProbability._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

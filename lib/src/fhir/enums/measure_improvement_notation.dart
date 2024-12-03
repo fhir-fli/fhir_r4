@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Observation values that indicate what change in a measurement value or score is indicative of an improvement in the measured item or scored issue.
-class MeasureImprovementNotation {
+class MeasureImprovementNotation extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  MeasureImprovementNotation._(this.fhirCode, {this.element});
+  MeasureImprovementNotation._(super.value, [super.element]);
 
   /// Factory constructor to create [MeasureImprovementNotation] from JSON.
   factory MeasureImprovementNotation.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class MeasureImprovementNotation {
     if (value == null && element != null) {
       return MeasureImprovementNotation.elementOnly.withElement(element);
     }
-    return MeasureImprovementNotation._(value!, element: element);
+    return MeasureImprovementNotation._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// MeasureImprovementNotation values
   /// increase
   static final MeasureImprovementNotation increase =
       MeasureImprovementNotation._(
@@ -48,18 +41,63 @@ class MeasureImprovementNotation {
     decrease,
   ];
 
+  /// Clones the current instance
+  @override
+  MeasureImprovementNotation clone() =>
+      MeasureImprovementNotation._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  MeasureImprovementNotation setElement(String name, dynamic elementValue) {
+    return MeasureImprovementNotation._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   MeasureImprovementNotation withElement(Element? newElement) {
-    return MeasureImprovementNotation._(fhirCode, element: newElement);
+    return MeasureImprovementNotation._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  MeasureImprovementNotation copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return MeasureImprovementNotation._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

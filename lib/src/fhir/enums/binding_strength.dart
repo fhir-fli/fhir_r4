@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Indication of the degree of conformance expectations associated with a binding.
-class BindingStrength {
+class BindingStrength extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  BindingStrength._(this.fhirCode, {this.element});
+  BindingStrength._(super.value, [super.element]);
 
   /// Factory constructor to create [BindingStrength] from JSON.
   factory BindingStrength.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class BindingStrength {
     if (value == null && element != null) {
       return BindingStrength.elementOnly.withElement(element);
     }
-    return BindingStrength._(value!, element: element);
+    return BindingStrength._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// BindingStrength values
   /// required_
   static final BindingStrength required_ = BindingStrength._(
     'required',
@@ -57,18 +50,63 @@ class BindingStrength {
     example,
   ];
 
+  /// Clones the current instance
+  @override
+  BindingStrength clone() =>
+      BindingStrength._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  BindingStrength setElement(String name, dynamic elementValue) {
+    return BindingStrength._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   BindingStrength withElement(Element? newElement) {
-    return BindingStrength._(fhirCode, element: newElement);
+    return BindingStrength._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  BindingStrength copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return BindingStrength._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

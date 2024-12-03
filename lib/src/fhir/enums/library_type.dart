@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The type of knowledge asset this library contains.
-class LibraryType {
+class LibraryType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  LibraryType._(this.fhirCode, {this.element});
+  LibraryType._(super.value, [super.element]);
 
   /// Factory constructor to create [LibraryType] from JSON.
   factory LibraryType.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class LibraryType {
     if (value == null && element != null) {
       return LibraryType.elementOnly.withElement(element);
     }
-    return LibraryType._(value!, element: element);
+    return LibraryType._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// LibraryType values
   /// logic_library
   static final LibraryType logic_library = LibraryType._(
     'logic-library',
@@ -57,18 +50,62 @@ class LibraryType {
     module_definition,
   ];
 
+  /// Clones the current instance
+  @override
+  LibraryType clone() => LibraryType._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  LibraryType setElement(String name, dynamic elementValue) {
+    return LibraryType._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   LibraryType withElement(Element? newElement) {
-    return LibraryType._(fhirCode, element: newElement);
+    return LibraryType._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  LibraryType copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return LibraryType._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

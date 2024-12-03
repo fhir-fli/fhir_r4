@@ -204,25 +204,26 @@ class DataRequirement extends DataType {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
 
-    final fieldJson1 = type.toJson();
-    json['type'] = fieldJson1['value'];
-    if (fieldJson1['_value'] != null) {
-      json['_type'] = fieldJson1['_value'];
-    }
-
+    addField('type', type);
     if (profile != null && profile!.isNotEmpty) {
-      final fieldJson2 = profile!.map((e) => e.toJson()).toList();
-      json['profile'] = fieldJson2.map((e) => e['value']).toList();
-      if (fieldJson2.any((e) => e['_value'] != null)) {
-        json['_profile'] = fieldJson2.map((e) => e['_value']).toList();
+      final fieldJson0 = profile!.map((e) => e.toJson()).toList();
+      json['profile'] = fieldJson0.map((e) => e['value']).toList();
+      if (fieldJson0.any((e) => e['_value'] != null)) {
+        json['_profile'] = fieldJson0.map((e) => e['_value']).toList();
       }
     }
 
@@ -235,10 +236,10 @@ class DataRequirement extends DataType {
     }
 
     if (mustSupport != null && mustSupport!.isNotEmpty) {
-      final fieldJson5 = mustSupport!.map((e) => e.toJson()).toList();
-      json['mustSupport'] = fieldJson5.map((e) => e['value']).toList();
-      if (fieldJson5.any((e) => e['_value'] != null)) {
-        json['_mustSupport'] = fieldJson5.map((e) => e['_value']).toList();
+      final fieldJson1 = mustSupport!.map((e) => e.toJson()).toList();
+      json['mustSupport'] = fieldJson1.map((e) => e['value']).toList();
+      if (fieldJson1.any((e) => e['_value'] != null)) {
+        json['_mustSupport'] = fieldJson1.map((e) => e['_value']).toList();
       }
     }
 
@@ -250,14 +251,7 @@ class DataRequirement extends DataType {
       json['dateFilter'] = dateFilter!.map((e) => e.toJson()).toList();
     }
 
-    if (limit != null) {
-      final fieldJson8 = limit!.toJson();
-      json['limit'] = fieldJson8['value'];
-      if (fieldJson8['_value'] != null) {
-        json['_limit'] = fieldJson8['_value'];
-      }
-    }
-
+    addField('limit', limit);
     if (sort != null && sort!.isNotEmpty) {
       json['sort'] = sort!.map((e) => e.toJson()).toList();
     }
@@ -453,38 +447,23 @@ class DataRequirementCodeFilter extends Element {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
 
-    if (path != null) {
-      final fieldJson1 = path!.toJson();
-      json['path'] = fieldJson1['value'];
-      if (fieldJson1['_value'] != null) {
-        json['_path'] = fieldJson1['_value'];
-      }
-    }
-
-    if (searchParam != null) {
-      final fieldJson2 = searchParam!.toJson();
-      json['searchParam'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_searchParam'] = fieldJson2['_value'];
-      }
-    }
-
-    if (valueSet != null) {
-      final fieldJson3 = valueSet!.toJson();
-      json['valueSet'] = fieldJson3['value'];
-      if (fieldJson3['_value'] != null) {
-        json['_valueSet'] = fieldJson3['_value'];
-      }
-    }
-
+    addField('path', path);
+    addField('searchParam', searchParam);
+    addField('valueSet', valueSet);
     if (code != null && code!.isNotEmpty) {
       json['code'] = code!.map((e) => e.toJson()).toList();
     }
@@ -685,38 +664,23 @@ class DataRequirementDateFilter extends Element {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
 
-    if (path != null) {
-      final fieldJson1 = path!.toJson();
-      json['path'] = fieldJson1['value'];
-      if (fieldJson1['_value'] != null) {
-        json['_path'] = fieldJson1['_value'];
-      }
-    }
-
-    if (searchParam != null) {
-      final fieldJson2 = searchParam!.toJson();
-      json['searchParam'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_searchParam'] = fieldJson2['_value'];
-      }
-    }
-
-    if (valueDateTime != null) {
-      final fieldJson3 = valueDateTime!.toJson();
-      json['valueDateTime'] = fieldJson3['value'];
-      if (fieldJson3['_value'] != null) {
-        json['_valueDateTime'] = fieldJson3['_value'];
-      }
-    }
-
+    addField('path', path);
+    addField('searchParam', searchParam);
+    addField('valueDateTime', valueDateTime);
     if (valuePeriod != null) {
       json['valuePeriod'] = valuePeriod!.toJson();
     }
@@ -863,26 +827,22 @@ class DataRequirementSort extends Element {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
 
-    final fieldJson1 = path.toJson();
-    json['path'] = fieldJson1['value'];
-    if (fieldJson1['_value'] != null) {
-      json['_path'] = fieldJson1['_value'];
-    }
-
-    final fieldJson2 = direction.toJson();
-    json['direction'] = fieldJson2['value'];
-    if (fieldJson2['_value'] != null) {
-      json['_direction'] = fieldJson2['_value'];
-    }
-
+    addField('path', path);
+    addField('direction', direction);
     return json;
   }
 

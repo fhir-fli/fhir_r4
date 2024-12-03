@@ -340,31 +340,23 @@ class Coverage extends DomainResource {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    json['resourceType'] = resourceType.toJson();
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    json['resourceType'] = resourceType.toJson();
+    addField('id', id);
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    if (implicitRules != null) {
-      final fieldJson1 = implicitRules!.toJson();
-      json['implicitRules'] = fieldJson1['value'];
-      if (fieldJson1['_value'] != null) {
-        json['_implicitRules'] = fieldJson1['_value'];
-      }
-    }
-
-    if (language != null) {
-      final fieldJson2 = language!.toJson();
-      json['language'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_language'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('implicitRules', implicitRules);
+    addField('language', language);
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -386,12 +378,7 @@ class Coverage extends DomainResource {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
 
-    final fieldJson8 = status.toJson();
-    json['status'] = fieldJson8['value'];
-    if (fieldJson8['_value'] != null) {
-      json['_status'] = fieldJson8['_value'];
-    }
-
+    addField('status', status);
     if (type != null) {
       json['type'] = type!.toJson();
     }
@@ -404,24 +391,10 @@ class Coverage extends DomainResource {
       json['subscriber'] = subscriber!.toJson();
     }
 
-    if (subscriberId != null) {
-      final fieldJson12 = subscriberId!.toJson();
-      json['subscriberId'] = fieldJson12['value'];
-      if (fieldJson12['_value'] != null) {
-        json['_subscriberId'] = fieldJson12['_value'];
-      }
-    }
-
+    addField('subscriberId', subscriberId);
     json['beneficiary'] = beneficiary.toJson();
 
-    if (dependent != null) {
-      final fieldJson14 = dependent!.toJson();
-      json['dependent'] = fieldJson14['value'];
-      if (fieldJson14['_value'] != null) {
-        json['_dependent'] = fieldJson14['_value'];
-      }
-    }
-
+    addField('dependent', dependent);
     if (relationship != null) {
       json['relationship'] = relationship!.toJson();
     }
@@ -430,41 +403,22 @@ class Coverage extends DomainResource {
       json['period'] = period!.toJson();
     }
 
-    json['payor'] = payor.map((e) => e.toJson()).toList();
+    if (payor.isNotEmpty) {
+      json['payor'] = payor.map((e) => e.toJson()).toList();
+    }
 
     if (class_ != null && class_!.isNotEmpty) {
       json['class'] = class_!.map((e) => e.toJson()).toList();
     }
 
-    if (order != null) {
-      final fieldJson19 = order!.toJson();
-      json['order'] = fieldJson19['value'];
-      if (fieldJson19['_value'] != null) {
-        json['_order'] = fieldJson19['_value'];
-      }
-    }
-
-    if (network != null) {
-      final fieldJson20 = network!.toJson();
-      json['network'] = fieldJson20['value'];
-      if (fieldJson20['_value'] != null) {
-        json['_network'] = fieldJson20['_value'];
-      }
-    }
-
+    addField('order', order);
+    addField('network', network);
     if (costToBeneficiary != null && costToBeneficiary!.isNotEmpty) {
       json['costToBeneficiary'] =
           costToBeneficiary!.map((e) => e.toJson()).toList();
     }
 
-    if (subrogation != null) {
-      final fieldJson22 = subrogation!.toJson();
-      json['subrogation'] = fieldJson22['value'];
-      if (fieldJson22['_value'] != null) {
-        json['_subrogation'] = fieldJson22['_value'];
-      }
-    }
-
+    addField('subrogation', subrogation);
     if (contract != null && contract!.isNotEmpty) {
       json['contract'] = contract!.map((e) => e.toJson()).toList();
     }
@@ -661,10 +615,16 @@ class CoverageClass extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -676,20 +636,8 @@ class CoverageClass extends BackboneElement {
 
     json['type'] = type.toJson();
 
-    final fieldJson3 = value.toJson();
-    json['value'] = fieldJson3['value'];
-    if (fieldJson3['_value'] != null) {
-      json['_value'] = fieldJson3['_value'];
-    }
-
-    if (name != null) {
-      final fieldJson4 = name!.toJson();
-      json['name'] = fieldJson4['value'];
-      if (fieldJson4['_value'] != null) {
-        json['_name'] = fieldJson4['_value'];
-      }
-    }
-
+    addField('value', value);
+    addField('name', name);
     return json;
   }
 
@@ -861,10 +809,16 @@ class CoverageCostToBeneficiary extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1035,10 +989,16 @@ class CoverageException extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }

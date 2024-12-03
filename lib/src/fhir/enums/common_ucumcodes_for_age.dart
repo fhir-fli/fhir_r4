@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Unified Code for Units of Measure (UCUM). This value set includes all UCUM codes
-class CommonUCUMCodesForAge {
+class CommonUCUMCodesForAge extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  CommonUCUMCodesForAge._(this.fhirCode, {this.element});
+  CommonUCUMCodesForAge._(super.value, [super.element]);
 
   /// Factory constructor to create [CommonUCUMCodesForAge] from JSON.
   factory CommonUCUMCodesForAge.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class CommonUCUMCodesForAge {
     if (value == null && element != null) {
       return CommonUCUMCodesForAge.elementOnly.withElement(element);
     }
-    return CommonUCUMCodesForAge._(value!, element: element);
+    return CommonUCUMCodesForAge._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// CommonUCUMCodesForAge values
   /// min
   static final CommonUCUMCodesForAge min = CommonUCUMCodesForAge._(
     'min',
@@ -69,18 +62,63 @@ class CommonUCUMCodesForAge {
     a,
   ];
 
+  /// Clones the current instance
+  @override
+  CommonUCUMCodesForAge clone() =>
+      CommonUCUMCodesForAge._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  CommonUCUMCodesForAge setElement(String name, dynamic elementValue) {
+    return CommonUCUMCodesForAge._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   CommonUCUMCodesForAge withElement(Element? newElement) {
-    return CommonUCUMCodesForAge._(fhirCode, element: newElement);
+    return CommonUCUMCodesForAge._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  CommonUCUMCodesForAge copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return CommonUCUMCodesForAge._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

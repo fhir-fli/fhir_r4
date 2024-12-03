@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// This is an example value set defined by the FHIR project, that could be used to represent possible connection type profile values.
-class EndpointConnectionType {
+class EndpointConnectionType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  EndpointConnectionType._(this.fhirCode, {this.element});
+  EndpointConnectionType._(super.value, [super.element]);
 
   /// Factory constructor to create [EndpointConnectionType] from JSON.
   factory EndpointConnectionType.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class EndpointConnectionType {
     if (value == null && element != null) {
       return EndpointConnectionType.elementOnly.withElement(element);
     }
-    return EndpointConnectionType._(value!, element: element);
+    return EndpointConnectionType._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// EndpointConnectionType values
   /// ihe_xcpd
   static final EndpointConnectionType ihe_xcpd = EndpointConnectionType._(
     'ihe-xcpd',
@@ -118,18 +111,63 @@ class EndpointConnectionType {
     direct_project,
   ];
 
+  /// Clones the current instance
+  @override
+  EndpointConnectionType clone() =>
+      EndpointConnectionType._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  EndpointConnectionType setElement(String name, dynamic elementValue) {
+    return EndpointConnectionType._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   EndpointConnectionType withElement(Element? newElement) {
-    return EndpointConnectionType._(fhirCode, element: newElement);
+    return EndpointConnectionType._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  EndpointConnectionType copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return EndpointConnectionType._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

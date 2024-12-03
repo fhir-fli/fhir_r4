@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// This example value set defines a set of codes that can be used to indicate the physical form of the Location.
-class LocationType {
+class LocationType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  LocationType._(this.fhirCode, {this.element});
+  LocationType._(super.value, [super.element]);
 
   /// Factory constructor to create [LocationType] from JSON.
   factory LocationType.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class LocationType {
     if (value == null && element != null) {
       return LocationType.elementOnly.withElement(element);
     }
-    return LocationType._(value!, element: element);
+    return LocationType._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// LocationType values
   /// si
   static final LocationType si = LocationType._(
     'si',
@@ -117,18 +110,62 @@ class LocationType {
     jdn,
   ];
 
+  /// Clones the current instance
+  @override
+  LocationType clone() => LocationType._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  LocationType setElement(String name, dynamic elementValue) {
+    return LocationType._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   LocationType withElement(Element? newElement) {
-    return LocationType._(fhirCode, element: newElement);
+    return LocationType._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  LocationType copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return LocationType._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

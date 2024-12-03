@@ -177,57 +177,30 @@ class Bundle extends Resource {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    json['resourceType'] = resourceType.toJson();
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    json['resourceType'] = resourceType.toJson();
+    addField('id', id);
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    if (implicitRules != null) {
-      final fieldJson1 = implicitRules!.toJson();
-      json['implicitRules'] = fieldJson1['value'];
-      if (fieldJson1['_value'] != null) {
-        json['_implicitRules'] = fieldJson1['_value'];
-      }
-    }
-
-    if (language != null) {
-      final fieldJson2 = language!.toJson();
-      json['language'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_language'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('implicitRules', implicitRules);
+    addField('language', language);
     if (identifier != null) {
       json['identifier'] = identifier!.toJson();
     }
 
-    final fieldJson4 = type.toJson();
-    json['type'] = fieldJson4['value'];
-    if (fieldJson4['_value'] != null) {
-      json['_type'] = fieldJson4['_value'];
-    }
-
-    if (timestamp != null) {
-      final fieldJson5 = timestamp!.toJson();
-      json['timestamp'] = fieldJson5['value'];
-      if (fieldJson5['_value'] != null) {
-        json['_timestamp'] = fieldJson5['_value'];
-      }
-    }
-
-    if (total != null) {
-      final fieldJson6 = total!.toJson();
-      json['total'] = fieldJson6['value'];
-      if (fieldJson6['_value'] != null) {
-        json['_total'] = fieldJson6['_value'];
-      }
-    }
-
+    addField('type', type);
+    addField('timestamp', timestamp);
+    addField('total', total);
     if (link != null && link!.isNotEmpty) {
       json['link'] = link!.map((e) => e.toJson()).toList();
     }
@@ -393,10 +366,16 @@ class BundleLink extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -406,18 +385,8 @@ class BundleLink extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    final fieldJson2 = relation.toJson();
-    json['relation'] = fieldJson2['value'];
-    if (fieldJson2['_value'] != null) {
-      json['_relation'] = fieldJson2['_value'];
-    }
-
-    final fieldJson3 = url.toJson();
-    json['url'] = fieldJson3['value'];
-    if (fieldJson3['_value'] != null) {
-      json['_url'] = fieldJson3['_value'];
-    }
-
+    addField('relation', relation);
+    addField('url', url);
     return json;
   }
 
@@ -620,10 +589,16 @@ class BundleEntry extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -637,14 +612,7 @@ class BundleEntry extends BackboneElement {
       json['link'] = link!.map((e) => e.toJson()).toList();
     }
 
-    if (fullUrl != null) {
-      final fieldJson3 = fullUrl!.toJson();
-      json['fullUrl'] = fieldJson3['value'];
-      if (fieldJson3['_value'] != null) {
-        json['_fullUrl'] = fieldJson3['_value'];
-      }
-    }
-
+    addField('fullUrl', fullUrl);
     if (resource != null) {
       json['resource'] = resource!.toJson();
     }
@@ -816,10 +784,16 @@ class BundleSearch extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -829,22 +803,8 @@ class BundleSearch extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    if (mode != null) {
-      final fieldJson2 = mode!.toJson();
-      json['mode'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_mode'] = fieldJson2['_value'];
-      }
-    }
-
-    if (score != null) {
-      final fieldJson3 = score!.toJson();
-      json['score'] = fieldJson3['value'];
-      if (fieldJson3['_value'] != null) {
-        json['_score'] = fieldJson3['_value'];
-      }
-    }
-
+    addField('mode', mode);
+    addField('score', score);
     return json;
   }
 
@@ -1042,10 +1002,16 @@ class BundleRequest extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1055,50 +1021,12 @@ class BundleRequest extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    final fieldJson2 = method.toJson();
-    json['method'] = fieldJson2['value'];
-    if (fieldJson2['_value'] != null) {
-      json['_method'] = fieldJson2['_value'];
-    }
-
-    final fieldJson3 = url.toJson();
-    json['url'] = fieldJson3['value'];
-    if (fieldJson3['_value'] != null) {
-      json['_url'] = fieldJson3['_value'];
-    }
-
-    if (ifNoneMatch != null) {
-      final fieldJson4 = ifNoneMatch!.toJson();
-      json['ifNoneMatch'] = fieldJson4['value'];
-      if (fieldJson4['_value'] != null) {
-        json['_ifNoneMatch'] = fieldJson4['_value'];
-      }
-    }
-
-    if (ifModifiedSince != null) {
-      final fieldJson5 = ifModifiedSince!.toJson();
-      json['ifModifiedSince'] = fieldJson5['value'];
-      if (fieldJson5['_value'] != null) {
-        json['_ifModifiedSince'] = fieldJson5['_value'];
-      }
-    }
-
-    if (ifMatch != null) {
-      final fieldJson6 = ifMatch!.toJson();
-      json['ifMatch'] = fieldJson6['value'];
-      if (fieldJson6['_value'] != null) {
-        json['_ifMatch'] = fieldJson6['_value'];
-      }
-    }
-
-    if (ifNoneExist != null) {
-      final fieldJson7 = ifNoneExist!.toJson();
-      json['ifNoneExist'] = fieldJson7['value'];
-      if (fieldJson7['_value'] != null) {
-        json['_ifNoneExist'] = fieldJson7['_value'];
-      }
-    }
-
+    addField('method', method);
+    addField('url', url);
+    addField('ifNoneMatch', ifNoneMatch);
+    addField('ifModifiedSince', ifModifiedSince);
+    addField('ifMatch', ifMatch);
+    addField('ifNoneExist', ifNoneExist);
     return json;
   }
 
@@ -1291,10 +1219,16 @@ class BundleResponse extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1304,36 +1238,10 @@ class BundleResponse extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    final fieldJson2 = status.toJson();
-    json['status'] = fieldJson2['value'];
-    if (fieldJson2['_value'] != null) {
-      json['_status'] = fieldJson2['_value'];
-    }
-
-    if (location != null) {
-      final fieldJson3 = location!.toJson();
-      json['location'] = fieldJson3['value'];
-      if (fieldJson3['_value'] != null) {
-        json['_location'] = fieldJson3['_value'];
-      }
-    }
-
-    if (etag != null) {
-      final fieldJson4 = etag!.toJson();
-      json['etag'] = fieldJson4['value'];
-      if (fieldJson4['_value'] != null) {
-        json['_etag'] = fieldJson4['_value'];
-      }
-    }
-
-    if (lastModified != null) {
-      final fieldJson5 = lastModified!.toJson();
-      json['lastModified'] = fieldJson5['value'];
-      if (fieldJson5['_value'] != null) {
-        json['_lastModified'] = fieldJson5['_value'];
-      }
-    }
-
+    addField('status', status);
+    addField('location', location);
+    addField('etag', etag);
+    addField('lastModified', lastModified);
     if (outcome != null) {
       json['outcome'] = outcome!.toJson();
     }

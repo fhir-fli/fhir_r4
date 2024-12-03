@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The format for display of the citation.
-class CitationSummaryStyle {
+class CitationSummaryStyle extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  CitationSummaryStyle._(this.fhirCode, {this.element});
+  CitationSummaryStyle._(super.value, [super.element]);
 
   /// Factory constructor to create [CitationSummaryStyle] from JSON.
   factory CitationSummaryStyle.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class CitationSummaryStyle {
     if (value == null && element != null) {
       return CitationSummaryStyle.elementOnly.withElement(element);
     }
-    return CitationSummaryStyle._(value!, element: element);
+    return CitationSummaryStyle._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// CitationSummaryStyle values
   /// vancouver
   static final CitationSummaryStyle vancouver = CitationSummaryStyle._(
     'vancouver',
@@ -117,18 +110,63 @@ class CitationSummaryStyle {
     comppub,
   ];
 
+  /// Clones the current instance
+  @override
+  CitationSummaryStyle clone() =>
+      CitationSummaryStyle._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  CitationSummaryStyle setElement(String name, dynamic elementValue) {
+    return CitationSummaryStyle._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   CitationSummaryStyle withElement(Element? newElement) {
-    return CitationSummaryStyle._(fhirCode, element: newElement);
+    return CitationSummaryStyle._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  CitationSummaryStyle copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return CitationSummaryStyle._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

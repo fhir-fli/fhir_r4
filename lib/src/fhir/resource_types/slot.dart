@@ -261,31 +261,23 @@ class Slot extends DomainResource {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    json['resourceType'] = resourceType.toJson();
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    json['resourceType'] = resourceType.toJson();
+    addField('id', id);
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    if (implicitRules != null) {
-      final fieldJson1 = implicitRules!.toJson();
-      json['implicitRules'] = fieldJson1['value'];
-      if (fieldJson1['_value'] != null) {
-        json['_implicitRules'] = fieldJson1['_value'];
-      }
-    }
-
-    if (language != null) {
-      final fieldJson2 = language!.toJson();
-      json['language'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_language'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('implicitRules', implicitRules);
+    addField('language', language);
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -326,40 +318,11 @@ class Slot extends DomainResource {
 
     json['schedule'] = schedule.toJson();
 
-    final fieldJson13 = status.toJson();
-    json['status'] = fieldJson13['value'];
-    if (fieldJson13['_value'] != null) {
-      json['_status'] = fieldJson13['_value'];
-    }
-
-    final fieldJson14 = start.toJson();
-    json['start'] = fieldJson14['value'];
-    if (fieldJson14['_value'] != null) {
-      json['_start'] = fieldJson14['_value'];
-    }
-
-    final fieldJson15 = end.toJson();
-    json['end'] = fieldJson15['value'];
-    if (fieldJson15['_value'] != null) {
-      json['_end'] = fieldJson15['_value'];
-    }
-
-    if (overbooked != null) {
-      final fieldJson16 = overbooked!.toJson();
-      json['overbooked'] = fieldJson16['value'];
-      if (fieldJson16['_value'] != null) {
-        json['_overbooked'] = fieldJson16['_value'];
-      }
-    }
-
-    if (comment != null) {
-      final fieldJson17 = comment!.toJson();
-      json['comment'] = fieldJson17['value'];
-      if (fieldJson17['_value'] != null) {
-        json['_comment'] = fieldJson17['_value'];
-      }
-    }
-
+    addField('status', status);
+    addField('start', start);
+    addField('end', end);
+    addField('overbooked', overbooked);
+    addField('comment', comment);
     return json;
   }
 

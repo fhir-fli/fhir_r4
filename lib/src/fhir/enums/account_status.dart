@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Indicates whether the account is available to be used.
-class AccountStatus {
+class AccountStatus extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  AccountStatus._(this.fhirCode, {this.element});
+  AccountStatus._(super.value, [super.element]);
 
   /// Factory constructor to create [AccountStatus] from JSON.
   factory AccountStatus.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class AccountStatus {
     if (value == null && element != null) {
       return AccountStatus.elementOnly.withElement(element);
     }
-    return AccountStatus._(value!, element: element);
+    return AccountStatus._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// AccountStatus values
   /// active
   static final AccountStatus active = AccountStatus._(
     'active',
@@ -63,18 +56,62 @@ class AccountStatus {
     unknown,
   ];
 
+  /// Clones the current instance
+  @override
+  AccountStatus clone() => AccountStatus._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  AccountStatus setElement(String name, dynamic elementValue) {
+    return AccountStatus._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   AccountStatus withElement(Element? newElement) {
-    return AccountStatus._(fhirCode, element: newElement);
+    return AccountStatus._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  AccountStatus copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return AccountStatus._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Codes indicating the degree of authority/intentionality associated with a request.
-class RequestIntent {
+class RequestIntent extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  RequestIntent._(this.fhirCode, {this.element});
+  RequestIntent._(super.value, [super.element]);
 
   /// Factory constructor to create [RequestIntent] from JSON.
   factory RequestIntent.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class RequestIntent {
     if (value == null && element != null) {
       return RequestIntent.elementOnly.withElement(element);
     }
-    return RequestIntent._(value!, element: element);
+    return RequestIntent._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// RequestIntent values
   /// proposal
   static final RequestIntent proposal = RequestIntent._(
     'proposal',
@@ -87,18 +80,62 @@ class RequestIntent {
     option,
   ];
 
+  /// Clones the current instance
+  @override
+  RequestIntent clone() => RequestIntent._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  RequestIntent setElement(String name, dynamic elementValue) {
+    return RequestIntent._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   RequestIntent withElement(Element? newElement) {
-    return RequestIntent._(fhirCode, element: newElement);
+    return RequestIntent._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  RequestIntent copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return RequestIntent._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

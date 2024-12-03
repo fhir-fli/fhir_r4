@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// This example FHIR value set is comprised of example Actor Type codes, which can be used to value FHIR agents, actors, and other role elements such as those specified in financial transactions. The FHIR Actor value set is based on DICOM Audit Message, C402; ASTM Standard, E1762-95 [2013]; selected codes and derived actor roles from HL7 RoleClass OID 2.16.840.1.113883.5.110; HL7 Role Code 2.16.840.1.113883.5.111, including AgentRoleType; HL7 ParticipationType OID: 2.16.840.1.113883.5.90; and HL7 ParticipationFunction codes OID: 2.16.840.1.113883.5.88. This value set includes, by reference, role codes from external code systems: NUCC Health Care Provider Taxonomy OID: 2.16.840.1.113883.6.101; North American Industry Classification System [NAICS]OID: 2.16.840.1.113883.6.85; IndustryClassificationSystem 2.16.840.1.113883.1.11.16039; and US Census Occupation Code OID: 2.16.840.1.113883.6.243 for relevant recipient or custodian codes not included in this value set. If no source is indicated in the definition comments, then these are example FHIR codes. It can be extended with appropriate roles described by SNOMED as well as those described in the HL7 Role Based Access Control Catalog and the HL7 Healthcare (Security and Privacy) Access Control Catalog. In Role-Based Access Control (RBAC), permissions are operations on an object that a user wishes to access. Permissions are grouped into roles. A role characterizes the functions a user is allowed to perform. Roles are assigned to users. If the user's role has the appropriate permissions to access an object, then that user is granted access to the object. FHIR readily enables RBAC, as FHIR Resources are object types and the CRUDE events (the FHIR equivalent to permissions in the RBAC scheme) are operations on those objects. In Attribute-Based Access Control (ABAC), a user requests to perform operations on objects. That user's access request is granted or denied based on a set of access control policies that are specified in terms of attributes and conditions. FHIR readily enables ABAC, as instances of a Resource in FHIR (again, Resources are object types) can have attributes associated with them. These attributes include security tags, environment conditions, and a host of user and object characteristics, which are the same attributes as those used in ABAC. Attributes help define the access control policies that determine the operations a user may perform on a Resource (in FHIR) or object (in ABAC). For example, a tag (or attribute) may specify that the identified Resource (object) is not to be further disclosed without explicit consent from the patient.
-class SecurityRoleType {
+class SecurityRoleType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  SecurityRoleType._(this.fhirCode, {this.element});
+  SecurityRoleType._(super.value, [super.element]);
 
   /// Factory constructor to create [SecurityRoleType] from JSON.
   factory SecurityRoleType.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class SecurityRoleType {
     if (value == null && element != null) {
       return SecurityRoleType.elementOnly.withElement(element);
     }
-    return SecurityRoleType._(value!, element: element);
+    return SecurityRoleType._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// SecurityRoleType values
   /// AMENDER
   static final SecurityRoleType AMENDER = SecurityRoleType._(
     'AMENDER',
@@ -19335,18 +19328,63 @@ class SecurityRoleType {
     value126811,
   ];
 
+  /// Clones the current instance
+  @override
+  SecurityRoleType clone() =>
+      SecurityRoleType._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  SecurityRoleType setElement(String name, dynamic elementValue) {
+    return SecurityRoleType._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   SecurityRoleType withElement(Element? newElement) {
-    return SecurityRoleType._(fhirCode, element: newElement);
+    return SecurityRoleType._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  SecurityRoleType copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return SecurityRoleType._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

@@ -185,31 +185,23 @@ class ImmunizationRecommendation extends DomainResource {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    json['resourceType'] = resourceType.toJson();
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    json['resourceType'] = resourceType.toJson();
+    addField('id', id);
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    if (implicitRules != null) {
-      final fieldJson1 = implicitRules!.toJson();
-      json['implicitRules'] = fieldJson1['value'];
-      if (fieldJson1['_value'] != null) {
-        json['_implicitRules'] = fieldJson1['_value'];
-      }
-    }
-
-    if (language != null) {
-      final fieldJson2 = language!.toJson();
-      json['language'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_language'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('implicitRules', implicitRules);
+    addField('language', language);
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -233,17 +225,14 @@ class ImmunizationRecommendation extends DomainResource {
 
     json['patient'] = patient.toJson();
 
-    final fieldJson9 = date.toJson();
-    json['date'] = fieldJson9['value'];
-    if (fieldJson9['_value'] != null) {
-      json['_date'] = fieldJson9['_value'];
-    }
-
+    addField('date', date);
     if (authority != null) {
       json['authority'] = authority!.toJson();
     }
 
-    json['recommendation'] = recommendation.map((e) => e.toJson()).toList();
+    if (recommendation.isNotEmpty) {
+      json['recommendation'] = recommendation.map((e) => e.toJson()).toList();
+    }
 
     return json;
   }
@@ -564,10 +553,16 @@ class ImmunizationRecommendationRecommendation extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -601,54 +596,12 @@ class ImmunizationRecommendationRecommendation extends BackboneElement {
       json['dateCriterion'] = dateCriterion!.map((e) => e.toJson()).toList();
     }
 
-    if (description != null) {
-      final fieldJson8 = description!.toJson();
-      json['description'] = fieldJson8['value'];
-      if (fieldJson8['_value'] != null) {
-        json['_description'] = fieldJson8['_value'];
-      }
-    }
-
-    if (series != null) {
-      final fieldJson9 = series!.toJson();
-      json['series'] = fieldJson9['value'];
-      if (fieldJson9['_value'] != null) {
-        json['_series'] = fieldJson9['_value'];
-      }
-    }
-
-    if (doseNumberPositiveInt != null) {
-      final fieldJson10 = doseNumberPositiveInt!.toJson();
-      json['doseNumberPositiveInt'] = fieldJson10['value'];
-      if (fieldJson10['_value'] != null) {
-        json['_doseNumberPositiveInt'] = fieldJson10['_value'];
-      }
-    }
-
-    if (doseNumberString != null) {
-      final fieldJson11 = doseNumberString!.toJson();
-      json['doseNumberString'] = fieldJson11['value'];
-      if (fieldJson11['_value'] != null) {
-        json['_doseNumberString'] = fieldJson11['_value'];
-      }
-    }
-
-    if (seriesDosesPositiveInt != null) {
-      final fieldJson12 = seriesDosesPositiveInt!.toJson();
-      json['seriesDosesPositiveInt'] = fieldJson12['value'];
-      if (fieldJson12['_value'] != null) {
-        json['_seriesDosesPositiveInt'] = fieldJson12['_value'];
-      }
-    }
-
-    if (seriesDosesString != null) {
-      final fieldJson13 = seriesDosesString!.toJson();
-      json['seriesDosesString'] = fieldJson13['value'];
-      if (fieldJson13['_value'] != null) {
-        json['_seriesDosesString'] = fieldJson13['_value'];
-      }
-    }
-
+    addField('description', description);
+    addField('series', series);
+    addField('doseNumberPositiveInt', doseNumberPositiveInt);
+    addField('doseNumberString', doseNumberString);
+    addField('seriesDosesPositiveInt', seriesDosesPositiveInt);
+    addField('seriesDosesString', seriesDosesString);
     if (supportingImmunization != null && supportingImmunization!.isNotEmpty) {
       json['supportingImmunization'] =
           supportingImmunization!.map((e) => e.toJson()).toList();
@@ -831,10 +784,16 @@ class ImmunizationRecommendationDateCriterion extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -846,12 +805,7 @@ class ImmunizationRecommendationDateCriterion extends BackboneElement {
 
     json['code'] = code.toJson();
 
-    final fieldJson3 = value.toJson();
-    json['value'] = fieldJson3['value'];
-    if (fieldJson3['_value'] != null) {
-      json['_value'] = fieldJson3['_value'];
-    }
-
+    addField('value', value);
     return json;
   }
 

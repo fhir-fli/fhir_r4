@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// This value set defines a set of codes that can be used to indicate special courtesies provided to the patient.
-class SpecialCourtesy {
+class SpecialCourtesy extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  SpecialCourtesy._(this.fhirCode, {this.element});
+  SpecialCourtesy._(super.value, [super.element]);
 
   /// Factory constructor to create [SpecialCourtesy] from JSON.
   factory SpecialCourtesy.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class SpecialCourtesy {
     if (value == null && element != null) {
       return SpecialCourtesy.elementOnly.withElement(element);
     }
-    return SpecialCourtesy._(value!, element: element);
+    return SpecialCourtesy._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// SpecialCourtesy values
   /// EXT
   static final SpecialCourtesy EXT = SpecialCourtesy._(
     'EXT',
@@ -69,18 +62,63 @@ class SpecialCourtesy {
     UNK,
   ];
 
+  /// Clones the current instance
+  @override
+  SpecialCourtesy clone() =>
+      SpecialCourtesy._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  SpecialCourtesy setElement(String name, dynamic elementValue) {
+    return SpecialCourtesy._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   SpecialCourtesy withElement(Element? newElement) {
-    return SpecialCourtesy._(fhirCode, element: newElement);
+    return SpecialCourtesy._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  SpecialCourtesy copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return SpecialCourtesy._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// This value set includes sample Information Category codes.
-class ClaimInformationCategoryCodes {
+class ClaimInformationCategoryCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ClaimInformationCategoryCodes._(this.fhirCode, {this.element});
+  ClaimInformationCategoryCodes._(super.value, [super.element]);
 
   /// Factory constructor to create [ClaimInformationCategoryCodes] from JSON.
   factory ClaimInformationCategoryCodes.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class ClaimInformationCategoryCodes {
     if (value == null && element != null) {
       return ClaimInformationCategoryCodes.elementOnly.withElement(element);
     }
-    return ClaimInformationCategoryCodes._(value!, element: element);
+    return ClaimInformationCategoryCodes._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ClaimInformationCategoryCodes values
   /// info
   static final ClaimInformationCategoryCodes info =
       ClaimInformationCategoryCodes._(
@@ -132,18 +125,63 @@ class ClaimInformationCategoryCodes {
     patientreasonforvisit,
   ];
 
+  /// Clones the current instance
+  @override
+  ClaimInformationCategoryCodes clone() =>
+      ClaimInformationCategoryCodes._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  ClaimInformationCategoryCodes setElement(String name, dynamic elementValue) {
+    return ClaimInformationCategoryCodes._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   ClaimInformationCategoryCodes withElement(Element? newElement) {
-    return ClaimInformationCategoryCodes._(fhirCode, element: newElement);
+    return ClaimInformationCategoryCodes._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  ClaimInformationCategoryCodes copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return ClaimInformationCategoryCodes._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

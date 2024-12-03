@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Classification of warning type.
-class WarningType {
+class WarningType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  WarningType._(this.fhirCode, {this.element});
+  WarningType._(super.value, [super.element]);
 
   /// Factory constructor to create [WarningType] from JSON.
   factory WarningType.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class WarningType {
     if (value == null && element != null) {
       return WarningType.elementOnly.withElement(element);
     }
-    return WarningType._(value!, element: element);
+    return WarningType._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// WarningType values
   /// P313
   static final WarningType P313 = WarningType._(
     'P313',
@@ -93,18 +86,62 @@ class WarningType {
     P363,
   ];
 
+  /// Clones the current instance
+  @override
+  WarningType clone() => WarningType._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  WarningType setElement(String name, dynamic elementValue) {
+    return WarningType._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   WarningType withElement(Element? newElement) {
-    return WarningType._(fhirCode, element: newElement);
+    return WarningType._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  WarningType copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return WarningType._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

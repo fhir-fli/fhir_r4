@@ -231,31 +231,23 @@ class Ingredient extends DomainResource {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    json['resourceType'] = resourceType.toJson();
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    json['resourceType'] = resourceType.toJson();
+    addField('id', id);
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    if (implicitRules != null) {
-      final fieldJson1 = implicitRules!.toJson();
-      json['implicitRules'] = fieldJson1['value'];
-      if (fieldJson1['_value'] != null) {
-        json['_implicitRules'] = fieldJson1['_value'];
-      }
-    }
-
-    if (language != null) {
-      final fieldJson2 = language!.toJson();
-      json['language'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_language'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('implicitRules', implicitRules);
+    addField('language', language);
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -277,12 +269,7 @@ class Ingredient extends DomainResource {
       json['identifier'] = identifier!.toJson();
     }
 
-    final fieldJson8 = status.toJson();
-    json['status'] = fieldJson8['value'];
-    if (fieldJson8['_value'] != null) {
-      json['_status'] = fieldJson8['_value'];
-    }
-
+    addField('status', status);
     if (for_ != null && for_!.isNotEmpty) {
       json['for'] = for_!.map((e) => e.toJson()).toList();
     }
@@ -293,14 +280,7 @@ class Ingredient extends DomainResource {
       json['function'] = function_!.map((e) => e.toJson()).toList();
     }
 
-    if (allergenicIndicator != null) {
-      final fieldJson12 = allergenicIndicator!.toJson();
-      json['allergenicIndicator'] = fieldJson12['value'];
-      if (fieldJson12['_value'] != null) {
-        json['_allergenicIndicator'] = fieldJson12['_value'];
-      }
-    }
-
+    addField('allergenicIndicator', allergenicIndicator);
     if (manufacturer != null && manufacturer!.isNotEmpty) {
       json['manufacturer'] = manufacturer!.map((e) => e.toJson()).toList();
     }
@@ -478,10 +458,16 @@ class IngredientManufacturer extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -491,14 +477,7 @@ class IngredientManufacturer extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    if (role != null) {
-      final fieldJson2 = role!.toJson();
-      json['role'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_role'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('role', role);
     json['manufacturer'] = manufacturer.toJson();
 
     return json;
@@ -649,10 +628,16 @@ class IngredientSubstance extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -921,10 +906,16 @@ class IngredientStrength extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -942,14 +933,7 @@ class IngredientStrength extends BackboneElement {
       json['presentationRatioRange'] = presentationRatioRange!.toJson();
     }
 
-    if (textPresentation != null) {
-      final fieldJson4 = textPresentation!.toJson();
-      json['textPresentation'] = fieldJson4['value'];
-      if (fieldJson4['_value'] != null) {
-        json['_textPresentation'] = fieldJson4['_value'];
-      }
-    }
-
+    addField('textPresentation', textPresentation);
     if (concentrationRatio != null) {
       json['concentrationRatio'] = concentrationRatio!.toJson();
     }
@@ -958,22 +942,8 @@ class IngredientStrength extends BackboneElement {
       json['concentrationRatioRange'] = concentrationRatioRange!.toJson();
     }
 
-    if (textConcentration != null) {
-      final fieldJson7 = textConcentration!.toJson();
-      json['textConcentration'] = fieldJson7['value'];
-      if (fieldJson7['_value'] != null) {
-        json['_textConcentration'] = fieldJson7['_value'];
-      }
-    }
-
-    if (measurementPoint != null) {
-      final fieldJson8 = measurementPoint!.toJson();
-      json['measurementPoint'] = fieldJson8['value'];
-      if (fieldJson8['_value'] != null) {
-        json['_measurementPoint'] = fieldJson8['_value'];
-      }
-    }
-
+    addField('textConcentration', textConcentration);
+    addField('measurementPoint', measurementPoint);
     if (country != null && country!.isNotEmpty) {
       json['country'] = country!.map((e) => e.toJson()).toList();
     }
@@ -1183,10 +1153,16 @@ class IngredientReferenceStrength extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1208,14 +1184,7 @@ class IngredientReferenceStrength extends BackboneElement {
       json['strengthRatioRange'] = strengthRatioRange!.toJson();
     }
 
-    if (measurementPoint != null) {
-      final fieldJson5 = measurementPoint!.toJson();
-      json['measurementPoint'] = fieldJson5['value'];
-      if (fieldJson5['_value'] != null) {
-        json['_measurementPoint'] = fieldJson5['_value'];
-      }
-    }
-
+    addField('measurementPoint', measurementPoint);
     if (country != null && country!.isNotEmpty) {
       json['country'] = country!.map((e) => e.toJson()).toList();
     }

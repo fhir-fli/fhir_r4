@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The type of network access point of this agent in the audit event.
-class AuditEventAgentNetworkType {
+class AuditEventAgentNetworkType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  AuditEventAgentNetworkType._(this.fhirCode, {this.element});
+  AuditEventAgentNetworkType._(super.value, [super.element]);
 
   /// Factory constructor to create [AuditEventAgentNetworkType] from JSON.
   factory AuditEventAgentNetworkType.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class AuditEventAgentNetworkType {
     if (value == null && element != null) {
       return AuditEventAgentNetworkType.elementOnly.withElement(element);
     }
-    return AuditEventAgentNetworkType._(value!, element: element);
+    return AuditEventAgentNetworkType._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// AuditEventAgentNetworkType values
   /// value1
   static final AuditEventAgentNetworkType value1 = AuditEventAgentNetworkType._(
     '1',
@@ -64,18 +57,63 @@ class AuditEventAgentNetworkType {
     value5,
   ];
 
+  /// Clones the current instance
+  @override
+  AuditEventAgentNetworkType clone() =>
+      AuditEventAgentNetworkType._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  AuditEventAgentNetworkType setElement(String name, dynamic elementValue) {
+    return AuditEventAgentNetworkType._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   AuditEventAgentNetworkType withElement(Element? newElement) {
-    return AuditEventAgentNetworkType._(fhirCode, element: newElement);
+    return AuditEventAgentNetworkType._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  AuditEventAgentNetworkType copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return AuditEventAgentNetworkType._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

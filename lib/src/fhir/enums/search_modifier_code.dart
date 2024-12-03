@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// A supported modifier for a search parameter.
-class SearchModifierCode {
+class SearchModifierCode extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  SearchModifierCode._(this.fhirCode, {this.element});
+  SearchModifierCode._(super.value, [super.element]);
 
   /// Factory constructor to create [SearchModifierCode] from JSON.
   factory SearchModifierCode.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class SearchModifierCode {
     if (value == null && element != null) {
       return SearchModifierCode.elementOnly.withElement(element);
     }
-    return SearchModifierCode._(value!, element: element);
+    return SearchModifierCode._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// SearchModifierCode values
   /// missing
   static final SearchModifierCode missing = SearchModifierCode._(
     'missing',
@@ -105,18 +98,63 @@ class SearchModifierCode {
     ofType,
   ];
 
+  /// Clones the current instance
+  @override
+  SearchModifierCode clone() =>
+      SearchModifierCode._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  SearchModifierCode setElement(String name, dynamic elementValue) {
+    return SearchModifierCode._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   SearchModifierCode withElement(Element? newElement) {
-    return SearchModifierCode._(fhirCode, element: newElement);
+    return SearchModifierCode._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  SearchModifierCode copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return SearchModifierCode._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

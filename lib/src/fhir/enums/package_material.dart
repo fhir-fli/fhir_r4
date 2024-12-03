@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// A material used in the construction of packages and their components.
-class PackageMaterial {
+class PackageMaterial extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  PackageMaterial._(this.fhirCode, {this.element});
+  PackageMaterial._(super.value, [super.element]);
 
   /// Factory constructor to create [PackageMaterial] from JSON.
   factory PackageMaterial.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class PackageMaterial {
     if (value == null && element != null) {
       return PackageMaterial.elementOnly.withElement(element);
     }
-    return PackageMaterial._(value!, element: element);
+    return PackageMaterial._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// PackageMaterial values
   /// value200000003200
   static final PackageMaterial value200000003200 = PackageMaterial._(
     '200000003200',
@@ -291,18 +284,63 @@ class PackageMaterial {
     value200000025257,
   ];
 
+  /// Clones the current instance
+  @override
+  PackageMaterial clone() =>
+      PackageMaterial._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  PackageMaterial setElement(String name, dynamic elementValue) {
+    return PackageMaterial._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   PackageMaterial withElement(Element? newElement) {
-    return PackageMaterial._(fhirCode, element: newElement);
+    return PackageMaterial._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  PackageMaterial copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return PackageMaterial._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

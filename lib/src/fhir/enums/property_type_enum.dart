@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The type of a property value.
-class PropertyTypeEnum {
+class PropertyTypeEnum extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  PropertyTypeEnum._(this.fhirCode, {this.element});
+  PropertyTypeEnum._(super.value, [super.element]);
 
   /// Factory constructor to create [PropertyTypeEnum] from JSON.
   factory PropertyTypeEnum.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class PropertyTypeEnum {
     if (value == null && element != null) {
       return PropertyTypeEnum.elementOnly.withElement(element);
     }
-    return PropertyTypeEnum._(value!, element: element);
+    return PropertyTypeEnum._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// PropertyTypeEnum values
   /// code
   static final PropertyTypeEnum code = PropertyTypeEnum._(
     'code',
@@ -75,18 +68,63 @@ class PropertyTypeEnum {
     decimal,
   ];
 
+  /// Clones the current instance
+  @override
+  PropertyTypeEnum clone() =>
+      PropertyTypeEnum._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  PropertyTypeEnum setElement(String name, dynamic elementValue) {
+    return PropertyTypeEnum._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   PropertyTypeEnum withElement(Element? newElement) {
-    return PropertyTypeEnum._(fhirCode, element: newElement);
+    return PropertyTypeEnum._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  PropertyTypeEnum copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return PropertyTypeEnum._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

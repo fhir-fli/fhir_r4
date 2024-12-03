@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// MedicationRequest Course of Therapy Codes
-class MedicationRequestCourseOfTherapyCodes {
+class MedicationRequestCourseOfTherapyCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  MedicationRequestCourseOfTherapyCodes._(this.fhirCode, {this.element});
+  MedicationRequestCourseOfTherapyCodes._(super.value, [super.element]);
 
   /// Factory constructor to create [MedicationRequestCourseOfTherapyCodes] from JSON.
   factory MedicationRequestCourseOfTherapyCodes.fromJson(
@@ -17,16 +17,9 @@ class MedicationRequestCourseOfTherapyCodes {
       return MedicationRequestCourseOfTherapyCodes.elementOnly
           .withElement(element);
     }
-    return MedicationRequestCourseOfTherapyCodes._(value!, element: element);
+    return MedicationRequestCourseOfTherapyCodes._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// MedicationRequestCourseOfTherapyCodes values
   /// continuous
   static final MedicationRequestCourseOfTherapyCodes continuous =
       MedicationRequestCourseOfTherapyCodes._(
@@ -57,19 +50,65 @@ class MedicationRequestCourseOfTherapyCodes {
     seasonal,
   ];
 
+  /// Clones the current instance
+  @override
+  MedicationRequestCourseOfTherapyCodes clone() =>
+      MedicationRequestCourseOfTherapyCodes._(
+          value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  MedicationRequestCourseOfTherapyCodes setElement(
+      String name, dynamic elementValue) {
+    return MedicationRequestCourseOfTherapyCodes._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   MedicationRequestCourseOfTherapyCodes withElement(Element? newElement) {
-    return MedicationRequestCourseOfTherapyCodes._(fhirCode,
-        element: newElement);
+    return MedicationRequestCourseOfTherapyCodes._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  MedicationRequestCourseOfTherapyCodes copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return MedicationRequestCourseOfTherapyCodes._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

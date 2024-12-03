@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The method used to elucidate the structure or characterization of the drug substance.
-class StructureTechnique {
+class StructureTechnique extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  StructureTechnique._(this.fhirCode, {this.element});
+  StructureTechnique._(super.value, [super.element]);
 
   /// Factory constructor to create [StructureTechnique] from JSON.
   factory StructureTechnique.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class StructureTechnique {
     if (value == null && element != null) {
       return StructureTechnique.elementOnly.withElement(element);
     }
-    return StructureTechnique._(value!, element: element);
+    return StructureTechnique._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// StructureTechnique values
   /// X_Ray
   static final StructureTechnique X_Ray = StructureTechnique._(
     'X-Ray',
@@ -63,18 +56,63 @@ class StructureTechnique {
     LigandBindingAssay,
   ];
 
+  /// Clones the current instance
+  @override
+  StructureTechnique clone() =>
+      StructureTechnique._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  StructureTechnique setElement(String name, dynamic elementValue) {
+    return StructureTechnique._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   StructureTechnique withElement(Element? newElement) {
-    return StructureTechnique._(fhirCode, element: newElement);
+    return StructureTechnique._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  StructureTechnique copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return StructureTechnique._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

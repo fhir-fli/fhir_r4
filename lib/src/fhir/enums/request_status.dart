@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Codes identifying the lifecycle stage of a request.
-class RequestStatus {
+class RequestStatus extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  RequestStatus._(this.fhirCode, {this.element});
+  RequestStatus._(super.value, [super.element]);
 
   /// Factory constructor to create [RequestStatus] from JSON.
   factory RequestStatus.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class RequestStatus {
     if (value == null && element != null) {
       return RequestStatus.elementOnly.withElement(element);
     }
-    return RequestStatus._(value!, element: element);
+    return RequestStatus._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// RequestStatus values
   /// draft
   static final RequestStatus draft = RequestStatus._(
     'draft',
@@ -75,18 +68,62 @@ class RequestStatus {
     unknown,
   ];
 
+  /// Clones the current instance
+  @override
+  RequestStatus clone() => RequestStatus._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  RequestStatus setElement(String name, dynamic elementValue) {
+    return RequestStatus._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   RequestStatus withElement(Element? newElement) {
-    return RequestStatus._(fhirCode, element: newElement);
+    return RequestStatus._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  RequestStatus copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return RequestStatus._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

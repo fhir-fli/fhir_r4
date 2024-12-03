@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// This value set includes sample ICD-10 Procedure codes.
-class ICD10ProcedureCodes {
+class ICD10ProcedureCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ICD10ProcedureCodes._(this.fhirCode, {this.element});
+  ICD10ProcedureCodes._(super.value, [super.element]);
 
   /// Factory constructor to create [ICD10ProcedureCodes] from JSON.
   factory ICD10ProcedureCodes.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class ICD10ProcedureCodes {
     if (value == null && element != null) {
       return ICD10ProcedureCodes.elementOnly.withElement(element);
     }
-    return ICD10ProcedureCodes._(value!, element: element);
+    return ICD10ProcedureCodes._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ICD10ProcedureCodes values
   /// value123001
   static final ICD10ProcedureCodes value123001 = ICD10ProcedureCodes._(
     '123001',
@@ -51,18 +44,63 @@ class ICD10ProcedureCodes {
     value123003,
   ];
 
+  /// Clones the current instance
+  @override
+  ICD10ProcedureCodes clone() =>
+      ICD10ProcedureCodes._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  ICD10ProcedureCodes setElement(String name, dynamic elementValue) {
+    return ICD10ProcedureCodes._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   ICD10ProcedureCodes withElement(Element? newElement) {
-    return ICD10ProcedureCodes._(fhirCode, element: newElement);
+    return ICD10ProcedureCodes._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  ICD10ProcedureCodes copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return ICD10ProcedureCodes._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

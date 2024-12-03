@@ -277,31 +277,23 @@ class Provenance extends DomainResource {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    json['resourceType'] = resourceType.toJson();
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    json['resourceType'] = resourceType.toJson();
+    addField('id', id);
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    if (implicitRules != null) {
-      final fieldJson1 = implicitRules!.toJson();
-      json['implicitRules'] = fieldJson1['value'];
-      if (fieldJson1['_value'] != null) {
-        json['_implicitRules'] = fieldJson1['_value'];
-      }
-    }
-
-    if (language != null) {
-      final fieldJson2 = language!.toJson();
-      json['language'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_language'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('implicitRules', implicitRules);
+    addField('language', language);
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -319,31 +311,21 @@ class Provenance extends DomainResource {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    json['target'] = target.map((e) => e.toJson()).toList();
+    if (target.isNotEmpty) {
+      json['target'] = target.map((e) => e.toJson()).toList();
+    }
 
     if (occurredPeriod != null) {
       json['occurredPeriod'] = occurredPeriod!.toJson();
     }
 
-    if (occurredDateTime != null) {
-      final fieldJson9 = occurredDateTime!.toJson();
-      json['occurredDateTime'] = fieldJson9['value'];
-      if (fieldJson9['_value'] != null) {
-        json['_occurredDateTime'] = fieldJson9['_value'];
-      }
-    }
-
-    final fieldJson10 = recorded.toJson();
-    json['recorded'] = fieldJson10['value'];
-    if (fieldJson10['_value'] != null) {
-      json['_recorded'] = fieldJson10['_value'];
-    }
-
+    addField('occurredDateTime', occurredDateTime);
+    addField('recorded', recorded);
     if (policy != null && policy!.isNotEmpty) {
-      final fieldJson11 = policy!.map((e) => e.toJson()).toList();
-      json['policy'] = fieldJson11.map((e) => e['value']).toList();
-      if (fieldJson11.any((e) => e['_value'] != null)) {
-        json['_policy'] = fieldJson11.map((e) => e['_value']).toList();
+      final fieldJson0 = policy!.map((e) => e.toJson()).toList();
+      json['policy'] = fieldJson0.map((e) => e['value']).toList();
+      if (fieldJson0.any((e) => e['_value'] != null)) {
+        json['_policy'] = fieldJson0.map((e) => e['_value']).toList();
       }
     }
 
@@ -359,7 +341,9 @@ class Provenance extends DomainResource {
       json['activity'] = activity!.toJson();
     }
 
-    json['agent'] = agent.map((e) => e.toJson()).toList();
+    if (agent.isNotEmpty) {
+      json['agent'] = agent.map((e) => e.toJson()).toList();
+    }
 
     if (entity != null && entity!.isNotEmpty) {
       json['entity'] = entity!.map((e) => e.toJson()).toList();
@@ -563,10 +547,16 @@ class ProvenanceAgent extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -751,10 +741,16 @@ class ProvenanceEntity extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -764,12 +760,7 @@ class ProvenanceEntity extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    final fieldJson2 = role.toJson();
-    json['role'] = fieldJson2['value'];
-    if (fieldJson2['_value'] != null) {
-      json['_role'] = fieldJson2['_value'];
-    }
-
+    addField('role', role);
     json['what'] = what.toJson();
 
     if (agent != null && agent!.isNotEmpty) {

@@ -105,22 +105,21 @@ class ContactDetail extends DataType {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
 
-    if (name != null) {
-      final fieldJson1 = name!.toJson();
-      json['name'] = fieldJson1['value'];
-      if (fieldJson1['_value'] != null) {
-        json['_name'] = fieldJson1['_value'];
-      }
-    }
-
+    addField('name', name);
     if (telecom != null && telecom!.isNotEmpty) {
       json['telecom'] = telecom!.map((e) => e.toJson()).toList();
     }

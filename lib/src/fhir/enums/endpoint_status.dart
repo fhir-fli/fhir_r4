@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The status of the endpoint.
-class EndpointStatus {
+class EndpointStatus extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  EndpointStatus._(this.fhirCode, {this.element});
+  EndpointStatus._(super.value, [super.element]);
 
   /// Factory constructor to create [EndpointStatus] from JSON.
   factory EndpointStatus.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class EndpointStatus {
     if (value == null && element != null) {
       return EndpointStatus.elementOnly.withElement(element);
     }
-    return EndpointStatus._(value!, element: element);
+    return EndpointStatus._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// EndpointStatus values
   /// active
   static final EndpointStatus active = EndpointStatus._(
     'active',
@@ -69,18 +62,63 @@ class EndpointStatus {
     test,
   ];
 
+  /// Clones the current instance
+  @override
+  EndpointStatus clone() =>
+      EndpointStatus._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  EndpointStatus setElement(String name, dynamic elementValue) {
+    return EndpointStatus._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   EndpointStatus withElement(Element? newElement) {
-    return EndpointStatus._(fhirCode, element: newElement);
+    return EndpointStatus._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  EndpointStatus copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return EndpointStatus._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

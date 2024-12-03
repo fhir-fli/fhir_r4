@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// This value set includes a smattering of Prescription Product codes.
-class ExampleVisionPrescriptionProductCodes {
+class ExampleVisionPrescriptionProductCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ExampleVisionPrescriptionProductCodes._(this.fhirCode, {this.element});
+  ExampleVisionPrescriptionProductCodes._(super.value, [super.element]);
 
   /// Factory constructor to create [ExampleVisionPrescriptionProductCodes] from JSON.
   factory ExampleVisionPrescriptionProductCodes.fromJson(
@@ -17,16 +17,9 @@ class ExampleVisionPrescriptionProductCodes {
       return ExampleVisionPrescriptionProductCodes.elementOnly
           .withElement(element);
     }
-    return ExampleVisionPrescriptionProductCodes._(value!, element: element);
+    return ExampleVisionPrescriptionProductCodes._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ExampleVisionPrescriptionProductCodes values
   /// lens
   static final ExampleVisionPrescriptionProductCodes lens =
       ExampleVisionPrescriptionProductCodes._(
@@ -50,19 +43,65 @@ class ExampleVisionPrescriptionProductCodes {
     contact,
   ];
 
+  /// Clones the current instance
+  @override
+  ExampleVisionPrescriptionProductCodes clone() =>
+      ExampleVisionPrescriptionProductCodes._(
+          value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  ExampleVisionPrescriptionProductCodes setElement(
+      String name, dynamic elementValue) {
+    return ExampleVisionPrescriptionProductCodes._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   ExampleVisionPrescriptionProductCodes withElement(Element? newElement) {
-    return ExampleVisionPrescriptionProductCodes._(fhirCode,
-        element: newElement);
+    return ExampleVisionPrescriptionProductCodes._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  ExampleVisionPrescriptionProductCodes copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return ExampleVisionPrescriptionProductCodes._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

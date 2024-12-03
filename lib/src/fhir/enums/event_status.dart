@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Codes identifying the lifecycle stage of an event.
-class EventStatus {
+class EventStatus extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  EventStatus._(this.fhirCode, {this.element});
+  EventStatus._(super.value, [super.element]);
 
   /// Factory constructor to create [EventStatus] from JSON.
   factory EventStatus.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class EventStatus {
     if (value == null && element != null) {
       return EventStatus.elementOnly.withElement(element);
     }
-    return EventStatus._(value!, element: element);
+    return EventStatus._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// EventStatus values
   /// preparation
   static final EventStatus preparation = EventStatus._(
     'preparation',
@@ -81,18 +74,62 @@ class EventStatus {
     unknown,
   ];
 
+  /// Clones the current instance
+  @override
+  EventStatus clone() => EventStatus._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  EventStatus setElement(String name, dynamic elementValue) {
+    return EventStatus._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   EventStatus withElement(Element? newElement) {
-    return EventStatus._(fhirCode, element: newElement);
+    return EventStatus._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  EventStatus copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return EventStatus._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

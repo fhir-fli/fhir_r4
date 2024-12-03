@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Resource types defined as part of FHIR that can be represented as in-line definitions of a care plan activity.
-class CarePlanActivityKind {
+class CarePlanActivityKind extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  CarePlanActivityKind._(this.fhirCode, {this.element});
+  CarePlanActivityKind._(super.value, [super.element]);
 
   /// Factory constructor to create [CarePlanActivityKind] from JSON.
   factory CarePlanActivityKind.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class CarePlanActivityKind {
     if (value == null && element != null) {
       return CarePlanActivityKind.elementOnly.withElement(element);
     }
-    return CarePlanActivityKind._(value!, element: element);
+    return CarePlanActivityKind._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// CarePlanActivityKind values
   /// Resource
   static final CarePlanActivityKind Resource = CarePlanActivityKind._(
     'Resource',
@@ -922,18 +915,63 @@ class CarePlanActivityKind {
     Parameters,
   ];
 
+  /// Clones the current instance
+  @override
+  CarePlanActivityKind clone() =>
+      CarePlanActivityKind._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  CarePlanActivityKind setElement(String name, dynamic elementValue) {
+    return CarePlanActivityKind._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   CarePlanActivityKind withElement(Element? newElement) {
-    return CarePlanActivityKind._(fhirCode, element: newElement);
+    return CarePlanActivityKind._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  CarePlanActivityKind copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return CarePlanActivityKind._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

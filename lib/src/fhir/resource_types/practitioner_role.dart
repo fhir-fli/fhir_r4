@@ -318,31 +318,23 @@ class PractitionerRole extends DomainResource {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    json['resourceType'] = resourceType.toJson();
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    json['resourceType'] = resourceType.toJson();
+    addField('id', id);
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    if (implicitRules != null) {
-      final fieldJson1 = implicitRules!.toJson();
-      json['implicitRules'] = fieldJson1['value'];
-      if (fieldJson1['_value'] != null) {
-        json['_implicitRules'] = fieldJson1['_value'];
-      }
-    }
-
-    if (language != null) {
-      final fieldJson2 = language!.toJson();
-      json['language'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_language'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('implicitRules', implicitRules);
+    addField('language', language);
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -364,14 +356,7 @@ class PractitionerRole extends DomainResource {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
 
-    if (active != null) {
-      final fieldJson8 = active!.toJson();
-      json['active'] = fieldJson8['value'];
-      if (fieldJson8['_value'] != null) {
-        json['_active'] = fieldJson8['_value'];
-      }
-    }
-
+    addField('active', active);
     if (period != null) {
       json['period'] = period!.toJson();
     }
@@ -413,14 +398,7 @@ class PractitionerRole extends DomainResource {
       json['notAvailable'] = notAvailable!.map((e) => e.toJson()).toList();
     }
 
-    if (availabilityExceptions != null) {
-      final fieldJson19 = availabilityExceptions!.toJson();
-      json['availabilityExceptions'] = fieldJson19['value'];
-      if (fieldJson19['_value'] != null) {
-        json['_availabilityExceptions'] = fieldJson19['_value'];
-      }
-    }
-
+    addField('availabilityExceptions', availabilityExceptions);
     if (endpoint != null && endpoint!.isNotEmpty) {
       json['endpoint'] = endpoint!.map((e) => e.toJson()).toList();
     }
@@ -632,10 +610,16 @@ class PractitionerRoleAvailableTime extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -646,37 +630,16 @@ class PractitionerRoleAvailableTime extends BackboneElement {
     }
 
     if (daysOfWeek != null && daysOfWeek!.isNotEmpty) {
-      final fieldJson2 = daysOfWeek!.map((e) => e.toJson()).toList();
-      json['daysOfWeek'] = fieldJson2.map((e) => e['value']).toList();
-      if (fieldJson2.any((e) => e['_value'] != null)) {
-        json['_daysOfWeek'] = fieldJson2.map((e) => e['_value']).toList();
+      final fieldJson0 = daysOfWeek!.map((e) => e.toJson()).toList();
+      json['daysOfWeek'] = fieldJson0.map((e) => e['value']).toList();
+      if (fieldJson0.any((e) => e['_value'] != null)) {
+        json['_daysOfWeek'] = fieldJson0.map((e) => e['_value']).toList();
       }
     }
 
-    if (allDay != null) {
-      final fieldJson3 = allDay!.toJson();
-      json['allDay'] = fieldJson3['value'];
-      if (fieldJson3['_value'] != null) {
-        json['_allDay'] = fieldJson3['_value'];
-      }
-    }
-
-    if (availableStartTime != null) {
-      final fieldJson4 = availableStartTime!.toJson();
-      json['availableStartTime'] = fieldJson4['value'];
-      if (fieldJson4['_value'] != null) {
-        json['_availableStartTime'] = fieldJson4['_value'];
-      }
-    }
-
-    if (availableEndTime != null) {
-      final fieldJson5 = availableEndTime!.toJson();
-      json['availableEndTime'] = fieldJson5['value'];
-      if (fieldJson5['_value'] != null) {
-        json['_availableEndTime'] = fieldJson5['_value'];
-      }
-    }
-
+    addField('allDay', allDay);
+    addField('availableStartTime', availableStartTime);
+    addField('availableEndTime', availableEndTime);
     return json;
   }
 
@@ -825,10 +788,16 @@ class PractitionerRoleNotAvailable extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -838,12 +807,7 @@ class PractitionerRoleNotAvailable extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    final fieldJson2 = description.toJson();
-    json['description'] = fieldJson2['value'];
-    if (fieldJson2['_value'] != null) {
-      json['_description'] = fieldJson2['_value'];
-    }
-
+    addField('description', description);
     if (during != null) {
       json['during'] = during!.toJson();
     }

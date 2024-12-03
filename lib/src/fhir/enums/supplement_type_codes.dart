@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// SupplementType : Codes for nutritional supplements to be provided to the patient. This value set is composed of SNOMED CT (US Extension) Concepts from SCTID 470581016 (Enteral+supplement feeds hierarchy (product)) and is provided as a suggestive example.
-class SupplementTypeCodes {
+class SupplementTypeCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  SupplementTypeCodes._(this.fhirCode, {this.element});
+  SupplementTypeCodes._(super.value, [super.element]);
 
   /// Factory constructor to create [SupplementTypeCodes] from JSON.
   factory SupplementTypeCodes.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class SupplementTypeCodes {
     if (value == null && element != null) {
       return SupplementTypeCodes.elementOnly.withElement(element);
     }
-    return SupplementTypeCodes._(value!, element: element);
+    return SupplementTypeCodes._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// SupplementTypeCodes values
   /// value442901000124106
   static final SupplementTypeCodes value442901000124106 = SupplementTypeCodes._(
     '442901000124106',
@@ -303,18 +296,63 @@ class SupplementTypeCodes {
     value442651000124102,
   ];
 
+  /// Clones the current instance
+  @override
+  SupplementTypeCodes clone() =>
+      SupplementTypeCodes._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  SupplementTypeCodes setElement(String name, dynamic elementValue) {
+    return SupplementTypeCodes._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   SupplementTypeCodes withElement(Element? newElement) {
-    return SupplementTypeCodes._(fhirCode, element: newElement);
+    return SupplementTypeCodes._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  SupplementTypeCodes copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return SupplementTypeCodes._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

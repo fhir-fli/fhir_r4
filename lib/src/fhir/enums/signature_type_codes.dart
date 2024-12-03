@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The Digital Signature Purposes, an indication of the reason an entity signs a document. This is included in the signed information and can be used when determining accountability for various actions concerning the document. Examples include: author, transcriptionist/recorder, and witness.
-class SignatureTypeCodes {
+class SignatureTypeCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  SignatureTypeCodes._(this.fhirCode, {this.element});
+  SignatureTypeCodes._(super.value, [super.element]);
 
   /// Factory constructor to create [SignatureTypeCodes] from JSON.
   factory SignatureTypeCodes.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class SignatureTypeCodes {
     if (value == null && element != null) {
       return SignatureTypeCodes.elementOnly.withElement(element);
     }
-    return SignatureTypeCodes._(value!, element: element);
+    return SignatureTypeCodes._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// SignatureTypeCodes values
   /// value1_2_840_10065_1_12_1_1
   static final SignatureTypeCodes value1_2_840_10065_1_12_1_1 =
       SignatureTypeCodes._(
@@ -159,18 +152,63 @@ class SignatureTypeCodes {
     value1_2_840_10065_1_12_1_18,
   ];
 
+  /// Clones the current instance
+  @override
+  SignatureTypeCodes clone() =>
+      SignatureTypeCodes._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  SignatureTypeCodes setElement(String name, dynamic elementValue) {
+    return SignatureTypeCodes._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   SignatureTypeCodes withElement(Element? newElement) {
-    return SignatureTypeCodes._(fhirCode, element: newElement);
+    return SignatureTypeCodes._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  SignatureTypeCodes copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return SignatureTypeCodes._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

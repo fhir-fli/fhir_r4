@@ -138,46 +138,24 @@ class ContactPoint extends DataType {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
 
-    if (system != null) {
-      final fieldJson1 = system!.toJson();
-      json['system'] = fieldJson1['value'];
-      if (fieldJson1['_value'] != null) {
-        json['_system'] = fieldJson1['_value'];
-      }
-    }
-
-    if (value != null) {
-      final fieldJson2 = value!.toJson();
-      json['value'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_value'] = fieldJson2['_value'];
-      }
-    }
-
-    if (use != null) {
-      final fieldJson3 = use!.toJson();
-      json['use'] = fieldJson3['value'];
-      if (fieldJson3['_value'] != null) {
-        json['_use'] = fieldJson3['_value'];
-      }
-    }
-
-    if (rank != null) {
-      final fieldJson4 = rank!.toJson();
-      json['rank'] = fieldJson4['value'];
-      if (fieldJson4['_value'] != null) {
-        json['_rank'] = fieldJson4['_value'];
-      }
-    }
-
+    addField('system', system);
+    addField('value', value);
+    addField('use', use);
+    addField('rank', rank);
     if (period != null) {
       json['period'] = period!.toJson();
     }

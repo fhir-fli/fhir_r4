@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// A classification of the ingredient identifying its precise purpose(s) in the drug product (beyond e.g. active/inactive).
-class IngredientFunction {
+class IngredientFunction extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  IngredientFunction._(this.fhirCode, {this.element});
+  IngredientFunction._(super.value, [super.element]);
 
   /// Factory constructor to create [IngredientFunction] from JSON.
   factory IngredientFunction.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class IngredientFunction {
     if (value == null && element != null) {
       return IngredientFunction.elementOnly.withElement(element);
     }
-    return IngredientFunction._(value!, element: element);
+    return IngredientFunction._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// IngredientFunction values
   /// Antioxidant
   static final IngredientFunction Antioxidant = IngredientFunction._(
     'Antioxidant',
@@ -45,18 +38,63 @@ class IngredientFunction {
     AlkalizingAgent,
   ];
 
+  /// Clones the current instance
+  @override
+  IngredientFunction clone() =>
+      IngredientFunction._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  IngredientFunction setElement(String name, dynamic elementValue) {
+    return IngredientFunction._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   IngredientFunction withElement(Element? newElement) {
-    return IngredientFunction._(fhirCode, element: newElement);
+    return IngredientFunction._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  IngredientFunction copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return IngredientFunction._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

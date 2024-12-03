@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// How an element value is interpreted when discrimination is evaluated.
-class DiscriminatorType {
+class DiscriminatorType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  DiscriminatorType._(this.fhirCode, {this.element});
+  DiscriminatorType._(super.value, [super.element]);
 
   /// Factory constructor to create [DiscriminatorType] from JSON.
   factory DiscriminatorType.fromJson(Map<String, dynamic> json) {
@@ -15,18 +15,11 @@ class DiscriminatorType {
     if (value == null && element != null) {
       return DiscriminatorType.elementOnly.withElement(element);
     }
-    return DiscriminatorType._(value!, element: element);
+    return DiscriminatorType._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// DiscriminatorType values
   /// value
-  static final DiscriminatorType value = DiscriminatorType._(
+  static final DiscriminatorType value_ = DiscriminatorType._(
     'value',
   );
 
@@ -56,25 +49,70 @@ class DiscriminatorType {
 
   /// List of all enum-like values
   static final List<DiscriminatorType> values = [
-    value,
+    value_,
     exists,
     pattern,
     type,
     profile,
   ];
 
+  /// Clones the current instance
+  @override
+  DiscriminatorType clone() =>
+      DiscriminatorType._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  DiscriminatorType setElement(String name, dynamic elementValue) {
+    return DiscriminatorType._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   DiscriminatorType withElement(Element? newElement) {
-    return DiscriminatorType._(fhirCode, element: newElement);
+    return DiscriminatorType._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  DiscriminatorType copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return DiscriminatorType._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

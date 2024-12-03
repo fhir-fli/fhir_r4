@@ -459,31 +459,23 @@ class SearchParameter extends DomainResource {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    json['resourceType'] = resourceType.toJson();
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    json['resourceType'] = resourceType.toJson();
+    addField('id', id);
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    if (implicitRules != null) {
-      final fieldJson1 = implicitRules!.toJson();
-      json['implicitRules'] = fieldJson1['value'];
-      if (fieldJson1['_value'] != null) {
-        json['_implicitRules'] = fieldJson1['_value'];
-      }
-    }
-
-    if (language != null) {
-      final fieldJson2 = language!.toJson();
-      json['language'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_language'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('implicitRules', implicitRules);
+    addField('language', language);
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -501,74 +493,19 @@ class SearchParameter extends DomainResource {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    final fieldJson7 = url.toJson();
-    json['url'] = fieldJson7['value'];
-    if (fieldJson7['_value'] != null) {
-      json['_url'] = fieldJson7['_value'];
-    }
-
-    if (version != null) {
-      final fieldJson8 = version!.toJson();
-      json['version'] = fieldJson8['value'];
-      if (fieldJson8['_value'] != null) {
-        json['_version'] = fieldJson8['_value'];
-      }
-    }
-
-    final fieldJson9 = name.toJson();
-    json['name'] = fieldJson9['value'];
-    if (fieldJson9['_value'] != null) {
-      json['_name'] = fieldJson9['_value'];
-    }
-
-    if (derivedFrom != null) {
-      final fieldJson10 = derivedFrom!.toJson();
-      json['derivedFrom'] = fieldJson10['value'];
-      if (fieldJson10['_value'] != null) {
-        json['_derivedFrom'] = fieldJson10['_value'];
-      }
-    }
-
-    final fieldJson11 = status.toJson();
-    json['status'] = fieldJson11['value'];
-    if (fieldJson11['_value'] != null) {
-      json['_status'] = fieldJson11['_value'];
-    }
-
-    if (experimental != null) {
-      final fieldJson12 = experimental!.toJson();
-      json['experimental'] = fieldJson12['value'];
-      if (fieldJson12['_value'] != null) {
-        json['_experimental'] = fieldJson12['_value'];
-      }
-    }
-
-    if (date != null) {
-      final fieldJson13 = date!.toJson();
-      json['date'] = fieldJson13['value'];
-      if (fieldJson13['_value'] != null) {
-        json['_date'] = fieldJson13['_value'];
-      }
-    }
-
-    if (publisher != null) {
-      final fieldJson14 = publisher!.toJson();
-      json['publisher'] = fieldJson14['value'];
-      if (fieldJson14['_value'] != null) {
-        json['_publisher'] = fieldJson14['_value'];
-      }
-    }
-
+    addField('url', url);
+    addField('version', version);
+    addField('name', name);
+    addField('derivedFrom', derivedFrom);
+    addField('status', status);
+    addField('experimental', experimental);
+    addField('date', date);
+    addField('publisher', publisher);
     if (contact != null && contact!.isNotEmpty) {
       json['contact'] = contact!.map((e) => e.toJson()).toList();
     }
 
-    final fieldJson16 = description.toJson();
-    json['description'] = fieldJson16['value'];
-    if (fieldJson16['_value'] != null) {
-      json['_description'] = fieldJson16['_value'];
-    }
-
+    addField('description', description);
     if (useContext != null && useContext!.isNotEmpty) {
       json['useContext'] = useContext!.map((e) => e.toJson()).toList();
     }
@@ -577,101 +514,51 @@ class SearchParameter extends DomainResource {
       json['jurisdiction'] = jurisdiction!.map((e) => e.toJson()).toList();
     }
 
-    if (purpose != null) {
-      final fieldJson19 = purpose!.toJson();
-      json['purpose'] = fieldJson19['value'];
-      if (fieldJson19['_value'] != null) {
-        json['_purpose'] = fieldJson19['_value'];
+    addField('purpose', purpose);
+    addField('code', code);
+    if (base.isNotEmpty) {
+      final fieldJson0 = base.map((e) => e.toJson()).toList();
+      json['base'] = fieldJson0.map((e) => e['value']).toList();
+      if (fieldJson0.any((e) => e['_value'] != null)) {
+        json['_base'] = fieldJson0.map((e) => e['_value']).toList();
       }
     }
 
-    final fieldJson20 = code.toJson();
-    json['code'] = fieldJson20['value'];
-    if (fieldJson20['_value'] != null) {
-      json['_code'] = fieldJson20['_value'];
-    }
-
-    final fieldJson21 = base.map((e) => e.toJson()).toList();
-    json['base'] = fieldJson21.map((e) => e['value']).toList();
-    if (fieldJson21.any((e) => e['_value'] != null)) {
-      json['_base'] = fieldJson21.map((e) => e['_value']).toList();
-    }
-
-    final fieldJson22 = type.toJson();
-    json['type'] = fieldJson22['value'];
-    if (fieldJson22['_value'] != null) {
-      json['_type'] = fieldJson22['_value'];
-    }
-
-    if (expression != null) {
-      final fieldJson23 = expression!.toJson();
-      json['expression'] = fieldJson23['value'];
-      if (fieldJson23['_value'] != null) {
-        json['_expression'] = fieldJson23['_value'];
-      }
-    }
-
-    if (xpath != null) {
-      final fieldJson24 = xpath!.toJson();
-      json['xpath'] = fieldJson24['value'];
-      if (fieldJson24['_value'] != null) {
-        json['_xpath'] = fieldJson24['_value'];
-      }
-    }
-
-    if (xpathUsage != null) {
-      final fieldJson25 = xpathUsage!.toJson();
-      json['xpathUsage'] = fieldJson25['value'];
-      if (fieldJson25['_value'] != null) {
-        json['_xpathUsage'] = fieldJson25['_value'];
-      }
-    }
-
+    addField('type', type);
+    addField('expression', expression);
+    addField('xpath', xpath);
+    addField('xpathUsage', xpathUsage);
     if (target != null && target!.isNotEmpty) {
-      final fieldJson26 = target!.map((e) => e.toJson()).toList();
-      json['target'] = fieldJson26.map((e) => e['value']).toList();
-      if (fieldJson26.any((e) => e['_value'] != null)) {
-        json['_target'] = fieldJson26.map((e) => e['_value']).toList();
+      final fieldJson1 = target!.map((e) => e.toJson()).toList();
+      json['target'] = fieldJson1.map((e) => e['value']).toList();
+      if (fieldJson1.any((e) => e['_value'] != null)) {
+        json['_target'] = fieldJson1.map((e) => e['_value']).toList();
       }
     }
 
-    if (multipleOr != null) {
-      final fieldJson27 = multipleOr!.toJson();
-      json['multipleOr'] = fieldJson27['value'];
-      if (fieldJson27['_value'] != null) {
-        json['_multipleOr'] = fieldJson27['_value'];
-      }
-    }
-
-    if (multipleAnd != null) {
-      final fieldJson28 = multipleAnd!.toJson();
-      json['multipleAnd'] = fieldJson28['value'];
-      if (fieldJson28['_value'] != null) {
-        json['_multipleAnd'] = fieldJson28['_value'];
-      }
-    }
-
+    addField('multipleOr', multipleOr);
+    addField('multipleAnd', multipleAnd);
     if (comparator != null && comparator!.isNotEmpty) {
-      final fieldJson29 = comparator!.map((e) => e.toJson()).toList();
-      json['comparator'] = fieldJson29.map((e) => e['value']).toList();
-      if (fieldJson29.any((e) => e['_value'] != null)) {
-        json['_comparator'] = fieldJson29.map((e) => e['_value']).toList();
+      final fieldJson2 = comparator!.map((e) => e.toJson()).toList();
+      json['comparator'] = fieldJson2.map((e) => e['value']).toList();
+      if (fieldJson2.any((e) => e['_value'] != null)) {
+        json['_comparator'] = fieldJson2.map((e) => e['_value']).toList();
       }
     }
 
     if (modifier != null && modifier!.isNotEmpty) {
-      final fieldJson30 = modifier!.map((e) => e.toJson()).toList();
-      json['modifier'] = fieldJson30.map((e) => e['value']).toList();
-      if (fieldJson30.any((e) => e['_value'] != null)) {
-        json['_modifier'] = fieldJson30.map((e) => e['_value']).toList();
+      final fieldJson3 = modifier!.map((e) => e.toJson()).toList();
+      json['modifier'] = fieldJson3.map((e) => e['value']).toList();
+      if (fieldJson3.any((e) => e['_value'] != null)) {
+        json['_modifier'] = fieldJson3.map((e) => e['_value']).toList();
       }
     }
 
     if (chain != null && chain!.isNotEmpty) {
-      final fieldJson31 = chain!.map((e) => e.toJson()).toList();
-      json['chain'] = fieldJson31.map((e) => e['value']).toList();
-      if (fieldJson31.any((e) => e['_value'] != null)) {
-        json['_chain'] = fieldJson31.map((e) => e['_value']).toList();
+      final fieldJson4 = chain!.map((e) => e.toJson()).toList();
+      json['chain'] = fieldJson4.map((e) => e['value']).toList();
+      if (fieldJson4.any((e) => e['_value'] != null)) {
+        json['_chain'] = fieldJson4.map((e) => e['_value']).toList();
       }
     }
 
@@ -878,10 +765,16 @@ class SearchParameterComponent extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -891,18 +784,8 @@ class SearchParameterComponent extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    final fieldJson2 = definition.toJson();
-    json['definition'] = fieldJson2['value'];
-    if (fieldJson2['_value'] != null) {
-      json['_definition'] = fieldJson2['_value'];
-    }
-
-    final fieldJson3 = expression.toJson();
-    json['expression'] = fieldJson3['value'];
-    if (fieldJson3['_value'] != null) {
-      json['_expression'] = fieldJson3['_value'];
-    }
-
+    addField('definition', definition);
+    addField('expression', expression);
     return json;
   }
 

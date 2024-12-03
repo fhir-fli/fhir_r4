@@ -462,31 +462,23 @@ class OperationDefinition extends DomainResource {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    json['resourceType'] = resourceType.toJson();
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    json['resourceType'] = resourceType.toJson();
+    addField('id', id);
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    if (implicitRules != null) {
-      final fieldJson1 = implicitRules!.toJson();
-      json['implicitRules'] = fieldJson1['value'];
-      if (fieldJson1['_value'] != null) {
-        json['_implicitRules'] = fieldJson1['_value'];
-      }
-    }
-
-    if (language != null) {
-      final fieldJson2 = language!.toJson();
-      json['language'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_language'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('implicitRules', implicitRules);
+    addField('language', language);
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -504,84 +496,20 @@ class OperationDefinition extends DomainResource {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    if (url != null) {
-      final fieldJson7 = url!.toJson();
-      json['url'] = fieldJson7['value'];
-      if (fieldJson7['_value'] != null) {
-        json['_url'] = fieldJson7['_value'];
-      }
-    }
-
-    if (version != null) {
-      final fieldJson8 = version!.toJson();
-      json['version'] = fieldJson8['value'];
-      if (fieldJson8['_value'] != null) {
-        json['_version'] = fieldJson8['_value'];
-      }
-    }
-
-    final fieldJson9 = name.toJson();
-    json['name'] = fieldJson9['value'];
-    if (fieldJson9['_value'] != null) {
-      json['_name'] = fieldJson9['_value'];
-    }
-
-    if (title != null) {
-      final fieldJson10 = title!.toJson();
-      json['title'] = fieldJson10['value'];
-      if (fieldJson10['_value'] != null) {
-        json['_title'] = fieldJson10['_value'];
-      }
-    }
-
-    final fieldJson11 = status.toJson();
-    json['status'] = fieldJson11['value'];
-    if (fieldJson11['_value'] != null) {
-      json['_status'] = fieldJson11['_value'];
-    }
-
-    final fieldJson12 = kind.toJson();
-    json['kind'] = fieldJson12['value'];
-    if (fieldJson12['_value'] != null) {
-      json['_kind'] = fieldJson12['_value'];
-    }
-
-    if (experimental != null) {
-      final fieldJson13 = experimental!.toJson();
-      json['experimental'] = fieldJson13['value'];
-      if (fieldJson13['_value'] != null) {
-        json['_experimental'] = fieldJson13['_value'];
-      }
-    }
-
-    if (date != null) {
-      final fieldJson14 = date!.toJson();
-      json['date'] = fieldJson14['value'];
-      if (fieldJson14['_value'] != null) {
-        json['_date'] = fieldJson14['_value'];
-      }
-    }
-
-    if (publisher != null) {
-      final fieldJson15 = publisher!.toJson();
-      json['publisher'] = fieldJson15['value'];
-      if (fieldJson15['_value'] != null) {
-        json['_publisher'] = fieldJson15['_value'];
-      }
-    }
-
+    addField('url', url);
+    addField('version', version);
+    addField('name', name);
+    addField('title', title);
+    addField('status', status);
+    addField('kind', kind);
+    addField('experimental', experimental);
+    addField('date', date);
+    addField('publisher', publisher);
     if (contact != null && contact!.isNotEmpty) {
       json['contact'] = contact!.map((e) => e.toJson()).toList();
     }
 
-    if (description != null) {
-      final fieldJson17 = description!.toJson();
-      json['description'] = fieldJson17['value'];
-      if (fieldJson17['_value'] != null) {
-        json['_description'] = fieldJson17['_value'];
-      }
-    }
-
+    addField('description', description);
     if (useContext != null && useContext!.isNotEmpty) {
       json['useContext'] = useContext!.map((e) => e.toJson()).toList();
     }
@@ -590,86 +518,24 @@ class OperationDefinition extends DomainResource {
       json['jurisdiction'] = jurisdiction!.map((e) => e.toJson()).toList();
     }
 
-    if (purpose != null) {
-      final fieldJson20 = purpose!.toJson();
-      json['purpose'] = fieldJson20['value'];
-      if (fieldJson20['_value'] != null) {
-        json['_purpose'] = fieldJson20['_value'];
-      }
-    }
-
-    if (affectsState != null) {
-      final fieldJson21 = affectsState!.toJson();
-      json['affectsState'] = fieldJson21['value'];
-      if (fieldJson21['_value'] != null) {
-        json['_affectsState'] = fieldJson21['_value'];
-      }
-    }
-
-    final fieldJson22 = code.toJson();
-    json['code'] = fieldJson22['value'];
-    if (fieldJson22['_value'] != null) {
-      json['_code'] = fieldJson22['_value'];
-    }
-
-    if (comment != null) {
-      final fieldJson23 = comment!.toJson();
-      json['comment'] = fieldJson23['value'];
-      if (fieldJson23['_value'] != null) {
-        json['_comment'] = fieldJson23['_value'];
-      }
-    }
-
-    if (base != null) {
-      final fieldJson24 = base!.toJson();
-      json['base'] = fieldJson24['value'];
-      if (fieldJson24['_value'] != null) {
-        json['_base'] = fieldJson24['_value'];
-      }
-    }
-
+    addField('purpose', purpose);
+    addField('affectsState', affectsState);
+    addField('code', code);
+    addField('comment', comment);
+    addField('base', base);
     if (resource != null && resource!.isNotEmpty) {
-      final fieldJson25 = resource!.map((e) => e.toJson()).toList();
-      json['resource'] = fieldJson25.map((e) => e['value']).toList();
-      if (fieldJson25.any((e) => e['_value'] != null)) {
-        json['_resource'] = fieldJson25.map((e) => e['_value']).toList();
+      final fieldJson0 = resource!.map((e) => e.toJson()).toList();
+      json['resource'] = fieldJson0.map((e) => e['value']).toList();
+      if (fieldJson0.any((e) => e['_value'] != null)) {
+        json['_resource'] = fieldJson0.map((e) => e['_value']).toList();
       }
     }
 
-    final fieldJson26 = system.toJson();
-    json['system'] = fieldJson26['value'];
-    if (fieldJson26['_value'] != null) {
-      json['_system'] = fieldJson26['_value'];
-    }
-
-    final fieldJson27 = type.toJson();
-    json['type'] = fieldJson27['value'];
-    if (fieldJson27['_value'] != null) {
-      json['_type'] = fieldJson27['_value'];
-    }
-
-    final fieldJson28 = instance.toJson();
-    json['instance'] = fieldJson28['value'];
-    if (fieldJson28['_value'] != null) {
-      json['_instance'] = fieldJson28['_value'];
-    }
-
-    if (inputProfile != null) {
-      final fieldJson29 = inputProfile!.toJson();
-      json['inputProfile'] = fieldJson29['value'];
-      if (fieldJson29['_value'] != null) {
-        json['_inputProfile'] = fieldJson29['_value'];
-      }
-    }
-
-    if (outputProfile != null) {
-      final fieldJson30 = outputProfile!.toJson();
-      json['outputProfile'] = fieldJson30['value'];
-      if (fieldJson30['_value'] != null) {
-        json['_outputProfile'] = fieldJson30['_value'];
-      }
-    }
-
+    addField('system', system);
+    addField('type', type);
+    addField('instance', instance);
+    addField('inputProfile', inputProfile);
+    addField('outputProfile', outputProfile);
     if (parameter != null && parameter!.isNotEmpty) {
       json['parameter'] = parameter!.map((e) => e.toJson()).toList();
     }
@@ -988,10 +854,16 @@ class OperationDefinitionParameter extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1001,62 +873,21 @@ class OperationDefinitionParameter extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    final fieldJson2 = name.toJson();
-    json['name'] = fieldJson2['value'];
-    if (fieldJson2['_value'] != null) {
-      json['_name'] = fieldJson2['_value'];
-    }
-
-    final fieldJson3 = use.toJson();
-    json['use'] = fieldJson3['value'];
-    if (fieldJson3['_value'] != null) {
-      json['_use'] = fieldJson3['_value'];
-    }
-
-    final fieldJson4 = min.toJson();
-    json['min'] = fieldJson4['value'];
-    if (fieldJson4['_value'] != null) {
-      json['_min'] = fieldJson4['_value'];
-    }
-
-    final fieldJson5 = max.toJson();
-    json['max'] = fieldJson5['value'];
-    if (fieldJson5['_value'] != null) {
-      json['_max'] = fieldJson5['_value'];
-    }
-
-    if (documentation != null) {
-      final fieldJson6 = documentation!.toJson();
-      json['documentation'] = fieldJson6['value'];
-      if (fieldJson6['_value'] != null) {
-        json['_documentation'] = fieldJson6['_value'];
-      }
-    }
-
-    if (type != null) {
-      final fieldJson7 = type!.toJson();
-      json['type'] = fieldJson7['value'];
-      if (fieldJson7['_value'] != null) {
-        json['_type'] = fieldJson7['_value'];
-      }
-    }
-
+    addField('name', name);
+    addField('use', use);
+    addField('min', min);
+    addField('max', max);
+    addField('documentation', documentation);
+    addField('type', type);
     if (targetProfile != null && targetProfile!.isNotEmpty) {
-      final fieldJson8 = targetProfile!.map((e) => e.toJson()).toList();
-      json['targetProfile'] = fieldJson8.map((e) => e['value']).toList();
-      if (fieldJson8.any((e) => e['_value'] != null)) {
-        json['_targetProfile'] = fieldJson8.map((e) => e['_value']).toList();
+      final fieldJson0 = targetProfile!.map((e) => e.toJson()).toList();
+      json['targetProfile'] = fieldJson0.map((e) => e['value']).toList();
+      if (fieldJson0.any((e) => e['_value'] != null)) {
+        json['_targetProfile'] = fieldJson0.map((e) => e['_value']).toList();
       }
     }
 
-    if (searchType != null) {
-      final fieldJson9 = searchType!.toJson();
-      json['searchType'] = fieldJson9['value'];
-      if (fieldJson9['_value'] != null) {
-        json['_searchType'] = fieldJson9['_value'];
-      }
-    }
-
+    addField('searchType', searchType);
     if (binding != null) {
       json['binding'] = binding!.toJson();
     }
@@ -1231,10 +1062,16 @@ class OperationDefinitionBinding extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1244,18 +1081,8 @@ class OperationDefinitionBinding extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    final fieldJson2 = strength.toJson();
-    json['strength'] = fieldJson2['value'];
-    if (fieldJson2['_value'] != null) {
-      json['_strength'] = fieldJson2['_value'];
-    }
-
-    final fieldJson3 = valueSet.toJson();
-    json['valueSet'] = fieldJson3['value'];
-    if (fieldJson3['_value'] != null) {
-      json['_valueSet'] = fieldJson3['_value'];
-    }
-
+    addField('strength', strength);
+    addField('valueSet', valueSet);
     return json;
   }
 
@@ -1402,10 +1229,16 @@ class OperationDefinitionReferencedFrom extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1415,20 +1248,8 @@ class OperationDefinitionReferencedFrom extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    final fieldJson2 = source.toJson();
-    json['source'] = fieldJson2['value'];
-    if (fieldJson2['_value'] != null) {
-      json['_source'] = fieldJson2['_value'];
-    }
-
-    if (sourceId != null) {
-      final fieldJson3 = sourceId!.toJson();
-      json['sourceId'] = fieldJson3['value'];
-      if (fieldJson3['_value'] != null) {
-        json['_sourceId'] = fieldJson3['_value'];
-      }
-    }
-
+    addField('source', source);
+    addField('sourceId', sourceId);
     return json;
   }
 
@@ -1574,10 +1395,16 @@ class OperationDefinitionOverload extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1588,21 +1415,14 @@ class OperationDefinitionOverload extends BackboneElement {
     }
 
     if (parameterName != null && parameterName!.isNotEmpty) {
-      final fieldJson2 = parameterName!.map((e) => e.toJson()).toList();
-      json['parameterName'] = fieldJson2.map((e) => e['value']).toList();
-      if (fieldJson2.any((e) => e['_value'] != null)) {
-        json['_parameterName'] = fieldJson2.map((e) => e['_value']).toList();
+      final fieldJson0 = parameterName!.map((e) => e.toJson()).toList();
+      json['parameterName'] = fieldJson0.map((e) => e['value']).toList();
+      if (fieldJson0.any((e) => e['_value'] != null)) {
+        json['_parameterName'] = fieldJson0.map((e) => e['_value']).toList();
       }
     }
 
-    if (comment != null) {
-      final fieldJson3 = comment!.toJson();
-      json['comment'] = fieldJson3['value'];
-      if (fieldJson3['_value'] != null) {
-        json['_comment'] = fieldJson3['_value'];
-      }
-    }
-
+    addField('comment', comment);
     return json;
   }
 

@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Defines the types of relationships between actions.
-class ActionRelationshipType {
+class ActionRelationshipType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ActionRelationshipType._(this.fhirCode, {this.element});
+  ActionRelationshipType._(super.value, [super.element]);
 
   /// Factory constructor to create [ActionRelationshipType] from JSON.
   factory ActionRelationshipType.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class ActionRelationshipType {
     if (value == null && element != null) {
       return ActionRelationshipType.elementOnly.withElement(element);
     }
-    return ActionRelationshipType._(value!, element: element);
+    return ActionRelationshipType._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ActionRelationshipType values
   /// before_start
   static final ActionRelationshipType before_start = ActionRelationshipType._(
     'before-start',
@@ -90,18 +83,63 @@ class ActionRelationshipType {
     after_end,
   ];
 
+  /// Clones the current instance
+  @override
+  ActionRelationshipType clone() =>
+      ActionRelationshipType._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  ActionRelationshipType setElement(String name, dynamic elementValue) {
+    return ActionRelationshipType._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   ActionRelationshipType withElement(Element? newElement) {
-    return ActionRelationshipType._(fhirCode, element: newElement);
+    return ActionRelationshipType._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  ActionRelationshipType copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return ActionRelationshipType._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

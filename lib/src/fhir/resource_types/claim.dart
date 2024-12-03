@@ -441,31 +441,23 @@ class Claim extends DomainResource {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    json['resourceType'] = resourceType.toJson();
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    json['resourceType'] = resourceType.toJson();
+    addField('id', id);
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    if (implicitRules != null) {
-      final fieldJson1 = implicitRules!.toJson();
-      json['implicitRules'] = fieldJson1['value'];
-      if (fieldJson1['_value'] != null) {
-        json['_implicitRules'] = fieldJson1['_value'];
-      }
-    }
-
-    if (language != null) {
-      final fieldJson2 = language!.toJson();
-      json['language'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_language'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('implicitRules', implicitRules);
+    addField('language', language);
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -487,36 +479,21 @@ class Claim extends DomainResource {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
 
-    final fieldJson8 = status.toJson();
-    json['status'] = fieldJson8['value'];
-    if (fieldJson8['_value'] != null) {
-      json['_status'] = fieldJson8['_value'];
-    }
-
+    addField('status', status);
     json['type'] = type.toJson();
 
     if (subType != null) {
       json['subType'] = subType!.toJson();
     }
 
-    final fieldJson11 = use.toJson();
-    json['use'] = fieldJson11['value'];
-    if (fieldJson11['_value'] != null) {
-      json['_use'] = fieldJson11['_value'];
-    }
-
+    addField('use', use);
     json['patient'] = patient.toJson();
 
     if (billablePeriod != null) {
       json['billablePeriod'] = billablePeriod!.toJson();
     }
 
-    final fieldJson14 = created.toJson();
-    json['created'] = fieldJson14['value'];
-    if (fieldJson14['_value'] != null) {
-      json['_created'] = fieldJson14['_value'];
-    }
-
+    addField('created', created);
     if (enterer != null) {
       json['enterer'] = enterer!.toJson();
     }
@@ -573,7 +550,9 @@ class Claim extends DomainResource {
       json['procedure'] = procedure!.map((e) => e.toJson()).toList();
     }
 
-    json['insurance'] = insurance.map((e) => e.toJson()).toList();
+    if (insurance.isNotEmpty) {
+      json['insurance'] = insurance.map((e) => e.toJson()).toList();
+    }
 
     if (accident != null) {
       json['accident'] = accident!.toJson();
@@ -801,10 +780,16 @@ class ClaimRelated extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -970,10 +955,16 @@ class ClaimPayee extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1162,10 +1153,16 @@ class ClaimCareTeam extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1175,22 +1172,10 @@ class ClaimCareTeam extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    final fieldJson2 = sequence.toJson();
-    json['sequence'] = fieldJson2['value'];
-    if (fieldJson2['_value'] != null) {
-      json['_sequence'] = fieldJson2['_value'];
-    }
-
+    addField('sequence', sequence);
     json['provider'] = provider.toJson();
 
-    if (responsible != null) {
-      final fieldJson4 = responsible!.toJson();
-      json['responsible'] = fieldJson4['value'];
-      if (fieldJson4['_value'] != null) {
-        json['_responsible'] = fieldJson4['_value'];
-      }
-    }
-
+    addField('responsible', responsible);
     if (role != null) {
       json['role'] = role!.toJson();
     }
@@ -1453,10 +1438,16 @@ class ClaimSupportingInfo extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1466,46 +1457,20 @@ class ClaimSupportingInfo extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    final fieldJson2 = sequence.toJson();
-    json['sequence'] = fieldJson2['value'];
-    if (fieldJson2['_value'] != null) {
-      json['_sequence'] = fieldJson2['_value'];
-    }
-
+    addField('sequence', sequence);
     json['category'] = category.toJson();
 
     if (code != null) {
       json['code'] = code!.toJson();
     }
 
-    if (timingDate != null) {
-      final fieldJson5 = timingDate!.toJson();
-      json['timingDate'] = fieldJson5['value'];
-      if (fieldJson5['_value'] != null) {
-        json['_timingDate'] = fieldJson5['_value'];
-      }
-    }
-
+    addField('timingDate', timingDate);
     if (timingPeriod != null) {
       json['timingPeriod'] = timingPeriod!.toJson();
     }
 
-    if (valueBoolean != null) {
-      final fieldJson7 = valueBoolean!.toJson();
-      json['valueBoolean'] = fieldJson7['value'];
-      if (fieldJson7['_value'] != null) {
-        json['_valueBoolean'] = fieldJson7['_value'];
-      }
-    }
-
-    if (valueString != null) {
-      final fieldJson8 = valueString!.toJson();
-      json['valueString'] = fieldJson8['value'];
-      if (fieldJson8['_value'] != null) {
-        json['_valueString'] = fieldJson8['_value'];
-      }
-    }
-
+    addField('valueBoolean', valueBoolean);
+    addField('valueString', valueString);
     if (valueQuantity != null) {
       json['valueQuantity'] = valueQuantity!.toJson();
     }
@@ -1730,10 +1695,16 @@ class ClaimDiagnosis extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1743,12 +1714,7 @@ class ClaimDiagnosis extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    final fieldJson2 = sequence.toJson();
-    json['sequence'] = fieldJson2['value'];
-    if (fieldJson2['_value'] != null) {
-      json['_sequence'] = fieldJson2['_value'];
-    }
-
+    addField('sequence', sequence);
     if (diagnosisCodeableConcept != null) {
       json['diagnosisCodeableConcept'] = diagnosisCodeableConcept!.toJson();
     }
@@ -1971,10 +1937,16 @@ class ClaimProcedure extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1984,24 +1956,12 @@ class ClaimProcedure extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    final fieldJson2 = sequence.toJson();
-    json['sequence'] = fieldJson2['value'];
-    if (fieldJson2['_value'] != null) {
-      json['_sequence'] = fieldJson2['_value'];
-    }
-
+    addField('sequence', sequence);
     if (type != null && type!.isNotEmpty) {
       json['type'] = type!.map((e) => e.toJson()).toList();
     }
 
-    if (date != null) {
-      final fieldJson4 = date!.toJson();
-      json['date'] = fieldJson4['value'];
-      if (fieldJson4['_value'] != null) {
-        json['_date'] = fieldJson4['_value'];
-      }
-    }
-
+    addField('date', date);
     if (procedureCodeableConcept != null) {
       json['procedureCodeableConcept'] = procedureCodeableConcept!.toJson();
     }
@@ -2224,10 +2184,16 @@ class ClaimInsurance extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -2237,37 +2203,20 @@ class ClaimInsurance extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    final fieldJson2 = sequence.toJson();
-    json['sequence'] = fieldJson2['value'];
-    if (fieldJson2['_value'] != null) {
-      json['_sequence'] = fieldJson2['_value'];
-    }
-
-    final fieldJson3 = focal.toJson();
-    json['focal'] = fieldJson3['value'];
-    if (fieldJson3['_value'] != null) {
-      json['_focal'] = fieldJson3['_value'];
-    }
-
+    addField('sequence', sequence);
+    addField('focal', focal);
     if (identifier != null) {
       json['identifier'] = identifier!.toJson();
     }
 
     json['coverage'] = coverage.toJson();
 
-    if (businessArrangement != null) {
-      final fieldJson6 = businessArrangement!.toJson();
-      json['businessArrangement'] = fieldJson6['value'];
-      if (fieldJson6['_value'] != null) {
-        json['_businessArrangement'] = fieldJson6['_value'];
-      }
-    }
-
+    addField('businessArrangement', businessArrangement);
     if (preAuthRef != null && preAuthRef!.isNotEmpty) {
-      final fieldJson7 = preAuthRef!.map((e) => e.toJson()).toList();
-      json['preAuthRef'] = fieldJson7.map((e) => e['value']).toList();
-      if (fieldJson7.any((e) => e['_value'] != null)) {
-        json['_preAuthRef'] = fieldJson7.map((e) => e['_value']).toList();
+      final fieldJson0 = preAuthRef!.map((e) => e.toJson()).toList();
+      json['preAuthRef'] = fieldJson0.map((e) => e['value']).toList();
+      if (fieldJson0.any((e) => e['_value'] != null)) {
+        json['_preAuthRef'] = fieldJson0.map((e) => e['_value']).toList();
       }
     }
 
@@ -2450,10 +2399,16 @@ class ClaimAccident extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -2463,12 +2418,7 @@ class ClaimAccident extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    final fieldJson2 = date.toJson();
-    json['date'] = fieldJson2['value'];
-    if (fieldJson2['_value'] != null) {
-      json['_date'] = fieldJson2['_value'];
-    }
-
+    addField('date', date);
     if (type != null) {
       json['type'] = type!.toJson();
     }
@@ -2889,10 +2839,16 @@ class ClaimItem extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -2902,44 +2858,39 @@ class ClaimItem extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    final fieldJson2 = sequence.toJson();
-    json['sequence'] = fieldJson2['value'];
-    if (fieldJson2['_value'] != null) {
-      json['_sequence'] = fieldJson2['_value'];
-    }
-
+    addField('sequence', sequence);
     if (careTeamSequence != null && careTeamSequence!.isNotEmpty) {
-      final fieldJson3 = careTeamSequence!.map((e) => e.toJson()).toList();
-      json['careTeamSequence'] = fieldJson3.map((e) => e['value']).toList();
-      if (fieldJson3.any((e) => e['_value'] != null)) {
-        json['_careTeamSequence'] = fieldJson3.map((e) => e['_value']).toList();
+      final fieldJson0 = careTeamSequence!.map((e) => e.toJson()).toList();
+      json['careTeamSequence'] = fieldJson0.map((e) => e['value']).toList();
+      if (fieldJson0.any((e) => e['_value'] != null)) {
+        json['_careTeamSequence'] = fieldJson0.map((e) => e['_value']).toList();
       }
     }
 
     if (diagnosisSequence != null && diagnosisSequence!.isNotEmpty) {
-      final fieldJson4 = diagnosisSequence!.map((e) => e.toJson()).toList();
-      json['diagnosisSequence'] = fieldJson4.map((e) => e['value']).toList();
-      if (fieldJson4.any((e) => e['_value'] != null)) {
+      final fieldJson1 = diagnosisSequence!.map((e) => e.toJson()).toList();
+      json['diagnosisSequence'] = fieldJson1.map((e) => e['value']).toList();
+      if (fieldJson1.any((e) => e['_value'] != null)) {
         json['_diagnosisSequence'] =
-            fieldJson4.map((e) => e['_value']).toList();
+            fieldJson1.map((e) => e['_value']).toList();
       }
     }
 
     if (procedureSequence != null && procedureSequence!.isNotEmpty) {
-      final fieldJson5 = procedureSequence!.map((e) => e.toJson()).toList();
-      json['procedureSequence'] = fieldJson5.map((e) => e['value']).toList();
-      if (fieldJson5.any((e) => e['_value'] != null)) {
+      final fieldJson2 = procedureSequence!.map((e) => e.toJson()).toList();
+      json['procedureSequence'] = fieldJson2.map((e) => e['value']).toList();
+      if (fieldJson2.any((e) => e['_value'] != null)) {
         json['_procedureSequence'] =
-            fieldJson5.map((e) => e['_value']).toList();
+            fieldJson2.map((e) => e['_value']).toList();
       }
     }
 
     if (informationSequence != null && informationSequence!.isNotEmpty) {
-      final fieldJson6 = informationSequence!.map((e) => e.toJson()).toList();
-      json['informationSequence'] = fieldJson6.map((e) => e['value']).toList();
-      if (fieldJson6.any((e) => e['_value'] != null)) {
+      final fieldJson3 = informationSequence!.map((e) => e.toJson()).toList();
+      json['informationSequence'] = fieldJson3.map((e) => e['value']).toList();
+      if (fieldJson3.any((e) => e['_value'] != null)) {
         json['_informationSequence'] =
-            fieldJson6.map((e) => e['_value']).toList();
+            fieldJson3.map((e) => e['_value']).toList();
       }
     }
 
@@ -2961,14 +2912,7 @@ class ClaimItem extends BackboneElement {
       json['programCode'] = programCode!.map((e) => e.toJson()).toList();
     }
 
-    if (servicedDate != null) {
-      final fieldJson12 = servicedDate!.toJson();
-      json['servicedDate'] = fieldJson12['value'];
-      if (fieldJson12['_value'] != null) {
-        json['_servicedDate'] = fieldJson12['_value'];
-      }
-    }
-
+    addField('servicedDate', servicedDate);
     if (servicedPeriod != null) {
       json['servicedPeriod'] = servicedPeriod!.toJson();
     }
@@ -2993,14 +2937,7 @@ class ClaimItem extends BackboneElement {
       json['unitPrice'] = unitPrice!.toJson();
     }
 
-    if (factor != null) {
-      final fieldJson19 = factor!.toJson();
-      json['factor'] = fieldJson19['value'];
-      if (fieldJson19['_value'] != null) {
-        json['_factor'] = fieldJson19['_value'];
-      }
-    }
-
+    addField('factor', factor);
     if (net != null) {
       json['net'] = net!.toJson();
     }
@@ -3339,10 +3276,16 @@ class ClaimDetail extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -3352,12 +3295,7 @@ class ClaimDetail extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    final fieldJson2 = sequence.toJson();
-    json['sequence'] = fieldJson2['value'];
-    if (fieldJson2['_value'] != null) {
-      json['_sequence'] = fieldJson2['_value'];
-    }
-
+    addField('sequence', sequence);
     if (revenue != null) {
       json['revenue'] = revenue!.toJson();
     }
@@ -3384,14 +3322,7 @@ class ClaimDetail extends BackboneElement {
       json['unitPrice'] = unitPrice!.toJson();
     }
 
-    if (factor != null) {
-      final fieldJson10 = factor!.toJson();
-      json['factor'] = fieldJson10['value'];
-      if (fieldJson10['_value'] != null) {
-        json['_factor'] = fieldJson10['_value'];
-      }
-    }
-
+    addField('factor', factor);
     if (net != null) {
       json['net'] = net!.toJson();
     }
@@ -3678,10 +3609,16 @@ class ClaimSubDetail extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -3691,12 +3628,7 @@ class ClaimSubDetail extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    final fieldJson2 = sequence.toJson();
-    json['sequence'] = fieldJson2['value'];
-    if (fieldJson2['_value'] != null) {
-      json['_sequence'] = fieldJson2['_value'];
-    }
-
+    addField('sequence', sequence);
     if (revenue != null) {
       json['revenue'] = revenue!.toJson();
     }
@@ -3723,14 +3655,7 @@ class ClaimSubDetail extends BackboneElement {
       json['unitPrice'] = unitPrice!.toJson();
     }
 
-    if (factor != null) {
-      final fieldJson10 = factor!.toJson();
-      json['factor'] = fieldJson10['value'];
-      if (fieldJson10['_value'] != null) {
-        json['_factor'] = fieldJson10['_value'];
-      }
-    }
-
+    addField('factor', factor);
     if (net != null) {
       json['net'] = net!.toJson();
     }

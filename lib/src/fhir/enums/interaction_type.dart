@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// A categorisation for an interaction between two substances.
-class InteractionType {
+class InteractionType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  InteractionType._(this.fhirCode, {this.element});
+  InteractionType._(super.value, [super.element]);
 
   /// Factory constructor to create [InteractionType] from JSON.
   factory InteractionType.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class InteractionType {
     if (value == null && element != null) {
       return InteractionType.elementOnly.withElement(element);
     }
-    return InteractionType._(value!, element: element);
+    return InteractionType._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// InteractionType values
   /// drug_drug
   static final InteractionType drug_drug = InteractionType._(
     'drug-drug',
@@ -57,18 +50,63 @@ class InteractionType {
     other,
   ];
 
+  /// Clones the current instance
+  @override
+  InteractionType clone() =>
+      InteractionType._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  InteractionType setElement(String name, dynamic elementValue) {
+    return InteractionType._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   InteractionType withElement(Element? newElement) {
-    return InteractionType._(fhirCode, element: newElement);
+    return InteractionType._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  InteractionType copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return InteractionType._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

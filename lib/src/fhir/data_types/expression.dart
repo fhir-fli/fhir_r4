@@ -137,52 +137,25 @@ class FhirExpression extends DataType {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
 
-    if (description != null) {
-      final fieldJson1 = description!.toJson();
-      json['description'] = fieldJson1['value'];
-      if (fieldJson1['_value'] != null) {
-        json['_description'] = fieldJson1['_value'];
-      }
-    }
-
-    if (name != null) {
-      final fieldJson2 = name!.toJson();
-      json['name'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_name'] = fieldJson2['_value'];
-      }
-    }
-
-    final fieldJson3 = language.toJson();
-    json['language'] = fieldJson3['value'];
-    if (fieldJson3['_value'] != null) {
-      json['_language'] = fieldJson3['_value'];
-    }
-
-    if (expression != null) {
-      final fieldJson4 = expression!.toJson();
-      json['expression'] = fieldJson4['value'];
-      if (fieldJson4['_value'] != null) {
-        json['_expression'] = fieldJson4['_value'];
-      }
-    }
-
-    if (reference != null) {
-      final fieldJson5 = reference!.toJson();
-      json['reference'] = fieldJson5['value'];
-      if (fieldJson5['_value'] != null) {
-        json['_reference'] = fieldJson5['_value'];
-      }
-    }
-
+    addField('description', description);
+    addField('name', name);
+    addField('language', language);
+    addField('expression', expression);
+    addField('reference', reference);
     return json;
   }
 

@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Whether an operation is a normal operation or a query.
-class OperationKind {
+class OperationKind extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  OperationKind._(this.fhirCode, {this.element});
+  OperationKind._(super.value, [super.element]);
 
   /// Factory constructor to create [OperationKind] from JSON.
   factory OperationKind.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class OperationKind {
     if (value == null && element != null) {
       return OperationKind.elementOnly.withElement(element);
     }
-    return OperationKind._(value!, element: element);
+    return OperationKind._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// OperationKind values
   /// operation
   static final OperationKind operation = OperationKind._(
     'operation',
@@ -45,18 +38,62 @@ class OperationKind {
     query,
   ];
 
+  /// Clones the current instance
+  @override
+  OperationKind clone() => OperationKind._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  OperationKind setElement(String name, dynamic elementValue) {
+    return OperationKind._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   OperationKind withElement(Element? newElement) {
-    return OperationKind._(fhirCode, element: newElement);
+    return OperationKind._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  OperationKind copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return OperationKind._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

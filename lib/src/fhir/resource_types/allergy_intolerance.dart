@@ -380,31 +380,23 @@ class AllergyIntolerance extends DomainResource {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    json['resourceType'] = resourceType.toJson();
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    json['resourceType'] = resourceType.toJson();
+    addField('id', id);
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    if (implicitRules != null) {
-      final fieldJson1 = implicitRules!.toJson();
-      json['implicitRules'] = fieldJson1['value'];
-      if (fieldJson1['_value'] != null) {
-        json['_implicitRules'] = fieldJson1['_value'];
-      }
-    }
-
-    if (language != null) {
-      final fieldJson2 = language!.toJson();
-      json['language'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_language'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('implicitRules', implicitRules);
+    addField('language', language);
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -434,30 +426,16 @@ class AllergyIntolerance extends DomainResource {
       json['verificationStatus'] = verificationStatus!.toJson();
     }
 
-    if (type != null) {
-      final fieldJson10 = type!.toJson();
-      json['type'] = fieldJson10['value'];
-      if (fieldJson10['_value'] != null) {
-        json['_type'] = fieldJson10['_value'];
-      }
-    }
-
+    addField('type', type);
     if (category != null && category!.isNotEmpty) {
-      final fieldJson11 = category!.map((e) => e.toJson()).toList();
-      json['category'] = fieldJson11.map((e) => e['value']).toList();
-      if (fieldJson11.any((e) => e['_value'] != null)) {
-        json['_category'] = fieldJson11.map((e) => e['_value']).toList();
+      final fieldJson0 = category!.map((e) => e.toJson()).toList();
+      json['category'] = fieldJson0.map((e) => e['value']).toList();
+      if (fieldJson0.any((e) => e['_value'] != null)) {
+        json['_category'] = fieldJson0.map((e) => e['_value']).toList();
       }
     }
 
-    if (criticality != null) {
-      final fieldJson12 = criticality!.toJson();
-      json['criticality'] = fieldJson12['value'];
-      if (fieldJson12['_value'] != null) {
-        json['_criticality'] = fieldJson12['_value'];
-      }
-    }
-
+    addField('criticality', criticality);
     if (code != null) {
       json['code'] = code!.toJson();
     }
@@ -468,14 +446,7 @@ class AllergyIntolerance extends DomainResource {
       json['encounter'] = encounter!.toJson();
     }
 
-    if (onsetDateTime != null) {
-      final fieldJson16 = onsetDateTime!.toJson();
-      json['onsetDateTime'] = fieldJson16['value'];
-      if (fieldJson16['_value'] != null) {
-        json['_onsetDateTime'] = fieldJson16['_value'];
-      }
-    }
-
+    addField('onsetDateTime', onsetDateTime);
     if (onsetAge != null) {
       json['onsetAge'] = onsetAge!.toJson();
     }
@@ -488,22 +459,8 @@ class AllergyIntolerance extends DomainResource {
       json['onsetRange'] = onsetRange!.toJson();
     }
 
-    if (onsetString != null) {
-      final fieldJson20 = onsetString!.toJson();
-      json['onsetString'] = fieldJson20['value'];
-      if (fieldJson20['_value'] != null) {
-        json['_onsetString'] = fieldJson20['_value'];
-      }
-    }
-
-    if (recordedDate != null) {
-      final fieldJson21 = recordedDate!.toJson();
-      json['recordedDate'] = fieldJson21['value'];
-      if (fieldJson21['_value'] != null) {
-        json['_recordedDate'] = fieldJson21['_value'];
-      }
-    }
-
+    addField('onsetString', onsetString);
+    addField('recordedDate', recordedDate);
     if (recorder != null) {
       json['recorder'] = recorder!.toJson();
     }
@@ -512,14 +469,7 @@ class AllergyIntolerance extends DomainResource {
       json['asserter'] = asserter!.toJson();
     }
 
-    if (lastOccurrence != null) {
-      final fieldJson24 = lastOccurrence!.toJson();
-      json['lastOccurrence'] = fieldJson24['value'];
-      if (fieldJson24['_value'] != null) {
-        json['_lastOccurrence'] = fieldJson24['_value'];
-      }
-    }
-
+    addField('lastOccurrence', lastOccurrence);
     if (note != null && note!.isNotEmpty) {
       json['note'] = note!.map((e) => e.toJson()).toList();
     }
@@ -793,10 +743,16 @@ class AllergyIntoleranceReaction extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -810,32 +766,13 @@ class AllergyIntoleranceReaction extends BackboneElement {
       json['substance'] = substance!.toJson();
     }
 
-    json['manifestation'] = manifestation.map((e) => e.toJson()).toList();
-
-    if (description != null) {
-      final fieldJson4 = description!.toJson();
-      json['description'] = fieldJson4['value'];
-      if (fieldJson4['_value'] != null) {
-        json['_description'] = fieldJson4['_value'];
-      }
+    if (manifestation.isNotEmpty) {
+      json['manifestation'] = manifestation.map((e) => e.toJson()).toList();
     }
 
-    if (onset != null) {
-      final fieldJson5 = onset!.toJson();
-      json['onset'] = fieldJson5['value'];
-      if (fieldJson5['_value'] != null) {
-        json['_onset'] = fieldJson5['_value'];
-      }
-    }
-
-    if (severity != null) {
-      final fieldJson6 = severity!.toJson();
-      json['severity'] = fieldJson6['value'];
-      if (fieldJson6['_value'] != null) {
-        json['_severity'] = fieldJson6['_value'];
-      }
-    }
-
+    addField('description', description);
+    addField('onset', onset);
+    addField('severity', severity);
     if (exposureRoute != null) {
       json['exposureRoute'] = exposureRoute!.toJson();
     }

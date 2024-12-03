@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// A categorisation for a frequency of occurence of an undesirable effect.
-class UndesirablEffectFrequency {
+class UndesirablEffectFrequency extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  UndesirablEffectFrequency._(this.fhirCode, {this.element});
+  UndesirablEffectFrequency._(super.value, [super.element]);
 
   /// Factory constructor to create [UndesirablEffectFrequency] from JSON.
   factory UndesirablEffectFrequency.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class UndesirablEffectFrequency {
     if (value == null && element != null) {
       return UndesirablEffectFrequency.elementOnly.withElement(element);
     }
-    return UndesirablEffectFrequency._(value!, element: element);
+    return UndesirablEffectFrequency._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// UndesirablEffectFrequency values
   /// Common
   static final UndesirablEffectFrequency Common = UndesirablEffectFrequency._(
     'Common',
@@ -52,18 +45,63 @@ class UndesirablEffectFrequency {
     Rare,
   ];
 
+  /// Clones the current instance
+  @override
+  UndesirablEffectFrequency clone() =>
+      UndesirablEffectFrequency._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  UndesirablEffectFrequency setElement(String name, dynamic elementValue) {
+    return UndesirablEffectFrequency._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   UndesirablEffectFrequency withElement(Element? newElement) {
-    return UndesirablEffectFrequency._(fhirCode, element: newElement);
+    return UndesirablEffectFrequency._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  UndesirablEffectFrequency copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return UndesirablEffectFrequency._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

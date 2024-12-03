@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The possible sort directions, ascending or descending.
-class SortDirection {
+class SortDirection extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  SortDirection._(this.fhirCode, {this.element});
+  SortDirection._(super.value, [super.element]);
 
   /// Factory constructor to create [SortDirection] from JSON.
   factory SortDirection.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class SortDirection {
     if (value == null && element != null) {
       return SortDirection.elementOnly.withElement(element);
     }
-    return SortDirection._(value!, element: element);
+    return SortDirection._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// SortDirection values
   /// ascending
   static final SortDirection ascending = SortDirection._(
     'ascending',
@@ -45,18 +38,62 @@ class SortDirection {
     descending,
   ];
 
+  /// Clones the current instance
+  @override
+  SortDirection clone() => SortDirection._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  SortDirection setElement(String name, dynamic elementValue) {
+    return SortDirection._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   SortDirection withElement(Element? newElement) {
-    return SortDirection._(fhirCode, element: newElement);
+    return SortDirection._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  SortDirection copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return SortDirection._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Whether an operation parameter is an input or an output parameter.
-class OperationParameterUse {
+class OperationParameterUse extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  OperationParameterUse._(this.fhirCode, {this.element});
+  OperationParameterUse._(super.value, [super.element]);
 
   /// Factory constructor to create [OperationParameterUse] from JSON.
   factory OperationParameterUse.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class OperationParameterUse {
     if (value == null && element != null) {
       return OperationParameterUse.elementOnly.withElement(element);
     }
-    return OperationParameterUse._(value!, element: element);
+    return OperationParameterUse._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// OperationParameterUse values
   /// in_
   static final OperationParameterUse in_ = OperationParameterUse._(
     'in',
@@ -45,18 +38,63 @@ class OperationParameterUse {
     out,
   ];
 
+  /// Clones the current instance
+  @override
+  OperationParameterUse clone() =>
+      OperationParameterUse._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  OperationParameterUse setElement(String name, dynamic elementValue) {
+    return OperationParameterUse._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   OperationParameterUse withElement(Element? newElement) {
-    return OperationParameterUse._(fhirCode, element: newElement);
+    return OperationParameterUse._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  OperationParameterUse copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return OperationParameterUse._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

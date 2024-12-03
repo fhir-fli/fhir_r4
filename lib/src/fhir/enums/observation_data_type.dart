@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Permitted data type for observation value.
-class ObservationDataType {
+class ObservationDataType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ObservationDataType._(this.fhirCode, {this.element});
+  ObservationDataType._(super.value, [super.element]);
 
   /// Factory constructor to create [ObservationDataType] from JSON.
   factory ObservationDataType.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class ObservationDataType {
     if (value == null && element != null) {
       return ObservationDataType.elementOnly.withElement(element);
     }
-    return ObservationDataType._(value!, element: element);
+    return ObservationDataType._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ObservationDataType values
   /// Quantity
   static final ObservationDataType Quantity = ObservationDataType._(
     'Quantity',
@@ -99,18 +92,63 @@ class ObservationDataType {
     Period,
   ];
 
+  /// Clones the current instance
+  @override
+  ObservationDataType clone() =>
+      ObservationDataType._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  ObservationDataType setElement(String name, dynamic elementValue) {
+    return ObservationDataType._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   ObservationDataType withElement(Element? newElement) {
-    return ObservationDataType._(fhirCode, element: newElement);
+    return ObservationDataType._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  ObservationDataType copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return ObservationDataType._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

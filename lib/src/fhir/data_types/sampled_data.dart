@@ -160,60 +160,28 @@ class SampledData extends DataType {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
 
     json['origin'] = origin.toJson();
 
-    final fieldJson2 = period.toJson();
-    json['period'] = fieldJson2['value'];
-    if (fieldJson2['_value'] != null) {
-      json['_period'] = fieldJson2['_value'];
-    }
-
-    if (factor != null) {
-      final fieldJson3 = factor!.toJson();
-      json['factor'] = fieldJson3['value'];
-      if (fieldJson3['_value'] != null) {
-        json['_factor'] = fieldJson3['_value'];
-      }
-    }
-
-    if (lowerLimit != null) {
-      final fieldJson4 = lowerLimit!.toJson();
-      json['lowerLimit'] = fieldJson4['value'];
-      if (fieldJson4['_value'] != null) {
-        json['_lowerLimit'] = fieldJson4['_value'];
-      }
-    }
-
-    if (upperLimit != null) {
-      final fieldJson5 = upperLimit!.toJson();
-      json['upperLimit'] = fieldJson5['value'];
-      if (fieldJson5['_value'] != null) {
-        json['_upperLimit'] = fieldJson5['_value'];
-      }
-    }
-
-    final fieldJson6 = dimensions.toJson();
-    json['dimensions'] = fieldJson6['value'];
-    if (fieldJson6['_value'] != null) {
-      json['_dimensions'] = fieldJson6['_value'];
-    }
-
-    if (data != null) {
-      final fieldJson7 = data!.toJson();
-      json['data'] = fieldJson7['value'];
-      if (fieldJson7['_value'] != null) {
-        json['_data'] = fieldJson7['_value'];
-      }
-    }
-
+    addField('period', period);
+    addField('factor', factor);
+    addField('lowerLimit', lowerLimit);
+    addField('upperLimit', upperLimit);
+    addField('dimensions', dimensions);
+    addField('data', data);
     return json;
   }
 

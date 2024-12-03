@@ -146,42 +146,27 @@ class Identifier extends DataType {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
 
-    if (use != null) {
-      final fieldJson1 = use!.toJson();
-      json['use'] = fieldJson1['value'];
-      if (fieldJson1['_value'] != null) {
-        json['_use'] = fieldJson1['_value'];
-      }
-    }
-
+    addField('use', use);
     if (type != null) {
       json['type'] = type!.toJson();
     }
 
-    if (system != null) {
-      final fieldJson3 = system!.toJson();
-      json['system'] = fieldJson3['value'];
-      if (fieldJson3['_value'] != null) {
-        json['_system'] = fieldJson3['_value'];
-      }
-    }
-
-    if (value != null) {
-      final fieldJson4 = value!.toJson();
-      json['value'] = fieldJson4['value'];
-      if (fieldJson4['_value'] != null) {
-        json['_value'] = fieldJson4['_value'];
-      }
-    }
-
+    addField('system', system);
+    addField('value', value);
     if (period != null) {
       json['period'] = period!.toJson();
     }

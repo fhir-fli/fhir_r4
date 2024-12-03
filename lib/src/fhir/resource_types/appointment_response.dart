@@ -228,31 +228,23 @@ class AppointmentResponse extends DomainResource {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    json['resourceType'] = resourceType.toJson();
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    json['resourceType'] = resourceType.toJson();
+    addField('id', id);
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    if (implicitRules != null) {
-      final fieldJson1 = implicitRules!.toJson();
-      json['implicitRules'] = fieldJson1['value'];
-      if (fieldJson1['_value'] != null) {
-        json['_implicitRules'] = fieldJson1['_value'];
-      }
-    }
-
-    if (language != null) {
-      final fieldJson2 = language!.toJson();
-      json['language'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_language'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('implicitRules', implicitRules);
+    addField('language', language);
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -276,22 +268,8 @@ class AppointmentResponse extends DomainResource {
 
     json['appointment'] = appointment.toJson();
 
-    if (start != null) {
-      final fieldJson9 = start!.toJson();
-      json['start'] = fieldJson9['value'];
-      if (fieldJson9['_value'] != null) {
-        json['_start'] = fieldJson9['_value'];
-      }
-    }
-
-    if (end != null) {
-      final fieldJson10 = end!.toJson();
-      json['end'] = fieldJson10['value'];
-      if (fieldJson10['_value'] != null) {
-        json['_end'] = fieldJson10['_value'];
-      }
-    }
-
+    addField('start', start);
+    addField('end', end);
     if (participantType != null && participantType!.isNotEmpty) {
       json['participantType'] =
           participantType!.map((e) => e.toJson()).toList();
@@ -301,20 +279,8 @@ class AppointmentResponse extends DomainResource {
       json['actor'] = actor!.toJson();
     }
 
-    final fieldJson13 = participantStatus.toJson();
-    json['participantStatus'] = fieldJson13['value'];
-    if (fieldJson13['_value'] != null) {
-      json['_participantStatus'] = fieldJson13['_value'];
-    }
-
-    if (comment != null) {
-      final fieldJson14 = comment!.toJson();
-      json['comment'] = fieldJson14['value'];
-      if (fieldJson14['_value'] != null) {
-        json['_comment'] = fieldJson14['_value'];
-      }
-    }
-
+    addField('participantStatus', participantStatus);
+    addField('comment', comment);
     return json;
   }
 

@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The impact of the content of a message.
-class MessageSignificanceCategory {
+class MessageSignificanceCategory extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  MessageSignificanceCategory._(this.fhirCode, {this.element});
+  MessageSignificanceCategory._(super.value, [super.element]);
 
   /// Factory constructor to create [MessageSignificanceCategory] from JSON.
   factory MessageSignificanceCategory.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class MessageSignificanceCategory {
     if (value == null && element != null) {
       return MessageSignificanceCategory.elementOnly.withElement(element);
     }
-    return MessageSignificanceCategory._(value!, element: element);
+    return MessageSignificanceCategory._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// MessageSignificanceCategory values
   /// consequence
   static final MessageSignificanceCategory consequence =
       MessageSignificanceCategory._(
@@ -55,18 +48,63 @@ class MessageSignificanceCategory {
     notification,
   ];
 
+  /// Clones the current instance
+  @override
+  MessageSignificanceCategory clone() =>
+      MessageSignificanceCategory._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  MessageSignificanceCategory setElement(String name, dynamic elementValue) {
+    return MessageSignificanceCategory._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   MessageSignificanceCategory withElement(Element? newElement) {
-    return MessageSignificanceCategory._(fhirCode, element: newElement);
+    return MessageSignificanceCategory._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  MessageSignificanceCategory copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return MessageSignificanceCategory._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

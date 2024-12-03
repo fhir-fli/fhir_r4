@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Dose forms for a product as a whole, considering all individual parts, but before any mixing
-class CombinedDoseForm {
+class CombinedDoseForm extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  CombinedDoseForm._(this.fhirCode, {this.element});
+  CombinedDoseForm._(super.value, [super.element]);
 
   /// Factory constructor to create [CombinedDoseForm] from JSON.
   factory CombinedDoseForm.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class CombinedDoseForm {
     if (value == null && element != null) {
       return CombinedDoseForm.elementOnly.withElement(element);
     }
-    return CombinedDoseForm._(value!, element: element);
+    return CombinedDoseForm._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// CombinedDoseForm values
   /// value100000073366
   static final CombinedDoseForm value100000073366 = CombinedDoseForm._(
     '100000073366',
@@ -495,18 +488,63 @@ class CombinedDoseForm {
     value200000010382,
   ];
 
+  /// Clones the current instance
+  @override
+  CombinedDoseForm clone() =>
+      CombinedDoseForm._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  CombinedDoseForm setElement(String name, dynamic elementValue) {
+    return CombinedDoseForm._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   CombinedDoseForm withElement(Element? newElement) {
-    return CombinedDoseForm._(fhirCode, element: newElement);
+    return CombinedDoseForm._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  CombinedDoseForm copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return CombinedDoseForm._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

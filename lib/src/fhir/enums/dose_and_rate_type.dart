@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The kind of dose or rate specified.
-class DoseAndRateType {
+class DoseAndRateType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  DoseAndRateType._(this.fhirCode, {this.element});
+  DoseAndRateType._(super.value, [super.element]);
 
   /// Factory constructor to create [DoseAndRateType] from JSON.
   factory DoseAndRateType.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class DoseAndRateType {
     if (value == null && element != null) {
       return DoseAndRateType.elementOnly.withElement(element);
     }
-    return DoseAndRateType._(value!, element: element);
+    return DoseAndRateType._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// DoseAndRateType values
   /// calculated
   static final DoseAndRateType calculated = DoseAndRateType._(
     'calculated',
@@ -45,18 +38,63 @@ class DoseAndRateType {
     ordered,
   ];
 
+  /// Clones the current instance
+  @override
+  DoseAndRateType clone() =>
+      DoseAndRateType._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  DoseAndRateType setElement(String name, dynamic elementValue) {
+    return DoseAndRateType._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   DoseAndRateType withElement(Element? newElement) {
-    return DoseAndRateType._(fhirCode, element: newElement);
+    return DoseAndRateType._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  DoseAndRateType copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return DoseAndRateType._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

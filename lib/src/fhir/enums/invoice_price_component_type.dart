@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Codes indicating the kind of the price component.
-class InvoicePriceComponentType {
+class InvoicePriceComponentType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  InvoicePriceComponentType._(this.fhirCode, {this.element});
+  InvoicePriceComponentType._(super.value, [super.element]);
 
   /// Factory constructor to create [InvoicePriceComponentType] from JSON.
   factory InvoicePriceComponentType.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class InvoicePriceComponentType {
     if (value == null && element != null) {
       return InvoicePriceComponentType.elementOnly.withElement(element);
     }
-    return InvoicePriceComponentType._(value!, element: element);
+    return InvoicePriceComponentType._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// InvoicePriceComponentType values
   /// base
   static final InvoicePriceComponentType base = InvoicePriceComponentType._(
     'base',
@@ -73,18 +66,63 @@ class InvoicePriceComponentType {
     informational,
   ];
 
+  /// Clones the current instance
+  @override
+  InvoicePriceComponentType clone() =>
+      InvoicePriceComponentType._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  InvoicePriceComponentType setElement(String name, dynamic elementValue) {
+    return InvoicePriceComponentType._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   InvoicePriceComponentType withElement(Element? newElement) {
-    return InvoicePriceComponentType._(fhirCode, element: newElement);
+    return InvoicePriceComponentType._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  InvoicePriceComponentType copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return InvoicePriceComponentType._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

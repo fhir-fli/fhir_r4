@@ -130,10 +130,16 @@ class Timing extends BackboneType {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -144,10 +150,10 @@ class Timing extends BackboneType {
     }
 
     if (event != null && event!.isNotEmpty) {
-      final fieldJson2 = event!.map((e) => e.toJson()).toList();
-      json['event'] = fieldJson2.map((e) => e['value']).toList();
-      if (fieldJson2.any((e) => e['_value'] != null)) {
-        json['_event'] = fieldJson2.map((e) => e['_value']).toList();
+      final fieldJson0 = event!.map((e) => e.toJson()).toList();
+      json['event'] = fieldJson0.map((e) => e['value']).toList();
+      if (fieldJson0.any((e) => e['_value'] != null)) {
+        json['_event'] = fieldJson0.map((e) => e['_value']).toList();
       }
     }
 
@@ -481,10 +487,16 @@ class TimingRepeat extends Element {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -501,118 +513,41 @@ class TimingRepeat extends Element {
       json['boundsPeriod'] = boundsPeriod!.toJson();
     }
 
-    if (count != null) {
-      final fieldJson4 = count!.toJson();
-      json['count'] = fieldJson4['value'];
-      if (fieldJson4['_value'] != null) {
-        json['_count'] = fieldJson4['_value'];
-      }
-    }
-
-    if (countMax != null) {
-      final fieldJson5 = countMax!.toJson();
-      json['countMax'] = fieldJson5['value'];
-      if (fieldJson5['_value'] != null) {
-        json['_countMax'] = fieldJson5['_value'];
-      }
-    }
-
-    if (duration != null) {
-      final fieldJson6 = duration!.toJson();
-      json['duration'] = fieldJson6['value'];
-      if (fieldJson6['_value'] != null) {
-        json['_duration'] = fieldJson6['_value'];
-      }
-    }
-
-    if (durationMax != null) {
-      final fieldJson7 = durationMax!.toJson();
-      json['durationMax'] = fieldJson7['value'];
-      if (fieldJson7['_value'] != null) {
-        json['_durationMax'] = fieldJson7['_value'];
-      }
-    }
-
-    if (durationUnit != null) {
-      final fieldJson8 = durationUnit!.toJson();
-      json['durationUnit'] = fieldJson8['value'];
-      if (fieldJson8['_value'] != null) {
-        json['_durationUnit'] = fieldJson8['_value'];
-      }
-    }
-
-    if (frequency != null) {
-      final fieldJson9 = frequency!.toJson();
-      json['frequency'] = fieldJson9['value'];
-      if (fieldJson9['_value'] != null) {
-        json['_frequency'] = fieldJson9['_value'];
-      }
-    }
-
-    if (frequencyMax != null) {
-      final fieldJson10 = frequencyMax!.toJson();
-      json['frequencyMax'] = fieldJson10['value'];
-      if (fieldJson10['_value'] != null) {
-        json['_frequencyMax'] = fieldJson10['_value'];
-      }
-    }
-
-    if (period != null) {
-      final fieldJson11 = period!.toJson();
-      json['period'] = fieldJson11['value'];
-      if (fieldJson11['_value'] != null) {
-        json['_period'] = fieldJson11['_value'];
-      }
-    }
-
-    if (periodMax != null) {
-      final fieldJson12 = periodMax!.toJson();
-      json['periodMax'] = fieldJson12['value'];
-      if (fieldJson12['_value'] != null) {
-        json['_periodMax'] = fieldJson12['_value'];
-      }
-    }
-
-    if (periodUnit != null) {
-      final fieldJson13 = periodUnit!.toJson();
-      json['periodUnit'] = fieldJson13['value'];
-      if (fieldJson13['_value'] != null) {
-        json['_periodUnit'] = fieldJson13['_value'];
-      }
-    }
-
+    addField('count', count);
+    addField('countMax', countMax);
+    addField('duration', duration);
+    addField('durationMax', durationMax);
+    addField('durationUnit', durationUnit);
+    addField('frequency', frequency);
+    addField('frequencyMax', frequencyMax);
+    addField('period', period);
+    addField('periodMax', periodMax);
+    addField('periodUnit', periodUnit);
     if (dayOfWeek != null && dayOfWeek!.isNotEmpty) {
-      final fieldJson14 = dayOfWeek!.map((e) => e.toJson()).toList();
-      json['dayOfWeek'] = fieldJson14.map((e) => e['value']).toList();
-      if (fieldJson14.any((e) => e['_value'] != null)) {
-        json['_dayOfWeek'] = fieldJson14.map((e) => e['_value']).toList();
+      final fieldJson0 = dayOfWeek!.map((e) => e.toJson()).toList();
+      json['dayOfWeek'] = fieldJson0.map((e) => e['value']).toList();
+      if (fieldJson0.any((e) => e['_value'] != null)) {
+        json['_dayOfWeek'] = fieldJson0.map((e) => e['_value']).toList();
       }
     }
 
     if (timeOfDay != null && timeOfDay!.isNotEmpty) {
-      final fieldJson15 = timeOfDay!.map((e) => e.toJson()).toList();
-      json['timeOfDay'] = fieldJson15.map((e) => e['value']).toList();
-      if (fieldJson15.any((e) => e['_value'] != null)) {
-        json['_timeOfDay'] = fieldJson15.map((e) => e['_value']).toList();
+      final fieldJson1 = timeOfDay!.map((e) => e.toJson()).toList();
+      json['timeOfDay'] = fieldJson1.map((e) => e['value']).toList();
+      if (fieldJson1.any((e) => e['_value'] != null)) {
+        json['_timeOfDay'] = fieldJson1.map((e) => e['_value']).toList();
       }
     }
 
     if (when != null && when!.isNotEmpty) {
-      final fieldJson16 = when!.map((e) => e.toJson()).toList();
-      json['when'] = fieldJson16.map((e) => e['value']).toList();
-      if (fieldJson16.any((e) => e['_value'] != null)) {
-        json['_when'] = fieldJson16.map((e) => e['_value']).toList();
+      final fieldJson2 = when!.map((e) => e.toJson()).toList();
+      json['when'] = fieldJson2.map((e) => e['value']).toList();
+      if (fieldJson2.any((e) => e['_value'] != null)) {
+        json['_when'] = fieldJson2.map((e) => e['_value']).toList();
       }
     }
 
-    if (offset != null) {
-      final fieldJson17 = offset!.toJson();
-      json['offset'] = fieldJson17['value'];
-      if (fieldJson17['_value'] != null) {
-        json['_offset'] = fieldJson17['_value'];
-      }
-    }
-
+    addField('offset', offset);
     return json;
   }
 

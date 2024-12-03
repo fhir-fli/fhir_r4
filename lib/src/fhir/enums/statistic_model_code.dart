@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The handling of the variable in statistical analysis for exposures or outcomes.
-class StatisticModelCode {
+class StatisticModelCode extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  StatisticModelCode._(this.fhirCode, {this.element});
+  StatisticModelCode._(super.value, [super.element]);
 
   /// Factory constructor to create [StatisticModelCode] from JSON.
   factory StatisticModelCode.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class StatisticModelCode {
     if (value == null && element != null) {
       return StatisticModelCode.elementOnly.withElement(element);
     }
-    return StatisticModelCode._(value!, element: element);
+    return StatisticModelCode._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// StatisticModelCode values
   /// oneTailedTest
   static final StatisticModelCode oneTailedTest = StatisticModelCode._(
     'oneTailedTest',
@@ -514,18 +507,63 @@ class StatisticModelCode {
     poolGeneralizedLinearMixedModel,
   ];
 
+  /// Clones the current instance
+  @override
+  StatisticModelCode clone() =>
+      StatisticModelCode._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  StatisticModelCode setElement(String name, dynamic elementValue) {
+    return StatisticModelCode._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   StatisticModelCode withElement(Element? newElement) {
-    return StatisticModelCode._(fhirCode, element: newElement);
+    return StatisticModelCode._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  StatisticModelCode copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return StatisticModelCode._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

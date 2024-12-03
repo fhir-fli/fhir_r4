@@ -392,31 +392,23 @@ class DiagnosticReport extends DomainResource {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    json['resourceType'] = resourceType.toJson();
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    json['resourceType'] = resourceType.toJson();
+    addField('id', id);
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    if (implicitRules != null) {
-      final fieldJson1 = implicitRules!.toJson();
-      json['implicitRules'] = fieldJson1['value'];
-      if (fieldJson1['_value'] != null) {
-        json['_implicitRules'] = fieldJson1['_value'];
-      }
-    }
-
-    if (language != null) {
-      final fieldJson2 = language!.toJson();
-      json['language'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_language'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('implicitRules', implicitRules);
+    addField('language', language);
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -442,12 +434,7 @@ class DiagnosticReport extends DomainResource {
       json['basedOn'] = basedOn!.map((e) => e.toJson()).toList();
     }
 
-    final fieldJson9 = status.toJson();
-    json['status'] = fieldJson9['value'];
-    if (fieldJson9['_value'] != null) {
-      json['_status'] = fieldJson9['_value'];
-    }
-
+    addField('status', status);
     if (category != null && category!.isNotEmpty) {
       json['category'] = category!.map((e) => e.toJson()).toList();
     }
@@ -462,26 +449,12 @@ class DiagnosticReport extends DomainResource {
       json['encounter'] = encounter!.toJson();
     }
 
-    if (effectiveDateTime != null) {
-      final fieldJson14 = effectiveDateTime!.toJson();
-      json['effectiveDateTime'] = fieldJson14['value'];
-      if (fieldJson14['_value'] != null) {
-        json['_effectiveDateTime'] = fieldJson14['_value'];
-      }
-    }
-
+    addField('effectiveDateTime', effectiveDateTime);
     if (effectivePeriod != null) {
       json['effectivePeriod'] = effectivePeriod!.toJson();
     }
 
-    if (issued != null) {
-      final fieldJson16 = issued!.toJson();
-      json['issued'] = fieldJson16['value'];
-      if (fieldJson16['_value'] != null) {
-        json['_issued'] = fieldJson16['_value'];
-      }
-    }
-
+    addField('issued', issued);
     if (performer != null && performer!.isNotEmpty) {
       json['performer'] = performer!.map((e) => e.toJson()).toList();
     }
@@ -507,14 +480,7 @@ class DiagnosticReport extends DomainResource {
       json['media'] = media!.map((e) => e.toJson()).toList();
     }
 
-    if (conclusion != null) {
-      final fieldJson23 = conclusion!.toJson();
-      json['conclusion'] = fieldJson23['value'];
-      if (fieldJson23['_value'] != null) {
-        json['_conclusion'] = fieldJson23['_value'];
-      }
-    }
-
+    addField('conclusion', conclusion);
     if (conclusionCode != null && conclusionCode!.isNotEmpty) {
       json['conclusionCode'] = conclusionCode!.map((e) => e.toJson()).toList();
     }
@@ -712,10 +678,16 @@ class DiagnosticReportMedia extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -725,14 +697,7 @@ class DiagnosticReportMedia extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    if (comment != null) {
-      final fieldJson2 = comment!.toJson();
-      json['comment'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_comment'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('comment', comment);
     json['link'] = link.toJson();
 
     return json;

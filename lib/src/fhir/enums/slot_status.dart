@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The free/busy status of the slot.
-class SlotStatus {
+class SlotStatus extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  SlotStatus._(this.fhirCode, {this.element});
+  SlotStatus._(super.value, [super.element]);
 
   /// Factory constructor to create [SlotStatus] from JSON.
   factory SlotStatus.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class SlotStatus {
     if (value == null && element != null) {
       return SlotStatus.elementOnly.withElement(element);
     }
-    return SlotStatus._(value!, element: element);
+    return SlotStatus._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// SlotStatus values
   /// busy
   static final SlotStatus busy = SlotStatus._(
     'busy',
@@ -63,18 +56,62 @@ class SlotStatus {
     entered_in_error,
   ];
 
+  /// Clones the current instance
+  @override
+  SlotStatus clone() => SlotStatus._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  SlotStatus setElement(String name, dynamic elementValue) {
+    return SlotStatus._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   SlotStatus withElement(Element? newElement) {
-    return SlotStatus._(fhirCode, element: newElement);
+    return SlotStatus._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  SlotStatus copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return SlotStatus._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

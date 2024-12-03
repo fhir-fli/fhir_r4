@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Used to specify why the normally expected content of the data element is missing.
-class DataAbsentReason {
+class DataAbsentReason extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  DataAbsentReason._(this.fhirCode, {this.element});
+  DataAbsentReason._(super.value, [super.element]);
 
   /// Factory constructor to create [DataAbsentReason] from JSON.
   factory DataAbsentReason.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class DataAbsentReason {
     if (value == null && element != null) {
       return DataAbsentReason.elementOnly.withElement(element);
     }
-    return DataAbsentReason._(value!, element: element);
+    return DataAbsentReason._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// DataAbsentReason values
   /// unknown
   static final DataAbsentReason unknown = DataAbsentReason._(
     'unknown',
@@ -123,18 +116,63 @@ class DataAbsentReason {
     not_permitted,
   ];
 
+  /// Clones the current instance
+  @override
+  DataAbsentReason clone() =>
+      DataAbsentReason._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  DataAbsentReason setElement(String name, dynamic elementValue) {
+    return DataAbsentReason._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   DataAbsentReason withElement(Element? newElement) {
-    return DataAbsentReason._(fhirCode, element: newElement);
+    return DataAbsentReason._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  DataAbsentReason copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return DataAbsentReason._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

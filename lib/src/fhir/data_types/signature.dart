@@ -169,52 +169,34 @@ class Signature extends DataType {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
 
-    json['type'] = type.map((e) => e.toJson()).toList();
-
-    final fieldJson2 = when.toJson();
-    json['when'] = fieldJson2['value'];
-    if (fieldJson2['_value'] != null) {
-      json['_when'] = fieldJson2['_value'];
+    if (type.isNotEmpty) {
+      json['type'] = type.map((e) => e.toJson()).toList();
     }
 
+    addField('when', when);
     json['who'] = who.toJson();
 
     if (onBehalfOf != null) {
       json['onBehalfOf'] = onBehalfOf!.toJson();
     }
 
-    if (targetFormat != null) {
-      final fieldJson5 = targetFormat!.toJson();
-      json['targetFormat'] = fieldJson5['value'];
-      if (fieldJson5['_value'] != null) {
-        json['_targetFormat'] = fieldJson5['_value'];
-      }
-    }
-
-    if (sigFormat != null) {
-      final fieldJson6 = sigFormat!.toJson();
-      json['sigFormat'] = fieldJson6['value'];
-      if (fieldJson6['_value'] != null) {
-        json['_sigFormat'] = fieldJson6['_value'];
-      }
-    }
-
-    if (data != null) {
-      final fieldJson7 = data!.toJson();
-      json['data'] = fieldJson7['value'];
-      if (fieldJson7['_value'] != null) {
-        json['_data'] = fieldJson7['_value'];
-      }
-    }
-
+    addField('targetFormat', targetFormat);
+    addField('sigFormat', sigFormat);
+    addField('data', data);
     return json;
   }
 

@@ -292,31 +292,23 @@ class DetectedIssue extends DomainResource {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    json['resourceType'] = resourceType.toJson();
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    json['resourceType'] = resourceType.toJson();
+    addField('id', id);
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    if (implicitRules != null) {
-      final fieldJson1 = implicitRules!.toJson();
-      json['implicitRules'] = fieldJson1['value'];
-      if (fieldJson1['_value'] != null) {
-        json['_implicitRules'] = fieldJson1['_value'];
-      }
-    }
-
-    if (language != null) {
-      final fieldJson2 = language!.toJson();
-      json['language'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_language'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('implicitRules', implicitRules);
+    addField('language', language);
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -338,36 +330,17 @@ class DetectedIssue extends DomainResource {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
 
-    final fieldJson8 = status.toJson();
-    json['status'] = fieldJson8['value'];
-    if (fieldJson8['_value'] != null) {
-      json['_status'] = fieldJson8['_value'];
-    }
-
+    addField('status', status);
     if (code != null) {
       json['code'] = code!.toJson();
     }
 
-    if (severity != null) {
-      final fieldJson10 = severity!.toJson();
-      json['severity'] = fieldJson10['value'];
-      if (fieldJson10['_value'] != null) {
-        json['_severity'] = fieldJson10['_value'];
-      }
-    }
-
+    addField('severity', severity);
     if (patient != null) {
       json['patient'] = patient!.toJson();
     }
 
-    if (identifiedDateTime != null) {
-      final fieldJson12 = identifiedDateTime!.toJson();
-      json['identifiedDateTime'] = fieldJson12['value'];
-      if (fieldJson12['_value'] != null) {
-        json['_identifiedDateTime'] = fieldJson12['_value'];
-      }
-    }
-
+    addField('identifiedDateTime', identifiedDateTime);
     if (identifiedPeriod != null) {
       json['identifiedPeriod'] = identifiedPeriod!.toJson();
     }
@@ -384,22 +357,8 @@ class DetectedIssue extends DomainResource {
       json['evidence'] = evidence!.map((e) => e.toJson()).toList();
     }
 
-    if (detail != null) {
-      final fieldJson17 = detail!.toJson();
-      json['detail'] = fieldJson17['value'];
-      if (fieldJson17['_value'] != null) {
-        json['_detail'] = fieldJson17['_value'];
-      }
-    }
-
-    if (reference != null) {
-      final fieldJson18 = reference!.toJson();
-      json['reference'] = fieldJson18['value'];
-      if (fieldJson18['_value'] != null) {
-        json['_reference'] = fieldJson18['_value'];
-      }
-    }
-
+    addField('detail', detail);
+    addField('reference', reference);
     if (mitigation != null && mitigation!.isNotEmpty) {
       json['mitigation'] = mitigation!.map((e) => e.toJson()).toList();
     }
@@ -589,10 +548,16 @@ class DetectedIssueEvidence extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -766,10 +731,16 @@ class DetectedIssueMitigation extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -781,14 +752,7 @@ class DetectedIssueMitigation extends BackboneElement {
 
     json['action'] = action.toJson();
 
-    if (date != null) {
-      final fieldJson3 = date!.toJson();
-      json['date'] = fieldJson3['value'];
-      if (fieldJson3['_value'] != null) {
-        json['_date'] = fieldJson3['_value'];
-      }
-    }
-
+    addField('date', date);
     if (author != null) {
       json['author'] = author!.toJson();
     }

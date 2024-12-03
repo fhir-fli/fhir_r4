@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// EnteralFormulaAdditiveType: Codes for the type of modular component such as protein, carbohydrate or fiber to be provided in addition to or mixed with the base formula. This value set is provided as a suggestive example.
-class EnteralFormulaAdditiveTypeCode {
+class EnteralFormulaAdditiveTypeCode extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  EnteralFormulaAdditiveTypeCode._(this.fhirCode, {this.element});
+  EnteralFormulaAdditiveTypeCode._(super.value, [super.element]);
 
   /// Factory constructor to create [EnteralFormulaAdditiveTypeCode] from JSON.
   factory EnteralFormulaAdditiveTypeCode.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class EnteralFormulaAdditiveTypeCode {
     if (value == null && element != null) {
       return EnteralFormulaAdditiveTypeCode.elementOnly.withElement(element);
     }
-    return EnteralFormulaAdditiveTypeCode._(value!, element: element);
+    return EnteralFormulaAdditiveTypeCode._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// EnteralFormulaAdditiveTypeCode values
   /// lipid
   static final EnteralFormulaAdditiveTypeCode lipid =
       EnteralFormulaAdditiveTypeCode._(
@@ -69,18 +62,63 @@ class EnteralFormulaAdditiveTypeCode {
     water,
   ];
 
+  /// Clones the current instance
+  @override
+  EnteralFormulaAdditiveTypeCode clone() =>
+      EnteralFormulaAdditiveTypeCode._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  EnteralFormulaAdditiveTypeCode setElement(String name, dynamic elementValue) {
+    return EnteralFormulaAdditiveTypeCode._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   EnteralFormulaAdditiveTypeCode withElement(Element? newElement) {
-    return EnteralFormulaAdditiveTypeCode._(fhirCode, element: newElement);
+    return EnteralFormulaAdditiveTypeCode._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  EnteralFormulaAdditiveTypeCode copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return EnteralFormulaAdditiveTypeCode._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

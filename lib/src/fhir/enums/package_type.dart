@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// A high level categorisation of a package.
-class PackageType {
+class PackageType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  PackageType._(this.fhirCode, {this.element});
+  PackageType._(super.value, [super.element]);
 
   /// Factory constructor to create [PackageType] from JSON.
   factory PackageType.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class PackageType {
     if (value == null && element != null) {
       return PackageType.elementOnly.withElement(element);
     }
-    return PackageType._(value!, element: element);
+    return PackageType._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// PackageType values
   /// MedicinalProductPack
   static final PackageType MedicinalProductPack = PackageType._(
     'MedicinalProductPack',
@@ -51,18 +44,62 @@ class PackageType {
     Shipping_TransportContainer,
   ];
 
+  /// Clones the current instance
+  @override
+  PackageType clone() => PackageType._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  PackageType setElement(String name, dynamic elementValue) {
+    return PackageType._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   PackageType withElement(Element? newElement) {
-    return PackageType._(fhirCode, element: newElement);
+    return PackageType._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  PackageType copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return PackageType._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

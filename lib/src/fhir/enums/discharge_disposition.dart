@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// This value set defines a set of codes that can be used to where the patient left the hospital.
-class DischargeDisposition {
+class DischargeDisposition extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  DischargeDisposition._(this.fhirCode, {this.element});
+  DischargeDisposition._(super.value, [super.element]);
 
   /// Factory constructor to create [DischargeDisposition] from JSON.
   factory DischargeDisposition.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class DischargeDisposition {
     if (value == null && element != null) {
       return DischargeDisposition.elementOnly.withElement(element);
     }
-    return DischargeDisposition._(value!, element: element);
+    return DischargeDisposition._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// DischargeDisposition values
   /// home
   static final DischargeDisposition home = DischargeDisposition._(
     'home',
@@ -99,18 +92,63 @@ class DischargeDisposition {
     oth,
   ];
 
+  /// Clones the current instance
+  @override
+  DischargeDisposition clone() =>
+      DischargeDisposition._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  DischargeDisposition setElement(String name, dynamic elementValue) {
+    return DischargeDisposition._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   DischargeDisposition withElement(Element? newElement) {
-    return DischargeDisposition._(fhirCode, element: newElement);
+    return DischargeDisposition._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  DischargeDisposition copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return DischargeDisposition._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

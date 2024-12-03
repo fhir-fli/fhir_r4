@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The use context of a substance name for example if there is a different name when used as a drug active ingredient as opposed to a food colour additive.
-class SubstanceNameDomain {
+class SubstanceNameDomain extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  SubstanceNameDomain._(this.fhirCode, {this.element});
+  SubstanceNameDomain._(super.value, [super.element]);
 
   /// Factory constructor to create [SubstanceNameDomain] from JSON.
   factory SubstanceNameDomain.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class SubstanceNameDomain {
     if (value == null && element != null) {
       return SubstanceNameDomain.elementOnly.withElement(element);
     }
-    return SubstanceNameDomain._(value!, element: element);
+    return SubstanceNameDomain._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// SubstanceNameDomain values
   /// ActiveIngredient
   static final SubstanceNameDomain ActiveIngredient = SubstanceNameDomain._(
     'ActiveIngredient',
@@ -45,18 +38,63 @@ class SubstanceNameDomain {
     FoodColorAdditive,
   ];
 
+  /// Clones the current instance
+  @override
+  SubstanceNameDomain clone() =>
+      SubstanceNameDomain._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  SubstanceNameDomain setElement(String name, dynamic elementValue) {
+    return SubstanceNameDomain._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   SubstanceNameDomain withElement(Element? newElement) {
-    return SubstanceNameDomain._(fhirCode, element: newElement);
+    return SubstanceNameDomain._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  SubstanceNameDomain copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return SubstanceNameDomain._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

@@ -382,31 +382,23 @@ class SubstanceDefinition extends DomainResource {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    json['resourceType'] = resourceType.toJson();
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    json['resourceType'] = resourceType.toJson();
+    addField('id', id);
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    if (implicitRules != null) {
-      final fieldJson1 = implicitRules!.toJson();
-      json['implicitRules'] = fieldJson1['value'];
-      if (fieldJson1['_value'] != null) {
-        json['_implicitRules'] = fieldJson1['_value'];
-      }
-    }
-
-    if (language != null) {
-      final fieldJson2 = language!.toJson();
-      json['language'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_language'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('implicitRules', implicitRules);
+    addField('language', language);
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -428,14 +420,7 @@ class SubstanceDefinition extends DomainResource {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
 
-    if (version != null) {
-      final fieldJson8 = version!.toJson();
-      json['version'] = fieldJson8['value'];
-      if (fieldJson8['_value'] != null) {
-        json['_version'] = fieldJson8['_value'];
-      }
-    }
-
+    addField('version', version);
     if (status != null) {
       json['status'] = status!.toJson();
     }
@@ -452,14 +437,7 @@ class SubstanceDefinition extends DomainResource {
       json['grade'] = grade!.map((e) => e.toJson()).toList();
     }
 
-    if (description != null) {
-      final fieldJson13 = description!.toJson();
-      json['description'] = fieldJson13['value'];
-      if (fieldJson13['_value'] != null) {
-        json['_description'] = fieldJson13['_value'];
-      }
-    }
-
+    addField('description', description);
     if (informationSource != null && informationSource!.isNotEmpty) {
       json['informationSource'] =
           informationSource!.map((e) => e.toJson()).toList();
@@ -775,10 +753,16 @@ class SubstanceDefinitionMoiety extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -796,14 +780,7 @@ class SubstanceDefinitionMoiety extends BackboneElement {
       json['identifier'] = identifier!.toJson();
     }
 
-    if (name != null) {
-      final fieldJson4 = name!.toJson();
-      json['name'] = fieldJson4['value'];
-      if (fieldJson4['_value'] != null) {
-        json['_name'] = fieldJson4['_value'];
-      }
-    }
-
+    addField('name', name);
     if (stereochemistry != null) {
       json['stereochemistry'] = stereochemistry!.toJson();
     }
@@ -812,26 +789,12 @@ class SubstanceDefinitionMoiety extends BackboneElement {
       json['opticalActivity'] = opticalActivity!.toJson();
     }
 
-    if (molecularFormula != null) {
-      final fieldJson7 = molecularFormula!.toJson();
-      json['molecularFormula'] = fieldJson7['value'];
-      if (fieldJson7['_value'] != null) {
-        json['_molecularFormula'] = fieldJson7['_value'];
-      }
-    }
-
+    addField('molecularFormula', molecularFormula);
     if (amountQuantity != null) {
       json['amountQuantity'] = amountQuantity!.toJson();
     }
 
-    if (amountString != null) {
-      final fieldJson9 = amountString!.toJson();
-      json['amountString'] = fieldJson9['value'];
-      if (fieldJson9['_value'] != null) {
-        json['_amountString'] = fieldJson9['_value'];
-      }
-    }
-
+    addField('amountString', amountString);
     if (measurementType != null) {
       json['measurementType'] = measurementType!.toJson();
     }
@@ -1033,10 +996,16 @@ class SubstanceDefinitionProperty extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1056,22 +1025,8 @@ class SubstanceDefinitionProperty extends BackboneElement {
       json['valueQuantity'] = valueQuantity!.toJson();
     }
 
-    if (valueDate != null) {
-      final fieldJson5 = valueDate!.toJson();
-      json['valueDate'] = fieldJson5['value'];
-      if (fieldJson5['_value'] != null) {
-        json['_valueDate'] = fieldJson5['_value'];
-      }
-    }
-
-    if (valueBoolean != null) {
-      final fieldJson6 = valueBoolean!.toJson();
-      json['valueBoolean'] = fieldJson6['value'];
-      if (fieldJson6['_value'] != null) {
-        json['_valueBoolean'] = fieldJson6['_value'];
-      }
-    }
-
+    addField('valueDate', valueDate);
+    addField('valueBoolean', valueBoolean);
     if (valueAttachment != null) {
       json['valueAttachment'] = valueAttachment!.toJson();
     }
@@ -1239,10 +1194,16 @@ class SubstanceDefinitionMolecularWeight extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1486,10 +1447,16 @@ class SubstanceDefinitionStructure extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1507,22 +1474,8 @@ class SubstanceDefinitionStructure extends BackboneElement {
       json['opticalActivity'] = opticalActivity!.toJson();
     }
 
-    if (molecularFormula != null) {
-      final fieldJson4 = molecularFormula!.toJson();
-      json['molecularFormula'] = fieldJson4['value'];
-      if (fieldJson4['_value'] != null) {
-        json['_molecularFormula'] = fieldJson4['_value'];
-      }
-    }
-
-    if (molecularFormulaByMoiety != null) {
-      final fieldJson5 = molecularFormulaByMoiety!.toJson();
-      json['molecularFormulaByMoiety'] = fieldJson5['value'];
-      if (fieldJson5['_value'] != null) {
-        json['_molecularFormulaByMoiety'] = fieldJson5['_value'];
-      }
-    }
-
+    addField('molecularFormula', molecularFormula);
+    addField('molecularFormulaByMoiety', molecularFormulaByMoiety);
     if (molecularWeight != null) {
       json['molecularWeight'] = molecularWeight!.toJson();
     }
@@ -1721,10 +1674,16 @@ class SubstanceDefinitionRepresentation extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1738,14 +1697,7 @@ class SubstanceDefinitionRepresentation extends BackboneElement {
       json['type'] = type!.toJson();
     }
 
-    if (representation != null) {
-      final fieldJson3 = representation!.toJson();
-      json['representation'] = fieldJson3['value'];
-      if (fieldJson3['_value'] != null) {
-        json['_representation'] = fieldJson3['_value'];
-      }
-    }
-
+    addField('representation', representation);
     if (format != null) {
       json['format'] = format!.toJson();
     }
@@ -1940,10 +1892,16 @@ class SubstanceDefinitionCode extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1961,14 +1919,7 @@ class SubstanceDefinitionCode extends BackboneElement {
       json['status'] = status!.toJson();
     }
 
-    if (statusDate != null) {
-      final fieldJson4 = statusDate!.toJson();
-      json['statusDate'] = fieldJson4['value'];
-      if (fieldJson4['_value'] != null) {
-        json['_statusDate'] = fieldJson4['_value'];
-      }
-    }
-
+    addField('statusDate', statusDate);
     if (note != null && note!.isNotEmpty) {
       json['note'] = note!.map((e) => e.toJson()).toList();
     }
@@ -2245,10 +2196,16 @@ class SubstanceDefinitionName extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -2258,12 +2215,7 @@ class SubstanceDefinitionName extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    final fieldJson2 = name.toJson();
-    json['name'] = fieldJson2['value'];
-    if (fieldJson2['_value'] != null) {
-      json['_name'] = fieldJson2['_value'];
-    }
-
+    addField('name', name);
     if (type != null) {
       json['type'] = type!.toJson();
     }
@@ -2272,14 +2224,7 @@ class SubstanceDefinitionName extends BackboneElement {
       json['status'] = status!.toJson();
     }
 
-    if (preferred != null) {
-      final fieldJson5 = preferred!.toJson();
-      json['preferred'] = fieldJson5['value'];
-      if (fieldJson5['_value'] != null) {
-        json['_preferred'] = fieldJson5['_value'];
-      }
-    }
-
+    addField('preferred', preferred);
     if (language != null && language!.isNotEmpty) {
       json['language'] = language!.map((e) => e.toJson()).toList();
     }
@@ -2480,10 +2425,16 @@ class SubstanceDefinitionOfficial extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -2501,14 +2452,7 @@ class SubstanceDefinitionOfficial extends BackboneElement {
       json['status'] = status!.toJson();
     }
 
-    if (date != null) {
-      final fieldJson4 = date!.toJson();
-      json['date'] = fieldJson4['value'];
-      if (fieldJson4['_value'] != null) {
-        json['_date'] = fieldJson4['_value'];
-      }
-    }
-
+    addField('date', date);
     return json;
   }
 
@@ -2753,10 +2697,16 @@ class SubstanceDefinitionRelationship extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -2778,14 +2728,7 @@ class SubstanceDefinitionRelationship extends BackboneElement {
 
     json['type'] = type.toJson();
 
-    if (isDefining != null) {
-      final fieldJson5 = isDefining!.toJson();
-      json['isDefining'] = fieldJson5['value'];
-      if (fieldJson5['_value'] != null) {
-        json['_isDefining'] = fieldJson5['_value'];
-      }
-    }
-
+    addField('isDefining', isDefining);
     if (amountQuantity != null) {
       json['amountQuantity'] = amountQuantity!.toJson();
     }
@@ -2794,14 +2737,7 @@ class SubstanceDefinitionRelationship extends BackboneElement {
       json['amountRatio'] = amountRatio!.toJson();
     }
 
-    if (amountString != null) {
-      final fieldJson8 = amountString!.toJson();
-      json['amountString'] = fieldJson8['value'];
-      if (fieldJson8['_value'] != null) {
-        json['_amountString'] = fieldJson8['_value'];
-      }
-    }
-
+    addField('amountString', amountString);
     if (ratioHighLimitAmount != null) {
       json['ratioHighLimitAmount'] = ratioHighLimitAmount!.toJson();
     }
@@ -3011,10 +2947,16 @@ class SubstanceDefinitionSourceMaterial extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }

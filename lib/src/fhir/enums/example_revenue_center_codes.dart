@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// This value set includes sample Revenue Center codes.
-class ExampleRevenueCenterCodes {
+class ExampleRevenueCenterCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ExampleRevenueCenterCodes._(this.fhirCode, {this.element});
+  ExampleRevenueCenterCodes._(super.value, [super.element]);
 
   /// Factory constructor to create [ExampleRevenueCenterCodes] from JSON.
   factory ExampleRevenueCenterCodes.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class ExampleRevenueCenterCodes {
     if (value == null && element != null) {
       return ExampleRevenueCenterCodes.elementOnly.withElement(element);
     }
-    return ExampleRevenueCenterCodes._(value!, element: element);
+    return ExampleRevenueCenterCodes._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ExampleRevenueCenterCodes values
   /// value0370
   static final ExampleRevenueCenterCodes value0370 =
       ExampleRevenueCenterCodes._(
@@ -97,18 +90,63 @@ class ExampleRevenueCenterCodes {
     value0010,
   ];
 
+  /// Clones the current instance
+  @override
+  ExampleRevenueCenterCodes clone() =>
+      ExampleRevenueCenterCodes._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  ExampleRevenueCenterCodes setElement(String name, dynamic elementValue) {
+    return ExampleRevenueCenterCodes._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   ExampleRevenueCenterCodes withElement(Element? newElement) {
-    return ExampleRevenueCenterCodes._(fhirCode, element: newElement);
+    return ExampleRevenueCenterCodes._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  ExampleRevenueCenterCodes copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return ExampleRevenueCenterCodes._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

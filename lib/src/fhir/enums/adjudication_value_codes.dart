@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// This value set includes a smattering of Adjudication Value codes which includes codes to indicate the amounts eligible under the plan, the amount of benefit, copays etc.
-class AdjudicationValueCodes {
+class AdjudicationValueCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  AdjudicationValueCodes._(this.fhirCode, {this.element});
+  AdjudicationValueCodes._(super.value, [super.element]);
 
   /// Factory constructor to create [AdjudicationValueCodes] from JSON.
   factory AdjudicationValueCodes.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class AdjudicationValueCodes {
     if (value == null && element != null) {
       return AdjudicationValueCodes.elementOnly.withElement(element);
     }
-    return AdjudicationValueCodes._(value!, element: element);
+    return AdjudicationValueCodes._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// AdjudicationValueCodes values
   /// submitted
   static final AdjudicationValueCodes submitted = AdjudicationValueCodes._(
     'submitted',
@@ -82,18 +75,63 @@ class AdjudicationValueCodes {
     benefit,
   ];
 
+  /// Clones the current instance
+  @override
+  AdjudicationValueCodes clone() =>
+      AdjudicationValueCodes._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  AdjudicationValueCodes setElement(String name, dynamic elementValue) {
+    return AdjudicationValueCodes._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   AdjudicationValueCodes withElement(Element? newElement) {
-    return AdjudicationValueCodes._(fhirCode, element: newElement);
+    return AdjudicationValueCodes._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  AdjudicationValueCodes copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return AdjudicationValueCodes._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

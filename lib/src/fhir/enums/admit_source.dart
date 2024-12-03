@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// This value set defines a set of codes that can be used to indicate from where the patient came in.
-class AdmitSource {
+class AdmitSource extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  AdmitSource._(this.fhirCode, {this.element});
+  AdmitSource._(super.value, [super.element]);
 
   /// Factory constructor to create [AdmitSource] from JSON.
   factory AdmitSource.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class AdmitSource {
     if (value == null && element != null) {
       return AdmitSource.elementOnly.withElement(element);
     }
-    return AdmitSource._(value!, element: element);
+    return AdmitSource._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// AdmitSource values
   /// hosp_trans
   static final AdmitSource hosp_trans = AdmitSource._(
     'hosp-trans',
@@ -93,18 +86,62 @@ class AdmitSource {
     other,
   ];
 
+  /// Clones the current instance
+  @override
+  AdmitSource clone() => AdmitSource._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  AdmitSource setElement(String name, dynamic elementValue) {
+    return AdmitSource._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   AdmitSource withElement(Element? newElement) {
-    return AdmitSource._(fhirCode, element: newElement);
+    return AdmitSource._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  AdmitSource copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return AdmitSource._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

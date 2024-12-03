@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Type if a sequence -- DNA, RNA, or amino acid sequence.
-class SequenceType {
+class SequenceType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  SequenceType._(this.fhirCode, {this.element});
+  SequenceType._(super.value, [super.element]);
 
   /// Factory constructor to create [SequenceType] from JSON.
   factory SequenceType.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class SequenceType {
     if (value == null && element != null) {
       return SequenceType.elementOnly.withElement(element);
     }
-    return SequenceType._(value!, element: element);
+    return SequenceType._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// SequenceType values
   /// aa
   static final SequenceType aa = SequenceType._(
     'aa',
@@ -51,18 +44,62 @@ class SequenceType {
     rna,
   ];
 
+  /// Clones the current instance
+  @override
+  SequenceType clone() => SequenceType._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  SequenceType setElement(String name, dynamic elementValue) {
+    return SequenceType._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   SequenceType withElement(Element? newElement) {
-    return SequenceType._(fhirCode, element: newElement);
+    return SequenceType._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  SequenceType copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return SequenceType._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

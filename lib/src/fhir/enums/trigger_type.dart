@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The type of trigger.
-class TriggerType {
+class TriggerType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  TriggerType._(this.fhirCode, {this.element});
+  TriggerType._(super.value, [super.element]);
 
   /// Factory constructor to create [TriggerType] from JSON.
   factory TriggerType.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class TriggerType {
     if (value == null && element != null) {
       return TriggerType.elementOnly.withElement(element);
     }
-    return TriggerType._(value!, element: element);
+    return TriggerType._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// TriggerType values
   /// named_event
   static final TriggerType named_event = TriggerType._(
     'named-event',
@@ -81,18 +74,62 @@ class TriggerType {
     data_access_ended,
   ];
 
+  /// Clones the current instance
+  @override
+  TriggerType clone() => TriggerType._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  TriggerType setElement(String name, dynamic elementValue) {
+    return TriggerType._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   TriggerType withElement(Element? newElement) {
-    return TriggerType._(fhirCode, element: newElement);
+    return TriggerType._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  TriggerType copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return TriggerType._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

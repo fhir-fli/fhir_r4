@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Artifact Relationship Type
-class ArtifactRelationshipType {
+class ArtifactRelationshipType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ArtifactRelationshipType._(this.fhirCode, {this.element});
+  ArtifactRelationshipType._(super.value, [super.element]);
 
   /// Factory constructor to create [ArtifactRelationshipType] from JSON.
   factory ArtifactRelationshipType.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class ArtifactRelationshipType {
     if (value == null && element != null) {
       return ArtifactRelationshipType.elementOnly.withElement(element);
     }
-    return ArtifactRelationshipType._(value!, element: element);
+    return ArtifactRelationshipType._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ArtifactRelationshipType values
   /// replaces
   static final ArtifactRelationshipType replaces = ArtifactRelationshipType._(
     'replaces',
@@ -189,18 +182,63 @@ class ArtifactRelationshipType {
     correction_in,
   ];
 
+  /// Clones the current instance
+  @override
+  ArtifactRelationshipType clone() =>
+      ArtifactRelationshipType._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  ArtifactRelationshipType setElement(String name, dynamic elementValue) {
+    return ArtifactRelationshipType._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   ArtifactRelationshipType withElement(Element? newElement) {
-    return ArtifactRelationshipType._(fhirCode, element: newElement);
+    return ArtifactRelationshipType._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  ArtifactRelationshipType copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return ArtifactRelationshipType._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

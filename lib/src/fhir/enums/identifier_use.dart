@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Identifies the purpose for this identifier, if known .
-class IdentifierUse {
+class IdentifierUse extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  IdentifierUse._(this.fhirCode, {this.element});
+  IdentifierUse._(super.value, [super.element]);
 
   /// Factory constructor to create [IdentifierUse] from JSON.
   factory IdentifierUse.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class IdentifierUse {
     if (value == null && element != null) {
       return IdentifierUse.elementOnly.withElement(element);
     }
-    return IdentifierUse._(value!, element: element);
+    return IdentifierUse._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// IdentifierUse values
   /// usual
   static final IdentifierUse usual = IdentifierUse._(
     'usual',
@@ -63,18 +56,62 @@ class IdentifierUse {
     old,
   ];
 
+  /// Clones the current instance
+  @override
+  IdentifierUse clone() => IdentifierUse._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  IdentifierUse setElement(String name, dynamic elementValue) {
+    return IdentifierUse._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   IdentifierUse withElement(Element? newElement) {
-    return IdentifierUse._(fhirCode, element: newElement);
+    return IdentifierUse._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  IdentifierUse copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return IdentifierUse._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

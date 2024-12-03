@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Indicates the progression of a study subject through a study.
-class ResearchSubjectStatus {
+class ResearchSubjectStatus extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ResearchSubjectStatus._(this.fhirCode, {this.element});
+  ResearchSubjectStatus._(super.value, [super.element]);
 
   /// Factory constructor to create [ResearchSubjectStatus] from JSON.
   factory ResearchSubjectStatus.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class ResearchSubjectStatus {
     if (value == null && element != null) {
       return ResearchSubjectStatus.elementOnly.withElement(element);
     }
-    return ResearchSubjectStatus._(value!, element: element);
+    return ResearchSubjectStatus._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ResearchSubjectStatus values
   /// candidate
   static final ResearchSubjectStatus candidate = ResearchSubjectStatus._(
     'candidate',
@@ -114,18 +107,63 @@ class ResearchSubjectStatus {
     withdrawn,
   ];
 
+  /// Clones the current instance
+  @override
+  ResearchSubjectStatus clone() =>
+      ResearchSubjectStatus._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  ResearchSubjectStatus setElement(String name, dynamic elementValue) {
+    return ResearchSubjectStatus._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   ResearchSubjectStatus withElement(Element? newElement) {
-    return ResearchSubjectStatus._(fhirCode, element: newElement);
+    return ResearchSubjectStatus._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  ResearchSubjectStatus copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return ResearchSubjectStatus._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

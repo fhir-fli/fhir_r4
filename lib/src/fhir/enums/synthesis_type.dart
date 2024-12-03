@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Types of combining results from a body of evidence (eg. summary data meta-analysis).
-class SynthesisType {
+class SynthesisType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  SynthesisType._(this.fhirCode, {this.element});
+  SynthesisType._(super.value, [super.element]);
 
   /// Factory constructor to create [SynthesisType] from JSON.
   factory SynthesisType.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class SynthesisType {
     if (value == null && element != null) {
       return SynthesisType.elementOnly.withElement(element);
     }
-    return SynthesisType._(value!, element: element);
+    return SynthesisType._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// SynthesisType values
   /// std_MA
   static final SynthesisType std_MA = SynthesisType._(
     'std-MA',
@@ -75,18 +68,62 @@ class SynthesisType {
     NotApplicable,
   ];
 
+  /// Clones the current instance
+  @override
+  SynthesisType clone() => SynthesisType._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  SynthesisType setElement(String name, dynamic elementValue) {
+    return SynthesisType._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   SynthesisType withElement(Element? newElement) {
-    return SynthesisType._(fhirCode, element: newElement);
+    return SynthesisType._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  SynthesisType copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return SynthesisType._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

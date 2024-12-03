@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// This value set defines the set of codes that can be used to indicate the marital status of a person.
-class MaritalStatusCodes {
+class MaritalStatusCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  MaritalStatusCodes._(this.fhirCode, {this.element});
+  MaritalStatusCodes._(super.value, [super.element]);
 
   /// Factory constructor to create [MaritalStatusCodes] from JSON.
   factory MaritalStatusCodes.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class MaritalStatusCodes {
     if (value == null && element != null) {
       return MaritalStatusCodes.elementOnly.withElement(element);
     }
-    return MaritalStatusCodes._(value!, element: element);
+    return MaritalStatusCodes._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// MaritalStatusCodes values
   /// UNK
   static final MaritalStatusCodes UNK = MaritalStatusCodes._(
     'UNK',
@@ -39,18 +32,63 @@ class MaritalStatusCodes {
     UNK,
   ];
 
+  /// Clones the current instance
+  @override
+  MaritalStatusCodes clone() =>
+      MaritalStatusCodes._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  MaritalStatusCodes setElement(String name, dynamic elementValue) {
+    return MaritalStatusCodes._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   MaritalStatusCodes withElement(Element? newElement) {
-    return MaritalStatusCodes._(fhirCode, element: newElement);
+    return MaritalStatusCodes._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  MaritalStatusCodes copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return MaritalStatusCodes._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

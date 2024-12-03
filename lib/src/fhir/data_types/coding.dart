@@ -144,54 +144,25 @@ class Coding extends DataType {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
 
-    if (system != null) {
-      final fieldJson1 = system!.toJson();
-      json['system'] = fieldJson1['value'];
-      if (fieldJson1['_value'] != null) {
-        json['_system'] = fieldJson1['_value'];
-      }
-    }
-
-    if (version != null) {
-      final fieldJson2 = version!.toJson();
-      json['version'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_version'] = fieldJson2['_value'];
-      }
-    }
-
-    if (code != null) {
-      final fieldJson3 = code!.toJson();
-      json['code'] = fieldJson3['value'];
-      if (fieldJson3['_value'] != null) {
-        json['_code'] = fieldJson3['_value'];
-      }
-    }
-
-    if (display != null) {
-      final fieldJson4 = display!.toJson();
-      json['display'] = fieldJson4['value'];
-      if (fieldJson4['_value'] != null) {
-        json['_display'] = fieldJson4['_value'];
-      }
-    }
-
-    if (userSelected != null) {
-      final fieldJson5 = userSelected!.toJson();
-      json['userSelected'] = fieldJson5['value'];
-      if (fieldJson5['_value'] != null) {
-        json['_userSelected'] = fieldJson5['_value'];
-      }
-    }
-
+    addField('system', system);
+    addField('version', version);
+    addField('code', code);
+    addField('display', display);
+    addField('userSelected', userSelected);
     return json;
   }
 

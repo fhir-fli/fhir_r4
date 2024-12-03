@@ -360,31 +360,23 @@ class GuidanceResponse extends DomainResource {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    json['resourceType'] = resourceType.toJson();
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    json['resourceType'] = resourceType.toJson();
+    addField('id', id);
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    if (implicitRules != null) {
-      final fieldJson1 = implicitRules!.toJson();
-      json['implicitRules'] = fieldJson1['value'];
-      if (fieldJson1['_value'] != null) {
-        json['_implicitRules'] = fieldJson1['_value'];
-      }
-    }
-
-    if (language != null) {
-      final fieldJson2 = language!.toJson();
-      json['language'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_language'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('implicitRules', implicitRules);
+    addField('language', language);
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -410,32 +402,13 @@ class GuidanceResponse extends DomainResource {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
 
-    if (moduleUri != null) {
-      final fieldJson9 = moduleUri!.toJson();
-      json['moduleUri'] = fieldJson9['value'];
-      if (fieldJson9['_value'] != null) {
-        json['_moduleUri'] = fieldJson9['_value'];
-      }
-    }
-
-    if (moduleCanonical != null) {
-      final fieldJson10 = moduleCanonical!.toJson();
-      json['moduleCanonical'] = fieldJson10['value'];
-      if (fieldJson10['_value'] != null) {
-        json['_moduleCanonical'] = fieldJson10['_value'];
-      }
-    }
-
+    addField('moduleUri', moduleUri);
+    addField('moduleCanonical', moduleCanonical);
     if (moduleCodeableConcept != null) {
       json['moduleCodeableConcept'] = moduleCodeableConcept!.toJson();
     }
 
-    final fieldJson12 = status.toJson();
-    json['status'] = fieldJson12['value'];
-    if (fieldJson12['_value'] != null) {
-      json['_status'] = fieldJson12['_value'];
-    }
-
+    addField('status', status);
     if (subject != null) {
       json['subject'] = subject!.toJson();
     }
@@ -444,14 +417,7 @@ class GuidanceResponse extends DomainResource {
       json['encounter'] = encounter!.toJson();
     }
 
-    if (occurrenceDateTime != null) {
-      final fieldJson15 = occurrenceDateTime!.toJson();
-      json['occurrenceDateTime'] = fieldJson15['value'];
-      if (fieldJson15['_value'] != null) {
-        json['_occurrenceDateTime'] = fieldJson15['_value'];
-      }
-    }
-
+    addField('occurrenceDateTime', occurrenceDateTime);
     if (performer != null) {
       json['performer'] = performer!.toJson();
     }

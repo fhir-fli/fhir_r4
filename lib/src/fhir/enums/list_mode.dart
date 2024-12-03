@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The processing mode that applies to this list.
-class ListMode {
+class ListMode extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ListMode._(this.fhirCode, {this.element});
+  ListMode._(super.value, [super.element]);
 
   /// Factory constructor to create [ListMode] from JSON.
   factory ListMode.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class ListMode {
     if (value == null && element != null) {
       return ListMode.elementOnly.withElement(element);
     }
-    return ListMode._(value!, element: element);
+    return ListMode._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ListMode values
   /// working
   static final ListMode working = ListMode._(
     'working',
@@ -51,18 +44,62 @@ class ListMode {
     changes,
   ];
 
+  /// Clones the current instance
+  @override
+  ListMode clone() => ListMode._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  ListMode setElement(String name, dynamic elementValue) {
+    return ListMode._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   ListMode withElement(Element? newElement) {
-    return ListMode._(fhirCode, element: newElement);
+    return ListMode._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  ListMode copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return ListMode._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

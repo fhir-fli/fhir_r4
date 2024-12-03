@@ -473,31 +473,23 @@ class ChargeItem extends DomainResource {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    json['resourceType'] = resourceType.toJson();
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    json['resourceType'] = resourceType.toJson();
+    addField('id', id);
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    if (implicitRules != null) {
-      final fieldJson1 = implicitRules!.toJson();
-      json['implicitRules'] = fieldJson1['value'];
-      if (fieldJson1['_value'] != null) {
-        json['_implicitRules'] = fieldJson1['_value'];
-      }
-    }
-
-    if (language != null) {
-      final fieldJson2 = language!.toJson();
-      json['language'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_language'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('implicitRules', implicitRules);
+    addField('language', language);
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -520,28 +512,23 @@ class ChargeItem extends DomainResource {
     }
 
     if (definitionUri != null && definitionUri!.isNotEmpty) {
-      final fieldJson8 = definitionUri!.map((e) => e.toJson()).toList();
-      json['definitionUri'] = fieldJson8.map((e) => e['value']).toList();
-      if (fieldJson8.any((e) => e['_value'] != null)) {
-        json['_definitionUri'] = fieldJson8.map((e) => e['_value']).toList();
+      final fieldJson0 = definitionUri!.map((e) => e.toJson()).toList();
+      json['definitionUri'] = fieldJson0.map((e) => e['value']).toList();
+      if (fieldJson0.any((e) => e['_value'] != null)) {
+        json['_definitionUri'] = fieldJson0.map((e) => e['_value']).toList();
       }
     }
 
     if (definitionCanonical != null && definitionCanonical!.isNotEmpty) {
-      final fieldJson9 = definitionCanonical!.map((e) => e.toJson()).toList();
-      json['definitionCanonical'] = fieldJson9.map((e) => e['value']).toList();
-      if (fieldJson9.any((e) => e['_value'] != null)) {
+      final fieldJson1 = definitionCanonical!.map((e) => e.toJson()).toList();
+      json['definitionCanonical'] = fieldJson1.map((e) => e['value']).toList();
+      if (fieldJson1.any((e) => e['_value'] != null)) {
         json['_definitionCanonical'] =
-            fieldJson9.map((e) => e['_value']).toList();
+            fieldJson1.map((e) => e['_value']).toList();
       }
     }
 
-    final fieldJson10 = status.toJson();
-    json['status'] = fieldJson10['value'];
-    if (fieldJson10['_value'] != null) {
-      json['_status'] = fieldJson10['_value'];
-    }
-
+    addField('status', status);
     if (partOf != null && partOf!.isNotEmpty) {
       json['partOf'] = partOf!.map((e) => e.toJson()).toList();
     }
@@ -554,14 +541,7 @@ class ChargeItem extends DomainResource {
       json['context'] = context!.toJson();
     }
 
-    if (occurrenceDateTime != null) {
-      final fieldJson15 = occurrenceDateTime!.toJson();
-      json['occurrenceDateTime'] = fieldJson15['value'];
-      if (fieldJson15['_value'] != null) {
-        json['_occurrenceDateTime'] = fieldJson15['_value'];
-      }
-    }
-
+    addField('occurrenceDateTime', occurrenceDateTime);
     if (occurrencePeriod != null) {
       json['occurrencePeriod'] = occurrencePeriod!.toJson();
     }
@@ -594,38 +574,17 @@ class ChargeItem extends DomainResource {
       json['bodysite'] = bodysite!.map((e) => e.toJson()).toList();
     }
 
-    if (factorOverride != null) {
-      final fieldJson24 = factorOverride!.toJson();
-      json['factorOverride'] = fieldJson24['value'];
-      if (fieldJson24['_value'] != null) {
-        json['_factorOverride'] = fieldJson24['_value'];
-      }
-    }
-
+    addField('factorOverride', factorOverride);
     if (priceOverride != null) {
       json['priceOverride'] = priceOverride!.toJson();
     }
 
-    if (overrideReason != null) {
-      final fieldJson26 = overrideReason!.toJson();
-      json['overrideReason'] = fieldJson26['value'];
-      if (fieldJson26['_value'] != null) {
-        json['_overrideReason'] = fieldJson26['_value'];
-      }
-    }
-
+    addField('overrideReason', overrideReason);
     if (enterer != null) {
       json['enterer'] = enterer!.toJson();
     }
 
-    if (enteredDate != null) {
-      final fieldJson28 = enteredDate!.toJson();
-      json['enteredDate'] = fieldJson28['value'];
-      if (fieldJson28['_value'] != null) {
-        json['_enteredDate'] = fieldJson28['_value'];
-      }
-    }
-
+    addField('enteredDate', enteredDate);
     if (reason != null && reason!.isNotEmpty) {
       json['reason'] = reason!.map((e) => e.toJson()).toList();
     }
@@ -865,10 +824,16 @@ class ChargeItemPerformer extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }

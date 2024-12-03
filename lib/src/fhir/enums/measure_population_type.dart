@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The type of population.
-class MeasurePopulationType {
+class MeasurePopulationType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  MeasurePopulationType._(this.fhirCode, {this.element});
+  MeasurePopulationType._(super.value, [super.element]);
 
   /// Factory constructor to create [MeasurePopulationType] from JSON.
   factory MeasurePopulationType.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class MeasurePopulationType {
     if (value == null && element != null) {
       return MeasurePopulationType.elementOnly.withElement(element);
     }
-    return MeasurePopulationType._(value!, element: element);
+    return MeasurePopulationType._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// MeasurePopulationType values
   /// initial_population
   static final MeasurePopulationType initial_population =
       MeasurePopulationType._(
@@ -94,18 +87,63 @@ class MeasurePopulationType {
     measure_observation,
   ];
 
+  /// Clones the current instance
+  @override
+  MeasurePopulationType clone() =>
+      MeasurePopulationType._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  MeasurePopulationType setElement(String name, dynamic elementValue) {
+    return MeasurePopulationType._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   MeasurePopulationType withElement(Element? newElement) {
-    return MeasurePopulationType._(fhirCode, element: newElement);
+    return MeasurePopulationType._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  MeasurePopulationType copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return MeasurePopulationType._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

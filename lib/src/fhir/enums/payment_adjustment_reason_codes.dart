@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// This value set includes smattering of Payment Adjustment Reason codes.
-class PaymentAdjustmentReasonCodes {
+class PaymentAdjustmentReasonCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  PaymentAdjustmentReasonCodes._(this.fhirCode, {this.element});
+  PaymentAdjustmentReasonCodes._(super.value, [super.element]);
 
   /// Factory constructor to create [PaymentAdjustmentReasonCodes] from JSON.
   factory PaymentAdjustmentReasonCodes.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class PaymentAdjustmentReasonCodes {
     if (value == null && element != null) {
       return PaymentAdjustmentReasonCodes.elementOnly.withElement(element);
     }
-    return PaymentAdjustmentReasonCodes._(value!, element: element);
+    return PaymentAdjustmentReasonCodes._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// PaymentAdjustmentReasonCodes values
   /// a001
   static final PaymentAdjustmentReasonCodes a001 =
       PaymentAdjustmentReasonCodes._(
@@ -48,18 +41,63 @@ class PaymentAdjustmentReasonCodes {
     a002,
   ];
 
+  /// Clones the current instance
+  @override
+  PaymentAdjustmentReasonCodes clone() =>
+      PaymentAdjustmentReasonCodes._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  PaymentAdjustmentReasonCodes setElement(String name, dynamic elementValue) {
+    return PaymentAdjustmentReasonCodes._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   PaymentAdjustmentReasonCodes withElement(Element? newElement) {
-    return PaymentAdjustmentReasonCodes._(fhirCode, element: newElement);
+    return PaymentAdjustmentReasonCodes._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  PaymentAdjustmentReasonCodes copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return PaymentAdjustmentReasonCodes._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

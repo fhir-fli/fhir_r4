@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The Participation status of an appointment.
-class ParticipationStatus {
+class ParticipationStatus extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ParticipationStatus._(this.fhirCode, {this.element});
+  ParticipationStatus._(super.value, [super.element]);
 
   /// Factory constructor to create [ParticipationStatus] from JSON.
   factory ParticipationStatus.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class ParticipationStatus {
     if (value == null && element != null) {
       return ParticipationStatus.elementOnly.withElement(element);
     }
-    return ParticipationStatus._(value!, element: element);
+    return ParticipationStatus._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ParticipationStatus values
   /// accepted
   static final ParticipationStatus accepted = ParticipationStatus._(
     'accepted',
@@ -57,18 +50,63 @@ class ParticipationStatus {
     needs_action,
   ];
 
+  /// Clones the current instance
+  @override
+  ParticipationStatus clone() =>
+      ParticipationStatus._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  ParticipationStatus setElement(String name, dynamic elementValue) {
+    return ParticipationStatus._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   ParticipationStatus withElement(Element? newElement) {
-    return ParticipationStatus._(fhirCode, element: newElement);
+    return ParticipationStatus._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  ParticipationStatus copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return ParticipationStatus._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

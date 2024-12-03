@@ -867,31 +867,23 @@ class ActivityDefinition extends DomainResource {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    json['resourceType'] = resourceType.toJson();
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    json['resourceType'] = resourceType.toJson();
+    addField('id', id);
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    if (implicitRules != null) {
-      final fieldJson1 = implicitRules!.toJson();
-      json['implicitRules'] = fieldJson1['value'];
-      if (fieldJson1['_value'] != null) {
-        json['_implicitRules'] = fieldJson1['_value'];
-      }
-    }
-
-    if (language != null) {
-      final fieldJson2 = language!.toJson();
-      json['language'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_language'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('implicitRules', implicitRules);
+    addField('language', language);
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -909,64 +901,17 @@ class ActivityDefinition extends DomainResource {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    if (url != null) {
-      final fieldJson7 = url!.toJson();
-      json['url'] = fieldJson7['value'];
-      if (fieldJson7['_value'] != null) {
-        json['_url'] = fieldJson7['_value'];
-      }
-    }
-
+    addField('url', url);
     if (identifier != null && identifier!.isNotEmpty) {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
 
-    if (version != null) {
-      final fieldJson9 = version!.toJson();
-      json['version'] = fieldJson9['value'];
-      if (fieldJson9['_value'] != null) {
-        json['_version'] = fieldJson9['_value'];
-      }
-    }
-
-    if (name != null) {
-      final fieldJson10 = name!.toJson();
-      json['name'] = fieldJson10['value'];
-      if (fieldJson10['_value'] != null) {
-        json['_name'] = fieldJson10['_value'];
-      }
-    }
-
-    if (title != null) {
-      final fieldJson11 = title!.toJson();
-      json['title'] = fieldJson11['value'];
-      if (fieldJson11['_value'] != null) {
-        json['_title'] = fieldJson11['_value'];
-      }
-    }
-
-    if (subtitle != null) {
-      final fieldJson12 = subtitle!.toJson();
-      json['subtitle'] = fieldJson12['value'];
-      if (fieldJson12['_value'] != null) {
-        json['_subtitle'] = fieldJson12['_value'];
-      }
-    }
-
-    final fieldJson13 = status.toJson();
-    json['status'] = fieldJson13['value'];
-    if (fieldJson13['_value'] != null) {
-      json['_status'] = fieldJson13['_value'];
-    }
-
-    if (experimental != null) {
-      final fieldJson14 = experimental!.toJson();
-      json['experimental'] = fieldJson14['value'];
-      if (fieldJson14['_value'] != null) {
-        json['_experimental'] = fieldJson14['_value'];
-      }
-    }
-
+    addField('version', version);
+    addField('name', name);
+    addField('title', title);
+    addField('subtitle', subtitle);
+    addField('status', status);
+    addField('experimental', experimental);
     if (subjectCodeableConcept != null) {
       json['subjectCodeableConcept'] = subjectCodeableConcept!.toJson();
     }
@@ -975,42 +920,14 @@ class ActivityDefinition extends DomainResource {
       json['subjectReference'] = subjectReference!.toJson();
     }
 
-    if (subjectCanonical != null) {
-      final fieldJson17 = subjectCanonical!.toJson();
-      json['subjectCanonical'] = fieldJson17['value'];
-      if (fieldJson17['_value'] != null) {
-        json['_subjectCanonical'] = fieldJson17['_value'];
-      }
-    }
-
-    if (date != null) {
-      final fieldJson18 = date!.toJson();
-      json['date'] = fieldJson18['value'];
-      if (fieldJson18['_value'] != null) {
-        json['_date'] = fieldJson18['_value'];
-      }
-    }
-
-    if (publisher != null) {
-      final fieldJson19 = publisher!.toJson();
-      json['publisher'] = fieldJson19['value'];
-      if (fieldJson19['_value'] != null) {
-        json['_publisher'] = fieldJson19['_value'];
-      }
-    }
-
+    addField('subjectCanonical', subjectCanonical);
+    addField('date', date);
+    addField('publisher', publisher);
     if (contact != null && contact!.isNotEmpty) {
       json['contact'] = contact!.map((e) => e.toJson()).toList();
     }
 
-    if (description != null) {
-      final fieldJson21 = description!.toJson();
-      json['description'] = fieldJson21['value'];
-      if (fieldJson21['_value'] != null) {
-        json['_description'] = fieldJson21['_value'];
-      }
-    }
-
+    addField('description', description);
     if (useContext != null && useContext!.isNotEmpty) {
       json['useContext'] = useContext!.map((e) => e.toJson()).toList();
     }
@@ -1019,46 +936,11 @@ class ActivityDefinition extends DomainResource {
       json['jurisdiction'] = jurisdiction!.map((e) => e.toJson()).toList();
     }
 
-    if (purpose != null) {
-      final fieldJson24 = purpose!.toJson();
-      json['purpose'] = fieldJson24['value'];
-      if (fieldJson24['_value'] != null) {
-        json['_purpose'] = fieldJson24['_value'];
-      }
-    }
-
-    if (usage != null) {
-      final fieldJson25 = usage!.toJson();
-      json['usage'] = fieldJson25['value'];
-      if (fieldJson25['_value'] != null) {
-        json['_usage'] = fieldJson25['_value'];
-      }
-    }
-
-    if (copyright != null) {
-      final fieldJson26 = copyright!.toJson();
-      json['copyright'] = fieldJson26['value'];
-      if (fieldJson26['_value'] != null) {
-        json['_copyright'] = fieldJson26['_value'];
-      }
-    }
-
-    if (approvalDate != null) {
-      final fieldJson27 = approvalDate!.toJson();
-      json['approvalDate'] = fieldJson27['value'];
-      if (fieldJson27['_value'] != null) {
-        json['_approvalDate'] = fieldJson27['_value'];
-      }
-    }
-
-    if (lastReviewDate != null) {
-      final fieldJson28 = lastReviewDate!.toJson();
-      json['lastReviewDate'] = fieldJson28['value'];
-      if (fieldJson28['_value'] != null) {
-        json['_lastReviewDate'] = fieldJson28['_value'];
-      }
-    }
-
+    addField('purpose', purpose);
+    addField('usage', usage);
+    addField('copyright', copyright);
+    addField('approvalDate', approvalDate);
+    addField('lastReviewDate', lastReviewDate);
     if (effectivePeriod != null) {
       json['effectivePeriod'] = effectivePeriod!.toJson();
     }
@@ -1089,69 +971,27 @@ class ActivityDefinition extends DomainResource {
     }
 
     if (library_ != null && library_!.isNotEmpty) {
-      final fieldJson36 = library_!.map((e) => e.toJson()).toList();
-      json['library'] = fieldJson36.map((e) => e['value']).toList();
-      if (fieldJson36.any((e) => e['_value'] != null)) {
-        json['_library'] = fieldJson36.map((e) => e['_value']).toList();
+      final fieldJson0 = library_!.map((e) => e.toJson()).toList();
+      json['library'] = fieldJson0.map((e) => e['value']).toList();
+      if (fieldJson0.any((e) => e['_value'] != null)) {
+        json['_library'] = fieldJson0.map((e) => e['_value']).toList();
       }
     }
 
-    if (kind != null) {
-      final fieldJson37 = kind!.toJson();
-      json['kind'] = fieldJson37['value'];
-      if (fieldJson37['_value'] != null) {
-        json['_kind'] = fieldJson37['_value'];
-      }
-    }
-
-    if (profile != null) {
-      final fieldJson38 = profile!.toJson();
-      json['profile'] = fieldJson38['value'];
-      if (fieldJson38['_value'] != null) {
-        json['_profile'] = fieldJson38['_value'];
-      }
-    }
-
+    addField('kind', kind);
+    addField('profile', profile);
     if (code != null) {
       json['code'] = code!.toJson();
     }
 
-    if (intent != null) {
-      final fieldJson40 = intent!.toJson();
-      json['intent'] = fieldJson40['value'];
-      if (fieldJson40['_value'] != null) {
-        json['_intent'] = fieldJson40['_value'];
-      }
-    }
-
-    if (priority != null) {
-      final fieldJson41 = priority!.toJson();
-      json['priority'] = fieldJson41['value'];
-      if (fieldJson41['_value'] != null) {
-        json['_priority'] = fieldJson41['_value'];
-      }
-    }
-
-    if (doNotPerform != null) {
-      final fieldJson42 = doNotPerform!.toJson();
-      json['doNotPerform'] = fieldJson42['value'];
-      if (fieldJson42['_value'] != null) {
-        json['_doNotPerform'] = fieldJson42['_value'];
-      }
-    }
-
+    addField('intent', intent);
+    addField('priority', priority);
+    addField('doNotPerform', doNotPerform);
     if (timingTiming != null) {
       json['timingTiming'] = timingTiming!.toJson();
     }
 
-    if (timingDateTime != null) {
-      final fieldJson44 = timingDateTime!.toJson();
-      json['timingDateTime'] = fieldJson44['value'];
-      if (fieldJson44['_value'] != null) {
-        json['_timingDateTime'] = fieldJson44['_value'];
-      }
-    }
-
+    addField('timingDateTime', timingDateTime);
     if (timingAge != null) {
       json['timingAge'] = timingAge!.toJson();
     }
@@ -1212,14 +1052,7 @@ class ActivityDefinition extends DomainResource {
           observationResultRequirement!.map((e) => e.toJson()).toList();
     }
 
-    if (transform != null) {
-      final fieldJson59 = transform!.toJson();
-      json['transform'] = fieldJson59['value'];
-      if (fieldJson59['_value'] != null) {
-        json['_transform'] = fieldJson59['_value'];
-      }
-    }
-
+    addField('transform', transform);
     if (dynamicValue != null && dynamicValue!.isNotEmpty) {
       json['dynamicValue'] = dynamicValue!.map((e) => e.toJson()).toList();
     }
@@ -1484,10 +1317,16 @@ class ActivityDefinitionParticipant extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1497,12 +1336,7 @@ class ActivityDefinitionParticipant extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    final fieldJson2 = type.toJson();
-    json['type'] = fieldJson2['value'];
-    if (fieldJson2['_value'] != null) {
-      json['_type'] = fieldJson2['_value'];
-    }
-
+    addField('type', type);
     if (role != null) {
       json['role'] = role!.toJson();
     }
@@ -1658,10 +1492,16 @@ class ActivityDefinitionDynamicValue extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1671,12 +1511,7 @@ class ActivityDefinitionDynamicValue extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    final fieldJson2 = path.toJson();
-    json['path'] = fieldJson2['value'];
-    if (fieldJson2['_value'] != null) {
-      json['_path'] = fieldJson2['_value'];
-    }
-
+    addField('path', path);
     json['expression'] = expression.toJson();
 
     return json;

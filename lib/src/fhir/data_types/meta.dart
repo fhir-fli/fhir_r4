@@ -165,43 +165,28 @@ class FhirMeta extends DataType {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
 
-    if (versionId != null) {
-      final fieldJson1 = versionId!.toJson();
-      json['versionId'] = fieldJson1['value'];
-      if (fieldJson1['_value'] != null) {
-        json['_versionId'] = fieldJson1['_value'];
-      }
-    }
-
-    if (lastUpdated != null) {
-      final fieldJson2 = lastUpdated!.toJson();
-      json['lastUpdated'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_lastUpdated'] = fieldJson2['_value'];
-      }
-    }
-
-    if (source != null) {
-      final fieldJson3 = source!.toJson();
-      json['source'] = fieldJson3['value'];
-      if (fieldJson3['_value'] != null) {
-        json['_source'] = fieldJson3['_value'];
-      }
-    }
-
+    addField('versionId', versionId);
+    addField('lastUpdated', lastUpdated);
+    addField('source', source);
     if (profile != null && profile!.isNotEmpty) {
-      final fieldJson4 = profile!.map((e) => e.toJson()).toList();
-      json['profile'] = fieldJson4.map((e) => e['value']).toList();
-      if (fieldJson4.any((e) => e['_value'] != null)) {
-        json['_profile'] = fieldJson4.map((e) => e['_value']).toList();
+      final fieldJson0 = profile!.map((e) => e.toJson()).toList();
+      json['profile'] = fieldJson0.map((e) => e['value']).toList();
+      if (fieldJson0.any((e) => e['_value'] != null)) {
+        json['_profile'] = fieldJson0.map((e) => e['_value']).toList();
       }
     }
 

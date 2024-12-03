@@ -443,31 +443,23 @@ class Appointment extends DomainResource {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    json['resourceType'] = resourceType.toJson();
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    json['resourceType'] = resourceType.toJson();
+    addField('id', id);
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    if (implicitRules != null) {
-      final fieldJson1 = implicitRules!.toJson();
-      json['implicitRules'] = fieldJson1['value'];
-      if (fieldJson1['_value'] != null) {
-        json['_implicitRules'] = fieldJson1['_value'];
-      }
-    }
-
-    if (language != null) {
-      final fieldJson2 = language!.toJson();
-      json['language'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_language'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('implicitRules', implicitRules);
+    addField('language', language);
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -489,12 +481,7 @@ class Appointment extends DomainResource {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
 
-    final fieldJson8 = status.toJson();
-    json['status'] = fieldJson8['value'];
-    if (fieldJson8['_value'] != null) {
-      json['_status'] = fieldJson8['_value'];
-    }
-
+    addField('status', status);
     if (cancelationReason != null) {
       json['cancelationReason'] = cancelationReason!.toJson();
     }
@@ -525,84 +512,30 @@ class Appointment extends DomainResource {
           reasonReference!.map((e) => e.toJson()).toList();
     }
 
-    if (priority != null) {
-      final fieldJson16 = priority!.toJson();
-      json['priority'] = fieldJson16['value'];
-      if (fieldJson16['_value'] != null) {
-        json['_priority'] = fieldJson16['_value'];
-      }
-    }
-
-    if (description != null) {
-      final fieldJson17 = description!.toJson();
-      json['description'] = fieldJson17['value'];
-      if (fieldJson17['_value'] != null) {
-        json['_description'] = fieldJson17['_value'];
-      }
-    }
-
+    addField('priority', priority);
+    addField('description', description);
     if (supportingInformation != null && supportingInformation!.isNotEmpty) {
       json['supportingInformation'] =
           supportingInformation!.map((e) => e.toJson()).toList();
     }
 
-    if (start != null) {
-      final fieldJson19 = start!.toJson();
-      json['start'] = fieldJson19['value'];
-      if (fieldJson19['_value'] != null) {
-        json['_start'] = fieldJson19['_value'];
-      }
-    }
-
-    if (end != null) {
-      final fieldJson20 = end!.toJson();
-      json['end'] = fieldJson20['value'];
-      if (fieldJson20['_value'] != null) {
-        json['_end'] = fieldJson20['_value'];
-      }
-    }
-
-    if (minutesDuration != null) {
-      final fieldJson21 = minutesDuration!.toJson();
-      json['minutesDuration'] = fieldJson21['value'];
-      if (fieldJson21['_value'] != null) {
-        json['_minutesDuration'] = fieldJson21['_value'];
-      }
-    }
-
+    addField('start', start);
+    addField('end', end);
+    addField('minutesDuration', minutesDuration);
     if (slot != null && slot!.isNotEmpty) {
       json['slot'] = slot!.map((e) => e.toJson()).toList();
     }
 
-    if (created != null) {
-      final fieldJson23 = created!.toJson();
-      json['created'] = fieldJson23['value'];
-      if (fieldJson23['_value'] != null) {
-        json['_created'] = fieldJson23['_value'];
-      }
-    }
-
-    if (comment != null) {
-      final fieldJson24 = comment!.toJson();
-      json['comment'] = fieldJson24['value'];
-      if (fieldJson24['_value'] != null) {
-        json['_comment'] = fieldJson24['_value'];
-      }
-    }
-
-    if (patientInstruction != null) {
-      final fieldJson25 = patientInstruction!.toJson();
-      json['patientInstruction'] = fieldJson25['value'];
-      if (fieldJson25['_value'] != null) {
-        json['_patientInstruction'] = fieldJson25['_value'];
-      }
-    }
-
+    addField('created', created);
+    addField('comment', comment);
+    addField('patientInstruction', patientInstruction);
     if (basedOn != null && basedOn!.isNotEmpty) {
       json['basedOn'] = basedOn!.map((e) => e.toJson()).toList();
     }
 
-    json['participant'] = participant.map((e) => e.toJson()).toList();
+    if (participant.isNotEmpty) {
+      json['participant'] = participant.map((e) => e.toJson()).toList();
+    }
 
     if (requestedPeriod != null && requestedPeriod!.isNotEmpty) {
       json['requestedPeriod'] =
@@ -839,10 +772,16 @@ class AppointmentParticipant extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -860,20 +799,8 @@ class AppointmentParticipant extends BackboneElement {
       json['actor'] = actor!.toJson();
     }
 
-    if (required_ != null) {
-      final fieldJson4 = required_!.toJson();
-      json['required'] = fieldJson4['value'];
-      if (fieldJson4['_value'] != null) {
-        json['_required'] = fieldJson4['_value'];
-      }
-    }
-
-    final fieldJson5 = status.toJson();
-    json['status'] = fieldJson5['value'];
-    if (fieldJson5['_value'] != null) {
-      json['_status'] = fieldJson5['_value'];
-    }
-
+    addField('required', required_);
+    addField('status', status);
     if (period != null) {
       json['period'] = period!.toJson();
     }

@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The free/busy status of an appointment.
-class AppointmentStatus {
+class AppointmentStatus extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  AppointmentStatus._(this.fhirCode, {this.element});
+  AppointmentStatus._(super.value, [super.element]);
 
   /// Factory constructor to create [AppointmentStatus] from JSON.
   factory AppointmentStatus.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class AppointmentStatus {
     if (value == null && element != null) {
       return AppointmentStatus.elementOnly.withElement(element);
     }
-    return AppointmentStatus._(value!, element: element);
+    return AppointmentStatus._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// AppointmentStatus values
   /// proposed
   static final AppointmentStatus proposed = AppointmentStatus._(
     'proposed',
@@ -93,18 +86,63 @@ class AppointmentStatus {
     waitlist,
   ];
 
+  /// Clones the current instance
+  @override
+  AppointmentStatus clone() =>
+      AppointmentStatus._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  AppointmentStatus setElement(String name, dynamic elementValue) {
+    return AppointmentStatus._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   AppointmentStatus withElement(Element? newElement) {
-    return AppointmentStatus._(fhirCode, element: newElement);
+    return AppointmentStatus._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  AppointmentStatus copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return AppointmentStatus._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

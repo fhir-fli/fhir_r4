@@ -352,31 +352,23 @@ class RequestGroup extends DomainResource {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    json['resourceType'] = resourceType.toJson();
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    json['resourceType'] = resourceType.toJson();
+    addField('id', id);
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    if (implicitRules != null) {
-      final fieldJson1 = implicitRules!.toJson();
-      json['implicitRules'] = fieldJson1['value'];
-      if (fieldJson1['_value'] != null) {
-        json['_implicitRules'] = fieldJson1['_value'];
-      }
-    }
-
-    if (language != null) {
-      final fieldJson2 = language!.toJson();
-      json['language'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_language'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('implicitRules', implicitRules);
+    addField('language', language);
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -399,20 +391,20 @@ class RequestGroup extends DomainResource {
     }
 
     if (instantiatesCanonical != null && instantiatesCanonical!.isNotEmpty) {
-      final fieldJson8 = instantiatesCanonical!.map((e) => e.toJson()).toList();
+      final fieldJson0 = instantiatesCanonical!.map((e) => e.toJson()).toList();
       json['instantiatesCanonical'] =
-          fieldJson8.map((e) => e['value']).toList();
-      if (fieldJson8.any((e) => e['_value'] != null)) {
+          fieldJson0.map((e) => e['value']).toList();
+      if (fieldJson0.any((e) => e['_value'] != null)) {
         json['_instantiatesCanonical'] =
-            fieldJson8.map((e) => e['_value']).toList();
+            fieldJson0.map((e) => e['_value']).toList();
       }
     }
 
     if (instantiatesUri != null && instantiatesUri!.isNotEmpty) {
-      final fieldJson9 = instantiatesUri!.map((e) => e.toJson()).toList();
-      json['instantiatesUri'] = fieldJson9.map((e) => e['value']).toList();
-      if (fieldJson9.any((e) => e['_value'] != null)) {
-        json['_instantiatesUri'] = fieldJson9.map((e) => e['_value']).toList();
+      final fieldJson1 = instantiatesUri!.map((e) => e.toJson()).toList();
+      json['instantiatesUri'] = fieldJson1.map((e) => e['value']).toList();
+      if (fieldJson1.any((e) => e['_value'] != null)) {
+        json['_instantiatesUri'] = fieldJson1.map((e) => e['_value']).toList();
       }
     }
 
@@ -428,26 +420,9 @@ class RequestGroup extends DomainResource {
       json['groupIdentifier'] = groupIdentifier!.toJson();
     }
 
-    final fieldJson13 = status.toJson();
-    json['status'] = fieldJson13['value'];
-    if (fieldJson13['_value'] != null) {
-      json['_status'] = fieldJson13['_value'];
-    }
-
-    final fieldJson14 = intent.toJson();
-    json['intent'] = fieldJson14['value'];
-    if (fieldJson14['_value'] != null) {
-      json['_intent'] = fieldJson14['_value'];
-    }
-
-    if (priority != null) {
-      final fieldJson15 = priority!.toJson();
-      json['priority'] = fieldJson15['value'];
-      if (fieldJson15['_value'] != null) {
-        json['_priority'] = fieldJson15['_value'];
-      }
-    }
-
+    addField('status', status);
+    addField('intent', intent);
+    addField('priority', priority);
     if (code != null) {
       json['code'] = code!.toJson();
     }
@@ -460,14 +435,7 @@ class RequestGroup extends DomainResource {
       json['encounter'] = encounter!.toJson();
     }
 
-    if (authoredOn != null) {
-      final fieldJson19 = authoredOn!.toJson();
-      json['authoredOn'] = fieldJson19['value'];
-      if (fieldJson19['_value'] != null) {
-        json['_authoredOn'] = fieldJson19['_value'];
-      }
-    }
-
+    addField('authoredOn', authoredOn);
     if (author != null) {
       json['author'] = author!.toJson();
     }
@@ -948,10 +916,16 @@ class RequestGroupAction extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -961,46 +935,11 @@ class RequestGroupAction extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    if (prefix != null) {
-      final fieldJson2 = prefix!.toJson();
-      json['prefix'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_prefix'] = fieldJson2['_value'];
-      }
-    }
-
-    if (title != null) {
-      final fieldJson3 = title!.toJson();
-      json['title'] = fieldJson3['value'];
-      if (fieldJson3['_value'] != null) {
-        json['_title'] = fieldJson3['_value'];
-      }
-    }
-
-    if (description != null) {
-      final fieldJson4 = description!.toJson();
-      json['description'] = fieldJson4['value'];
-      if (fieldJson4['_value'] != null) {
-        json['_description'] = fieldJson4['_value'];
-      }
-    }
-
-    if (textEquivalent != null) {
-      final fieldJson5 = textEquivalent!.toJson();
-      json['textEquivalent'] = fieldJson5['value'];
-      if (fieldJson5['_value'] != null) {
-        json['_textEquivalent'] = fieldJson5['_value'];
-      }
-    }
-
-    if (priority != null) {
-      final fieldJson6 = priority!.toJson();
-      json['priority'] = fieldJson6['value'];
-      if (fieldJson6['_value'] != null) {
-        json['_priority'] = fieldJson6['_value'];
-      }
-    }
-
+    addField('prefix', prefix);
+    addField('title', title);
+    addField('description', description);
+    addField('textEquivalent', textEquivalent);
+    addField('priority', priority);
     if (code != null && code!.isNotEmpty) {
       json['code'] = code!.map((e) => e.toJson()).toList();
     }
@@ -1017,14 +956,7 @@ class RequestGroupAction extends BackboneElement {
       json['relatedAction'] = relatedAction!.map((e) => e.toJson()).toList();
     }
 
-    if (timingDateTime != null) {
-      final fieldJson11 = timingDateTime!.toJson();
-      json['timingDateTime'] = fieldJson11['value'];
-      if (fieldJson11['_value'] != null) {
-        json['_timingDateTime'] = fieldJson11['_value'];
-      }
-    }
-
+    addField('timingDateTime', timingDateTime);
     if (timingAge != null) {
       json['timingAge'] = timingAge!.toJson();
     }
@@ -1053,46 +985,11 @@ class RequestGroupAction extends BackboneElement {
       json['type'] = type!.toJson();
     }
 
-    if (groupingBehavior != null) {
-      final fieldJson19 = groupingBehavior!.toJson();
-      json['groupingBehavior'] = fieldJson19['value'];
-      if (fieldJson19['_value'] != null) {
-        json['_groupingBehavior'] = fieldJson19['_value'];
-      }
-    }
-
-    if (selectionBehavior != null) {
-      final fieldJson20 = selectionBehavior!.toJson();
-      json['selectionBehavior'] = fieldJson20['value'];
-      if (fieldJson20['_value'] != null) {
-        json['_selectionBehavior'] = fieldJson20['_value'];
-      }
-    }
-
-    if (requiredBehavior != null) {
-      final fieldJson21 = requiredBehavior!.toJson();
-      json['requiredBehavior'] = fieldJson21['value'];
-      if (fieldJson21['_value'] != null) {
-        json['_requiredBehavior'] = fieldJson21['_value'];
-      }
-    }
-
-    if (precheckBehavior != null) {
-      final fieldJson22 = precheckBehavior!.toJson();
-      json['precheckBehavior'] = fieldJson22['value'];
-      if (fieldJson22['_value'] != null) {
-        json['_precheckBehavior'] = fieldJson22['_value'];
-      }
-    }
-
-    if (cardinalityBehavior != null) {
-      final fieldJson23 = cardinalityBehavior!.toJson();
-      json['cardinalityBehavior'] = fieldJson23['value'];
-      if (fieldJson23['_value'] != null) {
-        json['_cardinalityBehavior'] = fieldJson23['_value'];
-      }
-    }
-
+    addField('groupingBehavior', groupingBehavior);
+    addField('selectionBehavior', selectionBehavior);
+    addField('requiredBehavior', requiredBehavior);
+    addField('precheckBehavior', precheckBehavior);
+    addField('cardinalityBehavior', cardinalityBehavior);
     if (resource != null) {
       json['resource'] = resource!.toJson();
     }
@@ -1288,10 +1185,16 @@ class RequestGroupCondition extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1301,12 +1204,7 @@ class RequestGroupCondition extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    final fieldJson2 = kind.toJson();
-    json['kind'] = fieldJson2['value'];
-    if (fieldJson2['_value'] != null) {
-      json['_kind'] = fieldJson2['_value'];
-    }
-
+    addField('kind', kind);
     if (expression != null) {
       json['expression'] = expression!.toJson();
     }
@@ -1474,10 +1372,16 @@ class RequestGroupRelatedAction extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1487,18 +1391,8 @@ class RequestGroupRelatedAction extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    final fieldJson2 = actionId.toJson();
-    json['actionId'] = fieldJson2['value'];
-    if (fieldJson2['_value'] != null) {
-      json['_actionId'] = fieldJson2['_value'];
-    }
-
-    final fieldJson3 = relationship.toJson();
-    json['relationship'] = fieldJson3['value'];
-    if (fieldJson3['_value'] != null) {
-      json['_relationship'] = fieldJson3['_value'];
-    }
-
+    addField('actionId', actionId);
+    addField('relationship', relationship);
     if (offsetDuration != null) {
       json['offsetDuration'] = offsetDuration!.toJson();
     }

@@ -395,31 +395,23 @@ class ClinicalImpression extends DomainResource {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    json['resourceType'] = resourceType.toJson();
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    json['resourceType'] = resourceType.toJson();
+    addField('id', id);
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    if (implicitRules != null) {
-      final fieldJson1 = implicitRules!.toJson();
-      json['implicitRules'] = fieldJson1['value'];
-      if (fieldJson1['_value'] != null) {
-        json['_implicitRules'] = fieldJson1['_value'];
-      }
-    }
-
-    if (language != null) {
-      final fieldJson2 = language!.toJson();
-      json['language'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_language'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('implicitRules', implicitRules);
+    addField('language', language);
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -441,12 +433,7 @@ class ClinicalImpression extends DomainResource {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
 
-    final fieldJson8 = status.toJson();
-    json['status'] = fieldJson8['value'];
-    if (fieldJson8['_value'] != null) {
-      json['_status'] = fieldJson8['_value'];
-    }
-
+    addField('status', status);
     if (statusReason != null) {
       json['statusReason'] = statusReason!.toJson();
     }
@@ -455,40 +442,19 @@ class ClinicalImpression extends DomainResource {
       json['code'] = code!.toJson();
     }
 
-    if (description != null) {
-      final fieldJson11 = description!.toJson();
-      json['description'] = fieldJson11['value'];
-      if (fieldJson11['_value'] != null) {
-        json['_description'] = fieldJson11['_value'];
-      }
-    }
-
+    addField('description', description);
     json['subject'] = subject.toJson();
 
     if (encounter != null) {
       json['encounter'] = encounter!.toJson();
     }
 
-    if (effectiveDateTime != null) {
-      final fieldJson14 = effectiveDateTime!.toJson();
-      json['effectiveDateTime'] = fieldJson14['value'];
-      if (fieldJson14['_value'] != null) {
-        json['_effectiveDateTime'] = fieldJson14['_value'];
-      }
-    }
-
+    addField('effectiveDateTime', effectiveDateTime);
     if (effectivePeriod != null) {
       json['effectivePeriod'] = effectivePeriod!.toJson();
     }
 
-    if (date != null) {
-      final fieldJson16 = date!.toJson();
-      json['date'] = fieldJson16['value'];
-      if (fieldJson16['_value'] != null) {
-        json['_date'] = fieldJson16['_value'];
-      }
-    }
-
+    addField('date', date);
     if (assessor != null) {
       json['assessor'] = assessor!.toJson();
     }
@@ -506,21 +472,14 @@ class ClinicalImpression extends DomainResource {
     }
 
     if (protocol != null && protocol!.isNotEmpty) {
-      final fieldJson21 = protocol!.map((e) => e.toJson()).toList();
-      json['protocol'] = fieldJson21.map((e) => e['value']).toList();
-      if (fieldJson21.any((e) => e['_value'] != null)) {
-        json['_protocol'] = fieldJson21.map((e) => e['_value']).toList();
+      final fieldJson0 = protocol!.map((e) => e.toJson()).toList();
+      json['protocol'] = fieldJson0.map((e) => e['value']).toList();
+      if (fieldJson0.any((e) => e['_value'] != null)) {
+        json['_protocol'] = fieldJson0.map((e) => e['_value']).toList();
       }
     }
 
-    if (summary != null) {
-      final fieldJson22 = summary!.toJson();
-      json['summary'] = fieldJson22['value'];
-      if (fieldJson22['_value'] != null) {
-        json['_summary'] = fieldJson22['_value'];
-      }
-    }
-
+    addField('summary', summary);
     if (finding != null && finding!.isNotEmpty) {
       json['finding'] = finding!.map((e) => e.toJson()).toList();
     }
@@ -744,10 +703,16 @@ class ClinicalImpressionInvestigation extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -919,10 +884,16 @@ class ClinicalImpressionFinding extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -940,14 +911,7 @@ class ClinicalImpressionFinding extends BackboneElement {
       json['itemReference'] = itemReference!.toJson();
     }
 
-    if (basis != null) {
-      final fieldJson4 = basis!.toJson();
-      json['basis'] = fieldJson4['value'];
-      if (fieldJson4['_value'] != null) {
-        json['_basis'] = fieldJson4['_value'];
-      }
-    }
-
+    addField('basis', basis);
     return json;
   }
 

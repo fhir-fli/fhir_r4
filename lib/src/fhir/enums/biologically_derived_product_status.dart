@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Biologically Derived Product Status.
-class BiologicallyDerivedProductStatus {
+class BiologicallyDerivedProductStatus extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  BiologicallyDerivedProductStatus._(this.fhirCode, {this.element});
+  BiologicallyDerivedProductStatus._(super.value, [super.element]);
 
   /// Factory constructor to create [BiologicallyDerivedProductStatus] from JSON.
   factory BiologicallyDerivedProductStatus.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class BiologicallyDerivedProductStatus {
     if (value == null && element != null) {
       return BiologicallyDerivedProductStatus.elementOnly.withElement(element);
     }
-    return BiologicallyDerivedProductStatus._(value!, element: element);
+    return BiologicallyDerivedProductStatus._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// BiologicallyDerivedProductStatus values
   /// available
   static final BiologicallyDerivedProductStatus available =
       BiologicallyDerivedProductStatus._(
@@ -48,18 +41,64 @@ class BiologicallyDerivedProductStatus {
     unavailable,
   ];
 
+  /// Clones the current instance
+  @override
+  BiologicallyDerivedProductStatus clone() =>
+      BiologicallyDerivedProductStatus._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  BiologicallyDerivedProductStatus setElement(
+      String name, dynamic elementValue) {
+    return BiologicallyDerivedProductStatus._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   BiologicallyDerivedProductStatus withElement(Element? newElement) {
-    return BiologicallyDerivedProductStatus._(fhirCode, element: newElement);
+    return BiologicallyDerivedProductStatus._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  BiologicallyDerivedProductStatus copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return BiologicallyDerivedProductStatus._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

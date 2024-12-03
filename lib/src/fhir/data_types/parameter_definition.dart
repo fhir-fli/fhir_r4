@@ -161,66 +161,27 @@ class ParameterDefinition extends DataType {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
 
-    if (name != null) {
-      final fieldJson1 = name!.toJson();
-      json['name'] = fieldJson1['value'];
-      if (fieldJson1['_value'] != null) {
-        json['_name'] = fieldJson1['_value'];
-      }
-    }
-
-    final fieldJson2 = use.toJson();
-    json['use'] = fieldJson2['value'];
-    if (fieldJson2['_value'] != null) {
-      json['_use'] = fieldJson2['_value'];
-    }
-
-    if (min != null) {
-      final fieldJson3 = min!.toJson();
-      json['min'] = fieldJson3['value'];
-      if (fieldJson3['_value'] != null) {
-        json['_min'] = fieldJson3['_value'];
-      }
-    }
-
-    if (max != null) {
-      final fieldJson4 = max!.toJson();
-      json['max'] = fieldJson4['value'];
-      if (fieldJson4['_value'] != null) {
-        json['_max'] = fieldJson4['_value'];
-      }
-    }
-
-    if (documentation != null) {
-      final fieldJson5 = documentation!.toJson();
-      json['documentation'] = fieldJson5['value'];
-      if (fieldJson5['_value'] != null) {
-        json['_documentation'] = fieldJson5['_value'];
-      }
-    }
-
-    final fieldJson6 = type.toJson();
-    json['type'] = fieldJson6['value'];
-    if (fieldJson6['_value'] != null) {
-      json['_type'] = fieldJson6['_value'];
-    }
-
-    if (profile != null) {
-      final fieldJson7 = profile!.toJson();
-      json['profile'] = fieldJson7['value'];
-      if (fieldJson7['_value'] != null) {
-        json['_profile'] = fieldJson7['_value'];
-      }
-    }
-
+    addField('name', name);
+    addField('use', use);
+    addField('min', min);
+    addField('max', max);
+    addField('documentation', documentation);
+    addField('type', type);
+    addField('profile', profile);
     return json;
   }
 

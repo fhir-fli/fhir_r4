@@ -209,31 +209,23 @@ class Subscription extends DomainResource {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    json['resourceType'] = resourceType.toJson();
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    json['resourceType'] = resourceType.toJson();
+    addField('id', id);
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    if (implicitRules != null) {
-      final fieldJson1 = implicitRules!.toJson();
-      json['implicitRules'] = fieldJson1['value'];
-      if (fieldJson1['_value'] != null) {
-        json['_implicitRules'] = fieldJson1['_value'];
-      }
-    }
-
-    if (language != null) {
-      final fieldJson2 = language!.toJson();
-      json['language'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_language'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('implicitRules', implicitRules);
+    addField('language', language);
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -251,44 +243,15 @@ class Subscription extends DomainResource {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    final fieldJson7 = status.toJson();
-    json['status'] = fieldJson7['value'];
-    if (fieldJson7['_value'] != null) {
-      json['_status'] = fieldJson7['_value'];
-    }
-
+    addField('status', status);
     if (contact != null && contact!.isNotEmpty) {
       json['contact'] = contact!.map((e) => e.toJson()).toList();
     }
 
-    if (end != null) {
-      final fieldJson9 = end!.toJson();
-      json['end'] = fieldJson9['value'];
-      if (fieldJson9['_value'] != null) {
-        json['_end'] = fieldJson9['_value'];
-      }
-    }
-
-    final fieldJson10 = reason.toJson();
-    json['reason'] = fieldJson10['value'];
-    if (fieldJson10['_value'] != null) {
-      json['_reason'] = fieldJson10['_value'];
-    }
-
-    final fieldJson11 = criteria.toJson();
-    json['criteria'] = fieldJson11['value'];
-    if (fieldJson11['_value'] != null) {
-      json['_criteria'] = fieldJson11['_value'];
-    }
-
-    if (error != null) {
-      final fieldJson12 = error!.toJson();
-      json['error'] = fieldJson12['value'];
-      if (fieldJson12['_value'] != null) {
-        json['_error'] = fieldJson12['_value'];
-      }
-    }
-
+    addField('end', end);
+    addField('reason', reason);
+    addField('criteria', criteria);
+    addField('error', error);
     json['channel'] = channel.toJson();
 
     return json;
@@ -478,10 +441,16 @@ class SubscriptionChannel extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -491,33 +460,14 @@ class SubscriptionChannel extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    final fieldJson2 = type.toJson();
-    json['type'] = fieldJson2['value'];
-    if (fieldJson2['_value'] != null) {
-      json['_type'] = fieldJson2['_value'];
-    }
-
-    if (endpoint != null) {
-      final fieldJson3 = endpoint!.toJson();
-      json['endpoint'] = fieldJson3['value'];
-      if (fieldJson3['_value'] != null) {
-        json['_endpoint'] = fieldJson3['_value'];
-      }
-    }
-
-    if (payload != null) {
-      final fieldJson4 = payload!.toJson();
-      json['payload'] = fieldJson4['value'];
-      if (fieldJson4['_value'] != null) {
-        json['_payload'] = fieldJson4['_value'];
-      }
-    }
-
+    addField('type', type);
+    addField('endpoint', endpoint);
+    addField('payload', payload);
     if (header != null && header!.isNotEmpty) {
-      final fieldJson5 = header!.map((e) => e.toJson()).toList();
-      json['header'] = fieldJson5.map((e) => e['value']).toList();
-      if (fieldJson5.any((e) => e['_value'] != null)) {
-        json['_header'] = fieldJson5.map((e) => e['_value']).toList();
+      final fieldJson0 = header!.map((e) => e.toJson()).toList();
+      json['header'] = fieldJson0.map((e) => e['value']).toList();
+      if (fieldJson0.any((e) => e['_value'] != null)) {
+        json['_header'] = fieldJson0.map((e) => e['_value']).toList();
       }
     }
 

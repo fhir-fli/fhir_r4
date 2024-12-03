@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The type of measure (includes codes from 2.16.840.1.113883.1.11.20368).
-class MeasureType {
+class MeasureType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  MeasureType._(this.fhirCode, {this.element});
+  MeasureType._(super.value, [super.element]);
 
   /// Factory constructor to create [MeasureType] from JSON.
   factory MeasureType.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class MeasureType {
     if (value == null && element != null) {
       return MeasureType.elementOnly.withElement(element);
     }
-    return MeasureType._(value!, element: element);
+    return MeasureType._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// MeasureType values
   /// process
   static final MeasureType process = MeasureType._(
     'process',
@@ -63,18 +56,62 @@ class MeasureType {
     composite,
   ];
 
+  /// Clones the current instance
+  @override
+  MeasureType clone() => MeasureType._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  MeasureType setElement(String name, dynamic elementValue) {
+    return MeasureType._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   MeasureType withElement(Element? newElement) {
-    return MeasureType._(fhirCode, element: newElement);
+    return MeasureType._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  MeasureType copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return MeasureType._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

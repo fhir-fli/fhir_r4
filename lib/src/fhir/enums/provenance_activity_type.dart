@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// This value set contains representative Activity Type codes, which includes codes from the HL7 DocumentCompletion, ActStatus, and DataOperations code system, W3C PROV-DM and PROV-N concepts and display names, several HL7 Lifecycle Event codes for which there are agreed upon definitions, and non-duplicated codes from the HL7 Security and Privacy Ontology Operations codes.
-class ProvenanceActivityType {
+class ProvenanceActivityType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ProvenanceActivityType._(this.fhirCode, {this.element});
+  ProvenanceActivityType._(super.value, [super.element]);
 
   /// Factory constructor to create [ProvenanceActivityType] from JSON.
   factory ProvenanceActivityType.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class ProvenanceActivityType {
     if (value == null && element != null) {
       return ProvenanceActivityType.elementOnly.withElement(element);
     }
-    return ProvenanceActivityType._(value!, element: element);
+    return ProvenanceActivityType._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ProvenanceActivityType values
   /// LA
   static final ProvenanceActivityType LA = ProvenanceActivityType._(
     'LA',
@@ -100,18 +93,63 @@ class ProvenanceActivityType {
     NULLIFY,
   ];
 
+  /// Clones the current instance
+  @override
+  ProvenanceActivityType clone() =>
+      ProvenanceActivityType._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  ProvenanceActivityType setElement(String name, dynamic elementValue) {
+    return ProvenanceActivityType._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   ProvenanceActivityType withElement(Element? newElement) {
-    return ProvenanceActivityType._(fhirCode, element: newElement);
+    return ProvenanceActivityType._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  ProvenanceActivityType copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return ProvenanceActivityType._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

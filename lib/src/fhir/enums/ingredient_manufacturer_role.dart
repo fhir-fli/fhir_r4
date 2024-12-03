@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The way in which this manufacturer is associated with the ingredient. For example whether it is a possible one (others allowed), or an exclusive authorized one for this ingredient. Note that this is not the manufacturing process role.
-class IngredientManufacturerRole {
+class IngredientManufacturerRole extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  IngredientManufacturerRole._(this.fhirCode, {this.element});
+  IngredientManufacturerRole._(super.value, [super.element]);
 
   /// Factory constructor to create [IngredientManufacturerRole] from JSON.
   factory IngredientManufacturerRole.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class IngredientManufacturerRole {
     if (value == null && element != null) {
       return IngredientManufacturerRole.elementOnly.withElement(element);
     }
-    return IngredientManufacturerRole._(value!, element: element);
+    return IngredientManufacturerRole._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// IngredientManufacturerRole values
   /// allowed
   static final IngredientManufacturerRole allowed =
       IngredientManufacturerRole._(
@@ -54,18 +47,63 @@ class IngredientManufacturerRole {
     actual,
   ];
 
+  /// Clones the current instance
+  @override
+  IngredientManufacturerRole clone() =>
+      IngredientManufacturerRole._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  IngredientManufacturerRole setElement(String name, dynamic elementValue) {
+    return IngredientManufacturerRole._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   IngredientManufacturerRole withElement(Element? newElement) {
-    return IngredientManufacturerRole._(fhirCode, element: newElement);
+    return IngredientManufacturerRole._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  IngredientManufacturerRole copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return IngredientManufacturerRole._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

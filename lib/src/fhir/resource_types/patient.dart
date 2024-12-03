@@ -369,31 +369,23 @@ class Patient extends DomainResource {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    json['resourceType'] = resourceType.toJson();
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    json['resourceType'] = resourceType.toJson();
+    addField('id', id);
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    if (implicitRules != null) {
-      final fieldJson1 = implicitRules!.toJson();
-      json['implicitRules'] = fieldJson1['value'];
-      if (fieldJson1['_value'] != null) {
-        json['_implicitRules'] = fieldJson1['_value'];
-      }
-    }
-
-    if (language != null) {
-      final fieldJson2 = language!.toJson();
-      json['language'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_language'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('implicitRules', implicitRules);
+    addField('language', language);
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -415,14 +407,7 @@ class Patient extends DomainResource {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
 
-    if (active != null) {
-      final fieldJson8 = active!.toJson();
-      json['active'] = fieldJson8['value'];
-      if (fieldJson8['_value'] != null) {
-        json['_active'] = fieldJson8['_value'];
-      }
-    }
-
+    addField('active', active);
     if (name != null && name!.isNotEmpty) {
       json['name'] = name!.map((e) => e.toJson()).toList();
     }
@@ -431,38 +416,10 @@ class Patient extends DomainResource {
       json['telecom'] = telecom!.map((e) => e.toJson()).toList();
     }
 
-    if (gender != null) {
-      final fieldJson11 = gender!.toJson();
-      json['gender'] = fieldJson11['value'];
-      if (fieldJson11['_value'] != null) {
-        json['_gender'] = fieldJson11['_value'];
-      }
-    }
-
-    if (birthDate != null) {
-      final fieldJson12 = birthDate!.toJson();
-      json['birthDate'] = fieldJson12['value'];
-      if (fieldJson12['_value'] != null) {
-        json['_birthDate'] = fieldJson12['_value'];
-      }
-    }
-
-    if (deceasedBoolean != null) {
-      final fieldJson13 = deceasedBoolean!.toJson();
-      json['deceasedBoolean'] = fieldJson13['value'];
-      if (fieldJson13['_value'] != null) {
-        json['_deceasedBoolean'] = fieldJson13['_value'];
-      }
-    }
-
-    if (deceasedDateTime != null) {
-      final fieldJson14 = deceasedDateTime!.toJson();
-      json['deceasedDateTime'] = fieldJson14['value'];
-      if (fieldJson14['_value'] != null) {
-        json['_deceasedDateTime'] = fieldJson14['_value'];
-      }
-    }
-
+    addField('gender', gender);
+    addField('birthDate', birthDate);
+    addField('deceasedBoolean', deceasedBoolean);
+    addField('deceasedDateTime', deceasedDateTime);
     if (address != null && address!.isNotEmpty) {
       json['address'] = address!.map((e) => e.toJson()).toList();
     }
@@ -471,22 +428,8 @@ class Patient extends DomainResource {
       json['maritalStatus'] = maritalStatus!.toJson();
     }
 
-    if (multipleBirthBoolean != null) {
-      final fieldJson17 = multipleBirthBoolean!.toJson();
-      json['multipleBirthBoolean'] = fieldJson17['value'];
-      if (fieldJson17['_value'] != null) {
-        json['_multipleBirthBoolean'] = fieldJson17['_value'];
-      }
-    }
-
-    if (multipleBirthInteger != null) {
-      final fieldJson18 = multipleBirthInteger!.toJson();
-      json['multipleBirthInteger'] = fieldJson18['value'];
-      if (fieldJson18['_value'] != null) {
-        json['_multipleBirthInteger'] = fieldJson18['_value'];
-      }
-    }
-
+    addField('multipleBirthBoolean', multipleBirthBoolean);
+    addField('multipleBirthInteger', multipleBirthInteger);
     if (photo != null && photo!.isNotEmpty) {
       json['photo'] = photo!.map((e) => e.toJson()).toList();
     }
@@ -760,10 +703,16 @@ class PatientContact extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -789,14 +738,7 @@ class PatientContact extends BackboneElement {
       json['address'] = address!.toJson();
     }
 
-    if (gender != null) {
-      final fieldJson6 = gender!.toJson();
-      json['gender'] = fieldJson6['value'];
-      if (fieldJson6['_value'] != null) {
-        json['_gender'] = fieldJson6['_value'];
-      }
-    }
-
+    addField('gender', gender);
     if (organization != null) {
       json['organization'] = organization!.toJson();
     }
@@ -961,10 +903,16 @@ class PatientCommunication extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -976,14 +924,7 @@ class PatientCommunication extends BackboneElement {
 
     json['language'] = language.toJson();
 
-    if (preferred != null) {
-      final fieldJson3 = preferred!.toJson();
-      json['preferred'] = fieldJson3['value'];
-      if (fieldJson3['_value'] != null) {
-        json['_preferred'] = fieldJson3['_value'];
-      }
-    }
-
+    addField('preferred', preferred);
     return json;
   }
 
@@ -1124,10 +1065,16 @@ class PatientLink extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1139,12 +1086,7 @@ class PatientLink extends BackboneElement {
 
     json['other'] = other.toJson();
 
-    final fieldJson3 = type.toJson();
-    json['type'] = fieldJson3['value'];
-    if (fieldJson3['_value'] != null) {
-      json['_type'] = fieldJson3['_value'];
-    }
-
+    addField('type', type);
     return json;
   }
 

@@ -202,31 +202,23 @@ class SpecimenDefinition extends DomainResource {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    json['resourceType'] = resourceType.toJson();
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    json['resourceType'] = resourceType.toJson();
+    addField('id', id);
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    if (implicitRules != null) {
-      final fieldJson1 = implicitRules!.toJson();
-      json['implicitRules'] = fieldJson1['value'];
-      if (fieldJson1['_value'] != null) {
-        json['_implicitRules'] = fieldJson1['_value'];
-      }
-    }
-
-    if (language != null) {
-      final fieldJson2 = language!.toJson();
-      json['language'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_language'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('implicitRules', implicitRules);
+    addField('language', language);
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -257,14 +249,7 @@ class SpecimenDefinition extends DomainResource {
           patientPreparation!.map((e) => e.toJson()).toList();
     }
 
-    if (timeAspect != null) {
-      final fieldJson10 = timeAspect!.toJson();
-      json['timeAspect'] = fieldJson10['value'];
-      if (fieldJson10['_value'] != null) {
-        json['_timeAspect'] = fieldJson10['_value'];
-      }
-    }
-
+    addField('timeAspect', timeAspect);
     if (collection != null && collection!.isNotEmpty) {
       json['collection'] = collection!.map((e) => e.toJson()).toList();
     }
@@ -507,10 +492,16 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -520,36 +511,17 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    if (isDerived != null) {
-      final fieldJson2 = isDerived!.toJson();
-      json['isDerived'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_isDerived'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('isDerived', isDerived);
     if (type != null) {
       json['type'] = type!.toJson();
     }
 
-    final fieldJson4 = preference.toJson();
-    json['preference'] = fieldJson4['value'];
-    if (fieldJson4['_value'] != null) {
-      json['_preference'] = fieldJson4['_value'];
-    }
-
+    addField('preference', preference);
     if (container != null) {
       json['container'] = container!.toJson();
     }
 
-    if (requirement != null) {
-      final fieldJson6 = requirement!.toJson();
-      json['requirement'] = fieldJson6['value'];
-      if (fieldJson6['_value'] != null) {
-        json['_requirement'] = fieldJson6['_value'];
-      }
-    }
-
+    addField('requirement', requirement);
     if (retentionTime != null) {
       json['retentionTime'] = retentionTime!.toJson();
     }
@@ -797,10 +769,16 @@ class SpecimenDefinitionContainer extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -822,14 +800,7 @@ class SpecimenDefinitionContainer extends BackboneElement {
       json['cap'] = cap!.toJson();
     }
 
-    if (description != null) {
-      final fieldJson5 = description!.toJson();
-      json['description'] = fieldJson5['value'];
-      if (fieldJson5['_value'] != null) {
-        json['_description'] = fieldJson5['_value'];
-      }
-    }
-
+    addField('description', description);
     if (capacity != null) {
       json['capacity'] = capacity!.toJson();
     }
@@ -838,26 +809,12 @@ class SpecimenDefinitionContainer extends BackboneElement {
       json['minimumVolumeQuantity'] = minimumVolumeQuantity!.toJson();
     }
 
-    if (minimumVolumeString != null) {
-      final fieldJson8 = minimumVolumeString!.toJson();
-      json['minimumVolumeString'] = fieldJson8['value'];
-      if (fieldJson8['_value'] != null) {
-        json['_minimumVolumeString'] = fieldJson8['_value'];
-      }
-    }
-
+    addField('minimumVolumeString', minimumVolumeString);
     if (additive != null && additive!.isNotEmpty) {
       json['additive'] = additive!.map((e) => e.toJson()).toList();
     }
 
-    if (preparation != null) {
-      final fieldJson10 = preparation!.toJson();
-      json['preparation'] = fieldJson10['value'];
-      if (fieldJson10['_value'] != null) {
-        json['_preparation'] = fieldJson10['_value'];
-      }
-    }
-
+    addField('preparation', preparation);
     return json;
   }
 
@@ -1018,10 +975,16 @@ class SpecimenDefinitionAdditive extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1208,10 +1171,16 @@ class SpecimenDefinitionHandling extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1233,14 +1202,7 @@ class SpecimenDefinitionHandling extends BackboneElement {
       json['maxDuration'] = maxDuration!.toJson();
     }
 
-    if (instruction != null) {
-      final fieldJson5 = instruction!.toJson();
-      json['instruction'] = fieldJson5['value'];
-      if (fieldJson5['_value'] != null) {
-        json['_instruction'] = fieldJson5['_value'];
-      }
-    }
-
+    addField('instruction', instruction);
     return json;
   }
 

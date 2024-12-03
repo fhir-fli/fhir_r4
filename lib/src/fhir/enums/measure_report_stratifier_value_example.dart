@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Example Measure Stratification Value for MeasureReports Resource.
-class MeasureReportStratifierValueExample {
+class MeasureReportStratifierValueExample extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  MeasureReportStratifierValueExample._(this.fhirCode, {this.element});
+  MeasureReportStratifierValueExample._(super.value, [super.element]);
 
   /// Factory constructor to create [MeasureReportStratifierValueExample] from JSON.
   factory MeasureReportStratifierValueExample.fromJson(
@@ -17,16 +17,9 @@ class MeasureReportStratifierValueExample {
       return MeasureReportStratifierValueExample.elementOnly
           .withElement(element);
     }
-    return MeasureReportStratifierValueExample._(value!, element: element);
+    return MeasureReportStratifierValueExample._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// MeasureReportStratifierValueExample values
   /// northwest
   static final MeasureReportStratifierValueExample northwest =
       MeasureReportStratifierValueExample._(
@@ -64,18 +57,65 @@ class MeasureReportStratifierValueExample {
     southeast,
   ];
 
+  /// Clones the current instance
+  @override
+  MeasureReportStratifierValueExample clone() =>
+      MeasureReportStratifierValueExample._(
+          value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  MeasureReportStratifierValueExample setElement(
+      String name, dynamic elementValue) {
+    return MeasureReportStratifierValueExample._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   MeasureReportStratifierValueExample withElement(Element? newElement) {
-    return MeasureReportStratifierValueExample._(fhirCode, element: newElement);
+    return MeasureReportStratifierValueExample._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  MeasureReportStratifierValueExample copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return MeasureReportStratifierValueExample._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

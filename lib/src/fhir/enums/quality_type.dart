@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Type for quality report.
-class QualityType {
+class QualityType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  QualityType._(this.fhirCode, {this.element});
+  QualityType._(super.value, [super.element]);
 
   /// Factory constructor to create [QualityType] from JSON.
   factory QualityType.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class QualityType {
     if (value == null && element != null) {
       return QualityType.elementOnly.withElement(element);
     }
-    return QualityType._(value!, element: element);
+    return QualityType._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// QualityType values
   /// indel
   static final QualityType indel = QualityType._(
     'indel',
@@ -51,18 +44,62 @@ class QualityType {
     unknown,
   ];
 
+  /// Clones the current instance
+  @override
+  QualityType clone() => QualityType._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  QualityType setElement(String name, dynamic elementValue) {
+    return QualityType._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   QualityType withElement(Element? newElement) {
-    return QualityType._(fhirCode, element: newElement);
+    return QualityType._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  QualityType copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return QualityType._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

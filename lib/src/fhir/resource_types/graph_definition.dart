@@ -332,31 +332,23 @@ class GraphDefinition extends DomainResource {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    json['resourceType'] = resourceType.toJson();
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    json['resourceType'] = resourceType.toJson();
+    addField('id', id);
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    if (implicitRules != null) {
-      final fieldJson1 = implicitRules!.toJson();
-      json['implicitRules'] = fieldJson1['value'];
-      if (fieldJson1['_value'] != null) {
-        json['_implicitRules'] = fieldJson1['_value'];
-      }
-    }
-
-    if (language != null) {
-      final fieldJson2 = language!.toJson();
-      json['language'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_language'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('implicitRules', implicitRules);
+    addField('language', language);
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -374,70 +366,18 @@ class GraphDefinition extends DomainResource {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    if (url != null) {
-      final fieldJson7 = url!.toJson();
-      json['url'] = fieldJson7['value'];
-      if (fieldJson7['_value'] != null) {
-        json['_url'] = fieldJson7['_value'];
-      }
-    }
-
-    if (version != null) {
-      final fieldJson8 = version!.toJson();
-      json['version'] = fieldJson8['value'];
-      if (fieldJson8['_value'] != null) {
-        json['_version'] = fieldJson8['_value'];
-      }
-    }
-
-    final fieldJson9 = name.toJson();
-    json['name'] = fieldJson9['value'];
-    if (fieldJson9['_value'] != null) {
-      json['_name'] = fieldJson9['_value'];
-    }
-
-    final fieldJson10 = status.toJson();
-    json['status'] = fieldJson10['value'];
-    if (fieldJson10['_value'] != null) {
-      json['_status'] = fieldJson10['_value'];
-    }
-
-    if (experimental != null) {
-      final fieldJson11 = experimental!.toJson();
-      json['experimental'] = fieldJson11['value'];
-      if (fieldJson11['_value'] != null) {
-        json['_experimental'] = fieldJson11['_value'];
-      }
-    }
-
-    if (date != null) {
-      final fieldJson12 = date!.toJson();
-      json['date'] = fieldJson12['value'];
-      if (fieldJson12['_value'] != null) {
-        json['_date'] = fieldJson12['_value'];
-      }
-    }
-
-    if (publisher != null) {
-      final fieldJson13 = publisher!.toJson();
-      json['publisher'] = fieldJson13['value'];
-      if (fieldJson13['_value'] != null) {
-        json['_publisher'] = fieldJson13['_value'];
-      }
-    }
-
+    addField('url', url);
+    addField('version', version);
+    addField('name', name);
+    addField('status', status);
+    addField('experimental', experimental);
+    addField('date', date);
+    addField('publisher', publisher);
     if (contact != null && contact!.isNotEmpty) {
       json['contact'] = contact!.map((e) => e.toJson()).toList();
     }
 
-    if (description != null) {
-      final fieldJson15 = description!.toJson();
-      json['description'] = fieldJson15['value'];
-      if (fieldJson15['_value'] != null) {
-        json['_description'] = fieldJson15['_value'];
-      }
-    }
-
+    addField('description', description);
     if (useContext != null && useContext!.isNotEmpty) {
       json['useContext'] = useContext!.map((e) => e.toJson()).toList();
     }
@@ -446,28 +386,9 @@ class GraphDefinition extends DomainResource {
       json['jurisdiction'] = jurisdiction!.map((e) => e.toJson()).toList();
     }
 
-    if (purpose != null) {
-      final fieldJson18 = purpose!.toJson();
-      json['purpose'] = fieldJson18['value'];
-      if (fieldJson18['_value'] != null) {
-        json['_purpose'] = fieldJson18['_value'];
-      }
-    }
-
-    final fieldJson19 = start.toJson();
-    json['start'] = fieldJson19['value'];
-    if (fieldJson19['_value'] != null) {
-      json['_start'] = fieldJson19['_value'];
-    }
-
-    if (profile != null) {
-      final fieldJson20 = profile!.toJson();
-      json['profile'] = fieldJson20['value'];
-      if (fieldJson20['_value'] != null) {
-        json['_profile'] = fieldJson20['_value'];
-      }
-    }
-
+    addField('purpose', purpose);
+    addField('start', start);
+    addField('profile', profile);
     if (link != null && link!.isNotEmpty) {
       json['link'] = link!.map((e) => e.toJson()).toList();
     }
@@ -701,10 +622,16 @@ class GraphDefinitionLink extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -714,46 +641,11 @@ class GraphDefinitionLink extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    if (path != null) {
-      final fieldJson2 = path!.toJson();
-      json['path'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_path'] = fieldJson2['_value'];
-      }
-    }
-
-    if (sliceName != null) {
-      final fieldJson3 = sliceName!.toJson();
-      json['sliceName'] = fieldJson3['value'];
-      if (fieldJson3['_value'] != null) {
-        json['_sliceName'] = fieldJson3['_value'];
-      }
-    }
-
-    if (min != null) {
-      final fieldJson4 = min!.toJson();
-      json['min'] = fieldJson4['value'];
-      if (fieldJson4['_value'] != null) {
-        json['_min'] = fieldJson4['_value'];
-      }
-    }
-
-    if (max != null) {
-      final fieldJson5 = max!.toJson();
-      json['max'] = fieldJson5['value'];
-      if (fieldJson5['_value'] != null) {
-        json['_max'] = fieldJson5['_value'];
-      }
-    }
-
-    if (description != null) {
-      final fieldJson6 = description!.toJson();
-      json['description'] = fieldJson6['value'];
-      if (fieldJson6['_value'] != null) {
-        json['_description'] = fieldJson6['_value'];
-      }
-    }
-
+    addField('path', path);
+    addField('sliceName', sliceName);
+    addField('min', min);
+    addField('max', max);
+    addField('description', description);
     if (target != null && target!.isNotEmpty) {
       json['target'] = target!.map((e) => e.toJson()).toList();
     }
@@ -947,10 +839,16 @@ class GraphDefinitionTarget extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -960,28 +858,9 @@ class GraphDefinitionTarget extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    final fieldJson2 = type.toJson();
-    json['type'] = fieldJson2['value'];
-    if (fieldJson2['_value'] != null) {
-      json['_type'] = fieldJson2['_value'];
-    }
-
-    if (params != null) {
-      final fieldJson3 = params!.toJson();
-      json['params'] = fieldJson3['value'];
-      if (fieldJson3['_value'] != null) {
-        json['_params'] = fieldJson3['_value'];
-      }
-    }
-
-    if (profile != null) {
-      final fieldJson4 = profile!.toJson();
-      json['profile'] = fieldJson4['value'];
-      if (fieldJson4['_value'] != null) {
-        json['_profile'] = fieldJson4['_value'];
-      }
-    }
-
+    addField('type', type);
+    addField('params', params);
+    addField('profile', profile);
     if (compartment != null && compartment!.isNotEmpty) {
       json['compartment'] = compartment!.map((e) => e.toJson()).toList();
     }
@@ -1169,10 +1048,16 @@ class GraphDefinitionCompartment extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1182,40 +1067,11 @@ class GraphDefinitionCompartment extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    final fieldJson2 = use.toJson();
-    json['use'] = fieldJson2['value'];
-    if (fieldJson2['_value'] != null) {
-      json['_use'] = fieldJson2['_value'];
-    }
-
-    final fieldJson3 = code.toJson();
-    json['code'] = fieldJson3['value'];
-    if (fieldJson3['_value'] != null) {
-      json['_code'] = fieldJson3['_value'];
-    }
-
-    final fieldJson4 = rule.toJson();
-    json['rule'] = fieldJson4['value'];
-    if (fieldJson4['_value'] != null) {
-      json['_rule'] = fieldJson4['_value'];
-    }
-
-    if (expression != null) {
-      final fieldJson5 = expression!.toJson();
-      json['expression'] = fieldJson5['value'];
-      if (fieldJson5['_value'] != null) {
-        json['_expression'] = fieldJson5['_value'];
-      }
-    }
-
-    if (description != null) {
-      final fieldJson6 = description!.toJson();
-      json['description'] = fieldJson6['value'];
-      if (fieldJson6['_value'] != null) {
-        json['_description'] = fieldJson6['_value'];
-      }
-    }
-
+    addField('use', use);
+    addField('code', code);
+    addField('rule', rule);
+    addField('expression', expression);
+    addField('description', description);
     return json;
   }
 

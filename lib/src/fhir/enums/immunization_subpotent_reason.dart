@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The value set to instantiate this attribute should be drawn from a terminologically robust code system that consists of or contains concepts to support describing the reason why a dose is considered to be subpotent. This value set is provided as a suggestive example.
-class ImmunizationSubpotentReason {
+class ImmunizationSubpotentReason extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ImmunizationSubpotentReason._(this.fhirCode, {this.element});
+  ImmunizationSubpotentReason._(super.value, [super.element]);
 
   /// Factory constructor to create [ImmunizationSubpotentReason] from JSON.
   factory ImmunizationSubpotentReason.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class ImmunizationSubpotentReason {
     if (value == null && element != null) {
       return ImmunizationSubpotentReason.elementOnly.withElement(element);
     }
-    return ImmunizationSubpotentReason._(value!, element: element);
+    return ImmunizationSubpotentReason._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ImmunizationSubpotentReason values
   /// partial
   static final ImmunizationSubpotentReason partial =
       ImmunizationSubpotentReason._(
@@ -55,18 +48,63 @@ class ImmunizationSubpotentReason {
     recall,
   ];
 
+  /// Clones the current instance
+  @override
+  ImmunizationSubpotentReason clone() =>
+      ImmunizationSubpotentReason._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  ImmunizationSubpotentReason setElement(String name, dynamic elementValue) {
+    return ImmunizationSubpotentReason._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   ImmunizationSubpotentReason withElement(Element? newElement) {
-    return ImmunizationSubpotentReason._(fhirCode, element: newElement);
+    return ImmunizationSubpotentReason._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  ImmunizationSubpotentReason copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return ImmunizationSubpotentReason._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

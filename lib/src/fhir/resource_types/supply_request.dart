@@ -341,31 +341,23 @@ class SupplyRequest extends DomainResource {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    json['resourceType'] = resourceType.toJson();
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    json['resourceType'] = resourceType.toJson();
+    addField('id', id);
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    if (implicitRules != null) {
-      final fieldJson1 = implicitRules!.toJson();
-      json['implicitRules'] = fieldJson1['value'];
-      if (fieldJson1['_value'] != null) {
-        json['_implicitRules'] = fieldJson1['_value'];
-      }
-    }
-
-    if (language != null) {
-      final fieldJson2 = language!.toJson();
-      json['language'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_language'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('implicitRules', implicitRules);
+    addField('language', language);
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -387,26 +379,12 @@ class SupplyRequest extends DomainResource {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
 
-    if (status != null) {
-      final fieldJson8 = status!.toJson();
-      json['status'] = fieldJson8['value'];
-      if (fieldJson8['_value'] != null) {
-        json['_status'] = fieldJson8['_value'];
-      }
-    }
-
+    addField('status', status);
     if (category != null) {
       json['category'] = category!.toJson();
     }
 
-    if (priority != null) {
-      final fieldJson10 = priority!.toJson();
-      json['priority'] = fieldJson10['value'];
-      if (fieldJson10['_value'] != null) {
-        json['_priority'] = fieldJson10['_value'];
-      }
-    }
-
+    addField('priority', priority);
     if (itemCodeableConcept != null) {
       json['itemCodeableConcept'] = itemCodeableConcept!.toJson();
     }
@@ -421,14 +399,7 @@ class SupplyRequest extends DomainResource {
       json['parameter'] = parameter!.map((e) => e.toJson()).toList();
     }
 
-    if (occurrenceDateTime != null) {
-      final fieldJson15 = occurrenceDateTime!.toJson();
-      json['occurrenceDateTime'] = fieldJson15['value'];
-      if (fieldJson15['_value'] != null) {
-        json['_occurrenceDateTime'] = fieldJson15['_value'];
-      }
-    }
-
+    addField('occurrenceDateTime', occurrenceDateTime);
     if (occurrencePeriod != null) {
       json['occurrencePeriod'] = occurrencePeriod!.toJson();
     }
@@ -437,14 +408,7 @@ class SupplyRequest extends DomainResource {
       json['occurrenceTiming'] = occurrenceTiming!.toJson();
     }
 
-    if (authoredOn != null) {
-      final fieldJson18 = authoredOn!.toJson();
-      json['authoredOn'] = fieldJson18['value'];
-      if (fieldJson18['_value'] != null) {
-        json['_authoredOn'] = fieldJson18['_value'];
-      }
-    }
-
+    addField('authoredOn', authoredOn);
     if (requester != null) {
       json['requester'] = requester!.toJson();
     }
@@ -687,10 +651,16 @@ class SupplyRequestParameter extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -716,14 +686,7 @@ class SupplyRequestParameter extends BackboneElement {
       json['valueRange'] = valueRange!.toJson();
     }
 
-    if (valueBoolean != null) {
-      final fieldJson6 = valueBoolean!.toJson();
-      json['valueBoolean'] = fieldJson6['value'];
-      if (fieldJson6['_value'] != null) {
-        json['_valueBoolean'] = fieldJson6['_value'];
-      }
-    }
-
+    addField('valueBoolean', valueBoolean);
     return json;
   }
 

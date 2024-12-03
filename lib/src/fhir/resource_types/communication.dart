@@ -432,31 +432,23 @@ class Communication extends DomainResource {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    json['resourceType'] = resourceType.toJson();
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    json['resourceType'] = resourceType.toJson();
+    addField('id', id);
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    if (implicitRules != null) {
-      final fieldJson1 = implicitRules!.toJson();
-      json['implicitRules'] = fieldJson1['value'];
-      if (fieldJson1['_value'] != null) {
-        json['_implicitRules'] = fieldJson1['_value'];
-      }
-    }
-
-    if (language != null) {
-      final fieldJson2 = language!.toJson();
-      json['language'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_language'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('implicitRules', implicitRules);
+    addField('language', language);
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -479,20 +471,20 @@ class Communication extends DomainResource {
     }
 
     if (instantiatesCanonical != null && instantiatesCanonical!.isNotEmpty) {
-      final fieldJson8 = instantiatesCanonical!.map((e) => e.toJson()).toList();
+      final fieldJson0 = instantiatesCanonical!.map((e) => e.toJson()).toList();
       json['instantiatesCanonical'] =
-          fieldJson8.map((e) => e['value']).toList();
-      if (fieldJson8.any((e) => e['_value'] != null)) {
+          fieldJson0.map((e) => e['value']).toList();
+      if (fieldJson0.any((e) => e['_value'] != null)) {
         json['_instantiatesCanonical'] =
-            fieldJson8.map((e) => e['_value']).toList();
+            fieldJson0.map((e) => e['_value']).toList();
       }
     }
 
     if (instantiatesUri != null && instantiatesUri!.isNotEmpty) {
-      final fieldJson9 = instantiatesUri!.map((e) => e.toJson()).toList();
-      json['instantiatesUri'] = fieldJson9.map((e) => e['value']).toList();
-      if (fieldJson9.any((e) => e['_value'] != null)) {
-        json['_instantiatesUri'] = fieldJson9.map((e) => e['_value']).toList();
+      final fieldJson1 = instantiatesUri!.map((e) => e.toJson()).toList();
+      json['instantiatesUri'] = fieldJson1.map((e) => e['value']).toList();
+      if (fieldJson1.any((e) => e['_value'] != null)) {
+        json['_instantiatesUri'] = fieldJson1.map((e) => e['_value']).toList();
       }
     }
 
@@ -508,12 +500,7 @@ class Communication extends DomainResource {
       json['inResponseTo'] = inResponseTo!.map((e) => e.toJson()).toList();
     }
 
-    final fieldJson13 = status.toJson();
-    json['status'] = fieldJson13['value'];
-    if (fieldJson13['_value'] != null) {
-      json['_status'] = fieldJson13['_value'];
-    }
-
+    addField('status', status);
     if (statusReason != null) {
       json['statusReason'] = statusReason!.toJson();
     }
@@ -522,14 +509,7 @@ class Communication extends DomainResource {
       json['category'] = category!.map((e) => e.toJson()).toList();
     }
 
-    if (priority != null) {
-      final fieldJson16 = priority!.toJson();
-      json['priority'] = fieldJson16['value'];
-      if (fieldJson16['_value'] != null) {
-        json['_priority'] = fieldJson16['_value'];
-      }
-    }
-
+    addField('priority', priority);
     if (medium != null && medium!.isNotEmpty) {
       json['medium'] = medium!.map((e) => e.toJson()).toList();
     }
@@ -550,22 +530,8 @@ class Communication extends DomainResource {
       json['encounter'] = encounter!.toJson();
     }
 
-    if (sent != null) {
-      final fieldJson22 = sent!.toJson();
-      json['sent'] = fieldJson22['value'];
-      if (fieldJson22['_value'] != null) {
-        json['_sent'] = fieldJson22['_value'];
-      }
-    }
-
-    if (received != null) {
-      final fieldJson23 = received!.toJson();
-      json['received'] = fieldJson23['value'];
-      if (fieldJson23['_value'] != null) {
-        json['_received'] = fieldJson23['_value'];
-      }
-    }
-
+    addField('sent', sent);
+    addField('received', received);
     if (recipient != null && recipient!.isNotEmpty) {
       json['recipient'] = recipient!.map((e) => e.toJson()).toList();
     }
@@ -802,10 +768,16 @@ class CommunicationPayload extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -815,14 +787,7 @@ class CommunicationPayload extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    if (contentString != null) {
-      final fieldJson2 = contentString!.toJson();
-      json['contentString'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_contentString'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('contentString', contentString);
     if (contentAttachment != null) {
       json['contentAttachment'] = contentAttachment!.toJson();
     }

@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The optical rotation type of a substance.
-class Stereochemistry {
+class Stereochemistry extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  Stereochemistry._(this.fhirCode, {this.element});
+  Stereochemistry._(super.value, [super.element]);
 
   /// Factory constructor to create [Stereochemistry] from JSON.
   factory Stereochemistry.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class Stereochemistry {
     if (value == null && element != null) {
       return Stereochemistry.elementOnly.withElement(element);
     }
-    return Stereochemistry._(value!, element: element);
+    return Stereochemistry._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// Stereochemistry values
   /// ConstitutionalIsomer
   static final Stereochemistry ConstitutionalIsomer = Stereochemistry._(
     'ConstitutionalIsomer',
@@ -51,18 +44,63 @@ class Stereochemistry {
     Enantiomer,
   ];
 
+  /// Clones the current instance
+  @override
+  Stereochemistry clone() =>
+      Stereochemistry._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  Stereochemistry setElement(String name, dynamic elementValue) {
+    return Stereochemistry._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   Stereochemistry withElement(Element? newElement) {
-    return Stereochemistry._(fhirCode, element: newElement);
+    return Stereochemistry._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  Stereochemistry copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return Stereochemistry._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The use of a human name.
-class NameUse {
+class NameUse extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  NameUse._(this.fhirCode, {this.element});
+  NameUse._(super.value, [super.element]);
 
   /// Factory constructor to create [NameUse] from JSON.
   factory NameUse.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class NameUse {
     if (value == null && element != null) {
       return NameUse.elementOnly.withElement(element);
     }
-    return NameUse._(value!, element: element);
+    return NameUse._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// NameUse values
   /// usual
   static final NameUse usual = NameUse._(
     'usual',
@@ -75,18 +68,62 @@ class NameUse {
     maiden,
   ];
 
+  /// Clones the current instance
+  @override
+  NameUse clone() => NameUse._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  NameUse setElement(String name, dynamic elementValue) {
+    return NameUse._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   NameUse withElement(Element? newElement) {
-    return NameUse._(fhirCode, element: newElement);
+    return NameUse._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  NameUse copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return NameUse._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

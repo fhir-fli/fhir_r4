@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// A unit of time (units from UCUM).
-class UnitsOfTime {
+class UnitsOfTime extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  UnitsOfTime._(this.fhirCode, {this.element});
+  UnitsOfTime._(super.value, [super.element]);
 
   /// Factory constructor to create [UnitsOfTime] from JSON.
   factory UnitsOfTime.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class UnitsOfTime {
     if (value == null && element != null) {
       return UnitsOfTime.elementOnly.withElement(element);
     }
-    return UnitsOfTime._(value!, element: element);
+    return UnitsOfTime._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// UnitsOfTime values
   /// s
   static final UnitsOfTime s = UnitsOfTime._(
     's',
@@ -75,18 +68,62 @@ class UnitsOfTime {
     a,
   ];
 
+  /// Clones the current instance
+  @override
+  UnitsOfTime clone() => UnitsOfTime._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  UnitsOfTime setElement(String name, dynamic elementValue) {
+    return UnitsOfTime._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   UnitsOfTime withElement(Element? newElement) {
-    return UnitsOfTime._(fhirCode, element: newElement);
+    return UnitsOfTime._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  UnitsOfTime copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return UnitsOfTime._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

@@ -527,31 +527,23 @@ class Citation extends DomainResource {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    json['resourceType'] = resourceType.toJson();
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    json['resourceType'] = resourceType.toJson();
+    addField('id', id);
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    if (implicitRules != null) {
-      final fieldJson1 = implicitRules!.toJson();
-      json['implicitRules'] = fieldJson1['value'];
-      if (fieldJson1['_value'] != null) {
-        json['_implicitRules'] = fieldJson1['_value'];
-      }
-    }
-
-    if (language != null) {
-      final fieldJson2 = language!.toJson();
-      json['language'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_language'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('implicitRules', implicitRules);
+    addField('language', language);
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -569,84 +561,23 @@ class Citation extends DomainResource {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    if (url != null) {
-      final fieldJson7 = url!.toJson();
-      json['url'] = fieldJson7['value'];
-      if (fieldJson7['_value'] != null) {
-        json['_url'] = fieldJson7['_value'];
-      }
-    }
-
+    addField('url', url);
     if (identifier != null && identifier!.isNotEmpty) {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
 
-    if (version != null) {
-      final fieldJson9 = version!.toJson();
-      json['version'] = fieldJson9['value'];
-      if (fieldJson9['_value'] != null) {
-        json['_version'] = fieldJson9['_value'];
-      }
-    }
-
-    if (name != null) {
-      final fieldJson10 = name!.toJson();
-      json['name'] = fieldJson10['value'];
-      if (fieldJson10['_value'] != null) {
-        json['_name'] = fieldJson10['_value'];
-      }
-    }
-
-    if (title != null) {
-      final fieldJson11 = title!.toJson();
-      json['title'] = fieldJson11['value'];
-      if (fieldJson11['_value'] != null) {
-        json['_title'] = fieldJson11['_value'];
-      }
-    }
-
-    final fieldJson12 = status.toJson();
-    json['status'] = fieldJson12['value'];
-    if (fieldJson12['_value'] != null) {
-      json['_status'] = fieldJson12['_value'];
-    }
-
-    if (experimental != null) {
-      final fieldJson13 = experimental!.toJson();
-      json['experimental'] = fieldJson13['value'];
-      if (fieldJson13['_value'] != null) {
-        json['_experimental'] = fieldJson13['_value'];
-      }
-    }
-
-    if (date != null) {
-      final fieldJson14 = date!.toJson();
-      json['date'] = fieldJson14['value'];
-      if (fieldJson14['_value'] != null) {
-        json['_date'] = fieldJson14['_value'];
-      }
-    }
-
-    if (publisher != null) {
-      final fieldJson15 = publisher!.toJson();
-      json['publisher'] = fieldJson15['value'];
-      if (fieldJson15['_value'] != null) {
-        json['_publisher'] = fieldJson15['_value'];
-      }
-    }
-
+    addField('version', version);
+    addField('name', name);
+    addField('title', title);
+    addField('status', status);
+    addField('experimental', experimental);
+    addField('date', date);
+    addField('publisher', publisher);
     if (contact != null && contact!.isNotEmpty) {
       json['contact'] = contact!.map((e) => e.toJson()).toList();
     }
 
-    if (description != null) {
-      final fieldJson17 = description!.toJson();
-      json['description'] = fieldJson17['value'];
-      if (fieldJson17['_value'] != null) {
-        json['_description'] = fieldJson17['_value'];
-      }
-    }
-
+    addField('description', description);
     if (useContext != null && useContext!.isNotEmpty) {
       json['useContext'] = useContext!.map((e) => e.toJson()).toList();
     }
@@ -655,38 +586,10 @@ class Citation extends DomainResource {
       json['jurisdiction'] = jurisdiction!.map((e) => e.toJson()).toList();
     }
 
-    if (purpose != null) {
-      final fieldJson20 = purpose!.toJson();
-      json['purpose'] = fieldJson20['value'];
-      if (fieldJson20['_value'] != null) {
-        json['_purpose'] = fieldJson20['_value'];
-      }
-    }
-
-    if (copyright != null) {
-      final fieldJson21 = copyright!.toJson();
-      json['copyright'] = fieldJson21['value'];
-      if (fieldJson21['_value'] != null) {
-        json['_copyright'] = fieldJson21['_value'];
-      }
-    }
-
-    if (approvalDate != null) {
-      final fieldJson22 = approvalDate!.toJson();
-      json['approvalDate'] = fieldJson22['value'];
-      if (fieldJson22['_value'] != null) {
-        json['_approvalDate'] = fieldJson22['_value'];
-      }
-    }
-
-    if (lastReviewDate != null) {
-      final fieldJson23 = lastReviewDate!.toJson();
-      json['lastReviewDate'] = fieldJson23['value'];
-      if (fieldJson23['_value'] != null) {
-        json['_lastReviewDate'] = fieldJson23['_value'];
-      }
-    }
-
+    addField('purpose', purpose);
+    addField('copyright', copyright);
+    addField('approvalDate', approvalDate);
+    addField('lastReviewDate', lastReviewDate);
     if (effectivePeriod != null) {
       json['effectivePeriod'] = effectivePeriod!.toJson();
     }
@@ -940,10 +843,16 @@ class CitationSummary extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -957,12 +866,7 @@ class CitationSummary extends BackboneElement {
       json['style'] = style!.toJson();
     }
 
-    final fieldJson3 = text.toJson();
-    json['text'] = fieldJson3['value'];
-    if (fieldJson3['_value'] != null) {
-      json['_text'] = fieldJson3['_value'];
-    }
-
+    addField('text', text);
     return json;
   }
 
@@ -1109,10 +1013,16 @@ class CitationClassification extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1279,10 +1189,16 @@ class CitationStatusDate extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1294,14 +1210,7 @@ class CitationStatusDate extends BackboneElement {
 
     json['activity'] = activity.toJson();
 
-    if (actual != null) {
-      final fieldJson3 = actual!.toJson();
-      json['actual'] = fieldJson3['value'];
-      if (fieldJson3['_value'] != null) {
-        json['_actual'] = fieldJson3['_value'];
-      }
-    }
-
+    addField('actual', actual);
     json['period'] = period.toJson();
 
     return json;
@@ -1491,10 +1400,16 @@ class CitationRelatesTo extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1511,14 +1426,7 @@ class CitationRelatesTo extends BackboneElement {
           targetClassifier!.map((e) => e.toJson()).toList();
     }
 
-    if (targetUri != null) {
-      final fieldJson4 = targetUri!.toJson();
-      json['targetUri'] = fieldJson4['value'];
-      if (fieldJson4['_value'] != null) {
-        json['_targetUri'] = fieldJson4['_value'];
-      }
-    }
-
+    addField('targetUri', targetUri);
     if (targetIdentifier != null) {
       json['targetIdentifier'] = targetIdentifier!.toJson();
     }
@@ -1862,10 +1770,16 @@ class CitationCitedArtifact extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1884,14 +1798,7 @@ class CitationCitedArtifact extends BackboneElement {
           relatedIdentifier!.map((e) => e.toJson()).toList();
     }
 
-    if (dateAccessed != null) {
-      final fieldJson4 = dateAccessed!.toJson();
-      json['dateAccessed'] = fieldJson4['value'];
-      if (fieldJson4['_value'] != null) {
-        json['_dateAccessed'] = fieldJson4['_value'];
-      }
-    }
-
+    addField('dateAccessed', dateAccessed);
     if (version != null) {
       json['version'] = version!.toJson();
     }
@@ -2108,10 +2015,16 @@ class CitationVersion extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -2121,12 +2034,7 @@ class CitationVersion extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    final fieldJson2 = value.toJson();
-    json['value'] = fieldJson2['value'];
-    if (fieldJson2['_value'] != null) {
-      json['_value'] = fieldJson2['_value'];
-    }
-
+    addField('value', value);
     if (baseCitation != null) {
       json['baseCitation'] = baseCitation!.toJson();
     }
@@ -2280,10 +2188,16 @@ class CitationStatusDate1 extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -2295,14 +2209,7 @@ class CitationStatusDate1 extends BackboneElement {
 
     json['activity'] = activity.toJson();
 
-    if (actual != null) {
-      final fieldJson3 = actual!.toJson();
-      json['actual'] = fieldJson3['value'];
-      if (fieldJson3['_value'] != null) {
-        json['_actual'] = fieldJson3['_value'];
-      }
-    }
-
+    addField('actual', actual);
     json['period'] = period.toJson();
 
     return json;
@@ -2462,10 +2369,16 @@ class CitationTitle extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -2483,12 +2396,7 @@ class CitationTitle extends BackboneElement {
       json['language'] = language!.toJson();
     }
 
-    final fieldJson4 = text.toJson();
-    json['text'] = fieldJson4['value'];
-    if (fieldJson4['_value'] != null) {
-      json['_text'] = fieldJson4['_value'];
-    }
-
+    addField('text', text);
     return json;
   }
 
@@ -2653,10 +2561,16 @@ class CitationAbstract extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -2674,20 +2588,8 @@ class CitationAbstract extends BackboneElement {
       json['language'] = language!.toJson();
     }
 
-    final fieldJson4 = text.toJson();
-    json['text'] = fieldJson4['value'];
-    if (fieldJson4['_value'] != null) {
-      json['_text'] = fieldJson4['_value'];
-    }
-
-    if (copyright != null) {
-      final fieldJson5 = copyright!.toJson();
-      json['copyright'] = fieldJson5['value'];
-      if (fieldJson5['_value'] != null) {
-        json['_copyright'] = fieldJson5['_value'];
-      }
-    }
-
+    addField('text', text);
+    addField('copyright', copyright);
     return json;
   }
 
@@ -2845,10 +2747,16 @@ class CitationPart extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -2862,14 +2770,7 @@ class CitationPart extends BackboneElement {
       json['type'] = type!.toJson();
     }
 
-    if (value != null) {
-      final fieldJson3 = value!.toJson();
-      json['value'] = fieldJson3['value'];
-      if (fieldJson3['_value'] != null) {
-        json['_value'] = fieldJson3['_value'];
-      }
-    }
-
+    addField('value', value);
     if (baseCitation != null) {
       json['baseCitation'] = baseCitation!.toJson();
     }
@@ -3061,10 +2962,16 @@ class CitationRelatesTo1 extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -3081,14 +2988,7 @@ class CitationRelatesTo1 extends BackboneElement {
           targetClassifier!.map((e) => e.toJson()).toList();
     }
 
-    if (targetUri != null) {
-      final fieldJson4 = targetUri!.toJson();
-      json['targetUri'] = fieldJson4['value'];
-      if (fieldJson4['_value'] != null) {
-        json['_targetUri'] = fieldJson4['_value'];
-      }
-    }
-
+    addField('targetUri', targetUri);
     if (targetIdentifier != null) {
       json['targetIdentifier'] = targetIdentifier!.toJson();
     }
@@ -3358,10 +3258,16 @@ class CitationPublicationForm extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -3379,74 +3285,18 @@ class CitationPublicationForm extends BackboneElement {
       json['periodicRelease'] = periodicRelease!.toJson();
     }
 
-    if (articleDate != null) {
-      final fieldJson4 = articleDate!.toJson();
-      json['articleDate'] = fieldJson4['value'];
-      if (fieldJson4['_value'] != null) {
-        json['_articleDate'] = fieldJson4['_value'];
-      }
-    }
-
-    if (lastRevisionDate != null) {
-      final fieldJson5 = lastRevisionDate!.toJson();
-      json['lastRevisionDate'] = fieldJson5['value'];
-      if (fieldJson5['_value'] != null) {
-        json['_lastRevisionDate'] = fieldJson5['_value'];
-      }
-    }
-
+    addField('articleDate', articleDate);
+    addField('lastRevisionDate', lastRevisionDate);
     if (language != null && language!.isNotEmpty) {
       json['language'] = language!.map((e) => e.toJson()).toList();
     }
 
-    if (accessionNumber != null) {
-      final fieldJson7 = accessionNumber!.toJson();
-      json['accessionNumber'] = fieldJson7['value'];
-      if (fieldJson7['_value'] != null) {
-        json['_accessionNumber'] = fieldJson7['_value'];
-      }
-    }
-
-    if (pageString != null) {
-      final fieldJson8 = pageString!.toJson();
-      json['pageString'] = fieldJson8['value'];
-      if (fieldJson8['_value'] != null) {
-        json['_pageString'] = fieldJson8['_value'];
-      }
-    }
-
-    if (firstPage != null) {
-      final fieldJson9 = firstPage!.toJson();
-      json['firstPage'] = fieldJson9['value'];
-      if (fieldJson9['_value'] != null) {
-        json['_firstPage'] = fieldJson9['_value'];
-      }
-    }
-
-    if (lastPage != null) {
-      final fieldJson10 = lastPage!.toJson();
-      json['lastPage'] = fieldJson10['value'];
-      if (fieldJson10['_value'] != null) {
-        json['_lastPage'] = fieldJson10['_value'];
-      }
-    }
-
-    if (pageCount != null) {
-      final fieldJson11 = pageCount!.toJson();
-      json['pageCount'] = fieldJson11['value'];
-      if (fieldJson11['_value'] != null) {
-        json['_pageCount'] = fieldJson11['_value'];
-      }
-    }
-
-    if (copyright != null) {
-      final fieldJson12 = copyright!.toJson();
-      json['copyright'] = fieldJson12['value'];
-      if (fieldJson12['_value'] != null) {
-        json['_copyright'] = fieldJson12['_value'];
-      }
-    }
-
+    addField('accessionNumber', accessionNumber);
+    addField('pageString', pageString);
+    addField('firstPage', firstPage);
+    addField('lastPage', lastPage);
+    addField('pageCount', pageCount);
+    addField('copyright', copyright);
     return json;
   }
 
@@ -3645,10 +3495,16 @@ class CitationPublishedIn extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -3666,26 +3522,12 @@ class CitationPublishedIn extends BackboneElement {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
 
-    if (title != null) {
-      final fieldJson4 = title!.toJson();
-      json['title'] = fieldJson4['value'];
-      if (fieldJson4['_value'] != null) {
-        json['_title'] = fieldJson4['_value'];
-      }
-    }
-
+    addField('title', title);
     if (publisher != null) {
       json['publisher'] = publisher!.toJson();
     }
 
-    if (publisherLocation != null) {
-      final fieldJson6 = publisherLocation!.toJson();
-      json['publisherLocation'] = fieldJson6['value'];
-      if (fieldJson6['_value'] != null) {
-        json['_publisherLocation'] = fieldJson6['_value'];
-      }
-    }
-
+    addField('publisherLocation', publisherLocation);
     return json;
   }
 
@@ -3857,10 +3699,16 @@ class CitationPeriodicRelease extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -3874,22 +3722,8 @@ class CitationPeriodicRelease extends BackboneElement {
       json['citedMedium'] = citedMedium!.toJson();
     }
 
-    if (volume != null) {
-      final fieldJson3 = volume!.toJson();
-      json['volume'] = fieldJson3['value'];
-      if (fieldJson3['_value'] != null) {
-        json['_volume'] = fieldJson3['_value'];
-      }
-    }
-
-    if (issue != null) {
-      final fieldJson4 = issue!.toJson();
-      json['issue'] = fieldJson4['value'];
-      if (fieldJson4['_value'] != null) {
-        json['_issue'] = fieldJson4['_value'];
-      }
-    }
-
+    addField('volume', volume);
+    addField('issue', issue);
     if (dateOfPublication != null) {
       json['dateOfPublication'] = dateOfPublication!.toJson();
     }
@@ -4087,10 +3921,16 @@ class CitationDateOfPublication extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -4100,54 +3940,12 @@ class CitationDateOfPublication extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    if (date != null) {
-      final fieldJson2 = date!.toJson();
-      json['date'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_date'] = fieldJson2['_value'];
-      }
-    }
-
-    if (year != null) {
-      final fieldJson3 = year!.toJson();
-      json['year'] = fieldJson3['value'];
-      if (fieldJson3['_value'] != null) {
-        json['_year'] = fieldJson3['_value'];
-      }
-    }
-
-    if (month != null) {
-      final fieldJson4 = month!.toJson();
-      json['month'] = fieldJson4['value'];
-      if (fieldJson4['_value'] != null) {
-        json['_month'] = fieldJson4['_value'];
-      }
-    }
-
-    if (day != null) {
-      final fieldJson5 = day!.toJson();
-      json['day'] = fieldJson5['value'];
-      if (fieldJson5['_value'] != null) {
-        json['_day'] = fieldJson5['_value'];
-      }
-    }
-
-    if (season != null) {
-      final fieldJson6 = season!.toJson();
-      json['season'] = fieldJson6['value'];
-      if (fieldJson6['_value'] != null) {
-        json['_season'] = fieldJson6['_value'];
-      }
-    }
-
-    if (text != null) {
-      final fieldJson7 = text!.toJson();
-      json['text'] = fieldJson7['value'];
-      if (fieldJson7['_value'] != null) {
-        json['_text'] = fieldJson7['_value'];
-      }
-    }
-
+    addField('date', date);
+    addField('year', year);
+    addField('month', month);
+    addField('day', day);
+    addField('season', season);
+    addField('text', text);
     return json;
   }
 
@@ -4299,10 +4097,16 @@ class CitationWebLocation extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -4316,14 +4120,7 @@ class CitationWebLocation extends BackboneElement {
       json['type'] = type!.toJson();
     }
 
-    if (url != null) {
-      final fieldJson3 = url!.toJson();
-      json['url'] = fieldJson3['value'];
-      if (fieldJson3['_value'] != null) {
-        json['_url'] = fieldJson3['_value'];
-      }
-    }
-
+    addField('url', url);
     return json;
   }
 
@@ -4480,10 +4277,16 @@ class CitationClassification1 extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -4683,10 +4486,16 @@ class CitationWhoClassified extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -4708,22 +4517,8 @@ class CitationWhoClassified extends BackboneElement {
       json['publisher'] = publisher!.toJson();
     }
 
-    if (classifierCopyright != null) {
-      final fieldJson5 = classifierCopyright!.toJson();
-      json['classifierCopyright'] = fieldJson5['value'];
-      if (fieldJson5['_value'] != null) {
-        json['_classifierCopyright'] = fieldJson5['_value'];
-      }
-    }
-
-    if (freeToShare != null) {
-      final fieldJson6 = freeToShare!.toJson();
-      json['freeToShare'] = fieldJson6['value'];
-      if (fieldJson6['_value'] != null) {
-        json['_freeToShare'] = fieldJson6['_value'];
-      }
-    }
-
+    addField('classifierCopyright', classifierCopyright);
+    addField('freeToShare', freeToShare);
     return json;
   }
 
@@ -4893,10 +4688,16 @@ class CitationContributorship extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -4906,14 +4707,7 @@ class CitationContributorship extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    if (complete != null) {
-      final fieldJson2 = complete!.toJson();
-      json['complete'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_complete'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('complete', complete);
     if (entry != null && entry!.isNotEmpty) {
       json['entry'] = entry!.map((e) => e.toJson()).toList();
     }
@@ -5198,10 +4992,16 @@ class CitationEntry extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -5215,22 +5015,8 @@ class CitationEntry extends BackboneElement {
       json['name'] = name!.toJson();
     }
 
-    if (initials != null) {
-      final fieldJson3 = initials!.toJson();
-      json['initials'] = fieldJson3['value'];
-      if (fieldJson3['_value'] != null) {
-        json['_initials'] = fieldJson3['_value'];
-      }
-    }
-
-    if (collectiveName != null) {
-      final fieldJson4 = collectiveName!.toJson();
-      json['collectiveName'] = fieldJson4['value'];
-      if (fieldJson4['_value'] != null) {
-        json['_collectiveName'] = fieldJson4['_value'];
-      }
-    }
-
+    addField('initials', initials);
+    addField('collectiveName', collectiveName);
     if (identifier != null && identifier!.isNotEmpty) {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
@@ -5262,22 +5048,8 @@ class CitationEntry extends BackboneElement {
           contributionInstance!.map((e) => e.toJson()).toList();
     }
 
-    if (correspondingContact != null) {
-      final fieldJson12 = correspondingContact!.toJson();
-      json['correspondingContact'] = fieldJson12['value'];
-      if (fieldJson12['_value'] != null) {
-        json['_correspondingContact'] = fieldJson12['_value'];
-      }
-    }
-
-    if (listOrder != null) {
-      final fieldJson13 = listOrder!.toJson();
-      json['listOrder'] = fieldJson13['value'];
-      if (fieldJson13['_value'] != null) {
-        json['_listOrder'] = fieldJson13['_value'];
-      }
-    }
-
+    addField('correspondingContact', correspondingContact);
+    addField('listOrder', listOrder);
     return json;
   }
 
@@ -5456,10 +5228,16 @@ class CitationAffiliationInfo extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -5469,22 +5247,8 @@ class CitationAffiliationInfo extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    if (affiliation != null) {
-      final fieldJson2 = affiliation!.toJson();
-      json['affiliation'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_affiliation'] = fieldJson2['_value'];
-      }
-    }
-
-    if (role != null) {
-      final fieldJson3 = role!.toJson();
-      json['role'] = fieldJson3['value'];
-      if (fieldJson3['_value'] != null) {
-        json['_role'] = fieldJson3['_value'];
-      }
-    }
-
+    addField('affiliation', affiliation);
+    addField('role', role);
     if (identifier != null && identifier!.isNotEmpty) {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
@@ -5632,10 +5396,16 @@ class CitationContributionInstance extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -5647,14 +5417,7 @@ class CitationContributionInstance extends BackboneElement {
 
     json['type'] = type.toJson();
 
-    if (time != null) {
-      final fieldJson3 = time!.toJson();
-      json['time'] = fieldJson3['value'];
-      if (fieldJson3['_value'] != null) {
-        json['_time'] = fieldJson3['_value'];
-      }
-    }
-
+    addField('time', time);
     return json;
   }
 
@@ -5819,10 +5582,16 @@ class CitationSummary1 extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -5844,12 +5613,7 @@ class CitationSummary1 extends BackboneElement {
       json['source'] = source!.toJson();
     }
 
-    final fieldJson5 = value.toJson();
-    json['value'] = fieldJson5['value'];
-    if (fieldJson5['_value'] != null) {
-      json['_value'] = fieldJson5['_value'];
-    }
-
+    addField('value', value);
     return json;
   }
 

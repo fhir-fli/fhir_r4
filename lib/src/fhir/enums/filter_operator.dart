@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The kind of operation to perform as a part of a property based filter.
-class FilterOperator {
+class FilterOperator extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  FilterOperator._(this.fhirCode, {this.element});
+  FilterOperator._(super.value, [super.element]);
 
   /// Factory constructor to create [FilterOperator] from JSON.
   factory FilterOperator.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class FilterOperator {
     if (value == null && element != null) {
       return FilterOperator.elementOnly.withElement(element);
     }
-    return FilterOperator._(value!, element: element);
+    return FilterOperator._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// FilterOperator values
   /// eq
   static final FilterOperator eq = FilterOperator._(
     '=',
@@ -87,18 +80,63 @@ class FilterOperator {
     exists,
   ];
 
+  /// Clones the current instance
+  @override
+  FilterOperator clone() =>
+      FilterOperator._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  FilterOperator setElement(String name, dynamic elementValue) {
+    return FilterOperator._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   FilterOperator withElement(Element? newElement) {
-    return FilterOperator._(fhirCode, element: newElement);
+    return FilterOperator._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  FilterOperator copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return FilterOperator._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

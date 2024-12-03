@@ -628,31 +628,23 @@ class ServiceRequest extends DomainResource {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    json['resourceType'] = resourceType.toJson();
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    json['resourceType'] = resourceType.toJson();
+    addField('id', id);
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    if (implicitRules != null) {
-      final fieldJson1 = implicitRules!.toJson();
-      json['implicitRules'] = fieldJson1['value'];
-      if (fieldJson1['_value'] != null) {
-        json['_implicitRules'] = fieldJson1['_value'];
-      }
-    }
-
-    if (language != null) {
-      final fieldJson2 = language!.toJson();
-      json['language'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_language'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('implicitRules', implicitRules);
+    addField('language', language);
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -675,20 +667,20 @@ class ServiceRequest extends DomainResource {
     }
 
     if (instantiatesCanonical != null && instantiatesCanonical!.isNotEmpty) {
-      final fieldJson8 = instantiatesCanonical!.map((e) => e.toJson()).toList();
+      final fieldJson0 = instantiatesCanonical!.map((e) => e.toJson()).toList();
       json['instantiatesCanonical'] =
-          fieldJson8.map((e) => e['value']).toList();
-      if (fieldJson8.any((e) => e['_value'] != null)) {
+          fieldJson0.map((e) => e['value']).toList();
+      if (fieldJson0.any((e) => e['_value'] != null)) {
         json['_instantiatesCanonical'] =
-            fieldJson8.map((e) => e['_value']).toList();
+            fieldJson0.map((e) => e['_value']).toList();
       }
     }
 
     if (instantiatesUri != null && instantiatesUri!.isNotEmpty) {
-      final fieldJson9 = instantiatesUri!.map((e) => e.toJson()).toList();
-      json['instantiatesUri'] = fieldJson9.map((e) => e['value']).toList();
-      if (fieldJson9.any((e) => e['_value'] != null)) {
-        json['_instantiatesUri'] = fieldJson9.map((e) => e['_value']).toList();
+      final fieldJson1 = instantiatesUri!.map((e) => e.toJson()).toList();
+      json['instantiatesUri'] = fieldJson1.map((e) => e['value']).toList();
+      if (fieldJson1.any((e) => e['_value'] != null)) {
+        json['_instantiatesUri'] = fieldJson1.map((e) => e['_value']).toList();
       }
     }
 
@@ -704,38 +696,14 @@ class ServiceRequest extends DomainResource {
       json['requisition'] = requisition!.toJson();
     }
 
-    final fieldJson13 = status.toJson();
-    json['status'] = fieldJson13['value'];
-    if (fieldJson13['_value'] != null) {
-      json['_status'] = fieldJson13['_value'];
-    }
-
-    final fieldJson14 = intent.toJson();
-    json['intent'] = fieldJson14['value'];
-    if (fieldJson14['_value'] != null) {
-      json['_intent'] = fieldJson14['_value'];
-    }
-
+    addField('status', status);
+    addField('intent', intent);
     if (category != null && category!.isNotEmpty) {
       json['category'] = category!.map((e) => e.toJson()).toList();
     }
 
-    if (priority != null) {
-      final fieldJson16 = priority!.toJson();
-      json['priority'] = fieldJson16['value'];
-      if (fieldJson16['_value'] != null) {
-        json['_priority'] = fieldJson16['_value'];
-      }
-    }
-
-    if (doNotPerform != null) {
-      final fieldJson17 = doNotPerform!.toJson();
-      json['doNotPerform'] = fieldJson17['value'];
-      if (fieldJson17['_value'] != null) {
-        json['_doNotPerform'] = fieldJson17['_value'];
-      }
-    }
-
+    addField('priority', priority);
+    addField('doNotPerform', doNotPerform);
     if (code != null) {
       json['code'] = code!.toJson();
     }
@@ -762,14 +730,7 @@ class ServiceRequest extends DomainResource {
       json['encounter'] = encounter!.toJson();
     }
 
-    if (occurrenceDateTime != null) {
-      final fieldJson25 = occurrenceDateTime!.toJson();
-      json['occurrenceDateTime'] = fieldJson25['value'];
-      if (fieldJson25['_value'] != null) {
-        json['_occurrenceDateTime'] = fieldJson25['_value'];
-      }
-    }
-
+    addField('occurrenceDateTime', occurrenceDateTime);
     if (occurrencePeriod != null) {
       json['occurrencePeriod'] = occurrencePeriod!.toJson();
     }
@@ -778,26 +739,12 @@ class ServiceRequest extends DomainResource {
       json['occurrenceTiming'] = occurrenceTiming!.toJson();
     }
 
-    if (asNeededBoolean != null) {
-      final fieldJson28 = asNeededBoolean!.toJson();
-      json['asNeededBoolean'] = fieldJson28['value'];
-      if (fieldJson28['_value'] != null) {
-        json['_asNeededBoolean'] = fieldJson28['_value'];
-      }
-    }
-
+    addField('asNeededBoolean', asNeededBoolean);
     if (asNeededCodeableConcept != null) {
       json['asNeededCodeableConcept'] = asNeededCodeableConcept!.toJson();
     }
 
-    if (authoredOn != null) {
-      final fieldJson30 = authoredOn!.toJson();
-      json['authoredOn'] = fieldJson30['value'];
-      if (fieldJson30['_value'] != null) {
-        json['_authoredOn'] = fieldJson30['_value'];
-      }
-    }
-
+    addField('authoredOn', authoredOn);
     if (requester != null) {
       json['requester'] = requester!.toJson();
     }
@@ -848,14 +795,7 @@ class ServiceRequest extends DomainResource {
       json['note'] = note!.map((e) => e.toJson()).toList();
     }
 
-    if (patientInstruction != null) {
-      final fieldJson43 = patientInstruction!.toJson();
-      json['patientInstruction'] = fieldJson43['value'];
-      if (fieldJson43['_value'] != null) {
-        json['_patientInstruction'] = fieldJson43['_value'];
-      }
-    }
-
+    addField('patientInstruction', patientInstruction);
     if (relevantHistory != null && relevantHistory!.isNotEmpty) {
       json['relevantHistory'] =
           relevantHistory!.map((e) => e.toJson()).toList();

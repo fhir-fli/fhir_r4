@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// This value set includes sample Claim SubType codes which are used to distinguish the claim types for example within type institutional there may be subtypes for emergency services, bed stay and transportation.
-class ExampleClaimSubTypeCodes {
+class ExampleClaimSubTypeCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ExampleClaimSubTypeCodes._(this.fhirCode, {this.element});
+  ExampleClaimSubTypeCodes._(super.value, [super.element]);
 
   /// Factory constructor to create [ExampleClaimSubTypeCodes] from JSON.
   factory ExampleClaimSubTypeCodes.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class ExampleClaimSubTypeCodes {
     if (value == null && element != null) {
       return ExampleClaimSubTypeCodes.elementOnly.withElement(element);
     }
-    return ExampleClaimSubTypeCodes._(value!, element: element);
+    return ExampleClaimSubTypeCodes._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ExampleClaimSubTypeCodes values
   /// ortho
   static final ExampleClaimSubTypeCodes ortho = ExampleClaimSubTypeCodes._(
     'ortho',
@@ -46,18 +39,63 @@ class ExampleClaimSubTypeCodes {
     emergency,
   ];
 
+  /// Clones the current instance
+  @override
+  ExampleClaimSubTypeCodes clone() =>
+      ExampleClaimSubTypeCodes._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  ExampleClaimSubTypeCodes setElement(String name, dynamic elementValue) {
+    return ExampleClaimSubTypeCodes._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   ExampleClaimSubTypeCodes withElement(Element? newElement) {
-    return ExampleClaimSubTypeCodes._(fhirCode, element: newElement);
+    return ExampleClaimSubTypeCodes._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  ExampleClaimSubTypeCodes copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return ExampleClaimSubTypeCodes._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

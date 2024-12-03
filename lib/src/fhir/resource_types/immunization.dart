@@ -482,31 +482,23 @@ class Immunization extends DomainResource {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    json['resourceType'] = resourceType.toJson();
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    json['resourceType'] = resourceType.toJson();
+    addField('id', id);
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    if (implicitRules != null) {
-      final fieldJson1 = implicitRules!.toJson();
-      json['implicitRules'] = fieldJson1['value'];
-      if (fieldJson1['_value'] != null) {
-        json['_implicitRules'] = fieldJson1['_value'];
-      }
-    }
-
-    if (language != null) {
-      final fieldJson2 = language!.toJson();
-      json['language'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_language'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('implicitRules', implicitRules);
+    addField('language', language);
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -528,12 +520,7 @@ class Immunization extends DomainResource {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
 
-    final fieldJson8 = status.toJson();
-    json['status'] = fieldJson8['value'];
-    if (fieldJson8['_value'] != null) {
-      json['_status'] = fieldJson8['_value'];
-    }
-
+    addField('status', status);
     if (statusReason != null) {
       json['statusReason'] = statusReason!.toJson();
     }
@@ -546,38 +533,10 @@ class Immunization extends DomainResource {
       json['encounter'] = encounter!.toJson();
     }
 
-    if (occurrenceDateTime != null) {
-      final fieldJson13 = occurrenceDateTime!.toJson();
-      json['occurrenceDateTime'] = fieldJson13['value'];
-      if (fieldJson13['_value'] != null) {
-        json['_occurrenceDateTime'] = fieldJson13['_value'];
-      }
-    }
-
-    if (occurrenceString != null) {
-      final fieldJson14 = occurrenceString!.toJson();
-      json['occurrenceString'] = fieldJson14['value'];
-      if (fieldJson14['_value'] != null) {
-        json['_occurrenceString'] = fieldJson14['_value'];
-      }
-    }
-
-    if (recorded != null) {
-      final fieldJson15 = recorded!.toJson();
-      json['recorded'] = fieldJson15['value'];
-      if (fieldJson15['_value'] != null) {
-        json['_recorded'] = fieldJson15['_value'];
-      }
-    }
-
-    if (primarySource != null) {
-      final fieldJson16 = primarySource!.toJson();
-      json['primarySource'] = fieldJson16['value'];
-      if (fieldJson16['_value'] != null) {
-        json['_primarySource'] = fieldJson16['_value'];
-      }
-    }
-
+    addField('occurrenceDateTime', occurrenceDateTime);
+    addField('occurrenceString', occurrenceString);
+    addField('recorded', recorded);
+    addField('primarySource', primarySource);
     if (reportOrigin != null) {
       json['reportOrigin'] = reportOrigin!.toJson();
     }
@@ -590,22 +549,8 @@ class Immunization extends DomainResource {
       json['manufacturer'] = manufacturer!.toJson();
     }
 
-    if (lotNumber != null) {
-      final fieldJson20 = lotNumber!.toJson();
-      json['lotNumber'] = fieldJson20['value'];
-      if (fieldJson20['_value'] != null) {
-        json['_lotNumber'] = fieldJson20['_value'];
-      }
-    }
-
-    if (expirationDate != null) {
-      final fieldJson21 = expirationDate!.toJson();
-      json['expirationDate'] = fieldJson21['value'];
-      if (fieldJson21['_value'] != null) {
-        json['_expirationDate'] = fieldJson21['_value'];
-      }
-    }
-
+    addField('lotNumber', lotNumber);
+    addField('expirationDate', expirationDate);
     if (site != null) {
       json['site'] = site!.toJson();
     }
@@ -635,14 +580,7 @@ class Immunization extends DomainResource {
           reasonReference!.map((e) => e.toJson()).toList();
     }
 
-    if (isSubpotent != null) {
-      final fieldJson29 = isSubpotent!.toJson();
-      json['isSubpotent'] = fieldJson29['value'];
-      if (fieldJson29['_value'] != null) {
-        json['_isSubpotent'] = fieldJson29['_value'];
-      }
-    }
-
+    addField('isSubpotent', isSubpotent);
     if (subpotentReason != null && subpotentReason!.isNotEmpty) {
       json['subpotentReason'] =
           subpotentReason!.map((e) => e.toJson()).toList();
@@ -875,10 +813,16 @@ class ImmunizationPerformer extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1065,10 +1009,16 @@ class ImmunizationEducation extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1078,38 +1028,10 @@ class ImmunizationEducation extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    if (documentType != null) {
-      final fieldJson2 = documentType!.toJson();
-      json['documentType'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_documentType'] = fieldJson2['_value'];
-      }
-    }
-
-    if (reference != null) {
-      final fieldJson3 = reference!.toJson();
-      json['reference'] = fieldJson3['value'];
-      if (fieldJson3['_value'] != null) {
-        json['_reference'] = fieldJson3['_value'];
-      }
-    }
-
-    if (publicationDate != null) {
-      final fieldJson4 = publicationDate!.toJson();
-      json['publicationDate'] = fieldJson4['value'];
-      if (fieldJson4['_value'] != null) {
-        json['_publicationDate'] = fieldJson4['_value'];
-      }
-    }
-
-    if (presentationDate != null) {
-      final fieldJson5 = presentationDate!.toJson();
-      json['presentationDate'] = fieldJson5['value'];
-      if (fieldJson5['_value'] != null) {
-        json['_presentationDate'] = fieldJson5['_value'];
-      }
-    }
-
+    addField('documentType', documentType);
+    addField('reference', reference);
+    addField('publicationDate', publicationDate);
+    addField('presentationDate', presentationDate);
     return json;
   }
 
@@ -1269,10 +1191,16 @@ class ImmunizationReaction extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1282,26 +1210,12 @@ class ImmunizationReaction extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    if (date != null) {
-      final fieldJson2 = date!.toJson();
-      json['date'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_date'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('date', date);
     if (detail != null) {
       json['detail'] = detail!.toJson();
     }
 
-    if (reported != null) {
-      final fieldJson4 = reported!.toJson();
-      json['reported'] = fieldJson4['value'];
-      if (fieldJson4['_value'] != null) {
-        json['_reported'] = fieldJson4['_value'];
-      }
-    }
-
+    addField('reported', reported);
     return json;
   }
 
@@ -1512,10 +1426,16 @@ class ImmunizationProtocolApplied extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1525,14 +1445,7 @@ class ImmunizationProtocolApplied extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    if (series != null) {
-      final fieldJson2 = series!.toJson();
-      json['series'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_series'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('series', series);
     if (authority != null) {
       json['authority'] = authority!.toJson();
     }
@@ -1541,38 +1454,10 @@ class ImmunizationProtocolApplied extends BackboneElement {
       json['targetDisease'] = targetDisease!.map((e) => e.toJson()).toList();
     }
 
-    if (doseNumberPositiveInt != null) {
-      final fieldJson5 = doseNumberPositiveInt!.toJson();
-      json['doseNumberPositiveInt'] = fieldJson5['value'];
-      if (fieldJson5['_value'] != null) {
-        json['_doseNumberPositiveInt'] = fieldJson5['_value'];
-      }
-    }
-
-    if (doseNumberString != null) {
-      final fieldJson6 = doseNumberString!.toJson();
-      json['doseNumberString'] = fieldJson6['value'];
-      if (fieldJson6['_value'] != null) {
-        json['_doseNumberString'] = fieldJson6['_value'];
-      }
-    }
-
-    if (seriesDosesPositiveInt != null) {
-      final fieldJson7 = seriesDosesPositiveInt!.toJson();
-      json['seriesDosesPositiveInt'] = fieldJson7['value'];
-      if (fieldJson7['_value'] != null) {
-        json['_seriesDosesPositiveInt'] = fieldJson7['_value'];
-      }
-    }
-
-    if (seriesDosesString != null) {
-      final fieldJson8 = seriesDosesString!.toJson();
-      json['seriesDosesString'] = fieldJson8['value'];
-      if (fieldJson8['_value'] != null) {
-        json['_seriesDosesString'] = fieldJson8['_value'];
-      }
-    }
-
+    addField('doseNumberPositiveInt', doseNumberPositiveInt);
+    addField('doseNumberString', doseNumberString);
+    addField('seriesDosesPositiveInt', seriesDosesPositiveInt);
+    addField('seriesDosesString', seriesDosesString);
     return json;
   }
 

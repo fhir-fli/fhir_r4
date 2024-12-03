@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// This value set includes sample Payment Type codes.
-class PaymentTypeCodes {
+class PaymentTypeCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  PaymentTypeCodes._(this.fhirCode, {this.element});
+  PaymentTypeCodes._(super.value, [super.element]);
 
   /// Factory constructor to create [PaymentTypeCodes] from JSON.
   factory PaymentTypeCodes.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class PaymentTypeCodes {
     if (value == null && element != null) {
       return PaymentTypeCodes.elementOnly.withElement(element);
     }
-    return PaymentTypeCodes._(value!, element: element);
+    return PaymentTypeCodes._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// PaymentTypeCodes values
   /// payment
   static final PaymentTypeCodes payment = PaymentTypeCodes._(
     'payment',
@@ -51,18 +44,63 @@ class PaymentTypeCodes {
     advance,
   ];
 
+  /// Clones the current instance
+  @override
+  PaymentTypeCodes clone() =>
+      PaymentTypeCodes._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  PaymentTypeCodes setElement(String name, dynamic elementValue) {
+    return PaymentTypeCodes._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   PaymentTypeCodes withElement(Element? newElement) {
-    return PaymentTypeCodes._(fhirCode, element: newElement);
+    return PaymentTypeCodes._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  PaymentTypeCodes copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return PaymentTypeCodes._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

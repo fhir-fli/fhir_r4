@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The license that applies to an Implementation Guide (using an SPDX license Identifiers, or 'not-open-source'). The binding is required but new SPDX license Identifiers are allowed to be used (https://spdx.org/licenses/).
-class SPDXLicense {
+class SPDXLicense extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  SPDXLicense._(this.fhirCode, {this.element});
+  SPDXLicense._(super.value, [super.element]);
 
   /// Factory constructor to create [SPDXLicense] from JSON.
   factory SPDXLicense.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class SPDXLicense {
     if (value == null && element != null) {
       return SPDXLicense.elementOnly.withElement(element);
     }
-    return SPDXLicense._(value!, element: element);
+    return SPDXLicense._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// SPDXLicense values
   /// not_open_source
   static final SPDXLicense not_open_source = SPDXLicense._(
     'not-open-source',
@@ -2109,18 +2102,62 @@ class SPDXLicense {
     ZPL_2_1,
   ];
 
+  /// Clones the current instance
+  @override
+  SPDXLicense clone() => SPDXLicense._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  SPDXLicense setElement(String name, dynamic elementValue) {
+    return SPDXLicense._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   SPDXLicense withElement(Element? newElement) {
-    return SPDXLicense._(fhirCode, element: newElement);
+    return SPDXLicense._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  SPDXLicense copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return SPDXLicense._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Common Tag Codes defined by FHIR project
-class CommonTags {
+class CommonTags extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  CommonTags._(this.fhirCode, {this.element});
+  CommonTags._(super.value, [super.element]);
 
   /// Factory constructor to create [CommonTags] from JSON.
   factory CommonTags.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class CommonTags {
     if (value == null && element != null) {
       return CommonTags.elementOnly.withElement(element);
     }
-    return CommonTags._(value!, element: element);
+    return CommonTags._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// CommonTags values
   /// actionable
   static final CommonTags actionable = CommonTags._(
     'actionable',
@@ -39,18 +32,62 @@ class CommonTags {
     actionable,
   ];
 
+  /// Clones the current instance
+  @override
+  CommonTags clone() => CommonTags._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  CommonTags setElement(String name, dynamic elementValue) {
+    return CommonTags._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   CommonTags withElement(Element? newElement) {
-    return CommonTags._(fhirCode, element: newElement);
+    return CommonTags._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  CommonTags copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return CommonTags._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

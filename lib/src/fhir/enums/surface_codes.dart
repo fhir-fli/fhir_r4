@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// This value set includes a smattering of FDI tooth surface codes.
-class SurfaceCodes {
+class SurfaceCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  SurfaceCodes._(this.fhirCode, {this.element});
+  SurfaceCodes._(super.value, [super.element]);
 
   /// Factory constructor to create [SurfaceCodes] from JSON.
   factory SurfaceCodes.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class SurfaceCodes {
     if (value == null && element != null) {
       return SurfaceCodes.elementOnly.withElement(element);
     }
-    return SurfaceCodes._(value!, element: element);
+    return SurfaceCodes._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// SurfaceCodes values
   /// M
   static final SurfaceCodes M = SurfaceCodes._(
     'M',
@@ -99,18 +92,62 @@ class SurfaceCodes {
     MOD,
   ];
 
+  /// Clones the current instance
+  @override
+  SurfaceCodes clone() => SurfaceCodes._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  SurfaceCodes setElement(String name, dynamic elementValue) {
+    return SurfaceCodes._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   SurfaceCodes withElement(Element? newElement) {
-    return SurfaceCodes._(fhirCode, element: newElement);
+    return SurfaceCodes._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  SurfaceCodes copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return SurfaceCodes._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

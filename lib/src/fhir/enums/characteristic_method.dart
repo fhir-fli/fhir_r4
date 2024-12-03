@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The method used to determine the characteristic(s) of the variable.
-class CharacteristicMethod {
+class CharacteristicMethod extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  CharacteristicMethod._(this.fhirCode, {this.element});
+  CharacteristicMethod._(super.value, [super.element]);
 
   /// Factory constructor to create [CharacteristicMethod] from JSON.
   factory CharacteristicMethod.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class CharacteristicMethod {
     if (value == null && element != null) {
       return CharacteristicMethod.elementOnly.withElement(element);
     }
-    return CharacteristicMethod._(value!, element: element);
+    return CharacteristicMethod._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// CharacteristicMethod values
   /// Default
   static final CharacteristicMethod Default = CharacteristicMethod._(
     'Default',
@@ -39,18 +32,63 @@ class CharacteristicMethod {
     Default,
   ];
 
+  /// Clones the current instance
+  @override
+  CharacteristicMethod clone() =>
+      CharacteristicMethod._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  CharacteristicMethod setElement(String name, dynamic elementValue) {
+    return CharacteristicMethod._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   CharacteristicMethod withElement(Element? newElement) {
-    return CharacteristicMethod._(fhirCode, element: newElement);
+    return CharacteristicMethod._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  CharacteristicMethod copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return CharacteristicMethod._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

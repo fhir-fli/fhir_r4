@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// How a capability statement is intended to be used.
-class CapabilityStatementKind {
+class CapabilityStatementKind extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  CapabilityStatementKind._(this.fhirCode, {this.element});
+  CapabilityStatementKind._(super.value, [super.element]);
 
   /// Factory constructor to create [CapabilityStatementKind] from JSON.
   factory CapabilityStatementKind.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class CapabilityStatementKind {
     if (value == null && element != null) {
       return CapabilityStatementKind.elementOnly.withElement(element);
     }
-    return CapabilityStatementKind._(value!, element: element);
+    return CapabilityStatementKind._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// CapabilityStatementKind values
   /// instance
   static final CapabilityStatementKind instance = CapabilityStatementKind._(
     'instance',
@@ -52,18 +45,63 @@ class CapabilityStatementKind {
     requirements,
   ];
 
+  /// Clones the current instance
+  @override
+  CapabilityStatementKind clone() =>
+      CapabilityStatementKind._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  CapabilityStatementKind setElement(String name, dynamic elementValue) {
+    return CapabilityStatementKind._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   CapabilityStatementKind withElement(Element? newElement) {
-    return CapabilityStatementKind._(fhirCode, element: newElement);
+    return CapabilityStatementKind._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  CapabilityStatementKind copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return CapabilityStatementKind._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

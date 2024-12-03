@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// This value set defines a set of codes that are used to indicate the supported operations of a testing engine or tool.
-class TestScriptOperationCode {
+class TestScriptOperationCode extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  TestScriptOperationCode._(this.fhirCode, {this.element});
+  TestScriptOperationCode._(super.value, [super.element]);
 
   /// Factory constructor to create [TestScriptOperationCode] from JSON.
   factory TestScriptOperationCode.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class TestScriptOperationCode {
     if (value == null && element != null) {
       return TestScriptOperationCode.elementOnly.withElement(element);
     }
-    return TestScriptOperationCode._(value!, element: element);
+    return TestScriptOperationCode._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// TestScriptOperationCode values
   /// read
   static final TestScriptOperationCode read = TestScriptOperationCode._(
     'read',
@@ -247,7 +240,7 @@ class TestScriptOperationCode {
   );
 
   /// validate
-  static final TestScriptOperationCode validate = TestScriptOperationCode._(
+  static final TestScriptOperationCode validate_ = TestScriptOperationCode._(
     'validate',
   );
 
@@ -307,22 +300,67 @@ class TestScriptOperationCode {
     subsumes,
     transform,
     translate,
-    validate,
+    validate_,
     validate_code,
   ];
 
+  /// Clones the current instance
+  @override
+  TestScriptOperationCode clone() =>
+      TestScriptOperationCode._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  TestScriptOperationCode setElement(String name, dynamic elementValue) {
+    return TestScriptOperationCode._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   TestScriptOperationCode withElement(Element? newElement) {
-    return TestScriptOperationCode._(fhirCode, element: newElement);
+    return TestScriptOperationCode._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  TestScriptOperationCode copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return TestScriptOperationCode._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

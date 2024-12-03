@@ -273,31 +273,23 @@ class BiologicallyDerivedProduct extends DomainResource {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    json['resourceType'] = resourceType.toJson();
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    json['resourceType'] = resourceType.toJson();
+    addField('id', id);
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    if (implicitRules != null) {
-      final fieldJson1 = implicitRules!.toJson();
-      json['implicitRules'] = fieldJson1['value'];
-      if (fieldJson1['_value'] != null) {
-        json['_implicitRules'] = fieldJson1['_value'];
-      }
-    }
-
-    if (language != null) {
-      final fieldJson2 = language!.toJson();
-      json['language'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_language'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('implicitRules', implicitRules);
+    addField('language', language);
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -319,38 +311,17 @@ class BiologicallyDerivedProduct extends DomainResource {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
 
-    if (productCategory != null) {
-      final fieldJson8 = productCategory!.toJson();
-      json['productCategory'] = fieldJson8['value'];
-      if (fieldJson8['_value'] != null) {
-        json['_productCategory'] = fieldJson8['_value'];
-      }
-    }
-
+    addField('productCategory', productCategory);
     if (productCode != null) {
       json['productCode'] = productCode!.toJson();
     }
 
-    if (status != null) {
-      final fieldJson10 = status!.toJson();
-      json['status'] = fieldJson10['value'];
-      if (fieldJson10['_value'] != null) {
-        json['_status'] = fieldJson10['_value'];
-      }
-    }
-
+    addField('status', status);
     if (request != null && request!.isNotEmpty) {
       json['request'] = request!.map((e) => e.toJson()).toList();
     }
 
-    if (quantity != null) {
-      final fieldJson12 = quantity!.toJson();
-      json['quantity'] = fieldJson12['value'];
-      if (fieldJson12['_value'] != null) {
-        json['_quantity'] = fieldJson12['_value'];
-      }
-    }
-
+    addField('quantity', quantity);
     if (parent != null && parent!.isNotEmpty) {
       json['parent'] = parent!.map((e) => e.toJson()).toList();
     }
@@ -564,10 +535,16 @@ class BiologicallyDerivedProductCollection extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -585,14 +562,7 @@ class BiologicallyDerivedProductCollection extends BackboneElement {
       json['source'] = source!.toJson();
     }
 
-    if (collectedDateTime != null) {
-      final fieldJson4 = collectedDateTime!.toJson();
-      json['collectedDateTime'] = fieldJson4['value'];
-      if (fieldJson4['_value'] != null) {
-        json['_collectedDateTime'] = fieldJson4['_value'];
-      }
-    }
-
+    addField('collectedDateTime', collectedDateTime);
     if (collectedPeriod != null) {
       json['collectedPeriod'] = collectedPeriod!.toJson();
     }
@@ -778,10 +748,16 @@ class BiologicallyDerivedProductProcessing extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -791,14 +767,7 @@ class BiologicallyDerivedProductProcessing extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    if (description != null) {
-      final fieldJson2 = description!.toJson();
-      json['description'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_description'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('description', description);
     if (procedure != null) {
       json['procedure'] = procedure!.toJson();
     }
@@ -807,14 +776,7 @@ class BiologicallyDerivedProductProcessing extends BackboneElement {
       json['additive'] = additive!.toJson();
     }
 
-    if (timeDateTime != null) {
-      final fieldJson5 = timeDateTime!.toJson();
-      json['timeDateTime'] = fieldJson5['value'];
-      if (fieldJson5['_value'] != null) {
-        json['_timeDateTime'] = fieldJson5['_value'];
-      }
-    }
-
+    addField('timeDateTime', timeDateTime);
     if (timePeriod != null) {
       json['timePeriod'] = timePeriod!.toJson();
     }
@@ -982,10 +944,16 @@ class BiologicallyDerivedProductManipulation extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -995,22 +963,8 @@ class BiologicallyDerivedProductManipulation extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    if (description != null) {
-      final fieldJson2 = description!.toJson();
-      json['description'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_description'] = fieldJson2['_value'];
-      }
-    }
-
-    if (timeDateTime != null) {
-      final fieldJson3 = timeDateTime!.toJson();
-      json['timeDateTime'] = fieldJson3['value'];
-      if (fieldJson3['_value'] != null) {
-        json['_timeDateTime'] = fieldJson3['_value'];
-      }
-    }
-
+    addField('description', description);
+    addField('timeDateTime', timeDateTime);
     if (timePeriod != null) {
       json['timePeriod'] = timePeriod!.toJson();
     }
@@ -1182,10 +1136,16 @@ class BiologicallyDerivedProductStorage extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1195,30 +1155,9 @@ class BiologicallyDerivedProductStorage extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    if (description != null) {
-      final fieldJson2 = description!.toJson();
-      json['description'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_description'] = fieldJson2['_value'];
-      }
-    }
-
-    if (temperature != null) {
-      final fieldJson3 = temperature!.toJson();
-      json['temperature'] = fieldJson3['value'];
-      if (fieldJson3['_value'] != null) {
-        json['_temperature'] = fieldJson3['_value'];
-      }
-    }
-
-    if (scale != null) {
-      final fieldJson4 = scale!.toJson();
-      json['scale'] = fieldJson4['value'];
-      if (fieldJson4['_value'] != null) {
-        json['_scale'] = fieldJson4['_value'];
-      }
-    }
-
+    addField('description', description);
+    addField('temperature', temperature);
+    addField('scale', scale);
     if (duration != null) {
       json['duration'] = duration!.toJson();
     }

@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Types of resources that are part of group.
-class GroupType {
+class GroupType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  GroupType._(this.fhirCode, {this.element});
+  GroupType._(super.value, [super.element]);
 
   /// Factory constructor to create [GroupType] from JSON.
   factory GroupType.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class GroupType {
     if (value == null && element != null) {
       return GroupType.elementOnly.withElement(element);
     }
-    return GroupType._(value!, element: element);
+    return GroupType._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// GroupType values
   /// person
   static final GroupType person = GroupType._(
     'person',
@@ -69,18 +62,62 @@ class GroupType {
     substance,
   ];
 
+  /// Clones the current instance
+  @override
+  GroupType clone() => GroupType._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  GroupType setElement(String name, dynamic elementValue) {
+    return GroupType._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   GroupType withElement(Element? newElement) {
-    return GroupType._(fhirCode, element: newElement);
+    return GroupType._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  GroupType copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return GroupType._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

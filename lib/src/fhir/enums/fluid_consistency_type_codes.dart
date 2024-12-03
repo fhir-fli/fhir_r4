@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// FluidConsistencyType : Codes used to represent the consistency of fluids and liquids provided to the patient. This value set includes concepts from [SNOMED CT](http://snomed.info/sct)(US Extension) where concept is a 435681000124103 (Dietary liquid consistency diet (regime/therapy)). It is provided as a suggestive example.
-class FluidConsistencyTypeCodes {
+class FluidConsistencyTypeCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  FluidConsistencyTypeCodes._(this.fhirCode, {this.element});
+  FluidConsistencyTypeCodes._(super.value, [super.element]);
 
   /// Factory constructor to create [FluidConsistencyTypeCodes] from JSON.
   factory FluidConsistencyTypeCodes.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class FluidConsistencyTypeCodes {
     if (value == null && element != null) {
       return FluidConsistencyTypeCodes.elementOnly.withElement(element);
     }
-    return FluidConsistencyTypeCodes._(value!, element: element);
+    return FluidConsistencyTypeCodes._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// FluidConsistencyTypeCodes values
   /// value439031000124108
   static final FluidConsistencyTypeCodes value439031000124108 =
       FluidConsistencyTypeCodes._(
@@ -62,18 +55,63 @@ class FluidConsistencyTypeCodes {
     value439081000124109,
   ];
 
+  /// Clones the current instance
+  @override
+  FluidConsistencyTypeCodes clone() =>
+      FluidConsistencyTypeCodes._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  FluidConsistencyTypeCodes setElement(String name, dynamic elementValue) {
+    return FluidConsistencyTypeCodes._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   FluidConsistencyTypeCodes withElement(Element? newElement) {
-    return FluidConsistencyTypeCodes._(fhirCode, element: newElement);
+    return FluidConsistencyTypeCodes._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  FluidConsistencyTypeCodes copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return FluidConsistencyTypeCodes._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

@@ -462,31 +462,23 @@ class ResearchStudy extends DomainResource {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    json['resourceType'] = resourceType.toJson();
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    json['resourceType'] = resourceType.toJson();
+    addField('id', id);
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    if (implicitRules != null) {
-      final fieldJson1 = implicitRules!.toJson();
-      json['implicitRules'] = fieldJson1['value'];
-      if (fieldJson1['_value'] != null) {
-        json['_implicitRules'] = fieldJson1['_value'];
-      }
-    }
-
-    if (language != null) {
-      final fieldJson2 = language!.toJson();
-      json['language'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_language'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('implicitRules', implicitRules);
+    addField('language', language);
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -508,14 +500,7 @@ class ResearchStudy extends DomainResource {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
 
-    if (title != null) {
-      final fieldJson8 = title!.toJson();
-      json['title'] = fieldJson8['value'];
-      if (fieldJson8['_value'] != null) {
-        json['_title'] = fieldJson8['_value'];
-      }
-    }
-
+    addField('title', title);
     if (protocol != null && protocol!.isNotEmpty) {
       json['protocol'] = protocol!.map((e) => e.toJson()).toList();
     }
@@ -524,12 +509,7 @@ class ResearchStudy extends DomainResource {
       json['partOf'] = partOf!.map((e) => e.toJson()).toList();
     }
 
-    final fieldJson11 = status.toJson();
-    json['status'] = fieldJson11['value'];
-    if (fieldJson11['_value'] != null) {
-      json['_status'] = fieldJson11['_value'];
-    }
-
+    addField('status', status);
     if (primaryPurposeType != null) {
       json['primaryPurposeType'] = primaryPurposeType!.toJson();
     }
@@ -567,14 +547,7 @@ class ResearchStudy extends DomainResource {
       json['location'] = location!.map((e) => e.toJson()).toList();
     }
 
-    if (description != null) {
-      final fieldJson21 = description!.toJson();
-      json['description'] = fieldJson21['value'];
-      if (fieldJson21['_value'] != null) {
-        json['_description'] = fieldJson21['_value'];
-      }
-    }
-
+    addField('description', description);
     if (enrollment != null && enrollment!.isNotEmpty) {
       json['enrollment'] = enrollment!.map((e) => e.toJson()).toList();
     }
@@ -822,10 +795,16 @@ class ResearchStudyArm extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -835,24 +814,12 @@ class ResearchStudyArm extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    final fieldJson2 = name.toJson();
-    json['name'] = fieldJson2['value'];
-    if (fieldJson2['_value'] != null) {
-      json['_name'] = fieldJson2['_value'];
-    }
-
+    addField('name', name);
     if (type != null) {
       json['type'] = type!.toJson();
     }
 
-    if (description != null) {
-      final fieldJson4 = description!.toJson();
-      json['description'] = fieldJson4['value'];
-      if (fieldJson4['_value'] != null) {
-        json['_description'] = fieldJson4['_value'];
-      }
-    }
-
+    addField('description', description);
     return json;
   }
 
@@ -1000,10 +967,16 @@ class ResearchStudyObjective extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1013,14 +986,7 @@ class ResearchStudyObjective extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    if (name != null) {
-      final fieldJson2 = name!.toJson();
-      json['name'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_name'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('name', name);
     if (type != null) {
       json['type'] = type!.toJson();
     }

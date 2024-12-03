@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Estimate of the potential clinical harm, or seriousness, of a reaction to an identified substance.
-class AllergyIntoleranceCriticality {
+class AllergyIntoleranceCriticality extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  AllergyIntoleranceCriticality._(this.fhirCode, {this.element});
+  AllergyIntoleranceCriticality._(super.value, [super.element]);
 
   /// Factory constructor to create [AllergyIntoleranceCriticality] from JSON.
   factory AllergyIntoleranceCriticality.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class AllergyIntoleranceCriticality {
     if (value == null && element != null) {
       return AllergyIntoleranceCriticality.elementOnly.withElement(element);
     }
-    return AllergyIntoleranceCriticality._(value!, element: element);
+    return AllergyIntoleranceCriticality._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// AllergyIntoleranceCriticality values
   /// low
   static final AllergyIntoleranceCriticality low =
       AllergyIntoleranceCriticality._(
@@ -55,18 +48,63 @@ class AllergyIntoleranceCriticality {
     unable_to_assess,
   ];
 
+  /// Clones the current instance
+  @override
+  AllergyIntoleranceCriticality clone() =>
+      AllergyIntoleranceCriticality._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  AllergyIntoleranceCriticality setElement(String name, dynamic elementValue) {
+    return AllergyIntoleranceCriticality._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   AllergyIntoleranceCriticality withElement(Element? newElement) {
-    return AllergyIntoleranceCriticality._(fhirCode, element: newElement);
+    return AllergyIntoleranceCriticality._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  AllergyIntoleranceCriticality copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return AllergyIntoleranceCriticality._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

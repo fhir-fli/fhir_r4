@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// HL7-defined table of codes which identify conditions under which acknowledgments are required to be returned in response to a message.
-class MessageheaderResponseRequest {
+class MessageheaderResponseRequest extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  MessageheaderResponseRequest._(this.fhirCode, {this.element});
+  MessageheaderResponseRequest._(super.value, [super.element]);
 
   /// Factory constructor to create [MessageheaderResponseRequest] from JSON.
   factory MessageheaderResponseRequest.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class MessageheaderResponseRequest {
     if (value == null && element != null) {
       return MessageheaderResponseRequest.elementOnly.withElement(element);
     }
-    return MessageheaderResponseRequest._(value!, element: element);
+    return MessageheaderResponseRequest._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// MessageheaderResponseRequest values
   /// always
   static final MessageheaderResponseRequest always =
       MessageheaderResponseRequest._(
@@ -62,18 +55,63 @@ class MessageheaderResponseRequest {
     on_success,
   ];
 
+  /// Clones the current instance
+  @override
+  MessageheaderResponseRequest clone() =>
+      MessageheaderResponseRequest._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  MessageheaderResponseRequest setElement(String name, dynamic elementValue) {
+    return MessageheaderResponseRequest._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   MessageheaderResponseRequest withElement(Element? newElement) {
-    return MessageheaderResponseRequest._(fhirCode, element: newElement);
+    return MessageheaderResponseRequest._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  MessageheaderResponseRequest copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return MessageheaderResponseRequest._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

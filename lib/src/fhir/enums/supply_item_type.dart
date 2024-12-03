@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// This value sets refers to a specific supply item.
-class SupplyItemType {
+class SupplyItemType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  SupplyItemType._(this.fhirCode, {this.element});
+  SupplyItemType._(super.value, [super.element]);
 
   /// Factory constructor to create [SupplyItemType] from JSON.
   factory SupplyItemType.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class SupplyItemType {
     if (value == null && element != null) {
       return SupplyItemType.elementOnly.withElement(element);
     }
-    return SupplyItemType._(value!, element: element);
+    return SupplyItemType._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// SupplyItemType values
   /// medication
   static final SupplyItemType medication = SupplyItemType._(
     'medication',
@@ -45,18 +38,63 @@ class SupplyItemType {
     device,
   ];
 
+  /// Clones the current instance
+  @override
+  SupplyItemType clone() =>
+      SupplyItemType._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  SupplyItemType setElement(String name, dynamic elementValue) {
+    return SupplyItemType._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   SupplyItemType withElement(Element? newElement) {
-    return SupplyItemType._(fhirCode, element: newElement);
+    return SupplyItemType._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  SupplyItemType copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return SupplyItemType._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

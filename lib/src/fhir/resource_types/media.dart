@@ -400,31 +400,23 @@ class Media extends DomainResource {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    json['resourceType'] = resourceType.toJson();
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    json['resourceType'] = resourceType.toJson();
+    addField('id', id);
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    if (implicitRules != null) {
-      final fieldJson1 = implicitRules!.toJson();
-      json['implicitRules'] = fieldJson1['value'];
-      if (fieldJson1['_value'] != null) {
-        json['_implicitRules'] = fieldJson1['_value'];
-      }
-    }
-
-    if (language != null) {
-      final fieldJson2 = language!.toJson();
-      json['language'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_language'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('implicitRules', implicitRules);
+    addField('language', language);
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -454,12 +446,7 @@ class Media extends DomainResource {
       json['partOf'] = partOf!.map((e) => e.toJson()).toList();
     }
 
-    final fieldJson10 = status.toJson();
-    json['status'] = fieldJson10['value'];
-    if (fieldJson10['_value'] != null) {
-      json['_status'] = fieldJson10['_value'];
-    }
-
+    addField('status', status);
     if (type != null) {
       json['type'] = type!.toJson();
     }
@@ -480,26 +467,12 @@ class Media extends DomainResource {
       json['encounter'] = encounter!.toJson();
     }
 
-    if (createdDateTime != null) {
-      final fieldJson16 = createdDateTime!.toJson();
-      json['createdDateTime'] = fieldJson16['value'];
-      if (fieldJson16['_value'] != null) {
-        json['_createdDateTime'] = fieldJson16['_value'];
-      }
-    }
-
+    addField('createdDateTime', createdDateTime);
     if (createdPeriod != null) {
       json['createdPeriod'] = createdPeriod!.toJson();
     }
 
-    if (issued != null) {
-      final fieldJson18 = issued!.toJson();
-      json['issued'] = fieldJson18['value'];
-      if (fieldJson18['_value'] != null) {
-        json['_issued'] = fieldJson18['_value'];
-      }
-    }
-
+    addField('issued', issued);
     if (operator_ != null) {
       json['operator'] = operator_!.toJson();
     }
@@ -512,50 +485,15 @@ class Media extends DomainResource {
       json['bodySite'] = bodySite!.toJson();
     }
 
-    if (deviceName != null) {
-      final fieldJson22 = deviceName!.toJson();
-      json['deviceName'] = fieldJson22['value'];
-      if (fieldJson22['_value'] != null) {
-        json['_deviceName'] = fieldJson22['_value'];
-      }
-    }
-
+    addField('deviceName', deviceName);
     if (device != null) {
       json['device'] = device!.toJson();
     }
 
-    if (height != null) {
-      final fieldJson24 = height!.toJson();
-      json['height'] = fieldJson24['value'];
-      if (fieldJson24['_value'] != null) {
-        json['_height'] = fieldJson24['_value'];
-      }
-    }
-
-    if (width != null) {
-      final fieldJson25 = width!.toJson();
-      json['width'] = fieldJson25['value'];
-      if (fieldJson25['_value'] != null) {
-        json['_width'] = fieldJson25['_value'];
-      }
-    }
-
-    if (frames != null) {
-      final fieldJson26 = frames!.toJson();
-      json['frames'] = fieldJson26['value'];
-      if (fieldJson26['_value'] != null) {
-        json['_frames'] = fieldJson26['_value'];
-      }
-    }
-
-    if (duration != null) {
-      final fieldJson27 = duration!.toJson();
-      json['duration'] = fieldJson27['value'];
-      if (fieldJson27['_value'] != null) {
-        json['_duration'] = fieldJson27['_value'];
-      }
-    }
-
+    addField('height', height);
+    addField('width', width);
+    addField('frames', frames);
+    addField('duration', duration);
     json['content'] = content.toJson();
 
     if (note != null && note!.isNotEmpty) {

@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// This example value set defines a set of codes that can be used to indicate the role of one Organization in relation to another.
-class OrganizationAffiliationRole {
+class OrganizationAffiliationRole extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  OrganizationAffiliationRole._(this.fhirCode, {this.element});
+  OrganizationAffiliationRole._(super.value, [super.element]);
 
   /// Factory constructor to create [OrganizationAffiliationRole] from JSON.
   factory OrganizationAffiliationRole.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class OrganizationAffiliationRole {
     if (value == null && element != null) {
       return OrganizationAffiliationRole.elementOnly.withElement(element);
     }
-    return OrganizationAffiliationRole._(value!, element: element);
+    return OrganizationAffiliationRole._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// OrganizationAffiliationRole values
   /// provider
   static final OrganizationAffiliationRole provider =
       OrganizationAffiliationRole._(
@@ -90,18 +83,63 @@ class OrganizationAffiliationRole {
     member,
   ];
 
+  /// Clones the current instance
+  @override
+  OrganizationAffiliationRole clone() =>
+      OrganizationAffiliationRole._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  OrganizationAffiliationRole setElement(String name, dynamic elementValue) {
+    return OrganizationAffiliationRole._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   OrganizationAffiliationRole withElement(Element? newElement) {
-    return OrganizationAffiliationRole._(fhirCode, element: newElement);
+    return OrganizationAffiliationRole._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  OrganizationAffiliationRole copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return OrganizationAffiliationRole._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

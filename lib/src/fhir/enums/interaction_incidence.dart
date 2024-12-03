@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// A categorisation for incidence of occurence of an interaction.
-class InteractionIncidence {
+class InteractionIncidence extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  InteractionIncidence._(this.fhirCode, {this.element});
+  InteractionIncidence._(super.value, [super.element]);
 
   /// Factory constructor to create [InteractionIncidence] from JSON.
   factory InteractionIncidence.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class InteractionIncidence {
     if (value == null && element != null) {
       return InteractionIncidence.elementOnly.withElement(element);
     }
-    return InteractionIncidence._(value!, element: element);
+    return InteractionIncidence._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// InteractionIncidence values
   /// Theoretical
   static final InteractionIncidence Theoretical = InteractionIncidence._(
     'Theoretical',
@@ -45,18 +38,63 @@ class InteractionIncidence {
     Observed,
   ];
 
+  /// Clones the current instance
+  @override
+  InteractionIncidence clone() =>
+      InteractionIncidence._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  InteractionIncidence setElement(String name, dynamic elementValue) {
+    return InteractionIncidence._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   InteractionIncidence withElement(Element? newElement) {
-    return InteractionIncidence._(fhirCode, element: newElement);
+    return InteractionIncidence._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  InteractionIncidence copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return InteractionIncidence._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Codes for why the study ended prematurely.
-class ResearchStudyReasonStopped {
+class ResearchStudyReasonStopped extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ResearchStudyReasonStopped._(this.fhirCode, {this.element});
+  ResearchStudyReasonStopped._(super.value, [super.element]);
 
   /// Factory constructor to create [ResearchStudyReasonStopped] from JSON.
   factory ResearchStudyReasonStopped.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class ResearchStudyReasonStopped {
     if (value == null && element != null) {
       return ResearchStudyReasonStopped.elementOnly.withElement(element);
     }
-    return ResearchStudyReasonStopped._(value!, element: element);
+    return ResearchStudyReasonStopped._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ResearchStudyReasonStopped values
   /// accrual_goal_met
   static final ResearchStudyReasonStopped accrual_goal_met =
       ResearchStudyReasonStopped._(
@@ -62,18 +55,63 @@ class ResearchStudyReasonStopped {
     temporarily_closed_per_study_design,
   ];
 
+  /// Clones the current instance
+  @override
+  ResearchStudyReasonStopped clone() =>
+      ResearchStudyReasonStopped._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  ResearchStudyReasonStopped setElement(String name, dynamic elementValue) {
+    return ResearchStudyReasonStopped._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   ResearchStudyReasonStopped withElement(Element? newElement) {
-    return ResearchStudyReasonStopped._(fhirCode, element: newElement);
+    return ResearchStudyReasonStopped._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  ResearchStudyReasonStopped copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return ResearchStudyReasonStopped._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

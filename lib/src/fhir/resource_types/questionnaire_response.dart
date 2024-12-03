@@ -267,31 +267,23 @@ class QuestionnaireResponse extends DomainResource {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    json['resourceType'] = resourceType.toJson();
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    json['resourceType'] = resourceType.toJson();
+    addField('id', id);
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    if (implicitRules != null) {
-      final fieldJson1 = implicitRules!.toJson();
-      json['implicitRules'] = fieldJson1['value'];
-      if (fieldJson1['_value'] != null) {
-        json['_implicitRules'] = fieldJson1['_value'];
-      }
-    }
-
-    if (language != null) {
-      final fieldJson2 = language!.toJson();
-      json['language'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_language'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('implicitRules', implicitRules);
+    addField('language', language);
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -321,20 +313,8 @@ class QuestionnaireResponse extends DomainResource {
       json['partOf'] = partOf!.map((e) => e.toJson()).toList();
     }
 
-    if (questionnaire != null) {
-      final fieldJson10 = questionnaire!.toJson();
-      json['questionnaire'] = fieldJson10['value'];
-      if (fieldJson10['_value'] != null) {
-        json['_questionnaire'] = fieldJson10['_value'];
-      }
-    }
-
-    final fieldJson11 = status.toJson();
-    json['status'] = fieldJson11['value'];
-    if (fieldJson11['_value'] != null) {
-      json['_status'] = fieldJson11['_value'];
-    }
-
+    addField('questionnaire', questionnaire);
+    addField('status', status);
     if (subject != null) {
       json['subject'] = subject!.toJson();
     }
@@ -343,14 +323,7 @@ class QuestionnaireResponse extends DomainResource {
       json['encounter'] = encounter!.toJson();
     }
 
-    if (authored != null) {
-      final fieldJson14 = authored!.toJson();
-      json['authored'] = fieldJson14['value'];
-      if (fieldJson14['_value'] != null) {
-        json['_authored'] = fieldJson14['_value'];
-      }
-    }
-
+    addField('authored', authored);
     if (author != null) {
       json['author'] = author!.toJson();
     }
@@ -576,10 +549,16 @@ class QuestionnaireResponseItem extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -589,28 +568,9 @@ class QuestionnaireResponseItem extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    final fieldJson2 = linkId.toJson();
-    json['linkId'] = fieldJson2['value'];
-    if (fieldJson2['_value'] != null) {
-      json['_linkId'] = fieldJson2['_value'];
-    }
-
-    if (definition != null) {
-      final fieldJson3 = definition!.toJson();
-      json['definition'] = fieldJson3['value'];
-      if (fieldJson3['_value'] != null) {
-        json['_definition'] = fieldJson3['_value'];
-      }
-    }
-
-    if (text != null) {
-      final fieldJson4 = text!.toJson();
-      json['text'] = fieldJson4['value'];
-      if (fieldJson4['_value'] != null) {
-        json['_text'] = fieldJson4['_value'];
-      }
-    }
-
+    addField('linkId', linkId);
+    addField('definition', definition);
+    addField('text', text);
     if (answer != null && answer!.isNotEmpty) {
       json['answer'] = answer!.map((e) => e.toJson()).toList();
     }
@@ -905,10 +865,16 @@ class QuestionnaireResponseAnswer extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -918,70 +884,14 @@ class QuestionnaireResponseAnswer extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    if (valueBoolean != null) {
-      final fieldJson2 = valueBoolean!.toJson();
-      json['valueBoolean'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_valueBoolean'] = fieldJson2['_value'];
-      }
-    }
-
-    if (valueDecimal != null) {
-      final fieldJson3 = valueDecimal!.toJson();
-      json['valueDecimal'] = fieldJson3['value'];
-      if (fieldJson3['_value'] != null) {
-        json['_valueDecimal'] = fieldJson3['_value'];
-      }
-    }
-
-    if (valueInteger != null) {
-      final fieldJson4 = valueInteger!.toJson();
-      json['valueInteger'] = fieldJson4['value'];
-      if (fieldJson4['_value'] != null) {
-        json['_valueInteger'] = fieldJson4['_value'];
-      }
-    }
-
-    if (valueDate != null) {
-      final fieldJson5 = valueDate!.toJson();
-      json['valueDate'] = fieldJson5['value'];
-      if (fieldJson5['_value'] != null) {
-        json['_valueDate'] = fieldJson5['_value'];
-      }
-    }
-
-    if (valueDateTime != null) {
-      final fieldJson6 = valueDateTime!.toJson();
-      json['valueDateTime'] = fieldJson6['value'];
-      if (fieldJson6['_value'] != null) {
-        json['_valueDateTime'] = fieldJson6['_value'];
-      }
-    }
-
-    if (valueTime != null) {
-      final fieldJson7 = valueTime!.toJson();
-      json['valueTime'] = fieldJson7['value'];
-      if (fieldJson7['_value'] != null) {
-        json['_valueTime'] = fieldJson7['_value'];
-      }
-    }
-
-    if (valueString != null) {
-      final fieldJson8 = valueString!.toJson();
-      json['valueString'] = fieldJson8['value'];
-      if (fieldJson8['_value'] != null) {
-        json['_valueString'] = fieldJson8['_value'];
-      }
-    }
-
-    if (valueUri != null) {
-      final fieldJson9 = valueUri!.toJson();
-      json['valueUri'] = fieldJson9['value'];
-      if (fieldJson9['_value'] != null) {
-        json['_valueUri'] = fieldJson9['_value'];
-      }
-    }
-
+    addField('valueBoolean', valueBoolean);
+    addField('valueDecimal', valueDecimal);
+    addField('valueInteger', valueInteger);
+    addField('valueDate', valueDate);
+    addField('valueDateTime', valueDateTime);
+    addField('valueTime', valueTime);
+    addField('valueString', valueString);
+    addField('valueUri', valueUri);
     if (valueAttachment != null) {
       json['valueAttachment'] = valueAttachment!.toJson();
     }

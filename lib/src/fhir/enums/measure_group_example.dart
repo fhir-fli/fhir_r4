@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Example Measure Groups for the Measure Resource.
-class MeasureGroupExample {
+class MeasureGroupExample extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  MeasureGroupExample._(this.fhirCode, {this.element});
+  MeasureGroupExample._(super.value, [super.element]);
 
   /// Factory constructor to create [MeasureGroupExample] from JSON.
   factory MeasureGroupExample.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class MeasureGroupExample {
     if (value == null && element != null) {
       return MeasureGroupExample.elementOnly.withElement(element);
     }
-    return MeasureGroupExample._(value!, element: element);
+    return MeasureGroupExample._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// MeasureGroupExample values
   /// primary_rate
   static final MeasureGroupExample primary_rate = MeasureGroupExample._(
     'primary-rate',
@@ -45,18 +38,63 @@ class MeasureGroupExample {
     secondary_rate,
   ];
 
+  /// Clones the current instance
+  @override
+  MeasureGroupExample clone() =>
+      MeasureGroupExample._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  MeasureGroupExample setElement(String name, dynamic elementValue) {
+    return MeasureGroupExample._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   MeasureGroupExample withElement(Element? newElement) {
-    return MeasureGroupExample._(fhirCode, element: newElement);
+    return MeasureGroupExample._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  MeasureGroupExample copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return MeasureGroupExample._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

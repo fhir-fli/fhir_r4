@@ -432,31 +432,23 @@ class SubscriptionTopic extends DomainResource {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    json['resourceType'] = resourceType.toJson();
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    json['resourceType'] = resourceType.toJson();
+    addField('id', id);
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    if (implicitRules != null) {
-      final fieldJson1 = implicitRules!.toJson();
-      json['implicitRules'] = fieldJson1['value'];
-      if (fieldJson1['_value'] != null) {
-        json['_implicitRules'] = fieldJson1['_value'];
-      }
-    }
-
-    if (language != null) {
-      final fieldJson2 = language!.toJson();
-      json['language'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_language'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('implicitRules', implicitRules);
+    addField('language', language);
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -474,82 +466,30 @@ class SubscriptionTopic extends DomainResource {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    final fieldJson7 = url.toJson();
-    json['url'] = fieldJson7['value'];
-    if (fieldJson7['_value'] != null) {
-      json['_url'] = fieldJson7['_value'];
-    }
-
+    addField('url', url);
     if (identifier != null && identifier!.isNotEmpty) {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
 
-    if (version != null) {
-      final fieldJson9 = version!.toJson();
-      json['version'] = fieldJson9['value'];
-      if (fieldJson9['_value'] != null) {
-        json['_version'] = fieldJson9['_value'];
-      }
-    }
-
-    if (title != null) {
-      final fieldJson10 = title!.toJson();
-      json['title'] = fieldJson10['value'];
-      if (fieldJson10['_value'] != null) {
-        json['_title'] = fieldJson10['_value'];
-      }
-    }
-
+    addField('version', version);
+    addField('title', title);
     if (derivedFrom != null && derivedFrom!.isNotEmpty) {
-      final fieldJson11 = derivedFrom!.map((e) => e.toJson()).toList();
-      json['derivedFrom'] = fieldJson11.map((e) => e['value']).toList();
-      if (fieldJson11.any((e) => e['_value'] != null)) {
-        json['_derivedFrom'] = fieldJson11.map((e) => e['_value']).toList();
+      final fieldJson0 = derivedFrom!.map((e) => e.toJson()).toList();
+      json['derivedFrom'] = fieldJson0.map((e) => e['value']).toList();
+      if (fieldJson0.any((e) => e['_value'] != null)) {
+        json['_derivedFrom'] = fieldJson0.map((e) => e['_value']).toList();
       }
     }
 
-    final fieldJson12 = status.toJson();
-    json['status'] = fieldJson12['value'];
-    if (fieldJson12['_value'] != null) {
-      json['_status'] = fieldJson12['_value'];
-    }
-
-    if (experimental != null) {
-      final fieldJson13 = experimental!.toJson();
-      json['experimental'] = fieldJson13['value'];
-      if (fieldJson13['_value'] != null) {
-        json['_experimental'] = fieldJson13['_value'];
-      }
-    }
-
-    if (date != null) {
-      final fieldJson14 = date!.toJson();
-      json['date'] = fieldJson14['value'];
-      if (fieldJson14['_value'] != null) {
-        json['_date'] = fieldJson14['_value'];
-      }
-    }
-
-    if (publisher != null) {
-      final fieldJson15 = publisher!.toJson();
-      json['publisher'] = fieldJson15['value'];
-      if (fieldJson15['_value'] != null) {
-        json['_publisher'] = fieldJson15['_value'];
-      }
-    }
-
+    addField('status', status);
+    addField('experimental', experimental);
+    addField('date', date);
+    addField('publisher', publisher);
     if (contact != null && contact!.isNotEmpty) {
       json['contact'] = contact!.map((e) => e.toJson()).toList();
     }
 
-    if (description != null) {
-      final fieldJson17 = description!.toJson();
-      json['description'] = fieldJson17['value'];
-      if (fieldJson17['_value'] != null) {
-        json['_description'] = fieldJson17['_value'];
-      }
-    }
-
+    addField('description', description);
     if (useContext != null && useContext!.isNotEmpty) {
       json['useContext'] = useContext!.map((e) => e.toJson()).toList();
     }
@@ -558,38 +498,10 @@ class SubscriptionTopic extends DomainResource {
       json['jurisdiction'] = jurisdiction!.map((e) => e.toJson()).toList();
     }
 
-    if (purpose != null) {
-      final fieldJson20 = purpose!.toJson();
-      json['purpose'] = fieldJson20['value'];
-      if (fieldJson20['_value'] != null) {
-        json['_purpose'] = fieldJson20['_value'];
-      }
-    }
-
-    if (copyright != null) {
-      final fieldJson21 = copyright!.toJson();
-      json['copyright'] = fieldJson21['value'];
-      if (fieldJson21['_value'] != null) {
-        json['_copyright'] = fieldJson21['_value'];
-      }
-    }
-
-    if (approvalDate != null) {
-      final fieldJson22 = approvalDate!.toJson();
-      json['approvalDate'] = fieldJson22['value'];
-      if (fieldJson22['_value'] != null) {
-        json['_approvalDate'] = fieldJson22['_value'];
-      }
-    }
-
-    if (lastReviewDate != null) {
-      final fieldJson23 = lastReviewDate!.toJson();
-      json['lastReviewDate'] = fieldJson23['value'];
-      if (fieldJson23['_value'] != null) {
-        json['_lastReviewDate'] = fieldJson23['_value'];
-      }
-    }
-
+    addField('purpose', purpose);
+    addField('copyright', copyright);
+    addField('approvalDate', approvalDate);
+    addField('lastReviewDate', lastReviewDate);
     if (effectivePeriod != null) {
       json['effectivePeriod'] = effectivePeriod!.toJson();
     }
@@ -853,10 +765,16 @@ class SubscriptionTopicResourceTrigger extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -866,26 +784,14 @@ class SubscriptionTopicResourceTrigger extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    if (description != null) {
-      final fieldJson2 = description!.toJson();
-      json['description'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_description'] = fieldJson2['_value'];
-      }
-    }
-
-    final fieldJson3 = resource.toJson();
-    json['resource'] = fieldJson3['value'];
-    if (fieldJson3['_value'] != null) {
-      json['_resource'] = fieldJson3['_value'];
-    }
-
+    addField('description', description);
+    addField('resource', resource);
     if (supportedInteraction != null && supportedInteraction!.isNotEmpty) {
-      final fieldJson4 = supportedInteraction!.map((e) => e.toJson()).toList();
-      json['supportedInteraction'] = fieldJson4.map((e) => e['value']).toList();
-      if (fieldJson4.any((e) => e['_value'] != null)) {
+      final fieldJson0 = supportedInteraction!.map((e) => e.toJson()).toList();
+      json['supportedInteraction'] = fieldJson0.map((e) => e['value']).toList();
+      if (fieldJson0.any((e) => e['_value'] != null)) {
         json['_supportedInteraction'] =
-            fieldJson4.map((e) => e['_value']).toList();
+            fieldJson0.map((e) => e['_value']).toList();
       }
     }
 
@@ -893,14 +799,7 @@ class SubscriptionTopicResourceTrigger extends BackboneElement {
       json['queryCriteria'] = queryCriteria!.toJson();
     }
 
-    if (fhirPathCriteria != null) {
-      final fieldJson6 = fhirPathCriteria!.toJson();
-      json['fhirPathCriteria'] = fieldJson6['value'];
-      if (fieldJson6['_value'] != null) {
-        json['_fhirPathCriteria'] = fieldJson6['_value'];
-      }
-    }
-
+    addField('fhirPathCriteria', fhirPathCriteria);
     return json;
   }
 
@@ -1093,10 +992,16 @@ class SubscriptionTopicQueryCriteria extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1106,46 +1011,11 @@ class SubscriptionTopicQueryCriteria extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    if (previous != null) {
-      final fieldJson2 = previous!.toJson();
-      json['previous'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_previous'] = fieldJson2['_value'];
-      }
-    }
-
-    if (resultForCreate != null) {
-      final fieldJson3 = resultForCreate!.toJson();
-      json['resultForCreate'] = fieldJson3['value'];
-      if (fieldJson3['_value'] != null) {
-        json['_resultForCreate'] = fieldJson3['_value'];
-      }
-    }
-
-    if (current != null) {
-      final fieldJson4 = current!.toJson();
-      json['current'] = fieldJson4['value'];
-      if (fieldJson4['_value'] != null) {
-        json['_current'] = fieldJson4['_value'];
-      }
-    }
-
-    if (resultForDelete != null) {
-      final fieldJson5 = resultForDelete!.toJson();
-      json['resultForDelete'] = fieldJson5['value'];
-      if (fieldJson5['_value'] != null) {
-        json['_resultForDelete'] = fieldJson5['_value'];
-      }
-    }
-
-    if (requireBoth != null) {
-      final fieldJson6 = requireBoth!.toJson();
-      json['requireBoth'] = fieldJson6['value'];
-      if (fieldJson6['_value'] != null) {
-        json['_requireBoth'] = fieldJson6['_value'];
-      }
-    }
-
+    addField('previous', previous);
+    addField('resultForCreate', resultForCreate);
+    addField('current', current);
+    addField('resultForDelete', resultForDelete);
+    addField('requireBoth', requireBoth);
     return json;
   }
 
@@ -1312,10 +1182,16 @@ class SubscriptionTopicEventTrigger extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1325,22 +1201,10 @@ class SubscriptionTopicEventTrigger extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    if (description != null) {
-      final fieldJson2 = description!.toJson();
-      json['description'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_description'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('description', description);
     json['event'] = event.toJson();
 
-    final fieldJson4 = resource.toJson();
-    json['resource'] = fieldJson4['value'];
-    if (fieldJson4['_value'] != null) {
-      json['_resource'] = fieldJson4['_value'];
-    }
-
+    addField('resource', resource);
     return json;
   }
 
@@ -1534,10 +1398,16 @@ class SubscriptionTopicCanFilterBy extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1547,41 +1417,15 @@ class SubscriptionTopicCanFilterBy extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    if (description != null) {
-      final fieldJson2 = description!.toJson();
-      json['description'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_description'] = fieldJson2['_value'];
-      }
-    }
-
-    if (resource != null) {
-      final fieldJson3 = resource!.toJson();
-      json['resource'] = fieldJson3['value'];
-      if (fieldJson3['_value'] != null) {
-        json['_resource'] = fieldJson3['_value'];
-      }
-    }
-
-    final fieldJson4 = filterParameter.toJson();
-    json['filterParameter'] = fieldJson4['value'];
-    if (fieldJson4['_value'] != null) {
-      json['_filterParameter'] = fieldJson4['_value'];
-    }
-
-    if (filterDefinition != null) {
-      final fieldJson5 = filterDefinition!.toJson();
-      json['filterDefinition'] = fieldJson5['value'];
-      if (fieldJson5['_value'] != null) {
-        json['_filterDefinition'] = fieldJson5['_value'];
-      }
-    }
-
+    addField('description', description);
+    addField('resource', resource);
+    addField('filterParameter', filterParameter);
+    addField('filterDefinition', filterDefinition);
     if (modifier != null && modifier!.isNotEmpty) {
-      final fieldJson6 = modifier!.map((e) => e.toJson()).toList();
-      json['modifier'] = fieldJson6.map((e) => e['value']).toList();
-      if (fieldJson6.any((e) => e['_value'] != null)) {
-        json['_modifier'] = fieldJson6.map((e) => e['_value']).toList();
+      final fieldJson0 = modifier!.map((e) => e.toJson()).toList();
+      json['modifier'] = fieldJson0.map((e) => e['value']).toList();
+      if (fieldJson0.any((e) => e['_value'] != null)) {
+        json['_modifier'] = fieldJson0.map((e) => e['_value']).toList();
       }
     }
 
@@ -1756,10 +1600,16 @@ class SubscriptionTopicNotificationShape extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1769,25 +1619,20 @@ class SubscriptionTopicNotificationShape extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    final fieldJson2 = resource.toJson();
-    json['resource'] = fieldJson2['value'];
-    if (fieldJson2['_value'] != null) {
-      json['_resource'] = fieldJson2['_value'];
-    }
-
+    addField('resource', resource);
     if (include != null && include!.isNotEmpty) {
-      final fieldJson3 = include!.map((e) => e.toJson()).toList();
-      json['include'] = fieldJson3.map((e) => e['value']).toList();
-      if (fieldJson3.any((e) => e['_value'] != null)) {
-        json['_include'] = fieldJson3.map((e) => e['_value']).toList();
+      final fieldJson0 = include!.map((e) => e.toJson()).toList();
+      json['include'] = fieldJson0.map((e) => e['value']).toList();
+      if (fieldJson0.any((e) => e['_value'] != null)) {
+        json['_include'] = fieldJson0.map((e) => e['_value']).toList();
       }
     }
 
     if (revInclude != null && revInclude!.isNotEmpty) {
-      final fieldJson4 = revInclude!.map((e) => e.toJson()).toList();
-      json['revInclude'] = fieldJson4.map((e) => e['value']).toList();
-      if (fieldJson4.any((e) => e['_value'] != null)) {
-        json['_revInclude'] = fieldJson4.map((e) => e['_value']).toList();
+      final fieldJson1 = revInclude!.map((e) => e.toJson()).toList();
+      json['revInclude'] = fieldJson1.map((e) => e['value']).toList();
+      if (fieldJson1.any((e) => e['_value'] != null)) {
+        json['_revInclude'] = fieldJson1.map((e) => e['_value']).toList();
       }
     }
 

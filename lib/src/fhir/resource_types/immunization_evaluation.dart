@@ -295,31 +295,23 @@ class ImmunizationEvaluation extends DomainResource {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    json['resourceType'] = resourceType.toJson();
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    json['resourceType'] = resourceType.toJson();
+    addField('id', id);
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    if (implicitRules != null) {
-      final fieldJson1 = implicitRules!.toJson();
-      json['implicitRules'] = fieldJson1['value'];
-      if (fieldJson1['_value'] != null) {
-        json['_implicitRules'] = fieldJson1['_value'];
-      }
-    }
-
-    if (language != null) {
-      final fieldJson2 = language!.toJson();
-      json['language'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_language'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('implicitRules', implicitRules);
+    addField('language', language);
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -341,22 +333,10 @@ class ImmunizationEvaluation extends DomainResource {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
 
-    final fieldJson8 = status.toJson();
-    json['status'] = fieldJson8['value'];
-    if (fieldJson8['_value'] != null) {
-      json['_status'] = fieldJson8['_value'];
-    }
-
+    addField('status', status);
     json['patient'] = patient.toJson();
 
-    if (date != null) {
-      final fieldJson10 = date!.toJson();
-      json['date'] = fieldJson10['value'];
-      if (fieldJson10['_value'] != null) {
-        json['_date'] = fieldJson10['_value'];
-      }
-    }
-
+    addField('date', date);
     if (authority != null) {
       json['authority'] = authority!.toJson();
     }
@@ -372,54 +352,12 @@ class ImmunizationEvaluation extends DomainResource {
           doseStatusReason!.map((e) => e.toJson()).toList();
     }
 
-    if (description != null) {
-      final fieldJson16 = description!.toJson();
-      json['description'] = fieldJson16['value'];
-      if (fieldJson16['_value'] != null) {
-        json['_description'] = fieldJson16['_value'];
-      }
-    }
-
-    if (series != null) {
-      final fieldJson17 = series!.toJson();
-      json['series'] = fieldJson17['value'];
-      if (fieldJson17['_value'] != null) {
-        json['_series'] = fieldJson17['_value'];
-      }
-    }
-
-    if (doseNumberPositiveInt != null) {
-      final fieldJson18 = doseNumberPositiveInt!.toJson();
-      json['doseNumberPositiveInt'] = fieldJson18['value'];
-      if (fieldJson18['_value'] != null) {
-        json['_doseNumberPositiveInt'] = fieldJson18['_value'];
-      }
-    }
-
-    if (doseNumberString != null) {
-      final fieldJson19 = doseNumberString!.toJson();
-      json['doseNumberString'] = fieldJson19['value'];
-      if (fieldJson19['_value'] != null) {
-        json['_doseNumberString'] = fieldJson19['_value'];
-      }
-    }
-
-    if (seriesDosesPositiveInt != null) {
-      final fieldJson20 = seriesDosesPositiveInt!.toJson();
-      json['seriesDosesPositiveInt'] = fieldJson20['value'];
-      if (fieldJson20['_value'] != null) {
-        json['_seriesDosesPositiveInt'] = fieldJson20['_value'];
-      }
-    }
-
-    if (seriesDosesString != null) {
-      final fieldJson21 = seriesDosesString!.toJson();
-      json['seriesDosesString'] = fieldJson21['value'];
-      if (fieldJson21['_value'] != null) {
-        json['_seriesDosesString'] = fieldJson21['_value'];
-      }
-    }
-
+    addField('description', description);
+    addField('series', series);
+    addField('doseNumberPositiveInt', doseNumberPositiveInt);
+    addField('doseNumberString', doseNumberString);
+    addField('seriesDosesPositiveInt', seriesDosesPositiveInt);
+    addField('seriesDosesString', seriesDosesString);
     return json;
   }
 

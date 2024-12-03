@@ -294,31 +294,23 @@ class VerificationResult extends DomainResource {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    json['resourceType'] = resourceType.toJson();
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    json['resourceType'] = resourceType.toJson();
+    addField('id', id);
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    if (implicitRules != null) {
-      final fieldJson1 = implicitRules!.toJson();
-      json['implicitRules'] = fieldJson1['value'];
-      if (fieldJson1['_value'] != null) {
-        json['_implicitRules'] = fieldJson1['_value'];
-      }
-    }
-
-    if (language != null) {
-      final fieldJson2 = language!.toJson();
-      json['language'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_language'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('implicitRules', implicitRules);
+    addField('language', language);
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -341,10 +333,10 @@ class VerificationResult extends DomainResource {
     }
 
     if (targetLocation != null && targetLocation!.isNotEmpty) {
-      final fieldJson8 = targetLocation!.map((e) => e.toJson()).toList();
-      json['targetLocation'] = fieldJson8.map((e) => e['value']).toList();
-      if (fieldJson8.any((e) => e['_value'] != null)) {
-        json['_targetLocation'] = fieldJson8.map((e) => e['_value']).toList();
+      final fieldJson0 = targetLocation!.map((e) => e.toJson()).toList();
+      json['targetLocation'] = fieldJson0.map((e) => e['value']).toList();
+      if (fieldJson0.any((e) => e['_value'] != null)) {
+        json['_targetLocation'] = fieldJson0.map((e) => e['_value']).toList();
       }
     }
 
@@ -352,20 +344,8 @@ class VerificationResult extends DomainResource {
       json['need'] = need!.toJson();
     }
 
-    final fieldJson10 = status.toJson();
-    json['status'] = fieldJson10['value'];
-    if (fieldJson10['_value'] != null) {
-      json['_status'] = fieldJson10['_value'];
-    }
-
-    if (statusDate != null) {
-      final fieldJson11 = statusDate!.toJson();
-      json['statusDate'] = fieldJson11['value'];
-      if (fieldJson11['_value'] != null) {
-        json['_statusDate'] = fieldJson11['_value'];
-      }
-    }
-
+    addField('status', status);
+    addField('statusDate', statusDate);
     if (validationType != null) {
       json['validationType'] = validationType!.toJson();
     }
@@ -379,22 +359,8 @@ class VerificationResult extends DomainResource {
       json['frequency'] = frequency!.toJson();
     }
 
-    if (lastPerformed != null) {
-      final fieldJson15 = lastPerformed!.toJson();
-      json['lastPerformed'] = fieldJson15['value'];
-      if (fieldJson15['_value'] != null) {
-        json['_lastPerformed'] = fieldJson15['_value'];
-      }
-    }
-
-    if (nextScheduled != null) {
-      final fieldJson16 = nextScheduled!.toJson();
-      json['nextScheduled'] = fieldJson16['value'];
-      if (fieldJson16['_value'] != null) {
-        json['_nextScheduled'] = fieldJson16['_value'];
-      }
-    }
-
+    addField('lastPerformed', lastPerformed);
+    addField('nextScheduled', nextScheduled);
     if (failureAction != null) {
       json['failureAction'] = failureAction!.toJson();
     }
@@ -656,10 +622,16 @@ class VerificationResultPrimarySource extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -686,14 +658,7 @@ class VerificationResultPrimarySource extends BackboneElement {
       json['validationStatus'] = validationStatus!.toJson();
     }
 
-    if (validationDate != null) {
-      final fieldJson6 = validationDate!.toJson();
-      json['validationDate'] = fieldJson6['value'];
-      if (fieldJson6['_value'] != null) {
-        json['_validationDate'] = fieldJson6['_value'];
-      }
-    }
-
+    addField('validationDate', validationDate);
     if (canPushUpdates != null) {
       json['canPushUpdates'] = canPushUpdates!.toJson();
     }
@@ -926,10 +891,16 @@ class VerificationResultAttestation extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -951,30 +922,9 @@ class VerificationResultAttestation extends BackboneElement {
       json['communicationMethod'] = communicationMethod!.toJson();
     }
 
-    if (date != null) {
-      final fieldJson5 = date!.toJson();
-      json['date'] = fieldJson5['value'];
-      if (fieldJson5['_value'] != null) {
-        json['_date'] = fieldJson5['_value'];
-      }
-    }
-
-    if (sourceIdentityCertificate != null) {
-      final fieldJson6 = sourceIdentityCertificate!.toJson();
-      json['sourceIdentityCertificate'] = fieldJson6['value'];
-      if (fieldJson6['_value'] != null) {
-        json['_sourceIdentityCertificate'] = fieldJson6['_value'];
-      }
-    }
-
-    if (proxyIdentityCertificate != null) {
-      final fieldJson7 = proxyIdentityCertificate!.toJson();
-      json['proxyIdentityCertificate'] = fieldJson7['value'];
-      if (fieldJson7['_value'] != null) {
-        json['_proxyIdentityCertificate'] = fieldJson7['_value'];
-      }
-    }
-
+    addField('date', date);
+    addField('sourceIdentityCertificate', sourceIdentityCertificate);
+    addField('proxyIdentityCertificate', proxyIdentityCertificate);
     if (proxySignature != null) {
       json['proxySignature'] = proxySignature!.toJson();
     }
@@ -1150,10 +1100,16 @@ class VerificationResultValidator extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1165,14 +1121,7 @@ class VerificationResultValidator extends BackboneElement {
 
     json['organization'] = organization.toJson();
 
-    if (identityCertificate != null) {
-      final fieldJson3 = identityCertificate!.toJson();
-      json['identityCertificate'] = fieldJson3['value'];
-      if (fieldJson3['_value'] != null) {
-        json['_identityCertificate'] = fieldJson3['_value'];
-      }
-    }
-
+    addField('identityCertificate', identityCertificate);
     if (attestationSignature != null) {
       json['attestationSignature'] = attestationSignature!.toJson();
     }

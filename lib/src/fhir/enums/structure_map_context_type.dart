@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// How to interpret the context.
-class StructureMapContextType {
+class StructureMapContextType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  StructureMapContextType._(this.fhirCode, {this.element});
+  StructureMapContextType._(super.value, [super.element]);
 
   /// Factory constructor to create [StructureMapContextType] from JSON.
   factory StructureMapContextType.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class StructureMapContextType {
     if (value == null && element != null) {
       return StructureMapContextType.elementOnly.withElement(element);
     }
-    return StructureMapContextType._(value!, element: element);
+    return StructureMapContextType._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// StructureMapContextType values
   /// type
   static final StructureMapContextType type = StructureMapContextType._(
     'type',
@@ -46,18 +39,63 @@ class StructureMapContextType {
     variable,
   ];
 
+  /// Clones the current instance
+  @override
+  StructureMapContextType clone() =>
+      StructureMapContextType._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  StructureMapContextType setElement(String name, dynamic elementValue) {
+    return StructureMapContextType._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   StructureMapContextType withElement(Element? newElement) {
-    return StructureMapContextType._(fhirCode, element: newElement);
+    return StructureMapContextType._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  StructureMapContextType copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return StructureMapContextType._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Set of handling instructions prior testing of the specimen.
-class HandlingConditionSet {
+class HandlingConditionSet extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  HandlingConditionSet._(this.fhirCode, {this.element});
+  HandlingConditionSet._(super.value, [super.element]);
 
   /// Factory constructor to create [HandlingConditionSet] from JSON.
   factory HandlingConditionSet.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class HandlingConditionSet {
     if (value == null && element != null) {
       return HandlingConditionSet.elementOnly.withElement(element);
     }
-    return HandlingConditionSet._(value!, element: element);
+    return HandlingConditionSet._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// HandlingConditionSet values
   /// room
   static final HandlingConditionSet room = HandlingConditionSet._(
     'room',
@@ -51,18 +44,63 @@ class HandlingConditionSet {
     frozen,
   ];
 
+  /// Clones the current instance
+  @override
+  HandlingConditionSet clone() =>
+      HandlingConditionSet._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  HandlingConditionSet setElement(String name, dynamic elementValue) {
+    return HandlingConditionSet._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   HandlingConditionSet withElement(Element? newElement) {
-    return HandlingConditionSet._(fhirCode, element: newElement);
+    return HandlingConditionSet._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  HandlingConditionSet copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return HandlingConditionSet._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

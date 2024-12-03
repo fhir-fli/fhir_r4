@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// This value set includes Claim Type codes.
-class ClaimTypeCodes {
+class ClaimTypeCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ClaimTypeCodes._(this.fhirCode, {this.element});
+  ClaimTypeCodes._(super.value, [super.element]);
 
   /// Factory constructor to create [ClaimTypeCodes] from JSON.
   factory ClaimTypeCodes.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class ClaimTypeCodes {
     if (value == null && element != null) {
       return ClaimTypeCodes.elementOnly.withElement(element);
     }
-    return ClaimTypeCodes._(value!, element: element);
+    return ClaimTypeCodes._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ClaimTypeCodes values
   /// institutional
   static final ClaimTypeCodes institutional = ClaimTypeCodes._(
     'institutional',
@@ -63,18 +56,63 @@ class ClaimTypeCodes {
     vision,
   ];
 
+  /// Clones the current instance
+  @override
+  ClaimTypeCodes clone() =>
+      ClaimTypeCodes._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  ClaimTypeCodes setElement(String name, dynamic elementValue) {
+    return ClaimTypeCodes._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   ClaimTypeCodes withElement(Element? newElement) {
-    return ClaimTypeCodes._(fhirCode, element: newElement);
+    return ClaimTypeCodes._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  ClaimTypeCodes copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return ClaimTypeCodes._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

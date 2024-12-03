@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Detailed information about the type of the image - its kind, purpose, or the kind of equipment used to generate it.
-class MediaModality {
+class MediaModality extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  MediaModality._(this.fhirCode, {this.element});
+  MediaModality._(super.value, [super.element]);
 
   /// Factory constructor to create [MediaModality] from JSON.
   factory MediaModality.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class MediaModality {
     if (value == null && element != null) {
       return MediaModality.elementOnly.withElement(element);
     }
-    return MediaModality._(value!, element: element);
+    return MediaModality._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// MediaModality values
   /// diagram
   static final MediaModality diagram = MediaModality._(
     'diagram',
@@ -81,18 +74,62 @@ class MediaModality {
     face,
   ];
 
+  /// Clones the current instance
+  @override
+  MediaModality clone() => MediaModality._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  MediaModality setElement(String name, dynamic elementValue) {
+    return MediaModality._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   MediaModality withElement(Element? newElement) {
-    return MediaModality._(fhirCode, element: newElement);
+    return MediaModality._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  MediaModality copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return MediaModality._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

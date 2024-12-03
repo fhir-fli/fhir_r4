@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The type of operator to use for assertion.
-class AssertionOperatorType {
+class AssertionOperatorType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  AssertionOperatorType._(this.fhirCode, {this.element});
+  AssertionOperatorType._(super.value, [super.element]);
 
   /// Factory constructor to create [AssertionOperatorType] from JSON.
   factory AssertionOperatorType.fromJson(Map<String, dynamic> json) {
@@ -15,18 +15,11 @@ class AssertionOperatorType {
     if (value == null && element != null) {
       return AssertionOperatorType.elementOnly.withElement(element);
     }
-    return AssertionOperatorType._(value!, element: element);
+    return AssertionOperatorType._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// AssertionOperatorType values
   /// equals
-  static final AssertionOperatorType equals = AssertionOperatorType._(
+  static final AssertionOperatorType equals_ = AssertionOperatorType._(
     'equals',
   );
 
@@ -86,7 +79,7 @@ class AssertionOperatorType {
 
   /// List of all enum-like values
   static final List<AssertionOperatorType> values = [
-    equals,
+    equals_,
     notEquals,
     in_,
     notIn,
@@ -99,18 +92,63 @@ class AssertionOperatorType {
     eval,
   ];
 
+  /// Clones the current instance
+  @override
+  AssertionOperatorType clone() =>
+      AssertionOperatorType._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  AssertionOperatorType setElement(String name, dynamic elementValue) {
+    return AssertionOperatorType._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   AssertionOperatorType withElement(Element? newElement) {
-    return AssertionOperatorType._(fhirCode, element: newElement);
+    return AssertionOperatorType._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  AssertionOperatorType copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return AssertionOperatorType._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

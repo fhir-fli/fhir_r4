@@ -258,31 +258,23 @@ class AuditEvent extends DomainResource {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    json['resourceType'] = resourceType.toJson();
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    json['resourceType'] = resourceType.toJson();
+    addField('id', id);
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    if (implicitRules != null) {
-      final fieldJson1 = implicitRules!.toJson();
-      json['implicitRules'] = fieldJson1['value'];
-      if (fieldJson1['_value'] != null) {
-        json['_implicitRules'] = fieldJson1['_value'];
-      }
-    }
-
-    if (language != null) {
-      final fieldJson2 = language!.toJson();
-      json['language'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_language'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('implicitRules', implicitRules);
+    addField('language', language);
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -306,45 +298,21 @@ class AuditEvent extends DomainResource {
       json['subtype'] = subtype!.map((e) => e.toJson()).toList();
     }
 
-    if (action != null) {
-      final fieldJson9 = action!.toJson();
-      json['action'] = fieldJson9['value'];
-      if (fieldJson9['_value'] != null) {
-        json['_action'] = fieldJson9['_value'];
-      }
-    }
-
+    addField('action', action);
     if (period != null) {
       json['period'] = period!.toJson();
     }
 
-    final fieldJson11 = recorded.toJson();
-    json['recorded'] = fieldJson11['value'];
-    if (fieldJson11['_value'] != null) {
-      json['_recorded'] = fieldJson11['_value'];
-    }
-
-    if (outcome != null) {
-      final fieldJson12 = outcome!.toJson();
-      json['outcome'] = fieldJson12['value'];
-      if (fieldJson12['_value'] != null) {
-        json['_outcome'] = fieldJson12['_value'];
-      }
-    }
-
-    if (outcomeDesc != null) {
-      final fieldJson13 = outcomeDesc!.toJson();
-      json['outcomeDesc'] = fieldJson13['value'];
-      if (fieldJson13['_value'] != null) {
-        json['_outcomeDesc'] = fieldJson13['_value'];
-      }
-    }
-
+    addField('recorded', recorded);
+    addField('outcome', outcome);
+    addField('outcomeDesc', outcomeDesc);
     if (purposeOfEvent != null && purposeOfEvent!.isNotEmpty) {
       json['purposeOfEvent'] = purposeOfEvent!.map((e) => e.toJson()).toList();
     }
 
-    json['agent'] = agent.map((e) => e.toJson()).toList();
+    if (agent.isNotEmpty) {
+      json['agent'] = agent.map((e) => e.toJson()).toList();
+    }
 
     json['source'] = source.toJson();
 
@@ -634,10 +602,16 @@ class AuditEventAgent extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -659,37 +633,18 @@ class AuditEventAgent extends BackboneElement {
       json['who'] = who!.toJson();
     }
 
-    if (altId != null) {
-      final fieldJson5 = altId!.toJson();
-      json['altId'] = fieldJson5['value'];
-      if (fieldJson5['_value'] != null) {
-        json['_altId'] = fieldJson5['_value'];
-      }
-    }
-
-    if (name != null) {
-      final fieldJson6 = name!.toJson();
-      json['name'] = fieldJson6['value'];
-      if (fieldJson6['_value'] != null) {
-        json['_name'] = fieldJson6['_value'];
-      }
-    }
-
-    final fieldJson7 = requestor.toJson();
-    json['requestor'] = fieldJson7['value'];
-    if (fieldJson7['_value'] != null) {
-      json['_requestor'] = fieldJson7['_value'];
-    }
-
+    addField('altId', altId);
+    addField('name', name);
+    addField('requestor', requestor);
     if (location != null) {
       json['location'] = location!.toJson();
     }
 
     if (policy != null && policy!.isNotEmpty) {
-      final fieldJson9 = policy!.map((e) => e.toJson()).toList();
-      json['policy'] = fieldJson9.map((e) => e['value']).toList();
-      if (fieldJson9.any((e) => e['_value'] != null)) {
-        json['_policy'] = fieldJson9.map((e) => e['_value']).toList();
+      final fieldJson0 = policy!.map((e) => e.toJson()).toList();
+      json['policy'] = fieldJson0.map((e) => e['value']).toList();
+      if (fieldJson0.any((e) => e['_value'] != null)) {
+        json['_policy'] = fieldJson0.map((e) => e['_value']).toList();
       }
     }
 
@@ -870,10 +825,16 @@ class AuditEventNetwork extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -883,22 +844,8 @@ class AuditEventNetwork extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    if (address != null) {
-      final fieldJson2 = address!.toJson();
-      json['address'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_address'] = fieldJson2['_value'];
-      }
-    }
-
-    if (type != null) {
-      final fieldJson3 = type!.toJson();
-      json['type'] = fieldJson3['value'];
-      if (fieldJson3['_value'] != null) {
-        json['_type'] = fieldJson3['_value'];
-      }
-    }
-
+    addField('address', address);
+    addField('type', type);
     return json;
   }
 
@@ -1056,10 +1003,16 @@ class AuditEventSource extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1069,14 +1022,7 @@ class AuditEventSource extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    if (site != null) {
-      final fieldJson2 = site!.toJson();
-      json['site'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_site'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('site', site);
     json['observer'] = observer.toJson();
 
     if (type != null && type!.isNotEmpty) {
@@ -1311,10 +1257,16 @@ class AuditEventEntity extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1344,30 +1296,9 @@ class AuditEventEntity extends BackboneElement {
       json['securityLabel'] = securityLabel!.map((e) => e.toJson()).toList();
     }
 
-    if (name != null) {
-      final fieldJson7 = name!.toJson();
-      json['name'] = fieldJson7['value'];
-      if (fieldJson7['_value'] != null) {
-        json['_name'] = fieldJson7['_value'];
-      }
-    }
-
-    if (description != null) {
-      final fieldJson8 = description!.toJson();
-      json['description'] = fieldJson8['value'];
-      if (fieldJson8['_value'] != null) {
-        json['_description'] = fieldJson8['_value'];
-      }
-    }
-
-    if (query != null) {
-      final fieldJson9 = query!.toJson();
-      json['query'] = fieldJson9['value'];
-      if (fieldJson9['_value'] != null) {
-        json['_query'] = fieldJson9['_value'];
-      }
-    }
-
+    addField('name', name);
+    addField('description', description);
+    addField('query', query);
     if (detail != null && detail!.isNotEmpty) {
       json['detail'] = detail!.map((e) => e.toJson()).toList();
     }
@@ -1541,10 +1472,16 @@ class AuditEventDetail extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1554,28 +1491,9 @@ class AuditEventDetail extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    final fieldJson2 = type.toJson();
-    json['type'] = fieldJson2['value'];
-    if (fieldJson2['_value'] != null) {
-      json['_type'] = fieldJson2['_value'];
-    }
-
-    if (valueString != null) {
-      final fieldJson3 = valueString!.toJson();
-      json['valueString'] = fieldJson3['value'];
-      if (fieldJson3['_value'] != null) {
-        json['_valueString'] = fieldJson3['_value'];
-      }
-    }
-
-    if (valueBase64Binary != null) {
-      final fieldJson4 = valueBase64Binary!.toJson();
-      json['valueBase64Binary'] = fieldJson4['value'];
-      if (fieldJson4['_value'] != null) {
-        json['_valueBase64Binary'] = fieldJson4['_value'];
-      }
-    }
-
+    addField('type', type);
+    addField('valueString', valueString);
+    addField('valueBase64Binary', valueBase64Binary);
     return json;
   }
 

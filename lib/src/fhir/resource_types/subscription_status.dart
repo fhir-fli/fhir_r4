@@ -216,31 +216,23 @@ class SubscriptionStatus extends DomainResource {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    json['resourceType'] = resourceType.toJson();
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    json['resourceType'] = resourceType.toJson();
+    addField('id', id);
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    if (implicitRules != null) {
-      final fieldJson1 = implicitRules!.toJson();
-      json['implicitRules'] = fieldJson1['value'];
-      if (fieldJson1['_value'] != null) {
-        json['_implicitRules'] = fieldJson1['_value'];
-      }
-    }
-
-    if (language != null) {
-      final fieldJson2 = language!.toJson();
-      json['language'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_language'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('implicitRules', implicitRules);
+    addField('language', language);
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -258,28 +250,9 @@ class SubscriptionStatus extends DomainResource {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    if (status != null) {
-      final fieldJson7 = status!.toJson();
-      json['status'] = fieldJson7['value'];
-      if (fieldJson7['_value'] != null) {
-        json['_status'] = fieldJson7['_value'];
-      }
-    }
-
-    final fieldJson8 = type.toJson();
-    json['type'] = fieldJson8['value'];
-    if (fieldJson8['_value'] != null) {
-      json['_type'] = fieldJson8['_value'];
-    }
-
-    if (eventsSinceSubscriptionStart != null) {
-      final fieldJson9 = eventsSinceSubscriptionStart!.toJson();
-      json['eventsSinceSubscriptionStart'] = fieldJson9['value'];
-      if (fieldJson9['_value'] != null) {
-        json['_eventsSinceSubscriptionStart'] = fieldJson9['_value'];
-      }
-    }
-
+    addField('status', status);
+    addField('type', type);
+    addField('eventsSinceSubscriptionStart', eventsSinceSubscriptionStart);
     if (notificationEvent != null && notificationEvent!.isNotEmpty) {
       json['notificationEvent'] =
           notificationEvent!.map((e) => e.toJson()).toList();
@@ -287,14 +260,7 @@ class SubscriptionStatus extends DomainResource {
 
     json['subscription'] = subscription.toJson();
 
-    if (topic != null) {
-      final fieldJson12 = topic!.toJson();
-      json['topic'] = fieldJson12['value'];
-      if (fieldJson12['_value'] != null) {
-        json['_topic'] = fieldJson12['_value'];
-      }
-    }
-
+    addField('topic', topic);
     if (error != null && error!.isNotEmpty) {
       json['error'] = error!.map((e) => e.toJson()).toList();
     }
@@ -493,10 +459,16 @@ class SubscriptionStatusNotificationEvent extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -506,20 +478,8 @@ class SubscriptionStatusNotificationEvent extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    final fieldJson2 = eventNumber.toJson();
-    json['eventNumber'] = fieldJson2['value'];
-    if (fieldJson2['_value'] != null) {
-      json['_eventNumber'] = fieldJson2['_value'];
-    }
-
-    if (timestamp != null) {
-      final fieldJson3 = timestamp!.toJson();
-      json['timestamp'] = fieldJson3['value'];
-      if (fieldJson3['_value'] != null) {
-        json['_timestamp'] = fieldJson3['_value'];
-      }
-    }
-
+    addField('eventNumber', eventNumber);
+    addField('timestamp', timestamp);
     if (focus != null) {
       json['focus'] = focus!.toJson();
     }

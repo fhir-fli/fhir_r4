@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The type of a name given to a substance.
-class SubstanceNameType {
+class SubstanceNameType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  SubstanceNameType._(this.fhirCode, {this.element});
+  SubstanceNameType._(super.value, [super.element]);
 
   /// Factory constructor to create [SubstanceNameType] from JSON.
   factory SubstanceNameType.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class SubstanceNameType {
     if (value == null && element != null) {
       return SubstanceNameType.elementOnly.withElement(element);
     }
-    return SubstanceNameType._(value!, element: element);
+    return SubstanceNameType._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// SubstanceNameType values
   /// Systematic
   static final SubstanceNameType Systematic = SubstanceNameType._(
     'Systematic',
@@ -51,18 +44,63 @@ class SubstanceNameType {
     Brand,
   ];
 
+  /// Clones the current instance
+  @override
+  SubstanceNameType clone() =>
+      SubstanceNameType._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  SubstanceNameType setElement(String name, dynamic elementValue) {
+    return SubstanceNameType._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   SubstanceNameType withElement(Element? newElement) {
-    return SubstanceNameType._(fhirCode, element: newElement);
+    return SubstanceNameType._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  SubstanceNameType copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return SubstanceNameType._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

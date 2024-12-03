@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// This value set includes sample funds reservation type codes.
-class FundsReservationCodes {
+class FundsReservationCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  FundsReservationCodes._(this.fhirCode, {this.element});
+  FundsReservationCodes._(super.value, [super.element]);
 
   /// Factory constructor to create [FundsReservationCodes] from JSON.
   factory FundsReservationCodes.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class FundsReservationCodes {
     if (value == null && element != null) {
       return FundsReservationCodes.elementOnly.withElement(element);
     }
-    return FundsReservationCodes._(value!, element: element);
+    return FundsReservationCodes._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// FundsReservationCodes values
   /// patient
   static final FundsReservationCodes patient = FundsReservationCodes._(
     'patient',
@@ -51,18 +44,63 @@ class FundsReservationCodes {
     none,
   ];
 
+  /// Clones the current instance
+  @override
+  FundsReservationCodes clone() =>
+      FundsReservationCodes._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  FundsReservationCodes setElement(String name, dynamic elementValue) {
+    return FundsReservationCodes._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   FundsReservationCodes withElement(Element? newElement) {
-    return FundsReservationCodes._(fhirCode, element: newElement);
+    return FundsReservationCodes._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  FundsReservationCodes copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return FundsReservationCodes._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

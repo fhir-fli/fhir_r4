@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Types of medicinal product packs
-class MedicinalProductPackageType {
+class MedicinalProductPackageType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  MedicinalProductPackageType._(this.fhirCode, {this.element});
+  MedicinalProductPackageType._(super.value, [super.element]);
 
   /// Factory constructor to create [MedicinalProductPackageType] from JSON.
   factory MedicinalProductPackageType.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class MedicinalProductPackageType {
     if (value == null && element != null) {
       return MedicinalProductPackageType.elementOnly.withElement(element);
     }
-    return MedicinalProductPackageType._(value!, element: element);
+    return MedicinalProductPackageType._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// MedicinalProductPackageType values
   /// value100000073490
   static final MedicinalProductPackageType value100000073490 =
       MedicinalProductPackageType._(
@@ -118,18 +111,63 @@ class MedicinalProductPackageType {
     value100000143555,
   ];
 
+  /// Clones the current instance
+  @override
+  MedicinalProductPackageType clone() =>
+      MedicinalProductPackageType._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  MedicinalProductPackageType setElement(String name, dynamic elementValue) {
+    return MedicinalProductPackageType._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   MedicinalProductPackageType withElement(Element? newElement) {
-    return MedicinalProductPackageType._(fhirCode, element: newElement);
+    return MedicinalProductPackageType._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  MedicinalProductPackageType copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return MedicinalProductPackageType._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

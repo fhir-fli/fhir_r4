@@ -200,86 +200,36 @@ class Address extends DataType {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
 
-    if (use != null) {
-      final fieldJson1 = use!.toJson();
-      json['use'] = fieldJson1['value'];
-      if (fieldJson1['_value'] != null) {
-        json['_use'] = fieldJson1['_value'];
-      }
-    }
-
-    if (type != null) {
-      final fieldJson2 = type!.toJson();
-      json['type'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_type'] = fieldJson2['_value'];
-      }
-    }
-
-    if (text != null) {
-      final fieldJson3 = text!.toJson();
-      json['text'] = fieldJson3['value'];
-      if (fieldJson3['_value'] != null) {
-        json['_text'] = fieldJson3['_value'];
-      }
-    }
-
+    addField('use', use);
+    addField('type', type);
+    addField('text', text);
     if (line != null && line!.isNotEmpty) {
-      final fieldJson4 = line!.map((e) => e.toJson()).toList();
-      json['line'] = fieldJson4.map((e) => e['value']).toList();
-      if (fieldJson4.any((e) => e['_value'] != null)) {
-        json['_line'] = fieldJson4.map((e) => e['_value']).toList();
+      final fieldJson0 = line!.map((e) => e.toJson()).toList();
+      json['line'] = fieldJson0.map((e) => e['value']).toList();
+      if (fieldJson0.any((e) => e['_value'] != null)) {
+        json['_line'] = fieldJson0.map((e) => e['_value']).toList();
       }
     }
 
-    if (city != null) {
-      final fieldJson5 = city!.toJson();
-      json['city'] = fieldJson5['value'];
-      if (fieldJson5['_value'] != null) {
-        json['_city'] = fieldJson5['_value'];
-      }
-    }
-
-    if (district != null) {
-      final fieldJson6 = district!.toJson();
-      json['district'] = fieldJson6['value'];
-      if (fieldJson6['_value'] != null) {
-        json['_district'] = fieldJson6['_value'];
-      }
-    }
-
-    if (state != null) {
-      final fieldJson7 = state!.toJson();
-      json['state'] = fieldJson7['value'];
-      if (fieldJson7['_value'] != null) {
-        json['_state'] = fieldJson7['_value'];
-      }
-    }
-
-    if (postalCode != null) {
-      final fieldJson8 = postalCode!.toJson();
-      json['postalCode'] = fieldJson8['value'];
-      if (fieldJson8['_value'] != null) {
-        json['_postalCode'] = fieldJson8['_value'];
-      }
-    }
-
-    if (country != null) {
-      final fieldJson9 = country!.toJson();
-      json['country'] = fieldJson9['value'];
-      if (fieldJson9['_value'] != null) {
-        json['_country'] = fieldJson9['_value'];
-      }
-    }
-
+    addField('city', city);
+    addField('district', district);
+    addField('state', state);
+    addField('postalCode', postalCode);
+    addField('country', country);
     if (period != null) {
       json['period'] = period!.toJson();
     }

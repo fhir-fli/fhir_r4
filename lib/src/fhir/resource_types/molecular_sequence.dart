@@ -329,31 +329,23 @@ class MolecularSequence extends DomainResource {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    json['resourceType'] = resourceType.toJson();
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    json['resourceType'] = resourceType.toJson();
+    addField('id', id);
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    if (implicitRules != null) {
-      final fieldJson1 = implicitRules!.toJson();
-      json['implicitRules'] = fieldJson1['value'];
-      if (fieldJson1['_value'] != null) {
-        json['_implicitRules'] = fieldJson1['_value'];
-      }
-    }
-
-    if (language != null) {
-      final fieldJson2 = language!.toJson();
-      json['language'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_language'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('implicitRules', implicitRules);
+    addField('language', language);
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -375,20 +367,8 @@ class MolecularSequence extends DomainResource {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
 
-    if (type != null) {
-      final fieldJson8 = type!.toJson();
-      json['type'] = fieldJson8['value'];
-      if (fieldJson8['_value'] != null) {
-        json['_type'] = fieldJson8['_value'];
-      }
-    }
-
-    final fieldJson9 = coordinateSystem.toJson();
-    json['coordinateSystem'] = fieldJson9['value'];
-    if (fieldJson9['_value'] != null) {
-      json['_coordinateSystem'] = fieldJson9['_value'];
-    }
-
+    addField('type', type);
+    addField('coordinateSystem', coordinateSystem);
     if (patient != null) {
       json['patient'] = patient!.toJson();
     }
@@ -417,26 +397,12 @@ class MolecularSequence extends DomainResource {
       json['variant'] = variant!.map((e) => e.toJson()).toList();
     }
 
-    if (observedSeq != null) {
-      final fieldJson17 = observedSeq!.toJson();
-      json['observedSeq'] = fieldJson17['value'];
-      if (fieldJson17['_value'] != null) {
-        json['_observedSeq'] = fieldJson17['_value'];
-      }
-    }
-
+    addField('observedSeq', observedSeq);
     if (quality != null && quality!.isNotEmpty) {
       json['quality'] = quality!.map((e) => e.toJson()).toList();
     }
 
-    if (readCoverage != null) {
-      final fieldJson19 = readCoverage!.toJson();
-      json['readCoverage'] = fieldJson19['value'];
-      if (fieldJson19['_value'] != null) {
-        json['_readCoverage'] = fieldJson19['_value'];
-      }
-    }
-
+    addField('readCoverage', readCoverage);
     if (repository != null && repository!.isNotEmpty) {
       json['repository'] = repository!.map((e) => e.toJson()).toList();
     }
@@ -726,10 +692,16 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -743,22 +715,8 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
       json['chromosome'] = chromosome!.toJson();
     }
 
-    if (genomeBuild != null) {
-      final fieldJson3 = genomeBuild!.toJson();
-      json['genomeBuild'] = fieldJson3['value'];
-      if (fieldJson3['_value'] != null) {
-        json['_genomeBuild'] = fieldJson3['_value'];
-      }
-    }
-
-    if (orientation != null) {
-      final fieldJson4 = orientation!.toJson();
-      json['orientation'] = fieldJson4['value'];
-      if (fieldJson4['_value'] != null) {
-        json['_orientation'] = fieldJson4['_value'];
-      }
-    }
-
+    addField('genomeBuild', genomeBuild);
+    addField('orientation', orientation);
     if (referenceSeqId != null) {
       json['referenceSeqId'] = referenceSeqId!.toJson();
     }
@@ -767,38 +725,10 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
       json['referenceSeqPointer'] = referenceSeqPointer!.toJson();
     }
 
-    if (referenceSeqString != null) {
-      final fieldJson7 = referenceSeqString!.toJson();
-      json['referenceSeqString'] = fieldJson7['value'];
-      if (fieldJson7['_value'] != null) {
-        json['_referenceSeqString'] = fieldJson7['_value'];
-      }
-    }
-
-    if (strand != null) {
-      final fieldJson8 = strand!.toJson();
-      json['strand'] = fieldJson8['value'];
-      if (fieldJson8['_value'] != null) {
-        json['_strand'] = fieldJson8['_value'];
-      }
-    }
-
-    if (windowStart != null) {
-      final fieldJson9 = windowStart!.toJson();
-      json['windowStart'] = fieldJson9['value'];
-      if (fieldJson9['_value'] != null) {
-        json['_windowStart'] = fieldJson9['_value'];
-      }
-    }
-
-    if (windowEnd != null) {
-      final fieldJson10 = windowEnd!.toJson();
-      json['windowEnd'] = fieldJson10['value'];
-      if (fieldJson10['_value'] != null) {
-        json['_windowEnd'] = fieldJson10['_value'];
-      }
-    }
-
+    addField('referenceSeqString', referenceSeqString);
+    addField('strand', strand);
+    addField('windowStart', windowStart);
+    addField('windowEnd', windowEnd);
     return json;
   }
 
@@ -1025,10 +955,16 @@ class MolecularSequenceVariant extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1038,46 +974,11 @@ class MolecularSequenceVariant extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    if (start != null) {
-      final fieldJson2 = start!.toJson();
-      json['start'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_start'] = fieldJson2['_value'];
-      }
-    }
-
-    if (end != null) {
-      final fieldJson3 = end!.toJson();
-      json['end'] = fieldJson3['value'];
-      if (fieldJson3['_value'] != null) {
-        json['_end'] = fieldJson3['_value'];
-      }
-    }
-
-    if (observedAllele != null) {
-      final fieldJson4 = observedAllele!.toJson();
-      json['observedAllele'] = fieldJson4['value'];
-      if (fieldJson4['_value'] != null) {
-        json['_observedAllele'] = fieldJson4['_value'];
-      }
-    }
-
-    if (referenceAllele != null) {
-      final fieldJson5 = referenceAllele!.toJson();
-      json['referenceAllele'] = fieldJson5['value'];
-      if (fieldJson5['_value'] != null) {
-        json['_referenceAllele'] = fieldJson5['_value'];
-      }
-    }
-
-    if (cigar != null) {
-      final fieldJson6 = cigar!.toJson();
-      json['cigar'] = fieldJson6['value'];
-      if (fieldJson6['_value'] != null) {
-        json['_cigar'] = fieldJson6['_value'];
-      }
-    }
-
+    addField('start', start);
+    addField('end', end);
+    addField('observedAllele', observedAllele);
+    addField('referenceAllele', referenceAllele);
+    addField('cigar', cigar);
     if (variantPointer != null) {
       json['variantPointer'] = variantPointer!.toJson();
     }
@@ -1395,10 +1296,16 @@ class MolecularSequenceQuality extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1408,32 +1315,13 @@ class MolecularSequenceQuality extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    final fieldJson2 = type.toJson();
-    json['type'] = fieldJson2['value'];
-    if (fieldJson2['_value'] != null) {
-      json['_type'] = fieldJson2['_value'];
-    }
-
+    addField('type', type);
     if (standardSequence != null) {
       json['standardSequence'] = standardSequence!.toJson();
     }
 
-    if (start != null) {
-      final fieldJson4 = start!.toJson();
-      json['start'] = fieldJson4['value'];
-      if (fieldJson4['_value'] != null) {
-        json['_start'] = fieldJson4['_value'];
-      }
-    }
-
-    if (end != null) {
-      final fieldJson5 = end!.toJson();
-      json['end'] = fieldJson5['value'];
-      if (fieldJson5['_value'] != null) {
-        json['_end'] = fieldJson5['_value'];
-      }
-    }
-
+    addField('start', start);
+    addField('end', end);
     if (score != null) {
       json['score'] = score!.toJson();
     }
@@ -1442,70 +1330,14 @@ class MolecularSequenceQuality extends BackboneElement {
       json['method'] = method!.toJson();
     }
 
-    if (truthTP != null) {
-      final fieldJson8 = truthTP!.toJson();
-      json['truthTP'] = fieldJson8['value'];
-      if (fieldJson8['_value'] != null) {
-        json['_truthTP'] = fieldJson8['_value'];
-      }
-    }
-
-    if (queryTP != null) {
-      final fieldJson9 = queryTP!.toJson();
-      json['queryTP'] = fieldJson9['value'];
-      if (fieldJson9['_value'] != null) {
-        json['_queryTP'] = fieldJson9['_value'];
-      }
-    }
-
-    if (truthFN != null) {
-      final fieldJson10 = truthFN!.toJson();
-      json['truthFN'] = fieldJson10['value'];
-      if (fieldJson10['_value'] != null) {
-        json['_truthFN'] = fieldJson10['_value'];
-      }
-    }
-
-    if (queryFP != null) {
-      final fieldJson11 = queryFP!.toJson();
-      json['queryFP'] = fieldJson11['value'];
-      if (fieldJson11['_value'] != null) {
-        json['_queryFP'] = fieldJson11['_value'];
-      }
-    }
-
-    if (gtFP != null) {
-      final fieldJson12 = gtFP!.toJson();
-      json['gtFP'] = fieldJson12['value'];
-      if (fieldJson12['_value'] != null) {
-        json['_gtFP'] = fieldJson12['_value'];
-      }
-    }
-
-    if (precision != null) {
-      final fieldJson13 = precision!.toJson();
-      json['precision'] = fieldJson13['value'];
-      if (fieldJson13['_value'] != null) {
-        json['_precision'] = fieldJson13['_value'];
-      }
-    }
-
-    if (recall != null) {
-      final fieldJson14 = recall!.toJson();
-      json['recall'] = fieldJson14['value'];
-      if (fieldJson14['_value'] != null) {
-        json['_recall'] = fieldJson14['_value'];
-      }
-    }
-
-    if (fScore != null) {
-      final fieldJson15 = fScore!.toJson();
-      json['fScore'] = fieldJson15['value'];
-      if (fieldJson15['_value'] != null) {
-        json['_fScore'] = fieldJson15['_value'];
-      }
-    }
-
+    addField('truthTP', truthTP);
+    addField('queryTP', queryTP);
+    addField('truthFN', truthFN);
+    addField('queryFP', queryFP);
+    addField('gtFP', gtFP);
+    addField('precision', precision);
+    addField('recall', recall);
+    addField('fScore', fScore);
     if (roc != null) {
       json['roc'] = roc!.toJson();
     }
@@ -1736,10 +1568,16 @@ class MolecularSequenceRoc extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1750,58 +1588,58 @@ class MolecularSequenceRoc extends BackboneElement {
     }
 
     if (score != null && score!.isNotEmpty) {
-      final fieldJson2 = score!.map((e) => e.toJson()).toList();
-      json['score'] = fieldJson2.map((e) => e['value']).toList();
-      if (fieldJson2.any((e) => e['_value'] != null)) {
-        json['_score'] = fieldJson2.map((e) => e['_value']).toList();
+      final fieldJson0 = score!.map((e) => e.toJson()).toList();
+      json['score'] = fieldJson0.map((e) => e['value']).toList();
+      if (fieldJson0.any((e) => e['_value'] != null)) {
+        json['_score'] = fieldJson0.map((e) => e['_value']).toList();
       }
     }
 
     if (numTP != null && numTP!.isNotEmpty) {
-      final fieldJson3 = numTP!.map((e) => e.toJson()).toList();
-      json['numTP'] = fieldJson3.map((e) => e['value']).toList();
-      if (fieldJson3.any((e) => e['_value'] != null)) {
-        json['_numTP'] = fieldJson3.map((e) => e['_value']).toList();
+      final fieldJson1 = numTP!.map((e) => e.toJson()).toList();
+      json['numTP'] = fieldJson1.map((e) => e['value']).toList();
+      if (fieldJson1.any((e) => e['_value'] != null)) {
+        json['_numTP'] = fieldJson1.map((e) => e['_value']).toList();
       }
     }
 
     if (numFP != null && numFP!.isNotEmpty) {
-      final fieldJson4 = numFP!.map((e) => e.toJson()).toList();
-      json['numFP'] = fieldJson4.map((e) => e['value']).toList();
-      if (fieldJson4.any((e) => e['_value'] != null)) {
-        json['_numFP'] = fieldJson4.map((e) => e['_value']).toList();
+      final fieldJson2 = numFP!.map((e) => e.toJson()).toList();
+      json['numFP'] = fieldJson2.map((e) => e['value']).toList();
+      if (fieldJson2.any((e) => e['_value'] != null)) {
+        json['_numFP'] = fieldJson2.map((e) => e['_value']).toList();
       }
     }
 
     if (numFN != null && numFN!.isNotEmpty) {
-      final fieldJson5 = numFN!.map((e) => e.toJson()).toList();
-      json['numFN'] = fieldJson5.map((e) => e['value']).toList();
-      if (fieldJson5.any((e) => e['_value'] != null)) {
-        json['_numFN'] = fieldJson5.map((e) => e['_value']).toList();
+      final fieldJson3 = numFN!.map((e) => e.toJson()).toList();
+      json['numFN'] = fieldJson3.map((e) => e['value']).toList();
+      if (fieldJson3.any((e) => e['_value'] != null)) {
+        json['_numFN'] = fieldJson3.map((e) => e['_value']).toList();
       }
     }
 
     if (precision != null && precision!.isNotEmpty) {
-      final fieldJson6 = precision!.map((e) => e.toJson()).toList();
-      json['precision'] = fieldJson6.map((e) => e['value']).toList();
-      if (fieldJson6.any((e) => e['_value'] != null)) {
-        json['_precision'] = fieldJson6.map((e) => e['_value']).toList();
+      final fieldJson4 = precision!.map((e) => e.toJson()).toList();
+      json['precision'] = fieldJson4.map((e) => e['value']).toList();
+      if (fieldJson4.any((e) => e['_value'] != null)) {
+        json['_precision'] = fieldJson4.map((e) => e['_value']).toList();
       }
     }
 
     if (sensitivity != null && sensitivity!.isNotEmpty) {
-      final fieldJson7 = sensitivity!.map((e) => e.toJson()).toList();
-      json['sensitivity'] = fieldJson7.map((e) => e['value']).toList();
-      if (fieldJson7.any((e) => e['_value'] != null)) {
-        json['_sensitivity'] = fieldJson7.map((e) => e['_value']).toList();
+      final fieldJson5 = sensitivity!.map((e) => e.toJson()).toList();
+      json['sensitivity'] = fieldJson5.map((e) => e['value']).toList();
+      if (fieldJson5.any((e) => e['_value'] != null)) {
+        json['_sensitivity'] = fieldJson5.map((e) => e['_value']).toList();
       }
     }
 
     if (fMeasure != null && fMeasure!.isNotEmpty) {
-      final fieldJson8 = fMeasure!.map((e) => e.toJson()).toList();
-      json['fMeasure'] = fieldJson8.map((e) => e['value']).toList();
-      if (fieldJson8.any((e) => e['_value'] != null)) {
-        json['_fMeasure'] = fieldJson8.map((e) => e['_value']).toList();
+      final fieldJson6 = fMeasure!.map((e) => e.toJson()).toList();
+      json['fMeasure'] = fieldJson6.map((e) => e['value']).toList();
+      if (fieldJson6.any((e) => e['_value'] != null)) {
+        json['_fMeasure'] = fieldJson6.map((e) => e['_value']).toList();
       }
     }
 
@@ -2010,10 +1848,16 @@ class MolecularSequenceRepository extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -2023,52 +1867,12 @@ class MolecularSequenceRepository extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    final fieldJson2 = type.toJson();
-    json['type'] = fieldJson2['value'];
-    if (fieldJson2['_value'] != null) {
-      json['_type'] = fieldJson2['_value'];
-    }
-
-    if (url != null) {
-      final fieldJson3 = url!.toJson();
-      json['url'] = fieldJson3['value'];
-      if (fieldJson3['_value'] != null) {
-        json['_url'] = fieldJson3['_value'];
-      }
-    }
-
-    if (name != null) {
-      final fieldJson4 = name!.toJson();
-      json['name'] = fieldJson4['value'];
-      if (fieldJson4['_value'] != null) {
-        json['_name'] = fieldJson4['_value'];
-      }
-    }
-
-    if (datasetId != null) {
-      final fieldJson5 = datasetId!.toJson();
-      json['datasetId'] = fieldJson5['value'];
-      if (fieldJson5['_value'] != null) {
-        json['_datasetId'] = fieldJson5['_value'];
-      }
-    }
-
-    if (variantsetId != null) {
-      final fieldJson6 = variantsetId!.toJson();
-      json['variantsetId'] = fieldJson6['value'];
-      if (fieldJson6['_value'] != null) {
-        json['_variantsetId'] = fieldJson6['_value'];
-      }
-    }
-
-    if (readsetId != null) {
-      final fieldJson7 = readsetId!.toJson();
-      json['readsetId'] = fieldJson7['value'];
-      if (fieldJson7['_value'] != null) {
-        json['_readsetId'] = fieldJson7['_value'];
-      }
-    }
-
+    addField('type', type);
+    addField('url', url);
+    addField('name', name);
+    addField('datasetId', datasetId);
+    addField('variantsetId', variantsetId);
+    addField('readsetId', readsetId);
     return json;
   }
 
@@ -2252,10 +2056,16 @@ class MolecularSequenceStructureVariant extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -2269,22 +2079,8 @@ class MolecularSequenceStructureVariant extends BackboneElement {
       json['variantType'] = variantType!.toJson();
     }
 
-    if (exact != null) {
-      final fieldJson3 = exact!.toJson();
-      json['exact'] = fieldJson3['value'];
-      if (fieldJson3['_value'] != null) {
-        json['_exact'] = fieldJson3['_value'];
-      }
-    }
-
-    if (length != null) {
-      final fieldJson4 = length!.toJson();
-      json['length'] = fieldJson4['value'];
-      if (fieldJson4['_value'] != null) {
-        json['_length'] = fieldJson4['_value'];
-      }
-    }
-
+    addField('exact', exact);
+    addField('length', length);
     if (outer != null) {
       json['outer'] = outer!.toJson();
     }
@@ -2447,10 +2243,16 @@ class MolecularSequenceOuter extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -2460,22 +2262,8 @@ class MolecularSequenceOuter extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    if (start != null) {
-      final fieldJson2 = start!.toJson();
-      json['start'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_start'] = fieldJson2['_value'];
-      }
-    }
-
-    if (end != null) {
-      final fieldJson3 = end!.toJson();
-      json['end'] = fieldJson3['value'];
-      if (fieldJson3['_value'] != null) {
-        json['_end'] = fieldJson3['_value'];
-      }
-    }
-
+    addField('start', start);
+    addField('end', end);
     return json;
   }
 
@@ -2624,10 +2412,16 @@ class MolecularSequenceInner extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -2637,22 +2431,8 @@ class MolecularSequenceInner extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    if (start != null) {
-      final fieldJson2 = start!.toJson();
-      json['start'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_start'] = fieldJson2['_value'];
-      }
-    }
-
-    if (end != null) {
-      final fieldJson3 = end!.toJson();
-      json['end'] = fieldJson3['value'];
-      if (fieldJson3['_value'] != null) {
-        json['_end'] = fieldJson3['_value'];
-      }
-    }
-
+    addField('start', start);
+    addField('end', end);
     return json;
   }
 

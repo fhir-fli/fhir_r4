@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The gender of a person used for administrative purposes.
-class AdministrativeGender {
+class AdministrativeGender extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  AdministrativeGender._(this.fhirCode, {this.element});
+  AdministrativeGender._(super.value, [super.element]);
 
   /// Factory constructor to create [AdministrativeGender] from JSON.
   factory AdministrativeGender.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class AdministrativeGender {
     if (value == null && element != null) {
       return AdministrativeGender.elementOnly.withElement(element);
     }
-    return AdministrativeGender._(value!, element: element);
+    return AdministrativeGender._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// AdministrativeGender values
   /// male
   static final AdministrativeGender male = AdministrativeGender._(
     'male',
@@ -57,18 +50,63 @@ class AdministrativeGender {
     unknown,
   ];
 
+  /// Clones the current instance
+  @override
+  AdministrativeGender clone() =>
+      AdministrativeGender._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  AdministrativeGender setElement(String name, dynamic elementValue) {
+    return AdministrativeGender._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   AdministrativeGender withElement(Element? newElement) {
-    return AdministrativeGender._(fhirCode, element: newElement);
+    return AdministrativeGender._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  AdministrativeGender copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return AdministrativeGender._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

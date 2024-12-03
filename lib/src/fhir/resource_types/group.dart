@@ -251,31 +251,23 @@ class FhirGroup extends DomainResource {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    json['resourceType'] = resourceType.toJson();
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    json['resourceType'] = resourceType.toJson();
+    addField('id', id);
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    if (implicitRules != null) {
-      final fieldJson1 = implicitRules!.toJson();
-      json['implicitRules'] = fieldJson1['value'];
-      if (fieldJson1['_value'] != null) {
-        json['_implicitRules'] = fieldJson1['_value'];
-      }
-    }
-
-    if (language != null) {
-      final fieldJson2 = language!.toJson();
-      json['language'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_language'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('implicitRules', implicitRules);
+    addField('language', language);
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -297,46 +289,15 @@ class FhirGroup extends DomainResource {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
 
-    if (active != null) {
-      final fieldJson8 = active!.toJson();
-      json['active'] = fieldJson8['value'];
-      if (fieldJson8['_value'] != null) {
-        json['_active'] = fieldJson8['_value'];
-      }
-    }
-
-    final fieldJson9 = type.toJson();
-    json['type'] = fieldJson9['value'];
-    if (fieldJson9['_value'] != null) {
-      json['_type'] = fieldJson9['_value'];
-    }
-
-    final fieldJson10 = actual.toJson();
-    json['actual'] = fieldJson10['value'];
-    if (fieldJson10['_value'] != null) {
-      json['_actual'] = fieldJson10['_value'];
-    }
-
+    addField('active', active);
+    addField('type', type);
+    addField('actual', actual);
     if (code != null) {
       json['code'] = code!.toJson();
     }
 
-    if (name != null) {
-      final fieldJson12 = name!.toJson();
-      json['name'] = fieldJson12['value'];
-      if (fieldJson12['_value'] != null) {
-        json['_name'] = fieldJson12['_value'];
-      }
-    }
-
-    if (quantity != null) {
-      final fieldJson13 = quantity!.toJson();
-      json['quantity'] = fieldJson13['value'];
-      if (fieldJson13['_value'] != null) {
-        json['_quantity'] = fieldJson13['_value'];
-      }
-    }
-
+    addField('name', name);
+    addField('quantity', quantity);
     if (managingEntity != null) {
       json['managingEntity'] = managingEntity!.toJson();
     }
@@ -584,10 +545,16 @@ class GroupCharacteristic extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -603,14 +570,7 @@ class GroupCharacteristic extends BackboneElement {
       json['valueCodeableConcept'] = valueCodeableConcept!.toJson();
     }
 
-    if (valueBoolean != null) {
-      final fieldJson4 = valueBoolean!.toJson();
-      json['valueBoolean'] = fieldJson4['value'];
-      if (fieldJson4['_value'] != null) {
-        json['_valueBoolean'] = fieldJson4['_value'];
-      }
-    }
-
+    addField('valueBoolean', valueBoolean);
     if (valueQuantity != null) {
       json['valueQuantity'] = valueQuantity!.toJson();
     }
@@ -623,12 +583,7 @@ class GroupCharacteristic extends BackboneElement {
       json['valueReference'] = valueReference!.toJson();
     }
 
-    final fieldJson8 = exclude.toJson();
-    json['exclude'] = fieldJson8['value'];
-    if (fieldJson8['_value'] != null) {
-      json['_exclude'] = fieldJson8['_value'];
-    }
-
+    addField('exclude', exclude);
     if (period != null) {
       json['period'] = period!.toJson();
     }
@@ -799,10 +754,16 @@ class GroupMember extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -818,14 +779,7 @@ class GroupMember extends BackboneElement {
       json['period'] = period!.toJson();
     }
 
-    if (inactive != null) {
-      final fieldJson4 = inactive!.toJson();
-      json['inactive'] = fieldJson4['value'];
-      if (fieldJson4['_value'] != null) {
-        json['_inactive'] = fieldJson4['_value'];
-      }
-    }
-
+    addField('inactive', inactive);
     return json;
   }
 

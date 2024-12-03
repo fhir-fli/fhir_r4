@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Artifact Contribution Instance Type
-class ArtifactContributionInstanceType {
+class ArtifactContributionInstanceType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ArtifactContributionInstanceType._(this.fhirCode, {this.element});
+  ArtifactContributionInstanceType._(super.value, [super.element]);
 
   /// Factory constructor to create [ArtifactContributionInstanceType] from JSON.
   factory ArtifactContributionInstanceType.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class ArtifactContributionInstanceType {
     if (value == null && element != null) {
       return ArtifactContributionInstanceType.elementOnly.withElement(element);
     }
-    return ArtifactContributionInstanceType._(value!, element: element);
+    return ArtifactContributionInstanceType._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ArtifactContributionInstanceType values
   /// reviewed
   static final ArtifactContributionInstanceType reviewed =
       ArtifactContributionInstanceType._(
@@ -55,18 +48,64 @@ class ArtifactContributionInstanceType {
     edited,
   ];
 
+  /// Clones the current instance
+  @override
+  ArtifactContributionInstanceType clone() =>
+      ArtifactContributionInstanceType._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  ArtifactContributionInstanceType setElement(
+      String name, dynamic elementValue) {
+    return ArtifactContributionInstanceType._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   ArtifactContributionInstanceType withElement(Element? newElement) {
-    return ArtifactContributionInstanceType._(fhirCode, element: newElement);
+    return ArtifactContributionInstanceType._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  ArtifactContributionInstanceType copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return ArtifactContributionInstanceType._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

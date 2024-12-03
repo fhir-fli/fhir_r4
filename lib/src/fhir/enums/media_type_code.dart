@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Media Type Code
-class MediaTypeCode {
+class MediaTypeCode extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  MediaTypeCode._(this.fhirCode, {this.element});
+  MediaTypeCode._(super.value, [super.element]);
 
   /// Factory constructor to create [MediaTypeCode] from JSON.
   factory MediaTypeCode.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class MediaTypeCode {
     if (value == null && element != null) {
       return MediaTypeCode.elementOnly.withElement(element);
     }
-    return MediaTypeCode._(value!, element: element);
+    return MediaTypeCode._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// MediaTypeCode values
   /// ARCHIVE
   static final MediaTypeCode ARCHIVE = MediaTypeCode._(
     'ARCHIVE',
@@ -18969,18 +18962,62 @@ class MediaTypeCode {
     value126811,
   ];
 
+  /// Clones the current instance
+  @override
+  MediaTypeCode clone() => MediaTypeCode._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  MediaTypeCode setElement(String name, dynamic elementValue) {
+    return MediaTypeCode._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   MediaTypeCode withElement(Element? newElement) {
-    return MediaTypeCode._(fhirCode, element: newElement);
+    return MediaTypeCode._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  MediaTypeCode copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return MediaTypeCode._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

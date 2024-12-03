@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// This value set contract specific codes for offer party participation.
-class ContractResourcePartyRoleCodes {
+class ContractResourcePartyRoleCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ContractResourcePartyRoleCodes._(this.fhirCode, {this.element});
+  ContractResourcePartyRoleCodes._(super.value, [super.element]);
 
   /// Factory constructor to create [ContractResourcePartyRoleCodes] from JSON.
   factory ContractResourcePartyRoleCodes.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class ContractResourcePartyRoleCodes {
     if (value == null && element != null) {
       return ContractResourcePartyRoleCodes.elementOnly.withElement(element);
     }
-    return ContractResourcePartyRoleCodes._(value!, element: element);
+    return ContractResourcePartyRoleCodes._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ContractResourcePartyRoleCodes values
   /// flunky
   static final ContractResourcePartyRoleCodes flunky =
       ContractResourcePartyRoleCodes._(
@@ -41,18 +34,63 @@ class ContractResourcePartyRoleCodes {
     flunky,
   ];
 
+  /// Clones the current instance
+  @override
+  ContractResourcePartyRoleCodes clone() =>
+      ContractResourcePartyRoleCodes._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  ContractResourcePartyRoleCodes setElement(String name, dynamic elementValue) {
+    return ContractResourcePartyRoleCodes._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   ContractResourcePartyRoleCodes withElement(Element? newElement) {
-    return ContractResourcePartyRoleCodes._(fhirCode, element: newElement);
+    return ContractResourcePartyRoleCodes._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  ContractResourcePartyRoleCodes copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return ContractResourcePartyRoleCodes._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

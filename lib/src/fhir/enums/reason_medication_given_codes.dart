@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// This value set is provided as an example. The value set to instantiate this attribute should be drawn from a robust terminology code system that consists of or contains concepts to support the medication process.
-class ReasonMedicationGivenCodes {
+class ReasonMedicationGivenCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ReasonMedicationGivenCodes._(this.fhirCode, {this.element});
+  ReasonMedicationGivenCodes._(super.value, [super.element]);
 
   /// Factory constructor to create [ReasonMedicationGivenCodes] from JSON.
   factory ReasonMedicationGivenCodes.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class ReasonMedicationGivenCodes {
     if (value == null && element != null) {
       return ReasonMedicationGivenCodes.elementOnly.withElement(element);
     }
-    return ReasonMedicationGivenCodes._(value!, element: element);
+    return ReasonMedicationGivenCodes._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ReasonMedicationGivenCodes values
   /// a
   static final ReasonMedicationGivenCodes a = ReasonMedicationGivenCodes._(
     'a',
@@ -52,18 +45,63 @@ class ReasonMedicationGivenCodes {
     c,
   ];
 
+  /// Clones the current instance
+  @override
+  ReasonMedicationGivenCodes clone() =>
+      ReasonMedicationGivenCodes._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  ReasonMedicationGivenCodes setElement(String name, dynamic elementValue) {
+    return ReasonMedicationGivenCodes._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   ReasonMedicationGivenCodes withElement(Element? newElement) {
-    return ReasonMedicationGivenCodes._(fhirCode, element: newElement);
+    return ReasonMedicationGivenCodes._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  ReasonMedicationGivenCodes copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return ReasonMedicationGivenCodes._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

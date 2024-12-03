@@ -468,31 +468,23 @@ class EvidenceVariable extends DomainResource {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    json['resourceType'] = resourceType.toJson();
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    json['resourceType'] = resourceType.toJson();
+    addField('id', id);
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    if (implicitRules != null) {
-      final fieldJson1 = implicitRules!.toJson();
-      json['implicitRules'] = fieldJson1['value'];
-      if (fieldJson1['_value'] != null) {
-        json['_implicitRules'] = fieldJson1['_value'];
-      }
-    }
-
-    if (language != null) {
-      final fieldJson2 = language!.toJson();
-      json['language'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_language'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('implicitRules', implicitRules);
+    addField('language', language);
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -510,80 +502,19 @@ class EvidenceVariable extends DomainResource {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    if (url != null) {
-      final fieldJson7 = url!.toJson();
-      json['url'] = fieldJson7['value'];
-      if (fieldJson7['_value'] != null) {
-        json['_url'] = fieldJson7['_value'];
-      }
-    }
-
+    addField('url', url);
     if (identifier != null && identifier!.isNotEmpty) {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
 
-    if (version != null) {
-      final fieldJson9 = version!.toJson();
-      json['version'] = fieldJson9['value'];
-      if (fieldJson9['_value'] != null) {
-        json['_version'] = fieldJson9['_value'];
-      }
-    }
-
-    if (name != null) {
-      final fieldJson10 = name!.toJson();
-      json['name'] = fieldJson10['value'];
-      if (fieldJson10['_value'] != null) {
-        json['_name'] = fieldJson10['_value'];
-      }
-    }
-
-    if (title != null) {
-      final fieldJson11 = title!.toJson();
-      json['title'] = fieldJson11['value'];
-      if (fieldJson11['_value'] != null) {
-        json['_title'] = fieldJson11['_value'];
-      }
-    }
-
-    if (shortTitle != null) {
-      final fieldJson12 = shortTitle!.toJson();
-      json['shortTitle'] = fieldJson12['value'];
-      if (fieldJson12['_value'] != null) {
-        json['_shortTitle'] = fieldJson12['_value'];
-      }
-    }
-
-    if (subtitle != null) {
-      final fieldJson13 = subtitle!.toJson();
-      json['subtitle'] = fieldJson13['value'];
-      if (fieldJson13['_value'] != null) {
-        json['_subtitle'] = fieldJson13['_value'];
-      }
-    }
-
-    final fieldJson14 = status.toJson();
-    json['status'] = fieldJson14['value'];
-    if (fieldJson14['_value'] != null) {
-      json['_status'] = fieldJson14['_value'];
-    }
-
-    if (date != null) {
-      final fieldJson15 = date!.toJson();
-      json['date'] = fieldJson15['value'];
-      if (fieldJson15['_value'] != null) {
-        json['_date'] = fieldJson15['_value'];
-      }
-    }
-
-    if (description != null) {
-      final fieldJson16 = description!.toJson();
-      json['description'] = fieldJson16['value'];
-      if (fieldJson16['_value'] != null) {
-        json['_description'] = fieldJson16['_value'];
-      }
-    }
-
+    addField('version', version);
+    addField('name', name);
+    addField('title', title);
+    addField('shortTitle', shortTitle);
+    addField('subtitle', subtitle);
+    addField('status', status);
+    addField('date', date);
+    addField('description', description);
     if (note != null && note!.isNotEmpty) {
       json['note'] = note!.map((e) => e.toJson()).toList();
     }
@@ -592,14 +523,7 @@ class EvidenceVariable extends DomainResource {
       json['useContext'] = useContext!.map((e) => e.toJson()).toList();
     }
 
-    if (publisher != null) {
-      final fieldJson19 = publisher!.toJson();
-      json['publisher'] = fieldJson19['value'];
-      if (fieldJson19['_value'] != null) {
-        json['_publisher'] = fieldJson19['_value'];
-      }
-    }
-
+    addField('publisher', publisher);
     if (contact != null && contact!.isNotEmpty) {
       json['contact'] = contact!.map((e) => e.toJson()).toList();
     }
@@ -625,34 +549,13 @@ class EvidenceVariable extends DomainResource {
           relatedArtifact!.map((e) => e.toJson()).toList();
     }
 
-    if (actual != null) {
-      final fieldJson26 = actual!.toJson();
-      json['actual'] = fieldJson26['value'];
-      if (fieldJson26['_value'] != null) {
-        json['_actual'] = fieldJson26['_value'];
-      }
-    }
-
-    if (characteristicCombination != null) {
-      final fieldJson27 = characteristicCombination!.toJson();
-      json['characteristicCombination'] = fieldJson27['value'];
-      if (fieldJson27['_value'] != null) {
-        json['_characteristicCombination'] = fieldJson27['_value'];
-      }
-    }
-
+    addField('actual', actual);
+    addField('characteristicCombination', characteristicCombination);
     if (characteristic != null && characteristic!.isNotEmpty) {
       json['characteristic'] = characteristic!.map((e) => e.toJson()).toList();
     }
 
-    if (handling != null) {
-      final fieldJson29 = handling!.toJson();
-      json['handling'] = fieldJson29['value'];
-      if (fieldJson29['_value'] != null) {
-        json['_handling'] = fieldJson29['_value'];
-      }
-    }
-
+    addField('handling', handling);
     if (category != null && category!.isNotEmpty) {
       json['category'] = category!.map((e) => e.toJson()).toList();
     }
@@ -957,10 +860,16 @@ class EvidenceVariableCharacteristic extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -970,26 +879,12 @@ class EvidenceVariableCharacteristic extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    if (description != null) {
-      final fieldJson2 = description!.toJson();
-      json['description'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_description'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('description', description);
     if (definitionReference != null) {
       json['definitionReference'] = definitionReference!.toJson();
     }
 
-    if (definitionCanonical != null) {
-      final fieldJson4 = definitionCanonical!.toJson();
-      json['definitionCanonical'] = fieldJson4['value'];
-      if (fieldJson4['_value'] != null) {
-        json['_definitionCanonical'] = fieldJson4['_value'];
-      }
-    }
-
+    addField('definitionCanonical', definitionCanonical);
     if (definitionCodeableConcept != null) {
       json['definitionCodeableConcept'] = definitionCodeableConcept!.toJson();
     }
@@ -1006,26 +901,12 @@ class EvidenceVariableCharacteristic extends BackboneElement {
       json['device'] = device!.toJson();
     }
 
-    if (exclude != null) {
-      final fieldJson9 = exclude!.toJson();
-      json['exclude'] = fieldJson9['value'];
-      if (fieldJson9['_value'] != null) {
-        json['_exclude'] = fieldJson9['_value'];
-      }
-    }
-
+    addField('exclude', exclude);
     if (timeFromStart != null) {
       json['timeFromStart'] = timeFromStart!.toJson();
     }
 
-    if (groupMeasure != null) {
-      final fieldJson11 = groupMeasure!.toJson();
-      json['groupMeasure'] = fieldJson11['value'];
-      if (fieldJson11['_value'] != null) {
-        json['_groupMeasure'] = fieldJson11['_value'];
-      }
-    }
-
+    addField('groupMeasure', groupMeasure);
     return json;
   }
 
@@ -1213,10 +1094,16 @@ class EvidenceVariableTimeFromStart extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1226,14 +1113,7 @@ class EvidenceVariableTimeFromStart extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    if (description != null) {
-      final fieldJson2 = description!.toJson();
-      json['description'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_description'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('description', description);
     if (quantity != null) {
       json['quantity'] = quantity!.toJson();
     }
@@ -1414,10 +1294,16 @@ class EvidenceVariableCategory extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1427,14 +1313,7 @@ class EvidenceVariableCategory extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    if (name != null) {
-      final fieldJson2 = name!.toJson();
-      json['name'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_name'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('name', name);
     if (valueCodeableConcept != null) {
       json['valueCodeableConcept'] = valueCodeableConcept!.toJson();
     }

@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// This value set includes a smattering of Benefit Term codes.
-class BenefitTermCodes {
+class BenefitTermCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  BenefitTermCodes._(this.fhirCode, {this.element});
+  BenefitTermCodes._(super.value, [super.element]);
 
   /// Factory constructor to create [BenefitTermCodes] from JSON.
   factory BenefitTermCodes.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class BenefitTermCodes {
     if (value == null && element != null) {
       return BenefitTermCodes.elementOnly.withElement(element);
     }
-    return BenefitTermCodes._(value!, element: element);
+    return BenefitTermCodes._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// BenefitTermCodes values
   /// annual
   static final BenefitTermCodes annual = BenefitTermCodes._(
     'annual',
@@ -51,18 +44,63 @@ class BenefitTermCodes {
     lifetime,
   ];
 
+  /// Clones the current instance
+  @override
+  BenefitTermCodes clone() =>
+      BenefitTermCodes._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  BenefitTermCodes setElement(String name, dynamic elementValue) {
+    return BenefitTermCodes._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   BenefitTermCodes withElement(Element? newElement) {
-    return BenefitTermCodes._(fhirCode, element: newElement);
+    return BenefitTermCodes._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  BenefitTermCodes copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return BenefitTermCodes._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The status of the ImagingStudy.
-class ImagingStudyStatus {
+class ImagingStudyStatus extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ImagingStudyStatus._(this.fhirCode, {this.element});
+  ImagingStudyStatus._(super.value, [super.element]);
 
   /// Factory constructor to create [ImagingStudyStatus] from JSON.
   factory ImagingStudyStatus.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class ImagingStudyStatus {
     if (value == null && element != null) {
       return ImagingStudyStatus.elementOnly.withElement(element);
     }
-    return ImagingStudyStatus._(value!, element: element);
+    return ImagingStudyStatus._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ImagingStudyStatus values
   /// registered
   static final ImagingStudyStatus registered = ImagingStudyStatus._(
     'registered',
@@ -63,18 +56,63 @@ class ImagingStudyStatus {
     unknown,
   ];
 
+  /// Clones the current instance
+  @override
+  ImagingStudyStatus clone() =>
+      ImagingStudyStatus._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  ImagingStudyStatus setElement(String name, dynamic elementValue) {
+    return ImagingStudyStatus._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   ImagingStudyStatus withElement(Element? newElement) {
-    return ImagingStudyStatus._(fhirCode, element: newElement);
+    return ImagingStudyStatus._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  ImagingStudyStatus copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return ImagingStudyStatus._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

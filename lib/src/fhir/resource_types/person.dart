@@ -254,31 +254,23 @@ class Person extends DomainResource {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    json['resourceType'] = resourceType.toJson();
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    json['resourceType'] = resourceType.toJson();
+    addField('id', id);
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    if (implicitRules != null) {
-      final fieldJson1 = implicitRules!.toJson();
-      json['implicitRules'] = fieldJson1['value'];
-      if (fieldJson1['_value'] != null) {
-        json['_implicitRules'] = fieldJson1['_value'];
-      }
-    }
-
-    if (language != null) {
-      final fieldJson2 = language!.toJson();
-      json['language'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_language'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('implicitRules', implicitRules);
+    addField('language', language);
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -308,22 +300,8 @@ class Person extends DomainResource {
       json['telecom'] = telecom!.map((e) => e.toJson()).toList();
     }
 
-    if (gender != null) {
-      final fieldJson10 = gender!.toJson();
-      json['gender'] = fieldJson10['value'];
-      if (fieldJson10['_value'] != null) {
-        json['_gender'] = fieldJson10['_value'];
-      }
-    }
-
-    if (birthDate != null) {
-      final fieldJson11 = birthDate!.toJson();
-      json['birthDate'] = fieldJson11['value'];
-      if (fieldJson11['_value'] != null) {
-        json['_birthDate'] = fieldJson11['_value'];
-      }
-    }
-
+    addField('gender', gender);
+    addField('birthDate', birthDate);
     if (address != null && address!.isNotEmpty) {
       json['address'] = address!.map((e) => e.toJson()).toList();
     }
@@ -336,14 +314,7 @@ class Person extends DomainResource {
       json['managingOrganization'] = managingOrganization!.toJson();
     }
 
-    if (active != null) {
-      final fieldJson15 = active!.toJson();
-      json['active'] = fieldJson15['value'];
-      if (fieldJson15['_value'] != null) {
-        json['_active'] = fieldJson15['_value'];
-      }
-    }
-
+    addField('active', active);
     if (link != null && link!.isNotEmpty) {
       json['link'] = link!.map((e) => e.toJson()).toList();
     }
@@ -516,10 +487,16 @@ class PersonLink extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -531,14 +508,7 @@ class PersonLink extends BackboneElement {
 
     json['target'] = target.toJson();
 
-    if (assurance != null) {
-      final fieldJson3 = assurance!.toJson();
-      json['assurance'] = fieldJson3['value'];
-      if (fieldJson3['_value'] != null) {
-        json['_assurance'] = fieldJson3['_value'];
-      }
-    }
-
+    addField('assurance', assurance);
     return json;
   }
 

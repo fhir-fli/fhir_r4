@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The protocol used for message transport.
-class MessageTransport {
+class MessageTransport extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  MessageTransport._(this.fhirCode, {this.element});
+  MessageTransport._(super.value, [super.element]);
 
   /// Factory constructor to create [MessageTransport] from JSON.
   factory MessageTransport.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class MessageTransport {
     if (value == null && element != null) {
       return MessageTransport.elementOnly.withElement(element);
     }
-    return MessageTransport._(value!, element: element);
+    return MessageTransport._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// MessageTransport values
   /// http
   static final MessageTransport http = MessageTransport._(
     'http',
@@ -51,18 +44,63 @@ class MessageTransport {
     mllp,
   ];
 
+  /// Clones the current instance
+  @override
+  MessageTransport clone() =>
+      MessageTransport._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  MessageTransport setElement(String name, dynamic elementValue) {
+    return MessageTransport._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   MessageTransport withElement(Element? newElement) {
-    return MessageTransport._(fhirCode, element: newElement);
+    return MessageTransport._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  MessageTransport copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return MessageTransport._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

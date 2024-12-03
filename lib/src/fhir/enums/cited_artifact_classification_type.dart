@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Cited Artifact Classification Type
-class CitedArtifactClassificationType {
+class CitedArtifactClassificationType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  CitedArtifactClassificationType._(this.fhirCode, {this.element});
+  CitedArtifactClassificationType._(super.value, [super.element]);
 
   /// Factory constructor to create [CitedArtifactClassificationType] from JSON.
   factory CitedArtifactClassificationType.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class CitedArtifactClassificationType {
     if (value == null && element != null) {
       return CitedArtifactClassificationType.elementOnly.withElement(element);
     }
-    return CitedArtifactClassificationType._(value!, element: element);
+    return CitedArtifactClassificationType._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// CitedArtifactClassificationType values
   /// publication_type
   static final CitedArtifactClassificationType publication_type =
       CitedArtifactClassificationType._(
@@ -111,18 +104,64 @@ class CitedArtifactClassificationType {
     coverage,
   ];
 
+  /// Clones the current instance
+  @override
+  CitedArtifactClassificationType clone() =>
+      CitedArtifactClassificationType._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  CitedArtifactClassificationType setElement(
+      String name, dynamic elementValue) {
+    return CitedArtifactClassificationType._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   CitedArtifactClassificationType withElement(Element? newElement) {
-    return CitedArtifactClassificationType._(fhirCode, element: newElement);
+    return CitedArtifactClassificationType._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  CitedArtifactClassificationType copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return CitedArtifactClassificationType._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

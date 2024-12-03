@@ -426,31 +426,23 @@ class DeviceDefinition extends DomainResource {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    json['resourceType'] = resourceType.toJson();
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    json['resourceType'] = resourceType.toJson();
+    addField('id', id);
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    if (implicitRules != null) {
-      final fieldJson1 = implicitRules!.toJson();
-      json['implicitRules'] = fieldJson1['value'];
-      if (fieldJson1['_value'] != null) {
-        json['_implicitRules'] = fieldJson1['_value'];
-      }
-    }
-
-    if (language != null) {
-      final fieldJson2 = language!.toJson();
-      json['language'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_language'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('implicitRules', implicitRules);
+    addField('language', language);
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -477,14 +469,7 @@ class DeviceDefinition extends DomainResource {
           udiDeviceIdentifier!.map((e) => e.toJson()).toList();
     }
 
-    if (manufacturerString != null) {
-      final fieldJson9 = manufacturerString!.toJson();
-      json['manufacturerString'] = fieldJson9['value'];
-      if (fieldJson9['_value'] != null) {
-        json['_manufacturerString'] = fieldJson9['_value'];
-      }
-    }
-
+    addField('manufacturerString', manufacturerString);
     if (manufacturerReference != null) {
       json['manufacturerReference'] = manufacturerReference!.toJson();
     }
@@ -493,14 +478,7 @@ class DeviceDefinition extends DomainResource {
       json['deviceName'] = deviceName!.map((e) => e.toJson()).toList();
     }
 
-    if (modelNumber != null) {
-      final fieldJson12 = modelNumber!.toJson();
-      json['modelNumber'] = fieldJson12['value'];
-      if (fieldJson12['_value'] != null) {
-        json['_modelNumber'] = fieldJson12['_value'];
-      }
-    }
-
+    addField('modelNumber', modelNumber);
     if (type != null) {
       json['type'] = type!.toJson();
     }
@@ -510,10 +488,10 @@ class DeviceDefinition extends DomainResource {
     }
 
     if (version != null && version!.isNotEmpty) {
-      final fieldJson15 = version!.map((e) => e.toJson()).toList();
-      json['version'] = fieldJson15.map((e) => e['value']).toList();
-      if (fieldJson15.any((e) => e['_value'] != null)) {
-        json['_version'] = fieldJson15.map((e) => e['_value']).toList();
+      final fieldJson0 = version!.map((e) => e.toJson()).toList();
+      json['version'] = fieldJson0.map((e) => e['value']).toList();
+      if (fieldJson0.any((e) => e['_value'] != null)) {
+        json['_version'] = fieldJson0.map((e) => e['_value']).toList();
       }
     }
 
@@ -550,22 +528,8 @@ class DeviceDefinition extends DomainResource {
       json['contact'] = contact!.map((e) => e.toJson()).toList();
     }
 
-    if (url != null) {
-      final fieldJson24 = url!.toJson();
-      json['url'] = fieldJson24['value'];
-      if (fieldJson24['_value'] != null) {
-        json['_url'] = fieldJson24['_value'];
-      }
-    }
-
-    if (onlineInformation != null) {
-      final fieldJson25 = onlineInformation!.toJson();
-      json['onlineInformation'] = fieldJson25['value'];
-      if (fieldJson25['_value'] != null) {
-        json['_onlineInformation'] = fieldJson25['_value'];
-      }
-    }
-
+    addField('url', url);
+    addField('onlineInformation', onlineInformation);
     if (note != null && note!.isNotEmpty) {
       json['note'] = note!.map((e) => e.toJson()).toList();
     }
@@ -790,10 +754,16 @@ class DeviceDefinitionUdiDeviceIdentifier extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -803,24 +773,9 @@ class DeviceDefinitionUdiDeviceIdentifier extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    final fieldJson2 = deviceIdentifier.toJson();
-    json['deviceIdentifier'] = fieldJson2['value'];
-    if (fieldJson2['_value'] != null) {
-      json['_deviceIdentifier'] = fieldJson2['_value'];
-    }
-
-    final fieldJson3 = issuer.toJson();
-    json['issuer'] = fieldJson3['value'];
-    if (fieldJson3['_value'] != null) {
-      json['_issuer'] = fieldJson3['_value'];
-    }
-
-    final fieldJson4 = jurisdiction.toJson();
-    json['jurisdiction'] = fieldJson4['value'];
-    if (fieldJson4['_value'] != null) {
-      json['_jurisdiction'] = fieldJson4['_value'];
-    }
-
+    addField('deviceIdentifier', deviceIdentifier);
+    addField('issuer', issuer);
+    addField('jurisdiction', jurisdiction);
     return json;
   }
 
@@ -965,10 +920,16 @@ class DeviceDefinitionDeviceName extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -978,18 +939,8 @@ class DeviceDefinitionDeviceName extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    final fieldJson2 = name.toJson();
-    json['name'] = fieldJson2['value'];
-    if (fieldJson2['_value'] != null) {
-      json['_name'] = fieldJson2['_value'];
-    }
-
-    final fieldJson3 = type.toJson();
-    json['type'] = fieldJson3['value'];
-    if (fieldJson3['_value'] != null) {
-      json['_type'] = fieldJson3['_value'];
-    }
-
+    addField('name', name);
+    addField('type', type);
     return json;
   }
 
@@ -1134,10 +1085,16 @@ class DeviceDefinitionSpecialization extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1147,20 +1104,8 @@ class DeviceDefinitionSpecialization extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    final fieldJson2 = systemType.toJson();
-    json['systemType'] = fieldJson2['value'];
-    if (fieldJson2['_value'] != null) {
-      json['_systemType'] = fieldJson2['_value'];
-    }
-
-    if (version != null) {
-      final fieldJson3 = version!.toJson();
-      json['version'] = fieldJson3['value'];
-      if (fieldJson3['_value'] != null) {
-        json['_version'] = fieldJson3['_value'];
-      }
-    }
-
+    addField('systemType', systemType);
+    addField('version', version);
     return json;
   }
 
@@ -1305,10 +1250,16 @@ class DeviceDefinitionCapability extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1484,10 +1435,16 @@ class DeviceDefinitionProperty extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1662,10 +1619,16 @@ class DeviceDefinitionMaterial extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1677,22 +1640,8 @@ class DeviceDefinitionMaterial extends BackboneElement {
 
     json['substance'] = substance.toJson();
 
-    if (alternate != null) {
-      final fieldJson3 = alternate!.toJson();
-      json['alternate'] = fieldJson3['value'];
-      if (fieldJson3['_value'] != null) {
-        json['_alternate'] = fieldJson3['_value'];
-      }
-    }
-
-    if (allergenicIndicator != null) {
-      final fieldJson4 = allergenicIndicator!.toJson();
-      json['allergenicIndicator'] = fieldJson4['value'];
-      if (fieldJson4['_value'] != null) {
-        json['_allergenicIndicator'] = fieldJson4['_value'];
-      }
-    }
-
+    addField('alternate', alternate);
+    addField('allergenicIndicator', allergenicIndicator);
     return json;
   }
 

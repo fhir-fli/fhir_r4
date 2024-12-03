@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Codes identifying the lifecycle stage of a ChargeItem.
-class ChargeItemStatus {
+class ChargeItemStatus extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ChargeItemStatus._(this.fhirCode, {this.element});
+  ChargeItemStatus._(super.value, [super.element]);
 
   /// Factory constructor to create [ChargeItemStatus] from JSON.
   factory ChargeItemStatus.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class ChargeItemStatus {
     if (value == null && element != null) {
       return ChargeItemStatus.elementOnly.withElement(element);
     }
-    return ChargeItemStatus._(value!, element: element);
+    return ChargeItemStatus._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ChargeItemStatus values
   /// planned
   static final ChargeItemStatus planned = ChargeItemStatus._(
     'planned',
@@ -75,18 +68,63 @@ class ChargeItemStatus {
     unknown,
   ];
 
+  /// Clones the current instance
+  @override
+  ChargeItemStatus clone() =>
+      ChargeItemStatus._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  ChargeItemStatus setElement(String name, dynamic elementValue) {
+    return ChargeItemStatus._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   ChargeItemStatus withElement(Element? newElement) {
-    return ChargeItemStatus._(fhirCode, element: newElement);
+    return ChargeItemStatus._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  ChargeItemStatus copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return ChargeItemStatus._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

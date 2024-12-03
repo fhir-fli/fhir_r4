@@ -260,31 +260,23 @@ class NutritionProduct extends DomainResource {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    json['resourceType'] = resourceType.toJson();
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    json['resourceType'] = resourceType.toJson();
+    addField('id', id);
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    if (implicitRules != null) {
-      final fieldJson1 = implicitRules!.toJson();
-      json['implicitRules'] = fieldJson1['value'];
-      if (fieldJson1['_value'] != null) {
-        json['_implicitRules'] = fieldJson1['_value'];
-      }
-    }
-
-    if (language != null) {
-      final fieldJson2 = language!.toJson();
-      json['language'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_language'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('implicitRules', implicitRules);
+    addField('language', language);
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -302,12 +294,7 @@ class NutritionProduct extends DomainResource {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    final fieldJson7 = status.toJson();
-    json['status'] = fieldJson7['value'];
-    if (fieldJson7['_value'] != null) {
-      json['_status'] = fieldJson7['_value'];
-    }
-
+    addField('status', status);
     if (category != null && category!.isNotEmpty) {
       json['category'] = category!.map((e) => e.toJson()).toList();
     }
@@ -519,10 +506,16 @@ class NutritionProductNutrient extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -684,10 +677,16 @@ class NutritionProductIngredient extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -899,10 +898,16 @@ class NutritionProductProductCharacteristic extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -918,38 +923,17 @@ class NutritionProductProductCharacteristic extends BackboneElement {
       json['valueCodeableConcept'] = valueCodeableConcept!.toJson();
     }
 
-    if (valueString != null) {
-      final fieldJson4 = valueString!.toJson();
-      json['valueString'] = fieldJson4['value'];
-      if (fieldJson4['_value'] != null) {
-        json['_valueString'] = fieldJson4['_value'];
-      }
-    }
-
+    addField('valueString', valueString);
     if (valueQuantity != null) {
       json['valueQuantity'] = valueQuantity!.toJson();
     }
 
-    if (valueBase64Binary != null) {
-      final fieldJson6 = valueBase64Binary!.toJson();
-      json['valueBase64Binary'] = fieldJson6['value'];
-      if (fieldJson6['_value'] != null) {
-        json['_valueBase64Binary'] = fieldJson6['_value'];
-      }
-    }
-
+    addField('valueBase64Binary', valueBase64Binary);
     if (valueAttachment != null) {
       json['valueAttachment'] = valueAttachment!.toJson();
     }
 
-    if (valueBoolean != null) {
-      final fieldJson8 = valueBoolean!.toJson();
-      json['valueBoolean'] = fieldJson8['value'];
-      if (fieldJson8['_value'] != null) {
-        json['_valueBoolean'] = fieldJson8['_value'];
-      }
-    }
-
+    addField('valueBoolean', valueBoolean);
     return json;
   }
 
@@ -1143,10 +1127,16 @@ class NutritionProductInstance extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1164,30 +1154,9 @@ class NutritionProductInstance extends BackboneElement {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
 
-    if (lotNumber != null) {
-      final fieldJson4 = lotNumber!.toJson();
-      json['lotNumber'] = fieldJson4['value'];
-      if (fieldJson4['_value'] != null) {
-        json['_lotNumber'] = fieldJson4['_value'];
-      }
-    }
-
-    if (expiry != null) {
-      final fieldJson5 = expiry!.toJson();
-      json['expiry'] = fieldJson5['value'];
-      if (fieldJson5['_value'] != null) {
-        json['_expiry'] = fieldJson5['_value'];
-      }
-    }
-
-    if (useBy != null) {
-      final fieldJson6 = useBy!.toJson();
-      json['useBy'] = fieldJson6['value'];
-      if (fieldJson6['_value'] != null) {
-        json['_useBy'] = fieldJson6['_value'];
-      }
-    }
-
+    addField('lotNumber', lotNumber);
+    addField('expiry', expiry);
+    addField('useBy', useBy);
     return json;
   }
 

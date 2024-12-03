@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// This value set includes sample Provider Qualification codes.
-class ExampleProviderQualificationCodes {
+class ExampleProviderQualificationCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ExampleProviderQualificationCodes._(this.fhirCode, {this.element});
+  ExampleProviderQualificationCodes._(super.value, [super.element]);
 
   /// Factory constructor to create [ExampleProviderQualificationCodes] from JSON.
   factory ExampleProviderQualificationCodes.fromJson(
@@ -16,16 +16,9 @@ class ExampleProviderQualificationCodes {
     if (value == null && element != null) {
       return ExampleProviderQualificationCodes.elementOnly.withElement(element);
     }
-    return ExampleProviderQualificationCodes._(value!, element: element);
+    return ExampleProviderQualificationCodes._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ExampleProviderQualificationCodes values
   /// value311405
   static final ExampleProviderQualificationCodes value311405 =
       ExampleProviderQualificationCodes._(
@@ -56,18 +49,64 @@ class ExampleProviderQualificationCodes {
     value604210,
   ];
 
+  /// Clones the current instance
+  @override
+  ExampleProviderQualificationCodes clone() =>
+      ExampleProviderQualificationCodes._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  ExampleProviderQualificationCodes setElement(
+      String name, dynamic elementValue) {
+    return ExampleProviderQualificationCodes._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   ExampleProviderQualificationCodes withElement(Element? newElement) {
-    return ExampleProviderQualificationCodes._(fhirCode, element: newElement);
+    return ExampleProviderQualificationCodes._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  ExampleProviderQualificationCodes copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return ExampleProviderQualificationCodes._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

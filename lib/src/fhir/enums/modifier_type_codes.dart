@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// This value set includes sample Modifier type codes.
-class ModifierTypeCodes {
+class ModifierTypeCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ModifierTypeCodes._(this.fhirCode, {this.element});
+  ModifierTypeCodes._(super.value, [super.element]);
 
   /// Factory constructor to create [ModifierTypeCodes] from JSON.
   factory ModifierTypeCodes.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class ModifierTypeCodes {
     if (value == null && element != null) {
       return ModifierTypeCodes.elementOnly.withElement(element);
     }
-    return ModifierTypeCodes._(value!, element: element);
+    return ModifierTypeCodes._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ModifierTypeCodes values
   /// a
   static final ModifierTypeCodes a = ModifierTypeCodes._(
     'a',
@@ -69,18 +62,63 @@ class ModifierTypeCodes {
     x,
   ];
 
+  /// Clones the current instance
+  @override
+  ModifierTypeCodes clone() =>
+      ModifierTypeCodes._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  ModifierTypeCodes setElement(String name, dynamic elementValue) {
+    return ModifierTypeCodes._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   ModifierTypeCodes withElement(Element? newElement) {
-    return ModifierTypeCodes._(fhirCode, element: newElement);
+    return ModifierTypeCodes._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  ModifierTypeCodes copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return ModifierTypeCodes._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

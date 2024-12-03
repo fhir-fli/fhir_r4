@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Unified Code for Units of Measure (UCUM). This value set includes common UCUM codes for units of distance
-class CommonUCUMCodesForDistance {
+class CommonUCUMCodesForDistance extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  CommonUCUMCodesForDistance._(this.fhirCode, {this.element});
+  CommonUCUMCodesForDistance._(super.value, [super.element]);
 
   /// Factory constructor to create [CommonUCUMCodesForDistance] from JSON.
   factory CommonUCUMCodesForDistance.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class CommonUCUMCodesForDistance {
     if (value == null && element != null) {
       return CommonUCUMCodesForDistance.elementOnly.withElement(element);
     }
-    return CommonUCUMCodesForDistance._(value!, element: element);
+    return CommonUCUMCodesForDistance._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// CommonUCUMCodesForDistance values
   /// nm
   static final CommonUCUMCodesForDistance nm = CommonUCUMCodesForDistance._(
     'nm',
@@ -64,18 +57,63 @@ class CommonUCUMCodesForDistance {
     km,
   ];
 
+  /// Clones the current instance
+  @override
+  CommonUCUMCodesForDistance clone() =>
+      CommonUCUMCodesForDistance._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  CommonUCUMCodesForDistance setElement(String name, dynamic elementValue) {
+    return CommonUCUMCodesForDistance._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   CommonUCUMCodesForDistance withElement(Element? newElement) {
-    return CommonUCUMCodesForDistance._(fhirCode, element: newElement);
+    return CommonUCUMCodesForDistance._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  CommonUCUMCodesForDistance copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return CommonUCUMCodesForDistance._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

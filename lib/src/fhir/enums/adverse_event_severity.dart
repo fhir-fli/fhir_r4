@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The severity of the adverse event itself, in direct relation to the subject.
-class AdverseEventSeverity {
+class AdverseEventSeverity extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  AdverseEventSeverity._(this.fhirCode, {this.element});
+  AdverseEventSeverity._(super.value, [super.element]);
 
   /// Factory constructor to create [AdverseEventSeverity] from JSON.
   factory AdverseEventSeverity.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class AdverseEventSeverity {
     if (value == null && element != null) {
       return AdverseEventSeverity.elementOnly.withElement(element);
     }
-    return AdverseEventSeverity._(value!, element: element);
+    return AdverseEventSeverity._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// AdverseEventSeverity values
   /// mild
   static final AdverseEventSeverity mild = AdverseEventSeverity._(
     'mild',
@@ -51,18 +44,63 @@ class AdverseEventSeverity {
     severe,
   ];
 
+  /// Clones the current instance
+  @override
+  AdverseEventSeverity clone() =>
+      AdverseEventSeverity._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  AdverseEventSeverity setElement(String name, dynamic elementValue) {
+    return AdverseEventSeverity._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   AdverseEventSeverity withElement(Element? newElement) {
-    return AdverseEventSeverity._(fhirCode, element: newElement);
+    return AdverseEventSeverity._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  AdverseEventSeverity copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return AdverseEventSeverity._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

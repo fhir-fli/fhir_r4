@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Criterion for rejection of the specimen by laboratory.
-class RejectionCriterion {
+class RejectionCriterion extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  RejectionCriterion._(this.fhirCode, {this.element});
+  RejectionCriterion._(super.value, [super.element]);
 
   /// Factory constructor to create [RejectionCriterion] from JSON.
   factory RejectionCriterion.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class RejectionCriterion {
     if (value == null && element != null) {
       return RejectionCriterion.elementOnly.withElement(element);
     }
-    return RejectionCriterion._(value!, element: element);
+    return RejectionCriterion._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// RejectionCriterion values
   /// hemolized
   static final RejectionCriterion hemolized = RejectionCriterion._(
     'hemolized',
@@ -63,18 +56,63 @@ class RejectionCriterion {
     wrong_temperature,
   ];
 
+  /// Clones the current instance
+  @override
+  RejectionCriterion clone() =>
+      RejectionCriterion._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  RejectionCriterion setElement(String name, dynamic elementValue) {
+    return RejectionCriterion._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   RejectionCriterion withElement(Element? newElement) {
-    return RejectionCriterion._(fhirCode, element: newElement);
+    return RejectionCriterion._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  RejectionCriterion copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return RejectionCriterion._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

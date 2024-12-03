@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// TextureModifiedFoodType: Codes for types of foods that are texture-modified. This value set is composed SNOMED CT Concepts from SCTID 255620007 Foods (substance) and is provided as a suggestive example.
-class TextureModifiedFoodTypeCodes {
+class TextureModifiedFoodTypeCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  TextureModifiedFoodTypeCodes._(this.fhirCode, {this.element});
+  TextureModifiedFoodTypeCodes._(super.value, [super.element]);
 
   /// Factory constructor to create [TextureModifiedFoodTypeCodes] from JSON.
   factory TextureModifiedFoodTypeCodes.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class TextureModifiedFoodTypeCodes {
     if (value == null && element != null) {
       return TextureModifiedFoodTypeCodes.elementOnly.withElement(element);
     }
-    return TextureModifiedFoodTypeCodes._(value!, element: element);
+    return TextureModifiedFoodTypeCodes._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// TextureModifiedFoodTypeCodes values
   /// value255620007
   static final TextureModifiedFoodTypeCodes value255620007 =
       TextureModifiedFoodTypeCodes._(
@@ -132,18 +125,63 @@ class TextureModifiedFoodTypeCodes {
     value227210005,
   ];
 
+  /// Clones the current instance
+  @override
+  TextureModifiedFoodTypeCodes clone() =>
+      TextureModifiedFoodTypeCodes._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  TextureModifiedFoodTypeCodes setElement(String name, dynamic elementValue) {
+    return TextureModifiedFoodTypeCodes._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   TextureModifiedFoodTypeCodes withElement(Element? newElement) {
-    return TextureModifiedFoodTypeCodes._(fhirCode, element: newElement);
+    return TextureModifiedFoodTypeCodes._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  TextureModifiedFoodTypeCodes copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return TextureModifiedFoodTypeCodes._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

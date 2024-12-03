@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// A code to indicate if the substance is actively used.
-class FHIRSubstanceStatus {
+class FHIRSubstanceStatus extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  FHIRSubstanceStatus._(this.fhirCode, {this.element});
+  FHIRSubstanceStatus._(super.value, [super.element]);
 
   /// Factory constructor to create [FHIRSubstanceStatus] from JSON.
   factory FHIRSubstanceStatus.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class FHIRSubstanceStatus {
     if (value == null && element != null) {
       return FHIRSubstanceStatus.elementOnly.withElement(element);
     }
-    return FHIRSubstanceStatus._(value!, element: element);
+    return FHIRSubstanceStatus._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// FHIRSubstanceStatus values
   /// active
   static final FHIRSubstanceStatus active = FHIRSubstanceStatus._(
     'active',
@@ -51,18 +44,63 @@ class FHIRSubstanceStatus {
     entered_in_error,
   ];
 
+  /// Clones the current instance
+  @override
+  FHIRSubstanceStatus clone() =>
+      FHIRSubstanceStatus._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  FHIRSubstanceStatus setElement(String name, dynamic elementValue) {
+    return FHIRSubstanceStatus._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   FHIRSubstanceStatus withElement(Element? newElement) {
-    return FHIRSubstanceStatus._(fhirCode, element: newElement);
+    return FHIRSubstanceStatus._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  FHIRSubstanceStatus copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return FHIRSubstanceStatus._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

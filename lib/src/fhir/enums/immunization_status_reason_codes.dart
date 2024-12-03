@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The value set to instantiate this attribute should be drawn from a terminologically robust code system that consists of or contains concepts to support describing the reason why a dose of vaccine was not administered. This value set is provided as a suggestive example.
-class ImmunizationStatusReasonCodes {
+class ImmunizationStatusReasonCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ImmunizationStatusReasonCodes._(this.fhirCode, {this.element});
+  ImmunizationStatusReasonCodes._(super.value, [super.element]);
 
   /// Factory constructor to create [ImmunizationStatusReasonCodes] from JSON.
   factory ImmunizationStatusReasonCodes.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class ImmunizationStatusReasonCodes {
     if (value == null && element != null) {
       return ImmunizationStatusReasonCodes.elementOnly.withElement(element);
     }
-    return ImmunizationStatusReasonCodes._(value!, element: element);
+    return ImmunizationStatusReasonCodes._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ImmunizationStatusReasonCodes values
   /// IMMUNE
   static final ImmunizationStatusReasonCodes IMMUNE =
       ImmunizationStatusReasonCodes._(
@@ -62,18 +55,63 @@ class ImmunizationStatusReasonCodes {
     PATOBJ,
   ];
 
+  /// Clones the current instance
+  @override
+  ImmunizationStatusReasonCodes clone() =>
+      ImmunizationStatusReasonCodes._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  ImmunizationStatusReasonCodes setElement(String name, dynamic elementValue) {
+    return ImmunizationStatusReasonCodes._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   ImmunizationStatusReasonCodes withElement(Element? newElement) {
-    return ImmunizationStatusReasonCodes._(fhirCode, element: newElement);
+    return ImmunizationStatusReasonCodes._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  ImmunizationStatusReasonCodes copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return ImmunizationStatusReasonCodes._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

@@ -338,31 +338,23 @@ class Goal extends DomainResource {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    json['resourceType'] = resourceType.toJson();
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    json['resourceType'] = resourceType.toJson();
+    addField('id', id);
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    if (implicitRules != null) {
-      final fieldJson1 = implicitRules!.toJson();
-      json['implicitRules'] = fieldJson1['value'];
-      if (fieldJson1['_value'] != null) {
-        json['_implicitRules'] = fieldJson1['_value'];
-      }
-    }
-
-    if (language != null) {
-      final fieldJson2 = language!.toJson();
-      json['language'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_language'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('implicitRules', implicitRules);
+    addField('language', language);
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -384,12 +376,7 @@ class Goal extends DomainResource {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
 
-    final fieldJson8 = lifecycleStatus.toJson();
-    json['lifecycleStatus'] = fieldJson8['value'];
-    if (fieldJson8['_value'] != null) {
-      json['_lifecycleStatus'] = fieldJson8['_value'];
-    }
-
+    addField('lifecycleStatus', lifecycleStatus);
     if (achievementStatus != null) {
       json['achievementStatus'] = achievementStatus!.toJson();
     }
@@ -406,14 +393,7 @@ class Goal extends DomainResource {
 
     json['subject'] = subject.toJson();
 
-    if (startDate != null) {
-      final fieldJson14 = startDate!.toJson();
-      json['startDate'] = fieldJson14['value'];
-      if (fieldJson14['_value'] != null) {
-        json['_startDate'] = fieldJson14['_value'];
-      }
-    }
-
+    addField('startDate', startDate);
     if (startCodeableConcept != null) {
       json['startCodeableConcept'] = startCodeableConcept!.toJson();
     }
@@ -422,22 +402,8 @@ class Goal extends DomainResource {
       json['target'] = target!.map((e) => e.toJson()).toList();
     }
 
-    if (statusDate != null) {
-      final fieldJson17 = statusDate!.toJson();
-      json['statusDate'] = fieldJson17['value'];
-      if (fieldJson17['_value'] != null) {
-        json['_statusDate'] = fieldJson17['_value'];
-      }
-    }
-
-    if (statusReason != null) {
-      final fieldJson18 = statusReason!.toJson();
-      json['statusReason'] = fieldJson18['value'];
-      if (fieldJson18['_value'] != null) {
-        json['_statusReason'] = fieldJson18['_value'];
-      }
-    }
-
+    addField('statusDate', statusDate);
+    addField('statusReason', statusReason);
     if (expressedBy != null) {
       json['expressedBy'] = expressedBy!.toJson();
     }
@@ -766,10 +732,16 @@ class GoalTarget extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -795,42 +767,14 @@ class GoalTarget extends BackboneElement {
       json['detailCodeableConcept'] = detailCodeableConcept!.toJson();
     }
 
-    if (detailString != null) {
-      final fieldJson6 = detailString!.toJson();
-      json['detailString'] = fieldJson6['value'];
-      if (fieldJson6['_value'] != null) {
-        json['_detailString'] = fieldJson6['_value'];
-      }
-    }
-
-    if (detailBoolean != null) {
-      final fieldJson7 = detailBoolean!.toJson();
-      json['detailBoolean'] = fieldJson7['value'];
-      if (fieldJson7['_value'] != null) {
-        json['_detailBoolean'] = fieldJson7['_value'];
-      }
-    }
-
-    if (detailInteger != null) {
-      final fieldJson8 = detailInteger!.toJson();
-      json['detailInteger'] = fieldJson8['value'];
-      if (fieldJson8['_value'] != null) {
-        json['_detailInteger'] = fieldJson8['_value'];
-      }
-    }
-
+    addField('detailString', detailString);
+    addField('detailBoolean', detailBoolean);
+    addField('detailInteger', detailInteger);
     if (detailRatio != null) {
       json['detailRatio'] = detailRatio!.toJson();
     }
 
-    if (dueDate != null) {
-      final fieldJson10 = dueDate!.toJson();
-      json['dueDate'] = fieldJson10['value'];
-      if (fieldJson10['_value'] != null) {
-        json['_dueDate'] = fieldJson10['_value'];
-      }
-    }
-
+    addField('dueDate', dueDate);
     if (dueDuration != null) {
       json['dueDuration'] = dueDuration!.toJson();
     }

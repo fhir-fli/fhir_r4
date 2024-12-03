@@ -160,64 +160,30 @@ class RelatedArtifact extends DataType {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
 
-    final fieldJson1 = type.toJson();
-    json['type'] = fieldJson1['value'];
-    if (fieldJson1['_value'] != null) {
-      json['_type'] = fieldJson1['_value'];
-    }
-
-    if (label != null) {
-      final fieldJson2 = label!.toJson();
-      json['label'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_label'] = fieldJson2['_value'];
-      }
-    }
-
-    if (display != null) {
-      final fieldJson3 = display!.toJson();
-      json['display'] = fieldJson3['value'];
-      if (fieldJson3['_value'] != null) {
-        json['_display'] = fieldJson3['_value'];
-      }
-    }
-
-    if (citation != null) {
-      final fieldJson4 = citation!.toJson();
-      json['citation'] = fieldJson4['value'];
-      if (fieldJson4['_value'] != null) {
-        json['_citation'] = fieldJson4['_value'];
-      }
-    }
-
-    if (url != null) {
-      final fieldJson5 = url!.toJson();
-      json['url'] = fieldJson5['value'];
-      if (fieldJson5['_value'] != null) {
-        json['_url'] = fieldJson5['_value'];
-      }
-    }
-
+    addField('type', type);
+    addField('label', label);
+    addField('display', display);
+    addField('citation', citation);
+    addField('url', url);
     if (document != null) {
       json['document'] = document!.toJson();
     }
 
-    if (resource != null) {
-      final fieldJson7 = resource!.toJson();
-      json['resource'] = fieldJson7['value'];
-      if (fieldJson7['_value'] != null) {
-        json['_resource'] = fieldJson7['_value'];
-      }
-    }
-
+    addField('resource', resource);
     return json;
   }
 

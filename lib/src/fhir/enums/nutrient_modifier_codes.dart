@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// NutrientModifier : Codes for types of nutrients that are being modified such as carbohydrate or sodium. This value set includes codes from [SNOMED CT](http://snomed.info/sct) where concept is-a 226355009 (Nutrients(substance)), and the concepts for Sodium, Potassium and Fluid. This is provided as a suggestive example.
-class NutrientModifierCodes {
+class NutrientModifierCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  NutrientModifierCodes._(this.fhirCode, {this.element});
+  NutrientModifierCodes._(super.value, [super.element]);
 
   /// Factory constructor to create [NutrientModifierCodes] from JSON.
   factory NutrientModifierCodes.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class NutrientModifierCodes {
     if (value == null && element != null) {
       return NutrientModifierCodes.elementOnly.withElement(element);
     }
-    return NutrientModifierCodes._(value!, element: element);
+    return NutrientModifierCodes._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// NutrientModifierCodes values
   /// value33463005
   static final NutrientModifierCodes value33463005 = NutrientModifierCodes._(
     '33463005',
@@ -51,18 +44,63 @@ class NutrientModifierCodes {
     value88480006,
   ];
 
+  /// Clones the current instance
+  @override
+  NutrientModifierCodes clone() =>
+      NutrientModifierCodes._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  NutrientModifierCodes setElement(String name, dynamic elementValue) {
+    return NutrientModifierCodes._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   NutrientModifierCodes withElement(Element? newElement) {
-    return NutrientModifierCodes._(fhirCode, element: newElement);
+    return NutrientModifierCodes._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  NutrientModifierCodes copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return NutrientModifierCodes._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

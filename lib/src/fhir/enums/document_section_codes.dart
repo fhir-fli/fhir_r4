@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Document section codes (LOINC codes used in CCDA sections).
-class DocumentSectionCodes {
+class DocumentSectionCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  DocumentSectionCodes._(this.fhirCode, {this.element});
+  DocumentSectionCodes._(super.value, [super.element]);
 
   /// Factory constructor to create [DocumentSectionCodes] from JSON.
   factory DocumentSectionCodes.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class DocumentSectionCodes {
     if (value == null && element != null) {
       return DocumentSectionCodes.elementOnly.withElement(element);
     }
-    return DocumentSectionCodes._(value!, element: element);
+    return DocumentSectionCodes._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// DocumentSectionCodes values
   /// value10154_3
   static final DocumentSectionCodes value10154_3 = DocumentSectionCodes._(
     '10154-3',
@@ -363,18 +356,63 @@ class DocumentSectionCodes {
     value8716_3,
   ];
 
+  /// Clones the current instance
+  @override
+  DocumentSectionCodes clone() =>
+      DocumentSectionCodes._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  DocumentSectionCodes setElement(String name, dynamic elementValue) {
+    return DocumentSectionCodes._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   DocumentSectionCodes withElement(Element? newElement) {
-    return DocumentSectionCodes._(fhirCode, element: newElement);
+    return DocumentSectionCodes._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  DocumentSectionCodes copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return DocumentSectionCodes._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

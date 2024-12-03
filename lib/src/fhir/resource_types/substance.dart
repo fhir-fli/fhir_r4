@@ -217,31 +217,23 @@ class Substance extends DomainResource {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    json['resourceType'] = resourceType.toJson();
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    json['resourceType'] = resourceType.toJson();
+    addField('id', id);
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    if (implicitRules != null) {
-      final fieldJson1 = implicitRules!.toJson();
-      json['implicitRules'] = fieldJson1['value'];
-      if (fieldJson1['_value'] != null) {
-        json['_implicitRules'] = fieldJson1['_value'];
-      }
-    }
-
-    if (language != null) {
-      final fieldJson2 = language!.toJson();
-      json['language'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_language'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('implicitRules', implicitRules);
+    addField('language', language);
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -263,28 +255,14 @@ class Substance extends DomainResource {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
 
-    if (status != null) {
-      final fieldJson8 = status!.toJson();
-      json['status'] = fieldJson8['value'];
-      if (fieldJson8['_value'] != null) {
-        json['_status'] = fieldJson8['_value'];
-      }
-    }
-
+    addField('status', status);
     if (category != null && category!.isNotEmpty) {
       json['category'] = category!.map((e) => e.toJson()).toList();
     }
 
     json['code'] = code.toJson();
 
-    if (description != null) {
-      final fieldJson11 = description!.toJson();
-      json['description'] = fieldJson11['value'];
-      if (fieldJson11['_value'] != null) {
-        json['_description'] = fieldJson11['_value'];
-      }
-    }
-
+    addField('description', description);
     if (instance != null && instance!.isNotEmpty) {
       json['instance'] = instance!.map((e) => e.toJson()).toList();
     }
@@ -469,10 +447,16 @@ class SubstanceInstance extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -486,14 +470,7 @@ class SubstanceInstance extends BackboneElement {
       json['identifier'] = identifier!.toJson();
     }
 
-    if (expiry != null) {
-      final fieldJson3 = expiry!.toJson();
-      json['expiry'] = fieldJson3['value'];
-      if (fieldJson3['_value'] != null) {
-        json['_expiry'] = fieldJson3['_value'];
-      }
-    }
-
+    addField('expiry', expiry);
     if (quantity != null) {
       json['quantity'] = quantity!.toJson();
     }
@@ -652,10 +629,16 @@ class SubstanceIngredient extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }

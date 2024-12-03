@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The degree of equivalence between concepts.
-class ConceptMapEquivalence {
+class ConceptMapEquivalence extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ConceptMapEquivalence._(this.fhirCode, {this.element});
+  ConceptMapEquivalence._(super.value, [super.element]);
 
   /// Factory constructor to create [ConceptMapEquivalence] from JSON.
   factory ConceptMapEquivalence.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class ConceptMapEquivalence {
     if (value == null && element != null) {
       return ConceptMapEquivalence.elementOnly.withElement(element);
     }
-    return ConceptMapEquivalence._(value!, element: element);
+    return ConceptMapEquivalence._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ConceptMapEquivalence values
   /// relatedto
   static final ConceptMapEquivalence relatedto = ConceptMapEquivalence._(
     'relatedto',
@@ -93,18 +86,63 @@ class ConceptMapEquivalence {
     disjoint,
   ];
 
+  /// Clones the current instance
+  @override
+  ConceptMapEquivalence clone() =>
+      ConceptMapEquivalence._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  ConceptMapEquivalence setElement(String name, dynamic elementValue) {
+    return ConceptMapEquivalence._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   ConceptMapEquivalence withElement(Element? newElement) {
-    return ConceptMapEquivalence._(fhirCode, element: newElement);
+    return ConceptMapEquivalence._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  ConceptMapEquivalence copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return ConceptMapEquivalence._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Codes for high level media categories.
-class MediaType {
+class MediaType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  MediaType._(this.fhirCode, {this.element});
+  MediaType._(super.value, [super.element]);
 
   /// Factory constructor to create [MediaType] from JSON.
   factory MediaType.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class MediaType {
     if (value == null && element != null) {
       return MediaType.elementOnly.withElement(element);
     }
-    return MediaType._(value!, element: element);
+    return MediaType._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// MediaType values
   /// image
   static final MediaType image = MediaType._(
     'image',
@@ -51,18 +44,62 @@ class MediaType {
     audio,
   ];
 
+  /// Clones the current instance
+  @override
+  MediaType clone() => MediaType._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  MediaType setElement(String name, dynamic elementValue) {
+    return MediaType._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   MediaType withElement(Element? newElement) {
-    return MediaType._(fhirCode, element: newElement);
+    return MediaType._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  MediaType copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return MediaType._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

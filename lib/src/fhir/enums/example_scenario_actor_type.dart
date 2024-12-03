@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The type of actor - system or human.
-class ExampleScenarioActorType {
+class ExampleScenarioActorType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ExampleScenarioActorType._(this.fhirCode, {this.element});
+  ExampleScenarioActorType._(super.value, [super.element]);
 
   /// Factory constructor to create [ExampleScenarioActorType] from JSON.
   factory ExampleScenarioActorType.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class ExampleScenarioActorType {
     if (value == null && element != null) {
       return ExampleScenarioActorType.elementOnly.withElement(element);
     }
-    return ExampleScenarioActorType._(value!, element: element);
+    return ExampleScenarioActorType._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ExampleScenarioActorType values
   /// person
   static final ExampleScenarioActorType person = ExampleScenarioActorType._(
     'person',
@@ -46,18 +39,63 @@ class ExampleScenarioActorType {
     entity,
   ];
 
+  /// Clones the current instance
+  @override
+  ExampleScenarioActorType clone() =>
+      ExampleScenarioActorType._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  ExampleScenarioActorType setElement(String name, dynamic elementValue) {
+    return ExampleScenarioActorType._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   ExampleScenarioActorType withElement(Element? newElement) {
-    return ExampleScenarioActorType._(fhirCode, element: newElement);
+    return ExampleScenarioActorType._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  ExampleScenarioActorType copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return ExampleScenarioActorType._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

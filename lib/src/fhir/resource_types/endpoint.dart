@@ -260,31 +260,23 @@ class FhirEndpoint extends DomainResource {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    json['resourceType'] = resourceType.toJson();
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    json['resourceType'] = resourceType.toJson();
+    addField('id', id);
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    if (implicitRules != null) {
-      final fieldJson1 = implicitRules!.toJson();
-      json['implicitRules'] = fieldJson1['value'];
-      if (fieldJson1['_value'] != null) {
-        json['_implicitRules'] = fieldJson1['_value'];
-      }
-    }
-
-    if (language != null) {
-      final fieldJson2 = language!.toJson();
-      json['language'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_language'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('implicitRules', implicitRules);
+    addField('language', language);
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -306,22 +298,10 @@ class FhirEndpoint extends DomainResource {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
 
-    final fieldJson8 = status.toJson();
-    json['status'] = fieldJson8['value'];
-    if (fieldJson8['_value'] != null) {
-      json['_status'] = fieldJson8['_value'];
-    }
-
+    addField('status', status);
     json['connectionType'] = connectionType.toJson();
 
-    if (name != null) {
-      final fieldJson10 = name!.toJson();
-      json['name'] = fieldJson10['value'];
-      if (fieldJson10['_value'] != null) {
-        json['_name'] = fieldJson10['_value'];
-      }
-    }
-
+    addField('name', name);
     if (managingOrganization != null) {
       json['managingOrganization'] = managingOrganization!.toJson();
     }
@@ -334,27 +314,24 @@ class FhirEndpoint extends DomainResource {
       json['period'] = period!.toJson();
     }
 
-    json['payloadType'] = payloadType.map((e) => e.toJson()).toList();
+    if (payloadType.isNotEmpty) {
+      json['payloadType'] = payloadType.map((e) => e.toJson()).toList();
+    }
 
     if (payloadMimeType != null && payloadMimeType!.isNotEmpty) {
-      final fieldJson15 = payloadMimeType!.map((e) => e.toJson()).toList();
-      json['payloadMimeType'] = fieldJson15.map((e) => e['value']).toList();
-      if (fieldJson15.any((e) => e['_value'] != null)) {
-        json['_payloadMimeType'] = fieldJson15.map((e) => e['_value']).toList();
+      final fieldJson0 = payloadMimeType!.map((e) => e.toJson()).toList();
+      json['payloadMimeType'] = fieldJson0.map((e) => e['value']).toList();
+      if (fieldJson0.any((e) => e['_value'] != null)) {
+        json['_payloadMimeType'] = fieldJson0.map((e) => e['_value']).toList();
       }
     }
 
-    final fieldJson16 = address.toJson();
-    json['address'] = fieldJson16['value'];
-    if (fieldJson16['_value'] != null) {
-      json['_address'] = fieldJson16['_value'];
-    }
-
+    addField('address', address);
     if (header != null && header!.isNotEmpty) {
-      final fieldJson17 = header!.map((e) => e.toJson()).toList();
-      json['header'] = fieldJson17.map((e) => e['value']).toList();
-      if (fieldJson17.any((e) => e['_value'] != null)) {
-        json['_header'] = fieldJson17.map((e) => e['_value']).toList();
+      final fieldJson1 = header!.map((e) => e.toJson()).toList();
+      json['header'] = fieldJson1.map((e) => e['value']).toList();
+      if (fieldJson1.any((e) => e['_value'] != null)) {
+        json['_header'] = fieldJson1.map((e) => e['_value']).toList();
       }
     }
 

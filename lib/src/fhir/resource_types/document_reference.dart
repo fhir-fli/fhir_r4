@@ -338,31 +338,23 @@ class DocumentReference extends DomainResource {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    json['resourceType'] = resourceType.toJson();
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    json['resourceType'] = resourceType.toJson();
+    addField('id', id);
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    if (implicitRules != null) {
-      final fieldJson1 = implicitRules!.toJson();
-      json['implicitRules'] = fieldJson1['value'];
-      if (fieldJson1['_value'] != null) {
-        json['_implicitRules'] = fieldJson1['_value'];
-      }
-    }
-
-    if (language != null) {
-      final fieldJson2 = language!.toJson();
-      json['language'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_language'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('implicitRules', implicitRules);
+    addField('language', language);
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -388,20 +380,8 @@ class DocumentReference extends DomainResource {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
 
-    final fieldJson9 = status.toJson();
-    json['status'] = fieldJson9['value'];
-    if (fieldJson9['_value'] != null) {
-      json['_status'] = fieldJson9['_value'];
-    }
-
-    if (docStatus != null) {
-      final fieldJson10 = docStatus!.toJson();
-      json['docStatus'] = fieldJson10['value'];
-      if (fieldJson10['_value'] != null) {
-        json['_docStatus'] = fieldJson10['_value'];
-      }
-    }
-
+    addField('status', status);
+    addField('docStatus', docStatus);
     if (type != null) {
       json['type'] = type!.toJson();
     }
@@ -414,14 +394,7 @@ class DocumentReference extends DomainResource {
       json['subject'] = subject!.toJson();
     }
 
-    if (date != null) {
-      final fieldJson14 = date!.toJson();
-      json['date'] = fieldJson14['value'];
-      if (fieldJson14['_value'] != null) {
-        json['_date'] = fieldJson14['_value'];
-      }
-    }
-
+    addField('date', date);
     if (author != null && author!.isNotEmpty) {
       json['author'] = author!.map((e) => e.toJson()).toList();
     }
@@ -438,19 +411,14 @@ class DocumentReference extends DomainResource {
       json['relatesTo'] = relatesTo!.map((e) => e.toJson()).toList();
     }
 
-    if (description != null) {
-      final fieldJson19 = description!.toJson();
-      json['description'] = fieldJson19['value'];
-      if (fieldJson19['_value'] != null) {
-        json['_description'] = fieldJson19['_value'];
-      }
-    }
-
+    addField('description', description);
     if (securityLabel != null && securityLabel!.isNotEmpty) {
       json['securityLabel'] = securityLabel!.map((e) => e.toJson()).toList();
     }
 
-    json['content'] = content.map((e) => e.toJson()).toList();
+    if (content.isNotEmpty) {
+      json['content'] = content.map((e) => e.toJson()).toList();
+    }
 
     if (context != null) {
       json['context'] = context!.toJson();
@@ -634,10 +602,16 @@ class DocumentReferenceRelatesTo extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -647,12 +621,7 @@ class DocumentReferenceRelatesTo extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    final fieldJson2 = code.toJson();
-    json['code'] = fieldJson2['value'];
-    if (fieldJson2['_value'] != null) {
-      json['_code'] = fieldJson2['_value'];
-    }
-
+    addField('code', code);
     json['target'] = target.toJson();
 
     return json;
@@ -799,10 +768,16 @@ class DocumentReferenceContent extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1030,10 +1005,16 @@ class DocumentReferenceContext extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }

@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Contact type for a Medicinal Product.
-class ProductContactType {
+class ProductContactType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ProductContactType._(this.fhirCode, {this.element});
+  ProductContactType._(super.value, [super.element]);
 
   /// Factory constructor to create [ProductContactType] from JSON.
   factory ProductContactType.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class ProductContactType {
     if (value == null && element != null) {
       return ProductContactType.elementOnly.withElement(element);
     }
-    return ProductContactType._(value!, element: element);
+    return ProductContactType._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ProductContactType values
   /// ProposedMAH
   static final ProductContactType ProposedMAH = ProductContactType._(
     'ProposedMAH',
@@ -63,18 +56,63 @@ class ProductContactType {
     PVEnquiries,
   ];
 
+  /// Clones the current instance
+  @override
+  ProductContactType clone() =>
+      ProductContactType._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  ProductContactType setElement(String name, dynamic elementValue) {
+    return ProductContactType._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   ProductContactType withElement(Element? newElement) {
-    return ProductContactType._(fhirCode, element: newElement);
+    return ProductContactType._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  ProductContactType copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return ProductContactType._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

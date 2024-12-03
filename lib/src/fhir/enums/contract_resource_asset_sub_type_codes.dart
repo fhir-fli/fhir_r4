@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// This value set contract specific codes for asset subtype.
-class ContractResourceAssetSubTypeCodes {
+class ContractResourceAssetSubTypeCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ContractResourceAssetSubTypeCodes._(this.fhirCode, {this.element});
+  ContractResourceAssetSubTypeCodes._(super.value, [super.element]);
 
   /// Factory constructor to create [ContractResourceAssetSubTypeCodes] from JSON.
   factory ContractResourceAssetSubTypeCodes.fromJson(
@@ -16,16 +16,9 @@ class ContractResourceAssetSubTypeCodes {
     if (value == null && element != null) {
       return ContractResourceAssetSubTypeCodes.elementOnly.withElement(element);
     }
-    return ContractResourceAssetSubTypeCodes._(value!, element: element);
+    return ContractResourceAssetSubTypeCodes._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ContractResourceAssetSubTypeCodes values
   /// participation
   static final ContractResourceAssetSubTypeCodes participation =
       ContractResourceAssetSubTypeCodes._(
@@ -42,18 +35,64 @@ class ContractResourceAssetSubTypeCodes {
     participation,
   ];
 
+  /// Clones the current instance
+  @override
+  ContractResourceAssetSubTypeCodes clone() =>
+      ContractResourceAssetSubTypeCodes._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  ContractResourceAssetSubTypeCodes setElement(
+      String name, dynamic elementValue) {
+    return ContractResourceAssetSubTypeCodes._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   ContractResourceAssetSubTypeCodes withElement(Element? newElement) {
-    return ContractResourceAssetSubTypeCodes._(fhirCode, element: newElement);
+    return ContractResourceAssetSubTypeCodes._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  ContractResourceAssetSubTypeCodes copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return ContractResourceAssetSubTypeCodes._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

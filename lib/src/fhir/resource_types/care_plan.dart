@@ -432,31 +432,23 @@ class CarePlan extends DomainResource {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    json['resourceType'] = resourceType.toJson();
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    json['resourceType'] = resourceType.toJson();
+    addField('id', id);
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    if (implicitRules != null) {
-      final fieldJson1 = implicitRules!.toJson();
-      json['implicitRules'] = fieldJson1['value'];
-      if (fieldJson1['_value'] != null) {
-        json['_implicitRules'] = fieldJson1['_value'];
-      }
-    }
-
-    if (language != null) {
-      final fieldJson2 = language!.toJson();
-      json['language'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_language'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('implicitRules', implicitRules);
+    addField('language', language);
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -479,20 +471,20 @@ class CarePlan extends DomainResource {
     }
 
     if (instantiatesCanonical != null && instantiatesCanonical!.isNotEmpty) {
-      final fieldJson8 = instantiatesCanonical!.map((e) => e.toJson()).toList();
+      final fieldJson0 = instantiatesCanonical!.map((e) => e.toJson()).toList();
       json['instantiatesCanonical'] =
-          fieldJson8.map((e) => e['value']).toList();
-      if (fieldJson8.any((e) => e['_value'] != null)) {
+          fieldJson0.map((e) => e['value']).toList();
+      if (fieldJson0.any((e) => e['_value'] != null)) {
         json['_instantiatesCanonical'] =
-            fieldJson8.map((e) => e['_value']).toList();
+            fieldJson0.map((e) => e['_value']).toList();
       }
     }
 
     if (instantiatesUri != null && instantiatesUri!.isNotEmpty) {
-      final fieldJson9 = instantiatesUri!.map((e) => e.toJson()).toList();
-      json['instantiatesUri'] = fieldJson9.map((e) => e['value']).toList();
-      if (fieldJson9.any((e) => e['_value'] != null)) {
-        json['_instantiatesUri'] = fieldJson9.map((e) => e['_value']).toList();
+      final fieldJson1 = instantiatesUri!.map((e) => e.toJson()).toList();
+      json['instantiatesUri'] = fieldJson1.map((e) => e['value']).toList();
+      if (fieldJson1.any((e) => e['_value'] != null)) {
+        json['_instantiatesUri'] = fieldJson1.map((e) => e['_value']).toList();
       }
     }
 
@@ -508,38 +500,14 @@ class CarePlan extends DomainResource {
       json['partOf'] = partOf!.map((e) => e.toJson()).toList();
     }
 
-    final fieldJson13 = status.toJson();
-    json['status'] = fieldJson13['value'];
-    if (fieldJson13['_value'] != null) {
-      json['_status'] = fieldJson13['_value'];
-    }
-
-    final fieldJson14 = intent.toJson();
-    json['intent'] = fieldJson14['value'];
-    if (fieldJson14['_value'] != null) {
-      json['_intent'] = fieldJson14['_value'];
-    }
-
+    addField('status', status);
+    addField('intent', intent);
     if (category != null && category!.isNotEmpty) {
       json['category'] = category!.map((e) => e.toJson()).toList();
     }
 
-    if (title != null) {
-      final fieldJson16 = title!.toJson();
-      json['title'] = fieldJson16['value'];
-      if (fieldJson16['_value'] != null) {
-        json['_title'] = fieldJson16['_value'];
-      }
-    }
-
-    if (description != null) {
-      final fieldJson17 = description!.toJson();
-      json['description'] = fieldJson17['value'];
-      if (fieldJson17['_value'] != null) {
-        json['_description'] = fieldJson17['_value'];
-      }
-    }
-
+    addField('title', title);
+    addField('description', description);
     json['subject'] = subject.toJson();
 
     if (encounter != null) {
@@ -550,14 +518,7 @@ class CarePlan extends DomainResource {
       json['period'] = period!.toJson();
     }
 
-    if (created != null) {
-      final fieldJson21 = created!.toJson();
-      json['created'] = fieldJson21['value'];
-      if (fieldJson21['_value'] != null) {
-        json['_created'] = fieldJson21['_value'];
-      }
-    }
-
+    addField('created', created);
     if (author != null) {
       json['author'] = author!.toJson();
     }
@@ -838,10 +799,16 @@ class CarePlanActivity extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1254,10 +1221,16 @@ class CarePlanDetail extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1267,29 +1240,22 @@ class CarePlanDetail extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    if (kind != null) {
-      final fieldJson2 = kind!.toJson();
-      json['kind'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_kind'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('kind', kind);
     if (instantiatesCanonical != null && instantiatesCanonical!.isNotEmpty) {
-      final fieldJson3 = instantiatesCanonical!.map((e) => e.toJson()).toList();
+      final fieldJson0 = instantiatesCanonical!.map((e) => e.toJson()).toList();
       json['instantiatesCanonical'] =
-          fieldJson3.map((e) => e['value']).toList();
-      if (fieldJson3.any((e) => e['_value'] != null)) {
+          fieldJson0.map((e) => e['value']).toList();
+      if (fieldJson0.any((e) => e['_value'] != null)) {
         json['_instantiatesCanonical'] =
-            fieldJson3.map((e) => e['_value']).toList();
+            fieldJson0.map((e) => e['_value']).toList();
       }
     }
 
     if (instantiatesUri != null && instantiatesUri!.isNotEmpty) {
-      final fieldJson4 = instantiatesUri!.map((e) => e.toJson()).toList();
-      json['instantiatesUri'] = fieldJson4.map((e) => e['value']).toList();
-      if (fieldJson4.any((e) => e['_value'] != null)) {
-        json['_instantiatesUri'] = fieldJson4.map((e) => e['_value']).toList();
+      final fieldJson1 = instantiatesUri!.map((e) => e.toJson()).toList();
+      json['instantiatesUri'] = fieldJson1.map((e) => e['value']).toList();
+      if (fieldJson1.any((e) => e['_value'] != null)) {
+        json['_instantiatesUri'] = fieldJson1.map((e) => e['_value']).toList();
       }
     }
 
@@ -1310,24 +1276,12 @@ class CarePlanDetail extends BackboneElement {
       json['goal'] = goal!.map((e) => e.toJson()).toList();
     }
 
-    final fieldJson9 = status.toJson();
-    json['status'] = fieldJson9['value'];
-    if (fieldJson9['_value'] != null) {
-      json['_status'] = fieldJson9['_value'];
-    }
-
+    addField('status', status);
     if (statusReason != null) {
       json['statusReason'] = statusReason!.toJson();
     }
 
-    if (doNotPerform != null) {
-      final fieldJson11 = doNotPerform!.toJson();
-      json['doNotPerform'] = fieldJson11['value'];
-      if (fieldJson11['_value'] != null) {
-        json['_doNotPerform'] = fieldJson11['_value'];
-      }
-    }
-
+    addField('doNotPerform', doNotPerform);
     if (scheduledTiming != null) {
       json['scheduledTiming'] = scheduledTiming!.toJson();
     }
@@ -1336,14 +1290,7 @@ class CarePlanDetail extends BackboneElement {
       json['scheduledPeriod'] = scheduledPeriod!.toJson();
     }
 
-    if (scheduledString != null) {
-      final fieldJson14 = scheduledString!.toJson();
-      json['scheduledString'] = fieldJson14['value'];
-      if (fieldJson14['_value'] != null) {
-        json['_scheduledString'] = fieldJson14['_value'];
-      }
-    }
-
+    addField('scheduledString', scheduledString);
     if (location != null) {
       json['location'] = location!.toJson();
     }
@@ -1368,14 +1315,7 @@ class CarePlanDetail extends BackboneElement {
       json['quantity'] = quantity!.toJson();
     }
 
-    if (description != null) {
-      final fieldJson21 = description!.toJson();
-      json['description'] = fieldJson21['value'];
-      if (fieldJson21['_value'] != null) {
-        json['_description'] = fieldJson21['_value'];
-      }
-    }
-
+    addField('description', description);
     return json;
   }
 

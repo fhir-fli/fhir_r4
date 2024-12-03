@@ -406,31 +406,23 @@ class MedicationStatement extends DomainResource {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    json['resourceType'] = resourceType.toJson();
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    json['resourceType'] = resourceType.toJson();
+    addField('id', id);
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    if (implicitRules != null) {
-      final fieldJson1 = implicitRules!.toJson();
-      json['implicitRules'] = fieldJson1['value'];
-      if (fieldJson1['_value'] != null) {
-        json['_implicitRules'] = fieldJson1['_value'];
-      }
-    }
-
-    if (language != null) {
-      final fieldJson2 = language!.toJson();
-      json['language'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_language'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('implicitRules', implicitRules);
+    addField('language', language);
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -460,12 +452,7 @@ class MedicationStatement extends DomainResource {
       json['partOf'] = partOf!.map((e) => e.toJson()).toList();
     }
 
-    final fieldJson10 = status.toJson();
-    json['status'] = fieldJson10['value'];
-    if (fieldJson10['_value'] != null) {
-      json['_status'] = fieldJson10['_value'];
-    }
-
+    addField('status', status);
     if (statusReason != null && statusReason!.isNotEmpty) {
       json['statusReason'] = statusReason!.map((e) => e.toJson()).toList();
     }
@@ -488,26 +475,12 @@ class MedicationStatement extends DomainResource {
       json['context'] = context!.toJson();
     }
 
-    if (effectiveDateTime != null) {
-      final fieldJson17 = effectiveDateTime!.toJson();
-      json['effectiveDateTime'] = fieldJson17['value'];
-      if (fieldJson17['_value'] != null) {
-        json['_effectiveDateTime'] = fieldJson17['_value'];
-      }
-    }
-
+    addField('effectiveDateTime', effectiveDateTime);
     if (effectivePeriod != null) {
       json['effectivePeriod'] = effectivePeriod!.toJson();
     }
 
-    if (dateAsserted != null) {
-      final fieldJson19 = dateAsserted!.toJson();
-      json['dateAsserted'] = fieldJson19['value'];
-      if (fieldJson19['_value'] != null) {
-        json['_dateAsserted'] = fieldJson19['_value'];
-      }
-    }
-
+    addField('dateAsserted', dateAsserted);
     if (informationSource != null) {
       json['informationSource'] = informationSource!.toJson();
     }

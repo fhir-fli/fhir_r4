@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The aspect of quality, confidence, or certainty.
-class EvidenceCertaintyType {
+class EvidenceCertaintyType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  EvidenceCertaintyType._(this.fhirCode, {this.element});
+  EvidenceCertaintyType._(super.value, [super.element]);
 
   /// Factory constructor to create [EvidenceCertaintyType] from JSON.
   factory EvidenceCertaintyType.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class EvidenceCertaintyType {
     if (value == null && element != null) {
       return EvidenceCertaintyType.elementOnly.withElement(element);
     }
-    return EvidenceCertaintyType._(value!, element: element);
+    return EvidenceCertaintyType._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// EvidenceCertaintyType values
   /// Overall
   static final EvidenceCertaintyType Overall = EvidenceCertaintyType._(
     'Overall',
@@ -89,18 +82,63 @@ class EvidenceCertaintyType {
     LargeEffect,
   ];
 
+  /// Clones the current instance
+  @override
+  EvidenceCertaintyType clone() =>
+      EvidenceCertaintyType._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  EvidenceCertaintyType setElement(String name, dynamic elementValue) {
+    return EvidenceCertaintyType._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   EvidenceCertaintyType withElement(Element? newElement) {
-    return EvidenceCertaintyType._(fhirCode, element: newElement);
+    return EvidenceCertaintyType._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  EvidenceCertaintyType copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return EvidenceCertaintyType._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

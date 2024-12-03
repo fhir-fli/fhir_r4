@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The meaning of the hierarchy of concepts in a code system.
-class CodeSystemHierarchyMeaning {
+class CodeSystemHierarchyMeaning extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  CodeSystemHierarchyMeaning._(this.fhirCode, {this.element});
+  CodeSystemHierarchyMeaning._(super.value, [super.element]);
 
   /// Factory constructor to create [CodeSystemHierarchyMeaning] from JSON.
   factory CodeSystemHierarchyMeaning.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class CodeSystemHierarchyMeaning {
     if (value == null && element != null) {
       return CodeSystemHierarchyMeaning.elementOnly.withElement(element);
     }
-    return CodeSystemHierarchyMeaning._(value!, element: element);
+    return CodeSystemHierarchyMeaning._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// CodeSystemHierarchyMeaning values
   /// grouped_by
   static final CodeSystemHierarchyMeaning grouped_by =
       CodeSystemHierarchyMeaning._(
@@ -61,18 +54,63 @@ class CodeSystemHierarchyMeaning {
     classified_with,
   ];
 
+  /// Clones the current instance
+  @override
+  CodeSystemHierarchyMeaning clone() =>
+      CodeSystemHierarchyMeaning._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  CodeSystemHierarchyMeaning setElement(String name, dynamic elementValue) {
+    return CodeSystemHierarchyMeaning._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   CodeSystemHierarchyMeaning withElement(Element? newElement) {
-    return CodeSystemHierarchyMeaning._(fhirCode, element: newElement);
+    return CodeSystemHierarchyMeaning._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  CodeSystemHierarchyMeaning copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return CodeSystemHierarchyMeaning._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

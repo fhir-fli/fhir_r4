@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Details of how a designation would be used
-class DesignationUse {
+class DesignationUse extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  DesignationUse._(this.fhirCode, {this.element});
+  DesignationUse._(super.value, [super.element]);
 
   /// Factory constructor to create [DesignationUse] from JSON.
   factory DesignationUse.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class DesignationUse {
     if (value == null && element != null) {
       return DesignationUse.elementOnly.withElement(element);
     }
-    return DesignationUse._(value!, element: element);
+    return DesignationUse._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// DesignationUse values
   /// value900000000000003001
   static final DesignationUse value900000000000003001 = DesignationUse._(
     '900000000000003001',
@@ -45,18 +38,63 @@ class DesignationUse {
     value900000000000013009,
   ];
 
+  /// Clones the current instance
+  @override
+  DesignationUse clone() =>
+      DesignationUse._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  DesignationUse setElement(String name, dynamic elementValue) {
+    return DesignationUse._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   DesignationUse withElement(Element? newElement) {
-    return DesignationUse._(fhirCode, element: newElement);
+    return DesignationUse._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  DesignationUse copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return DesignationUse._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

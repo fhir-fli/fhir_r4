@@ -3,10 +3,11 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// MedicationAdministration Performer Function Codes
-class MedicationAdministrationPerformerFunctionCodes {
+class MedicationAdministrationPerformerFunctionCodes
+    extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  MedicationAdministrationPerformerFunctionCodes._(this.fhirCode,
-      {this.element});
+  MedicationAdministrationPerformerFunctionCodes._(super.value,
+      [super.element]);
 
   /// Factory constructor to create [MedicationAdministrationPerformerFunctionCodes] from JSON.
   factory MedicationAdministrationPerformerFunctionCodes.fromJson(
@@ -18,17 +19,9 @@ class MedicationAdministrationPerformerFunctionCodes {
       return MedicationAdministrationPerformerFunctionCodes.elementOnly
           .withElement(element);
     }
-    return MedicationAdministrationPerformerFunctionCodes._(value!,
-        element: element);
+    return MedicationAdministrationPerformerFunctionCodes._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// MedicationAdministrationPerformerFunctionCodes values
   /// performer
   static final MedicationAdministrationPerformerFunctionCodes performer =
       MedicationAdministrationPerformerFunctionCodes._(
@@ -59,20 +52,66 @@ class MedicationAdministrationPerformerFunctionCodes {
     witness,
   ];
 
+  /// Clones the current instance
+  @override
+  MedicationAdministrationPerformerFunctionCodes clone() =>
+      MedicationAdministrationPerformerFunctionCodes._(
+          value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  MedicationAdministrationPerformerFunctionCodes setElement(
+      String name, dynamic elementValue) {
+    return MedicationAdministrationPerformerFunctionCodes._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   MedicationAdministrationPerformerFunctionCodes withElement(
       Element? newElement) {
-    return MedicationAdministrationPerformerFunctionCodes._(fhirCode,
-        element: newElement);
+    return MedicationAdministrationPerformerFunctionCodes._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  MedicationAdministrationPerformerFunctionCodes copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return MedicationAdministrationPerformerFunctionCodes._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

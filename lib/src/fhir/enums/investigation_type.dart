@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Example value set for investigation type.
-class InvestigationType {
+class InvestigationType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  InvestigationType._(this.fhirCode, {this.element});
+  InvestigationType._(super.value, [super.element]);
 
   /// Factory constructor to create [InvestigationType] from JSON.
   factory InvestigationType.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class InvestigationType {
     if (value == null && element != null) {
       return InvestigationType.elementOnly.withElement(element);
     }
-    return InvestigationType._(value!, element: element);
+    return InvestigationType._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// InvestigationType values
   /// value271336007
   static final InvestigationType value271336007 = InvestigationType._(
     '271336007',
@@ -45,18 +38,63 @@ class InvestigationType {
     value160237006,
   ];
 
+  /// Clones the current instance
+  @override
+  InvestigationType clone() =>
+      InvestigationType._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  InvestigationType setElement(String name, dynamic elementValue) {
+    return InvestigationType._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   InvestigationType withElement(Element? newElement) {
-    return InvestigationType._(fhirCode, element: newElement);
+    return InvestigationType._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  InvestigationType copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return InvestigationType._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

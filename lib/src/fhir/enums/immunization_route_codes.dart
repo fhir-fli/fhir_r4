@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The value set to instantiate this attribute should be drawn from a terminologically robust code system that consists of or contains concepts to support describing the administrative routes used during vaccination. This value set is provided as a suggestive example.
-class ImmunizationRouteCodes {
+class ImmunizationRouteCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ImmunizationRouteCodes._(this.fhirCode, {this.element});
+  ImmunizationRouteCodes._(super.value, [super.element]);
 
   /// Factory constructor to create [ImmunizationRouteCodes] from JSON.
   factory ImmunizationRouteCodes.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class ImmunizationRouteCodes {
     if (value == null && element != null) {
       return ImmunizationRouteCodes.elementOnly.withElement(element);
     }
-    return ImmunizationRouteCodes._(value!, element: element);
+    return ImmunizationRouteCodes._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ImmunizationRouteCodes values
   /// IDINJ
   static final ImmunizationRouteCodes IDINJ = ImmunizationRouteCodes._(
     'IDINJ',
@@ -76,18 +69,63 @@ class ImmunizationRouteCodes {
     TRNSDERM,
   ];
 
+  /// Clones the current instance
+  @override
+  ImmunizationRouteCodes clone() =>
+      ImmunizationRouteCodes._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  ImmunizationRouteCodes setElement(String name, dynamic elementValue) {
+    return ImmunizationRouteCodes._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   ImmunizationRouteCodes withElement(Element? newElement) {
-    return ImmunizationRouteCodes._(fhirCode, element: newElement);
+    return ImmunizationRouteCodes._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  ImmunizationRouteCodes copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return ImmunizationRouteCodes._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

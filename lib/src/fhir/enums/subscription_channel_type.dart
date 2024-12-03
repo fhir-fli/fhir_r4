@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The type of method used to execute a subscription.
-class SubscriptionChannelType {
+class SubscriptionChannelType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  SubscriptionChannelType._(this.fhirCode, {this.element});
+  SubscriptionChannelType._(super.value, [super.element]);
 
   /// Factory constructor to create [SubscriptionChannelType] from JSON.
   factory SubscriptionChannelType.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class SubscriptionChannelType {
     if (value == null && element != null) {
       return SubscriptionChannelType.elementOnly.withElement(element);
     }
-    return SubscriptionChannelType._(value!, element: element);
+    return SubscriptionChannelType._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// SubscriptionChannelType values
   /// rest_hook
   static final SubscriptionChannelType rest_hook = SubscriptionChannelType._(
     'rest-hook',
@@ -64,18 +57,63 @@ class SubscriptionChannelType {
     message,
   ];
 
+  /// Clones the current instance
+  @override
+  SubscriptionChannelType clone() =>
+      SubscriptionChannelType._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  SubscriptionChannelType setElement(String name, dynamic elementValue) {
+    return SubscriptionChannelType._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   SubscriptionChannelType withElement(Element? newElement) {
-    return SubscriptionChannelType._(fhirCode, element: newElement);
+    return SubscriptionChannelType._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  SubscriptionChannelType copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return SubscriptionChannelType._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

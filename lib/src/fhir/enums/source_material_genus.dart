@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The genus of an organism, typically referring to the Latin epithet of the genus element of the plant/animal scientific name.
-class SourceMaterialGenus {
+class SourceMaterialGenus extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  SourceMaterialGenus._(this.fhirCode, {this.element});
+  SourceMaterialGenus._(super.value, [super.element]);
 
   /// Factory constructor to create [SourceMaterialGenus] from JSON.
   factory SourceMaterialGenus.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class SourceMaterialGenus {
     if (value == null && element != null) {
       return SourceMaterialGenus.elementOnly.withElement(element);
     }
-    return SourceMaterialGenus._(value!, element: element);
+    return SourceMaterialGenus._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// SourceMaterialGenus values
   /// Mycobacterium
   static final SourceMaterialGenus Mycobacterium = SourceMaterialGenus._(
     'Mycobacterium',
@@ -51,18 +44,63 @@ class SourceMaterialGenus {
     Ginkgo,
   ];
 
+  /// Clones the current instance
+  @override
+  SourceMaterialGenus clone() =>
+      SourceMaterialGenus._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  SourceMaterialGenus setElement(String name, dynamic elementValue) {
+    return SourceMaterialGenus._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   SourceMaterialGenus withElement(Element? newElement) {
-    return SourceMaterialGenus._(fhirCode, element: newElement);
+    return SourceMaterialGenus._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  SourceMaterialGenus copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return SourceMaterialGenus._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

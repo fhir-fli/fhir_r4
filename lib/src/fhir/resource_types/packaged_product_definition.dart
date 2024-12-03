@@ -328,31 +328,23 @@ class PackagedProductDefinition extends DomainResource {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    json['resourceType'] = resourceType.toJson();
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    json['resourceType'] = resourceType.toJson();
+    addField('id', id);
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    if (implicitRules != null) {
-      final fieldJson1 = implicitRules!.toJson();
-      json['implicitRules'] = fieldJson1['value'];
-      if (fieldJson1['_value'] != null) {
-        json['_implicitRules'] = fieldJson1['_value'];
-      }
-    }
-
-    if (language != null) {
-      final fieldJson2 = language!.toJson();
-      json['language'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_language'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('implicitRules', implicitRules);
+    addField('language', language);
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -374,14 +366,7 @@ class PackagedProductDefinition extends DomainResource {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
 
-    if (name != null) {
-      final fieldJson8 = name!.toJson();
-      json['name'] = fieldJson8['value'];
-      if (fieldJson8['_value'] != null) {
-        json['_name'] = fieldJson8['_value'];
-      }
-    }
-
+    addField('name', name);
     if (type != null) {
       json['type'] = type!.toJson();
     }
@@ -394,27 +379,13 @@ class PackagedProductDefinition extends DomainResource {
       json['status'] = status!.toJson();
     }
 
-    if (statusDate != null) {
-      final fieldJson12 = statusDate!.toJson();
-      json['statusDate'] = fieldJson12['value'];
-      if (fieldJson12['_value'] != null) {
-        json['_statusDate'] = fieldJson12['_value'];
-      }
-    }
-
+    addField('statusDate', statusDate);
     if (containedItemQuantity != null && containedItemQuantity!.isNotEmpty) {
       json['containedItemQuantity'] =
           containedItemQuantity!.map((e) => e.toJson()).toList();
     }
 
-    if (description != null) {
-      final fieldJson14 = description!.toJson();
-      json['description'] = fieldJson14['value'];
-      if (fieldJson14['_value'] != null) {
-        json['_description'] = fieldJson14['_value'];
-      }
-    }
-
+    addField('description', description);
     if (legalStatusOfSupply != null && legalStatusOfSupply!.isNotEmpty) {
       json['legalStatusOfSupply'] =
           legalStatusOfSupply!.map((e) => e.toJson()).toList();
@@ -429,14 +400,7 @@ class PackagedProductDefinition extends DomainResource {
       json['characteristic'] = characteristic!.map((e) => e.toJson()).toList();
     }
 
-    if (copackagedIndicator != null) {
-      final fieldJson18 = copackagedIndicator!.toJson();
-      json['copackagedIndicator'] = fieldJson18['value'];
-      if (fieldJson18['_value'] != null) {
-        json['_copackagedIndicator'] = fieldJson18['_value'];
-      }
-    }
-
+    addField('copackagedIndicator', copackagedIndicator);
     if (manufacturer != null && manufacturer!.isNotEmpty) {
       json['manufacturer'] = manufacturer!.map((e) => e.toJson()).toList();
     }
@@ -625,10 +589,16 @@ class PackagedProductDefinitionLegalStatusOfSupply extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -911,10 +881,16 @@ class PackagedProductDefinitionPackage extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -932,14 +908,7 @@ class PackagedProductDefinitionPackage extends BackboneElement {
       json['type'] = type!.toJson();
     }
 
-    if (quantity != null) {
-      final fieldJson4 = quantity!.toJson();
-      json['quantity'] = fieldJson4['value'];
-      if (fieldJson4['_value'] != null) {
-        json['_quantity'] = fieldJson4['_value'];
-      }
-    }
-
+    addField('quantity', quantity);
     if (material != null && material!.isNotEmpty) {
       json['material'] = material!.map((e) => e.toJson()).toList();
     }
@@ -1169,10 +1138,16 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1190,14 +1165,7 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
       json['periodDuration'] = periodDuration!.toJson();
     }
 
-    if (periodString != null) {
-      final fieldJson4 = periodString!.toJson();
-      json['periodString'] = fieldJson4['value'];
-      if (fieldJson4['_value'] != null) {
-        json['_periodString'] = fieldJson4['_value'];
-      }
-    }
-
+    addField('periodString', periodString);
     if (specialPrecautionsForStorage != null &&
         specialPrecautionsForStorage!.isNotEmpty) {
       json['specialPrecautionsForStorage'] =
@@ -1393,10 +1361,16 @@ class PackagedProductDefinitionProperty extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1416,22 +1390,8 @@ class PackagedProductDefinitionProperty extends BackboneElement {
       json['valueQuantity'] = valueQuantity!.toJson();
     }
 
-    if (valueDate != null) {
-      final fieldJson5 = valueDate!.toJson();
-      json['valueDate'] = fieldJson5['value'];
-      if (fieldJson5['_value'] != null) {
-        json['_valueDate'] = fieldJson5['_value'];
-      }
-    }
-
-    if (valueBoolean != null) {
-      final fieldJson6 = valueBoolean!.toJson();
-      json['valueBoolean'] = fieldJson6['value'];
-      if (fieldJson6['_value'] != null) {
-        json['_valueBoolean'] = fieldJson6['_value'];
-      }
-    }
-
+    addField('valueDate', valueDate);
+    addField('valueBoolean', valueBoolean);
     if (valueAttachment != null) {
       json['valueAttachment'] = valueAttachment!.toJson();
     }
@@ -1591,10 +1551,16 @@ class PackagedProductDefinitionContainedItem extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }

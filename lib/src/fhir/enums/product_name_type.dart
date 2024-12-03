@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Type of a name for a Medicinal Product.
-class ProductNameType {
+class ProductNameType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ProductNameType._(this.fhirCode, {this.element});
+  ProductNameType._(super.value, [super.element]);
 
   /// Factory constructor to create [ProductNameType] from JSON.
   factory ProductNameType.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class ProductNameType {
     if (value == null && element != null) {
       return ProductNameType.elementOnly.withElement(element);
     }
-    return ProductNameType._(value!, element: element);
+    return ProductNameType._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ProductNameType values
   /// BAN
   static final ProductNameType BAN = ProductNameType._(
     'BAN',
@@ -63,18 +56,63 @@ class ProductNameType {
     rINN,
   ];
 
+  /// Clones the current instance
+  @override
+  ProductNameType clone() =>
+      ProductNameType._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  ProductNameType setElement(String name, dynamic elementValue) {
+    return ProductNameType._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   ProductNameType withElement(Element? newElement) {
-    return ProductNameType._(fhirCode, element: newElement);
+    return ProductNameType._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  ProductNameType copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return ProductNameType._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

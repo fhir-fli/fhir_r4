@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// This is the code representing the clinical specialty of the clinician or provider who interacted with, treated, or provided a service to/for the patient. The value set used for clinical specialty has been limited by HITSP to the value set reproduced from HITSP C80 Table 2-149 Clinical Specialty Value Set Definition.
-class PracticeSettingCodeValueSet {
+class PracticeSettingCodeValueSet extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  PracticeSettingCodeValueSet._(this.fhirCode, {this.element});
+  PracticeSettingCodeValueSet._(super.value, [super.element]);
 
   /// Factory constructor to create [PracticeSettingCodeValueSet] from JSON.
   factory PracticeSettingCodeValueSet.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class PracticeSettingCodeValueSet {
     if (value == null && element != null) {
       return PracticeSettingCodeValueSet.elementOnly.withElement(element);
     }
-    return PracticeSettingCodeValueSet._(value!, element: element);
+    return PracticeSettingCodeValueSet._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// PracticeSettingCodeValueSet values
   /// value408467006
   static final PracticeSettingCodeValueSet value408467006 =
       PracticeSettingCodeValueSet._(
@@ -839,18 +832,63 @@ class PracticeSettingCodeValueSet {
     value394732004,
   ];
 
+  /// Clones the current instance
+  @override
+  PracticeSettingCodeValueSet clone() =>
+      PracticeSettingCodeValueSet._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  PracticeSettingCodeValueSet setElement(String name, dynamic elementValue) {
+    return PracticeSettingCodeValueSet._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   PracticeSettingCodeValueSet withElement(Element? newElement) {
-    return PracticeSettingCodeValueSet._(fhirCode, element: newElement);
+    return PracticeSettingCodeValueSet._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  PracticeSettingCodeValueSet copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return PracticeSettingCodeValueSet._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

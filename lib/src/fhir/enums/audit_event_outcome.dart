@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Indicates whether the event succeeded or failed.
-class AuditEventOutcome {
+class AuditEventOutcome extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  AuditEventOutcome._(this.fhirCode, {this.element});
+  AuditEventOutcome._(super.value, [super.element]);
 
   /// Factory constructor to create [AuditEventOutcome] from JSON.
   factory AuditEventOutcome.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class AuditEventOutcome {
     if (value == null && element != null) {
       return AuditEventOutcome.elementOnly.withElement(element);
     }
-    return AuditEventOutcome._(value!, element: element);
+    return AuditEventOutcome._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// AuditEventOutcome values
   /// value0
   static final AuditEventOutcome value0 = AuditEventOutcome._(
     '0',
@@ -57,18 +50,63 @@ class AuditEventOutcome {
     value12,
   ];
 
+  /// Clones the current instance
+  @override
+  AuditEventOutcome clone() =>
+      AuditEventOutcome._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  AuditEventOutcome setElement(String name, dynamic elementValue) {
+    return AuditEventOutcome._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   AuditEventOutcome withElement(Element? newElement) {
-    return AuditEventOutcome._(fhirCode, element: newElement);
+    return AuditEventOutcome._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  AuditEventOutcome copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return AuditEventOutcome._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

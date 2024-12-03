@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Structure Definition Use Codes / Keywords
-class DefinitionUseCodes {
+class DefinitionUseCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  DefinitionUseCodes._(this.fhirCode, {this.element});
+  DefinitionUseCodes._(super.value, [super.element]);
 
   /// Factory constructor to create [DefinitionUseCodes] from JSON.
   factory DefinitionUseCodes.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class DefinitionUseCodes {
     if (value == null && element != null) {
       return DefinitionUseCodes.elementOnly.withElement(element);
     }
-    return DefinitionUseCodes._(value!, element: element);
+    return DefinitionUseCodes._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// DefinitionUseCodes values
   /// fhir_structure
   static final DefinitionUseCodes fhir_structure = DefinitionUseCodes._(
     'fhir-structure',
@@ -69,18 +62,63 @@ class DefinitionUseCodes {
     template,
   ];
 
+  /// Clones the current instance
+  @override
+  DefinitionUseCodes clone() =>
+      DefinitionUseCodes._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  DefinitionUseCodes setElement(String name, dynamic elementValue) {
+    return DefinitionUseCodes._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   DefinitionUseCodes withElement(Element? newElement) {
-    return DefinitionUseCodes._(fhirCode, element: newElement);
+    return DefinitionUseCodes._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  DefinitionUseCodes copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return DefinitionUseCodes._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

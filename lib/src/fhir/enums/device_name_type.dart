@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The type of name the device is referred by.
-class DeviceNameType {
+class DeviceNameType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  DeviceNameType._(this.fhirCode, {this.element});
+  DeviceNameType._(super.value, [super.element]);
 
   /// Factory constructor to create [DeviceNameType] from JSON.
   factory DeviceNameType.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class DeviceNameType {
     if (value == null && element != null) {
       return DeviceNameType.elementOnly.withElement(element);
     }
-    return DeviceNameType._(value!, element: element);
+    return DeviceNameType._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// DeviceNameType values
   /// udi_label_name
   static final DeviceNameType udi_label_name = DeviceNameType._(
     'udi-label-name',
@@ -69,18 +62,63 @@ class DeviceNameType {
     other,
   ];
 
+  /// Clones the current instance
+  @override
+  DeviceNameType clone() =>
+      DeviceNameType._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  DeviceNameType setElement(String name, dynamic elementValue) {
+    return DeviceNameType._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   DeviceNameType withElement(Element? newElement) {
-    return DeviceNameType._(fhirCode, element: newElement);
+    return DeviceNameType._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  DeviceNameType copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return DeviceNameType._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

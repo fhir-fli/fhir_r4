@@ -122,10 +122,16 @@ class Annotation extends DataType {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -134,28 +140,9 @@ class Annotation extends DataType {
       json['authorReference'] = authorReference!.toJson();
     }
 
-    if (authorString != null) {
-      final fieldJson2 = authorString!.toJson();
-      json['authorString'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_authorString'] = fieldJson2['_value'];
-      }
-    }
-
-    if (time != null) {
-      final fieldJson3 = time!.toJson();
-      json['time'] = fieldJson3['value'];
-      if (fieldJson3['_value'] != null) {
-        json['_time'] = fieldJson3['_value'];
-      }
-    }
-
-    final fieldJson4 = text.toJson();
-    json['text'] = fieldJson4['value'];
-    if (fieldJson4['_value'] != null) {
-      json['_text'] = fieldJson4['_value'];
-    }
-
+    addField('authorString', authorString);
+    addField('time', time);
+    addField('text', text);
     return json;
   }
 

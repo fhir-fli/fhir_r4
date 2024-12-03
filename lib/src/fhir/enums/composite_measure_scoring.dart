@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The composite scoring method of the measure.
-class CompositeMeasureScoring {
+class CompositeMeasureScoring extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  CompositeMeasureScoring._(this.fhirCode, {this.element});
+  CompositeMeasureScoring._(super.value, [super.element]);
 
   /// Factory constructor to create [CompositeMeasureScoring] from JSON.
   factory CompositeMeasureScoring.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class CompositeMeasureScoring {
     if (value == null && element != null) {
       return CompositeMeasureScoring.elementOnly.withElement(element);
     }
-    return CompositeMeasureScoring._(value!, element: element);
+    return CompositeMeasureScoring._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// CompositeMeasureScoring values
   /// opportunity
   static final CompositeMeasureScoring opportunity = CompositeMeasureScoring._(
     'opportunity',
@@ -59,18 +52,63 @@ class CompositeMeasureScoring {
     weighted,
   ];
 
+  /// Clones the current instance
+  @override
+  CompositeMeasureScoring clone() =>
+      CompositeMeasureScoring._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  CompositeMeasureScoring setElement(String name, dynamic elementValue) {
+    return CompositeMeasureScoring._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   CompositeMeasureScoring withElement(Element? newElement) {
-    return CompositeMeasureScoring._(fhirCode, element: newElement);
+    return CompositeMeasureScoring._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  CompositeMeasureScoring copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return CompositeMeasureScoring._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Evidence Report Section Type.
-class ReportSectionType {
+class ReportSectionType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ReportSectionType._(this.fhirCode, {this.element});
+  ReportSectionType._(super.value, [super.element]);
 
   /// Factory constructor to create [ReportSectionType] from JSON.
   factory ReportSectionType.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class ReportSectionType {
     if (value == null && element != null) {
       return ReportSectionType.elementOnly.withElement(element);
     }
-    return ReportSectionType._(value!, element: element);
+    return ReportSectionType._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ReportSectionType values
   /// Evidence
   static final ReportSectionType Evidence = ReportSectionType._(
     'Evidence',
@@ -210,18 +203,63 @@ class ReportSectionType {
     Column_Headers,
   ];
 
+  /// Clones the current instance
+  @override
+  ReportSectionType clone() =>
+      ReportSectionType._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  ReportSectionType setElement(String name, dynamic elementValue) {
+    return ReportSectionType._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   ReportSectionType withElement(Element? newElement) {
-    return ReportSectionType._(fhirCode, element: newElement);
+    return ReportSectionType._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  ReportSectionType copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return ReportSectionType._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

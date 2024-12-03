@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// MedicationDispense Status Codes
-class MedicationDispenseStatusCodes {
+class MedicationDispenseStatusCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  MedicationDispenseStatusCodes._(this.fhirCode, {this.element});
+  MedicationDispenseStatusCodes._(super.value, [super.element]);
 
   /// Factory constructor to create [MedicationDispenseStatusCodes] from JSON.
   factory MedicationDispenseStatusCodes.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class MedicationDispenseStatusCodes {
     if (value == null && element != null) {
       return MedicationDispenseStatusCodes.elementOnly.withElement(element);
     }
-    return MedicationDispenseStatusCodes._(value!, element: element);
+    return MedicationDispenseStatusCodes._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// MedicationDispenseStatusCodes values
   /// preparation
   static final MedicationDispenseStatusCodes preparation =
       MedicationDispenseStatusCodes._(
@@ -97,18 +90,63 @@ class MedicationDispenseStatusCodes {
     unknown,
   ];
 
+  /// Clones the current instance
+  @override
+  MedicationDispenseStatusCodes clone() =>
+      MedicationDispenseStatusCodes._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  MedicationDispenseStatusCodes setElement(String name, dynamic elementValue) {
+    return MedicationDispenseStatusCodes._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   MedicationDispenseStatusCodes withElement(Element? newElement) {
-    return MedicationDispenseStatusCodes._(fhirCode, element: newElement);
+    return MedicationDispenseStatusCodes._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  MedicationDispenseStatusCodes copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return MedicationDispenseStatusCodes._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

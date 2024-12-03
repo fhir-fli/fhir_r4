@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// This value set defines a set of codes that can be used to indicate the particular target population the reference range applies to.
-class ObservationReferenceRangeAppliesToCodes {
+class ObservationReferenceRangeAppliesToCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ObservationReferenceRangeAppliesToCodes._(this.fhirCode, {this.element});
+  ObservationReferenceRangeAppliesToCodes._(super.value, [super.element]);
 
   /// Factory constructor to create [ObservationReferenceRangeAppliesToCodes] from JSON.
   factory ObservationReferenceRangeAppliesToCodes.fromJson(
@@ -17,16 +17,9 @@ class ObservationReferenceRangeAppliesToCodes {
       return ObservationReferenceRangeAppliesToCodes.elementOnly
           .withElement(element);
     }
-    return ObservationReferenceRangeAppliesToCodes._(value!, element: element);
+    return ObservationReferenceRangeAppliesToCodes._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ObservationReferenceRangeAppliesToCodes values
   /// value248153007
   static final ObservationReferenceRangeAppliesToCodes value248153007 =
       ObservationReferenceRangeAppliesToCodes._(
@@ -57,19 +50,65 @@ class ObservationReferenceRangeAppliesToCodes {
     value77386006,
   ];
 
+  /// Clones the current instance
+  @override
+  ObservationReferenceRangeAppliesToCodes clone() =>
+      ObservationReferenceRangeAppliesToCodes._(
+          value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  ObservationReferenceRangeAppliesToCodes setElement(
+      String name, dynamic elementValue) {
+    return ObservationReferenceRangeAppliesToCodes._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   ObservationReferenceRangeAppliesToCodes withElement(Element? newElement) {
-    return ObservationReferenceRangeAppliesToCodes._(fhirCode,
-        element: newElement);
+    return ObservationReferenceRangeAppliesToCodes._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  ObservationReferenceRangeAppliesToCodes copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return ObservationReferenceRangeAppliesToCodes._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

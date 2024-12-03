@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The reason why the supply item was requested.
-class SupplyRequestReason {
+class SupplyRequestReason extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  SupplyRequestReason._(this.fhirCode, {this.element});
+  SupplyRequestReason._(super.value, [super.element]);
 
   /// Factory constructor to create [SupplyRequestReason] from JSON.
   factory SupplyRequestReason.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class SupplyRequestReason {
     if (value == null && element != null) {
       return SupplyRequestReason.elementOnly.withElement(element);
     }
-    return SupplyRequestReason._(value!, element: element);
+    return SupplyRequestReason._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// SupplyRequestReason values
   /// patient_care
   static final SupplyRequestReason patient_care = SupplyRequestReason._(
     'patient-care',
@@ -45,18 +38,63 @@ class SupplyRequestReason {
     ward_stock,
   ];
 
+  /// Clones the current instance
+  @override
+  SupplyRequestReason clone() =>
+      SupplyRequestReason._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  SupplyRequestReason setElement(String name, dynamic elementValue) {
+    return SupplyRequestReason._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   SupplyRequestReason withElement(Element? newElement) {
-    return SupplyRequestReason._(fhirCode, element: newElement);
+    return SupplyRequestReason._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  SupplyRequestReason copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return SupplyRequestReason._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

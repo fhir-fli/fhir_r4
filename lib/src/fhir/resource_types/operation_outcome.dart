@@ -144,31 +144,23 @@ class OperationOutcome extends DomainResource {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    json['resourceType'] = resourceType.toJson();
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    json['resourceType'] = resourceType.toJson();
+    addField('id', id);
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    if (implicitRules != null) {
-      final fieldJson1 = implicitRules!.toJson();
-      json['implicitRules'] = fieldJson1['value'];
-      if (fieldJson1['_value'] != null) {
-        json['_implicitRules'] = fieldJson1['_value'];
-      }
-    }
-
-    if (language != null) {
-      final fieldJson2 = language!.toJson();
-      json['language'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_language'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('implicitRules', implicitRules);
+    addField('language', language);
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -186,7 +178,9 @@ class OperationOutcome extends DomainResource {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    json['issue'] = issue.map((e) => e.toJson()).toList();
+    if (issue.isNotEmpty) {
+      json['issue'] = issue.map((e) => e.toJson()).toList();
+    }
 
     return json;
   }
@@ -393,10 +387,16 @@ class OperationOutcomeIssue extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -406,43 +406,26 @@ class OperationOutcomeIssue extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    final fieldJson2 = severity.toJson();
-    json['severity'] = fieldJson2['value'];
-    if (fieldJson2['_value'] != null) {
-      json['_severity'] = fieldJson2['_value'];
-    }
-
-    final fieldJson3 = code.toJson();
-    json['code'] = fieldJson3['value'];
-    if (fieldJson3['_value'] != null) {
-      json['_code'] = fieldJson3['_value'];
-    }
-
+    addField('severity', severity);
+    addField('code', code);
     if (details != null) {
       json['details'] = details!.toJson();
     }
 
-    if (diagnostics != null) {
-      final fieldJson5 = diagnostics!.toJson();
-      json['diagnostics'] = fieldJson5['value'];
-      if (fieldJson5['_value'] != null) {
-        json['_diagnostics'] = fieldJson5['_value'];
-      }
-    }
-
+    addField('diagnostics', diagnostics);
     if (location != null && location!.isNotEmpty) {
-      final fieldJson6 = location!.map((e) => e.toJson()).toList();
-      json['location'] = fieldJson6.map((e) => e['value']).toList();
-      if (fieldJson6.any((e) => e['_value'] != null)) {
-        json['_location'] = fieldJson6.map((e) => e['_value']).toList();
+      final fieldJson0 = location!.map((e) => e.toJson()).toList();
+      json['location'] = fieldJson0.map((e) => e['value']).toList();
+      if (fieldJson0.any((e) => e['_value'] != null)) {
+        json['_location'] = fieldJson0.map((e) => e['_value']).toList();
       }
     }
 
     if (expression != null && expression!.isNotEmpty) {
-      final fieldJson7 = expression!.map((e) => e.toJson()).toList();
-      json['expression'] = fieldJson7.map((e) => e['value']).toList();
-      if (fieldJson7.any((e) => e['_value'] != null)) {
-        json['_expression'] = fieldJson7.map((e) => e['_value']).toList();
+      final fieldJson1 = expression!.map((e) => e.toJson()).toList();
+      json['expression'] = fieldJson1.map((e) => e['value']).toList();
+      if (fieldJson1.any((e) => e['_value'] != null)) {
+        json['_expression'] = fieldJson1.map((e) => e['_value']).toList();
       }
     }
 

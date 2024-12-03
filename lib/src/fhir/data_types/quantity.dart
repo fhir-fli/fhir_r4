@@ -143,54 +143,25 @@ class Quantity extends DataType {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
 
-    if (value != null) {
-      final fieldJson1 = value!.toJson();
-      json['value'] = fieldJson1['value'];
-      if (fieldJson1['_value'] != null) {
-        json['_value'] = fieldJson1['_value'];
-      }
-    }
-
-    if (comparator != null) {
-      final fieldJson2 = comparator!.toJson();
-      json['comparator'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_comparator'] = fieldJson2['_value'];
-      }
-    }
-
-    if (unit != null) {
-      final fieldJson3 = unit!.toJson();
-      json['unit'] = fieldJson3['value'];
-      if (fieldJson3['_value'] != null) {
-        json['_unit'] = fieldJson3['_value'];
-      }
-    }
-
-    if (system != null) {
-      final fieldJson4 = system!.toJson();
-      json['system'] = fieldJson4['value'];
-      if (fieldJson4['_value'] != null) {
-        json['_system'] = fieldJson4['_value'];
-      }
-    }
-
-    if (code != null) {
-      final fieldJson5 = code!.toJson();
-      json['code'] = fieldJson5['value'];
-      if (fieldJson5['_value'] != null) {
-        json['_code'] = fieldJson5['_value'];
-      }
-    }
-
+    addField('value', value);
+    addField('comparator', comparator);
+    addField('unit', unit);
+    addField('system', system);
+    addField('code', code);
     return json;
   }
 

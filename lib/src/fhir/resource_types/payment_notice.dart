@@ -248,31 +248,23 @@ class PaymentNotice extends DomainResource {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    json['resourceType'] = resourceType.toJson();
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    json['resourceType'] = resourceType.toJson();
+    addField('id', id);
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    if (implicitRules != null) {
-      final fieldJson1 = implicitRules!.toJson();
-      json['implicitRules'] = fieldJson1['value'];
-      if (fieldJson1['_value'] != null) {
-        json['_implicitRules'] = fieldJson1['_value'];
-      }
-    }
-
-    if (language != null) {
-      final fieldJson2 = language!.toJson();
-      json['language'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_language'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('implicitRules', implicitRules);
+    addField('language', language);
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -294,12 +286,7 @@ class PaymentNotice extends DomainResource {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
 
-    final fieldJson8 = status.toJson();
-    json['status'] = fieldJson8['value'];
-    if (fieldJson8['_value'] != null) {
-      json['_status'] = fieldJson8['_value'];
-    }
-
+    addField('status', status);
     if (request != null) {
       json['request'] = request!.toJson();
     }
@@ -308,26 +295,14 @@ class PaymentNotice extends DomainResource {
       json['response'] = response!.toJson();
     }
 
-    final fieldJson11 = created.toJson();
-    json['created'] = fieldJson11['value'];
-    if (fieldJson11['_value'] != null) {
-      json['_created'] = fieldJson11['_value'];
-    }
-
+    addField('created', created);
     if (provider != null) {
       json['provider'] = provider!.toJson();
     }
 
     json['payment'] = payment.toJson();
 
-    if (paymentDate != null) {
-      final fieldJson14 = paymentDate!.toJson();
-      json['paymentDate'] = fieldJson14['value'];
-      if (fieldJson14['_value'] != null) {
-        json['_paymentDate'] = fieldJson14['_value'];
-      }
-    }
-
+    addField('paymentDate', paymentDate);
     if (payee != null) {
       json['payee'] = payee!.toJson();
     }

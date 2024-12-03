@@ -442,31 +442,23 @@ class FamilyMemberHistory extends DomainResource {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    json['resourceType'] = resourceType.toJson();
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    json['resourceType'] = resourceType.toJson();
+    addField('id', id);
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    if (implicitRules != null) {
-      final fieldJson1 = implicitRules!.toJson();
-      json['implicitRules'] = fieldJson1['value'];
-      if (fieldJson1['_value'] != null) {
-        json['_implicitRules'] = fieldJson1['_value'];
-      }
-    }
-
-    if (language != null) {
-      final fieldJson2 = language!.toJson();
-      json['language'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_language'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('implicitRules', implicitRules);
+    addField('language', language);
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -489,51 +481,32 @@ class FamilyMemberHistory extends DomainResource {
     }
 
     if (instantiatesCanonical != null && instantiatesCanonical!.isNotEmpty) {
-      final fieldJson8 = instantiatesCanonical!.map((e) => e.toJson()).toList();
+      final fieldJson0 = instantiatesCanonical!.map((e) => e.toJson()).toList();
       json['instantiatesCanonical'] =
-          fieldJson8.map((e) => e['value']).toList();
-      if (fieldJson8.any((e) => e['_value'] != null)) {
+          fieldJson0.map((e) => e['value']).toList();
+      if (fieldJson0.any((e) => e['_value'] != null)) {
         json['_instantiatesCanonical'] =
-            fieldJson8.map((e) => e['_value']).toList();
+            fieldJson0.map((e) => e['_value']).toList();
       }
     }
 
     if (instantiatesUri != null && instantiatesUri!.isNotEmpty) {
-      final fieldJson9 = instantiatesUri!.map((e) => e.toJson()).toList();
-      json['instantiatesUri'] = fieldJson9.map((e) => e['value']).toList();
-      if (fieldJson9.any((e) => e['_value'] != null)) {
-        json['_instantiatesUri'] = fieldJson9.map((e) => e['_value']).toList();
+      final fieldJson1 = instantiatesUri!.map((e) => e.toJson()).toList();
+      json['instantiatesUri'] = fieldJson1.map((e) => e['value']).toList();
+      if (fieldJson1.any((e) => e['_value'] != null)) {
+        json['_instantiatesUri'] = fieldJson1.map((e) => e['_value']).toList();
       }
     }
 
-    final fieldJson10 = status.toJson();
-    json['status'] = fieldJson10['value'];
-    if (fieldJson10['_value'] != null) {
-      json['_status'] = fieldJson10['_value'];
-    }
-
+    addField('status', status);
     if (dataAbsentReason != null) {
       json['dataAbsentReason'] = dataAbsentReason!.toJson();
     }
 
     json['patient'] = patient.toJson();
 
-    if (date != null) {
-      final fieldJson13 = date!.toJson();
-      json['date'] = fieldJson13['value'];
-      if (fieldJson13['_value'] != null) {
-        json['_date'] = fieldJson13['_value'];
-      }
-    }
-
-    if (name != null) {
-      final fieldJson14 = name!.toJson();
-      json['name'] = fieldJson14['value'];
-      if (fieldJson14['_value'] != null) {
-        json['_name'] = fieldJson14['_value'];
-      }
-    }
-
+    addField('date', date);
+    addField('name', name);
     json['relationship'] = relationship.toJson();
 
     if (sex != null) {
@@ -544,22 +517,8 @@ class FamilyMemberHistory extends DomainResource {
       json['bornPeriod'] = bornPeriod!.toJson();
     }
 
-    if (bornDate != null) {
-      final fieldJson18 = bornDate!.toJson();
-      json['bornDate'] = fieldJson18['value'];
-      if (fieldJson18['_value'] != null) {
-        json['_bornDate'] = fieldJson18['_value'];
-      }
-    }
-
-    if (bornString != null) {
-      final fieldJson19 = bornString!.toJson();
-      json['bornString'] = fieldJson19['value'];
-      if (fieldJson19['_value'] != null) {
-        json['_bornString'] = fieldJson19['_value'];
-      }
-    }
-
+    addField('bornDate', bornDate);
+    addField('bornString', bornString);
     if (ageAge != null) {
       json['ageAge'] = ageAge!.toJson();
     }
@@ -568,30 +527,9 @@ class FamilyMemberHistory extends DomainResource {
       json['ageRange'] = ageRange!.toJson();
     }
 
-    if (ageString != null) {
-      final fieldJson22 = ageString!.toJson();
-      json['ageString'] = fieldJson22['value'];
-      if (fieldJson22['_value'] != null) {
-        json['_ageString'] = fieldJson22['_value'];
-      }
-    }
-
-    if (estimatedAge != null) {
-      final fieldJson23 = estimatedAge!.toJson();
-      json['estimatedAge'] = fieldJson23['value'];
-      if (fieldJson23['_value'] != null) {
-        json['_estimatedAge'] = fieldJson23['_value'];
-      }
-    }
-
-    if (deceasedBoolean != null) {
-      final fieldJson24 = deceasedBoolean!.toJson();
-      json['deceasedBoolean'] = fieldJson24['value'];
-      if (fieldJson24['_value'] != null) {
-        json['_deceasedBoolean'] = fieldJson24['_value'];
-      }
-    }
-
+    addField('ageString', ageString);
+    addField('estimatedAge', estimatedAge);
+    addField('deceasedBoolean', deceasedBoolean);
     if (deceasedAge != null) {
       json['deceasedAge'] = deceasedAge!.toJson();
     }
@@ -600,22 +538,8 @@ class FamilyMemberHistory extends DomainResource {
       json['deceasedRange'] = deceasedRange!.toJson();
     }
 
-    if (deceasedDate != null) {
-      final fieldJson27 = deceasedDate!.toJson();
-      json['deceasedDate'] = fieldJson27['value'];
-      if (fieldJson27['_value'] != null) {
-        json['_deceasedDate'] = fieldJson27['_value'];
-      }
-    }
-
-    if (deceasedString != null) {
-      final fieldJson28 = deceasedString!.toJson();
-      json['deceasedString'] = fieldJson28['value'];
-      if (fieldJson28['_value'] != null) {
-        json['_deceasedString'] = fieldJson28['_value'];
-      }
-    }
-
+    addField('deceasedDate', deceasedDate);
+    addField('deceasedString', deceasedString);
     if (reasonCode != null && reasonCode!.isNotEmpty) {
       json['reasonCode'] = reasonCode!.map((e) => e.toJson()).toList();
     }
@@ -916,10 +840,16 @@ class FamilyMemberHistoryCondition extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -935,14 +865,7 @@ class FamilyMemberHistoryCondition extends BackboneElement {
       json['outcome'] = outcome!.toJson();
     }
 
-    if (contributedToDeath != null) {
-      final fieldJson4 = contributedToDeath!.toJson();
-      json['contributedToDeath'] = fieldJson4['value'];
-      if (fieldJson4['_value'] != null) {
-        json['_contributedToDeath'] = fieldJson4['_value'];
-      }
-    }
-
+    addField('contributedToDeath', contributedToDeath);
     if (onsetAge != null) {
       json['onsetAge'] = onsetAge!.toJson();
     }
@@ -955,14 +878,7 @@ class FamilyMemberHistoryCondition extends BackboneElement {
       json['onsetPeriod'] = onsetPeriod!.toJson();
     }
 
-    if (onsetString != null) {
-      final fieldJson8 = onsetString!.toJson();
-      json['onsetString'] = fieldJson8['value'];
-      if (fieldJson8['_value'] != null) {
-        json['_onsetString'] = fieldJson8['_value'];
-      }
-    }
-
+    addField('onsetString', onsetString);
     if (note != null && note!.isNotEmpty) {
       json['note'] = note!.map((e) => e.toJson()).toList();
     }

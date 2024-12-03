@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// This value set includes codes for the relationship between the Subscriber and the Beneficiary (insured/covered party/patient).
-class SubscriberRelationshipCodes {
+class SubscriberRelationshipCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  SubscriberRelationshipCodes._(this.fhirCode, {this.element});
+  SubscriberRelationshipCodes._(super.value, [super.element]);
 
   /// Factory constructor to create [SubscriberRelationshipCodes] from JSON.
   factory SubscriberRelationshipCodes.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class SubscriberRelationshipCodes {
     if (value == null && element != null) {
       return SubscriberRelationshipCodes.elementOnly.withElement(element);
     }
-    return SubscriberRelationshipCodes._(value!, element: element);
+    return SubscriberRelationshipCodes._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// SubscriberRelationshipCodes values
   /// child
   static final SubscriberRelationshipCodes child =
       SubscriberRelationshipCodes._(
@@ -82,18 +75,63 @@ class SubscriberRelationshipCodes {
     injured,
   ];
 
+  /// Clones the current instance
+  @override
+  SubscriberRelationshipCodes clone() =>
+      SubscriberRelationshipCodes._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  SubscriberRelationshipCodes setElement(String name, dynamic elementValue) {
+    return SubscriberRelationshipCodes._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   SubscriberRelationshipCodes withElement(Element? newElement) {
-    return SubscriberRelationshipCodes._(fhirCode, element: newElement);
+    return SubscriberRelationshipCodes._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  SubscriberRelationshipCodes copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return SubscriberRelationshipCodes._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

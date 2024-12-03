@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The type of a name given to a substance.
-class SubstanceRepresentationType {
+class SubstanceRepresentationType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  SubstanceRepresentationType._(this.fhirCode, {this.element});
+  SubstanceRepresentationType._(super.value, [super.element]);
 
   /// Factory constructor to create [SubstanceRepresentationType] from JSON.
   factory SubstanceRepresentationType.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class SubstanceRepresentationType {
     if (value == null && element != null) {
       return SubstanceRepresentationType.elementOnly.withElement(element);
     }
-    return SubstanceRepresentationType._(value!, element: element);
+    return SubstanceRepresentationType._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// SubstanceRepresentationType values
   /// Systematic
   static final SubstanceRepresentationType Systematic =
       SubstanceRepresentationType._(
@@ -55,18 +48,63 @@ class SubstanceRepresentationType {
     Brand,
   ];
 
+  /// Clones the current instance
+  @override
+  SubstanceRepresentationType clone() =>
+      SubstanceRepresentationType._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  SubstanceRepresentationType setElement(String name, dynamic elementValue) {
+    return SubstanceRepresentationType._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   SubstanceRepresentationType withElement(Element? newElement) {
-    return SubstanceRepresentationType._(fhirCode, element: newElement);
+    return SubstanceRepresentationType._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  SubstanceRepresentationType copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return SubstanceRepresentationType._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

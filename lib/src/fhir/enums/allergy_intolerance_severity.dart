@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Clinical assessment of the severity of a reaction event as a whole, potentially considering multiple different manifestations.
-class AllergyIntoleranceSeverity {
+class AllergyIntoleranceSeverity extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  AllergyIntoleranceSeverity._(this.fhirCode, {this.element});
+  AllergyIntoleranceSeverity._(super.value, [super.element]);
 
   /// Factory constructor to create [AllergyIntoleranceSeverity] from JSON.
   factory AllergyIntoleranceSeverity.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class AllergyIntoleranceSeverity {
     if (value == null && element != null) {
       return AllergyIntoleranceSeverity.elementOnly.withElement(element);
     }
-    return AllergyIntoleranceSeverity._(value!, element: element);
+    return AllergyIntoleranceSeverity._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// AllergyIntoleranceSeverity values
   /// mild
   static final AllergyIntoleranceSeverity mild = AllergyIntoleranceSeverity._(
     'mild',
@@ -53,18 +46,63 @@ class AllergyIntoleranceSeverity {
     severe,
   ];
 
+  /// Clones the current instance
+  @override
+  AllergyIntoleranceSeverity clone() =>
+      AllergyIntoleranceSeverity._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  AllergyIntoleranceSeverity setElement(String name, dynamic elementValue) {
+    return AllergyIntoleranceSeverity._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   AllergyIntoleranceSeverity withElement(Element? newElement) {
-    return AllergyIntoleranceSeverity._(fhirCode, element: newElement);
+    return AllergyIntoleranceSeverity._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  AllergyIntoleranceSeverity copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return AllergyIntoleranceSeverity._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

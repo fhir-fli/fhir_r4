@@ -679,172 +679,40 @@ class FhirExtension extends DataType {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
 
-    final fieldJson1 = url.toJson();
-    json['url'] = fieldJson1['value'];
-    if (fieldJson1['_value'] != null) {
-      json['_url'] = fieldJson1['_value'];
-    }
-
-    if (valueBase64Binary != null) {
-      final fieldJson2 = valueBase64Binary!.toJson();
-      json['valueBase64Binary'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_valueBase64Binary'] = fieldJson2['_value'];
-      }
-    }
-
-    if (valueBoolean != null) {
-      final fieldJson3 = valueBoolean!.toJson();
-      json['valueBoolean'] = fieldJson3['value'];
-      if (fieldJson3['_value'] != null) {
-        json['_valueBoolean'] = fieldJson3['_value'];
-      }
-    }
-
-    if (valueCanonical != null) {
-      final fieldJson4 = valueCanonical!.toJson();
-      json['valueCanonical'] = fieldJson4['value'];
-      if (fieldJson4['_value'] != null) {
-        json['_valueCanonical'] = fieldJson4['_value'];
-      }
-    }
-
-    if (valueCode != null) {
-      final fieldJson5 = valueCode!.toJson();
-      json['valueCode'] = fieldJson5['value'];
-      if (fieldJson5['_value'] != null) {
-        json['_valueCode'] = fieldJson5['_value'];
-      }
-    }
-
-    if (valueDate != null) {
-      final fieldJson6 = valueDate!.toJson();
-      json['valueDate'] = fieldJson6['value'];
-      if (fieldJson6['_value'] != null) {
-        json['_valueDate'] = fieldJson6['_value'];
-      }
-    }
-
-    if (valueDateTime != null) {
-      final fieldJson7 = valueDateTime!.toJson();
-      json['valueDateTime'] = fieldJson7['value'];
-      if (fieldJson7['_value'] != null) {
-        json['_valueDateTime'] = fieldJson7['_value'];
-      }
-    }
-
-    if (valueDecimal != null) {
-      final fieldJson8 = valueDecimal!.toJson();
-      json['valueDecimal'] = fieldJson8['value'];
-      if (fieldJson8['_value'] != null) {
-        json['_valueDecimal'] = fieldJson8['_value'];
-      }
-    }
-
-    if (valueId != null) {
-      final fieldJson9 = valueId!.toJson();
-      json['valueId'] = fieldJson9['value'];
-      if (fieldJson9['_value'] != null) {
-        json['_valueId'] = fieldJson9['_value'];
-      }
-    }
-
-    if (valueInstant != null) {
-      final fieldJson10 = valueInstant!.toJson();
-      json['valueInstant'] = fieldJson10['value'];
-      if (fieldJson10['_value'] != null) {
-        json['_valueInstant'] = fieldJson10['_value'];
-      }
-    }
-
-    if (valueInteger != null) {
-      final fieldJson11 = valueInteger!.toJson();
-      json['valueInteger'] = fieldJson11['value'];
-      if (fieldJson11['_value'] != null) {
-        json['_valueInteger'] = fieldJson11['_value'];
-      }
-    }
-
-    if (valueMarkdown != null) {
-      final fieldJson12 = valueMarkdown!.toJson();
-      json['valueMarkdown'] = fieldJson12['value'];
-      if (fieldJson12['_value'] != null) {
-        json['_valueMarkdown'] = fieldJson12['_value'];
-      }
-    }
-
-    if (valueOid != null) {
-      final fieldJson13 = valueOid!.toJson();
-      json['valueOid'] = fieldJson13['value'];
-      if (fieldJson13['_value'] != null) {
-        json['_valueOid'] = fieldJson13['_value'];
-      }
-    }
-
-    if (valuePositiveInt != null) {
-      final fieldJson14 = valuePositiveInt!.toJson();
-      json['valuePositiveInt'] = fieldJson14['value'];
-      if (fieldJson14['_value'] != null) {
-        json['_valuePositiveInt'] = fieldJson14['_value'];
-      }
-    }
-
-    if (valueString != null) {
-      final fieldJson15 = valueString!.toJson();
-      json['valueString'] = fieldJson15['value'];
-      if (fieldJson15['_value'] != null) {
-        json['_valueString'] = fieldJson15['_value'];
-      }
-    }
-
-    if (valueTime != null) {
-      final fieldJson16 = valueTime!.toJson();
-      json['valueTime'] = fieldJson16['value'];
-      if (fieldJson16['_value'] != null) {
-        json['_valueTime'] = fieldJson16['_value'];
-      }
-    }
-
-    if (valueUnsignedInt != null) {
-      final fieldJson17 = valueUnsignedInt!.toJson();
-      json['valueUnsignedInt'] = fieldJson17['value'];
-      if (fieldJson17['_value'] != null) {
-        json['_valueUnsignedInt'] = fieldJson17['_value'];
-      }
-    }
-
-    if (valueUri != null) {
-      final fieldJson18 = valueUri!.toJson();
-      json['valueUri'] = fieldJson18['value'];
-      if (fieldJson18['_value'] != null) {
-        json['_valueUri'] = fieldJson18['_value'];
-      }
-    }
-
-    if (valueUrl != null) {
-      final fieldJson19 = valueUrl!.toJson();
-      json['valueUrl'] = fieldJson19['value'];
-      if (fieldJson19['_value'] != null) {
-        json['_valueUrl'] = fieldJson19['_value'];
-      }
-    }
-
-    if (valueUuid != null) {
-      final fieldJson20 = valueUuid!.toJson();
-      json['valueUuid'] = fieldJson20['value'];
-      if (fieldJson20['_value'] != null) {
-        json['_valueUuid'] = fieldJson20['_value'];
-      }
-    }
-
+    addField('url', url);
+    addField('valueBase64Binary', valueBase64Binary);
+    addField('valueBoolean', valueBoolean);
+    addField('valueCanonical', valueCanonical);
+    addField('valueCode', valueCode);
+    addField('valueDate', valueDate);
+    addField('valueDateTime', valueDateTime);
+    addField('valueDecimal', valueDecimal);
+    addField('valueId', valueId);
+    addField('valueInstant', valueInstant);
+    addField('valueInteger', valueInteger);
+    addField('valueMarkdown', valueMarkdown);
+    addField('valueOid', valueOid);
+    addField('valuePositiveInt', valuePositiveInt);
+    addField('valueString', valueString);
+    addField('valueTime', valueTime);
+    addField('valueUnsignedInt', valueUnsignedInt);
+    addField('valueUri', valueUri);
+    addField('valueUrl', valueUrl);
+    addField('valueUuid', valueUuid);
     if (valueAddress != null) {
       json['valueAddress'] = valueAddress!.toJson();
     }

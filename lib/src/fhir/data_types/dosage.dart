@@ -252,10 +252,16 @@ class Dosage extends BackboneType {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -265,47 +271,19 @@ class Dosage extends BackboneType {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    if (sequence != null) {
-      final fieldJson2 = sequence!.toJson();
-      json['sequence'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_sequence'] = fieldJson2['_value'];
-      }
-    }
-
-    if (text != null) {
-      final fieldJson3 = text!.toJson();
-      json['text'] = fieldJson3['value'];
-      if (fieldJson3['_value'] != null) {
-        json['_text'] = fieldJson3['_value'];
-      }
-    }
-
+    addField('sequence', sequence);
+    addField('text', text);
     if (additionalInstruction != null && additionalInstruction!.isNotEmpty) {
       json['additionalInstruction'] =
           additionalInstruction!.map((e) => e.toJson()).toList();
     }
 
-    if (patientInstruction != null) {
-      final fieldJson5 = patientInstruction!.toJson();
-      json['patientInstruction'] = fieldJson5['value'];
-      if (fieldJson5['_value'] != null) {
-        json['_patientInstruction'] = fieldJson5['_value'];
-      }
-    }
-
+    addField('patientInstruction', patientInstruction);
     if (timing != null) {
       json['timing'] = timing!.toJson();
     }
 
-    if (asNeededBoolean != null) {
-      final fieldJson7 = asNeededBoolean!.toJson();
-      json['asNeededBoolean'] = fieldJson7['value'];
-      if (fieldJson7['_value'] != null) {
-        json['_asNeededBoolean'] = fieldJson7['_value'];
-      }
-    }
-
+    addField('asNeededBoolean', asNeededBoolean);
     if (asNeededCodeableConcept != null) {
       json['asNeededCodeableConcept'] = asNeededCodeableConcept!.toJson();
     }
@@ -537,10 +515,16 @@ class DosageDoseAndRate extends Element {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }

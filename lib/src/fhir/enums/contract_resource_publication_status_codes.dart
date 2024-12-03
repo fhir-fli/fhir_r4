@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// This value set contract specific codes for status.
-class ContractResourcePublicationStatusCodes {
+class ContractResourcePublicationStatusCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ContractResourcePublicationStatusCodes._(this.fhirCode, {this.element});
+  ContractResourcePublicationStatusCodes._(super.value, [super.element]);
 
   /// Factory constructor to create [ContractResourcePublicationStatusCodes] from JSON.
   factory ContractResourcePublicationStatusCodes.fromJson(
@@ -17,16 +17,9 @@ class ContractResourcePublicationStatusCodes {
       return ContractResourcePublicationStatusCodes.elementOnly
           .withElement(element);
     }
-    return ContractResourcePublicationStatusCodes._(value!, element: element);
+    return ContractResourcePublicationStatusCodes._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ContractResourcePublicationStatusCodes values
   /// amended
   static final ContractResourcePublicationStatusCodes amended =
       ContractResourcePublicationStatusCodes._(
@@ -141,19 +134,65 @@ class ContractResourcePublicationStatusCodes {
     terminated,
   ];
 
+  /// Clones the current instance
+  @override
+  ContractResourcePublicationStatusCodes clone() =>
+      ContractResourcePublicationStatusCodes._(
+          value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  ContractResourcePublicationStatusCodes setElement(
+      String name, dynamic elementValue) {
+    return ContractResourcePublicationStatusCodes._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   ContractResourcePublicationStatusCodes withElement(Element? newElement) {
-    return ContractResourcePublicationStatusCodes._(fhirCode,
-        element: newElement);
+    return ContractResourcePublicationStatusCodes._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  ContractResourcePublicationStatusCodes copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return ContractResourcePublicationStatusCodes._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

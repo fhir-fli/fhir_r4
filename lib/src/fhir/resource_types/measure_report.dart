@@ -261,31 +261,23 @@ class MeasureReport extends DomainResource {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    json['resourceType'] = resourceType.toJson();
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    json['resourceType'] = resourceType.toJson();
+    addField('id', id);
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    if (implicitRules != null) {
-      final fieldJson1 = implicitRules!.toJson();
-      json['implicitRules'] = fieldJson1['value'];
-      if (fieldJson1['_value'] != null) {
-        json['_implicitRules'] = fieldJson1['_value'];
-      }
-    }
-
-    if (language != null) {
-      final fieldJson2 = language!.toJson();
-      json['language'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_language'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('implicitRules', implicitRules);
+    addField('language', language);
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -307,36 +299,14 @@ class MeasureReport extends DomainResource {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
 
-    final fieldJson8 = status.toJson();
-    json['status'] = fieldJson8['value'];
-    if (fieldJson8['_value'] != null) {
-      json['_status'] = fieldJson8['_value'];
-    }
-
-    final fieldJson9 = type.toJson();
-    json['type'] = fieldJson9['value'];
-    if (fieldJson9['_value'] != null) {
-      json['_type'] = fieldJson9['_value'];
-    }
-
-    final fieldJson10 = measure.toJson();
-    json['measure'] = fieldJson10['value'];
-    if (fieldJson10['_value'] != null) {
-      json['_measure'] = fieldJson10['_value'];
-    }
-
+    addField('status', status);
+    addField('type', type);
+    addField('measure', measure);
     if (subject != null) {
       json['subject'] = subject!.toJson();
     }
 
-    if (date != null) {
-      final fieldJson12 = date!.toJson();
-      json['date'] = fieldJson12['value'];
-      if (fieldJson12['_value'] != null) {
-        json['_date'] = fieldJson12['_value'];
-      }
-    }
-
+    addField('date', date);
     if (reporter != null) {
       json['reporter'] = reporter!.toJson();
     }
@@ -560,10 +530,16 @@ class MeasureReportGroup extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -748,10 +724,16 @@ class MeasureReportPopulation extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -765,14 +747,7 @@ class MeasureReportPopulation extends BackboneElement {
       json['code'] = code!.toJson();
     }
 
-    if (count != null) {
-      final fieldJson3 = count!.toJson();
-      json['count'] = fieldJson3['value'];
-      if (fieldJson3['_value'] != null) {
-        json['_count'] = fieldJson3['_value'];
-      }
-    }
-
+    addField('count', count);
     if (subjectResults != null) {
       json['subjectResults'] = subjectResults!.toJson();
     }
@@ -932,10 +907,16 @@ class MeasureReportStratifier extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1130,10 +1111,16 @@ class MeasureReportStratum extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1301,10 +1288,16 @@ class MeasureReportComponent extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1473,10 +1466,16 @@ class MeasureReportPopulation1 extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1490,14 +1489,7 @@ class MeasureReportPopulation1 extends BackboneElement {
       json['code'] = code!.toJson();
     }
 
-    if (count != null) {
-      final fieldJson3 = count!.toJson();
-      json['count'] = fieldJson3['value'];
-      if (fieldJson3['_value'] != null) {
-        json['_count'] = fieldJson3['_value'];
-      }
-    }
-
+    addField('count', count);
     if (subjectResults != null) {
       json['subjectResults'] = subjectResults!.toJson();
     }

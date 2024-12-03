@@ -219,31 +219,23 @@ class EnrollmentResponse extends DomainResource {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    json['resourceType'] = resourceType.toJson();
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    json['resourceType'] = resourceType.toJson();
+    addField('id', id);
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    if (implicitRules != null) {
-      final fieldJson1 = implicitRules!.toJson();
-      json['implicitRules'] = fieldJson1['value'];
-      if (fieldJson1['_value'] != null) {
-        json['_implicitRules'] = fieldJson1['_value'];
-      }
-    }
-
-    if (language != null) {
-      final fieldJson2 = language!.toJson();
-      json['language'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_language'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('implicitRules', implicitRules);
+    addField('language', language);
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -265,42 +257,14 @@ class EnrollmentResponse extends DomainResource {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
 
-    if (status != null) {
-      final fieldJson8 = status!.toJson();
-      json['status'] = fieldJson8['value'];
-      if (fieldJson8['_value'] != null) {
-        json['_status'] = fieldJson8['_value'];
-      }
-    }
-
+    addField('status', status);
     if (request != null) {
       json['request'] = request!.toJson();
     }
 
-    if (outcome != null) {
-      final fieldJson10 = outcome!.toJson();
-      json['outcome'] = fieldJson10['value'];
-      if (fieldJson10['_value'] != null) {
-        json['_outcome'] = fieldJson10['_value'];
-      }
-    }
-
-    if (disposition != null) {
-      final fieldJson11 = disposition!.toJson();
-      json['disposition'] = fieldJson11['value'];
-      if (fieldJson11['_value'] != null) {
-        json['_disposition'] = fieldJson11['_value'];
-      }
-    }
-
-    if (created != null) {
-      final fieldJson12 = created!.toJson();
-      json['created'] = fieldJson12['value'];
-      if (fieldJson12['_value'] != null) {
-        json['_created'] = fieldJson12['_value'];
-      }
-    }
-
+    addField('outcome', outcome);
+    addField('disposition', disposition);
+    addField('created', created);
     if (organization != null) {
       json['organization'] = organization!.toJson();
     }

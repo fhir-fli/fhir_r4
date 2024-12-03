@@ -311,31 +311,23 @@ class DeviceUseStatement extends DomainResource {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    json['resourceType'] = resourceType.toJson();
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    json['resourceType'] = resourceType.toJson();
+    addField('id', id);
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    if (implicitRules != null) {
-      final fieldJson1 = implicitRules!.toJson();
-      json['implicitRules'] = fieldJson1['value'];
-      if (fieldJson1['_value'] != null) {
-        json['_implicitRules'] = fieldJson1['_value'];
-      }
-    }
-
-    if (language != null) {
-      final fieldJson2 = language!.toJson();
-      json['language'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_language'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('implicitRules', implicitRules);
+    addField('language', language);
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -361,12 +353,7 @@ class DeviceUseStatement extends DomainResource {
       json['basedOn'] = basedOn!.map((e) => e.toJson()).toList();
     }
 
-    final fieldJson9 = status.toJson();
-    json['status'] = fieldJson9['value'];
-    if (fieldJson9['_value'] != null) {
-      json['_status'] = fieldJson9['_value'];
-    }
-
+    addField('status', status);
     json['subject'] = subject.toJson();
 
     if (derivedFrom != null && derivedFrom!.isNotEmpty) {
@@ -381,22 +368,8 @@ class DeviceUseStatement extends DomainResource {
       json['timingPeriod'] = timingPeriod!.toJson();
     }
 
-    if (timingDateTime != null) {
-      final fieldJson14 = timingDateTime!.toJson();
-      json['timingDateTime'] = fieldJson14['value'];
-      if (fieldJson14['_value'] != null) {
-        json['_timingDateTime'] = fieldJson14['_value'];
-      }
-    }
-
-    if (recordedOn != null) {
-      final fieldJson15 = recordedOn!.toJson();
-      json['recordedOn'] = fieldJson15['value'];
-      if (fieldJson15['_value'] != null) {
-        json['_recordedOn'] = fieldJson15['_value'];
-      }
-    }
-
+    addField('timingDateTime', timingDateTime);
+    addField('recordedOn', recordedOn);
     if (source != null) {
       json['source'] = source!.toJson();
     }

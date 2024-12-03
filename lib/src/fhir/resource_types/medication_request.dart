@@ -573,31 +573,23 @@ class MedicationRequest extends DomainResource {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    json['resourceType'] = resourceType.toJson();
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    json['resourceType'] = resourceType.toJson();
+    addField('id', id);
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    if (implicitRules != null) {
-      final fieldJson1 = implicitRules!.toJson();
-      json['implicitRules'] = fieldJson1['value'];
-      if (fieldJson1['_value'] != null) {
-        json['_implicitRules'] = fieldJson1['_value'];
-      }
-    }
-
-    if (language != null) {
-      final fieldJson2 = language!.toJson();
-      json['language'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_language'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('implicitRules', implicitRules);
+    addField('language', language);
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -619,50 +611,19 @@ class MedicationRequest extends DomainResource {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
 
-    final fieldJson8 = status.toJson();
-    json['status'] = fieldJson8['value'];
-    if (fieldJson8['_value'] != null) {
-      json['_status'] = fieldJson8['_value'];
-    }
-
+    addField('status', status);
     if (statusReason != null) {
       json['statusReason'] = statusReason!.toJson();
     }
 
-    final fieldJson10 = intent.toJson();
-    json['intent'] = fieldJson10['value'];
-    if (fieldJson10['_value'] != null) {
-      json['_intent'] = fieldJson10['_value'];
-    }
-
+    addField('intent', intent);
     if (category != null && category!.isNotEmpty) {
       json['category'] = category!.map((e) => e.toJson()).toList();
     }
 
-    if (priority != null) {
-      final fieldJson12 = priority!.toJson();
-      json['priority'] = fieldJson12['value'];
-      if (fieldJson12['_value'] != null) {
-        json['_priority'] = fieldJson12['_value'];
-      }
-    }
-
-    if (doNotPerform != null) {
-      final fieldJson13 = doNotPerform!.toJson();
-      json['doNotPerform'] = fieldJson13['value'];
-      if (fieldJson13['_value'] != null) {
-        json['_doNotPerform'] = fieldJson13['_value'];
-      }
-    }
-
-    if (reportedBoolean != null) {
-      final fieldJson14 = reportedBoolean!.toJson();
-      json['reportedBoolean'] = fieldJson14['value'];
-      if (fieldJson14['_value'] != null) {
-        json['_reportedBoolean'] = fieldJson14['_value'];
-      }
-    }
-
+    addField('priority', priority);
+    addField('doNotPerform', doNotPerform);
+    addField('reportedBoolean', reportedBoolean);
     if (reportedReference != null) {
       json['reportedReference'] = reportedReference!.toJson();
     }
@@ -686,14 +647,7 @@ class MedicationRequest extends DomainResource {
           supportingInformation!.map((e) => e.toJson()).toList();
     }
 
-    if (authoredOn != null) {
-      final fieldJson21 = authoredOn!.toJson();
-      json['authoredOn'] = fieldJson21['value'];
-      if (fieldJson21['_value'] != null) {
-        json['_authoredOn'] = fieldJson21['_value'];
-      }
-    }
-
+    addField('authoredOn', authoredOn);
     if (requester != null) {
       json['requester'] = requester!.toJson();
     }
@@ -720,21 +674,20 @@ class MedicationRequest extends DomainResource {
     }
 
     if (instantiatesCanonical != null && instantiatesCanonical!.isNotEmpty) {
-      final fieldJson28 =
-          instantiatesCanonical!.map((e) => e.toJson()).toList();
+      final fieldJson0 = instantiatesCanonical!.map((e) => e.toJson()).toList();
       json['instantiatesCanonical'] =
-          fieldJson28.map((e) => e['value']).toList();
-      if (fieldJson28.any((e) => e['_value'] != null)) {
+          fieldJson0.map((e) => e['value']).toList();
+      if (fieldJson0.any((e) => e['_value'] != null)) {
         json['_instantiatesCanonical'] =
-            fieldJson28.map((e) => e['_value']).toList();
+            fieldJson0.map((e) => e['_value']).toList();
       }
     }
 
     if (instantiatesUri != null && instantiatesUri!.isNotEmpty) {
-      final fieldJson29 = instantiatesUri!.map((e) => e.toJson()).toList();
-      json['instantiatesUri'] = fieldJson29.map((e) => e['value']).toList();
-      if (fieldJson29.any((e) => e['_value'] != null)) {
-        json['_instantiatesUri'] = fieldJson29.map((e) => e['_value']).toList();
+      final fieldJson1 = instantiatesUri!.map((e) => e.toJson()).toList();
+      json['instantiatesUri'] = fieldJson1.map((e) => e['value']).toList();
+      if (fieldJson1.any((e) => e['_value'] != null)) {
+        json['_instantiatesUri'] = fieldJson1.map((e) => e['_value']).toList();
       }
     }
 
@@ -1071,10 +1024,16 @@ class MedicationRequestDispenseRequest extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1096,14 +1055,7 @@ class MedicationRequestDispenseRequest extends BackboneElement {
       json['validityPeriod'] = validityPeriod!.toJson();
     }
 
-    if (numberOfRepeatsAllowed != null) {
-      final fieldJson5 = numberOfRepeatsAllowed!.toJson();
-      json['numberOfRepeatsAllowed'] = fieldJson5['value'];
-      if (fieldJson5['_value'] != null) {
-        json['_numberOfRepeatsAllowed'] = fieldJson5['_value'];
-      }
-    }
-
+    addField('numberOfRepeatsAllowed', numberOfRepeatsAllowed);
     if (quantity != null) {
       json['quantity'] = quantity!.toJson();
     }
@@ -1271,10 +1223,16 @@ class MedicationRequestInitialFill extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1452,10 +1410,16 @@ class MedicationRequestSubstitution extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1465,14 +1429,7 @@ class MedicationRequestSubstitution extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    if (allowedBoolean != null) {
-      final fieldJson2 = allowedBoolean!.toJson();
-      json['allowedBoolean'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_allowedBoolean'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('allowedBoolean', allowedBoolean);
     if (allowedCodeableConcept != null) {
       json['allowedCodeableConcept'] = allowedCodeableConcept!.toJson();
     }

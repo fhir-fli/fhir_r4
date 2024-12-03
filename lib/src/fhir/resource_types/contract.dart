@@ -603,31 +603,23 @@ class Contract extends DomainResource {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    json['resourceType'] = resourceType.toJson();
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    json['resourceType'] = resourceType.toJson();
+    addField('id', id);
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    if (implicitRules != null) {
-      final fieldJson1 = implicitRules!.toJson();
-      json['implicitRules'] = fieldJson1['value'];
-      if (fieldJson1['_value'] != null) {
-        json['_implicitRules'] = fieldJson1['_value'];
-      }
-    }
-
-    if (language != null) {
-      final fieldJson2 = language!.toJson();
-      json['language'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_language'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('implicitRules', implicitRules);
+    addField('language', language);
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -649,30 +641,9 @@ class Contract extends DomainResource {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
 
-    if (url != null) {
-      final fieldJson8 = url!.toJson();
-      json['url'] = fieldJson8['value'];
-      if (fieldJson8['_value'] != null) {
-        json['_url'] = fieldJson8['_value'];
-      }
-    }
-
-    if (version != null) {
-      final fieldJson9 = version!.toJson();
-      json['version'] = fieldJson9['value'];
-      if (fieldJson9['_value'] != null) {
-        json['_version'] = fieldJson9['_value'];
-      }
-    }
-
-    if (status != null) {
-      final fieldJson10 = status!.toJson();
-      json['status'] = fieldJson10['value'];
-      if (fieldJson10['_value'] != null) {
-        json['_status'] = fieldJson10['_value'];
-      }
-    }
-
+    addField('url', url);
+    addField('version', version);
+    addField('status', status);
     if (legalState != null) {
       json['legalState'] = legalState!.toJson();
     }
@@ -681,26 +652,12 @@ class Contract extends DomainResource {
       json['instantiatesCanonical'] = instantiatesCanonical!.toJson();
     }
 
-    if (instantiatesUri != null) {
-      final fieldJson13 = instantiatesUri!.toJson();
-      json['instantiatesUri'] = fieldJson13['value'];
-      if (fieldJson13['_value'] != null) {
-        json['_instantiatesUri'] = fieldJson13['_value'];
-      }
-    }
-
+    addField('instantiatesUri', instantiatesUri);
     if (contentDerivative != null) {
       json['contentDerivative'] = contentDerivative!.toJson();
     }
 
-    if (issued != null) {
-      final fieldJson15 = issued!.toJson();
-      json['issued'] = fieldJson15['value'];
-      if (fieldJson15['_value'] != null) {
-        json['_issued'] = fieldJson15['_value'];
-      }
-    }
-
+    addField('issued', issued);
     if (applies != null) {
       json['applies'] = applies!.toJson();
     }
@@ -725,35 +682,14 @@ class Contract extends DomainResource {
       json['site'] = site!.map((e) => e.toJson()).toList();
     }
 
-    if (name != null) {
-      final fieldJson22 = name!.toJson();
-      json['name'] = fieldJson22['value'];
-      if (fieldJson22['_value'] != null) {
-        json['_name'] = fieldJson22['_value'];
-      }
-    }
-
-    if (title != null) {
-      final fieldJson23 = title!.toJson();
-      json['title'] = fieldJson23['value'];
-      if (fieldJson23['_value'] != null) {
-        json['_title'] = fieldJson23['_value'];
-      }
-    }
-
-    if (subtitle != null) {
-      final fieldJson24 = subtitle!.toJson();
-      json['subtitle'] = fieldJson24['value'];
-      if (fieldJson24['_value'] != null) {
-        json['_subtitle'] = fieldJson24['_value'];
-      }
-    }
-
+    addField('name', name);
+    addField('title', title);
+    addField('subtitle', subtitle);
     if (alias != null && alias!.isNotEmpty) {
-      final fieldJson25 = alias!.map((e) => e.toJson()).toList();
-      json['alias'] = fieldJson25.map((e) => e['value']).toList();
-      if (fieldJson25.any((e) => e['_value'] != null)) {
-        json['_alias'] = fieldJson25.map((e) => e['_value']).toList();
+      final fieldJson0 = alias!.map((e) => e.toJson()).toList();
+      json['alias'] = fieldJson0.map((e) => e['value']).toList();
+      if (fieldJson0.any((e) => e['_value'] != null)) {
+        json['_alias'] = fieldJson0.map((e) => e['_value']).toList();
       }
     }
 
@@ -1095,10 +1031,16 @@ class ContractContentDefinition extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1118,28 +1060,9 @@ class ContractContentDefinition extends BackboneElement {
       json['publisher'] = publisher!.toJson();
     }
 
-    if (publicationDate != null) {
-      final fieldJson5 = publicationDate!.toJson();
-      json['publicationDate'] = fieldJson5['value'];
-      if (fieldJson5['_value'] != null) {
-        json['_publicationDate'] = fieldJson5['_value'];
-      }
-    }
-
-    final fieldJson6 = publicationStatus.toJson();
-    json['publicationStatus'] = fieldJson6['value'];
-    if (fieldJson6['_value'] != null) {
-      json['_publicationStatus'] = fieldJson6['_value'];
-    }
-
-    if (copyright != null) {
-      final fieldJson7 = copyright!.toJson();
-      json['copyright'] = fieldJson7['value'];
-      if (fieldJson7['_value'] != null) {
-        json['_copyright'] = fieldJson7['_value'];
-      }
-    }
-
+    addField('publicationDate', publicationDate);
+    addField('publicationStatus', publicationStatus);
+    addField('copyright', copyright);
     return json;
   }
 
@@ -1424,10 +1347,16 @@ class ContractTerm extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1441,14 +1370,7 @@ class ContractTerm extends BackboneElement {
       json['identifier'] = identifier!.toJson();
     }
 
-    if (issued != null) {
-      final fieldJson3 = issued!.toJson();
-      json['issued'] = fieldJson3['value'];
-      if (fieldJson3['_value'] != null) {
-        json['_issued'] = fieldJson3['_value'];
-      }
-    }
-
+    addField('issued', issued);
     if (applies != null) {
       json['applies'] = applies!.toJson();
     }
@@ -1469,14 +1391,7 @@ class ContractTerm extends BackboneElement {
       json['subType'] = subType!.toJson();
     }
 
-    if (text != null) {
-      final fieldJson9 = text!.toJson();
-      json['text'] = fieldJson9['value'];
-      if (fieldJson9['_value'] != null) {
-        json['_text'] = fieldJson9['_value'];
-      }
-    }
-
+    addField('text', text);
     if (securityLabel != null && securityLabel!.isNotEmpty) {
       json['securityLabel'] = securityLabel!.map((e) => e.toJson()).toList();
     }
@@ -1690,10 +1605,16 @@ class ContractSecurityLabel extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1704,10 +1625,10 @@ class ContractSecurityLabel extends BackboneElement {
     }
 
     if (number != null && number!.isNotEmpty) {
-      final fieldJson2 = number!.map((e) => e.toJson()).toList();
-      json['number'] = fieldJson2.map((e) => e['value']).toList();
-      if (fieldJson2.any((e) => e['_value'] != null)) {
-        json['_number'] = fieldJson2.map((e) => e['_value']).toList();
+      final fieldJson0 = number!.map((e) => e.toJson()).toList();
+      json['number'] = fieldJson0.map((e) => e['value']).toList();
+      if (fieldJson0.any((e) => e['_value'] != null)) {
+        json['_number'] = fieldJson0.map((e) => e['_value']).toList();
       }
     }
 
@@ -1969,10 +1890,16 @@ class ContractOffer extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -2010,28 +1937,21 @@ class ContractOffer extends BackboneElement {
       json['answer'] = answer!.map((e) => e.toJson()).toList();
     }
 
-    if (text != null) {
-      final fieldJson9 = text!.toJson();
-      json['text'] = fieldJson9['value'];
-      if (fieldJson9['_value'] != null) {
-        json['_text'] = fieldJson9['_value'];
-      }
-    }
-
+    addField('text', text);
     if (linkId != null && linkId!.isNotEmpty) {
-      final fieldJson10 = linkId!.map((e) => e.toJson()).toList();
-      json['linkId'] = fieldJson10.map((e) => e['value']).toList();
-      if (fieldJson10.any((e) => e['_value'] != null)) {
-        json['_linkId'] = fieldJson10.map((e) => e['_value']).toList();
+      final fieldJson0 = linkId!.map((e) => e.toJson()).toList();
+      json['linkId'] = fieldJson0.map((e) => e['value']).toList();
+      if (fieldJson0.any((e) => e['_value'] != null)) {
+        json['_linkId'] = fieldJson0.map((e) => e['_value']).toList();
       }
     }
 
     if (securityLabelNumber != null && securityLabelNumber!.isNotEmpty) {
-      final fieldJson11 = securityLabelNumber!.map((e) => e.toJson()).toList();
-      json['securityLabelNumber'] = fieldJson11.map((e) => e['value']).toList();
-      if (fieldJson11.any((e) => e['_value'] != null)) {
+      final fieldJson1 = securityLabelNumber!.map((e) => e.toJson()).toList();
+      json['securityLabelNumber'] = fieldJson1.map((e) => e['value']).toList();
+      if (fieldJson1.any((e) => e['_value'] != null)) {
         json['_securityLabelNumber'] =
-            fieldJson11.map((e) => e['_value']).toList();
+            fieldJson1.map((e) => e['_value']).toList();
       }
     }
 
@@ -2195,10 +2115,16 @@ class ContractParty extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -2208,7 +2134,9 @@ class ContractParty extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    json['reference'] = reference.map((e) => e.toJson()).toList();
+    if (reference.isNotEmpty) {
+      json['reference'] = reference.map((e) => e.toJson()).toList();
+    }
 
     json['role'] = role.toJson();
 
@@ -2502,10 +2430,16 @@ class ContractAnswer extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -2515,70 +2449,14 @@ class ContractAnswer extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    if (valueBoolean != null) {
-      final fieldJson2 = valueBoolean!.toJson();
-      json['valueBoolean'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_valueBoolean'] = fieldJson2['_value'];
-      }
-    }
-
-    if (valueDecimal != null) {
-      final fieldJson3 = valueDecimal!.toJson();
-      json['valueDecimal'] = fieldJson3['value'];
-      if (fieldJson3['_value'] != null) {
-        json['_valueDecimal'] = fieldJson3['_value'];
-      }
-    }
-
-    if (valueInteger != null) {
-      final fieldJson4 = valueInteger!.toJson();
-      json['valueInteger'] = fieldJson4['value'];
-      if (fieldJson4['_value'] != null) {
-        json['_valueInteger'] = fieldJson4['_value'];
-      }
-    }
-
-    if (valueDate != null) {
-      final fieldJson5 = valueDate!.toJson();
-      json['valueDate'] = fieldJson5['value'];
-      if (fieldJson5['_value'] != null) {
-        json['_valueDate'] = fieldJson5['_value'];
-      }
-    }
-
-    if (valueDateTime != null) {
-      final fieldJson6 = valueDateTime!.toJson();
-      json['valueDateTime'] = fieldJson6['value'];
-      if (fieldJson6['_value'] != null) {
-        json['_valueDateTime'] = fieldJson6['_value'];
-      }
-    }
-
-    if (valueTime != null) {
-      final fieldJson7 = valueTime!.toJson();
-      json['valueTime'] = fieldJson7['value'];
-      if (fieldJson7['_value'] != null) {
-        json['_valueTime'] = fieldJson7['_value'];
-      }
-    }
-
-    if (valueString != null) {
-      final fieldJson8 = valueString!.toJson();
-      json['valueString'] = fieldJson8['value'];
-      if (fieldJson8['_value'] != null) {
-        json['_valueString'] = fieldJson8['_value'];
-      }
-    }
-
-    if (valueUri != null) {
-      final fieldJson9 = valueUri!.toJson();
-      json['valueUri'] = fieldJson9['value'];
-      if (fieldJson9['_value'] != null) {
-        json['_valueUri'] = fieldJson9['_value'];
-      }
-    }
-
+    addField('valueBoolean', valueBoolean);
+    addField('valueDecimal', valueDecimal);
+    addField('valueInteger', valueInteger);
+    addField('valueDate', valueDate);
+    addField('valueDateTime', valueDateTime);
+    addField('valueTime', valueTime);
+    addField('valueString', valueString);
+    addField('valueUri', valueUri);
     if (valueAttachment != null) {
       json['valueAttachment'] = valueAttachment!.toJson();
     }
@@ -2931,10 +2809,16 @@ class ContractAsset extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -2968,14 +2852,7 @@ class ContractAsset extends BackboneElement {
       json['context'] = context!.map((e) => e.toJson()).toList();
     }
 
-    if (condition != null) {
-      final fieldJson8 = condition!.toJson();
-      json['condition'] = fieldJson8['value'];
-      if (fieldJson8['_value'] != null) {
-        json['_condition'] = fieldJson8['_value'];
-      }
-    }
-
+    addField('condition', condition);
     if (periodType != null && periodType!.isNotEmpty) {
       json['periodType'] = periodType!.map((e) => e.toJson()).toList();
     }
@@ -2988,19 +2865,12 @@ class ContractAsset extends BackboneElement {
       json['usePeriod'] = usePeriod!.map((e) => e.toJson()).toList();
     }
 
-    if (text != null) {
-      final fieldJson12 = text!.toJson();
-      json['text'] = fieldJson12['value'];
-      if (fieldJson12['_value'] != null) {
-        json['_text'] = fieldJson12['_value'];
-      }
-    }
-
+    addField('text', text);
     if (linkId != null && linkId!.isNotEmpty) {
-      final fieldJson13 = linkId!.map((e) => e.toJson()).toList();
-      json['linkId'] = fieldJson13.map((e) => e['value']).toList();
-      if (fieldJson13.any((e) => e['_value'] != null)) {
-        json['_linkId'] = fieldJson13.map((e) => e['_value']).toList();
+      final fieldJson0 = linkId!.map((e) => e.toJson()).toList();
+      json['linkId'] = fieldJson0.map((e) => e['value']).toList();
+      if (fieldJson0.any((e) => e['_value'] != null)) {
+        json['_linkId'] = fieldJson0.map((e) => e['_value']).toList();
       }
     }
 
@@ -3009,11 +2879,11 @@ class ContractAsset extends BackboneElement {
     }
 
     if (securityLabelNumber != null && securityLabelNumber!.isNotEmpty) {
-      final fieldJson15 = securityLabelNumber!.map((e) => e.toJson()).toList();
-      json['securityLabelNumber'] = fieldJson15.map((e) => e['value']).toList();
-      if (fieldJson15.any((e) => e['_value'] != null)) {
+      final fieldJson1 = securityLabelNumber!.map((e) => e.toJson()).toList();
+      json['securityLabelNumber'] = fieldJson1.map((e) => e['value']).toList();
+      if (fieldJson1.any((e) => e['_value'] != null)) {
         json['_securityLabelNumber'] =
-            fieldJson15.map((e) => e['_value']).toList();
+            fieldJson1.map((e) => e['_value']).toList();
       }
     }
 
@@ -3207,10 +3077,16 @@ class ContractContext extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -3228,14 +3104,7 @@ class ContractContext extends BackboneElement {
       json['code'] = code!.map((e) => e.toJson()).toList();
     }
 
-    if (text != null) {
-      final fieldJson4 = text!.toJson();
-      json['text'] = fieldJson4['value'];
-      if (fieldJson4['_value'] != null) {
-        json['_text'] = fieldJson4['_value'];
-      }
-    }
-
+    addField('text', text);
     return json;
   }
 
@@ -3531,10 +3400,16 @@ class ContractValuedItem extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -3556,14 +3431,7 @@ class ContractValuedItem extends BackboneElement {
       json['identifier'] = identifier!.toJson();
     }
 
-    if (effectiveTime != null) {
-      final fieldJson5 = effectiveTime!.toJson();
-      json['effectiveTime'] = fieldJson5['value'];
-      if (fieldJson5['_value'] != null) {
-        json['_effectiveTime'] = fieldJson5['_value'];
-      }
-    }
-
+    addField('effectiveTime', effectiveTime);
     if (quantity != null) {
       json['quantity'] = quantity!.toJson();
     }
@@ -3572,42 +3440,14 @@ class ContractValuedItem extends BackboneElement {
       json['unitPrice'] = unitPrice!.toJson();
     }
 
-    if (factor != null) {
-      final fieldJson8 = factor!.toJson();
-      json['factor'] = fieldJson8['value'];
-      if (fieldJson8['_value'] != null) {
-        json['_factor'] = fieldJson8['_value'];
-      }
-    }
-
-    if (points != null) {
-      final fieldJson9 = points!.toJson();
-      json['points'] = fieldJson9['value'];
-      if (fieldJson9['_value'] != null) {
-        json['_points'] = fieldJson9['_value'];
-      }
-    }
-
+    addField('factor', factor);
+    addField('points', points);
     if (net != null) {
       json['net'] = net!.toJson();
     }
 
-    if (payment != null) {
-      final fieldJson11 = payment!.toJson();
-      json['payment'] = fieldJson11['value'];
-      if (fieldJson11['_value'] != null) {
-        json['_payment'] = fieldJson11['_value'];
-      }
-    }
-
-    if (paymentDate != null) {
-      final fieldJson12 = paymentDate!.toJson();
-      json['paymentDate'] = fieldJson12['value'];
-      if (fieldJson12['_value'] != null) {
-        json['_paymentDate'] = fieldJson12['_value'];
-      }
-    }
-
+    addField('payment', payment);
+    addField('paymentDate', paymentDate);
     if (responsible != null) {
       json['responsible'] = responsible!.toJson();
     }
@@ -3617,19 +3457,19 @@ class ContractValuedItem extends BackboneElement {
     }
 
     if (linkId != null && linkId!.isNotEmpty) {
-      final fieldJson15 = linkId!.map((e) => e.toJson()).toList();
-      json['linkId'] = fieldJson15.map((e) => e['value']).toList();
-      if (fieldJson15.any((e) => e['_value'] != null)) {
-        json['_linkId'] = fieldJson15.map((e) => e['_value']).toList();
+      final fieldJson0 = linkId!.map((e) => e.toJson()).toList();
+      json['linkId'] = fieldJson0.map((e) => e['value']).toList();
+      if (fieldJson0.any((e) => e['_value'] != null)) {
+        json['_linkId'] = fieldJson0.map((e) => e['_value']).toList();
       }
     }
 
     if (securityLabelNumber != null && securityLabelNumber!.isNotEmpty) {
-      final fieldJson16 = securityLabelNumber!.map((e) => e.toJson()).toList();
-      json['securityLabelNumber'] = fieldJson16.map((e) => e['value']).toList();
-      if (fieldJson16.any((e) => e['_value'] != null)) {
+      final fieldJson1 = securityLabelNumber!.map((e) => e.toJson()).toList();
+      json['securityLabelNumber'] = fieldJson1.map((e) => e['value']).toList();
+      if (fieldJson1.any((e) => e['_value'] != null)) {
         json['_securityLabelNumber'] =
-            fieldJson16.map((e) => e['_value']).toList();
+            fieldJson1.map((e) => e['_value']).toList();
       }
     }
 
@@ -4054,10 +3894,16 @@ class ContractAction extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -4067,14 +3913,7 @@ class ContractAction extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    if (doNotPerform != null) {
-      final fieldJson2 = doNotPerform!.toJson();
-      json['doNotPerform'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_doNotPerform'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('doNotPerform', doNotPerform);
     json['type'] = type.toJson();
 
     if (subject != null && subject!.isNotEmpty) {
@@ -4084,10 +3923,10 @@ class ContractAction extends BackboneElement {
     json['intent'] = intent.toJson();
 
     if (linkId != null && linkId!.isNotEmpty) {
-      final fieldJson6 = linkId!.map((e) => e.toJson()).toList();
-      json['linkId'] = fieldJson6.map((e) => e['value']).toList();
-      if (fieldJson6.any((e) => e['_value'] != null)) {
-        json['_linkId'] = fieldJson6.map((e) => e['_value']).toList();
+      final fieldJson0 = linkId!.map((e) => e.toJson()).toList();
+      json['linkId'] = fieldJson0.map((e) => e['value']).toList();
+      if (fieldJson0.any((e) => e['_value'] != null)) {
+        json['_linkId'] = fieldJson0.map((e) => e['_value']).toList();
       }
     }
 
@@ -4098,21 +3937,14 @@ class ContractAction extends BackboneElement {
     }
 
     if (contextLinkId != null && contextLinkId!.isNotEmpty) {
-      final fieldJson9 = contextLinkId!.map((e) => e.toJson()).toList();
-      json['contextLinkId'] = fieldJson9.map((e) => e['value']).toList();
-      if (fieldJson9.any((e) => e['_value'] != null)) {
-        json['_contextLinkId'] = fieldJson9.map((e) => e['_value']).toList();
+      final fieldJson1 = contextLinkId!.map((e) => e.toJson()).toList();
+      json['contextLinkId'] = fieldJson1.map((e) => e['value']).toList();
+      if (fieldJson1.any((e) => e['_value'] != null)) {
+        json['_contextLinkId'] = fieldJson1.map((e) => e['_value']).toList();
       }
     }
 
-    if (occurrenceDateTime != null) {
-      final fieldJson10 = occurrenceDateTime!.toJson();
-      json['occurrenceDateTime'] = fieldJson10['value'];
-      if (fieldJson10['_value'] != null) {
-        json['_occurrenceDateTime'] = fieldJson10['_value'];
-      }
-    }
-
+    addField('occurrenceDateTime', occurrenceDateTime);
     if (occurrencePeriod != null) {
       json['occurrencePeriod'] = occurrencePeriod!.toJson();
     }
@@ -4126,10 +3958,10 @@ class ContractAction extends BackboneElement {
     }
 
     if (requesterLinkId != null && requesterLinkId!.isNotEmpty) {
-      final fieldJson14 = requesterLinkId!.map((e) => e.toJson()).toList();
-      json['requesterLinkId'] = fieldJson14.map((e) => e['value']).toList();
-      if (fieldJson14.any((e) => e['_value'] != null)) {
-        json['_requesterLinkId'] = fieldJson14.map((e) => e['_value']).toList();
+      final fieldJson2 = requesterLinkId!.map((e) => e.toJson()).toList();
+      json['requesterLinkId'] = fieldJson2.map((e) => e['value']).toList();
+      if (fieldJson2.any((e) => e['_value'] != null)) {
+        json['_requesterLinkId'] = fieldJson2.map((e) => e['_value']).toList();
       }
     }
 
@@ -4146,10 +3978,10 @@ class ContractAction extends BackboneElement {
     }
 
     if (performerLinkId != null && performerLinkId!.isNotEmpty) {
-      final fieldJson18 = performerLinkId!.map((e) => e.toJson()).toList();
-      json['performerLinkId'] = fieldJson18.map((e) => e['value']).toList();
-      if (fieldJson18.any((e) => e['_value'] != null)) {
-        json['_performerLinkId'] = fieldJson18.map((e) => e['_value']).toList();
+      final fieldJson3 = performerLinkId!.map((e) => e.toJson()).toList();
+      json['performerLinkId'] = fieldJson3.map((e) => e['value']).toList();
+      if (fieldJson3.any((e) => e['_value'] != null)) {
+        json['_performerLinkId'] = fieldJson3.map((e) => e['_value']).toList();
       }
     }
 
@@ -4163,18 +3995,18 @@ class ContractAction extends BackboneElement {
     }
 
     if (reason != null && reason!.isNotEmpty) {
-      final fieldJson21 = reason!.map((e) => e.toJson()).toList();
-      json['reason'] = fieldJson21.map((e) => e['value']).toList();
-      if (fieldJson21.any((e) => e['_value'] != null)) {
-        json['_reason'] = fieldJson21.map((e) => e['_value']).toList();
+      final fieldJson4 = reason!.map((e) => e.toJson()).toList();
+      json['reason'] = fieldJson4.map((e) => e['value']).toList();
+      if (fieldJson4.any((e) => e['_value'] != null)) {
+        json['_reason'] = fieldJson4.map((e) => e['_value']).toList();
       }
     }
 
     if (reasonLinkId != null && reasonLinkId!.isNotEmpty) {
-      final fieldJson22 = reasonLinkId!.map((e) => e.toJson()).toList();
-      json['reasonLinkId'] = fieldJson22.map((e) => e['value']).toList();
-      if (fieldJson22.any((e) => e['_value'] != null)) {
-        json['_reasonLinkId'] = fieldJson22.map((e) => e['_value']).toList();
+      final fieldJson5 = reasonLinkId!.map((e) => e.toJson()).toList();
+      json['reasonLinkId'] = fieldJson5.map((e) => e['value']).toList();
+      if (fieldJson5.any((e) => e['_value'] != null)) {
+        json['_reasonLinkId'] = fieldJson5.map((e) => e['_value']).toList();
       }
     }
 
@@ -4183,11 +4015,11 @@ class ContractAction extends BackboneElement {
     }
 
     if (securityLabelNumber != null && securityLabelNumber!.isNotEmpty) {
-      final fieldJson24 = securityLabelNumber!.map((e) => e.toJson()).toList();
-      json['securityLabelNumber'] = fieldJson24.map((e) => e['value']).toList();
-      if (fieldJson24.any((e) => e['_value'] != null)) {
+      final fieldJson6 = securityLabelNumber!.map((e) => e.toJson()).toList();
+      json['securityLabelNumber'] = fieldJson6.map((e) => e['value']).toList();
+      if (fieldJson6.any((e) => e['_value'] != null)) {
         json['_securityLabelNumber'] =
-            fieldJson24.map((e) => e['_value']).toList();
+            fieldJson6.map((e) => e['_value']).toList();
       }
     }
 
@@ -4379,10 +4211,16 @@ class ContractSubject extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -4392,7 +4230,9 @@ class ContractSubject extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    json['reference'] = reference.map((e) => e.toJson()).toList();
+    if (reference.isNotEmpty) {
+      json['reference'] = reference.map((e) => e.toJson()).toList();
+    }
 
     if (role != null) {
       json['role'] = role!.toJson();
@@ -4553,10 +4393,16 @@ class ContractSigner extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -4570,7 +4416,9 @@ class ContractSigner extends BackboneElement {
 
     json['party'] = party.toJson();
 
-    json['signature'] = signature.map((e) => e.toJson()).toList();
+    if (signature.isNotEmpty) {
+      json['signature'] = signature.map((e) => e.toJson()).toList();
+    }
 
     return json;
   }
@@ -4726,10 +4574,16 @@ class ContractFriendly extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -4889,10 +4743,16 @@ class ContractLegal extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -5055,10 +4915,16 @@ class ContractRule extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }

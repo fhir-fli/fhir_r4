@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Indicates the purpose of a bundle - how it is intended to be used.
-class BundleType {
+class BundleType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  BundleType._(this.fhirCode, {this.element});
+  BundleType._(super.value, [super.element]);
 
   /// Factory constructor to create [BundleType] from JSON.
   factory BundleType.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class BundleType {
     if (value == null && element != null) {
       return BundleType.elementOnly.withElement(element);
     }
-    return BundleType._(value!, element: element);
+    return BundleType._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// BundleType values
   /// document
   static final BundleType document = BundleType._(
     'document',
@@ -87,18 +80,62 @@ class BundleType {
     collection,
   ];
 
+  /// Clones the current instance
+  @override
+  BundleType clone() => BundleType._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  BundleType setElement(String name, dynamic elementValue) {
+    return BundleType._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   BundleType withElement(Element? newElement) {
-    return BundleType._(fhirCode, element: newElement);
+    return BundleType._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  BundleType copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return BundleType._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

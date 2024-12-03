@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// High-level categorization of the definition, used for searching, sorting, and filtering.
-class DefinitionTopic {
+class DefinitionTopic extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  DefinitionTopic._(this.fhirCode, {this.element});
+  DefinitionTopic._(super.value, [super.element]);
 
   /// Factory constructor to create [DefinitionTopic] from JSON.
   factory DefinitionTopic.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class DefinitionTopic {
     if (value == null && element != null) {
       return DefinitionTopic.elementOnly.withElement(element);
     }
-    return DefinitionTopic._(value!, element: element);
+    return DefinitionTopic._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// DefinitionTopic values
   /// treatment
   static final DefinitionTopic treatment = DefinitionTopic._(
     'treatment',
@@ -51,18 +44,63 @@ class DefinitionTopic {
     assessment,
   ];
 
+  /// Clones the current instance
+  @override
+  DefinitionTopic clone() =>
+      DefinitionTopic._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  DefinitionTopic setElement(String name, dynamic elementValue) {
+    return DefinitionTopic._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   DefinitionTopic withElement(Element? newElement) {
-    return DefinitionTopic._(fhirCode, element: newElement);
+    return DefinitionTopic._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  DefinitionTopic copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return DefinitionTopic._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Controls how multiple enableWhen values are interpreted - whether all or any must be true.
-class EnableWhenBehavior {
+class EnableWhenBehavior extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  EnableWhenBehavior._(this.fhirCode, {this.element});
+  EnableWhenBehavior._(super.value, [super.element]);
 
   /// Factory constructor to create [EnableWhenBehavior] from JSON.
   factory EnableWhenBehavior.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class EnableWhenBehavior {
     if (value == null && element != null) {
       return EnableWhenBehavior.elementOnly.withElement(element);
     }
-    return EnableWhenBehavior._(value!, element: element);
+    return EnableWhenBehavior._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// EnableWhenBehavior values
   /// all
   static final EnableWhenBehavior all = EnableWhenBehavior._(
     'all',
@@ -45,18 +38,63 @@ class EnableWhenBehavior {
     any,
   ];
 
+  /// Clones the current instance
+  @override
+  EnableWhenBehavior clone() =>
+      EnableWhenBehavior._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  EnableWhenBehavior setElement(String name, dynamic elementValue) {
+    return EnableWhenBehavior._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   EnableWhenBehavior withElement(Element? newElement) {
-    return EnableWhenBehavior._(fhirCode, element: newElement);
+    return EnableWhenBehavior._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  EnableWhenBehavior copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return EnableWhenBehavior._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

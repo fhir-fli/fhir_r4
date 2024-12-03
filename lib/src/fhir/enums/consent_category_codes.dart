@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// This value set includes sample Consent Directive Type codes, including several consent directive related LOINC codes; HL7 VALUE SET: ActConsentType(2.16.840.1.113883.1.11.19897); examples of US realm consent directive legal descriptions and references to online and/or downloadable forms such as the SSA-827 Authorization to Disclose Information to the Social Security Administration; and other anticipated consent directives related to participation in a clinical trial, medical procedures, reproductive procedures; health care directive (Living Will); advance directive, do not resuscitate (DNR); Physician Orders for Life-Sustaining Treatment (POLST)
-class ConsentCategoryCodes {
+class ConsentCategoryCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ConsentCategoryCodes._(this.fhirCode, {this.element});
+  ConsentCategoryCodes._(super.value, [super.element]);
 
   /// Factory constructor to create [ConsentCategoryCodes] from JSON.
   factory ConsentCategoryCodes.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class ConsentCategoryCodes {
     if (value == null && element != null) {
       return ConsentCategoryCodes.elementOnly.withElement(element);
     }
-    return ConsentCategoryCodes._(value!, element: element);
+    return ConsentCategoryCodes._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ConsentCategoryCodes values
   /// acd
   static final ConsentCategoryCodes acd = ConsentCategoryCodes._(
     'acd',
@@ -111,18 +104,63 @@ class ConsentCategoryCodes {
     value64292_6,
   ];
 
+  /// Clones the current instance
+  @override
+  ConsentCategoryCodes clone() =>
+      ConsentCategoryCodes._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  ConsentCategoryCodes setElement(String name, dynamic elementValue) {
+    return ConsentCategoryCodes._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   ConsentCategoryCodes withElement(Element? newElement) {
-    return ConsentCategoryCodes._(fhirCode, element: newElement);
+    return ConsentCategoryCodes._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  ConsentCategoryCodes copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return ConsentCategoryCodes._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

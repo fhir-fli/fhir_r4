@@ -293,31 +293,23 @@ class PaymentReconciliation extends DomainResource {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    json['resourceType'] = resourceType.toJson();
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    json['resourceType'] = resourceType.toJson();
+    addField('id', id);
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    if (implicitRules != null) {
-      final fieldJson1 = implicitRules!.toJson();
-      json['implicitRules'] = fieldJson1['value'];
-      if (fieldJson1['_value'] != null) {
-        json['_implicitRules'] = fieldJson1['_value'];
-      }
-    }
-
-    if (language != null) {
-      final fieldJson2 = language!.toJson();
-      json['language'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_language'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('implicitRules', implicitRules);
+    addField('language', language);
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -339,22 +331,12 @@ class PaymentReconciliation extends DomainResource {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
 
-    final fieldJson8 = status.toJson();
-    json['status'] = fieldJson8['value'];
-    if (fieldJson8['_value'] != null) {
-      json['_status'] = fieldJson8['_value'];
-    }
-
+    addField('status', status);
     if (period != null) {
       json['period'] = period!.toJson();
     }
 
-    final fieldJson10 = created.toJson();
-    json['created'] = fieldJson10['value'];
-    if (fieldJson10['_value'] != null) {
-      json['_created'] = fieldJson10['_value'];
-    }
-
+    addField('created', created);
     if (paymentIssuer != null) {
       json['paymentIssuer'] = paymentIssuer!.toJson();
     }
@@ -367,28 +349,9 @@ class PaymentReconciliation extends DomainResource {
       json['requestor'] = requestor!.toJson();
     }
 
-    if (outcome != null) {
-      final fieldJson14 = outcome!.toJson();
-      json['outcome'] = fieldJson14['value'];
-      if (fieldJson14['_value'] != null) {
-        json['_outcome'] = fieldJson14['_value'];
-      }
-    }
-
-    if (disposition != null) {
-      final fieldJson15 = disposition!.toJson();
-      json['disposition'] = fieldJson15['value'];
-      if (fieldJson15['_value'] != null) {
-        json['_disposition'] = fieldJson15['_value'];
-      }
-    }
-
-    final fieldJson16 = paymentDate.toJson();
-    json['paymentDate'] = fieldJson16['value'];
-    if (fieldJson16['_value'] != null) {
-      json['_paymentDate'] = fieldJson16['_value'];
-    }
-
+    addField('outcome', outcome);
+    addField('disposition', disposition);
+    addField('paymentDate', paymentDate);
     json['paymentAmount'] = paymentAmount.toJson();
 
     if (paymentIdentifier != null) {
@@ -670,10 +633,16 @@ class PaymentReconciliationDetail extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -705,14 +674,7 @@ class PaymentReconciliationDetail extends BackboneElement {
       json['response'] = response!.toJson();
     }
 
-    if (date != null) {
-      final fieldJson8 = date!.toJson();
-      json['date'] = fieldJson8['value'];
-      if (fieldJson8['_value'] != null) {
-        json['_date'] = fieldJson8['_value'];
-      }
-    }
-
+    addField('date', date);
     if (responsible != null) {
       json['responsible'] = responsible!.toJson();
     }
@@ -886,10 +848,16 @@ class PaymentReconciliationProcessNote extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -899,22 +867,8 @@ class PaymentReconciliationProcessNote extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    if (type != null) {
-      final fieldJson2 = type!.toJson();
-      json['type'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_type'] = fieldJson2['_value'];
-      }
-    }
-
-    if (text != null) {
-      final fieldJson3 = text!.toJson();
-      json['text'] = fieldJson3['value'];
-      if (fieldJson3['_value'] != null) {
-        json['_text'] = fieldJson3['_value'];
-      }
-    }
-
+    addField('type', type);
+    addField('text', text);
     return json;
   }
 

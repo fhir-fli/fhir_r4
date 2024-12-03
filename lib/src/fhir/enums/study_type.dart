@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The type of study the evidence was derived from.
-class StudyType {
+class StudyType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  StudyType._(this.fhirCode, {this.element});
+  StudyType._(super.value, [super.element]);
 
   /// Factory constructor to create [StudyType] from JSON.
   factory StudyType.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class StudyType {
     if (value == null && element != null) {
       return StudyType.elementOnly.withElement(element);
     }
-    return StudyType._(value!, element: element);
+    return StudyType._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// StudyType values
   /// RCT
   static final StudyType RCT = StudyType._(
     'RCT',
@@ -75,18 +68,62 @@ class StudyType {
     mixed,
   ];
 
+  /// Clones the current instance
+  @override
+  StudyType clone() => StudyType._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  StudyType setElement(String name, dynamic elementValue) {
+    return StudyType._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   StudyType withElement(Element? newElement) {
-    return StudyType._(fhirCode, element: newElement);
+    return StudyType._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  StudyType copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return StudyType._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

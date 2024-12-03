@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Degree of preference of a type of conditioned specimen.
-class SpecimenContainedPreference {
+class SpecimenContainedPreference extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  SpecimenContainedPreference._(this.fhirCode, {this.element});
+  SpecimenContainedPreference._(super.value, [super.element]);
 
   /// Factory constructor to create [SpecimenContainedPreference] from JSON.
   factory SpecimenContainedPreference.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class SpecimenContainedPreference {
     if (value == null && element != null) {
       return SpecimenContainedPreference.elementOnly.withElement(element);
     }
-    return SpecimenContainedPreference._(value!, element: element);
+    return SpecimenContainedPreference._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// SpecimenContainedPreference values
   /// preferred
   static final SpecimenContainedPreference preferred =
       SpecimenContainedPreference._(
@@ -48,18 +41,63 @@ class SpecimenContainedPreference {
     alternate,
   ];
 
+  /// Clones the current instance
+  @override
+  SpecimenContainedPreference clone() =>
+      SpecimenContainedPreference._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  SpecimenContainedPreference setElement(String name, dynamic elementValue) {
+    return SpecimenContainedPreference._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   SpecimenContainedPreference withElement(Element? newElement) {
-    return SpecimenContainedPreference._(fhirCode, element: newElement);
+    return SpecimenContainedPreference._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  SpecimenContainedPreference copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return SpecimenContainedPreference._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

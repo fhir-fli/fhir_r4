@@ -226,31 +226,23 @@ class BodyStructure extends DomainResource {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    json['resourceType'] = resourceType.toJson();
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    json['resourceType'] = resourceType.toJson();
+    addField('id', id);
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    if (implicitRules != null) {
-      final fieldJson1 = implicitRules!.toJson();
-      json['implicitRules'] = fieldJson1['value'];
-      if (fieldJson1['_value'] != null) {
-        json['_implicitRules'] = fieldJson1['_value'];
-      }
-    }
-
-    if (language != null) {
-      final fieldJson2 = language!.toJson();
-      json['language'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_language'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('implicitRules', implicitRules);
+    addField('language', language);
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -272,14 +264,7 @@ class BodyStructure extends DomainResource {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
 
-    if (active != null) {
-      final fieldJson8 = active!.toJson();
-      json['active'] = fieldJson8['value'];
-      if (fieldJson8['_value'] != null) {
-        json['_active'] = fieldJson8['_value'];
-      }
-    }
-
+    addField('active', active);
     if (morphology != null) {
       json['morphology'] = morphology!.toJson();
     }
@@ -293,14 +278,7 @@ class BodyStructure extends DomainResource {
           locationQualifier!.map((e) => e.toJson()).toList();
     }
 
-    if (description != null) {
-      final fieldJson12 = description!.toJson();
-      json['description'] = fieldJson12['value'];
-      if (fieldJson12['_value'] != null) {
-        json['_description'] = fieldJson12['_value'];
-      }
-    }
-
+    addField('description', description);
     if (image != null && image!.isNotEmpty) {
       json['image'] = image!.map((e) => e.toJson()).toList();
     }

@@ -135,49 +135,29 @@ class Binary extends Resource {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    json['resourceType'] = resourceType.toJson();
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    json['resourceType'] = resourceType.toJson();
+    addField('id', id);
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    if (implicitRules != null) {
-      final fieldJson1 = implicitRules!.toJson();
-      json['implicitRules'] = fieldJson1['value'];
-      if (fieldJson1['_value'] != null) {
-        json['_implicitRules'] = fieldJson1['_value'];
-      }
-    }
-
-    if (language != null) {
-      final fieldJson2 = language!.toJson();
-      json['language'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_language'] = fieldJson2['_value'];
-      }
-    }
-
-    final fieldJson3 = contentType.toJson();
-    json['contentType'] = fieldJson3['value'];
-    if (fieldJson3['_value'] != null) {
-      json['_contentType'] = fieldJson3['_value'];
-    }
-
+    addField('implicitRules', implicitRules);
+    addField('language', language);
+    addField('contentType', contentType);
     if (securityContext != null) {
       json['securityContext'] = securityContext!.toJson();
     }
 
-    if (data != null) {
-      final fieldJson5 = data!.toJson();
-      json['data'] = fieldJson5['value'];
-      if (fieldJson5['_value'] != null) {
-        json['_data'] = fieldJson5['_value'];
-      }
-    }
-
+    addField('data', data);
     return json;
   }
 

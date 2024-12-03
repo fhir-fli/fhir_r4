@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Codes that reflect the current state of a goal and whether the goal is still being targeted.
-class GoalLifecycleStatus {
+class GoalLifecycleStatus extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  GoalLifecycleStatus._(this.fhirCode, {this.element});
+  GoalLifecycleStatus._(super.value, [super.element]);
 
   /// Factory constructor to create [GoalLifecycleStatus] from JSON.
   factory GoalLifecycleStatus.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class GoalLifecycleStatus {
     if (value == null && element != null) {
       return GoalLifecycleStatus.elementOnly.withElement(element);
     }
-    return GoalLifecycleStatus._(value!, element: element);
+    return GoalLifecycleStatus._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// GoalLifecycleStatus values
   /// proposed
   static final GoalLifecycleStatus proposed = GoalLifecycleStatus._(
     'proposed',
@@ -87,18 +80,63 @@ class GoalLifecycleStatus {
     rejected,
   ];
 
+  /// Clones the current instance
+  @override
+  GoalLifecycleStatus clone() =>
+      GoalLifecycleStatus._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  GoalLifecycleStatus setElement(String name, dynamic elementValue) {
+    return GoalLifecycleStatus._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   GoalLifecycleStatus withElement(Element? newElement) {
-    return GoalLifecycleStatus._(fhirCode, element: newElement);
+    return GoalLifecycleStatus._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  GoalLifecycleStatus copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return GoalLifecycleStatus._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

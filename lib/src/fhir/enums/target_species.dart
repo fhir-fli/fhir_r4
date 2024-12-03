@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// A species for which a medicinal product is intended.
-class TargetSpecies {
+class TargetSpecies extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  TargetSpecies._(this.fhirCode, {this.element});
+  TargetSpecies._(super.value, [super.element]);
 
   /// Factory constructor to create [TargetSpecies] from JSON.
   factory TargetSpecies.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class TargetSpecies {
     if (value == null && element != null) {
       return TargetSpecies.elementOnly.withElement(element);
     }
-    return TargetSpecies._(value!, element: element);
+    return TargetSpecies._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// TargetSpecies values
   /// value100000108874
   static final TargetSpecies value100000108874 = TargetSpecies._(
     '100000108874',
@@ -1233,18 +1226,62 @@ class TargetSpecies {
     value100000109073,
   ];
 
+  /// Clones the current instance
+  @override
+  TargetSpecies clone() => TargetSpecies._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  TargetSpecies setElement(String name, dynamic elementValue) {
+    return TargetSpecies._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   TargetSpecies withElement(Element? newElement) {
-    return TargetSpecies._(fhirCode, element: newElement);
+    return TargetSpecies._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  TargetSpecies copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return TargetSpecies._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

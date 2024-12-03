@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The presentation type in which an administrable medicinal product is given to a patient.
-class UnitOfPresentation {
+class UnitOfPresentation extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  UnitOfPresentation._(this.fhirCode, {this.element});
+  UnitOfPresentation._(super.value, [super.element]);
 
   /// Factory constructor to create [UnitOfPresentation] from JSON.
   factory UnitOfPresentation.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class UnitOfPresentation {
     if (value == null && element != null) {
       return UnitOfPresentation.elementOnly.withElement(element);
     }
-    return UnitOfPresentation._(value!, element: element);
+    return UnitOfPresentation._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// UnitOfPresentation values
   /// value200000002108
   static final UnitOfPresentation value200000002108 = UnitOfPresentation._(
     '200000002108',
@@ -369,18 +362,63 @@ class UnitOfPresentation {
     value200000002166,
   ];
 
+  /// Clones the current instance
+  @override
+  UnitOfPresentation clone() =>
+      UnitOfPresentation._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  UnitOfPresentation setElement(String name, dynamic elementValue) {
+    return UnitOfPresentation._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   UnitOfPresentation withElement(Element? newElement) {
-    return UnitOfPresentation._(fhirCode, element: newElement);
+    return UnitOfPresentation._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  UnitOfPresentation copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return UnitOfPresentation._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// This value set includes a smattering of Network type codes.
-class NetworkTypeCodes {
+class NetworkTypeCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  NetworkTypeCodes._(this.fhirCode, {this.element});
+  NetworkTypeCodes._(super.value, [super.element]);
 
   /// Factory constructor to create [NetworkTypeCodes] from JSON.
   factory NetworkTypeCodes.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class NetworkTypeCodes {
     if (value == null && element != null) {
       return NetworkTypeCodes.elementOnly.withElement(element);
     }
-    return NetworkTypeCodes._(value!, element: element);
+    return NetworkTypeCodes._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// NetworkTypeCodes values
   /// in_
   static final NetworkTypeCodes in_ = NetworkTypeCodes._(
     'in',
@@ -45,18 +38,63 @@ class NetworkTypeCodes {
     out,
   ];
 
+  /// Clones the current instance
+  @override
+  NetworkTypeCodes clone() =>
+      NetworkTypeCodes._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  NetworkTypeCodes setElement(String name, dynamic elementValue) {
+    return NetworkTypeCodes._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   NetworkTypeCodes withElement(Element? newElement) {
-    return NetworkTypeCodes._(fhirCode, element: newElement);
+    return NetworkTypeCodes._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  NetworkTypeCodes copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return NetworkTypeCodes._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

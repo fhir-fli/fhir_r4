@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// MedicationRequest Intent Codes
-class MedicationRequestIntent {
+class MedicationRequestIntent extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  MedicationRequestIntent._(this.fhirCode, {this.element});
+  MedicationRequestIntent._(super.value, [super.element]);
 
   /// Factory constructor to create [MedicationRequestIntent] from JSON.
   factory MedicationRequestIntent.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class MedicationRequestIntent {
     if (value == null && element != null) {
       return MedicationRequestIntent.elementOnly.withElement(element);
     }
-    return MedicationRequestIntent._(value!, element: element);
+    return MedicationRequestIntent._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// MedicationRequestIntent values
   /// proposal
   static final MedicationRequestIntent proposal = MedicationRequestIntent._(
     'proposal',
@@ -84,18 +77,63 @@ class MedicationRequestIntent {
     option,
   ];
 
+  /// Clones the current instance
+  @override
+  MedicationRequestIntent clone() =>
+      MedicationRequestIntent._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  MedicationRequestIntent setElement(String name, dynamic elementValue) {
+    return MedicationRequestIntent._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   MedicationRequestIntent withElement(Element? newElement) {
-    return MedicationRequestIntent._(fhirCode, element: newElement);
+    return MedicationRequestIntent._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  MedicationRequestIntent copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return MedicationRequestIntent._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

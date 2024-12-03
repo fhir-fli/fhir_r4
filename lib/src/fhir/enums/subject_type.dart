@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Possible types of subjects.
-class SubjectType {
+class SubjectType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  SubjectType._(this.fhirCode, {this.element});
+  SubjectType._(super.value, [super.element]);
 
   /// Factory constructor to create [SubjectType] from JSON.
   factory SubjectType.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class SubjectType {
     if (value == null && element != null) {
       return SubjectType.elementOnly.withElement(element);
     }
-    return SubjectType._(value!, element: element);
+    return SubjectType._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// SubjectType values
   /// Resource
   static final SubjectType Resource = SubjectType._(
     'Resource',
@@ -891,18 +884,62 @@ class SubjectType {
     Parameters,
   ];
 
+  /// Clones the current instance
+  @override
+  SubjectType clone() => SubjectType._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  SubjectType setElement(String name, dynamic elementValue) {
+    return SubjectType._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   SubjectType withElement(Element? newElement) {
-    return SubjectType._(fhirCode, element: newElement);
+    return SubjectType._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  SubjectType copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return SubjectType._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

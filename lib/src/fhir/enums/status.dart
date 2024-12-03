@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The validation status of the target
-class Status {
+class Status extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  Status._(this.fhirCode, {this.element});
+  Status._(super.value, [super.element]);
 
   /// Factory constructor to create [Status] from JSON.
   factory Status.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class Status {
     if (value == null && element != null) {
       return Status.elementOnly.withElement(element);
     }
-    return Status._(value!, element: element);
+    return Status._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// Status values
   /// attested
   static final Status attested = Status._(
     'attested',
@@ -69,18 +62,62 @@ class Status {
     reval_fail,
   ];
 
+  /// Clones the current instance
+  @override
+  Status clone() => Status._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  Status setElement(String name, dynamic elementValue) {
+    return Status._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   Status withElement(Element? newElement) {
-    return Status._(fhirCode, element: newElement);
+    return Status._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  Status copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return Status._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

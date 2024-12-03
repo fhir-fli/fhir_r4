@@ -378,31 +378,23 @@ class AdverseEvent extends DomainResource {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    json['resourceType'] = resourceType.toJson();
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    json['resourceType'] = resourceType.toJson();
+    addField('id', id);
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    if (implicitRules != null) {
-      final fieldJson1 = implicitRules!.toJson();
-      json['implicitRules'] = fieldJson1['value'];
-      if (fieldJson1['_value'] != null) {
-        json['_implicitRules'] = fieldJson1['_value'];
-      }
-    }
-
-    if (language != null) {
-      final fieldJson2 = language!.toJson();
-      json['language'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_language'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('implicitRules', implicitRules);
+    addField('language', language);
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -424,12 +416,7 @@ class AdverseEvent extends DomainResource {
       json['identifier'] = identifier!.toJson();
     }
 
-    final fieldJson8 = actuality.toJson();
-    json['actuality'] = fieldJson8['value'];
-    if (fieldJson8['_value'] != null) {
-      json['_actuality'] = fieldJson8['_value'];
-    }
-
+    addField('actuality', actuality);
     if (category != null && category!.isNotEmpty) {
       json['category'] = category!.map((e) => e.toJson()).toList();
     }
@@ -444,30 +431,9 @@ class AdverseEvent extends DomainResource {
       json['encounter'] = encounter!.toJson();
     }
 
-    if (date != null) {
-      final fieldJson13 = date!.toJson();
-      json['date'] = fieldJson13['value'];
-      if (fieldJson13['_value'] != null) {
-        json['_date'] = fieldJson13['_value'];
-      }
-    }
-
-    if (detected != null) {
-      final fieldJson14 = detected!.toJson();
-      json['detected'] = fieldJson14['value'];
-      if (fieldJson14['_value'] != null) {
-        json['_detected'] = fieldJson14['_value'];
-      }
-    }
-
-    if (recordedDate != null) {
-      final fieldJson15 = recordedDate!.toJson();
-      json['recordedDate'] = fieldJson15['value'];
-      if (fieldJson15['_value'] != null) {
-        json['_recordedDate'] = fieldJson15['_value'];
-      }
-    }
-
+    addField('date', date);
+    addField('detected', detected);
+    addField('recordedDate', recordedDate);
     if (resultingCondition != null && resultingCondition!.isNotEmpty) {
       json['resultingCondition'] =
           resultingCondition!.map((e) => e.toJson()).toList();
@@ -709,10 +675,16 @@ class AdverseEventSuspectEntity extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -892,10 +864,16 @@ class AdverseEventCausality extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -909,14 +887,7 @@ class AdverseEventCausality extends BackboneElement {
       json['assessment'] = assessment!.toJson();
     }
 
-    if (productRelatedness != null) {
-      final fieldJson3 = productRelatedness!.toJson();
-      json['productRelatedness'] = fieldJson3['value'];
-      if (fieldJson3['_value'] != null) {
-        json['_productRelatedness'] = fieldJson3['_value'];
-      }
-    }
-
+    addField('productRelatedness', productRelatedness);
     if (author != null) {
       json['author'] = author!.toJson();
     }

@@ -402,31 +402,23 @@ class ConceptMap extends DomainResource {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    json['resourceType'] = resourceType.toJson();
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    json['resourceType'] = resourceType.toJson();
+    addField('id', id);
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    if (implicitRules != null) {
-      final fieldJson1 = implicitRules!.toJson();
-      json['implicitRules'] = fieldJson1['value'];
-      if (fieldJson1['_value'] != null) {
-        json['_implicitRules'] = fieldJson1['_value'];
-      }
-    }
-
-    if (language != null) {
-      final fieldJson2 = language!.toJson();
-      json['language'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_language'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('implicitRules', implicitRules);
+    addField('language', language);
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -444,84 +436,23 @@ class ConceptMap extends DomainResource {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    if (url != null) {
-      final fieldJson7 = url!.toJson();
-      json['url'] = fieldJson7['value'];
-      if (fieldJson7['_value'] != null) {
-        json['_url'] = fieldJson7['_value'];
-      }
-    }
-
+    addField('url', url);
     if (identifier != null) {
       json['identifier'] = identifier!.toJson();
     }
 
-    if (version != null) {
-      final fieldJson9 = version!.toJson();
-      json['version'] = fieldJson9['value'];
-      if (fieldJson9['_value'] != null) {
-        json['_version'] = fieldJson9['_value'];
-      }
-    }
-
-    if (name != null) {
-      final fieldJson10 = name!.toJson();
-      json['name'] = fieldJson10['value'];
-      if (fieldJson10['_value'] != null) {
-        json['_name'] = fieldJson10['_value'];
-      }
-    }
-
-    if (title != null) {
-      final fieldJson11 = title!.toJson();
-      json['title'] = fieldJson11['value'];
-      if (fieldJson11['_value'] != null) {
-        json['_title'] = fieldJson11['_value'];
-      }
-    }
-
-    final fieldJson12 = status.toJson();
-    json['status'] = fieldJson12['value'];
-    if (fieldJson12['_value'] != null) {
-      json['_status'] = fieldJson12['_value'];
-    }
-
-    if (experimental != null) {
-      final fieldJson13 = experimental!.toJson();
-      json['experimental'] = fieldJson13['value'];
-      if (fieldJson13['_value'] != null) {
-        json['_experimental'] = fieldJson13['_value'];
-      }
-    }
-
-    if (date != null) {
-      final fieldJson14 = date!.toJson();
-      json['date'] = fieldJson14['value'];
-      if (fieldJson14['_value'] != null) {
-        json['_date'] = fieldJson14['_value'];
-      }
-    }
-
-    if (publisher != null) {
-      final fieldJson15 = publisher!.toJson();
-      json['publisher'] = fieldJson15['value'];
-      if (fieldJson15['_value'] != null) {
-        json['_publisher'] = fieldJson15['_value'];
-      }
-    }
-
+    addField('version', version);
+    addField('name', name);
+    addField('title', title);
+    addField('status', status);
+    addField('experimental', experimental);
+    addField('date', date);
+    addField('publisher', publisher);
     if (contact != null && contact!.isNotEmpty) {
       json['contact'] = contact!.map((e) => e.toJson()).toList();
     }
 
-    if (description != null) {
-      final fieldJson17 = description!.toJson();
-      json['description'] = fieldJson17['value'];
-      if (fieldJson17['_value'] != null) {
-        json['_description'] = fieldJson17['_value'];
-      }
-    }
-
+    addField('description', description);
     if (useContext != null && useContext!.isNotEmpty) {
       json['useContext'] = useContext!.map((e) => e.toJson()).toList();
     }
@@ -530,54 +461,12 @@ class ConceptMap extends DomainResource {
       json['jurisdiction'] = jurisdiction!.map((e) => e.toJson()).toList();
     }
 
-    if (purpose != null) {
-      final fieldJson20 = purpose!.toJson();
-      json['purpose'] = fieldJson20['value'];
-      if (fieldJson20['_value'] != null) {
-        json['_purpose'] = fieldJson20['_value'];
-      }
-    }
-
-    if (copyright != null) {
-      final fieldJson21 = copyright!.toJson();
-      json['copyright'] = fieldJson21['value'];
-      if (fieldJson21['_value'] != null) {
-        json['_copyright'] = fieldJson21['_value'];
-      }
-    }
-
-    if (sourceUri != null) {
-      final fieldJson22 = sourceUri!.toJson();
-      json['sourceUri'] = fieldJson22['value'];
-      if (fieldJson22['_value'] != null) {
-        json['_sourceUri'] = fieldJson22['_value'];
-      }
-    }
-
-    if (sourceCanonical != null) {
-      final fieldJson23 = sourceCanonical!.toJson();
-      json['sourceCanonical'] = fieldJson23['value'];
-      if (fieldJson23['_value'] != null) {
-        json['_sourceCanonical'] = fieldJson23['_value'];
-      }
-    }
-
-    if (targetUri != null) {
-      final fieldJson24 = targetUri!.toJson();
-      json['targetUri'] = fieldJson24['value'];
-      if (fieldJson24['_value'] != null) {
-        json['_targetUri'] = fieldJson24['_value'];
-      }
-    }
-
-    if (targetCanonical != null) {
-      final fieldJson25 = targetCanonical!.toJson();
-      json['targetCanonical'] = fieldJson25['value'];
-      if (fieldJson25['_value'] != null) {
-        json['_targetCanonical'] = fieldJson25['_value'];
-      }
-    }
-
+    addField('purpose', purpose);
+    addField('copyright', copyright);
+    addField('sourceUri', sourceUri);
+    addField('sourceCanonical', sourceCanonical);
+    addField('targetUri', targetUri);
+    addField('targetCanonical', targetCanonical);
     if (group != null && group!.isNotEmpty) {
       json['group'] = group!.map((e) => e.toJson()).toList();
     }
@@ -827,10 +716,16 @@ class ConceptMapGroup extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -840,39 +735,13 @@ class ConceptMapGroup extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    if (source != null) {
-      final fieldJson2 = source!.toJson();
-      json['source'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_source'] = fieldJson2['_value'];
-      }
+    addField('source', source);
+    addField('sourceVersion', sourceVersion);
+    addField('target', target);
+    addField('targetVersion', targetVersion);
+    if (element.isNotEmpty) {
+      json['element'] = element.map((e) => e.toJson()).toList();
     }
-
-    if (sourceVersion != null) {
-      final fieldJson3 = sourceVersion!.toJson();
-      json['sourceVersion'] = fieldJson3['value'];
-      if (fieldJson3['_value'] != null) {
-        json['_sourceVersion'] = fieldJson3['_value'];
-      }
-    }
-
-    if (target != null) {
-      final fieldJson4 = target!.toJson();
-      json['target'] = fieldJson4['value'];
-      if (fieldJson4['_value'] != null) {
-        json['_target'] = fieldJson4['_value'];
-      }
-    }
-
-    if (targetVersion != null) {
-      final fieldJson5 = targetVersion!.toJson();
-      json['targetVersion'] = fieldJson5['value'];
-      if (fieldJson5['_value'] != null) {
-        json['_targetVersion'] = fieldJson5['_value'];
-      }
-    }
-
-    json['element'] = element.map((e) => e.toJson()).toList();
 
     if (unmapped != null) {
       json['unmapped'] = unmapped!.toJson();
@@ -1046,10 +915,16 @@ class ConceptMapElement extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1059,22 +934,8 @@ class ConceptMapElement extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    if (code != null) {
-      final fieldJson2 = code!.toJson();
-      json['code'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_code'] = fieldJson2['_value'];
-      }
-    }
-
-    if (display != null) {
-      final fieldJson3 = display!.toJson();
-      json['display'] = fieldJson3['value'];
-      if (fieldJson3['_value'] != null) {
-        json['_display'] = fieldJson3['_value'];
-      }
-    }
-
+    addField('code', code);
+    addField('display', display);
     if (target != null && target!.isNotEmpty) {
       json['target'] = target!.map((e) => e.toJson()).toList();
     }
@@ -1283,10 +1144,16 @@ class ConceptMapTarget extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1296,36 +1163,10 @@ class ConceptMapTarget extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    if (code != null) {
-      final fieldJson2 = code!.toJson();
-      json['code'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_code'] = fieldJson2['_value'];
-      }
-    }
-
-    if (display != null) {
-      final fieldJson3 = display!.toJson();
-      json['display'] = fieldJson3['value'];
-      if (fieldJson3['_value'] != null) {
-        json['_display'] = fieldJson3['_value'];
-      }
-    }
-
-    final fieldJson4 = equivalence.toJson();
-    json['equivalence'] = fieldJson4['value'];
-    if (fieldJson4['_value'] != null) {
-      json['_equivalence'] = fieldJson4['_value'];
-    }
-
-    if (comment != null) {
-      final fieldJson5 = comment!.toJson();
-      json['comment'] = fieldJson5['value'];
-      if (fieldJson5['_value'] != null) {
-        json['_comment'] = fieldJson5['_value'];
-      }
-    }
-
+    addField('code', code);
+    addField('display', display);
+    addField('equivalence', equivalence);
+    addField('comment', comment);
     if (dependsOn != null && dependsOn!.isNotEmpty) {
       json['dependsOn'] = dependsOn!.map((e) => e.toJson()).toList();
     }
@@ -1512,10 +1353,16 @@ class ConceptMapDependsOn extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1525,34 +1372,10 @@ class ConceptMapDependsOn extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    final fieldJson2 = property.toJson();
-    json['property'] = fieldJson2['value'];
-    if (fieldJson2['_value'] != null) {
-      json['_property'] = fieldJson2['_value'];
-    }
-
-    if (system != null) {
-      final fieldJson3 = system!.toJson();
-      json['system'] = fieldJson3['value'];
-      if (fieldJson3['_value'] != null) {
-        json['_system'] = fieldJson3['_value'];
-      }
-    }
-
-    final fieldJson4 = value.toJson();
-    json['value'] = fieldJson4['value'];
-    if (fieldJson4['_value'] != null) {
-      json['_value'] = fieldJson4['_value'];
-    }
-
-    if (display != null) {
-      final fieldJson5 = display!.toJson();
-      json['display'] = fieldJson5['value'];
-      if (fieldJson5['_value'] != null) {
-        json['_display'] = fieldJson5['_value'];
-      }
-    }
-
+    addField('property', property);
+    addField('system', system);
+    addField('value', value);
+    addField('display', display);
     return json;
   }
 
@@ -1732,10 +1555,16 @@ class ConceptMapUnmapped extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1745,36 +1574,10 @@ class ConceptMapUnmapped extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    final fieldJson2 = mode.toJson();
-    json['mode'] = fieldJson2['value'];
-    if (fieldJson2['_value'] != null) {
-      json['_mode'] = fieldJson2['_value'];
-    }
-
-    if (code != null) {
-      final fieldJson3 = code!.toJson();
-      json['code'] = fieldJson3['value'];
-      if (fieldJson3['_value'] != null) {
-        json['_code'] = fieldJson3['_value'];
-      }
-    }
-
-    if (display != null) {
-      final fieldJson4 = display!.toJson();
-      json['display'] = fieldJson4['value'];
-      if (fieldJson4['_value'] != null) {
-        json['_display'] = fieldJson4['_value'];
-      }
-    }
-
-    if (url != null) {
-      final fieldJson5 = url!.toJson();
-      json['url'] = fieldJson5['value'];
-      if (fieldJson5['_value'] != null) {
-        json['_url'] = fieldJson5['_value'];
-      }
-    }
-
+    addField('mode', mode);
+    addField('code', code);
+    addField('display', display);
+    addField('url', url);
     return json;
   }
 

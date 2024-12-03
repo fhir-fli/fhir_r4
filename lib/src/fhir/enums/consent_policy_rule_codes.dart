@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// This value set includes sample Regulatory consent policy types from the US and other regions.
-class ConsentPolicyRuleCodes {
+class ConsentPolicyRuleCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ConsentPolicyRuleCodes._(this.fhirCode, {this.element});
+  ConsentPolicyRuleCodes._(super.value, [super.element]);
 
   /// Factory constructor to create [ConsentPolicyRuleCodes] from JSON.
   factory ConsentPolicyRuleCodes.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class ConsentPolicyRuleCodes {
     if (value == null && element != null) {
       return ConsentPolicyRuleCodes.elementOnly.withElement(element);
     }
-    return ConsentPolicyRuleCodes._(value!, element: element);
+    return ConsentPolicyRuleCodes._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ConsentPolicyRuleCodes values
   /// cric
   static final ConsentPolicyRuleCodes cric = ConsentPolicyRuleCodes._(
     'cric',
@@ -193,18 +186,63 @@ class ConsentPolicyRuleCodes {
     ga4gh,
   ];
 
+  /// Clones the current instance
+  @override
+  ConsentPolicyRuleCodes clone() =>
+      ConsentPolicyRuleCodes._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  ConsentPolicyRuleCodes setElement(String name, dynamic elementValue) {
+    return ConsentPolicyRuleCodes._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   ConsentPolicyRuleCodes withElement(Element? newElement) {
-    return ConsentPolicyRuleCodes._(fhirCode, element: newElement);
+    return ConsentPolicyRuleCodes._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  ConsentPolicyRuleCodes copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return ConsentPolicyRuleCodes._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

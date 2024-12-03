@@ -215,31 +215,23 @@ class VisionPrescription extends DomainResource {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    json['resourceType'] = resourceType.toJson();
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    json['resourceType'] = resourceType.toJson();
+    addField('id', id);
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    if (implicitRules != null) {
-      final fieldJson1 = implicitRules!.toJson();
-      json['implicitRules'] = fieldJson1['value'];
-      if (fieldJson1['_value'] != null) {
-        json['_implicitRules'] = fieldJson1['_value'];
-      }
-    }
-
-    if (language != null) {
-      final fieldJson2 = language!.toJson();
-      json['language'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_language'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('implicitRules', implicitRules);
+    addField('language', language);
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -261,34 +253,21 @@ class VisionPrescription extends DomainResource {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
 
-    final fieldJson8 = status.toJson();
-    json['status'] = fieldJson8['value'];
-    if (fieldJson8['_value'] != null) {
-      json['_status'] = fieldJson8['_value'];
-    }
-
-    final fieldJson9 = created.toJson();
-    json['created'] = fieldJson9['value'];
-    if (fieldJson9['_value'] != null) {
-      json['_created'] = fieldJson9['_value'];
-    }
-
+    addField('status', status);
+    addField('created', created);
     json['patient'] = patient.toJson();
 
     if (encounter != null) {
       json['encounter'] = encounter!.toJson();
     }
 
-    final fieldJson12 = dateWritten.toJson();
-    json['dateWritten'] = fieldJson12['value'];
-    if (fieldJson12['_value'] != null) {
-      json['_dateWritten'] = fieldJson12['_value'];
-    }
-
+    addField('dateWritten', dateWritten);
     json['prescriber'] = prescriber.toJson();
 
-    json['lensSpecification'] =
-        lensSpecification.map((e) => e.toJson()).toList();
+    if (lensSpecification.isNotEmpty) {
+      json['lensSpecification'] =
+          lensSpecification.map((e) => e.toJson()).toList();
+    }
 
     return json;
   }
@@ -591,10 +570,16 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -606,92 +591,24 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
 
     json['product'] = product.toJson();
 
-    final fieldJson3 = eye.toJson();
-    json['eye'] = fieldJson3['value'];
-    if (fieldJson3['_value'] != null) {
-      json['_eye'] = fieldJson3['_value'];
-    }
-
-    if (sphere != null) {
-      final fieldJson4 = sphere!.toJson();
-      json['sphere'] = fieldJson4['value'];
-      if (fieldJson4['_value'] != null) {
-        json['_sphere'] = fieldJson4['_value'];
-      }
-    }
-
-    if (cylinder != null) {
-      final fieldJson5 = cylinder!.toJson();
-      json['cylinder'] = fieldJson5['value'];
-      if (fieldJson5['_value'] != null) {
-        json['_cylinder'] = fieldJson5['_value'];
-      }
-    }
-
-    if (axis != null) {
-      final fieldJson6 = axis!.toJson();
-      json['axis'] = fieldJson6['value'];
-      if (fieldJson6['_value'] != null) {
-        json['_axis'] = fieldJson6['_value'];
-      }
-    }
-
+    addField('eye', eye);
+    addField('sphere', sphere);
+    addField('cylinder', cylinder);
+    addField('axis', axis);
     if (prism != null && prism!.isNotEmpty) {
       json['prism'] = prism!.map((e) => e.toJson()).toList();
     }
 
-    if (add != null) {
-      final fieldJson8 = add!.toJson();
-      json['add'] = fieldJson8['value'];
-      if (fieldJson8['_value'] != null) {
-        json['_add'] = fieldJson8['_value'];
-      }
-    }
-
-    if (power != null) {
-      final fieldJson9 = power!.toJson();
-      json['power'] = fieldJson9['value'];
-      if (fieldJson9['_value'] != null) {
-        json['_power'] = fieldJson9['_value'];
-      }
-    }
-
-    if (backCurve != null) {
-      final fieldJson10 = backCurve!.toJson();
-      json['backCurve'] = fieldJson10['value'];
-      if (fieldJson10['_value'] != null) {
-        json['_backCurve'] = fieldJson10['_value'];
-      }
-    }
-
-    if (diameter != null) {
-      final fieldJson11 = diameter!.toJson();
-      json['diameter'] = fieldJson11['value'];
-      if (fieldJson11['_value'] != null) {
-        json['_diameter'] = fieldJson11['_value'];
-      }
-    }
-
+    addField('add', add);
+    addField('power', power);
+    addField('backCurve', backCurve);
+    addField('diameter', diameter);
     if (duration != null) {
       json['duration'] = duration!.toJson();
     }
 
-    if (color != null) {
-      final fieldJson13 = color!.toJson();
-      json['color'] = fieldJson13['value'];
-      if (fieldJson13['_value'] != null) {
-        json['_color'] = fieldJson13['_value'];
-      }
-    }
-
-    if (brand != null) {
-      final fieldJson14 = brand!.toJson();
-      json['brand'] = fieldJson14['value'];
-      if (fieldJson14['_value'] != null) {
-        json['_brand'] = fieldJson14['_value'];
-      }
-    }
-
+    addField('color', color);
+    addField('brand', brand);
     if (note != null && note!.isNotEmpty) {
       json['note'] = note!.map((e) => e.toJson()).toList();
     }
@@ -860,10 +777,16 @@ class VisionPrescriptionPrism extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -873,18 +796,8 @@ class VisionPrescriptionPrism extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    final fieldJson2 = amount.toJson();
-    json['amount'] = fieldJson2['value'];
-    if (fieldJson2['_value'] != null) {
-      json['_amount'] = fieldJson2['_value'];
-    }
-
-    final fieldJson3 = base.toJson();
-    json['base'] = fieldJson3['value'];
-    if (fieldJson3['_value'] != null) {
-      json['_base'] = fieldJson3['_value'];
-    }
-
+    addField('amount', amount);
+    addField('base', base);
     return json;
   }
 

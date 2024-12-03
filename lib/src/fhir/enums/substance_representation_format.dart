@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// A format of a substance representation.
-class SubstanceRepresentationFormat {
+class SubstanceRepresentationFormat extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  SubstanceRepresentationFormat._(this.fhirCode, {this.element});
+  SubstanceRepresentationFormat._(super.value, [super.element]);
 
   /// Factory constructor to create [SubstanceRepresentationFormat] from JSON.
   factory SubstanceRepresentationFormat.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class SubstanceRepresentationFormat {
     if (value == null && element != null) {
       return SubstanceRepresentationFormat.elementOnly.withElement(element);
     }
-    return SubstanceRepresentationFormat._(value!, element: element);
+    return SubstanceRepresentationFormat._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// SubstanceRepresentationFormat values
   /// InChI
   static final SubstanceRepresentationFormat InChI =
       SubstanceRepresentationFormat._(
@@ -83,18 +76,63 @@ class SubstanceRepresentationFormat {
     mmCIF,
   ];
 
+  /// Clones the current instance
+  @override
+  SubstanceRepresentationFormat clone() =>
+      SubstanceRepresentationFormat._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  SubstanceRepresentationFormat setElement(String name, dynamic elementValue) {
+    return SubstanceRepresentationFormat._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   SubstanceRepresentationFormat withElement(Element? newElement) {
-    return SubstanceRepresentationFormat._(fhirCode, element: newElement);
+    return SubstanceRepresentationFormat._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  SubstanceRepresentationFormat copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return SubstanceRepresentationFormat._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

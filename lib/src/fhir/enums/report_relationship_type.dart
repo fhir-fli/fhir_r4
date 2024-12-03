@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The type of relationship between reports.
-class ReportRelationshipType {
+class ReportRelationshipType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ReportRelationshipType._(this.fhirCode, {this.element});
+  ReportRelationshipType._(super.value, [super.element]);
 
   /// Factory constructor to create [ReportRelationshipType] from JSON.
   factory ReportRelationshipType.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class ReportRelationshipType {
     if (value == null && element != null) {
       return ReportRelationshipType.elementOnly.withElement(element);
     }
-    return ReportRelationshipType._(value!, element: element);
+    return ReportRelationshipType._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ReportRelationshipType values
   /// replaces
   static final ReportRelationshipType replaces = ReportRelationshipType._(
     'replaces',
@@ -83,18 +76,63 @@ class ReportRelationshipType {
     transformedWith,
   ];
 
+  /// Clones the current instance
+  @override
+  ReportRelationshipType clone() =>
+      ReportRelationshipType._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  ReportRelationshipType setElement(String name, dynamic elementValue) {
+    return ReportRelationshipType._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   ReportRelationshipType withElement(Element? newElement) {
-    return ReportRelationshipType._(fhirCode, element: newElement);
+    return ReportRelationshipType._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  ReportRelationshipType copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return ReportRelationshipType._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

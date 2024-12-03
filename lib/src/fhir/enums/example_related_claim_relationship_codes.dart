@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// This value set includes sample Related Claim Relationship codes.
-class ExampleRelatedClaimRelationshipCodes {
+class ExampleRelatedClaimRelationshipCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ExampleRelatedClaimRelationshipCodes._(this.fhirCode, {this.element});
+  ExampleRelatedClaimRelationshipCodes._(super.value, [super.element]);
 
   /// Factory constructor to create [ExampleRelatedClaimRelationshipCodes] from JSON.
   factory ExampleRelatedClaimRelationshipCodes.fromJson(
@@ -17,16 +17,9 @@ class ExampleRelatedClaimRelationshipCodes {
       return ExampleRelatedClaimRelationshipCodes.elementOnly
           .withElement(element);
     }
-    return ExampleRelatedClaimRelationshipCodes._(value!, element: element);
+    return ExampleRelatedClaimRelationshipCodes._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ExampleRelatedClaimRelationshipCodes values
   /// prior
   static final ExampleRelatedClaimRelationshipCodes prior =
       ExampleRelatedClaimRelationshipCodes._(
@@ -50,19 +43,65 @@ class ExampleRelatedClaimRelationshipCodes {
     associated,
   ];
 
+  /// Clones the current instance
+  @override
+  ExampleRelatedClaimRelationshipCodes clone() =>
+      ExampleRelatedClaimRelationshipCodes._(
+          value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  ExampleRelatedClaimRelationshipCodes setElement(
+      String name, dynamic elementValue) {
+    return ExampleRelatedClaimRelationshipCodes._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   ExampleRelatedClaimRelationshipCodes withElement(Element? newElement) {
-    return ExampleRelatedClaimRelationshipCodes._(fhirCode,
-        element: newElement);
+    return ExampleRelatedClaimRelationshipCodes._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  ExampleRelatedClaimRelationshipCodes copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return ExampleRelatedClaimRelationshipCodes._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

@@ -173,28 +173,22 @@ class TriggerDefinition extends DataType {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
 
-    final fieldJson1 = type.toJson();
-    json['type'] = fieldJson1['value'];
-    if (fieldJson1['_value'] != null) {
-      json['_type'] = fieldJson1['_value'];
-    }
-
-    if (name != null) {
-      final fieldJson2 = name!.toJson();
-      json['name'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_name'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('type', type);
+    addField('name', name);
     if (timingTiming != null) {
       json['timingTiming'] = timingTiming!.toJson();
     }
@@ -203,22 +197,8 @@ class TriggerDefinition extends DataType {
       json['timingReference'] = timingReference!.toJson();
     }
 
-    if (timingDate != null) {
-      final fieldJson5 = timingDate!.toJson();
-      json['timingDate'] = fieldJson5['value'];
-      if (fieldJson5['_value'] != null) {
-        json['_timingDate'] = fieldJson5['_value'];
-      }
-    }
-
-    if (timingDateTime != null) {
-      final fieldJson6 = timingDateTime!.toJson();
-      json['timingDateTime'] = fieldJson6['value'];
-      if (fieldJson6['_value'] != null) {
-        json['_timingDateTime'] = fieldJson6['_value'];
-      }
-    }
-
+    addField('timingDate', timingDate);
+    addField('timingDateTime', timingDateTime);
     if (data != null && data!.isNotEmpty) {
       json['data'] = data!.map((e) => e.toJson()).toList();
     }

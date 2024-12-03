@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Type for orientation.
-class OrientationType {
+class OrientationType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  OrientationType._(this.fhirCode, {this.element});
+  OrientationType._(super.value, [super.element]);
 
   /// Factory constructor to create [OrientationType] from JSON.
   factory OrientationType.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class OrientationType {
     if (value == null && element != null) {
       return OrientationType.elementOnly.withElement(element);
     }
-    return OrientationType._(value!, element: element);
+    return OrientationType._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// OrientationType values
   /// sense
   static final OrientationType sense = OrientationType._(
     'sense',
@@ -45,18 +38,63 @@ class OrientationType {
     antisense,
   ];
 
+  /// Clones the current instance
+  @override
+  OrientationType clone() =>
+      OrientationType._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  OrientationType setElement(String name, dynamic elementValue) {
+    return OrientationType._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   OrientationType withElement(Element? newElement) {
-    return OrientationType._(fhirCode, element: newElement);
+    return OrientationType._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  OrientationType copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return OrientationType._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

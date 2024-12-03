@@ -468,31 +468,23 @@ class DeviceRequest extends DomainResource {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    json['resourceType'] = resourceType.toJson();
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    json['resourceType'] = resourceType.toJson();
+    addField('id', id);
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    if (implicitRules != null) {
-      final fieldJson1 = implicitRules!.toJson();
-      json['implicitRules'] = fieldJson1['value'];
-      if (fieldJson1['_value'] != null) {
-        json['_implicitRules'] = fieldJson1['_value'];
-      }
-    }
-
-    if (language != null) {
-      final fieldJson2 = language!.toJson();
-      json['language'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_language'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('implicitRules', implicitRules);
+    addField('language', language);
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -515,20 +507,20 @@ class DeviceRequest extends DomainResource {
     }
 
     if (instantiatesCanonical != null && instantiatesCanonical!.isNotEmpty) {
-      final fieldJson8 = instantiatesCanonical!.map((e) => e.toJson()).toList();
+      final fieldJson0 = instantiatesCanonical!.map((e) => e.toJson()).toList();
       json['instantiatesCanonical'] =
-          fieldJson8.map((e) => e['value']).toList();
-      if (fieldJson8.any((e) => e['_value'] != null)) {
+          fieldJson0.map((e) => e['value']).toList();
+      if (fieldJson0.any((e) => e['_value'] != null)) {
         json['_instantiatesCanonical'] =
-            fieldJson8.map((e) => e['_value']).toList();
+            fieldJson0.map((e) => e['_value']).toList();
       }
     }
 
     if (instantiatesUri != null && instantiatesUri!.isNotEmpty) {
-      final fieldJson9 = instantiatesUri!.map((e) => e.toJson()).toList();
-      json['instantiatesUri'] = fieldJson9.map((e) => e['value']).toList();
-      if (fieldJson9.any((e) => e['_value'] != null)) {
-        json['_instantiatesUri'] = fieldJson9.map((e) => e['_value']).toList();
+      final fieldJson1 = instantiatesUri!.map((e) => e.toJson()).toList();
+      json['instantiatesUri'] = fieldJson1.map((e) => e['value']).toList();
+      if (fieldJson1.any((e) => e['_value'] != null)) {
+        json['_instantiatesUri'] = fieldJson1.map((e) => e['_value']).toList();
       }
     }
 
@@ -544,28 +536,9 @@ class DeviceRequest extends DomainResource {
       json['groupIdentifier'] = groupIdentifier!.toJson();
     }
 
-    if (status != null) {
-      final fieldJson13 = status!.toJson();
-      json['status'] = fieldJson13['value'];
-      if (fieldJson13['_value'] != null) {
-        json['_status'] = fieldJson13['_value'];
-      }
-    }
-
-    final fieldJson14 = intent.toJson();
-    json['intent'] = fieldJson14['value'];
-    if (fieldJson14['_value'] != null) {
-      json['_intent'] = fieldJson14['_value'];
-    }
-
-    if (priority != null) {
-      final fieldJson15 = priority!.toJson();
-      json['priority'] = fieldJson15['value'];
-      if (fieldJson15['_value'] != null) {
-        json['_priority'] = fieldJson15['_value'];
-      }
-    }
-
+    addField('status', status);
+    addField('intent', intent);
+    addField('priority', priority);
     if (codeReference != null) {
       json['codeReference'] = codeReference!.toJson();
     }
@@ -584,14 +557,7 @@ class DeviceRequest extends DomainResource {
       json['encounter'] = encounter!.toJson();
     }
 
-    if (occurrenceDateTime != null) {
-      final fieldJson21 = occurrenceDateTime!.toJson();
-      json['occurrenceDateTime'] = fieldJson21['value'];
-      if (fieldJson21['_value'] != null) {
-        json['_occurrenceDateTime'] = fieldJson21['_value'];
-      }
-    }
-
+    addField('occurrenceDateTime', occurrenceDateTime);
     if (occurrencePeriod != null) {
       json['occurrencePeriod'] = occurrencePeriod!.toJson();
     }
@@ -600,14 +566,7 @@ class DeviceRequest extends DomainResource {
       json['occurrenceTiming'] = occurrenceTiming!.toJson();
     }
 
-    if (authoredOn != null) {
-      final fieldJson24 = authoredOn!.toJson();
-      json['authoredOn'] = fieldJson24['value'];
-      if (fieldJson24['_value'] != null) {
-        json['_authoredOn'] = fieldJson24['_value'];
-      }
-    }
-
+    addField('authoredOn', authoredOn);
     if (requester != null) {
       json['requester'] = requester!.toJson();
     }
@@ -882,10 +841,16 @@ class DeviceRequestParameter extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -911,14 +876,7 @@ class DeviceRequestParameter extends BackboneElement {
       json['valueRange'] = valueRange!.toJson();
     }
 
-    if (valueBoolean != null) {
-      final fieldJson6 = valueBoolean!.toJson();
-      json['valueBoolean'] = fieldJson6['value'];
-      if (fieldJson6['_value'] != null) {
-        json['_valueBoolean'] = fieldJson6['_value'];
-      }
-    }
-
+    addField('valueBoolean', valueBoolean);
     return json;
   }
 

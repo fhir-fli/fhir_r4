@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// A code that describes the type of issue.
-class IssueType {
+class IssueType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  IssueType._(this.fhirCode, {this.element});
+  IssueType._(super.value, [super.element]);
 
   /// Factory constructor to create [IssueType] from JSON.
   factory IssueType.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class IssueType {
     if (value == null && element != null) {
       return IssueType.elementOnly.withElement(element);
     }
-    return IssueType._(value!, element: element);
+    return IssueType._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// IssueType values
   /// invalid
   static final IssueType invalid = IssueType._(
     'invalid',
@@ -41,7 +34,7 @@ class IssueType {
   );
 
   /// value
-  static final IssueType value = IssueType._(
+  static final IssueType value_ = IssueType._(
     'value',
   );
 
@@ -189,7 +182,7 @@ class IssueType {
     invalid,
     structure,
     required_,
-    value,
+    value_,
     invariant,
     security,
     login,
@@ -219,18 +212,62 @@ class IssueType {
     informational,
   ];
 
+  /// Clones the current instance
+  @override
+  IssueType clone() => IssueType._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  IssueType setElement(String name, dynamic elementValue) {
+    return IssueType._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   IssueType withElement(Element? newElement) {
-    return IssueType._(fhirCode, element: newElement);
+    return IssueType._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  IssueType copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return IssueType._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

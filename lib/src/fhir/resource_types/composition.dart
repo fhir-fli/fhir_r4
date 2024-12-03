@@ -324,31 +324,23 @@ class Composition extends DomainResource {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    json['resourceType'] = resourceType.toJson();
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    json['resourceType'] = resourceType.toJson();
+    addField('id', id);
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    if (implicitRules != null) {
-      final fieldJson1 = implicitRules!.toJson();
-      json['implicitRules'] = fieldJson1['value'];
-      if (fieldJson1['_value'] != null) {
-        json['_implicitRules'] = fieldJson1['_value'];
-      }
-    }
-
-    if (language != null) {
-      final fieldJson2 = language!.toJson();
-      json['language'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_language'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('implicitRules', implicitRules);
+    addField('language', language);
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -370,12 +362,7 @@ class Composition extends DomainResource {
       json['identifier'] = identifier!.toJson();
     }
 
-    final fieldJson8 = status.toJson();
-    json['status'] = fieldJson8['value'];
-    if (fieldJson8['_value'] != null) {
-      json['_status'] = fieldJson8['_value'];
-    }
-
+    addField('status', status);
     json['type'] = type.toJson();
 
     if (category != null && category!.isNotEmpty) {
@@ -390,28 +377,13 @@ class Composition extends DomainResource {
       json['encounter'] = encounter!.toJson();
     }
 
-    final fieldJson13 = date.toJson();
-    json['date'] = fieldJson13['value'];
-    if (fieldJson13['_value'] != null) {
-      json['_date'] = fieldJson13['_value'];
+    addField('date', date);
+    if (author.isNotEmpty) {
+      json['author'] = author.map((e) => e.toJson()).toList();
     }
 
-    json['author'] = author.map((e) => e.toJson()).toList();
-
-    final fieldJson15 = title.toJson();
-    json['title'] = fieldJson15['value'];
-    if (fieldJson15['_value'] != null) {
-      json['_title'] = fieldJson15['_value'];
-    }
-
-    if (confidentiality != null) {
-      final fieldJson16 = confidentiality!.toJson();
-      json['confidentiality'] = fieldJson16['value'];
-      if (fieldJson16['_value'] != null) {
-        json['_confidentiality'] = fieldJson16['_value'];
-      }
-    }
-
+    addField('title', title);
+    addField('confidentiality', confidentiality);
     if (attester != null && attester!.isNotEmpty) {
       json['attester'] = attester!.map((e) => e.toJson()).toList();
     }
@@ -621,10 +593,16 @@ class CompositionAttester extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -634,20 +612,8 @@ class CompositionAttester extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    final fieldJson2 = mode.toJson();
-    json['mode'] = fieldJson2['value'];
-    if (fieldJson2['_value'] != null) {
-      json['_mode'] = fieldJson2['_value'];
-    }
-
-    if (time != null) {
-      final fieldJson3 = time!.toJson();
-      json['time'] = fieldJson3['value'];
-      if (fieldJson3['_value'] != null) {
-        json['_time'] = fieldJson3['_value'];
-      }
-    }
-
+    addField('mode', mode);
+    addField('time', time);
     if (party != null) {
       json['party'] = party!.toJson();
     }
@@ -807,10 +773,16 @@ class CompositionRelatesTo extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -820,12 +792,7 @@ class CompositionRelatesTo extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    final fieldJson2 = code.toJson();
-    json['code'] = fieldJson2['value'];
-    if (fieldJson2['_value'] != null) {
-      json['_code'] = fieldJson2['_value'];
-    }
-
+    addField('code', code);
     if (targetIdentifier != null) {
       json['targetIdentifier'] = targetIdentifier!.toJson();
     }
@@ -1005,10 +972,16 @@ class CompositionEvent extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1289,10 +1262,16 @@ class CompositionSection extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1302,14 +1281,7 @@ class CompositionSection extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    if (title != null) {
-      final fieldJson2 = title!.toJson();
-      json['title'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_title'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('title', title);
     if (code != null) {
       json['code'] = code!.toJson();
     }
@@ -1326,14 +1298,7 @@ class CompositionSection extends BackboneElement {
       json['text'] = text!.toJson();
     }
 
-    if (mode != null) {
-      final fieldJson7 = mode!.toJson();
-      json['mode'] = fieldJson7['value'];
-      if (fieldJson7['_value'] != null) {
-        json['_mode'] = fieldJson7['_value'];
-      }
-    }
-
+    addField('mode', mode);
     if (orderedBy != null) {
       json['orderedBy'] = orderedBy!.toJson();
     }

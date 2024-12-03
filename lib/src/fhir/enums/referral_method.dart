@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The methods of referral can be used when referring to a specific HealthCareService resource.
-class ReferralMethod {
+class ReferralMethod extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ReferralMethod._(this.fhirCode, {this.element});
+  ReferralMethod._(super.value, [super.element]);
 
   /// Factory constructor to create [ReferralMethod] from JSON.
   factory ReferralMethod.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class ReferralMethod {
     if (value == null && element != null) {
       return ReferralMethod.elementOnly.withElement(element);
     }
-    return ReferralMethod._(value!, element: element);
+    return ReferralMethod._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ReferralMethod values
   /// fax
   static final ReferralMethod fax = ReferralMethod._(
     'fax',
@@ -63,18 +56,63 @@ class ReferralMethod {
     mail,
   ];
 
+  /// Clones the current instance
+  @override
+  ReferralMethod clone() =>
+      ReferralMethod._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  ReferralMethod setElement(String name, dynamic elementValue) {
+    return ReferralMethod._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   ReferralMethod withElement(Element? newElement) {
-    return ReferralMethod._(fhirCode, element: newElement);
+    return ReferralMethod._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  ReferralMethod copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return ReferralMethod._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

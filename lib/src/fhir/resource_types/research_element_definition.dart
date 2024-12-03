@@ -596,31 +596,23 @@ class ResearchElementDefinition extends DomainResource {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    json['resourceType'] = resourceType.toJson();
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    json['resourceType'] = resourceType.toJson();
+    addField('id', id);
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    if (implicitRules != null) {
-      final fieldJson1 = implicitRules!.toJson();
-      json['implicitRules'] = fieldJson1['value'];
-      if (fieldJson1['_value'] != null) {
-        json['_implicitRules'] = fieldJson1['_value'];
-      }
-    }
-
-    if (language != null) {
-      final fieldJson2 = language!.toJson();
-      json['language'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_language'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('implicitRules', implicitRules);
+    addField('language', language);
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -638,72 +630,18 @@ class ResearchElementDefinition extends DomainResource {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    if (url != null) {
-      final fieldJson7 = url!.toJson();
-      json['url'] = fieldJson7['value'];
-      if (fieldJson7['_value'] != null) {
-        json['_url'] = fieldJson7['_value'];
-      }
-    }
-
+    addField('url', url);
     if (identifier != null && identifier!.isNotEmpty) {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
 
-    if (version != null) {
-      final fieldJson9 = version!.toJson();
-      json['version'] = fieldJson9['value'];
-      if (fieldJson9['_value'] != null) {
-        json['_version'] = fieldJson9['_value'];
-      }
-    }
-
-    if (name != null) {
-      final fieldJson10 = name!.toJson();
-      json['name'] = fieldJson10['value'];
-      if (fieldJson10['_value'] != null) {
-        json['_name'] = fieldJson10['_value'];
-      }
-    }
-
-    if (title != null) {
-      final fieldJson11 = title!.toJson();
-      json['title'] = fieldJson11['value'];
-      if (fieldJson11['_value'] != null) {
-        json['_title'] = fieldJson11['_value'];
-      }
-    }
-
-    if (shortTitle != null) {
-      final fieldJson12 = shortTitle!.toJson();
-      json['shortTitle'] = fieldJson12['value'];
-      if (fieldJson12['_value'] != null) {
-        json['_shortTitle'] = fieldJson12['_value'];
-      }
-    }
-
-    if (subtitle != null) {
-      final fieldJson13 = subtitle!.toJson();
-      json['subtitle'] = fieldJson13['value'];
-      if (fieldJson13['_value'] != null) {
-        json['_subtitle'] = fieldJson13['_value'];
-      }
-    }
-
-    final fieldJson14 = status.toJson();
-    json['status'] = fieldJson14['value'];
-    if (fieldJson14['_value'] != null) {
-      json['_status'] = fieldJson14['_value'];
-    }
-
-    if (experimental != null) {
-      final fieldJson15 = experimental!.toJson();
-      json['experimental'] = fieldJson15['value'];
-      if (fieldJson15['_value'] != null) {
-        json['_experimental'] = fieldJson15['_value'];
-      }
-    }
-
+    addField('version', version);
+    addField('name', name);
+    addField('title', title);
+    addField('shortTitle', shortTitle);
+    addField('subtitle', subtitle);
+    addField('status', status);
+    addField('experimental', experimental);
     if (subjectCodeableConcept != null) {
       json['subjectCodeableConcept'] = subjectCodeableConcept!.toJson();
     }
@@ -712,39 +650,18 @@ class ResearchElementDefinition extends DomainResource {
       json['subjectReference'] = subjectReference!.toJson();
     }
 
-    if (date != null) {
-      final fieldJson18 = date!.toJson();
-      json['date'] = fieldJson18['value'];
-      if (fieldJson18['_value'] != null) {
-        json['_date'] = fieldJson18['_value'];
-      }
-    }
-
-    if (publisher != null) {
-      final fieldJson19 = publisher!.toJson();
-      json['publisher'] = fieldJson19['value'];
-      if (fieldJson19['_value'] != null) {
-        json['_publisher'] = fieldJson19['_value'];
-      }
-    }
-
+    addField('date', date);
+    addField('publisher', publisher);
     if (contact != null && contact!.isNotEmpty) {
       json['contact'] = contact!.map((e) => e.toJson()).toList();
     }
 
-    if (description != null) {
-      final fieldJson21 = description!.toJson();
-      json['description'] = fieldJson21['value'];
-      if (fieldJson21['_value'] != null) {
-        json['_description'] = fieldJson21['_value'];
-      }
-    }
-
+    addField('description', description);
     if (comment != null && comment!.isNotEmpty) {
-      final fieldJson22 = comment!.map((e) => e.toJson()).toList();
-      json['comment'] = fieldJson22.map((e) => e['value']).toList();
-      if (fieldJson22.any((e) => e['_value'] != null)) {
-        json['_comment'] = fieldJson22.map((e) => e['_value']).toList();
+      final fieldJson0 = comment!.map((e) => e.toJson()).toList();
+      json['comment'] = fieldJson0.map((e) => e['value']).toList();
+      if (fieldJson0.any((e) => e['_value'] != null)) {
+        json['_comment'] = fieldJson0.map((e) => e['_value']).toList();
       }
     }
 
@@ -756,46 +673,11 @@ class ResearchElementDefinition extends DomainResource {
       json['jurisdiction'] = jurisdiction!.map((e) => e.toJson()).toList();
     }
 
-    if (purpose != null) {
-      final fieldJson25 = purpose!.toJson();
-      json['purpose'] = fieldJson25['value'];
-      if (fieldJson25['_value'] != null) {
-        json['_purpose'] = fieldJson25['_value'];
-      }
-    }
-
-    if (usage != null) {
-      final fieldJson26 = usage!.toJson();
-      json['usage'] = fieldJson26['value'];
-      if (fieldJson26['_value'] != null) {
-        json['_usage'] = fieldJson26['_value'];
-      }
-    }
-
-    if (copyright != null) {
-      final fieldJson27 = copyright!.toJson();
-      json['copyright'] = fieldJson27['value'];
-      if (fieldJson27['_value'] != null) {
-        json['_copyright'] = fieldJson27['_value'];
-      }
-    }
-
-    if (approvalDate != null) {
-      final fieldJson28 = approvalDate!.toJson();
-      json['approvalDate'] = fieldJson28['value'];
-      if (fieldJson28['_value'] != null) {
-        json['_approvalDate'] = fieldJson28['_value'];
-      }
-    }
-
-    if (lastReviewDate != null) {
-      final fieldJson29 = lastReviewDate!.toJson();
-      json['lastReviewDate'] = fieldJson29['value'];
-      if (fieldJson29['_value'] != null) {
-        json['_lastReviewDate'] = fieldJson29['_value'];
-      }
-    }
-
+    addField('purpose', purpose);
+    addField('usage', usage);
+    addField('copyright', copyright);
+    addField('approvalDate', approvalDate);
+    addField('lastReviewDate', lastReviewDate);
     if (effectivePeriod != null) {
       json['effectivePeriod'] = effectivePeriod!.toJson();
     }
@@ -826,28 +708,18 @@ class ResearchElementDefinition extends DomainResource {
     }
 
     if (library_ != null && library_!.isNotEmpty) {
-      final fieldJson37 = library_!.map((e) => e.toJson()).toList();
-      json['library'] = fieldJson37.map((e) => e['value']).toList();
-      if (fieldJson37.any((e) => e['_value'] != null)) {
-        json['_library'] = fieldJson37.map((e) => e['_value']).toList();
+      final fieldJson1 = library_!.map((e) => e.toJson()).toList();
+      json['library'] = fieldJson1.map((e) => e['value']).toList();
+      if (fieldJson1.any((e) => e['_value'] != null)) {
+        json['_library'] = fieldJson1.map((e) => e['_value']).toList();
       }
     }
 
-    final fieldJson38 = type.toJson();
-    json['type'] = fieldJson38['value'];
-    if (fieldJson38['_value'] != null) {
-      json['_type'] = fieldJson38['_value'];
+    addField('type', type);
+    addField('variableType', variableType);
+    if (characteristic.isNotEmpty) {
+      json['characteristic'] = characteristic.map((e) => e.toJson()).toList();
     }
-
-    if (variableType != null) {
-      final fieldJson39 = variableType!.toJson();
-      json['variableType'] = fieldJson39['value'];
-      if (fieldJson39['_value'] != null) {
-        json['_variableType'] = fieldJson39['_value'];
-      }
-    }
-
-    json['characteristic'] = characteristic.map((e) => e.toJson()).toList();
 
     return json;
   }
@@ -1297,10 +1169,16 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1314,14 +1192,7 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
       json['definitionCodeableConcept'] = definitionCodeableConcept!.toJson();
     }
 
-    if (definitionCanonical != null) {
-      final fieldJson3 = definitionCanonical!.toJson();
-      json['definitionCanonical'] = fieldJson3['value'];
-      if (fieldJson3['_value'] != null) {
-        json['_definitionCanonical'] = fieldJson3['_value'];
-      }
-    }
-
+    addField('definitionCanonical', definitionCanonical);
     if (definitionExpression != null) {
       json['definitionExpression'] = definitionExpression!.toJson();
     }
@@ -1334,34 +1205,13 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
       json['usageContext'] = usageContext!.map((e) => e.toJson()).toList();
     }
 
-    if (exclude != null) {
-      final fieldJson7 = exclude!.toJson();
-      json['exclude'] = fieldJson7['value'];
-      if (fieldJson7['_value'] != null) {
-        json['_exclude'] = fieldJson7['_value'];
-      }
-    }
-
+    addField('exclude', exclude);
     if (unitOfMeasure != null) {
       json['unitOfMeasure'] = unitOfMeasure!.toJson();
     }
 
-    if (studyEffectiveDescription != null) {
-      final fieldJson9 = studyEffectiveDescription!.toJson();
-      json['studyEffectiveDescription'] = fieldJson9['value'];
-      if (fieldJson9['_value'] != null) {
-        json['_studyEffectiveDescription'] = fieldJson9['_value'];
-      }
-    }
-
-    if (studyEffectiveDateTime != null) {
-      final fieldJson10 = studyEffectiveDateTime!.toJson();
-      json['studyEffectiveDateTime'] = fieldJson10['value'];
-      if (fieldJson10['_value'] != null) {
-        json['_studyEffectiveDateTime'] = fieldJson10['_value'];
-      }
-    }
-
+    addField('studyEffectiveDescription', studyEffectiveDescription);
+    addField('studyEffectiveDateTime', studyEffectiveDateTime);
     if (studyEffectivePeriod != null) {
       json['studyEffectivePeriod'] = studyEffectivePeriod!.toJson();
     }
@@ -1379,30 +1229,10 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
           studyEffectiveTimeFromStart!.toJson();
     }
 
-    if (studyEffectiveGroupMeasure != null) {
-      final fieldJson15 = studyEffectiveGroupMeasure!.toJson();
-      json['studyEffectiveGroupMeasure'] = fieldJson15['value'];
-      if (fieldJson15['_value'] != null) {
-        json['_studyEffectiveGroupMeasure'] = fieldJson15['_value'];
-      }
-    }
-
-    if (participantEffectiveDescription != null) {
-      final fieldJson16 = participantEffectiveDescription!.toJson();
-      json['participantEffectiveDescription'] = fieldJson16['value'];
-      if (fieldJson16['_value'] != null) {
-        json['_participantEffectiveDescription'] = fieldJson16['_value'];
-      }
-    }
-
-    if (participantEffectiveDateTime != null) {
-      final fieldJson17 = participantEffectiveDateTime!.toJson();
-      json['participantEffectiveDateTime'] = fieldJson17['value'];
-      if (fieldJson17['_value'] != null) {
-        json['_participantEffectiveDateTime'] = fieldJson17['_value'];
-      }
-    }
-
+    addField('studyEffectiveGroupMeasure', studyEffectiveGroupMeasure);
+    addField(
+        'participantEffectiveDescription', participantEffectiveDescription);
+    addField('participantEffectiveDateTime', participantEffectiveDateTime);
     if (participantEffectivePeriod != null) {
       json['participantEffectivePeriod'] = participantEffectivePeriod!.toJson();
     }
@@ -1421,14 +1251,8 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
           participantEffectiveTimeFromStart!.toJson();
     }
 
-    if (participantEffectiveGroupMeasure != null) {
-      final fieldJson22 = participantEffectiveGroupMeasure!.toJson();
-      json['participantEffectiveGroupMeasure'] = fieldJson22['value'];
-      if (fieldJson22['_value'] != null) {
-        json['_participantEffectiveGroupMeasure'] = fieldJson22['_value'];
-      }
-    }
-
+    addField(
+        'participantEffectiveGroupMeasure', participantEffectiveGroupMeasure);
     return json;
   }
 

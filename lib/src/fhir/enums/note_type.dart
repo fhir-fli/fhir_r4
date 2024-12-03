@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The presentation types of notes.
-class NoteType {
+class NoteType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  NoteType._(this.fhirCode, {this.element});
+  NoteType._(super.value, [super.element]);
 
   /// Factory constructor to create [NoteType] from JSON.
   factory NoteType.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class NoteType {
     if (value == null && element != null) {
       return NoteType.elementOnly.withElement(element);
     }
-    return NoteType._(value!, element: element);
+    return NoteType._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// NoteType values
   /// display
   static final NoteType display = NoteType._(
     'display',
@@ -51,18 +44,62 @@ class NoteType {
     printoper,
   ];
 
+  /// Clones the current instance
+  @override
+  NoteType clone() => NoteType._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  NoteType setElement(String name, dynamic elementValue) {
+    return NoteType._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   NoteType withElement(Element? newElement) {
-    return NoteType._(fhirCode, element: newElement);
+    return NoteType._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  NoteType copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return NoteType._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Codes describing the reason why a family member's history is not available.
-class FamilyHistoryAbsentReason {
+class FamilyHistoryAbsentReason extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  FamilyHistoryAbsentReason._(this.fhirCode, {this.element});
+  FamilyHistoryAbsentReason._(super.value, [super.element]);
 
   /// Factory constructor to create [FamilyHistoryAbsentReason] from JSON.
   factory FamilyHistoryAbsentReason.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class FamilyHistoryAbsentReason {
     if (value == null && element != null) {
       return FamilyHistoryAbsentReason.elementOnly.withElement(element);
     }
-    return FamilyHistoryAbsentReason._(value!, element: element);
+    return FamilyHistoryAbsentReason._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// FamilyHistoryAbsentReason values
   /// subject_unknown
   static final FamilyHistoryAbsentReason subject_unknown =
       FamilyHistoryAbsentReason._(
@@ -61,18 +54,63 @@ class FamilyHistoryAbsentReason {
     deferred_,
   ];
 
+  /// Clones the current instance
+  @override
+  FamilyHistoryAbsentReason clone() =>
+      FamilyHistoryAbsentReason._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  FamilyHistoryAbsentReason setElement(String name, dynamic elementValue) {
+    return FamilyHistoryAbsentReason._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   FamilyHistoryAbsentReason withElement(Element? newElement) {
-    return FamilyHistoryAbsentReason._(fhirCode, element: newElement);
+    return FamilyHistoryAbsentReason._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  FamilyHistoryAbsentReason copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return FamilyHistoryAbsentReason._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

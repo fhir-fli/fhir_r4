@@ -231,10 +231,16 @@ class ProdCharacteristic extends BackboneType {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -268,27 +274,20 @@ class ProdCharacteristic extends BackboneType {
       json['externalDiameter'] = externalDiameter!.toJson();
     }
 
-    if (shape != null) {
-      final fieldJson8 = shape!.toJson();
-      json['shape'] = fieldJson8['value'];
-      if (fieldJson8['_value'] != null) {
-        json['_shape'] = fieldJson8['_value'];
-      }
-    }
-
+    addField('shape', shape);
     if (color != null && color!.isNotEmpty) {
-      final fieldJson9 = color!.map((e) => e.toJson()).toList();
-      json['color'] = fieldJson9.map((e) => e['value']).toList();
-      if (fieldJson9.any((e) => e['_value'] != null)) {
-        json['_color'] = fieldJson9.map((e) => e['_value']).toList();
+      final fieldJson0 = color!.map((e) => e.toJson()).toList();
+      json['color'] = fieldJson0.map((e) => e['value']).toList();
+      if (fieldJson0.any((e) => e['_value'] != null)) {
+        json['_color'] = fieldJson0.map((e) => e['_value']).toList();
       }
     }
 
     if (imprint != null && imprint!.isNotEmpty) {
-      final fieldJson10 = imprint!.map((e) => e.toJson()).toList();
-      json['imprint'] = fieldJson10.map((e) => e['value']).toList();
-      if (fieldJson10.any((e) => e['_value'] != null)) {
-        json['_imprint'] = fieldJson10.map((e) => e['_value']).toList();
+      final fieldJson1 = imprint!.map((e) => e.toJson()).toList();
+      json['imprint'] = fieldJson1.map((e) => e['value']).toList();
+      if (fieldJson1.any((e) => e['_value'] != null)) {
+        json['_imprint'] = fieldJson1.map((e) => e['_value']).toList();
       }
     }
 

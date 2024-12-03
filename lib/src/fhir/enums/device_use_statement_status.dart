@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// A coded concept indicating the current status of the Device Usage.
-class DeviceUseStatementStatus {
+class DeviceUseStatementStatus extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  DeviceUseStatementStatus._(this.fhirCode, {this.element});
+  DeviceUseStatementStatus._(super.value, [super.element]);
 
   /// Factory constructor to create [DeviceUseStatementStatus] from JSON.
   factory DeviceUseStatementStatus.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class DeviceUseStatementStatus {
     if (value == null && element != null) {
       return DeviceUseStatementStatus.elementOnly.withElement(element);
     }
-    return DeviceUseStatementStatus._(value!, element: element);
+    return DeviceUseStatementStatus._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// DeviceUseStatementStatus values
   /// active
   static final DeviceUseStatementStatus active = DeviceUseStatementStatus._(
     'active',
@@ -71,18 +64,63 @@ class DeviceUseStatementStatus {
     on_hold,
   ];
 
+  /// Clones the current instance
+  @override
+  DeviceUseStatementStatus clone() =>
+      DeviceUseStatementStatus._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  DeviceUseStatementStatus setElement(String name, dynamic elementValue) {
+    return DeviceUseStatementStatus._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   DeviceUseStatementStatus withElement(Element? newElement) {
-    return DeviceUseStatementStatus._(fhirCode, element: newElement);
+    return DeviceUseStatementStatus._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  DeviceUseStatementStatus copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return DeviceUseStatementStatus._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

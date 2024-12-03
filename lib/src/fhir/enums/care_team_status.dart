@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Indicates the status of the care team.
-class CareTeamStatus {
+class CareTeamStatus extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  CareTeamStatus._(this.fhirCode, {this.element});
+  CareTeamStatus._(super.value, [super.element]);
 
   /// Factory constructor to create [CareTeamStatus] from JSON.
   factory CareTeamStatus.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class CareTeamStatus {
     if (value == null && element != null) {
       return CareTeamStatus.elementOnly.withElement(element);
     }
-    return CareTeamStatus._(value!, element: element);
+    return CareTeamStatus._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// CareTeamStatus values
   /// proposed
   static final CareTeamStatus proposed = CareTeamStatus._(
     'proposed',
@@ -63,18 +56,63 @@ class CareTeamStatus {
     entered_in_error,
   ];
 
+  /// Clones the current instance
+  @override
+  CareTeamStatus clone() =>
+      CareTeamStatus._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  CareTeamStatus setElement(String name, dynamic elementValue) {
+    return CareTeamStatus._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   CareTeamStatus withElement(Element? newElement) {
-    return CareTeamStatus._(fhirCode, element: newElement);
+    return CareTeamStatus._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  CareTeamStatus copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return CareTeamStatus._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

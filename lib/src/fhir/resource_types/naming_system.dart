@@ -297,31 +297,23 @@ class NamingSystem extends DomainResource {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    json['resourceType'] = resourceType.toJson();
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    json['resourceType'] = resourceType.toJson();
+    addField('id', id);
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    if (implicitRules != null) {
-      final fieldJson1 = implicitRules!.toJson();
-      json['implicitRules'] = fieldJson1['value'];
-      if (fieldJson1['_value'] != null) {
-        json['_implicitRules'] = fieldJson1['_value'];
-      }
-    }
-
-    if (language != null) {
-      final fieldJson2 = language!.toJson();
-      json['language'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_language'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('implicitRules', implicitRules);
+    addField('language', language);
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -339,62 +331,21 @@ class NamingSystem extends DomainResource {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    final fieldJson7 = name.toJson();
-    json['name'] = fieldJson7['value'];
-    if (fieldJson7['_value'] != null) {
-      json['_name'] = fieldJson7['_value'];
-    }
-
-    final fieldJson8 = status.toJson();
-    json['status'] = fieldJson8['value'];
-    if (fieldJson8['_value'] != null) {
-      json['_status'] = fieldJson8['_value'];
-    }
-
-    final fieldJson9 = kind.toJson();
-    json['kind'] = fieldJson9['value'];
-    if (fieldJson9['_value'] != null) {
-      json['_kind'] = fieldJson9['_value'];
-    }
-
-    final fieldJson10 = date.toJson();
-    json['date'] = fieldJson10['value'];
-    if (fieldJson10['_value'] != null) {
-      json['_date'] = fieldJson10['_value'];
-    }
-
-    if (publisher != null) {
-      final fieldJson11 = publisher!.toJson();
-      json['publisher'] = fieldJson11['value'];
-      if (fieldJson11['_value'] != null) {
-        json['_publisher'] = fieldJson11['_value'];
-      }
-    }
-
+    addField('name', name);
+    addField('status', status);
+    addField('kind', kind);
+    addField('date', date);
+    addField('publisher', publisher);
     if (contact != null && contact!.isNotEmpty) {
       json['contact'] = contact!.map((e) => e.toJson()).toList();
     }
 
-    if (responsible != null) {
-      final fieldJson13 = responsible!.toJson();
-      json['responsible'] = fieldJson13['value'];
-      if (fieldJson13['_value'] != null) {
-        json['_responsible'] = fieldJson13['_value'];
-      }
-    }
-
+    addField('responsible', responsible);
     if (type != null) {
       json['type'] = type!.toJson();
     }
 
-    if (description != null) {
-      final fieldJson15 = description!.toJson();
-      json['description'] = fieldJson15['value'];
-      if (fieldJson15['_value'] != null) {
-        json['_description'] = fieldJson15['_value'];
-      }
-    }
-
+    addField('description', description);
     if (useContext != null && useContext!.isNotEmpty) {
       json['useContext'] = useContext!.map((e) => e.toJson()).toList();
     }
@@ -403,15 +354,10 @@ class NamingSystem extends DomainResource {
       json['jurisdiction'] = jurisdiction!.map((e) => e.toJson()).toList();
     }
 
-    if (usage != null) {
-      final fieldJson18 = usage!.toJson();
-      json['usage'] = fieldJson18['value'];
-      if (fieldJson18['_value'] != null) {
-        json['_usage'] = fieldJson18['_value'];
-      }
+    addField('usage', usage);
+    if (uniqueId.isNotEmpty) {
+      json['uniqueId'] = uniqueId.map((e) => e.toJson()).toList();
     }
-
-    json['uniqueId'] = uniqueId.map((e) => e.toJson()).toList();
 
     return json;
   }
@@ -623,10 +569,16 @@ class NamingSystemUniqueId extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -636,34 +588,10 @@ class NamingSystemUniqueId extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    final fieldJson2 = type.toJson();
-    json['type'] = fieldJson2['value'];
-    if (fieldJson2['_value'] != null) {
-      json['_type'] = fieldJson2['_value'];
-    }
-
-    final fieldJson3 = value.toJson();
-    json['value'] = fieldJson3['value'];
-    if (fieldJson3['_value'] != null) {
-      json['_value'] = fieldJson3['_value'];
-    }
-
-    if (preferred != null) {
-      final fieldJson4 = preferred!.toJson();
-      json['preferred'] = fieldJson4['value'];
-      if (fieldJson4['_value'] != null) {
-        json['_preferred'] = fieldJson4['_value'];
-      }
-    }
-
-    if (comment != null) {
-      final fieldJson5 = comment!.toJson();
-      json['comment'] = fieldJson5['value'];
-      if (fieldJson5['_value'] != null) {
-        json['_comment'] = fieldJson5['_value'];
-      }
-    }
-
+    addField('type', type);
+    addField('value', value);
+    addField('preferred', preferred);
+    addField('comment', comment);
     if (period != null) {
       json['period'] = period!.toJson();
     }

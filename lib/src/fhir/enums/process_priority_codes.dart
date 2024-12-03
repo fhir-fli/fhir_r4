@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// This value set includes the financial processing priority codes.
-class ProcessPriorityCodes {
+class ProcessPriorityCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ProcessPriorityCodes._(this.fhirCode, {this.element});
+  ProcessPriorityCodes._(super.value, [super.element]);
 
   /// Factory constructor to create [ProcessPriorityCodes] from JSON.
   factory ProcessPriorityCodes.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class ProcessPriorityCodes {
     if (value == null && element != null) {
       return ProcessPriorityCodes.elementOnly.withElement(element);
     }
-    return ProcessPriorityCodes._(value!, element: element);
+    return ProcessPriorityCodes._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ProcessPriorityCodes values
   /// stat
   static final ProcessPriorityCodes stat = ProcessPriorityCodes._(
     'stat',
@@ -51,18 +44,63 @@ class ProcessPriorityCodes {
     deferred_,
   ];
 
+  /// Clones the current instance
+  @override
+  ProcessPriorityCodes clone() =>
+      ProcessPriorityCodes._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  ProcessPriorityCodes setElement(String name, dynamic elementValue) {
+    return ProcessPriorityCodes._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   ProcessPriorityCodes withElement(Element? newElement) {
-    return ProcessPriorityCodes._(fhirCode, element: newElement);
+    return ProcessPriorityCodes._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  ProcessPriorityCodes copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return ProcessPriorityCodes._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// This value set includes a smattering of Service Place codes.
-class ExampleServicePlaceCodes {
+class ExampleServicePlaceCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ExampleServicePlaceCodes._(this.fhirCode, {this.element});
+  ExampleServicePlaceCodes._(super.value, [super.element]);
 
   /// Factory constructor to create [ExampleServicePlaceCodes] from JSON.
   factory ExampleServicePlaceCodes.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class ExampleServicePlaceCodes {
     if (value == null && element != null) {
       return ExampleServicePlaceCodes.elementOnly.withElement(element);
     }
-    return ExampleServicePlaceCodes._(value!, element: element);
+    return ExampleServicePlaceCodes._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ExampleServicePlaceCodes values
   /// value01
   static final ExampleServicePlaceCodes value01 = ExampleServicePlaceCodes._(
     '01',
@@ -136,18 +129,63 @@ class ExampleServicePlaceCodes {
     value41,
   ];
 
+  /// Clones the current instance
+  @override
+  ExampleServicePlaceCodes clone() =>
+      ExampleServicePlaceCodes._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  ExampleServicePlaceCodes setElement(String name, dynamic elementValue) {
+    return ExampleServicePlaceCodes._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   ExampleServicePlaceCodes withElement(Element? newElement) {
-    return ExampleServicePlaceCodes._(fhirCode, element: newElement);
+    return ExampleServicePlaceCodes._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  ExampleServicePlaceCodes copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return ExampleServicePlaceCodes._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

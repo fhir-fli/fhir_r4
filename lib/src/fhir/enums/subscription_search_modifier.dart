@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// FHIR search modifiers allowed for use in Subscriptions and SubscriptionTopics.
-class SubscriptionSearchModifier {
+class SubscriptionSearchModifier extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  SubscriptionSearchModifier._(this.fhirCode, {this.element});
+  SubscriptionSearchModifier._(super.value, [super.element]);
 
   /// Factory constructor to create [SubscriptionSearchModifier] from JSON.
   factory SubscriptionSearchModifier.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class SubscriptionSearchModifier {
     if (value == null && element != null) {
       return SubscriptionSearchModifier.elementOnly.withElement(element);
     }
-    return SubscriptionSearchModifier._(value!, element: element);
+    return SubscriptionSearchModifier._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// SubscriptionSearchModifier values
   /// eq
   static final SubscriptionSearchModifier eq = SubscriptionSearchModifier._(
     '=',
@@ -119,18 +112,63 @@ class SubscriptionSearchModifier {
     of_type,
   ];
 
+  /// Clones the current instance
+  @override
+  SubscriptionSearchModifier clone() =>
+      SubscriptionSearchModifier._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  SubscriptionSearchModifier setElement(String name, dynamic elementValue) {
+    return SubscriptionSearchModifier._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   SubscriptionSearchModifier withElement(Element? newElement) {
-    return SubscriptionSearchModifier._(fhirCode, element: newElement);
+    return SubscriptionSearchModifier._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  SubscriptionSearchModifier copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return SubscriptionSearchModifier._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

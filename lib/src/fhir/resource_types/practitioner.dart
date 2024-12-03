@@ -267,31 +267,23 @@ class Practitioner extends DomainResource {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    json['resourceType'] = resourceType.toJson();
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    json['resourceType'] = resourceType.toJson();
+    addField('id', id);
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    if (implicitRules != null) {
-      final fieldJson1 = implicitRules!.toJson();
-      json['implicitRules'] = fieldJson1['value'];
-      if (fieldJson1['_value'] != null) {
-        json['_implicitRules'] = fieldJson1['_value'];
-      }
-    }
-
-    if (language != null) {
-      final fieldJson2 = language!.toJson();
-      json['language'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_language'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('implicitRules', implicitRules);
+    addField('language', language);
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -313,14 +305,7 @@ class Practitioner extends DomainResource {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
 
-    if (active != null) {
-      final fieldJson8 = active!.toJson();
-      json['active'] = fieldJson8['value'];
-      if (fieldJson8['_value'] != null) {
-        json['_active'] = fieldJson8['_value'];
-      }
-    }
-
+    addField('active', active);
     if (name != null && name!.isNotEmpty) {
       json['name'] = name!.map((e) => e.toJson()).toList();
     }
@@ -333,22 +318,8 @@ class Practitioner extends DomainResource {
       json['address'] = address!.map((e) => e.toJson()).toList();
     }
 
-    if (gender != null) {
-      final fieldJson12 = gender!.toJson();
-      json['gender'] = fieldJson12['value'];
-      if (fieldJson12['_value'] != null) {
-        json['_gender'] = fieldJson12['_value'];
-      }
-    }
-
-    if (birthDate != null) {
-      final fieldJson13 = birthDate!.toJson();
-      json['birthDate'] = fieldJson13['value'];
-      if (fieldJson13['_value'] != null) {
-        json['_birthDate'] = fieldJson13['_value'];
-      }
-    }
-
+    addField('gender', gender);
+    addField('birthDate', birthDate);
     if (photo != null && photo!.isNotEmpty) {
       json['photo'] = photo!.map((e) => e.toJson()).toList();
     }
@@ -554,10 +525,16 @@ class PractitionerQualification extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }

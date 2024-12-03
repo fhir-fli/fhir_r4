@@ -101,30 +101,22 @@ class Money extends DataType {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
 
-    if (value != null) {
-      final fieldJson1 = value!.toJson();
-      json['value'] = fieldJson1['value'];
-      if (fieldJson1['_value'] != null) {
-        json['_value'] = fieldJson1['_value'];
-      }
-    }
-
-    if (currency != null) {
-      final fieldJson2 = currency!.toJson();
-      json['currency'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_currency'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('value', value);
+    addField('currency', currency);
     return json;
   }
 

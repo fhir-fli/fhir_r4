@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The prescription supply types appropriate to a medicinal product
-class LegalStatusOfSupply {
+class LegalStatusOfSupply extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  LegalStatusOfSupply._(this.fhirCode, {this.element});
+  LegalStatusOfSupply._(super.value, [super.element]);
 
   /// Factory constructor to create [LegalStatusOfSupply] from JSON.
   factory LegalStatusOfSupply.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class LegalStatusOfSupply {
     if (value == null && element != null) {
       return LegalStatusOfSupply.elementOnly.withElement(element);
     }
-    return LegalStatusOfSupply._(value!, element: element);
+    return LegalStatusOfSupply._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// LegalStatusOfSupply values
   /// value100000072076
   static final LegalStatusOfSupply value100000072076 = LegalStatusOfSupply._(
     '100000072076',
@@ -81,18 +74,63 @@ class LegalStatusOfSupply {
     value100000157313,
   ];
 
+  /// Clones the current instance
+  @override
+  LegalStatusOfSupply clone() =>
+      LegalStatusOfSupply._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  LegalStatusOfSupply setElement(String name, dynamic elementValue) {
+    return LegalStatusOfSupply._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   LegalStatusOfSupply withElement(Element? newElement) {
-    return LegalStatusOfSupply._(fhirCode, element: newElement);
+    return LegalStatusOfSupply._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  LegalStatusOfSupply copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return LegalStatusOfSupply._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

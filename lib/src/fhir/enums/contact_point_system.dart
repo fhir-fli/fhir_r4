@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Telecommunications form for contact point.
-class ContactPointSystem {
+class ContactPointSystem extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ContactPointSystem._(this.fhirCode, {this.element});
+  ContactPointSystem._(super.value, [super.element]);
 
   /// Factory constructor to create [ContactPointSystem] from JSON.
   factory ContactPointSystem.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class ContactPointSystem {
     if (value == null && element != null) {
       return ContactPointSystem.elementOnly.withElement(element);
     }
-    return ContactPointSystem._(value!, element: element);
+    return ContactPointSystem._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ContactPointSystem values
   /// phone
   static final ContactPointSystem phone = ContactPointSystem._(
     'phone',
@@ -75,18 +68,63 @@ class ContactPointSystem {
     other,
   ];
 
+  /// Clones the current instance
+  @override
+  ContactPointSystem clone() =>
+      ContactPointSystem._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  ContactPointSystem setElement(String name, dynamic elementValue) {
+    return ContactPointSystem._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   ContactPointSystem withElement(Element? newElement) {
-    return ContactPointSystem._(fhirCode, element: newElement);
+    return ContactPointSystem._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  ContactPointSystem copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return ContactPointSystem._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

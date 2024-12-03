@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// How slices are interpreted when evaluating an instance.
-class SlicingRules {
+class SlicingRules extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  SlicingRules._(this.fhirCode, {this.element});
+  SlicingRules._(super.value, [super.element]);
 
   /// Factory constructor to create [SlicingRules] from JSON.
   factory SlicingRules.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class SlicingRules {
     if (value == null && element != null) {
       return SlicingRules.elementOnly.withElement(element);
     }
-    return SlicingRules._(value!, element: element);
+    return SlicingRules._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// SlicingRules values
   /// closed
   static final SlicingRules closed = SlicingRules._(
     'closed',
@@ -51,18 +44,62 @@ class SlicingRules {
     openAtEnd,
   ];
 
+  /// Clones the current instance
+  @override
+  SlicingRules clone() => SlicingRules._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  SlicingRules setElement(String name, dynamic elementValue) {
+    return SlicingRules._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   SlicingRules withElement(Element? newElement) {
-    return SlicingRules._(fhirCode, element: newElement);
+    return SlicingRules._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  SlicingRules copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return SlicingRules._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

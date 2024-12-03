@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// This example FHIR value set is comprised of lifecycle event codes. The FHIR Actor value set is based on DICOM Audit Message, ParticipantObjectDataLifeCycle; ISO Standard, TS 21089-2017;
-class ObjectLifecycleEvents {
+class ObjectLifecycleEvents extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ObjectLifecycleEvents._(this.fhirCode, {this.element});
+  ObjectLifecycleEvents._(super.value, [super.element]);
 
   /// Factory constructor to create [ObjectLifecycleEvents] from JSON.
   factory ObjectLifecycleEvents.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class ObjectLifecycleEvents {
     if (value == null && element != null) {
       return ObjectLifecycleEvents.elementOnly.withElement(element);
     }
-    return ObjectLifecycleEvents._(value!, element: element);
+    return ObjectLifecycleEvents._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ObjectLifecycleEvents values
   /// value1
   static final ObjectLifecycleEvents value1 = ObjectLifecycleEvents._(
     '1',
@@ -285,18 +278,63 @@ class ObjectLifecycleEvents {
     verify,
   ];
 
+  /// Clones the current instance
+  @override
+  ObjectLifecycleEvents clone() =>
+      ObjectLifecycleEvents._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  ObjectLifecycleEvents setElement(String name, dynamic elementValue) {
+    return ObjectLifecycleEvents._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   ObjectLifecycleEvents withElement(Element? newElement) {
-    return ObjectLifecycleEvents._(fhirCode, element: newElement);
+    return ObjectLifecycleEvents._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  ObjectLifecycleEvents copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return ObjectLifecycleEvents._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

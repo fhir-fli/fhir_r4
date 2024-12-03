@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// This value set includes example Diagnosis on Admission codes.
-class ExampleDiagnosisOnAdmissionCodes {
+class ExampleDiagnosisOnAdmissionCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ExampleDiagnosisOnAdmissionCodes._(this.fhirCode, {this.element});
+  ExampleDiagnosisOnAdmissionCodes._(super.value, [super.element]);
 
   /// Factory constructor to create [ExampleDiagnosisOnAdmissionCodes] from JSON.
   factory ExampleDiagnosisOnAdmissionCodes.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class ExampleDiagnosisOnAdmissionCodes {
     if (value == null && element != null) {
       return ExampleDiagnosisOnAdmissionCodes.elementOnly.withElement(element);
     }
-    return ExampleDiagnosisOnAdmissionCodes._(value!, element: element);
+    return ExampleDiagnosisOnAdmissionCodes._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ExampleDiagnosisOnAdmissionCodes values
   /// y
   static final ExampleDiagnosisOnAdmissionCodes y =
       ExampleDiagnosisOnAdmissionCodes._(
@@ -62,18 +55,64 @@ class ExampleDiagnosisOnAdmissionCodes {
     w,
   ];
 
+  /// Clones the current instance
+  @override
+  ExampleDiagnosisOnAdmissionCodes clone() =>
+      ExampleDiagnosisOnAdmissionCodes._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  ExampleDiagnosisOnAdmissionCodes setElement(
+      String name, dynamic elementValue) {
+    return ExampleDiagnosisOnAdmissionCodes._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   ExampleDiagnosisOnAdmissionCodes withElement(Element? newElement) {
-    return ExampleDiagnosisOnAdmissionCodes._(fhirCode, element: newElement);
+    return ExampleDiagnosisOnAdmissionCodes._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  ExampleDiagnosisOnAdmissionCodes copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return ExampleDiagnosisOnAdmissionCodes._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

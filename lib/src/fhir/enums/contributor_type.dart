@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The type of contributor.
-class ContributorType {
+class ContributorType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ContributorType._(this.fhirCode, {this.element});
+  ContributorType._(super.value, [super.element]);
 
   /// Factory constructor to create [ContributorType] from JSON.
   factory ContributorType.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class ContributorType {
     if (value == null && element != null) {
       return ContributorType.elementOnly.withElement(element);
     }
-    return ContributorType._(value!, element: element);
+    return ContributorType._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ContributorType values
   /// author
   static final ContributorType author = ContributorType._(
     'author',
@@ -57,18 +50,63 @@ class ContributorType {
     endorser,
   ];
 
+  /// Clones the current instance
+  @override
+  ContributorType clone() =>
+      ContributorType._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  ContributorType setElement(String name, dynamic elementValue) {
+    return ContributorType._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   ContributorType withElement(Element? newElement) {
-    return ContributorType._(fhirCode, element: newElement);
+    return ContributorType._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  ContributorType copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return ContributorType._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

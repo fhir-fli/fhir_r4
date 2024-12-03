@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Actions that can be taken for the collection of specimen from a subject.
-class SpecimenCollectionEnum {
+class SpecimenCollectionEnum extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  SpecimenCollectionEnum._(this.fhirCode, {this.element});
+  SpecimenCollectionEnum._(super.value, [super.element]);
 
   /// Factory constructor to create [SpecimenCollectionEnum] from JSON.
   factory SpecimenCollectionEnum.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class SpecimenCollectionEnum {
     if (value == null && element != null) {
       return SpecimenCollectionEnum.elementOnly.withElement(element);
     }
-    return SpecimenCollectionEnum._(value!, element: element);
+    return SpecimenCollectionEnum._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// SpecimenCollectionEnum values
   /// value129316008
   static final SpecimenCollectionEnum value129316008 = SpecimenCollectionEnum._(
     '129316008',
@@ -94,18 +87,63 @@ class SpecimenCollectionEnum {
     value278450005,
   ];
 
+  /// Clones the current instance
+  @override
+  SpecimenCollectionEnum clone() =>
+      SpecimenCollectionEnum._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  SpecimenCollectionEnum setElement(String name, dynamic elementValue) {
+    return SpecimenCollectionEnum._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   SpecimenCollectionEnum withElement(Element? newElement) {
-    return SpecimenCollectionEnum._(fhirCode, element: newElement);
+    return SpecimenCollectionEnum._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  SpecimenCollectionEnum copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return SpecimenCollectionEnum._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

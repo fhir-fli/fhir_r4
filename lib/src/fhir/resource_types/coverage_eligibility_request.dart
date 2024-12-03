@@ -308,31 +308,23 @@ class CoverageEligibilityRequest extends DomainResource {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    json['resourceType'] = resourceType.toJson();
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    json['resourceType'] = resourceType.toJson();
+    addField('id', id);
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    if (implicitRules != null) {
-      final fieldJson1 = implicitRules!.toJson();
-      json['implicitRules'] = fieldJson1['value'];
-      if (fieldJson1['_value'] != null) {
-        json['_implicitRules'] = fieldJson1['_value'];
-      }
-    }
-
-    if (language != null) {
-      final fieldJson2 = language!.toJson();
-      json['language'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_language'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('implicitRules', implicitRules);
+    addField('language', language);
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -354,42 +346,27 @@ class CoverageEligibilityRequest extends DomainResource {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
 
-    final fieldJson8 = status.toJson();
-    json['status'] = fieldJson8['value'];
-    if (fieldJson8['_value'] != null) {
-      json['_status'] = fieldJson8['_value'];
-    }
-
+    addField('status', status);
     if (priority != null) {
       json['priority'] = priority!.toJson();
     }
 
-    final fieldJson10 = purpose.map((e) => e.toJson()).toList();
-    json['purpose'] = fieldJson10.map((e) => e['value']).toList();
-    if (fieldJson10.any((e) => e['_value'] != null)) {
-      json['_purpose'] = fieldJson10.map((e) => e['_value']).toList();
+    if (purpose.isNotEmpty) {
+      final fieldJson0 = purpose.map((e) => e.toJson()).toList();
+      json['purpose'] = fieldJson0.map((e) => e['value']).toList();
+      if (fieldJson0.any((e) => e['_value'] != null)) {
+        json['_purpose'] = fieldJson0.map((e) => e['_value']).toList();
+      }
     }
 
     json['patient'] = patient.toJson();
 
-    if (servicedDate != null) {
-      final fieldJson12 = servicedDate!.toJson();
-      json['servicedDate'] = fieldJson12['value'];
-      if (fieldJson12['_value'] != null) {
-        json['_servicedDate'] = fieldJson12['_value'];
-      }
-    }
-
+    addField('servicedDate', servicedDate);
     if (servicedPeriod != null) {
       json['servicedPeriod'] = servicedPeriod!.toJson();
     }
 
-    final fieldJson14 = created.toJson();
-    json['created'] = fieldJson14['value'];
-    if (fieldJson14['_value'] != null) {
-      json['_created'] = fieldJson14['_value'];
-    }
-
+    addField('created', created);
     if (enterer != null) {
       json['enterer'] = enterer!.toJson();
     }
@@ -607,10 +584,16 @@ class CoverageEligibilityRequestSupportingInfo extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -620,22 +603,10 @@ class CoverageEligibilityRequestSupportingInfo extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    final fieldJson2 = sequence.toJson();
-    json['sequence'] = fieldJson2['value'];
-    if (fieldJson2['_value'] != null) {
-      json['_sequence'] = fieldJson2['_value'];
-    }
-
+    addField('sequence', sequence);
     json['information'] = information.toJson();
 
-    if (appliesToAll != null) {
-      final fieldJson4 = appliesToAll!.toJson();
-      json['appliesToAll'] = fieldJson4['value'];
-      if (fieldJson4['_value'] != null) {
-        json['_appliesToAll'] = fieldJson4['_value'];
-      }
-    }
-
+    addField('appliesToAll', appliesToAll);
     return json;
   }
 
@@ -798,10 +769,16 @@ class CoverageEligibilityRequestInsurance extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -811,24 +788,10 @@ class CoverageEligibilityRequestInsurance extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    if (focal != null) {
-      final fieldJson2 = focal!.toJson();
-      json['focal'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_focal'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('focal', focal);
     json['coverage'] = coverage.toJson();
 
-    if (businessArrangement != null) {
-      final fieldJson4 = businessArrangement!.toJson();
-      json['businessArrangement'] = fieldJson4['value'];
-      if (fieldJson4['_value'] != null) {
-        json['_businessArrangement'] = fieldJson4['_value'];
-      }
-    }
-
+    addField('businessArrangement', businessArrangement);
     return json;
   }
 
@@ -1072,10 +1035,16 @@ class CoverageEligibilityRequestItem extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -1086,13 +1055,13 @@ class CoverageEligibilityRequestItem extends BackboneElement {
     }
 
     if (supportingInfoSequence != null && supportingInfoSequence!.isNotEmpty) {
-      final fieldJson2 =
+      final fieldJson0 =
           supportingInfoSequence!.map((e) => e.toJson()).toList();
       json['supportingInfoSequence'] =
-          fieldJson2.map((e) => e['value']).toList();
-      if (fieldJson2.any((e) => e['_value'] != null)) {
+          fieldJson0.map((e) => e['value']).toList();
+      if (fieldJson0.any((e) => e['_value'] != null)) {
         json['_supportingInfoSequence'] =
-            fieldJson2.map((e) => e['_value']).toList();
+            fieldJson0.map((e) => e['_value']).toList();
       }
     }
 
@@ -1293,10 +1262,16 @@ class CoverageEligibilityRequestDiagnosis extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }

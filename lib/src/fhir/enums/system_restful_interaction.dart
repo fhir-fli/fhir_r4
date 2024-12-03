@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Operations supported by REST at the system level.
-class SystemRestfulInteraction {
+class SystemRestfulInteraction extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  SystemRestfulInteraction._(this.fhirCode, {this.element});
+  SystemRestfulInteraction._(super.value, [super.element]);
 
   /// Factory constructor to create [SystemRestfulInteraction] from JSON.
   factory SystemRestfulInteraction.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class SystemRestfulInteraction {
     if (value == null && element != null) {
       return SystemRestfulInteraction.elementOnly.withElement(element);
     }
-    return SystemRestfulInteraction._(value!, element: element);
+    return SystemRestfulInteraction._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// SystemRestfulInteraction values
   /// read
   static final SystemRestfulInteraction read = SystemRestfulInteraction._(
     'read',
@@ -143,18 +136,63 @@ class SystemRestfulInteraction {
     operation,
   ];
 
+  /// Clones the current instance
+  @override
+  SystemRestfulInteraction clone() =>
+      SystemRestfulInteraction._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  SystemRestfulInteraction setElement(String name, dynamic elementValue) {
+    return SystemRestfulInteraction._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   SystemRestfulInteraction withElement(Element? newElement) {
-    return SystemRestfulInteraction._(fhirCode, element: newElement);
+    return SystemRestfulInteraction._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  SystemRestfulInteraction copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return SystemRestfulInteraction._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

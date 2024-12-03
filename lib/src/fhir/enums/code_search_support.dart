@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The degree to which the server supports the code search parameter on ValueSet, if it is supported.
-class CodeSearchSupport {
+class CodeSearchSupport extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  CodeSearchSupport._(this.fhirCode, {this.element});
+  CodeSearchSupport._(super.value, [super.element]);
 
   /// Factory constructor to create [CodeSearchSupport] from JSON.
   factory CodeSearchSupport.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class CodeSearchSupport {
     if (value == null && element != null) {
       return CodeSearchSupport.elementOnly.withElement(element);
     }
-    return CodeSearchSupport._(value!, element: element);
+    return CodeSearchSupport._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// CodeSearchSupport values
   /// explicit
   static final CodeSearchSupport explicit = CodeSearchSupport._(
     'explicit',
@@ -45,18 +38,63 @@ class CodeSearchSupport {
     all,
   ];
 
+  /// Clones the current instance
+  @override
+  CodeSearchSupport clone() =>
+      CodeSearchSupport._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  CodeSearchSupport setElement(String name, dynamic elementValue) {
+    return CodeSearchSupport._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   CodeSearchSupport withElement(Element? newElement) {
-    return CodeSearchSupport._(fhirCode, element: newElement);
+    return CodeSearchSupport._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  CodeSearchSupport copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return CodeSearchSupport._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

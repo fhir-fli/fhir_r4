@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Code of parameter that is input to the guide.
-class GuideParameterCode {
+class GuideParameterCode extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  GuideParameterCode._(this.fhirCode, {this.element});
+  GuideParameterCode._(super.value, [super.element]);
 
   /// Factory constructor to create [GuideParameterCode] from JSON.
   factory GuideParameterCode.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class GuideParameterCode {
     if (value == null && element != null) {
       return GuideParameterCode.elementOnly.withElement(element);
     }
-    return GuideParameterCode._(value!, element: element);
+    return GuideParameterCode._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// GuideParameterCode values
   /// apply
   static final GuideParameterCode apply = GuideParameterCode._(
     'apply',
@@ -93,18 +86,63 @@ class GuideParameterCode {
     html_template,
   ];
 
+  /// Clones the current instance
+  @override
+  GuideParameterCode clone() =>
+      GuideParameterCode._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  GuideParameterCode setElement(String name, dynamic elementValue) {
+    return GuideParameterCode._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   GuideParameterCode withElement(Element? newElement) {
-    return GuideParameterCode._(fhirCode, element: newElement);
+    return GuideParameterCode._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  GuideParameterCode copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return GuideParameterCode._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

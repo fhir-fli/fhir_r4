@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Example use codes for the List resource - typical kinds of use.
-class ExampleUseCodesForList {
+class ExampleUseCodesForList extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ExampleUseCodesForList._(this.fhirCode, {this.element});
+  ExampleUseCodesForList._(super.value, [super.element]);
 
   /// Factory constructor to create [ExampleUseCodesForList] from JSON.
   factory ExampleUseCodesForList.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class ExampleUseCodesForList {
     if (value == null && element != null) {
       return ExampleUseCodesForList.elementOnly.withElement(element);
     }
-    return ExampleUseCodesForList._(value!, element: element);
+    return ExampleUseCodesForList._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ExampleUseCodesForList values
   /// alerts
   static final ExampleUseCodesForList alerts = ExampleUseCodesForList._(
     'alerts',
@@ -88,18 +81,63 @@ class ExampleUseCodesForList {
     plans,
   ];
 
+  /// Clones the current instance
+  @override
+  ExampleUseCodesForList clone() =>
+      ExampleUseCodesForList._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  ExampleUseCodesForList setElement(String name, dynamic elementValue) {
+    return ExampleUseCodesForList._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   ExampleUseCodesForList withElement(Element? newElement) {
-    return ExampleUseCodesForList._(fhirCode, element: newElement);
+    return ExampleUseCodesForList._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  ExampleUseCodesForList copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return ExampleUseCodesForList._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

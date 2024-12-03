@@ -427,31 +427,23 @@ class CommunicationRequest extends DomainResource {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    json['resourceType'] = resourceType.toJson();
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    json['resourceType'] = resourceType.toJson();
+    addField('id', id);
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    if (implicitRules != null) {
-      final fieldJson1 = implicitRules!.toJson();
-      json['implicitRules'] = fieldJson1['value'];
-      if (fieldJson1['_value'] != null) {
-        json['_implicitRules'] = fieldJson1['_value'];
-      }
-    }
-
-    if (language != null) {
-      final fieldJson2 = language!.toJson();
-      json['language'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_language'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('implicitRules', implicitRules);
+    addField('language', language);
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -485,12 +477,7 @@ class CommunicationRequest extends DomainResource {
       json['groupIdentifier'] = groupIdentifier!.toJson();
     }
 
-    final fieldJson11 = status.toJson();
-    json['status'] = fieldJson11['value'];
-    if (fieldJson11['_value'] != null) {
-      json['_status'] = fieldJson11['_value'];
-    }
-
+    addField('status', status);
     if (statusReason != null) {
       json['statusReason'] = statusReason!.toJson();
     }
@@ -499,22 +486,8 @@ class CommunicationRequest extends DomainResource {
       json['category'] = category!.map((e) => e.toJson()).toList();
     }
 
-    if (priority != null) {
-      final fieldJson14 = priority!.toJson();
-      json['priority'] = fieldJson14['value'];
-      if (fieldJson14['_value'] != null) {
-        json['_priority'] = fieldJson14['_value'];
-      }
-    }
-
-    if (doNotPerform != null) {
-      final fieldJson15 = doNotPerform!.toJson();
-      json['doNotPerform'] = fieldJson15['value'];
-      if (fieldJson15['_value'] != null) {
-        json['_doNotPerform'] = fieldJson15['_value'];
-      }
-    }
-
+    addField('priority', priority);
+    addField('doNotPerform', doNotPerform);
     if (medium != null && medium!.isNotEmpty) {
       json['medium'] = medium!.map((e) => e.toJson()).toList();
     }
@@ -535,26 +508,12 @@ class CommunicationRequest extends DomainResource {
       json['payload'] = payload!.map((e) => e.toJson()).toList();
     }
 
-    if (occurrenceDateTime != null) {
-      final fieldJson21 = occurrenceDateTime!.toJson();
-      json['occurrenceDateTime'] = fieldJson21['value'];
-      if (fieldJson21['_value'] != null) {
-        json['_occurrenceDateTime'] = fieldJson21['_value'];
-      }
-    }
-
+    addField('occurrenceDateTime', occurrenceDateTime);
     if (occurrencePeriod != null) {
       json['occurrencePeriod'] = occurrencePeriod!.toJson();
     }
 
-    if (authoredOn != null) {
-      final fieldJson23 = authoredOn!.toJson();
-      json['authoredOn'] = fieldJson23['value'];
-      if (fieldJson23['_value'] != null) {
-        json['_authoredOn'] = fieldJson23['_value'];
-      }
-    }
-
+    addField('authoredOn', authoredOn);
     if (requester != null) {
       json['requester'] = requester!.toJson();
     }
@@ -790,10 +749,16 @@ class CommunicationRequestPayload extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -803,14 +768,7 @@ class CommunicationRequestPayload extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    if (contentString != null) {
-      final fieldJson2 = contentString!.toJson();
-      json['contentString'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_contentString'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('contentString', contentString);
     if (contentAttachment != null) {
       json['contentAttachment'] = contentAttachment!.toJson();
     }

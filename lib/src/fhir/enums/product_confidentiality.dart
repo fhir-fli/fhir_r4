@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Confidentiality rating, e.g. commercial sensitivity for a Medicinal Product.
-class ProductConfidentiality {
+class ProductConfidentiality extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ProductConfidentiality._(this.fhirCode, {this.element});
+  ProductConfidentiality._(super.value, [super.element]);
 
   /// Factory constructor to create [ProductConfidentiality] from JSON.
   factory ProductConfidentiality.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class ProductConfidentiality {
     if (value == null && element != null) {
       return ProductConfidentiality.elementOnly.withElement(element);
     }
-    return ProductConfidentiality._(value!, element: element);
+    return ProductConfidentiality._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ProductConfidentiality values
   /// CommerciallySensitive
   static final ProductConfidentiality CommerciallySensitive =
       ProductConfidentiality._(
@@ -48,18 +41,63 @@ class ProductConfidentiality {
     NotCommerciallySensitive,
   ];
 
+  /// Clones the current instance
+  @override
+  ProductConfidentiality clone() =>
+      ProductConfidentiality._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  ProductConfidentiality setElement(String name, dynamic elementValue) {
+    return ProductConfidentiality._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   ProductConfidentiality withElement(Element? newElement) {
-    return ProductConfidentiality._(fhirCode, element: newElement);
+    return ProductConfidentiality._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  ProductConfidentiality copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return ProductConfidentiality._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

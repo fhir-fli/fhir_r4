@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Codes for the reason why a communication did not happen.
-class CommunicationNotDoneReason {
+class CommunicationNotDoneReason extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  CommunicationNotDoneReason._(this.fhirCode, {this.element});
+  CommunicationNotDoneReason._(super.value, [super.element]);
 
   /// Factory constructor to create [CommunicationNotDoneReason] from JSON.
   factory CommunicationNotDoneReason.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class CommunicationNotDoneReason {
     if (value == null && element != null) {
       return CommunicationNotDoneReason.elementOnly.withElement(element);
     }
-    return CommunicationNotDoneReason._(value!, element: element);
+    return CommunicationNotDoneReason._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// CommunicationNotDoneReason values
   /// unknown
   static final CommunicationNotDoneReason unknown =
       CommunicationNotDoneReason._(
@@ -76,18 +69,63 @@ class CommunicationNotDoneReason {
     patient_objection,
   ];
 
+  /// Clones the current instance
+  @override
+  CommunicationNotDoneReason clone() =>
+      CommunicationNotDoneReason._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  CommunicationNotDoneReason setElement(String name, dynamic elementValue) {
+    return CommunicationNotDoneReason._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   CommunicationNotDoneReason withElement(Element? newElement) {
-    return CommunicationNotDoneReason._(fhirCode, element: newElement);
+    return CommunicationNotDoneReason._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  CommunicationNotDoneReason copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return CommunicationNotDoneReason._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

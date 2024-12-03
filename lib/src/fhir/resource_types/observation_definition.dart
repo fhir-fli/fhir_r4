@@ -282,31 +282,23 @@ class ObservationDefinition extends DomainResource {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    json['resourceType'] = resourceType.toJson();
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    json['resourceType'] = resourceType.toJson();
+    addField('id', id);
     if (meta != null) {
       json['meta'] = meta!.toJson();
     }
 
-    if (implicitRules != null) {
-      final fieldJson1 = implicitRules!.toJson();
-      json['implicitRules'] = fieldJson1['value'];
-      if (fieldJson1['_value'] != null) {
-        json['_implicitRules'] = fieldJson1['_value'];
-      }
-    }
-
-    if (language != null) {
-      final fieldJson2 = language!.toJson();
-      json['language'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_language'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('implicitRules', implicitRules);
+    addField('language', language);
     if (text != null) {
       json['text'] = text!.toJson();
     }
@@ -335,34 +327,20 @@ class ObservationDefinition extends DomainResource {
     }
 
     if (permittedDataType != null && permittedDataType!.isNotEmpty) {
-      final fieldJson10 = permittedDataType!.map((e) => e.toJson()).toList();
-      json['permittedDataType'] = fieldJson10.map((e) => e['value']).toList();
-      if (fieldJson10.any((e) => e['_value'] != null)) {
+      final fieldJson0 = permittedDataType!.map((e) => e.toJson()).toList();
+      json['permittedDataType'] = fieldJson0.map((e) => e['value']).toList();
+      if (fieldJson0.any((e) => e['_value'] != null)) {
         json['_permittedDataType'] =
-            fieldJson10.map((e) => e['_value']).toList();
+            fieldJson0.map((e) => e['_value']).toList();
       }
     }
 
-    if (multipleResultsAllowed != null) {
-      final fieldJson11 = multipleResultsAllowed!.toJson();
-      json['multipleResultsAllowed'] = fieldJson11['value'];
-      if (fieldJson11['_value'] != null) {
-        json['_multipleResultsAllowed'] = fieldJson11['_value'];
-      }
-    }
-
+    addField('multipleResultsAllowed', multipleResultsAllowed);
     if (method != null) {
       json['method'] = method!.toJson();
     }
 
-    if (preferredReportName != null) {
-      final fieldJson13 = preferredReportName!.toJson();
-      json['preferredReportName'] = fieldJson13['value'];
-      if (fieldJson13['_value'] != null) {
-        json['_preferredReportName'] = fieldJson13['_value'];
-      }
-    }
-
+    addField('preferredReportName', preferredReportName);
     if (quantitativeDetails != null) {
       json['quantitativeDetails'] = quantitativeDetails!.toJson();
     }
@@ -593,10 +571,16 @@ class ObservationDefinitionQuantitativeDetails extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -614,22 +598,8 @@ class ObservationDefinitionQuantitativeDetails extends BackboneElement {
       json['unit'] = unit!.toJson();
     }
 
-    if (conversionFactor != null) {
-      final fieldJson4 = conversionFactor!.toJson();
-      json['conversionFactor'] = fieldJson4['value'];
-      if (fieldJson4['_value'] != null) {
-        json['_conversionFactor'] = fieldJson4['_value'];
-      }
-    }
-
-    if (decimalPrecision != null) {
-      final fieldJson5 = decimalPrecision!.toJson();
-      json['decimalPrecision'] = fieldJson5['value'];
-      if (fieldJson5['_value'] != null) {
-        json['_decimalPrecision'] = fieldJson5['_value'];
-      }
-    }
-
+    addField('conversionFactor', conversionFactor);
+    addField('decimalPrecision', decimalPrecision);
     return json;
   }
 
@@ -851,10 +821,16 @@ class ObservationDefinitionQualifiedInterval extends BackboneElement {
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson()['value'];
+    void addField(String key, FhirBase? field) {
+      if (field != null) {
+        json[key] = field.toJson()['value'];
+        if (field.toJson()['_value'] != null) {
+          json['_$key'] = field.toJson()['_value'];
+        }
+      }
     }
 
+    addField('id', id);
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
@@ -864,14 +840,7 @@ class ObservationDefinitionQualifiedInterval extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    if (category != null) {
-      final fieldJson2 = category!.toJson();
-      json['category'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_category'] = fieldJson2['_value'];
-      }
-    }
-
+    addField('category', category);
     if (range != null) {
       json['range'] = range!.toJson();
     }
@@ -884,14 +853,7 @@ class ObservationDefinitionQualifiedInterval extends BackboneElement {
       json['appliesTo'] = appliesTo!.map((e) => e.toJson()).toList();
     }
 
-    if (gender != null) {
-      final fieldJson6 = gender!.toJson();
-      json['gender'] = fieldJson6['value'];
-      if (fieldJson6['_value'] != null) {
-        json['_gender'] = fieldJson6['_value'];
-      }
-    }
-
+    addField('gender', gender);
     if (age != null) {
       json['age'] = age!.toJson();
     }
@@ -900,14 +862,7 @@ class ObservationDefinitionQualifiedInterval extends BackboneElement {
       json['gestationalAge'] = gestationalAge!.toJson();
     }
 
-    if (condition != null) {
-      final fieldJson9 = condition!.toJson();
-      json['condition'] = fieldJson9['value'];
-      if (fieldJson9['_value'] != null) {
-        json['_condition'] = fieldJson9['_value'];
-      }
-    }
-
+    addField('condition', condition);
     return json;
   }
 

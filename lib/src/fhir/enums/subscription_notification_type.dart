@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The type of notification represented by the status message.
-class SubscriptionNotificationType {
+class SubscriptionNotificationType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  SubscriptionNotificationType._(this.fhirCode, {this.element});
+  SubscriptionNotificationType._(super.value, [super.element]);
 
   /// Factory constructor to create [SubscriptionNotificationType] from JSON.
   factory SubscriptionNotificationType.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class SubscriptionNotificationType {
     if (value == null && element != null) {
       return SubscriptionNotificationType.elementOnly.withElement(element);
     }
-    return SubscriptionNotificationType._(value!, element: element);
+    return SubscriptionNotificationType._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// SubscriptionNotificationType values
   /// handshake
   static final SubscriptionNotificationType handshake =
       SubscriptionNotificationType._(
@@ -69,18 +62,63 @@ class SubscriptionNotificationType {
     query_event,
   ];
 
+  /// Clones the current instance
+  @override
+  SubscriptionNotificationType clone() =>
+      SubscriptionNotificationType._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  SubscriptionNotificationType setElement(String name, dynamic elementValue) {
+    return SubscriptionNotificationType._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   SubscriptionNotificationType withElement(Element? newElement) {
-    return SubscriptionNotificationType._(fhirCode, element: newElement);
+    return SubscriptionNotificationType._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  SubscriptionNotificationType copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return SubscriptionNotificationType._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

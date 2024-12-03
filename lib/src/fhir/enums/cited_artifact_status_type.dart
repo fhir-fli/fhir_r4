@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Cited Artifact Status Type
-class CitedArtifactStatusType {
+class CitedArtifactStatusType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  CitedArtifactStatusType._(this.fhirCode, {this.element});
+  CitedArtifactStatusType._(super.value, [super.element]);
 
   /// Factory constructor to create [CitedArtifactStatusType] from JSON.
   factory CitedArtifactStatusType.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class CitedArtifactStatusType {
     if (value == null && element != null) {
       return CitedArtifactStatusType.elementOnly.withElement(element);
     }
-    return CitedArtifactStatusType._(value!, element: element);
+    return CitedArtifactStatusType._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// CitedArtifactStatusType values
   /// created
   static final CitedArtifactStatusType created = CitedArtifactStatusType._(
     'created',
@@ -127,18 +120,63 @@ class CitedArtifactStatusType {
     approved,
   ];
 
+  /// Clones the current instance
+  @override
+  CitedArtifactStatusType clone() =>
+      CitedArtifactStatusType._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  CitedArtifactStatusType setElement(String name, dynamic elementValue) {
+    return CitedArtifactStatusType._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   CitedArtifactStatusType withElement(Element? newElement) {
-    return CitedArtifactStatusType._(fhirCode, element: newElement);
+    return CitedArtifactStatusType._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  CitedArtifactStatusType copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return CitedArtifactStatusType._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }

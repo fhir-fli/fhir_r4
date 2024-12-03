@@ -3,9 +3,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Provides examples of actions to be performed.
-class ActionCode {
+class ActionCode extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ActionCode._(this.fhirCode, {this.element});
+  ActionCode._(super.value, [super.element]);
 
   /// Factory constructor to create [ActionCode] from JSON.
   factory ActionCode.fromJson(Map<String, dynamic> json) {
@@ -15,16 +15,9 @@ class ActionCode {
     if (value == null && element != null) {
       return ActionCode.elementOnly.withElement(element);
     }
-    return ActionCode._(value!, element: element);
+    return ActionCode._(value, element);
   }
 
-  /// The String value of this enum (FHIR code)
-  final String fhirCode;
-
-  /// The Element value of this enum
-  final Element? element;
-
-  /// ActionCode values
   /// send_message
   static final ActionCode send_message = ActionCode._(
     'send-message',
@@ -87,18 +80,62 @@ class ActionCode {
     report_flag,
   ];
 
+  /// Clones the current instance
+  @override
+  ActionCode clone() => ActionCode._(value, element?.clone() as Element?);
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  ActionCode setElement(String name, dynamic elementValue) {
+    return ActionCode._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
   /// Returns the enum value with an element attached
   ActionCode withElement(Element? newElement) {
-    return ActionCode._(fhirCode, element: newElement);
+    return ActionCode._(value, newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
+  @override
   Map<String, dynamic> toJson() => {
-        'value': fhirCode.isEmpty ? null : fhirCode,
+        'value': (value?.isEmpty ?? false) ? null : value,
         if (element != null) '_value': element!.toJson(),
       };
 
   /// String representation
   @override
-  String toString() => fhirCode;
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  ActionCode copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return ActionCode._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
 }
