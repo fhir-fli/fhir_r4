@@ -129,7 +129,6 @@ abstract class DomainResource extends Resource {
   static String resourceTypeToString(R4ResourceType type) => type.toString();
 
   @override
-  @override
   DomainResource copyWith({
     FhirString? id,
     FhirMeta? meta,

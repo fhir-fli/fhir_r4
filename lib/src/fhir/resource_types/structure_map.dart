@@ -5,7 +5,7 @@ import 'package:yaml/yaml.dart';
 /// [StructureMap]
 /// A Map of relationships between 2 structures that can be used to
 /// transform data.
-class StructureMap extends DomainResource {
+class StructureMap extends CanonicalResource {
   /// Primary constructor for
   /// [StructureMap]
 
@@ -18,19 +18,19 @@ class StructureMap extends DomainResource {
     super.contained,
     super.extension_,
     super.modifierExtension,
-    required this.url,
+    required super.url,
     this.identifier,
-    this.version,
+    super.version,
     required this.name,
     this.title,
-    required this.status,
-    this.experimental,
-    this.date,
-    this.publisher,
-    this.contact,
-    this.description,
-    this.useContext,
-    this.jurisdiction,
+    required super.status,
+    super.experimental,
+    super.date,
+    super.publisher,
+    super.contact,
+    super.description,
+    super.useContext,
+    super.jurisdiction,
     this.purpose,
     this.copyright,
     this.structure,
@@ -269,31 +269,11 @@ class StructureMap extends DomainResource {
   @override
   String get fhirType => 'StructureMap';
 
-  /// [url]
-  /// An absolute URI that is used to identify this structure map when it is
-  /// referenced in a specification, model, design or an instance; also
-  /// called its canonical identifier. This SHOULD be globally unique and
-  /// SHOULD be a literal address at which at which an authoritative instance
-  /// of this structure map is (or will be) published. This URL can be the
-  /// target of a canonical reference. It SHALL remain the same when the
-  /// structure map is stored on different servers.
-  final FhirUri url;
-
   /// [identifier]
   /// A formal identifier that is used to identify this structure map when it
   /// is represented in other formats, or referenced in a specification,
   /// model, design or an instance.
   final List<Identifier>? identifier;
-
-  /// [version]
-  /// The identifier that is used to identify this version of the structure
-  /// map when it is referenced in a specification, model, design or
-  /// instance. This is an arbitrary value managed by the structure map
-  /// author and is not expected to be globally unique. For example, it might
-  /// be a timestamp (e.g. yyyymmdd) if a managed version is not available.
-  /// There is also no expectation that versions can be placed in a
-  /// lexicographical sequence.
-  final FhirString? version;
 
   /// [name]
   /// A natural language name identifying the structure map. This name should
@@ -304,52 +284,6 @@ class StructureMap extends DomainResource {
   /// [title]
   /// A short, descriptive, user-friendly title for the structure map.
   final FhirString? title;
-
-  /// [status]
-  /// The status of this structure map. Enables tracking the life-cycle of
-  /// the content.
-  final PublicationStatus status;
-
-  /// [experimental]
-  /// A Boolean value to indicate that this structure map is authored for
-  /// testing purposes (or education/evaluation/marketing) and is not
-  /// intended to be used for genuine usage.
-  final FhirBoolean? experimental;
-
-  /// [date]
-  /// The date (and optionally time) when the structure map was published.
-  /// The date must change when the business version changes and it must
-  /// change if the status code changes. In addition, it should change when
-  /// the substantive content of the structure map changes.
-  final FhirDateTime? date;
-
-  /// [publisher]
-  /// The name of the organization or individual that published the structure
-  /// map.
-  final FhirString? publisher;
-
-  /// [contact]
-  /// Contact details to assist a user in finding and communicating with the
-  /// publisher.
-  final List<ContactDetail>? contact;
-
-  /// [description]
-  /// A free text natural language description of the structure map from a
-  /// consumer's perspective.
-  final FhirMarkdown? description;
-
-  /// [useContext]
-  /// The content was developed with a focus and intent of supporting the
-  /// contexts that are listed. These contexts may be general categories
-  /// (gender, age, ...) or may be references to specific programs (insurance
-  /// plans, studies, ...) and may be used to assist with indexing and
-  /// searching for appropriate structure map instances.
-  final List<UsageContext>? useContext;
-
-  /// [jurisdiction]
-  /// A legal or geographic region in which the structure map is intended to
-  /// be used.
-  final List<CodeableConcept>? jurisdiction;
 
   /// [purpose]
   /// Explanation of why this structure map is needed and why it has been

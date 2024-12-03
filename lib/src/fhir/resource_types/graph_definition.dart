@@ -7,7 +7,7 @@ import 'package:yaml/yaml.dart';
 /// coherent set of resources that form a graph by following references.
 /// The Graph Definition resource defines a set and makes rules about the
 /// set.
-class GraphDefinition extends DomainResource {
+class GraphDefinition extends CanonicalResource {
   /// Primary constructor for
   /// [GraphDefinition]
 
@@ -20,17 +20,17 @@ class GraphDefinition extends DomainResource {
     super.contained,
     super.extension_,
     super.modifierExtension,
-    this.url,
-    this.version,
+    super.url,
+    super.version,
     required this.name,
-    required this.status,
-    this.experimental,
-    this.date,
-    this.publisher,
-    this.contact,
-    this.description,
-    this.useContext,
-    this.jurisdiction,
+    required super.status,
+    super.experimental,
+    super.date,
+    super.publisher,
+    super.contact,
+    super.description,
+    super.useContext,
+    super.jurisdiction,
     this.purpose,
     required this.start,
     this.profile,
@@ -245,77 +245,11 @@ class GraphDefinition extends DomainResource {
   @override
   String get fhirType => 'GraphDefinition';
 
-  /// [url]
-  /// An absolute URI that is used to identify this graph definition when it
-  /// is referenced in a specification, model, design or an instance; also
-  /// called its canonical identifier. This SHOULD be globally unique and
-  /// SHOULD be a literal address at which at which an authoritative instance
-  /// of this graph definition is (or will be) published. This URL can be the
-  /// target of a canonical reference. It SHALL remain the same when the
-  /// graph definition is stored on different servers.
-  final FhirUri? url;
-
-  /// [version]
-  /// The identifier that is used to identify this version of the graph
-  /// definition when it is referenced in a specification, model, design or
-  /// instance. This is an arbitrary value managed by the graph definition
-  /// author and is not expected to be globally unique. For example, it might
-  /// be a timestamp (e.g. yyyymmdd) if a managed version is not available.
-  /// There is also no expectation that versions can be placed in a
-  /// lexicographical sequence.
-  final FhirString? version;
-
   /// [name]
   /// A natural language name identifying the graph definition. This name
   /// should be usable as an identifier for the module by machine processing
   /// applications such as code generation.
   final FhirString name;
-
-  /// [status]
-  /// The status of this graph definition. Enables tracking the life-cycle of
-  /// the content.
-  final PublicationStatus status;
-
-  /// [experimental]
-  /// A Boolean value to indicate that this graph definition is authored for
-  /// testing purposes (or education/evaluation/marketing) and is not
-  /// intended to be used for genuine usage.
-  final FhirBoolean? experimental;
-
-  /// [date]
-  /// The date (and optionally time) when the graph definition was published.
-  /// The date must change when the business version changes and it must
-  /// change if the status code changes. In addition, it should change when
-  /// the substantive content of the graph definition changes.
-  final FhirDateTime? date;
-
-  /// [publisher]
-  /// The name of the organization or individual that published the graph
-  /// definition.
-  final FhirString? publisher;
-
-  /// [contact]
-  /// Contact details to assist a user in finding and communicating with the
-  /// publisher.
-  final List<ContactDetail>? contact;
-
-  /// [description]
-  /// A free text natural language description of the graph definition from a
-  /// consumer's perspective.
-  final FhirMarkdown? description;
-
-  /// [useContext]
-  /// The content was developed with a focus and intent of supporting the
-  /// contexts that are listed. These contexts may be general categories
-  /// (gender, age, ...) or may be references to specific programs (insurance
-  /// plans, studies, ...) and may be used to assist with indexing and
-  /// searching for appropriate graph definition instances.
-  final List<UsageContext>? useContext;
-
-  /// [jurisdiction]
-  /// A legal or geographic region in which the graph definition is intended
-  /// to be used.
-  final List<CodeableConcept>? jurisdiction;
 
   /// [purpose]
   /// Explanation of why this graph definition is needed and why it has been

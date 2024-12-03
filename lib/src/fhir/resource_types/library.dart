@@ -7,7 +7,7 @@ import 'package:yaml/yaml.dart';
 /// definitions. It can be used to describe and expose existing knowledge
 /// assets such as logic libraries and information model descriptions, as
 /// well as to describe a collection of knowledge assets.
-class Library extends DomainResource {
+class Library extends CanonicalResource {
   /// Primary constructor for
   /// [Library]
 
@@ -20,23 +20,23 @@ class Library extends DomainResource {
     super.contained,
     super.extension_,
     super.modifierExtension,
-    this.url,
+    super.url,
     this.identifier,
-    this.version,
+    super.version,
     this.name,
     this.title,
     this.subtitle,
-    required this.status,
-    this.experimental,
+    required super.status,
+    super.experimental,
     required this.type,
     this.subjectCodeableConcept,
     this.subjectReference,
-    this.date,
-    this.publisher,
-    this.contact,
-    this.description,
-    this.useContext,
-    this.jurisdiction,
+    super.date,
+    super.publisher,
+    super.contact,
+    super.description,
+    super.useContext,
+    super.jurisdiction,
     this.purpose,
     this.usage,
     this.copyright,
@@ -391,16 +391,6 @@ class Library extends DomainResource {
   @override
   String get fhirType => 'Library';
 
-  /// [url]
-  /// An absolute URI that is used to identify this library when it is
-  /// referenced in a specification, model, design or an instance; also
-  /// called its canonical identifier. This SHOULD be globally unique and
-  /// SHOULD be a literal address at which at which an authoritative instance
-  /// of this library is (or will be) published. This URL can be the target
-  /// of a canonical reference. It SHALL remain the same when the library is
-  /// stored on different servers.
-  final FhirUri? url;
-
   /// [identifier]
   /// A formal identifier that is used to identify this library when it is
   /// represented in other formats, or referenced in a specification, model,
@@ -408,20 +398,6 @@ class Library extends DomainResource {
   /// artifact. Note that at least one identifier is required for
   /// non-experimental active artifacts.
   final List<Identifier>? identifier;
-
-  /// [version]
-  /// The identifier that is used to identify this version of the library
-  /// when it is referenced in a specification, model, design or instance.
-  /// This is an arbitrary value managed by the library author and is not
-  /// expected to be globally unique. For example, it might be a timestamp
-  /// (e.g. yyyymmdd) if a managed version is not available. There is also no
-  /// expectation that versions can be placed in a lexicographical sequence.
-  /// To provide a version consistent with the Decision Support Service
-  /// specification, use the format Major.Minor.Revision (e.g. 1.0.0). For
-  /// more information on versioning knowledge assets, refer to the Decision
-  /// Support Service specification. Note that a version is required for
-  /// non-experimental active artifacts.
-  final FhirString? version;
 
   /// [name]
   /// A natural language name identifying the library. This name should be
@@ -438,17 +414,6 @@ class Library extends DomainResource {
   /// information about its content.
   final FhirString? subtitle;
 
-  /// [status]
-  /// The status of this library. Enables tracking the life-cycle of the
-  /// content.
-  final PublicationStatus status;
-
-  /// [experimental]
-  /// A Boolean value to indicate that this library is authored for testing
-  /// purposes (or education/evaluation/marketing) and is not intended to be
-  /// used for genuine usage.
-  final FhirBoolean? experimental;
-
   /// [type]
   /// Identifies the type of library such as a Logic Library, Model
   /// Definition, Asset Collection, or Module Definition.
@@ -463,40 +428,6 @@ class Library extends DomainResource {
   /// A code or group definition that describes the intended subject of the
   /// contents of the library.
   final Reference? subjectReference;
-
-  /// [date]
-  /// The date (and optionally time) when the library was published. The date
-  /// must change when the business version changes and it must change if the
-  /// status code changes. In addition, it should change when the substantive
-  /// content of the library changes.
-  final FhirDateTime? date;
-
-  /// [publisher]
-  /// The name of the organization or individual that published the library.
-  final FhirString? publisher;
-
-  /// [contact]
-  /// Contact details to assist a user in finding and communicating with the
-  /// publisher.
-  final List<ContactDetail>? contact;
-
-  /// [description]
-  /// A free text natural language description of the library from a
-  /// consumer's perspective.
-  final FhirMarkdown? description;
-
-  /// [useContext]
-  /// The content was developed with a focus and intent of supporting the
-  /// contexts that are listed. These contexts may be general categories
-  /// (gender, age, ...) or may be references to specific programs (insurance
-  /// plans, studies, ...) and may be used to assist with indexing and
-  /// searching for appropriate library instances.
-  final List<UsageContext>? useContext;
-
-  /// [jurisdiction]
-  /// A legal or geographic region in which the library is intended to be
-  /// used.
-  final List<CodeableConcept>? jurisdiction;
 
   /// [purpose]
   /// Explanation of why this library is needed and why it has been designed

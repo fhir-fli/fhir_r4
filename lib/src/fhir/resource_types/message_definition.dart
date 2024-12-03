@@ -6,7 +6,7 @@ import 'package:yaml/yaml.dart';
 /// Defines the characteristics of a message that can be shared between
 /// systems, including the type of event that initiates the message, the
 /// content to be transmitted and what response(s), if any, are permitted.
-class MessageDefinition extends DomainResource {
+class MessageDefinition extends CanonicalResource {
   /// Primary constructor for
   /// [MessageDefinition]
 
@@ -19,20 +19,20 @@ class MessageDefinition extends DomainResource {
     super.contained,
     super.extension_,
     super.modifierExtension,
-    this.url,
+    super.url,
     this.identifier,
-    this.version,
+    super.version,
     this.name,
     this.title,
     this.replaces,
-    required this.status,
-    this.experimental,
-    required this.date,
-    this.publisher,
-    this.contact,
-    this.description,
-    this.useContext,
-    this.jurisdiction,
+    required super.status,
+    super.experimental,
+    required super.date,
+    super.publisher,
+    super.contact,
+    super.description,
+    super.useContext,
+    super.jurisdiction,
     this.purpose,
     this.copyright,
     this.base,
@@ -319,26 +319,11 @@ class MessageDefinition extends DomainResource {
   @override
   String get fhirType => 'MessageDefinition';
 
-  /// [url]
-  /// The business identifier that is used to reference the MessageDefinition
-  /// and *is* expected to be consistent from server to server.
-  final FhirUri? url;
-
   /// [identifier]
   /// A formal identifier that is used to identify this message definition
   /// when it is represented in other formats, or referenced in a
   /// specification, model, design or an instance.
   final List<Identifier>? identifier;
-
-  /// [version]
-  /// The identifier that is used to identify this version of the message
-  /// definition when it is referenced in a specification, model, design or
-  /// instance. This is an arbitrary value managed by the message definition
-  /// author and is not expected to be globally unique. For example, it might
-  /// be a timestamp (e.g. yyyymmdd) if a managed version is not available.
-  /// There is also no expectation that versions can be placed in a
-  /// lexicographical sequence.
-  final FhirString? version;
 
   /// [name]
   /// A natural language name identifying the message definition. This name
@@ -353,52 +338,6 @@ class MessageDefinition extends DomainResource {
   /// [replaces]
   /// A MessageDefinition that is superseded by this definition.
   final List<FhirCanonical>? replaces;
-
-  /// [status]
-  /// The status of this message definition. Enables tracking the life-cycle
-  /// of the content.
-  final PublicationStatus status;
-
-  /// [experimental]
-  /// A Boolean value to indicate that this message definition is authored
-  /// for testing purposes (or education/evaluation/marketing) and is not
-  /// intended to be used for genuine usage.
-  final FhirBoolean? experimental;
-
-  /// [date]
-  /// The date (and optionally time) when the message definition was
-  /// published. The date must change when the business version changes and
-  /// it must change if the status code changes. In addition, it should
-  /// change when the substantive content of the message definition changes.
-  final FhirDateTime date;
-
-  /// [publisher]
-  /// The name of the organization or individual that published the message
-  /// definition.
-  final FhirString? publisher;
-
-  /// [contact]
-  /// Contact details to assist a user in finding and communicating with the
-  /// publisher.
-  final List<ContactDetail>? contact;
-
-  /// [description]
-  /// A free text natural language description of the message definition from
-  /// a consumer's perspective.
-  final FhirMarkdown? description;
-
-  /// [useContext]
-  /// The content was developed with a focus and intent of supporting the
-  /// contexts that are listed. These contexts may be general categories
-  /// (gender, age, ...) or may be references to specific programs (insurance
-  /// plans, studies, ...) and may be used to assist with indexing and
-  /// searching for appropriate message definition instances.
-  final List<UsageContext>? useContext;
-
-  /// [jurisdiction]
-  /// A legal or geographic region in which the message definition is
-  /// intended to be used.
-  final List<CodeableConcept>? jurisdiction;
 
   /// [purpose]
   /// Explanation of why this message definition is needed and why it has

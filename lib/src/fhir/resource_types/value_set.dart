@@ -7,7 +7,7 @@ import 'package:yaml/yaml.dart';
 /// more code systems, intended for use in a particular context. Value sets
 /// link between [CodeSystem](codesystem.html) definitions and their use in
 /// [coded elements](terminologies.html).
-class ValueSet extends DomainResource {
+class ValueSet extends CanonicalResource {
   /// Primary constructor for
   /// [ValueSet]
 
@@ -20,19 +20,19 @@ class ValueSet extends DomainResource {
     super.contained,
     super.extension_,
     super.modifierExtension,
-    this.url,
+    super.url,
     this.identifier,
-    this.version,
+    super.version,
     this.name,
     this.title,
-    required this.status,
-    this.experimental,
-    this.date,
-    this.publisher,
-    this.contact,
-    this.description,
-    this.useContext,
-    this.jurisdiction,
+    required super.status,
+    super.experimental,
+    super.date,
+    super.publisher,
+    super.contact,
+    super.description,
+    super.useContext,
+    super.jurisdiction,
     this.immutable,
     this.purpose,
     this.copyright,
@@ -268,30 +268,11 @@ class ValueSet extends DomainResource {
   @override
   String get fhirType => 'ValueSet';
 
-  /// [url]
-  /// An absolute URI that is used to identify this value set when it is
-  /// referenced in a specification, model, design or an instance; also
-  /// called its canonical identifier. This SHOULD be globally unique and
-  /// SHOULD be a literal address at which at which an authoritative instance
-  /// of this value set is (or will be) published. This URL can be the target
-  /// of a canonical reference. It SHALL remain the same when the value set
-  /// is stored on different servers.
-  final FhirUri? url;
-
   /// [identifier]
   /// A formal identifier that is used to identify this value set when it is
   /// represented in other formats, or referenced in a specification, model,
   /// design or an instance.
   final List<Identifier>? identifier;
-
-  /// [version]
-  /// The identifier that is used to identify this version of the value set
-  /// when it is referenced in a specification, model, design or instance.
-  /// This is an arbitrary value managed by the value set author and is not
-  /// expected to be globally unique. For example, it might be a timestamp
-  /// (e.g. yyyymmdd) if a managed version is not available. There is also no
-  /// expectation that versions can be placed in a lexicographical sequence.
-  final FhirString? version;
 
   /// [name]
   /// A natural language name identifying the value set. This name should be
@@ -302,54 +283,6 @@ class ValueSet extends DomainResource {
   /// [title]
   /// A short, descriptive, user-friendly title for the value set.
   final FhirString? title;
-
-  /// [status]
-  /// The status of this value set. Enables tracking the life-cycle of the
-  /// content. The status of the value set applies to the value set
-  /// definition (ValueSet.compose) and the associated ValueSet metadata.
-  /// Expansions do not have a state.
-  final PublicationStatus status;
-
-  /// [experimental]
-  /// A Boolean value to indicate that this value set is authored for testing
-  /// purposes (or education/evaluation/marketing) and is not intended to be
-  /// used for genuine usage.
-  final FhirBoolean? experimental;
-
-  /// [date]
-  /// The date (and optionally time) when the value set was created or
-  /// revised (e.g. the 'content logical definition').
-  final FhirDateTime? date;
-
-  /// [publisher]
-  /// The name of the organization or individual that published the value
-  /// set.
-  final FhirString? publisher;
-
-  /// [contact]
-  /// Contact details to assist a user in finding and communicating with the
-  /// publisher.
-  final List<ContactDetail>? contact;
-
-  /// [description]
-  /// A free text natural language description of the value set from a
-  /// consumer's perspective. The textual description specifies the span of
-  /// meanings for concepts to be included within the Value Set Expansion,
-  /// and also may specify the intended use and limitations of the Value Set.
-  final FhirMarkdown? description;
-
-  /// [useContext]
-  /// The content was developed with a focus and intent of supporting the
-  /// contexts that are listed. These contexts may be general categories
-  /// (gender, age, ...) or may be references to specific programs (insurance
-  /// plans, studies, ...) and may be used to assist with indexing and
-  /// searching for appropriate value set instances.
-  final List<UsageContext>? useContext;
-
-  /// [jurisdiction]
-  /// A legal or geographic region in which the value set is intended to be
-  /// used.
-  final List<CodeableConcept>? jurisdiction;
 
   /// [immutable]
   /// If this is set to 'true', then no new versions of the content logical

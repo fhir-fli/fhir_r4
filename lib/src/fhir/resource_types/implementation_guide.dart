@@ -8,7 +8,7 @@ import 'package:yaml/yaml.dart';
 /// resource is used to gather all the parts of an implementation guide
 /// into a logical whole and to publish a computable definition of all the
 /// parts.
-class ImplementationGuide extends DomainResource {
+class ImplementationGuide extends CanonicalResource {
   /// Primary constructor for
   /// [ImplementationGuide]
 
@@ -21,18 +21,18 @@ class ImplementationGuide extends DomainResource {
     super.contained,
     super.extension_,
     super.modifierExtension,
-    required this.url,
-    this.version,
+    required super.url,
+    super.version,
     required this.name,
     this.title,
-    required this.status,
-    this.experimental,
-    this.date,
-    this.publisher,
-    this.contact,
-    this.description,
-    this.useContext,
-    this.jurisdiction,
+    required super.status,
+    super.experimental,
+    super.date,
+    super.publisher,
+    super.contact,
+    super.description,
+    super.useContext,
+    super.jurisdiction,
     this.copyright,
     required this.packageId,
     this.license,
@@ -281,26 +281,6 @@ class ImplementationGuide extends DomainResource {
   @override
   String get fhirType => 'ImplementationGuide';
 
-  /// [url]
-  /// An absolute URI that is used to identify this implementation guide when
-  /// it is referenced in a specification, model, design or an instance; also
-  /// called its canonical identifier. This SHOULD be globally unique and
-  /// SHOULD be a literal address at which at which an authoritative instance
-  /// of this implementation guide is (or will be) published. This URL can be
-  /// the target of a canonical reference. It SHALL remain the same when the
-  /// implementation guide is stored on different servers.
-  final FhirUri url;
-
-  /// [version]
-  /// The identifier that is used to identify this version of the
-  /// implementation guide when it is referenced in a specification, model,
-  /// design or instance. This is an arbitrary value managed by the
-  /// implementation guide author and is not expected to be globally unique.
-  /// For example, it might be a timestamp (e.g. yyyymmdd) if a managed
-  /// version is not available. There is also no expectation that versions
-  /// can be placed in a lexicographical sequence.
-  final FhirString? version;
-
   /// [name]
   /// A natural language name identifying the implementation guide. This name
   /// should be usable as an identifier for the module by machine processing
@@ -310,53 +290,6 @@ class ImplementationGuide extends DomainResource {
   /// [title]
   /// A short, descriptive, user-friendly title for the implementation guide.
   final FhirString? title;
-
-  /// [status]
-  /// The status of this implementation guide. Enables tracking the
-  /// life-cycle of the content.
-  final PublicationStatus status;
-
-  /// [experimental]
-  /// A Boolean value to indicate that this implementation guide is authored
-  /// for testing purposes (or education/evaluation/marketing) and is not
-  /// intended to be used for genuine usage.
-  final FhirBoolean? experimental;
-
-  /// [date]
-  /// The date (and optionally time) when the implementation guide was
-  /// published. The date must change when the business version changes and
-  /// it must change if the status code changes. In addition, it should
-  /// change when the substantive content of the implementation guide
-  /// changes.
-  final FhirDateTime? date;
-
-  /// [publisher]
-  /// The name of the organization or individual that published the
-  /// implementation guide.
-  final FhirString? publisher;
-
-  /// [contact]
-  /// Contact details to assist a user in finding and communicating with the
-  /// publisher.
-  final List<ContactDetail>? contact;
-
-  /// [description]
-  /// A free text natural language description of the implementation guide
-  /// from a consumer's perspective.
-  final FhirMarkdown? description;
-
-  /// [useContext]
-  /// The content was developed with a focus and intent of supporting the
-  /// contexts that are listed. These contexts may be general categories
-  /// (gender, age, ...) or may be references to specific programs (insurance
-  /// plans, studies, ...) and may be used to assist with indexing and
-  /// searching for appropriate implementation guide instances.
-  final List<UsageContext>? useContext;
-
-  /// [jurisdiction]
-  /// A legal or geographic region in which the implementation guide is
-  /// intended to be used.
-  final List<CodeableConcept>? jurisdiction;
 
   /// [copyright]
   /// A copyright statement relating to the implementation guide and/or its

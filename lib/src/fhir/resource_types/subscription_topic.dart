@@ -5,7 +5,7 @@ import 'package:yaml/yaml.dart';
 /// [SubscriptionTopic]
 /// Describes a stream of resource state changes or events and annotated
 /// with labels useful to filter projections from this topic.
-class SubscriptionTopic extends DomainResource {
+class SubscriptionTopic extends CanonicalResource {
   /// Primary constructor for
   /// [SubscriptionTopic]
 
@@ -18,19 +18,19 @@ class SubscriptionTopic extends DomainResource {
     super.contained,
     super.extension_,
     super.modifierExtension,
-    required this.url,
+    required super.url,
     this.identifier,
-    this.version,
+    super.version,
     this.title,
     this.derivedFrom,
-    required this.status,
-    this.experimental,
-    this.date,
-    this.publisher,
-    this.contact,
-    this.description,
-    this.useContext,
-    this.jurisdiction,
+    required super.status,
+    super.experimental,
+    super.date,
+    super.publisher,
+    super.contact,
+    super.description,
+    super.useContext,
+    super.jurisdiction,
     this.purpose,
     this.copyright,
     this.approvalDate,
@@ -306,30 +306,11 @@ class SubscriptionTopic extends DomainResource {
   @override
   String get fhirType => 'SubscriptionTopic';
 
-  /// [url]
-  /// An absolute URI that is used to identify this subscription topic when
-  /// it is referenced in a specification, model, design or an instance; also
-  /// called its canonical identifier. This SHOULD be globally unique and
-  /// SHOULD be a literal address at which at which an authoritative instance
-  /// of this subscription topic is (or will be) published. This URL can be
-  /// the target of a canonical reference. It SHALL remain the same when the
-  /// subscription topic is stored on different servers.
-  final FhirUri url;
-
   /// [identifier]
   /// Business identifiers assigned to this subscription topic by the
   /// performer and/or other systems. These identifiers remain constant as
   /// the resource is updated and propagates from server to server.
   final List<Identifier>? identifier;
-
-  /// [version]
-  /// The identifier that is used to identify this version of the
-  /// subscription topic when it is referenced in a specification, model,
-  /// design or instance. This is an arbitrary value managed by the Topic
-  /// author and is not expected to be globally unique. For example, it might
-  /// be a timestamp (e.g. yyyymmdd) if a managed version is not available.
-  /// There is also no expectation that versions are orderable.
-  final FhirString? version;
 
   /// [title]
   /// A short, descriptive, user-friendly title for the SubscriptionTopic,
@@ -340,47 +321,6 @@ class SubscriptionTopic extends DomainResource {
   /// The canonical URL pointing to another FHIR-defined SubscriptionTopic
   /// that is adhered to in whole or in part by this SubscriptionTopic.
   final List<FhirCanonical>? derivedFrom;
-
-  /// [status]
-  /// The current state of the SubscriptionTopic.
-  final PublicationStatus status;
-
-  /// [experimental]
-  /// A flag to indicate that this TopSubscriptionTopicic is authored for
-  /// testing purposes (or education/evaluation/marketing), and is not
-  /// intended to be used for genuine usage.
-  final FhirBoolean? experimental;
-
-  /// [date]
-  /// For draft definitions, indicates the date of initial creation. For
-  /// active definitions, represents the date of activation. For withdrawn
-  /// definitions, indicates the date of withdrawal.
-  final FhirDateTime? date;
-
-  /// [publisher]
-  /// Helps establish the "authority/credibility" of the SubscriptionTopic.
-  /// May also allow for contact.
-  final FhirString? publisher;
-
-  /// [contact]
-  /// Contact details to assist a user in finding and communicating with the
-  /// publisher.
-  final List<ContactDetail>? contact;
-
-  /// [description]
-  /// A free text natural language description of the Topic from the
-  /// consumer's perspective.
-  final FhirMarkdown? description;
-
-  /// [useContext]
-  /// The content was developed with a focus and intent of supporting the
-  /// contexts that are listed. These terms may be used to assist with
-  /// indexing and searching of code system definitions.
-  final List<UsageContext>? useContext;
-
-  /// [jurisdiction]
-  /// A jurisdiction in which the Topic is intended to be used.
-  final List<CodeableConcept>? jurisdiction;
 
   /// [purpose]
   /// Explains why this Topic is needed and why it has been designed as it

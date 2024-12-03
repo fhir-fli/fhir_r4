@@ -5,7 +5,7 @@ import 'package:yaml/yaml.dart';
 /// [OperationDefinition]
 /// A formal computable definition of an operation (on the RESTful
 /// interface) or a named query (using the search interaction).
-class OperationDefinition extends DomainResource {
+class OperationDefinition extends CanonicalResource {
   /// Primary constructor for
   /// [OperationDefinition]
 
@@ -18,19 +18,19 @@ class OperationDefinition extends DomainResource {
     super.contained,
     super.extension_,
     super.modifierExtension,
-    this.url,
-    this.version,
+    super.url,
+    super.version,
     required this.name,
     this.title,
-    required this.status,
+    required super.status,
     required this.kind,
-    this.experimental,
-    this.date,
-    this.publisher,
-    this.contact,
-    this.description,
-    this.useContext,
-    this.jurisdiction,
+    super.experimental,
+    super.date,
+    super.publisher,
+    super.contact,
+    super.description,
+    super.useContext,
+    super.jurisdiction,
     this.purpose,
     this.affectsState,
     required this.code,
@@ -317,26 +317,6 @@ class OperationDefinition extends DomainResource {
   @override
   String get fhirType => 'OperationDefinition';
 
-  /// [url]
-  /// An absolute URI that is used to identify this operation definition when
-  /// it is referenced in a specification, model, design or an instance; also
-  /// called its canonical identifier. This SHOULD be globally unique and
-  /// SHOULD be a literal address at which at which an authoritative instance
-  /// of this operation definition is (or will be) published. This URL can be
-  /// the target of a canonical reference. It SHALL remain the same when the
-  /// operation definition is stored on different servers.
-  final FhirUri? url;
-
-  /// [version]
-  /// The identifier that is used to identify this version of the operation
-  /// definition when it is referenced in a specification, model, design or
-  /// instance. This is an arbitrary value managed by the operation
-  /// definition author and is not expected to be globally unique. For
-  /// example, it might be a timestamp (e.g. yyyymmdd) if a managed version
-  /// is not available. There is also no expectation that versions can be
-  /// placed in a lexicographical sequence.
-  final FhirString? version;
-
   /// [name]
   /// A natural language name identifying the operation definition. This name
   /// should be usable as an identifier for the module by machine processing
@@ -347,56 +327,9 @@ class OperationDefinition extends DomainResource {
   /// A short, descriptive, user-friendly title for the operation definition.
   final FhirString? title;
 
-  /// [status]
-  /// The status of this operation definition. Enables tracking the
-  /// life-cycle of the content.
-  final PublicationStatus status;
-
   /// [kind]
   /// Whether this is an operation or a named query.
   final OperationKind kind;
-
-  /// [experimental]
-  /// A Boolean value to indicate that this operation definition is authored
-  /// for testing purposes (or education/evaluation/marketing) and is not
-  /// intended to be used for genuine usage.
-  final FhirBoolean? experimental;
-
-  /// [date]
-  /// The date (and optionally time) when the operation definition was
-  /// published. The date must change when the business version changes and
-  /// it must change if the status code changes. In addition, it should
-  /// change when the substantive content of the operation definition
-  /// changes.
-  final FhirDateTime? date;
-
-  /// [publisher]
-  /// The name of the organization or individual that published the operation
-  /// definition.
-  final FhirString? publisher;
-
-  /// [contact]
-  /// Contact details to assist a user in finding and communicating with the
-  /// publisher.
-  final List<ContactDetail>? contact;
-
-  /// [description]
-  /// A free text natural language description of the operation definition
-  /// from a consumer's perspective.
-  final FhirMarkdown? description;
-
-  /// [useContext]
-  /// The content was developed with a focus and intent of supporting the
-  /// contexts that are listed. These contexts may be general categories
-  /// (gender, age, ...) or may be references to specific programs (insurance
-  /// plans, studies, ...) and may be used to assist with indexing and
-  /// searching for appropriate operation definition instances.
-  final List<UsageContext>? useContext;
-
-  /// [jurisdiction]
-  /// A legal or geographic region in which the operation definition is
-  /// intended to be used.
-  final List<CodeableConcept>? jurisdiction;
 
   /// [purpose]
   /// Explanation of why this operation definition is needed and why it has

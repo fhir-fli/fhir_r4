@@ -8,7 +8,7 @@ import 'package:yaml/yaml.dart';
 /// enough to support the description of a broad range of clinical and
 /// non-clinical artifacts such as clinical decision support rules, order
 /// sets, protocols, and drug quality specifications.
-class PlanDefinition extends DomainResource {
+class PlanDefinition extends CanonicalResource {
   /// Primary constructor for
   /// [PlanDefinition]
 
@@ -21,24 +21,24 @@ class PlanDefinition extends DomainResource {
     super.contained,
     super.extension_,
     super.modifierExtension,
-    this.url,
+    super.url,
     this.identifier,
-    this.version,
+    super.version,
     this.name,
     this.title,
     this.subtitle,
     this.type,
-    required this.status,
-    this.experimental,
+    required super.status,
+    super.experimental,
     this.subjectCodeableConcept,
     this.subjectReference,
     this.subjectCanonical,
-    this.date,
-    this.publisher,
-    this.contact,
-    this.description,
-    this.useContext,
-    this.jurisdiction,
+    super.date,
+    super.publisher,
+    super.contact,
+    super.description,
+    super.useContext,
+    super.jurisdiction,
     this.purpose,
     this.usage,
     this.copyright,
@@ -398,35 +398,11 @@ class PlanDefinition extends DomainResource {
   @override
   String get fhirType => 'PlanDefinition';
 
-  /// [url]
-  /// An absolute URI that is used to identify this plan definition when it
-  /// is referenced in a specification, model, design or an instance; also
-  /// called its canonical identifier. This SHOULD be globally unique and
-  /// SHOULD be a literal address at which at which an authoritative instance
-  /// of this plan definition is (or will be) published. This URL can be the
-  /// target of a canonical reference. It SHALL remain the same when the plan
-  /// definition is stored on different servers.
-  final FhirUri? url;
-
   /// [identifier]
   /// A formal identifier that is used to identify this plan definition when
   /// it is represented in other formats, or referenced in a specification,
   /// model, design or an instance.
   final List<Identifier>? identifier;
-
-  /// [version]
-  /// The identifier that is used to identify this version of the plan
-  /// definition when it is referenced in a specification, model, design or
-  /// instance. This is an arbitrary value managed by the plan definition
-  /// author and is not expected to be globally unique. For example, it might
-  /// be a timestamp (e.g. yyyymmdd) if a managed version is not available.
-  /// There is also no expectation that versions can be placed in a
-  /// lexicographical sequence. To provide a version consistent with the
-  /// Decision Support Service specification, use the format
-  /// Major.Minor.Revision (e.g. 1.0.0). For more information on versioning
-  /// knowledge assets, refer to the Decision Support Service specification.
-  /// Note that a version is required for non-experimental active artifacts.
-  final FhirString? version;
 
   /// [name]
   /// A natural language name identifying the plan definition. This name
@@ -447,17 +423,6 @@ class PlanDefinition extends DomainResource {
   /// A high-level category for the plan definition that distinguishes the
   /// kinds of systems that would be interested in the plan definition.
   final CodeableConcept? type;
-
-  /// [status]
-  /// The status of this plan definition. Enables tracking the life-cycle of
-  /// the content.
-  final PublicationStatus status;
-
-  /// [experimental]
-  /// A Boolean value to indicate that this plan definition is authored for
-  /// testing purposes (or education/evaluation/marketing) and is not
-  /// intended to be used for genuine usage.
-  final FhirBoolean? experimental;
 
   /// [subjectCodeableConcept]
   /// A code, group definition, or canonical reference that describes or
@@ -488,41 +453,6 @@ class PlanDefinition extends DomainResource {
   /// AdministrableProductDefinition, ManufacturedItemDefinition, or
   /// PackagedProductDefinition resource.
   final SubjectType? subjectCanonical;
-
-  /// [date]
-  /// The date (and optionally time) when the plan definition was published.
-  /// The date must change when the business version changes and it must
-  /// change if the status code changes. In addition, it should change when
-  /// the substantive content of the plan definition changes.
-  final FhirDateTime? date;
-
-  /// [publisher]
-  /// The name of the organization or individual that published the plan
-  /// definition.
-  final FhirString? publisher;
-
-  /// [contact]
-  /// Contact details to assist a user in finding and communicating with the
-  /// publisher.
-  final List<ContactDetail>? contact;
-
-  /// [description]
-  /// A free text natural language description of the plan definition from a
-  /// consumer's perspective.
-  final FhirMarkdown? description;
-
-  /// [useContext]
-  /// The content was developed with a focus and intent of supporting the
-  /// contexts that are listed. These contexts may be general categories
-  /// (gender, age, ...) or may be references to specific programs (insurance
-  /// plans, studies, ...) and may be used to assist with indexing and
-  /// searching for appropriate plan definition instances.
-  final List<UsageContext>? useContext;
-
-  /// [jurisdiction]
-  /// A legal or geographic region in which the plan definition is intended
-  /// to be used.
-  final List<CodeableConcept>? jurisdiction;
 
   /// [purpose]
   /// Explanation of why this plan definition is needed and why it has been

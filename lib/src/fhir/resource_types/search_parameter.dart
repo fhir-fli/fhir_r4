@@ -5,7 +5,7 @@ import 'package:yaml/yaml.dart';
 /// [SearchParameter]
 /// A search parameter that defines a named search item that can be used to
 /// search/filter on a resource.
-class SearchParameter extends DomainResource {
+class SearchParameter extends CanonicalResource {
   /// Primary constructor for
   /// [SearchParameter]
 
@@ -18,18 +18,18 @@ class SearchParameter extends DomainResource {
     super.contained,
     super.extension_,
     super.modifierExtension,
-    required this.url,
-    this.version,
+    required super.url,
+    super.version,
     required this.name,
     this.derivedFrom,
-    required this.status,
-    this.experimental,
-    this.date,
-    this.publisher,
-    this.contact,
-    required this.description,
-    this.useContext,
-    this.jurisdiction,
+    required super.status,
+    super.experimental,
+    super.date,
+    super.publisher,
+    super.contact,
+    required super.description,
+    super.useContext,
+    super.jurisdiction,
     this.purpose,
     required this.code,
     required this.base,
@@ -311,26 +311,6 @@ class SearchParameter extends DomainResource {
   @override
   String get fhirType => 'SearchParameter';
 
-  /// [url]
-  /// An absolute URI that is used to identify this search parameter when it
-  /// is referenced in a specification, model, design or an instance; also
-  /// called its canonical identifier. This SHOULD be globally unique and
-  /// SHOULD be a literal address at which at which an authoritative instance
-  /// of this search parameter is (or will be) published. This URL can be the
-  /// target of a canonical reference. It SHALL remain the same when the
-  /// search parameter is stored on different servers.
-  final FhirUri url;
-
-  /// [version]
-  /// The identifier that is used to identify this version of the search
-  /// parameter when it is referenced in a specification, model, design or
-  /// instance. This is an arbitrary value managed by the search parameter
-  /// author and is not expected to be globally unique. For example, it might
-  /// be a timestamp (e.g. yyyymmdd) if a managed version is not available.
-  /// There is also no expectation that versions can be placed in a
-  /// lexicographical sequence.
-  final FhirString? version;
-
   /// [name]
   /// A natural language name identifying the search parameter. This name
   /// should be usable as an identifier for the module by machine processing
@@ -344,51 +324,6 @@ class SearchParameter extends DomainResource {
   /// have the same meaning, and (usually) the functionality should be a
   /// proper subset of the underlying search parameter.
   final FhirCanonical? derivedFrom;
-
-  /// [status]
-  /// The status of this search parameter. Enables tracking the life-cycle of
-  /// the content.
-  final PublicationStatus status;
-
-  /// [experimental]
-  /// A Boolean value to indicate that this search parameter is authored for
-  /// testing purposes (or education/evaluation/marketing) and is not
-  /// intended to be used for genuine usage.
-  final FhirBoolean? experimental;
-
-  /// [date]
-  /// The date (and optionally time) when the search parameter was published.
-  /// The date must change when the business version changes and it must
-  /// change if the status code changes. In addition, it should change when
-  /// the substantive content of the search parameter changes.
-  final FhirDateTime? date;
-
-  /// [publisher]
-  /// The name of the organization or individual that published the search
-  /// parameter.
-  final FhirString? publisher;
-
-  /// [contact]
-  /// Contact details to assist a user in finding and communicating with the
-  /// publisher.
-  final List<ContactDetail>? contact;
-
-  /// [description]
-  /// And how it used.
-  final FhirMarkdown description;
-
-  /// [useContext]
-  /// The content was developed with a focus and intent of supporting the
-  /// contexts that are listed. These contexts may be general categories
-  /// (gender, age, ...) or may be references to specific programs (insurance
-  /// plans, studies, ...) and may be used to assist with indexing and
-  /// searching for appropriate search parameter instances.
-  final List<UsageContext>? useContext;
-
-  /// [jurisdiction]
-  /// A legal or geographic region in which the search parameter is intended
-  /// to be used.
-  final List<CodeableConcept>? jurisdiction;
 
   /// [purpose]
   /// Explanation of why this search parameter is needed and why it has been

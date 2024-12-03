@@ -7,7 +7,7 @@ import 'package:yaml/yaml.dart';
 /// answers from end-users. Questionnaires provide detailed control over
 /// order, presentation, phraseology and grouping to allow coherent,
 /// consistent data collection.
-class Questionnaire extends DomainResource {
+class Questionnaire extends CanonicalResource {
   /// Primary constructor for
   /// [Questionnaire]
 
@@ -20,21 +20,21 @@ class Questionnaire extends DomainResource {
     super.contained,
     super.extension_,
     super.modifierExtension,
-    this.url,
+    super.url,
     this.identifier,
-    this.version,
+    super.version,
     this.name,
     this.title,
     this.derivedFrom,
-    required this.status,
-    this.experimental,
+    required super.status,
+    super.experimental,
     this.subjectType,
-    this.date,
-    this.publisher,
-    this.contact,
-    this.description,
-    this.useContext,
-    this.jurisdiction,
+    super.date,
+    super.publisher,
+    super.contact,
+    super.description,
+    super.useContext,
+    super.jurisdiction,
     this.purpose,
     this.copyright,
     this.approvalDate,
@@ -303,31 +303,11 @@ class Questionnaire extends DomainResource {
   @override
   String get fhirType => 'Questionnaire';
 
-  /// [url]
-  /// An absolute URI that is used to identify this questionnaire when it is
-  /// referenced in a specification, model, design or an instance; also
-  /// called its canonical identifier. This SHOULD be globally unique and
-  /// SHOULD be a literal address at which at which an authoritative instance
-  /// of this questionnaire is (or will be) published. This URL can be the
-  /// target of a canonical reference. It SHALL remain the same when the
-  /// questionnaire is stored on different servers.
-  final FhirUri? url;
-
   /// [identifier]
   /// A formal identifier that is used to identify this questionnaire when it
   /// is represented in other formats, or referenced in a specification,
   /// model, design or an instance.
   final List<Identifier>? identifier;
-
-  /// [version]
-  /// The identifier that is used to identify this version of the
-  /// questionnaire when it is referenced in a specification, model, design
-  /// or instance. This is an arbitrary value managed by the questionnaire
-  /// author and is not expected to be globally unique. For example, it might
-  /// be a timestamp (e.g. yyyymmdd) if a managed version is not available.
-  /// There is also no expectation that versions can be placed in a
-  /// lexicographical sequence.
-  final FhirString? version;
 
   /// [name]
   /// A natural language name identifying the questionnaire. This name should
@@ -343,56 +323,10 @@ class Questionnaire extends DomainResource {
   /// The URL of a Questionnaire that this Questionnaire is based on.
   final List<FhirCanonical>? derivedFrom;
 
-  /// [status]
-  /// The status of this questionnaire. Enables tracking the life-cycle of
-  /// the content.
-  final PublicationStatus status;
-
-  /// [experimental]
-  /// A Boolean value to indicate that this questionnaire is authored for
-  /// testing purposes (or education/evaluation/marketing) and is not
-  /// intended to be used for genuine usage.
-  final FhirBoolean? experimental;
-
   /// [subjectType]
   /// The types of subjects that can be the subject of responses created for
   /// the questionnaire.
   final List<FhirCode>? subjectType;
-
-  /// [date]
-  /// The date (and optionally time) when the questionnaire was published.
-  /// The date must change when the business version changes and it must
-  /// change if the status code changes. In addition, it should change when
-  /// the substantive content of the questionnaire changes.
-  final FhirDateTime? date;
-
-  /// [publisher]
-  /// The name of the organization or individual that published the
-  /// questionnaire.
-  final FhirString? publisher;
-
-  /// [contact]
-  /// Contact details to assist a user in finding and communicating with the
-  /// publisher.
-  final List<ContactDetail>? contact;
-
-  /// [description]
-  /// A free text natural language description of the questionnaire from a
-  /// consumer's perspective.
-  final FhirMarkdown? description;
-
-  /// [useContext]
-  /// The content was developed with a focus and intent of supporting the
-  /// contexts that are listed. These contexts may be general categories
-  /// (gender, age, ...) or may be references to specific programs (insurance
-  /// plans, studies, ...) and may be used to assist with indexing and
-  /// searching for appropriate questionnaire instances.
-  final List<UsageContext>? useContext;
-
-  /// [jurisdiction]
-  /// A legal or geographic region in which the questionnaire is intended to
-  /// be used.
-  final List<CodeableConcept>? jurisdiction;
 
   /// [purpose]
   /// Explanation of why this questionnaire is needed and why it has been
