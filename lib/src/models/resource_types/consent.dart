@@ -38,8 +38,6 @@ class Consent extends DomainResource {
     super.formatCommentsPre,
     super.formatCommentsPost,
     super.annotations,
-    super.children,
-    super.namedChildren,
   }) : super(
           resourceType: R4ResourceType.Consent,
         );
@@ -430,8 +428,6 @@ class Consent extends DomainResource {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    List<FhirBase>? children,
-    Map<String, FhirBase>? namedChildren,
   }) {
     return Consent(
       id: id ?? this.id,
@@ -460,8 +456,6 @@ class Consent extends DomainResource {
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
       annotations: annotations ?? this.annotations,
-      children: children ?? this.children,
-      namedChildren: namedChildren ?? this.namedChildren,
     );
   }
 }
@@ -484,8 +478,6 @@ class ConsentPolicy extends BackboneElement {
     super.formatCommentsPre,
     super.formatCommentsPost,
     super.annotations,
-    super.children,
-    super.namedChildren,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -621,8 +613,6 @@ class ConsentPolicy extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    List<FhirBase>? children,
-    Map<String, FhirBase>? namedChildren,
   }) {
     return ConsentPolicy(
       id: id ?? this.id,
@@ -634,8 +624,6 @@ class ConsentPolicy extends BackboneElement {
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
       annotations: annotations ?? this.annotations,
-      children: children ?? this.children,
-      namedChildren: namedChildren ?? this.namedChildren,
     );
   }
 }
@@ -659,8 +647,6 @@ class ConsentVerification extends BackboneElement {
     super.formatCommentsPre,
     super.formatCommentsPost,
     super.annotations,
-    super.children,
-    super.namedChildren,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -807,8 +793,6 @@ class ConsentVerification extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    List<FhirBase>? children,
-    Map<String, FhirBase>? namedChildren,
   }) {
     return ConsentVerification(
       id: id ?? this.id,
@@ -821,8 +805,6 @@ class ConsentVerification extends BackboneElement {
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
       annotations: annotations ?? this.annotations,
-      children: children ?? this.children,
-      namedChildren: namedChildren ?? this.namedChildren,
     );
   }
 }
@@ -853,8 +835,6 @@ class ConsentProvision extends BackboneElement {
     super.formatCommentsPre,
     super.formatCommentsPost,
     super.annotations,
-    super.children,
-    super.namedChildren,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1155,8 +1135,6 @@ class ConsentProvision extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    List<FhirBase>? children,
-    Map<String, FhirBase>? namedChildren,
   }) {
     return ConsentProvision(
       id: id ?? this.id,
@@ -1177,8 +1155,6 @@ class ConsentProvision extends BackboneElement {
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
       annotations: annotations ?? this.annotations,
-      children: children ?? this.children,
-      namedChildren: namedChildren ?? this.namedChildren,
     );
   }
 }
@@ -1200,8 +1176,6 @@ class ConsentActor extends BackboneElement {
     super.formatCommentsPre,
     super.formatCommentsPost,
     super.annotations,
-    super.children,
-    super.namedChildren,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1333,8 +1307,6 @@ class ConsentActor extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    List<FhirBase>? children,
-    Map<String, FhirBase>? namedChildren,
   }) {
     return ConsentActor(
       id: id ?? this.id,
@@ -1346,8 +1318,6 @@ class ConsentActor extends BackboneElement {
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
       annotations: annotations ?? this.annotations,
-      children: children ?? this.children,
-      namedChildren: namedChildren ?? this.namedChildren,
     );
   }
 }
@@ -1369,8 +1339,6 @@ class ConsentData extends BackboneElement {
     super.formatCommentsPre,
     super.formatCommentsPost,
     super.annotations,
-    super.children,
-    super.namedChildren,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1501,8 +1469,6 @@ class ConsentData extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    List<FhirBase>? children,
-    Map<String, FhirBase>? namedChildren,
   }) {
     return ConsentData(
       id: id ?? this.id,
@@ -1514,8 +1480,6 @@ class ConsentData extends BackboneElement {
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
       annotations: annotations ?? this.annotations,
-      children: children ?? this.children,
-      namedChildren: namedChildren ?? this.namedChildren,
     );
   }
 }

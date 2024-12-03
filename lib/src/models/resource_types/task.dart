@@ -52,8 +52,6 @@ class Task extends DomainResource {
     super.formatCommentsPre,
     super.formatCommentsPost,
     super.annotations,
-    super.children,
-    super.namedChildren,
   }) : super(
           resourceType: R4ResourceType.Task,
         );
@@ -694,8 +692,6 @@ class Task extends DomainResource {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    List<FhirBase>? children,
-    Map<String, FhirBase>? namedChildren,
   }) {
     return Task(
       id: id ?? this.id,
@@ -742,8 +738,6 @@ class Task extends DomainResource {
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
       annotations: annotations ?? this.annotations,
-      children: children ?? this.children,
-      namedChildren: namedChildren ?? this.namedChildren,
     );
   }
 }
@@ -768,8 +762,6 @@ class TaskRestriction extends BackboneElement {
     super.formatCommentsPre,
     super.formatCommentsPost,
     super.annotations,
-    super.children,
-    super.namedChildren,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -923,8 +915,6 @@ class TaskRestriction extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    List<FhirBase>? children,
-    Map<String, FhirBase>? namedChildren,
   }) {
     return TaskRestriction(
       id: id ?? this.id,
@@ -937,8 +927,6 @@ class TaskRestriction extends BackboneElement {
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
       annotations: annotations ?? this.annotations,
-      children: children ?? this.children,
-      namedChildren: namedChildren ?? this.namedChildren,
     );
   }
 }
@@ -1008,8 +996,6 @@ class TaskInput extends BackboneElement {
     super.formatCommentsPre,
     super.formatCommentsPost,
     super.annotations,
-    super.children,
-    super.namedChildren,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1801,8 +1787,6 @@ class TaskInput extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    List<FhirBase>? children,
-    Map<String, FhirBase>? namedChildren,
   }) {
     return TaskInput(
       id: id ?? this.id,
@@ -1865,8 +1849,6 @@ class TaskInput extends BackboneElement {
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
       annotations: annotations ?? this.annotations,
-      children: children ?? this.children,
-      namedChildren: namedChildren ?? this.namedChildren,
     );
   }
 }
@@ -1936,8 +1918,6 @@ class TaskOutput extends BackboneElement {
     super.formatCommentsPre,
     super.formatCommentsPost,
     super.annotations,
-    super.children,
-    super.namedChildren,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -2728,8 +2708,6 @@ class TaskOutput extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    List<FhirBase>? children,
-    Map<String, FhirBase>? namedChildren,
   }) {
     return TaskOutput(
       id: id ?? this.id,
@@ -2792,8 +2770,6 @@ class TaskOutput extends BackboneElement {
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
       annotations: annotations ?? this.annotations,
-      children: children ?? this.children,
-      namedChildren: namedChildren ?? this.namedChildren,
     );
   }
 }

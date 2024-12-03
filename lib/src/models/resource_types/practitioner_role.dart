@@ -36,8 +36,6 @@ class PractitionerRole extends DomainResource {
     super.formatCommentsPre,
     super.formatCommentsPost,
     super.annotations,
-    super.children,
-    super.namedChildren,
   }) : super(
           resourceType: R4ResourceType.PractitionerRole,
         );
@@ -440,8 +438,6 @@ class PractitionerRole extends DomainResource {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    List<FhirBase>? children,
-    Map<String, FhirBase>? namedChildren,
   }) {
     return PractitionerRole(
       id: id ?? this.id,
@@ -471,8 +467,6 @@ class PractitionerRole extends DomainResource {
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
       annotations: annotations ?? this.annotations,
-      children: children ?? this.children,
-      namedChildren: namedChildren ?? this.namedChildren,
     );
   }
 }
@@ -496,8 +490,6 @@ class PractitionerRoleAvailableTime extends BackboneElement {
     super.formatCommentsPre,
     super.formatCommentsPost,
     super.annotations,
-    super.children,
-    super.namedChildren,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -666,8 +658,6 @@ class PractitionerRoleAvailableTime extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    List<FhirBase>? children,
-    Map<String, FhirBase>? namedChildren,
   }) {
     return PractitionerRoleAvailableTime(
       id: id ?? this.id,
@@ -681,8 +671,6 @@ class PractitionerRoleAvailableTime extends BackboneElement {
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
       annotations: annotations ?? this.annotations,
-      children: children ?? this.children,
-      namedChildren: namedChildren ?? this.namedChildren,
     );
   }
 }
@@ -704,8 +692,6 @@ class PractitionerRoleNotAvailable extends BackboneElement {
     super.formatCommentsPre,
     super.formatCommentsPost,
     super.annotations,
-    super.children,
-    super.namedChildren,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -840,8 +826,6 @@ class PractitionerRoleNotAvailable extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    List<FhirBase>? children,
-    Map<String, FhirBase>? namedChildren,
   }) {
     return PractitionerRoleNotAvailable(
       id: id ?? this.id,
@@ -853,8 +837,6 @@ class PractitionerRoleNotAvailable extends BackboneElement {
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
       annotations: annotations ?? this.annotations,
-      children: children ?? this.children,
-      namedChildren: namedChildren ?? this.namedChildren,
     );
   }
 }

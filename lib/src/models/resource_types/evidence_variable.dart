@@ -46,8 +46,6 @@ class EvidenceVariable extends DomainResource {
     super.formatCommentsPre,
     super.formatCommentsPost,
     super.annotations,
-    super.children,
-    super.namedChildren,
   }) : super(
           resourceType: R4ResourceType.EvidenceVariable,
         );
@@ -607,8 +605,6 @@ class EvidenceVariable extends DomainResource {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    List<FhirBase>? children,
-    Map<String, FhirBase>? namedChildren,
   }) {
     return EvidenceVariable(
       id: id ?? this.id,
@@ -648,8 +644,6 @@ class EvidenceVariable extends DomainResource {
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
       annotations: annotations ?? this.annotations,
-      children: children ?? this.children,
-      namedChildren: namedChildren ?? this.namedChildren,
     );
   }
 }
@@ -679,8 +673,6 @@ class EvidenceVariableCharacteristic extends BackboneElement {
     super.formatCommentsPre,
     super.formatCommentsPost,
     super.annotations,
-    super.children,
-    super.namedChildren,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -939,8 +931,6 @@ class EvidenceVariableCharacteristic extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    List<FhirBase>? children,
-    Map<String, FhirBase>? namedChildren,
   }) {
     return EvidenceVariableCharacteristic(
       id: id ?? this.id,
@@ -961,8 +951,6 @@ class EvidenceVariableCharacteristic extends BackboneElement {
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
       annotations: annotations ?? this.annotations,
-      children: children ?? this.children,
-      namedChildren: namedChildren ?? this.namedChildren,
     );
   }
 }
@@ -986,8 +974,6 @@ class EvidenceVariableTimeFromStart extends BackboneElement {
     super.formatCommentsPre,
     super.formatCommentsPost,
     super.annotations,
-    super.children,
-    super.namedChildren,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1156,8 +1142,6 @@ class EvidenceVariableTimeFromStart extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    List<FhirBase>? children,
-    Map<String, FhirBase>? namedChildren,
   }) {
     return EvidenceVariableTimeFromStart(
       id: id ?? this.id,
@@ -1171,8 +1155,6 @@ class EvidenceVariableTimeFromStart extends BackboneElement {
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
       annotations: annotations ?? this.annotations,
-      children: children ?? this.children,
-      namedChildren: namedChildren ?? this.namedChildren,
     );
   }
 }
@@ -1196,8 +1178,6 @@ class EvidenceVariableCategory extends BackboneElement {
     super.formatCommentsPre,
     super.formatCommentsPost,
     super.annotations,
-    super.children,
-    super.namedChildren,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1360,8 +1340,6 @@ class EvidenceVariableCategory extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    List<FhirBase>? children,
-    Map<String, FhirBase>? namedChildren,
   }) {
     return EvidenceVariableCategory(
       id: id ?? this.id,
@@ -1375,8 +1353,6 @@ class EvidenceVariableCategory extends BackboneElement {
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
       annotations: annotations ?? this.annotations,
-      children: children ?? this.children,
-      namedChildren: namedChildren ?? this.namedChildren,
     );
   }
 }

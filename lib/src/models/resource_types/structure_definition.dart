@@ -50,8 +50,6 @@ class StructureDefinition extends CanonicalResource {
     super.formatCommentsPre,
     super.formatCommentsPost,
     super.annotations,
-    super.children,
-    super.namedChildren,
   }) : super(
           resourceType: R4ResourceType.StructureDefinition,
         );
@@ -569,8 +567,6 @@ class StructureDefinition extends CanonicalResource {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    List<FhirBase>? children,
-    Map<String, FhirBase>? namedChildren,
   }) {
     return StructureDefinition(
       id: id ?? this.id,
@@ -612,8 +608,6 @@ class StructureDefinition extends CanonicalResource {
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
       annotations: annotations ?? this.annotations,
-      children: children ?? this.children,
-      namedChildren: namedChildren ?? this.namedChildren,
     );
   }
 }
@@ -636,8 +630,6 @@ class StructureDefinitionMapping extends BackboneElement {
     super.formatCommentsPre,
     super.formatCommentsPost,
     super.annotations,
-    super.children,
-    super.namedChildren,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -795,8 +787,6 @@ class StructureDefinitionMapping extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    List<FhirBase>? children,
-    Map<String, FhirBase>? namedChildren,
   }) {
     return StructureDefinitionMapping(
       id: id ?? this.id,
@@ -810,8 +800,6 @@ class StructureDefinitionMapping extends BackboneElement {
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
       annotations: annotations ?? this.annotations,
-      children: children ?? this.children,
-      namedChildren: namedChildren ?? this.namedChildren,
     );
   }
 }
@@ -833,8 +821,6 @@ class StructureDefinitionContext extends BackboneElement {
     super.formatCommentsPre,
     super.formatCommentsPost,
     super.annotations,
-    super.children,
-    super.namedChildren,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -964,8 +950,6 @@ class StructureDefinitionContext extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    List<FhirBase>? children,
-    Map<String, FhirBase>? namedChildren,
   }) {
     return StructureDefinitionContext(
       id: id ?? this.id,
@@ -977,8 +961,6 @@ class StructureDefinitionContext extends BackboneElement {
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
       annotations: annotations ?? this.annotations,
-      children: children ?? this.children,
-      namedChildren: namedChildren ?? this.namedChildren,
     );
   }
 }
@@ -999,8 +981,6 @@ class StructureDefinitionSnapshot extends BackboneElement {
     super.formatCommentsPre,
     super.formatCommentsPost,
     super.annotations,
-    super.children,
-    super.namedChildren,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1127,8 +1107,6 @@ class StructureDefinitionSnapshot extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    List<FhirBase>? children,
-    Map<String, FhirBase>? namedChildren,
   }) {
     return StructureDefinitionSnapshot(
       id: id ?? this.id,
@@ -1139,8 +1117,6 @@ class StructureDefinitionSnapshot extends BackboneElement {
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
       annotations: annotations ?? this.annotations,
-      children: children ?? this.children,
-      namedChildren: namedChildren ?? this.namedChildren,
     );
   }
 }
@@ -1161,8 +1137,6 @@ class StructureDefinitionDifferential extends BackboneElement {
     super.formatCommentsPre,
     super.formatCommentsPost,
     super.annotations,
-    super.children,
-    super.namedChildren,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1289,8 +1263,6 @@ class StructureDefinitionDifferential extends BackboneElement {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    List<FhirBase>? children,
-    Map<String, FhirBase>? namedChildren,
   }) {
     return StructureDefinitionDifferential(
       id: id ?? this.id,
@@ -1301,8 +1273,6 @@ class StructureDefinitionDifferential extends BackboneElement {
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
       annotations: annotations ?? this.annotations,
-      children: children ?? this.children,
-      namedChildren: namedChildren ?? this.namedChildren,
     );
   }
 }

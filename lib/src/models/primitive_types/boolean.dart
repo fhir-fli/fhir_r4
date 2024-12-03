@@ -136,8 +136,6 @@ class FhirBoolean extends PrimitiveType<bool> {
     List<String>? formatCommentsPost,
     Map<String, List<void Function()>>? propertyChanged,
     List<dynamic>? annotations,
-    List<FhirBase>? children,
-    Map<String, FhirBase>? namedChildren,
   }) {
     return FhirBoolean(
       newValue ?? value,
@@ -147,8 +145,6 @@ class FhirBoolean extends PrimitiveType<bool> {
         formatCommentsPost:
             formatCommentsPost ?? this.element?.formatCommentsPost,
         annotations: annotations ?? this.element?.annotations,
-        children: children ?? this.element?.children,
-        namedChildren: namedChildren ?? this.element?.namedChildren,
       ),
     );
   }

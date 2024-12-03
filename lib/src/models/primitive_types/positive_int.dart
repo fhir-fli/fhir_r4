@@ -40,7 +40,8 @@ class FhirPositiveInt extends FhirNumber {
                 jsonDecode(jsonEncode(yaml)) as Map<String, dynamic>,
               )
             : throw const FormatException(
-                'Invalid input for FhirPositiveInt: not a valid YAML string or map.',
+                'Invalid input for FhirPositiveInt: not a valid YAML string '
+                'or map.',
               );
   }
 
@@ -137,8 +138,6 @@ class FhirPositiveInt extends FhirNumber {
     List<String>? formatCommentsPost,
     Map<String, List<void Function()>>? propertyChanged,
     List<dynamic>? annotations,
-    List<FhirBase>? children,
-    Map<String, FhirBase>? namedChildren,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirPositiveInt: $newValue');
@@ -151,8 +150,6 @@ class FhirPositiveInt extends FhirNumber {
         formatCommentsPost:
             formatCommentsPost ?? this.element?.formatCommentsPost,
         annotations: annotations ?? this.element?.annotations,
-        children: children ?? this.element?.children,
-        namedChildren: namedChildren ?? this.element?.namedChildren,
       ),
     );
   }

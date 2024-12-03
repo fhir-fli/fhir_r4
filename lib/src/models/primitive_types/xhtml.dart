@@ -59,20 +59,23 @@ class FhirXhtml extends PrimitiveType<String?> {
       // Relax the root element requirement: allow more than just <div>
       if (!_allowedElements.contains(rootElement.name.local)) {
         throw FormatException(
-            'Root element must be one of the allowed elements: ${_allowedElements.join(', ')}');
+            'Root element must be one of the allowed elements: '
+            '${_allowedElements.join(', ')}');
       }
 
       // Check for the correct XHTML namespace, but allow flexibility
       final xmlns = rootElement.getAttribute('xmlns');
       if (xmlns != 'http://www.w3.org/1999/xhtml') {
         throw FormatException(
-            'Invalid XHTML namespace, expected "http://www.w3.org/1999/xhtml", but found "$xmlns"');
+            'Invalid XHTML namespace, expected "http://www.w3.org/1999/xhtml", '
+            'but found "$xmlns"');
       }
 
       // Recursively validate elements
       if (!_validateElement(rootElement, isRoot: true)) {
         throw FormatException(
-            'Invalid XHTML element structure ${rootElement.name.local}');
+          'Invalid XHTML element structure ${rootElement.name.local}',
+        );
       }
 
       return xhtml; // Return the valid XHTML string
@@ -88,7 +91,7 @@ class FhirXhtml extends PrimitiveType<String?> {
   ) {
     final attributeName = attribute.name.local;
 
-    // Allow `cellpadding` and `cellspacing` for `table` and any related elements
+    // Allow `cellpadding` and `cellspacing` for `table` & any related elements
     if ((elementName == 'table' ||
             elementName == 'th' ||
             elementName == 'td') &&
@@ -189,7 +192,8 @@ class FhirXhtml extends PrimitiveType<String?> {
 
     // Allow any element if it's in the allowed elements list
     if (!_allowedElements.contains(elementName)) {
-      return true; // Make permissive, skip invalid elements instead of throwing error
+      // Make permissive, skip invalid elements instead of throwing error
+      return true;
     }
 
     // Validate attributes (make this check more permissive)
@@ -268,8 +272,6 @@ class FhirXhtml extends PrimitiveType<String?> {
     List<String>? formatCommentsPost,
     Map<String, List<void Function()>>? propertyChanged,
     List<dynamic>? annotations,
-    List<FhirBase>? children,
-    Map<String, FhirBase>? namedChildren,
   }) {
     return FhirXhtml.fromValidatedXhtml(
       newValue ?? value,
@@ -279,8 +281,6 @@ class FhirXhtml extends PrimitiveType<String?> {
         formatCommentsPost:
             formatCommentsPost ?? this.element?.formatCommentsPost,
         annotations: annotations ?? this.element?.annotations,
-        children: children ?? this.element?.children,
-        namedChildren: namedChildren ?? this.element?.namedChildren,
       ),
     );
   }

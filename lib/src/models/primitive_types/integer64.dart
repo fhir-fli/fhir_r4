@@ -282,8 +282,6 @@ class FhirInteger64 extends PrimitiveType<BigInt?>
     List<String>? formatCommentsPost,
     Map<String, List<void Function()>>? propertyChanged,
     List<dynamic>? annotations,
-    List<FhirBase>? children,
-    Map<String, FhirBase>? namedChildren,
   }) {
     return FhirInteger64(
       newValue ?? value,
@@ -293,8 +291,6 @@ class FhirInteger64 extends PrimitiveType<BigInt?>
         formatCommentsPost:
             formatCommentsPost ?? this.element?.formatCommentsPost,
         annotations: annotations ?? this.element?.annotations,
-        children: children ?? this.element?.children,
-        namedChildren: namedChildren ?? this.element?.namedChildren,
       ),
     );
   }

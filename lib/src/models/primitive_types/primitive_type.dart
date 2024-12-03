@@ -90,9 +90,7 @@ abstract class PrimitiveType<T> extends FhirBase {
     Element? element,
     Map<String, Object?>? userData,
     List<dynamic>? annotations,
-    List<FhirBase>? children,
     List<String>? formatCommentsPost,
     List<String>? formatCommentsPre,
-    Map<String, FhirBase>? namedChildren,
   });
 }

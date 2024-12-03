@@ -261,8 +261,6 @@ abstract class FhirNumber extends PrimitiveType<num?>
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    List<FhirBase>? children,
-    Map<String, FhirBase>? namedChildren,
   }) {
     return FhirNumber.fromNum(
       newValue ?? value,
@@ -272,8 +270,6 @@ abstract class FhirNumber extends PrimitiveType<num?>
         formatCommentsPost:
             formatCommentsPost ?? this.element?.formatCommentsPost,
         annotations: annotations ?? this.element?.annotations,
-        children: children ?? this.element?.children,
-        namedChildren: namedChildren ?? this.element?.namedChildren,
       ),
     );
   }

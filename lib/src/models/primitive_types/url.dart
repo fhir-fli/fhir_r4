@@ -164,8 +164,6 @@ class FhirUrl extends PrimitiveType<Uri> {
     List<String>? formatCommentsPost,
     Map<String, List<void Function()>>? propertyChanged,
     List<dynamic>? annotations,
-    List<FhirBase>? children,
-    Map<String, FhirBase>? namedChildren,
   }) {
     return FhirUrl.fromUri(
       newValue ?? value,
@@ -175,8 +173,6 @@ class FhirUrl extends PrimitiveType<Uri> {
         formatCommentsPost:
             formatCommentsPost ?? this.element?.formatCommentsPost,
         annotations: annotations ?? this.element?.annotations,
-        children: children ?? this.element?.children,
-        namedChildren: namedChildren ?? this.element?.namedChildren,
       ),
     );
   }
