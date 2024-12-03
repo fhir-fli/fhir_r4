@@ -1,0 +1,128 @@
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+
+import 'package:fhir_r4/fhir_r4.dart';
+
+/// MedicationRequest Category Codes
+class MedicationRequestCategoryCodes extends PrimitiveType<String> {
+  // Private constructor for internal use (like enum)
+  MedicationRequestCategoryCodes._(super.value, [super.element]);
+
+  /// Factory constructor to create [MedicationRequestCategoryCodes] from JSON.
+  factory MedicationRequestCategoryCodes.fromJson(
+    Map<String, dynamic> json,
+  ) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return MedicationRequestCategoryCodes.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+        'MedicationRequestCategoryCodes cannot be constructed from JSON.',
+      );
+    }
+    return MedicationRequestCategoryCodes._(value, element);
+  }
+
+  /// inpatient
+  static final MedicationRequestCategoryCodes inpatient =
+      MedicationRequestCategoryCodes._(
+    'inpatient',
+  );
+
+  /// outpatient
+  static final MedicationRequestCategoryCodes outpatient =
+      MedicationRequestCategoryCodes._(
+    'outpatient',
+  );
+
+  /// community
+  static final MedicationRequestCategoryCodes community =
+      MedicationRequestCategoryCodes._(
+    'community',
+  );
+
+  /// discharge
+  static final MedicationRequestCategoryCodes discharge =
+      MedicationRequestCategoryCodes._(
+    'discharge',
+  );
+
+  /// For instances where an Element is present but not value
+
+  static final MedicationRequestCategoryCodes elementOnly =
+      MedicationRequestCategoryCodes._('');
+
+  /// List of all enum-like values
+  static final List<MedicationRequestCategoryCodes> values = [
+    inpatient,
+    outpatient,
+    community,
+    discharge,
+  ];
+
+  /// Clones the current instance
+  @override
+  MedicationRequestCategoryCodes clone() => MedicationRequestCategoryCodes._(
+        value,
+        element?.clone() as Element?,
+      );
+
+  /// Sets a property on the associated [Element], returning a new instance.
+  @override
+  MedicationRequestCategoryCodes setElement(
+    String name,
+    dynamic elementValue,
+  ) {
+    return MedicationRequestCategoryCodes._(
+      value,
+      element?.setProperty(name, elementValue),
+    );
+  }
+
+  /// Returns the enum value with an element attached
+  MedicationRequestCategoryCodes withElement(Element? newElement) {
+    return MedicationRequestCategoryCodes._(value, newElement);
+  }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        'value': (value?.isEmpty ?? false) ? null : value,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  /// String representation
+  @override
+  String toString() => value ?? '';
+
+  /// Creates a modified copy with updated properties.
+  @override
+  MedicationRequestCategoryCodes copyWith({
+    String? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    Map<String, List<void Function()>>? propertyChanged,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirInteger: $newValue');
+    }
+    return MedicationRequestCategoryCodes._(
+      newValue ?? value,
+      (element ?? this.element)?.copyWith(
+        userData: userData ?? this.element?.userData,
+        formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
+        formatCommentsPost:
+            formatCommentsPost ?? this.element?.formatCommentsPost,
+        annotations: annotations ?? this.element?.annotations,
+        children: children ?? this.element?.children,
+        namedChildren: namedChildren ?? this.element?.namedChildren,
+      ),
+    );
+  }
+}
