@@ -13,8 +13,6 @@ class Element extends FhirBase {
     super.formatCommentsPre,
     super.formatCommentsPost,
     super.annotations,
-    super.children,
-    super.namedChildren,
   });
 
   /// Factory constructor for [Element] that takes in a [YamlMap] and returns
@@ -77,8 +75,6 @@ class Element extends FhirBase {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    List<FhirBase>? children,
-    Map<String, FhirBase>? namedChildren,
   }) {
     return Element(
       id: id ?? this.id,
@@ -87,8 +83,6 @@ class Element extends FhirBase {
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
       annotations: annotations ?? this.annotations,
-      children: children ?? this.children,
-      namedChildren: namedChildren ?? this.namedChildren,
     );
   }
 
@@ -202,7 +196,8 @@ class Element extends FhirBase {
       return false;
     }
 
-    return id == other.id && compareDeepLists(extension_, other.extension_);
+    return id == other.id &&
+        FhirBase.compareDeepLists(extension_, other.extension_);
   }
 
   /// Method to compare shallow equality of two elements

@@ -20,8 +20,6 @@ abstract class DomainResource extends Resource {
     super.formatCommentsPre,
     super.formatCommentsPost,
     super.annotations,
-    super.children,
-    super.namedChildren,
   });
 
   /// Factory constructor for [DomainResource] that takes in a
@@ -142,7 +140,5 @@ abstract class DomainResource extends Resource {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    List<FhirBase>? children,
-    Map<String, FhirBase>? namedChildren,
   });
 }

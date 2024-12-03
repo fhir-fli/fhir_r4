@@ -24,16 +24,6 @@ enum TerminologyServiceErrorClass {
   }
 }
 
-/// Exception for when a ValueSet is too costly to expand
-class ETooCostly implements Exception {
-  ETooCostly(this.message);
-
-  final String message;
-
-  @override
-  String toString() => 'ETooCostly: $message';
-}
-
 /// Class representing the outcome of a ValueSet expansion
 class ValueSetExpansionOutcome {
   ValueSetExpansionOutcome(ValueSet this.valueSet)
@@ -62,7 +52,7 @@ class ValueSetExpansionOutcome {
     List<String> errList,
   )   : valueSet = null,
         txLink = null,
-        allErrors = [...errList, if (!errList.contains(error)) error!];
+        allErrors = [...errList, if (!errList.contains(error)) error];
 
   final ValueSet? valueSet;
   final String? error;
@@ -71,8 +61,6 @@ class ValueSetExpansionOutcome {
   final List<String> allErrors;
 
   bool isOk() {
-    return (allErrors.isEmpty ||
-            (allErrors.length == 1 && allErrors.first == null)) &&
-        error == null;
+    return (allErrors.isEmpty || (allErrors.length == 1)) && error == null;
   }
 }

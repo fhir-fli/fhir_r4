@@ -607,11 +607,13 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
     Comparator comparator,
     Object o,
   ) =>
-      InvalidTypes<FhirDateTimeBase>('Two values were passed to the date time '
-          '"$comparator" comparison operator, but there was an error comparing '
-          'them.\n'
-          'Argument 1: $value (${value.runtimeType})\n'
-          'Argument 2: $o (${o.runtimeType})');
+      InvalidTypes<FhirDateTimeBase>(
+        message: 'Two values were passed to the date time '
+            '"$comparator" comparison operator, but there was an error '
+            'comparing them.\n'
+            'Argument 1: $value (${value.runtimeType})\n'
+            'Argument 2: $o (${o.runtimeType})',
+      );
 
   /// Returns the difference between this and another FhirDateTimeBase.
   Duration difference(dynamic other) {

@@ -1,6 +1,6 @@
 // ignore_for_file: public_member_api_docs, avoid_positional_boolean_parameters
 
-import 'package:fhir_r4/src/fhir_path/java/accept_language_header.dart';
+import 'package:fhir_r4/src/utils/accept_language_header.dart';
 import 'package:fhir_r4/src/fhir_path/java/fhir_publication.dart';
 
 class ValidationOptions {

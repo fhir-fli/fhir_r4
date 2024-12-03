@@ -6,12 +6,10 @@ import 'dart:core';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:fhir_r4/src/fhir_path/java/expression_node.dart';
 import 'package:fhir_r4/src/fhir_path/java/fhir_lexer.dart';
-import 'package:fhir_r4/src/fhir_path/java/fhir_path_exceptions.dart';
 import 'package:fhir_r4/src/fhir_path/java/fhir_publication.dart';
+import 'package:fhir_r4/src/fhir_path/java/iworker_context.dart';
 import 'package:fhir_r4/src/fhir_path/java/type_details.dart';
 import 'package:fhir_r4/src/fhir_path/java/utility.dart';
-import 'package:fhir_r4/src/fhir_path/java/validation_options.dart';
-import 'package:fhir_r4/src/fhir_path/java/version_utilities.dart';
 
  class FHIRPathEngine {
    IWorkerContext worker;
@@ -38,49 +36,26 @@ import 'package:fhir_r4/src/fhir_path/java/version_utilities.dart';
    *               membership when executing tests (once that's defined)
    */
 
-   FHIRPathEngine(IWorkerContext worker, [ProfileUtilities? utils]) {
+   FHIRPathEngine(this.worker, [ProfileUtilities? utils]) {
     final utilities = utils ?? ProfileUtilities(worker, null, null);
-    this.worker = worker;
     profileUtilities = utilities;
-    for (StructureDefinition sd in worker.getStructures()) {
+    for (final sd in worker.getStructures()) {
       if (sd.derivation == TypeDerivationRule.specialization && sd.kind != StructureDefinitionKind.LOGICAL) {
         allTypes[sd.name.value!] = sd;
       }
-      if (sd.derivation == TypeDerivationRule.SPECIALIZATION
-          && sd.kind == StructureDefinitionKind.PRIMITIVETYPE) {
-        primitiveTypes.add(sd.name);
+      if (sd.derivation == TypeDerivationRule.specialization
+          && sd.kind == StructureDefinitionKind.primitive_type) {
+        primitiveTypes.add(sd.name.value!);
       }
     }
     initFlags();
   }
 
    void initFlags() {
-    if (!VersionUtilities.isR5VerOrLater(worker.version)) {
+    if (!VersionUtilities.isR5VerOrLater(worker.getVersion())) {
       doNotEnforceAsCaseSensitive = true;
       doNotEnforceAsSingletonRule = true;
     }
-  }
-
-  // --- 3 methods to override in children
-  // -------------------------------------------------------
-  // if you don't override, it falls through to the using the base reference
-  // implementation
-  // HAPI overrides to these to support extending the base model
-
-   IEvaluationContext getHostServices() {
-    return hostServices;
-  }
-
-   void setHostServices(IEvaluationContext constantResolver) {
-    this.hostServices = constantResolver;
-  }
-
-   String getLocation() {
-    return location;
-  }
-
-   void setLocation(String location) {
-    this.location = location;
   }
 
   /**
@@ -96,11 +71,11 @@ import 'package:fhir_r4/src/fhir_path/java/version_utilities.dart';
    * @param result
    * @throws FHIRException
    */
-  protected void getChildrenByName(FhirBase item, String name, List<FhirBase> result) throws FHIRException {
-    String tn = null;
+void getChildrenByName(FhirBase item, String name, List<FhirBase> result) {
+    String? tn;
     if (isAllowPolymorphicNames()) {
       // we'll look to see whether we hav a polymorphic name
-      for (Property p : item.children()) {
+      for (final p in item.children ?? <FhirBase>[]) {
         if (p.name.endsWith("[x]")) {
           String n = p.getName().substring(0, p.getName().length() - 3);
           if (name.startsWith(n)) {
@@ -169,11 +144,11 @@ import 'package:fhir_r4/src/fhir_path/java/version_utilities.dart';
    * @throws PathEngineException
    * @throws Exception
    */
-   ExpressionNode parse(String path) throws FHIRLexerException {
+   ExpressionNode parse(String path) {
     return parse(path, null);
   }
 
-   ExpressionNode parse(String path, String name) throws FHIRLexerException {
+   ExpressionNode parse(String path, String name) {
     FHIRLexer lexer =FHIRLexer(path, name, false, allowDoubleQuotes);
     if (lexer.done()) {
       throw lexer.error("Path cannot be empty");
@@ -195,7 +170,7 @@ import 'package:fhir_r4/src/fhir_path/java/version_utilities.dart';
 //    * @throws PathEngineException
 //    * @throws Exception
 //    */
-//    ExpressionNodeWithOffset parsePartial(String path, int i) throws FHIRLexerException {
+//    ExpressionNodeWithOffset parsePartial(String path, int i) {
 //     FHIRLexer lexer =FHIRLexer(path, i, allowDoubleQuotes);
 //     if (lexer.done()) {
 //       throw lexer.error("Path cannot be empty");
@@ -212,7 +187,7 @@ import 'package:fhir_r4/src/fhir_path/java/version_utilities.dart';
 //    * @throws PathEngineException
 //    * @throws Exception
 //    */
-//    ExpressionNode parse(FHIRLexer lexer) throws FHIRLexerException {
+//    ExpressionNode parse(FHIRLexer lexer) {
 //     ExpressionNode result = parseExpression(lexer, true);
 //     result.check();
 //     return result;
@@ -398,7 +373,7 @@ import 'package:fhir_r4/src/fhir_path/java/version_utilities.dart';
 //    * @return
 //    * @throws FHIRException @
 //    */
-//    List<FhirBase> evaluate(FhirBase base, ExpressionNode ExpressionNode) throws FHIRException {
+//    List<FhirBase> evaluate(FhirBase base, ExpressionNode ExpressionNode) {
 //     List<FhirBase> list =ArrayList<FhirBase>();
 //     if (base != null) {
 //       list.add(base);
@@ -416,7 +391,7 @@ import 'package:fhir_r4/src/fhir_path/java/version_utilities.dart';
 //    * @return
 //    * @throws FHIRException @
 //    */
-//    List<FhirBase> evaluate(FhirBase base, String path) throws FHIRException {
+//    List<FhirBase> evaluate(FhirBase base, String path) {
 //     ExpressionNode exp = parse(path);
 //     List<FhirBase> list =ArrayList<FhirBase>();
 //     if (base != null) {
@@ -437,7 +412,7 @@ import 'package:fhir_r4/src/fhir_path/java/version_utilities.dart';
 //    * @throws FHIRException @
 //    */
 //    List<FhirBase> evaluate(Object appContext, Resource focusResource, Resource rootResource, FhirBase base,
-//       ExpressionNode ExpressionNode) throws FHIRException {
+//       ExpressionNode ExpressionNode) {
 //     List<FhirBase> list =ArrayList<FhirBase>();
 //     if (base != null) {
 //       list.add(base);
@@ -456,7 +431,7 @@ import 'package:fhir_r4/src/fhir_path/java/version_utilities.dart';
 //    * @throws FHIRException @
 //    */
 //    List<FhirBase> evaluate(Object appContext, FhirBase focusResource, FhirBase rootResource, FhirBase base,
-//       ExpressionNode expressionNode) throws FHIRException {
+//       ExpressionNode expressionNode) {
 //     List<FhirBase> list =ArrayList<FhirBase>();
 //     if (base != null) {
 //       list.add(base);
@@ -519,7 +494,7 @@ import 'package:fhir_r4/src/fhir_path/java/version_utilities.dart';
 //    * @throws FHIRException @
 //    */
 //    bool evaluateToBoolean(Object appInfo, Resource focusResource, Resource rootResource, FhirBase base,
-//       ExpressionNode node) throws FHIRException {
+//       ExpressionNode node) {
 //     return convertToBoolean(evaluate(appInfo, focusResource, rootResource, base, node));
 //   }
 
@@ -531,7 +506,7 @@ import 'package:fhir_r4/src/fhir_path/java/version_utilities.dart';
 //    * @throws FHIRException @
 //    */
 //    bool evaluateToBoolean(Object appInfo, FhirBase focusResource, FhirBase rootResource, FhirBase base,
-//       ExpressionNode node) throws FHIRException {
+//       ExpressionNode node) {
 //     return convertToBoolean(evaluate(appInfo, focusResource, rootResource, base, node));
 //   }
 
@@ -543,7 +518,7 @@ import 'package:fhir_r4/src/fhir_path/java/version_utilities.dart';
 //    * @return
 //    * @throws FHIRException @
 //    */
-//    String evaluateToString(FhirBase base, String path) throws FHIRException {
+//    String evaluateToString(FhirBase base, String path) {
 //     return convertToString(evaluate(base, path));
 //   }
 
@@ -765,7 +740,7 @@ import 'package:fhir_r4/src/fhir_path/java/version_utilities.dart';
 //     }
 //   }
 
-//    ExpressionNode parseExpression(FHIRLexer lexer, bool proximal) throws FHIRLexerException {
+//    ExpressionNode parseExpression(FHIRLexer lexer, bool proximal) {
 //     ExpressionNode result =ExpressionNode(lexer.nextId());
 //     ExpressionNode wrapper = null;
 //     SourceLocation c = lexer.getCurrentStartLocation();
@@ -1025,7 +1000,7 @@ import 'package:fhir_r4/src/fhir_path/java/version_utilities.dart';
 //     return result;
 //   }
 
-//    FhirBase processConstant(FHIRLexer lexer) throws FHIRLexerException {
+//    FhirBase processConstant(FHIRLexer lexer) {
 //     if (lexer.isStringConstant()) {
 //       returnStringType(processConstantString(lexer.take(), lexer)).noExtensions();
 //     } else if (Utilities.isInteger(lexer.getCurrent())) {
@@ -1060,7 +1035,7 @@ import 'package:fhir_r4/src/fhir_path/java/version_utilities.dart';
 //   }
 
 //    bool checkParamCount(FHIRLexer lexer, SourceLocation location, ExpressionNode exp, int countMin,
-//       int countMax) throws FHIRLexerException {
+//       int countMax) {
 //     if (exp.getParameters().size() < countMin || exp.getParameters().size() > countMax) {
 //       throw lexer.error("The function \"" + exp.getName() + "\" requires between " + Integer.toString(countMin)
 //           + " and " + Integer.toString(countMax) + " parameters");
@@ -1348,7 +1323,7 @@ import 'package:fhir_r4/src/fhir_path/java/version_utilities.dart';
 //     return result;
 //   }
 
-//    List<FhirBase> preOperate(List<FhirBase> left, Operation operation, ExpressionNode expr) throws PathEngineException {
+//    List<FhirBase> preOperate(List<FhirBase> left, Operation operation, ExpressionNode expr) {
 //     if (left.size() == 0) {
 //       return null;
 //     }
@@ -1377,7 +1352,7 @@ import 'package:fhir_r4/src/fhir_path/java/version_utilities.dart';
 //   }
 
 //    TypeDetails executeTypeName(ExecutionTypeContext context, TypeDetails focus, ExpressionNode exp,
-//       bool atEntry) throws PathEngineException, DefinitionException {
+//       bool atEntry) {
 //     returnTypeDetails(CollectionStatus.SINGLETON, exp.getName());
 //   }
 
@@ -1445,7 +1420,7 @@ import 'package:fhir_r4/src/fhir_path/java/version_utilities.dart';
 //   }
 
 //    List<FhirBase> resolveConstant(ExecutionContext context, FhirBase constant, bool beforeContext,
-//       ExpressionNode expr, bool explicitConstant) throws PathEngineException {
+//       ExpressionNode expr, bool explicitConstant) {
 //     if (constant == null) {
 //       returnArrayList<FhirBase>();
 //     }
@@ -1466,7 +1441,7 @@ import 'package:fhir_r4/src/fhir_path/java/version_utilities.dart';
 //     }
 //   }
 
-//    FhirBase processDateConstant(Object appInfo, String value, ExpressionNode expr) throws PathEngineException {
+//    FhirBase processDateConstant(Object appInfo, String value, ExpressionNode expr) {
 //     String date = null;
 //     String time = null;
 //     String tz = null;
@@ -1582,7 +1557,7 @@ import 'package:fhir_r4/src/fhir_path/java/version_utilities.dart';
 //     }
 //   }
 
-//    String processConstantString(String s, FHIRLexer lexer) throws FHIRLexerException {
+//    String processConstantString(String s, FHIRLexer lexer) {
 //     StringBuffer b =StringBuffer();
 //     int i = 1;
 //     while (i < s.length() - 1) {
@@ -1636,7 +1611,7 @@ import 'package:fhir_r4/src/fhir_path/java/version_utilities.dart';
 //   }
 
 //    List<FhirBase> operate(ExecutionContext context, List<FhirBase> left, Operation operation, List<FhirBase> right,
-//       ExpressionNode holder) throws FHIRException {
+//       ExpressionNode holder) {
 //     switch (operation) {
 //     case Equals:
 //       return opEquals(left, right, holder);
@@ -1991,7 +1966,7 @@ import 'package:fhir_r4/src/fhir_path/java/version_utilities.dart';
 //     }
 //   }
 
-//    bool doEquivalent(FhirBase left, FhirBase right) throws PathEngineException {
+//    bool doEquivalent(FhirBase left, FhirBase right) {
 //     if (left instanceof Quantity && right instanceof Quantity) {
 //       return qtyEquivalent((Quantity) left, (Quantity) right);
 //     }
@@ -2118,7 +2093,7 @@ import 'package:fhir_r4/src/fhir_path/java/version_utilities.dart';
 //     }
 //   }
 
-//    Boolean qtyEquivalent(Quantity left, Quantity right) throws PathEngineException {
+//    Boolean qtyEquivalent(Quantity left, Quantity right) {
 //     if (!left.hasValue() && !right.hasValue()) {
 //       return true;
 //     }
@@ -2148,7 +2123,7 @@ import 'package:fhir_r4/src/fhir_path/java/version_utilities.dart';
 //     return doEquivalent(new DecimalType(left.getValue()),DecimalType(right.getValue()));
 //   }
 
-//    List<FhirBase> opEquivalent(List<FhirBase> left, List<FhirBase> right, ExpressionNode expr) throws PathEngineException {
+//    List<FhirBase> opEquivalent(List<FhirBase> left, List<FhirBase> right, ExpressionNode expr) {
 //     if (left.size() != right.size()) {
 //       return makeBoolean(false);
 //     }
@@ -2196,7 +2171,7 @@ import 'package:fhir_r4/src/fhir_path/java/version_utilities.dart';
 //    final static String[] FHIR_TYPES_STRING =String[] { "string", "uri", "code", "oid", "id", "uuid", "sid",
 //       "markdown", "base64Binary", "canonical", "url" };
 
-//    List<FhirBase> opLessThan(List<FhirBase> left, List<FhirBase> right, ExpressionNode expr) throws FHIRException {
+//    List<FhirBase> opLessThan(List<FhirBase> left, List<FhirBase> right, ExpressionNode expr) {
 //     if (left.size() == 0 || right.size() == 0)
 //       returnArrayList<FhirBase>();
 
@@ -2245,7 +2220,7 @@ import 'package:fhir_r4/src/fhir_path/java/version_utilities.dart';
 //     returnArrayList<FhirBase>();
 //   }
 
-//    List<FhirBase> opGreater(List<FhirBase> left, List<FhirBase> right, ExpressionNode expr) throws FHIRException {
+//    List<FhirBase> opGreater(List<FhirBase> left, List<FhirBase> right, ExpressionNode expr) {
 //     if (left.size() == 0 || right.size() == 0)
 //       returnArrayList<FhirBase>();
 //     if (left.size() == 1 && right.size() == 1 && left.get(0).isPrimitive() && right.get(0).isPrimitive()) {
@@ -2294,7 +2269,7 @@ import 'package:fhir_r4/src/fhir_path/java/version_utilities.dart';
 //     returnArrayList<FhirBase>();
 //   }
 
-//    List<FhirBase> opLessOrEqual(List<FhirBase> left, List<FhirBase> right, ExpressionNode expr) throws FHIRException {
+//    List<FhirBase> opLessOrEqual(List<FhirBase> left, List<FhirBase> right, ExpressionNode expr) {
 //     if (left.size() == 0 || right.size() == 0) {
 //       returnArrayList<FhirBase>();
 //     }
@@ -2346,7 +2321,7 @@ import 'package:fhir_r4/src/fhir_path/java/version_utilities.dart';
 //     returnArrayList<FhirBase>();
 //   }
 
-//    List<FhirBase> opGreaterOrEqual(List<FhirBase> left, List<FhirBase> right, ExpressionNode expr) throws FHIRException {
+//    List<FhirBase> opGreaterOrEqual(List<FhirBase> left, List<FhirBase> right, ExpressionNode expr) {
 //     if (left.size() == 0 || right.size() == 0) {
 //       returnArrayList<FhirBase>();
 //     }
@@ -2430,7 +2405,7 @@ import 'package:fhir_r4/src/fhir_path/java/version_utilities.dart';
 //     return makeBoolean(ans);
 //   }
 
-//    List<FhirBase> opIn(List<FhirBase> left, List<FhirBase> right, ExpressionNode expr) throws FHIRException {
+//    List<FhirBase> opIn(List<FhirBase> left, List<FhirBase> right, ExpressionNode expr) {
 //     if (left.size() == 0) {
 //       returnArrayList<FhirBase>();
 //     }
@@ -2477,7 +2452,7 @@ import 'package:fhir_r4/src/fhir_path/java/version_utilities.dart';
 //     return makeBoolean(ans);
 //   }
 
-//    List<FhirBase> opPlus(List<FhirBase> left, List<FhirBase> right, ExpressionNode expr) throws PathEngineException {
+//    List<FhirBase> opPlus(List<FhirBase> left, List<FhirBase> right, ExpressionNode expr) {
 //     if (left.size() == 0 || right.size() == 0) {
 //       returnArrayList<FhirBase>();
 //     }
@@ -2570,7 +2545,7 @@ import 'package:fhir_r4/src/fhir_path/java/version_utilities.dart';
 //     return result;
 //   }
 
-//    List<FhirBase> opTimes(List<FhirBase> left, List<FhirBase> right, ExpressionNode expr) throws PathEngineException {
+//    List<FhirBase> opTimes(List<FhirBase> left, List<FhirBase> right, ExpressionNode expr) {
 //     if (left.size() == 0 || right.size() == 0) {
 //       returnArrayList<FhirBase>();
 //     }
@@ -2612,7 +2587,7 @@ import 'package:fhir_r4/src/fhir_path/java/version_utilities.dart';
 //     return result;
 //   }
 
-//    List<FhirBase> opConcatenate(List<FhirBase> left, List<FhirBase> right, ExpressionNode expr) throws PathEngineException {
+//    List<FhirBase> opConcatenate(List<FhirBase> left, List<FhirBase> right, ExpressionNode expr) {
 //     if (left.size() > 1) {
 //       throw makeExceptionPlural(left.size(), expr, I18nConstants.FHIRPATH_LEFT_VALUE, "&");
 //     }
@@ -2658,7 +2633,7 @@ import 'package:fhir_r4/src/fhir_path/java/version_utilities.dart';
 //     return false;
 //   }
 
-//    List<FhirBase> opAnd(List<FhirBase> left, List<FhirBase> right, ExpressionNode expr) throws PathEngineException {
+//    List<FhirBase> opAnd(List<FhirBase> left, List<FhirBase> right, ExpressionNode expr) {
 //     Equality l = asBool(left, expr);
 //     Equality r = asBool(right, expr);
 //     switch (l) {
@@ -2687,7 +2662,7 @@ import 'package:fhir_r4/src/fhir_path/java/version_utilities.dart';
 //     return list.size() == 1 && list.get(0) instanceof BooleanType && ((BooleanType) list.get(0)).booleanValue() == b;
 //   }
 
-//    List<FhirBase> opOr(List<FhirBase> left, List<FhirBase> right, ExpressionNode expr) throws PathEngineException {
+//    List<FhirBase> opOr(List<FhirBase> left, List<FhirBase> right, ExpressionNode expr) {
 //     Equality l = asBool(left, expr);
 //     Equality r = asBool(right, expr);
 //     switch (l) {
@@ -2712,7 +2687,7 @@ import 'package:fhir_r4/src/fhir_path/java/version_utilities.dart';
 //     return makeNull();
 //   }
 
-//    List<FhirBase> opXor(List<FhirBase> left, List<FhirBase> right, ExpressionNode expr) throws PathEngineException {
+//    List<FhirBase> opXor(List<FhirBase> left, List<FhirBase> right, ExpressionNode expr) {
 //     Equality l = asBool(left, expr);
 //     Equality r = asBool(right, expr);
 //     switch (l) {
@@ -2740,7 +2715,7 @@ import 'package:fhir_r4/src/fhir_path/java/version_utilities.dart';
 //     return makeNull();
 //   }
 
-//    List<FhirBase> opImplies(List<FhirBase> left, List<FhirBase> right, ExpressionNode expr) throws PathEngineException {
+//    List<FhirBase> opImplies(List<FhirBase> left, List<FhirBase> right, ExpressionNode expr) {
 //     Equality eq = asBool(left, expr);
 //     if (eq == Equality.False) {
 //       return makeBoolean(true);
@@ -2758,7 +2733,7 @@ import 'package:fhir_r4/src/fhir_path/java/version_utilities.dart';
 //     return makeNull();
 //   }
 
-//    List<FhirBase> opMinus(List<FhirBase> left, List<FhirBase> right, ExpressionNode expr) throws PathEngineException {
+//    List<FhirBase> opMinus(List<FhirBase> left, List<FhirBase> right, ExpressionNode expr) {
 //     if (left.size() == 0 || right.size() == 0) {
 //       returnArrayList<FhirBase>();
 //     }
@@ -2800,7 +2775,7 @@ import 'package:fhir_r4/src/fhir_path/java/version_utilities.dart';
 //     return result;
 //   }
 
-//    List<FhirBase> opDivideBy(List<FhirBase> left, List<FhirBase> right, ExpressionNode expr) throws PathEngineException {
+//    List<FhirBase> opDivideBy(List<FhirBase> left, List<FhirBase> right, ExpressionNode expr) {
 //     if (left.size() == 0 || right.size() == 0) {
 //       returnArrayList<FhirBase>();
 //     }
@@ -2848,7 +2823,7 @@ import 'package:fhir_r4/src/fhir_path/java/version_utilities.dart';
 //     return result;
 //   }
 
-//    List<FhirBase> opDiv(List<FhirBase> left, List<FhirBase> right, ExpressionNode expr) throws PathEngineException {
+//    List<FhirBase> opDiv(List<FhirBase> left, List<FhirBase> right, ExpressionNode expr) {
 //     if (left.size() == 0 || right.size() == 0) {
 //       returnArrayList<FhirBase>();
 //     }
@@ -2890,7 +2865,7 @@ import 'package:fhir_r4/src/fhir_path/java/version_utilities.dart';
 //     return result;
 //   }
 
-//    List<FhirBase> opMod(List<FhirBase> left, List<FhirBase> right, ExpressionNode expr) throws PathEngineException {
+//    List<FhirBase> opMod(List<FhirBase> left, List<FhirBase> right, ExpressionNode expr) {
 //     if (left.size() == 0 || right.size() == 0) {
 //       returnArrayList<FhirBase>();
 //     }
@@ -3500,7 +3475,7 @@ import 'package:fhir_r4/src/fhir_path/java/version_utilities.dart';
 //   }
 
 //    void checkParamTypes(ExpressionNode expr, String funcName, List<TypeDetails> paramTypes,
-//       TypeDetails... typeSet) throws PathEngineException {
+//       TypeDetails... typeSet) {
 //     int i = 0;
 //     for (TypeDetails pt : typeSet) {
 //       if (i == paramTypes.size()) {
@@ -3516,26 +3491,26 @@ import 'package:fhir_r4/src/fhir_path/java/version_utilities.dart';
 //     }
 //   }
   
-//    void checkSingleton(TypeDetails focus, String name, ExpressionNode expr) throws PathEngineException {
+//    void checkSingleton(TypeDetails focus, String name, ExpressionNode expr) {
 //     if (focus.getCollectionStatus() != CollectionStatus.SINGLETON) {
 // //      typeWarnings.add(new IssueMessage(worker.formatMessage(I18nConstants.FHIRPATH_COLLECTION_STATUS_CONTEXT, name, expr.toString()), I18nConstants.FHIRPATH_COLLECTION_STATUS_CONTEXT));
 //     }
 //   }
 
-//    void checkOrdered(TypeDetails focus, String name, ExpressionNode expr) throws PathEngineException {
+//    void checkOrdered(TypeDetails focus, String name, ExpressionNode expr) {
 //     if (focus.getCollectionStatus() == CollectionStatus.UNORDERED) {
 //       throw makeException(expr, I18nConstants.FHIRPATH_ORDERED_ONLY, name);
 //     }
 //   }
 
-//    void checkContextReference(TypeDetails focus, String name, ExpressionNode expr) throws PathEngineException {
+//    void checkContextReference(TypeDetails focus, String name, ExpressionNode expr) {
 //     if (!focus.hasType(worker, "string") && !focus.hasType(worker, "uri") && !focus.hasType(worker, "Reference")
 //         && !focus.hasType(worker, "canonical")) {
 //       throw makeException(expr, I18nConstants.FHIRPATH_REFERENCE_ONLY, name, focus.describe());
 //     }
 //   }
 
-//    void checkContextCoded(TypeDetails focus, String name, ExpressionNode expr) throws PathEngineException {
+//    void checkContextCoded(TypeDetails focus, String name, ExpressionNode expr) {
 //     if (!focus.hasType(worker, "string") && !focus.hasType(worker, "code") && !focus.hasType(worker, "uri")
 //         && !focus.hasType(worker, "Coding") && !focus.hasType(worker, "CodeableConcept")) {
 //       throw makeException(expr, I18nConstants.FHIRPATH_CODED_ONLY, name, focus.describe());
@@ -3566,19 +3541,19 @@ import 'package:fhir_r4/src/fhir_path/java/version_utilities.dart';
 //     }
 //   }
 
-//    void checkContextNumerical(TypeDetails focus, String name, ExpressionNode expr) throws PathEngineException {
+//    void checkContextNumerical(TypeDetails focus, String name, ExpressionNode expr) {
 //     if (!focus.hasNoTypes() && !focus.hasType("integer") && !focus.hasType("decimal") && !focus.hasType("Quantity")) {
 //       throw makeException(expr, I18nConstants.FHIRPATH_NUMERICAL_ONLY, name, focus.describe());
 //     }
 //   }
 
-//    void checkContextDecimal(TypeDetails focus, String name, ExpressionNode expr) throws PathEngineException {
+//    void checkContextDecimal(TypeDetails focus, String name, ExpressionNode expr) {
 //     if (!focus.hasNoTypes() && !focus.hasType("decimal") && !focus.hasType("integer")) {
 //       throw makeException(expr, I18nConstants.FHIRPATH_DECIMAL_ONLY, name, focus.describe());
 //     }
 //   }
 
-//    void checkContextContinuous(TypeDetails focus, String name, ExpressionNode expr, bool allowInteger) throws PathEngineException {
+//    void checkContextContinuous(TypeDetails focus, String name, ExpressionNode expr, bool allowInteger) {
 //     if (!focus.hasNoTypes() && !focus.hasType("decimal") && !focus.hasType("date") && !focus.hasType("dateTime") && !focus.hasType("time") && !focus.hasType("Quantity") && !(allowInteger && focus.hasType("integer"))) {
 //       throw makeException(expr, I18nConstants.FHIRPATH_CONTINUOUS_ONLY, name, focus.describe());
 //     }
@@ -4407,7 +4382,7 @@ import 'package:fhir_r4/src/fhir_path/java/version_utilities.dart';
 //     return true;
 //   }
 
-//    List<FhirBase> funcAll(ExecutionContext context, List<FhirBase> focus, ExpressionNode exp) throws FHIRException {
+//    List<FhirBase> funcAll(ExecutionContext context, List<FhirBase> focus, ExpressionNode exp) {
 //     List<FhirBase> result =ArrayList<FhirBase>();
 //     if (exp.getParameters().size() == 1) {
 //       List<FhirBase> pc =ArrayList<FhirBase>();
@@ -4542,7 +4517,7 @@ import 'package:fhir_r4/src/fhir_path/java/version_utilities.dart';
 //     return result;
 //   }
 
-//    List<FhirBase> funcChildren(ExecutionContext context, List<FhirBase> focus, ExpressionNode exp) throws FHIRException {
+//    List<FhirBase> funcChildren(ExecutionContext context, List<FhirBase> focus, ExpressionNode exp) {
 //     List<FhirBase> result =ArrayList<FhirBase>();
 //     for (FhirBase b : focus) {
 //       getChildrenByName(b, "*", result);
@@ -4596,7 +4571,7 @@ import 'package:fhir_r4/src/fhir_path/java/version_utilities.dart';
 //     return result;
 //   }
 
-//    List<FhirBase> funcEndsWith(ExecutionContext context, List<FhirBase> focus, ExpressionNode exp) throws FHIRException {
+//    List<FhirBase> funcEndsWith(ExecutionContext context, List<FhirBase> focus, ExpressionNode exp) {
 //     List<FhirBase> result =ArrayList<FhirBase>();
 //     List<FhirBase> swb = execute(context, focus, exp.getParameters().get(0), true);
 //     String sw = convertToString(swb);
@@ -4710,7 +4685,7 @@ import 'package:fhir_r4/src/fhir_path/java/version_utilities.dart';
 //     return result;
 //   }
 
-//    List<FhirBase> funcIif(ExecutionContext context, List<FhirBase> focus, ExpressionNode exp) throws FHIRException {
+//    List<FhirBase> funcIif(ExecutionContext context, List<FhirBase> focus, ExpressionNode exp) {
 //     if (focus.size() > 1) {
 //       throw makeException(exp, I18nConstants.FHIRPATH_NO_COLLECTION, "iif", focus.size());    
 //     }
@@ -4726,7 +4701,7 @@ import 'package:fhir_r4/src/fhir_path/java/version_utilities.dart';
 //     }
 //   }
 
-//    List<FhirBase> funcTake(ExecutionContext context, List<FhirBase> focus, ExpressionNode exp) throws FHIRException {
+//    List<FhirBase> funcTake(ExecutionContext context, List<FhirBase> focus, ExpressionNode exp) {
 //     List<FhirBase> n1 = execute(context, focus, exp.getParameters().get(0), true);
 //     int i1 = Integer.parseInt(n1.get(0).primitiveValue());
 
@@ -4737,7 +4712,7 @@ import 'package:fhir_r4/src/fhir_path/java/version_utilities.dart';
 //     return result;
 //   }
 
-//    List<FhirBase> funcUnion(ExecutionContext context, List<FhirBase> focus, ExpressionNode exp) throws FHIRException {
+//    List<FhirBase> funcUnion(ExecutionContext context, List<FhirBase> focus, ExpressionNode exp) {
 //     List<FhirBase> result =ArrayList<FhirBase>();
 //     for (FhirBase item : focus) {
 //       if (!doContains(result, item)) {
@@ -4752,7 +4727,7 @@ import 'package:fhir_r4/src/fhir_path/java/version_utilities.dart';
 //     return result;
 //   }
 
-//    List<FhirBase> funcCombine(ExecutionContext context, List<FhirBase> focus, ExpressionNode exp) throws FHIRException {
+//    List<FhirBase> funcCombine(ExecutionContext context, List<FhirBase> focus, ExpressionNode exp) {
 //     List<FhirBase> result =ArrayList<FhirBase>();
 //     for (FhirBase item : focus) {
 //       result.add(item);
@@ -4776,7 +4751,7 @@ import 'package:fhir_r4/src/fhir_path/java/version_utilities.dart';
 //     return result;
 //   }
 
-//    List<FhirBase> funcExclude(ExecutionContext context, List<FhirBase> focus, ExpressionNode exp) throws FHIRException {
+//    List<FhirBase> funcExclude(ExecutionContext context, List<FhirBase> focus, ExpressionNode exp) {
 //     List<FhirBase> result =ArrayList<FhirBase>();
 //     List<FhirBase> other = execute(context, focus, exp.getParameters().get(0), true);
 
@@ -4948,7 +4923,7 @@ import 'package:fhir_r4/src/fhir_path/java/version_utilities.dart';
 //     return result;
 //   }
 
-//    List<FhirBase> funcRepeat(ExecutionContext context, List<FhirBase> focus, ExpressionNode exp) throws FHIRException {
+//    List<FhirBase> funcRepeat(ExecutionContext context, List<FhirBase> focus, ExpressionNode exp) {
 //     List<FhirBase> result =ArrayList<FhirBase>();
 //     List<FhirBase> current =ArrayList<FhirBase>();
 //     current.addAll(focus);
@@ -5044,7 +5019,7 @@ import 'package:fhir_r4/src/fhir_path/java/version_utilities.dart';
 //     return result;
 //   }
 
-//    List<FhirBase> funcSubsetOf(ExecutionContext context, List<FhirBase> focus, ExpressionNode exp) throws FHIRException {
+//    List<FhirBase> funcSubsetOf(ExecutionContext context, List<FhirBase> focus, ExpressionNode exp) {
 //     List<FhirBase> target = execute(context, focus, exp.getParameters().get(0), true);
 
 //     bool valid = true;
@@ -5086,7 +5061,7 @@ import 'package:fhir_r4/src/fhir_path/java/version_utilities.dart';
 //     return result;
 //   }
 
-//    List<FhirBase> funcResolve(ExecutionContext context, List<FhirBase> focus, ExpressionNode exp) throws FHIRException {
+//    List<FhirBase> funcResolve(ExecutionContext context, List<FhirBase> focus, ExpressionNode exp) {
 //     List<FhirBase> result =ArrayList<FhirBase>();
 //     FhirBase refContext = null;
 //     for (FhirBase item : focus) {
@@ -5165,7 +5140,7 @@ import 'package:fhir_r4/src/fhir_path/java/version_utilities.dart';
 //     return result;
 //   }
 
-//    List<FhirBase> funcAllFalse(ExecutionContext context, List<FhirBase> focus, ExpressionNode exp) throws FHIRException {
+//    List<FhirBase> funcAllFalse(ExecutionContext context, List<FhirBase> focus, ExpressionNode exp) {
 //     List<FhirBase> result =ArrayList<FhirBase>();
 //     if (exp.getParameters().size() == 1) {
 //       bool all = true;
@@ -5199,7 +5174,7 @@ import 'package:fhir_r4/src/fhir_path/java/version_utilities.dart';
 //     return result;
 //   }
 
-//    List<FhirBase> funcAnyFalse(ExecutionContext context, List<FhirBase> focus, ExpressionNode exp) throws FHIRException {
+//    List<FhirBase> funcAnyFalse(ExecutionContext context, List<FhirBase> focus, ExpressionNode exp) {
 //     List<FhirBase> result =ArrayList<FhirBase>();
 //     if (exp.getParameters().size() == 1) {
 //       bool any = false;
@@ -5233,7 +5208,7 @@ import 'package:fhir_r4/src/fhir_path/java/version_utilities.dart';
 //     return result;
 //   }
 
-//    List<FhirBase> funcAllTrue(ExecutionContext context, List<FhirBase> focus, ExpressionNode exp) throws FHIRException {
+//    List<FhirBase> funcAllTrue(ExecutionContext context, List<FhirBase> focus, ExpressionNode exp) {
 //     List<FhirBase> result =ArrayList<FhirBase>();
 //     if (exp.getParameters().size() == 1) {
 //       bool all = true;
@@ -5266,7 +5241,7 @@ import 'package:fhir_r4/src/fhir_path/java/version_utilities.dart';
 //     return result;
 //   }
 
-//    List<FhirBase> funcAnyTrue(ExecutionContext context, List<FhirBase> focus, ExpressionNode exp) throws FHIRException {
+//    List<FhirBase> funcAnyTrue(ExecutionContext context, List<FhirBase> focus, ExpressionNode exp) {
 //     List<FhirBase> result =ArrayList<FhirBase>();
 //     if (exp.getParameters().size() == 1) {
 //       bool any = false;
@@ -5304,7 +5279,7 @@ import 'package:fhir_r4/src/fhir_path/java/version_utilities.dart';
 //     return (item.isBooleanPrimitive());
 //   }
 
-//    List<FhirBase> funcTrace(ExecutionContext context, List<FhirBase> focus, ExpressionNode exp) throws FHIRException {
+//    List<FhirBase> funcTrace(ExecutionContext context, List<FhirBase> focus, ExpressionNode exp) {
 //     List<FhirBase> nl = execute(context, focus, exp.getParameters().get(0), true);
 //     String name = nl.get(0).primitiveValue();
 //     if (exp.getParameters().size() == 2) {
@@ -5316,7 +5291,7 @@ import 'package:fhir_r4/src/fhir_path/java/version_utilities.dart';
 //     return focus;
 //   }
 
-//    List<FhirBase> funcDefineVariable(ExecutionContext context, List<FhirBase> focus, ExpressionNode exp) throws FHIRException {
+//    List<FhirBase> funcDefineVariable(ExecutionContext context, List<FhirBase> focus, ExpressionNode exp) {
 //     List<FhirBase> nl = execute(context, focus, exp.getParameters().get(0), true);
 //     String name = nl.get(0).primitiveValue();
 //     List<FhirBase> value;
@@ -5330,7 +5305,7 @@ import 'package:fhir_r4/src/fhir_path/java/version_utilities.dart';
 //     return focus;
 //   }
 
-//    List<FhirBase> funcCheck(ExecutionContext context, List<FhirBase> focus, ExpressionNode expr) throws FHIRException {
+//    List<FhirBase> funcCheck(ExecutionContext context, List<FhirBase> focus, ExpressionNode expr) {
 //     List<FhirBase> n1 = execute(context, focus, expr.getParameters().get(0), true);
 //     if (!convertToBoolean(n1)) {
 //       List<FhirBase> n2 = execute(context, focus, expr.getParameters().get(1), true);
@@ -5364,7 +5339,7 @@ import 'package:fhir_r4/src/fhir_path/java/version_utilities.dart';
 //     return result;
 //   }
 
-//    List<FhirBase> funcMatches(ExecutionContext context, List<FhirBase> focus, ExpressionNode exp) throws FHIRException {
+//    List<FhirBase> funcMatches(ExecutionContext context, List<FhirBase> focus, ExpressionNode exp) {
 //     List<FhirBase> result =ArrayList<FhirBase>();
 //     List<FhirBase> swb = execute(context, focus, exp.getParameters().get(0), true);
 //     String sw = convertToString(swb);
@@ -5412,7 +5387,7 @@ import 'package:fhir_r4/src/fhir_path/java/version_utilities.dart';
 //     return result;
 //   }
 
-//    List<FhirBase> funcContains(ExecutionContext context, List<FhirBase> focus, ExpressionNode exp) throws FHIRException {
+//    List<FhirBase> funcContains(ExecutionContext context, List<FhirBase> focus, ExpressionNode exp) {
 //     List<FhirBase> result =ArrayList<FhirBase>();
 //     List<FhirBase> swb = execute(context, baseToList(context.thisItem), exp.getParameters().get(0), true);
 //     String sw = convertToString(swb);
@@ -5483,7 +5458,7 @@ import 'package:fhir_r4/src/fhir_path/java/version_utilities.dart';
 //     return result;
 //   }
 
-//    List<FhirBase> funcLower(ExecutionContext context, List<FhirBase> focus, ExpressionNode exp) throws FHIRException {
+//    List<FhirBase> funcLower(ExecutionContext context, List<FhirBase> focus, ExpressionNode exp) {
 //     List<FhirBase> result =ArrayList<FhirBase>();
 //     if (focus.size() == 1 && (focus.get(0).hasType(FHIR_TYPES_STRING) || doImplicitStringConversion)) {
 //       String s = convertToString(focus.get(0));
@@ -5494,7 +5469,7 @@ import 'package:fhir_r4/src/fhir_path/java/version_utilities.dart';
 //     return result;
 //   }
 
-//    List<FhirBase> funcUpper(ExecutionContext context, List<FhirBase> focus, ExpressionNode exp) throws FHIRException {
+//    List<FhirBase> funcUpper(ExecutionContext context, List<FhirBase> focus, ExpressionNode exp) {
 //     List<FhirBase> result =ArrayList<FhirBase>();
 //     if (focus.size() == 1 && (focus.get(0).hasType(FHIR_TYPES_STRING) || doImplicitStringConversion)) {
 //       String s = convertToString(focus.get(0));
@@ -5505,7 +5480,7 @@ import 'package:fhir_r4/src/fhir_path/java/version_utilities.dart';
 //     return result;
 //   }
 
-//    List<FhirBase> funcToChars(ExecutionContext context, List<FhirBase> focus, ExpressionNode exp) throws FHIRException {
+//    List<FhirBase> funcToChars(ExecutionContext context, List<FhirBase> focus, ExpressionNode exp) {
 //     List<FhirBase> result =ArrayList<FhirBase>();
 //     if (focus.size() == 1 && (focus.get(0).hasType(FHIR_TYPES_STRING) || doImplicitStringConversion)) {
 //       String s = convertToString(focus.get(0));
@@ -5516,7 +5491,7 @@ import 'package:fhir_r4/src/fhir_path/java/version_utilities.dart';
 //     return result;
 //   }
 
-//    List<FhirBase> funcIndexOf(ExecutionContext context, List<FhirBase> focus, ExpressionNode exp) throws FHIRException {
+//    List<FhirBase> funcIndexOf(ExecutionContext context, List<FhirBase> focus, ExpressionNode exp) {
 //     List<FhirBase> result =ArrayList<FhirBase>();
 
 //     List<FhirBase> swb = execute(context, focus, exp.getParameters().get(0), true);
@@ -5783,7 +5758,7 @@ import 'package:fhir_r4/src/fhir_path/java/version_utilities.dart';
 //     return result;
 //   }
 
-//    List<FhirBase> funcSkip(ExecutionContext context, List<FhirBase> focus, ExpressionNode exp) throws FHIRException {
+//    List<FhirBase> funcSkip(ExecutionContext context, List<FhirBase> focus, ExpressionNode exp) {
 //     List<FhirBase> n1 = execute(context, focus, exp.getParameters().get(0), true);
 //     int i1 = Integer.parseInt(n1.get(0).primitiveValue());
 
@@ -5818,7 +5793,7 @@ import 'package:fhir_r4/src/fhir_path/java/version_utilities.dart';
 //     return result;
 //   }
 
-//    List<FhirBase> funcWhere(ExecutionContext context, List<FhirBase> focus, ExpressionNode exp) throws FHIRException {
+//    List<FhirBase> funcWhere(ExecutionContext context, List<FhirBase> focus, ExpressionNode exp) {
 //     List<FhirBase> result =ArrayList<FhirBase>();
 //     List<FhirBase> pc =ArrayList<FhirBase>();
 //     for (FhirBase item : focus) {
@@ -5832,7 +5807,7 @@ import 'package:fhir_r4/src/fhir_path/java/version_utilities.dart';
 //     return result;
 //   }
 
-//    List<FhirBase> funcSelect(ExecutionContext context, List<FhirBase> focus, ExpressionNode exp) throws FHIRException {
+//    List<FhirBase> funcSelect(ExecutionContext context, List<FhirBase> focus, ExpressionNode exp) {
 //     List<FhirBase> result =ArrayList<FhirBase>();
 //     List<FhirBase> pc =ArrayList<FhirBase>();
 //     int i = 0;
@@ -5845,7 +5820,7 @@ import 'package:fhir_r4/src/fhir_path/java/version_utilities.dart';
 //     return result;
 //   }
 
-//    List<FhirBase> funcItem(ExecutionContext context, List<FhirBase> focus, ExpressionNode exp) throws FHIRException {
+//    List<FhirBase> funcItem(ExecutionContext context, List<FhirBase> focus, ExpressionNode exp) {
 //     List<FhirBase> result =ArrayList<FhirBase>();
 //     String s = convertToString(execute(context, focus, exp.getParameters().get(0), true));
 //     if (Utilities.isInteger(s) && Integer.parseInt(s) < focus.size()) {
@@ -6066,7 +6041,7 @@ import 'package:fhir_r4/src/fhir_path/java/version_utilities.dart';
 //   }
 
 //    ElementDefinitionMatch getElementDefinition(StructureDefinition sd, String path, bool allowTypedName,
-//       ExpressionNode expr) throws PathEngineException {
+//       ExpressionNode expr) {
 //     for (ElementDefinition ed : sd.getSnapshot().getElement()) {
 //       if (ed.getPath().equals(path)) {
 //         if (ed.hasContentReference()) {
@@ -6360,7 +6335,7 @@ import 'package:fhir_r4/src/fhir_path/java/version_utilities.dart';
 //     return path.substring(path.lastIndexOf(".") + 1);
 //   }
 
-//    Equality asBool(List<FhirBase> items, ExpressionNode expr) throws PathEngineException {
+//    Equality asBool(List<FhirBase> items, ExpressionNode expr) {
 //     if (items.size() == 0) {
 //       return Equality.Null;
 //     } else if (items.size() == 1 && items.get(0).isBooleanPrimitive()) {
@@ -6449,9 +6424,9 @@ import 'package:fhir_r4/src/fhir_path/java/version_utilities.dart';
 //     return worker;
 //   }
 
-//    bool isAllowPolymorphicNames() {
-//     return allowPolymorphicNames;
-//   }
+   bool isAllowPolymorphicNames() {
+    return allowPolymorphicNames;
+  }
 
 //    void setAllowPolymorphicNames(bool allowPolymorphicNames) {
 //     this.allowPolymorphicNames = allowPolymorphicNames;
@@ -6677,8 +6652,6 @@ class ElementDefinitionMatch {
      */
      ValueSet resolveValueSet(FHIRPathEngine engine, Object appContext, String url);
   }
-
-class IWorkerContext{}
 
 class ProfileUtilities{
   ProfileUtilities(this.worker, this.context, this.definitions);

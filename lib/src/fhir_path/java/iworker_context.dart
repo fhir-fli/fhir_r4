@@ -1,7 +1,6 @@
 // ignore_for_file: avoid_positional_boolean_parameters, public_member_api_docs, require_trailing_commas, one_member_abstracts
 
 import 'package:fhir_r4/fhir_r4.dart';
-import 'package:fhir_r4/src/fhir_path/java/value_set_expander.dart';
 import 'package:ucum/ucum.dart';
 
 abstract class IWorkerContext {
@@ -181,4 +180,5 @@ abstract class IContextResourceLoader {
   Future<Resource> loadResource(Stream<List<int>> stream, bool isJson);
   String? getResourcePath(Resource resource);
   Future<IContextResourceLoader> getNewLoader(NpmPackage npm);
+  String getVersion();
 }

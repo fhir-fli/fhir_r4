@@ -30,8 +30,6 @@ abstract class CanonicalResource extends DomainResource {
     super.formatCommentsPre,
     super.formatCommentsPost,
     super.annotations,
-    super.children,
-    super.namedChildren,
   });
 
   /// Factory constructor for [CanonicalResource] that takes in a
@@ -152,7 +150,5 @@ abstract class CanonicalResource extends DomainResource {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    List<FhirBase>? children,
-    Map<String, FhirBase>? namedChildren,
   });
 }

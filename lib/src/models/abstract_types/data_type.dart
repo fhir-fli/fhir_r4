@@ -13,8 +13,6 @@ abstract class DataType extends Element {
     super.formatCommentsPre,
     super.formatCommentsPost,
     super.annotations,
-    super.children,
-    super.namedChildren,
   });
 
   /// FromJson Factory Constructor for [DataType]
@@ -60,7 +58,5 @@ abstract class DataType extends Element {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    List<FhirBase>? children,
-    Map<String, FhirBase>? namedChildren,
   });
 }

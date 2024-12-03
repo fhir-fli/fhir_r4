@@ -89,6 +89,7 @@ class VersionUtilities {
       ver?.startsWith('4.1') ?? false || (ver?.startsWith('4.3') ?? false);
   static bool isR5Ver(String? ver) => ver?.startsWith('5.0') ?? false;
   static bool isR6Ver(String? ver) => ver?.startsWith('6.0') ?? false;
+  static bool isR5VerOrLater(String? ver) => isR5Ver(ver) || isR6Ver(ver);
 
   static bool isSupportedVersion(String version) {
     final cleanVersion = version.contains('-')

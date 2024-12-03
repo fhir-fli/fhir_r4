@@ -16,8 +16,6 @@ abstract class Resource extends FhirBase {
     super.formatCommentsPre,
     super.formatCommentsPost,
     super.annotations,
-    super.children,
-    super.namedChildren,
   });
 
   /// Acts like a constructor, returns a [Resource], accepts a
@@ -133,7 +131,5 @@ abstract class Resource extends FhirBase {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    List<FhirBase>? children,
-    Map<String, FhirBase>? namedChildren,
   });
 }

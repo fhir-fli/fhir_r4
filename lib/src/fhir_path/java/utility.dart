@@ -2,7 +2,7 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:fhir_r4/src/fhir_path/java/fhir_path_utilities.dart';
-import 'package:fhir_r4/src/fhir_path/java/property.dart';
+import 'package:fhir_r4/src/models/ports/property.dart';
 
 /// Represents class type information.
 class ClassTypeInfo extends FhirBase {

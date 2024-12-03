@@ -1,89 +1,72 @@
 import 'dart:convert';
 
 import 'package:collection/collection.dart';
-
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Base class for all FHIR elements.
 abstract class FhirBase {
-  /// Main constructor for [FhirBase]
+  /// Main constructor for [FhirBase].
   FhirBase({
     this.userData,
     this.formatCommentsPre,
     this.formatCommentsPost,
     this.annotations,
-    this.children,
-    this.namedChildren,
   });
 
-  /// Factory constructor for [FhirBase] that takes in a [dynamic]
-  factory FhirBase.fromJson(Map<String, dynamic> json) =>
-      throw UnimplementedError('FhirBase.fromJson $json');
-
-  /// Returns a [String] representation of the type of the object
-  String get fhirType => 'FhirBase';
-
-  /// User data map for storing additional information
+  /// User data map for storing additional information.
   final Map<String, Object?>? userData;
 
-  /// List of comments to be added before the element
+  /// List of comments to be added before the element.
   final List<String>? formatCommentsPre;
 
-  /// List of comments to be added after the element
+  /// List of comments to be added after the element.
   final List<String>? formatCommentsPost;
 
   /// List of annotations for additional, non-core information
   final List<dynamic>? annotations;
 
-  /// List of children for the element
-  final List<FhirBase>? children;
+  /// Returns the FHIR type of the object.
+  String get fhirType => 'FhirBase';
 
-  /// Map of named children for the element
-  final Map<String, FhirBase>? namedChildren;
+  /// Checks if the object is primitive.
+  bool get isPrimitive => false;
 
-  /// Returns a [Map] representation of the object, usually. As
-  /// [PrimitiveType]s also override this method, it says returning a dynamic,
-  /// but it's usually a [Map] representation.
-  Map<String, dynamic> toJson() {
-    final json = <String, Object?>{};
-    namedChildren?.forEach((String key, FhirBase child) {
-      json[key] = child.toJson();
-    });
-    return json;
-  }
+  /// Checks if the object has a primitive value.
+  bool get hasPrimitiveValue => isPrimitive;
 
-  /// Returns a [Map] representation of the object with the type
-  Map<String, dynamic> toJsonWithType() {
-    final json = toJson();
-    json['fhirType'] = fhirType;
-    return json;
-  }
+  /// Retrieves the primitive value of the object.
+  String? primitiveValue() => null;
 
-  /// Produces a Yaml formatted String version of the object
-  String toYaml() => json2yaml(toJson());
+  /// Checks if the object is empty.
+  bool isEmpty() =>
+      (userData?.isEmpty ?? true) &&
+      (formatCommentsPre?.isEmpty ?? true) &&
+      (formatCommentsPost?.isEmpty ?? true);
 
-  /// Produces a Json formatted String version of the object
-  String toJsonString() => jsonEncode(toJson());
+  /// Checks if the object has user data for a given key.
+  bool hasUserData(String name) => userData?.containsKey(name) ?? false;
 
-  /// User Data Methods
+  /// Gets user data for a given key.
   dynamic getUserData(String name) => userData?[name];
 
-  /// User Data Methods
+  /// Sets user data for a given key.
   FhirBase setUserData(String name, dynamic value) {
-    final updatedUserData =
-        userData == null ? null : Map<String, Object?>.from(userData!);
-    updatedUserData?[name] = value;
+    final updatedUserData = userData == null
+        ? <String, Object?>{}
+        : Map<String, Object?>.from(userData!);
+    updatedUserData[name] = value;
     return copyWith(userData: updatedUserData);
   }
 
-  /// User Data Methods
+  /// Clears user data for a given key.
   FhirBase clearUserData(String name) {
-    final updatedUserData =
-        userData == null ? null : Map<String, Object?>.from(userData!);
-    if (updatedUserData != null) {
+    if (userData != null && userData!.containsKey(name)) {
+      final updatedUserData = Map<String, Object?>.from(userData!);
+      // ignore: cascade_invocations
       updatedUserData.remove(name);
+      return copyWith(userData: updatedUserData);
     }
-    return copyWith(userData: updatedUserData);
+    return this;
   }
 
   /// Annotations Methods
@@ -108,52 +91,37 @@ abstract class FhirBase {
     return copyWith(annotations: updatedAnnotations);
   }
 
-  /// Child Management Methods
-  FhirBase addChild(FhirBase child) {
-    final updatedChildren =
-        children == null ? null : List<FhirBase>.from(children!);
-    if (children != null) {
-      children!.add(child);
-    }
-    return copyWith(children: updatedChildren);
-  }
+  /// Gets a user data value as a string.
+  String? getUserString(String name) => getUserData(name)?.toString();
 
-  /// Child Management Methods
-  FhirBase addNamedChild(String name, FhirBase child) {
-    final updatedNamedChildren = namedChildren == null
-        ? <String, FhirBase>{}
-        : Map<String, FhirBase>.from(namedChildren!);
-    updatedNamedChildren[name] = child;
-    return copyWith(namedChildren: updatedNamedChildren);
-  }
-
-  /// Child Management Methods
-  bool isEmpty() =>
-      (userData?.isEmpty ?? true) &&
-      (annotations?.isEmpty ?? true) &&
-      (children?.isEmpty ?? true);
-
-  /// User Data Methods
-  bool hasUserData(String name) => userData?.containsKey(name) ?? false;
-
-  /// User Data Methods
-  String? getUserString(String name) {
-    final dynamic data = getUserData(name);
-    return data?.toString();
-  }
-
-  /// User Data Methods
+  /// Gets a user data value as an integer.
   int getUserInt(String name) {
-    final dynamic data = getUserData(name);
-    return data is int ? data : 0;
+    final dynamic value = getUserData(name);
+    return value is int ? value : 0;
   }
 
-  /// User Data Methods
+  /// Checks if there are format comments.
   bool hasFormatComment() =>
       (formatCommentsPre?.isNotEmpty ?? false) ||
       (formatCommentsPost?.isNotEmpty ?? false);
 
-  /// User Data Methods
+  /// Lists all children as properties.
+  List<Property> listChildren() {
+    // Subclasses should override this to return their specific children.
+    return <Property>[];
+  }
+
+  /// Retrieves a property by name.
+  Property? getChildByName(String name) {
+    return listChildren().firstWhereOrNull((property) => property.name == name);
+  }
+
+  /// Deep equality check.
+  bool equalsDeep(FhirBase? other) {
+    return other != null;
+  }
+
+  /// Compares two [FhirBase] objects deeply.
   static bool compareDeep(
     FhirBase? e1,
     FhirBase? e2, {
@@ -166,68 +134,59 @@ abstract class FhirBase {
         return true;
       }
     }
-
     if (e1 == null || e2 == null) {
       return false;
     }
-
-    return e1.equalsDeep(e2);
+    return const DeepCollectionEquality().equals(e1.toJson(), e2.toJson());
   }
 
-  /// User Data Methods
-  bool compareDeepLists<T extends FhirBase>(List<T>? list1, List<T>? list2) {
-    if (list1 == null && list2 == null) {
-      return true;
+  /// Compares two lists of [FhirBase] objects deeply.
+  static bool compareDeepLists<T extends FhirBase>(
+    List<T>? list1,
+    List<T>? list2, {
+    bool allowNull = false,
+  }) {
+    if (allowNull) {
+      final noLeft = list1 == null || list1.isEmpty;
+      final noRight = list2 == null || list2.isEmpty;
+      if (noLeft && noRight) {
+        return true;
+      }
     }
     if (list1 == null || list2 == null || list1.length != list2.length) {
       return false;
     }
-
     for (var i = 0; i < list1.length; i++) {
-      if (!list1[i].equalsDeep(list2[i])) {
+      if (!compareDeep(list1[i], list2[i], allowNull: allowNull)) {
         return false;
       }
     }
-
     return true;
   }
 
-  /// User Data Methods
-  bool equalsDeep(FhirBase? other) {
-    return const DeepCollectionEquality().equals(toJson(), other?.toJson());
+  /// Converts the object to a JSON representation.
+  Map<String, dynamic> toJson() {
+    final json = <String, Object?>{};
+    for (final property in listChildren()) {
+      json[property.name] = property.values;
+    }
+    return json;
   }
 
-  /// User Data Methods
-  bool isExactly(FhirBase other) => other.runtimeType == runtimeType;
+  /// Converts the object to a YAML string.
+  String toYaml() => json2yaml(toJson());
 
-  /// User Data Methods
-  bool matches(FhirBase other) => other.runtimeType == runtimeType;
+  /// Converts the object to a JSON string.
+  String toJsonString() => jsonEncode(toJson());
 
-  /// User Data Methods
-  FhirBase? getChildByName(String name) => namedChildren?[name];
-
-  /// User Data Methods
-  bool tryGetValue(String key, dynamic value) => false;
-
-  /// User Data Methods
-  List<String> validate() => <String>[];
-
-  /// User Data Methods
-  bool get isPrimitive => false;
-
-  /// User Data Methods
-  String? primitiveValue() => null;
-
-  /// User Data Methods
+  /// Copies the object with new values.
   FhirBase copyWith({
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    List<FhirBase>? children,
-    Map<String, FhirBase>? namedChildren,
   });
 
-  /// Subclasses must implement clone
+  /// Subclasses must implement the clone method.
   FhirBase clone();
 }

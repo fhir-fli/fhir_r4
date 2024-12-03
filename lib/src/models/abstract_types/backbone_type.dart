@@ -15,8 +15,6 @@ abstract class BackboneType extends DataType {
     super.formatCommentsPre,
     super.formatCommentsPost,
     super.annotations,
-    super.children,
-    super.namedChildren,
   });
 
   /// FromJson Factory Constructor for [BackboneType]
@@ -64,7 +62,7 @@ abstract class BackboneType extends DataType {
       return false;
     }
     return super.equalsDeep(other) &&
-        compareDeepLists(modifierExtension, other.modifierExtension);
+        FhirBase.compareDeepLists(modifierExtension, other.modifierExtension);
   }
 
   @override
@@ -124,7 +122,5 @@ abstract class BackboneType extends DataType {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    List<FhirBase>? children,
-    Map<String, FhirBase>? namedChildren,
   });
 }

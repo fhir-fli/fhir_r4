@@ -1,6 +1,6 @@
 // ignore_for_file: constant_identifier_names, public_member_api_docs
 
-import 'package:fhir_r4/src/fhir_path/java/version_utilities.dart';
+import 'package:fhir_r4/src/fhir_path/utils/version_utilities.dart';
 
 /// This enumeration is special, and hand crafted. It only supports a subset
 /// of the actual published FHIR versions, those that are still supported.

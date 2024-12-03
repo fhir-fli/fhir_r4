@@ -1,28 +1,16 @@
 // ignore_for_file: public_member_api_docs
 
+import 'package:fhir_r4/fhir_r4.dart';
 import 'package:fhir_r4/src/fhir_path/java/source_location.dart';
 
-class FhirPathException implements Exception {
-  FhirPathException([this.message, this.cause]);
-
-  final String? message;
-  final Exception? cause;
-
-  @override
-  String toString() {
-    if (message == null) return 'FhirPathException';
-    return 'FhirPathException: $message';
-  }
-}
-
-class PathEngineException extends FhirPathException {
+class PathEngineException extends FhirException {
   PathEngineException(
     String message, {
     this.location,
     this.expression,
     Exception? cause,
   })  : id = null,
-        super(message, cause);
+        super(message: message, cause: cause);
 
   PathEngineException.withId(
     String message,
@@ -30,7 +18,7 @@ class PathEngineException extends FhirPathException {
     this.location,
     this.expression,
     Exception? cause,
-  }) : super(message, cause);
+  }) : super(message: message, cause: cause);
 
   final SourceLocation? location;
   final String? expression;
