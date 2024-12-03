@@ -8,7 +8,9 @@ class ConsentState extends PrimitiveType<String> {
   ConsentState._(super.value, [super.element]);
 
   /// Factory constructor to create [ConsentState] from JSON.
-  factory ConsentState.fromJson(Map<String, dynamic> json) {
+  factory ConsentState.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -64,11 +66,17 @@ class ConsentState extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  ConsentState clone() => ConsentState._(value, element?.clone() as Element?);
+  ConsentState clone() => ConsentState._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  ConsentState setElement(String name, dynamic elementValue) {
+  ConsentState setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return ConsentState._(
       value,
       element?.setProperty(name, elementValue),

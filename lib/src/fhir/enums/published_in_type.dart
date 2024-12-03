@@ -8,7 +8,9 @@ class PublishedInType extends PrimitiveType<String> {
   PublishedInType._(super.value, [super.element]);
 
   /// Factory constructor to create [PublishedInType] from JSON.
-  factory PublishedInType.fromJson(Map<String, dynamic> json) {
+  factory PublishedInType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -52,12 +54,17 @@ class PublishedInType extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  PublishedInType clone() =>
-      PublishedInType._(value, element?.clone() as Element?);
+  PublishedInType clone() => PublishedInType._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  PublishedInType setElement(String name, dynamic elementValue) {
+  PublishedInType setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return PublishedInType._(
       value,
       element?.setProperty(name, elementValue),

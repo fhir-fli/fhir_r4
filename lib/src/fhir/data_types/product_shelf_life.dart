@@ -29,28 +29,50 @@ class ProductShelfLife extends BackboneType {
   factory ProductShelfLife.fromJson(
     Map<String, dynamic> json,
   ) {
+    T? parseField<T extends FhirBase>(
+      dynamic value,
+      dynamic valueElement,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        (value != null || valueElement != null)
+            ? fromJson({
+                'value': value,
+                '_value': valueElement,
+              })
+            : null;
+    List<T>? parseList<T extends FhirBase>(
+      List<dynamic>? values,
+      List<dynamic>? valueElements,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        values?.asMap().entries.map((entry) {
+          final index = entry.key;
+          final value = entry.value;
+          final valueElement =
+              valueElements != null && valueElements.length > index
+                  ? valueElements[index]
+                  : null;
+          return fromJson({
+            'value': value,
+            '_value': valueElement,
+          });
+        }).toList();
     return ProductShelfLife(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      id: parseField<FhirString>(
+        json['id'],
+        json['_id'],
+        FhirString.fromJson,
+      ),
+      extension_: parseList<FhirExtension>(
+        json['extension'] as List<dynamic>?,
+        json['_extension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
+      modifierExtension: parseList<FhirExtension>(
+        json['modifierExtension'] as List<dynamic>?,
+        json['_modifierExtension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
       identifier: json['identifier'] != null
           ? Identifier.fromJson(
               json['identifier'] as Map<String, dynamic>,
@@ -62,15 +84,11 @@ class ProductShelfLife extends BackboneType {
       period: Quantity.fromJson(
         json['period'] as Map<String, dynamic>,
       ),
-      specialPrecautionsForStorage: json['specialPrecautionsForStorage'] != null
-          ? (json['specialPrecautionsForStorage'] as List<dynamic>)
-              .map<CodeableConcept>(
-                (v) => CodeableConcept.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      specialPrecautionsForStorage: parseList<CodeableConcept>(
+        json['specialPrecautionsForStorage'] as List<dynamic>?,
+        json['_specialPrecautionsForStorage'] as List<dynamic>?,
+        CodeableConcept.fromJson,
+      ),
     );
   }
 
@@ -81,21 +99,23 @@ class ProductShelfLife extends BackboneType {
   ) {
     if (yaml is String) {
       return ProductShelfLife.fromJson(
-        yamlToJson(yaml) as Map<String, Object?>,
+        yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
       return ProductShelfLife.fromJson(
-        yamlMapToJson(yaml) as Map<String, Object?>,
+        yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ProductShelfLife cannot be constructed from the provided input. '
+        'ProductShelfLife '
+        'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
     }
   }
 
-  /// Factory constructor for [ProductShelfLife]
+  /// Factory constructor for
+  /// [ProductShelfLife]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]

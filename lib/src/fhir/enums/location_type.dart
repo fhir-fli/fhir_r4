@@ -8,7 +8,9 @@ class LocationType extends PrimitiveType<String> {
   LocationType._(super.value, [super.element]);
 
   /// Factory constructor to create [LocationType] from JSON.
-  factory LocationType.fromJson(Map<String, dynamic> json) {
+  factory LocationType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -112,11 +114,17 @@ class LocationType extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  LocationType clone() => LocationType._(value, element?.clone() as Element?);
+  LocationType clone() => LocationType._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  LocationType setElement(String name, dynamic elementValue) {
+  LocationType setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return LocationType._(
       value,
       element?.setProperty(name, elementValue),

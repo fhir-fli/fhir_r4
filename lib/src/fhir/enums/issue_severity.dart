@@ -8,7 +8,9 @@ class IssueSeverity extends PrimitiveType<String> {
   IssueSeverity._(super.value, [super.element]);
 
   /// Factory constructor to create [IssueSeverity] from JSON.
-  factory IssueSeverity.fromJson(Map<String, dynamic> json) {
+  factory IssueSeverity.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -52,11 +54,17 @@ class IssueSeverity extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  IssueSeverity clone() => IssueSeverity._(value, element?.clone() as Element?);
+  IssueSeverity clone() => IssueSeverity._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  IssueSeverity setElement(String name, dynamic elementValue) {
+  IssueSeverity setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return IssueSeverity._(
       value,
       element?.setProperty(name, elementValue),

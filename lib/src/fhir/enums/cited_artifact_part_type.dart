@@ -8,7 +8,9 @@ class CitedArtifactPartType extends PrimitiveType<String> {
   CitedArtifactPartType._(super.value, [super.element]);
 
   /// Factory constructor to create [CitedArtifactPartType] from JSON.
-  factory CitedArtifactPartType.fromJson(Map<String, dynamic> json) {
+  factory CitedArtifactPartType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -83,12 +85,17 @@ class CitedArtifactPartType extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  CitedArtifactPartType clone() =>
-      CitedArtifactPartType._(value, element?.clone() as Element?);
+  CitedArtifactPartType clone() => CitedArtifactPartType._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  CitedArtifactPartType setElement(String name, dynamic elementValue) {
+  CitedArtifactPartType setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return CitedArtifactPartType._(
       value,
       element?.setProperty(name, elementValue),

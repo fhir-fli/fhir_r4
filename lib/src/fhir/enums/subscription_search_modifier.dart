@@ -8,7 +8,9 @@ class SubscriptionSearchModifier extends PrimitiveType<String> {
   SubscriptionSearchModifier._(super.value, [super.element]);
 
   /// Factory constructor to create [SubscriptionSearchModifier] from JSON.
-  factory SubscriptionSearchModifier.fromJson(Map<String, dynamic> json) {
+  factory SubscriptionSearchModifier.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -114,12 +116,17 @@ class SubscriptionSearchModifier extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  SubscriptionSearchModifier clone() =>
-      SubscriptionSearchModifier._(value, element?.clone() as Element?);
+  SubscriptionSearchModifier clone() => SubscriptionSearchModifier._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  SubscriptionSearchModifier setElement(String name, dynamic elementValue) {
+  SubscriptionSearchModifier setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return SubscriptionSearchModifier._(
       value,
       element?.setProperty(name, elementValue),

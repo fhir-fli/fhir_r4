@@ -8,7 +8,9 @@ class SubstanceNameDomain extends PrimitiveType<String> {
   SubstanceNameDomain._(super.value, [super.element]);
 
   /// Factory constructor to create [SubstanceNameDomain] from JSON.
-  factory SubstanceNameDomain.fromJson(Map<String, dynamic> json) {
+  factory SubstanceNameDomain.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -40,12 +42,17 @@ class SubstanceNameDomain extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  SubstanceNameDomain clone() =>
-      SubstanceNameDomain._(value, element?.clone() as Element?);
+  SubstanceNameDomain clone() => SubstanceNameDomain._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  SubstanceNameDomain setElement(String name, dynamic elementValue) {
+  SubstanceNameDomain setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return SubstanceNameDomain._(
       value,
       element?.setProperty(name, elementValue),

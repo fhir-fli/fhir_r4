@@ -8,7 +8,9 @@ class EnteralFormulaAdditiveTypeCode extends PrimitiveType<String> {
   EnteralFormulaAdditiveTypeCode._(super.value, [super.element]);
 
   /// Factory constructor to create [EnteralFormulaAdditiveTypeCode] from JSON.
-  factory EnteralFormulaAdditiveTypeCode.fromJson(Map<String, dynamic> json) {
+  factory EnteralFormulaAdditiveTypeCode.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -64,12 +66,17 @@ class EnteralFormulaAdditiveTypeCode extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  EnteralFormulaAdditiveTypeCode clone() =>
-      EnteralFormulaAdditiveTypeCode._(value, element?.clone() as Element?);
+  EnteralFormulaAdditiveTypeCode clone() => EnteralFormulaAdditiveTypeCode._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  EnteralFormulaAdditiveTypeCode setElement(String name, dynamic elementValue) {
+  EnteralFormulaAdditiveTypeCode setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return EnteralFormulaAdditiveTypeCode._(
       value,
       element?.setProperty(name, elementValue),

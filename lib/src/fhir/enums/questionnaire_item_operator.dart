@@ -8,7 +8,9 @@ class QuestionnaireItemOperator extends PrimitiveType<String> {
   QuestionnaireItemOperator._(super.value, [super.element]);
 
   /// Factory constructor to create [QuestionnaireItemOperator] from JSON.
-  factory QuestionnaireItemOperator.fromJson(Map<String, dynamic> json) {
+  factory QuestionnaireItemOperator.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -71,12 +73,17 @@ class QuestionnaireItemOperator extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  QuestionnaireItemOperator clone() =>
-      QuestionnaireItemOperator._(value, element?.clone() as Element?);
+  QuestionnaireItemOperator clone() => QuestionnaireItemOperator._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  QuestionnaireItemOperator setElement(String name, dynamic elementValue) {
+  QuestionnaireItemOperator setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return QuestionnaireItemOperator._(
       value,
       element?.setProperty(name, elementValue),

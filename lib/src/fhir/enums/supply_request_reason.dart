@@ -8,7 +8,9 @@ class SupplyRequestReason extends PrimitiveType<String> {
   SupplyRequestReason._(super.value, [super.element]);
 
   /// Factory constructor to create [SupplyRequestReason] from JSON.
-  factory SupplyRequestReason.fromJson(Map<String, dynamic> json) {
+  factory SupplyRequestReason.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -40,12 +42,17 @@ class SupplyRequestReason extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  SupplyRequestReason clone() =>
-      SupplyRequestReason._(value, element?.clone() as Element?);
+  SupplyRequestReason clone() => SupplyRequestReason._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  SupplyRequestReason setElement(String name, dynamic elementValue) {
+  SupplyRequestReason setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return SupplyRequestReason._(
       value,
       element?.setProperty(name, elementValue),

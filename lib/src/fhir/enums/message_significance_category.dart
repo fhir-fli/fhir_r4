@@ -8,7 +8,9 @@ class MessageSignificanceCategory extends PrimitiveType<String> {
   MessageSignificanceCategory._(super.value, [super.element]);
 
   /// Factory constructor to create [MessageSignificanceCategory] from JSON.
-  factory MessageSignificanceCategory.fromJson(Map<String, dynamic> json) {
+  factory MessageSignificanceCategory.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -50,12 +52,17 @@ class MessageSignificanceCategory extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  MessageSignificanceCategory clone() =>
-      MessageSignificanceCategory._(value, element?.clone() as Element?);
+  MessageSignificanceCategory clone() => MessageSignificanceCategory._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  MessageSignificanceCategory setElement(String name, dynamic elementValue) {
+  MessageSignificanceCategory setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return MessageSignificanceCategory._(
       value,
       element?.setProperty(name, elementValue),

@@ -8,7 +8,9 @@ class EvidenceVariableRole extends PrimitiveType<String> {
   EvidenceVariableRole._(super.value, [super.element]);
 
   /// Factory constructor to create [EvidenceVariableRole] from JSON.
-  factory EvidenceVariableRole.fromJson(Map<String, dynamic> json) {
+  factory EvidenceVariableRole.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -64,12 +66,17 @@ class EvidenceVariableRole extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  EvidenceVariableRole clone() =>
-      EvidenceVariableRole._(value, element?.clone() as Element?);
+  EvidenceVariableRole clone() => EvidenceVariableRole._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  EvidenceVariableRole setElement(String name, dynamic elementValue) {
+  EvidenceVariableRole setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return EvidenceVariableRole._(
       value,
       element?.setProperty(name, elementValue),

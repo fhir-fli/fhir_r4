@@ -8,7 +8,9 @@ class CommonUCUMCodesForAge extends PrimitiveType<String> {
   CommonUCUMCodesForAge._(super.value, [super.element]);
 
   /// Factory constructor to create [CommonUCUMCodesForAge] from JSON.
-  factory CommonUCUMCodesForAge.fromJson(Map<String, dynamic> json) {
+  factory CommonUCUMCodesForAge.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -64,12 +66,17 @@ class CommonUCUMCodesForAge extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  CommonUCUMCodesForAge clone() =>
-      CommonUCUMCodesForAge._(value, element?.clone() as Element?);
+  CommonUCUMCodesForAge clone() => CommonUCUMCodesForAge._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  CommonUCUMCodesForAge setElement(String name, dynamic elementValue) {
+  CommonUCUMCodesForAge setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return CommonUCUMCodesForAge._(
       value,
       element?.setProperty(name, elementValue),

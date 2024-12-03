@@ -8,7 +8,9 @@ class ExplanationOfBenefitStatus extends PrimitiveType<String> {
   ExplanationOfBenefitStatus._(super.value, [super.element]);
 
   /// Factory constructor to create [ExplanationOfBenefitStatus] from JSON.
-  factory ExplanationOfBenefitStatus.fromJson(Map<String, dynamic> json) {
+  factory ExplanationOfBenefitStatus.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -55,12 +57,17 @@ class ExplanationOfBenefitStatus extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  ExplanationOfBenefitStatus clone() =>
-      ExplanationOfBenefitStatus._(value, element?.clone() as Element?);
+  ExplanationOfBenefitStatus clone() => ExplanationOfBenefitStatus._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  ExplanationOfBenefitStatus setElement(String name, dynamic elementValue) {
+  ExplanationOfBenefitStatus setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return ExplanationOfBenefitStatus._(
       value,
       element?.setProperty(name, elementValue),

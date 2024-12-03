@@ -8,7 +8,9 @@ class OpticalActivity extends PrimitiveType<String> {
   OpticalActivity._(super.value, [super.element]);
 
   /// Factory constructor to create [OpticalActivity] from JSON.
-  factory OpticalActivity.fromJson(Map<String, dynamic> json) {
+  factory OpticalActivity.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -40,12 +42,17 @@ class OpticalActivity extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  OpticalActivity clone() =>
-      OpticalActivity._(value, element?.clone() as Element?);
+  OpticalActivity clone() => OpticalActivity._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  OpticalActivity setElement(String name, dynamic elementValue) {
+  OpticalActivity setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return OpticalActivity._(
       value,
       element?.setProperty(name, elementValue),

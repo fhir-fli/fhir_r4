@@ -8,7 +8,9 @@ class Stereochemistry extends PrimitiveType<String> {
   Stereochemistry._(super.value, [super.element]);
 
   /// Factory constructor to create [Stereochemistry] from JSON.
-  factory Stereochemistry.fromJson(Map<String, dynamic> json) {
+  factory Stereochemistry.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -46,12 +48,17 @@ class Stereochemistry extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  Stereochemistry clone() =>
-      Stereochemistry._(value, element?.clone() as Element?);
+  Stereochemistry clone() => Stereochemistry._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  Stereochemistry setElement(String name, dynamic elementValue) {
+  Stereochemistry setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return Stereochemistry._(
       value,
       element?.setProperty(name, elementValue),

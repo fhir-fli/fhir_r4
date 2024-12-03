@@ -55,87 +55,90 @@ class Media extends DomainResource {
   factory Media.fromJson(
     Map<String, dynamic> json,
   ) {
+    T? parseField<T extends FhirBase>(
+      dynamic value,
+      dynamic valueElement,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        (value != null || valueElement != null)
+            ? fromJson({
+                'value': value,
+                '_value': valueElement,
+              })
+            : null;
+    List<T>? parseList<T extends FhirBase>(
+      List<dynamic>? values,
+      List<dynamic>? valueElements,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        values?.asMap().entries.map((entry) {
+          final index = entry.key;
+          final value = entry.value;
+          final valueElement =
+              valueElements != null && valueElements.length > index
+                  ? valueElements[index]
+                  : null;
+          return fromJson({
+            'value': value,
+            '_value': valueElement,
+          });
+        }).toList();
     return Media(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
+      id: parseField<FhirString>(
+        json['id'],
+        json['_id'],
+        FhirString.fromJson,
+      ),
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
-      implicitRules:
-          (json['implicitRules'] != null || json['_implicitRules'] != null)
-              ? FhirUri.fromJson({
-                  'value': json['implicitRules'],
-                  '_value': json['_implicitRules'],
-                })
-              : null,
-      language: (json['language'] != null || json['_language'] != null)
-          ? CommonLanguages.fromJson({
-              'value': json['language'],
-              '_value': json['_language'],
-            })
-          : null,
+      implicitRules: parseField<FhirUri>(
+        json['implicitRules'],
+        json['_implicitRules'],
+        FhirUri.fromJson,
+      ),
+      language: parseField<CommonLanguages>(
+        json['language'],
+        json['_language'],
+        CommonLanguages.fromJson,
+      ),
       text: json['text'] != null
           ? Narrative.fromJson(
               json['text'] as Map<String, dynamic>,
             )
           : null,
-      contained: json['contained'] != null
-          ? (json['contained'] as List<dynamic>)
-              .map<Resource>(
-                (v) => Resource.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      identifier: json['identifier'] != null
-          ? (json['identifier'] as List<dynamic>)
-              .map<Identifier>(
-                (v) => Identifier.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      basedOn: json['basedOn'] != null
-          ? (json['basedOn'] as List<dynamic>)
-              .map<Reference>(
-                (v) => Reference.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      partOf: json['partOf'] != null
-          ? (json['partOf'] as List<dynamic>)
-              .map<Reference>(
-                (v) => Reference.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      contained: parseList<Resource>(
+        json['contained'] as List<dynamic>?,
+        json['_contained'] as List<dynamic>?,
+        Resource.fromJson,
+      ),
+      extension_: parseList<FhirExtension>(
+        json['extension'] as List<dynamic>?,
+        json['_extension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
+      modifierExtension: parseList<FhirExtension>(
+        json['modifierExtension'] as List<dynamic>?,
+        json['_modifierExtension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
+      identifier: parseList<Identifier>(
+        json['identifier'] as List<dynamic>?,
+        json['_identifier'] as List<dynamic>?,
+        Identifier.fromJson,
+      ),
+      basedOn: parseList<Reference>(
+        json['basedOn'] as List<dynamic>?,
+        json['_basedOn'] as List<dynamic>?,
+        Reference.fromJson,
+      ),
+      partOf: parseList<Reference>(
+        json['partOf'] as List<dynamic>?,
+        json['_partOf'] as List<dynamic>?,
+        Reference.fromJson,
+      ),
       status: EventStatus.fromJson({
         'value': json['status'],
         '_value': json['_status'],
@@ -165,90 +168,74 @@ class Media extends DomainResource {
               json['encounter'] as Map<String, dynamic>,
             )
           : null,
-      createdDateTime:
-          (json['createdDateTime'] != null || json['_createdDateTime'] != null)
-              ? FhirDateTime.fromJson({
-                  'value': json['createdDateTime'],
-                  '_value': json['_createdDateTime'],
-                })
-              : null,
+      createdDateTime: parseField<FhirDateTime>(
+        json['createdDateTime'],
+        json['_createdDateTime'],
+        FhirDateTime.fromJson,
+      ),
       createdPeriod: json['createdPeriod'] != null
           ? Period.fromJson(
               json['createdPeriod'] as Map<String, dynamic>,
             )
           : null,
-      issued: (json['issued'] != null || json['_issued'] != null)
-          ? FhirInstant.fromJson({
-              'value': json['issued'],
-              '_value': json['_issued'],
-            })
-          : null,
+      issued: parseField<FhirInstant>(
+        json['issued'],
+        json['_issued'],
+        FhirInstant.fromJson,
+      ),
       operator_: json['operator'] != null
           ? Reference.fromJson(
               json['operator'] as Map<String, dynamic>,
             )
           : null,
-      reasonCode: json['reasonCode'] != null
-          ? (json['reasonCode'] as List<dynamic>)
-              .map<CodeableConcept>(
-                (v) => CodeableConcept.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      reasonCode: parseList<CodeableConcept>(
+        json['reasonCode'] as List<dynamic>?,
+        json['_reasonCode'] as List<dynamic>?,
+        CodeableConcept.fromJson,
+      ),
       bodySite: json['bodySite'] != null
           ? CodeableConcept.fromJson(
               json['bodySite'] as Map<String, dynamic>,
             )
           : null,
-      deviceName: (json['deviceName'] != null || json['_deviceName'] != null)
-          ? FhirString.fromJson({
-              'value': json['deviceName'],
-              '_value': json['_deviceName'],
-            })
-          : null,
+      deviceName: parseField<FhirString>(
+        json['deviceName'],
+        json['_deviceName'],
+        FhirString.fromJson,
+      ),
       device: json['device'] != null
           ? Reference.fromJson(
               json['device'] as Map<String, dynamic>,
             )
           : null,
-      height: (json['height'] != null || json['_height'] != null)
-          ? FhirPositiveInt.fromJson({
-              'value': json['height'],
-              '_value': json['_height'],
-            })
-          : null,
-      width: (json['width'] != null || json['_width'] != null)
-          ? FhirPositiveInt.fromJson({
-              'value': json['width'],
-              '_value': json['_width'],
-            })
-          : null,
-      frames: (json['frames'] != null || json['_frames'] != null)
-          ? FhirPositiveInt.fromJson({
-              'value': json['frames'],
-              '_value': json['_frames'],
-            })
-          : null,
-      duration: (json['duration'] != null || json['_duration'] != null)
-          ? FhirDecimal.fromJson({
-              'value': json['duration'],
-              '_value': json['_duration'],
-            })
-          : null,
+      height: parseField<FhirPositiveInt>(
+        json['height'],
+        json['_height'],
+        FhirPositiveInt.fromJson,
+      ),
+      width: parseField<FhirPositiveInt>(
+        json['width'],
+        json['_width'],
+        FhirPositiveInt.fromJson,
+      ),
+      frames: parseField<FhirPositiveInt>(
+        json['frames'],
+        json['_frames'],
+        FhirPositiveInt.fromJson,
+      ),
+      duration: parseField<FhirDecimal>(
+        json['duration'],
+        json['_duration'],
+        FhirDecimal.fromJson,
+      ),
       content: Attachment.fromJson(
         json['content'] as Map<String, dynamic>,
       ),
-      note: json['note'] != null
-          ? (json['note'] as List<dynamic>)
-              .map<Annotation>(
-                (v) => Annotation.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      note: parseList<Annotation>(
+        json['note'] as List<dynamic>?,
+        json['_note'] as List<dynamic>?,
+        Annotation.fromJson,
+      ),
     );
   }
 
@@ -259,21 +246,23 @@ class Media extends DomainResource {
   ) {
     if (yaml is String) {
       return Media.fromJson(
-        yamlToJson(yaml) as Map<String, Object?>,
+        yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
       return Media.fromJson(
-        yamlMapToJson(yaml) as Map<String, Object?>,
+        yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'Media cannot be constructed from the provided input. '
+        'Media '
+        'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
     }
   }
 
-  /// Factory constructor for [Media]
+  /// Factory constructor for
+  /// [Media]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]

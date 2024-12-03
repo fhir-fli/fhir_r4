@@ -8,7 +8,9 @@ class NameUse extends PrimitiveType<String> {
   NameUse._(super.value, [super.element]);
 
   /// Factory constructor to create [NameUse] from JSON.
-  factory NameUse.fromJson(Map<String, dynamic> json) {
+  factory NameUse.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -70,11 +72,17 @@ class NameUse extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  NameUse clone() => NameUse._(value, element?.clone() as Element?);
+  NameUse clone() => NameUse._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  NameUse setElement(String name, dynamic elementValue) {
+  NameUse setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return NameUse._(
       value,
       element?.setProperty(name, elementValue),

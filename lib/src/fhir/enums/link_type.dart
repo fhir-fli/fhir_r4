@@ -8,7 +8,9 @@ class LinkType extends PrimitiveType<String> {
   LinkType._(super.value, [super.element]);
 
   /// Factory constructor to create [LinkType] from JSON.
-  factory LinkType.fromJson(Map<String, dynamic> json) {
+  factory LinkType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -52,11 +54,17 @@ class LinkType extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  LinkType clone() => LinkType._(value, element?.clone() as Element?);
+  LinkType clone() => LinkType._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  LinkType setElement(String name, dynamic elementValue) {
+  LinkType setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return LinkType._(
       value,
       element?.setProperty(name, elementValue),

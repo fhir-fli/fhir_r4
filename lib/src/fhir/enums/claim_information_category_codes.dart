@@ -8,7 +8,9 @@ class ClaimInformationCategoryCodes extends PrimitiveType<String> {
   ClaimInformationCategoryCodes._(super.value, [super.element]);
 
   /// Factory constructor to create [ClaimInformationCategoryCodes] from JSON.
-  factory ClaimInformationCategoryCodes.fromJson(Map<String, dynamic> json) {
+  factory ClaimInformationCategoryCodes.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -127,12 +129,17 @@ class ClaimInformationCategoryCodes extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  ClaimInformationCategoryCodes clone() =>
-      ClaimInformationCategoryCodes._(value, element?.clone() as Element?);
+  ClaimInformationCategoryCodes clone() => ClaimInformationCategoryCodes._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  ClaimInformationCategoryCodes setElement(String name, dynamic elementValue) {
+  ClaimInformationCategoryCodes setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return ClaimInformationCategoryCodes._(
       value,
       element?.setProperty(name, elementValue),

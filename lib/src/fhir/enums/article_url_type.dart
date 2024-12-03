@@ -8,7 +8,9 @@ class ArticleUrlType extends PrimitiveType<String> {
   ArticleUrlType._(super.value, [super.element]);
 
   /// Factory constructor to create [ArticleUrlType] from JSON.
-  factory ArticleUrlType.fromJson(Map<String, dynamic> json) {
+  factory ArticleUrlType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -124,12 +126,17 @@ class ArticleUrlType extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  ArticleUrlType clone() =>
-      ArticleUrlType._(value, element?.clone() as Element?);
+  ArticleUrlType clone() => ArticleUrlType._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  ArticleUrlType setElement(String name, dynamic elementValue) {
+  ArticleUrlType setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return ArticleUrlType._(
       value,
       element?.setProperty(name, elementValue),

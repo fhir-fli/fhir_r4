@@ -8,7 +8,9 @@ class AnimalTissueType extends PrimitiveType<String> {
   AnimalTissueType._(super.value, [super.element]);
 
   /// Factory constructor to create [AnimalTissueType] from JSON.
-  factory AnimalTissueType.fromJson(Map<String, dynamic> json) {
+  factory AnimalTissueType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -1162,12 +1164,17 @@ class AnimalTissueType extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  AnimalTissueType clone() =>
-      AnimalTissueType._(value, element?.clone() as Element?);
+  AnimalTissueType clone() => AnimalTissueType._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  AnimalTissueType setElement(String name, dynamic elementValue) {
+  AnimalTissueType setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return AnimalTissueType._(
       value,
       element?.setProperty(name, elementValue),

@@ -8,7 +8,9 @@ class CommunicationTopic extends PrimitiveType<String> {
   CommunicationTopic._(super.value, [super.element]);
 
   /// Factory constructor to create [CommunicationTopic] from JSON.
-  factory CommunicationTopic.fromJson(Map<String, dynamic> json) {
+  factory CommunicationTopic.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -65,12 +67,17 @@ class CommunicationTopic extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  CommunicationTopic clone() =>
-      CommunicationTopic._(value, element?.clone() as Element?);
+  CommunicationTopic clone() => CommunicationTopic._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  CommunicationTopic setElement(String name, dynamic elementValue) {
+  CommunicationTopic setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return CommunicationTopic._(
       value,
       element?.setProperty(name, elementValue),

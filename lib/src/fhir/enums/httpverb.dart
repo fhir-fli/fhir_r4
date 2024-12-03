@@ -8,7 +8,9 @@ class HTTPVerb extends PrimitiveType<String> {
   HTTPVerb._(super.value, [super.element]);
 
   /// Factory constructor to create [HTTPVerb] from JSON.
-  factory HTTPVerb.fromJson(Map<String, dynamic> json) {
+  factory HTTPVerb.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -64,11 +66,17 @@ class HTTPVerb extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  HTTPVerb clone() => HTTPVerb._(value, element?.clone() as Element?);
+  HTTPVerb clone() => HTTPVerb._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  HTTPVerb setElement(String name, dynamic elementValue) {
+  HTTPVerb setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return HTTPVerb._(
       value,
       element?.setProperty(name, elementValue),

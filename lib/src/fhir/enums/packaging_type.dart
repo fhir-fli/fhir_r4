@@ -8,7 +8,9 @@ class PackagingType extends PrimitiveType<String> {
   PackagingType._(super.value, [super.element]);
 
   /// Factory constructor to create [PackagingType] from JSON.
-  factory PackagingType.fromJson(Map<String, dynamic> json) {
+  factory PackagingType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -640,11 +642,17 @@ class PackagingType extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  PackagingType clone() => PackagingType._(value, element?.clone() as Element?);
+  PackagingType clone() => PackagingType._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  PackagingType setElement(String name, dynamic elementValue) {
+  PackagingType setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return PackagingType._(
       value,
       element?.setProperty(name, elementValue),

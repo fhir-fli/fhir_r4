@@ -8,7 +8,9 @@ class RegulatedAuthorizationType extends PrimitiveType<String> {
   RegulatedAuthorizationType._(super.value, [super.element]);
 
   /// Factory constructor to create [RegulatedAuthorizationType] from JSON.
-  factory RegulatedAuthorizationType.fromJson(Map<String, dynamic> json) {
+  factory RegulatedAuthorizationType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -49,12 +51,17 @@ class RegulatedAuthorizationType extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  RegulatedAuthorizationType clone() =>
-      RegulatedAuthorizationType._(value, element?.clone() as Element?);
+  RegulatedAuthorizationType clone() => RegulatedAuthorizationType._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  RegulatedAuthorizationType setElement(String name, dynamic elementValue) {
+  RegulatedAuthorizationType setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return RegulatedAuthorizationType._(
       value,
       element?.setProperty(name, elementValue),

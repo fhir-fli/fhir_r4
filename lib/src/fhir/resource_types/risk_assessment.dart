@@ -50,69 +50,80 @@ class RiskAssessment extends DomainResource {
   factory RiskAssessment.fromJson(
     Map<String, dynamic> json,
   ) {
+    T? parseField<T extends FhirBase>(
+      dynamic value,
+      dynamic valueElement,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        (value != null || valueElement != null)
+            ? fromJson({
+                'value': value,
+                '_value': valueElement,
+              })
+            : null;
+    List<T>? parseList<T extends FhirBase>(
+      List<dynamic>? values,
+      List<dynamic>? valueElements,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        values?.asMap().entries.map((entry) {
+          final index = entry.key;
+          final value = entry.value;
+          final valueElement =
+              valueElements != null && valueElements.length > index
+                  ? valueElements[index]
+                  : null;
+          return fromJson({
+            'value': value,
+            '_value': valueElement,
+          });
+        }).toList();
     return RiskAssessment(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
+      id: parseField<FhirString>(
+        json['id'],
+        json['_id'],
+        FhirString.fromJson,
+      ),
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
-      implicitRules:
-          (json['implicitRules'] != null || json['_implicitRules'] != null)
-              ? FhirUri.fromJson({
-                  'value': json['implicitRules'],
-                  '_value': json['_implicitRules'],
-                })
-              : null,
-      language: (json['language'] != null || json['_language'] != null)
-          ? CommonLanguages.fromJson({
-              'value': json['language'],
-              '_value': json['_language'],
-            })
-          : null,
+      implicitRules: parseField<FhirUri>(
+        json['implicitRules'],
+        json['_implicitRules'],
+        FhirUri.fromJson,
+      ),
+      language: parseField<CommonLanguages>(
+        json['language'],
+        json['_language'],
+        CommonLanguages.fromJson,
+      ),
       text: json['text'] != null
           ? Narrative.fromJson(
               json['text'] as Map<String, dynamic>,
             )
           : null,
-      contained: json['contained'] != null
-          ? (json['contained'] as List<dynamic>)
-              .map<Resource>(
-                (v) => Resource.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      identifier: json['identifier'] != null
-          ? (json['identifier'] as List<dynamic>)
-              .map<Identifier>(
-                (v) => Identifier.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      contained: parseList<Resource>(
+        json['contained'] as List<dynamic>?,
+        json['_contained'] as List<dynamic>?,
+        Resource.fromJson,
+      ),
+      extension_: parseList<FhirExtension>(
+        json['extension'] as List<dynamic>?,
+        json['_extension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
+      modifierExtension: parseList<FhirExtension>(
+        json['modifierExtension'] as List<dynamic>?,
+        json['_modifierExtension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
+      identifier: parseList<Identifier>(
+        json['identifier'] as List<dynamic>?,
+        json['_identifier'] as List<dynamic>?,
+        Identifier.fromJson,
+      ),
       basedOn: json['basedOn'] != null
           ? Reference.fromJson(
               json['basedOn'] as Map<String, dynamic>,
@@ -145,13 +156,11 @@ class RiskAssessment extends DomainResource {
               json['encounter'] as Map<String, dynamic>,
             )
           : null,
-      occurrenceDateTime: (json['occurrenceDateTime'] != null ||
-              json['_occurrenceDateTime'] != null)
-          ? FhirDateTime.fromJson({
-              'value': json['occurrenceDateTime'],
-              '_value': json['_occurrenceDateTime'],
-            })
-          : null,
+      occurrenceDateTime: parseField<FhirDateTime>(
+        json['occurrenceDateTime'],
+        json['_occurrenceDateTime'],
+        FhirDateTime.fromJson,
+      ),
       occurrencePeriod: json['occurrencePeriod'] != null
           ? Period.fromJson(
               json['occurrencePeriod'] as Map<String, dynamic>,
@@ -167,57 +176,36 @@ class RiskAssessment extends DomainResource {
               json['performer'] as Map<String, dynamic>,
             )
           : null,
-      reasonCode: json['reasonCode'] != null
-          ? (json['reasonCode'] as List<dynamic>)
-              .map<CodeableConcept>(
-                (v) => CodeableConcept.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      reasonReference: json['reasonReference'] != null
-          ? (json['reasonReference'] as List<dynamic>)
-              .map<Reference>(
-                (v) => Reference.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      basis: json['basis'] != null
-          ? (json['basis'] as List<dynamic>)
-              .map<Reference>(
-                (v) => Reference.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      prediction: json['prediction'] != null
-          ? (json['prediction'] as List<dynamic>)
-              .map<RiskAssessmentPrediction>(
-                (v) => RiskAssessmentPrediction.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      mitigation: (json['mitigation'] != null || json['_mitigation'] != null)
-          ? FhirString.fromJson({
-              'value': json['mitigation'],
-              '_value': json['_mitigation'],
-            })
-          : null,
-      note: json['note'] != null
-          ? (json['note'] as List<dynamic>)
-              .map<Annotation>(
-                (v) => Annotation.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      reasonCode: parseList<CodeableConcept>(
+        json['reasonCode'] as List<dynamic>?,
+        json['_reasonCode'] as List<dynamic>?,
+        CodeableConcept.fromJson,
+      ),
+      reasonReference: parseList<Reference>(
+        json['reasonReference'] as List<dynamic>?,
+        json['_reasonReference'] as List<dynamic>?,
+        Reference.fromJson,
+      ),
+      basis: parseList<Reference>(
+        json['basis'] as List<dynamic>?,
+        json['_basis'] as List<dynamic>?,
+        Reference.fromJson,
+      ),
+      prediction: parseList<RiskAssessmentPrediction>(
+        json['prediction'] as List<dynamic>?,
+        json['_prediction'] as List<dynamic>?,
+        RiskAssessmentPrediction.fromJson,
+      ),
+      mitigation: parseField<FhirString>(
+        json['mitigation'],
+        json['_mitigation'],
+        FhirString.fromJson,
+      ),
+      note: parseList<Annotation>(
+        json['note'] as List<dynamic>?,
+        json['_note'] as List<dynamic>?,
+        Annotation.fromJson,
+      ),
     );
   }
 
@@ -228,21 +216,23 @@ class RiskAssessment extends DomainResource {
   ) {
     if (yaml is String) {
       return RiskAssessment.fromJson(
-        yamlToJson(yaml) as Map<String, Object?>,
+        yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
       return RiskAssessment.fromJson(
-        yamlMapToJson(yaml) as Map<String, Object?>,
+        yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'RiskAssessment cannot be constructed from the provided input. '
+        'RiskAssessment '
+        'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
     }
   }
 
-  /// Factory constructor for [RiskAssessment]
+  /// Factory constructor for
+  /// [RiskAssessment]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
@@ -543,40 +533,60 @@ class RiskAssessmentPrediction extends BackboneElement {
   factory RiskAssessmentPrediction.fromJson(
     Map<String, dynamic> json,
   ) {
+    T? parseField<T extends FhirBase>(
+      dynamic value,
+      dynamic valueElement,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        (value != null || valueElement != null)
+            ? fromJson({
+                'value': value,
+                '_value': valueElement,
+              })
+            : null;
+    List<T>? parseList<T extends FhirBase>(
+      List<dynamic>? values,
+      List<dynamic>? valueElements,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        values?.asMap().entries.map((entry) {
+          final index = entry.key;
+          final value = entry.value;
+          final valueElement =
+              valueElements != null && valueElements.length > index
+                  ? valueElements[index]
+                  : null;
+          return fromJson({
+            'value': value,
+            '_value': valueElement,
+          });
+        }).toList();
     return RiskAssessmentPrediction(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      id: parseField<FhirString>(
+        json['id'],
+        json['_id'],
+        FhirString.fromJson,
+      ),
+      extension_: parseList<FhirExtension>(
+        json['extension'] as List<dynamic>?,
+        json['_extension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
+      modifierExtension: parseList<FhirExtension>(
+        json['modifierExtension'] as List<dynamic>?,
+        json['_modifierExtension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
       outcome: json['outcome'] != null
           ? CodeableConcept.fromJson(
               json['outcome'] as Map<String, dynamic>,
             )
           : null,
-      probabilityDecimal: (json['probabilityDecimal'] != null ||
-              json['_probabilityDecimal'] != null)
-          ? FhirDecimal.fromJson({
-              'value': json['probabilityDecimal'],
-              '_value': json['_probabilityDecimal'],
-            })
-          : null,
+      probabilityDecimal: parseField<FhirDecimal>(
+        json['probabilityDecimal'],
+        json['_probabilityDecimal'],
+        FhirDecimal.fromJson,
+      ),
       probabilityRange: json['probabilityRange'] != null
           ? Range.fromJson(
               json['probabilityRange'] as Map<String, dynamic>,
@@ -587,13 +597,11 @@ class RiskAssessmentPrediction extends BackboneElement {
               json['qualitativeRisk'] as Map<String, dynamic>,
             )
           : null,
-      relativeRisk:
-          (json['relativeRisk'] != null || json['_relativeRisk'] != null)
-              ? FhirDecimal.fromJson({
-                  'value': json['relativeRisk'],
-                  '_value': json['_relativeRisk'],
-                })
-              : null,
+      relativeRisk: parseField<FhirDecimal>(
+        json['relativeRisk'],
+        json['_relativeRisk'],
+        FhirDecimal.fromJson,
+      ),
       whenPeriod: json['whenPeriod'] != null
           ? Period.fromJson(
               json['whenPeriod'] as Map<String, dynamic>,
@@ -604,12 +612,11 @@ class RiskAssessmentPrediction extends BackboneElement {
               json['whenRange'] as Map<String, dynamic>,
             )
           : null,
-      rationale: (json['rationale'] != null || json['_rationale'] != null)
-          ? FhirString.fromJson({
-              'value': json['rationale'],
-              '_value': json['_rationale'],
-            })
-          : null,
+      rationale: parseField<FhirString>(
+        json['rationale'],
+        json['_rationale'],
+        FhirString.fromJson,
+      ),
     );
   }
 
@@ -620,21 +627,23 @@ class RiskAssessmentPrediction extends BackboneElement {
   ) {
     if (yaml is String) {
       return RiskAssessmentPrediction.fromJson(
-        yamlToJson(yaml) as Map<String, Object?>,
+        yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
       return RiskAssessmentPrediction.fromJson(
-        yamlMapToJson(yaml) as Map<String, Object?>,
+        yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'RiskAssessmentPrediction cannot be constructed from the provided input. '
+        'RiskAssessmentPrediction '
+        'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
     }
   }
 
-  /// Factory constructor for [RiskAssessmentPrediction]
+  /// Factory constructor for
+  /// [RiskAssessmentPrediction]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]

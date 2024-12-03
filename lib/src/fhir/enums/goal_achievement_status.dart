@@ -8,7 +8,9 @@ class GoalAchievementStatus extends PrimitiveType<String> {
   GoalAchievementStatus._(super.value, [super.element]);
 
   /// Factory constructor to create [GoalAchievementStatus] from JSON.
-  factory GoalAchievementStatus.fromJson(Map<String, dynamic> json) {
+  factory GoalAchievementStatus.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -82,12 +84,17 @@ class GoalAchievementStatus extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  GoalAchievementStatus clone() =>
-      GoalAchievementStatus._(value, element?.clone() as Element?);
+  GoalAchievementStatus clone() => GoalAchievementStatus._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  GoalAchievementStatus setElement(String name, dynamic elementValue) {
+  GoalAchievementStatus setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return GoalAchievementStatus._(
       value,
       element?.setProperty(name, elementValue),

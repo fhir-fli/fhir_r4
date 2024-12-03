@@ -8,7 +8,9 @@ class SubstanceRepresentationType extends PrimitiveType<String> {
   SubstanceRepresentationType._(super.value, [super.element]);
 
   /// Factory constructor to create [SubstanceRepresentationType] from JSON.
-  factory SubstanceRepresentationType.fromJson(Map<String, dynamic> json) {
+  factory SubstanceRepresentationType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -50,12 +52,17 @@ class SubstanceRepresentationType extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  SubstanceRepresentationType clone() =>
-      SubstanceRepresentationType._(value, element?.clone() as Element?);
+  SubstanceRepresentationType clone() => SubstanceRepresentationType._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  SubstanceRepresentationType setElement(String name, dynamic elementValue) {
+  SubstanceRepresentationType setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return SubstanceRepresentationType._(
       value,
       element?.setProperty(name, elementValue),

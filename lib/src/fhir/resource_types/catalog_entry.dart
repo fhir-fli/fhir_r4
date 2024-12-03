@@ -45,69 +45,80 @@ class CatalogEntry extends DomainResource {
   factory CatalogEntry.fromJson(
     Map<String, dynamic> json,
   ) {
+    T? parseField<T extends FhirBase>(
+      dynamic value,
+      dynamic valueElement,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        (value != null || valueElement != null)
+            ? fromJson({
+                'value': value,
+                '_value': valueElement,
+              })
+            : null;
+    List<T>? parseList<T extends FhirBase>(
+      List<dynamic>? values,
+      List<dynamic>? valueElements,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        values?.asMap().entries.map((entry) {
+          final index = entry.key;
+          final value = entry.value;
+          final valueElement =
+              valueElements != null && valueElements.length > index
+                  ? valueElements[index]
+                  : null;
+          return fromJson({
+            'value': value,
+            '_value': valueElement,
+          });
+        }).toList();
     return CatalogEntry(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
+      id: parseField<FhirString>(
+        json['id'],
+        json['_id'],
+        FhirString.fromJson,
+      ),
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
-      implicitRules:
-          (json['implicitRules'] != null || json['_implicitRules'] != null)
-              ? FhirUri.fromJson({
-                  'value': json['implicitRules'],
-                  '_value': json['_implicitRules'],
-                })
-              : null,
-      language: (json['language'] != null || json['_language'] != null)
-          ? CommonLanguages.fromJson({
-              'value': json['language'],
-              '_value': json['_language'],
-            })
-          : null,
+      implicitRules: parseField<FhirUri>(
+        json['implicitRules'],
+        json['_implicitRules'],
+        FhirUri.fromJson,
+      ),
+      language: parseField<CommonLanguages>(
+        json['language'],
+        json['_language'],
+        CommonLanguages.fromJson,
+      ),
       text: json['text'] != null
           ? Narrative.fromJson(
               json['text'] as Map<String, dynamic>,
             )
           : null,
-      contained: json['contained'] != null
-          ? (json['contained'] as List<dynamic>)
-              .map<Resource>(
-                (v) => Resource.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      identifier: json['identifier'] != null
-          ? (json['identifier'] as List<dynamic>)
-              .map<Identifier>(
-                (v) => Identifier.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      contained: parseList<Resource>(
+        json['contained'] as List<dynamic>?,
+        json['_contained'] as List<dynamic>?,
+        Resource.fromJson,
+      ),
+      extension_: parseList<FhirExtension>(
+        json['extension'] as List<dynamic>?,
+        json['_extension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
+      modifierExtension: parseList<FhirExtension>(
+        json['modifierExtension'] as List<dynamic>?,
+        json['_modifierExtension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
+      identifier: parseList<Identifier>(
+        json['identifier'] as List<dynamic>?,
+        json['_identifier'] as List<dynamic>?,
+        Identifier.fromJson,
+      ),
       type: json['type'] != null
           ? CodeableConcept.fromJson(
               json['type'] as Map<String, dynamic>,
@@ -120,74 +131,51 @@ class CatalogEntry extends DomainResource {
       referencedItem: Reference.fromJson(
         json['referencedItem'] as Map<String, dynamic>,
       ),
-      additionalIdentifier: json['additionalIdentifier'] != null
-          ? (json['additionalIdentifier'] as List<dynamic>)
-              .map<Identifier>(
-                (v) => Identifier.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      classification: json['classification'] != null
-          ? (json['classification'] as List<dynamic>)
-              .map<CodeableConcept>(
-                (v) => CodeableConcept.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      status: (json['status'] != null || json['_status'] != null)
-          ? PublicationStatus.fromJson({
-              'value': json['status'],
-              '_value': json['_status'],
-            })
-          : null,
+      additionalIdentifier: parseList<Identifier>(
+        json['additionalIdentifier'] as List<dynamic>?,
+        json['_additionalIdentifier'] as List<dynamic>?,
+        Identifier.fromJson,
+      ),
+      classification: parseList<CodeableConcept>(
+        json['classification'] as List<dynamic>?,
+        json['_classification'] as List<dynamic>?,
+        CodeableConcept.fromJson,
+      ),
+      status: parseField<PublicationStatus>(
+        json['status'],
+        json['_status'],
+        PublicationStatus.fromJson,
+      ),
       validityPeriod: json['validityPeriod'] != null
           ? Period.fromJson(
               json['validityPeriod'] as Map<String, dynamic>,
             )
           : null,
-      validTo: (json['validTo'] != null || json['_validTo'] != null)
-          ? FhirDateTime.fromJson({
-              'value': json['validTo'],
-              '_value': json['_validTo'],
-            })
-          : null,
-      lastUpdated: (json['lastUpdated'] != null || json['_lastUpdated'] != null)
-          ? FhirDateTime.fromJson({
-              'value': json['lastUpdated'],
-              '_value': json['_lastUpdated'],
-            })
-          : null,
-      additionalCharacteristic: json['additionalCharacteristic'] != null
-          ? (json['additionalCharacteristic'] as List<dynamic>)
-              .map<CodeableConcept>(
-                (v) => CodeableConcept.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      additionalClassification: json['additionalClassification'] != null
-          ? (json['additionalClassification'] as List<dynamic>)
-              .map<CodeableConcept>(
-                (v) => CodeableConcept.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      relatedEntry: json['relatedEntry'] != null
-          ? (json['relatedEntry'] as List<dynamic>)
-              .map<CatalogEntryRelatedEntry>(
-                (v) => CatalogEntryRelatedEntry.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      validTo: parseField<FhirDateTime>(
+        json['validTo'],
+        json['_validTo'],
+        FhirDateTime.fromJson,
+      ),
+      lastUpdated: parseField<FhirDateTime>(
+        json['lastUpdated'],
+        json['_lastUpdated'],
+        FhirDateTime.fromJson,
+      ),
+      additionalCharacteristic: parseList<CodeableConcept>(
+        json['additionalCharacteristic'] as List<dynamic>?,
+        json['_additionalCharacteristic'] as List<dynamic>?,
+        CodeableConcept.fromJson,
+      ),
+      additionalClassification: parseList<CodeableConcept>(
+        json['additionalClassification'] as List<dynamic>?,
+        json['_additionalClassification'] as List<dynamic>?,
+        CodeableConcept.fromJson,
+      ),
+      relatedEntry: parseList<CatalogEntryRelatedEntry>(
+        json['relatedEntry'] as List<dynamic>?,
+        json['_relatedEntry'] as List<dynamic>?,
+        CatalogEntryRelatedEntry.fromJson,
+      ),
     );
   }
 
@@ -198,21 +186,23 @@ class CatalogEntry extends DomainResource {
   ) {
     if (yaml is String) {
       return CatalogEntry.fromJson(
-        yamlToJson(yaml) as Map<String, Object?>,
+        yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
       return CatalogEntry.fromJson(
-        yamlMapToJson(yaml) as Map<String, Object?>,
+        yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'CatalogEntry cannot be constructed from the provided input. '
+        'CatalogEntry '
+        'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
     }
   }
 
-  /// Factory constructor for [CatalogEntry]
+  /// Factory constructor for
+  /// [CatalogEntry]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
@@ -460,28 +450,50 @@ class CatalogEntryRelatedEntry extends BackboneElement {
   factory CatalogEntryRelatedEntry.fromJson(
     Map<String, dynamic> json,
   ) {
+    T? parseField<T extends FhirBase>(
+      dynamic value,
+      dynamic valueElement,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        (value != null || valueElement != null)
+            ? fromJson({
+                'value': value,
+                '_value': valueElement,
+              })
+            : null;
+    List<T>? parseList<T extends FhirBase>(
+      List<dynamic>? values,
+      List<dynamic>? valueElements,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        values?.asMap().entries.map((entry) {
+          final index = entry.key;
+          final value = entry.value;
+          final valueElement =
+              valueElements != null && valueElements.length > index
+                  ? valueElements[index]
+                  : null;
+          return fromJson({
+            'value': value,
+            '_value': valueElement,
+          });
+        }).toList();
     return CatalogEntryRelatedEntry(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      id: parseField<FhirString>(
+        json['id'],
+        json['_id'],
+        FhirString.fromJson,
+      ),
+      extension_: parseList<FhirExtension>(
+        json['extension'] as List<dynamic>?,
+        json['_extension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
+      modifierExtension: parseList<FhirExtension>(
+        json['modifierExtension'] as List<dynamic>?,
+        json['_modifierExtension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
       relationtype: CatalogEntryRelationType.fromJson({
         'value': json['relationtype'],
         '_value': json['_relationtype'],
@@ -499,21 +511,23 @@ class CatalogEntryRelatedEntry extends BackboneElement {
   ) {
     if (yaml is String) {
       return CatalogEntryRelatedEntry.fromJson(
-        yamlToJson(yaml) as Map<String, Object?>,
+        yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
       return CatalogEntryRelatedEntry.fromJson(
-        yamlMapToJson(yaml) as Map<String, Object?>,
+        yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'CatalogEntryRelatedEntry cannot be constructed from the provided input. '
+        'CatalogEntryRelatedEntry '
+        'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
     }
   }
 
-  /// Factory constructor for [CatalogEntryRelatedEntry]
+  /// Factory constructor for
+  /// [CatalogEntryRelatedEntry]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]

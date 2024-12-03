@@ -9,7 +9,8 @@ class MedicationAdministrationStatusCodes extends PrimitiveType<String> {
 
   /// Factory constructor to create [MedicationAdministrationStatusCodes] from JSON.
   factory MedicationAdministrationStatusCodes.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -82,12 +83,16 @@ class MedicationAdministrationStatusCodes extends PrimitiveType<String> {
   @override
   MedicationAdministrationStatusCodes clone() =>
       MedicationAdministrationStatusCodes._(
-          value, element?.clone() as Element?);
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
   MedicationAdministrationStatusCodes setElement(
-      String name, dynamic elementValue) {
+    String name,
+    dynamic elementValue,
+  ) {
     return MedicationAdministrationStatusCodes._(
       value,
       element?.setProperty(name, elementValue),

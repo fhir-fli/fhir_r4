@@ -8,7 +8,9 @@ class ObjectLifecycleEvents extends PrimitiveType<String> {
   ObjectLifecycleEvents._(super.value, [super.element]);
 
   /// Factory constructor to create [ObjectLifecycleEvents] from JSON.
-  factory ObjectLifecycleEvents.fromJson(Map<String, dynamic> json) {
+  factory ObjectLifecycleEvents.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -280,12 +282,17 @@ class ObjectLifecycleEvents extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  ObjectLifecycleEvents clone() =>
-      ObjectLifecycleEvents._(value, element?.clone() as Element?);
+  ObjectLifecycleEvents clone() => ObjectLifecycleEvents._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  ObjectLifecycleEvents setElement(String name, dynamic elementValue) {
+  ObjectLifecycleEvents setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return ObjectLifecycleEvents._(
       value,
       element?.setProperty(name, elementValue),

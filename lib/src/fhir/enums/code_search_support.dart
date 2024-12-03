@@ -8,7 +8,9 @@ class CodeSearchSupport extends PrimitiveType<String> {
   CodeSearchSupport._(super.value, [super.element]);
 
   /// Factory constructor to create [CodeSearchSupport] from JSON.
-  factory CodeSearchSupport.fromJson(Map<String, dynamic> json) {
+  factory CodeSearchSupport.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -40,12 +42,17 @@ class CodeSearchSupport extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  CodeSearchSupport clone() =>
-      CodeSearchSupport._(value, element?.clone() as Element?);
+  CodeSearchSupport clone() => CodeSearchSupport._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  CodeSearchSupport setElement(String name, dynamic elementValue) {
+  CodeSearchSupport setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return CodeSearchSupport._(
       value,
       element?.setProperty(name, elementValue),

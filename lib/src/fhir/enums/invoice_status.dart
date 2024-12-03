@@ -8,7 +8,9 @@ class InvoiceStatus extends PrimitiveType<String> {
   InvoiceStatus._(super.value, [super.element]);
 
   /// Factory constructor to create [InvoiceStatus] from JSON.
-  factory InvoiceStatus.fromJson(Map<String, dynamic> json) {
+  factory InvoiceStatus.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -58,11 +60,17 @@ class InvoiceStatus extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  InvoiceStatus clone() => InvoiceStatus._(value, element?.clone() as Element?);
+  InvoiceStatus clone() => InvoiceStatus._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  InvoiceStatus setElement(String name, dynamic elementValue) {
+  InvoiceStatus setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return InvoiceStatus._(
       value,
       element?.setProperty(name, elementValue),

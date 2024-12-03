@@ -8,7 +8,9 @@ class TestScriptRequestMethodCode extends PrimitiveType<String> {
   TestScriptRequestMethodCode._(super.value, [super.element]);
 
   /// Factory constructor to create [TestScriptRequestMethodCode] from JSON.
-  factory TestScriptRequestMethodCode.fromJson(Map<String, dynamic> json) {
+  factory TestScriptRequestMethodCode.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -74,12 +76,17 @@ class TestScriptRequestMethodCode extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  TestScriptRequestMethodCode clone() =>
-      TestScriptRequestMethodCode._(value, element?.clone() as Element?);
+  TestScriptRequestMethodCode clone() => TestScriptRequestMethodCode._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  TestScriptRequestMethodCode setElement(String name, dynamic elementValue) {
+  TestScriptRequestMethodCode setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return TestScriptRequestMethodCode._(
       value,
       element?.setProperty(name, elementValue),

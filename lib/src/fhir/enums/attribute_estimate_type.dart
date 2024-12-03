@@ -8,7 +8,9 @@ class AttributeEstimateType extends PrimitiveType<String> {
   AttributeEstimateType._(super.value, [super.element]);
 
   /// Factory constructor to create [AttributeEstimateType] from JSON.
-  factory AttributeEstimateType.fromJson(Map<String, dynamic> json) {
+  factory AttributeEstimateType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -94,12 +96,17 @@ class AttributeEstimateType extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  AttributeEstimateType clone() =>
-      AttributeEstimateType._(value, element?.clone() as Element?);
+  AttributeEstimateType clone() => AttributeEstimateType._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  AttributeEstimateType setElement(String name, dynamic elementValue) {
+  AttributeEstimateType setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return AttributeEstimateType._(
       value,
       element?.setProperty(name, elementValue),

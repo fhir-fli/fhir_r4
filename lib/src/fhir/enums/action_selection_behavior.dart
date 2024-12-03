@@ -8,7 +8,9 @@ class ActionSelectionBehavior extends PrimitiveType<String> {
   ActionSelectionBehavior._(super.value, [super.element]);
 
   /// Factory constructor to create [ActionSelectionBehavior] from JSON.
-  factory ActionSelectionBehavior.fromJson(Map<String, dynamic> json) {
+  factory ActionSelectionBehavior.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -65,12 +67,17 @@ class ActionSelectionBehavior extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  ActionSelectionBehavior clone() =>
-      ActionSelectionBehavior._(value, element?.clone() as Element?);
+  ActionSelectionBehavior clone() => ActionSelectionBehavior._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  ActionSelectionBehavior setElement(String name, dynamic elementValue) {
+  ActionSelectionBehavior setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return ActionSelectionBehavior._(
       value,
       element?.setProperty(name, elementValue),

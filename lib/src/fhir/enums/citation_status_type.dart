@@ -8,7 +8,9 @@ class CitationStatusType extends PrimitiveType<String> {
   CitationStatusType._(super.value, [super.element]);
 
   /// Factory constructor to create [CitationStatusType] from JSON.
-  factory CitationStatusType.fromJson(Map<String, dynamic> json) {
+  factory CitationStatusType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -209,12 +211,17 @@ class CitationStatusType extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  CitationStatusType clone() =>
-      CitationStatusType._(value, element?.clone() as Element?);
+  CitationStatusType clone() => CitationStatusType._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  CitationStatusType setElement(String name, dynamic elementValue) {
+  CitationStatusType setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return CitationStatusType._(
       value,
       element?.setProperty(name, elementValue),

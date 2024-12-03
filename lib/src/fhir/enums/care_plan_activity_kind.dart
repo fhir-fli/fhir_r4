@@ -8,7 +8,9 @@ class CarePlanActivityKind extends PrimitiveType<String> {
   CarePlanActivityKind._(super.value, [super.element]);
 
   /// Factory constructor to create [CarePlanActivityKind] from JSON.
-  factory CarePlanActivityKind.fromJson(Map<String, dynamic> json) {
+  factory CarePlanActivityKind.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -917,12 +919,17 @@ class CarePlanActivityKind extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  CarePlanActivityKind clone() =>
-      CarePlanActivityKind._(value, element?.clone() as Element?);
+  CarePlanActivityKind clone() => CarePlanActivityKind._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  CarePlanActivityKind setElement(String name, dynamic elementValue) {
+  CarePlanActivityKind setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return CarePlanActivityKind._(
       value,
       element?.setProperty(name, elementValue),

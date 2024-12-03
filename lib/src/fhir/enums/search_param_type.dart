@@ -8,7 +8,9 @@ class SearchParamType extends PrimitiveType<String> {
   SearchParamType._(super.value, [super.element]);
 
   /// Factory constructor to create [SearchParamType] from JSON.
-  factory SearchParamType.fromJson(Map<String, dynamic> json) {
+  factory SearchParamType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -82,12 +84,17 @@ class SearchParamType extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  SearchParamType clone() =>
-      SearchParamType._(value, element?.clone() as Element?);
+  SearchParamType clone() => SearchParamType._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  SearchParamType setElement(String name, dynamic elementValue) {
+  SearchParamType setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return SearchParamType._(
       value,
       element?.setProperty(name, elementValue),

@@ -8,7 +8,9 @@ class CitedMedium extends PrimitiveType<String> {
   CitedMedium._(super.value, [super.element]);
 
   /// Factory constructor to create [CitedMedium] from JSON.
-  factory CitedMedium.fromJson(Map<String, dynamic> json) {
+  factory CitedMedium.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -65,11 +67,17 @@ class CitedMedium extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  CitedMedium clone() => CitedMedium._(value, element?.clone() as Element?);
+  CitedMedium clone() => CitedMedium._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  CitedMedium setElement(String name, dynamic elementValue) {
+  CitedMedium setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return CitedMedium._(
       value,
       element?.setProperty(name, elementValue),

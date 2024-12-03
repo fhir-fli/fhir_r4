@@ -8,7 +8,9 @@ class DischargeDisposition extends PrimitiveType<String> {
   DischargeDisposition._(super.value, [super.element]);
 
   /// Factory constructor to create [DischargeDisposition] from JSON.
-  factory DischargeDisposition.fromJson(Map<String, dynamic> json) {
+  factory DischargeDisposition.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -94,12 +96,17 @@ class DischargeDisposition extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  DischargeDisposition clone() =>
-      DischargeDisposition._(value, element?.clone() as Element?);
+  DischargeDisposition clone() => DischargeDisposition._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  DischargeDisposition setElement(String name, dynamic elementValue) {
+  DischargeDisposition setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return DischargeDisposition._(
       value,
       element?.setProperty(name, elementValue),

@@ -8,7 +8,9 @@ class SubscriptionChannelType extends PrimitiveType<String> {
   SubscriptionChannelType._(super.value, [super.element]);
 
   /// Factory constructor to create [SubscriptionChannelType] from JSON.
-  factory SubscriptionChannelType.fromJson(Map<String, dynamic> json) {
+  factory SubscriptionChannelType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -59,12 +61,17 @@ class SubscriptionChannelType extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  SubscriptionChannelType clone() =>
-      SubscriptionChannelType._(value, element?.clone() as Element?);
+  SubscriptionChannelType clone() => SubscriptionChannelType._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  SubscriptionChannelType setElement(String name, dynamic elementValue) {
+  SubscriptionChannelType setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return SubscriptionChannelType._(
       value,
       element?.setProperty(name, elementValue),

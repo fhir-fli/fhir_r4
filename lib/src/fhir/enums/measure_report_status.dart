@@ -8,7 +8,9 @@ class MeasureReportStatus extends PrimitiveType<String> {
   MeasureReportStatus._(super.value, [super.element]);
 
   /// Factory constructor to create [MeasureReportStatus] from JSON.
-  factory MeasureReportStatus.fromJson(Map<String, dynamic> json) {
+  factory MeasureReportStatus.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -46,12 +48,17 @@ class MeasureReportStatus extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  MeasureReportStatus clone() =>
-      MeasureReportStatus._(value, element?.clone() as Element?);
+  MeasureReportStatus clone() => MeasureReportStatus._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  MeasureReportStatus setElement(String name, dynamic elementValue) {
+  MeasureReportStatus setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return MeasureReportStatus._(
       value,
       element?.setProperty(name, elementValue),

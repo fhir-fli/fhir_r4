@@ -8,7 +8,9 @@ class QuantityComparator extends PrimitiveType<String> {
   QuantityComparator._(super.value, [super.element]);
 
   /// Factory constructor to create [QuantityComparator] from JSON.
-  factory QuantityComparator.fromJson(Map<String, dynamic> json) {
+  factory QuantityComparator.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -52,12 +54,17 @@ class QuantityComparator extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  QuantityComparator clone() =>
-      QuantityComparator._(value, element?.clone() as Element?);
+  QuantityComparator clone() => QuantityComparator._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  QuantityComparator setElement(String name, dynamic elementValue) {
+  QuantityComparator setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return QuantityComparator._(
       value,
       element?.setProperty(name, elementValue),

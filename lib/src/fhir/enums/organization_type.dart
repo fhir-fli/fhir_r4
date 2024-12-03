@@ -8,7 +8,9 @@ class OrganizationType extends PrimitiveType<String> {
   OrganizationType._(super.value, [super.element]);
 
   /// Factory constructor to create [OrganizationType] from JSON.
-  factory OrganizationType.fromJson(Map<String, dynamic> json) {
+  factory OrganizationType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -100,12 +102,17 @@ class OrganizationType extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  OrganizationType clone() =>
-      OrganizationType._(value, element?.clone() as Element?);
+  OrganizationType clone() => OrganizationType._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  OrganizationType setElement(String name, dynamic elementValue) {
+  OrganizationType setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return OrganizationType._(
       value,
       element?.setProperty(name, elementValue),

@@ -8,7 +8,9 @@ class ConditionVerificationStatus extends PrimitiveType<String> {
   ConditionVerificationStatus._(super.value, [super.element]);
 
   /// Factory constructor to create [ConditionVerificationStatus] from JSON.
-  factory ConditionVerificationStatus.fromJson(Map<String, dynamic> json) {
+  factory ConditionVerificationStatus.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -71,12 +73,17 @@ class ConditionVerificationStatus extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  ConditionVerificationStatus clone() =>
-      ConditionVerificationStatus._(value, element?.clone() as Element?);
+  ConditionVerificationStatus clone() => ConditionVerificationStatus._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  ConditionVerificationStatus setElement(String name, dynamic elementValue) {
+  ConditionVerificationStatus setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return ConditionVerificationStatus._(
       value,
       element?.setProperty(name, elementValue),

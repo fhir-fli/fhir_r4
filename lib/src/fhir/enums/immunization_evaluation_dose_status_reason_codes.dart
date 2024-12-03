@@ -10,7 +10,8 @@ class ImmunizationEvaluationDoseStatusReasonCodes
 
   /// Factory constructor to create [ImmunizationEvaluationDoseStatusReasonCodes] from JSON.
   factory ImmunizationEvaluationDoseStatusReasonCodes.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -69,12 +70,16 @@ class ImmunizationEvaluationDoseStatusReasonCodes
   @override
   ImmunizationEvaluationDoseStatusReasonCodes clone() =>
       ImmunizationEvaluationDoseStatusReasonCodes._(
-          value, element?.clone() as Element?);
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
   ImmunizationEvaluationDoseStatusReasonCodes setElement(
-      String name, dynamic elementValue) {
+    String name,
+    dynamic elementValue,
+  ) {
     return ImmunizationEvaluationDoseStatusReasonCodes._(
       value,
       element?.setProperty(name, elementValue),

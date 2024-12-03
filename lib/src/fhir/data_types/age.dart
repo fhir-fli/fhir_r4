@@ -28,49 +28,70 @@ class Age extends Quantity {
   factory Age.fromJson(
     Map<String, dynamic> json,
   ) {
+    T? parseField<T extends FhirBase>(
+      dynamic value,
+      dynamic valueElement,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        (value != null || valueElement != null)
+            ? fromJson({
+                'value': value,
+                '_value': valueElement,
+              })
+            : null;
+    List<T>? parseList<T extends FhirBase>(
+      List<dynamic>? values,
+      List<dynamic>? valueElements,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        values?.asMap().entries.map((entry) {
+          final index = entry.key;
+          final value = entry.value;
+          final valueElement =
+              valueElements != null && valueElements.length > index
+                  ? valueElements[index]
+                  : null;
+          return fromJson({
+            'value': value,
+            '_value': valueElement,
+          });
+        }).toList();
     return Age(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      value: (json['value'] != null || json['_value'] != null)
-          ? FhirDecimal.fromJson({
-              'value': json['value'],
-              '_value': json['_value'],
-            })
-          : null,
-      comparator: (json['comparator'] != null || json['_comparator'] != null)
-          ? QuantityComparator.fromJson({
-              'value': json['comparator'],
-              '_value': json['_comparator'],
-            })
-          : null,
-      unit: (json['unit'] != null || json['_unit'] != null)
-          ? FhirString.fromJson({
-              'value': json['unit'],
-              '_value': json['_unit'],
-            })
-          : null,
-      system: (json['system'] != null || json['_system'] != null)
-          ? FhirUri.fromJson({
-              'value': json['system'],
-              '_value': json['_system'],
-            })
-          : null,
-      code: (json['code'] != null || json['_code'] != null)
-          ? FhirCode.fromJson({
-              'value': json['code'],
-              '_value': json['_code'],
-            })
-          : null,
+      id: parseField<FhirString>(
+        json['id'],
+        json['_id'],
+        FhirString.fromJson,
+      ),
+      extension_: parseList<FhirExtension>(
+        json['extension'] as List<dynamic>?,
+        json['_extension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
+      value: parseField<FhirDecimal>(
+        json['value'],
+        json['_value'],
+        FhirDecimal.fromJson,
+      ),
+      comparator: parseField<QuantityComparator>(
+        json['comparator'],
+        json['_comparator'],
+        QuantityComparator.fromJson,
+      ),
+      unit: parseField<FhirString>(
+        json['unit'],
+        json['_unit'],
+        FhirString.fromJson,
+      ),
+      system: parseField<FhirUri>(
+        json['system'],
+        json['_system'],
+        FhirUri.fromJson,
+      ),
+      code: parseField<FhirCode>(
+        json['code'],
+        json['_code'],
+        FhirCode.fromJson,
+      ),
     );
   }
 
@@ -81,21 +102,23 @@ class Age extends Quantity {
   ) {
     if (yaml is String) {
       return Age.fromJson(
-        yamlToJson(yaml) as Map<String, Object?>,
+        yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
       return Age.fromJson(
-        yamlMapToJson(yaml) as Map<String, Object?>,
+        yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'Age cannot be constructed from the provided input. '
+        'Age '
+        'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
     }
   }
 
-  /// Factory constructor for [Age]
+  /// Factory constructor for
+  /// [Age]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]

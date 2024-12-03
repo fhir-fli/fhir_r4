@@ -8,7 +8,9 @@ class ReferenceVersionRules extends PrimitiveType<String> {
   ReferenceVersionRules._(super.value, [super.element]);
 
   /// Factory constructor to create [ReferenceVersionRules] from JSON.
-  factory ReferenceVersionRules.fromJson(Map<String, dynamic> json) {
+  factory ReferenceVersionRules.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -46,12 +48,17 @@ class ReferenceVersionRules extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  ReferenceVersionRules clone() =>
-      ReferenceVersionRules._(value, element?.clone() as Element?);
+  ReferenceVersionRules clone() => ReferenceVersionRules._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  ReferenceVersionRules setElement(String name, dynamic elementValue) {
+  ReferenceVersionRules setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return ReferenceVersionRules._(
       value,
       element?.setProperty(name, elementValue),

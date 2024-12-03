@@ -8,7 +8,9 @@ class ListOrderCodes extends PrimitiveType<String> {
   ListOrderCodes._(super.value, [super.element]);
 
   /// Factory constructor to create [ListOrderCodes] from JSON.
-  factory ListOrderCodes.fromJson(Map<String, dynamic> json) {
+  factory ListOrderCodes.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -76,12 +78,17 @@ class ListOrderCodes extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  ListOrderCodes clone() =>
-      ListOrderCodes._(value, element?.clone() as Element?);
+  ListOrderCodes clone() => ListOrderCodes._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  ListOrderCodes setElement(String name, dynamic elementValue) {
+  ListOrderCodes setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return ListOrderCodes._(
       value,
       element?.setProperty(name, elementValue),

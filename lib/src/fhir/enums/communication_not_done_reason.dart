@@ -8,7 +8,9 @@ class CommunicationNotDoneReason extends PrimitiveType<String> {
   CommunicationNotDoneReason._(super.value, [super.element]);
 
   /// Factory constructor to create [CommunicationNotDoneReason] from JSON.
-  factory CommunicationNotDoneReason.fromJson(Map<String, dynamic> json) {
+  factory CommunicationNotDoneReason.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -71,12 +73,17 @@ class CommunicationNotDoneReason extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  CommunicationNotDoneReason clone() =>
-      CommunicationNotDoneReason._(value, element?.clone() as Element?);
+  CommunicationNotDoneReason clone() => CommunicationNotDoneReason._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  CommunicationNotDoneReason setElement(String name, dynamic elementValue) {
+  CommunicationNotDoneReason setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return CommunicationNotDoneReason._(
       value,
       element?.setProperty(name, elementValue),

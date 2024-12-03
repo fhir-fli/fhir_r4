@@ -8,7 +8,9 @@ class AuditEventSourceType extends PrimitiveType<String> {
   AuditEventSourceType._(super.value, [super.element]);
 
   /// Factory constructor to create [AuditEventSourceType] from JSON.
-  factory AuditEventSourceType.fromJson(Map<String, dynamic> json) {
+  factory AuditEventSourceType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -82,12 +84,17 @@ class AuditEventSourceType extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  AuditEventSourceType clone() =>
-      AuditEventSourceType._(value, element?.clone() as Element?);
+  AuditEventSourceType clone() => AuditEventSourceType._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  AuditEventSourceType setElement(String name, dynamic elementValue) {
+  AuditEventSourceType setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return AuditEventSourceType._(
       value,
       element?.setProperty(name, elementValue),

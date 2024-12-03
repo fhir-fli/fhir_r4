@@ -8,7 +8,9 @@ class EvidenceVariableHandling extends PrimitiveType<String> {
   EvidenceVariableHandling._(super.value, [super.element]);
 
   /// Factory constructor to create [EvidenceVariableHandling] from JSON.
-  factory EvidenceVariableHandling.fromJson(Map<String, dynamic> json) {
+  factory EvidenceVariableHandling.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -55,12 +57,17 @@ class EvidenceVariableHandling extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  EvidenceVariableHandling clone() =>
-      EvidenceVariableHandling._(value, element?.clone() as Element?);
+  EvidenceVariableHandling clone() => EvidenceVariableHandling._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  EvidenceVariableHandling setElement(String name, dynamic elementValue) {
+  EvidenceVariableHandling setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return EvidenceVariableHandling._(
       value,
       element?.setProperty(name, elementValue),

@@ -8,7 +8,9 @@ class SubstanceRelationshipType extends PrimitiveType<String> {
   SubstanceRelationshipType._(super.value, [super.element]);
 
   /// Factory constructor to create [SubstanceRelationshipType] from JSON.
-  factory SubstanceRelationshipType.fromJson(Map<String, dynamic> json) {
+  factory SubstanceRelationshipType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -62,12 +64,17 @@ class SubstanceRelationshipType extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  SubstanceRelationshipType clone() =>
-      SubstanceRelationshipType._(value, element?.clone() as Element?);
+  SubstanceRelationshipType clone() => SubstanceRelationshipType._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  SubstanceRelationshipType setElement(String name, dynamic elementValue) {
+  SubstanceRelationshipType setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return SubstanceRelationshipType._(
       value,
       element?.setProperty(name, elementValue),

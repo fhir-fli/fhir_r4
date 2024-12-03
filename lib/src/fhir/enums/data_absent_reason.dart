@@ -8,7 +8,9 @@ class DataAbsentReason extends PrimitiveType<String> {
   DataAbsentReason._(super.value, [super.element]);
 
   /// Factory constructor to create [DataAbsentReason] from JSON.
-  factory DataAbsentReason.fromJson(Map<String, dynamic> json) {
+  factory DataAbsentReason.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -118,12 +120,17 @@ class DataAbsentReason extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  DataAbsentReason clone() =>
-      DataAbsentReason._(value, element?.clone() as Element?);
+  DataAbsentReason clone() => DataAbsentReason._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  DataAbsentReason setElement(String name, dynamic elementValue) {
+  DataAbsentReason setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return DataAbsentReason._(
       value,
       element?.setProperty(name, elementValue),

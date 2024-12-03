@@ -8,7 +8,9 @@ class ConsentCategoryCodes extends PrimitiveType<String> {
   ConsentCategoryCodes._(super.value, [super.element]);
 
   /// Factory constructor to create [ConsentCategoryCodes] from JSON.
-  factory ConsentCategoryCodes.fromJson(Map<String, dynamic> json) {
+  factory ConsentCategoryCodes.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -106,12 +108,17 @@ class ConsentCategoryCodes extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  ConsentCategoryCodes clone() =>
-      ConsentCategoryCodes._(value, element?.clone() as Element?);
+  ConsentCategoryCodes clone() => ConsentCategoryCodes._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  ConsentCategoryCodes setElement(String name, dynamic elementValue) {
+  ConsentCategoryCodes setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return ConsentCategoryCodes._(
       value,
       element?.setProperty(name, elementValue),

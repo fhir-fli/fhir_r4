@@ -8,7 +8,9 @@ class LocationStatus extends PrimitiveType<String> {
   LocationStatus._(super.value, [super.element]);
 
   /// Factory constructor to create [LocationStatus] from JSON.
-  factory LocationStatus.fromJson(Map<String, dynamic> json) {
+  factory LocationStatus.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -46,12 +48,17 @@ class LocationStatus extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  LocationStatus clone() =>
-      LocationStatus._(value, element?.clone() as Element?);
+  LocationStatus clone() => LocationStatus._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  LocationStatus setElement(String name, dynamic elementValue) {
+  LocationStatus setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return LocationStatus._(
       value,
       element?.setProperty(name, elementValue),

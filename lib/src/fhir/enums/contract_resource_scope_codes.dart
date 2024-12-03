@@ -8,7 +8,9 @@ class ContractResourceScopeCodes extends PrimitiveType<String> {
   ContractResourceScopeCodes._(super.value, [super.element]);
 
   /// Factory constructor to create [ContractResourceScopeCodes] from JSON.
-  factory ContractResourceScopeCodes.fromJson(Map<String, dynamic> json) {
+  factory ContractResourceScopeCodes.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -35,12 +37,17 @@ class ContractResourceScopeCodes extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  ContractResourceScopeCodes clone() =>
-      ContractResourceScopeCodes._(value, element?.clone() as Element?);
+  ContractResourceScopeCodes clone() => ContractResourceScopeCodes._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  ContractResourceScopeCodes setElement(String name, dynamic elementValue) {
+  ContractResourceScopeCodes setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return ContractResourceScopeCodes._(
       value,
       element?.setProperty(name, elementValue),

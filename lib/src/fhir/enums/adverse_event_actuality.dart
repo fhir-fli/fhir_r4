@@ -8,7 +8,9 @@ class AdverseEventActuality extends PrimitiveType<String> {
   AdverseEventActuality._(super.value, [super.element]);
 
   /// Factory constructor to create [AdverseEventActuality] from JSON.
-  factory AdverseEventActuality.fromJson(Map<String, dynamic> json) {
+  factory AdverseEventActuality.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -40,12 +42,17 @@ class AdverseEventActuality extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  AdverseEventActuality clone() =>
-      AdverseEventActuality._(value, element?.clone() as Element?);
+  AdverseEventActuality clone() => AdverseEventActuality._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  AdverseEventActuality setElement(String name, dynamic elementValue) {
+  AdverseEventActuality setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return AdverseEventActuality._(
       value,
       element?.setProperty(name, elementValue),

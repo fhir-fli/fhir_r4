@@ -8,7 +8,9 @@ class FHIRDeviceStatus extends PrimitiveType<String> {
   FHIRDeviceStatus._(super.value, [super.element]);
 
   /// Factory constructor to create [FHIRDeviceStatus] from JSON.
-  factory FHIRDeviceStatus.fromJson(Map<String, dynamic> json) {
+  factory FHIRDeviceStatus.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -52,12 +54,17 @@ class FHIRDeviceStatus extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  FHIRDeviceStatus clone() =>
-      FHIRDeviceStatus._(value, element?.clone() as Element?);
+  FHIRDeviceStatus clone() => FHIRDeviceStatus._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  FHIRDeviceStatus setElement(String name, dynamic elementValue) {
+  FHIRDeviceStatus setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return FHIRDeviceStatus._(
       value,
       element?.setProperty(name, elementValue),

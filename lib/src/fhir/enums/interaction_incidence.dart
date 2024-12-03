@@ -8,7 +8,9 @@ class InteractionIncidence extends PrimitiveType<String> {
   InteractionIncidence._(super.value, [super.element]);
 
   /// Factory constructor to create [InteractionIncidence] from JSON.
-  factory InteractionIncidence.fromJson(Map<String, dynamic> json) {
+  factory InteractionIncidence.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -40,12 +42,17 @@ class InteractionIncidence extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  InteractionIncidence clone() =>
-      InteractionIncidence._(value, element?.clone() as Element?);
+  InteractionIncidence clone() => InteractionIncidence._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  InteractionIncidence setElement(String name, dynamic elementValue) {
+  InteractionIncidence setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return InteractionIncidence._(
       value,
       element?.setProperty(name, elementValue),

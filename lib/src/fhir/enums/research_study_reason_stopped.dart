@@ -8,7 +8,9 @@ class ResearchStudyReasonStopped extends PrimitiveType<String> {
   ResearchStudyReasonStopped._(super.value, [super.element]);
 
   /// Factory constructor to create [ResearchStudyReasonStopped] from JSON.
-  factory ResearchStudyReasonStopped.fromJson(Map<String, dynamic> json) {
+  factory ResearchStudyReasonStopped.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -57,12 +59,17 @@ class ResearchStudyReasonStopped extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  ResearchStudyReasonStopped clone() =>
-      ResearchStudyReasonStopped._(value, element?.clone() as Element?);
+  ResearchStudyReasonStopped clone() => ResearchStudyReasonStopped._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  ResearchStudyReasonStopped setElement(String name, dynamic elementValue) {
+  ResearchStudyReasonStopped setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return ResearchStudyReasonStopped._(
       value,
       element?.setProperty(name, elementValue),

@@ -8,7 +8,9 @@ class RemittanceOutcome extends PrimitiveType<String> {
   RemittanceOutcome._(super.value, [super.element]);
 
   /// Factory constructor to create [RemittanceOutcome] from JSON.
-  factory RemittanceOutcome.fromJson(Map<String, dynamic> json) {
+  factory RemittanceOutcome.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -52,12 +54,17 @@ class RemittanceOutcome extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  RemittanceOutcome clone() =>
-      RemittanceOutcome._(value, element?.clone() as Element?);
+  RemittanceOutcome clone() => RemittanceOutcome._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  RemittanceOutcome setElement(String name, dynamic elementValue) {
+  RemittanceOutcome setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return RemittanceOutcome._(
       value,
       element?.setProperty(name, elementValue),

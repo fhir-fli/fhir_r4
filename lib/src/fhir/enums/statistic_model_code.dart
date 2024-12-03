@@ -8,7 +8,9 @@ class StatisticModelCode extends PrimitiveType<String> {
   StatisticModelCode._(super.value, [super.element]);
 
   /// Factory constructor to create [StatisticModelCode] from JSON.
-  factory StatisticModelCode.fromJson(Map<String, dynamic> json) {
+  factory StatisticModelCode.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -509,12 +511,17 @@ class StatisticModelCode extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  StatisticModelCode clone() =>
-      StatisticModelCode._(value, element?.clone() as Element?);
+  StatisticModelCode clone() => StatisticModelCode._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  StatisticModelCode setElement(String name, dynamic elementValue) {
+  StatisticModelCode setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return StatisticModelCode._(
       value,
       element?.setProperty(name, elementValue),

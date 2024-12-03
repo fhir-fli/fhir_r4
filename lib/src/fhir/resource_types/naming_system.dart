@@ -46,60 +46,75 @@ class NamingSystem extends DomainResource {
   factory NamingSystem.fromJson(
     Map<String, dynamic> json,
   ) {
+    T? parseField<T extends FhirBase>(
+      dynamic value,
+      dynamic valueElement,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        (value != null || valueElement != null)
+            ? fromJson({
+                'value': value,
+                '_value': valueElement,
+              })
+            : null;
+    List<T>? parseList<T extends FhirBase>(
+      List<dynamic>? values,
+      List<dynamic>? valueElements,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        values?.asMap().entries.map((entry) {
+          final index = entry.key;
+          final value = entry.value;
+          final valueElement =
+              valueElements != null && valueElements.length > index
+                  ? valueElements[index]
+                  : null;
+          return fromJson({
+            'value': value,
+            '_value': valueElement,
+          });
+        }).toList();
     return NamingSystem(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
+      id: parseField<FhirString>(
+        json['id'],
+        json['_id'],
+        FhirString.fromJson,
+      ),
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
-      implicitRules:
-          (json['implicitRules'] != null || json['_implicitRules'] != null)
-              ? FhirUri.fromJson({
-                  'value': json['implicitRules'],
-                  '_value': json['_implicitRules'],
-                })
-              : null,
-      language: (json['language'] != null || json['_language'] != null)
-          ? CommonLanguages.fromJson({
-              'value': json['language'],
-              '_value': json['_language'],
-            })
-          : null,
+      implicitRules: parseField<FhirUri>(
+        json['implicitRules'],
+        json['_implicitRules'],
+        FhirUri.fromJson,
+      ),
+      language: parseField<CommonLanguages>(
+        json['language'],
+        json['_language'],
+        CommonLanguages.fromJson,
+      ),
       text: json['text'] != null
           ? Narrative.fromJson(
               json['text'] as Map<String, dynamic>,
             )
           : null,
-      contained: json['contained'] != null
-          ? (json['contained'] as List<dynamic>)
-              .map<Resource>(
-                (v) => Resource.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      contained: parseList<Resource>(
+        json['contained'] as List<dynamic>?,
+        json['_contained'] as List<dynamic>?,
+        Resource.fromJson,
+      ),
+      extension_: parseList<FhirExtension>(
+        json['extension'] as List<dynamic>?,
+        json['_extension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
+      modifierExtension: parseList<FhirExtension>(
+        json['modifierExtension'] as List<dynamic>?,
+        json['_modifierExtension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
       name: FhirString.fromJson({
         'value': json['name'],
         '_value': json['_name'],
@@ -116,71 +131,51 @@ class NamingSystem extends DomainResource {
         'value': json['date'],
         '_value': json['_date'],
       }),
-      publisher: (json['publisher'] != null || json['_publisher'] != null)
-          ? FhirString.fromJson({
-              'value': json['publisher'],
-              '_value': json['_publisher'],
-            })
-          : null,
-      contact: json['contact'] != null
-          ? (json['contact'] as List<dynamic>)
-              .map<ContactDetail>(
-                (v) => ContactDetail.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      responsible: (json['responsible'] != null || json['_responsible'] != null)
-          ? FhirString.fromJson({
-              'value': json['responsible'],
-              '_value': json['_responsible'],
-            })
-          : null,
+      publisher: parseField<FhirString>(
+        json['publisher'],
+        json['_publisher'],
+        FhirString.fromJson,
+      ),
+      contact: parseList<ContactDetail>(
+        json['contact'] as List<dynamic>?,
+        json['_contact'] as List<dynamic>?,
+        ContactDetail.fromJson,
+      ),
+      responsible: parseField<FhirString>(
+        json['responsible'],
+        json['_responsible'],
+        FhirString.fromJson,
+      ),
       type: json['type'] != null
           ? CodeableConcept.fromJson(
               json['type'] as Map<String, dynamic>,
             )
           : null,
-      description: (json['description'] != null || json['_description'] != null)
-          ? FhirMarkdown.fromJson({
-              'value': json['description'],
-              '_value': json['_description'],
-            })
-          : null,
-      useContext: json['useContext'] != null
-          ? (json['useContext'] as List<dynamic>)
-              .map<UsageContext>(
-                (v) => UsageContext.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      jurisdiction: json['jurisdiction'] != null
-          ? (json['jurisdiction'] as List<dynamic>)
-              .map<CodeableConcept>(
-                (v) => CodeableConcept.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      usage: (json['usage'] != null || json['_usage'] != null)
-          ? FhirString.fromJson({
-              'value': json['usage'],
-              '_value': json['_usage'],
-            })
-          : null,
-      uniqueId: ensureNonNullList(
-        (json['uniqueId'] as List<dynamic>)
-            .map<NamingSystemUniqueId>(
-              (v) => NamingSystemUniqueId.fromJson(
-                v as Map<String, dynamic>,
-              ),
-            )
-            .toList(),
+      description: parseField<FhirMarkdown>(
+        json['description'],
+        json['_description'],
+        FhirMarkdown.fromJson,
       ),
+      useContext: parseList<UsageContext>(
+        json['useContext'] as List<dynamic>?,
+        json['_useContext'] as List<dynamic>?,
+        UsageContext.fromJson,
+      ),
+      jurisdiction: parseList<CodeableConcept>(
+        json['jurisdiction'] as List<dynamic>?,
+        json['_jurisdiction'] as List<dynamic>?,
+        CodeableConcept.fromJson,
+      ),
+      usage: parseField<FhirString>(
+        json['usage'],
+        json['_usage'],
+        FhirString.fromJson,
+      ),
+      uniqueId: parseList<NamingSystemUniqueId>(
+        json['uniqueId'] as List<dynamic>?,
+        json['_uniqueId'] as List<dynamic>?,
+        NamingSystemUniqueId.fromJson,
+      )!,
     );
   }
 
@@ -191,21 +186,23 @@ class NamingSystem extends DomainResource {
   ) {
     if (yaml is String) {
       return NamingSystem.fromJson(
-        yamlToJson(yaml) as Map<String, Object?>,
+        yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
       return NamingSystem.fromJson(
-        yamlMapToJson(yaml) as Map<String, Object?>,
+        yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'NamingSystem cannot be constructed from the provided input. '
+        'NamingSystem '
+        'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
     }
   }
 
-  /// Factory constructor for [NamingSystem]
+  /// Factory constructor for
+  /// [NamingSystem]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
@@ -456,28 +453,50 @@ class NamingSystemUniqueId extends BackboneElement {
   factory NamingSystemUniqueId.fromJson(
     Map<String, dynamic> json,
   ) {
+    T? parseField<T extends FhirBase>(
+      dynamic value,
+      dynamic valueElement,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        (value != null || valueElement != null)
+            ? fromJson({
+                'value': value,
+                '_value': valueElement,
+              })
+            : null;
+    List<T>? parseList<T extends FhirBase>(
+      List<dynamic>? values,
+      List<dynamic>? valueElements,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        values?.asMap().entries.map((entry) {
+          final index = entry.key;
+          final value = entry.value;
+          final valueElement =
+              valueElements != null && valueElements.length > index
+                  ? valueElements[index]
+                  : null;
+          return fromJson({
+            'value': value,
+            '_value': valueElement,
+          });
+        }).toList();
     return NamingSystemUniqueId(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      id: parseField<FhirString>(
+        json['id'],
+        json['_id'],
+        FhirString.fromJson,
+      ),
+      extension_: parseList<FhirExtension>(
+        json['extension'] as List<dynamic>?,
+        json['_extension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
+      modifierExtension: parseList<FhirExtension>(
+        json['modifierExtension'] as List<dynamic>?,
+        json['_modifierExtension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
       type: NamingSystemIdentifierType.fromJson({
         'value': json['type'],
         '_value': json['_type'],
@@ -486,18 +505,16 @@ class NamingSystemUniqueId extends BackboneElement {
         'value': json['value'],
         '_value': json['_value'],
       }),
-      preferred: (json['preferred'] != null || json['_preferred'] != null)
-          ? FhirBoolean.fromJson({
-              'value': json['preferred'],
-              '_value': json['_preferred'],
-            })
-          : null,
-      comment: (json['comment'] != null || json['_comment'] != null)
-          ? FhirString.fromJson({
-              'value': json['comment'],
-              '_value': json['_comment'],
-            })
-          : null,
+      preferred: parseField<FhirBoolean>(
+        json['preferred'],
+        json['_preferred'],
+        FhirBoolean.fromJson,
+      ),
+      comment: parseField<FhirString>(
+        json['comment'],
+        json['_comment'],
+        FhirString.fromJson,
+      ),
       period: json['period'] != null
           ? Period.fromJson(
               json['period'] as Map<String, dynamic>,
@@ -513,21 +530,23 @@ class NamingSystemUniqueId extends BackboneElement {
   ) {
     if (yaml is String) {
       return NamingSystemUniqueId.fromJson(
-        yamlToJson(yaml) as Map<String, Object?>,
+        yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
       return NamingSystemUniqueId.fromJson(
-        yamlMapToJson(yaml) as Map<String, Object?>,
+        yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'NamingSystemUniqueId cannot be constructed from the provided input. '
+        'NamingSystemUniqueId '
+        'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
     }
   }
 
-  /// Factory constructor for [NamingSystemUniqueId]
+  /// Factory constructor for
+  /// [NamingSystemUniqueId]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]

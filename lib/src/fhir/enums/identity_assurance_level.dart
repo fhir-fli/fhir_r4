@@ -8,7 +8,9 @@ class IdentityAssuranceLevel extends PrimitiveType<String> {
   IdentityAssuranceLevel._(super.value, [super.element]);
 
   /// Factory constructor to create [IdentityAssuranceLevel] from JSON.
-  factory IdentityAssuranceLevel.fromJson(Map<String, dynamic> json) {
+  factory IdentityAssuranceLevel.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -53,12 +55,17 @@ class IdentityAssuranceLevel extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  IdentityAssuranceLevel clone() =>
-      IdentityAssuranceLevel._(value, element?.clone() as Element?);
+  IdentityAssuranceLevel clone() => IdentityAssuranceLevel._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  IdentityAssuranceLevel setElement(String name, dynamic elementValue) {
+  IdentityAssuranceLevel setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return IdentityAssuranceLevel._(
       value,
       element?.setProperty(name, elementValue),

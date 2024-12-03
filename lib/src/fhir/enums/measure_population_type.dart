@@ -8,7 +8,9 @@ class MeasurePopulationType extends PrimitiveType<String> {
   MeasurePopulationType._(super.value, [super.element]);
 
   /// Factory constructor to create [MeasurePopulationType] from JSON.
-  factory MeasurePopulationType.fromJson(Map<String, dynamic> json) {
+  factory MeasurePopulationType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -89,12 +91,17 @@ class MeasurePopulationType extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  MeasurePopulationType clone() =>
-      MeasurePopulationType._(value, element?.clone() as Element?);
+  MeasurePopulationType clone() => MeasurePopulationType._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  MeasurePopulationType setElement(String name, dynamic elementValue) {
+  MeasurePopulationType setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return MeasurePopulationType._(
       value,
       element?.setProperty(name, elementValue),

@@ -8,7 +8,9 @@ class PlanDefinitionType extends PrimitiveType<String> {
   PlanDefinitionType._(super.value, [super.element]);
 
   /// Factory constructor to create [PlanDefinitionType] from JSON.
-  factory PlanDefinitionType.fromJson(Map<String, dynamic> json) {
+  factory PlanDefinitionType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -52,12 +54,17 @@ class PlanDefinitionType extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  PlanDefinitionType clone() =>
-      PlanDefinitionType._(value, element?.clone() as Element?);
+  PlanDefinitionType clone() => PlanDefinitionType._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  PlanDefinitionType setElement(String name, dynamic elementValue) {
+  PlanDefinitionType setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return PlanDefinitionType._(
       value,
       element?.setProperty(name, elementValue),

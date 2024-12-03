@@ -8,7 +8,9 @@ class ImmunizationFundingSource extends PrimitiveType<String> {
   ImmunizationFundingSource._(super.value, [super.element]);
 
   /// Factory constructor to create [ImmunizationFundingSource] from JSON.
-  factory ImmunizationFundingSource.fromJson(Map<String, dynamic> json) {
+  factory ImmunizationFundingSource.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -41,12 +43,17 @@ class ImmunizationFundingSource extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  ImmunizationFundingSource clone() =>
-      ImmunizationFundingSource._(value, element?.clone() as Element?);
+  ImmunizationFundingSource clone() => ImmunizationFundingSource._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  ImmunizationFundingSource setElement(String name, dynamic elementValue) {
+  ImmunizationFundingSource setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return ImmunizationFundingSource._(
       value,
       element?.setProperty(name, elementValue),

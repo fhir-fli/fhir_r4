@@ -8,7 +8,9 @@ class XPathUsageType extends PrimitiveType<String> {
   XPathUsageType._(super.value, [super.element]);
 
   /// Factory constructor to create [XPathUsageType] from JSON.
-  factory XPathUsageType.fromJson(Map<String, dynamic> json) {
+  factory XPathUsageType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -58,12 +60,17 @@ class XPathUsageType extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  XPathUsageType clone() =>
-      XPathUsageType._(value, element?.clone() as Element?);
+  XPathUsageType clone() => XPathUsageType._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  XPathUsageType setElement(String name, dynamic elementValue) {
+  XPathUsageType setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return XPathUsageType._(
       value,
       element?.setProperty(name, elementValue),

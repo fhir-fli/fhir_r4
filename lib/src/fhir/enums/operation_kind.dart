@@ -8,7 +8,9 @@ class OperationKind extends PrimitiveType<String> {
   OperationKind._(super.value, [super.element]);
 
   /// Factory constructor to create [OperationKind] from JSON.
-  factory OperationKind.fromJson(Map<String, dynamic> json) {
+  factory OperationKind.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -40,11 +42,17 @@ class OperationKind extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  OperationKind clone() => OperationKind._(value, element?.clone() as Element?);
+  OperationKind clone() => OperationKind._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  OperationKind setElement(String name, dynamic elementValue) {
+  OperationKind setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return OperationKind._(
       value,
       element?.setProperty(name, elementValue),

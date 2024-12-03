@@ -8,7 +8,9 @@ class SupplyRequestStatus extends PrimitiveType<String> {
   SupplyRequestStatus._(super.value, [super.element]);
 
   /// Factory constructor to create [SupplyRequestStatus] from JSON.
-  factory SupplyRequestStatus.fromJson(Map<String, dynamic> json) {
+  factory SupplyRequestStatus.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -70,12 +72,17 @@ class SupplyRequestStatus extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  SupplyRequestStatus clone() =>
-      SupplyRequestStatus._(value, element?.clone() as Element?);
+  SupplyRequestStatus clone() => SupplyRequestStatus._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  SupplyRequestStatus setElement(String name, dynamic elementValue) {
+  SupplyRequestStatus setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return SupplyRequestStatus._(
       value,
       element?.setProperty(name, elementValue),

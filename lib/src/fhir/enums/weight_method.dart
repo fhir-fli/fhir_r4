@@ -8,7 +8,9 @@ class WeightMethod extends PrimitiveType<String> {
   WeightMethod._(super.value, [super.element]);
 
   /// Factory constructor to create [WeightMethod] from JSON.
-  factory WeightMethod.fromJson(Map<String, dynamic> json) {
+  factory WeightMethod.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -76,11 +78,17 @@ class WeightMethod extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  WeightMethod clone() => WeightMethod._(value, element?.clone() as Element?);
+  WeightMethod clone() => WeightMethod._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  WeightMethod setElement(String name, dynamic elementValue) {
+  WeightMethod setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return WeightMethod._(
       value,
       element?.setProperty(name, elementValue),

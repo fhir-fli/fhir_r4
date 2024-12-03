@@ -56,236 +56,194 @@ class EvidenceVariable extends DomainResource {
   factory EvidenceVariable.fromJson(
     Map<String, dynamic> json,
   ) {
+    T? parseField<T extends FhirBase>(
+      dynamic value,
+      dynamic valueElement,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        (value != null || valueElement != null)
+            ? fromJson({
+                'value': value,
+                '_value': valueElement,
+              })
+            : null;
+    List<T>? parseList<T extends FhirBase>(
+      List<dynamic>? values,
+      List<dynamic>? valueElements,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        values?.asMap().entries.map((entry) {
+          final index = entry.key;
+          final value = entry.value;
+          final valueElement =
+              valueElements != null && valueElements.length > index
+                  ? valueElements[index]
+                  : null;
+          return fromJson({
+            'value': value,
+            '_value': valueElement,
+          });
+        }).toList();
     return EvidenceVariable(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
+      id: parseField<FhirString>(
+        json['id'],
+        json['_id'],
+        FhirString.fromJson,
+      ),
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
-      implicitRules:
-          (json['implicitRules'] != null || json['_implicitRules'] != null)
-              ? FhirUri.fromJson({
-                  'value': json['implicitRules'],
-                  '_value': json['_implicitRules'],
-                })
-              : null,
-      language: (json['language'] != null || json['_language'] != null)
-          ? CommonLanguages.fromJson({
-              'value': json['language'],
-              '_value': json['_language'],
-            })
-          : null,
+      implicitRules: parseField<FhirUri>(
+        json['implicitRules'],
+        json['_implicitRules'],
+        FhirUri.fromJson,
+      ),
+      language: parseField<CommonLanguages>(
+        json['language'],
+        json['_language'],
+        CommonLanguages.fromJson,
+      ),
       text: json['text'] != null
           ? Narrative.fromJson(
               json['text'] as Map<String, dynamic>,
             )
           : null,
-      contained: json['contained'] != null
-          ? (json['contained'] as List<dynamic>)
-              .map<Resource>(
-                (v) => Resource.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      url: (json['url'] != null || json['_url'] != null)
-          ? FhirUri.fromJson({
-              'value': json['url'],
-              '_value': json['_url'],
-            })
-          : null,
-      identifier: json['identifier'] != null
-          ? (json['identifier'] as List<dynamic>)
-              .map<Identifier>(
-                (v) => Identifier.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      version: (json['version'] != null || json['_version'] != null)
-          ? FhirString.fromJson({
-              'value': json['version'],
-              '_value': json['_version'],
-            })
-          : null,
-      name: (json['name'] != null || json['_name'] != null)
-          ? FhirString.fromJson({
-              'value': json['name'],
-              '_value': json['_name'],
-            })
-          : null,
-      title: (json['title'] != null || json['_title'] != null)
-          ? FhirString.fromJson({
-              'value': json['title'],
-              '_value': json['_title'],
-            })
-          : null,
-      shortTitle: (json['shortTitle'] != null || json['_shortTitle'] != null)
-          ? FhirString.fromJson({
-              'value': json['shortTitle'],
-              '_value': json['_shortTitle'],
-            })
-          : null,
-      subtitle: (json['subtitle'] != null || json['_subtitle'] != null)
-          ? FhirString.fromJson({
-              'value': json['subtitle'],
-              '_value': json['_subtitle'],
-            })
-          : null,
+      contained: parseList<Resource>(
+        json['contained'] as List<dynamic>?,
+        json['_contained'] as List<dynamic>?,
+        Resource.fromJson,
+      ),
+      extension_: parseList<FhirExtension>(
+        json['extension'] as List<dynamic>?,
+        json['_extension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
+      modifierExtension: parseList<FhirExtension>(
+        json['modifierExtension'] as List<dynamic>?,
+        json['_modifierExtension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
+      url: parseField<FhirUri>(
+        json['url'],
+        json['_url'],
+        FhirUri.fromJson,
+      ),
+      identifier: parseList<Identifier>(
+        json['identifier'] as List<dynamic>?,
+        json['_identifier'] as List<dynamic>?,
+        Identifier.fromJson,
+      ),
+      version: parseField<FhirString>(
+        json['version'],
+        json['_version'],
+        FhirString.fromJson,
+      ),
+      name: parseField<FhirString>(
+        json['name'],
+        json['_name'],
+        FhirString.fromJson,
+      ),
+      title: parseField<FhirString>(
+        json['title'],
+        json['_title'],
+        FhirString.fromJson,
+      ),
+      shortTitle: parseField<FhirString>(
+        json['shortTitle'],
+        json['_shortTitle'],
+        FhirString.fromJson,
+      ),
+      subtitle: parseField<FhirString>(
+        json['subtitle'],
+        json['_subtitle'],
+        FhirString.fromJson,
+      ),
       status: PublicationStatus.fromJson({
         'value': json['status'],
         '_value': json['_status'],
       }),
-      date: (json['date'] != null || json['_date'] != null)
-          ? FhirDateTime.fromJson({
-              'value': json['date'],
-              '_value': json['_date'],
-            })
-          : null,
-      description: (json['description'] != null || json['_description'] != null)
-          ? FhirMarkdown.fromJson({
-              'value': json['description'],
-              '_value': json['_description'],
-            })
-          : null,
-      note: json['note'] != null
-          ? (json['note'] as List<dynamic>)
-              .map<Annotation>(
-                (v) => Annotation.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      useContext: json['useContext'] != null
-          ? (json['useContext'] as List<dynamic>)
-              .map<UsageContext>(
-                (v) => UsageContext.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      publisher: (json['publisher'] != null || json['_publisher'] != null)
-          ? FhirString.fromJson({
-              'value': json['publisher'],
-              '_value': json['_publisher'],
-            })
-          : null,
-      contact: json['contact'] != null
-          ? (json['contact'] as List<dynamic>)
-              .map<ContactDetail>(
-                (v) => ContactDetail.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      author: json['author'] != null
-          ? (json['author'] as List<dynamic>)
-              .map<ContactDetail>(
-                (v) => ContactDetail.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      editor: json['editor'] != null
-          ? (json['editor'] as List<dynamic>)
-              .map<ContactDetail>(
-                (v) => ContactDetail.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      reviewer: json['reviewer'] != null
-          ? (json['reviewer'] as List<dynamic>)
-              .map<ContactDetail>(
-                (v) => ContactDetail.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      endorser: json['endorser'] != null
-          ? (json['endorser'] as List<dynamic>)
-              .map<ContactDetail>(
-                (v) => ContactDetail.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      relatedArtifact: json['relatedArtifact'] != null
-          ? (json['relatedArtifact'] as List<dynamic>)
-              .map<RelatedArtifact>(
-                (v) => RelatedArtifact.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      actual: (json['actual'] != null || json['_actual'] != null)
-          ? FhirBoolean.fromJson({
-              'value': json['actual'],
-              '_value': json['_actual'],
-            })
-          : null,
-      characteristicCombination: (json['characteristicCombination'] != null ||
-              json['_characteristicCombination'] != null)
-          ? CharacteristicCombination.fromJson({
-              'value': json['characteristicCombination'],
-              '_value': json['_characteristicCombination'],
-            })
-          : null,
-      characteristic: json['characteristic'] != null
-          ? (json['characteristic'] as List<dynamic>)
-              .map<EvidenceVariableCharacteristic>(
-                (v) => EvidenceVariableCharacteristic.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      handling: (json['handling'] != null || json['_handling'] != null)
-          ? EvidenceVariableHandling.fromJson({
-              'value': json['handling'],
-              '_value': json['_handling'],
-            })
-          : null,
-      category: json['category'] != null
-          ? (json['category'] as List<dynamic>)
-              .map<EvidenceVariableCategory>(
-                (v) => EvidenceVariableCategory.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      date: parseField<FhirDateTime>(
+        json['date'],
+        json['_date'],
+        FhirDateTime.fromJson,
+      ),
+      description: parseField<FhirMarkdown>(
+        json['description'],
+        json['_description'],
+        FhirMarkdown.fromJson,
+      ),
+      note: parseList<Annotation>(
+        json['note'] as List<dynamic>?,
+        json['_note'] as List<dynamic>?,
+        Annotation.fromJson,
+      ),
+      useContext: parseList<UsageContext>(
+        json['useContext'] as List<dynamic>?,
+        json['_useContext'] as List<dynamic>?,
+        UsageContext.fromJson,
+      ),
+      publisher: parseField<FhirString>(
+        json['publisher'],
+        json['_publisher'],
+        FhirString.fromJson,
+      ),
+      contact: parseList<ContactDetail>(
+        json['contact'] as List<dynamic>?,
+        json['_contact'] as List<dynamic>?,
+        ContactDetail.fromJson,
+      ),
+      author: parseList<ContactDetail>(
+        json['author'] as List<dynamic>?,
+        json['_author'] as List<dynamic>?,
+        ContactDetail.fromJson,
+      ),
+      editor: parseList<ContactDetail>(
+        json['editor'] as List<dynamic>?,
+        json['_editor'] as List<dynamic>?,
+        ContactDetail.fromJson,
+      ),
+      reviewer: parseList<ContactDetail>(
+        json['reviewer'] as List<dynamic>?,
+        json['_reviewer'] as List<dynamic>?,
+        ContactDetail.fromJson,
+      ),
+      endorser: parseList<ContactDetail>(
+        json['endorser'] as List<dynamic>?,
+        json['_endorser'] as List<dynamic>?,
+        ContactDetail.fromJson,
+      ),
+      relatedArtifact: parseList<RelatedArtifact>(
+        json['relatedArtifact'] as List<dynamic>?,
+        json['_relatedArtifact'] as List<dynamic>?,
+        RelatedArtifact.fromJson,
+      ),
+      actual: parseField<FhirBoolean>(
+        json['actual'],
+        json['_actual'],
+        FhirBoolean.fromJson,
+      ),
+      characteristicCombination: parseField<CharacteristicCombination>(
+        json['characteristicCombination'],
+        json['_characteristicCombination'],
+        CharacteristicCombination.fromJson,
+      ),
+      characteristic: parseList<EvidenceVariableCharacteristic>(
+        json['characteristic'] as List<dynamic>?,
+        json['_characteristic'] as List<dynamic>?,
+        EvidenceVariableCharacteristic.fromJson,
+      ),
+      handling: parseField<EvidenceVariableHandling>(
+        json['handling'],
+        json['_handling'],
+        EvidenceVariableHandling.fromJson,
+      ),
+      category: parseList<EvidenceVariableCategory>(
+        json['category'] as List<dynamic>?,
+        json['_category'] as List<dynamic>?,
+        EvidenceVariableCategory.fromJson,
+      ),
     );
   }
 
@@ -296,21 +254,23 @@ class EvidenceVariable extends DomainResource {
   ) {
     if (yaml is String) {
       return EvidenceVariable.fromJson(
-        yamlToJson(yaml) as Map<String, Object?>,
+        yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
       return EvidenceVariable.fromJson(
-        yamlMapToJson(yaml) as Map<String, Object?>,
+        yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'EvidenceVariable cannot be constructed from the provided input. '
+        'EvidenceVariable '
+        'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
     }
   }
 
-  /// Factory constructor for [EvidenceVariable]
+  /// Factory constructor for
+  /// [EvidenceVariable]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
@@ -685,46 +645,65 @@ class EvidenceVariableCharacteristic extends BackboneElement {
   factory EvidenceVariableCharacteristic.fromJson(
     Map<String, dynamic> json,
   ) {
+    T? parseField<T extends FhirBase>(
+      dynamic value,
+      dynamic valueElement,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        (value != null || valueElement != null)
+            ? fromJson({
+                'value': value,
+                '_value': valueElement,
+              })
+            : null;
+    List<T>? parseList<T extends FhirBase>(
+      List<dynamic>? values,
+      List<dynamic>? valueElements,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        values?.asMap().entries.map((entry) {
+          final index = entry.key;
+          final value = entry.value;
+          final valueElement =
+              valueElements != null && valueElements.length > index
+                  ? valueElements[index]
+                  : null;
+          return fromJson({
+            'value': value,
+            '_value': valueElement,
+          });
+        }).toList();
     return EvidenceVariableCharacteristic(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      description: (json['description'] != null || json['_description'] != null)
-          ? FhirString.fromJson({
-              'value': json['description'],
-              '_value': json['_description'],
-            })
-          : null,
+      id: parseField<FhirString>(
+        json['id'],
+        json['_id'],
+        FhirString.fromJson,
+      ),
+      extension_: parseList<FhirExtension>(
+        json['extension'] as List<dynamic>?,
+        json['_extension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
+      modifierExtension: parseList<FhirExtension>(
+        json['modifierExtension'] as List<dynamic>?,
+        json['_modifierExtension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
+      description: parseField<FhirString>(
+        json['description'],
+        json['_description'],
+        FhirString.fromJson,
+      ),
       definitionReference: json['definitionReference'] != null
           ? Reference.fromJson(
               json['definitionReference'] as Map<String, dynamic>,
             )
           : null,
-      definitionCanonical: (json['definitionCanonical'] != null ||
-              json['_definitionCanonical'] != null)
-          ? FhirCanonical.fromJson({
-              'value': json['definitionCanonical'],
-              '_value': json['_definitionCanonical'],
-            })
-          : null,
+      definitionCanonical: parseField<FhirCanonical>(
+        json['definitionCanonical'],
+        json['_definitionCanonical'],
+        FhirCanonical.fromJson,
+      ),
       definitionCodeableConcept: json['definitionCodeableConcept'] != null
           ? CodeableConcept.fromJson(
               json['definitionCodeableConcept'] as Map<String, dynamic>,
@@ -745,24 +724,21 @@ class EvidenceVariableCharacteristic extends BackboneElement {
               json['device'] as Map<String, dynamic>,
             )
           : null,
-      exclude: (json['exclude'] != null || json['_exclude'] != null)
-          ? FhirBoolean.fromJson({
-              'value': json['exclude'],
-              '_value': json['_exclude'],
-            })
-          : null,
+      exclude: parseField<FhirBoolean>(
+        json['exclude'],
+        json['_exclude'],
+        FhirBoolean.fromJson,
+      ),
       timeFromStart: json['timeFromStart'] != null
           ? EvidenceVariableTimeFromStart.fromJson(
               json['timeFromStart'] as Map<String, dynamic>,
             )
           : null,
-      groupMeasure:
-          (json['groupMeasure'] != null || json['_groupMeasure'] != null)
-              ? GroupMeasure.fromJson({
-                  'value': json['groupMeasure'],
-                  '_value': json['_groupMeasure'],
-                })
-              : null,
+      groupMeasure: parseField<GroupMeasure>(
+        json['groupMeasure'],
+        json['_groupMeasure'],
+        GroupMeasure.fromJson,
+      ),
     );
   }
 
@@ -773,21 +749,23 @@ class EvidenceVariableCharacteristic extends BackboneElement {
   ) {
     if (yaml is String) {
       return EvidenceVariableCharacteristic.fromJson(
-        yamlToJson(yaml) as Map<String, Object?>,
+        yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
       return EvidenceVariableCharacteristic.fromJson(
-        yamlMapToJson(yaml) as Map<String, Object?>,
+        yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'EvidenceVariableCharacteristic cannot be constructed from the provided input. '
+        'EvidenceVariableCharacteristic '
+        'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
     }
   }
 
-  /// Factory constructor for [EvidenceVariableCharacteristic]
+  /// Factory constructor for
+  /// [EvidenceVariableCharacteristic]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
@@ -990,34 +968,55 @@ class EvidenceVariableTimeFromStart extends BackboneElement {
   factory EvidenceVariableTimeFromStart.fromJson(
     Map<String, dynamic> json,
   ) {
+    T? parseField<T extends FhirBase>(
+      dynamic value,
+      dynamic valueElement,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        (value != null || valueElement != null)
+            ? fromJson({
+                'value': value,
+                '_value': valueElement,
+              })
+            : null;
+    List<T>? parseList<T extends FhirBase>(
+      List<dynamic>? values,
+      List<dynamic>? valueElements,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        values?.asMap().entries.map((entry) {
+          final index = entry.key;
+          final value = entry.value;
+          final valueElement =
+              valueElements != null && valueElements.length > index
+                  ? valueElements[index]
+                  : null;
+          return fromJson({
+            'value': value,
+            '_value': valueElement,
+          });
+        }).toList();
     return EvidenceVariableTimeFromStart(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      description: (json['description'] != null || json['_description'] != null)
-          ? FhirString.fromJson({
-              'value': json['description'],
-              '_value': json['_description'],
-            })
-          : null,
+      id: parseField<FhirString>(
+        json['id'],
+        json['_id'],
+        FhirString.fromJson,
+      ),
+      extension_: parseList<FhirExtension>(
+        json['extension'] as List<dynamic>?,
+        json['_extension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
+      modifierExtension: parseList<FhirExtension>(
+        json['modifierExtension'] as List<dynamic>?,
+        json['_modifierExtension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
+      description: parseField<FhirString>(
+        json['description'],
+        json['_description'],
+        FhirString.fromJson,
+      ),
       quantity: json['quantity'] != null
           ? Quantity.fromJson(
               json['quantity'] as Map<String, dynamic>,
@@ -1028,15 +1027,11 @@ class EvidenceVariableTimeFromStart extends BackboneElement {
               json['range'] as Map<String, dynamic>,
             )
           : null,
-      note: json['note'] != null
-          ? (json['note'] as List<dynamic>)
-              .map<Annotation>(
-                (v) => Annotation.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      note: parseList<Annotation>(
+        json['note'] as List<dynamic>?,
+        json['_note'] as List<dynamic>?,
+        Annotation.fromJson,
+      ),
     );
   }
 
@@ -1047,21 +1042,23 @@ class EvidenceVariableTimeFromStart extends BackboneElement {
   ) {
     if (yaml is String) {
       return EvidenceVariableTimeFromStart.fromJson(
-        yamlToJson(yaml) as Map<String, Object?>,
+        yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
       return EvidenceVariableTimeFromStart.fromJson(
-        yamlMapToJson(yaml) as Map<String, Object?>,
+        yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'EvidenceVariableTimeFromStart cannot be constructed from the provided input. '
+        'EvidenceVariableTimeFromStart '
+        'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
     }
   }
 
-  /// Factory constructor for [EvidenceVariableTimeFromStart]
+  /// Factory constructor for
+  /// [EvidenceVariableTimeFromStart]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
@@ -1198,34 +1195,55 @@ class EvidenceVariableCategory extends BackboneElement {
   factory EvidenceVariableCategory.fromJson(
     Map<String, dynamic> json,
   ) {
+    T? parseField<T extends FhirBase>(
+      dynamic value,
+      dynamic valueElement,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        (value != null || valueElement != null)
+            ? fromJson({
+                'value': value,
+                '_value': valueElement,
+              })
+            : null;
+    List<T>? parseList<T extends FhirBase>(
+      List<dynamic>? values,
+      List<dynamic>? valueElements,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        values?.asMap().entries.map((entry) {
+          final index = entry.key;
+          final value = entry.value;
+          final valueElement =
+              valueElements != null && valueElements.length > index
+                  ? valueElements[index]
+                  : null;
+          return fromJson({
+            'value': value,
+            '_value': valueElement,
+          });
+        }).toList();
     return EvidenceVariableCategory(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      name: (json['name'] != null || json['_name'] != null)
-          ? FhirString.fromJson({
-              'value': json['name'],
-              '_value': json['_name'],
-            })
-          : null,
+      id: parseField<FhirString>(
+        json['id'],
+        json['_id'],
+        FhirString.fromJson,
+      ),
+      extension_: parseList<FhirExtension>(
+        json['extension'] as List<dynamic>?,
+        json['_extension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
+      modifierExtension: parseList<FhirExtension>(
+        json['modifierExtension'] as List<dynamic>?,
+        json['_modifierExtension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
+      name: parseField<FhirString>(
+        json['name'],
+        json['_name'],
+        FhirString.fromJson,
+      ),
       valueCodeableConcept: json['valueCodeableConcept'] != null
           ? CodeableConcept.fromJson(
               json['valueCodeableConcept'] as Map<String, dynamic>,
@@ -1251,21 +1269,23 @@ class EvidenceVariableCategory extends BackboneElement {
   ) {
     if (yaml is String) {
       return EvidenceVariableCategory.fromJson(
-        yamlToJson(yaml) as Map<String, Object?>,
+        yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
       return EvidenceVariableCategory.fromJson(
-        yamlMapToJson(yaml) as Map<String, Object?>,
+        yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'EvidenceVariableCategory cannot be constructed from the provided input. '
+        'EvidenceVariableCategory '
+        'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
     }
   }
 
-  /// Factory constructor for [EvidenceVariableCategory]
+  /// Factory constructor for
+  /// [EvidenceVariableCategory]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]

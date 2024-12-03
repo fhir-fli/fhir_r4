@@ -8,7 +8,9 @@ class ObservationDataType extends PrimitiveType<String> {
   ObservationDataType._(super.value, [super.element]);
 
   /// Factory constructor to create [ObservationDataType] from JSON.
-  factory ObservationDataType.fromJson(Map<String, dynamic> json) {
+  factory ObservationDataType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -94,12 +96,17 @@ class ObservationDataType extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  ObservationDataType clone() =>
-      ObservationDataType._(value, element?.clone() as Element?);
+  ObservationDataType clone() => ObservationDataType._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  ObservationDataType setElement(String name, dynamic elementValue) {
+  ObservationDataType setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return ObservationDataType._(
       value,
       element?.setProperty(name, elementValue),

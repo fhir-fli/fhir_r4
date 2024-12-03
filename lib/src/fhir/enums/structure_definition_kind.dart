@@ -8,7 +8,9 @@ class StructureDefinitionKind extends PrimitiveType<String> {
   StructureDefinitionKind._(super.value, [super.element]);
 
   /// Factory constructor to create [StructureDefinitionKind] from JSON.
-  factory StructureDefinitionKind.fromJson(Map<String, dynamic> json) {
+  factory StructureDefinitionKind.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -54,12 +56,17 @@ class StructureDefinitionKind extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  StructureDefinitionKind clone() =>
-      StructureDefinitionKind._(value, element?.clone() as Element?);
+  StructureDefinitionKind clone() => StructureDefinitionKind._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  StructureDefinitionKind setElement(String name, dynamic elementValue) {
+  StructureDefinitionKind setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return StructureDefinitionKind._(
       value,
       element?.setProperty(name, elementValue),

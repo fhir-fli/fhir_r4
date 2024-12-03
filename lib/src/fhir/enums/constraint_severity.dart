@@ -8,7 +8,9 @@ class ConstraintSeverity extends PrimitiveType<String> {
   ConstraintSeverity._(super.value, [super.element]);
 
   /// Factory constructor to create [ConstraintSeverity] from JSON.
-  factory ConstraintSeverity.fromJson(Map<String, dynamic> json) {
+  factory ConstraintSeverity.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -40,12 +42,17 @@ class ConstraintSeverity extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  ConstraintSeverity clone() =>
-      ConstraintSeverity._(value, element?.clone() as Element?);
+  ConstraintSeverity clone() => ConstraintSeverity._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  ConstraintSeverity setElement(String name, dynamic elementValue) {
+  ConstraintSeverity setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return ConstraintSeverity._(
       value,
       element?.setProperty(name, elementValue),

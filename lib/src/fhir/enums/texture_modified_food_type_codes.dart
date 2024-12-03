@@ -8,7 +8,9 @@ class TextureModifiedFoodTypeCodes extends PrimitiveType<String> {
   TextureModifiedFoodTypeCodes._(super.value, [super.element]);
 
   /// Factory constructor to create [TextureModifiedFoodTypeCodes] from JSON.
-  factory TextureModifiedFoodTypeCodes.fromJson(Map<String, dynamic> json) {
+  factory TextureModifiedFoodTypeCodes.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -127,12 +129,17 @@ class TextureModifiedFoodTypeCodes extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  TextureModifiedFoodTypeCodes clone() =>
-      TextureModifiedFoodTypeCodes._(value, element?.clone() as Element?);
+  TextureModifiedFoodTypeCodes clone() => TextureModifiedFoodTypeCodes._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  TextureModifiedFoodTypeCodes setElement(String name, dynamic elementValue) {
+  TextureModifiedFoodTypeCodes setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return TextureModifiedFoodTypeCodes._(
       value,
       element?.setProperty(name, elementValue),

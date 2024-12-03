@@ -8,7 +8,9 @@ class PublicationStatus extends PrimitiveType<String> {
   PublicationStatus._(super.value, [super.element]);
 
   /// Factory constructor to create [PublicationStatus] from JSON.
-  factory PublicationStatus.fromJson(Map<String, dynamic> json) {
+  factory PublicationStatus.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -52,12 +54,17 @@ class PublicationStatus extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  PublicationStatus clone() =>
-      PublicationStatus._(value, element?.clone() as Element?);
+  PublicationStatus clone() => PublicationStatus._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  PublicationStatus setElement(String name, dynamic elementValue) {
+  PublicationStatus setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return PublicationStatus._(
       value,
       element?.setProperty(name, elementValue),

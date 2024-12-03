@@ -8,7 +8,9 @@ class LinkageType extends PrimitiveType<String> {
   LinkageType._(super.value, [super.element]);
 
   /// Factory constructor to create [LinkageType] from JSON.
-  factory LinkageType.fromJson(Map<String, dynamic> json) {
+  factory LinkageType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -46,11 +48,17 @@ class LinkageType extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  LinkageType clone() => LinkageType._(value, element?.clone() as Element?);
+  LinkageType clone() => LinkageType._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  LinkageType setElement(String name, dynamic elementValue) {
+  LinkageType setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return LinkageType._(
       value,
       element?.setProperty(name, elementValue),

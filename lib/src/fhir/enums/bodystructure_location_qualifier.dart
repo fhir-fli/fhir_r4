@@ -8,7 +8,9 @@ class BodystructureLocationQualifier extends PrimitiveType<String> {
   BodystructureLocationQualifier._(super.value, [super.element]);
 
   /// Factory constructor to create [BodystructureLocationQualifier] from JSON.
-  factory BodystructureLocationQualifier.fromJson(Map<String, dynamic> json) {
+  factory BodystructureLocationQualifier.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -113,12 +115,17 @@ class BodystructureLocationQualifier extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  BodystructureLocationQualifier clone() =>
-      BodystructureLocationQualifier._(value, element?.clone() as Element?);
+  BodystructureLocationQualifier clone() => BodystructureLocationQualifier._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  BodystructureLocationQualifier setElement(String name, dynamic elementValue) {
+  BodystructureLocationQualifier setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return BodystructureLocationQualifier._(
       value,
       element?.setProperty(name, elementValue),

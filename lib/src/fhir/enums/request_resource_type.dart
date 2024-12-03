@@ -8,7 +8,9 @@ class RequestResourceType extends PrimitiveType<String> {
   RequestResourceType._(super.value, [super.element]);
 
   /// Factory constructor to create [RequestResourceType] from JSON.
-  factory RequestResourceType.fromJson(Map<String, dynamic> json) {
+  factory RequestResourceType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -119,12 +121,17 @@ class RequestResourceType extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  RequestResourceType clone() =>
-      RequestResourceType._(value, element?.clone() as Element?);
+  RequestResourceType clone() => RequestResourceType._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  RequestResourceType setElement(String name, dynamic elementValue) {
+  RequestResourceType setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return RequestResourceType._(
       value,
       element?.setProperty(name, elementValue),

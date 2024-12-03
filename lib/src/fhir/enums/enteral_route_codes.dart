@@ -8,7 +8,9 @@ class EnteralRouteCodes extends PrimitiveType<String> {
   EnteralRouteCodes._(super.value, [super.element]);
 
   /// Factory constructor to create [EnteralRouteCodes] from JSON.
-  factory EnteralRouteCodes.fromJson(Map<String, dynamic> json) {
+  factory EnteralRouteCodes.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -82,12 +84,17 @@ class EnteralRouteCodes extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  EnteralRouteCodes clone() =>
-      EnteralRouteCodes._(value, element?.clone() as Element?);
+  EnteralRouteCodes clone() => EnteralRouteCodes._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  EnteralRouteCodes setElement(String name, dynamic elementValue) {
+  EnteralRouteCodes setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return EnteralRouteCodes._(
       value,
       element?.setProperty(name, elementValue),

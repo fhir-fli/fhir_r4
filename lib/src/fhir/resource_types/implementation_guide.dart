@@ -55,177 +55,161 @@ class ImplementationGuide extends DomainResource {
   factory ImplementationGuide.fromJson(
     Map<String, dynamic> json,
   ) {
+    T? parseField<T extends FhirBase>(
+      dynamic value,
+      dynamic valueElement,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        (value != null || valueElement != null)
+            ? fromJson({
+                'value': value,
+                '_value': valueElement,
+              })
+            : null;
+    List<T>? parseList<T extends FhirBase>(
+      List<dynamic>? values,
+      List<dynamic>? valueElements,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        values?.asMap().entries.map((entry) {
+          final index = entry.key;
+          final value = entry.value;
+          final valueElement =
+              valueElements != null && valueElements.length > index
+                  ? valueElements[index]
+                  : null;
+          return fromJson({
+            'value': value,
+            '_value': valueElement,
+          });
+        }).toList();
     return ImplementationGuide(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
+      id: parseField<FhirString>(
+        json['id'],
+        json['_id'],
+        FhirString.fromJson,
+      ),
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
-      implicitRules:
-          (json['implicitRules'] != null || json['_implicitRules'] != null)
-              ? FhirUri.fromJson({
-                  'value': json['implicitRules'],
-                  '_value': json['_implicitRules'],
-                })
-              : null,
-      language: (json['language'] != null || json['_language'] != null)
-          ? CommonLanguages.fromJson({
-              'value': json['language'],
-              '_value': json['_language'],
-            })
-          : null,
+      implicitRules: parseField<FhirUri>(
+        json['implicitRules'],
+        json['_implicitRules'],
+        FhirUri.fromJson,
+      ),
+      language: parseField<CommonLanguages>(
+        json['language'],
+        json['_language'],
+        CommonLanguages.fromJson,
+      ),
       text: json['text'] != null
           ? Narrative.fromJson(
               json['text'] as Map<String, dynamic>,
             )
           : null,
-      contained: json['contained'] != null
-          ? (json['contained'] as List<dynamic>)
-              .map<Resource>(
-                (v) => Resource.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      contained: parseList<Resource>(
+        json['contained'] as List<dynamic>?,
+        json['_contained'] as List<dynamic>?,
+        Resource.fromJson,
+      ),
+      extension_: parseList<FhirExtension>(
+        json['extension'] as List<dynamic>?,
+        json['_extension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
+      modifierExtension: parseList<FhirExtension>(
+        json['modifierExtension'] as List<dynamic>?,
+        json['_modifierExtension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
       url: FhirUri.fromJson({
         'value': json['url'],
         '_value': json['_url'],
       }),
-      version: (json['version'] != null || json['_version'] != null)
-          ? FhirString.fromJson({
-              'value': json['version'],
-              '_value': json['_version'],
-            })
-          : null,
+      version: parseField<FhirString>(
+        json['version'],
+        json['_version'],
+        FhirString.fromJson,
+      ),
       name: FhirString.fromJson({
         'value': json['name'],
         '_value': json['_name'],
       }),
-      title: (json['title'] != null || json['_title'] != null)
-          ? FhirString.fromJson({
-              'value': json['title'],
-              '_value': json['_title'],
-            })
-          : null,
+      title: parseField<FhirString>(
+        json['title'],
+        json['_title'],
+        FhirString.fromJson,
+      ),
       status: PublicationStatus.fromJson({
         'value': json['status'],
         '_value': json['_status'],
       }),
-      experimental:
-          (json['experimental'] != null || json['_experimental'] != null)
-              ? FhirBoolean.fromJson({
-                  'value': json['experimental'],
-                  '_value': json['_experimental'],
-                })
-              : null,
-      date: (json['date'] != null || json['_date'] != null)
-          ? FhirDateTime.fromJson({
-              'value': json['date'],
-              '_value': json['_date'],
-            })
-          : null,
-      publisher: (json['publisher'] != null || json['_publisher'] != null)
-          ? FhirString.fromJson({
-              'value': json['publisher'],
-              '_value': json['_publisher'],
-            })
-          : null,
-      contact: json['contact'] != null
-          ? (json['contact'] as List<dynamic>)
-              .map<ContactDetail>(
-                (v) => ContactDetail.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      description: (json['description'] != null || json['_description'] != null)
-          ? FhirMarkdown.fromJson({
-              'value': json['description'],
-              '_value': json['_description'],
-            })
-          : null,
-      useContext: json['useContext'] != null
-          ? (json['useContext'] as List<dynamic>)
-              .map<UsageContext>(
-                (v) => UsageContext.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      jurisdiction: json['jurisdiction'] != null
-          ? (json['jurisdiction'] as List<dynamic>)
-              .map<CodeableConcept>(
-                (v) => CodeableConcept.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      copyright: (json['copyright'] != null || json['_copyright'] != null)
-          ? FhirMarkdown.fromJson({
-              'value': json['copyright'],
-              '_value': json['_copyright'],
-            })
-          : null,
+      experimental: parseField<FhirBoolean>(
+        json['experimental'],
+        json['_experimental'],
+        FhirBoolean.fromJson,
+      ),
+      date: parseField<FhirDateTime>(
+        json['date'],
+        json['_date'],
+        FhirDateTime.fromJson,
+      ),
+      publisher: parseField<FhirString>(
+        json['publisher'],
+        json['_publisher'],
+        FhirString.fromJson,
+      ),
+      contact: parseList<ContactDetail>(
+        json['contact'] as List<dynamic>?,
+        json['_contact'] as List<dynamic>?,
+        ContactDetail.fromJson,
+      ),
+      description: parseField<FhirMarkdown>(
+        json['description'],
+        json['_description'],
+        FhirMarkdown.fromJson,
+      ),
+      useContext: parseList<UsageContext>(
+        json['useContext'] as List<dynamic>?,
+        json['_useContext'] as List<dynamic>?,
+        UsageContext.fromJson,
+      ),
+      jurisdiction: parseList<CodeableConcept>(
+        json['jurisdiction'] as List<dynamic>?,
+        json['_jurisdiction'] as List<dynamic>?,
+        CodeableConcept.fromJson,
+      ),
+      copyright: parseField<FhirMarkdown>(
+        json['copyright'],
+        json['_copyright'],
+        FhirMarkdown.fromJson,
+      ),
       packageId: FhirId.fromJson({
         'value': json['packageId'],
         '_value': json['_packageId'],
       }),
-      license: (json['license'] != null || json['_license'] != null)
-          ? SPDXLicense.fromJson({
-              'value': json['license'],
-              '_value': json['_license'],
-            })
-          : null,
-      fhirVersion: ensureNonNullList(
-        parsePrimitiveList<FHIRVersion>(
-          json['fhirVersion'] as List<dynamic>?,
-          json['_fhirVersion'] as List<dynamic>?,
-          fromJson: FHIRVersion.fromJson,
-        ),
+      license: parseField<SPDXLicense>(
+        json['license'],
+        json['_license'],
+        SPDXLicense.fromJson,
       ),
-      dependsOn: json['dependsOn'] != null
-          ? (json['dependsOn'] as List<dynamic>)
-              .map<ImplementationGuideDependsOn>(
-                (v) => ImplementationGuideDependsOn.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      global: json['global'] != null
-          ? (json['global'] as List<dynamic>)
-              .map<ImplementationGuideGlobal>(
-                (v) => ImplementationGuideGlobal.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      fhirVersion: parseList<FHIRVersion>(
+        json['fhirVersion'] as List<dynamic>?,
+        json['_fhirVersion'] as List<dynamic>?,
+        FHIRVersion.fromJson,
+      )!,
+      dependsOn: parseList<ImplementationGuideDependsOn>(
+        json['dependsOn'] as List<dynamic>?,
+        json['_dependsOn'] as List<dynamic>?,
+        ImplementationGuideDependsOn.fromJson,
+      ),
+      global: parseList<ImplementationGuideGlobal>(
+        json['global'] as List<dynamic>?,
+        json['_global'] as List<dynamic>?,
+        ImplementationGuideGlobal.fromJson,
+      ),
       definition: json['definition'] != null
           ? ImplementationGuideDefinition.fromJson(
               json['definition'] as Map<String, dynamic>,
@@ -246,21 +230,23 @@ class ImplementationGuide extends DomainResource {
   ) {
     if (yaml is String) {
       return ImplementationGuide.fromJson(
-        yamlToJson(yaml) as Map<String, Object?>,
+        yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
       return ImplementationGuide.fromJson(
-        yamlMapToJson(yaml) as Map<String, Object?>,
+        yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ImplementationGuide cannot be constructed from the provided input. '
+        'ImplementationGuide '
+        'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
     }
   }
 
-  /// Factory constructor for [ImplementationGuide]
+  /// Factory constructor for
+  /// [ImplementationGuide]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
@@ -594,44 +580,64 @@ class ImplementationGuideDependsOn extends BackboneElement {
   factory ImplementationGuideDependsOn.fromJson(
     Map<String, dynamic> json,
   ) {
+    T? parseField<T extends FhirBase>(
+      dynamic value,
+      dynamic valueElement,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        (value != null || valueElement != null)
+            ? fromJson({
+                'value': value,
+                '_value': valueElement,
+              })
+            : null;
+    List<T>? parseList<T extends FhirBase>(
+      List<dynamic>? values,
+      List<dynamic>? valueElements,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        values?.asMap().entries.map((entry) {
+          final index = entry.key;
+          final value = entry.value;
+          final valueElement =
+              valueElements != null && valueElements.length > index
+                  ? valueElements[index]
+                  : null;
+          return fromJson({
+            'value': value,
+            '_value': valueElement,
+          });
+        }).toList();
     return ImplementationGuideDependsOn(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      id: parseField<FhirString>(
+        json['id'],
+        json['_id'],
+        FhirString.fromJson,
+      ),
+      extension_: parseList<FhirExtension>(
+        json['extension'] as List<dynamic>?,
+        json['_extension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
+      modifierExtension: parseList<FhirExtension>(
+        json['modifierExtension'] as List<dynamic>?,
+        json['_modifierExtension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
       uri: FhirCanonical.fromJson({
         'value': json['uri'],
         '_value': json['_uri'],
       }),
-      packageId: (json['packageId'] != null || json['_packageId'] != null)
-          ? FhirId.fromJson({
-              'value': json['packageId'],
-              '_value': json['_packageId'],
-            })
-          : null,
-      version: (json['version'] != null || json['_version'] != null)
-          ? FhirString.fromJson({
-              'value': json['version'],
-              '_value': json['_version'],
-            })
-          : null,
+      packageId: parseField<FhirId>(
+        json['packageId'],
+        json['_packageId'],
+        FhirId.fromJson,
+      ),
+      version: parseField<FhirString>(
+        json['version'],
+        json['_version'],
+        FhirString.fromJson,
+      ),
     );
   }
 
@@ -642,21 +648,23 @@ class ImplementationGuideDependsOn extends BackboneElement {
   ) {
     if (yaml is String) {
       return ImplementationGuideDependsOn.fromJson(
-        yamlToJson(yaml) as Map<String, Object?>,
+        yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
       return ImplementationGuideDependsOn.fromJson(
-        yamlMapToJson(yaml) as Map<String, Object?>,
+        yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ImplementationGuideDependsOn cannot be constructed from the provided input. '
+        'ImplementationGuideDependsOn '
+        'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
     }
   }
 
-  /// Factory constructor for [ImplementationGuideDependsOn]
+  /// Factory constructor for
+  /// [ImplementationGuideDependsOn]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
@@ -775,28 +783,50 @@ class ImplementationGuideGlobal extends BackboneElement {
   factory ImplementationGuideGlobal.fromJson(
     Map<String, dynamic> json,
   ) {
+    T? parseField<T extends FhirBase>(
+      dynamic value,
+      dynamic valueElement,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        (value != null || valueElement != null)
+            ? fromJson({
+                'value': value,
+                '_value': valueElement,
+              })
+            : null;
+    List<T>? parseList<T extends FhirBase>(
+      List<dynamic>? values,
+      List<dynamic>? valueElements,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        values?.asMap().entries.map((entry) {
+          final index = entry.key;
+          final value = entry.value;
+          final valueElement =
+              valueElements != null && valueElements.length > index
+                  ? valueElements[index]
+                  : null;
+          return fromJson({
+            'value': value,
+            '_value': valueElement,
+          });
+        }).toList();
     return ImplementationGuideGlobal(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      id: parseField<FhirString>(
+        json['id'],
+        json['_id'],
+        FhirString.fromJson,
+      ),
+      extension_: parseList<FhirExtension>(
+        json['extension'] as List<dynamic>?,
+        json['_extension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
+      modifierExtension: parseList<FhirExtension>(
+        json['modifierExtension'] as List<dynamic>?,
+        json['_modifierExtension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
       type: FhirCode.fromJson({
         'value': json['type'],
         '_value': json['_type'],
@@ -815,21 +845,23 @@ class ImplementationGuideGlobal extends BackboneElement {
   ) {
     if (yaml is String) {
       return ImplementationGuideGlobal.fromJson(
-        yamlToJson(yaml) as Map<String, Object?>,
+        yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
       return ImplementationGuideGlobal.fromJson(
-        yamlMapToJson(yaml) as Map<String, Object?>,
+        yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ImplementationGuideGlobal cannot be constructed from the provided input. '
+        'ImplementationGuideGlobal '
+        'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
     }
   }
 
-  /// Factory constructor for [ImplementationGuideGlobal]
+  /// Factory constructor for
+  /// [ImplementationGuideGlobal]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
@@ -942,69 +974,75 @@ class ImplementationGuideDefinition extends BackboneElement {
   factory ImplementationGuideDefinition.fromJson(
     Map<String, dynamic> json,
   ) {
+    T? parseField<T extends FhirBase>(
+      dynamic value,
+      dynamic valueElement,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        (value != null || valueElement != null)
+            ? fromJson({
+                'value': value,
+                '_value': valueElement,
+              })
+            : null;
+    List<T>? parseList<T extends FhirBase>(
+      List<dynamic>? values,
+      List<dynamic>? valueElements,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        values?.asMap().entries.map((entry) {
+          final index = entry.key;
+          final value = entry.value;
+          final valueElement =
+              valueElements != null && valueElements.length > index
+                  ? valueElements[index]
+                  : null;
+          return fromJson({
+            'value': value,
+            '_value': valueElement,
+          });
+        }).toList();
     return ImplementationGuideDefinition(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      grouping: json['grouping'] != null
-          ? (json['grouping'] as List<dynamic>)
-              .map<ImplementationGuideGrouping>(
-                (v) => ImplementationGuideGrouping.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      resource: ensureNonNullList(
-        (json['resource'] as List<dynamic>)
-            .map<ImplementationGuideResource>(
-              (v) => ImplementationGuideResource.fromJson(
-                v as Map<String, dynamic>,
-              ),
-            )
-            .toList(),
+      id: parseField<FhirString>(
+        json['id'],
+        json['_id'],
+        FhirString.fromJson,
       ),
+      extension_: parseList<FhirExtension>(
+        json['extension'] as List<dynamic>?,
+        json['_extension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
+      modifierExtension: parseList<FhirExtension>(
+        json['modifierExtension'] as List<dynamic>?,
+        json['_modifierExtension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
+      grouping: parseList<ImplementationGuideGrouping>(
+        json['grouping'] as List<dynamic>?,
+        json['_grouping'] as List<dynamic>?,
+        ImplementationGuideGrouping.fromJson,
+      ),
+      resource: parseList<ImplementationGuideResource>(
+        json['resource'] as List<dynamic>?,
+        json['_resource'] as List<dynamic>?,
+        ImplementationGuideResource.fromJson,
+      )!,
       page: json['page'] != null
           ? ImplementationGuidePage.fromJson(
               json['page'] as Map<String, dynamic>,
             )
           : null,
-      parameter: json['parameter'] != null
-          ? (json['parameter'] as List<dynamic>)
-              .map<ImplementationGuideParameter>(
-                (v) => ImplementationGuideParameter.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      template: json['template'] != null
-          ? (json['template'] as List<dynamic>)
-              .map<ImplementationGuideTemplate>(
-                (v) => ImplementationGuideTemplate.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      parameter: parseList<ImplementationGuideParameter>(
+        json['parameter'] as List<dynamic>?,
+        json['_parameter'] as List<dynamic>?,
+        ImplementationGuideParameter.fromJson,
+      ),
+      template: parseList<ImplementationGuideTemplate>(
+        json['template'] as List<dynamic>?,
+        json['_template'] as List<dynamic>?,
+        ImplementationGuideTemplate.fromJson,
+      ),
     );
   }
 
@@ -1015,21 +1053,23 @@ class ImplementationGuideDefinition extends BackboneElement {
   ) {
     if (yaml is String) {
       return ImplementationGuideDefinition.fromJson(
-        yamlToJson(yaml) as Map<String, Object?>,
+        yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
       return ImplementationGuideDefinition.fromJson(
-        yamlMapToJson(yaml) as Map<String, Object?>,
+        yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ImplementationGuideDefinition cannot be constructed from the provided input. '
+        'ImplementationGuideDefinition '
+        'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
     }
   }
 
-  /// Factory constructor for [ImplementationGuideDefinition]
+  /// Factory constructor for
+  /// [ImplementationGuideDefinition]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
@@ -1180,38 +1220,59 @@ class ImplementationGuideGrouping extends BackboneElement {
   factory ImplementationGuideGrouping.fromJson(
     Map<String, dynamic> json,
   ) {
+    T? parseField<T extends FhirBase>(
+      dynamic value,
+      dynamic valueElement,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        (value != null || valueElement != null)
+            ? fromJson({
+                'value': value,
+                '_value': valueElement,
+              })
+            : null;
+    List<T>? parseList<T extends FhirBase>(
+      List<dynamic>? values,
+      List<dynamic>? valueElements,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        values?.asMap().entries.map((entry) {
+          final index = entry.key;
+          final value = entry.value;
+          final valueElement =
+              valueElements != null && valueElements.length > index
+                  ? valueElements[index]
+                  : null;
+          return fromJson({
+            'value': value,
+            '_value': valueElement,
+          });
+        }).toList();
     return ImplementationGuideGrouping(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      id: parseField<FhirString>(
+        json['id'],
+        json['_id'],
+        FhirString.fromJson,
+      ),
+      extension_: parseList<FhirExtension>(
+        json['extension'] as List<dynamic>?,
+        json['_extension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
+      modifierExtension: parseList<FhirExtension>(
+        json['modifierExtension'] as List<dynamic>?,
+        json['_modifierExtension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
       name: FhirString.fromJson({
         'value': json['name'],
         '_value': json['_name'],
       }),
-      description: (json['description'] != null || json['_description'] != null)
-          ? FhirString.fromJson({
-              'value': json['description'],
-              '_value': json['_description'],
-            })
-          : null,
+      description: parseField<FhirString>(
+        json['description'],
+        json['_description'],
+        FhirString.fromJson,
+      ),
     );
   }
 
@@ -1222,21 +1283,23 @@ class ImplementationGuideGrouping extends BackboneElement {
   ) {
     if (yaml is String) {
       return ImplementationGuideGrouping.fromJson(
-        yamlToJson(yaml) as Map<String, Object?>,
+        yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
       return ImplementationGuideGrouping.fromJson(
-        yamlMapToJson(yaml) as Map<String, Object?>,
+        yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ImplementationGuideGrouping cannot be constructed from the provided input. '
+        'ImplementationGuideGrouping '
+        'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
     }
   }
 
-  /// Factory constructor for [ImplementationGuideGrouping]
+  /// Factory constructor for
+  /// [ImplementationGuideGrouping]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
@@ -1354,68 +1417,83 @@ class ImplementationGuideResource extends BackboneElement {
   factory ImplementationGuideResource.fromJson(
     Map<String, dynamic> json,
   ) {
+    T? parseField<T extends FhirBase>(
+      dynamic value,
+      dynamic valueElement,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        (value != null || valueElement != null)
+            ? fromJson({
+                'value': value,
+                '_value': valueElement,
+              })
+            : null;
+    List<T>? parseList<T extends FhirBase>(
+      List<dynamic>? values,
+      List<dynamic>? valueElements,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        values?.asMap().entries.map((entry) {
+          final index = entry.key;
+          final value = entry.value;
+          final valueElement =
+              valueElements != null && valueElements.length > index
+                  ? valueElements[index]
+                  : null;
+          return fromJson({
+            'value': value,
+            '_value': valueElement,
+          });
+        }).toList();
     return ImplementationGuideResource(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      id: parseField<FhirString>(
+        json['id'],
+        json['_id'],
+        FhirString.fromJson,
+      ),
+      extension_: parseList<FhirExtension>(
+        json['extension'] as List<dynamic>?,
+        json['_extension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
+      modifierExtension: parseList<FhirExtension>(
+        json['modifierExtension'] as List<dynamic>?,
+        json['_modifierExtension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
       reference: Reference.fromJson(
         json['reference'] as Map<String, dynamic>,
       ),
-      fhirVersion: parsePrimitiveList<FHIRVersion>(
+      fhirVersion: parseList<FHIRVersion>(
         json['fhirVersion'] as List<dynamic>?,
         json['_fhirVersion'] as List<dynamic>?,
-        fromJson: FHIRVersion.fromJson,
+        FHIRVersion.fromJson,
       ),
-      name: (json['name'] != null || json['_name'] != null)
-          ? FhirString.fromJson({
-              'value': json['name'],
-              '_value': json['_name'],
-            })
-          : null,
-      description: (json['description'] != null || json['_description'] != null)
-          ? FhirString.fromJson({
-              'value': json['description'],
-              '_value': json['_description'],
-            })
-          : null,
-      exampleBoolean:
-          (json['exampleBoolean'] != null || json['_exampleBoolean'] != null)
-              ? FhirBoolean.fromJson({
-                  'value': json['exampleBoolean'],
-                  '_value': json['_exampleBoolean'],
-                })
-              : null,
-      exampleCanonical: (json['exampleCanonical'] != null ||
-              json['_exampleCanonical'] != null)
-          ? FhirCanonical.fromJson({
-              'value': json['exampleCanonical'],
-              '_value': json['_exampleCanonical'],
-            })
-          : null,
-      groupingId: (json['groupingId'] != null || json['_groupingId'] != null)
-          ? FhirId.fromJson({
-              'value': json['groupingId'],
-              '_value': json['_groupingId'],
-            })
-          : null,
+      name: parseField<FhirString>(
+        json['name'],
+        json['_name'],
+        FhirString.fromJson,
+      ),
+      description: parseField<FhirString>(
+        json['description'],
+        json['_description'],
+        FhirString.fromJson,
+      ),
+      exampleBoolean: parseField<FhirBoolean>(
+        json['exampleBoolean'],
+        json['_exampleBoolean'],
+        FhirBoolean.fromJson,
+      ),
+      exampleCanonical: parseField<FhirCanonical>(
+        json['exampleCanonical'],
+        json['_exampleCanonical'],
+        FhirCanonical.fromJson,
+      ),
+      groupingId: parseField<FhirId>(
+        json['groupingId'],
+        json['_groupingId'],
+        FhirId.fromJson,
+      ),
     );
   }
 
@@ -1426,21 +1504,23 @@ class ImplementationGuideResource extends BackboneElement {
   ) {
     if (yaml is String) {
       return ImplementationGuideResource.fromJson(
-        yamlToJson(yaml) as Map<String, Object?>,
+        yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
       return ImplementationGuideResource.fromJson(
-        yamlMapToJson(yaml) as Map<String, Object?>,
+        yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ImplementationGuideResource cannot be constructed from the provided input. '
+        'ImplementationGuideResource '
+        'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
     }
   }
 
-  /// Factory constructor for [ImplementationGuideResource]
+  /// Factory constructor for
+  /// [ImplementationGuideResource]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
@@ -1605,34 +1685,55 @@ class ImplementationGuidePage extends BackboneElement {
   factory ImplementationGuidePage.fromJson(
     Map<String, dynamic> json,
   ) {
+    T? parseField<T extends FhirBase>(
+      dynamic value,
+      dynamic valueElement,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        (value != null || valueElement != null)
+            ? fromJson({
+                'value': value,
+                '_value': valueElement,
+              })
+            : null;
+    List<T>? parseList<T extends FhirBase>(
+      List<dynamic>? values,
+      List<dynamic>? valueElements,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        values?.asMap().entries.map((entry) {
+          final index = entry.key;
+          final value = entry.value;
+          final valueElement =
+              valueElements != null && valueElements.length > index
+                  ? valueElements[index]
+                  : null;
+          return fromJson({
+            'value': value,
+            '_value': valueElement,
+          });
+        }).toList();
     return ImplementationGuidePage(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      nameUrl: (json['nameUrl'] != null || json['_nameUrl'] != null)
-          ? FhirUrl.fromJson({
-              'value': json['nameUrl'],
-              '_value': json['_nameUrl'],
-            })
-          : null,
+      id: parseField<FhirString>(
+        json['id'],
+        json['_id'],
+        FhirString.fromJson,
+      ),
+      extension_: parseList<FhirExtension>(
+        json['extension'] as List<dynamic>?,
+        json['_extension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
+      modifierExtension: parseList<FhirExtension>(
+        json['modifierExtension'] as List<dynamic>?,
+        json['_modifierExtension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
+      nameUrl: parseField<FhirUrl>(
+        json['nameUrl'],
+        json['_nameUrl'],
+        FhirUrl.fromJson,
+      ),
       nameReference: json['nameReference'] != null
           ? Reference.fromJson(
               json['nameReference'] as Map<String, dynamic>,
@@ -1646,15 +1747,11 @@ class ImplementationGuidePage extends BackboneElement {
         'value': json['generation'],
         '_value': json['_generation'],
       }),
-      page: json['page'] != null
-          ? (json['page'] as List<dynamic>)
-              .map<ImplementationGuidePage>(
-                (v) => ImplementationGuidePage.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      page: parseList<ImplementationGuidePage>(
+        json['page'] as List<dynamic>?,
+        json['_page'] as List<dynamic>?,
+        ImplementationGuidePage.fromJson,
+      ),
     );
   }
 
@@ -1665,21 +1762,23 @@ class ImplementationGuidePage extends BackboneElement {
   ) {
     if (yaml is String) {
       return ImplementationGuidePage.fromJson(
-        yamlToJson(yaml) as Map<String, Object?>,
+        yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
       return ImplementationGuidePage.fromJson(
-        yamlMapToJson(yaml) as Map<String, Object?>,
+        yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ImplementationGuidePage cannot be constructed from the provided input. '
+        'ImplementationGuidePage '
+        'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
     }
   }
 
-  /// Factory constructor for [ImplementationGuidePage]
+  /// Factory constructor for
+  /// [ImplementationGuidePage]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
@@ -1816,28 +1915,50 @@ class ImplementationGuideParameter extends BackboneElement {
   factory ImplementationGuideParameter.fromJson(
     Map<String, dynamic> json,
   ) {
+    T? parseField<T extends FhirBase>(
+      dynamic value,
+      dynamic valueElement,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        (value != null || valueElement != null)
+            ? fromJson({
+                'value': value,
+                '_value': valueElement,
+              })
+            : null;
+    List<T>? parseList<T extends FhirBase>(
+      List<dynamic>? values,
+      List<dynamic>? valueElements,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        values?.asMap().entries.map((entry) {
+          final index = entry.key;
+          final value = entry.value;
+          final valueElement =
+              valueElements != null && valueElements.length > index
+                  ? valueElements[index]
+                  : null;
+          return fromJson({
+            'value': value,
+            '_value': valueElement,
+          });
+        }).toList();
     return ImplementationGuideParameter(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      id: parseField<FhirString>(
+        json['id'],
+        json['_id'],
+        FhirString.fromJson,
+      ),
+      extension_: parseList<FhirExtension>(
+        json['extension'] as List<dynamic>?,
+        json['_extension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
+      modifierExtension: parseList<FhirExtension>(
+        json['modifierExtension'] as List<dynamic>?,
+        json['_modifierExtension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
       code: GuideParameterCode.fromJson({
         'value': json['code'],
         '_value': json['_code'],
@@ -1856,21 +1977,23 @@ class ImplementationGuideParameter extends BackboneElement {
   ) {
     if (yaml is String) {
       return ImplementationGuideParameter.fromJson(
-        yamlToJson(yaml) as Map<String, Object?>,
+        yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
       return ImplementationGuideParameter.fromJson(
-        yamlMapToJson(yaml) as Map<String, Object?>,
+        yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ImplementationGuideParameter cannot be constructed from the provided input. '
+        'ImplementationGuideParameter '
+        'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
     }
   }
 
-  /// Factory constructor for [ImplementationGuideParameter]
+  /// Factory constructor for
+  /// [ImplementationGuideParameter]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
@@ -1982,28 +2105,50 @@ class ImplementationGuideTemplate extends BackboneElement {
   factory ImplementationGuideTemplate.fromJson(
     Map<String, dynamic> json,
   ) {
+    T? parseField<T extends FhirBase>(
+      dynamic value,
+      dynamic valueElement,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        (value != null || valueElement != null)
+            ? fromJson({
+                'value': value,
+                '_value': valueElement,
+              })
+            : null;
+    List<T>? parseList<T extends FhirBase>(
+      List<dynamic>? values,
+      List<dynamic>? valueElements,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        values?.asMap().entries.map((entry) {
+          final index = entry.key;
+          final value = entry.value;
+          final valueElement =
+              valueElements != null && valueElements.length > index
+                  ? valueElements[index]
+                  : null;
+          return fromJson({
+            'value': value,
+            '_value': valueElement,
+          });
+        }).toList();
     return ImplementationGuideTemplate(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      id: parseField<FhirString>(
+        json['id'],
+        json['_id'],
+        FhirString.fromJson,
+      ),
+      extension_: parseList<FhirExtension>(
+        json['extension'] as List<dynamic>?,
+        json['_extension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
+      modifierExtension: parseList<FhirExtension>(
+        json['modifierExtension'] as List<dynamic>?,
+        json['_modifierExtension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
       code: FhirCode.fromJson({
         'value': json['code'],
         '_value': json['_code'],
@@ -2012,12 +2157,11 @@ class ImplementationGuideTemplate extends BackboneElement {
         'value': json['source'],
         '_value': json['_source'],
       }),
-      scope: (json['scope'] != null || json['_scope'] != null)
-          ? FhirString.fromJson({
-              'value': json['scope'],
-              '_value': json['_scope'],
-            })
-          : null,
+      scope: parseField<FhirString>(
+        json['scope'],
+        json['_scope'],
+        FhirString.fromJson,
+      ),
     );
   }
 
@@ -2028,21 +2172,23 @@ class ImplementationGuideTemplate extends BackboneElement {
   ) {
     if (yaml is String) {
       return ImplementationGuideTemplate.fromJson(
-        yamlToJson(yaml) as Map<String, Object?>,
+        yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
       return ImplementationGuideTemplate.fromJson(
-        yamlMapToJson(yaml) as Map<String, Object?>,
+        yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ImplementationGuideTemplate cannot be constructed from the provided input. '
+        'ImplementationGuideTemplate '
+        'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
     }
   }
 
-  /// Factory constructor for [ImplementationGuideTemplate]
+  /// Factory constructor for
+  /// [ImplementationGuideTemplate]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
@@ -2162,61 +2308,74 @@ class ImplementationGuideManifest extends BackboneElement {
   factory ImplementationGuideManifest.fromJson(
     Map<String, dynamic> json,
   ) {
+    T? parseField<T extends FhirBase>(
+      dynamic value,
+      dynamic valueElement,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        (value != null || valueElement != null)
+            ? fromJson({
+                'value': value,
+                '_value': valueElement,
+              })
+            : null;
+    List<T>? parseList<T extends FhirBase>(
+      List<dynamic>? values,
+      List<dynamic>? valueElements,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        values?.asMap().entries.map((entry) {
+          final index = entry.key;
+          final value = entry.value;
+          final valueElement =
+              valueElements != null && valueElements.length > index
+                  ? valueElements[index]
+                  : null;
+          return fromJson({
+            'value': value,
+            '_value': valueElement,
+          });
+        }).toList();
     return ImplementationGuideManifest(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      rendering: (json['rendering'] != null || json['_rendering'] != null)
-          ? FhirUrl.fromJson({
-              'value': json['rendering'],
-              '_value': json['_rendering'],
-            })
-          : null,
-      resource: ensureNonNullList(
-        (json['resource'] as List<dynamic>)
-            .map<ImplementationGuideResource1>(
-              (v) => ImplementationGuideResource1.fromJson(
-                v as Map<String, dynamic>,
-              ),
-            )
-            .toList(),
+      id: parseField<FhirString>(
+        json['id'],
+        json['_id'],
+        FhirString.fromJson,
       ),
-      page: json['page'] != null
-          ? (json['page'] as List<dynamic>)
-              .map<ImplementationGuidePage1>(
-                (v) => ImplementationGuidePage1.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      image: parsePrimitiveList<FhirString>(
+      extension_: parseList<FhirExtension>(
+        json['extension'] as List<dynamic>?,
+        json['_extension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
+      modifierExtension: parseList<FhirExtension>(
+        json['modifierExtension'] as List<dynamic>?,
+        json['_modifierExtension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
+      rendering: parseField<FhirUrl>(
+        json['rendering'],
+        json['_rendering'],
+        FhirUrl.fromJson,
+      ),
+      resource: parseList<ImplementationGuideResource>(
+        json['resource'] as List<dynamic>?,
+        json['_resource'] as List<dynamic>?,
+        ImplementationGuideResource.fromJson,
+      )!,
+      page: parseList<ImplementationGuidePage>(
+        json['page'] as List<dynamic>?,
+        json['_page'] as List<dynamic>?,
+        ImplementationGuidePage.fromJson,
+      ),
+      image: parseList<FhirString>(
         json['image'] as List<dynamic>?,
         json['_image'] as List<dynamic>?,
-        fromJson: FhirString.fromJson,
+        FhirString.fromJson,
       ),
-      other: parsePrimitiveList<FhirString>(
+      other: parseList<FhirString>(
         json['other'] as List<dynamic>?,
         json['_other'] as List<dynamic>?,
-        fromJson: FhirString.fromJson,
+        FhirString.fromJson,
       ),
     );
   }
@@ -2228,21 +2387,23 @@ class ImplementationGuideManifest extends BackboneElement {
   ) {
     if (yaml is String) {
       return ImplementationGuideManifest.fromJson(
-        yamlToJson(yaml) as Map<String, Object?>,
+        yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
       return ImplementationGuideManifest.fromJson(
-        yamlMapToJson(yaml) as Map<String, Object?>,
+        yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ImplementationGuideManifest cannot be constructed from the provided input. '
+        'ImplementationGuideManifest '
+        'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
     }
   }
 
-  /// Factory constructor for [ImplementationGuideManifest]
+  /// Factory constructor for
+  /// [ImplementationGuideManifest]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
@@ -2271,11 +2432,11 @@ class ImplementationGuideManifest extends BackboneElement {
   /// resources (value set, structure definition, capability statements etc.)
   /// are obvious candidates for inclusion, but any kind of resource can be
   /// included as an example resource.
-  final List<ImplementationGuideResource1> resource;
+  final List<ImplementationGuideResource> resource;
 
   /// [page]
   /// Information about a page within the IG.
-  final List<ImplementationGuidePage1>? page;
+  final List<ImplementationGuidePage>? page;
 
   /// [image]
   /// Indicates a relative path to an image that exists within the IG.
@@ -2344,8 +2505,8 @@ class ImplementationGuideManifest extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirUrl? rendering,
-    List<ImplementationGuideResource1>? resource,
-    List<ImplementationGuidePage1>? page,
+    List<ImplementationGuideResource>? resource,
+    List<ImplementationGuidePage>? page,
     List<FhirString>? image,
     List<FhirString>? other,
     Map<String, Object?>? userData,
@@ -2403,52 +2564,68 @@ class ImplementationGuideResource1 extends BackboneElement {
   factory ImplementationGuideResource1.fromJson(
     Map<String, dynamic> json,
   ) {
+    T? parseField<T extends FhirBase>(
+      dynamic value,
+      dynamic valueElement,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        (value != null || valueElement != null)
+            ? fromJson({
+                'value': value,
+                '_value': valueElement,
+              })
+            : null;
+    List<T>? parseList<T extends FhirBase>(
+      List<dynamic>? values,
+      List<dynamic>? valueElements,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        values?.asMap().entries.map((entry) {
+          final index = entry.key;
+          final value = entry.value;
+          final valueElement =
+              valueElements != null && valueElements.length > index
+                  ? valueElements[index]
+                  : null;
+          return fromJson({
+            'value': value,
+            '_value': valueElement,
+          });
+        }).toList();
     return ImplementationGuideResource1(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      id: parseField<FhirString>(
+        json['id'],
+        json['_id'],
+        FhirString.fromJson,
+      ),
+      extension_: parseList<FhirExtension>(
+        json['extension'] as List<dynamic>?,
+        json['_extension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
+      modifierExtension: parseList<FhirExtension>(
+        json['modifierExtension'] as List<dynamic>?,
+        json['_modifierExtension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
       reference: Reference.fromJson(
         json['reference'] as Map<String, dynamic>,
       ),
-      exampleBoolean:
-          (json['exampleBoolean'] != null || json['_exampleBoolean'] != null)
-              ? FhirBoolean.fromJson({
-                  'value': json['exampleBoolean'],
-                  '_value': json['_exampleBoolean'],
-                })
-              : null,
-      exampleCanonical: (json['exampleCanonical'] != null ||
-              json['_exampleCanonical'] != null)
-          ? FhirCanonical.fromJson({
-              'value': json['exampleCanonical'],
-              '_value': json['_exampleCanonical'],
-            })
-          : null,
-      relativePath:
-          (json['relativePath'] != null || json['_relativePath'] != null)
-              ? FhirUrl.fromJson({
-                  'value': json['relativePath'],
-                  '_value': json['_relativePath'],
-                })
-              : null,
+      exampleBoolean: parseField<FhirBoolean>(
+        json['exampleBoolean'],
+        json['_exampleBoolean'],
+        FhirBoolean.fromJson,
+      ),
+      exampleCanonical: parseField<FhirCanonical>(
+        json['exampleCanonical'],
+        json['_exampleCanonical'],
+        FhirCanonical.fromJson,
+      ),
+      relativePath: parseField<FhirUrl>(
+        json['relativePath'],
+        json['_relativePath'],
+        FhirUrl.fromJson,
+      ),
     );
   }
 
@@ -2459,21 +2636,23 @@ class ImplementationGuideResource1 extends BackboneElement {
   ) {
     if (yaml is String) {
       return ImplementationGuideResource1.fromJson(
-        yamlToJson(yaml) as Map<String, Object?>,
+        yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
       return ImplementationGuideResource1.fromJson(
-        yamlMapToJson(yaml) as Map<String, Object?>,
+        yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ImplementationGuideResource1 cannot be constructed from the provided input. '
+        'ImplementationGuideResource1 '
+        'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
     }
   }
 
-  /// Factory constructor for [ImplementationGuideResource1]
+  /// Factory constructor for
+  /// [ImplementationGuideResource1]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
@@ -2602,42 +2781,63 @@ class ImplementationGuidePage1 extends BackboneElement {
   factory ImplementationGuidePage1.fromJson(
     Map<String, dynamic> json,
   ) {
+    T? parseField<T extends FhirBase>(
+      dynamic value,
+      dynamic valueElement,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        (value != null || valueElement != null)
+            ? fromJson({
+                'value': value,
+                '_value': valueElement,
+              })
+            : null;
+    List<T>? parseList<T extends FhirBase>(
+      List<dynamic>? values,
+      List<dynamic>? valueElements,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        values?.asMap().entries.map((entry) {
+          final index = entry.key;
+          final value = entry.value;
+          final valueElement =
+              valueElements != null && valueElements.length > index
+                  ? valueElements[index]
+                  : null;
+          return fromJson({
+            'value': value,
+            '_value': valueElement,
+          });
+        }).toList();
     return ImplementationGuidePage1(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      id: parseField<FhirString>(
+        json['id'],
+        json['_id'],
+        FhirString.fromJson,
+      ),
+      extension_: parseList<FhirExtension>(
+        json['extension'] as List<dynamic>?,
+        json['_extension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
+      modifierExtension: parseList<FhirExtension>(
+        json['modifierExtension'] as List<dynamic>?,
+        json['_modifierExtension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
       name: FhirString.fromJson({
         'value': json['name'],
         '_value': json['_name'],
       }),
-      title: (json['title'] != null || json['_title'] != null)
-          ? FhirString.fromJson({
-              'value': json['title'],
-              '_value': json['_title'],
-            })
-          : null,
-      anchor: parsePrimitiveList<FhirString>(
+      title: parseField<FhirString>(
+        json['title'],
+        json['_title'],
+        FhirString.fromJson,
+      ),
+      anchor: parseList<FhirString>(
         json['anchor'] as List<dynamic>?,
         json['_anchor'] as List<dynamic>?,
-        fromJson: FhirString.fromJson,
+        FhirString.fromJson,
       ),
     );
   }
@@ -2649,21 +2849,23 @@ class ImplementationGuidePage1 extends BackboneElement {
   ) {
     if (yaml is String) {
       return ImplementationGuidePage1.fromJson(
-        yamlToJson(yaml) as Map<String, Object?>,
+        yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
       return ImplementationGuidePage1.fromJson(
-        yamlMapToJson(yaml) as Map<String, Object?>,
+        yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ImplementationGuidePage1 cannot be constructed from the provided input. '
+        'ImplementationGuidePage1 '
+        'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
     }
   }
 
-  /// Factory constructor for [ImplementationGuidePage1]
+  /// Factory constructor for
+  /// [ImplementationGuidePage1]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]

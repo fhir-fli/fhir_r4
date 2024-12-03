@@ -8,7 +8,9 @@ class DocumentRelationshipType extends PrimitiveType<String> {
   DocumentRelationshipType._(super.value, [super.element]);
 
   /// Factory constructor to create [DocumentRelationshipType] from JSON.
-  factory DocumentRelationshipType.fromJson(Map<String, dynamic> json) {
+  factory DocumentRelationshipType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -53,12 +55,17 @@ class DocumentRelationshipType extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  DocumentRelationshipType clone() =>
-      DocumentRelationshipType._(value, element?.clone() as Element?);
+  DocumentRelationshipType clone() => DocumentRelationshipType._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  DocumentRelationshipType setElement(String name, dynamic elementValue) {
+  DocumentRelationshipType setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return DocumentRelationshipType._(
       value,
       element?.setProperty(name, elementValue),

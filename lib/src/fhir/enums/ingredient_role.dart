@@ -8,7 +8,9 @@ class IngredientRole extends PrimitiveType<String> {
   IngredientRole._(super.value, [super.element]);
 
   /// Factory constructor to create [IngredientRole] from JSON.
-  factory IngredientRole.fromJson(Map<String, dynamic> json) {
+  factory IngredientRole.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -82,12 +84,17 @@ class IngredientRole extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  IngredientRole clone() =>
-      IngredientRole._(value, element?.clone() as Element?);
+  IngredientRole clone() => IngredientRole._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  IngredientRole setElement(String name, dynamic elementValue) {
+  IngredientRole setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return IngredientRole._(
       value,
       element?.setProperty(name, elementValue),

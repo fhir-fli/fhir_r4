@@ -8,7 +8,9 @@ class NamingSystemType extends PrimitiveType<String> {
   NamingSystemType._(super.value, [super.element]);
 
   /// Factory constructor to create [NamingSystemType] from JSON.
-  factory NamingSystemType.fromJson(Map<String, dynamic> json) {
+  factory NamingSystemType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -46,12 +48,17 @@ class NamingSystemType extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  NamingSystemType clone() =>
-      NamingSystemType._(value, element?.clone() as Element?);
+  NamingSystemType clone() => NamingSystemType._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  NamingSystemType setElement(String name, dynamic elementValue) {
+  NamingSystemType setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return NamingSystemType._(
       value,
       element?.setProperty(name, elementValue),

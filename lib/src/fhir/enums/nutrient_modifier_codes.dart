@@ -8,7 +8,9 @@ class NutrientModifierCodes extends PrimitiveType<String> {
   NutrientModifierCodes._(super.value, [super.element]);
 
   /// Factory constructor to create [NutrientModifierCodes] from JSON.
-  factory NutrientModifierCodes.fromJson(Map<String, dynamic> json) {
+  factory NutrientModifierCodes.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -46,12 +48,17 @@ class NutrientModifierCodes extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  NutrientModifierCodes clone() =>
-      NutrientModifierCodes._(value, element?.clone() as Element?);
+  NutrientModifierCodes clone() => NutrientModifierCodes._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  NutrientModifierCodes setElement(String name, dynamic elementValue) {
+  NutrientModifierCodes setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return NutrientModifierCodes._(
       value,
       element?.setProperty(name, elementValue),

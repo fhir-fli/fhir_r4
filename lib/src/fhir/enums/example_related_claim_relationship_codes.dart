@@ -9,7 +9,8 @@ class ExampleRelatedClaimRelationshipCodes extends PrimitiveType<String> {
 
   /// Factory constructor to create [ExampleRelatedClaimRelationshipCodes] from JSON.
   factory ExampleRelatedClaimRelationshipCodes.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -47,12 +48,16 @@ class ExampleRelatedClaimRelationshipCodes extends PrimitiveType<String> {
   @override
   ExampleRelatedClaimRelationshipCodes clone() =>
       ExampleRelatedClaimRelationshipCodes._(
-          value, element?.clone() as Element?);
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
   ExampleRelatedClaimRelationshipCodes setElement(
-      String name, dynamic elementValue) {
+    String name,
+    dynamic elementValue,
+  ) {
     return ExampleRelatedClaimRelationshipCodes._(
       value,
       element?.setProperty(name, elementValue),

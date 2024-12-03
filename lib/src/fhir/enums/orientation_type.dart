@@ -8,7 +8,9 @@ class OrientationType extends PrimitiveType<String> {
   OrientationType._(super.value, [super.element]);
 
   /// Factory constructor to create [OrientationType] from JSON.
-  factory OrientationType.fromJson(Map<String, dynamic> json) {
+  factory OrientationType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -40,12 +42,17 @@ class OrientationType extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  OrientationType clone() =>
-      OrientationType._(value, element?.clone() as Element?);
+  OrientationType clone() => OrientationType._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  OrientationType setElement(String name, dynamic elementValue) {
+  OrientationType setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return OrientationType._(
       value,
       element?.setProperty(name, elementValue),

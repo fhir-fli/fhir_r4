@@ -8,7 +8,9 @@ class AuditEventEntityRole extends PrimitiveType<String> {
   AuditEventEntityRole._(super.value, [super.element]);
 
   /// Factory constructor to create [AuditEventEntityRole] from JSON.
-  factory AuditEventEntityRole.fromJson(Map<String, dynamic> json) {
+  factory AuditEventEntityRole.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -172,12 +174,17 @@ class AuditEventEntityRole extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  AuditEventEntityRole clone() =>
-      AuditEventEntityRole._(value, element?.clone() as Element?);
+  AuditEventEntityRole clone() => AuditEventEntityRole._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  AuditEventEntityRole setElement(String name, dynamic elementValue) {
+  AuditEventEntityRole setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return AuditEventEntityRole._(
       value,
       element?.setProperty(name, elementValue),

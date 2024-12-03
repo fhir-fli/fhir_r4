@@ -8,7 +8,9 @@ class VisionBase extends PrimitiveType<String> {
   VisionBase._(super.value, [super.element]);
 
   /// Factory constructor to create [VisionBase] from JSON.
-  factory VisionBase.fromJson(Map<String, dynamic> json) {
+  factory VisionBase.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -52,11 +54,17 @@ class VisionBase extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  VisionBase clone() => VisionBase._(value, element?.clone() as Element?);
+  VisionBase clone() => VisionBase._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  VisionBase setElement(String name, dynamic elementValue) {
+  VisionBase setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return VisionBase._(
       value,
       element?.setProperty(name, elementValue),

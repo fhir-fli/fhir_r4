@@ -8,7 +8,9 @@ class MedicinalProductDomain extends PrimitiveType<String> {
   MedicinalProductDomain._(super.value, [super.element]);
 
   /// Factory constructor to create [MedicinalProductDomain] from JSON.
-  factory MedicinalProductDomain.fromJson(Map<String, dynamic> json) {
+  factory MedicinalProductDomain.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -48,12 +50,17 @@ class MedicinalProductDomain extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  MedicinalProductDomain clone() =>
-      MedicinalProductDomain._(value, element?.clone() as Element?);
+  MedicinalProductDomain clone() => MedicinalProductDomain._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  MedicinalProductDomain setElement(String name, dynamic elementValue) {
+  MedicinalProductDomain setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return MedicinalProductDomain._(
       value,
       element?.setProperty(name, elementValue),

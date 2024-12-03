@@ -8,7 +8,9 @@ class CommonTags extends PrimitiveType<String> {
   CommonTags._(super.value, [super.element]);
 
   /// Factory constructor to create [CommonTags] from JSON.
-  factory CommonTags.fromJson(Map<String, dynamic> json) {
+  factory CommonTags.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -34,11 +36,17 @@ class CommonTags extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  CommonTags clone() => CommonTags._(value, element?.clone() as Element?);
+  CommonTags clone() => CommonTags._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  CommonTags setElement(String name, dynamic elementValue) {
+  CommonTags setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return CommonTags._(
       value,
       element?.setProperty(name, elementValue),

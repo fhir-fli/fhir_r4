@@ -8,7 +8,9 @@ class AdverseEventCausalityAssessment extends PrimitiveType<String> {
   AdverseEventCausalityAssessment._(super.value, [super.element]);
 
   /// Factory constructor to create [AdverseEventCausalityAssessment] from JSON.
-  factory AdverseEventCausalityAssessment.fromJson(Map<String, dynamic> json) {
+  factory AdverseEventCausalityAssessment.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -71,13 +73,17 @@ class AdverseEventCausalityAssessment extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  AdverseEventCausalityAssessment clone() =>
-      AdverseEventCausalityAssessment._(value, element?.clone() as Element?);
+  AdverseEventCausalityAssessment clone() => AdverseEventCausalityAssessment._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
   AdverseEventCausalityAssessment setElement(
-      String name, dynamic elementValue) {
+    String name,
+    dynamic elementValue,
+  ) {
     return AdverseEventCausalityAssessment._(
       value,
       element?.setProperty(name, elementValue),

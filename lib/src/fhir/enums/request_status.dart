@@ -8,7 +8,9 @@ class RequestStatus extends PrimitiveType<String> {
   RequestStatus._(super.value, [super.element]);
 
   /// Factory constructor to create [RequestStatus] from JSON.
-  factory RequestStatus.fromJson(Map<String, dynamic> json) {
+  factory RequestStatus.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -70,11 +72,17 @@ class RequestStatus extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  RequestStatus clone() => RequestStatus._(value, element?.clone() as Element?);
+  RequestStatus clone() => RequestStatus._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  RequestStatus setElement(String name, dynamic elementValue) {
+  RequestStatus setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return RequestStatus._(
       value,
       element?.setProperty(name, elementValue),

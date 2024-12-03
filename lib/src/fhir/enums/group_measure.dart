@@ -8,7 +8,9 @@ class GroupMeasure extends PrimitiveType<String> {
   GroupMeasure._(super.value, [super.element]);
 
   /// Factory constructor to create [GroupMeasure] from JSON.
-  factory GroupMeasure.fromJson(Map<String, dynamic> json) {
+  factory GroupMeasure.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -64,11 +66,17 @@ class GroupMeasure extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  GroupMeasure clone() => GroupMeasure._(value, element?.clone() as Element?);
+  GroupMeasure clone() => GroupMeasure._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  GroupMeasure setElement(String name, dynamic elementValue) {
+  GroupMeasure setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return GroupMeasure._(
       value,
       element?.setProperty(name, elementValue),

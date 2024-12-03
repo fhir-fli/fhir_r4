@@ -8,7 +8,9 @@ class SupplyItemType extends PrimitiveType<String> {
   SupplyItemType._(super.value, [super.element]);
 
   /// Factory constructor to create [SupplyItemType] from JSON.
-  factory SupplyItemType.fromJson(Map<String, dynamic> json) {
+  factory SupplyItemType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -40,12 +42,17 @@ class SupplyItemType extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  SupplyItemType clone() =>
-      SupplyItemType._(value, element?.clone() as Element?);
+  SupplyItemType clone() => SupplyItemType._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  SupplyItemType setElement(String name, dynamic elementValue) {
+  SupplyItemType setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return SupplyItemType._(
       value,
       element?.setProperty(name, elementValue),

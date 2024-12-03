@@ -8,7 +8,9 @@ class CompositionStatus extends PrimitiveType<String> {
   CompositionStatus._(super.value, [super.element]);
 
   /// Factory constructor to create [CompositionStatus] from JSON.
-  factory CompositionStatus.fromJson(Map<String, dynamic> json) {
+  factory CompositionStatus.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -52,12 +54,17 @@ class CompositionStatus extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  CompositionStatus clone() =>
-      CompositionStatus._(value, element?.clone() as Element?);
+  CompositionStatus clone() => CompositionStatus._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  CompositionStatus setElement(String name, dynamic elementValue) {
+  CompositionStatus setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return CompositionStatus._(
       value,
       element?.setProperty(name, elementValue),

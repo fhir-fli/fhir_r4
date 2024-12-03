@@ -8,7 +8,9 @@ class ModifierTypeCodes extends PrimitiveType<String> {
   ModifierTypeCodes._(super.value, [super.element]);
 
   /// Factory constructor to create [ModifierTypeCodes] from JSON.
-  factory ModifierTypeCodes.fromJson(Map<String, dynamic> json) {
+  factory ModifierTypeCodes.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -64,12 +66,17 @@ class ModifierTypeCodes extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  ModifierTypeCodes clone() =>
-      ModifierTypeCodes._(value, element?.clone() as Element?);
+  ModifierTypeCodes clone() => ModifierTypeCodes._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  ModifierTypeCodes setElement(String name, dynamic elementValue) {
+  ModifierTypeCodes setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return ModifierTypeCodes._(
       value,
       element?.setProperty(name, elementValue),

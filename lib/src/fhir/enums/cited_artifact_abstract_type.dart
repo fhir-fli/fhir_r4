@@ -8,7 +8,9 @@ class CitedArtifactAbstractType extends PrimitiveType<String> {
   CitedArtifactAbstractType._(super.value, [super.element]);
 
   /// Factory constructor to create [CitedArtifactAbstractType] from JSON.
-  factory CitedArtifactAbstractType.fromJson(Map<String, dynamic> json) {
+  factory CitedArtifactAbstractType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -105,12 +107,17 @@ class CitedArtifactAbstractType extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  CitedArtifactAbstractType clone() =>
-      CitedArtifactAbstractType._(value, element?.clone() as Element?);
+  CitedArtifactAbstractType clone() => CitedArtifactAbstractType._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  CitedArtifactAbstractType setElement(String name, dynamic elementValue) {
+  CitedArtifactAbstractType setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return CitedArtifactAbstractType._(
       value,
       element?.setProperty(name, elementValue),

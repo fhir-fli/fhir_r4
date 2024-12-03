@@ -8,7 +8,9 @@ class SpecimenCollectionEnum extends PrimitiveType<String> {
   SpecimenCollectionEnum._(super.value, [super.element]);
 
   /// Factory constructor to create [SpecimenCollectionEnum] from JSON.
-  factory SpecimenCollectionEnum.fromJson(Map<String, dynamic> json) {
+  factory SpecimenCollectionEnum.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -89,12 +91,17 @@ class SpecimenCollectionEnum extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  SpecimenCollectionEnum clone() =>
-      SpecimenCollectionEnum._(value, element?.clone() as Element?);
+  SpecimenCollectionEnum clone() => SpecimenCollectionEnum._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  SpecimenCollectionEnum setElement(String name, dynamic elementValue) {
+  SpecimenCollectionEnum setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return SpecimenCollectionEnum._(
       value,
       element?.setProperty(name, elementValue),

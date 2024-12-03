@@ -8,7 +8,9 @@ class ConsentPolicyRuleCodes extends PrimitiveType<String> {
   ConsentPolicyRuleCodes._(super.value, [super.element]);
 
   /// Factory constructor to create [ConsentPolicyRuleCodes] from JSON.
-  factory ConsentPolicyRuleCodes.fromJson(Map<String, dynamic> json) {
+  factory ConsentPolicyRuleCodes.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -188,12 +190,17 @@ class ConsentPolicyRuleCodes extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  ConsentPolicyRuleCodes clone() =>
-      ConsentPolicyRuleCodes._(value, element?.clone() as Element?);
+  ConsentPolicyRuleCodes clone() => ConsentPolicyRuleCodes._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  ConsentPolicyRuleCodes setElement(String name, dynamic elementValue) {
+  ConsentPolicyRuleCodes setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return ConsentPolicyRuleCodes._(
       value,
       element?.setProperty(name, elementValue),

@@ -9,7 +9,8 @@ class ContractResourceDefinitionTypeCodes extends PrimitiveType<String> {
 
   /// Factory constructor to create [ContractResourceDefinitionTypeCodes] from JSON.
   factory ContractResourceDefinitionTypeCodes.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -40,12 +41,16 @@ class ContractResourceDefinitionTypeCodes extends PrimitiveType<String> {
   @override
   ContractResourceDefinitionTypeCodes clone() =>
       ContractResourceDefinitionTypeCodes._(
-          value, element?.clone() as Element?);
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
   ContractResourceDefinitionTypeCodes setElement(
-      String name, dynamic elementValue) {
+    String name,
+    dynamic elementValue,
+  ) {
     return ContractResourceDefinitionTypeCodes._(
       value,
       element?.setProperty(name, elementValue),

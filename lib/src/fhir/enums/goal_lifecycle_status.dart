@@ -8,7 +8,9 @@ class GoalLifecycleStatus extends PrimitiveType<String> {
   GoalLifecycleStatus._(super.value, [super.element]);
 
   /// Factory constructor to create [GoalLifecycleStatus] from JSON.
-  factory GoalLifecycleStatus.fromJson(Map<String, dynamic> json) {
+  factory GoalLifecycleStatus.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -82,12 +84,17 @@ class GoalLifecycleStatus extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  GoalLifecycleStatus clone() =>
-      GoalLifecycleStatus._(value, element?.clone() as Element?);
+  GoalLifecycleStatus clone() => GoalLifecycleStatus._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  GoalLifecycleStatus setElement(String name, dynamic elementValue) {
+  GoalLifecycleStatus setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return GoalLifecycleStatus._(
       value,
       element?.setProperty(name, elementValue),

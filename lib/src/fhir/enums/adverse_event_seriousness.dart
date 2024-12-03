@@ -8,7 +8,9 @@ class AdverseEventSeriousness extends PrimitiveType<String> {
   AdverseEventSeriousness._(super.value, [super.element]);
 
   /// Factory constructor to create [AdverseEventSeriousness] from JSON.
-  factory AdverseEventSeriousness.fromJson(Map<String, dynamic> json) {
+  factory AdverseEventSeriousness.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -83,12 +85,17 @@ class AdverseEventSeriousness extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  AdverseEventSeriousness clone() =>
-      AdverseEventSeriousness._(value, element?.clone() as Element?);
+  AdverseEventSeriousness clone() => AdverseEventSeriousness._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  AdverseEventSeriousness setElement(String name, dynamic elementValue) {
+  AdverseEventSeriousness setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return AdverseEventSeriousness._(
       value,
       element?.setProperty(name, elementValue),

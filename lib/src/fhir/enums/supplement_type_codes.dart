@@ -8,7 +8,9 @@ class SupplementTypeCodes extends PrimitiveType<String> {
   SupplementTypeCodes._(super.value, [super.element]);
 
   /// Factory constructor to create [SupplementTypeCodes] from JSON.
-  factory SupplementTypeCodes.fromJson(Map<String, dynamic> json) {
+  factory SupplementTypeCodes.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -298,12 +300,17 @@ class SupplementTypeCodes extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  SupplementTypeCodes clone() =>
-      SupplementTypeCodes._(value, element?.clone() as Element?);
+  SupplementTypeCodes clone() => SupplementTypeCodes._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  SupplementTypeCodes setElement(String name, dynamic elementValue) {
+  SupplementTypeCodes setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return SupplementTypeCodes._(
       value,
       element?.setProperty(name, elementValue),

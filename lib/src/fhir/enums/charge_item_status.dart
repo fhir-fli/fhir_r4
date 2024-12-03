@@ -8,7 +8,9 @@ class ChargeItemStatus extends PrimitiveType<String> {
   ChargeItemStatus._(super.value, [super.element]);
 
   /// Factory constructor to create [ChargeItemStatus] from JSON.
-  factory ChargeItemStatus.fromJson(Map<String, dynamic> json) {
+  factory ChargeItemStatus.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -70,12 +72,17 @@ class ChargeItemStatus extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  ChargeItemStatus clone() =>
-      ChargeItemStatus._(value, element?.clone() as Element?);
+  ChargeItemStatus clone() => ChargeItemStatus._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  ChargeItemStatus setElement(String name, dynamic elementValue) {
+  ChargeItemStatus setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return ChargeItemStatus._(
       value,
       element?.setProperty(name, elementValue),

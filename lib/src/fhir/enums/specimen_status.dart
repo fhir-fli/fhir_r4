@@ -8,7 +8,9 @@ class SpecimenStatus extends PrimitiveType<String> {
   SpecimenStatus._(super.value, [super.element]);
 
   /// Factory constructor to create [SpecimenStatus] from JSON.
-  factory SpecimenStatus.fromJson(Map<String, dynamic> json) {
+  factory SpecimenStatus.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -52,12 +54,17 @@ class SpecimenStatus extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  SpecimenStatus clone() =>
-      SpecimenStatus._(value, element?.clone() as Element?);
+  SpecimenStatus clone() => SpecimenStatus._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  SpecimenStatus setElement(String name, dynamic elementValue) {
+  SpecimenStatus setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return SpecimenStatus._(
       value,
       element?.setProperty(name, elementValue),

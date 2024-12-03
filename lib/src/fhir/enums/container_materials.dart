@@ -8,7 +8,9 @@ class ContainerMaterials extends PrimitiveType<String> {
   ContainerMaterials._(super.value, [super.element]);
 
   /// Factory constructor to create [ContainerMaterials] from JSON.
-  factory ContainerMaterials.fromJson(Map<String, dynamic> json) {
+  factory ContainerMaterials.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -46,12 +48,17 @@ class ContainerMaterials extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  ContainerMaterials clone() =>
-      ContainerMaterials._(value, element?.clone() as Element?);
+  ContainerMaterials clone() => ContainerMaterials._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  ContainerMaterials setElement(String name, dynamic elementValue) {
+  ContainerMaterials setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return ContainerMaterials._(
       value,
       element?.setProperty(name, elementValue),

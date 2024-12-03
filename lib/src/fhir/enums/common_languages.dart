@@ -8,7 +8,9 @@ class CommonLanguages extends PrimitiveType<String> {
   CommonLanguages._(super.value, [super.element]);
 
   /// Factory constructor to create [CommonLanguages] from JSON.
-  factory CommonLanguages.fromJson(Map<String, dynamic> json) {
+  factory CommonLanguages.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -364,12 +366,17 @@ class CommonLanguages extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  CommonLanguages clone() =>
-      CommonLanguages._(value, element?.clone() as Element?);
+  CommonLanguages clone() => CommonLanguages._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  CommonLanguages setElement(String name, dynamic elementValue) {
+  CommonLanguages setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return CommonLanguages._(
       value,
       element?.setProperty(name, elementValue),

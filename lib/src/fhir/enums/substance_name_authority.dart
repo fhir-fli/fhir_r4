@@ -8,7 +8,9 @@ class SubstanceNameAuthority extends PrimitiveType<String> {
   SubstanceNameAuthority._(super.value, [super.element]);
 
   /// Factory constructor to create [SubstanceNameAuthority] from JSON.
-  factory SubstanceNameAuthority.fromJson(Map<String, dynamic> json) {
+  factory SubstanceNameAuthority.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -119,12 +121,17 @@ class SubstanceNameAuthority extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  SubstanceNameAuthority clone() =>
-      SubstanceNameAuthority._(value, element?.clone() as Element?);
+  SubstanceNameAuthority clone() => SubstanceNameAuthority._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  SubstanceNameAuthority setElement(String name, dynamic elementValue) {
+  SubstanceNameAuthority setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return SubstanceNameAuthority._(
       value,
       element?.setProperty(name, elementValue),

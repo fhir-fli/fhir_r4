@@ -8,7 +8,9 @@ class ProvenanceParticipantRole extends PrimitiveType<String> {
   ProvenanceParticipantRole._(super.value, [super.element]);
 
   /// Factory constructor to create [ProvenanceParticipantRole] from JSON.
-  factory ProvenanceParticipantRole.fromJson(Map<String, dynamic> json) {
+  factory ProvenanceParticipantRole.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -93,12 +95,17 @@ class ProvenanceParticipantRole extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  ProvenanceParticipantRole clone() =>
-      ProvenanceParticipantRole._(value, element?.clone() as Element?);
+  ProvenanceParticipantRole clone() => ProvenanceParticipantRole._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  ProvenanceParticipantRole setElement(String name, dynamic elementValue) {
+  ProvenanceParticipantRole setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return ProvenanceParticipantRole._(
       value,
       element?.setProperty(name, elementValue),

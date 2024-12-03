@@ -8,7 +8,9 @@ class CharacteristicMethod extends PrimitiveType<String> {
   CharacteristicMethod._(super.value, [super.element]);
 
   /// Factory constructor to create [CharacteristicMethod] from JSON.
-  factory CharacteristicMethod.fromJson(Map<String, dynamic> json) {
+  factory CharacteristicMethod.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -34,12 +36,17 @@ class CharacteristicMethod extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  CharacteristicMethod clone() =>
-      CharacteristicMethod._(value, element?.clone() as Element?);
+  CharacteristicMethod clone() => CharacteristicMethod._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  CharacteristicMethod setElement(String name, dynamic elementValue) {
+  CharacteristicMethod setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return CharacteristicMethod._(
       value,
       element?.setProperty(name, elementValue),

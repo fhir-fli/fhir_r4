@@ -8,7 +8,9 @@ class InteractionTrigger extends PrimitiveType<String> {
   InteractionTrigger._(super.value, [super.element]);
 
   /// Factory constructor to create [InteractionTrigger] from JSON.
-  factory InteractionTrigger.fromJson(Map<String, dynamic> json) {
+  factory InteractionTrigger.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -130,12 +132,17 @@ class InteractionTrigger extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  InteractionTrigger clone() =>
-      InteractionTrigger._(value, element?.clone() as Element?);
+  InteractionTrigger clone() => InteractionTrigger._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  InteractionTrigger setElement(String name, dynamic elementValue) {
+  InteractionTrigger setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return InteractionTrigger._(
       value,
       element?.setProperty(name, elementValue),

@@ -8,7 +8,9 @@ class SearchComparator extends PrimitiveType<String> {
   SearchComparator._(super.value, [super.element]);
 
   /// Factory constructor to create [SearchComparator] from JSON.
-  factory SearchComparator.fromJson(Map<String, dynamic> json) {
+  factory SearchComparator.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -82,12 +84,17 @@ class SearchComparator extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  SearchComparator clone() =>
-      SearchComparator._(value, element?.clone() as Element?);
+  SearchComparator clone() => SearchComparator._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  SearchComparator setElement(String name, dynamic elementValue) {
+  SearchComparator setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return SearchComparator._(
       value,
       element?.setProperty(name, elementValue),

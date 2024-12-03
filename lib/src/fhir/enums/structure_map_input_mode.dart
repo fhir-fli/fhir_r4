@@ -8,7 +8,9 @@ class StructureMapInputMode extends PrimitiveType<String> {
   StructureMapInputMode._(super.value, [super.element]);
 
   /// Factory constructor to create [StructureMapInputMode] from JSON.
-  factory StructureMapInputMode.fromJson(Map<String, dynamic> json) {
+  factory StructureMapInputMode.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -40,12 +42,17 @@ class StructureMapInputMode extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  StructureMapInputMode clone() =>
-      StructureMapInputMode._(value, element?.clone() as Element?);
+  StructureMapInputMode clone() => StructureMapInputMode._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  StructureMapInputMode setElement(String name, dynamic elementValue) {
+  StructureMapInputMode setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return StructureMapInputMode._(
       value,
       element?.setProperty(name, elementValue),

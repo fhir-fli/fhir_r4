@@ -8,7 +8,9 @@ class StructureMapTargetListMode extends PrimitiveType<String> {
   StructureMapTargetListMode._(super.value, [super.element]);
 
   /// Factory constructor to create [StructureMapTargetListMode] from JSON.
-  factory StructureMapTargetListMode.fromJson(Map<String, dynamic> json) {
+  factory StructureMapTargetListMode.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -54,12 +56,17 @@ class StructureMapTargetListMode extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  StructureMapTargetListMode clone() =>
-      StructureMapTargetListMode._(value, element?.clone() as Element?);
+  StructureMapTargetListMode clone() => StructureMapTargetListMode._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  StructureMapTargetListMode setElement(String name, dynamic elementValue) {
+  StructureMapTargetListMode setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return StructureMapTargetListMode._(
       value,
       element?.setProperty(name, elementValue),

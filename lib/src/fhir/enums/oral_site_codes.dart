@@ -8,7 +8,9 @@ class OralSiteCodes extends PrimitiveType<String> {
   OralSiteCodes._(super.value, [super.element]);
 
   /// Factory constructor to create [OralSiteCodes] from JSON.
-  factory OralSiteCodes.fromJson(Map<String, dynamic> json) {
+  factory OralSiteCodes.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -274,11 +276,17 @@ class OralSiteCodes extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  OralSiteCodes clone() => OralSiteCodes._(value, element?.clone() as Element?);
+  OralSiteCodes clone() => OralSiteCodes._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  OralSiteCodes setElement(String name, dynamic elementValue) {
+  OralSiteCodes setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return OralSiteCodes._(
       value,
       element?.setProperty(name, elementValue),

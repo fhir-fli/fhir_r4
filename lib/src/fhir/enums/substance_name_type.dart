@@ -8,7 +8,9 @@ class SubstanceNameType extends PrimitiveType<String> {
   SubstanceNameType._(super.value, [super.element]);
 
   /// Factory constructor to create [SubstanceNameType] from JSON.
-  factory SubstanceNameType.fromJson(Map<String, dynamic> json) {
+  factory SubstanceNameType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -46,12 +48,17 @@ class SubstanceNameType extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  SubstanceNameType clone() =>
-      SubstanceNameType._(value, element?.clone() as Element?);
+  SubstanceNameType clone() => SubstanceNameType._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  SubstanceNameType setElement(String name, dynamic elementValue) {
+  SubstanceNameType setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return SubstanceNameType._(
       value,
       element?.setProperty(name, elementValue),

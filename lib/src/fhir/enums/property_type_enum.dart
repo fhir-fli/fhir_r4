@@ -8,7 +8,9 @@ class PropertyTypeEnum extends PrimitiveType<String> {
   PropertyTypeEnum._(super.value, [super.element]);
 
   /// Factory constructor to create [PropertyTypeEnum] from JSON.
-  factory PropertyTypeEnum.fromJson(Map<String, dynamic> json) {
+  factory PropertyTypeEnum.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -70,12 +72,17 @@ class PropertyTypeEnum extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  PropertyTypeEnum clone() =>
-      PropertyTypeEnum._(value, element?.clone() as Element?);
+  PropertyTypeEnum clone() => PropertyTypeEnum._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  PropertyTypeEnum setElement(String name, dynamic elementValue) {
+  PropertyTypeEnum setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return PropertyTypeEnum._(
       value,
       element?.setProperty(name, elementValue),

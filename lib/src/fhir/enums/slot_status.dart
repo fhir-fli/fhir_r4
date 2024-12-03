@@ -8,7 +8,9 @@ class SlotStatus extends PrimitiveType<String> {
   SlotStatus._(super.value, [super.element]);
 
   /// Factory constructor to create [SlotStatus] from JSON.
-  factory SlotStatus.fromJson(Map<String, dynamic> json) {
+  factory SlotStatus.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -58,11 +60,17 @@ class SlotStatus extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  SlotStatus clone() => SlotStatus._(value, element?.clone() as Element?);
+  SlotStatus clone() => SlotStatus._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  SlotStatus setElement(String name, dynamic elementValue) {
+  SlotStatus setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return SlotStatus._(
       value,
       element?.setProperty(name, elementValue),

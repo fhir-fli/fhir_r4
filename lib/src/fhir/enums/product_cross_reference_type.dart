@@ -8,7 +8,9 @@ class ProductCrossReferenceType extends PrimitiveType<String> {
   ProductCrossReferenceType._(super.value, [super.element]);
 
   /// Factory constructor to create [ProductCrossReferenceType] from JSON.
-  factory ProductCrossReferenceType.fromJson(Map<String, dynamic> json) {
+  factory ProductCrossReferenceType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -70,12 +72,17 @@ class ProductCrossReferenceType extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  ProductCrossReferenceType clone() =>
-      ProductCrossReferenceType._(value, element?.clone() as Element?);
+  ProductCrossReferenceType clone() => ProductCrossReferenceType._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  ProductCrossReferenceType setElement(String name, dynamic elementValue) {
+  ProductCrossReferenceType setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return ProductCrossReferenceType._(
       value,
       element?.setProperty(name, elementValue),

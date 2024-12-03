@@ -8,7 +8,9 @@ class CharacteristicCombination extends PrimitiveType<String> {
   CharacteristicCombination._(super.value, [super.element]);
 
   /// Factory constructor to create [CharacteristicCombination] from JSON.
-  factory CharacteristicCombination.fromJson(Map<String, dynamic> json) {
+  factory CharacteristicCombination.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -42,12 +44,17 @@ class CharacteristicCombination extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  CharacteristicCombination clone() =>
-      CharacteristicCombination._(value, element?.clone() as Element?);
+  CharacteristicCombination clone() => CharacteristicCombination._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  CharacteristicCombination setElement(String name, dynamic elementValue) {
+  CharacteristicCombination setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return CharacteristicCombination._(
       value,
       element?.setProperty(name, elementValue),

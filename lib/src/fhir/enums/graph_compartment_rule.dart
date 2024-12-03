@@ -8,7 +8,9 @@ class GraphCompartmentRule extends PrimitiveType<String> {
   GraphCompartmentRule._(super.value, [super.element]);
 
   /// Factory constructor to create [GraphCompartmentRule] from JSON.
-  factory GraphCompartmentRule.fromJson(Map<String, dynamic> json) {
+  factory GraphCompartmentRule.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -52,12 +54,17 @@ class GraphCompartmentRule extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  GraphCompartmentRule clone() =>
-      GraphCompartmentRule._(value, element?.clone() as Element?);
+  GraphCompartmentRule clone() => GraphCompartmentRule._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  GraphCompartmentRule setElement(String name, dynamic elementValue) {
+  GraphCompartmentRule setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return GraphCompartmentRule._(
       value,
       element?.setProperty(name, elementValue),

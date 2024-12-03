@@ -8,7 +8,9 @@ class ActionGroupingBehavior extends PrimitiveType<String> {
   ActionGroupingBehavior._(super.value, [super.element]);
 
   /// Factory constructor to create [ActionGroupingBehavior] from JSON.
-  factory ActionGroupingBehavior.fromJson(Map<String, dynamic> json) {
+  factory ActionGroupingBehavior.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -47,12 +49,17 @@ class ActionGroupingBehavior extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  ActionGroupingBehavior clone() =>
-      ActionGroupingBehavior._(value, element?.clone() as Element?);
+  ActionGroupingBehavior clone() => ActionGroupingBehavior._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  ActionGroupingBehavior setElement(String name, dynamic elementValue) {
+  ActionGroupingBehavior setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return ActionGroupingBehavior._(
       value,
       element?.setProperty(name, elementValue),

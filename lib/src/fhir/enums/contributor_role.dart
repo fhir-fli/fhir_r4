@@ -8,7 +8,9 @@ class ContributorRole extends PrimitiveType<String> {
   ContributorRole._(super.value, [super.element]);
 
   /// Factory constructor to create [ContributorRole] from JSON.
-  factory ContributorRole.fromJson(Map<String, dynamic> json) {
+  factory ContributorRole.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -70,12 +72,17 @@ class ContributorRole extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  ContributorRole clone() =>
-      ContributorRole._(value, element?.clone() as Element?);
+  ContributorRole clone() => ContributorRole._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  ContributorRole setElement(String name, dynamic elementValue) {
+  ContributorRole setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return ContributorRole._(
       value,
       element?.setProperty(name, elementValue),

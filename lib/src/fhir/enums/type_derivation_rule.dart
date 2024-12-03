@@ -8,7 +8,9 @@ class TypeDerivationRule extends PrimitiveType<String> {
   TypeDerivationRule._(super.value, [super.element]);
 
   /// Factory constructor to create [TypeDerivationRule] from JSON.
-  factory TypeDerivationRule.fromJson(Map<String, dynamic> json) {
+  factory TypeDerivationRule.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -40,12 +42,17 @@ class TypeDerivationRule extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  TypeDerivationRule clone() =>
-      TypeDerivationRule._(value, element?.clone() as Element?);
+  TypeDerivationRule clone() => TypeDerivationRule._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  TypeDerivationRule setElement(String name, dynamic elementValue) {
+  TypeDerivationRule setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return TypeDerivationRule._(
       value,
       element?.setProperty(name, elementValue),

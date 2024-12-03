@@ -8,7 +8,9 @@ class InvoicePriceComponentType extends PrimitiveType<String> {
   InvoicePriceComponentType._(super.value, [super.element]);
 
   /// Factory constructor to create [InvoicePriceComponentType] from JSON.
-  factory InvoicePriceComponentType.fromJson(Map<String, dynamic> json) {
+  factory InvoicePriceComponentType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -68,12 +70,17 @@ class InvoicePriceComponentType extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  InvoicePriceComponentType clone() =>
-      InvoicePriceComponentType._(value, element?.clone() as Element?);
+  InvoicePriceComponentType clone() => InvoicePriceComponentType._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  InvoicePriceComponentType setElement(String name, dynamic elementValue) {
+  InvoicePriceComponentType setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return InvoicePriceComponentType._(
       value,
       element?.setProperty(name, elementValue),

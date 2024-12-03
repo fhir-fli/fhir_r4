@@ -8,7 +8,9 @@ class MeasureGroupExample extends PrimitiveType<String> {
   MeasureGroupExample._(super.value, [super.element]);
 
   /// Factory constructor to create [MeasureGroupExample] from JSON.
-  factory MeasureGroupExample.fromJson(Map<String, dynamic> json) {
+  factory MeasureGroupExample.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -40,12 +42,17 @@ class MeasureGroupExample extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  MeasureGroupExample clone() =>
-      MeasureGroupExample._(value, element?.clone() as Element?);
+  MeasureGroupExample clone() => MeasureGroupExample._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  MeasureGroupExample setElement(String name, dynamic elementValue) {
+  MeasureGroupExample setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return MeasureGroupExample._(
       value,
       element?.setProperty(name, elementValue),

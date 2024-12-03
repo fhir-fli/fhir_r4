@@ -8,7 +8,9 @@ class IngredientFunction extends PrimitiveType<String> {
   IngredientFunction._(super.value, [super.element]);
 
   /// Factory constructor to create [IngredientFunction] from JSON.
-  factory IngredientFunction.fromJson(Map<String, dynamic> json) {
+  factory IngredientFunction.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -40,12 +42,17 @@ class IngredientFunction extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  IngredientFunction clone() =>
-      IngredientFunction._(value, element?.clone() as Element?);
+  IngredientFunction clone() => IngredientFunction._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  IngredientFunction setElement(String name, dynamic elementValue) {
+  IngredientFunction setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return IngredientFunction._(
       value,
       element?.setProperty(name, elementValue),

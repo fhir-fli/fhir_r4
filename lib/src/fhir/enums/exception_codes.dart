@@ -8,7 +8,9 @@ class ExceptionCodes extends PrimitiveType<String> {
   ExceptionCodes._(super.value, [super.element]);
 
   /// Factory constructor to create [ExceptionCodes] from JSON.
-  factory ExceptionCodes.fromJson(Map<String, dynamic> json) {
+  factory ExceptionCodes.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -40,12 +42,17 @@ class ExceptionCodes extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  ExceptionCodes clone() =>
-      ExceptionCodes._(value, element?.clone() as Element?);
+  ExceptionCodes clone() => ExceptionCodes._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  ExceptionCodes setElement(String name, dynamic elementValue) {
+  ExceptionCodes setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return ExceptionCodes._(
       value,
       element?.setProperty(name, elementValue),

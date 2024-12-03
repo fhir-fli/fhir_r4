@@ -32,28 +32,38 @@ class Binary extends Resource {
   factory Binary.fromJson(
     Map<String, dynamic> json,
   ) {
+    T? parseField<T extends FhirBase>(
+      dynamic value,
+      dynamic valueElement,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        (value != null || valueElement != null)
+            ? fromJson({
+                'value': value,
+                '_value': valueElement,
+              })
+            : null;
     return Binary(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
+      id: parseField<FhirString>(
+        json['id'],
+        json['_id'],
+        FhirString.fromJson,
+      ),
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
-      implicitRules:
-          (json['implicitRules'] != null || json['_implicitRules'] != null)
-              ? FhirUri.fromJson({
-                  'value': json['implicitRules'],
-                  '_value': json['_implicitRules'],
-                })
-              : null,
-      language: (json['language'] != null || json['_language'] != null)
-          ? CommonLanguages.fromJson({
-              'value': json['language'],
-              '_value': json['_language'],
-            })
-          : null,
+      implicitRules: parseField<FhirUri>(
+        json['implicitRules'],
+        json['_implicitRules'],
+        FhirUri.fromJson,
+      ),
+      language: parseField<CommonLanguages>(
+        json['language'],
+        json['_language'],
+        CommonLanguages.fromJson,
+      ),
       contentType: FhirCode.fromJson({
         'value': json['contentType'],
         '_value': json['_contentType'],
@@ -63,12 +73,11 @@ class Binary extends Resource {
               json['securityContext'] as Map<String, dynamic>,
             )
           : null,
-      data: (json['data'] != null || json['_data'] != null)
-          ? FhirBase64Binary.fromJson({
-              'value': json['data'],
-              '_value': json['_data'],
-            })
-          : null,
+      data: parseField<FhirBase64Binary>(
+        json['data'],
+        json['_data'],
+        FhirBase64Binary.fromJson,
+      ),
     );
   }
 
@@ -79,21 +88,23 @@ class Binary extends Resource {
   ) {
     if (yaml is String) {
       return Binary.fromJson(
-        yamlToJson(yaml) as Map<String, Object?>,
+        yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
       return Binary.fromJson(
-        yamlMapToJson(yaml) as Map<String, Object?>,
+        yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'Binary cannot be constructed from the provided input. '
+        'Binary '
+        'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
     }
   }
 
-  /// Factory constructor for [Binary]
+  /// Factory constructor for
+  /// [Binary]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]

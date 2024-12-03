@@ -8,7 +8,9 @@ class AuditEventAgentNetworkType extends PrimitiveType<String> {
   AuditEventAgentNetworkType._(super.value, [super.element]);
 
   /// Factory constructor to create [AuditEventAgentNetworkType] from JSON.
-  factory AuditEventAgentNetworkType.fromJson(Map<String, dynamic> json) {
+  factory AuditEventAgentNetworkType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -59,12 +61,17 @@ class AuditEventAgentNetworkType extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  AuditEventAgentNetworkType clone() =>
-      AuditEventAgentNetworkType._(value, element?.clone() as Element?);
+  AuditEventAgentNetworkType clone() => AuditEventAgentNetworkType._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  AuditEventAgentNetworkType setElement(String name, dynamic elementValue) {
+  AuditEventAgentNetworkType setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return AuditEventAgentNetworkType._(
       value,
       element?.setProperty(name, elementValue),

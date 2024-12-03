@@ -8,7 +8,9 @@ class SequenceType extends PrimitiveType<String> {
   SequenceType._(super.value, [super.element]);
 
   /// Factory constructor to create [SequenceType] from JSON.
-  factory SequenceType.fromJson(Map<String, dynamic> json) {
+  factory SequenceType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -46,11 +48,17 @@ class SequenceType extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  SequenceType clone() => SequenceType._(value, element?.clone() as Element?);
+  SequenceType clone() => SequenceType._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  SequenceType setElement(String name, dynamic elementValue) {
+  SequenceType setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return SequenceType._(
       value,
       element?.setProperty(name, elementValue),

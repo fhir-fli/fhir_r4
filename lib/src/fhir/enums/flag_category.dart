@@ -8,7 +8,9 @@ class FlagCategory extends PrimitiveType<String> {
   FlagCategory._(super.value, [super.element]);
 
   /// Factory constructor to create [FlagCategory] from JSON.
-  factory FlagCategory.fromJson(Map<String, dynamic> json) {
+  factory FlagCategory.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -88,11 +90,17 @@ class FlagCategory extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  FlagCategory clone() => FlagCategory._(value, element?.clone() as Element?);
+  FlagCategory clone() => FlagCategory._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  FlagCategory setElement(String name, dynamic elementValue) {
+  FlagCategory setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return FlagCategory._(
       value,
       element?.setProperty(name, elementValue),

@@ -8,7 +8,9 @@ class AddressType extends PrimitiveType<String> {
   AddressType._(super.value, [super.element]);
 
   /// Factory constructor to create [AddressType] from JSON.
-  factory AddressType.fromJson(Map<String, dynamic> json) {
+  factory AddressType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -46,11 +48,17 @@ class AddressType extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  AddressType clone() => AddressType._(value, element?.clone() as Element?);
+  AddressType clone() => AddressType._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  AddressType setElement(String name, dynamic elementValue) {
+  AddressType setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return AddressType._(
       value,
       element?.setProperty(name, elementValue),

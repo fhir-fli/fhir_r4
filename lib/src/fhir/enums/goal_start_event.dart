@@ -8,7 +8,9 @@ class GoalStartEvent extends PrimitiveType<String> {
   GoalStartEvent._(super.value, [super.element]);
 
   /// Factory constructor to create [GoalStartEvent] from JSON.
-  factory GoalStartEvent.fromJson(Map<String, dynamic> json) {
+  factory GoalStartEvent.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -52,12 +54,17 @@ class GoalStartEvent extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  GoalStartEvent clone() =>
-      GoalStartEvent._(value, element?.clone() as Element?);
+  GoalStartEvent clone() => GoalStartEvent._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  GoalStartEvent setElement(String name, dynamic elementValue) {
+  GoalStartEvent setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return GoalStartEvent._(
       value,
       element?.setProperty(name, elementValue),

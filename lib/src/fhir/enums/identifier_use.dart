@@ -8,7 +8,9 @@ class IdentifierUse extends PrimitiveType<String> {
   IdentifierUse._(super.value, [super.element]);
 
   /// Factory constructor to create [IdentifierUse] from JSON.
-  factory IdentifierUse.fromJson(Map<String, dynamic> json) {
+  factory IdentifierUse.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -58,11 +60,17 @@ class IdentifierUse extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  IdentifierUse clone() => IdentifierUse._(value, element?.clone() as Element?);
+  IdentifierUse clone() => IdentifierUse._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  IdentifierUse setElement(String name, dynamic elementValue) {
+  IdentifierUse setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return IdentifierUse._(
       value,
       element?.setProperty(name, elementValue),

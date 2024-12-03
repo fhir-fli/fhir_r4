@@ -8,7 +8,9 @@ class ClinicalUseDefinitionType extends PrimitiveType<String> {
   ClinicalUseDefinitionType._(super.value, [super.element]);
 
   /// Factory constructor to create [ClinicalUseDefinitionType] from JSON.
-  factory ClinicalUseDefinitionType.fromJson(Map<String, dynamic> json) {
+  factory ClinicalUseDefinitionType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -63,12 +65,17 @@ class ClinicalUseDefinitionType extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  ClinicalUseDefinitionType clone() =>
-      ClinicalUseDefinitionType._(value, element?.clone() as Element?);
+  ClinicalUseDefinitionType clone() => ClinicalUseDefinitionType._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  ClinicalUseDefinitionType setElement(String name, dynamic elementValue) {
+  ClinicalUseDefinitionType setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return ClinicalUseDefinitionType._(
       value,
       element?.setProperty(name, elementValue),

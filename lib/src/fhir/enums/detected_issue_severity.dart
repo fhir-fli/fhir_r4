@@ -8,7 +8,9 @@ class DetectedIssueSeverity extends PrimitiveType<String> {
   DetectedIssueSeverity._(super.value, [super.element]);
 
   /// Factory constructor to create [DetectedIssueSeverity] from JSON.
-  factory DetectedIssueSeverity.fromJson(Map<String, dynamic> json) {
+  factory DetectedIssueSeverity.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -46,12 +48,17 @@ class DetectedIssueSeverity extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  DetectedIssueSeverity clone() =>
-      DetectedIssueSeverity._(value, element?.clone() as Element?);
+  DetectedIssueSeverity clone() => DetectedIssueSeverity._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  DetectedIssueSeverity setElement(String name, dynamic elementValue) {
+  DetectedIssueSeverity setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return DetectedIssueSeverity._(
       value,
       element?.setProperty(name, elementValue),

@@ -8,7 +8,9 @@ class GoalPriority extends PrimitiveType<String> {
   GoalPriority._(super.value, [super.element]);
 
   /// Factory constructor to create [GoalPriority] from JSON.
-  factory GoalPriority.fromJson(Map<String, dynamic> json) {
+  factory GoalPriority.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -46,11 +48,17 @@ class GoalPriority extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  GoalPriority clone() => GoalPriority._(value, element?.clone() as Element?);
+  GoalPriority clone() => GoalPriority._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  GoalPriority setElement(String name, dynamic elementValue) {
+  GoalPriority setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return GoalPriority._(
       value,
       element?.setProperty(name, elementValue),

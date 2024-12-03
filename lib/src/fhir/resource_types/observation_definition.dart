@@ -45,119 +45,118 @@ class ObservationDefinition extends DomainResource {
   factory ObservationDefinition.fromJson(
     Map<String, dynamic> json,
   ) {
+    T? parseField<T extends FhirBase>(
+      dynamic value,
+      dynamic valueElement,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        (value != null || valueElement != null)
+            ? fromJson({
+                'value': value,
+                '_value': valueElement,
+              })
+            : null;
+    List<T>? parseList<T extends FhirBase>(
+      List<dynamic>? values,
+      List<dynamic>? valueElements,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        values?.asMap().entries.map((entry) {
+          final index = entry.key;
+          final value = entry.value;
+          final valueElement =
+              valueElements != null && valueElements.length > index
+                  ? valueElements[index]
+                  : null;
+          return fromJson({
+            'value': value,
+            '_value': valueElement,
+          });
+        }).toList();
     return ObservationDefinition(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
+      id: parseField<FhirString>(
+        json['id'],
+        json['_id'],
+        FhirString.fromJson,
+      ),
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
-      implicitRules:
-          (json['implicitRules'] != null || json['_implicitRules'] != null)
-              ? FhirUri.fromJson({
-                  'value': json['implicitRules'],
-                  '_value': json['_implicitRules'],
-                })
-              : null,
-      language: (json['language'] != null || json['_language'] != null)
-          ? CommonLanguages.fromJson({
-              'value': json['language'],
-              '_value': json['_language'],
-            })
-          : null,
+      implicitRules: parseField<FhirUri>(
+        json['implicitRules'],
+        json['_implicitRules'],
+        FhirUri.fromJson,
+      ),
+      language: parseField<CommonLanguages>(
+        json['language'],
+        json['_language'],
+        CommonLanguages.fromJson,
+      ),
       text: json['text'] != null
           ? Narrative.fromJson(
               json['text'] as Map<String, dynamic>,
             )
           : null,
-      contained: json['contained'] != null
-          ? (json['contained'] as List<dynamic>)
-              .map<Resource>(
-                (v) => Resource.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      category: json['category'] != null
-          ? (json['category'] as List<dynamic>)
-              .map<CodeableConcept>(
-                (v) => CodeableConcept.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      contained: parseList<Resource>(
+        json['contained'] as List<dynamic>?,
+        json['_contained'] as List<dynamic>?,
+        Resource.fromJson,
+      ),
+      extension_: parseList<FhirExtension>(
+        json['extension'] as List<dynamic>?,
+        json['_extension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
+      modifierExtension: parseList<FhirExtension>(
+        json['modifierExtension'] as List<dynamic>?,
+        json['_modifierExtension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
+      category: parseList<CodeableConcept>(
+        json['category'] as List<dynamic>?,
+        json['_category'] as List<dynamic>?,
+        CodeableConcept.fromJson,
+      ),
       code: CodeableConcept.fromJson(
         json['code'] as Map<String, dynamic>,
       ),
-      identifier: json['identifier'] != null
-          ? (json['identifier'] as List<dynamic>)
-              .map<Identifier>(
-                (v) => Identifier.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      permittedDataType: parsePrimitiveList<ObservationDataType>(
+      identifier: parseList<Identifier>(
+        json['identifier'] as List<dynamic>?,
+        json['_identifier'] as List<dynamic>?,
+        Identifier.fromJson,
+      ),
+      permittedDataType: parseList<ObservationDataType>(
         json['permittedDataType'] as List<dynamic>?,
         json['_permittedDataType'] as List<dynamic>?,
-        fromJson: ObservationDataType.fromJson,
+        ObservationDataType.fromJson,
       ),
-      multipleResultsAllowed: (json['multipleResultsAllowed'] != null ||
-              json['_multipleResultsAllowed'] != null)
-          ? FhirBoolean.fromJson({
-              'value': json['multipleResultsAllowed'],
-              '_value': json['_multipleResultsAllowed'],
-            })
-          : null,
+      multipleResultsAllowed: parseField<FhirBoolean>(
+        json['multipleResultsAllowed'],
+        json['_multipleResultsAllowed'],
+        FhirBoolean.fromJson,
+      ),
       method: json['method'] != null
           ? CodeableConcept.fromJson(
               json['method'] as Map<String, dynamic>,
             )
           : null,
-      preferredReportName: (json['preferredReportName'] != null ||
-              json['_preferredReportName'] != null)
-          ? FhirString.fromJson({
-              'value': json['preferredReportName'],
-              '_value': json['_preferredReportName'],
-            })
-          : null,
+      preferredReportName: parseField<FhirString>(
+        json['preferredReportName'],
+        json['_preferredReportName'],
+        FhirString.fromJson,
+      ),
       quantitativeDetails: json['quantitativeDetails'] != null
           ? ObservationDefinitionQuantitativeDetails.fromJson(
               json['quantitativeDetails'] as Map<String, dynamic>,
             )
           : null,
-      qualifiedInterval: json['qualifiedInterval'] != null
-          ? (json['qualifiedInterval'] as List<dynamic>)
-              .map<ObservationDefinitionQualifiedInterval>(
-                (v) => ObservationDefinitionQualifiedInterval.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      qualifiedInterval: parseList<ObservationDefinitionQualifiedInterval>(
+        json['qualifiedInterval'] as List<dynamic>?,
+        json['_qualifiedInterval'] as List<dynamic>?,
+        ObservationDefinitionQualifiedInterval.fromJson,
+      ),
       validCodedValueSet: json['validCodedValueSet'] != null
           ? Reference.fromJson(
               json['validCodedValueSet'] as Map<String, dynamic>,
@@ -188,21 +187,23 @@ class ObservationDefinition extends DomainResource {
   ) {
     if (yaml is String) {
       return ObservationDefinition.fromJson(
-        yamlToJson(yaml) as Map<String, Object?>,
+        yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
       return ObservationDefinition.fromJson(
-        yamlMapToJson(yaml) as Map<String, Object?>,
+        yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ObservationDefinition cannot be constructed from the provided input. '
+        'ObservationDefinition '
+        'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
     }
   }
 
-  /// Factory constructor for [ObservationDefinition]
+  /// Factory constructor for
+  /// [ObservationDefinition]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
@@ -464,28 +465,50 @@ class ObservationDefinitionQuantitativeDetails extends BackboneElement {
   factory ObservationDefinitionQuantitativeDetails.fromJson(
     Map<String, dynamic> json,
   ) {
+    T? parseField<T extends FhirBase>(
+      dynamic value,
+      dynamic valueElement,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        (value != null || valueElement != null)
+            ? fromJson({
+                'value': value,
+                '_value': valueElement,
+              })
+            : null;
+    List<T>? parseList<T extends FhirBase>(
+      List<dynamic>? values,
+      List<dynamic>? valueElements,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        values?.asMap().entries.map((entry) {
+          final index = entry.key;
+          final value = entry.value;
+          final valueElement =
+              valueElements != null && valueElements.length > index
+                  ? valueElements[index]
+                  : null;
+          return fromJson({
+            'value': value,
+            '_value': valueElement,
+          });
+        }).toList();
     return ObservationDefinitionQuantitativeDetails(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      id: parseField<FhirString>(
+        json['id'],
+        json['_id'],
+        FhirString.fromJson,
+      ),
+      extension_: parseList<FhirExtension>(
+        json['extension'] as List<dynamic>?,
+        json['_extension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
+      modifierExtension: parseList<FhirExtension>(
+        json['modifierExtension'] as List<dynamic>?,
+        json['_modifierExtension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
       customaryUnit: json['customaryUnit'] != null
           ? CodeableConcept.fromJson(
               json['customaryUnit'] as Map<String, dynamic>,
@@ -496,20 +519,16 @@ class ObservationDefinitionQuantitativeDetails extends BackboneElement {
               json['unit'] as Map<String, dynamic>,
             )
           : null,
-      conversionFactor: (json['conversionFactor'] != null ||
-              json['_conversionFactor'] != null)
-          ? FhirDecimal.fromJson({
-              'value': json['conversionFactor'],
-              '_value': json['_conversionFactor'],
-            })
-          : null,
-      decimalPrecision: (json['decimalPrecision'] != null ||
-              json['_decimalPrecision'] != null)
-          ? FhirInteger.fromJson({
-              'value': json['decimalPrecision'],
-              '_value': json['_decimalPrecision'],
-            })
-          : null,
+      conversionFactor: parseField<FhirDecimal>(
+        json['conversionFactor'],
+        json['_conversionFactor'],
+        FhirDecimal.fromJson,
+      ),
+      decimalPrecision: parseField<FhirInteger>(
+        json['decimalPrecision'],
+        json['_decimalPrecision'],
+        FhirInteger.fromJson,
+      ),
     );
   }
 
@@ -520,21 +539,23 @@ class ObservationDefinitionQuantitativeDetails extends BackboneElement {
   ) {
     if (yaml is String) {
       return ObservationDefinitionQuantitativeDetails.fromJson(
-        yamlToJson(yaml) as Map<String, Object?>,
+        yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
       return ObservationDefinitionQuantitativeDetails.fromJson(
-        yamlMapToJson(yaml) as Map<String, Object?>,
+        yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ObservationDefinitionQuantitativeDetails cannot be constructed from the provided input. '
+        'ObservationDefinitionQuantitativeDetails '
+        'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
     }
   }
 
-  /// Factory constructor for [ObservationDefinitionQuantitativeDetails]
+  /// Factory constructor for
+  /// [ObservationDefinitionQuantitativeDetails]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
@@ -675,34 +696,55 @@ class ObservationDefinitionQualifiedInterval extends BackboneElement {
   factory ObservationDefinitionQualifiedInterval.fromJson(
     Map<String, dynamic> json,
   ) {
+    T? parseField<T extends FhirBase>(
+      dynamic value,
+      dynamic valueElement,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        (value != null || valueElement != null)
+            ? fromJson({
+                'value': value,
+                '_value': valueElement,
+              })
+            : null;
+    List<T>? parseList<T extends FhirBase>(
+      List<dynamic>? values,
+      List<dynamic>? valueElements,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        values?.asMap().entries.map((entry) {
+          final index = entry.key;
+          final value = entry.value;
+          final valueElement =
+              valueElements != null && valueElements.length > index
+                  ? valueElements[index]
+                  : null;
+          return fromJson({
+            'value': value,
+            '_value': valueElement,
+          });
+        }).toList();
     return ObservationDefinitionQualifiedInterval(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      category: (json['category'] != null || json['_category'] != null)
-          ? ObservationRangeCategory.fromJson({
-              'value': json['category'],
-              '_value': json['_category'],
-            })
-          : null,
+      id: parseField<FhirString>(
+        json['id'],
+        json['_id'],
+        FhirString.fromJson,
+      ),
+      extension_: parseList<FhirExtension>(
+        json['extension'] as List<dynamic>?,
+        json['_extension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
+      modifierExtension: parseList<FhirExtension>(
+        json['modifierExtension'] as List<dynamic>?,
+        json['_modifierExtension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
+      category: parseField<ObservationRangeCategory>(
+        json['category'],
+        json['_category'],
+        ObservationRangeCategory.fromJson,
+      ),
       range: json['range'] != null
           ? Range.fromJson(
               json['range'] as Map<String, dynamic>,
@@ -713,21 +755,16 @@ class ObservationDefinitionQualifiedInterval extends BackboneElement {
               json['context'] as Map<String, dynamic>,
             )
           : null,
-      appliesTo: json['appliesTo'] != null
-          ? (json['appliesTo'] as List<dynamic>)
-              .map<CodeableConcept>(
-                (v) => CodeableConcept.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      gender: (json['gender'] != null || json['_gender'] != null)
-          ? AdministrativeGender.fromJson({
-              'value': json['gender'],
-              '_value': json['_gender'],
-            })
-          : null,
+      appliesTo: parseList<CodeableConcept>(
+        json['appliesTo'] as List<dynamic>?,
+        json['_appliesTo'] as List<dynamic>?,
+        CodeableConcept.fromJson,
+      ),
+      gender: parseField<AdministrativeGender>(
+        json['gender'],
+        json['_gender'],
+        AdministrativeGender.fromJson,
+      ),
       age: json['age'] != null
           ? Range.fromJson(
               json['age'] as Map<String, dynamic>,
@@ -738,12 +775,11 @@ class ObservationDefinitionQualifiedInterval extends BackboneElement {
               json['gestationalAge'] as Map<String, dynamic>,
             )
           : null,
-      condition: (json['condition'] != null || json['_condition'] != null)
-          ? FhirString.fromJson({
-              'value': json['condition'],
-              '_value': json['_condition'],
-            })
-          : null,
+      condition: parseField<FhirString>(
+        json['condition'],
+        json['_condition'],
+        FhirString.fromJson,
+      ),
     );
   }
 
@@ -754,21 +790,23 @@ class ObservationDefinitionQualifiedInterval extends BackboneElement {
   ) {
     if (yaml is String) {
       return ObservationDefinitionQualifiedInterval.fromJson(
-        yamlToJson(yaml) as Map<String, Object?>,
+        yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
       return ObservationDefinitionQualifiedInterval.fromJson(
-        yamlMapToJson(yaml) as Map<String, Object?>,
+        yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ObservationDefinitionQualifiedInterval cannot be constructed from the provided input. '
+        'ObservationDefinitionQualifiedInterval '
+        'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
     }
   }
 
-  /// Factory constructor for [ObservationDefinitionQualifiedInterval]
+  /// Factory constructor for
+  /// [ObservationDefinitionQualifiedInterval]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]

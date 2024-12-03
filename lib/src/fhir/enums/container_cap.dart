@@ -8,7 +8,9 @@ class ContainerCap extends PrimitiveType<String> {
   ContainerCap._(super.value, [super.element]);
 
   /// Factory constructor to create [ContainerCap] from JSON.
-  factory ContainerCap.fromJson(Map<String, dynamic> json) {
+  factory ContainerCap.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -100,11 +102,17 @@ class ContainerCap extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  ContainerCap clone() => ContainerCap._(value, element?.clone() as Element?);
+  ContainerCap clone() => ContainerCap._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  ContainerCap setElement(String name, dynamic elementValue) {
+  ContainerCap setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return ContainerCap._(
       value,
       element?.setProperty(name, elementValue),

@@ -8,7 +8,9 @@ class AccountStatus extends PrimitiveType<String> {
   AccountStatus._(super.value, [super.element]);
 
   /// Factory constructor to create [AccountStatus] from JSON.
-  factory AccountStatus.fromJson(Map<String, dynamic> json) {
+  factory AccountStatus.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -58,11 +60,17 @@ class AccountStatus extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  AccountStatus clone() => AccountStatus._(value, element?.clone() as Element?);
+  AccountStatus clone() => AccountStatus._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  AccountStatus setElement(String name, dynamic elementValue) {
+  AccountStatus setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return AccountStatus._(
       value,
       element?.setProperty(name, elementValue),

@@ -8,7 +8,9 @@ class SubscriberRelationshipCodes extends PrimitiveType<String> {
   SubscriberRelationshipCodes._(super.value, [super.element]);
 
   /// Factory constructor to create [SubscriberRelationshipCodes] from JSON.
-  factory SubscriberRelationshipCodes.fromJson(Map<String, dynamic> json) {
+  factory SubscriberRelationshipCodes.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -77,12 +79,17 @@ class SubscriberRelationshipCodes extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  SubscriberRelationshipCodes clone() =>
-      SubscriberRelationshipCodes._(value, element?.clone() as Element?);
+  SubscriberRelationshipCodes clone() => SubscriberRelationshipCodes._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  SubscriberRelationshipCodes setElement(String name, dynamic elementValue) {
+  SubscriberRelationshipCodes setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return SubscriberRelationshipCodes._(
       value,
       element?.setProperty(name, elementValue),

@@ -8,7 +8,9 @@ class PaymentAdjustmentReasonCodes extends PrimitiveType<String> {
   PaymentAdjustmentReasonCodes._(super.value, [super.element]);
 
   /// Factory constructor to create [PaymentAdjustmentReasonCodes] from JSON.
-  factory PaymentAdjustmentReasonCodes.fromJson(Map<String, dynamic> json) {
+  factory PaymentAdjustmentReasonCodes.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -43,12 +45,17 @@ class PaymentAdjustmentReasonCodes extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  PaymentAdjustmentReasonCodes clone() =>
-      PaymentAdjustmentReasonCodes._(value, element?.clone() as Element?);
+  PaymentAdjustmentReasonCodes clone() => PaymentAdjustmentReasonCodes._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  PaymentAdjustmentReasonCodes setElement(String name, dynamic elementValue) {
+  PaymentAdjustmentReasonCodes setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return PaymentAdjustmentReasonCodes._(
       value,
       element?.setProperty(name, elementValue),

@@ -8,7 +8,9 @@ class ExtensionContextType extends PrimitiveType<String> {
   ExtensionContextType._(super.value, [super.element]);
 
   /// Factory constructor to create [ExtensionContextType] from JSON.
-  factory ExtensionContextType.fromJson(Map<String, dynamic> json) {
+  factory ExtensionContextType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -46,12 +48,17 @@ class ExtensionContextType extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  ExtensionContextType clone() =>
-      ExtensionContextType._(value, element?.clone() as Element?);
+  ExtensionContextType clone() => ExtensionContextType._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  ExtensionContextType setElement(String name, dynamic elementValue) {
+  ExtensionContextType setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return ExtensionContextType._(
       value,
       element?.setProperty(name, elementValue),

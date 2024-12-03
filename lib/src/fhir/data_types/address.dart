@@ -37,72 +37,90 @@ class Address extends DataType {
   factory Address.fromJson(
     Map<String, dynamic> json,
   ) {
+    T? parseField<T extends FhirBase>(
+      dynamic value,
+      dynamic valueElement,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        (value != null || valueElement != null)
+            ? fromJson({
+                'value': value,
+                '_value': valueElement,
+              })
+            : null;
+    List<T>? parseList<T extends FhirBase>(
+      List<dynamic>? values,
+      List<dynamic>? valueElements,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        values?.asMap().entries.map((entry) {
+          final index = entry.key;
+          final value = entry.value;
+          final valueElement =
+              valueElements != null && valueElements.length > index
+                  ? valueElements[index]
+                  : null;
+          return fromJson({
+            'value': value,
+            '_value': valueElement,
+          });
+        }).toList();
     return Address(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      use: (json['use'] != null || json['_use'] != null)
-          ? AddressUse.fromJson({
-              'value': json['use'],
-              '_value': json['_use'],
-            })
-          : null,
-      type: (json['type'] != null || json['_type'] != null)
-          ? AddressType.fromJson({
-              'value': json['type'],
-              '_value': json['_type'],
-            })
-          : null,
-      text: (json['text'] != null || json['_text'] != null)
-          ? FhirString.fromJson({
-              'value': json['text'],
-              '_value': json['_text'],
-            })
-          : null,
-      line: parsePrimitiveList<FhirString>(
+      id: parseField<FhirString>(
+        json['id'],
+        json['_id'],
+        FhirString.fromJson,
+      ),
+      extension_: parseList<FhirExtension>(
+        json['extension'] as List<dynamic>?,
+        json['_extension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
+      use: parseField<AddressUse>(
+        json['use'],
+        json['_use'],
+        AddressUse.fromJson,
+      ),
+      type: parseField<AddressType>(
+        json['type'],
+        json['_type'],
+        AddressType.fromJson,
+      ),
+      text: parseField<FhirString>(
+        json['text'],
+        json['_text'],
+        FhirString.fromJson,
+      ),
+      line: parseList<FhirString>(
         json['line'] as List<dynamic>?,
         json['_line'] as List<dynamic>?,
-        fromJson: FhirString.fromJson,
+        FhirString.fromJson,
       ),
-      city: (json['city'] != null || json['_city'] != null)
-          ? FhirString.fromJson({
-              'value': json['city'],
-              '_value': json['_city'],
-            })
-          : null,
-      district: (json['district'] != null || json['_district'] != null)
-          ? FhirString.fromJson({
-              'value': json['district'],
-              '_value': json['_district'],
-            })
-          : null,
-      state: (json['state'] != null || json['_state'] != null)
-          ? FhirString.fromJson({
-              'value': json['state'],
-              '_value': json['_state'],
-            })
-          : null,
-      postalCode: (json['postalCode'] != null || json['_postalCode'] != null)
-          ? FhirString.fromJson({
-              'value': json['postalCode'],
-              '_value': json['_postalCode'],
-            })
-          : null,
-      country: (json['country'] != null || json['_country'] != null)
-          ? FhirString.fromJson({
-              'value': json['country'],
-              '_value': json['_country'],
-            })
-          : null,
+      city: parseField<FhirString>(
+        json['city'],
+        json['_city'],
+        FhirString.fromJson,
+      ),
+      district: parseField<FhirString>(
+        json['district'],
+        json['_district'],
+        FhirString.fromJson,
+      ),
+      state: parseField<FhirString>(
+        json['state'],
+        json['_state'],
+        FhirString.fromJson,
+      ),
+      postalCode: parseField<FhirString>(
+        json['postalCode'],
+        json['_postalCode'],
+        FhirString.fromJson,
+      ),
+      country: parseField<FhirString>(
+        json['country'],
+        json['_country'],
+        FhirString.fromJson,
+      ),
       period: json['period'] != null
           ? Period.fromJson(
               json['period'] as Map<String, dynamic>,
@@ -118,21 +136,23 @@ class Address extends DataType {
   ) {
     if (yaml is String) {
       return Address.fromJson(
-        yamlToJson(yaml) as Map<String, Object?>,
+        yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
       return Address.fromJson(
-        yamlMapToJson(yaml) as Map<String, Object?>,
+        yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'Address cannot be constructed from the provided input. '
+        'Address '
+        'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
     }
   }
 
-  /// Factory constructor for [Address]
+  /// Factory constructor for
+  /// [Address]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]

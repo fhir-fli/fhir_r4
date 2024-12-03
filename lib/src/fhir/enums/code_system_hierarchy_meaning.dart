@@ -8,7 +8,9 @@ class CodeSystemHierarchyMeaning extends PrimitiveType<String> {
   CodeSystemHierarchyMeaning._(super.value, [super.element]);
 
   /// Factory constructor to create [CodeSystemHierarchyMeaning] from JSON.
-  factory CodeSystemHierarchyMeaning.fromJson(Map<String, dynamic> json) {
+  factory CodeSystemHierarchyMeaning.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -56,12 +58,17 @@ class CodeSystemHierarchyMeaning extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  CodeSystemHierarchyMeaning clone() =>
-      CodeSystemHierarchyMeaning._(value, element?.clone() as Element?);
+  CodeSystemHierarchyMeaning clone() => CodeSystemHierarchyMeaning._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  CodeSystemHierarchyMeaning setElement(String name, dynamic elementValue) {
+  CodeSystemHierarchyMeaning setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return CodeSystemHierarchyMeaning._(
       value,
       element?.setProperty(name, elementValue),

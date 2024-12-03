@@ -8,7 +8,9 @@ class ResourceVersionPolicy extends PrimitiveType<String> {
   ResourceVersionPolicy._(super.value, [super.element]);
 
   /// Factory constructor to create [ResourceVersionPolicy] from JSON.
-  factory ResourceVersionPolicy.fromJson(Map<String, dynamic> json) {
+  factory ResourceVersionPolicy.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -46,12 +48,17 @@ class ResourceVersionPolicy extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  ResourceVersionPolicy clone() =>
-      ResourceVersionPolicy._(value, element?.clone() as Element?);
+  ResourceVersionPolicy clone() => ResourceVersionPolicy._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  ResourceVersionPolicy setElement(String name, dynamic elementValue) {
+  ResourceVersionPolicy setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return ResourceVersionPolicy._(
       value,
       element?.setProperty(name, elementValue),

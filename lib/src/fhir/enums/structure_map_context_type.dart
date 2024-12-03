@@ -8,7 +8,9 @@ class StructureMapContextType extends PrimitiveType<String> {
   StructureMapContextType._(super.value, [super.element]);
 
   /// Factory constructor to create [StructureMapContextType] from JSON.
-  factory StructureMapContextType.fromJson(Map<String, dynamic> json) {
+  factory StructureMapContextType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -41,12 +43,17 @@ class StructureMapContextType extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  StructureMapContextType clone() =>
-      StructureMapContextType._(value, element?.clone() as Element?);
+  StructureMapContextType clone() => StructureMapContextType._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  StructureMapContextType setElement(String name, dynamic elementValue) {
+  StructureMapContextType setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return StructureMapContextType._(
       value,
       element?.setProperty(name, elementValue),

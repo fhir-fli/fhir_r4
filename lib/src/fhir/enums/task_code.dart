@@ -8,7 +8,9 @@ class TaskCode extends PrimitiveType<String> {
   TaskCode._(super.value, [super.element]);
 
   /// Factory constructor to create [TaskCode] from JSON.
-  factory TaskCode.fromJson(Map<String, dynamic> json) {
+  factory TaskCode.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -70,11 +72,17 @@ class TaskCode extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  TaskCode clone() => TaskCode._(value, element?.clone() as Element?);
+  TaskCode clone() => TaskCode._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  TaskCode setElement(String name, dynamic elementValue) {
+  TaskCode setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return TaskCode._(
       value,
       element?.setProperty(name, elementValue),

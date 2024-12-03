@@ -8,7 +8,9 @@ class ObservationCategoryCodes extends PrimitiveType<String> {
   ObservationCategoryCodes._(super.value, [super.element]);
 
   /// Factory constructor to create [ObservationCategoryCodes] from JSON.
-  factory ObservationCategoryCodes.fromJson(Map<String, dynamic> json) {
+  factory ObservationCategoryCodes.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -85,12 +87,17 @@ class ObservationCategoryCodes extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  ObservationCategoryCodes clone() =>
-      ObservationCategoryCodes._(value, element?.clone() as Element?);
+  ObservationCategoryCodes clone() => ObservationCategoryCodes._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  ObservationCategoryCodes setElement(String name, dynamic elementValue) {
+  ObservationCategoryCodes setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return ObservationCategoryCodes._(
       value,
       element?.setProperty(name, elementValue),

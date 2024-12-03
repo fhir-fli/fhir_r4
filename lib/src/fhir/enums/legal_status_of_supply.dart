@@ -8,7 +8,9 @@ class LegalStatusOfSupply extends PrimitiveType<String> {
   LegalStatusOfSupply._(super.value, [super.element]);
 
   /// Factory constructor to create [LegalStatusOfSupply] from JSON.
-  factory LegalStatusOfSupply.fromJson(Map<String, dynamic> json) {
+  factory LegalStatusOfSupply.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -76,12 +78,17 @@ class LegalStatusOfSupply extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  LegalStatusOfSupply clone() =>
-      LegalStatusOfSupply._(value, element?.clone() as Element?);
+  LegalStatusOfSupply clone() => LegalStatusOfSupply._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  LegalStatusOfSupply setElement(String name, dynamic elementValue) {
+  LegalStatusOfSupply setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return LegalStatusOfSupply._(
       value,
       element?.setProperty(name, elementValue),

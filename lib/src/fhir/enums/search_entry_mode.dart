@@ -8,7 +8,9 @@ class SearchEntryMode extends PrimitiveType<String> {
   SearchEntryMode._(super.value, [super.element]);
 
   /// Factory constructor to create [SearchEntryMode] from JSON.
-  factory SearchEntryMode.fromJson(Map<String, dynamic> json) {
+  factory SearchEntryMode.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -46,12 +48,17 @@ class SearchEntryMode extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  SearchEntryMode clone() =>
-      SearchEntryMode._(value, element?.clone() as Element?);
+  SearchEntryMode clone() => SearchEntryMode._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  SearchEntryMode setElement(String name, dynamic elementValue) {
+  SearchEntryMode setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return SearchEntryMode._(
       value,
       element?.setProperty(name, elementValue),

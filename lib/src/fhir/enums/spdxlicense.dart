@@ -8,7 +8,9 @@ class SPDXLicense extends PrimitiveType<String> {
   SPDXLicense._(super.value, [super.element]);
 
   /// Factory constructor to create [SPDXLicense] from JSON.
-  factory SPDXLicense.fromJson(Map<String, dynamic> json) {
+  factory SPDXLicense.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -2104,11 +2106,17 @@ class SPDXLicense extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  SPDXLicense clone() => SPDXLicense._(value, element?.clone() as Element?);
+  SPDXLicense clone() => SPDXLicense._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  SPDXLicense setElement(String name, dynamic elementValue) {
+  SPDXLicense setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return SPDXLicense._(
       value,
       element?.setProperty(name, elementValue),

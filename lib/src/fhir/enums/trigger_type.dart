@@ -8,7 +8,9 @@ class TriggerType extends PrimitiveType<String> {
   TriggerType._(super.value, [super.element]);
 
   /// Factory constructor to create [TriggerType] from JSON.
-  factory TriggerType.fromJson(Map<String, dynamic> json) {
+  factory TriggerType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -76,11 +78,17 @@ class TriggerType extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  TriggerType clone() => TriggerType._(value, element?.clone() as Element?);
+  TriggerType clone() => TriggerType._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  TriggerType setElement(String name, dynamic elementValue) {
+  TriggerType setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return TriggerType._(
       value,
       element?.setProperty(name, elementValue),

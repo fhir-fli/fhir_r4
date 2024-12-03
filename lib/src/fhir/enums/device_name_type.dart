@@ -8,7 +8,9 @@ class DeviceNameType extends PrimitiveType<String> {
   DeviceNameType._(super.value, [super.element]);
 
   /// Factory constructor to create [DeviceNameType] from JSON.
-  factory DeviceNameType.fromJson(Map<String, dynamic> json) {
+  factory DeviceNameType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -64,12 +66,17 @@ class DeviceNameType extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  DeviceNameType clone() =>
-      DeviceNameType._(value, element?.clone() as Element?);
+  DeviceNameType clone() => DeviceNameType._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  DeviceNameType setElement(String name, dynamic elementValue) {
+  DeviceNameType setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return DeviceNameType._(
       value,
       element?.setProperty(name, elementValue),

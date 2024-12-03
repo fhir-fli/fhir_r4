@@ -8,7 +8,9 @@ class ResearchStudyPrimaryPurposeType extends PrimitiveType<String> {
   ResearchStudyPrimaryPurposeType._(super.value, [super.element]);
 
   /// Factory constructor to create [ResearchStudyPrimaryPurposeType] from JSON.
-  factory ResearchStudyPrimaryPurposeType.fromJson(Map<String, dynamic> json) {
+  factory ResearchStudyPrimaryPurposeType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -85,13 +87,17 @@ class ResearchStudyPrimaryPurposeType extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  ResearchStudyPrimaryPurposeType clone() =>
-      ResearchStudyPrimaryPurposeType._(value, element?.clone() as Element?);
+  ResearchStudyPrimaryPurposeType clone() => ResearchStudyPrimaryPurposeType._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
   ResearchStudyPrimaryPurposeType setElement(
-      String name, dynamic elementValue) {
+    String name,
+    dynamic elementValue,
+  ) {
     return ResearchStudyPrimaryPurposeType._(
       value,
       element?.setProperty(name, elementValue),

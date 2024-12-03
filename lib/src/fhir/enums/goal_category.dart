@@ -8,7 +8,9 @@ class GoalCategory extends PrimitiveType<String> {
   GoalCategory._(super.value, [super.element]);
 
   /// Factory constructor to create [GoalCategory] from JSON.
-  factory GoalCategory.fromJson(Map<String, dynamic> json) {
+  factory GoalCategory.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -58,11 +60,17 @@ class GoalCategory extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  GoalCategory clone() => GoalCategory._(value, element?.clone() as Element?);
+  GoalCategory clone() => GoalCategory._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  GoalCategory setElement(String name, dynamic elementValue) {
+  GoalCategory setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return GoalCategory._(
       value,
       element?.setProperty(name, elementValue),

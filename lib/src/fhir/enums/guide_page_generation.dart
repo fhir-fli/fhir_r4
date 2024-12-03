@@ -8,7 +8,9 @@ class GuidePageGeneration extends PrimitiveType<String> {
   GuidePageGeneration._(super.value, [super.element]);
 
   /// Factory constructor to create [GuidePageGeneration] from JSON.
-  factory GuidePageGeneration.fromJson(Map<String, dynamic> json) {
+  factory GuidePageGeneration.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -52,12 +54,17 @@ class GuidePageGeneration extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  GuidePageGeneration clone() =>
-      GuidePageGeneration._(value, element?.clone() as Element?);
+  GuidePageGeneration clone() => GuidePageGeneration._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  GuidePageGeneration setElement(String name, dynamic elementValue) {
+  GuidePageGeneration setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return GuidePageGeneration._(
       value,
       element?.setProperty(name, elementValue),

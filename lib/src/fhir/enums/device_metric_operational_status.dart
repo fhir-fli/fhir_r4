@@ -8,7 +8,9 @@ class DeviceMetricOperationalStatus extends PrimitiveType<String> {
   DeviceMetricOperationalStatus._(super.value, [super.element]);
 
   /// Factory constructor to create [DeviceMetricOperationalStatus] from JSON.
-  factory DeviceMetricOperationalStatus.fromJson(Map<String, dynamic> json) {
+  factory DeviceMetricOperationalStatus.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -57,12 +59,17 @@ class DeviceMetricOperationalStatus extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  DeviceMetricOperationalStatus clone() =>
-      DeviceMetricOperationalStatus._(value, element?.clone() as Element?);
+  DeviceMetricOperationalStatus clone() => DeviceMetricOperationalStatus._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  DeviceMetricOperationalStatus setElement(String name, dynamic elementValue) {
+  DeviceMetricOperationalStatus setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return DeviceMetricOperationalStatus._(
       value,
       element?.setProperty(name, elementValue),

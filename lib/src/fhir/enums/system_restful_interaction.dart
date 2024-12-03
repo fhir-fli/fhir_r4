@@ -8,7 +8,9 @@ class SystemRestfulInteraction extends PrimitiveType<String> {
   SystemRestfulInteraction._(super.value, [super.element]);
 
   /// Factory constructor to create [SystemRestfulInteraction] from JSON.
-  factory SystemRestfulInteraction.fromJson(Map<String, dynamic> json) {
+  factory SystemRestfulInteraction.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -138,12 +140,17 @@ class SystemRestfulInteraction extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  SystemRestfulInteraction clone() =>
-      SystemRestfulInteraction._(value, element?.clone() as Element?);
+  SystemRestfulInteraction clone() => SystemRestfulInteraction._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  SystemRestfulInteraction setElement(String name, dynamic elementValue) {
+  SystemRestfulInteraction setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return SystemRestfulInteraction._(
       value,
       element?.setProperty(name, elementValue),

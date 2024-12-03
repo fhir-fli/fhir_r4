@@ -8,7 +8,9 @@ class ListMode extends PrimitiveType<String> {
   ListMode._(super.value, [super.element]);
 
   /// Factory constructor to create [ListMode] from JSON.
-  factory ListMode.fromJson(Map<String, dynamic> json) {
+  factory ListMode.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -46,11 +48,17 @@ class ListMode extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  ListMode clone() => ListMode._(value, element?.clone() as Element?);
+  ListMode clone() => ListMode._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  ListMode setElement(String name, dynamic elementValue) {
+  ListMode setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return ListMode._(
       value,
       element?.setProperty(name, elementValue),

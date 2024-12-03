@@ -8,7 +8,9 @@ class QualityType extends PrimitiveType<String> {
   QualityType._(super.value, [super.element]);
 
   /// Factory constructor to create [QualityType] from JSON.
-  factory QualityType.fromJson(Map<String, dynamic> json) {
+  factory QualityType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -46,11 +48,17 @@ class QualityType extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  QualityType clone() => QualityType._(value, element?.clone() as Element?);
+  QualityType clone() => QualityType._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  QualityType setElement(String name, dynamic elementValue) {
+  QualityType setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return QualityType._(
       value,
       element?.setProperty(name, elementValue),

@@ -8,7 +8,9 @@ class BenefitCategoryCodes extends PrimitiveType<String> {
   BenefitCategoryCodes._(super.value, [super.element]);
 
   /// Factory constructor to create [BenefitCategoryCodes] from JSON.
-  factory BenefitCategoryCodes.fromJson(Map<String, dynamic> json) {
+  factory BenefitCategoryCodes.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -196,12 +198,17 @@ class BenefitCategoryCodes extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  BenefitCategoryCodes clone() =>
-      BenefitCategoryCodes._(value, element?.clone() as Element?);
+  BenefitCategoryCodes clone() => BenefitCategoryCodes._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  BenefitCategoryCodes setElement(String name, dynamic elementValue) {
+  BenefitCategoryCodes setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return BenefitCategoryCodes._(
       value,
       element?.setProperty(name, elementValue),

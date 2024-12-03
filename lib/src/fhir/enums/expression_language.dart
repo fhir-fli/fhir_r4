@@ -8,7 +8,9 @@ class ExpressionLanguage extends PrimitiveType<String> {
   ExpressionLanguage._(super.value, [super.element]);
 
   /// Factory constructor to create [ExpressionLanguage] from JSON.
-  factory ExpressionLanguage.fromJson(Map<String, dynamic> json) {
+  factory ExpressionLanguage.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -59,12 +61,17 @@ class ExpressionLanguage extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  ExpressionLanguage clone() =>
-      ExpressionLanguage._(value, element?.clone() as Element?);
+  ExpressionLanguage clone() => ExpressionLanguage._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  ExpressionLanguage setElement(String name, dynamic elementValue) {
+  ExpressionLanguage setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return ExpressionLanguage._(
       value,
       element?.setProperty(name, elementValue),

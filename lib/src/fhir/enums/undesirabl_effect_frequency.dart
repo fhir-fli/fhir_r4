@@ -8,7 +8,9 @@ class UndesirablEffectFrequency extends PrimitiveType<String> {
   UndesirablEffectFrequency._(super.value, [super.element]);
 
   /// Factory constructor to create [UndesirablEffectFrequency] from JSON.
-  factory UndesirablEffectFrequency.fromJson(Map<String, dynamic> json) {
+  factory UndesirablEffectFrequency.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -47,12 +49,17 @@ class UndesirablEffectFrequency extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  UndesirablEffectFrequency clone() =>
-      UndesirablEffectFrequency._(value, element?.clone() as Element?);
+  UndesirablEffectFrequency clone() => UndesirablEffectFrequency._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  UndesirablEffectFrequency setElement(String name, dynamic elementValue) {
+  UndesirablEffectFrequency setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return UndesirablEffectFrequency._(
       value,
       element?.setProperty(name, elementValue),

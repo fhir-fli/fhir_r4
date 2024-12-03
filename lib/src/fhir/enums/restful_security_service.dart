@@ -8,7 +8,9 @@ class RestfulSecurityService extends PrimitiveType<String> {
   RestfulSecurityService._(super.value, [super.element]);
 
   /// Factory constructor to create [RestfulSecurityService] from JSON.
-  factory RestfulSecurityService.fromJson(Map<String, dynamic> json) {
+  factory RestfulSecurityService.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -65,12 +67,17 @@ class RestfulSecurityService extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  RestfulSecurityService clone() =>
-      RestfulSecurityService._(value, element?.clone() as Element?);
+  RestfulSecurityService clone() => RestfulSecurityService._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  RestfulSecurityService setElement(String name, dynamic elementValue) {
+  RestfulSecurityService setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return RestfulSecurityService._(
       value,
       element?.setProperty(name, elementValue),

@@ -8,7 +8,9 @@ class AssertionDirectionType extends PrimitiveType<String> {
   AssertionDirectionType._(super.value, [super.element]);
 
   /// Factory constructor to create [AssertionDirectionType] from JSON.
-  factory AssertionDirectionType.fromJson(Map<String, dynamic> json) {
+  factory AssertionDirectionType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -41,12 +43,17 @@ class AssertionDirectionType extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  AssertionDirectionType clone() =>
-      AssertionDirectionType._(value, element?.clone() as Element?);
+  AssertionDirectionType clone() => AssertionDirectionType._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  AssertionDirectionType setElement(String name, dynamic elementValue) {
+  AssertionDirectionType setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return AssertionDirectionType._(
       value,
       element?.setProperty(name, elementValue),

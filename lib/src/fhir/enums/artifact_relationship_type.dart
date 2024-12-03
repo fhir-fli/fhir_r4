@@ -8,7 +8,9 @@ class ArtifactRelationshipType extends PrimitiveType<String> {
   ArtifactRelationshipType._(super.value, [super.element]);
 
   /// Factory constructor to create [ArtifactRelationshipType] from JSON.
-  factory ArtifactRelationshipType.fromJson(Map<String, dynamic> json) {
+  factory ArtifactRelationshipType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -184,12 +186,17 @@ class ArtifactRelationshipType extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  ArtifactRelationshipType clone() =>
-      ArtifactRelationshipType._(value, element?.clone() as Element?);
+  ArtifactRelationshipType clone() => ArtifactRelationshipType._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  ArtifactRelationshipType setElement(String name, dynamic elementValue) {
+  ArtifactRelationshipType setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return ArtifactRelationshipType._(
       value,
       element?.setProperty(name, elementValue),

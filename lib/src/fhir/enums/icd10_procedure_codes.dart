@@ -8,7 +8,9 @@ class ICD10ProcedureCodes extends PrimitiveType<String> {
   ICD10ProcedureCodes._(super.value, [super.element]);
 
   /// Factory constructor to create [ICD10ProcedureCodes] from JSON.
-  factory ICD10ProcedureCodes.fromJson(Map<String, dynamic> json) {
+  factory ICD10ProcedureCodes.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -46,12 +48,17 @@ class ICD10ProcedureCodes extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  ICD10ProcedureCodes clone() =>
-      ICD10ProcedureCodes._(value, element?.clone() as Element?);
+  ICD10ProcedureCodes clone() => ICD10ProcedureCodes._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  ICD10ProcedureCodes setElement(String name, dynamic elementValue) {
+  ICD10ProcedureCodes setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return ICD10ProcedureCodes._(
       value,
       element?.setProperty(name, elementValue),

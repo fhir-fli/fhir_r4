@@ -8,7 +8,9 @@ class ExampleMessageReasonCodes extends PrimitiveType<String> {
   ExampleMessageReasonCodes._(super.value, [super.element]);
 
   /// Factory constructor to create [ExampleMessageReasonCodes] from JSON.
-  factory ExampleMessageReasonCodes.fromJson(Map<String, dynamic> json) {
+  factory ExampleMessageReasonCodes.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -66,12 +68,17 @@ class ExampleMessageReasonCodes extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  ExampleMessageReasonCodes clone() =>
-      ExampleMessageReasonCodes._(value, element?.clone() as Element?);
+  ExampleMessageReasonCodes clone() => ExampleMessageReasonCodes._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  ExampleMessageReasonCodes setElement(String name, dynamic elementValue) {
+  ExampleMessageReasonCodes setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return ExampleMessageReasonCodes._(
       value,
       element?.setProperty(name, elementValue),

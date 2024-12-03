@@ -8,7 +8,9 @@ class MedicationRequestIntent extends PrimitiveType<String> {
   MedicationRequestIntent._(super.value, [super.element]);
 
   /// Factory constructor to create [MedicationRequestIntent] from JSON.
-  factory MedicationRequestIntent.fromJson(Map<String, dynamic> json) {
+  factory MedicationRequestIntent.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -79,12 +81,17 @@ class MedicationRequestIntent extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  MedicationRequestIntent clone() =>
-      MedicationRequestIntent._(value, element?.clone() as Element?);
+  MedicationRequestIntent clone() => MedicationRequestIntent._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  MedicationRequestIntent setElement(String name, dynamic elementValue) {
+  MedicationRequestIntent setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return MedicationRequestIntent._(
       value,
       element?.setProperty(name, elementValue),

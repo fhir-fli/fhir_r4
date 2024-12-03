@@ -8,7 +8,9 @@ class ExampleUseCodesForList extends PrimitiveType<String> {
   ExampleUseCodesForList._(super.value, [super.element]);
 
   /// Factory constructor to create [ExampleUseCodesForList] from JSON.
-  factory ExampleUseCodesForList.fromJson(Map<String, dynamic> json) {
+  factory ExampleUseCodesForList.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -83,12 +85,17 @@ class ExampleUseCodesForList extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  ExampleUseCodesForList clone() =>
-      ExampleUseCodesForList._(value, element?.clone() as Element?);
+  ExampleUseCodesForList clone() => ExampleUseCodesForList._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  ExampleUseCodesForList setElement(String name, dynamic elementValue) {
+  ExampleUseCodesForList setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return ExampleUseCodesForList._(
       value,
       element?.setProperty(name, elementValue),

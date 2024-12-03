@@ -8,7 +8,9 @@ class ActionConditionKind extends PrimitiveType<String> {
   ActionConditionKind._(super.value, [super.element]);
 
   /// Factory constructor to create [ActionConditionKind] from JSON.
-  factory ActionConditionKind.fromJson(Map<String, dynamic> json) {
+  factory ActionConditionKind.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -46,12 +48,17 @@ class ActionConditionKind extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  ActionConditionKind clone() =>
-      ActionConditionKind._(value, element?.clone() as Element?);
+  ActionConditionKind clone() => ActionConditionKind._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  ActionConditionKind setElement(String name, dynamic elementValue) {
+  ActionConditionKind setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return ActionConditionKind._(
       value,
       element?.setProperty(name, elementValue),

@@ -8,7 +8,9 @@ class RequestIntent extends PrimitiveType<String> {
   RequestIntent._(super.value, [super.element]);
 
   /// Factory constructor to create [RequestIntent] from JSON.
-  factory RequestIntent.fromJson(Map<String, dynamic> json) {
+  factory RequestIntent.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -82,11 +84,17 @@ class RequestIntent extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  RequestIntent clone() => RequestIntent._(value, element?.clone() as Element?);
+  RequestIntent clone() => RequestIntent._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  RequestIntent setElement(String name, dynamic elementValue) {
+  RequestIntent setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return RequestIntent._(
       value,
       element?.setProperty(name, elementValue),

@@ -8,7 +8,9 @@ class EvidenceCertaintyRating extends PrimitiveType<String> {
   EvidenceCertaintyRating._(super.value, [super.element]);
 
   /// Factory constructor to create [EvidenceCertaintyRating] from JSON.
-  factory EvidenceCertaintyRating.fromJson(Map<String, dynamic> json) {
+  factory EvidenceCertaintyRating.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -128,12 +130,17 @@ class EvidenceCertaintyRating extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  EvidenceCertaintyRating clone() =>
-      EvidenceCertaintyRating._(value, element?.clone() as Element?);
+  EvidenceCertaintyRating clone() => EvidenceCertaintyRating._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  EvidenceCertaintyRating setElement(String name, dynamic elementValue) {
+  EvidenceCertaintyRating setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return EvidenceCertaintyRating._(
       value,
       element?.setProperty(name, elementValue),

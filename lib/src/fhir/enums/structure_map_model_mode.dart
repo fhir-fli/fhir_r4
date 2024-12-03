@@ -8,7 +8,9 @@ class StructureMapModelMode extends PrimitiveType<String> {
   StructureMapModelMode._(super.value, [super.element]);
 
   /// Factory constructor to create [StructureMapModelMode] from JSON.
-  factory StructureMapModelMode.fromJson(Map<String, dynamic> json) {
+  factory StructureMapModelMode.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -52,12 +54,17 @@ class StructureMapModelMode extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  StructureMapModelMode clone() =>
-      StructureMapModelMode._(value, element?.clone() as Element?);
+  StructureMapModelMode clone() => StructureMapModelMode._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  StructureMapModelMode setElement(String name, dynamic elementValue) {
+  StructureMapModelMode setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return StructureMapModelMode._(
       value,
       element?.setProperty(name, elementValue),

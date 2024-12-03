@@ -8,7 +8,9 @@ class ProductConfidentiality extends PrimitiveType<String> {
   ProductConfidentiality._(super.value, [super.element]);
 
   /// Factory constructor to create [ProductConfidentiality] from JSON.
-  factory ProductConfidentiality.fromJson(Map<String, dynamic> json) {
+  factory ProductConfidentiality.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -43,12 +45,17 @@ class ProductConfidentiality extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  ProductConfidentiality clone() =>
-      ProductConfidentiality._(value, element?.clone() as Element?);
+  ProductConfidentiality clone() => ProductConfidentiality._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  ProductConfidentiality setElement(String name, dynamic elementValue) {
+  ProductConfidentiality setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return ProductConfidentiality._(
       value,
       element?.setProperty(name, elementValue),

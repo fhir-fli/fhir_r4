@@ -8,7 +8,9 @@ class AggregationMode extends PrimitiveType<String> {
   AggregationMode._(super.value, [super.element]);
 
   /// Factory constructor to create [AggregationMode] from JSON.
-  factory AggregationMode.fromJson(Map<String, dynamic> json) {
+  factory AggregationMode.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -46,12 +48,17 @@ class AggregationMode extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  AggregationMode clone() =>
-      AggregationMode._(value, element?.clone() as Element?);
+  AggregationMode clone() => AggregationMode._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  AggregationMode setElement(String name, dynamic elementValue) {
+  AggregationMode setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return AggregationMode._(
       value,
       element?.setProperty(name, elementValue),

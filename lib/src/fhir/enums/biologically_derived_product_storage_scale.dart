@@ -9,7 +9,8 @@ class BiologicallyDerivedProductStorageScale extends PrimitiveType<String> {
 
   /// Factory constructor to create [BiologicallyDerivedProductStorageScale] from JSON.
   factory BiologicallyDerivedProductStorageScale.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -54,12 +55,16 @@ class BiologicallyDerivedProductStorageScale extends PrimitiveType<String> {
   @override
   BiologicallyDerivedProductStorageScale clone() =>
       BiologicallyDerivedProductStorageScale._(
-          value, element?.clone() as Element?);
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
   BiologicallyDerivedProductStorageScale setElement(
-      String name, dynamic elementValue) {
+    String name,
+    dynamic elementValue,
+  ) {
     return BiologicallyDerivedProductStorageScale._(
       value,
       element?.setProperty(name, elementValue),

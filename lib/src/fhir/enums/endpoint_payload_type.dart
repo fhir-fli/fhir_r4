@@ -8,7 +8,9 @@ class EndpointPayloadType extends PrimitiveType<String> {
   EndpointPayloadType._(super.value, [super.element]);
 
   /// Factory constructor to create [EndpointPayloadType] from JSON.
-  factory EndpointPayloadType.fromJson(Map<String, dynamic> json) {
+  factory EndpointPayloadType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -519,12 +521,17 @@ class EndpointPayloadType extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  EndpointPayloadType clone() =>
-      EndpointPayloadType._(value, element?.clone() as Element?);
+  EndpointPayloadType clone() => EndpointPayloadType._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  EndpointPayloadType setElement(String name, dynamic elementValue) {
+  EndpointPayloadType setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return EndpointPayloadType._(
       value,
       element?.setProperty(name, elementValue),

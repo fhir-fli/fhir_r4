@@ -8,7 +8,9 @@ class AssertionOperatorType extends PrimitiveType<String> {
   AssertionOperatorType._(super.value, [super.element]);
 
   /// Factory constructor to create [AssertionOperatorType] from JSON.
-  factory AssertionOperatorType.fromJson(Map<String, dynamic> json) {
+  factory AssertionOperatorType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -94,12 +96,17 @@ class AssertionOperatorType extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  AssertionOperatorType clone() =>
-      AssertionOperatorType._(value, element?.clone() as Element?);
+  AssertionOperatorType clone() => AssertionOperatorType._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  AssertionOperatorType setElement(String name, dynamic elementValue) {
+  AssertionOperatorType setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return AssertionOperatorType._(
       value,
       element?.setProperty(name, elementValue),

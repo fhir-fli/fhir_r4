@@ -8,7 +8,9 @@ class QuestionnaireResponseStatus extends PrimitiveType<String> {
   QuestionnaireResponseStatus._(super.value, [super.element]);
 
   /// Factory constructor to create [QuestionnaireResponseStatus] from JSON.
-  factory QuestionnaireResponseStatus.fromJson(Map<String, dynamic> json) {
+  factory QuestionnaireResponseStatus.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -64,12 +66,17 @@ class QuestionnaireResponseStatus extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  QuestionnaireResponseStatus clone() =>
-      QuestionnaireResponseStatus._(value, element?.clone() as Element?);
+  QuestionnaireResponseStatus clone() => QuestionnaireResponseStatus._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  QuestionnaireResponseStatus setElement(String name, dynamic elementValue) {
+  QuestionnaireResponseStatus setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return QuestionnaireResponseStatus._(
       value,
       element?.setProperty(name, elementValue),

@@ -8,7 +8,9 @@ class UnitOfPresentation extends PrimitiveType<String> {
   UnitOfPresentation._(super.value, [super.element]);
 
   /// Factory constructor to create [UnitOfPresentation] from JSON.
-  factory UnitOfPresentation.fromJson(Map<String, dynamic> json) {
+  factory UnitOfPresentation.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -364,12 +366,17 @@ class UnitOfPresentation extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  UnitOfPresentation clone() =>
-      UnitOfPresentation._(value, element?.clone() as Element?);
+  UnitOfPresentation clone() => UnitOfPresentation._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  UnitOfPresentation setElement(String name, dynamic elementValue) {
+  UnitOfPresentation setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return UnitOfPresentation._(
       value,
       element?.setProperty(name, elementValue),

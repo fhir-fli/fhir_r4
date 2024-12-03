@@ -8,7 +8,9 @@ class InvestigationType extends PrimitiveType<String> {
   InvestigationType._(super.value, [super.element]);
 
   /// Factory constructor to create [InvestigationType] from JSON.
-  factory InvestigationType.fromJson(Map<String, dynamic> json) {
+  factory InvestigationType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -40,12 +42,17 @@ class InvestigationType extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  InvestigationType clone() =>
-      InvestigationType._(value, element?.clone() as Element?);
+  InvestigationType clone() => InvestigationType._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  InvestigationType setElement(String name, dynamic elementValue) {
+  InvestigationType setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return InvestigationType._(
       value,
       element?.setProperty(name, elementValue),

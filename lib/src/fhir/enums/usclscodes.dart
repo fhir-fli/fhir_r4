@@ -8,7 +8,9 @@ class USCLSCodes extends PrimitiveType<String> {
   USCLSCodes._(super.value, [super.element]);
 
   /// Factory constructor to create [USCLSCodes] from JSON.
-  factory USCLSCodes.fromJson(Map<String, dynamic> json) {
+  factory USCLSCodes.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -148,11 +150,17 @@ class USCLSCodes extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  USCLSCodes clone() => USCLSCodes._(value, element?.clone() as Element?);
+  USCLSCodes clone() => USCLSCodes._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  USCLSCodes setElement(String name, dynamic elementValue) {
+  USCLSCodes setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return USCLSCodes._(
       value,
       element?.setProperty(name, elementValue),

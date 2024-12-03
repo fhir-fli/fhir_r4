@@ -8,7 +8,9 @@ class MeasureSupplementalDataExample extends PrimitiveType<String> {
   MeasureSupplementalDataExample._(super.value, [super.element]);
 
   /// Factory constructor to create [MeasureSupplementalDataExample] from JSON.
-  factory MeasureSupplementalDataExample.fromJson(Map<String, dynamic> json) {
+  factory MeasureSupplementalDataExample.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -57,12 +59,17 @@ class MeasureSupplementalDataExample extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  MeasureSupplementalDataExample clone() =>
-      MeasureSupplementalDataExample._(value, element?.clone() as Element?);
+  MeasureSupplementalDataExample clone() => MeasureSupplementalDataExample._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  MeasureSupplementalDataExample setElement(String name, dynamic elementValue) {
+  MeasureSupplementalDataExample setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return MeasureSupplementalDataExample._(
       value,
       element?.setProperty(name, elementValue),

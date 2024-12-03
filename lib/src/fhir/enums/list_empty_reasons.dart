@@ -8,7 +8,9 @@ class ListEmptyReasons extends PrimitiveType<String> {
   ListEmptyReasons._(super.value, [super.element]);
 
   /// Factory constructor to create [ListEmptyReasons] from JSON.
-  factory ListEmptyReasons.fromJson(Map<String, dynamic> json) {
+  factory ListEmptyReasons.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -64,12 +66,17 @@ class ListEmptyReasons extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  ListEmptyReasons clone() =>
-      ListEmptyReasons._(value, element?.clone() as Element?);
+  ListEmptyReasons clone() => ListEmptyReasons._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  ListEmptyReasons setElement(String name, dynamic elementValue) {
+  ListEmptyReasons setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return ListEmptyReasons._(
       value,
       element?.setProperty(name, elementValue),

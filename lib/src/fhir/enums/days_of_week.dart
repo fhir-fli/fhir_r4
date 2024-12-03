@@ -8,7 +8,9 @@ class DaysOfWeek extends PrimitiveType<String> {
   DaysOfWeek._(super.value, [super.element]);
 
   /// Factory constructor to create [DaysOfWeek] from JSON.
-  factory DaysOfWeek.fromJson(Map<String, dynamic> json) {
+  factory DaysOfWeek.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -70,11 +72,17 @@ class DaysOfWeek extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  DaysOfWeek clone() => DaysOfWeek._(value, element?.clone() as Element?);
+  DaysOfWeek clone() => DaysOfWeek._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  DaysOfWeek setElement(String name, dynamic elementValue) {
+  DaysOfWeek setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return DaysOfWeek._(
       value,
       element?.setProperty(name, elementValue),

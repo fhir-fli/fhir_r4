@@ -8,7 +8,9 @@ class ClaimCareTeamRoleCodes extends PrimitiveType<String> {
   ClaimCareTeamRoleCodes._(super.value, [super.element]);
 
   /// Factory constructor to create [ClaimCareTeamRoleCodes] from JSON.
-  factory ClaimCareTeamRoleCodes.fromJson(Map<String, dynamic> json) {
+  factory ClaimCareTeamRoleCodes.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -53,12 +55,17 @@ class ClaimCareTeamRoleCodes extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  ClaimCareTeamRoleCodes clone() =>
-      ClaimCareTeamRoleCodes._(value, element?.clone() as Element?);
+  ClaimCareTeamRoleCodes clone() => ClaimCareTeamRoleCodes._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  ClaimCareTeamRoleCodes setElement(String name, dynamic elementValue) {
+  ClaimCareTeamRoleCodes setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return ClaimCareTeamRoleCodes._(
       value,
       element?.setProperty(name, elementValue),

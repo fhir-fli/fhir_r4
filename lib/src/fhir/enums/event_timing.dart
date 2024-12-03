@@ -8,7 +8,9 @@ class EventTiming extends PrimitiveType<String> {
   EventTiming._(super.value, [super.element]);
 
   /// Factory constructor to create [EventTiming] from JSON.
-  factory EventTiming.fromJson(Map<String, dynamic> json) {
+  factory EventTiming.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -184,11 +186,17 @@ class EventTiming extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  EventTiming clone() => EventTiming._(value, element?.clone() as Element?);
+  EventTiming clone() => EventTiming._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  EventTiming setElement(String name, dynamic elementValue) {
+  EventTiming setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return EventTiming._(
       value,
       element?.setProperty(name, elementValue),

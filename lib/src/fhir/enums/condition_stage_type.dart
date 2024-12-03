@@ -8,7 +8,9 @@ class ConditionStageType extends PrimitiveType<String> {
   ConditionStageType._(super.value, [super.element]);
 
   /// Factory constructor to create [ConditionStageType] from JSON.
-  factory ConditionStageType.fromJson(Map<String, dynamic> json) {
+  factory ConditionStageType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -40,12 +42,17 @@ class ConditionStageType extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  ConditionStageType clone() =>
-      ConditionStageType._(value, element?.clone() as Element?);
+  ConditionStageType clone() => ConditionStageType._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  ConditionStageType setElement(String name, dynamic elementValue) {
+  ConditionStageType setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return ConditionStageType._(
       value,
       element?.setProperty(name, elementValue),

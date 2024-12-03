@@ -8,7 +8,9 @@ class VisionEyes extends PrimitiveType<String> {
   VisionEyes._(super.value, [super.element]);
 
   /// Factory constructor to create [VisionEyes] from JSON.
-  factory VisionEyes.fromJson(Map<String, dynamic> json) {
+  factory VisionEyes.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -40,11 +42,17 @@ class VisionEyes extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  VisionEyes clone() => VisionEyes._(value, element?.clone() as Element?);
+  VisionEyes clone() => VisionEyes._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  VisionEyes setElement(String name, dynamic elementValue) {
+  VisionEyes setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return VisionEyes._(
       value,
       element?.setProperty(name, elementValue),

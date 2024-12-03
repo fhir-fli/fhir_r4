@@ -8,7 +8,9 @@ class ActionPrecheckBehavior extends PrimitiveType<String> {
   ActionPrecheckBehavior._(super.value, [super.element]);
 
   /// Factory constructor to create [ActionPrecheckBehavior] from JSON.
-  factory ActionPrecheckBehavior.fromJson(Map<String, dynamic> json) {
+  factory ActionPrecheckBehavior.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -41,12 +43,17 @@ class ActionPrecheckBehavior extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  ActionPrecheckBehavior clone() =>
-      ActionPrecheckBehavior._(value, element?.clone() as Element?);
+  ActionPrecheckBehavior clone() => ActionPrecheckBehavior._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  ActionPrecheckBehavior setElement(String name, dynamic elementValue) {
+  ActionPrecheckBehavior setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return ActionPrecheckBehavior._(
       value,
       element?.setProperty(name, elementValue),

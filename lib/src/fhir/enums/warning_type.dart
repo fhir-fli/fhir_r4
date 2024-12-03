@@ -8,7 +8,9 @@ class WarningType extends PrimitiveType<String> {
   WarningType._(super.value, [super.element]);
 
   /// Factory constructor to create [WarningType] from JSON.
-  factory WarningType.fromJson(Map<String, dynamic> json) {
+  factory WarningType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -88,11 +90,17 @@ class WarningType extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  WarningType clone() => WarningType._(value, element?.clone() as Element?);
+  WarningType clone() => WarningType._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  WarningType setElement(String name, dynamic elementValue) {
+  WarningType setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return WarningType._(
       value,
       element?.setProperty(name, elementValue),

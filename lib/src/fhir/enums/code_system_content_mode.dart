@@ -8,7 +8,9 @@ class CodeSystemContentMode extends PrimitiveType<String> {
   CodeSystemContentMode._(super.value, [super.element]);
 
   /// Factory constructor to create [CodeSystemContentMode] from JSON.
-  factory CodeSystemContentMode.fromJson(Map<String, dynamic> json) {
+  factory CodeSystemContentMode.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -58,12 +60,17 @@ class CodeSystemContentMode extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  CodeSystemContentMode clone() =>
-      CodeSystemContentMode._(value, element?.clone() as Element?);
+  CodeSystemContentMode clone() => CodeSystemContentMode._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  CodeSystemContentMode setElement(String name, dynamic elementValue) {
+  CodeSystemContentMode setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return CodeSystemContentMode._(
       value,
       element?.setProperty(name, elementValue),

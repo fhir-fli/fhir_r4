@@ -8,7 +8,9 @@ class FilterOperator extends PrimitiveType<String> {
   FilterOperator._(super.value, [super.element]);
 
   /// Factory constructor to create [FilterOperator] from JSON.
-  factory FilterOperator.fromJson(Map<String, dynamic> json) {
+  factory FilterOperator.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -82,12 +84,17 @@ class FilterOperator extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  FilterOperator clone() =>
-      FilterOperator._(value, element?.clone() as Element?);
+  FilterOperator clone() => FilterOperator._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  FilterOperator setElement(String name, dynamic elementValue) {
+  FilterOperator setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return FilterOperator._(
       value,
       element?.setProperty(name, elementValue),

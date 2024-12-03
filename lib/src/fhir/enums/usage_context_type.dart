@@ -8,7 +8,9 @@ class UsageContextType extends PrimitiveType<String> {
   UsageContextType._(super.value, [super.element]);
 
   /// Factory constructor to create [UsageContextType] from JSON.
-  factory UsageContextType.fromJson(Map<String, dynamic> json) {
+  factory UsageContextType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -82,12 +84,17 @@ class UsageContextType extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  UsageContextType clone() =>
-      UsageContextType._(value, element?.clone() as Element?);
+  UsageContextType clone() => UsageContextType._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  UsageContextType setElement(String name, dynamic elementValue) {
+  UsageContextType setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return UsageContextType._(
       value,
       element?.setProperty(name, elementValue),

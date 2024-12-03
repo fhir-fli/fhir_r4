@@ -8,7 +8,9 @@ class NetworkTypeCodes extends PrimitiveType<String> {
   NetworkTypeCodes._(super.value, [super.element]);
 
   /// Factory constructor to create [NetworkTypeCodes] from JSON.
-  factory NetworkTypeCodes.fromJson(Map<String, dynamic> json) {
+  factory NetworkTypeCodes.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -40,12 +42,17 @@ class NetworkTypeCodes extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  NetworkTypeCodes clone() =>
-      NetworkTypeCodes._(value, element?.clone() as Element?);
+  NetworkTypeCodes clone() => NetworkTypeCodes._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  NetworkTypeCodes setElement(String name, dynamic elementValue) {
+  NetworkTypeCodes setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return NetworkTypeCodes._(
       value,
       element?.setProperty(name, elementValue),

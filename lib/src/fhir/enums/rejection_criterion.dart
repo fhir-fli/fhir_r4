@@ -8,7 +8,9 @@ class RejectionCriterion extends PrimitiveType<String> {
   RejectionCriterion._(super.value, [super.element]);
 
   /// Factory constructor to create [RejectionCriterion] from JSON.
-  factory RejectionCriterion.fromJson(Map<String, dynamic> json) {
+  factory RejectionCriterion.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -58,12 +60,17 @@ class RejectionCriterion extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  RejectionCriterion clone() =>
-      RejectionCriterion._(value, element?.clone() as Element?);
+  RejectionCriterion clone() => RejectionCriterion._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  RejectionCriterion setElement(String name, dynamic elementValue) {
+  RejectionCriterion setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return RejectionCriterion._(
       value,
       element?.setProperty(name, elementValue),

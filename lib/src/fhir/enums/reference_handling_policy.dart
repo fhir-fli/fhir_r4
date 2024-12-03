@@ -8,7 +8,9 @@ class ReferenceHandlingPolicy extends PrimitiveType<String> {
   ReferenceHandlingPolicy._(super.value, [super.element]);
 
   /// Factory constructor to create [ReferenceHandlingPolicy] from JSON.
-  factory ReferenceHandlingPolicy.fromJson(Map<String, dynamic> json) {
+  factory ReferenceHandlingPolicy.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -59,12 +61,17 @@ class ReferenceHandlingPolicy extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  ReferenceHandlingPolicy clone() =>
-      ReferenceHandlingPolicy._(value, element?.clone() as Element?);
+  ReferenceHandlingPolicy clone() => ReferenceHandlingPolicy._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  ReferenceHandlingPolicy setElement(String name, dynamic elementValue) {
+  ReferenceHandlingPolicy setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return ReferenceHandlingPolicy._(
       value,
       element?.setProperty(name, elementValue),

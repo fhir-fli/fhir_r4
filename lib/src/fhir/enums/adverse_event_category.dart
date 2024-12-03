@@ -8,7 +8,9 @@ class AdverseEventCategory extends PrimitiveType<String> {
   AdverseEventCategory._(super.value, [super.element]);
 
   /// Factory constructor to create [AdverseEventCategory] from JSON.
-  factory AdverseEventCategory.fromJson(Map<String, dynamic> json) {
+  factory AdverseEventCategory.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -117,12 +119,17 @@ class AdverseEventCategory extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  AdverseEventCategory clone() =>
-      AdverseEventCategory._(value, element?.clone() as Element?);
+  AdverseEventCategory clone() => AdverseEventCategory._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  AdverseEventCategory setElement(String name, dynamic elementValue) {
+  AdverseEventCategory setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return AdverseEventCategory._(
       value,
       element?.setProperty(name, elementValue),

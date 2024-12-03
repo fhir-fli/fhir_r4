@@ -8,7 +8,9 @@ class RestfulCapabilityMode extends PrimitiveType<String> {
   RestfulCapabilityMode._(super.value, [super.element]);
 
   /// Factory constructor to create [RestfulCapabilityMode] from JSON.
-  factory RestfulCapabilityMode.fromJson(Map<String, dynamic> json) {
+  factory RestfulCapabilityMode.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -40,12 +42,17 @@ class RestfulCapabilityMode extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  RestfulCapabilityMode clone() =>
-      RestfulCapabilityMode._(value, element?.clone() as Element?);
+  RestfulCapabilityMode clone() => RestfulCapabilityMode._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  RestfulCapabilityMode setElement(String name, dynamic elementValue) {
+  RestfulCapabilityMode setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return RestfulCapabilityMode._(
       value,
       element?.setProperty(name, elementValue),

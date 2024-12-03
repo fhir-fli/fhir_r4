@@ -8,7 +8,9 @@ class ProvenanceActivityType extends PrimitiveType<String> {
   ProvenanceActivityType._(super.value, [super.element]);
 
   /// Factory constructor to create [ProvenanceActivityType] from JSON.
-  factory ProvenanceActivityType.fromJson(Map<String, dynamic> json) {
+  factory ProvenanceActivityType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -95,12 +97,17 @@ class ProvenanceActivityType extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  ProvenanceActivityType clone() =>
-      ProvenanceActivityType._(value, element?.clone() as Element?);
+  ProvenanceActivityType clone() => ProvenanceActivityType._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  ProvenanceActivityType setElement(String name, dynamic elementValue) {
+  ProvenanceActivityType setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return ProvenanceActivityType._(
       value,
       element?.setProperty(name, elementValue),

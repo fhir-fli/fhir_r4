@@ -8,7 +8,9 @@ class GuidanceResponseStatus extends PrimitiveType<String> {
   GuidanceResponseStatus._(super.value, [super.element]);
 
   /// Factory constructor to create [GuidanceResponseStatus] from JSON.
-  factory GuidanceResponseStatus.fromJson(Map<String, dynamic> json) {
+  factory GuidanceResponseStatus.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -66,12 +68,17 @@ class GuidanceResponseStatus extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  GuidanceResponseStatus clone() =>
-      GuidanceResponseStatus._(value, element?.clone() as Element?);
+  GuidanceResponseStatus clone() => GuidanceResponseStatus._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  GuidanceResponseStatus setElement(String name, dynamic elementValue) {
+  GuidanceResponseStatus setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return GuidanceResponseStatus._(
       value,
       element?.setProperty(name, elementValue),

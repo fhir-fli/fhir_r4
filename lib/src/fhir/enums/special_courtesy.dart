@@ -8,7 +8,9 @@ class SpecialCourtesy extends PrimitiveType<String> {
   SpecialCourtesy._(super.value, [super.element]);
 
   /// Factory constructor to create [SpecialCourtesy] from JSON.
-  factory SpecialCourtesy.fromJson(Map<String, dynamic> json) {
+  factory SpecialCourtesy.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -64,12 +66,17 @@ class SpecialCourtesy extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  SpecialCourtesy clone() =>
-      SpecialCourtesy._(value, element?.clone() as Element?);
+  SpecialCourtesy clone() => SpecialCourtesy._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  SpecialCourtesy setElement(String name, dynamic elementValue) {
+  SpecialCourtesy setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return SpecialCourtesy._(
       value,
       element?.setProperty(name, elementValue),

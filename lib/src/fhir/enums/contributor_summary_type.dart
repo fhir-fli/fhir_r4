@@ -8,7 +8,9 @@ class ContributorSummaryType extends PrimitiveType<String> {
   ContributorSummaryType._(super.value, [super.element]);
 
   /// Factory constructor to create [ContributorSummaryType] from JSON.
-  factory ContributorSummaryType.fromJson(Map<String, dynamic> json) {
+  factory ContributorSummaryType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -77,12 +79,17 @@ class ContributorSummaryType extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  ContributorSummaryType clone() =>
-      ContributorSummaryType._(value, element?.clone() as Element?);
+  ContributorSummaryType clone() => ContributorSummaryType._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  ContributorSummaryType setElement(String name, dynamic elementValue) {
+  ContributorSummaryType setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return ContributorSummaryType._(
       value,
       element?.setProperty(name, elementValue),

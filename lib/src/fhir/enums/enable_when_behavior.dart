@@ -8,7 +8,9 @@ class EnableWhenBehavior extends PrimitiveType<String> {
   EnableWhenBehavior._(super.value, [super.element]);
 
   /// Factory constructor to create [EnableWhenBehavior] from JSON.
-  factory EnableWhenBehavior.fromJson(Map<String, dynamic> json) {
+  factory EnableWhenBehavior.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -40,12 +42,17 @@ class EnableWhenBehavior extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  EnableWhenBehavior clone() =>
-      EnableWhenBehavior._(value, element?.clone() as Element?);
+  EnableWhenBehavior clone() => EnableWhenBehavior._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  EnableWhenBehavior setElement(String name, dynamic elementValue) {
+  EnableWhenBehavior setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return EnableWhenBehavior._(
       value,
       element?.setProperty(name, elementValue),

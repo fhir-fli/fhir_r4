@@ -8,7 +8,9 @@ class TestReportActionResult extends PrimitiveType<String> {
   TestReportActionResult._(super.value, [super.element]);
 
   /// Factory constructor to create [TestReportActionResult] from JSON.
-  factory TestReportActionResult.fromJson(Map<String, dynamic> json) {
+  factory TestReportActionResult.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -59,12 +61,17 @@ class TestReportActionResult extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  TestReportActionResult clone() =>
-      TestReportActionResult._(value, element?.clone() as Element?);
+  TestReportActionResult clone() => TestReportActionResult._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  TestReportActionResult setElement(String name, dynamic elementValue) {
+  TestReportActionResult setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return TestReportActionResult._(
       value,
       element?.setProperty(name, elementValue),

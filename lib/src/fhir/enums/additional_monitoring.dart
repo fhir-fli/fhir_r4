@@ -8,7 +8,9 @@ class AdditionalMonitoring extends PrimitiveType<String> {
   AdditionalMonitoring._(super.value, [super.element]);
 
   /// Factory constructor to create [AdditionalMonitoring] from JSON.
-  factory AdditionalMonitoring.fromJson(Map<String, dynamic> json) {
+  factory AdditionalMonitoring.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -35,12 +37,17 @@ class AdditionalMonitoring extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  AdditionalMonitoring clone() =>
-      AdditionalMonitoring._(value, element?.clone() as Element?);
+  AdditionalMonitoring clone() => AdditionalMonitoring._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  AdditionalMonitoring setElement(String name, dynamic elementValue) {
+  AdditionalMonitoring setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return AdditionalMonitoring._(
       value,
       element?.setProperty(name, elementValue),

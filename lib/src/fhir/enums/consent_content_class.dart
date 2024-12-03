@@ -8,7 +8,9 @@ class ConsentContentClass extends PrimitiveType<String> {
   ConsentContentClass._(super.value, [super.element]);
 
   /// Factory constructor to create [ConsentContentClass] from JSON.
-  factory ConsentContentClass.fromJson(Map<String, dynamic> json) {
+  factory ConsentContentClass.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -920,12 +922,17 @@ class ConsentContentClass extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  ConsentContentClass clone() =>
-      ConsentContentClass._(value, element?.clone() as Element?);
+  ConsentContentClass clone() => ConsentContentClass._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  ConsentContentClass setElement(String name, dynamic elementValue) {
+  ConsentContentClass setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return ConsentContentClass._(
       value,
       element?.setProperty(name, elementValue),

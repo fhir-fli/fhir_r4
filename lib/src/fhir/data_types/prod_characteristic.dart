@@ -37,28 +37,50 @@ class ProdCharacteristic extends BackboneType {
   factory ProdCharacteristic.fromJson(
     Map<String, dynamic> json,
   ) {
+    T? parseField<T extends FhirBase>(
+      dynamic value,
+      dynamic valueElement,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        (value != null || valueElement != null)
+            ? fromJson({
+                'value': value,
+                '_value': valueElement,
+              })
+            : null;
+    List<T>? parseList<T extends FhirBase>(
+      List<dynamic>? values,
+      List<dynamic>? valueElements,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        values?.asMap().entries.map((entry) {
+          final index = entry.key;
+          final value = entry.value;
+          final valueElement =
+              valueElements != null && valueElements.length > index
+                  ? valueElements[index]
+                  : null;
+          return fromJson({
+            'value': value,
+            '_value': valueElement,
+          });
+        }).toList();
     return ProdCharacteristic(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      id: parseField<FhirString>(
+        json['id'],
+        json['_id'],
+        FhirString.fromJson,
+      ),
+      extension_: parseList<FhirExtension>(
+        json['extension'] as List<dynamic>?,
+        json['_extension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
+      modifierExtension: parseList<FhirExtension>(
+        json['modifierExtension'] as List<dynamic>?,
+        json['_modifierExtension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
       height: json['height'] != null
           ? Quantity.fromJson(
               json['height'] as Map<String, dynamic>,
@@ -89,31 +111,26 @@ class ProdCharacteristic extends BackboneType {
               json['externalDiameter'] as Map<String, dynamic>,
             )
           : null,
-      shape: (json['shape'] != null || json['_shape'] != null)
-          ? FhirString.fromJson({
-              'value': json['shape'],
-              '_value': json['_shape'],
-            })
-          : null,
-      color: parsePrimitiveList<FhirString>(
+      shape: parseField<FhirString>(
+        json['shape'],
+        json['_shape'],
+        FhirString.fromJson,
+      ),
+      color: parseList<FhirString>(
         json['color'] as List<dynamic>?,
         json['_color'] as List<dynamic>?,
-        fromJson: FhirString.fromJson,
+        FhirString.fromJson,
       ),
-      imprint: parsePrimitiveList<FhirString>(
+      imprint: parseList<FhirString>(
         json['imprint'] as List<dynamic>?,
         json['_imprint'] as List<dynamic>?,
-        fromJson: FhirString.fromJson,
+        FhirString.fromJson,
       ),
-      image: json['image'] != null
-          ? (json['image'] as List<dynamic>)
-              .map<Attachment>(
-                (v) => Attachment.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      image: parseList<Attachment>(
+        json['image'] as List<dynamic>?,
+        json['_image'] as List<dynamic>?,
+        Attachment.fromJson,
+      ),
       scoring: json['scoring'] != null
           ? CodeableConcept.fromJson(
               json['scoring'] as Map<String, dynamic>,
@@ -129,21 +146,23 @@ class ProdCharacteristic extends BackboneType {
   ) {
     if (yaml is String) {
       return ProdCharacteristic.fromJson(
-        yamlToJson(yaml) as Map<String, Object?>,
+        yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
       return ProdCharacteristic.fromJson(
-        yamlMapToJson(yaml) as Map<String, Object?>,
+        yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ProdCharacteristic cannot be constructed from the provided input. '
+        'ProdCharacteristic '
+        'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
     }
   }
 
-  /// Factory constructor for [ProdCharacteristic]
+  /// Factory constructor for
+  /// [ProdCharacteristic]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]

@@ -41,14 +41,18 @@ List<String> r4Validation() {
           contentJson,
           resource.toJson(),
         )) {
-          File(file.path
-                  .replaceAll('assets/', '')
-                  .replaceAll('.json', '1.json'))
-              .writeAsStringSync(prettyPrintJson(contentJson));
-          File(file.path
-                  .replaceAll('assets/', '')
-                  .replaceAll('.json', '2.json'))
-              .writeAsStringSync(prettyPrintJson(resource.toJson()));
+          File(
+            file.path.replaceAll('assets/', '').replaceAll(
+                  '.json',
+                  '1.json',
+                ),
+          ).writeAsStringSync(prettyPrintJson(contentJson));
+          File(
+            file.path.replaceAll('assets/', '').replaceAll(
+                  '.json',
+                  '2.json',
+                ),
+          ).writeAsStringSync(prettyPrintJson(resource.toJson()));
           throw Exception('Unequal');
         }
       }

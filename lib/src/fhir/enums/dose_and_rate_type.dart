@@ -8,7 +8,9 @@ class DoseAndRateType extends PrimitiveType<String> {
   DoseAndRateType._(super.value, [super.element]);
 
   /// Factory constructor to create [DoseAndRateType] from JSON.
-  factory DoseAndRateType.fromJson(Map<String, dynamic> json) {
+  factory DoseAndRateType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -40,12 +42,17 @@ class DoseAndRateType extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  DoseAndRateType clone() =>
-      DoseAndRateType._(value, element?.clone() as Element?);
+  DoseAndRateType clone() => DoseAndRateType._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  DoseAndRateType setElement(String name, dynamic elementValue) {
+  DoseAndRateType setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return DoseAndRateType._(
       value,
       element?.setProperty(name, elementValue),

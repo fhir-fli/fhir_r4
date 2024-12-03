@@ -31,67 +31,85 @@ class Attachment extends DataType {
   factory Attachment.fromJson(
     Map<String, dynamic> json,
   ) {
+    T? parseField<T extends FhirBase>(
+      dynamic value,
+      dynamic valueElement,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        (value != null || valueElement != null)
+            ? fromJson({
+                'value': value,
+                '_value': valueElement,
+              })
+            : null;
+    List<T>? parseList<T extends FhirBase>(
+      List<dynamic>? values,
+      List<dynamic>? valueElements,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        values?.asMap().entries.map((entry) {
+          final index = entry.key;
+          final value = entry.value;
+          final valueElement =
+              valueElements != null && valueElements.length > index
+                  ? valueElements[index]
+                  : null;
+          return fromJson({
+            'value': value,
+            '_value': valueElement,
+          });
+        }).toList();
     return Attachment(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      contentType: (json['contentType'] != null || json['_contentType'] != null)
-          ? FhirCode.fromJson({
-              'value': json['contentType'],
-              '_value': json['_contentType'],
-            })
-          : null,
-      language: (json['language'] != null || json['_language'] != null)
-          ? CommonLanguages.fromJson({
-              'value': json['language'],
-              '_value': json['_language'],
-            })
-          : null,
-      data: (json['data'] != null || json['_data'] != null)
-          ? FhirBase64Binary.fromJson({
-              'value': json['data'],
-              '_value': json['_data'],
-            })
-          : null,
-      url: (json['url'] != null || json['_url'] != null)
-          ? FhirUrl.fromJson({
-              'value': json['url'],
-              '_value': json['_url'],
-            })
-          : null,
-      size: (json['size'] != null || json['_size'] != null)
-          ? FhirUnsignedInt.fromJson({
-              'value': json['size'],
-              '_value': json['_size'],
-            })
-          : null,
-      hash: (json['hash'] != null || json['_hash'] != null)
-          ? FhirBase64Binary.fromJson({
-              'value': json['hash'],
-              '_value': json['_hash'],
-            })
-          : null,
-      title: (json['title'] != null || json['_title'] != null)
-          ? FhirString.fromJson({
-              'value': json['title'],
-              '_value': json['_title'],
-            })
-          : null,
-      creation: (json['creation'] != null || json['_creation'] != null)
-          ? FhirDateTime.fromJson({
-              'value': json['creation'],
-              '_value': json['_creation'],
-            })
-          : null,
+      id: parseField<FhirString>(
+        json['id'],
+        json['_id'],
+        FhirString.fromJson,
+      ),
+      extension_: parseList<FhirExtension>(
+        json['extension'] as List<dynamic>?,
+        json['_extension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
+      contentType: parseField<FhirCode>(
+        json['contentType'],
+        json['_contentType'],
+        FhirCode.fromJson,
+      ),
+      language: parseField<CommonLanguages>(
+        json['language'],
+        json['_language'],
+        CommonLanguages.fromJson,
+      ),
+      data: parseField<FhirBase64Binary>(
+        json['data'],
+        json['_data'],
+        FhirBase64Binary.fromJson,
+      ),
+      url: parseField<FhirUrl>(
+        json['url'],
+        json['_url'],
+        FhirUrl.fromJson,
+      ),
+      size: parseField<FhirUnsignedInt>(
+        json['size'],
+        json['_size'],
+        FhirUnsignedInt.fromJson,
+      ),
+      hash: parseField<FhirBase64Binary>(
+        json['hash'],
+        json['_hash'],
+        FhirBase64Binary.fromJson,
+      ),
+      title: parseField<FhirString>(
+        json['title'],
+        json['_title'],
+        FhirString.fromJson,
+      ),
+      creation: parseField<FhirDateTime>(
+        json['creation'],
+        json['_creation'],
+        FhirDateTime.fromJson,
+      ),
     );
   }
 
@@ -102,21 +120,23 @@ class Attachment extends DataType {
   ) {
     if (yaml is String) {
       return Attachment.fromJson(
-        yamlToJson(yaml) as Map<String, Object?>,
+        yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
       return Attachment.fromJson(
-        yamlMapToJson(yaml) as Map<String, Object?>,
+        yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'Attachment cannot be constructed from the provided input. '
+        'Attachment '
+        'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
     }
   }
 
-  /// Factory constructor for [Attachment]
+  /// Factory constructor for
+  /// [Attachment]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]

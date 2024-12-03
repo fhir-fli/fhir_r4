@@ -8,7 +8,9 @@ class TherapyRelationshipType extends PrimitiveType<String> {
   TherapyRelationshipType._(super.value, [super.element]);
 
   /// Factory constructor to create [TherapyRelationshipType] from JSON.
-  factory TherapyRelationshipType.fromJson(Map<String, dynamic> json) {
+  factory TherapyRelationshipType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -92,12 +94,17 @@ class TherapyRelationshipType extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  TherapyRelationshipType clone() =>
-      TherapyRelationshipType._(value, element?.clone() as Element?);
+  TherapyRelationshipType clone() => TherapyRelationshipType._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  TherapyRelationshipType setElement(String name, dynamic elementValue) {
+  TherapyRelationshipType setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return TherapyRelationshipType._(
       value,
       element?.setProperty(name, elementValue),

@@ -8,7 +8,9 @@ class ImmunizationSubpotentReason extends PrimitiveType<String> {
   ImmunizationSubpotentReason._(super.value, [super.element]);
 
   /// Factory constructor to create [ImmunizationSubpotentReason] from JSON.
-  factory ImmunizationSubpotentReason.fromJson(Map<String, dynamic> json) {
+  factory ImmunizationSubpotentReason.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -50,12 +52,17 @@ class ImmunizationSubpotentReason extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  ImmunizationSubpotentReason clone() =>
-      ImmunizationSubpotentReason._(value, element?.clone() as Element?);
+  ImmunizationSubpotentReason clone() => ImmunizationSubpotentReason._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  ImmunizationSubpotentReason setElement(String name, dynamic elementValue) {
+  ImmunizationSubpotentReason setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return ImmunizationSubpotentReason._(
       value,
       element?.setProperty(name, elementValue),

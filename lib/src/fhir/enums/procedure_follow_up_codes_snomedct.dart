@@ -8,7 +8,9 @@ class ProcedureFollowUpCodesSNOMEDCT extends PrimitiveType<String> {
   ProcedureFollowUpCodesSNOMEDCT._(super.value, [super.element]);
 
   /// Factory constructor to create [ProcedureFollowUpCodesSNOMEDCT] from JSON.
-  factory ProcedureFollowUpCodesSNOMEDCT.fromJson(Map<String, dynamic> json) {
+  factory ProcedureFollowUpCodesSNOMEDCT.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -99,12 +101,17 @@ class ProcedureFollowUpCodesSNOMEDCT extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  ProcedureFollowUpCodesSNOMEDCT clone() =>
-      ProcedureFollowUpCodesSNOMEDCT._(value, element?.clone() as Element?);
+  ProcedureFollowUpCodesSNOMEDCT clone() => ProcedureFollowUpCodesSNOMEDCT._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  ProcedureFollowUpCodesSNOMEDCT setElement(String name, dynamic elementValue) {
+  ProcedureFollowUpCodesSNOMEDCT setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return ProcedureFollowUpCodesSNOMEDCT._(
       value,
       element?.setProperty(name, elementValue),

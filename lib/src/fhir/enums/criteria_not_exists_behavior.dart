@@ -8,7 +8,9 @@ class CriteriaNotExistsBehavior extends PrimitiveType<String> {
   CriteriaNotExistsBehavior._(super.value, [super.element]);
 
   /// Factory constructor to create [CriteriaNotExistsBehavior] from JSON.
-  factory CriteriaNotExistsBehavior.fromJson(Map<String, dynamic> json) {
+  factory CriteriaNotExistsBehavior.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -43,12 +45,17 @@ class CriteriaNotExistsBehavior extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  CriteriaNotExistsBehavior clone() =>
-      CriteriaNotExistsBehavior._(value, element?.clone() as Element?);
+  CriteriaNotExistsBehavior clone() => CriteriaNotExistsBehavior._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  CriteriaNotExistsBehavior setElement(String name, dynamic elementValue) {
+  CriteriaNotExistsBehavior setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return CriteriaNotExistsBehavior._(
       value,
       element?.setProperty(name, elementValue),

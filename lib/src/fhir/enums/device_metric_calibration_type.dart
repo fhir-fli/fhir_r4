@@ -8,7 +8,9 @@ class DeviceMetricCalibrationType extends PrimitiveType<String> {
   DeviceMetricCalibrationType._(super.value, [super.element]);
 
   /// Factory constructor to create [DeviceMetricCalibrationType] from JSON.
-  factory DeviceMetricCalibrationType.fromJson(Map<String, dynamic> json) {
+  factory DeviceMetricCalibrationType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -56,12 +58,17 @@ class DeviceMetricCalibrationType extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  DeviceMetricCalibrationType clone() =>
-      DeviceMetricCalibrationType._(value, element?.clone() as Element?);
+  DeviceMetricCalibrationType clone() => DeviceMetricCalibrationType._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  DeviceMetricCalibrationType setElement(String name, dynamic elementValue) {
+  DeviceMetricCalibrationType setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return DeviceMetricCalibrationType._(
       value,
       element?.setProperty(name, elementValue),

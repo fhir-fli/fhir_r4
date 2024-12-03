@@ -8,7 +8,9 @@ class CompartmentType extends PrimitiveType<String> {
   CompartmentType._(super.value, [super.element]);
 
   /// Factory constructor to create [CompartmentType] from JSON.
-  factory CompartmentType.fromJson(Map<String, dynamic> json) {
+  factory CompartmentType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -58,12 +60,17 @@ class CompartmentType extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  CompartmentType clone() =>
-      CompartmentType._(value, element?.clone() as Element?);
+  CompartmentType clone() => CompartmentType._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  CompartmentType setElement(String name, dynamic elementValue) {
+  CompartmentType setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return CompartmentType._(
       value,
       element?.setProperty(name, elementValue),

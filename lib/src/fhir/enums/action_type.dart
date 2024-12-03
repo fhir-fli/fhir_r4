@@ -8,7 +8,9 @@ class ActionType extends PrimitiveType<String> {
   ActionType._(super.value, [super.element]);
 
   /// Factory constructor to create [ActionType] from JSON.
-  factory ActionType.fromJson(Map<String, dynamic> json) {
+  factory ActionType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -52,11 +54,17 @@ class ActionType extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  ActionType clone() => ActionType._(value, element?.clone() as Element?);
+  ActionType clone() => ActionType._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  ActionType setElement(String name, dynamic elementValue) {
+  ActionType setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return ActionType._(
       value,
       element?.setProperty(name, elementValue),

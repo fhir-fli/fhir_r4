@@ -8,7 +8,9 @@ class StatisticType extends PrimitiveType<String> {
   StatisticType._(super.value, [super.element]);
 
   /// Factory constructor to create [StatisticType] from JSON.
-  factory StatisticType.fromJson(Map<String, dynamic> json) {
+  factory StatisticType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -160,11 +162,17 @@ class StatisticType extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  StatisticType clone() => StatisticType._(value, element?.clone() as Element?);
+  StatisticType clone() => StatisticType._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  StatisticType setElement(String name, dynamic elementValue) {
+  StatisticType setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return StatisticType._(
       value,
       element?.setProperty(name, elementValue),

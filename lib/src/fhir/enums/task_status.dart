@@ -8,7 +8,9 @@ class TaskStatus extends PrimitiveType<String> {
   TaskStatus._(super.value, [super.element]);
 
   /// Factory constructor to create [TaskStatus] from JSON.
-  factory TaskStatus.fromJson(Map<String, dynamic> json) {
+  factory TaskStatus.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -100,11 +102,17 @@ class TaskStatus extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  TaskStatus clone() => TaskStatus._(value, element?.clone() as Element?);
+  TaskStatus clone() => TaskStatus._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  TaskStatus setElement(String name, dynamic elementValue) {
+  TaskStatus setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return TaskStatus._(
       value,
       element?.setProperty(name, elementValue),

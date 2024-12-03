@@ -8,7 +8,9 @@ class RegulatedAuthorizationCaseType extends PrimitiveType<String> {
   RegulatedAuthorizationCaseType._(super.value, [super.element]);
 
   /// Factory constructor to create [RegulatedAuthorizationCaseType] from JSON.
-  factory RegulatedAuthorizationCaseType.fromJson(Map<String, dynamic> json) {
+  factory RegulatedAuthorizationCaseType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -183,12 +185,17 @@ class RegulatedAuthorizationCaseType extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  RegulatedAuthorizationCaseType clone() =>
-      RegulatedAuthorizationCaseType._(value, element?.clone() as Element?);
+  RegulatedAuthorizationCaseType clone() => RegulatedAuthorizationCaseType._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  RegulatedAuthorizationCaseType setElement(String name, dynamic elementValue) {
+  RegulatedAuthorizationCaseType setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return RegulatedAuthorizationCaseType._(
       value,
       element?.setProperty(name, elementValue),

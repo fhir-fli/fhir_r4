@@ -8,7 +8,9 @@ class ContractResourcePartyRoleCodes extends PrimitiveType<String> {
   ContractResourcePartyRoleCodes._(super.value, [super.element]);
 
   /// Factory constructor to create [ContractResourcePartyRoleCodes] from JSON.
-  factory ContractResourcePartyRoleCodes.fromJson(Map<String, dynamic> json) {
+  factory ContractResourcePartyRoleCodes.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -36,12 +38,17 @@ class ContractResourcePartyRoleCodes extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  ContractResourcePartyRoleCodes clone() =>
-      ContractResourcePartyRoleCodes._(value, element?.clone() as Element?);
+  ContractResourcePartyRoleCodes clone() => ContractResourcePartyRoleCodes._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  ContractResourcePartyRoleCodes setElement(String name, dynamic elementValue) {
+  ContractResourcePartyRoleCodes setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return ContractResourcePartyRoleCodes._(
       value,
       element?.setProperty(name, elementValue),

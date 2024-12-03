@@ -8,7 +8,9 @@ class IssueType extends PrimitiveType<String> {
   IssueType._(super.value, [super.element]);
 
   /// Factory constructor to create [IssueType] from JSON.
-  factory IssueType.fromJson(Map<String, dynamic> json) {
+  factory IssueType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -214,11 +216,17 @@ class IssueType extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  IssueType clone() => IssueType._(value, element?.clone() as Element?);
+  IssueType clone() => IssueType._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  IssueType setElement(String name, dynamic elementValue) {
+  IssueType setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return IssueType._(
       value,
       element?.setProperty(name, elementValue),

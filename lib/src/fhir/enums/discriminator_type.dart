@@ -8,7 +8,9 @@ class DiscriminatorType extends PrimitiveType<String> {
   DiscriminatorType._(super.value, [super.element]);
 
   /// Factory constructor to create [DiscriminatorType] from JSON.
-  factory DiscriminatorType.fromJson(Map<String, dynamic> json) {
+  factory DiscriminatorType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -58,12 +60,17 @@ class DiscriminatorType extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  DiscriminatorType clone() =>
-      DiscriminatorType._(value, element?.clone() as Element?);
+  DiscriminatorType clone() => DiscriminatorType._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  DiscriminatorType setElement(String name, dynamic elementValue) {
+  DiscriminatorType setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return DiscriminatorType._(
       value,
       element?.setProperty(name, elementValue),

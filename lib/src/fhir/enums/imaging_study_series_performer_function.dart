@@ -9,7 +9,8 @@ class ImagingStudySeriesPerformerFunction extends PrimitiveType<String> {
 
   /// Factory constructor to create [ImagingStudySeriesPerformerFunction] from JSON.
   factory ImagingStudySeriesPerformerFunction.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -68,12 +69,16 @@ class ImagingStudySeriesPerformerFunction extends PrimitiveType<String> {
   @override
   ImagingStudySeriesPerformerFunction clone() =>
       ImagingStudySeriesPerformerFunction._(
-          value, element?.clone() as Element?);
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
   ImagingStudySeriesPerformerFunction setElement(
-      String name, dynamic elementValue) {
+    String name,
+    dynamic elementValue,
+  ) {
     return ImagingStudySeriesPerformerFunction._(
       value,
       element?.setProperty(name, elementValue),

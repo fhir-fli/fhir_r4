@@ -8,7 +8,9 @@ class OrganizationAffiliationRole extends PrimitiveType<String> {
   OrganizationAffiliationRole._(super.value, [super.element]);
 
   /// Factory constructor to create [OrganizationAffiliationRole] from JSON.
-  factory OrganizationAffiliationRole.fromJson(Map<String, dynamic> json) {
+  factory OrganizationAffiliationRole.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -85,12 +87,17 @@ class OrganizationAffiliationRole extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  OrganizationAffiliationRole clone() =>
-      OrganizationAffiliationRole._(value, element?.clone() as Element?);
+  OrganizationAffiliationRole clone() => OrganizationAffiliationRole._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  OrganizationAffiliationRole setElement(String name, dynamic elementValue) {
+  OrganizationAffiliationRole setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return OrganizationAffiliationRole._(
       value,
       element?.setProperty(name, elementValue),

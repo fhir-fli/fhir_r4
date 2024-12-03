@@ -8,7 +8,9 @@ class FocusCharacteristicCode extends PrimitiveType<String> {
   FocusCharacteristicCode._(super.value, [super.element]);
 
   /// Factory constructor to create [FocusCharacteristicCode] from JSON.
-  factory FocusCharacteristicCode.fromJson(Map<String, dynamic> json) {
+  factory FocusCharacteristicCode.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -79,12 +81,17 @@ class FocusCharacteristicCode extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  FocusCharacteristicCode clone() =>
-      FocusCharacteristicCode._(value, element?.clone() as Element?);
+  FocusCharacteristicCode clone() => FocusCharacteristicCode._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  FocusCharacteristicCode setElement(String name, dynamic elementValue) {
+  FocusCharacteristicCode setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return FocusCharacteristicCode._(
       value,
       element?.setProperty(name, elementValue),

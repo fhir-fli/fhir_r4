@@ -8,7 +8,9 @@ class PatientMedicineChangeTypes extends PrimitiveType<String> {
   PatientMedicineChangeTypes._(super.value, [super.element]);
 
   /// Factory constructor to create [PatientMedicineChangeTypes] from JSON.
-  factory PatientMedicineChangeTypes.fromJson(Map<String, dynamic> json) {
+  factory PatientMedicineChangeTypes.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -71,12 +73,17 @@ class PatientMedicineChangeTypes extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  PatientMedicineChangeTypes clone() =>
-      PatientMedicineChangeTypes._(value, element?.clone() as Element?);
+  PatientMedicineChangeTypes clone() => PatientMedicineChangeTypes._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  PatientMedicineChangeTypes setElement(String name, dynamic elementValue) {
+  PatientMedicineChangeTypes setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return PatientMedicineChangeTypes._(
       value,
       element?.setProperty(name, elementValue),

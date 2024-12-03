@@ -76,69 +76,80 @@ class ExplanationOfBenefit extends DomainResource {
   factory ExplanationOfBenefit.fromJson(
     Map<String, dynamic> json,
   ) {
+    T? parseField<T extends FhirBase>(
+      dynamic value,
+      dynamic valueElement,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        (value != null || valueElement != null)
+            ? fromJson({
+                'value': value,
+                '_value': valueElement,
+              })
+            : null;
+    List<T>? parseList<T extends FhirBase>(
+      List<dynamic>? values,
+      List<dynamic>? valueElements,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        values?.asMap().entries.map((entry) {
+          final index = entry.key;
+          final value = entry.value;
+          final valueElement =
+              valueElements != null && valueElements.length > index
+                  ? valueElements[index]
+                  : null;
+          return fromJson({
+            'value': value,
+            '_value': valueElement,
+          });
+        }).toList();
     return ExplanationOfBenefit(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
+      id: parseField<FhirString>(
+        json['id'],
+        json['_id'],
+        FhirString.fromJson,
+      ),
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
-      implicitRules:
-          (json['implicitRules'] != null || json['_implicitRules'] != null)
-              ? FhirUri.fromJson({
-                  'value': json['implicitRules'],
-                  '_value': json['_implicitRules'],
-                })
-              : null,
-      language: (json['language'] != null || json['_language'] != null)
-          ? CommonLanguages.fromJson({
-              'value': json['language'],
-              '_value': json['_language'],
-            })
-          : null,
+      implicitRules: parseField<FhirUri>(
+        json['implicitRules'],
+        json['_implicitRules'],
+        FhirUri.fromJson,
+      ),
+      language: parseField<CommonLanguages>(
+        json['language'],
+        json['_language'],
+        CommonLanguages.fromJson,
+      ),
       text: json['text'] != null
           ? Narrative.fromJson(
               json['text'] as Map<String, dynamic>,
             )
           : null,
-      contained: json['contained'] != null
-          ? (json['contained'] as List<dynamic>)
-              .map<Resource>(
-                (v) => Resource.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      identifier: json['identifier'] != null
-          ? (json['identifier'] as List<dynamic>)
-              .map<Identifier>(
-                (v) => Identifier.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      contained: parseList<Resource>(
+        json['contained'] as List<dynamic>?,
+        json['_contained'] as List<dynamic>?,
+        Resource.fromJson,
+      ),
+      extension_: parseList<FhirExtension>(
+        json['extension'] as List<dynamic>?,
+        json['_extension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
+      modifierExtension: parseList<FhirExtension>(
+        json['modifierExtension'] as List<dynamic>?,
+        json['_modifierExtension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
+      identifier: parseList<Identifier>(
+        json['identifier'] as List<dynamic>?,
+        json['_identifier'] as List<dynamic>?,
+        Identifier.fromJson,
+      ),
       status: ExplanationOfBenefitStatus.fromJson({
         'value': json['status'],
         '_value': json['_status'],
@@ -193,15 +204,11 @@ class ExplanationOfBenefit extends DomainResource {
               json['fundsReserve'] as Map<String, dynamic>,
             )
           : null,
-      related: json['related'] != null
-          ? (json['related'] as List<dynamic>)
-              .map<ExplanationOfBenefitRelated>(
-                (v) => ExplanationOfBenefitRelated.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      related: parseList<ExplanationOfBenefitRelated>(
+        json['related'] as List<dynamic>?,
+        json['_related'] as List<dynamic>?,
+        ExplanationOfBenefitRelated.fromJson,
+      ),
       prescription: json['prescription'] != null
           ? Reference.fromJson(
               json['prescription'] as Map<String, dynamic>,
@@ -241,118 +248,76 @@ class ExplanationOfBenefit extends DomainResource {
         'value': json['outcome'],
         '_value': json['_outcome'],
       }),
-      disposition: (json['disposition'] != null || json['_disposition'] != null)
-          ? FhirString.fromJson({
-              'value': json['disposition'],
-              '_value': json['_disposition'],
-            })
-          : null,
-      preAuthRef: parsePrimitiveList<FhirString>(
+      disposition: parseField<FhirString>(
+        json['disposition'],
+        json['_disposition'],
+        FhirString.fromJson,
+      ),
+      preAuthRef: parseList<FhirString>(
         json['preAuthRef'] as List<dynamic>?,
         json['_preAuthRef'] as List<dynamic>?,
-        fromJson: FhirString.fromJson,
+        FhirString.fromJson,
       ),
-      preAuthRefPeriod: json['preAuthRefPeriod'] != null
-          ? (json['preAuthRefPeriod'] as List<dynamic>)
-              .map<Period>(
-                (v) => Period.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      careTeam: json['careTeam'] != null
-          ? (json['careTeam'] as List<dynamic>)
-              .map<ExplanationOfBenefitCareTeam>(
-                (v) => ExplanationOfBenefitCareTeam.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      supportingInfo: json['supportingInfo'] != null
-          ? (json['supportingInfo'] as List<dynamic>)
-              .map<ExplanationOfBenefitSupportingInfo>(
-                (v) => ExplanationOfBenefitSupportingInfo.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      diagnosis: json['diagnosis'] != null
-          ? (json['diagnosis'] as List<dynamic>)
-              .map<ExplanationOfBenefitDiagnosis>(
-                (v) => ExplanationOfBenefitDiagnosis.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      procedure: json['procedure'] != null
-          ? (json['procedure'] as List<dynamic>)
-              .map<ExplanationOfBenefitProcedure>(
-                (v) => ExplanationOfBenefitProcedure.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      precedence: (json['precedence'] != null || json['_precedence'] != null)
-          ? FhirPositiveInt.fromJson({
-              'value': json['precedence'],
-              '_value': json['_precedence'],
-            })
-          : null,
-      insurance: ensureNonNullList(
-        (json['insurance'] as List<dynamic>)
-            .map<ExplanationOfBenefitInsurance>(
-              (v) => ExplanationOfBenefitInsurance.fromJson(
-                v as Map<String, dynamic>,
-              ),
-            )
-            .toList(),
+      preAuthRefPeriod: parseList<Period>(
+        json['preAuthRefPeriod'] as List<dynamic>?,
+        json['_preAuthRefPeriod'] as List<dynamic>?,
+        Period.fromJson,
       ),
+      careTeam: parseList<ExplanationOfBenefitCareTeam>(
+        json['careTeam'] as List<dynamic>?,
+        json['_careTeam'] as List<dynamic>?,
+        ExplanationOfBenefitCareTeam.fromJson,
+      ),
+      supportingInfo: parseList<ExplanationOfBenefitSupportingInfo>(
+        json['supportingInfo'] as List<dynamic>?,
+        json['_supportingInfo'] as List<dynamic>?,
+        ExplanationOfBenefitSupportingInfo.fromJson,
+      ),
+      diagnosis: parseList<ExplanationOfBenefitDiagnosis>(
+        json['diagnosis'] as List<dynamic>?,
+        json['_diagnosis'] as List<dynamic>?,
+        ExplanationOfBenefitDiagnosis.fromJson,
+      ),
+      procedure: parseList<ExplanationOfBenefitProcedure>(
+        json['procedure'] as List<dynamic>?,
+        json['_procedure'] as List<dynamic>?,
+        ExplanationOfBenefitProcedure.fromJson,
+      ),
+      precedence: parseField<FhirPositiveInt>(
+        json['precedence'],
+        json['_precedence'],
+        FhirPositiveInt.fromJson,
+      ),
+      insurance: parseList<ExplanationOfBenefitInsurance>(
+        json['insurance'] as List<dynamic>?,
+        json['_insurance'] as List<dynamic>?,
+        ExplanationOfBenefitInsurance.fromJson,
+      )!,
       accident: json['accident'] != null
           ? ExplanationOfBenefitAccident.fromJson(
               json['accident'] as Map<String, dynamic>,
             )
           : null,
-      item: json['item'] != null
-          ? (json['item'] as List<dynamic>)
-              .map<ExplanationOfBenefitItem>(
-                (v) => ExplanationOfBenefitItem.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      addItem: json['addItem'] != null
-          ? (json['addItem'] as List<dynamic>)
-              .map<ExplanationOfBenefitAddItem>(
-                (v) => ExplanationOfBenefitAddItem.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      adjudication: json['adjudication'] != null
-          ? (json['adjudication'] as List<dynamic>)
-              .map<ExplanationOfBenefitAdjudication>(
-                (v) => ExplanationOfBenefitAdjudication.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      total: json['total'] != null
-          ? (json['total'] as List<dynamic>)
-              .map<ExplanationOfBenefitTotal>(
-                (v) => ExplanationOfBenefitTotal.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      item: parseList<ExplanationOfBenefitItem>(
+        json['item'] as List<dynamic>?,
+        json['_item'] as List<dynamic>?,
+        ExplanationOfBenefitItem.fromJson,
+      ),
+      addItem: parseList<ExplanationOfBenefitAddItem>(
+        json['addItem'] as List<dynamic>?,
+        json['_addItem'] as List<dynamic>?,
+        ExplanationOfBenefitAddItem.fromJson,
+      ),
+      adjudication: parseList<ExplanationOfBenefitAdjudication>(
+        json['adjudication'] as List<dynamic>?,
+        json['_adjudication'] as List<dynamic>?,
+        ExplanationOfBenefitAdjudication.fromJson,
+      ),
+      total: parseList<ExplanationOfBenefitTotal>(
+        json['total'] as List<dynamic>?,
+        json['_total'] as List<dynamic>?,
+        ExplanationOfBenefitTotal.fromJson,
+      ),
       payment: json['payment'] != null
           ? ExplanationOfBenefitPayment.fromJson(
               json['payment'] as Map<String, dynamic>,
@@ -368,29 +333,21 @@ class ExplanationOfBenefit extends DomainResource {
               json['form'] as Map<String, dynamic>,
             )
           : null,
-      processNote: json['processNote'] != null
-          ? (json['processNote'] as List<dynamic>)
-              .map<ExplanationOfBenefitProcessNote>(
-                (v) => ExplanationOfBenefitProcessNote.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      processNote: parseList<ExplanationOfBenefitProcessNote>(
+        json['processNote'] as List<dynamic>?,
+        json['_processNote'] as List<dynamic>?,
+        ExplanationOfBenefitProcessNote.fromJson,
+      ),
       benefitPeriod: json['benefitPeriod'] != null
           ? Period.fromJson(
               json['benefitPeriod'] as Map<String, dynamic>,
             )
           : null,
-      benefitBalance: json['benefitBalance'] != null
-          ? (json['benefitBalance'] as List<dynamic>)
-              .map<ExplanationOfBenefitBenefitBalance>(
-                (v) => ExplanationOfBenefitBenefitBalance.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      benefitBalance: parseList<ExplanationOfBenefitBenefitBalance>(
+        json['benefitBalance'] as List<dynamic>?,
+        json['_benefitBalance'] as List<dynamic>?,
+        ExplanationOfBenefitBenefitBalance.fromJson,
+      ),
     );
   }
 
@@ -401,21 +358,23 @@ class ExplanationOfBenefit extends DomainResource {
   ) {
     if (yaml is String) {
       return ExplanationOfBenefit.fromJson(
-        yamlToJson(yaml) as Map<String, Object?>,
+        yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
       return ExplanationOfBenefit.fromJson(
-        yamlMapToJson(yaml) as Map<String, Object?>,
+        yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ExplanationOfBenefit cannot be constructed from the provided input. '
+        'ExplanationOfBenefit '
+        'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
     }
   }
 
-  /// Factory constructor for [ExplanationOfBenefit]
+  /// Factory constructor for
+  /// [ExplanationOfBenefit]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
@@ -979,28 +938,50 @@ class ExplanationOfBenefitRelated extends BackboneElement {
   factory ExplanationOfBenefitRelated.fromJson(
     Map<String, dynamic> json,
   ) {
+    T? parseField<T extends FhirBase>(
+      dynamic value,
+      dynamic valueElement,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        (value != null || valueElement != null)
+            ? fromJson({
+                'value': value,
+                '_value': valueElement,
+              })
+            : null;
+    List<T>? parseList<T extends FhirBase>(
+      List<dynamic>? values,
+      List<dynamic>? valueElements,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        values?.asMap().entries.map((entry) {
+          final index = entry.key;
+          final value = entry.value;
+          final valueElement =
+              valueElements != null && valueElements.length > index
+                  ? valueElements[index]
+                  : null;
+          return fromJson({
+            'value': value,
+            '_value': valueElement,
+          });
+        }).toList();
     return ExplanationOfBenefitRelated(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      id: parseField<FhirString>(
+        json['id'],
+        json['_id'],
+        FhirString.fromJson,
+      ),
+      extension_: parseList<FhirExtension>(
+        json['extension'] as List<dynamic>?,
+        json['_extension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
+      modifierExtension: parseList<FhirExtension>(
+        json['modifierExtension'] as List<dynamic>?,
+        json['_modifierExtension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
       claim: json['claim'] != null
           ? Reference.fromJson(
               json['claim'] as Map<String, dynamic>,
@@ -1026,21 +1007,23 @@ class ExplanationOfBenefitRelated extends BackboneElement {
   ) {
     if (yaml is String) {
       return ExplanationOfBenefitRelated.fromJson(
-        yamlToJson(yaml) as Map<String, Object?>,
+        yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
       return ExplanationOfBenefitRelated.fromJson(
-        yamlMapToJson(yaml) as Map<String, Object?>,
+        yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ExplanationOfBenefitRelated cannot be constructed from the provided input. '
+        'ExplanationOfBenefitRelated '
+        'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
     }
   }
 
-  /// Factory constructor for [ExplanationOfBenefitRelated]
+  /// Factory constructor for
+  /// [ExplanationOfBenefitRelated]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
@@ -1167,28 +1150,50 @@ class ExplanationOfBenefitPayee extends BackboneElement {
   factory ExplanationOfBenefitPayee.fromJson(
     Map<String, dynamic> json,
   ) {
+    T? parseField<T extends FhirBase>(
+      dynamic value,
+      dynamic valueElement,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        (value != null || valueElement != null)
+            ? fromJson({
+                'value': value,
+                '_value': valueElement,
+              })
+            : null;
+    List<T>? parseList<T extends FhirBase>(
+      List<dynamic>? values,
+      List<dynamic>? valueElements,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        values?.asMap().entries.map((entry) {
+          final index = entry.key;
+          final value = entry.value;
+          final valueElement =
+              valueElements != null && valueElements.length > index
+                  ? valueElements[index]
+                  : null;
+          return fromJson({
+            'value': value,
+            '_value': valueElement,
+          });
+        }).toList();
     return ExplanationOfBenefitPayee(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      id: parseField<FhirString>(
+        json['id'],
+        json['_id'],
+        FhirString.fromJson,
+      ),
+      extension_: parseList<FhirExtension>(
+        json['extension'] as List<dynamic>?,
+        json['_extension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
+      modifierExtension: parseList<FhirExtension>(
+        json['modifierExtension'] as List<dynamic>?,
+        json['_modifierExtension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
       type: json['type'] != null
           ? CodeableConcept.fromJson(
               json['type'] as Map<String, dynamic>,
@@ -1209,21 +1214,23 @@ class ExplanationOfBenefitPayee extends BackboneElement {
   ) {
     if (yaml is String) {
       return ExplanationOfBenefitPayee.fromJson(
-        yamlToJson(yaml) as Map<String, Object?>,
+        yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
       return ExplanationOfBenefitPayee.fromJson(
-        yamlMapToJson(yaml) as Map<String, Object?>,
+        yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ExplanationOfBenefitPayee cannot be constructed from the provided input. '
+        'ExplanationOfBenefitPayee '
+        'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
     }
   }
 
-  /// Factory constructor for [ExplanationOfBenefitPayee]
+  /// Factory constructor for
+  /// [ExplanationOfBenefitPayee]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
@@ -1342,28 +1349,50 @@ class ExplanationOfBenefitCareTeam extends BackboneElement {
   factory ExplanationOfBenefitCareTeam.fromJson(
     Map<String, dynamic> json,
   ) {
+    T? parseField<T extends FhirBase>(
+      dynamic value,
+      dynamic valueElement,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        (value != null || valueElement != null)
+            ? fromJson({
+                'value': value,
+                '_value': valueElement,
+              })
+            : null;
+    List<T>? parseList<T extends FhirBase>(
+      List<dynamic>? values,
+      List<dynamic>? valueElements,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        values?.asMap().entries.map((entry) {
+          final index = entry.key;
+          final value = entry.value;
+          final valueElement =
+              valueElements != null && valueElements.length > index
+                  ? valueElements[index]
+                  : null;
+          return fromJson({
+            'value': value,
+            '_value': valueElement,
+          });
+        }).toList();
     return ExplanationOfBenefitCareTeam(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      id: parseField<FhirString>(
+        json['id'],
+        json['_id'],
+        FhirString.fromJson,
+      ),
+      extension_: parseList<FhirExtension>(
+        json['extension'] as List<dynamic>?,
+        json['_extension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
+      modifierExtension: parseList<FhirExtension>(
+        json['modifierExtension'] as List<dynamic>?,
+        json['_modifierExtension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
       sequence: FhirPositiveInt.fromJson({
         'value': json['sequence'],
         '_value': json['_sequence'],
@@ -1371,12 +1400,11 @@ class ExplanationOfBenefitCareTeam extends BackboneElement {
       provider: Reference.fromJson(
         json['provider'] as Map<String, dynamic>,
       ),
-      responsible: (json['responsible'] != null || json['_responsible'] != null)
-          ? FhirBoolean.fromJson({
-              'value': json['responsible'],
-              '_value': json['_responsible'],
-            })
-          : null,
+      responsible: parseField<FhirBoolean>(
+        json['responsible'],
+        json['_responsible'],
+        FhirBoolean.fromJson,
+      ),
       role: json['role'] != null
           ? CodeableConcept.fromJson(
               json['role'] as Map<String, dynamic>,
@@ -1397,21 +1425,23 @@ class ExplanationOfBenefitCareTeam extends BackboneElement {
   ) {
     if (yaml is String) {
       return ExplanationOfBenefitCareTeam.fromJson(
-        yamlToJson(yaml) as Map<String, Object?>,
+        yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
       return ExplanationOfBenefitCareTeam.fromJson(
-        yamlMapToJson(yaml) as Map<String, Object?>,
+        yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ExplanationOfBenefitCareTeam cannot be constructed from the provided input. '
+        'ExplanationOfBenefitCareTeam '
+        'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
     }
   }
 
-  /// Factory constructor for [ExplanationOfBenefitCareTeam]
+  /// Factory constructor for
+  /// [ExplanationOfBenefitCareTeam]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
@@ -1561,28 +1591,50 @@ class ExplanationOfBenefitSupportingInfo extends BackboneElement {
   factory ExplanationOfBenefitSupportingInfo.fromJson(
     Map<String, dynamic> json,
   ) {
+    T? parseField<T extends FhirBase>(
+      dynamic value,
+      dynamic valueElement,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        (value != null || valueElement != null)
+            ? fromJson({
+                'value': value,
+                '_value': valueElement,
+              })
+            : null;
+    List<T>? parseList<T extends FhirBase>(
+      List<dynamic>? values,
+      List<dynamic>? valueElements,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        values?.asMap().entries.map((entry) {
+          final index = entry.key;
+          final value = entry.value;
+          final valueElement =
+              valueElements != null && valueElements.length > index
+                  ? valueElements[index]
+                  : null;
+          return fromJson({
+            'value': value,
+            '_value': valueElement,
+          });
+        }).toList();
     return ExplanationOfBenefitSupportingInfo(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      id: parseField<FhirString>(
+        json['id'],
+        json['_id'],
+        FhirString.fromJson,
+      ),
+      extension_: parseList<FhirExtension>(
+        json['extension'] as List<dynamic>?,
+        json['_extension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
+      modifierExtension: parseList<FhirExtension>(
+        json['modifierExtension'] as List<dynamic>?,
+        json['_modifierExtension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
       sequence: FhirPositiveInt.fromJson({
         'value': json['sequence'],
         '_value': json['_sequence'],
@@ -1595,30 +1647,26 @@ class ExplanationOfBenefitSupportingInfo extends BackboneElement {
               json['code'] as Map<String, dynamic>,
             )
           : null,
-      timingDate: (json['timingDate'] != null || json['_timingDate'] != null)
-          ? FhirDate.fromJson({
-              'value': json['timingDate'],
-              '_value': json['_timingDate'],
-            })
-          : null,
+      timingDate: parseField<FhirDate>(
+        json['timingDate'],
+        json['_timingDate'],
+        FhirDate.fromJson,
+      ),
       timingPeriod: json['timingPeriod'] != null
           ? Period.fromJson(
               json['timingPeriod'] as Map<String, dynamic>,
             )
           : null,
-      valueBoolean:
-          (json['valueBoolean'] != null || json['_valueBoolean'] != null)
-              ? FhirBoolean.fromJson({
-                  'value': json['valueBoolean'],
-                  '_value': json['_valueBoolean'],
-                })
-              : null,
-      valueString: (json['valueString'] != null || json['_valueString'] != null)
-          ? FhirString.fromJson({
-              'value': json['valueString'],
-              '_value': json['_valueString'],
-            })
-          : null,
+      valueBoolean: parseField<FhirBoolean>(
+        json['valueBoolean'],
+        json['_valueBoolean'],
+        FhirBoolean.fromJson,
+      ),
+      valueString: parseField<FhirString>(
+        json['valueString'],
+        json['_valueString'],
+        FhirString.fromJson,
+      ),
       valueQuantity: json['valueQuantity'] != null
           ? Quantity.fromJson(
               json['valueQuantity'] as Map<String, dynamic>,
@@ -1649,21 +1697,23 @@ class ExplanationOfBenefitSupportingInfo extends BackboneElement {
   ) {
     if (yaml is String) {
       return ExplanationOfBenefitSupportingInfo.fromJson(
-        yamlToJson(yaml) as Map<String, Object?>,
+        yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
       return ExplanationOfBenefitSupportingInfo.fromJson(
-        yamlMapToJson(yaml) as Map<String, Object?>,
+        yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ExplanationOfBenefitSupportingInfo cannot be constructed from the provided input. '
+        'ExplanationOfBenefitSupportingInfo '
+        'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
     }
   }
 
-  /// Factory constructor for [ExplanationOfBenefitSupportingInfo]
+  /// Factory constructor for
+  /// [ExplanationOfBenefitSupportingInfo]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
@@ -1872,28 +1922,50 @@ class ExplanationOfBenefitDiagnosis extends BackboneElement {
   factory ExplanationOfBenefitDiagnosis.fromJson(
     Map<String, dynamic> json,
   ) {
+    T? parseField<T extends FhirBase>(
+      dynamic value,
+      dynamic valueElement,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        (value != null || valueElement != null)
+            ? fromJson({
+                'value': value,
+                '_value': valueElement,
+              })
+            : null;
+    List<T>? parseList<T extends FhirBase>(
+      List<dynamic>? values,
+      List<dynamic>? valueElements,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        values?.asMap().entries.map((entry) {
+          final index = entry.key;
+          final value = entry.value;
+          final valueElement =
+              valueElements != null && valueElements.length > index
+                  ? valueElements[index]
+                  : null;
+          return fromJson({
+            'value': value,
+            '_value': valueElement,
+          });
+        }).toList();
     return ExplanationOfBenefitDiagnosis(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      id: parseField<FhirString>(
+        json['id'],
+        json['_id'],
+        FhirString.fromJson,
+      ),
+      extension_: parseList<FhirExtension>(
+        json['extension'] as List<dynamic>?,
+        json['_extension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
+      modifierExtension: parseList<FhirExtension>(
+        json['modifierExtension'] as List<dynamic>?,
+        json['_modifierExtension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
       sequence: FhirPositiveInt.fromJson({
         'value': json['sequence'],
         '_value': json['_sequence'],
@@ -1908,15 +1980,11 @@ class ExplanationOfBenefitDiagnosis extends BackboneElement {
               json['diagnosisReference'] as Map<String, dynamic>,
             )
           : null,
-      type: json['type'] != null
-          ? (json['type'] as List<dynamic>)
-              .map<CodeableConcept>(
-                (v) => CodeableConcept.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      type: parseList<CodeableConcept>(
+        json['type'] as List<dynamic>?,
+        json['_type'] as List<dynamic>?,
+        CodeableConcept.fromJson,
+      ),
       onAdmission: json['onAdmission'] != null
           ? CodeableConcept.fromJson(
               json['onAdmission'] as Map<String, dynamic>,
@@ -1937,21 +2005,23 @@ class ExplanationOfBenefitDiagnosis extends BackboneElement {
   ) {
     if (yaml is String) {
       return ExplanationOfBenefitDiagnosis.fromJson(
-        yamlToJson(yaml) as Map<String, Object?>,
+        yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
       return ExplanationOfBenefitDiagnosis.fromJson(
-        yamlMapToJson(yaml) as Map<String, Object?>,
+        yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ExplanationOfBenefitDiagnosis cannot be constructed from the provided input. '
+        'ExplanationOfBenefitDiagnosis '
+        'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
     }
   }
 
-  /// Factory constructor for [ExplanationOfBenefitDiagnosis]
+  /// Factory constructor for
+  /// [ExplanationOfBenefitDiagnosis]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
@@ -2114,47 +2184,64 @@ class ExplanationOfBenefitProcedure extends BackboneElement {
   factory ExplanationOfBenefitProcedure.fromJson(
     Map<String, dynamic> json,
   ) {
+    T? parseField<T extends FhirBase>(
+      dynamic value,
+      dynamic valueElement,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        (value != null || valueElement != null)
+            ? fromJson({
+                'value': value,
+                '_value': valueElement,
+              })
+            : null;
+    List<T>? parseList<T extends FhirBase>(
+      List<dynamic>? values,
+      List<dynamic>? valueElements,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        values?.asMap().entries.map((entry) {
+          final index = entry.key;
+          final value = entry.value;
+          final valueElement =
+              valueElements != null && valueElements.length > index
+                  ? valueElements[index]
+                  : null;
+          return fromJson({
+            'value': value,
+            '_value': valueElement,
+          });
+        }).toList();
     return ExplanationOfBenefitProcedure(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      id: parseField<FhirString>(
+        json['id'],
+        json['_id'],
+        FhirString.fromJson,
+      ),
+      extension_: parseList<FhirExtension>(
+        json['extension'] as List<dynamic>?,
+        json['_extension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
+      modifierExtension: parseList<FhirExtension>(
+        json['modifierExtension'] as List<dynamic>?,
+        json['_modifierExtension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
       sequence: FhirPositiveInt.fromJson({
         'value': json['sequence'],
         '_value': json['_sequence'],
       }),
-      type: json['type'] != null
-          ? (json['type'] as List<dynamic>)
-              .map<CodeableConcept>(
-                (v) => CodeableConcept.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      date: (json['date'] != null || json['_date'] != null)
-          ? FhirDateTime.fromJson({
-              'value': json['date'],
-              '_value': json['_date'],
-            })
-          : null,
+      type: parseList<CodeableConcept>(
+        json['type'] as List<dynamic>?,
+        json['_type'] as List<dynamic>?,
+        CodeableConcept.fromJson,
+      ),
+      date: parseField<FhirDateTime>(
+        json['date'],
+        json['_date'],
+        FhirDateTime.fromJson,
+      ),
       procedureCodeableConcept: json['procedureCodeableConcept'] != null
           ? CodeableConcept.fromJson(
               json['procedureCodeableConcept'] as Map<String, dynamic>,
@@ -2165,15 +2252,11 @@ class ExplanationOfBenefitProcedure extends BackboneElement {
               json['procedureReference'] as Map<String, dynamic>,
             )
           : null,
-      udi: json['udi'] != null
-          ? (json['udi'] as List<dynamic>)
-              .map<Reference>(
-                (v) => Reference.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      udi: parseList<Reference>(
+        json['udi'] as List<dynamic>?,
+        json['_udi'] as List<dynamic>?,
+        Reference.fromJson,
+      ),
     );
   }
 
@@ -2184,21 +2267,23 @@ class ExplanationOfBenefitProcedure extends BackboneElement {
   ) {
     if (yaml is String) {
       return ExplanationOfBenefitProcedure.fromJson(
-        yamlToJson(yaml) as Map<String, Object?>,
+        yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
       return ExplanationOfBenefitProcedure.fromJson(
-        yamlMapToJson(yaml) as Map<String, Object?>,
+        yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ExplanationOfBenefitProcedure cannot be constructed from the provided input. '
+        'ExplanationOfBenefitProcedure '
+        'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
     }
   }
 
-  /// Factory constructor for [ExplanationOfBenefitProcedure]
+  /// Factory constructor for
+  /// [ExplanationOfBenefitProcedure]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
@@ -2352,28 +2437,50 @@ class ExplanationOfBenefitInsurance extends BackboneElement {
   factory ExplanationOfBenefitInsurance.fromJson(
     Map<String, dynamic> json,
   ) {
+    T? parseField<T extends FhirBase>(
+      dynamic value,
+      dynamic valueElement,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        (value != null || valueElement != null)
+            ? fromJson({
+                'value': value,
+                '_value': valueElement,
+              })
+            : null;
+    List<T>? parseList<T extends FhirBase>(
+      List<dynamic>? values,
+      List<dynamic>? valueElements,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        values?.asMap().entries.map((entry) {
+          final index = entry.key;
+          final value = entry.value;
+          final valueElement =
+              valueElements != null && valueElements.length > index
+                  ? valueElements[index]
+                  : null;
+          return fromJson({
+            'value': value,
+            '_value': valueElement,
+          });
+        }).toList();
     return ExplanationOfBenefitInsurance(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      id: parseField<FhirString>(
+        json['id'],
+        json['_id'],
+        FhirString.fromJson,
+      ),
+      extension_: parseList<FhirExtension>(
+        json['extension'] as List<dynamic>?,
+        json['_extension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
+      modifierExtension: parseList<FhirExtension>(
+        json['modifierExtension'] as List<dynamic>?,
+        json['_modifierExtension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
       focal: FhirBoolean.fromJson({
         'value': json['focal'],
         '_value': json['_focal'],
@@ -2381,10 +2488,10 @@ class ExplanationOfBenefitInsurance extends BackboneElement {
       coverage: Reference.fromJson(
         json['coverage'] as Map<String, dynamic>,
       ),
-      preAuthRef: parsePrimitiveList<FhirString>(
+      preAuthRef: parseList<FhirString>(
         json['preAuthRef'] as List<dynamic>?,
         json['_preAuthRef'] as List<dynamic>?,
-        fromJson: FhirString.fromJson,
+        FhirString.fromJson,
       ),
     );
   }
@@ -2396,21 +2503,23 @@ class ExplanationOfBenefitInsurance extends BackboneElement {
   ) {
     if (yaml is String) {
       return ExplanationOfBenefitInsurance.fromJson(
-        yamlToJson(yaml) as Map<String, Object?>,
+        yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
       return ExplanationOfBenefitInsurance.fromJson(
-        yamlMapToJson(yaml) as Map<String, Object?>,
+        yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ExplanationOfBenefitInsurance cannot be constructed from the provided input. '
+        'ExplanationOfBenefitInsurance '
+        'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
     }
   }
 
-  /// Factory constructor for [ExplanationOfBenefitInsurance]
+  /// Factory constructor for
+  /// [ExplanationOfBenefitInsurance]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
@@ -2543,34 +2652,55 @@ class ExplanationOfBenefitAccident extends BackboneElement {
   factory ExplanationOfBenefitAccident.fromJson(
     Map<String, dynamic> json,
   ) {
+    T? parseField<T extends FhirBase>(
+      dynamic value,
+      dynamic valueElement,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        (value != null || valueElement != null)
+            ? fromJson({
+                'value': value,
+                '_value': valueElement,
+              })
+            : null;
+    List<T>? parseList<T extends FhirBase>(
+      List<dynamic>? values,
+      List<dynamic>? valueElements,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        values?.asMap().entries.map((entry) {
+          final index = entry.key;
+          final value = entry.value;
+          final valueElement =
+              valueElements != null && valueElements.length > index
+                  ? valueElements[index]
+                  : null;
+          return fromJson({
+            'value': value,
+            '_value': valueElement,
+          });
+        }).toList();
     return ExplanationOfBenefitAccident(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      date: (json['date'] != null || json['_date'] != null)
-          ? FhirDate.fromJson({
-              'value': json['date'],
-              '_value': json['_date'],
-            })
-          : null,
+      id: parseField<FhirString>(
+        json['id'],
+        json['_id'],
+        FhirString.fromJson,
+      ),
+      extension_: parseList<FhirExtension>(
+        json['extension'] as List<dynamic>?,
+        json['_extension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
+      modifierExtension: parseList<FhirExtension>(
+        json['modifierExtension'] as List<dynamic>?,
+        json['_modifierExtension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
+      date: parseField<FhirDate>(
+        json['date'],
+        json['_date'],
+        FhirDate.fromJson,
+      ),
       type: json['type'] != null
           ? CodeableConcept.fromJson(
               json['type'] as Map<String, dynamic>,
@@ -2596,21 +2726,23 @@ class ExplanationOfBenefitAccident extends BackboneElement {
   ) {
     if (yaml is String) {
       return ExplanationOfBenefitAccident.fromJson(
-        yamlToJson(yaml) as Map<String, Object?>,
+        yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
       return ExplanationOfBenefitAccident.fromJson(
-        yamlMapToJson(yaml) as Map<String, Object?>,
+        yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ExplanationOfBenefitAccident cannot be constructed from the provided input. '
+        'ExplanationOfBenefitAccident '
+        'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
     }
   }
 
-  /// Factory constructor for [ExplanationOfBenefitAccident]
+  /// Factory constructor for
+  /// [ExplanationOfBenefitAccident]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
@@ -2770,51 +2902,73 @@ class ExplanationOfBenefitItem extends BackboneElement {
   factory ExplanationOfBenefitItem.fromJson(
     Map<String, dynamic> json,
   ) {
+    T? parseField<T extends FhirBase>(
+      dynamic value,
+      dynamic valueElement,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        (value != null || valueElement != null)
+            ? fromJson({
+                'value': value,
+                '_value': valueElement,
+              })
+            : null;
+    List<T>? parseList<T extends FhirBase>(
+      List<dynamic>? values,
+      List<dynamic>? valueElements,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        values?.asMap().entries.map((entry) {
+          final index = entry.key;
+          final value = entry.value;
+          final valueElement =
+              valueElements != null && valueElements.length > index
+                  ? valueElements[index]
+                  : null;
+          return fromJson({
+            'value': value,
+            '_value': valueElement,
+          });
+        }).toList();
     return ExplanationOfBenefitItem(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      id: parseField<FhirString>(
+        json['id'],
+        json['_id'],
+        FhirString.fromJson,
+      ),
+      extension_: parseList<FhirExtension>(
+        json['extension'] as List<dynamic>?,
+        json['_extension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
+      modifierExtension: parseList<FhirExtension>(
+        json['modifierExtension'] as List<dynamic>?,
+        json['_modifierExtension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
       sequence: FhirPositiveInt.fromJson({
         'value': json['sequence'],
         '_value': json['_sequence'],
       }),
-      careTeamSequence: parsePrimitiveList<FhirPositiveInt>(
+      careTeamSequence: parseList<FhirPositiveInt>(
         json['careTeamSequence'] as List<dynamic>?,
         json['_careTeamSequence'] as List<dynamic>?,
-        fromJson: FhirPositiveInt.fromJson,
+        FhirPositiveInt.fromJson,
       ),
-      diagnosisSequence: parsePrimitiveList<FhirPositiveInt>(
+      diagnosisSequence: parseList<FhirPositiveInt>(
         json['diagnosisSequence'] as List<dynamic>?,
         json['_diagnosisSequence'] as List<dynamic>?,
-        fromJson: FhirPositiveInt.fromJson,
+        FhirPositiveInt.fromJson,
       ),
-      procedureSequence: parsePrimitiveList<FhirPositiveInt>(
+      procedureSequence: parseList<FhirPositiveInt>(
         json['procedureSequence'] as List<dynamic>?,
         json['_procedureSequence'] as List<dynamic>?,
-        fromJson: FhirPositiveInt.fromJson,
+        FhirPositiveInt.fromJson,
       ),
-      informationSequence: parsePrimitiveList<FhirPositiveInt>(
+      informationSequence: parseList<FhirPositiveInt>(
         json['informationSequence'] as List<dynamic>?,
         json['_informationSequence'] as List<dynamic>?,
-        fromJson: FhirPositiveInt.fromJson,
+        FhirPositiveInt.fromJson,
       ),
       revenue: json['revenue'] != null
           ? CodeableConcept.fromJson(
@@ -2829,31 +2983,21 @@ class ExplanationOfBenefitItem extends BackboneElement {
       productOrService: CodeableConcept.fromJson(
         json['productOrService'] as Map<String, dynamic>,
       ),
-      modifier: json['modifier'] != null
-          ? (json['modifier'] as List<dynamic>)
-              .map<CodeableConcept>(
-                (v) => CodeableConcept.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      programCode: json['programCode'] != null
-          ? (json['programCode'] as List<dynamic>)
-              .map<CodeableConcept>(
-                (v) => CodeableConcept.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      servicedDate:
-          (json['servicedDate'] != null || json['_servicedDate'] != null)
-              ? FhirDate.fromJson({
-                  'value': json['servicedDate'],
-                  '_value': json['_servicedDate'],
-                })
-              : null,
+      modifier: parseList<CodeableConcept>(
+        json['modifier'] as List<dynamic>?,
+        json['_modifier'] as List<dynamic>?,
+        CodeableConcept.fromJson,
+      ),
+      programCode: parseList<CodeableConcept>(
+        json['programCode'] as List<dynamic>?,
+        json['_programCode'] as List<dynamic>?,
+        CodeableConcept.fromJson,
+      ),
+      servicedDate: parseField<FhirDate>(
+        json['servicedDate'],
+        json['_servicedDate'],
+        FhirDate.fromJson,
+      ),
       servicedPeriod: json['servicedPeriod'] != null
           ? Period.fromJson(
               json['servicedPeriod'] as Map<String, dynamic>,
@@ -2884,72 +3028,51 @@ class ExplanationOfBenefitItem extends BackboneElement {
               json['unitPrice'] as Map<String, dynamic>,
             )
           : null,
-      factor: (json['factor'] != null || json['_factor'] != null)
-          ? FhirDecimal.fromJson({
-              'value': json['factor'],
-              '_value': json['_factor'],
-            })
-          : null,
+      factor: parseField<FhirDecimal>(
+        json['factor'],
+        json['_factor'],
+        FhirDecimal.fromJson,
+      ),
       net: json['net'] != null
           ? Money.fromJson(
               json['net'] as Map<String, dynamic>,
             )
           : null,
-      udi: json['udi'] != null
-          ? (json['udi'] as List<dynamic>)
-              .map<Reference>(
-                (v) => Reference.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      udi: parseList<Reference>(
+        json['udi'] as List<dynamic>?,
+        json['_udi'] as List<dynamic>?,
+        Reference.fromJson,
+      ),
       bodySite: json['bodySite'] != null
           ? CodeableConcept.fromJson(
               json['bodySite'] as Map<String, dynamic>,
             )
           : null,
-      subSite: json['subSite'] != null
-          ? (json['subSite'] as List<dynamic>)
-              .map<CodeableConcept>(
-                (v) => CodeableConcept.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      encounter: json['encounter'] != null
-          ? (json['encounter'] as List<dynamic>)
-              .map<Reference>(
-                (v) => Reference.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      noteNumber: parsePrimitiveList<FhirPositiveInt>(
+      subSite: parseList<CodeableConcept>(
+        json['subSite'] as List<dynamic>?,
+        json['_subSite'] as List<dynamic>?,
+        CodeableConcept.fromJson,
+      ),
+      encounter: parseList<Reference>(
+        json['encounter'] as List<dynamic>?,
+        json['_encounter'] as List<dynamic>?,
+        Reference.fromJson,
+      ),
+      noteNumber: parseList<FhirPositiveInt>(
         json['noteNumber'] as List<dynamic>?,
         json['_noteNumber'] as List<dynamic>?,
-        fromJson: FhirPositiveInt.fromJson,
+        FhirPositiveInt.fromJson,
       ),
-      adjudication: json['adjudication'] != null
-          ? (json['adjudication'] as List<dynamic>)
-              .map<ExplanationOfBenefitAdjudication>(
-                (v) => ExplanationOfBenefitAdjudication.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      detail: json['detail'] != null
-          ? (json['detail'] as List<dynamic>)
-              .map<ExplanationOfBenefitDetail>(
-                (v) => ExplanationOfBenefitDetail.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      adjudication: parseList<ExplanationOfBenefitAdjudication>(
+        json['adjudication'] as List<dynamic>?,
+        json['_adjudication'] as List<dynamic>?,
+        ExplanationOfBenefitAdjudication.fromJson,
+      ),
+      detail: parseList<ExplanationOfBenefitDetail>(
+        json['detail'] as List<dynamic>?,
+        json['_detail'] as List<dynamic>?,
+        ExplanationOfBenefitDetail.fromJson,
+      ),
     );
   }
 
@@ -2960,21 +3083,23 @@ class ExplanationOfBenefitItem extends BackboneElement {
   ) {
     if (yaml is String) {
       return ExplanationOfBenefitItem.fromJson(
-        yamlToJson(yaml) as Map<String, Object?>,
+        yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
       return ExplanationOfBenefitItem.fromJson(
-        yamlMapToJson(yaml) as Map<String, Object?>,
+        yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ExplanationOfBenefitItem cannot be constructed from the provided input. '
+        'ExplanationOfBenefitItem '
+        'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
     }
   }
 
-  /// Factory constructor for [ExplanationOfBenefitItem]
+  /// Factory constructor for
+  /// [ExplanationOfBenefitItem]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
@@ -3365,28 +3490,50 @@ class ExplanationOfBenefitAdjudication extends BackboneElement {
   factory ExplanationOfBenefitAdjudication.fromJson(
     Map<String, dynamic> json,
   ) {
+    T? parseField<T extends FhirBase>(
+      dynamic value,
+      dynamic valueElement,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        (value != null || valueElement != null)
+            ? fromJson({
+                'value': value,
+                '_value': valueElement,
+              })
+            : null;
+    List<T>? parseList<T extends FhirBase>(
+      List<dynamic>? values,
+      List<dynamic>? valueElements,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        values?.asMap().entries.map((entry) {
+          final index = entry.key;
+          final value = entry.value;
+          final valueElement =
+              valueElements != null && valueElements.length > index
+                  ? valueElements[index]
+                  : null;
+          return fromJson({
+            'value': value,
+            '_value': valueElement,
+          });
+        }).toList();
     return ExplanationOfBenefitAdjudication(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      id: parseField<FhirString>(
+        json['id'],
+        json['_id'],
+        FhirString.fromJson,
+      ),
+      extension_: parseList<FhirExtension>(
+        json['extension'] as List<dynamic>?,
+        json['_extension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
+      modifierExtension: parseList<FhirExtension>(
+        json['modifierExtension'] as List<dynamic>?,
+        json['_modifierExtension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
       category: CodeableConcept.fromJson(
         json['category'] as Map<String, dynamic>,
       ),
@@ -3400,12 +3547,11 @@ class ExplanationOfBenefitAdjudication extends BackboneElement {
               json['amount'] as Map<String, dynamic>,
             )
           : null,
-      value: (json['value'] != null || json['_value'] != null)
-          ? FhirDecimal.fromJson({
-              'value': json['value'],
-              '_value': json['_value'],
-            })
-          : null,
+      value: parseField<FhirDecimal>(
+        json['value'],
+        json['_value'],
+        FhirDecimal.fromJson,
+      ),
     );
   }
 
@@ -3416,21 +3562,23 @@ class ExplanationOfBenefitAdjudication extends BackboneElement {
   ) {
     if (yaml is String) {
       return ExplanationOfBenefitAdjudication.fromJson(
-        yamlToJson(yaml) as Map<String, Object?>,
+        yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
       return ExplanationOfBenefitAdjudication.fromJson(
-        yamlMapToJson(yaml) as Map<String, Object?>,
+        yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ExplanationOfBenefitAdjudication cannot be constructed from the provided input. '
+        'ExplanationOfBenefitAdjudication '
+        'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
     }
   }
 
-  /// Factory constructor for [ExplanationOfBenefitAdjudication]
+  /// Factory constructor for
+  /// [ExplanationOfBenefitAdjudication]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
@@ -3578,28 +3726,50 @@ class ExplanationOfBenefitDetail extends BackboneElement {
   factory ExplanationOfBenefitDetail.fromJson(
     Map<String, dynamic> json,
   ) {
+    T? parseField<T extends FhirBase>(
+      dynamic value,
+      dynamic valueElement,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        (value != null || valueElement != null)
+            ? fromJson({
+                'value': value,
+                '_value': valueElement,
+              })
+            : null;
+    List<T>? parseList<T extends FhirBase>(
+      List<dynamic>? values,
+      List<dynamic>? valueElements,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        values?.asMap().entries.map((entry) {
+          final index = entry.key;
+          final value = entry.value;
+          final valueElement =
+              valueElements != null && valueElements.length > index
+                  ? valueElements[index]
+                  : null;
+          return fromJson({
+            'value': value,
+            '_value': valueElement,
+          });
+        }).toList();
     return ExplanationOfBenefitDetail(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      id: parseField<FhirString>(
+        json['id'],
+        json['_id'],
+        FhirString.fromJson,
+      ),
+      extension_: parseList<FhirExtension>(
+        json['extension'] as List<dynamic>?,
+        json['_extension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
+      modifierExtension: parseList<FhirExtension>(
+        json['modifierExtension'] as List<dynamic>?,
+        json['_modifierExtension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
       sequence: FhirPositiveInt.fromJson({
         'value': json['sequence'],
         '_value': json['_sequence'],
@@ -3617,24 +3787,16 @@ class ExplanationOfBenefitDetail extends BackboneElement {
       productOrService: CodeableConcept.fromJson(
         json['productOrService'] as Map<String, dynamic>,
       ),
-      modifier: json['modifier'] != null
-          ? (json['modifier'] as List<dynamic>)
-              .map<CodeableConcept>(
-                (v) => CodeableConcept.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      programCode: json['programCode'] != null
-          ? (json['programCode'] as List<dynamic>)
-              .map<CodeableConcept>(
-                (v) => CodeableConcept.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      modifier: parseList<CodeableConcept>(
+        json['modifier'] as List<dynamic>?,
+        json['_modifier'] as List<dynamic>?,
+        CodeableConcept.fromJson,
+      ),
+      programCode: parseList<CodeableConcept>(
+        json['programCode'] as List<dynamic>?,
+        json['_programCode'] as List<dynamic>?,
+        CodeableConcept.fromJson,
+      ),
       quantity: json['quantity'] != null
           ? Quantity.fromJson(
               json['quantity'] as Map<String, dynamic>,
@@ -3645,49 +3807,36 @@ class ExplanationOfBenefitDetail extends BackboneElement {
               json['unitPrice'] as Map<String, dynamic>,
             )
           : null,
-      factor: (json['factor'] != null || json['_factor'] != null)
-          ? FhirDecimal.fromJson({
-              'value': json['factor'],
-              '_value': json['_factor'],
-            })
-          : null,
+      factor: parseField<FhirDecimal>(
+        json['factor'],
+        json['_factor'],
+        FhirDecimal.fromJson,
+      ),
       net: json['net'] != null
           ? Money.fromJson(
               json['net'] as Map<String, dynamic>,
             )
           : null,
-      udi: json['udi'] != null
-          ? (json['udi'] as List<dynamic>)
-              .map<Reference>(
-                (v) => Reference.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      noteNumber: parsePrimitiveList<FhirPositiveInt>(
+      udi: parseList<Reference>(
+        json['udi'] as List<dynamic>?,
+        json['_udi'] as List<dynamic>?,
+        Reference.fromJson,
+      ),
+      noteNumber: parseList<FhirPositiveInt>(
         json['noteNumber'] as List<dynamic>?,
         json['_noteNumber'] as List<dynamic>?,
-        fromJson: FhirPositiveInt.fromJson,
+        FhirPositiveInt.fromJson,
       ),
-      adjudication: json['adjudication'] != null
-          ? (json['adjudication'] as List<dynamic>)
-              .map<ExplanationOfBenefitAdjudication>(
-                (v) => ExplanationOfBenefitAdjudication.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      subDetail: json['subDetail'] != null
-          ? (json['subDetail'] as List<dynamic>)
-              .map<ExplanationOfBenefitSubDetail>(
-                (v) => ExplanationOfBenefitSubDetail.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      adjudication: parseList<ExplanationOfBenefitAdjudication>(
+        json['adjudication'] as List<dynamic>?,
+        json['_adjudication'] as List<dynamic>?,
+        ExplanationOfBenefitAdjudication.fromJson,
+      ),
+      subDetail: parseList<ExplanationOfBenefitSubDetail>(
+        json['subDetail'] as List<dynamic>?,
+        json['_subDetail'] as List<dynamic>?,
+        ExplanationOfBenefitSubDetail.fromJson,
+      ),
     );
   }
 
@@ -3698,21 +3847,23 @@ class ExplanationOfBenefitDetail extends BackboneElement {
   ) {
     if (yaml is String) {
       return ExplanationOfBenefitDetail.fromJson(
-        yamlToJson(yaml) as Map<String, Object?>,
+        yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
       return ExplanationOfBenefitDetail.fromJson(
-        yamlMapToJson(yaml) as Map<String, Object?>,
+        yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ExplanationOfBenefitDetail cannot be constructed from the provided input. '
+        'ExplanationOfBenefitDetail '
+        'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
     }
   }
 
-  /// Factory constructor for [ExplanationOfBenefitDetail]
+  /// Factory constructor for
+  /// [ExplanationOfBenefitDetail]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
@@ -3967,28 +4118,50 @@ class ExplanationOfBenefitSubDetail extends BackboneElement {
   factory ExplanationOfBenefitSubDetail.fromJson(
     Map<String, dynamic> json,
   ) {
+    T? parseField<T extends FhirBase>(
+      dynamic value,
+      dynamic valueElement,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        (value != null || valueElement != null)
+            ? fromJson({
+                'value': value,
+                '_value': valueElement,
+              })
+            : null;
+    List<T>? parseList<T extends FhirBase>(
+      List<dynamic>? values,
+      List<dynamic>? valueElements,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        values?.asMap().entries.map((entry) {
+          final index = entry.key;
+          final value = entry.value;
+          final valueElement =
+              valueElements != null && valueElements.length > index
+                  ? valueElements[index]
+                  : null;
+          return fromJson({
+            'value': value,
+            '_value': valueElement,
+          });
+        }).toList();
     return ExplanationOfBenefitSubDetail(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      id: parseField<FhirString>(
+        json['id'],
+        json['_id'],
+        FhirString.fromJson,
+      ),
+      extension_: parseList<FhirExtension>(
+        json['extension'] as List<dynamic>?,
+        json['_extension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
+      modifierExtension: parseList<FhirExtension>(
+        json['modifierExtension'] as List<dynamic>?,
+        json['_modifierExtension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
       sequence: FhirPositiveInt.fromJson({
         'value': json['sequence'],
         '_value': json['_sequence'],
@@ -4006,24 +4179,16 @@ class ExplanationOfBenefitSubDetail extends BackboneElement {
       productOrService: CodeableConcept.fromJson(
         json['productOrService'] as Map<String, dynamic>,
       ),
-      modifier: json['modifier'] != null
-          ? (json['modifier'] as List<dynamic>)
-              .map<CodeableConcept>(
-                (v) => CodeableConcept.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      programCode: json['programCode'] != null
-          ? (json['programCode'] as List<dynamic>)
-              .map<CodeableConcept>(
-                (v) => CodeableConcept.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      modifier: parseList<CodeableConcept>(
+        json['modifier'] as List<dynamic>?,
+        json['_modifier'] as List<dynamic>?,
+        CodeableConcept.fromJson,
+      ),
+      programCode: parseList<CodeableConcept>(
+        json['programCode'] as List<dynamic>?,
+        json['_programCode'] as List<dynamic>?,
+        CodeableConcept.fromJson,
+      ),
       quantity: json['quantity'] != null
           ? Quantity.fromJson(
               json['quantity'] as Map<String, dynamic>,
@@ -4034,40 +4199,31 @@ class ExplanationOfBenefitSubDetail extends BackboneElement {
               json['unitPrice'] as Map<String, dynamic>,
             )
           : null,
-      factor: (json['factor'] != null || json['_factor'] != null)
-          ? FhirDecimal.fromJson({
-              'value': json['factor'],
-              '_value': json['_factor'],
-            })
-          : null,
+      factor: parseField<FhirDecimal>(
+        json['factor'],
+        json['_factor'],
+        FhirDecimal.fromJson,
+      ),
       net: json['net'] != null
           ? Money.fromJson(
               json['net'] as Map<String, dynamic>,
             )
           : null,
-      udi: json['udi'] != null
-          ? (json['udi'] as List<dynamic>)
-              .map<Reference>(
-                (v) => Reference.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      noteNumber: parsePrimitiveList<FhirPositiveInt>(
+      udi: parseList<Reference>(
+        json['udi'] as List<dynamic>?,
+        json['_udi'] as List<dynamic>?,
+        Reference.fromJson,
+      ),
+      noteNumber: parseList<FhirPositiveInt>(
         json['noteNumber'] as List<dynamic>?,
         json['_noteNumber'] as List<dynamic>?,
-        fromJson: FhirPositiveInt.fromJson,
+        FhirPositiveInt.fromJson,
       ),
-      adjudication: json['adjudication'] != null
-          ? (json['adjudication'] as List<dynamic>)
-              .map<ExplanationOfBenefitAdjudication>(
-                (v) => ExplanationOfBenefitAdjudication.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      adjudication: parseList<ExplanationOfBenefitAdjudication>(
+        json['adjudication'] as List<dynamic>?,
+        json['_adjudication'] as List<dynamic>?,
+        ExplanationOfBenefitAdjudication.fromJson,
+      ),
     );
   }
 
@@ -4078,21 +4234,23 @@ class ExplanationOfBenefitSubDetail extends BackboneElement {
   ) {
     if (yaml is String) {
       return ExplanationOfBenefitSubDetail.fromJson(
-        yamlToJson(yaml) as Map<String, Object?>,
+        yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
       return ExplanationOfBenefitSubDetail.fromJson(
-        yamlMapToJson(yaml) as Map<String, Object?>,
+        yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ExplanationOfBenefitSubDetail cannot be constructed from the provided input. '
+        'ExplanationOfBenefitSubDetail '
+        'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
     }
   }
 
-  /// Factory constructor for [ExplanationOfBenefitSubDetail]
+  /// Factory constructor for
+  /// [ExplanationOfBenefitSubDetail]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
@@ -4346,80 +4504,88 @@ class ExplanationOfBenefitAddItem extends BackboneElement {
   factory ExplanationOfBenefitAddItem.fromJson(
     Map<String, dynamic> json,
   ) {
+    T? parseField<T extends FhirBase>(
+      dynamic value,
+      dynamic valueElement,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        (value != null || valueElement != null)
+            ? fromJson({
+                'value': value,
+                '_value': valueElement,
+              })
+            : null;
+    List<T>? parseList<T extends FhirBase>(
+      List<dynamic>? values,
+      List<dynamic>? valueElements,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        values?.asMap().entries.map((entry) {
+          final index = entry.key;
+          final value = entry.value;
+          final valueElement =
+              valueElements != null && valueElements.length > index
+                  ? valueElements[index]
+                  : null;
+          return fromJson({
+            'value': value,
+            '_value': valueElement,
+          });
+        }).toList();
     return ExplanationOfBenefitAddItem(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      itemSequence: parsePrimitiveList<FhirPositiveInt>(
+      id: parseField<FhirString>(
+        json['id'],
+        json['_id'],
+        FhirString.fromJson,
+      ),
+      extension_: parseList<FhirExtension>(
+        json['extension'] as List<dynamic>?,
+        json['_extension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
+      modifierExtension: parseList<FhirExtension>(
+        json['modifierExtension'] as List<dynamic>?,
+        json['_modifierExtension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
+      itemSequence: parseList<FhirPositiveInt>(
         json['itemSequence'] as List<dynamic>?,
         json['_itemSequence'] as List<dynamic>?,
-        fromJson: FhirPositiveInt.fromJson,
+        FhirPositiveInt.fromJson,
       ),
-      detailSequence: parsePrimitiveList<FhirPositiveInt>(
+      detailSequence: parseList<FhirPositiveInt>(
         json['detailSequence'] as List<dynamic>?,
         json['_detailSequence'] as List<dynamic>?,
-        fromJson: FhirPositiveInt.fromJson,
+        FhirPositiveInt.fromJson,
       ),
-      subDetailSequence: parsePrimitiveList<FhirPositiveInt>(
+      subDetailSequence: parseList<FhirPositiveInt>(
         json['subDetailSequence'] as List<dynamic>?,
         json['_subDetailSequence'] as List<dynamic>?,
-        fromJson: FhirPositiveInt.fromJson,
+        FhirPositiveInt.fromJson,
       ),
-      provider: json['provider'] != null
-          ? (json['provider'] as List<dynamic>)
-              .map<Reference>(
-                (v) => Reference.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      provider: parseList<Reference>(
+        json['provider'] as List<dynamic>?,
+        json['_provider'] as List<dynamic>?,
+        Reference.fromJson,
+      ),
       productOrService: CodeableConcept.fromJson(
         json['productOrService'] as Map<String, dynamic>,
       ),
-      modifier: json['modifier'] != null
-          ? (json['modifier'] as List<dynamic>)
-              .map<CodeableConcept>(
-                (v) => CodeableConcept.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      programCode: json['programCode'] != null
-          ? (json['programCode'] as List<dynamic>)
-              .map<CodeableConcept>(
-                (v) => CodeableConcept.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      servicedDate:
-          (json['servicedDate'] != null || json['_servicedDate'] != null)
-              ? FhirDate.fromJson({
-                  'value': json['servicedDate'],
-                  '_value': json['_servicedDate'],
-                })
-              : null,
+      modifier: parseList<CodeableConcept>(
+        json['modifier'] as List<dynamic>?,
+        json['_modifier'] as List<dynamic>?,
+        CodeableConcept.fromJson,
+      ),
+      programCode: parseList<CodeableConcept>(
+        json['programCode'] as List<dynamic>?,
+        json['_programCode'] as List<dynamic>?,
+        CodeableConcept.fromJson,
+      ),
+      servicedDate: parseField<FhirDate>(
+        json['servicedDate'],
+        json['_servicedDate'],
+        FhirDate.fromJson,
+      ),
       servicedPeriod: json['servicedPeriod'] != null
           ? Period.fromJson(
               json['servicedPeriod'] as Map<String, dynamic>,
@@ -4450,12 +4616,11 @@ class ExplanationOfBenefitAddItem extends BackboneElement {
               json['unitPrice'] as Map<String, dynamic>,
             )
           : null,
-      factor: (json['factor'] != null || json['_factor'] != null)
-          ? FhirDecimal.fromJson({
-              'value': json['factor'],
-              '_value': json['_factor'],
-            })
-          : null,
+      factor: parseField<FhirDecimal>(
+        json['factor'],
+        json['_factor'],
+        FhirDecimal.fromJson,
+      ),
       net: json['net'] != null
           ? Money.fromJson(
               json['net'] as Map<String, dynamic>,
@@ -4466,38 +4631,26 @@ class ExplanationOfBenefitAddItem extends BackboneElement {
               json['bodySite'] as Map<String, dynamic>,
             )
           : null,
-      subSite: json['subSite'] != null
-          ? (json['subSite'] as List<dynamic>)
-              .map<CodeableConcept>(
-                (v) => CodeableConcept.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      noteNumber: parsePrimitiveList<FhirPositiveInt>(
+      subSite: parseList<CodeableConcept>(
+        json['subSite'] as List<dynamic>?,
+        json['_subSite'] as List<dynamic>?,
+        CodeableConcept.fromJson,
+      ),
+      noteNumber: parseList<FhirPositiveInt>(
         json['noteNumber'] as List<dynamic>?,
         json['_noteNumber'] as List<dynamic>?,
-        fromJson: FhirPositiveInt.fromJson,
+        FhirPositiveInt.fromJson,
       ),
-      adjudication: json['adjudication'] != null
-          ? (json['adjudication'] as List<dynamic>)
-              .map<ExplanationOfBenefitAdjudication>(
-                (v) => ExplanationOfBenefitAdjudication.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      detail: json['detail'] != null
-          ? (json['detail'] as List<dynamic>)
-              .map<ExplanationOfBenefitDetail>(
-                (v) => ExplanationOfBenefitDetail.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      adjudication: parseList<ExplanationOfBenefitAdjudication>(
+        json['adjudication'] as List<dynamic>?,
+        json['_adjudication'] as List<dynamic>?,
+        ExplanationOfBenefitAdjudication.fromJson,
+      ),
+      detail: parseList<ExplanationOfBenefitDetail>(
+        json['detail'] as List<dynamic>?,
+        json['_detail'] as List<dynamic>?,
+        ExplanationOfBenefitDetail.fromJson,
+      ),
     );
   }
 
@@ -4508,21 +4661,23 @@ class ExplanationOfBenefitAddItem extends BackboneElement {
   ) {
     if (yaml is String) {
       return ExplanationOfBenefitAddItem.fromJson(
-        yamlToJson(yaml) as Map<String, Object?>,
+        yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
       return ExplanationOfBenefitAddItem.fromJson(
-        yamlMapToJson(yaml) as Map<String, Object?>,
+        yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ExplanationOfBenefitAddItem cannot be constructed from the provided input. '
+        'ExplanationOfBenefitAddItem '
+        'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
     }
   }
 
-  /// Factory constructor for [ExplanationOfBenefitAddItem]
+  /// Factory constructor for
+  /// [ExplanationOfBenefitAddItem]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
@@ -4860,40 +5015,58 @@ class ExplanationOfBenefitDetail1 extends BackboneElement {
   factory ExplanationOfBenefitDetail1.fromJson(
     Map<String, dynamic> json,
   ) {
+    T? parseField<T extends FhirBase>(
+      dynamic value,
+      dynamic valueElement,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        (value != null || valueElement != null)
+            ? fromJson({
+                'value': value,
+                '_value': valueElement,
+              })
+            : null;
+    List<T>? parseList<T extends FhirBase>(
+      List<dynamic>? values,
+      List<dynamic>? valueElements,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        values?.asMap().entries.map((entry) {
+          final index = entry.key;
+          final value = entry.value;
+          final valueElement =
+              valueElements != null && valueElements.length > index
+                  ? valueElements[index]
+                  : null;
+          return fromJson({
+            'value': value,
+            '_value': valueElement,
+          });
+        }).toList();
     return ExplanationOfBenefitDetail1(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      id: parseField<FhirString>(
+        json['id'],
+        json['_id'],
+        FhirString.fromJson,
+      ),
+      extension_: parseList<FhirExtension>(
+        json['extension'] as List<dynamic>?,
+        json['_extension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
+      modifierExtension: parseList<FhirExtension>(
+        json['modifierExtension'] as List<dynamic>?,
+        json['_modifierExtension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
       productOrService: CodeableConcept.fromJson(
         json['productOrService'] as Map<String, dynamic>,
       ),
-      modifier: json['modifier'] != null
-          ? (json['modifier'] as List<dynamic>)
-              .map<CodeableConcept>(
-                (v) => CodeableConcept.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      modifier: parseList<CodeableConcept>(
+        json['modifier'] as List<dynamic>?,
+        json['_modifier'] as List<dynamic>?,
+        CodeableConcept.fromJson,
+      ),
       quantity: json['quantity'] != null
           ? Quantity.fromJson(
               json['quantity'] as Map<String, dynamic>,
@@ -4904,40 +5077,31 @@ class ExplanationOfBenefitDetail1 extends BackboneElement {
               json['unitPrice'] as Map<String, dynamic>,
             )
           : null,
-      factor: (json['factor'] != null || json['_factor'] != null)
-          ? FhirDecimal.fromJson({
-              'value': json['factor'],
-              '_value': json['_factor'],
-            })
-          : null,
+      factor: parseField<FhirDecimal>(
+        json['factor'],
+        json['_factor'],
+        FhirDecimal.fromJson,
+      ),
       net: json['net'] != null
           ? Money.fromJson(
               json['net'] as Map<String, dynamic>,
             )
           : null,
-      noteNumber: parsePrimitiveList<FhirPositiveInt>(
+      noteNumber: parseList<FhirPositiveInt>(
         json['noteNumber'] as List<dynamic>?,
         json['_noteNumber'] as List<dynamic>?,
-        fromJson: FhirPositiveInt.fromJson,
+        FhirPositiveInt.fromJson,
       ),
-      adjudication: json['adjudication'] != null
-          ? (json['adjudication'] as List<dynamic>)
-              .map<ExplanationOfBenefitAdjudication>(
-                (v) => ExplanationOfBenefitAdjudication.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      subDetail: json['subDetail'] != null
-          ? (json['subDetail'] as List<dynamic>)
-              .map<ExplanationOfBenefitSubDetail>(
-                (v) => ExplanationOfBenefitSubDetail.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      adjudication: parseList<ExplanationOfBenefitAdjudication>(
+        json['adjudication'] as List<dynamic>?,
+        json['_adjudication'] as List<dynamic>?,
+        ExplanationOfBenefitAdjudication.fromJson,
+      ),
+      subDetail: parseList<ExplanationOfBenefitSubDetail>(
+        json['subDetail'] as List<dynamic>?,
+        json['_subDetail'] as List<dynamic>?,
+        ExplanationOfBenefitSubDetail.fromJson,
+      ),
     );
   }
 
@@ -4948,21 +5112,23 @@ class ExplanationOfBenefitDetail1 extends BackboneElement {
   ) {
     if (yaml is String) {
       return ExplanationOfBenefitDetail1.fromJson(
-        yamlToJson(yaml) as Map<String, Object?>,
+        yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
       return ExplanationOfBenefitDetail1.fromJson(
-        yamlMapToJson(yaml) as Map<String, Object?>,
+        yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ExplanationOfBenefitDetail1 cannot be constructed from the provided input. '
+        'ExplanationOfBenefitDetail1 '
+        'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
     }
   }
 
-  /// Factory constructor for [ExplanationOfBenefitDetail1]
+  /// Factory constructor for
+  /// [ExplanationOfBenefitDetail1]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
@@ -5162,40 +5328,58 @@ class ExplanationOfBenefitSubDetail1 extends BackboneElement {
   factory ExplanationOfBenefitSubDetail1.fromJson(
     Map<String, dynamic> json,
   ) {
+    T? parseField<T extends FhirBase>(
+      dynamic value,
+      dynamic valueElement,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        (value != null || valueElement != null)
+            ? fromJson({
+                'value': value,
+                '_value': valueElement,
+              })
+            : null;
+    List<T>? parseList<T extends FhirBase>(
+      List<dynamic>? values,
+      List<dynamic>? valueElements,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        values?.asMap().entries.map((entry) {
+          final index = entry.key;
+          final value = entry.value;
+          final valueElement =
+              valueElements != null && valueElements.length > index
+                  ? valueElements[index]
+                  : null;
+          return fromJson({
+            'value': value,
+            '_value': valueElement,
+          });
+        }).toList();
     return ExplanationOfBenefitSubDetail1(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      id: parseField<FhirString>(
+        json['id'],
+        json['_id'],
+        FhirString.fromJson,
+      ),
+      extension_: parseList<FhirExtension>(
+        json['extension'] as List<dynamic>?,
+        json['_extension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
+      modifierExtension: parseList<FhirExtension>(
+        json['modifierExtension'] as List<dynamic>?,
+        json['_modifierExtension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
       productOrService: CodeableConcept.fromJson(
         json['productOrService'] as Map<String, dynamic>,
       ),
-      modifier: json['modifier'] != null
-          ? (json['modifier'] as List<dynamic>)
-              .map<CodeableConcept>(
-                (v) => CodeableConcept.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      modifier: parseList<CodeableConcept>(
+        json['modifier'] as List<dynamic>?,
+        json['_modifier'] as List<dynamic>?,
+        CodeableConcept.fromJson,
+      ),
       quantity: json['quantity'] != null
           ? Quantity.fromJson(
               json['quantity'] as Map<String, dynamic>,
@@ -5206,31 +5390,26 @@ class ExplanationOfBenefitSubDetail1 extends BackboneElement {
               json['unitPrice'] as Map<String, dynamic>,
             )
           : null,
-      factor: (json['factor'] != null || json['_factor'] != null)
-          ? FhirDecimal.fromJson({
-              'value': json['factor'],
-              '_value': json['_factor'],
-            })
-          : null,
+      factor: parseField<FhirDecimal>(
+        json['factor'],
+        json['_factor'],
+        FhirDecimal.fromJson,
+      ),
       net: json['net'] != null
           ? Money.fromJson(
               json['net'] as Map<String, dynamic>,
             )
           : null,
-      noteNumber: parsePrimitiveList<FhirPositiveInt>(
+      noteNumber: parseList<FhirPositiveInt>(
         json['noteNumber'] as List<dynamic>?,
         json['_noteNumber'] as List<dynamic>?,
-        fromJson: FhirPositiveInt.fromJson,
+        FhirPositiveInt.fromJson,
       ),
-      adjudication: json['adjudication'] != null
-          ? (json['adjudication'] as List<dynamic>)
-              .map<ExplanationOfBenefitAdjudication>(
-                (v) => ExplanationOfBenefitAdjudication.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      adjudication: parseList<ExplanationOfBenefitAdjudication>(
+        json['adjudication'] as List<dynamic>?,
+        json['_adjudication'] as List<dynamic>?,
+        ExplanationOfBenefitAdjudication.fromJson,
+      ),
     );
   }
 
@@ -5241,21 +5420,23 @@ class ExplanationOfBenefitSubDetail1 extends BackboneElement {
   ) {
     if (yaml is String) {
       return ExplanationOfBenefitSubDetail1.fromJson(
-        yamlToJson(yaml) as Map<String, Object?>,
+        yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
       return ExplanationOfBenefitSubDetail1.fromJson(
-        yamlMapToJson(yaml) as Map<String, Object?>,
+        yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ExplanationOfBenefitSubDetail1 cannot be constructed from the provided input. '
+        'ExplanationOfBenefitSubDetail1 '
+        'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
     }
   }
 
-  /// Factory constructor for [ExplanationOfBenefitSubDetail1]
+  /// Factory constructor for
+  /// [ExplanationOfBenefitSubDetail1]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
@@ -5439,28 +5620,50 @@ class ExplanationOfBenefitTotal extends BackboneElement {
   factory ExplanationOfBenefitTotal.fromJson(
     Map<String, dynamic> json,
   ) {
+    T? parseField<T extends FhirBase>(
+      dynamic value,
+      dynamic valueElement,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        (value != null || valueElement != null)
+            ? fromJson({
+                'value': value,
+                '_value': valueElement,
+              })
+            : null;
+    List<T>? parseList<T extends FhirBase>(
+      List<dynamic>? values,
+      List<dynamic>? valueElements,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        values?.asMap().entries.map((entry) {
+          final index = entry.key;
+          final value = entry.value;
+          final valueElement =
+              valueElements != null && valueElements.length > index
+                  ? valueElements[index]
+                  : null;
+          return fromJson({
+            'value': value,
+            '_value': valueElement,
+          });
+        }).toList();
     return ExplanationOfBenefitTotal(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      id: parseField<FhirString>(
+        json['id'],
+        json['_id'],
+        FhirString.fromJson,
+      ),
+      extension_: parseList<FhirExtension>(
+        json['extension'] as List<dynamic>?,
+        json['_extension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
+      modifierExtension: parseList<FhirExtension>(
+        json['modifierExtension'] as List<dynamic>?,
+        json['_modifierExtension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
       category: CodeableConcept.fromJson(
         json['category'] as Map<String, dynamic>,
       ),
@@ -5477,21 +5680,23 @@ class ExplanationOfBenefitTotal extends BackboneElement {
   ) {
     if (yaml is String) {
       return ExplanationOfBenefitTotal.fromJson(
-        yamlToJson(yaml) as Map<String, Object?>,
+        yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
       return ExplanationOfBenefitTotal.fromJson(
-        yamlMapToJson(yaml) as Map<String, Object?>,
+        yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ExplanationOfBenefitTotal cannot be constructed from the provided input. '
+        'ExplanationOfBenefitTotal '
+        'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
     }
   }
 
-  /// Factory constructor for [ExplanationOfBenefitTotal]
+  /// Factory constructor for
+  /// [ExplanationOfBenefitTotal]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
@@ -5610,28 +5815,50 @@ class ExplanationOfBenefitPayment extends BackboneElement {
   factory ExplanationOfBenefitPayment.fromJson(
     Map<String, dynamic> json,
   ) {
+    T? parseField<T extends FhirBase>(
+      dynamic value,
+      dynamic valueElement,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        (value != null || valueElement != null)
+            ? fromJson({
+                'value': value,
+                '_value': valueElement,
+              })
+            : null;
+    List<T>? parseList<T extends FhirBase>(
+      List<dynamic>? values,
+      List<dynamic>? valueElements,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        values?.asMap().entries.map((entry) {
+          final index = entry.key;
+          final value = entry.value;
+          final valueElement =
+              valueElements != null && valueElements.length > index
+                  ? valueElements[index]
+                  : null;
+          return fromJson({
+            'value': value,
+            '_value': valueElement,
+          });
+        }).toList();
     return ExplanationOfBenefitPayment(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      id: parseField<FhirString>(
+        json['id'],
+        json['_id'],
+        FhirString.fromJson,
+      ),
+      extension_: parseList<FhirExtension>(
+        json['extension'] as List<dynamic>?,
+        json['_extension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
+      modifierExtension: parseList<FhirExtension>(
+        json['modifierExtension'] as List<dynamic>?,
+        json['_modifierExtension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
       type: json['type'] != null
           ? CodeableConcept.fromJson(
               json['type'] as Map<String, dynamic>,
@@ -5647,12 +5874,11 @@ class ExplanationOfBenefitPayment extends BackboneElement {
               json['adjustmentReason'] as Map<String, dynamic>,
             )
           : null,
-      date: (json['date'] != null || json['_date'] != null)
-          ? FhirDate.fromJson({
-              'value': json['date'],
-              '_value': json['_date'],
-            })
-          : null,
+      date: parseField<FhirDate>(
+        json['date'],
+        json['_date'],
+        FhirDate.fromJson,
+      ),
       amount: json['amount'] != null
           ? Money.fromJson(
               json['amount'] as Map<String, dynamic>,
@@ -5673,21 +5899,23 @@ class ExplanationOfBenefitPayment extends BackboneElement {
   ) {
     if (yaml is String) {
       return ExplanationOfBenefitPayment.fromJson(
-        yamlToJson(yaml) as Map<String, Object?>,
+        yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
       return ExplanationOfBenefitPayment.fromJson(
-        yamlMapToJson(yaml) as Map<String, Object?>,
+        yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ExplanationOfBenefitPayment cannot be constructed from the provided input. '
+        'ExplanationOfBenefitPayment '
+        'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
     }
   }
 
-  /// Factory constructor for [ExplanationOfBenefitPayment]
+  /// Factory constructor for
+  /// [ExplanationOfBenefitPayment]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
@@ -5845,46 +6073,65 @@ class ExplanationOfBenefitProcessNote extends BackboneElement {
   factory ExplanationOfBenefitProcessNote.fromJson(
     Map<String, dynamic> json,
   ) {
+    T? parseField<T extends FhirBase>(
+      dynamic value,
+      dynamic valueElement,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        (value != null || valueElement != null)
+            ? fromJson({
+                'value': value,
+                '_value': valueElement,
+              })
+            : null;
+    List<T>? parseList<T extends FhirBase>(
+      List<dynamic>? values,
+      List<dynamic>? valueElements,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        values?.asMap().entries.map((entry) {
+          final index = entry.key;
+          final value = entry.value;
+          final valueElement =
+              valueElements != null && valueElements.length > index
+                  ? valueElements[index]
+                  : null;
+          return fromJson({
+            'value': value,
+            '_value': valueElement,
+          });
+        }).toList();
     return ExplanationOfBenefitProcessNote(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      number: (json['number'] != null || json['_number'] != null)
-          ? FhirPositiveInt.fromJson({
-              'value': json['number'],
-              '_value': json['_number'],
-            })
-          : null,
-      type: (json['type'] != null || json['_type'] != null)
-          ? NoteType.fromJson({
-              'value': json['type'],
-              '_value': json['_type'],
-            })
-          : null,
-      text: (json['text'] != null || json['_text'] != null)
-          ? FhirString.fromJson({
-              'value': json['text'],
-              '_value': json['_text'],
-            })
-          : null,
+      id: parseField<FhirString>(
+        json['id'],
+        json['_id'],
+        FhirString.fromJson,
+      ),
+      extension_: parseList<FhirExtension>(
+        json['extension'] as List<dynamic>?,
+        json['_extension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
+      modifierExtension: parseList<FhirExtension>(
+        json['modifierExtension'] as List<dynamic>?,
+        json['_modifierExtension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
+      number: parseField<FhirPositiveInt>(
+        json['number'],
+        json['_number'],
+        FhirPositiveInt.fromJson,
+      ),
+      type: parseField<NoteType>(
+        json['type'],
+        json['_type'],
+        NoteType.fromJson,
+      ),
+      text: parseField<FhirString>(
+        json['text'],
+        json['_text'],
+        FhirString.fromJson,
+      ),
       language: json['language'] != null
           ? CodeableConcept.fromJson(
               json['language'] as Map<String, dynamic>,
@@ -5900,21 +6147,23 @@ class ExplanationOfBenefitProcessNote extends BackboneElement {
   ) {
     if (yaml is String) {
       return ExplanationOfBenefitProcessNote.fromJson(
-        yamlToJson(yaml) as Map<String, Object?>,
+        yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
       return ExplanationOfBenefitProcessNote.fromJson(
-        yamlMapToJson(yaml) as Map<String, Object?>,
+        yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ExplanationOfBenefitProcessNote cannot be constructed from the provided input. '
+        'ExplanationOfBenefitProcessNote '
+        'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
     }
   }
 
-  /// Factory constructor for [ExplanationOfBenefitProcessNote]
+  /// Factory constructor for
+  /// [ExplanationOfBenefitProcessNote]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
@@ -6046,49 +6295,68 @@ class ExplanationOfBenefitBenefitBalance extends BackboneElement {
   factory ExplanationOfBenefitBenefitBalance.fromJson(
     Map<String, dynamic> json,
   ) {
+    T? parseField<T extends FhirBase>(
+      dynamic value,
+      dynamic valueElement,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        (value != null || valueElement != null)
+            ? fromJson({
+                'value': value,
+                '_value': valueElement,
+              })
+            : null;
+    List<T>? parseList<T extends FhirBase>(
+      List<dynamic>? values,
+      List<dynamic>? valueElements,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        values?.asMap().entries.map((entry) {
+          final index = entry.key;
+          final value = entry.value;
+          final valueElement =
+              valueElements != null && valueElements.length > index
+                  ? valueElements[index]
+                  : null;
+          return fromJson({
+            'value': value,
+            '_value': valueElement,
+          });
+        }).toList();
     return ExplanationOfBenefitBenefitBalance(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      id: parseField<FhirString>(
+        json['id'],
+        json['_id'],
+        FhirString.fromJson,
+      ),
+      extension_: parseList<FhirExtension>(
+        json['extension'] as List<dynamic>?,
+        json['_extension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
+      modifierExtension: parseList<FhirExtension>(
+        json['modifierExtension'] as List<dynamic>?,
+        json['_modifierExtension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
       category: CodeableConcept.fromJson(
         json['category'] as Map<String, dynamic>,
       ),
-      excluded: (json['excluded'] != null || json['_excluded'] != null)
-          ? FhirBoolean.fromJson({
-              'value': json['excluded'],
-              '_value': json['_excluded'],
-            })
-          : null,
-      name: (json['name'] != null || json['_name'] != null)
-          ? FhirString.fromJson({
-              'value': json['name'],
-              '_value': json['_name'],
-            })
-          : null,
-      description: (json['description'] != null || json['_description'] != null)
-          ? FhirString.fromJson({
-              'value': json['description'],
-              '_value': json['_description'],
-            })
-          : null,
+      excluded: parseField<FhirBoolean>(
+        json['excluded'],
+        json['_excluded'],
+        FhirBoolean.fromJson,
+      ),
+      name: parseField<FhirString>(
+        json['name'],
+        json['_name'],
+        FhirString.fromJson,
+      ),
+      description: parseField<FhirString>(
+        json['description'],
+        json['_description'],
+        FhirString.fromJson,
+      ),
       network: json['network'] != null
           ? CodeableConcept.fromJson(
               json['network'] as Map<String, dynamic>,
@@ -6104,15 +6372,11 @@ class ExplanationOfBenefitBenefitBalance extends BackboneElement {
               json['term'] as Map<String, dynamic>,
             )
           : null,
-      financial: json['financial'] != null
-          ? (json['financial'] as List<dynamic>)
-              .map<ExplanationOfBenefitFinancial>(
-                (v) => ExplanationOfBenefitFinancial.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      financial: parseList<ExplanationOfBenefitFinancial>(
+        json['financial'] as List<dynamic>?,
+        json['_financial'] as List<dynamic>?,
+        ExplanationOfBenefitFinancial.fromJson,
+      ),
     );
   }
 
@@ -6123,21 +6387,23 @@ class ExplanationOfBenefitBenefitBalance extends BackboneElement {
   ) {
     if (yaml is String) {
       return ExplanationOfBenefitBenefitBalance.fromJson(
-        yamlToJson(yaml) as Map<String, Object?>,
+        yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
       return ExplanationOfBenefitBenefitBalance.fromJson(
-        yamlMapToJson(yaml) as Map<String, Object?>,
+        yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ExplanationOfBenefitBenefitBalance cannot be constructed from the provided input. '
+        'ExplanationOfBenefitBenefitBalance '
+        'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
     }
   }
 
-  /// Factory constructor for [ExplanationOfBenefitBenefitBalance]
+  /// Factory constructor for
+  /// [ExplanationOfBenefitBenefitBalance]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
@@ -6310,57 +6576,73 @@ class ExplanationOfBenefitFinancial extends BackboneElement {
   factory ExplanationOfBenefitFinancial.fromJson(
     Map<String, dynamic> json,
   ) {
+    T? parseField<T extends FhirBase>(
+      dynamic value,
+      dynamic valueElement,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        (value != null || valueElement != null)
+            ? fromJson({
+                'value': value,
+                '_value': valueElement,
+              })
+            : null;
+    List<T>? parseList<T extends FhirBase>(
+      List<dynamic>? values,
+      List<dynamic>? valueElements,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        values?.asMap().entries.map((entry) {
+          final index = entry.key;
+          final value = entry.value;
+          final valueElement =
+              valueElements != null && valueElements.length > index
+                  ? valueElements[index]
+                  : null;
+          return fromJson({
+            'value': value,
+            '_value': valueElement,
+          });
+        }).toList();
     return ExplanationOfBenefitFinancial(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      id: parseField<FhirString>(
+        json['id'],
+        json['_id'],
+        FhirString.fromJson,
+      ),
+      extension_: parseList<FhirExtension>(
+        json['extension'] as List<dynamic>?,
+        json['_extension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
+      modifierExtension: parseList<FhirExtension>(
+        json['modifierExtension'] as List<dynamic>?,
+        json['_modifierExtension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
       type: CodeableConcept.fromJson(
         json['type'] as Map<String, dynamic>,
       ),
-      allowedUnsignedInt: (json['allowedUnsignedInt'] != null ||
-              json['_allowedUnsignedInt'] != null)
-          ? FhirUnsignedInt.fromJson({
-              'value': json['allowedUnsignedInt'],
-              '_value': json['_allowedUnsignedInt'],
-            })
-          : null,
-      allowedString:
-          (json['allowedString'] != null || json['_allowedString'] != null)
-              ? FhirString.fromJson({
-                  'value': json['allowedString'],
-                  '_value': json['_allowedString'],
-                })
-              : null,
+      allowedUnsignedInt: parseField<FhirUnsignedInt>(
+        json['allowedUnsignedInt'],
+        json['_allowedUnsignedInt'],
+        FhirUnsignedInt.fromJson,
+      ),
+      allowedString: parseField<FhirString>(
+        json['allowedString'],
+        json['_allowedString'],
+        FhirString.fromJson,
+      ),
       allowedMoney: json['allowedMoney'] != null
           ? Money.fromJson(
               json['allowedMoney'] as Map<String, dynamic>,
             )
           : null,
-      usedUnsignedInt:
-          (json['usedUnsignedInt'] != null || json['_usedUnsignedInt'] != null)
-              ? FhirUnsignedInt.fromJson({
-                  'value': json['usedUnsignedInt'],
-                  '_value': json['_usedUnsignedInt'],
-                })
-              : null,
+      usedUnsignedInt: parseField<FhirUnsignedInt>(
+        json['usedUnsignedInt'],
+        json['_usedUnsignedInt'],
+        FhirUnsignedInt.fromJson,
+      ),
       usedMoney: json['usedMoney'] != null
           ? Money.fromJson(
               json['usedMoney'] as Map<String, dynamic>,
@@ -6376,21 +6658,23 @@ class ExplanationOfBenefitFinancial extends BackboneElement {
   ) {
     if (yaml is String) {
       return ExplanationOfBenefitFinancial.fromJson(
-        yamlToJson(yaml) as Map<String, Object?>,
+        yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
       return ExplanationOfBenefitFinancial.fromJson(
-        yamlMapToJson(yaml) as Map<String, Object?>,
+        yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'ExplanationOfBenefitFinancial cannot be constructed from the provided input. '
+        'ExplanationOfBenefitFinancial '
+        'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
     }
   }
 
-  /// Factory constructor for [ExplanationOfBenefitFinancial]
+  /// Factory constructor for
+  /// [ExplanationOfBenefitFinancial]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]

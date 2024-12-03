@@ -8,7 +8,9 @@ class ContactPointSystem extends PrimitiveType<String> {
   ContactPointSystem._(super.value, [super.element]);
 
   /// Factory constructor to create [ContactPointSystem] from JSON.
-  factory ContactPointSystem.fromJson(Map<String, dynamic> json) {
+  factory ContactPointSystem.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -70,12 +72,17 @@ class ContactPointSystem extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  ContactPointSystem clone() =>
-      ContactPointSystem._(value, element?.clone() as Element?);
+  ContactPointSystem clone() => ContactPointSystem._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  ContactPointSystem setElement(String name, dynamic elementValue) {
+  ContactPointSystem setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return ContactPointSystem._(
       value,
       element?.setProperty(name, elementValue),

@@ -8,7 +8,9 @@ class MediaTypeCode extends PrimitiveType<String> {
   MediaTypeCode._(super.value, [super.element]);
 
   /// Factory constructor to create [MediaTypeCode] from JSON.
-  factory MediaTypeCode.fromJson(Map<String, dynamic> json) {
+  factory MediaTypeCode.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -18964,11 +18966,17 @@ class MediaTypeCode extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  MediaTypeCode clone() => MediaTypeCode._(value, element?.clone() as Element?);
+  MediaTypeCode clone() => MediaTypeCode._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  MediaTypeCode setElement(String name, dynamic elementValue) {
+  MediaTypeCode setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return MediaTypeCode._(
       value,
       element?.setProperty(name, elementValue),

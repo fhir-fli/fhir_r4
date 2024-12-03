@@ -8,7 +8,9 @@ class FluidConsistencyTypeCodes extends PrimitiveType<String> {
   FluidConsistencyTypeCodes._(super.value, [super.element]);
 
   /// Factory constructor to create [FluidConsistencyTypeCodes] from JSON.
-  factory FluidConsistencyTypeCodes.fromJson(Map<String, dynamic> json) {
+  factory FluidConsistencyTypeCodes.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -57,12 +59,17 @@ class FluidConsistencyTypeCodes extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  FluidConsistencyTypeCodes clone() =>
-      FluidConsistencyTypeCodes._(value, element?.clone() as Element?);
+  FluidConsistencyTypeCodes clone() => FluidConsistencyTypeCodes._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  FluidConsistencyTypeCodes setElement(String name, dynamic elementValue) {
+  FluidConsistencyTypeCodes setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return FluidConsistencyTypeCodes._(
       value,
       element?.setProperty(name, elementValue),

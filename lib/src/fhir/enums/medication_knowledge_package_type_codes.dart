@@ -9,7 +9,8 @@ class MedicationKnowledgePackageTypeCodes extends PrimitiveType<String> {
 
   /// Factory constructor to create [MedicationKnowledgePackageTypeCodes] from JSON.
   factory MedicationKnowledgePackageTypeCodes.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -187,12 +188,16 @@ class MedicationKnowledgePackageTypeCodes extends PrimitiveType<String> {
   @override
   MedicationKnowledgePackageTypeCodes clone() =>
       MedicationKnowledgePackageTypeCodes._(
-          value, element?.clone() as Element?);
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
   MedicationKnowledgePackageTypeCodes setElement(
-      String name, dynamic elementValue) {
+    String name,
+    dynamic elementValue,
+  ) {
     return MedicationKnowledgePackageTypeCodes._(
       value,
       element?.setProperty(name, elementValue),

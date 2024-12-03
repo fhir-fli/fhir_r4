@@ -8,7 +8,9 @@ class ArtifactContributionInstanceType extends PrimitiveType<String> {
   ArtifactContributionInstanceType._(super.value, [super.element]);
 
   /// Factory constructor to create [ArtifactContributionInstanceType] from JSON.
-  factory ArtifactContributionInstanceType.fromJson(Map<String, dynamic> json) {
+  factory ArtifactContributionInstanceType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -51,12 +53,17 @@ class ArtifactContributionInstanceType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ArtifactContributionInstanceType clone() =>
-      ArtifactContributionInstanceType._(value, element?.clone() as Element?);
+      ArtifactContributionInstanceType._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
   ArtifactContributionInstanceType setElement(
-      String name, dynamic elementValue) {
+    String name,
+    dynamic elementValue,
+  ) {
     return ArtifactContributionInstanceType._(
       value,
       element?.setProperty(name, elementValue),

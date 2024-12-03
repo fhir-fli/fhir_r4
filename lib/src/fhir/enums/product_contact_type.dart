@@ -8,7 +8,9 @@ class ProductContactType extends PrimitiveType<String> {
   ProductContactType._(super.value, [super.element]);
 
   /// Factory constructor to create [ProductContactType] from JSON.
-  factory ProductContactType.fromJson(Map<String, dynamic> json) {
+  factory ProductContactType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -58,12 +60,17 @@ class ProductContactType extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  ProductContactType clone() =>
-      ProductContactType._(value, element?.clone() as Element?);
+  ProductContactType clone() => ProductContactType._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  ProductContactType setElement(String name, dynamic elementValue) {
+  ProductContactType setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return ProductContactType._(
       value,
       element?.setProperty(name, elementValue),

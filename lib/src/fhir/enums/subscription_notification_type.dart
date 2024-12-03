@@ -8,7 +8,9 @@ class SubscriptionNotificationType extends PrimitiveType<String> {
   SubscriptionNotificationType._(super.value, [super.element]);
 
   /// Factory constructor to create [SubscriptionNotificationType] from JSON.
-  factory SubscriptionNotificationType.fromJson(Map<String, dynamic> json) {
+  factory SubscriptionNotificationType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -64,12 +66,17 @@ class SubscriptionNotificationType extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  SubscriptionNotificationType clone() =>
-      SubscriptionNotificationType._(value, element?.clone() as Element?);
+  SubscriptionNotificationType clone() => SubscriptionNotificationType._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  SubscriptionNotificationType setElement(String name, dynamic elementValue) {
+  SubscriptionNotificationType setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return SubscriptionNotificationType._(
       value,
       element?.setProperty(name, elementValue),

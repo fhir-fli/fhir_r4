@@ -8,7 +8,9 @@ class TestScriptProfileOriginType extends PrimitiveType<String> {
   TestScriptProfileOriginType._(super.value, [super.element]);
 
   /// Factory constructor to create [TestScriptProfileOriginType] from JSON.
-  factory TestScriptProfileOriginType.fromJson(Map<String, dynamic> json) {
+  factory TestScriptProfileOriginType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -43,12 +45,17 @@ class TestScriptProfileOriginType extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  TestScriptProfileOriginType clone() =>
-      TestScriptProfileOriginType._(value, element?.clone() as Element?);
+  TestScriptProfileOriginType clone() => TestScriptProfileOriginType._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  TestScriptProfileOriginType setElement(String name, dynamic elementValue) {
+  TestScriptProfileOriginType setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return TestScriptProfileOriginType._(
       value,
       element?.setProperty(name, elementValue),

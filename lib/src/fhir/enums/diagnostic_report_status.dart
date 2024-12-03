@@ -8,7 +8,9 @@ class DiagnosticReportStatus extends PrimitiveType<String> {
   DiagnosticReportStatus._(super.value, [super.element]);
 
   /// Factory constructor to create [DiagnosticReportStatus] from JSON.
-  factory DiagnosticReportStatus.fromJson(Map<String, dynamic> json) {
+  factory DiagnosticReportStatus.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -90,12 +92,17 @@ class DiagnosticReportStatus extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  DiagnosticReportStatus clone() =>
-      DiagnosticReportStatus._(value, element?.clone() as Element?);
+  DiagnosticReportStatus clone() => DiagnosticReportStatus._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  DiagnosticReportStatus setElement(String name, dynamic elementValue) {
+  DiagnosticReportStatus setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return DiagnosticReportStatus._(
       value,
       element?.setProperty(name, elementValue),

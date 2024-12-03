@@ -8,7 +8,9 @@ class PropertyRepresentation extends PrimitiveType<String> {
   PropertyRepresentation._(super.value, [super.element]);
 
   /// Factory constructor to create [PropertyRepresentation] from JSON.
-  factory PropertyRepresentation.fromJson(Map<String, dynamic> json) {
+  factory PropertyRepresentation.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -59,12 +61,17 @@ class PropertyRepresentation extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  PropertyRepresentation clone() =>
-      PropertyRepresentation._(value, element?.clone() as Element?);
+  PropertyRepresentation clone() => PropertyRepresentation._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  PropertyRepresentation setElement(String name, dynamic elementValue) {
+  PropertyRepresentation setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return PropertyRepresentation._(
       value,
       element?.setProperty(name, elementValue),

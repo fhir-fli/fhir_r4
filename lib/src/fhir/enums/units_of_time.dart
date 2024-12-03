@@ -8,7 +8,9 @@ class UnitsOfTime extends PrimitiveType<String> {
   UnitsOfTime._(super.value, [super.element]);
 
   /// Factory constructor to create [UnitsOfTime] from JSON.
-  factory UnitsOfTime.fromJson(Map<String, dynamic> json) {
+  factory UnitsOfTime.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -70,11 +72,17 @@ class UnitsOfTime extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  UnitsOfTime clone() => UnitsOfTime._(value, element?.clone() as Element?);
+  UnitsOfTime clone() => UnitsOfTime._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  UnitsOfTime setElement(String name, dynamic elementValue) {
+  UnitsOfTime setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return UnitsOfTime._(
       value,
       element?.setProperty(name, elementValue),

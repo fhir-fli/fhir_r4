@@ -8,7 +8,9 @@ class GraphCompartmentUse extends PrimitiveType<String> {
   GraphCompartmentUse._(super.value, [super.element]);
 
   /// Factory constructor to create [GraphCompartmentUse] from JSON.
-  factory GraphCompartmentUse.fromJson(Map<String, dynamic> json) {
+  factory GraphCompartmentUse.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -40,12 +42,17 @@ class GraphCompartmentUse extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  GraphCompartmentUse clone() =>
-      GraphCompartmentUse._(value, element?.clone() as Element?);
+  GraphCompartmentUse clone() => GraphCompartmentUse._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  GraphCompartmentUse setElement(String name, dynamic elementValue) {
+  GraphCompartmentUse setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return GraphCompartmentUse._(
       value,
       element?.setProperty(name, elementValue),

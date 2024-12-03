@@ -8,7 +8,9 @@ class FamilyHistoryStatus extends PrimitiveType<String> {
   FamilyHistoryStatus._(super.value, [super.element]);
 
   /// Factory constructor to create [FamilyHistoryStatus] from JSON.
-  factory FamilyHistoryStatus.fromJson(Map<String, dynamic> json) {
+  factory FamilyHistoryStatus.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -52,12 +54,17 @@ class FamilyHistoryStatus extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  FamilyHistoryStatus clone() =>
-      FamilyHistoryStatus._(value, element?.clone() as Element?);
+  FamilyHistoryStatus clone() => FamilyHistoryStatus._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  FamilyHistoryStatus setElement(String name, dynamic elementValue) {
+  FamilyHistoryStatus setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return FamilyHistoryStatus._(
       value,
       element?.setProperty(name, elementValue),

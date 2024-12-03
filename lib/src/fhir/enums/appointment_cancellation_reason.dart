@@ -8,7 +8,9 @@ class AppointmentCancellationReason extends PrimitiveType<String> {
   AppointmentCancellationReason._(super.value, [super.element]);
 
   /// Factory constructor to create [AppointmentCancellationReason] from JSON.
-  factory AppointmentCancellationReason.fromJson(Map<String, dynamic> json) {
+  factory AppointmentCancellationReason.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -253,12 +255,17 @@ class AppointmentCancellationReason extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  AppointmentCancellationReason clone() =>
-      AppointmentCancellationReason._(value, element?.clone() as Element?);
+  AppointmentCancellationReason clone() => AppointmentCancellationReason._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  AppointmentCancellationReason setElement(String name, dynamic elementValue) {
+  AppointmentCancellationReason setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return AppointmentCancellationReason._(
       value,
       element?.setProperty(name, elementValue),

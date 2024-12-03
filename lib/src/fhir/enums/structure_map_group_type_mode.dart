@@ -8,7 +8,9 @@ class StructureMapGroupTypeMode extends PrimitiveType<String> {
   StructureMapGroupTypeMode._(super.value, [super.element]);
 
   /// Factory constructor to create [StructureMapGroupTypeMode] from JSON.
-  factory StructureMapGroupTypeMode.fromJson(Map<String, dynamic> json) {
+  factory StructureMapGroupTypeMode.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -48,12 +50,17 @@ class StructureMapGroupTypeMode extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  StructureMapGroupTypeMode clone() =>
-      StructureMapGroupTypeMode._(value, element?.clone() as Element?);
+  StructureMapGroupTypeMode clone() => StructureMapGroupTypeMode._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  StructureMapGroupTypeMode setElement(String name, dynamic elementValue) {
+  StructureMapGroupTypeMode setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return StructureMapGroupTypeMode._(
       value,
       element?.setProperty(name, elementValue),

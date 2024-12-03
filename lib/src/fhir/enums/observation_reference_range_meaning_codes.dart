@@ -9,7 +9,8 @@ class ObservationReferenceRangeMeaningCodes extends PrimitiveType<String> {
 
   /// Factory constructor to create [ObservationReferenceRangeMeaningCodes] from JSON.
   factory ObservationReferenceRangeMeaningCodes.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -124,12 +125,16 @@ class ObservationReferenceRangeMeaningCodes extends PrimitiveType<String> {
   @override
   ObservationReferenceRangeMeaningCodes clone() =>
       ObservationReferenceRangeMeaningCodes._(
-          value, element?.clone() as Element?);
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
   ObservationReferenceRangeMeaningCodes setElement(
-      String name, dynamic elementValue) {
+    String name,
+    dynamic elementValue,
+  ) {
     return ObservationReferenceRangeMeaningCodes._(
       value,
       element?.setProperty(name, elementValue),

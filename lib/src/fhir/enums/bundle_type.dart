@@ -8,7 +8,9 @@ class BundleType extends PrimitiveType<String> {
   BundleType._(super.value, [super.element]);
 
   /// Factory constructor to create [BundleType] from JSON.
-  factory BundleType.fromJson(Map<String, dynamic> json) {
+  factory BundleType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -82,11 +84,17 @@ class BundleType extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  BundleType clone() => BundleType._(value, element?.clone() as Element?);
+  BundleType clone() => BundleType._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  BundleType setElement(String name, dynamic elementValue) {
+  BundleType setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return BundleType._(
       value,
       element?.setProperty(name, elementValue),

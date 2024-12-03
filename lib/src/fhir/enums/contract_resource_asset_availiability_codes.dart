@@ -9,7 +9,8 @@ class ContractResourceAssetAvailiabilityCodes extends PrimitiveType<String> {
 
   /// Factory constructor to create [ContractResourceAssetAvailiabilityCodes] from JSON.
   factory ContractResourceAssetAvailiabilityCodes.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -40,12 +41,16 @@ class ContractResourceAssetAvailiabilityCodes extends PrimitiveType<String> {
   @override
   ContractResourceAssetAvailiabilityCodes clone() =>
       ContractResourceAssetAvailiabilityCodes._(
-          value, element?.clone() as Element?);
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
   ContractResourceAssetAvailiabilityCodes setElement(
-      String name, dynamic elementValue) {
+    String name,
+    dynamic elementValue,
+  ) {
     return ContractResourceAssetAvailiabilityCodes._(
       value,
       element?.setProperty(name, elementValue),

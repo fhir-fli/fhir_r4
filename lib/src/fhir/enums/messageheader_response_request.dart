@@ -8,7 +8,9 @@ class MessageheaderResponseRequest extends PrimitiveType<String> {
   MessageheaderResponseRequest._(super.value, [super.element]);
 
   /// Factory constructor to create [MessageheaderResponseRequest] from JSON.
-  factory MessageheaderResponseRequest.fromJson(Map<String, dynamic> json) {
+  factory MessageheaderResponseRequest.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -57,12 +59,17 @@ class MessageheaderResponseRequest extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  MessageheaderResponseRequest clone() =>
-      MessageheaderResponseRequest._(value, element?.clone() as Element?);
+  MessageheaderResponseRequest clone() => MessageheaderResponseRequest._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  MessageheaderResponseRequest setElement(String name, dynamic elementValue) {
+  MessageheaderResponseRequest setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return MessageheaderResponseRequest._(
       value,
       element?.setProperty(name, elementValue),

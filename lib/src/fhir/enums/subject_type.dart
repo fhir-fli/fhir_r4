@@ -8,7 +8,9 @@ class SubjectType extends PrimitiveType<String> {
   SubjectType._(super.value, [super.element]);
 
   /// Factory constructor to create [SubjectType] from JSON.
-  factory SubjectType.fromJson(Map<String, dynamic> json) {
+  factory SubjectType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -886,11 +888,17 @@ class SubjectType extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  SubjectType clone() => SubjectType._(value, element?.clone() as Element?);
+  SubjectType clone() => SubjectType._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  SubjectType setElement(String name, dynamic elementValue) {
+  SubjectType setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return SubjectType._(
       value,
       element?.setProperty(name, elementValue),

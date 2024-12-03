@@ -8,7 +8,9 @@ class PaymentTypeCodes extends PrimitiveType<String> {
   PaymentTypeCodes._(super.value, [super.element]);
 
   /// Factory constructor to create [PaymentTypeCodes] from JSON.
-  factory PaymentTypeCodes.fromJson(Map<String, dynamic> json) {
+  factory PaymentTypeCodes.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -46,12 +48,17 @@ class PaymentTypeCodes extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  PaymentTypeCodes clone() =>
-      PaymentTypeCodes._(value, element?.clone() as Element?);
+  PaymentTypeCodes clone() => PaymentTypeCodes._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  PaymentTypeCodes setElement(String name, dynamic elementValue) {
+  PaymentTypeCodes setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return PaymentTypeCodes._(
       value,
       element?.setProperty(name, elementValue),

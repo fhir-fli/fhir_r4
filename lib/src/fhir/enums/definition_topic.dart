@@ -8,7 +8,9 @@ class DefinitionTopic extends PrimitiveType<String> {
   DefinitionTopic._(super.value, [super.element]);
 
   /// Factory constructor to create [DefinitionTopic] from JSON.
-  factory DefinitionTopic.fromJson(Map<String, dynamic> json) {
+  factory DefinitionTopic.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -46,12 +48,17 @@ class DefinitionTopic extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  DefinitionTopic clone() =>
-      DefinitionTopic._(value, element?.clone() as Element?);
+  DefinitionTopic clone() => DefinitionTopic._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  DefinitionTopic setElement(String name, dynamic elementValue) {
+  DefinitionTopic setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return DefinitionTopic._(
       value,
       element?.setProperty(name, elementValue),

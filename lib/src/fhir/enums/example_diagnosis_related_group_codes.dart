@@ -9,7 +9,8 @@ class ExampleDiagnosisRelatedGroupCodes extends PrimitiveType<String> {
 
   /// Factory constructor to create [ExampleDiagnosisRelatedGroupCodes] from JSON.
   factory ExampleDiagnosisRelatedGroupCodes.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -59,12 +60,17 @@ class ExampleDiagnosisRelatedGroupCodes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ExampleDiagnosisRelatedGroupCodes clone() =>
-      ExampleDiagnosisRelatedGroupCodes._(value, element?.clone() as Element?);
+      ExampleDiagnosisRelatedGroupCodes._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
   ExampleDiagnosisRelatedGroupCodes setElement(
-      String name, dynamic elementValue) {
+    String name,
+    dynamic elementValue,
+  ) {
     return ExampleDiagnosisRelatedGroupCodes._(
       value,
       element?.setProperty(name, elementValue),

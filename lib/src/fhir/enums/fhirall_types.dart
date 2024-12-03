@@ -8,7 +8,9 @@ class FHIRAllTypes extends PrimitiveType<String> {
   FHIRAllTypes._(super.value, [super.element]);
 
   /// Factory constructor to create [FHIRAllTypes] from JSON.
-  factory FHIRAllTypes.fromJson(Map<String, dynamic> json) {
+  factory FHIRAllTypes.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -1282,11 +1284,17 @@ class FHIRAllTypes extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  FHIRAllTypes clone() => FHIRAllTypes._(value, element?.clone() as Element?);
+  FHIRAllTypes clone() => FHIRAllTypes._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  FHIRAllTypes setElement(String name, dynamic elementValue) {
+  FHIRAllTypes setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return FHIRAllTypes._(
       value,
       element?.setProperty(name, elementValue),

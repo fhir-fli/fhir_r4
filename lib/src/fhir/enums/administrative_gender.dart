@@ -8,7 +8,9 @@ class AdministrativeGender extends PrimitiveType<String> {
   AdministrativeGender._(super.value, [super.element]);
 
   /// Factory constructor to create [AdministrativeGender] from JSON.
-  factory AdministrativeGender.fromJson(Map<String, dynamic> json) {
+  factory AdministrativeGender.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -52,12 +54,17 @@ class AdministrativeGender extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  AdministrativeGender clone() =>
-      AdministrativeGender._(value, element?.clone() as Element?);
+  AdministrativeGender clone() => AdministrativeGender._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  AdministrativeGender setElement(String name, dynamic elementValue) {
+  AdministrativeGender setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return AdministrativeGender._(
       value,
       element?.setProperty(name, elementValue),

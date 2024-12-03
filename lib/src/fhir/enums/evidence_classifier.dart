@@ -8,7 +8,9 @@ class EvidenceClassifier extends PrimitiveType<String> {
   EvidenceClassifier._(super.value, [super.element]);
 
   /// Factory constructor to create [EvidenceClassifier] from JSON.
-  factory EvidenceClassifier.fromJson(Map<String, dynamic> json) {
+  factory EvidenceClassifier.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -217,12 +219,17 @@ class EvidenceClassifier extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  EvidenceClassifier clone() =>
-      EvidenceClassifier._(value, element?.clone() as Element?);
+  EvidenceClassifier clone() => EvidenceClassifier._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  EvidenceClassifier setElement(String name, dynamic elementValue) {
+  EvidenceClassifier setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return EvidenceClassifier._(
       value,
       element?.setProperty(name, elementValue),

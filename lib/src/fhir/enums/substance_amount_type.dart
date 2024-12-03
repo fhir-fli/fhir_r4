@@ -8,7 +8,9 @@ class SubstanceAmountType extends PrimitiveType<String> {
   SubstanceAmountType._(super.value, [super.element]);
 
   /// Factory constructor to create [SubstanceAmountType] from JSON.
-  factory SubstanceAmountType.fromJson(Map<String, dynamic> json) {
+  factory SubstanceAmountType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -52,12 +54,17 @@ class SubstanceAmountType extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  SubstanceAmountType clone() =>
-      SubstanceAmountType._(value, element?.clone() as Element?);
+  SubstanceAmountType clone() => SubstanceAmountType._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  SubstanceAmountType setElement(String name, dynamic elementValue) {
+  SubstanceAmountType setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return SubstanceAmountType._(
       value,
       element?.setProperty(name, elementValue),

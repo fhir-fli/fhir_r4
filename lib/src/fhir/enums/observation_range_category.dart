@@ -8,7 +8,9 @@ class ObservationRangeCategory extends PrimitiveType<String> {
   ObservationRangeCategory._(super.value, [super.element]);
 
   /// Factory constructor to create [ObservationRangeCategory] from JSON.
-  factory ObservationRangeCategory.fromJson(Map<String, dynamic> json) {
+  factory ObservationRangeCategory.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -47,12 +49,17 @@ class ObservationRangeCategory extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  ObservationRangeCategory clone() =>
-      ObservationRangeCategory._(value, element?.clone() as Element?);
+  ObservationRangeCategory clone() => ObservationRangeCategory._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  ObservationRangeCategory setElement(String name, dynamic elementValue) {
+  ObservationRangeCategory setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return ObservationRangeCategory._(
       value,
       element?.setProperty(name, elementValue),

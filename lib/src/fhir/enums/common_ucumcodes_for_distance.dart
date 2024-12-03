@@ -8,7 +8,9 @@ class CommonUCUMCodesForDistance extends PrimitiveType<String> {
   CommonUCUMCodesForDistance._(super.value, [super.element]);
 
   /// Factory constructor to create [CommonUCUMCodesForDistance] from JSON.
-  factory CommonUCUMCodesForDistance.fromJson(Map<String, dynamic> json) {
+  factory CommonUCUMCodesForDistance.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -59,12 +61,17 @@ class CommonUCUMCodesForDistance extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  CommonUCUMCodesForDistance clone() =>
-      CommonUCUMCodesForDistance._(value, element?.clone() as Element?);
+  CommonUCUMCodesForDistance clone() => CommonUCUMCodesForDistance._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  CommonUCUMCodesForDistance setElement(String name, dynamic elementValue) {
+  CommonUCUMCodesForDistance setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return CommonUCUMCodesForDistance._(
       value,
       element?.setProperty(name, elementValue),

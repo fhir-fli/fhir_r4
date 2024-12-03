@@ -8,7 +8,9 @@ class NoteType extends PrimitiveType<String> {
   NoteType._(super.value, [super.element]);
 
   /// Factory constructor to create [NoteType] from JSON.
-  factory NoteType.fromJson(Map<String, dynamic> json) {
+  factory NoteType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -46,11 +48,17 @@ class NoteType extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  NoteType clone() => NoteType._(value, element?.clone() as Element?);
+  NoteType clone() => NoteType._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  NoteType setElement(String name, dynamic elementValue) {
+  NoteType setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return NoteType._(
       value,
       element?.setProperty(name, elementValue),

@@ -8,7 +8,9 @@ class UDIEntryType extends PrimitiveType<String> {
   UDIEntryType._(super.value, [super.element]);
 
   /// Factory constructor to create [UDIEntryType] from JSON.
-  factory UDIEntryType.fromJson(Map<String, dynamic> json) {
+  factory UDIEntryType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -64,11 +66,17 @@ class UDIEntryType extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  UDIEntryType clone() => UDIEntryType._(value, element?.clone() as Element?);
+  UDIEntryType clone() => UDIEntryType._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  UDIEntryType setElement(String name, dynamic elementValue) {
+  UDIEntryType setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return UDIEntryType._(
       value,
       element?.setProperty(name, elementValue),

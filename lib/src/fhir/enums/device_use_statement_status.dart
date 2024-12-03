@@ -8,7 +8,9 @@ class DeviceUseStatementStatus extends PrimitiveType<String> {
   DeviceUseStatementStatus._(super.value, [super.element]);
 
   /// Factory constructor to create [DeviceUseStatementStatus] from JSON.
-  factory DeviceUseStatementStatus.fromJson(Map<String, dynamic> json) {
+  factory DeviceUseStatementStatus.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -66,12 +68,17 @@ class DeviceUseStatementStatus extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  DeviceUseStatementStatus clone() =>
-      DeviceUseStatementStatus._(value, element?.clone() as Element?);
+  DeviceUseStatementStatus clone() => DeviceUseStatementStatus._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  DeviceUseStatementStatus setElement(String name, dynamic elementValue) {
+  DeviceUseStatementStatus setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return DeviceUseStatementStatus._(
       value,
       element?.setProperty(name, elementValue),

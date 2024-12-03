@@ -8,7 +8,9 @@ class ActionRequiredBehavior extends PrimitiveType<String> {
   ActionRequiredBehavior._(super.value, [super.element]);
 
   /// Factory constructor to create [ActionRequiredBehavior] from JSON.
-  factory ActionRequiredBehavior.fromJson(Map<String, dynamic> json) {
+  factory ActionRequiredBehavior.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -48,12 +50,17 @@ class ActionRequiredBehavior extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  ActionRequiredBehavior clone() =>
-      ActionRequiredBehavior._(value, element?.clone() as Element?);
+  ActionRequiredBehavior clone() => ActionRequiredBehavior._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  ActionRequiredBehavior setElement(String name, dynamic elementValue) {
+  ActionRequiredBehavior setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return ActionRequiredBehavior._(
       value,
       element?.setProperty(name, elementValue),

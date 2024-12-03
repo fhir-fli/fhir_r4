@@ -8,7 +8,9 @@ class EvidenceCertaintyType extends PrimitiveType<String> {
   EvidenceCertaintyType._(super.value, [super.element]);
 
   /// Factory constructor to create [EvidenceCertaintyType] from JSON.
-  factory EvidenceCertaintyType.fromJson(Map<String, dynamic> json) {
+  factory EvidenceCertaintyType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -84,12 +86,17 @@ class EvidenceCertaintyType extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  EvidenceCertaintyType clone() =>
-      EvidenceCertaintyType._(value, element?.clone() as Element?);
+  EvidenceCertaintyType clone() => EvidenceCertaintyType._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  EvidenceCertaintyType setElement(String name, dynamic elementValue) {
+  EvidenceCertaintyType setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return EvidenceCertaintyType._(
       value,
       element?.setProperty(name, elementValue),

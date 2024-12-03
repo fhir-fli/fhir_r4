@@ -8,7 +8,9 @@ class PackageMaterial extends PrimitiveType<String> {
   PackageMaterial._(super.value, [super.element]);
 
   /// Factory constructor to create [PackageMaterial] from JSON.
-  factory PackageMaterial.fromJson(Map<String, dynamic> json) {
+  factory PackageMaterial.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -286,12 +288,17 @@ class PackageMaterial extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  PackageMaterial clone() =>
-      PackageMaterial._(value, element?.clone() as Element?);
+  PackageMaterial clone() => PackageMaterial._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  PackageMaterial setElement(String name, dynamic elementValue) {
+  PackageMaterial setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return PackageMaterial._(
       value,
       element?.setProperty(name, elementValue),

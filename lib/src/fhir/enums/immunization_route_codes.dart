@@ -8,7 +8,9 @@ class ImmunizationRouteCodes extends PrimitiveType<String> {
   ImmunizationRouteCodes._(super.value, [super.element]);
 
   /// Factory constructor to create [ImmunizationRouteCodes] from JSON.
-  factory ImmunizationRouteCodes.fromJson(Map<String, dynamic> json) {
+  factory ImmunizationRouteCodes.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -71,12 +73,17 @@ class ImmunizationRouteCodes extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  ImmunizationRouteCodes clone() =>
-      ImmunizationRouteCodes._(value, element?.clone() as Element?);
+  ImmunizationRouteCodes clone() => ImmunizationRouteCodes._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  ImmunizationRouteCodes setElement(String name, dynamic elementValue) {
+  ImmunizationRouteCodes setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return ImmunizationRouteCodes._(
       value,
       element?.setProperty(name, elementValue),

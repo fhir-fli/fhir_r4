@@ -8,7 +8,9 @@ class ActionReasonCode extends PrimitiveType<String> {
   ActionReasonCode._(super.value, [super.element]);
 
   /// Factory constructor to create [ActionReasonCode] from JSON.
-  factory ActionReasonCode.fromJson(Map<String, dynamic> json) {
+  factory ActionReasonCode.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -58,12 +60,17 @@ class ActionReasonCode extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  ActionReasonCode clone() =>
-      ActionReasonCode._(value, element?.clone() as Element?);
+  ActionReasonCode clone() => ActionReasonCode._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  ActionReasonCode setElement(String name, dynamic elementValue) {
+  ActionReasonCode setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return ActionReasonCode._(
       value,
       element?.setProperty(name, elementValue),

@@ -8,7 +8,9 @@ class ParticipantRequired extends PrimitiveType<String> {
   ParticipantRequired._(super.value, [super.element]);
 
   /// Factory constructor to create [ParticipantRequired] from JSON.
-  factory ParticipantRequired.fromJson(Map<String, dynamic> json) {
+  factory ParticipantRequired.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -46,12 +48,17 @@ class ParticipantRequired extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  ParticipantRequired clone() =>
-      ParticipantRequired._(value, element?.clone() as Element?);
+  ParticipantRequired clone() => ParticipantRequired._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  ParticipantRequired setElement(String name, dynamic elementValue) {
+  ParticipantRequired setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return ParticipantRequired._(
       value,
       element?.setProperty(name, elementValue),

@@ -8,7 +8,9 @@ class ListStatus extends PrimitiveType<String> {
   ListStatus._(super.value, [super.element]);
 
   /// Factory constructor to create [ListStatus] from JSON.
-  factory ListStatus.fromJson(Map<String, dynamic> json) {
+  factory ListStatus.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -46,11 +48,17 @@ class ListStatus extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  ListStatus clone() => ListStatus._(value, element?.clone() as Element?);
+  ListStatus clone() => ListStatus._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  ListStatus setElement(String name, dynamic elementValue) {
+  ListStatus setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return ListStatus._(
       value,
       element?.setProperty(name, elementValue),

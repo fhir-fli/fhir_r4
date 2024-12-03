@@ -8,7 +8,9 @@ class TargetSpecies extends PrimitiveType<String> {
   TargetSpecies._(super.value, [super.element]);
 
   /// Factory constructor to create [TargetSpecies] from JSON.
-  factory TargetSpecies.fromJson(Map<String, dynamic> json) {
+  factory TargetSpecies.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -1228,11 +1230,17 @@ class TargetSpecies extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  TargetSpecies clone() => TargetSpecies._(value, element?.clone() as Element?);
+  TargetSpecies clone() => TargetSpecies._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  TargetSpecies setElement(String name, dynamic elementValue) {
+  TargetSpecies setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return TargetSpecies._(
       value,
       element?.setProperty(name, elementValue),

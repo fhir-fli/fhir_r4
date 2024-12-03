@@ -8,7 +8,9 @@ class EvidenceReportType extends PrimitiveType<String> {
   EvidenceReportType._(super.value, [super.element]);
 
   /// Factory constructor to create [EvidenceReportType] from JSON.
-  factory EvidenceReportType.fromJson(Map<String, dynamic> json) {
+  factory EvidenceReportType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -52,12 +54,17 @@ class EvidenceReportType extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  EvidenceReportType clone() =>
-      EvidenceReportType._(value, element?.clone() as Element?);
+  EvidenceReportType clone() => EvidenceReportType._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  EvidenceReportType setElement(String name, dynamic elementValue) {
+  EvidenceReportType setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return EvidenceReportType._(
       value,
       element?.setProperty(name, elementValue),

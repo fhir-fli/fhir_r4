@@ -8,7 +8,9 @@ class GuideParameterCode extends PrimitiveType<String> {
   GuideParameterCode._(super.value, [super.element]);
 
   /// Factory constructor to create [GuideParameterCode] from JSON.
-  factory GuideParameterCode.fromJson(Map<String, dynamic> json) {
+  factory GuideParameterCode.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -88,12 +90,17 @@ class GuideParameterCode extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  GuideParameterCode clone() =>
-      GuideParameterCode._(value, element?.clone() as Element?);
+  GuideParameterCode clone() => GuideParameterCode._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  GuideParameterCode setElement(String name, dynamic elementValue) {
+  GuideParameterCode setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return GuideParameterCode._(
       value,
       element?.setProperty(name, elementValue),

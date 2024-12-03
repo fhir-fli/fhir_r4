@@ -8,7 +8,9 @@ class FHIRVersion extends PrimitiveType<String> {
   FHIRVersion._(super.value, [super.element]);
 
   /// Factory constructor to create [FHIRVersion] from JSON.
-  factory FHIRVersion.fromJson(Map<String, dynamic> json) {
+  factory FHIRVersion.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -190,11 +192,17 @@ class FHIRVersion extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  FHIRVersion clone() => FHIRVersion._(value, element?.clone() as Element?);
+  FHIRVersion clone() => FHIRVersion._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  FHIRVersion setElement(String name, dynamic elementValue) {
+  FHIRVersion setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return FHIRVersion._(
       value,
       element?.setProperty(name, elementValue),

@@ -8,7 +8,9 @@ class StudyType extends PrimitiveType<String> {
   StudyType._(super.value, [super.element]);
 
   /// Factory constructor to create [StudyType] from JSON.
-  factory StudyType.fromJson(Map<String, dynamic> json) {
+  factory StudyType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -70,11 +72,17 @@ class StudyType extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  StudyType clone() => StudyType._(value, element?.clone() as Element?);
+  StudyType clone() => StudyType._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  StudyType setElement(String name, dynamic elementValue) {
+  StudyType setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return StudyType._(
       value,
       element?.setProperty(name, elementValue),

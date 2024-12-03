@@ -8,7 +8,9 @@ class EncounterStatus extends PrimitiveType<String> {
   EncounterStatus._(super.value, [super.element]);
 
   /// Factory constructor to create [EncounterStatus] from JSON.
-  factory EncounterStatus.fromJson(Map<String, dynamic> json) {
+  factory EncounterStatus.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -82,12 +84,17 @@ class EncounterStatus extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  EncounterStatus clone() =>
-      EncounterStatus._(value, element?.clone() as Element?);
+  EncounterStatus clone() => EncounterStatus._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  EncounterStatus setElement(String name, dynamic elementValue) {
+  EncounterStatus setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return EncounterStatus._(
       value,
       element?.setProperty(name, elementValue),

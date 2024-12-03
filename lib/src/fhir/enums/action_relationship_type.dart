@@ -8,7 +8,9 @@ class ActionRelationshipType extends PrimitiveType<String> {
   ActionRelationshipType._(super.value, [super.element]);
 
   /// Factory constructor to create [ActionRelationshipType] from JSON.
-  factory ActionRelationshipType.fromJson(Map<String, dynamic> json) {
+  factory ActionRelationshipType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -85,12 +87,17 @@ class ActionRelationshipType extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  ActionRelationshipType clone() =>
-      ActionRelationshipType._(value, element?.clone() as Element?);
+  ActionRelationshipType clone() => ActionRelationshipType._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  ActionRelationshipType setElement(String name, dynamic elementValue) {
+  ActionRelationshipType setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return ActionRelationshipType._(
       value,
       element?.setProperty(name, elementValue),

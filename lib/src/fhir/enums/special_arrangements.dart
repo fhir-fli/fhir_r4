@@ -8,7 +8,9 @@ class SpecialArrangements extends PrimitiveType<String> {
   SpecialArrangements._(super.value, [super.element]);
 
   /// Factory constructor to create [SpecialArrangements] from JSON.
-  factory SpecialArrangements.fromJson(Map<String, dynamic> json) {
+  factory SpecialArrangements.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -58,12 +60,17 @@ class SpecialArrangements extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  SpecialArrangements clone() =>
-      SpecialArrangements._(value, element?.clone() as Element?);
+  SpecialArrangements clone() => SpecialArrangements._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  SpecialArrangements setElement(String name, dynamic elementValue) {
+  SpecialArrangements setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return SpecialArrangements._(
       value,
       element?.setProperty(name, elementValue),

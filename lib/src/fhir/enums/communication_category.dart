@@ -8,7 +8,9 @@ class CommunicationCategory extends PrimitiveType<String> {
   CommunicationCategory._(super.value, [super.element]);
 
   /// Factory constructor to create [CommunicationCategory] from JSON.
-  factory CommunicationCategory.fromJson(Map<String, dynamic> json) {
+  factory CommunicationCategory.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -52,12 +54,17 @@ class CommunicationCategory extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  CommunicationCategory clone() =>
-      CommunicationCategory._(value, element?.clone() as Element?);
+  CommunicationCategory clone() => CommunicationCategory._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  CommunicationCategory setElement(String name, dynamic elementValue) {
+  CommunicationCategory setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return CommunicationCategory._(
       value,
       element?.setProperty(name, elementValue),

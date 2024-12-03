@@ -8,7 +8,9 @@ class AllergyIntoleranceType extends PrimitiveType<String> {
   AllergyIntoleranceType._(super.value, [super.element]);
 
   /// Factory constructor to create [AllergyIntoleranceType] from JSON.
-  factory AllergyIntoleranceType.fromJson(Map<String, dynamic> json) {
+  factory AllergyIntoleranceType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -41,12 +43,17 @@ class AllergyIntoleranceType extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  AllergyIntoleranceType clone() =>
-      AllergyIntoleranceType._(value, element?.clone() as Element?);
+  AllergyIntoleranceType clone() => AllergyIntoleranceType._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  AllergyIntoleranceType setElement(String name, dynamic elementValue) {
+  AllergyIntoleranceType setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return AllergyIntoleranceType._(
       value,
       element?.setProperty(name, elementValue),

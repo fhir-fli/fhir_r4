@@ -8,7 +8,9 @@ class ResearchStudyObjectiveType extends PrimitiveType<String> {
   ResearchStudyObjectiveType._(super.value, [super.element]);
 
   /// Factory constructor to create [ResearchStudyObjectiveType] from JSON.
-  factory ResearchStudyObjectiveType.fromJson(Map<String, dynamic> json) {
+  factory ResearchStudyObjectiveType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -50,12 +52,17 @@ class ResearchStudyObjectiveType extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  ResearchStudyObjectiveType clone() =>
-      ResearchStudyObjectiveType._(value, element?.clone() as Element?);
+  ResearchStudyObjectiveType clone() => ResearchStudyObjectiveType._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  ResearchStudyObjectiveType setElement(String name, dynamic elementValue) {
+  ResearchStudyObjectiveType setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return ResearchStudyObjectiveType._(
       value,
       element?.setProperty(name, elementValue),

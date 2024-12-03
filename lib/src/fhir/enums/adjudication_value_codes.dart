@@ -8,7 +8,9 @@ class AdjudicationValueCodes extends PrimitiveType<String> {
   AdjudicationValueCodes._(super.value, [super.element]);
 
   /// Factory constructor to create [AdjudicationValueCodes] from JSON.
-  factory AdjudicationValueCodes.fromJson(Map<String, dynamic> json) {
+  factory AdjudicationValueCodes.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -77,12 +79,17 @@ class AdjudicationValueCodes extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  AdjudicationValueCodes clone() =>
-      AdjudicationValueCodes._(value, element?.clone() as Element?);
+  AdjudicationValueCodes clone() => AdjudicationValueCodes._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  AdjudicationValueCodes setElement(String name, dynamic elementValue) {
+  AdjudicationValueCodes setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return AdjudicationValueCodes._(
       value,
       element?.setProperty(name, elementValue),

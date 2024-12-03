@@ -8,7 +8,9 @@ class FacilityTypeCodeValueSet extends PrimitiveType<String> {
   FacilityTypeCodeValueSet._(super.value, [super.element]);
 
   /// Factory constructor to create [FacilityTypeCodeValueSet] from JSON.
-  factory FacilityTypeCodeValueSet.fromJson(Map<String, dynamic> json) {
+  factory FacilityTypeCodeValueSet.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -582,12 +584,17 @@ class FacilityTypeCodeValueSet extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  FacilityTypeCodeValueSet clone() =>
-      FacilityTypeCodeValueSet._(value, element?.clone() as Element?);
+  FacilityTypeCodeValueSet clone() => FacilityTypeCodeValueSet._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  FacilityTypeCodeValueSet setElement(String name, dynamic elementValue) {
+  FacilityTypeCodeValueSet setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return FacilityTypeCodeValueSet._(
       value,
       element?.setProperty(name, elementValue),

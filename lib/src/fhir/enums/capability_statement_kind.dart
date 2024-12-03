@@ -8,7 +8,9 @@ class CapabilityStatementKind extends PrimitiveType<String> {
   CapabilityStatementKind._(super.value, [super.element]);
 
   /// Factory constructor to create [CapabilityStatementKind] from JSON.
-  factory CapabilityStatementKind.fromJson(Map<String, dynamic> json) {
+  factory CapabilityStatementKind.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -47,12 +49,17 @@ class CapabilityStatementKind extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  CapabilityStatementKind clone() =>
-      CapabilityStatementKind._(value, element?.clone() as Element?);
+  CapabilityStatementKind clone() => CapabilityStatementKind._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  CapabilityStatementKind setElement(String name, dynamic elementValue) {
+  CapabilityStatementKind setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return CapabilityStatementKind._(
       value,
       element?.setProperty(name, elementValue),

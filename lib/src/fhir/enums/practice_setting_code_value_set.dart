@@ -8,7 +8,9 @@ class PracticeSettingCodeValueSet extends PrimitiveType<String> {
   PracticeSettingCodeValueSet._(super.value, [super.element]);
 
   /// Factory constructor to create [PracticeSettingCodeValueSet] from JSON.
-  factory PracticeSettingCodeValueSet.fromJson(Map<String, dynamic> json) {
+  factory PracticeSettingCodeValueSet.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -834,12 +836,17 @@ class PracticeSettingCodeValueSet extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  PracticeSettingCodeValueSet clone() =>
-      PracticeSettingCodeValueSet._(value, element?.clone() as Element?);
+  PracticeSettingCodeValueSet clone() => PracticeSettingCodeValueSet._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  PracticeSettingCodeValueSet setElement(String name, dynamic elementValue) {
+  PracticeSettingCodeValueSet setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return PracticeSettingCodeValueSet._(
       value,
       element?.setProperty(name, elementValue),

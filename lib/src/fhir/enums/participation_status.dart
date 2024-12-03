@@ -8,7 +8,9 @@ class ParticipationStatus extends PrimitiveType<String> {
   ParticipationStatus._(super.value, [super.element]);
 
   /// Factory constructor to create [ParticipationStatus] from JSON.
-  factory ParticipationStatus.fromJson(Map<String, dynamic> json) {
+  factory ParticipationStatus.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -52,12 +54,17 @@ class ParticipationStatus extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  ParticipationStatus clone() =>
-      ParticipationStatus._(value, element?.clone() as Element?);
+  ParticipationStatus clone() => ParticipationStatus._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  ParticipationStatus setElement(String name, dynamic elementValue) {
+  ParticipationStatus setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return ParticipationStatus._(
       value,
       element?.setProperty(name, elementValue),

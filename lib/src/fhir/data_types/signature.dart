@@ -35,28 +35,50 @@ class Signature extends DataType {
   factory Signature.fromJson(
     Map<String, dynamic> json,
   ) {
+    T? parseField<T extends FhirBase>(
+      dynamic value,
+      dynamic valueElement,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        (value != null || valueElement != null)
+            ? fromJson({
+                'value': value,
+                '_value': valueElement,
+              })
+            : null;
+    List<T>? parseList<T extends FhirBase>(
+      List<dynamic>? values,
+      List<dynamic>? valueElements,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        values?.asMap().entries.map((entry) {
+          final index = entry.key;
+          final value = entry.value;
+          final valueElement =
+              valueElements != null && valueElements.length > index
+                  ? valueElements[index]
+                  : null;
+          return fromJson({
+            'value': value,
+            '_value': valueElement,
+          });
+        }).toList();
     return Signature(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      type: ensureNonNullList(
-        (json['type'] as List<dynamic>)
-            .map<Coding>(
-              (v) => Coding.fromJson(
-                v as Map<String, dynamic>,
-              ),
-            )
-            .toList(),
+      id: parseField<FhirString>(
+        json['id'],
+        json['_id'],
+        FhirString.fromJson,
       ),
+      extension_: parseList<FhirExtension>(
+        json['extension'] as List<dynamic>?,
+        json['_extension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
+      type: parseList<Coding>(
+        json['type'] as List<dynamic>?,
+        json['_type'] as List<dynamic>?,
+        Coding.fromJson,
+      )!,
       when: FhirInstant.fromJson({
         'value': json['when'],
         '_value': json['_when'],
@@ -69,25 +91,21 @@ class Signature extends DataType {
               json['onBehalfOf'] as Map<String, dynamic>,
             )
           : null,
-      targetFormat:
-          (json['targetFormat'] != null || json['_targetFormat'] != null)
-              ? FhirCode.fromJson({
-                  'value': json['targetFormat'],
-                  '_value': json['_targetFormat'],
-                })
-              : null,
-      sigFormat: (json['sigFormat'] != null || json['_sigFormat'] != null)
-          ? FhirCode.fromJson({
-              'value': json['sigFormat'],
-              '_value': json['_sigFormat'],
-            })
-          : null,
-      data: (json['data'] != null || json['_data'] != null)
-          ? FhirBase64Binary.fromJson({
-              'value': json['data'],
-              '_value': json['_data'],
-            })
-          : null,
+      targetFormat: parseField<FhirCode>(
+        json['targetFormat'],
+        json['_targetFormat'],
+        FhirCode.fromJson,
+      ),
+      sigFormat: parseField<FhirCode>(
+        json['sigFormat'],
+        json['_sigFormat'],
+        FhirCode.fromJson,
+      ),
+      data: parseField<FhirBase64Binary>(
+        json['data'],
+        json['_data'],
+        FhirBase64Binary.fromJson,
+      ),
     );
   }
 
@@ -98,21 +116,23 @@ class Signature extends DataType {
   ) {
     if (yaml is String) {
       return Signature.fromJson(
-        yamlToJson(yaml) as Map<String, Object?>,
+        yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
       return Signature.fromJson(
-        yamlMapToJson(yaml) as Map<String, Object?>,
+        yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'Signature cannot be constructed from the provided input. '
+        'Signature '
+        'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
     }
   }
 
-  /// Factory constructor for [Signature]
+  /// Factory constructor for
+  /// [Signature]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]

@@ -8,7 +8,9 @@ class MediaType extends PrimitiveType<String> {
   MediaType._(super.value, [super.element]);
 
   /// Factory constructor to create [MediaType] from JSON.
-  factory MediaType.fromJson(Map<String, dynamic> json) {
+  factory MediaType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -46,11 +48,17 @@ class MediaType extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  MediaType clone() => MediaType._(value, element?.clone() as Element?);
+  MediaType clone() => MediaType._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  MediaType setElement(String name, dynamic elementValue) {
+  MediaType setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return MediaType._(
       value,
       element?.setProperty(name, elementValue),

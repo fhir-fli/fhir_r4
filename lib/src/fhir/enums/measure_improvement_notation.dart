@@ -8,7 +8,9 @@ class MeasureImprovementNotation extends PrimitiveType<String> {
   MeasureImprovementNotation._(super.value, [super.element]);
 
   /// Factory constructor to create [MeasureImprovementNotation] from JSON.
-  factory MeasureImprovementNotation.fromJson(Map<String, dynamic> json) {
+  factory MeasureImprovementNotation.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -43,12 +45,17 @@ class MeasureImprovementNotation extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  MeasureImprovementNotation clone() =>
-      MeasureImprovementNotation._(value, element?.clone() as Element?);
+  MeasureImprovementNotation clone() => MeasureImprovementNotation._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  MeasureImprovementNotation setElement(String name, dynamic elementValue) {
+  MeasureImprovementNotation setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return MeasureImprovementNotation._(
       value,
       element?.setProperty(name, elementValue),

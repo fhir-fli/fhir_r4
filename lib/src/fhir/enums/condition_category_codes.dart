@@ -8,7 +8,9 @@ class ConditionCategoryCodes extends PrimitiveType<String> {
   ConditionCategoryCodes._(super.value, [super.element]);
 
   /// Factory constructor to create [ConditionCategoryCodes] from JSON.
-  factory ConditionCategoryCodes.fromJson(Map<String, dynamic> json) {
+  factory ConditionCategoryCodes.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -43,12 +45,17 @@ class ConditionCategoryCodes extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  ConditionCategoryCodes clone() =>
-      ConditionCategoryCodes._(value, element?.clone() as Element?);
+  ConditionCategoryCodes clone() => ConditionCategoryCodes._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  ConditionCategoryCodes setElement(String name, dynamic elementValue) {
+  ConditionCategoryCodes setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return ConditionCategoryCodes._(
       value,
       element?.setProperty(name, elementValue),

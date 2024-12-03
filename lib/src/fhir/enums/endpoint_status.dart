@@ -8,7 +8,9 @@ class EndpointStatus extends PrimitiveType<String> {
   EndpointStatus._(super.value, [super.element]);
 
   /// Factory constructor to create [EndpointStatus] from JSON.
-  factory EndpointStatus.fromJson(Map<String, dynamic> json) {
+  factory EndpointStatus.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -64,12 +66,17 @@ class EndpointStatus extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  EndpointStatus clone() =>
-      EndpointStatus._(value, element?.clone() as Element?);
+  EndpointStatus clone() => EndpointStatus._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  EndpointStatus setElement(String name, dynamic elementValue) {
+  EndpointStatus setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return EndpointStatus._(
       value,
       element?.setProperty(name, elementValue),

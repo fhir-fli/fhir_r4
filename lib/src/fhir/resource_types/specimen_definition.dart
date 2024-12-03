@@ -37,60 +37,75 @@ class SpecimenDefinition extends DomainResource {
   factory SpecimenDefinition.fromJson(
     Map<String, dynamic> json,
   ) {
+    T? parseField<T extends FhirBase>(
+      dynamic value,
+      dynamic valueElement,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        (value != null || valueElement != null)
+            ? fromJson({
+                'value': value,
+                '_value': valueElement,
+              })
+            : null;
+    List<T>? parseList<T extends FhirBase>(
+      List<dynamic>? values,
+      List<dynamic>? valueElements,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        values?.asMap().entries.map((entry) {
+          final index = entry.key;
+          final value = entry.value;
+          final valueElement =
+              valueElements != null && valueElements.length > index
+                  ? valueElements[index]
+                  : null;
+          return fromJson({
+            'value': value,
+            '_value': valueElement,
+          });
+        }).toList();
     return SpecimenDefinition(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
+      id: parseField<FhirString>(
+        json['id'],
+        json['_id'],
+        FhirString.fromJson,
+      ),
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
-      implicitRules:
-          (json['implicitRules'] != null || json['_implicitRules'] != null)
-              ? FhirUri.fromJson({
-                  'value': json['implicitRules'],
-                  '_value': json['_implicitRules'],
-                })
-              : null,
-      language: (json['language'] != null || json['_language'] != null)
-          ? CommonLanguages.fromJson({
-              'value': json['language'],
-              '_value': json['_language'],
-            })
-          : null,
+      implicitRules: parseField<FhirUri>(
+        json['implicitRules'],
+        json['_implicitRules'],
+        FhirUri.fromJson,
+      ),
+      language: parseField<CommonLanguages>(
+        json['language'],
+        json['_language'],
+        CommonLanguages.fromJson,
+      ),
       text: json['text'] != null
           ? Narrative.fromJson(
               json['text'] as Map<String, dynamic>,
             )
           : null,
-      contained: json['contained'] != null
-          ? (json['contained'] as List<dynamic>)
-              .map<Resource>(
-                (v) => Resource.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      contained: parseList<Resource>(
+        json['contained'] as List<dynamic>?,
+        json['_contained'] as List<dynamic>?,
+        Resource.fromJson,
+      ),
+      extension_: parseList<FhirExtension>(
+        json['extension'] as List<dynamic>?,
+        json['_extension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
+      modifierExtension: parseList<FhirExtension>(
+        json['modifierExtension'] as List<dynamic>?,
+        json['_modifierExtension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
       identifier: json['identifier'] != null
           ? Identifier.fromJson(
               json['identifier'] as Map<String, dynamic>,
@@ -101,39 +116,26 @@ class SpecimenDefinition extends DomainResource {
               json['typeCollected'] as Map<String, dynamic>,
             )
           : null,
-      patientPreparation: json['patientPreparation'] != null
-          ? (json['patientPreparation'] as List<dynamic>)
-              .map<CodeableConcept>(
-                (v) => CodeableConcept.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      timeAspect: (json['timeAspect'] != null || json['_timeAspect'] != null)
-          ? FhirString.fromJson({
-              'value': json['timeAspect'],
-              '_value': json['_timeAspect'],
-            })
-          : null,
-      collection: json['collection'] != null
-          ? (json['collection'] as List<dynamic>)
-              .map<CodeableConcept>(
-                (v) => CodeableConcept.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      typeTested: json['typeTested'] != null
-          ? (json['typeTested'] as List<dynamic>)
-              .map<SpecimenDefinitionTypeTested>(
-                (v) => SpecimenDefinitionTypeTested.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      patientPreparation: parseList<CodeableConcept>(
+        json['patientPreparation'] as List<dynamic>?,
+        json['_patientPreparation'] as List<dynamic>?,
+        CodeableConcept.fromJson,
+      ),
+      timeAspect: parseField<FhirString>(
+        json['timeAspect'],
+        json['_timeAspect'],
+        FhirString.fromJson,
+      ),
+      collection: parseList<CodeableConcept>(
+        json['collection'] as List<dynamic>?,
+        json['_collection'] as List<dynamic>?,
+        CodeableConcept.fromJson,
+      ),
+      typeTested: parseList<SpecimenDefinitionTypeTested>(
+        json['typeTested'] as List<dynamic>?,
+        json['_typeTested'] as List<dynamic>?,
+        SpecimenDefinitionTypeTested.fromJson,
+      ),
     );
   }
 
@@ -144,21 +146,23 @@ class SpecimenDefinition extends DomainResource {
   ) {
     if (yaml is String) {
       return SpecimenDefinition.fromJson(
-        yamlToJson(yaml) as Map<String, Object?>,
+        yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
       return SpecimenDefinition.fromJson(
-        yamlMapToJson(yaml) as Map<String, Object?>,
+        yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'SpecimenDefinition cannot be constructed from the provided input. '
+        'SpecimenDefinition '
+        'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
     }
   }
 
-  /// Factory constructor for [SpecimenDefinition]
+  /// Factory constructor for
+  /// [SpecimenDefinition]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
@@ -344,34 +348,55 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
   factory SpecimenDefinitionTypeTested.fromJson(
     Map<String, dynamic> json,
   ) {
+    T? parseField<T extends FhirBase>(
+      dynamic value,
+      dynamic valueElement,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        (value != null || valueElement != null)
+            ? fromJson({
+                'value': value,
+                '_value': valueElement,
+              })
+            : null;
+    List<T>? parseList<T extends FhirBase>(
+      List<dynamic>? values,
+      List<dynamic>? valueElements,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        values?.asMap().entries.map((entry) {
+          final index = entry.key;
+          final value = entry.value;
+          final valueElement =
+              valueElements != null && valueElements.length > index
+                  ? valueElements[index]
+                  : null;
+          return fromJson({
+            'value': value,
+            '_value': valueElement,
+          });
+        }).toList();
     return SpecimenDefinitionTypeTested(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      isDerived: (json['isDerived'] != null || json['_isDerived'] != null)
-          ? FhirBoolean.fromJson({
-              'value': json['isDerived'],
-              '_value': json['_isDerived'],
-            })
-          : null,
+      id: parseField<FhirString>(
+        json['id'],
+        json['_id'],
+        FhirString.fromJson,
+      ),
+      extension_: parseList<FhirExtension>(
+        json['extension'] as List<dynamic>?,
+        json['_extension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
+      modifierExtension: parseList<FhirExtension>(
+        json['modifierExtension'] as List<dynamic>?,
+        json['_modifierExtension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
+      isDerived: parseField<FhirBoolean>(
+        json['isDerived'],
+        json['_isDerived'],
+        FhirBoolean.fromJson,
+      ),
       type: json['type'] != null
           ? CodeableConcept.fromJson(
               json['type'] as Map<String, dynamic>,
@@ -386,35 +411,26 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
               json['container'] as Map<String, dynamic>,
             )
           : null,
-      requirement: (json['requirement'] != null || json['_requirement'] != null)
-          ? FhirString.fromJson({
-              'value': json['requirement'],
-              '_value': json['_requirement'],
-            })
-          : null,
+      requirement: parseField<FhirString>(
+        json['requirement'],
+        json['_requirement'],
+        FhirString.fromJson,
+      ),
       retentionTime: json['retentionTime'] != null
           ? FhirDuration.fromJson(
               json['retentionTime'] as Map<String, dynamic>,
             )
           : null,
-      rejectionCriterion: json['rejectionCriterion'] != null
-          ? (json['rejectionCriterion'] as List<dynamic>)
-              .map<CodeableConcept>(
-                (v) => CodeableConcept.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      handling: json['handling'] != null
-          ? (json['handling'] as List<dynamic>)
-              .map<SpecimenDefinitionHandling>(
-                (v) => SpecimenDefinitionHandling.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      rejectionCriterion: parseList<CodeableConcept>(
+        json['rejectionCriterion'] as List<dynamic>?,
+        json['_rejectionCriterion'] as List<dynamic>?,
+        CodeableConcept.fromJson,
+      ),
+      handling: parseList<SpecimenDefinitionHandling>(
+        json['handling'] as List<dynamic>?,
+        json['_handling'] as List<dynamic>?,
+        SpecimenDefinitionHandling.fromJson,
+      ),
     );
   }
 
@@ -425,21 +441,23 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
   ) {
     if (yaml is String) {
       return SpecimenDefinitionTypeTested.fromJson(
-        yamlToJson(yaml) as Map<String, Object?>,
+        yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
       return SpecimenDefinitionTypeTested.fromJson(
-        yamlMapToJson(yaml) as Map<String, Object?>,
+        yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'SpecimenDefinitionTypeTested cannot be constructed from the provided input. '
+        'SpecimenDefinitionTypeTested '
+        'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
     }
   }
 
-  /// Factory constructor for [SpecimenDefinitionTypeTested]
+  /// Factory constructor for
+  /// [SpecimenDefinitionTypeTested]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
@@ -617,28 +635,50 @@ class SpecimenDefinitionContainer extends BackboneElement {
   factory SpecimenDefinitionContainer.fromJson(
     Map<String, dynamic> json,
   ) {
+    T? parseField<T extends FhirBase>(
+      dynamic value,
+      dynamic valueElement,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        (value != null || valueElement != null)
+            ? fromJson({
+                'value': value,
+                '_value': valueElement,
+              })
+            : null;
+    List<T>? parseList<T extends FhirBase>(
+      List<dynamic>? values,
+      List<dynamic>? valueElements,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        values?.asMap().entries.map((entry) {
+          final index = entry.key;
+          final value = entry.value;
+          final valueElement =
+              valueElements != null && valueElements.length > index
+                  ? valueElements[index]
+                  : null;
+          return fromJson({
+            'value': value,
+            '_value': valueElement,
+          });
+        }).toList();
     return SpecimenDefinitionContainer(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      id: parseField<FhirString>(
+        json['id'],
+        json['_id'],
+        FhirString.fromJson,
+      ),
+      extension_: parseList<FhirExtension>(
+        json['extension'] as List<dynamic>?,
+        json['_extension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
+      modifierExtension: parseList<FhirExtension>(
+        json['modifierExtension'] as List<dynamic>?,
+        json['_modifierExtension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
       material: json['material'] != null
           ? CodeableConcept.fromJson(
               json['material'] as Map<String, dynamic>,
@@ -654,12 +694,11 @@ class SpecimenDefinitionContainer extends BackboneElement {
               json['cap'] as Map<String, dynamic>,
             )
           : null,
-      description: (json['description'] != null || json['_description'] != null)
-          ? FhirString.fromJson({
-              'value': json['description'],
-              '_value': json['_description'],
-            })
-          : null,
+      description: parseField<FhirString>(
+        json['description'],
+        json['_description'],
+        FhirString.fromJson,
+      ),
       capacity: json['capacity'] != null
           ? Quantity.fromJson(
               json['capacity'] as Map<String, dynamic>,
@@ -670,28 +709,21 @@ class SpecimenDefinitionContainer extends BackboneElement {
               json['minimumVolumeQuantity'] as Map<String, dynamic>,
             )
           : null,
-      minimumVolumeString: (json['minimumVolumeString'] != null ||
-              json['_minimumVolumeString'] != null)
-          ? FhirString.fromJson({
-              'value': json['minimumVolumeString'],
-              '_value': json['_minimumVolumeString'],
-            })
-          : null,
-      additive: json['additive'] != null
-          ? (json['additive'] as List<dynamic>)
-              .map<SpecimenDefinitionAdditive>(
-                (v) => SpecimenDefinitionAdditive.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      preparation: (json['preparation'] != null || json['_preparation'] != null)
-          ? FhirString.fromJson({
-              'value': json['preparation'],
-              '_value': json['_preparation'],
-            })
-          : null,
+      minimumVolumeString: parseField<FhirString>(
+        json['minimumVolumeString'],
+        json['_minimumVolumeString'],
+        FhirString.fromJson,
+      ),
+      additive: parseList<SpecimenDefinitionAdditive>(
+        json['additive'] as List<dynamic>?,
+        json['_additive'] as List<dynamic>?,
+        SpecimenDefinitionAdditive.fromJson,
+      ),
+      preparation: parseField<FhirString>(
+        json['preparation'],
+        json['_preparation'],
+        FhirString.fromJson,
+      ),
     );
   }
 
@@ -702,21 +734,23 @@ class SpecimenDefinitionContainer extends BackboneElement {
   ) {
     if (yaml is String) {
       return SpecimenDefinitionContainer.fromJson(
-        yamlToJson(yaml) as Map<String, Object?>,
+        yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
       return SpecimenDefinitionContainer.fromJson(
-        yamlMapToJson(yaml) as Map<String, Object?>,
+        yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'SpecimenDefinitionContainer cannot be constructed from the provided input. '
+        'SpecimenDefinitionContainer '
+        'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
     }
   }
 
-  /// Factory constructor for [SpecimenDefinitionContainer]
+  /// Factory constructor for
+  /// [SpecimenDefinitionContainer]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
@@ -896,28 +930,50 @@ class SpecimenDefinitionAdditive extends BackboneElement {
   factory SpecimenDefinitionAdditive.fromJson(
     Map<String, dynamic> json,
   ) {
+    T? parseField<T extends FhirBase>(
+      dynamic value,
+      dynamic valueElement,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        (value != null || valueElement != null)
+            ? fromJson({
+                'value': value,
+                '_value': valueElement,
+              })
+            : null;
+    List<T>? parseList<T extends FhirBase>(
+      List<dynamic>? values,
+      List<dynamic>? valueElements,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        values?.asMap().entries.map((entry) {
+          final index = entry.key;
+          final value = entry.value;
+          final valueElement =
+              valueElements != null && valueElements.length > index
+                  ? valueElements[index]
+                  : null;
+          return fromJson({
+            'value': value,
+            '_value': valueElement,
+          });
+        }).toList();
     return SpecimenDefinitionAdditive(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      id: parseField<FhirString>(
+        json['id'],
+        json['_id'],
+        FhirString.fromJson,
+      ),
+      extension_: parseList<FhirExtension>(
+        json['extension'] as List<dynamic>?,
+        json['_extension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
+      modifierExtension: parseList<FhirExtension>(
+        json['modifierExtension'] as List<dynamic>?,
+        json['_modifierExtension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
       additiveCodeableConcept: json['additiveCodeableConcept'] != null
           ? CodeableConcept.fromJson(
               json['additiveCodeableConcept'] as Map<String, dynamic>,
@@ -938,21 +994,23 @@ class SpecimenDefinitionAdditive extends BackboneElement {
   ) {
     if (yaml is String) {
       return SpecimenDefinitionAdditive.fromJson(
-        yamlToJson(yaml) as Map<String, Object?>,
+        yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
       return SpecimenDefinitionAdditive.fromJson(
-        yamlMapToJson(yaml) as Map<String, Object?>,
+        yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'SpecimenDefinitionAdditive cannot be constructed from the provided input. '
+        'SpecimenDefinitionAdditive '
+        'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
     }
   }
 
-  /// Factory constructor for [SpecimenDefinitionAdditive]
+  /// Factory constructor for
+  /// [SpecimenDefinitionAdditive]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
@@ -1073,28 +1131,50 @@ class SpecimenDefinitionHandling extends BackboneElement {
   factory SpecimenDefinitionHandling.fromJson(
     Map<String, dynamic> json,
   ) {
+    T? parseField<T extends FhirBase>(
+      dynamic value,
+      dynamic valueElement,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        (value != null || valueElement != null)
+            ? fromJson({
+                'value': value,
+                '_value': valueElement,
+              })
+            : null;
+    List<T>? parseList<T extends FhirBase>(
+      List<dynamic>? values,
+      List<dynamic>? valueElements,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        values?.asMap().entries.map((entry) {
+          final index = entry.key;
+          final value = entry.value;
+          final valueElement =
+              valueElements != null && valueElements.length > index
+                  ? valueElements[index]
+                  : null;
+          return fromJson({
+            'value': value,
+            '_value': valueElement,
+          });
+        }).toList();
     return SpecimenDefinitionHandling(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      id: parseField<FhirString>(
+        json['id'],
+        json['_id'],
+        FhirString.fromJson,
+      ),
+      extension_: parseList<FhirExtension>(
+        json['extension'] as List<dynamic>?,
+        json['_extension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
+      modifierExtension: parseList<FhirExtension>(
+        json['modifierExtension'] as List<dynamic>?,
+        json['_modifierExtension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
       temperatureQualifier: json['temperatureQualifier'] != null
           ? CodeableConcept.fromJson(
               json['temperatureQualifier'] as Map<String, dynamic>,
@@ -1110,12 +1190,11 @@ class SpecimenDefinitionHandling extends BackboneElement {
               json['maxDuration'] as Map<String, dynamic>,
             )
           : null,
-      instruction: (json['instruction'] != null || json['_instruction'] != null)
-          ? FhirString.fromJson({
-              'value': json['instruction'],
-              '_value': json['_instruction'],
-            })
-          : null,
+      instruction: parseField<FhirString>(
+        json['instruction'],
+        json['_instruction'],
+        FhirString.fromJson,
+      ),
     );
   }
 
@@ -1126,21 +1205,23 @@ class SpecimenDefinitionHandling extends BackboneElement {
   ) {
     if (yaml is String) {
       return SpecimenDefinitionHandling.fromJson(
-        yamlToJson(yaml) as Map<String, Object?>,
+        yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
       return SpecimenDefinitionHandling.fromJson(
-        yamlMapToJson(yaml) as Map<String, Object?>,
+        yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'SpecimenDefinitionHandling cannot be constructed from the provided input. '
+        'SpecimenDefinitionHandling '
+        'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
     }
   }
 
-  /// Factory constructor for [SpecimenDefinitionHandling]
+  /// Factory constructor for
+  /// [SpecimenDefinitionHandling]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]

@@ -8,7 +8,9 @@ class FormCodes extends PrimitiveType<String> {
   FormCodes._(super.value, [super.element]);
 
   /// Factory constructor to create [FormCodes] from JSON.
-  factory FormCodes.fromJson(Map<String, dynamic> json) {
+  factory FormCodes.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -40,11 +42,17 @@ class FormCodes extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  FormCodes clone() => FormCodes._(value, element?.clone() as Element?);
+  FormCodes clone() => FormCodes._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  FormCodes setElement(String name, dynamic elementValue) {
+  FormCodes setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return FormCodes._(
       value,
       element?.setProperty(name, elementValue),

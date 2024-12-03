@@ -8,7 +8,9 @@ class SearchModifierCode extends PrimitiveType<String> {
   SearchModifierCode._(super.value, [super.element]);
 
   /// Factory constructor to create [SearchModifierCode] from JSON.
-  factory SearchModifierCode.fromJson(Map<String, dynamic> json) {
+  factory SearchModifierCode.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -100,12 +102,17 @@ class SearchModifierCode extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  SearchModifierCode clone() =>
-      SearchModifierCode._(value, element?.clone() as Element?);
+  SearchModifierCode clone() => SearchModifierCode._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  SearchModifierCode setElement(String name, dynamic elementValue) {
+  SearchModifierCode setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return SearchModifierCode._(
       value,
       element?.setProperty(name, elementValue),

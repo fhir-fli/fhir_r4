@@ -9,7 +9,8 @@ class ContractResourceActionStatusCodes extends PrimitiveType<String> {
 
   /// Factory constructor to create [ContractResourceActionStatusCodes] from JSON.
   factory ContractResourceActionStatusCodes.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -38,12 +39,17 @@ class ContractResourceActionStatusCodes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ContractResourceActionStatusCodes clone() =>
-      ContractResourceActionStatusCodes._(value, element?.clone() as Element?);
+      ContractResourceActionStatusCodes._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
   ContractResourceActionStatusCodes setElement(
-      String name, dynamic elementValue) {
+    String name,
+    dynamic elementValue,
+  ) {
     return ContractResourceActionStatusCodes._(
       value,
       element?.setProperty(name, elementValue),

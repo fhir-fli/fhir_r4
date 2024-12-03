@@ -8,7 +8,9 @@ class DeviceMetricColor extends PrimitiveType<String> {
   DeviceMetricColor._(super.value, [super.element]);
 
   /// Factory constructor to create [DeviceMetricColor] from JSON.
-  factory DeviceMetricColor.fromJson(Map<String, dynamic> json) {
+  factory DeviceMetricColor.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -76,12 +78,17 @@ class DeviceMetricColor extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  DeviceMetricColor clone() =>
-      DeviceMetricColor._(value, element?.clone() as Element?);
+  DeviceMetricColor clone() => DeviceMetricColor._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  DeviceMetricColor setElement(String name, dynamic elementValue) {
+  DeviceMetricColor setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return DeviceMetricColor._(
       value,
       element?.setProperty(name, elementValue),

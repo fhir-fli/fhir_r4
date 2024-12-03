@@ -8,7 +8,9 @@ class TitleType extends PrimitiveType<String> {
   TitleType._(super.value, [super.element]);
 
   /// Factory constructor to create [TitleType] from JSON.
-  factory TitleType.fromJson(Map<String, dynamic> json) {
+  factory TitleType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -106,11 +108,17 @@ class TitleType extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  TitleType clone() => TitleType._(value, element?.clone() as Element?);
+  TitleType clone() => TitleType._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  TitleType setElement(String name, dynamic elementValue) {
+  TitleType setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return TitleType._(
       value,
       element?.setProperty(name, elementValue),

@@ -8,7 +8,9 @@ class ParticipationRoleType extends PrimitiveType<String> {
   ParticipationRoleType._(super.value, [super.element]);
 
   /// Factory constructor to create [ParticipationRoleType] from JSON.
-  factory ParticipationRoleType.fromJson(Map<String, dynamic> json) {
+  factory ParticipationRoleType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -19330,12 +19332,17 @@ class ParticipationRoleType extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  ParticipationRoleType clone() =>
-      ParticipationRoleType._(value, element?.clone() as Element?);
+  ParticipationRoleType clone() => ParticipationRoleType._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  ParticipationRoleType setElement(String name, dynamic elementValue) {
+  ParticipationRoleType setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return ParticipationRoleType._(
       value,
       element?.setProperty(name, elementValue),

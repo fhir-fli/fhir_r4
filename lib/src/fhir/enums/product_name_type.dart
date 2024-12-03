@@ -8,7 +8,9 @@ class ProductNameType extends PrimitiveType<String> {
   ProductNameType._(super.value, [super.element]);
 
   /// Factory constructor to create [ProductNameType] from JSON.
-  factory ProductNameType.fromJson(Map<String, dynamic> json) {
+  factory ProductNameType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -58,12 +60,17 @@ class ProductNameType extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  ProductNameType clone() =>
-      ProductNameType._(value, element?.clone() as Element?);
+  ProductNameType clone() => ProductNameType._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  ProductNameType setElement(String name, dynamic elementValue) {
+  ProductNameType setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return ProductNameType._(
       value,
       element?.setProperty(name, elementValue),

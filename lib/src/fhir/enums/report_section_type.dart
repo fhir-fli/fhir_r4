@@ -8,7 +8,9 @@ class ReportSectionType extends PrimitiveType<String> {
   ReportSectionType._(super.value, [super.element]);
 
   /// Factory constructor to create [ReportSectionType] from JSON.
-  factory ReportSectionType.fromJson(Map<String, dynamic> json) {
+  factory ReportSectionType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -205,12 +207,17 @@ class ReportSectionType extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  ReportSectionType clone() =>
-      ReportSectionType._(value, element?.clone() as Element?);
+  ReportSectionType clone() => ReportSectionType._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  ReportSectionType setElement(String name, dynamic elementValue) {
+  ReportSectionType setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return ReportSectionType._(
       value,
       element?.setProperty(name, elementValue),

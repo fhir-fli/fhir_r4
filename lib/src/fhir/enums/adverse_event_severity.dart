@@ -8,7 +8,9 @@ class AdverseEventSeverity extends PrimitiveType<String> {
   AdverseEventSeverity._(super.value, [super.element]);
 
   /// Factory constructor to create [AdverseEventSeverity] from JSON.
-  factory AdverseEventSeverity.fromJson(Map<String, dynamic> json) {
+  factory AdverseEventSeverity.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -46,12 +48,17 @@ class AdverseEventSeverity extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  AdverseEventSeverity clone() =>
-      AdverseEventSeverity._(value, element?.clone() as Element?);
+  AdverseEventSeverity clone() => AdverseEventSeverity._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  AdverseEventSeverity setElement(String name, dynamic elementValue) {
+  AdverseEventSeverity setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return AdverseEventSeverity._(
       value,
       element?.setProperty(name, elementValue),

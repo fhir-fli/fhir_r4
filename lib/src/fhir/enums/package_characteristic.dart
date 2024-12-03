@@ -8,7 +8,9 @@ class PackageCharacteristic extends PrimitiveType<String> {
   PackageCharacteristic._(super.value, [super.element]);
 
   /// Factory constructor to create [PackageCharacteristic] from JSON.
-  factory PackageCharacteristic.fromJson(Map<String, dynamic> json) {
+  factory PackageCharacteristic.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -47,12 +49,17 @@ class PackageCharacteristic extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  PackageCharacteristic clone() =>
-      PackageCharacteristic._(value, element?.clone() as Element?);
+  PackageCharacteristic clone() => PackageCharacteristic._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  PackageCharacteristic setElement(String name, dynamic elementValue) {
+  PackageCharacteristic setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return PackageCharacteristic._(
       value,
       element?.setProperty(name, elementValue),

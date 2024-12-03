@@ -8,7 +8,9 @@ class DesignationUse extends PrimitiveType<String> {
   DesignationUse._(super.value, [super.element]);
 
   /// Factory constructor to create [DesignationUse] from JSON.
-  factory DesignationUse.fromJson(Map<String, dynamic> json) {
+  factory DesignationUse.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -40,12 +42,17 @@ class DesignationUse extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  DesignationUse clone() =>
-      DesignationUse._(value, element?.clone() as Element?);
+  DesignationUse clone() => DesignationUse._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  DesignationUse setElement(String name, dynamic elementValue) {
+  DesignationUse setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return DesignationUse._(
       value,
       element?.setProperty(name, elementValue),

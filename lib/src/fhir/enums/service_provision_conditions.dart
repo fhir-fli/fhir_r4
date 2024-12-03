@@ -8,7 +8,9 @@ class ServiceProvisionConditions extends PrimitiveType<String> {
   ServiceProvisionConditions._(super.value, [super.element]);
 
   /// Factory constructor to create [ServiceProvisionConditions] from JSON.
-  factory ServiceProvisionConditions.fromJson(Map<String, dynamic> json) {
+  factory ServiceProvisionConditions.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -47,12 +49,17 @@ class ServiceProvisionConditions extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  ServiceProvisionConditions clone() =>
-      ServiceProvisionConditions._(value, element?.clone() as Element?);
+  ServiceProvisionConditions clone() => ServiceProvisionConditions._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  ServiceProvisionConditions setElement(String name, dynamic elementValue) {
+  ServiceProvisionConditions setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return ServiceProvisionConditions._(
       value,
       element?.setProperty(name, elementValue),

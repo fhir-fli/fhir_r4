@@ -31,19 +31,45 @@ class SampledData extends DataType {
   factory SampledData.fromJson(
     Map<String, dynamic> json,
   ) {
+    T? parseField<T extends FhirBase>(
+      dynamic value,
+      dynamic valueElement,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        (value != null || valueElement != null)
+            ? fromJson({
+                'value': value,
+                '_value': valueElement,
+              })
+            : null;
+    List<T>? parseList<T extends FhirBase>(
+      List<dynamic>? values,
+      List<dynamic>? valueElements,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        values?.asMap().entries.map((entry) {
+          final index = entry.key;
+          final value = entry.value;
+          final valueElement =
+              valueElements != null && valueElements.length > index
+                  ? valueElements[index]
+                  : null;
+          return fromJson({
+            'value': value,
+            '_value': valueElement,
+          });
+        }).toList();
     return SampledData(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      id: parseField<FhirString>(
+        json['id'],
+        json['_id'],
+        FhirString.fromJson,
+      ),
+      extension_: parseList<FhirExtension>(
+        json['extension'] as List<dynamic>?,
+        json['_extension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
       origin: Quantity.fromJson(
         json['origin'] as Map<String, dynamic>,
       ),
@@ -51,34 +77,30 @@ class SampledData extends DataType {
         'value': json['period'],
         '_value': json['_period'],
       }),
-      factor: (json['factor'] != null || json['_factor'] != null)
-          ? FhirDecimal.fromJson({
-              'value': json['factor'],
-              '_value': json['_factor'],
-            })
-          : null,
-      lowerLimit: (json['lowerLimit'] != null || json['_lowerLimit'] != null)
-          ? FhirDecimal.fromJson({
-              'value': json['lowerLimit'],
-              '_value': json['_lowerLimit'],
-            })
-          : null,
-      upperLimit: (json['upperLimit'] != null || json['_upperLimit'] != null)
-          ? FhirDecimal.fromJson({
-              'value': json['upperLimit'],
-              '_value': json['_upperLimit'],
-            })
-          : null,
+      factor: parseField<FhirDecimal>(
+        json['factor'],
+        json['_factor'],
+        FhirDecimal.fromJson,
+      ),
+      lowerLimit: parseField<FhirDecimal>(
+        json['lowerLimit'],
+        json['_lowerLimit'],
+        FhirDecimal.fromJson,
+      ),
+      upperLimit: parseField<FhirDecimal>(
+        json['upperLimit'],
+        json['_upperLimit'],
+        FhirDecimal.fromJson,
+      ),
       dimensions: FhirPositiveInt.fromJson({
         'value': json['dimensions'],
         '_value': json['_dimensions'],
       }),
-      data: (json['data'] != null || json['_data'] != null)
-          ? FhirString.fromJson({
-              'value': json['data'],
-              '_value': json['_data'],
-            })
-          : null,
+      data: parseField<FhirString>(
+        json['data'],
+        json['_data'],
+        FhirString.fromJson,
+      ),
     );
   }
 
@@ -89,21 +111,23 @@ class SampledData extends DataType {
   ) {
     if (yaml is String) {
       return SampledData.fromJson(
-        yamlToJson(yaml) as Map<String, Object?>,
+        yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
       return SampledData.fromJson(
-        yamlMapToJson(yaml) as Map<String, Object?>,
+        yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'SampledData cannot be constructed from the provided input. '
+        'SampledData '
+        'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
     }
   }
 
-  /// Factory constructor for [SampledData]
+  /// Factory constructor for
+  /// [SampledData]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]

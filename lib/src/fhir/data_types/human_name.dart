@@ -30,51 +30,74 @@ class HumanName extends DataType {
   factory HumanName.fromJson(
     Map<String, dynamic> json,
   ) {
+    T? parseField<T extends FhirBase>(
+      dynamic value,
+      dynamic valueElement,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        (value != null || valueElement != null)
+            ? fromJson({
+                'value': value,
+                '_value': valueElement,
+              })
+            : null;
+    List<T>? parseList<T extends FhirBase>(
+      List<dynamic>? values,
+      List<dynamic>? valueElements,
+      T Function(Map<String, dynamic>) fromJson,
+    ) =>
+        values?.asMap().entries.map((entry) {
+          final index = entry.key;
+          final value = entry.value;
+          final valueElement =
+              valueElements != null && valueElements.length > index
+                  ? valueElements[index]
+                  : null;
+          return fromJson({
+            'value': value,
+            '_value': valueElement,
+          });
+        }).toList();
     return HumanName(
-      id: json['id'] != null
-          ? FhirString.fromJson({'value': json['id']})
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>(
-                (v) => FhirExtension.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      use: (json['use'] != null || json['_use'] != null)
-          ? NameUse.fromJson({
-              'value': json['use'],
-              '_value': json['_use'],
-            })
-          : null,
-      text: (json['text'] != null || json['_text'] != null)
-          ? FhirString.fromJson({
-              'value': json['text'],
-              '_value': json['_text'],
-            })
-          : null,
-      family: (json['family'] != null || json['_family'] != null)
-          ? FhirString.fromJson({
-              'value': json['family'],
-              '_value': json['_family'],
-            })
-          : null,
-      given: parsePrimitiveList<FhirString>(
+      id: parseField<FhirString>(
+        json['id'],
+        json['_id'],
+        FhirString.fromJson,
+      ),
+      extension_: parseList<FhirExtension>(
+        json['extension'] as List<dynamic>?,
+        json['_extension'] as List<dynamic>?,
+        FhirExtension.fromJson,
+      ),
+      use: parseField<NameUse>(
+        json['use'],
+        json['_use'],
+        NameUse.fromJson,
+      ),
+      text: parseField<FhirString>(
+        json['text'],
+        json['_text'],
+        FhirString.fromJson,
+      ),
+      family: parseField<FhirString>(
+        json['family'],
+        json['_family'],
+        FhirString.fromJson,
+      ),
+      given: parseList<FhirString>(
         json['given'] as List<dynamic>?,
         json['_given'] as List<dynamic>?,
-        fromJson: FhirString.fromJson,
+        FhirString.fromJson,
       ),
-      prefix: parsePrimitiveList<FhirString>(
+      prefix: parseList<FhirString>(
         json['prefix'] as List<dynamic>?,
         json['_prefix'] as List<dynamic>?,
-        fromJson: FhirString.fromJson,
+        FhirString.fromJson,
       ),
-      suffix: parsePrimitiveList<FhirString>(
+      suffix: parseList<FhirString>(
         json['suffix'] as List<dynamic>?,
         json['_suffix'] as List<dynamic>?,
-        fromJson: FhirString.fromJson,
+        FhirString.fromJson,
       ),
       period: json['period'] != null
           ? Period.fromJson(
@@ -91,21 +114,23 @@ class HumanName extends DataType {
   ) {
     if (yaml is String) {
       return HumanName.fromJson(
-        yamlToJson(yaml) as Map<String, Object?>,
+        yamlToJson(yaml),
       );
     } else if (yaml is YamlMap) {
       return HumanName.fromJson(
-        yamlMapToJson(yaml) as Map<String, Object?>,
+        yamlMapToJson(yaml),
       );
     } else {
       throw ArgumentError(
-        'HumanName cannot be constructed from the provided input. '
+        'HumanName '
+        'cannot be constructed from the provided input. '
         'It must be a YAML string or YAML map.',
       );
     }
   }
 
-  /// Factory constructor for [HumanName]
+  /// Factory constructor for
+  /// [HumanName]
   /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]

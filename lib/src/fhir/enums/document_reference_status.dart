@@ -8,7 +8,9 @@ class DocumentReferenceStatus extends PrimitiveType<String> {
   DocumentReferenceStatus._(super.value, [super.element]);
 
   /// Factory constructor to create [DocumentReferenceStatus] from JSON.
-  factory DocumentReferenceStatus.fromJson(Map<String, dynamic> json) {
+  factory DocumentReferenceStatus.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -48,12 +50,17 @@ class DocumentReferenceStatus extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  DocumentReferenceStatus clone() =>
-      DocumentReferenceStatus._(value, element?.clone() as Element?);
+  DocumentReferenceStatus clone() => DocumentReferenceStatus._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  DocumentReferenceStatus setElement(String name, dynamic elementValue) {
+  DocumentReferenceStatus setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return DocumentReferenceStatus._(
       value,
       element?.setProperty(name, elementValue),

@@ -8,7 +8,9 @@ class FundsReservationCodes extends PrimitiveType<String> {
   FundsReservationCodes._(super.value, [super.element]);
 
   /// Factory constructor to create [FundsReservationCodes] from JSON.
-  factory FundsReservationCodes.fromJson(Map<String, dynamic> json) {
+  factory FundsReservationCodes.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -46,12 +48,17 @@ class FundsReservationCodes extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  FundsReservationCodes clone() =>
-      FundsReservationCodes._(value, element?.clone() as Element?);
+  FundsReservationCodes clone() => FundsReservationCodes._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  FundsReservationCodes setElement(String name, dynamic elementValue) {
+  FundsReservationCodes setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return FundsReservationCodes._(
       value,
       element?.setProperty(name, elementValue),

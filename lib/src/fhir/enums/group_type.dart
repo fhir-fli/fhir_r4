@@ -8,7 +8,9 @@ class GroupType extends PrimitiveType<String> {
   GroupType._(super.value, [super.element]);
 
   /// Factory constructor to create [GroupType] from JSON.
-  factory GroupType.fromJson(Map<String, dynamic> json) {
+  factory GroupType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -64,11 +66,17 @@ class GroupType extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  GroupType clone() => GroupType._(value, element?.clone() as Element?);
+  GroupType clone() => GroupType._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  GroupType setElement(String name, dynamic elementValue) {
+  GroupType setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return GroupType._(
       value,
       element?.setProperty(name, elementValue),

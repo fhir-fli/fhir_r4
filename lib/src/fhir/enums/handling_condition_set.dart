@@ -8,7 +8,9 @@ class HandlingConditionSet extends PrimitiveType<String> {
   HandlingConditionSet._(super.value, [super.element]);
 
   /// Factory constructor to create [HandlingConditionSet] from JSON.
-  factory HandlingConditionSet.fromJson(Map<String, dynamic> json) {
+  factory HandlingConditionSet.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -46,12 +48,17 @@ class HandlingConditionSet extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  HandlingConditionSet clone() =>
-      HandlingConditionSet._(value, element?.clone() as Element?);
+  HandlingConditionSet clone() => HandlingConditionSet._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  HandlingConditionSet setElement(String name, dynamic elementValue) {
+  HandlingConditionSet setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return HandlingConditionSet._(
       value,
       element?.setProperty(name, elementValue),

@@ -8,7 +8,9 @@ class ServiceType extends PrimitiveType<String> {
   ServiceType._(super.value, [super.element]);
 
   /// Factory constructor to create [ServiceType] from JSON.
-  factory ServiceType.fromJson(Map<String, dynamic> json) {
+  factory ServiceType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -3604,11 +3606,17 @@ class ServiceType extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  ServiceType clone() => ServiceType._(value, element?.clone() as Element?);
+  ServiceType clone() => ServiceType._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  ServiceType setElement(String name, dynamic elementValue) {
+  ServiceType setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return ServiceType._(
       value,
       element?.setProperty(name, elementValue),

@@ -8,7 +8,9 @@ class CatalogEntryRelationType extends PrimitiveType<String> {
   CatalogEntryRelationType._(super.value, [super.element]);
 
   /// Factory constructor to create [CatalogEntryRelationType] from JSON.
-  factory CatalogEntryRelationType.fromJson(Map<String, dynamic> json) {
+  factory CatalogEntryRelationType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -42,12 +44,17 @@ class CatalogEntryRelationType extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  CatalogEntryRelationType clone() =>
-      CatalogEntryRelationType._(value, element?.clone() as Element?);
+  CatalogEntryRelationType clone() => CatalogEntryRelationType._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  CatalogEntryRelationType setElement(String name, dynamic elementValue) {
+  CatalogEntryRelationType setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return CatalogEntryRelationType._(
       value,
       element?.setProperty(name, elementValue),

@@ -8,7 +8,9 @@ class ServiceRequestCategoryCodes extends PrimitiveType<String> {
   ServiceRequestCategoryCodes._(super.value, [super.element]);
 
   /// Factory constructor to create [ServiceRequestCategoryCodes] from JSON.
-  factory ServiceRequestCategoryCodes.fromJson(Map<String, dynamic> json) {
+  factory ServiceRequestCategoryCodes.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -64,12 +66,17 @@ class ServiceRequestCategoryCodes extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  ServiceRequestCategoryCodes clone() =>
-      ServiceRequestCategoryCodes._(value, element?.clone() as Element?);
+  ServiceRequestCategoryCodes clone() => ServiceRequestCategoryCodes._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  ServiceRequestCategoryCodes setElement(String name, dynamic elementValue) {
+  ServiceRequestCategoryCodes setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return ServiceRequestCategoryCodes._(
       value,
       element?.setProperty(name, elementValue),

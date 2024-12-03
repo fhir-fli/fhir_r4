@@ -8,7 +8,9 @@ class InteractionType extends PrimitiveType<String> {
   InteractionType._(super.value, [super.element]);
 
   /// Factory constructor to create [InteractionType] from JSON.
-  factory InteractionType.fromJson(Map<String, dynamic> json) {
+  factory InteractionType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -52,12 +54,17 @@ class InteractionType extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  InteractionType clone() =>
-      InteractionType._(value, element?.clone() as Element?);
+  InteractionType clone() => InteractionType._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  InteractionType setElement(String name, dynamic elementValue) {
+  InteractionType setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return InteractionType._(
       value,
       element?.setProperty(name, elementValue),

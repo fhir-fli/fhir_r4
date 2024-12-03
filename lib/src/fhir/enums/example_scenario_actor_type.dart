@@ -8,7 +8,9 @@ class ExampleScenarioActorType extends PrimitiveType<String> {
   ExampleScenarioActorType._(super.value, [super.element]);
 
   /// Factory constructor to create [ExampleScenarioActorType] from JSON.
-  factory ExampleScenarioActorType.fromJson(Map<String, dynamic> json) {
+  factory ExampleScenarioActorType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -41,12 +43,17 @@ class ExampleScenarioActorType extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  ExampleScenarioActorType clone() =>
-      ExampleScenarioActorType._(value, element?.clone() as Element?);
+  ExampleScenarioActorType clone() => ExampleScenarioActorType._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  ExampleScenarioActorType setElement(String name, dynamic elementValue) {
+  ExampleScenarioActorType setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return ExampleScenarioActorType._(
       value,
       element?.setProperty(name, elementValue),

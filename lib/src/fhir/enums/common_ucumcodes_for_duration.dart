@@ -8,7 +8,9 @@ class CommonUCUMCodesForDuration extends PrimitiveType<String> {
   CommonUCUMCodesForDuration._(super.value, [super.element]);
 
   /// Factory constructor to create [CommonUCUMCodesForDuration] from JSON.
-  factory CommonUCUMCodesForDuration.fromJson(Map<String, dynamic> json) {
+  factory CommonUCUMCodesForDuration.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -77,12 +79,17 @@ class CommonUCUMCodesForDuration extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  CommonUCUMCodesForDuration clone() =>
-      CommonUCUMCodesForDuration._(value, element?.clone() as Element?);
+  CommonUCUMCodesForDuration clone() => CommonUCUMCodesForDuration._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  CommonUCUMCodesForDuration setElement(String name, dynamic elementValue) {
+  CommonUCUMCodesForDuration setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return CommonUCUMCodesForDuration._(
       value,
       element?.setProperty(name, elementValue),

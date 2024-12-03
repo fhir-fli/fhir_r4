@@ -8,7 +8,9 @@ class EndpointConnectionType extends PrimitiveType<String> {
   EndpointConnectionType._(super.value, [super.element]);
 
   /// Factory constructor to create [EndpointConnectionType] from JSON.
-  factory EndpointConnectionType.fromJson(Map<String, dynamic> json) {
+  factory EndpointConnectionType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -113,12 +115,17 @@ class EndpointConnectionType extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  EndpointConnectionType clone() =>
-      EndpointConnectionType._(value, element?.clone() as Element?);
+  EndpointConnectionType clone() => EndpointConnectionType._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  EndpointConnectionType setElement(String name, dynamic elementValue) {
+  EndpointConnectionType setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return EndpointConnectionType._(
       value,
       element?.setProperty(name, elementValue),

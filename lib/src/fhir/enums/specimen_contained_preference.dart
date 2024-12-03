@@ -8,7 +8,9 @@ class SpecimenContainedPreference extends PrimitiveType<String> {
   SpecimenContainedPreference._(super.value, [super.element]);
 
   /// Factory constructor to create [SpecimenContainedPreference] from JSON.
-  factory SpecimenContainedPreference.fromJson(Map<String, dynamic> json) {
+  factory SpecimenContainedPreference.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -43,12 +45,17 @@ class SpecimenContainedPreference extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  SpecimenContainedPreference clone() =>
-      SpecimenContainedPreference._(value, element?.clone() as Element?);
+  SpecimenContainedPreference clone() => SpecimenContainedPreference._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  SpecimenContainedPreference setElement(String name, dynamic elementValue) {
+  SpecimenContainedPreference setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return SpecimenContainedPreference._(
       value,
       element?.setProperty(name, elementValue),

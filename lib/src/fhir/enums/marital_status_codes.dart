@@ -8,7 +8,9 @@ class MaritalStatusCodes extends PrimitiveType<String> {
   MaritalStatusCodes._(super.value, [super.element]);
 
   /// Factory constructor to create [MaritalStatusCodes] from JSON.
-  factory MaritalStatusCodes.fromJson(Map<String, dynamic> json) {
+  factory MaritalStatusCodes.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -34,12 +36,17 @@ class MaritalStatusCodes extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  MaritalStatusCodes clone() =>
-      MaritalStatusCodes._(value, element?.clone() as Element?);
+  MaritalStatusCodes clone() => MaritalStatusCodes._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  MaritalStatusCodes setElement(String name, dynamic elementValue) {
+  MaritalStatusCodes setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return MaritalStatusCodes._(
       value,
       element?.setProperty(name, elementValue),

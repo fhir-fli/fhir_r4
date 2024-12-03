@@ -8,7 +8,9 @@ class SourceMaterialSpecies extends PrimitiveType<String> {
   SourceMaterialSpecies._(super.value, [super.element]);
 
   /// Factory constructor to create [SourceMaterialSpecies] from JSON.
-  factory SourceMaterialSpecies.fromJson(Map<String, dynamic> json) {
+  factory SourceMaterialSpecies.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -40,12 +42,17 @@ class SourceMaterialSpecies extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  SourceMaterialSpecies clone() =>
-      SourceMaterialSpecies._(value, element?.clone() as Element?);
+  SourceMaterialSpecies clone() => SourceMaterialSpecies._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  SourceMaterialSpecies setElement(String name, dynamic elementValue) {
+  SourceMaterialSpecies setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return SourceMaterialSpecies._(
       value,
       element?.setProperty(name, elementValue),

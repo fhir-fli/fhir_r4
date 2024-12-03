@@ -8,7 +8,9 @@ class FlagStatus extends PrimitiveType<String> {
   FlagStatus._(super.value, [super.element]);
 
   /// Factory constructor to create [FlagStatus] from JSON.
-  factory FlagStatus.fromJson(Map<String, dynamic> json) {
+  factory FlagStatus.fromJson(
+    Map<String, dynamic> json,
+  ) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -46,11 +48,17 @@ class FlagStatus extends PrimitiveType<String> {
 
   /// Clones the current instance
   @override
-  FlagStatus clone() => FlagStatus._(value, element?.clone() as Element?);
+  FlagStatus clone() => FlagStatus._(
+        value,
+        element?.clone() as Element?,
+      );
 
   /// Sets a property on the associated [Element], returning a new instance.
   @override
-  FlagStatus setElement(String name, dynamic elementValue) {
+  FlagStatus setElement(
+    String name,
+    dynamic elementValue,
+  ) {
     return FlagStatus._(
       value,
       element?.setProperty(name, elementValue),
