@@ -18,7 +18,8 @@ class ProcedureFollowUpCodesSNOMEDCT extends PrimitiveType<String> {
       return ProcedureFollowUpCodesSNOMEDCT.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'ProcedureFollowUpCodesSNOMEDCT cannot be constructed from JSON.');
+        'ProcedureFollowUpCodesSNOMEDCT cannot be constructed from JSON.',
+      );
     }
     return ProcedureFollowUpCodesSNOMEDCT._(value, element);
   }

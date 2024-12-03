@@ -17,7 +17,9 @@ class OrientationType extends PrimitiveType<String> {
     if (value == null && element != null) {
       return OrientationType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('OrientationType cannot be constructed from JSON.');
+      throw ArgumentError(
+        'OrientationType cannot be constructed from JSON.',
+      );
     }
     return OrientationType._(value, element);
   }

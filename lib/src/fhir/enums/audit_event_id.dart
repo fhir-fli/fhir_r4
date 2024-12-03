@@ -17,7 +17,9 @@ class AuditEventID extends PrimitiveType<String> {
     if (value == null && element != null) {
       return AuditEventID.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('AuditEventID cannot be constructed from JSON.');
+      throw ArgumentError(
+        'AuditEventID cannot be constructed from JSON.',
+      );
     }
     return AuditEventID._(value, element);
   }

@@ -18,7 +18,8 @@ class ImmunizationFunctionCodes extends PrimitiveType<String> {
       return ImmunizationFunctionCodes.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'ImmunizationFunctionCodes cannot be constructed from JSON.');
+        'ImmunizationFunctionCodes cannot be constructed from JSON.',
+      );
     }
     return ImmunizationFunctionCodes._(value, element);
   }

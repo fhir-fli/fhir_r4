@@ -17,7 +17,9 @@ class DoseAndRateType extends PrimitiveType<String> {
     if (value == null && element != null) {
       return DoseAndRateType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('DoseAndRateType cannot be constructed from JSON.');
+      throw ArgumentError(
+        'DoseAndRateType cannot be constructed from JSON.',
+      );
     }
     return DoseAndRateType._(value, element);
   }

@@ -18,7 +18,8 @@ class ActionPrecheckBehavior extends PrimitiveType<String> {
       return ActionPrecheckBehavior.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'ActionPrecheckBehavior cannot be constructed from JSON.');
+        'ActionPrecheckBehavior cannot be constructed from JSON.',
+      );
     }
     return ActionPrecheckBehavior._(value, element);
   }

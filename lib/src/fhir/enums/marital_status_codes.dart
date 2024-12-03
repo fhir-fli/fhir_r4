@@ -18,7 +18,8 @@ class MaritalStatusCodes extends PrimitiveType<String> {
       return MaritalStatusCodes.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'MaritalStatusCodes cannot be constructed from JSON.');
+        'MaritalStatusCodes cannot be constructed from JSON.',
+      );
     }
     return MaritalStatusCodes._(value, element);
   }

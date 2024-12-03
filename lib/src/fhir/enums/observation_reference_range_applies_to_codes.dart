@@ -19,7 +19,8 @@ class ObservationReferenceRangeAppliesToCodes extends PrimitiveType<String> {
           .withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'ObservationReferenceRangeAppliesToCodes cannot be constructed from JSON.');
+        'ObservationReferenceRangeAppliesToCodes cannot be constructed from JSON.',
+      );
     }
     return ObservationReferenceRangeAppliesToCodes._(value, element);
   }

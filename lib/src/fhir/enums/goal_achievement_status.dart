@@ -18,7 +18,8 @@ class GoalAchievementStatus extends PrimitiveType<String> {
       return GoalAchievementStatus.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'GoalAchievementStatus cannot be constructed from JSON.');
+        'GoalAchievementStatus cannot be constructed from JSON.',
+      );
     }
     return GoalAchievementStatus._(value, element);
   }

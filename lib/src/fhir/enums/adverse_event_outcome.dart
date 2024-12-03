@@ -18,7 +18,8 @@ class AdverseEventOutcome extends PrimitiveType<String> {
       return AdverseEventOutcome.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'AdverseEventOutcome cannot be constructed from JSON.');
+        'AdverseEventOutcome cannot be constructed from JSON.',
+      );
     }
     return AdverseEventOutcome._(value, element);
   }

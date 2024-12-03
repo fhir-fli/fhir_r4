@@ -18,7 +18,8 @@ class ContractResourceAssetContextCodes extends PrimitiveType<String> {
       return ContractResourceAssetContextCodes.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'ContractResourceAssetContextCodes cannot be constructed from JSON.');
+        'ContractResourceAssetContextCodes cannot be constructed from JSON.',
+      );
     }
     return ContractResourceAssetContextCodes._(value, element);
   }

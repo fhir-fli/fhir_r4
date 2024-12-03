@@ -18,7 +18,8 @@ class CitationArtifactClassifier extends PrimitiveType<String> {
       return CitationArtifactClassifier.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'CitationArtifactClassifier cannot be constructed from JSON.');
+        'CitationArtifactClassifier cannot be constructed from JSON.',
+      );
     }
     return CitationArtifactClassifier._(value, element);
   }

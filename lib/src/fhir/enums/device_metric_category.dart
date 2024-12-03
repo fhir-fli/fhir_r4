@@ -18,7 +18,8 @@ class DeviceMetricCategory extends PrimitiveType<String> {
       return DeviceMetricCategory.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'DeviceMetricCategory cannot be constructed from JSON.');
+        'DeviceMetricCategory cannot be constructed from JSON.',
+      );
     }
     return DeviceMetricCategory._(value, element);
   }

@@ -18,7 +18,8 @@ class SubscriptionChannelType extends PrimitiveType<String> {
       return SubscriptionChannelType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'SubscriptionChannelType cannot be constructed from JSON.');
+        'SubscriptionChannelType cannot be constructed from JSON.',
+      );
     }
     return SubscriptionChannelType._(value, element);
   }

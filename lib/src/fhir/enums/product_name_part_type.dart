@@ -18,7 +18,8 @@ class ProductNamePartType extends PrimitiveType<String> {
       return ProductNamePartType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'ProductNamePartType cannot be constructed from JSON.');
+        'ProductNamePartType cannot be constructed from JSON.',
+      );
     }
     return ProductNamePartType._(value, element);
   }

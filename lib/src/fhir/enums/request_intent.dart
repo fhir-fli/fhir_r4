@@ -17,7 +17,9 @@ class RequestIntent extends PrimitiveType<String> {
     if (value == null && element != null) {
       return RequestIntent.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('RequestIntent cannot be constructed from JSON.');
+      throw ArgumentError(
+        'RequestIntent cannot be constructed from JSON.',
+      );
     }
     return RequestIntent._(value, element);
   }

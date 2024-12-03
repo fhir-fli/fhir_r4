@@ -18,7 +18,8 @@ class IngredientFunction extends PrimitiveType<String> {
       return IngredientFunction.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'IngredientFunction cannot be constructed from JSON.');
+        'IngredientFunction cannot be constructed from JSON.',
+      );
     }
     return IngredientFunction._(value, element);
   }

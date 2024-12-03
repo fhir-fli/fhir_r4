@@ -18,7 +18,8 @@ class InteractionIncidence extends PrimitiveType<String> {
       return InteractionIncidence.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'InteractionIncidence cannot be constructed from JSON.');
+        'InteractionIncidence cannot be constructed from JSON.',
+      );
     }
     return InteractionIncidence._(value, element);
   }

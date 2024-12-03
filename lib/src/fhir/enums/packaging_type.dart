@@ -17,7 +17,9 @@ class PackagingType extends PrimitiveType<String> {
     if (value == null && element != null) {
       return PackagingType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('PackagingType cannot be constructed from JSON.');
+      throw ArgumentError(
+        'PackagingType cannot be constructed from JSON.',
+      );
     }
     return PackagingType._(value, element);
   }

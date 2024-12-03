@@ -18,7 +18,8 @@ class TestScriptOperationCode extends PrimitiveType<String> {
       return TestScriptOperationCode.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'TestScriptOperationCode cannot be constructed from JSON.');
+        'TestScriptOperationCode cannot be constructed from JSON.',
+      );
     }
     return TestScriptOperationCode._(value, element);
   }

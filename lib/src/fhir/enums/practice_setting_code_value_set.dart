@@ -18,7 +18,8 @@ class PracticeSettingCodeValueSet extends PrimitiveType<String> {
       return PracticeSettingCodeValueSet.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'PracticeSettingCodeValueSet cannot be constructed from JSON.');
+        'PracticeSettingCodeValueSet cannot be constructed from JSON.',
+      );
     }
     return PracticeSettingCodeValueSet._(value, element);
   }

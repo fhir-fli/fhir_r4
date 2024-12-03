@@ -18,7 +18,8 @@ class ParticipationStatus extends PrimitiveType<String> {
       return ParticipationStatus.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'ParticipationStatus cannot be constructed from JSON.');
+        'ParticipationStatus cannot be constructed from JSON.',
+      );
     }
     return ParticipationStatus._(value, element);
   }

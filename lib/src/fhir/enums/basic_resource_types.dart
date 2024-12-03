@@ -18,7 +18,8 @@ class BasicResourceTypes extends PrimitiveType<String> {
       return BasicResourceTypes.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'BasicResourceTypes cannot be constructed from JSON.');
+        'BasicResourceTypes cannot be constructed from JSON.',
+      );
     }
     return BasicResourceTypes._(value, element);
   }

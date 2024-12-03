@@ -19,7 +19,8 @@ class AllergyIntoleranceVerificationStatusCodes extends PrimitiveType<String> {
           .withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'AllergyIntoleranceVerificationStatusCodes cannot be constructed from JSON.');
+        'AllergyIntoleranceVerificationStatusCodes cannot be constructed from JSON.',
+      );
     }
     return AllergyIntoleranceVerificationStatusCodes._(value, element);
   }

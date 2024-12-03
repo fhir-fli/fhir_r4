@@ -18,7 +18,8 @@ class DocumentClassValueSet extends PrimitiveType<String> {
       return DocumentClassValueSet.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'DocumentClassValueSet cannot be constructed from JSON.');
+        'DocumentClassValueSet cannot be constructed from JSON.',
+      );
     }
     return DocumentClassValueSet._(value, element);
   }

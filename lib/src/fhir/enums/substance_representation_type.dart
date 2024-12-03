@@ -18,7 +18,8 @@ class SubstanceRepresentationType extends PrimitiveType<String> {
       return SubstanceRepresentationType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'SubstanceRepresentationType cannot be constructed from JSON.');
+        'SubstanceRepresentationType cannot be constructed from JSON.',
+      );
     }
     return SubstanceRepresentationType._(value, element);
   }

@@ -17,7 +17,9 @@ class ArticleUrlType extends PrimitiveType<String> {
     if (value == null && element != null) {
       return ArticleUrlType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('ArticleUrlType cannot be constructed from JSON.');
+      throw ArgumentError(
+        'ArticleUrlType cannot be constructed from JSON.',
+      );
     }
     return ArticleUrlType._(value, element);
   }

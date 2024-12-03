@@ -17,7 +17,9 @@ class QualityType extends PrimitiveType<String> {
     if (value == null && element != null) {
       return QualityType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('QualityType cannot be constructed from JSON.');
+      throw ArgumentError(
+        'QualityType cannot be constructed from JSON.',
+      );
     }
     return QualityType._(value, element);
   }

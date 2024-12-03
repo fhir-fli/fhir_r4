@@ -17,7 +17,9 @@ class SearchParamType extends PrimitiveType<String> {
     if (value == null && element != null) {
       return SearchParamType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('SearchParamType cannot be constructed from JSON.');
+      throw ArgumentError(
+        'SearchParamType cannot be constructed from JSON.',
+      );
     }
     return SearchParamType._(value, element);
   }

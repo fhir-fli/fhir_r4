@@ -18,7 +18,8 @@ class CommonUCUMCodesForAge extends PrimitiveType<String> {
       return CommonUCUMCodesForAge.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'CommonUCUMCodesForAge cannot be constructed from JSON.');
+        'CommonUCUMCodesForAge cannot be constructed from JSON.',
+      );
     }
     return CommonUCUMCodesForAge._(value, element);
   }

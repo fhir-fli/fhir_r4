@@ -17,7 +17,9 @@ class NameUse extends PrimitiveType<String> {
     if (value == null && element != null) {
       return NameUse.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('NameUse cannot be constructed from JSON.');
+      throw ArgumentError(
+        'NameUse cannot be constructed from JSON.',
+      );
     }
     return NameUse._(value, element);
   }

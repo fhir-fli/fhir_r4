@@ -18,7 +18,8 @@ class BiologicallyDerivedProductStatus extends PrimitiveType<String> {
       return BiologicallyDerivedProductStatus.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'BiologicallyDerivedProductStatus cannot be constructed from JSON.');
+        'BiologicallyDerivedProductStatus cannot be constructed from JSON.',
+      );
     }
     return BiologicallyDerivedProductStatus._(value, element);
   }

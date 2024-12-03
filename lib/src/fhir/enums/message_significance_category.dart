@@ -18,7 +18,8 @@ class MessageSignificanceCategory extends PrimitiveType<String> {
       return MessageSignificanceCategory.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'MessageSignificanceCategory cannot be constructed from JSON.');
+        'MessageSignificanceCategory cannot be constructed from JSON.',
+      );
     }
     return MessageSignificanceCategory._(value, element);
   }

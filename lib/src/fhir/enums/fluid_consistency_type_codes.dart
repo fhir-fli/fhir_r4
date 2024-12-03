@@ -18,7 +18,8 @@ class FluidConsistencyTypeCodes extends PrimitiveType<String> {
       return FluidConsistencyTypeCodes.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'FluidConsistencyTypeCodes cannot be constructed from JSON.');
+        'FluidConsistencyTypeCodes cannot be constructed from JSON.',
+      );
     }
     return FluidConsistencyTypeCodes._(value, element);
   }

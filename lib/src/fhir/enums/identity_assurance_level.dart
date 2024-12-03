@@ -18,7 +18,8 @@ class IdentityAssuranceLevel extends PrimitiveType<String> {
       return IdentityAssuranceLevel.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'IdentityAssuranceLevel cannot be constructed from JSON.');
+        'IdentityAssuranceLevel cannot be constructed from JSON.',
+      );
     }
     return IdentityAssuranceLevel._(value, element);
   }

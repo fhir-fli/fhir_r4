@@ -18,7 +18,8 @@ class AdverseEventCategory extends PrimitiveType<String> {
       return AdverseEventCategory.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'AdverseEventCategory cannot be constructed from JSON.');
+        'AdverseEventCategory cannot be constructed from JSON.',
+      );
     }
     return AdverseEventCategory._(value, element);
   }

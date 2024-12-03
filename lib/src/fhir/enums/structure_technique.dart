@@ -18,7 +18,8 @@ class StructureTechnique extends PrimitiveType<String> {
       return StructureTechnique.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'StructureTechnique cannot be constructed from JSON.');
+        'StructureTechnique cannot be constructed from JSON.',
+      );
     }
     return StructureTechnique._(value, element);
   }

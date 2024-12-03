@@ -17,7 +17,9 @@ class ServiceCategory extends PrimitiveType<String> {
     if (value == null && element != null) {
       return ServiceCategory.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('ServiceCategory cannot be constructed from JSON.');
+      throw ArgumentError(
+        'ServiceCategory cannot be constructed from JSON.',
+      );
     }
     return ServiceCategory._(value, element);
   }

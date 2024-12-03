@@ -18,7 +18,8 @@ class EvidenceVariableHandling extends PrimitiveType<String> {
       return EvidenceVariableHandling.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'EvidenceVariableHandling cannot be constructed from JSON.');
+        'EvidenceVariableHandling cannot be constructed from JSON.',
+      );
     }
     return EvidenceVariableHandling._(value, element);
   }

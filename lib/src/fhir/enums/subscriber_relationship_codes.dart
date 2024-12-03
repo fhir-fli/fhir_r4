@@ -18,7 +18,8 @@ class SubscriberRelationshipCodes extends PrimitiveType<String> {
       return SubscriberRelationshipCodes.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'SubscriberRelationshipCodes cannot be constructed from JSON.');
+        'SubscriberRelationshipCodes cannot be constructed from JSON.',
+      );
     }
     return SubscriberRelationshipCodes._(value, element);
   }

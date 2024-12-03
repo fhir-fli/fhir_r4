@@ -18,7 +18,8 @@ class QuantityComparator extends PrimitiveType<String> {
       return QuantityComparator.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'QuantityComparator cannot be constructed from JSON.');
+        'QuantityComparator cannot be constructed from JSON.',
+      );
     }
     return QuantityComparator._(value, element);
   }

@@ -18,7 +18,8 @@ class QuestionnaireItemType extends PrimitiveType<String> {
       return QuestionnaireItemType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'QuestionnaireItemType cannot be constructed from JSON.');
+        'QuestionnaireItemType cannot be constructed from JSON.',
+      );
     }
     return QuestionnaireItemType._(value, element);
   }

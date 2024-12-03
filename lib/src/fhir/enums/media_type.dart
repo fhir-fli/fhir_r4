@@ -17,7 +17,9 @@ class MediaType extends PrimitiveType<String> {
     if (value == null && element != null) {
       return MediaType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('MediaType cannot be constructed from JSON.');
+      throw ArgumentError(
+        'MediaType cannot be constructed from JSON.',
+      );
     }
     return MediaType._(value, element);
   }

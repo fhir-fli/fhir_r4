@@ -18,7 +18,8 @@ class ProductIntendedUse extends PrimitiveType<String> {
       return ProductIntendedUse.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'ProductIntendedUse cannot be constructed from JSON.');
+        'ProductIntendedUse cannot be constructed from JSON.',
+      );
     }
     return ProductIntendedUse._(value, element);
   }

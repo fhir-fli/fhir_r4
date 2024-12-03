@@ -17,7 +17,9 @@ class FilterOperator extends PrimitiveType<String> {
     if (value == null && element != null) {
       return FilterOperator.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('FilterOperator cannot be constructed from JSON.');
+      throw ArgumentError(
+        'FilterOperator cannot be constructed from JSON.',
+      );
     }
     return FilterOperator._(value, element);
   }

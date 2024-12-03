@@ -19,7 +19,8 @@ class ObservationReferenceRangeMeaningCodes extends PrimitiveType<String> {
           .withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'ObservationReferenceRangeMeaningCodes cannot be constructed from JSON.');
+        'ObservationReferenceRangeMeaningCodes cannot be constructed from JSON.',
+      );
     }
     return ObservationReferenceRangeMeaningCodes._(value, element);
   }

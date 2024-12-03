@@ -17,7 +17,9 @@ class VariableType extends PrimitiveType<String> {
     if (value == null && element != null) {
       return VariableType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('VariableType cannot be constructed from JSON.');
+      throw ArgumentError(
+        'VariableType cannot be constructed from JSON.',
+      );
     }
     return VariableType._(value, element);
   }

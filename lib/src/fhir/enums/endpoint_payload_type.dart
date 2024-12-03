@@ -18,7 +18,8 @@ class EndpointPayloadType extends PrimitiveType<String> {
       return EndpointPayloadType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'EndpointPayloadType cannot be constructed from JSON.');
+        'EndpointPayloadType cannot be constructed from JSON.',
+      );
     }
     return EndpointPayloadType._(value, element);
   }

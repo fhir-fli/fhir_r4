@@ -18,7 +18,8 @@ class RegulatedAuthorizationBasis extends PrimitiveType<String> {
       return RegulatedAuthorizationBasis.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'RegulatedAuthorizationBasis cannot be constructed from JSON.');
+        'RegulatedAuthorizationBasis cannot be constructed from JSON.',
+      );
     }
     return RegulatedAuthorizationBasis._(value, element);
   }

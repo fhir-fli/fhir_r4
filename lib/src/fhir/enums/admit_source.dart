@@ -17,7 +17,9 @@ class AdmitSource extends PrimitiveType<String> {
     if (value == null && element != null) {
       return AdmitSource.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('AdmitSource cannot be constructed from JSON.');
+      throw ArgumentError(
+        'AdmitSource cannot be constructed from JSON.',
+      );
     }
     return AdmitSource._(value, element);
   }

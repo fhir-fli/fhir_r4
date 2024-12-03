@@ -18,7 +18,8 @@ class ExampleProgramReasonCodes extends PrimitiveType<String> {
       return ExampleProgramReasonCodes.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'ExampleProgramReasonCodes cannot be constructed from JSON.');
+        'ExampleProgramReasonCodes cannot be constructed from JSON.',
+      );
     }
     return ExampleProgramReasonCodes._(value, element);
   }

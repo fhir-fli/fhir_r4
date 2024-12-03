@@ -17,7 +17,9 @@ class SupplyType extends PrimitiveType<String> {
     if (value == null && element != null) {
       return SupplyType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('SupplyType cannot be constructed from JSON.');
+      throw ArgumentError(
+        'SupplyType cannot be constructed from JSON.',
+      );
     }
     return SupplyType._(value, element);
   }

@@ -18,7 +18,8 @@ class ResearchStudyPrimaryPurposeType extends PrimitiveType<String> {
       return ResearchStudyPrimaryPurposeType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'ResearchStudyPrimaryPurposeType cannot be constructed from JSON.');
+        'ResearchStudyPrimaryPurposeType cannot be constructed from JSON.',
+      );
     }
     return ResearchStudyPrimaryPurposeType._(value, element);
   }

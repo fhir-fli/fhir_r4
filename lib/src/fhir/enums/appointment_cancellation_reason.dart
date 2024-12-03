@@ -18,7 +18,8 @@ class AppointmentCancellationReason extends PrimitiveType<String> {
       return AppointmentCancellationReason.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'AppointmentCancellationReason cannot be constructed from JSON.');
+        'AppointmentCancellationReason cannot be constructed from JSON.',
+      );
     }
     return AppointmentCancellationReason._(value, element);
   }

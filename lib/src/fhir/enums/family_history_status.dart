@@ -18,7 +18,8 @@ class FamilyHistoryStatus extends PrimitiveType<String> {
       return FamilyHistoryStatus.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'FamilyHistoryStatus cannot be constructed from JSON.');
+        'FamilyHistoryStatus cannot be constructed from JSON.',
+      );
     }
     return FamilyHistoryStatus._(value, element);
   }

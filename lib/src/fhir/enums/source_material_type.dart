@@ -18,7 +18,8 @@ class SourceMaterialType extends PrimitiveType<String> {
       return SourceMaterialType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'SourceMaterialType cannot be constructed from JSON.');
+        'SourceMaterialType cannot be constructed from JSON.',
+      );
     }
     return SourceMaterialType._(value, element);
   }

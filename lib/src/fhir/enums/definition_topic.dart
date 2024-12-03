@@ -17,7 +17,9 @@ class DefinitionTopic extends PrimitiveType<String> {
     if (value == null && element != null) {
       return DefinitionTopic.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('DefinitionTopic cannot be constructed from JSON.');
+      throw ArgumentError(
+        'DefinitionTopic cannot be constructed from JSON.',
+      );
     }
     return DefinitionTopic._(value, element);
   }

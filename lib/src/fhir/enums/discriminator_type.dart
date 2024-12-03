@@ -17,7 +17,9 @@ class DiscriminatorType extends PrimitiveType<String> {
     if (value == null && element != null) {
       return DiscriminatorType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('DiscriminatorType cannot be constructed from JSON.');
+      throw ArgumentError(
+        'DiscriminatorType cannot be constructed from JSON.',
+      );
     }
     return DiscriminatorType._(value, element);
   }

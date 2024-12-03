@@ -17,7 +17,9 @@ class ChargeItemCode extends PrimitiveType<String> {
     if (value == null && element != null) {
       return ChargeItemCode.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('ChargeItemCode cannot be constructed from JSON.');
+      throw ArgumentError(
+        'ChargeItemCode cannot be constructed from JSON.',
+      );
     }
     return ChargeItemCode._(value, element);
   }

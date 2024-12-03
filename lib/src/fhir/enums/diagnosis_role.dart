@@ -17,7 +17,9 @@ class DiagnosisRole extends PrimitiveType<String> {
     if (value == null && element != null) {
       return DiagnosisRole.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('DiagnosisRole cannot be constructed from JSON.');
+      throw ArgumentError(
+        'DiagnosisRole cannot be constructed from JSON.',
+      );
     }
     return DiagnosisRole._(value, element);
   }

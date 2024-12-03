@@ -18,7 +18,8 @@ class ConsentProvisionType extends PrimitiveType<String> {
       return ConsentProvisionType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'ConsentProvisionType cannot be constructed from JSON.');
+        'ConsentProvisionType cannot be constructed from JSON.',
+      );
     }
     return ConsentProvisionType._(value, element);
   }

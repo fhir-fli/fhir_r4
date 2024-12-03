@@ -18,7 +18,8 @@ class MedicinalProductDomain extends PrimitiveType<String> {
       return MedicinalProductDomain.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'MedicinalProductDomain cannot be constructed from JSON.');
+        'MedicinalProductDomain cannot be constructed from JSON.',
+      );
     }
     return MedicinalProductDomain._(value, element);
   }

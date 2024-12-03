@@ -18,7 +18,8 @@ class ProductConfidentiality extends PrimitiveType<String> {
       return ProductConfidentiality.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'ProductConfidentiality cannot be constructed from JSON.');
+        'ProductConfidentiality cannot be constructed from JSON.',
+      );
     }
     return ProductConfidentiality._(value, element);
   }

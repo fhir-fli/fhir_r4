@@ -17,7 +17,9 @@ class NetworkTypeCodes extends PrimitiveType<String> {
     if (value == null && element != null) {
       return NetworkTypeCodes.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('NetworkTypeCodes cannot be constructed from JSON.');
+      throw ArgumentError(
+        'NetworkTypeCodes cannot be constructed from JSON.',
+      );
     }
     return NetworkTypeCodes._(value, element);
   }

@@ -17,7 +17,9 @@ class ContributorType extends PrimitiveType<String> {
     if (value == null && element != null) {
       return ContributorType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('ContributorType cannot be constructed from JSON.');
+      throw ArgumentError(
+        'ContributorType cannot be constructed from JSON.',
+      );
     }
     return ContributorType._(value, element);
   }

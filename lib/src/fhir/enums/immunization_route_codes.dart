@@ -18,7 +18,8 @@ class ImmunizationRouteCodes extends PrimitiveType<String> {
       return ImmunizationRouteCodes.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'ImmunizationRouteCodes cannot be constructed from JSON.');
+        'ImmunizationRouteCodes cannot be constructed from JSON.',
+      );
     }
     return ImmunizationRouteCodes._(value, element);
   }

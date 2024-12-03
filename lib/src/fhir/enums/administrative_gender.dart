@@ -18,7 +18,8 @@ class AdministrativeGender extends PrimitiveType<String> {
       return AdministrativeGender.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'AdministrativeGender cannot be constructed from JSON.');
+        'AdministrativeGender cannot be constructed from JSON.',
+      );
     }
     return AdministrativeGender._(value, element);
   }

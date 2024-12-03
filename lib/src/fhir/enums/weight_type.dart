@@ -17,7 +17,9 @@ class WeightType extends PrimitiveType<String> {
     if (value == null && element != null) {
       return WeightType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('WeightType cannot be constructed from JSON.');
+      throw ArgumentError(
+        'WeightType cannot be constructed from JSON.',
+      );
     }
     return WeightType._(value, element);
   }

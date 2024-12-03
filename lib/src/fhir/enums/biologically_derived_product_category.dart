@@ -19,7 +19,8 @@ class BiologicallyDerivedProductCategory extends PrimitiveType<String> {
           .withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'BiologicallyDerivedProductCategory cannot be constructed from JSON.');
+        'BiologicallyDerivedProductCategory cannot be constructed from JSON.',
+      );
     }
     return BiologicallyDerivedProductCategory._(value, element);
   }

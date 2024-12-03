@@ -19,7 +19,8 @@ class ImagingStudySeriesPerformerFunction extends PrimitiveType<String> {
           .withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'ImagingStudySeriesPerformerFunction cannot be constructed from JSON.');
+        'ImagingStudySeriesPerformerFunction cannot be constructed from JSON.',
+      );
     }
     return ImagingStudySeriesPerformerFunction._(value, element);
   }

@@ -18,7 +18,8 @@ class ReferenceHandlingPolicy extends PrimitiveType<String> {
       return ReferenceHandlingPolicy.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'ReferenceHandlingPolicy cannot be constructed from JSON.');
+        'ReferenceHandlingPolicy cannot be constructed from JSON.',
+      );
     }
     return ReferenceHandlingPolicy._(value, element);
   }

@@ -17,7 +17,9 @@ class TargetSpecies extends PrimitiveType<String> {
     if (value == null && element != null) {
       return TargetSpecies.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('TargetSpecies cannot be constructed from JSON.');
+      throw ArgumentError(
+        'TargetSpecies cannot be constructed from JSON.',
+      );
     }
     return TargetSpecies._(value, element);
   }

@@ -18,7 +18,8 @@ class ConditionalDeleteStatus extends PrimitiveType<String> {
       return ConditionalDeleteStatus.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'ConditionalDeleteStatus cannot be constructed from JSON.');
+        'ConditionalDeleteStatus cannot be constructed from JSON.',
+      );
     }
     return ConditionalDeleteStatus._(value, element);
   }

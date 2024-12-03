@@ -18,7 +18,8 @@ class SubstanceRelationshipType extends PrimitiveType<String> {
       return SubstanceRelationshipType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'SubstanceRelationshipType cannot be constructed from JSON.');
+        'SubstanceRelationshipType cannot be constructed from JSON.',
+      );
     }
     return SubstanceRelationshipType._(value, element);
   }

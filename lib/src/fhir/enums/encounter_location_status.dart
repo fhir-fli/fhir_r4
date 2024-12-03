@@ -18,7 +18,8 @@ class EncounterLocationStatus extends PrimitiveType<String> {
       return EncounterLocationStatus.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'EncounterLocationStatus cannot be constructed from JSON.');
+        'EncounterLocationStatus cannot be constructed from JSON.',
+      );
     }
     return EncounterLocationStatus._(value, element);
   }

@@ -18,7 +18,8 @@ class SignatureTypeCodes extends PrimitiveType<String> {
       return SignatureTypeCodes.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'SignatureTypeCodes cannot be constructed from JSON.');
+        'SignatureTypeCodes cannot be constructed from JSON.',
+      );
     }
     return SignatureTypeCodes._(value, element);
   }

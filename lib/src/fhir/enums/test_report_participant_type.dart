@@ -18,7 +18,8 @@ class TestReportParticipantType extends PrimitiveType<String> {
       return TestReportParticipantType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'TestReportParticipantType cannot be constructed from JSON.');
+        'TestReportParticipantType cannot be constructed from JSON.',
+      );
     }
     return TestReportParticipantType._(value, element);
   }

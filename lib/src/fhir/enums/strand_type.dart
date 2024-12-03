@@ -17,7 +17,9 @@ class StrandType extends PrimitiveType<String> {
     if (value == null && element != null) {
       return StrandType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('StrandType cannot be constructed from JSON.');
+      throw ArgumentError(
+        'StrandType cannot be constructed from JSON.',
+      );
     }
     return StrandType._(value, element);
   }

@@ -18,7 +18,8 @@ class ClaimPayeeTypeCodes extends PrimitiveType<String> {
       return ClaimPayeeTypeCodes.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'ClaimPayeeTypeCodes cannot be constructed from JSON.');
+        'ClaimPayeeTypeCodes cannot be constructed from JSON.',
+      );
     }
     return ClaimPayeeTypeCodes._(value, element);
   }

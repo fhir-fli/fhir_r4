@@ -18,7 +18,8 @@ class ResearchStudyReasonStopped extends PrimitiveType<String> {
       return ResearchStudyReasonStopped.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'ResearchStudyReasonStopped cannot be constructed from JSON.');
+        'ResearchStudyReasonStopped cannot be constructed from JSON.',
+      );
     }
     return ResearchStudyReasonStopped._(value, element);
   }

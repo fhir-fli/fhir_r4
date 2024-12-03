@@ -17,7 +17,9 @@ class ContactEntityType extends PrimitiveType<String> {
     if (value == null && element != null) {
       return ContactEntityType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('ContactEntityType cannot be constructed from JSON.');
+      throw ArgumentError(
+        'ContactEntityType cannot be constructed from JSON.',
+      );
     }
     return ContactEntityType._(value, element);
   }

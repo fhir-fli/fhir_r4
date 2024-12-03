@@ -18,7 +18,8 @@ class AssertionDirectionType extends PrimitiveType<String> {
       return AssertionDirectionType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'AssertionDirectionType cannot be constructed from JSON.');
+        'AssertionDirectionType cannot be constructed from JSON.',
+      );
     }
     return AssertionDirectionType._(value, element);
   }

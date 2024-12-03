@@ -18,7 +18,8 @@ class RejectionCriterion extends PrimitiveType<String> {
       return RejectionCriterion.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'RejectionCriterion cannot be constructed from JSON.');
+        'RejectionCriterion cannot be constructed from JSON.',
+      );
     }
     return RejectionCriterion._(value, element);
   }

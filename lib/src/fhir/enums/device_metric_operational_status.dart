@@ -18,7 +18,8 @@ class DeviceMetricOperationalStatus extends PrimitiveType<String> {
       return DeviceMetricOperationalStatus.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'DeviceMetricOperationalStatus cannot be constructed from JSON.');
+        'DeviceMetricOperationalStatus cannot be constructed from JSON.',
+      );
     }
     return DeviceMetricOperationalStatus._(value, element);
   }

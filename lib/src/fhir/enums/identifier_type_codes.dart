@@ -18,7 +18,8 @@ class IdentifierTypeCodes extends PrimitiveType<String> {
       return IdentifierTypeCodes.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'IdentifierTypeCodes cannot be constructed from JSON.');
+        'IdentifierTypeCodes cannot be constructed from JSON.',
+      );
     }
     return IdentifierTypeCodes._(value, element);
   }

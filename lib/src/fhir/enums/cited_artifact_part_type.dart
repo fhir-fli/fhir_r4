@@ -18,7 +18,8 @@ class CitedArtifactPartType extends PrimitiveType<String> {
       return CitedArtifactPartType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'CitedArtifactPartType cannot be constructed from JSON.');
+        'CitedArtifactPartType cannot be constructed from JSON.',
+      );
     }
     return CitedArtifactPartType._(value, element);
   }

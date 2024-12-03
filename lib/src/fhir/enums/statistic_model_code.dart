@@ -18,7 +18,8 @@ class StatisticModelCode extends PrimitiveType<String> {
       return StatisticModelCode.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'StatisticModelCode cannot be constructed from JSON.');
+        'StatisticModelCode cannot be constructed from JSON.',
+      );
     }
     return StatisticModelCode._(value, element);
   }

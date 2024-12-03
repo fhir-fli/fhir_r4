@@ -18,7 +18,8 @@ class ConditionVerificationStatus extends PrimitiveType<String> {
       return ConditionVerificationStatus.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'ConditionVerificationStatus cannot be constructed from JSON.');
+        'ConditionVerificationStatus cannot be constructed from JSON.',
+      );
     }
     return ConditionVerificationStatus._(value, element);
   }

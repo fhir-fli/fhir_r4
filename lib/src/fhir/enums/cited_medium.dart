@@ -17,7 +17,9 @@ class CitedMedium extends PrimitiveType<String> {
     if (value == null && element != null) {
       return CitedMedium.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('CitedMedium cannot be constructed from JSON.');
+      throw ArgumentError(
+        'CitedMedium cannot be constructed from JSON.',
+      );
     }
     return CitedMedium._(value, element);
   }

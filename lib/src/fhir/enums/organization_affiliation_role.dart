@@ -18,7 +18,8 @@ class OrganizationAffiliationRole extends PrimitiveType<String> {
       return OrganizationAffiliationRole.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'OrganizationAffiliationRole cannot be constructed from JSON.');
+        'OrganizationAffiliationRole cannot be constructed from JSON.',
+      );
     }
     return OrganizationAffiliationRole._(value, element);
   }

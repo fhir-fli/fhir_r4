@@ -18,7 +18,8 @@ class BodystructureLocationQualifier extends PrimitiveType<String> {
       return BodystructureLocationQualifier.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'BodystructureLocationQualifier cannot be constructed from JSON.');
+        'BodystructureLocationQualifier cannot be constructed from JSON.',
+      );
     }
     return BodystructureLocationQualifier._(value, element);
   }

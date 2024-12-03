@@ -18,7 +18,8 @@ class ExampleClaimSubTypeCodes extends PrimitiveType<String> {
       return ExampleClaimSubTypeCodes.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'ExampleClaimSubTypeCodes cannot be constructed from JSON.');
+        'ExampleClaimSubTypeCodes cannot be constructed from JSON.',
+      );
     }
     return ExampleClaimSubTypeCodes._(value, element);
   }

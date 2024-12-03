@@ -18,7 +18,8 @@ class ProvenanceActivityType extends PrimitiveType<String> {
       return ProvenanceActivityType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'ProvenanceActivityType cannot be constructed from JSON.');
+        'ProvenanceActivityType cannot be constructed from JSON.',
+      );
     }
     return ProvenanceActivityType._(value, element);
   }

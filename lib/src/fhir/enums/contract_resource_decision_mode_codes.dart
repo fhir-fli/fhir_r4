@@ -18,7 +18,8 @@ class ContractResourceDecisionModeCodes extends PrimitiveType<String> {
       return ContractResourceDecisionModeCodes.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'ContractResourceDecisionModeCodes cannot be constructed from JSON.');
+        'ContractResourceDecisionModeCodes cannot be constructed from JSON.',
+      );
     }
     return ContractResourceDecisionModeCodes._(value, element);
   }

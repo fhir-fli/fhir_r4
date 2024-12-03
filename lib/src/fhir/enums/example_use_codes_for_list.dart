@@ -18,7 +18,8 @@ class ExampleUseCodesForList extends PrimitiveType<String> {
       return ExampleUseCodesForList.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'ExampleUseCodesForList cannot be constructed from JSON.');
+        'ExampleUseCodesForList cannot be constructed from JSON.',
+      );
     }
     return ExampleUseCodesForList._(value, element);
   }

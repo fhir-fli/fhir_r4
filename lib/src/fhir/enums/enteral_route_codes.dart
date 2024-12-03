@@ -17,7 +17,9 @@ class EnteralRouteCodes extends PrimitiveType<String> {
     if (value == null && element != null) {
       return EnteralRouteCodes.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('EnteralRouteCodes cannot be constructed from JSON.');
+      throw ArgumentError(
+        'EnteralRouteCodes cannot be constructed from JSON.',
+      );
     }
     return EnteralRouteCodes._(value, element);
   }

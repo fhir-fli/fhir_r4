@@ -18,7 +18,8 @@ class FocusCharacteristicCode extends PrimitiveType<String> {
       return FocusCharacteristicCode.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'FocusCharacteristicCode cannot be constructed from JSON.');
+        'FocusCharacteristicCode cannot be constructed from JSON.',
+      );
     }
     return FocusCharacteristicCode._(value, element);
   }

@@ -18,7 +18,8 @@ class DiagnosticReportStatus extends PrimitiveType<String> {
       return DiagnosticReportStatus.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'DiagnosticReportStatus cannot be constructed from JSON.');
+        'DiagnosticReportStatus cannot be constructed from JSON.',
+      );
     }
     return DiagnosticReportStatus._(value, element);
   }

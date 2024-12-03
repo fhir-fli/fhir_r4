@@ -18,7 +18,8 @@ class RegulatedAuthorizationType extends PrimitiveType<String> {
       return RegulatedAuthorizationType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'RegulatedAuthorizationType cannot be constructed from JSON.');
+        'RegulatedAuthorizationType cannot be constructed from JSON.',
+      );
     }
     return RegulatedAuthorizationType._(value, element);
   }

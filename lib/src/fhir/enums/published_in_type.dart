@@ -17,7 +17,9 @@ class PublishedInType extends PrimitiveType<String> {
     if (value == null && element != null) {
       return PublishedInType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('PublishedInType cannot be constructed from JSON.');
+      throw ArgumentError(
+        'PublishedInType cannot be constructed from JSON.',
+      );
     }
     return PublishedInType._(value, element);
   }

@@ -17,7 +17,9 @@ class FHIRAllTypes extends PrimitiveType<String> {
     if (value == null && element != null) {
       return FHIRAllTypes.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('FHIRAllTypes cannot be constructed from JSON.');
+      throw ArgumentError(
+        'FHIRAllTypes cannot be constructed from JSON.',
+      );
     }
     return FHIRAllTypes._(value, element);
   }

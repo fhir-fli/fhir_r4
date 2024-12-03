@@ -19,7 +19,8 @@ class CodesForImmunizationSiteOfAdministration extends PrimitiveType<String> {
           .withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'CodesForImmunizationSiteOfAdministration cannot be constructed from JSON.');
+        'CodesForImmunizationSiteOfAdministration cannot be constructed from JSON.',
+      );
     }
     return CodesForImmunizationSiteOfAdministration._(value, element);
   }

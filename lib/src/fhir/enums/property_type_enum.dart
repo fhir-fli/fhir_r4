@@ -17,7 +17,9 @@ class PropertyTypeEnum extends PrimitiveType<String> {
     if (value == null && element != null) {
       return PropertyTypeEnum.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('PropertyTypeEnum cannot be constructed from JSON.');
+      throw ArgumentError(
+        'PropertyTypeEnum cannot be constructed from JSON.',
+      );
     }
     return PropertyTypeEnum._(value, element);
   }

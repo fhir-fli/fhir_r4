@@ -18,7 +18,8 @@ class ExampleRevenueCenterCodes extends PrimitiveType<String> {
       return ExampleRevenueCenterCodes.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'ExampleRevenueCenterCodes cannot be constructed from JSON.');
+        'ExampleRevenueCenterCodes cannot be constructed from JSON.',
+      );
     }
     return ExampleRevenueCenterCodes._(value, element);
   }

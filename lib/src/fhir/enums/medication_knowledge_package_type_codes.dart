@@ -19,7 +19,8 @@ class MedicationKnowledgePackageTypeCodes extends PrimitiveType<String> {
           .withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'MedicationKnowledgePackageTypeCodes cannot be constructed from JSON.');
+        'MedicationKnowledgePackageTypeCodes cannot be constructed from JSON.',
+      );
     }
     return MedicationKnowledgePackageTypeCodes._(value, element);
   }

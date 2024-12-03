@@ -17,7 +17,9 @@ class ExceptionCodes extends PrimitiveType<String> {
     if (value == null && element != null) {
       return ExceptionCodes.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('ExceptionCodes cannot be constructed from JSON.');
+      throw ArgumentError(
+        'ExceptionCodes cannot be constructed from JSON.',
+      );
     }
     return ExceptionCodes._(value, element);
   }

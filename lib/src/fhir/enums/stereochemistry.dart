@@ -17,7 +17,9 @@ class Stereochemistry extends PrimitiveType<String> {
     if (value == null && element != null) {
       return Stereochemistry.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('Stereochemistry cannot be constructed from JSON.');
+      throw ArgumentError(
+        'Stereochemistry cannot be constructed from JSON.',
+      );
     }
     return Stereochemistry._(value, element);
   }

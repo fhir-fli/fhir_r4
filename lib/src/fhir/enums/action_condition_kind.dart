@@ -18,7 +18,8 @@ class ActionConditionKind extends PrimitiveType<String> {
       return ActionConditionKind.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'ActionConditionKind cannot be constructed from JSON.');
+        'ActionConditionKind cannot be constructed from JSON.',
+      );
     }
     return ActionConditionKind._(value, element);
   }

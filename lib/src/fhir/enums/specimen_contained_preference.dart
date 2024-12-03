@@ -18,7 +18,8 @@ class SpecimenContainedPreference extends PrimitiveType<String> {
       return SpecimenContainedPreference.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'SpecimenContainedPreference cannot be constructed from JSON.');
+        'SpecimenContainedPreference cannot be constructed from JSON.',
+      );
     }
     return SpecimenContainedPreference._(value, element);
   }

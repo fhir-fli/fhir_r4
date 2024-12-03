@@ -18,7 +18,8 @@ class EligibilityResponsePurpose extends PrimitiveType<String> {
       return EligibilityResponsePurpose.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'EligibilityResponsePurpose cannot be constructed from JSON.');
+        'EligibilityResponsePurpose cannot be constructed from JSON.',
+      );
     }
     return EligibilityResponsePurpose._(value, element);
   }

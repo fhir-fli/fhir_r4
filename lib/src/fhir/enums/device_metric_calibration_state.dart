@@ -18,7 +18,8 @@ class DeviceMetricCalibrationState extends PrimitiveType<String> {
       return DeviceMetricCalibrationState.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'DeviceMetricCalibrationState cannot be constructed from JSON.');
+        'DeviceMetricCalibrationState cannot be constructed from JSON.',
+      );
     }
     return DeviceMetricCalibrationState._(value, element);
   }

@@ -18,7 +18,8 @@ class EvidenceCertaintyRating extends PrimitiveType<String> {
       return EvidenceCertaintyRating.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'EvidenceCertaintyRating cannot be constructed from JSON.');
+        'EvidenceCertaintyRating cannot be constructed from JSON.',
+      );
     }
     return EvidenceCertaintyRating._(value, element);
   }

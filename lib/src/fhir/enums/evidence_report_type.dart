@@ -18,7 +18,8 @@ class EvidenceReportType extends PrimitiveType<String> {
       return EvidenceReportType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'EvidenceReportType cannot be constructed from JSON.');
+        'EvidenceReportType cannot be constructed from JSON.',
+      );
     }
     return EvidenceReportType._(value, element);
   }

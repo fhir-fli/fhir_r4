@@ -18,7 +18,8 @@ class TestScriptProfileDestinationType extends PrimitiveType<String> {
       return TestScriptProfileDestinationType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'TestScriptProfileDestinationType cannot be constructed from JSON.');
+        'TestScriptProfileDestinationType cannot be constructed from JSON.',
+      );
     }
     return TestScriptProfileDestinationType._(value, element);
   }

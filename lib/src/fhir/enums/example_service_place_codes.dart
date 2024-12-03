@@ -18,7 +18,8 @@ class ExampleServicePlaceCodes extends PrimitiveType<String> {
       return ExampleServicePlaceCodes.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'ExampleServicePlaceCodes cannot be constructed from JSON.');
+        'ExampleServicePlaceCodes cannot be constructed from JSON.',
+      );
     }
     return ExampleServicePlaceCodes._(value, element);
   }

@@ -17,7 +17,9 @@ class TaskIntent extends PrimitiveType<String> {
     if (value == null && element != null) {
       return TaskIntent.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('TaskIntent cannot be constructed from JSON.');
+      throw ArgumentError(
+        'TaskIntent cannot be constructed from JSON.',
+      );
     }
     return TaskIntent._(value, element);
   }

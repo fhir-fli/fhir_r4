@@ -17,7 +17,9 @@ class Program extends PrimitiveType<String> {
     if (value == null && element != null) {
       return Program.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('Program cannot be constructed from JSON.');
+      throw ArgumentError(
+        'Program cannot be constructed from JSON.',
+      );
     }
     return Program._(value, element);
   }

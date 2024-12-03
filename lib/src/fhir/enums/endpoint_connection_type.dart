@@ -18,7 +18,8 @@ class EndpointConnectionType extends PrimitiveType<String> {
       return EndpointConnectionType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'EndpointConnectionType cannot be constructed from JSON.');
+        'EndpointConnectionType cannot be constructed from JSON.',
+      );
     }
     return EndpointConnectionType._(value, element);
   }

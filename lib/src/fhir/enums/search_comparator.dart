@@ -17,7 +17,9 @@ class SearchComparator extends PrimitiveType<String> {
     if (value == null && element != null) {
       return SearchComparator.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('SearchComparator cannot be constructed from JSON.');
+      throw ArgumentError(
+        'SearchComparator cannot be constructed from JSON.',
+      );
     }
     return SearchComparator._(value, element);
   }

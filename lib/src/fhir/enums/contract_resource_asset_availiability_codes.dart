@@ -19,7 +19,8 @@ class ContractResourceAssetAvailiabilityCodes extends PrimitiveType<String> {
           .withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'ContractResourceAssetAvailiabilityCodes cannot be constructed from JSON.');
+        'ContractResourceAssetAvailiabilityCodes cannot be constructed from JSON.',
+      );
     }
     return ContractResourceAssetAvailiabilityCodes._(value, element);
   }

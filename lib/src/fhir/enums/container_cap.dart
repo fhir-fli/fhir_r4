@@ -17,7 +17,9 @@ class ContainerCap extends PrimitiveType<String> {
     if (value == null && element != null) {
       return ContainerCap.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('ContainerCap cannot be constructed from JSON.');
+      throw ArgumentError(
+        'ContainerCap cannot be constructed from JSON.',
+      );
     }
     return ContainerCap._(value, element);
   }

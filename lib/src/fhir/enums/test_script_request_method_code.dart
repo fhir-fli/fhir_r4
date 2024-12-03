@@ -18,7 +18,8 @@ class TestScriptRequestMethodCode extends PrimitiveType<String> {
       return TestScriptRequestMethodCode.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'TestScriptRequestMethodCode cannot be constructed from JSON.');
+        'TestScriptRequestMethodCode cannot be constructed from JSON.',
+      );
     }
     return TestScriptRequestMethodCode._(value, element);
   }

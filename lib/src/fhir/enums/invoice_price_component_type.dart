@@ -18,7 +18,8 @@ class InvoicePriceComponentType extends PrimitiveType<String> {
       return InvoicePriceComponentType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'InvoicePriceComponentType cannot be constructed from JSON.');
+        'InvoicePriceComponentType cannot be constructed from JSON.',
+      );
     }
     return InvoicePriceComponentType._(value, element);
   }

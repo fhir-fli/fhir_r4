@@ -17,7 +17,9 @@ class DaysOfWeek extends PrimitiveType<String> {
     if (value == null && element != null) {
       return DaysOfWeek.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('DaysOfWeek cannot be constructed from JSON.');
+      throw ArgumentError(
+        'DaysOfWeek cannot be constructed from JSON.',
+      );
     }
     return DaysOfWeek._(value, element);
   }

@@ -17,7 +17,9 @@ class CommonTags extends PrimitiveType<String> {
     if (value == null && element != null) {
       return CommonTags.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('CommonTags cannot be constructed from JSON.');
+      throw ArgumentError(
+        'CommonTags cannot be constructed from JSON.',
+      );
     }
     return CommonTags._(value, element);
   }

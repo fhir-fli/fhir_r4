@@ -17,7 +17,9 @@ class MeasureReportType extends PrimitiveType<String> {
     if (value == null && element != null) {
       return MeasureReportType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('MeasureReportType cannot be constructed from JSON.');
+      throw ArgumentError(
+        'MeasureReportType cannot be constructed from JSON.',
+      );
     }
     return MeasureReportType._(value, element);
   }

@@ -18,7 +18,8 @@ class CompositeMeasureScoring extends PrimitiveType<String> {
       return CompositeMeasureScoring.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'CompositeMeasureScoring cannot be constructed from JSON.');
+        'CompositeMeasureScoring cannot be constructed from JSON.',
+      );
     }
     return CompositeMeasureScoring._(value, element);
   }

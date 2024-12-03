@@ -17,7 +17,9 @@ class ResponseType extends PrimitiveType<String> {
     if (value == null && element != null) {
       return ResponseType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('ResponseType cannot be constructed from JSON.');
+      throw ArgumentError(
+        'ResponseType cannot be constructed from JSON.',
+      );
     }
     return ResponseType._(value, element);
   }

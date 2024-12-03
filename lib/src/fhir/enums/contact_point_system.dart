@@ -18,7 +18,8 @@ class ContactPointSystem extends PrimitiveType<String> {
       return ContactPointSystem.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'ContactPointSystem cannot be constructed from JSON.');
+        'ContactPointSystem cannot be constructed from JSON.',
+      );
     }
     return ContactPointSystem._(value, element);
   }

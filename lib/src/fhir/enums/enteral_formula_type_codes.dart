@@ -18,7 +18,8 @@ class EnteralFormulaTypeCodes extends PrimitiveType<String> {
       return EnteralFormulaTypeCodes.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'EnteralFormulaTypeCodes cannot be constructed from JSON.');
+        'EnteralFormulaTypeCodes cannot be constructed from JSON.',
+      );
     }
     return EnteralFormulaTypeCodes._(value, element);
   }

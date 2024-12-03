@@ -18,7 +18,8 @@ class ClaimCareTeamRoleCodes extends PrimitiveType<String> {
       return ClaimCareTeamRoleCodes.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'ClaimCareTeamRoleCodes cannot be constructed from JSON.');
+        'ClaimCareTeamRoleCodes cannot be constructed from JSON.',
+      );
     }
     return ClaimCareTeamRoleCodes._(value, element);
   }

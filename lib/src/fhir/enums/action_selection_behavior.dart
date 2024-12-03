@@ -18,7 +18,8 @@ class ActionSelectionBehavior extends PrimitiveType<String> {
       return ActionSelectionBehavior.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'ActionSelectionBehavior cannot be constructed from JSON.');
+        'ActionSelectionBehavior cannot be constructed from JSON.',
+      );
     }
     return ActionSelectionBehavior._(value, element);
   }

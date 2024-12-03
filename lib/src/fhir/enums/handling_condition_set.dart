@@ -18,7 +18,8 @@ class HandlingConditionSet extends PrimitiveType<String> {
       return HandlingConditionSet.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'HandlingConditionSet cannot be constructed from JSON.');
+        'HandlingConditionSet cannot be constructed from JSON.',
+      );
     }
     return HandlingConditionSet._(value, element);
   }

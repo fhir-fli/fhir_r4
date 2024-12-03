@@ -18,7 +18,8 @@ class NutrientModifierCodes extends PrimitiveType<String> {
       return NutrientModifierCodes.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'NutrientModifierCodes cannot be constructed from JSON.');
+        'NutrientModifierCodes cannot be constructed from JSON.',
+      );
     }
     return NutrientModifierCodes._(value, element);
   }

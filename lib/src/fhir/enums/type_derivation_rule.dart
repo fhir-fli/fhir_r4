@@ -18,7 +18,8 @@ class TypeDerivationRule extends PrimitiveType<String> {
       return TypeDerivationRule.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'TypeDerivationRule cannot be constructed from JSON.');
+        'TypeDerivationRule cannot be constructed from JSON.',
+      );
     }
     return TypeDerivationRule._(value, element);
   }

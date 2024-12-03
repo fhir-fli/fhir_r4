@@ -18,7 +18,8 @@ class DocumentRelationshipType extends PrimitiveType<String> {
       return DocumentRelationshipType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'DocumentRelationshipType cannot be constructed from JSON.');
+        'DocumentRelationshipType cannot be constructed from JSON.',
+      );
     }
     return DocumentRelationshipType._(value, element);
   }

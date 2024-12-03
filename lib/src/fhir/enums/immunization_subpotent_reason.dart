@@ -18,7 +18,8 @@ class ImmunizationSubpotentReason extends PrimitiveType<String> {
       return ImmunizationSubpotentReason.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'ImmunizationSubpotentReason cannot be constructed from JSON.');
+        'ImmunizationSubpotentReason cannot be constructed from JSON.',
+      );
     }
     return ImmunizationSubpotentReason._(value, element);
   }

@@ -18,7 +18,8 @@ class PaymentStatusCodes extends PrimitiveType<String> {
       return PaymentStatusCodes.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'PaymentStatusCodes cannot be constructed from JSON.');
+        'PaymentStatusCodes cannot be constructed from JSON.',
+      );
     }
     return PaymentStatusCodes._(value, element);
   }

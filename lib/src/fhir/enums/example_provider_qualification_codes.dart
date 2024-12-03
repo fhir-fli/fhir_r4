@@ -18,7 +18,8 @@ class ExampleProviderQualificationCodes extends PrimitiveType<String> {
       return ExampleProviderQualificationCodes.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'ExampleProviderQualificationCodes cannot be constructed from JSON.');
+        'ExampleProviderQualificationCodes cannot be constructed from JSON.',
+      );
     }
     return ExampleProviderQualificationCodes._(value, element);
   }

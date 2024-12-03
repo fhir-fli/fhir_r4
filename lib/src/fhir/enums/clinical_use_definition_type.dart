@@ -18,7 +18,8 @@ class ClinicalUseDefinitionType extends PrimitiveType<String> {
       return ClinicalUseDefinitionType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'ClinicalUseDefinitionType cannot be constructed from JSON.');
+        'ClinicalUseDefinitionType cannot be constructed from JSON.',
+      );
     }
     return ClinicalUseDefinitionType._(value, element);
   }

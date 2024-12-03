@@ -17,7 +17,9 @@ class TitleType extends PrimitiveType<String> {
     if (value == null && element != null) {
       return TitleType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('TitleType cannot be constructed from JSON.');
+      throw ArgumentError(
+        'TitleType cannot be constructed from JSON.',
+      );
     }
     return TitleType._(value, element);
   }

@@ -18,7 +18,8 @@ class MeasureReportStatus extends PrimitiveType<String> {
       return MeasureReportStatus.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'MeasureReportStatus cannot be constructed from JSON.');
+        'MeasureReportStatus cannot be constructed from JSON.',
+      );
     }
     return MeasureReportStatus._(value, element);
   }

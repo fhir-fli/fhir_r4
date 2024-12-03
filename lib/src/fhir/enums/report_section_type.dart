@@ -17,7 +17,9 @@ class ReportSectionType extends PrimitiveType<String> {
     if (value == null && element != null) {
       return ReportSectionType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('ReportSectionType cannot be constructed from JSON.');
+      throw ArgumentError(
+        'ReportSectionType cannot be constructed from JSON.',
+      );
     }
     return ReportSectionType._(value, element);
   }

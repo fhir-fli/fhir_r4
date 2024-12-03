@@ -18,7 +18,8 @@ class SpecimenCollectionEnum extends PrimitiveType<String> {
       return SpecimenCollectionEnum.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'SpecimenCollectionEnum cannot be constructed from JSON.');
+        'SpecimenCollectionEnum cannot be constructed from JSON.',
+      );
     }
     return SpecimenCollectionEnum._(value, element);
   }

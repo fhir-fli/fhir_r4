@@ -18,7 +18,8 @@ class SystemRestfulInteraction extends PrimitiveType<String> {
       return SystemRestfulInteraction.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'SystemRestfulInteraction cannot be constructed from JSON.');
+        'SystemRestfulInteraction cannot be constructed from JSON.',
+      );
     }
     return SystemRestfulInteraction._(value, element);
   }

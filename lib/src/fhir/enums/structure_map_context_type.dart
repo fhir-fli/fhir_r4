@@ -18,7 +18,8 @@ class StructureMapContextType extends PrimitiveType<String> {
       return StructureMapContextType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'StructureMapContextType cannot be constructed from JSON.');
+        'StructureMapContextType cannot be constructed from JSON.',
+      );
     }
     return StructureMapContextType._(value, element);
   }

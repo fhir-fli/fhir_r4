@@ -17,7 +17,9 @@ class SPDXLicense extends PrimitiveType<String> {
     if (value == null && element != null) {
       return SPDXLicense.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('SPDXLicense cannot be constructed from JSON.');
+      throw ArgumentError(
+        'SPDXLicense cannot be constructed from JSON.',
+      );
     }
     return SPDXLicense._(value, element);
   }

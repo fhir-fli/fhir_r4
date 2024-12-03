@@ -18,7 +18,8 @@ class ReasonMedicationGivenCodes extends PrimitiveType<String> {
       return ReasonMedicationGivenCodes.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'ReasonMedicationGivenCodes cannot be constructed from JSON.');
+        'ReasonMedicationGivenCodes cannot be constructed from JSON.',
+      );
     }
     return ReasonMedicationGivenCodes._(value, element);
   }

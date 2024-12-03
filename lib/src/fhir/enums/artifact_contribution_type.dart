@@ -18,7 +18,8 @@ class ArtifactContributionType extends PrimitiveType<String> {
       return ArtifactContributionType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'ArtifactContributionType cannot be constructed from JSON.');
+        'ArtifactContributionType cannot be constructed from JSON.',
+      );
     }
     return ArtifactContributionType._(value, element);
   }

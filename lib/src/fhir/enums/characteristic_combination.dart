@@ -18,7 +18,8 @@ class CharacteristicCombination extends PrimitiveType<String> {
       return CharacteristicCombination.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'CharacteristicCombination cannot be constructed from JSON.');
+        'CharacteristicCombination cannot be constructed from JSON.',
+      );
     }
     return CharacteristicCombination._(value, element);
   }

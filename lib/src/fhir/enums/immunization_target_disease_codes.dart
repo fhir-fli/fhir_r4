@@ -18,7 +18,8 @@ class ImmunizationTargetDiseaseCodes extends PrimitiveType<String> {
       return ImmunizationTargetDiseaseCodes.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'ImmunizationTargetDiseaseCodes cannot be constructed from JSON.');
+        'ImmunizationTargetDiseaseCodes cannot be constructed from JSON.',
+      );
     }
     return ImmunizationTargetDiseaseCodes._(value, element);
   }

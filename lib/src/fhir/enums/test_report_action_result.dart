@@ -18,7 +18,8 @@ class TestReportActionResult extends PrimitiveType<String> {
       return TestReportActionResult.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'TestReportActionResult cannot be constructed from JSON.');
+        'TestReportActionResult cannot be constructed from JSON.',
+      );
     }
     return TestReportActionResult._(value, element);
   }

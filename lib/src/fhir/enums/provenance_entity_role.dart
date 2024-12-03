@@ -18,7 +18,8 @@ class ProvenanceEntityRole extends PrimitiveType<String> {
       return ProvenanceEntityRole.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'ProvenanceEntityRole cannot be constructed from JSON.');
+        'ProvenanceEntityRole cannot be constructed from JSON.',
+      );
     }
     return ProvenanceEntityRole._(value, element);
   }

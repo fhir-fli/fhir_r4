@@ -17,7 +17,9 @@ class ClaimTypeCodes extends PrimitiveType<String> {
     if (value == null && element != null) {
       return ClaimTypeCodes.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('ClaimTypeCodes cannot be constructed from JSON.');
+      throw ArgumentError(
+        'ClaimTypeCodes cannot be constructed from JSON.',
+      );
     }
     return ClaimTypeCodes._(value, element);
   }

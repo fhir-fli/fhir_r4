@@ -19,7 +19,8 @@ class AllergyIntoleranceClinicalStatusCodes extends PrimitiveType<String> {
           .withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'AllergyIntoleranceClinicalStatusCodes cannot be constructed from JSON.');
+        'AllergyIntoleranceClinicalStatusCodes cannot be constructed from JSON.',
+      );
     }
     return AllergyIntoleranceClinicalStatusCodes._(value, element);
   }

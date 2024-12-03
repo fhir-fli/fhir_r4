@@ -18,7 +18,8 @@ class CommunicationTopic extends PrimitiveType<String> {
       return CommunicationTopic.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'CommunicationTopic cannot be constructed from JSON.');
+        'CommunicationTopic cannot be constructed from JSON.',
+      );
     }
     return CommunicationTopic._(value, element);
   }

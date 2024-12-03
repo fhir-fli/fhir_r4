@@ -17,7 +17,9 @@ class TriggerType extends PrimitiveType<String> {
     if (value == null && element != null) {
       return TriggerType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('TriggerType cannot be constructed from JSON.');
+      throw ArgumentError(
+        'TriggerType cannot be constructed from JSON.',
+      );
     }
     return TriggerType._(value, element);
   }

@@ -17,7 +17,9 @@ class MediaModality extends PrimitiveType<String> {
     if (value == null && element != null) {
       return MediaModality.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('MediaModality cannot be constructed from JSON.');
+      throw ArgumentError(
+        'MediaModality cannot be constructed from JSON.',
+      );
     }
     return MediaModality._(value, element);
   }

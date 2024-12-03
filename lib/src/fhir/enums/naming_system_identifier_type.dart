@@ -18,7 +18,8 @@ class NamingSystemIdentifierType extends PrimitiveType<String> {
       return NamingSystemIdentifierType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'NamingSystemIdentifierType cannot be constructed from JSON.');
+        'NamingSystemIdentifierType cannot be constructed from JSON.',
+      );
     }
     return NamingSystemIdentifierType._(value, element);
   }

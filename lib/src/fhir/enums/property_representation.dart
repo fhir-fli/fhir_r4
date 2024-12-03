@@ -18,7 +18,8 @@ class PropertyRepresentation extends PrimitiveType<String> {
       return PropertyRepresentation.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'PropertyRepresentation cannot be constructed from JSON.');
+        'PropertyRepresentation cannot be constructed from JSON.',
+      );
     }
     return PropertyRepresentation._(value, element);
   }

@@ -17,7 +17,9 @@ class RiskProbability extends PrimitiveType<String> {
     if (value == null && element != null) {
       return RiskProbability.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('RiskProbability cannot be constructed from JSON.');
+      throw ArgumentError(
+        'RiskProbability cannot be constructed from JSON.',
+      );
     }
     return RiskProbability._(value, element);
   }

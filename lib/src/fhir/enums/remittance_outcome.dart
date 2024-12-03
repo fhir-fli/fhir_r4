@@ -17,7 +17,9 @@ class RemittanceOutcome extends PrimitiveType<String> {
     if (value == null && element != null) {
       return RemittanceOutcome.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('RemittanceOutcome cannot be constructed from JSON.');
+      throw ArgumentError(
+        'RemittanceOutcome cannot be constructed from JSON.',
+      );
     }
     return RemittanceOutcome._(value, element);
   }

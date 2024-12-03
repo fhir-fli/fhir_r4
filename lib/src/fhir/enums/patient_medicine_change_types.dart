@@ -18,7 +18,8 @@ class PatientMedicineChangeTypes extends PrimitiveType<String> {
       return PatientMedicineChangeTypes.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'PatientMedicineChangeTypes cannot be constructed from JSON.');
+        'PatientMedicineChangeTypes cannot be constructed from JSON.',
+      );
     }
     return PatientMedicineChangeTypes._(value, element);
   }

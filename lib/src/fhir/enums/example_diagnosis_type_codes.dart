@@ -18,7 +18,8 @@ class ExampleDiagnosisTypeCodes extends PrimitiveType<String> {
       return ExampleDiagnosisTypeCodes.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'ExampleDiagnosisTypeCodes cannot be constructed from JSON.');
+        'ExampleDiagnosisTypeCodes cannot be constructed from JSON.',
+      );
     }
     return ExampleDiagnosisTypeCodes._(value, element);
   }

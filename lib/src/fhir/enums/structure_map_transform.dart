@@ -18,7 +18,8 @@ class StructureMapTransform extends PrimitiveType<String> {
       return StructureMapTransform.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'StructureMapTransform cannot be constructed from JSON.');
+        'StructureMapTransform cannot be constructed from JSON.',
+      );
     }
     return StructureMapTransform._(value, element);
   }

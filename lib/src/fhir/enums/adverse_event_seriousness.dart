@@ -18,7 +18,8 @@ class AdverseEventSeriousness extends PrimitiveType<String> {
       return AdverseEventSeriousness.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'AdverseEventSeriousness cannot be constructed from JSON.');
+        'AdverseEventSeriousness cannot be constructed from JSON.',
+      );
     }
     return AdverseEventSeriousness._(value, element);
   }

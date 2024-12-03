@@ -18,7 +18,8 @@ class MedicationStatementStatusCodes extends PrimitiveType<String> {
       return MedicationStatementStatusCodes.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'MedicationStatementStatusCodes cannot be constructed from JSON.');
+        'MedicationStatementStatusCodes cannot be constructed from JSON.',
+      );
     }
     return MedicationStatementStatusCodes._(value, element);
   }

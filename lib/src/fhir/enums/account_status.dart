@@ -17,7 +17,9 @@ class AccountStatus extends PrimitiveType<String> {
     if (value == null && element != null) {
       return AccountStatus.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('AccountStatus cannot be constructed from JSON.');
+      throw ArgumentError(
+        'AccountStatus cannot be constructed from JSON.',
+      );
     }
     return AccountStatus._(value, element);
   }

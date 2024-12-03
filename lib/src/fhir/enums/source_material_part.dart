@@ -18,7 +18,8 @@ class SourceMaterialPart extends PrimitiveType<String> {
       return SourceMaterialPart.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'SourceMaterialPart cannot be constructed from JSON.');
+        'SourceMaterialPart cannot be constructed from JSON.',
+      );
     }
     return SourceMaterialPart._(value, element);
   }

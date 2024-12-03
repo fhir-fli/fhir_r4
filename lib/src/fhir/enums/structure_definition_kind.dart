@@ -18,7 +18,8 @@ class StructureDefinitionKind extends PrimitiveType<String> {
       return StructureDefinitionKind.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'StructureDefinitionKind cannot be constructed from JSON.');
+        'StructureDefinitionKind cannot be constructed from JSON.',
+      );
     }
     return StructureDefinitionKind._(value, element);
   }

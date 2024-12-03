@@ -18,7 +18,8 @@ class BenefitCategoryCodes extends PrimitiveType<String> {
       return BenefitCategoryCodes.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'BenefitCategoryCodes cannot be constructed from JSON.');
+        'BenefitCategoryCodes cannot be constructed from JSON.',
+      );
     }
     return BenefitCategoryCodes._(value, element);
   }

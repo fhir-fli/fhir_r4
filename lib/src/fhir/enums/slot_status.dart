@@ -17,7 +17,9 @@ class SlotStatus extends PrimitiveType<String> {
     if (value == null && element != null) {
       return SlotStatus.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('SlotStatus cannot be constructed from JSON.');
+      throw ArgumentError(
+        'SlotStatus cannot be constructed from JSON.',
+      );
     }
     return SlotStatus._(value, element);
   }

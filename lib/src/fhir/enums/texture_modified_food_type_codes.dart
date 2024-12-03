@@ -18,7 +18,8 @@ class TextureModifiedFoodTypeCodes extends PrimitiveType<String> {
       return TextureModifiedFoodTypeCodes.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'TextureModifiedFoodTypeCodes cannot be constructed from JSON.');
+        'TextureModifiedFoodTypeCodes cannot be constructed from JSON.',
+      );
     }
     return TextureModifiedFoodTypeCodes._(value, element);
   }

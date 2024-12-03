@@ -17,7 +17,9 @@ class OpticalActivity extends PrimitiveType<String> {
     if (value == null && element != null) {
       return OpticalActivity.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('OpticalActivity cannot be constructed from JSON.');
+      throw ArgumentError(
+        'OpticalActivity cannot be constructed from JSON.',
+      );
     }
     return OpticalActivity._(value, element);
   }

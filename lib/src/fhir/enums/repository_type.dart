@@ -17,7 +17,9 @@ class RepositoryType extends PrimitiveType<String> {
     if (value == null && element != null) {
       return RepositoryType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('RepositoryType cannot be constructed from JSON.');
+      throw ArgumentError(
+        'RepositoryType cannot be constructed from JSON.',
+      );
     }
     return RepositoryType._(value, element);
   }

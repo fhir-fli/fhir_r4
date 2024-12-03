@@ -17,7 +17,9 @@ class BundleType extends PrimitiveType<String> {
     if (value == null && element != null) {
       return BundleType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('BundleType cannot be constructed from JSON.');
+      throw ArgumentError(
+        'BundleType cannot be constructed from JSON.',
+      );
     }
     return BundleType._(value, element);
   }

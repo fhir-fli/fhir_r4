@@ -18,7 +18,8 @@ class ContributorSummaryType extends PrimitiveType<String> {
       return ContributorSummaryType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'ContributorSummaryType cannot be constructed from JSON.');
+        'ContributorSummaryType cannot be constructed from JSON.',
+      );
     }
     return ContributorSummaryType._(value, element);
   }

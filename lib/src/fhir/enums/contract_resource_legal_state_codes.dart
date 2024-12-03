@@ -18,7 +18,8 @@ class ContractResourceLegalStateCodes extends PrimitiveType<String> {
       return ContractResourceLegalStateCodes.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'ContractResourceLegalStateCodes cannot be constructed from JSON.');
+        'ContractResourceLegalStateCodes cannot be constructed from JSON.',
+      );
     }
     return ContractResourceLegalStateCodes._(value, element);
   }

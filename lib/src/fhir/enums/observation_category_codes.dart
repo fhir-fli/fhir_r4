@@ -18,7 +18,8 @@ class ObservationCategoryCodes extends PrimitiveType<String> {
       return ObservationCategoryCodes.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'ObservationCategoryCodes cannot be constructed from JSON.');
+        'ObservationCategoryCodes cannot be constructed from JSON.',
+      );
     }
     return ObservationCategoryCodes._(value, element);
   }

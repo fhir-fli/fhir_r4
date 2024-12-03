@@ -18,7 +18,8 @@ class ConditionProblemDiagnosisCodes extends PrimitiveType<String> {
       return ConditionProblemDiagnosisCodes.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'ConditionProblemDiagnosisCodes cannot be constructed from JSON.');
+        'ConditionProblemDiagnosisCodes cannot be constructed from JSON.',
+      );
     }
     return ConditionProblemDiagnosisCodes._(value, element);
   }

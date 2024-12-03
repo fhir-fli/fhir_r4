@@ -17,7 +17,9 @@ class IngredientRole extends PrimitiveType<String> {
     if (value == null && element != null) {
       return IngredientRole.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('IngredientRole cannot be constructed from JSON.');
+      throw ArgumentError(
+        'IngredientRole cannot be constructed from JSON.',
+      );
     }
     return IngredientRole._(value, element);
   }

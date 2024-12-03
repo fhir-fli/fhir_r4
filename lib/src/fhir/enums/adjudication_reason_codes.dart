@@ -18,7 +18,8 @@ class AdjudicationReasonCodes extends PrimitiveType<String> {
       return AdjudicationReasonCodes.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'AdjudicationReasonCodes cannot be constructed from JSON.');
+        'AdjudicationReasonCodes cannot be constructed from JSON.',
+      );
     }
     return AdjudicationReasonCodes._(value, element);
   }

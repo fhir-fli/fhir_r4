@@ -18,7 +18,8 @@ class ExplanationOfBenefitStatus extends PrimitiveType<String> {
       return ExplanationOfBenefitStatus.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'ExplanationOfBenefitStatus cannot be constructed from JSON.');
+        'ExplanationOfBenefitStatus cannot be constructed from JSON.',
+      );
     }
     return ExplanationOfBenefitStatus._(value, element);
   }

@@ -17,7 +17,9 @@ class GoalPriority extends PrimitiveType<String> {
     if (value == null && element != null) {
       return GoalPriority.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('GoalPriority cannot be constructed from JSON.');
+      throw ArgumentError(
+        'GoalPriority cannot be constructed from JSON.',
+      );
     }
     return GoalPriority._(value, element);
   }

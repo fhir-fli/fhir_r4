@@ -18,7 +18,8 @@ class ExampleScenarioActorType extends PrimitiveType<String> {
       return ExampleScenarioActorType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'ExampleScenarioActorType cannot be constructed from JSON.');
+        'ExampleScenarioActorType cannot be constructed from JSON.',
+      );
     }
     return ExampleScenarioActorType._(value, element);
   }

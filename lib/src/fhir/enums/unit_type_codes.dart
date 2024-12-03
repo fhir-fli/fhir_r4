@@ -17,7 +17,9 @@ class UnitTypeCodes extends PrimitiveType<String> {
     if (value == null && element != null) {
       return UnitTypeCodes.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('UnitTypeCodes cannot be constructed from JSON.');
+      throw ArgumentError(
+        'UnitTypeCodes cannot be constructed from JSON.',
+      );
     }
     return UnitTypeCodes._(value, element);
   }

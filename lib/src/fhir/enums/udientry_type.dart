@@ -17,7 +17,9 @@ class UDIEntryType extends PrimitiveType<String> {
     if (value == null && element != null) {
       return UDIEntryType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('UDIEntryType cannot be constructed from JSON.');
+      throw ArgumentError(
+        'UDIEntryType cannot be constructed from JSON.',
+      );
     }
     return UDIEntryType._(value, element);
   }

@@ -17,7 +17,9 @@ class SecurityRoleType extends PrimitiveType<String> {
     if (value == null && element != null) {
       return SecurityRoleType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('SecurityRoleType cannot be constructed from JSON.');
+      throw ArgumentError(
+        'SecurityRoleType cannot be constructed from JSON.',
+      );
     }
     return SecurityRoleType._(value, element);
   }

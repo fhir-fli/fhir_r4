@@ -18,7 +18,8 @@ class SpecialArrangements extends PrimitiveType<String> {
       return SpecialArrangements.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'SpecialArrangements cannot be constructed from JSON.');
+        'SpecialArrangements cannot be constructed from JSON.',
+      );
     }
     return SpecialArrangements._(value, element);
   }

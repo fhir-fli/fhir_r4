@@ -18,7 +18,8 @@ class EvidenceVariableRole extends PrimitiveType<String> {
       return EvidenceVariableRole.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'EvidenceVariableRole cannot be constructed from JSON.');
+        'EvidenceVariableRole cannot be constructed from JSON.',
+      );
     }
     return EvidenceVariableRole._(value, element);
   }

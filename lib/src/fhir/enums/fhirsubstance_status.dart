@@ -18,7 +18,8 @@ class FHIRSubstanceStatus extends PrimitiveType<String> {
       return FHIRSubstanceStatus.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'FHIRSubstanceStatus cannot be constructed from JSON.');
+        'FHIRSubstanceStatus cannot be constructed from JSON.',
+      );
     }
     return FHIRSubstanceStatus._(value, element);
   }

@@ -18,7 +18,8 @@ class StructureMapGroupTypeMode extends PrimitiveType<String> {
       return StructureMapGroupTypeMode.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'StructureMapGroupTypeMode cannot be constructed from JSON.');
+        'StructureMapGroupTypeMode cannot be constructed from JSON.',
+      );
     }
     return StructureMapGroupTypeMode._(value, element);
   }

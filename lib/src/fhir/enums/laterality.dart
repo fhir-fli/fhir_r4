@@ -17,7 +17,9 @@ class Laterality extends PrimitiveType<String> {
     if (value == null && element != null) {
       return Laterality.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('Laterality cannot be constructed from JSON.');
+      throw ArgumentError(
+        'Laterality cannot be constructed from JSON.',
+      );
     }
     return Laterality._(value, element);
   }

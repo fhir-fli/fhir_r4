@@ -17,7 +17,9 @@ class ConsentState extends PrimitiveType<String> {
     if (value == null && element != null) {
       return ConsentState.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('ConsentState cannot be constructed from JSON.');
+      throw ArgumentError(
+        'ConsentState cannot be constructed from JSON.',
+      );
     }
     return ConsentState._(value, element);
   }

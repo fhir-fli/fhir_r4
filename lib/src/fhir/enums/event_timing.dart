@@ -17,7 +17,9 @@ class EventTiming extends PrimitiveType<String> {
     if (value == null && element != null) {
       return EventTiming.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('EventTiming cannot be constructed from JSON.');
+      throw ArgumentError(
+        'EventTiming cannot be constructed from JSON.',
+      );
     }
     return EventTiming._(value, element);
   }

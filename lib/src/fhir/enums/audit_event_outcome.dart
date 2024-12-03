@@ -17,7 +17,9 @@ class AuditEventOutcome extends PrimitiveType<String> {
     if (value == null && element != null) {
       return AuditEventOutcome.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('AuditEventOutcome cannot be constructed from JSON.');
+      throw ArgumentError(
+        'AuditEventOutcome cannot be constructed from JSON.',
+      );
     }
     return AuditEventOutcome._(value, element);
   }

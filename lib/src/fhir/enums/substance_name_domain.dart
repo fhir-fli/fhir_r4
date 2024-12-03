@@ -18,7 +18,8 @@ class SubstanceNameDomain extends PrimitiveType<String> {
       return SubstanceNameDomain.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'SubstanceNameDomain cannot be constructed from JSON.');
+        'SubstanceNameDomain cannot be constructed from JSON.',
+      );
     }
     return SubstanceNameDomain._(value, element);
   }

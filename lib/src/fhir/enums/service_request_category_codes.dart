@@ -18,7 +18,8 @@ class ServiceRequestCategoryCodes extends PrimitiveType<String> {
       return ServiceRequestCategoryCodes.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'ServiceRequestCategoryCodes cannot be constructed from JSON.');
+        'ServiceRequestCategoryCodes cannot be constructed from JSON.',
+      );
     }
     return ServiceRequestCategoryCodes._(value, element);
   }

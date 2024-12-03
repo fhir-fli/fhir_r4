@@ -19,7 +19,8 @@ class ExampleRelatedClaimRelationshipCodes extends PrimitiveType<String> {
           .withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'ExampleRelatedClaimRelationshipCodes cannot be constructed from JSON.');
+        'ExampleRelatedClaimRelationshipCodes cannot be constructed from JSON.',
+      );
     }
     return ExampleRelatedClaimRelationshipCodes._(value, element);
   }

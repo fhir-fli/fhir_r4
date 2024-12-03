@@ -18,7 +18,8 @@ class FamilyHistoryAbsentReason extends PrimitiveType<String> {
       return FamilyHistoryAbsentReason.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'FamilyHistoryAbsentReason cannot be constructed from JSON.');
+        'FamilyHistoryAbsentReason cannot be constructed from JSON.',
+      );
     }
     return FamilyHistoryAbsentReason._(value, element);
   }

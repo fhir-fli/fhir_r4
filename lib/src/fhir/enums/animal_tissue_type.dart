@@ -17,7 +17,9 @@ class AnimalTissueType extends PrimitiveType<String> {
     if (value == null && element != null) {
       return AnimalTissueType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('AnimalTissueType cannot be constructed from JSON.');
+      throw ArgumentError(
+        'AnimalTissueType cannot be constructed from JSON.',
+      );
     }
     return AnimalTissueType._(value, element);
   }

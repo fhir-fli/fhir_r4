@@ -18,7 +18,8 @@ class SubstanceNameAuthority extends PrimitiveType<String> {
       return SubstanceNameAuthority.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'SubstanceNameAuthority cannot be constructed from JSON.');
+        'SubstanceNameAuthority cannot be constructed from JSON.',
+      );
     }
     return SubstanceNameAuthority._(value, element);
   }

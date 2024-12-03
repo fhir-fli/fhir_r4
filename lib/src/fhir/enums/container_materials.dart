@@ -18,7 +18,8 @@ class ContainerMaterials extends PrimitiveType<String> {
       return ContainerMaterials.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'ContainerMaterials cannot be constructed from JSON.');
+        'ContainerMaterials cannot be constructed from JSON.',
+      );
     }
     return ContainerMaterials._(value, element);
   }

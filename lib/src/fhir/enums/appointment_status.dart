@@ -17,7 +17,9 @@ class AppointmentStatus extends PrimitiveType<String> {
     if (value == null && element != null) {
       return AppointmentStatus.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('AppointmentStatus cannot be constructed from JSON.');
+      throw ArgumentError(
+        'AppointmentStatus cannot be constructed from JSON.',
+      );
     }
     return AppointmentStatus._(value, element);
   }

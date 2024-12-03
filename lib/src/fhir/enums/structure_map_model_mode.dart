@@ -18,7 +18,8 @@ class StructureMapModelMode extends PrimitiveType<String> {
       return StructureMapModelMode.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'StructureMapModelMode cannot be constructed from JSON.');
+        'StructureMapModelMode cannot be constructed from JSON.',
+      );
     }
     return StructureMapModelMode._(value, element);
   }

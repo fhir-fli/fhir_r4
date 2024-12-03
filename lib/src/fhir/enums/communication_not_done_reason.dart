@@ -18,7 +18,8 @@ class CommunicationNotDoneReason extends PrimitiveType<String> {
       return CommunicationNotDoneReason.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'CommunicationNotDoneReason cannot be constructed from JSON.');
+        'CommunicationNotDoneReason cannot be constructed from JSON.',
+      );
     }
     return CommunicationNotDoneReason._(value, element);
   }

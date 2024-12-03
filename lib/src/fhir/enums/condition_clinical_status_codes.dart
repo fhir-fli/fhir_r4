@@ -18,7 +18,8 @@ class ConditionClinicalStatusCodes extends PrimitiveType<String> {
       return ConditionClinicalStatusCodes.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'ConditionClinicalStatusCodes cannot be constructed from JSON.');
+        'ConditionClinicalStatusCodes cannot be constructed from JSON.',
+      );
     }
     return ConditionClinicalStatusCodes._(value, element);
   }

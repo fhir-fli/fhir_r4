@@ -18,7 +18,8 @@ class AdverseEventCausalityMethod extends PrimitiveType<String> {
       return AdverseEventCausalityMethod.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'AdverseEventCausalityMethod cannot be constructed from JSON.');
+        'AdverseEventCausalityMethod cannot be constructed from JSON.',
+      );
     }
     return AdverseEventCausalityMethod._(value, element);
   }

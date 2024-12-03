@@ -18,7 +18,8 @@ class MeasureImprovementNotation extends PrimitiveType<String> {
       return MeasureImprovementNotation.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'MeasureImprovementNotation cannot be constructed from JSON.');
+        'MeasureImprovementNotation cannot be constructed from JSON.',
+      );
     }
     return MeasureImprovementNotation._(value, element);
   }

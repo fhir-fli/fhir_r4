@@ -17,7 +17,9 @@ class ModifierTypeCodes extends PrimitiveType<String> {
     if (value == null && element != null) {
       return ModifierTypeCodes.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('ModifierTypeCodes cannot be constructed from JSON.');
+      throw ArgumentError(
+        'ModifierTypeCodes cannot be constructed from JSON.',
+      );
     }
     return ModifierTypeCodes._(value, element);
   }

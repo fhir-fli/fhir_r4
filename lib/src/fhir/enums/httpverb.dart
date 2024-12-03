@@ -17,7 +17,9 @@ class HTTPVerb extends PrimitiveType<String> {
     if (value == null && element != null) {
       return HTTPVerb.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('HTTPVerb cannot be constructed from JSON.');
+      throw ArgumentError(
+        'HTTPVerb cannot be constructed from JSON.',
+      );
     }
     return HTTPVerb._(value, element);
   }

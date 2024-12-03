@@ -18,7 +18,8 @@ class GuideParameterCode extends PrimitiveType<String> {
       return GuideParameterCode.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'GuideParameterCode cannot be constructed from JSON.');
+        'GuideParameterCode cannot be constructed from JSON.',
+      );
     }
     return GuideParameterCode._(value, element);
   }

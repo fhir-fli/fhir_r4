@@ -17,7 +17,9 @@ class PaymentTypeCodes extends PrimitiveType<String> {
     if (value == null && element != null) {
       return PaymentTypeCodes.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('PaymentTypeCodes cannot be constructed from JSON.');
+      throw ArgumentError(
+        'PaymentTypeCodes cannot be constructed from JSON.',
+      );
     }
     return PaymentTypeCodes._(value, element);
   }

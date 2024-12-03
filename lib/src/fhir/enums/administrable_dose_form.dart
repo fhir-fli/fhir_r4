@@ -18,7 +18,8 @@ class AdministrableDoseForm extends PrimitiveType<String> {
       return AdministrableDoseForm.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'AdministrableDoseForm cannot be constructed from JSON.');
+        'AdministrableDoseForm cannot be constructed from JSON.',
+      );
     }
     return AdministrableDoseForm._(value, element);
   }

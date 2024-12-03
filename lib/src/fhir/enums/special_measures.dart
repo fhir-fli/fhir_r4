@@ -17,7 +17,9 @@ class SpecialMeasures extends PrimitiveType<String> {
     if (value == null && element != null) {
       return SpecialMeasures.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('SpecialMeasures cannot be constructed from JSON.');
+      throw ArgumentError(
+        'SpecialMeasures cannot be constructed from JSON.',
+      );
     }
     return SpecialMeasures._(value, element);
   }

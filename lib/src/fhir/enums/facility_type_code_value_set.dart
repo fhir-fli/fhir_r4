@@ -18,7 +18,8 @@ class FacilityTypeCodeValueSet extends PrimitiveType<String> {
       return FacilityTypeCodeValueSet.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'FacilityTypeCodeValueSet cannot be constructed from JSON.');
+        'FacilityTypeCodeValueSet cannot be constructed from JSON.',
+      );
     }
     return FacilityTypeCodeValueSet._(value, element);
   }

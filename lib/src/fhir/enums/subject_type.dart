@@ -17,7 +17,9 @@ class SubjectType extends PrimitiveType<String> {
     if (value == null && element != null) {
       return SubjectType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('SubjectType cannot be constructed from JSON.');
+      throw ArgumentError(
+        'SubjectType cannot be constructed from JSON.',
+      );
     }
     return SubjectType._(value, element);
   }

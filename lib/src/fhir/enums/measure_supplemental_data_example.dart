@@ -18,7 +18,8 @@ class MeasureSupplementalDataExample extends PrimitiveType<String> {
       return MeasureSupplementalDataExample.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'MeasureSupplementalDataExample cannot be constructed from JSON.');
+        'MeasureSupplementalDataExample cannot be constructed from JSON.',
+      );
     }
     return MeasureSupplementalDataExample._(value, element);
   }

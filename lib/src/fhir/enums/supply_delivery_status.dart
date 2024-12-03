@@ -18,7 +18,8 @@ class SupplyDeliveryStatus extends PrimitiveType<String> {
       return SupplyDeliveryStatus.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'SupplyDeliveryStatus cannot be constructed from JSON.');
+        'SupplyDeliveryStatus cannot be constructed from JSON.',
+      );
     }
     return SupplyDeliveryStatus._(value, element);
   }

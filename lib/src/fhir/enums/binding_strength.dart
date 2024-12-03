@@ -17,7 +17,9 @@ class BindingStrength extends PrimitiveType<String> {
     if (value == null && element != null) {
       return BindingStrength.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('BindingStrength cannot be constructed from JSON.');
+      throw ArgumentError(
+        'BindingStrength cannot be constructed from JSON.',
+      );
     }
     return BindingStrength._(value, element);
   }

@@ -17,7 +17,9 @@ class ConsentScopeCodes extends PrimitiveType<String> {
     if (value == null && element != null) {
       return ConsentScopeCodes.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('ConsentScopeCodes cannot be constructed from JSON.');
+      throw ArgumentError(
+        'ConsentScopeCodes cannot be constructed from JSON.',
+      );
     }
     return ConsentScopeCodes._(value, element);
   }

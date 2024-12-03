@@ -18,7 +18,8 @@ class ConsentContentClass extends PrimitiveType<String> {
       return ConsentContentClass.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'ConsentContentClass cannot be constructed from JSON.');
+        'ConsentContentClass cannot be constructed from JSON.',
+      );
     }
     return ConsentContentClass._(value, element);
   }

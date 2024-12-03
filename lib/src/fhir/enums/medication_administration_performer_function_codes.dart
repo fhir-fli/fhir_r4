@@ -21,7 +21,8 @@ class MedicationAdministrationPerformerFunctionCodes
           .withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'MedicationAdministrationPerformerFunctionCodes cannot be constructed from JSON.');
+        'MedicationAdministrationPerformerFunctionCodes cannot be constructed from JSON.',
+      );
     }
     return MedicationAdministrationPerformerFunctionCodes._(value, element);
   }

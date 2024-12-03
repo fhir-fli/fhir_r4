@@ -17,7 +17,9 @@ class NamingSystemType extends PrimitiveType<String> {
     if (value == null && element != null) {
       return NamingSystemType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('NamingSystemType cannot be constructed from JSON.');
+      throw ArgumentError(
+        'NamingSystemType cannot be constructed from JSON.',
+      );
     }
     return NamingSystemType._(value, element);
   }

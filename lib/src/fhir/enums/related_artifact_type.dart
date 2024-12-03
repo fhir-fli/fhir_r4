@@ -18,7 +18,8 @@ class RelatedArtifactType extends PrimitiveType<String> {
       return RelatedArtifactType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'RelatedArtifactType cannot be constructed from JSON.');
+        'RelatedArtifactType cannot be constructed from JSON.',
+      );
     }
     return RelatedArtifactType._(value, element);
   }

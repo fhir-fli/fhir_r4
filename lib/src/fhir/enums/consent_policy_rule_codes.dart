@@ -18,7 +18,8 @@ class ConsentPolicyRuleCodes extends PrimitiveType<String> {
       return ConsentPolicyRuleCodes.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'ConsentPolicyRuleCodes cannot be constructed from JSON.');
+        'ConsentPolicyRuleCodes cannot be constructed from JSON.',
+      );
     }
     return ConsentPolicyRuleCodes._(value, element);
   }

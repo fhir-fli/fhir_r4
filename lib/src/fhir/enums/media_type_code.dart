@@ -17,7 +17,9 @@ class MediaTypeCode extends PrimitiveType<String> {
     if (value == null && element != null) {
       return MediaTypeCode.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('MediaTypeCode cannot be constructed from JSON.');
+      throw ArgumentError(
+        'MediaTypeCode cannot be constructed from JSON.',
+      );
     }
     return MediaTypeCode._(value, element);
   }

@@ -18,7 +18,8 @@ class NutritionProductStatus extends PrimitiveType<String> {
       return NutritionProductStatus.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'NutritionProductStatus cannot be constructed from JSON.');
+        'NutritionProductStatus cannot be constructed from JSON.',
+      );
     }
     return NutritionProductStatus._(value, element);
   }

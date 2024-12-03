@@ -17,7 +17,9 @@ class AuditEventSubType extends PrimitiveType<String> {
     if (value == null && element != null) {
       return AuditEventSubType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('AuditEventSubType cannot be constructed from JSON.');
+      throw ArgumentError(
+        'AuditEventSubType cannot be constructed from JSON.',
+      );
     }
     return AuditEventSubType._(value, element);
   }

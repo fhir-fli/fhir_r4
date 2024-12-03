@@ -17,7 +17,9 @@ class LinkageType extends PrimitiveType<String> {
     if (value == null && element != null) {
       return LinkageType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('LinkageType cannot be constructed from JSON.');
+      throw ArgumentError(
+        'LinkageType cannot be constructed from JSON.',
+      );
     }
     return LinkageType._(value, element);
   }

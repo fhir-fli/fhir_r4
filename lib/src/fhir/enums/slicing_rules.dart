@@ -17,7 +17,9 @@ class SlicingRules extends PrimitiveType<String> {
     if (value == null && element != null) {
       return SlicingRules.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('SlicingRules cannot be constructed from JSON.');
+      throw ArgumentError(
+        'SlicingRules cannot be constructed from JSON.',
+      );
     }
     return SlicingRules._(value, element);
   }

@@ -18,7 +18,8 @@ class ActionParticipantType extends PrimitiveType<String> {
       return ActionParticipantType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'ActionParticipantType cannot be constructed from JSON.');
+        'ActionParticipantType cannot be constructed from JSON.',
+      );
     }
     return ActionParticipantType._(value, element);
   }

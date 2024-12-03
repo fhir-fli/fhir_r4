@@ -17,7 +17,9 @@ class NoteType extends PrimitiveType<String> {
     if (value == null && element != null) {
       return NoteType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('NoteType cannot be constructed from JSON.');
+      throw ArgumentError(
+        'NoteType cannot be constructed from JSON.',
+      );
     }
     return NoteType._(value, element);
   }

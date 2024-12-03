@@ -20,7 +20,8 @@ class ImmunizationRecommendationTargetDiseaseCodes
           .withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'ImmunizationRecommendationTargetDiseaseCodes cannot be constructed from JSON.');
+        'ImmunizationRecommendationTargetDiseaseCodes cannot be constructed from JSON.',
+      );
     }
     return ImmunizationRecommendationTargetDiseaseCodes._(value, element);
   }

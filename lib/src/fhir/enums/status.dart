@@ -17,7 +17,9 @@ class Status extends PrimitiveType<String> {
     if (value == null && element != null) {
       return Status.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('Status cannot be constructed from JSON.');
+      throw ArgumentError(
+        'Status cannot be constructed from JSON.',
+      );
     }
     return Status._(value, element);
   }

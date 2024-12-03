@@ -17,7 +17,9 @@ class ActionCode extends PrimitiveType<String> {
     if (value == null && element != null) {
       return ActionCode.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('ActionCode cannot be constructed from JSON.');
+      throw ArgumentError(
+        'ActionCode cannot be constructed from JSON.',
+      );
     }
     return ActionCode._(value, element);
   }

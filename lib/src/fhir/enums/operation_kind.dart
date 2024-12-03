@@ -17,7 +17,9 @@ class OperationKind extends PrimitiveType<String> {
     if (value == null && element != null) {
       return OperationKind.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('OperationKind cannot be constructed from JSON.');
+      throw ArgumentError(
+        'OperationKind cannot be constructed from JSON.',
+      );
     }
     return OperationKind._(value, element);
   }

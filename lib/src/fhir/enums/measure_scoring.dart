@@ -17,7 +17,9 @@ class MeasureScoring extends PrimitiveType<String> {
     if (value == null && element != null) {
       return MeasureScoring.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('MeasureScoring cannot be constructed from JSON.');
+      throw ArgumentError(
+        'MeasureScoring cannot be constructed from JSON.',
+      );
     }
     return MeasureScoring._(value, element);
   }

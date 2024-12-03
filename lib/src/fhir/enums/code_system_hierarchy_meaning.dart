@@ -18,7 +18,8 @@ class CodeSystemHierarchyMeaning extends PrimitiveType<String> {
       return CodeSystemHierarchyMeaning.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'CodeSystemHierarchyMeaning cannot be constructed from JSON.');
+        'CodeSystemHierarchyMeaning cannot be constructed from JSON.',
+      );
     }
     return CodeSystemHierarchyMeaning._(value, element);
   }

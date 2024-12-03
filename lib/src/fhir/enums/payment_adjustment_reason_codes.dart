@@ -18,7 +18,8 @@ class PaymentAdjustmentReasonCodes extends PrimitiveType<String> {
       return PaymentAdjustmentReasonCodes.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'PaymentAdjustmentReasonCodes cannot be constructed from JSON.');
+        'PaymentAdjustmentReasonCodes cannot be constructed from JSON.',
+      );
     }
     return PaymentAdjustmentReasonCodes._(value, element);
   }

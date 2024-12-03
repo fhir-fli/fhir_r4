@@ -18,7 +18,8 @@ class DetectedIssueSeverity extends PrimitiveType<String> {
       return DetectedIssueSeverity.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'DetectedIssueSeverity cannot be constructed from JSON.');
+        'DetectedIssueSeverity cannot be constructed from JSON.',
+      );
     }
     return DetectedIssueSeverity._(value, element);
   }

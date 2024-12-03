@@ -18,7 +18,8 @@ class ActionRequiredBehavior extends PrimitiveType<String> {
       return ActionRequiredBehavior.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'ActionRequiredBehavior cannot be constructed from JSON.');
+        'ActionRequiredBehavior cannot be constructed from JSON.',
+      );
     }
     return ActionRequiredBehavior._(value, element);
   }

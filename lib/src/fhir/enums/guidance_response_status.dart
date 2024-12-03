@@ -18,7 +18,8 @@ class GuidanceResponseStatus extends PrimitiveType<String> {
       return GuidanceResponseStatus.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'GuidanceResponseStatus cannot be constructed from JSON.');
+        'GuidanceResponseStatus cannot be constructed from JSON.',
+      );
     }
     return GuidanceResponseStatus._(value, element);
   }

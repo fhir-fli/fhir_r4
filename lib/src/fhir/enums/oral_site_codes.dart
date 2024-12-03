@@ -17,7 +17,9 @@ class OralSiteCodes extends PrimitiveType<String> {
     if (value == null && element != null) {
       return OralSiteCodes.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('OralSiteCodes cannot be constructed from JSON.');
+      throw ArgumentError(
+        'OralSiteCodes cannot be constructed from JSON.',
+      );
     }
     return OralSiteCodes._(value, element);
   }

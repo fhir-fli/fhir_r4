@@ -18,7 +18,8 @@ class UnitOfPresentation extends PrimitiveType<String> {
       return UnitOfPresentation.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'UnitOfPresentation cannot be constructed from JSON.');
+        'UnitOfPresentation cannot be constructed from JSON.',
+      );
     }
     return UnitOfPresentation._(value, element);
   }

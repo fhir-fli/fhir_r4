@@ -18,7 +18,8 @@ class MedicationRequestCategoryCodes extends PrimitiveType<String> {
       return MedicationRequestCategoryCodes.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'MedicationRequestCategoryCodes cannot be constructed from JSON.');
+        'MedicationRequestCategoryCodes cannot be constructed from JSON.',
+      );
     }
     return MedicationRequestCategoryCodes._(value, element);
   }

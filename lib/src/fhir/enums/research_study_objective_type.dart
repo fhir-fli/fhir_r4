@@ -18,7 +18,8 @@ class ResearchStudyObjectiveType extends PrimitiveType<String> {
       return ResearchStudyObjectiveType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'ResearchStudyObjectiveType cannot be constructed from JSON.');
+        'ResearchStudyObjectiveType cannot be constructed from JSON.',
+      );
     }
     return ResearchStudyObjectiveType._(value, element);
   }

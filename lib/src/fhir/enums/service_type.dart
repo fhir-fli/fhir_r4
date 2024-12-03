@@ -17,7 +17,9 @@ class ServiceType extends PrimitiveType<String> {
     if (value == null && element != null) {
       return ServiceType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('ServiceType cannot be constructed from JSON.');
+      throw ArgumentError(
+        'ServiceType cannot be constructed from JSON.',
+      );
     }
     return ServiceType._(value, element);
   }

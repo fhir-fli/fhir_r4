@@ -17,7 +17,9 @@ class DataAbsentReason extends PrimitiveType<String> {
     if (value == null && element != null) {
       return DataAbsentReason.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('DataAbsentReason cannot be constructed from JSON.');
+      throw ArgumentError(
+        'DataAbsentReason cannot be constructed from JSON.',
+      );
     }
     return DataAbsentReason._(value, element);
   }

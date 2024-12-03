@@ -17,7 +17,9 @@ class SurfaceCodes extends PrimitiveType<String> {
     if (value == null && element != null) {
       return SurfaceCodes.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('SurfaceCodes cannot be constructed from JSON.');
+      throw ArgumentError(
+        'SurfaceCodes cannot be constructed from JSON.',
+      );
     }
     return SurfaceCodes._(value, element);
   }

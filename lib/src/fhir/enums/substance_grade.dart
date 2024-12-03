@@ -17,7 +17,9 @@ class SubstanceGrade extends PrimitiveType<String> {
     if (value == null && element != null) {
       return SubstanceGrade.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('SubstanceGrade cannot be constructed from JSON.');
+      throw ArgumentError(
+        'SubstanceGrade cannot be constructed from JSON.',
+      );
     }
     return SubstanceGrade._(value, element);
   }

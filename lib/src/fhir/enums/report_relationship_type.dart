@@ -18,7 +18,8 @@ class ReportRelationshipType extends PrimitiveType<String> {
       return ReportRelationshipType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'ReportRelationshipType cannot be constructed from JSON.');
+        'ReportRelationshipType cannot be constructed from JSON.',
+      );
     }
     return ReportRelationshipType._(value, element);
   }

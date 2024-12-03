@@ -18,7 +18,8 @@ class AdverseEventSeverity extends PrimitiveType<String> {
       return AdverseEventSeverity.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'AdverseEventSeverity cannot be constructed from JSON.');
+        'AdverseEventSeverity cannot be constructed from JSON.',
+      );
     }
     return AdverseEventSeverity._(value, element);
   }

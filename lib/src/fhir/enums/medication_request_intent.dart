@@ -18,7 +18,8 @@ class MedicationRequestIntent extends PrimitiveType<String> {
       return MedicationRequestIntent.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'MedicationRequestIntent cannot be constructed from JSON.');
+        'MedicationRequestIntent cannot be constructed from JSON.',
+      );
     }
     return MedicationRequestIntent._(value, element);
   }

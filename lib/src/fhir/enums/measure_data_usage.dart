@@ -17,7 +17,9 @@ class MeasureDataUsage extends PrimitiveType<String> {
     if (value == null && element != null) {
       return MeasureDataUsage.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('MeasureDataUsage cannot be constructed from JSON.');
+      throw ArgumentError(
+        'MeasureDataUsage cannot be constructed from JSON.',
+      );
     }
     return MeasureDataUsage._(value, element);
   }

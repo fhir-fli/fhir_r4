@@ -19,7 +19,8 @@ class ContractResourceDefinitionSubtypeCodes extends PrimitiveType<String> {
           .withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'ContractResourceDefinitionSubtypeCodes cannot be constructed from JSON.');
+        'ContractResourceDefinitionSubtypeCodes cannot be constructed from JSON.',
+      );
     }
     return ContractResourceDefinitionSubtypeCodes._(value, element);
   }

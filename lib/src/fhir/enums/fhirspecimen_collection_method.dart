@@ -18,7 +18,8 @@ class FHIRSpecimenCollectionMethod extends PrimitiveType<String> {
       return FHIRSpecimenCollectionMethod.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'FHIRSpecimenCollectionMethod cannot be constructed from JSON.');
+        'FHIRSpecimenCollectionMethod cannot be constructed from JSON.',
+      );
     }
     return FHIRSpecimenCollectionMethod._(value, element);
   }

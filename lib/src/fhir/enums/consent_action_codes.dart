@@ -18,7 +18,8 @@ class ConsentActionCodes extends PrimitiveType<String> {
       return ConsentActionCodes.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'ConsentActionCodes cannot be constructed from JSON.');
+        'ConsentActionCodes cannot be constructed from JSON.',
+      );
     }
     return ConsentActionCodes._(value, element);
   }

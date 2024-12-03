@@ -17,7 +17,9 @@ class ChromosomeHuman extends PrimitiveType<String> {
     if (value == null && element != null) {
       return ChromosomeHuman.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('ChromosomeHuman cannot be constructed from JSON.');
+      throw ArgumentError(
+        'ChromosomeHuman cannot be constructed from JSON.',
+      );
     }
     return ChromosomeHuman._(value, element);
   }

@@ -18,7 +18,8 @@ class ProductCrossReferenceType extends PrimitiveType<String> {
       return ProductCrossReferenceType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'ProductCrossReferenceType cannot be constructed from JSON.');
+        'ProductCrossReferenceType cannot be constructed from JSON.',
+      );
     }
     return ProductCrossReferenceType._(value, element);
   }

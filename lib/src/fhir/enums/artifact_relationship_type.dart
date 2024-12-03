@@ -18,7 +18,8 @@ class ArtifactRelationshipType extends PrimitiveType<String> {
       return ArtifactRelationshipType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'ArtifactRelationshipType cannot be constructed from JSON.');
+        'ArtifactRelationshipType cannot be constructed from JSON.',
+      );
     }
     return ArtifactRelationshipType._(value, element);
   }

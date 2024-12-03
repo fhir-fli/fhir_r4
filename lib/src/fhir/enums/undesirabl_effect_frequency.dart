@@ -18,7 +18,8 @@ class UndesirablEffectFrequency extends PrimitiveType<String> {
       return UndesirablEffectFrequency.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'UndesirablEffectFrequency cannot be constructed from JSON.');
+        'UndesirablEffectFrequency cannot be constructed from JSON.',
+      );
     }
     return UndesirablEffectFrequency._(value, element);
   }

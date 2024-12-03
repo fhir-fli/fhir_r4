@@ -18,7 +18,8 @@ class ConditionCategoryCodes extends PrimitiveType<String> {
       return ConditionCategoryCodes.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'ConditionCategoryCodes cannot be constructed from JSON.');
+        'ConditionCategoryCodes cannot be constructed from JSON.',
+      );
     }
     return ConditionCategoryCodes._(value, element);
   }

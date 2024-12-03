@@ -18,7 +18,8 @@ class DeviceUseStatementStatus extends PrimitiveType<String> {
       return DeviceUseStatementStatus.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'DeviceUseStatementStatus cannot be constructed from JSON.');
+        'DeviceUseStatementStatus cannot be constructed from JSON.',
+      );
     }
     return DeviceUseStatementStatus._(value, element);
   }

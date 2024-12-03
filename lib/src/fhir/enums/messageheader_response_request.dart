@@ -18,7 +18,8 @@ class MessageheaderResponseRequest extends PrimitiveType<String> {
       return MessageheaderResponseRequest.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'MessageheaderResponseRequest cannot be constructed from JSON.');
+        'MessageheaderResponseRequest cannot be constructed from JSON.',
+      );
     }
     return MessageheaderResponseRequest._(value, element);
   }

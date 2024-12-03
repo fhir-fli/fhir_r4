@@ -18,7 +18,8 @@ class ReferenceVersionRules extends PrimitiveType<String> {
       return ReferenceVersionRules.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'ReferenceVersionRules cannot be constructed from JSON.');
+        'ReferenceVersionRules cannot be constructed from JSON.',
+      );
     }
     return ReferenceVersionRules._(value, element);
   }

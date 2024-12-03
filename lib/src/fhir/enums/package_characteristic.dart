@@ -18,7 +18,8 @@ class PackageCharacteristic extends PrimitiveType<String> {
       return PackageCharacteristic.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'PackageCharacteristic cannot be constructed from JSON.');
+        'PackageCharacteristic cannot be constructed from JSON.',
+      );
     }
     return PackageCharacteristic._(value, element);
   }

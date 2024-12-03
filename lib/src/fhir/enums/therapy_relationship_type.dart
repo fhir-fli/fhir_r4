@@ -18,7 +18,8 @@ class TherapyRelationshipType extends PrimitiveType<String> {
       return TherapyRelationshipType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'TherapyRelationshipType cannot be constructed from JSON.');
+        'TherapyRelationshipType cannot be constructed from JSON.',
+      );
     }
     return TherapyRelationshipType._(value, element);
   }

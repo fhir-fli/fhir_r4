@@ -18,7 +18,8 @@ class CompositionAttestationMode extends PrimitiveType<String> {
       return CompositionAttestationMode.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'CompositionAttestationMode cannot be constructed from JSON.');
+        'CompositionAttestationMode cannot be constructed from JSON.',
+      );
     }
     return CompositionAttestationMode._(value, element);
   }

@@ -17,7 +17,9 @@ class LinkType extends PrimitiveType<String> {
     if (value == null && element != null) {
       return LinkType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('LinkType cannot be constructed from JSON.');
+      throw ArgumentError(
+        'LinkType cannot be constructed from JSON.',
+      );
     }
     return LinkType._(value, element);
   }

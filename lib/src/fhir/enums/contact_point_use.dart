@@ -17,7 +17,9 @@ class ContactPointUse extends PrimitiveType<String> {
     if (value == null && element != null) {
       return ContactPointUse.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('ContactPointUse cannot be constructed from JSON.');
+      throw ArgumentError(
+        'ContactPointUse cannot be constructed from JSON.',
+      );
     }
     return ContactPointUse._(value, element);
   }

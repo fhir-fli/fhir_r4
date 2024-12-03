@@ -18,7 +18,8 @@ class PlanDefinitionType extends PrimitiveType<String> {
       return PlanDefinitionType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'PlanDefinitionType cannot be constructed from JSON.');
+        'PlanDefinitionType cannot be constructed from JSON.',
+      );
     }
     return PlanDefinitionType._(value, element);
   }

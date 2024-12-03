@@ -18,7 +18,8 @@ class EvidenceClassifier extends PrimitiveType<String> {
       return EvidenceClassifier.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'EvidenceClassifier cannot be constructed from JSON.');
+        'EvidenceClassifier cannot be constructed from JSON.',
+      );
     }
     return EvidenceClassifier._(value, element);
   }

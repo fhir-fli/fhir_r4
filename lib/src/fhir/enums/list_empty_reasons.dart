@@ -17,7 +17,9 @@ class ListEmptyReasons extends PrimitiveType<String> {
     if (value == null && element != null) {
       return ListEmptyReasons.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('ListEmptyReasons cannot be constructed from JSON.');
+      throw ArgumentError(
+        'ListEmptyReasons cannot be constructed from JSON.',
+      );
     }
     return ListEmptyReasons._(value, element);
   }

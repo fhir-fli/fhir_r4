@@ -17,7 +17,9 @@ class SortDirection extends PrimitiveType<String> {
     if (value == null && element != null) {
       return SortDirection.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('SortDirection cannot be constructed from JSON.');
+      throw ArgumentError(
+        'SortDirection cannot be constructed from JSON.',
+      );
     }
     return SortDirection._(value, element);
   }

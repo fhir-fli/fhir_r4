@@ -18,7 +18,8 @@ class InteractionTrigger extends PrimitiveType<String> {
       return InteractionTrigger.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'InteractionTrigger cannot be constructed from JSON.');
+        'InteractionTrigger cannot be constructed from JSON.',
+      );
     }
     return InteractionTrigger._(value, element);
   }

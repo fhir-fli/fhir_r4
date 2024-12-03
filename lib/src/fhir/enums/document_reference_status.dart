@@ -18,7 +18,8 @@ class DocumentReferenceStatus extends PrimitiveType<String> {
       return DocumentReferenceStatus.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'DocumentReferenceStatus cannot be constructed from JSON.');
+        'DocumentReferenceStatus cannot be constructed from JSON.',
+      );
     }
     return DocumentReferenceStatus._(value, element);
   }

@@ -18,7 +18,8 @@ class QuestionnaireItemOperator extends PrimitiveType<String> {
       return QuestionnaireItemOperator.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'QuestionnaireItemOperator cannot be constructed from JSON.');
+        'QuestionnaireItemOperator cannot be constructed from JSON.',
+      );
     }
     return QuestionnaireItemOperator._(value, element);
   }

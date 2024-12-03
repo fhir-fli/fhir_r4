@@ -17,7 +17,9 @@ class InvestigationType extends PrimitiveType<String> {
     if (value == null && element != null) {
       return InvestigationType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('InvestigationType cannot be constructed from JSON.');
+      throw ArgumentError(
+        'InvestigationType cannot be constructed from JSON.',
+      );
     }
     return InvestigationType._(value, element);
   }

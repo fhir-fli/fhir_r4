@@ -18,7 +18,8 @@ class ImmunizationProgramEligibility extends PrimitiveType<String> {
       return ImmunizationProgramEligibility.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'ImmunizationProgramEligibility cannot be constructed from JSON.');
+        'ImmunizationProgramEligibility cannot be constructed from JSON.',
+      );
     }
     return ImmunizationProgramEligibility._(value, element);
   }

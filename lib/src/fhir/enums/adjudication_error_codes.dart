@@ -18,7 +18,8 @@ class AdjudicationErrorCodes extends PrimitiveType<String> {
       return AdjudicationErrorCodes.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'AdjudicationErrorCodes cannot be constructed from JSON.');
+        'AdjudicationErrorCodes cannot be constructed from JSON.',
+      );
     }
     return AdjudicationErrorCodes._(value, element);
   }

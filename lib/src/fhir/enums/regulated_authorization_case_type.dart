@@ -18,7 +18,8 @@ class RegulatedAuthorizationCaseType extends PrimitiveType<String> {
       return RegulatedAuthorizationCaseType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'RegulatedAuthorizationCaseType cannot be constructed from JSON.');
+        'RegulatedAuthorizationCaseType cannot be constructed from JSON.',
+      );
     }
     return RegulatedAuthorizationCaseType._(value, element);
   }

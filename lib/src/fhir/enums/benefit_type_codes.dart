@@ -17,7 +17,9 @@ class BenefitTypeCodes extends PrimitiveType<String> {
     if (value == null && element != null) {
       return BenefitTypeCodes.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('BenefitTypeCodes cannot be constructed from JSON.');
+      throw ArgumentError(
+        'BenefitTypeCodes cannot be constructed from JSON.',
+      );
     }
     return BenefitTypeCodes._(value, element);
   }

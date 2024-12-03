@@ -18,7 +18,8 @@ class MeasurePopulationType extends PrimitiveType<String> {
       return MeasurePopulationType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'MeasurePopulationType cannot be constructed from JSON.');
+        'MeasurePopulationType cannot be constructed from JSON.',
+      );
     }
     return MeasurePopulationType._(value, element);
   }

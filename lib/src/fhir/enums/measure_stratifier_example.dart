@@ -18,7 +18,8 @@ class MeasureStratifierExample extends PrimitiveType<String> {
       return MeasureStratifierExample.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'MeasureStratifierExample cannot be constructed from JSON.');
+        'MeasureStratifierExample cannot be constructed from JSON.',
+      );
     }
     return MeasureStratifierExample._(value, element);
   }

@@ -18,7 +18,8 @@ class DischargeDisposition extends PrimitiveType<String> {
       return DischargeDisposition.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'DischargeDisposition cannot be constructed from JSON.');
+        'DischargeDisposition cannot be constructed from JSON.',
+      );
     }
     return DischargeDisposition._(value, element);
   }

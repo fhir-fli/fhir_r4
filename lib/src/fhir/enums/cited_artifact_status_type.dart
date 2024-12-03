@@ -18,7 +18,8 @@ class CitedArtifactStatusType extends PrimitiveType<String> {
       return CitedArtifactStatusType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'CitedArtifactStatusType cannot be constructed from JSON.');
+        'CitedArtifactStatusType cannot be constructed from JSON.',
+      );
     }
     return CitedArtifactStatusType._(value, element);
   }

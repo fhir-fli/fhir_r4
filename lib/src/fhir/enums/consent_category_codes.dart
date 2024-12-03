@@ -18,7 +18,8 @@ class ConsentCategoryCodes extends PrimitiveType<String> {
       return ConsentCategoryCodes.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'ConsentCategoryCodes cannot be constructed from JSON.');
+        'ConsentCategoryCodes cannot be constructed from JSON.',
+      );
     }
     return ConsentCategoryCodes._(value, element);
   }

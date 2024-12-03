@@ -18,7 +18,8 @@ class ConceptMapGroupUnmappedMode extends PrimitiveType<String> {
       return ConceptMapGroupUnmappedMode.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'ConceptMapGroupUnmappedMode cannot be constructed from JSON.');
+        'ConceptMapGroupUnmappedMode cannot be constructed from JSON.',
+      );
     }
     return ConceptMapGroupUnmappedMode._(value, element);
   }

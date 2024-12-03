@@ -18,7 +18,8 @@ class ContributorSummarySource extends PrimitiveType<String> {
       return ContributorSummarySource.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'ContributorSummarySource cannot be constructed from JSON.');
+        'ContributorSummarySource cannot be constructed from JSON.',
+      );
     }
     return ContributorSummarySource._(value, element);
   }
