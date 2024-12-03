@@ -16,6 +16,9 @@ class RestfulCapabilityMode extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return RestfulCapabilityMode.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'RestfulCapabilityMode cannot be constructed from JSON.');
     }
     return RestfulCapabilityMode._(value, element);
   }

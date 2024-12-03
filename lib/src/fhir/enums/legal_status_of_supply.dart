@@ -16,6 +16,9 @@ class LegalStatusOfSupply extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return LegalStatusOfSupply.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'LegalStatusOfSupply cannot be constructed from JSON.');
     }
     return LegalStatusOfSupply._(value, element);
   }

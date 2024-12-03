@@ -16,6 +16,9 @@ class ContractResourcePartyRoleCodes extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return ContractResourcePartyRoleCodes.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'ContractResourcePartyRoleCodes cannot be constructed from JSON.');
     }
     return ContractResourcePartyRoleCodes._(value, element);
   }

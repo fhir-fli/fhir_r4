@@ -17,6 +17,9 @@ class MeasureReportStratifierValueExample extends PrimitiveType<String> {
     if (value == null && element != null) {
       return MeasureReportStratifierValueExample.elementOnly
           .withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'MeasureReportStratifierValueExample cannot be constructed from JSON.');
     }
     return MeasureReportStratifierValueExample._(value, element);
   }

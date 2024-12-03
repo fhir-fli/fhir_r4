@@ -16,6 +16,8 @@ class MessageTransport extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return MessageTransport.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError('MessageTransport cannot be constructed from JSON.');
     }
     return MessageTransport._(value, element);
   }

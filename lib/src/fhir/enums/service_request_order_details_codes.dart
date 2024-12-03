@@ -16,6 +16,9 @@ class ServiceRequestOrderDetailsCodes extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return ServiceRequestOrderDetailsCodes.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'ServiceRequestOrderDetailsCodes cannot be constructed from JSON.');
     }
     return ServiceRequestOrderDetailsCodes._(value, element);
   }

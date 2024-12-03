@@ -44,85 +44,71 @@ class TestReport extends DomainResource {
   factory TestReport.fromJson(
     Map<String, dynamic> json,
   ) {
-    T? parseField<T extends FhirBase>(
-      dynamic value,
-      dynamic valueElement,
-      T Function(Map<String, dynamic>) fromJson,
-    ) =>
-        (value != null || valueElement != null)
-            ? fromJson({
-                'value': value,
-                '_value': valueElement,
-              })
-            : null;
-    List<T>? parseList<T extends FhirBase>(
-      List<dynamic>? values,
-      List<dynamic>? valueElements,
-      T Function(Map<String, dynamic>) fromJson,
-    ) =>
-        values?.asMap().entries.map((entry) {
-          final index = entry.key;
-          final value = entry.value;
-          final valueElement =
-              valueElements != null && valueElements.length > index
-                  ? valueElements[index]
-                  : null;
-          return fromJson({
-            'value': value,
-            '_value': valueElement,
-          });
-        }).toList();
     return TestReport(
-      id: parseField<FhirString>(
-        json['id'],
-        json['_id'],
-        FhirString.fromJson,
-      ),
+      id: json['id'] != null
+          ? FhirString.fromJson({'value': json['id']})
+          : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
-      implicitRules: parseField<FhirUri>(
-        json['implicitRules'],
-        json['_implicitRules'],
-        FhirUri.fromJson,
-      ),
-      language: parseField<CommonLanguages>(
-        json['language'],
-        json['_language'],
-        CommonLanguages.fromJson,
-      ),
+      implicitRules:
+          (json['implicitRules'] != null || json['_implicitRules'] != null)
+              ? FhirUri.fromJson({
+                  'value': json['implicitRules'],
+                  '_value': json['_implicitRules'],
+                })
+              : null,
+      language: (json['language'] != null || json['_language'] != null)
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
+          : null,
       text: json['text'] != null
           ? Narrative.fromJson(
               json['text'] as Map<String, dynamic>,
             )
           : null,
-      contained: parseList<Resource>(
-        json['contained'] as List<dynamic>?,
-        json['_contained'] as List<dynamic>?,
-        Resource.fromJson,
-      ),
-      extension_: parseList<FhirExtension>(
-        json['extension'] as List<dynamic>?,
-        json['_extension'] as List<dynamic>?,
-        FhirExtension.fromJson,
-      ),
-      modifierExtension: parseList<FhirExtension>(
-        json['modifierExtension'] as List<dynamic>?,
-        json['_modifierExtension'] as List<dynamic>?,
-        FhirExtension.fromJson,
-      ),
+      contained: json['contained'] != null
+          ? (json['contained'] as List<dynamic>)
+              .map<Resource>(
+                (v) => Resource.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
       identifier: json['identifier'] != null
           ? Identifier.fromJson(
               json['identifier'] as Map<String, dynamic>,
             )
           : null,
-      name: parseField<FhirString>(
-        json['name'],
-        json['_name'],
-        FhirString.fromJson,
-      ),
+      name: (json['name'] != null || json['_name'] != null)
+          ? FhirString.fromJson({
+              'value': json['name'],
+              '_value': json['_name'],
+            })
+          : null,
       status: TestReportStatus.fromJson({
         'value': json['status'],
         '_value': json['_status'],
@@ -134,36 +120,47 @@ class TestReport extends DomainResource {
         'value': json['result'],
         '_value': json['_result'],
       }),
-      score: parseField<FhirDecimal>(
-        json['score'],
-        json['_score'],
-        FhirDecimal.fromJson,
-      ),
-      tester: parseField<FhirString>(
-        json['tester'],
-        json['_tester'],
-        FhirString.fromJson,
-      ),
-      issued: parseField<FhirDateTime>(
-        json['issued'],
-        json['_issued'],
-        FhirDateTime.fromJson,
-      ),
-      participant: parseList<TestReportParticipant>(
-        json['participant'] as List<dynamic>?,
-        json['_participant'] as List<dynamic>?,
-        TestReportParticipant.fromJson,
-      ),
+      score: (json['score'] != null || json['_score'] != null)
+          ? FhirDecimal.fromJson({
+              'value': json['score'],
+              '_value': json['_score'],
+            })
+          : null,
+      tester: (json['tester'] != null || json['_tester'] != null)
+          ? FhirString.fromJson({
+              'value': json['tester'],
+              '_value': json['_tester'],
+            })
+          : null,
+      issued: (json['issued'] != null || json['_issued'] != null)
+          ? FhirDateTime.fromJson({
+              'value': json['issued'],
+              '_value': json['_issued'],
+            })
+          : null,
+      participant: json['participant'] != null
+          ? (json['participant'] as List<dynamic>)
+              .map<TestReportParticipant>(
+                (v) => TestReportParticipant.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
       setup: json['setup'] != null
           ? TestReportSetup.fromJson(
               json['setup'] as Map<String, dynamic>,
             )
           : null,
-      test: parseList<TestReportTest>(
-        json['test'] as List<dynamic>?,
-        json['_test'] as List<dynamic>?,
-        TestReportTest.fromJson,
-      ),
+      test: json['test'] != null
+          ? (json['test'] as List<dynamic>)
+              .map<TestReportTest>(
+                (v) => TestReportTest.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
       teardown: json['teardown'] != null
           ? TestReportTeardown.fromJson(
               json['teardown'] as Map<String, dynamic>,
@@ -424,50 +421,28 @@ class TestReportParticipant extends BackboneElement {
   factory TestReportParticipant.fromJson(
     Map<String, dynamic> json,
   ) {
-    T? parseField<T extends FhirBase>(
-      dynamic value,
-      dynamic valueElement,
-      T Function(Map<String, dynamic>) fromJson,
-    ) =>
-        (value != null || valueElement != null)
-            ? fromJson({
-                'value': value,
-                '_value': valueElement,
-              })
-            : null;
-    List<T>? parseList<T extends FhirBase>(
-      List<dynamic>? values,
-      List<dynamic>? valueElements,
-      T Function(Map<String, dynamic>) fromJson,
-    ) =>
-        values?.asMap().entries.map((entry) {
-          final index = entry.key;
-          final value = entry.value;
-          final valueElement =
-              valueElements != null && valueElements.length > index
-                  ? valueElements[index]
-                  : null;
-          return fromJson({
-            'value': value,
-            '_value': valueElement,
-          });
-        }).toList();
     return TestReportParticipant(
-      id: parseField<FhirString>(
-        json['id'],
-        json['_id'],
-        FhirString.fromJson,
-      ),
-      extension_: parseList<FhirExtension>(
-        json['extension'] as List<dynamic>?,
-        json['_extension'] as List<dynamic>?,
-        FhirExtension.fromJson,
-      ),
-      modifierExtension: parseList<FhirExtension>(
-        json['modifierExtension'] as List<dynamic>?,
-        json['_modifierExtension'] as List<dynamic>?,
-        FhirExtension.fromJson,
-      ),
+      id: json['id'] != null
+          ? FhirString.fromJson({'value': json['id']})
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
       type: TestReportParticipantType.fromJson({
         'value': json['type'],
         '_value': json['_type'],
@@ -476,11 +451,12 @@ class TestReportParticipant extends BackboneElement {
         'value': json['uri'],
         '_value': json['_uri'],
       }),
-      display: parseField<FhirString>(
-        json['display'],
-        json['_display'],
-        FhirString.fromJson,
-      ),
+      display: (json['display'] != null || json['_display'] != null)
+          ? FhirString.fromJson({
+              'value': json['display'],
+              '_value': json['_display'],
+            })
+          : null,
     );
   }
 
@@ -623,55 +599,37 @@ class TestReportSetup extends BackboneElement {
   factory TestReportSetup.fromJson(
     Map<String, dynamic> json,
   ) {
-    T? parseField<T extends FhirBase>(
-      dynamic value,
-      dynamic valueElement,
-      T Function(Map<String, dynamic>) fromJson,
-    ) =>
-        (value != null || valueElement != null)
-            ? fromJson({
-                'value': value,
-                '_value': valueElement,
-              })
-            : null;
-    List<T>? parseList<T extends FhirBase>(
-      List<dynamic>? values,
-      List<dynamic>? valueElements,
-      T Function(Map<String, dynamic>) fromJson,
-    ) =>
-        values?.asMap().entries.map((entry) {
-          final index = entry.key;
-          final value = entry.value;
-          final valueElement =
-              valueElements != null && valueElements.length > index
-                  ? valueElements[index]
-                  : null;
-          return fromJson({
-            'value': value,
-            '_value': valueElement,
-          });
-        }).toList();
     return TestReportSetup(
-      id: parseField<FhirString>(
-        json['id'],
-        json['_id'],
-        FhirString.fromJson,
+      id: json['id'] != null
+          ? FhirString.fromJson({'value': json['id']})
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      action: ensureNonNullList(
+        (json['action'] as List<dynamic>)
+            .map<TestReportAction>(
+              (v) => TestReportAction.fromJson(
+                v as Map<String, dynamic>,
+              ),
+            )
+            .toList(),
       ),
-      extension_: parseList<FhirExtension>(
-        json['extension'] as List<dynamic>?,
-        json['_extension'] as List<dynamic>?,
-        FhirExtension.fromJson,
-      ),
-      modifierExtension: parseList<FhirExtension>(
-        json['modifierExtension'] as List<dynamic>?,
-        json['_modifierExtension'] as List<dynamic>?,
-        FhirExtension.fromJson,
-      ),
-      action: parseList<TestReportAction>(
-        json['action'] as List<dynamic>?,
-        json['_action'] as List<dynamic>?,
-        TestReportAction.fromJson,
-      )!,
     );
   }
 
@@ -803,50 +761,28 @@ class TestReportAction extends BackboneElement {
   factory TestReportAction.fromJson(
     Map<String, dynamic> json,
   ) {
-    T? parseField<T extends FhirBase>(
-      dynamic value,
-      dynamic valueElement,
-      T Function(Map<String, dynamic>) fromJson,
-    ) =>
-        (value != null || valueElement != null)
-            ? fromJson({
-                'value': value,
-                '_value': valueElement,
-              })
-            : null;
-    List<T>? parseList<T extends FhirBase>(
-      List<dynamic>? values,
-      List<dynamic>? valueElements,
-      T Function(Map<String, dynamic>) fromJson,
-    ) =>
-        values?.asMap().entries.map((entry) {
-          final index = entry.key;
-          final value = entry.value;
-          final valueElement =
-              valueElements != null && valueElements.length > index
-                  ? valueElements[index]
-                  : null;
-          return fromJson({
-            'value': value,
-            '_value': valueElement,
-          });
-        }).toList();
     return TestReportAction(
-      id: parseField<FhirString>(
-        json['id'],
-        json['_id'],
-        FhirString.fromJson,
-      ),
-      extension_: parseList<FhirExtension>(
-        json['extension'] as List<dynamic>?,
-        json['_extension'] as List<dynamic>?,
-        FhirExtension.fromJson,
-      ),
-      modifierExtension: parseList<FhirExtension>(
-        json['modifierExtension'] as List<dynamic>?,
-        json['_modifierExtension'] as List<dynamic>?,
-        FhirExtension.fromJson,
-      ),
+      id: json['id'] != null
+          ? FhirString.fromJson({'value': json['id']})
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
       operation: json['operation'] != null
           ? TestReportOperation.fromJson(
               json['operation'] as Map<String, dynamic>,
@@ -999,64 +935,44 @@ class TestReportOperation extends BackboneElement {
   factory TestReportOperation.fromJson(
     Map<String, dynamic> json,
   ) {
-    T? parseField<T extends FhirBase>(
-      dynamic value,
-      dynamic valueElement,
-      T Function(Map<String, dynamic>) fromJson,
-    ) =>
-        (value != null || valueElement != null)
-            ? fromJson({
-                'value': value,
-                '_value': valueElement,
-              })
-            : null;
-    List<T>? parseList<T extends FhirBase>(
-      List<dynamic>? values,
-      List<dynamic>? valueElements,
-      T Function(Map<String, dynamic>) fromJson,
-    ) =>
-        values?.asMap().entries.map((entry) {
-          final index = entry.key;
-          final value = entry.value;
-          final valueElement =
-              valueElements != null && valueElements.length > index
-                  ? valueElements[index]
-                  : null;
-          return fromJson({
-            'value': value,
-            '_value': valueElement,
-          });
-        }).toList();
     return TestReportOperation(
-      id: parseField<FhirString>(
-        json['id'],
-        json['_id'],
-        FhirString.fromJson,
-      ),
-      extension_: parseList<FhirExtension>(
-        json['extension'] as List<dynamic>?,
-        json['_extension'] as List<dynamic>?,
-        FhirExtension.fromJson,
-      ),
-      modifierExtension: parseList<FhirExtension>(
-        json['modifierExtension'] as List<dynamic>?,
-        json['_modifierExtension'] as List<dynamic>?,
-        FhirExtension.fromJson,
-      ),
+      id: json['id'] != null
+          ? FhirString.fromJson({'value': json['id']})
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
       result: TestReportActionResult.fromJson({
         'value': json['result'],
         '_value': json['_result'],
       }),
-      message: parseField<FhirMarkdown>(
-        json['message'],
-        json['_message'],
-        FhirMarkdown.fromJson,
-      ),
-      detail: parseField<FhirUri>(
-        json['detail'],
-        json['_detail'],
-        FhirUri.fromJson,
-      ),
+      message: (json['message'] != null || json['_message'] != null)
+          ? FhirMarkdown.fromJson({
+              'value': json['message'],
+              '_value': json['_message'],
+            })
+          : null,
+      detail: (json['detail'] != null || json['_detail'] != null)
+          ? FhirUri.fromJson({
+              'value': json['detail'],
+              '_value': json['_detail'],
+            })
+          : null,
     );
   }
 
@@ -1200,64 +1116,44 @@ class TestReportAssert extends BackboneElement {
   factory TestReportAssert.fromJson(
     Map<String, dynamic> json,
   ) {
-    T? parseField<T extends FhirBase>(
-      dynamic value,
-      dynamic valueElement,
-      T Function(Map<String, dynamic>) fromJson,
-    ) =>
-        (value != null || valueElement != null)
-            ? fromJson({
-                'value': value,
-                '_value': valueElement,
-              })
-            : null;
-    List<T>? parseList<T extends FhirBase>(
-      List<dynamic>? values,
-      List<dynamic>? valueElements,
-      T Function(Map<String, dynamic>) fromJson,
-    ) =>
-        values?.asMap().entries.map((entry) {
-          final index = entry.key;
-          final value = entry.value;
-          final valueElement =
-              valueElements != null && valueElements.length > index
-                  ? valueElements[index]
-                  : null;
-          return fromJson({
-            'value': value,
-            '_value': valueElement,
-          });
-        }).toList();
     return TestReportAssert(
-      id: parseField<FhirString>(
-        json['id'],
-        json['_id'],
-        FhirString.fromJson,
-      ),
-      extension_: parseList<FhirExtension>(
-        json['extension'] as List<dynamic>?,
-        json['_extension'] as List<dynamic>?,
-        FhirExtension.fromJson,
-      ),
-      modifierExtension: parseList<FhirExtension>(
-        json['modifierExtension'] as List<dynamic>?,
-        json['_modifierExtension'] as List<dynamic>?,
-        FhirExtension.fromJson,
-      ),
+      id: json['id'] != null
+          ? FhirString.fromJson({'value': json['id']})
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
       result: TestReportActionResult.fromJson({
         'value': json['result'],
         '_value': json['_result'],
       }),
-      message: parseField<FhirMarkdown>(
-        json['message'],
-        json['_message'],
-        FhirMarkdown.fromJson,
-      ),
-      detail: parseField<FhirString>(
-        json['detail'],
-        json['_detail'],
-        FhirString.fromJson,
-      ),
+      message: (json['message'] != null || json['_message'] != null)
+          ? FhirMarkdown.fromJson({
+              'value': json['message'],
+              '_value': json['_message'],
+            })
+          : null,
+      detail: (json['detail'] != null || json['_detail'] != null)
+          ? FhirString.fromJson({
+              'value': json['detail'],
+              '_value': json['_detail'],
+            })
+          : null,
     );
   }
 
@@ -1401,65 +1297,49 @@ class TestReportTest extends BackboneElement {
   factory TestReportTest.fromJson(
     Map<String, dynamic> json,
   ) {
-    T? parseField<T extends FhirBase>(
-      dynamic value,
-      dynamic valueElement,
-      T Function(Map<String, dynamic>) fromJson,
-    ) =>
-        (value != null || valueElement != null)
-            ? fromJson({
-                'value': value,
-                '_value': valueElement,
-              })
-            : null;
-    List<T>? parseList<T extends FhirBase>(
-      List<dynamic>? values,
-      List<dynamic>? valueElements,
-      T Function(Map<String, dynamic>) fromJson,
-    ) =>
-        values?.asMap().entries.map((entry) {
-          final index = entry.key;
-          final value = entry.value;
-          final valueElement =
-              valueElements != null && valueElements.length > index
-                  ? valueElements[index]
-                  : null;
-          return fromJson({
-            'value': value,
-            '_value': valueElement,
-          });
-        }).toList();
     return TestReportTest(
-      id: parseField<FhirString>(
-        json['id'],
-        json['_id'],
-        FhirString.fromJson,
+      id: json['id'] != null
+          ? FhirString.fromJson({'value': json['id']})
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      name: (json['name'] != null || json['_name'] != null)
+          ? FhirString.fromJson({
+              'value': json['name'],
+              '_value': json['_name'],
+            })
+          : null,
+      description: (json['description'] != null || json['_description'] != null)
+          ? FhirString.fromJson({
+              'value': json['description'],
+              '_value': json['_description'],
+            })
+          : null,
+      action: ensureNonNullList(
+        (json['action'] as List<dynamic>)
+            .map<TestReportAction>(
+              (v) => TestReportAction.fromJson(
+                v as Map<String, dynamic>,
+              ),
+            )
+            .toList(),
       ),
-      extension_: parseList<FhirExtension>(
-        json['extension'] as List<dynamic>?,
-        json['_extension'] as List<dynamic>?,
-        FhirExtension.fromJson,
-      ),
-      modifierExtension: parseList<FhirExtension>(
-        json['modifierExtension'] as List<dynamic>?,
-        json['_modifierExtension'] as List<dynamic>?,
-        FhirExtension.fromJson,
-      ),
-      name: parseField<FhirString>(
-        json['name'],
-        json['_name'],
-        FhirString.fromJson,
-      ),
-      description: parseField<FhirString>(
-        json['description'],
-        json['_description'],
-        FhirString.fromJson,
-      ),
-      action: parseList<TestReportAction>(
-        json['action'] as List<dynamic>?,
-        json['_action'] as List<dynamic>?,
-        TestReportAction.fromJson,
-      )!,
     );
   }
 
@@ -1607,50 +1487,28 @@ class TestReportAction1 extends BackboneElement {
   factory TestReportAction1.fromJson(
     Map<String, dynamic> json,
   ) {
-    T? parseField<T extends FhirBase>(
-      dynamic value,
-      dynamic valueElement,
-      T Function(Map<String, dynamic>) fromJson,
-    ) =>
-        (value != null || valueElement != null)
-            ? fromJson({
-                'value': value,
-                '_value': valueElement,
-              })
-            : null;
-    List<T>? parseList<T extends FhirBase>(
-      List<dynamic>? values,
-      List<dynamic>? valueElements,
-      T Function(Map<String, dynamic>) fromJson,
-    ) =>
-        values?.asMap().entries.map((entry) {
-          final index = entry.key;
-          final value = entry.value;
-          final valueElement =
-              valueElements != null && valueElements.length > index
-                  ? valueElements[index]
-                  : null;
-          return fromJson({
-            'value': value,
-            '_value': valueElement,
-          });
-        }).toList();
     return TestReportAction1(
-      id: parseField<FhirString>(
-        json['id'],
-        json['_id'],
-        FhirString.fromJson,
-      ),
-      extension_: parseList<FhirExtension>(
-        json['extension'] as List<dynamic>?,
-        json['_extension'] as List<dynamic>?,
-        FhirExtension.fromJson,
-      ),
-      modifierExtension: parseList<FhirExtension>(
-        json['modifierExtension'] as List<dynamic>?,
-        json['_modifierExtension'] as List<dynamic>?,
-        FhirExtension.fromJson,
-      ),
+      id: json['id'] != null
+          ? FhirString.fromJson({'value': json['id']})
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
       operation: json['operation'] != null
           ? TestReportOperation.fromJson(
               json['operation'] as Map<String, dynamic>,
@@ -1802,55 +1660,37 @@ class TestReportTeardown extends BackboneElement {
   factory TestReportTeardown.fromJson(
     Map<String, dynamic> json,
   ) {
-    T? parseField<T extends FhirBase>(
-      dynamic value,
-      dynamic valueElement,
-      T Function(Map<String, dynamic>) fromJson,
-    ) =>
-        (value != null || valueElement != null)
-            ? fromJson({
-                'value': value,
-                '_value': valueElement,
-              })
-            : null;
-    List<T>? parseList<T extends FhirBase>(
-      List<dynamic>? values,
-      List<dynamic>? valueElements,
-      T Function(Map<String, dynamic>) fromJson,
-    ) =>
-        values?.asMap().entries.map((entry) {
-          final index = entry.key;
-          final value = entry.value;
-          final valueElement =
-              valueElements != null && valueElements.length > index
-                  ? valueElements[index]
-                  : null;
-          return fromJson({
-            'value': value,
-            '_value': valueElement,
-          });
-        }).toList();
     return TestReportTeardown(
-      id: parseField<FhirString>(
-        json['id'],
-        json['_id'],
-        FhirString.fromJson,
+      id: json['id'] != null
+          ? FhirString.fromJson({'value': json['id']})
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      action: ensureNonNullList(
+        (json['action'] as List<dynamic>)
+            .map<TestReportAction>(
+              (v) => TestReportAction.fromJson(
+                v as Map<String, dynamic>,
+              ),
+            )
+            .toList(),
       ),
-      extension_: parseList<FhirExtension>(
-        json['extension'] as List<dynamic>?,
-        json['_extension'] as List<dynamic>?,
-        FhirExtension.fromJson,
-      ),
-      modifierExtension: parseList<FhirExtension>(
-        json['modifierExtension'] as List<dynamic>?,
-        json['_modifierExtension'] as List<dynamic>?,
-        FhirExtension.fromJson,
-      ),
-      action: parseList<TestReportAction>(
-        json['action'] as List<dynamic>?,
-        json['_action'] as List<dynamic>?,
-        TestReportAction.fromJson,
-      )!,
     );
   }
 
@@ -1981,50 +1821,28 @@ class TestReportAction2 extends BackboneElement {
   factory TestReportAction2.fromJson(
     Map<String, dynamic> json,
   ) {
-    T? parseField<T extends FhirBase>(
-      dynamic value,
-      dynamic valueElement,
-      T Function(Map<String, dynamic>) fromJson,
-    ) =>
-        (value != null || valueElement != null)
-            ? fromJson({
-                'value': value,
-                '_value': valueElement,
-              })
-            : null;
-    List<T>? parseList<T extends FhirBase>(
-      List<dynamic>? values,
-      List<dynamic>? valueElements,
-      T Function(Map<String, dynamic>) fromJson,
-    ) =>
-        values?.asMap().entries.map((entry) {
-          final index = entry.key;
-          final value = entry.value;
-          final valueElement =
-              valueElements != null && valueElements.length > index
-                  ? valueElements[index]
-                  : null;
-          return fromJson({
-            'value': value,
-            '_value': valueElement,
-          });
-        }).toList();
     return TestReportAction2(
-      id: parseField<FhirString>(
-        json['id'],
-        json['_id'],
-        FhirString.fromJson,
-      ),
-      extension_: parseList<FhirExtension>(
-        json['extension'] as List<dynamic>?,
-        json['_extension'] as List<dynamic>?,
-        FhirExtension.fromJson,
-      ),
-      modifierExtension: parseList<FhirExtension>(
-        json['modifierExtension'] as List<dynamic>?,
-        json['_modifierExtension'] as List<dynamic>?,
-        FhirExtension.fromJson,
-      ),
+      id: json['id'] != null
+          ? FhirString.fromJson({'value': json['id']})
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
       operation: TestReportOperation.fromJson(
         json['operation'] as Map<String, dynamic>,
       ),

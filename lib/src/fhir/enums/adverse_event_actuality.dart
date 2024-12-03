@@ -16,6 +16,9 @@ class AdverseEventActuality extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return AdverseEventActuality.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'AdverseEventActuality cannot be constructed from JSON.');
     }
     return AdverseEventActuality._(value, element);
   }

@@ -16,6 +16,9 @@ class ResearchElementType extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return ResearchElementType.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'ResearchElementType cannot be constructed from JSON.');
     }
     return ResearchElementType._(value, element);
   }

@@ -16,6 +16,9 @@ class SubstanceNameDomain extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return SubstanceNameDomain.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'SubstanceNameDomain cannot be constructed from JSON.');
     }
     return SubstanceNameDomain._(value, element);
   }

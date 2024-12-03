@@ -16,6 +16,9 @@ class CarePlanActivityKind extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return CarePlanActivityKind.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'CarePlanActivityKind cannot be constructed from JSON.');
     }
     return CarePlanActivityKind._(value, element);
   }

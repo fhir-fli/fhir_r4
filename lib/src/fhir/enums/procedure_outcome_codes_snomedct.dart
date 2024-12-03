@@ -16,6 +16,9 @@ class ProcedureOutcomeCodesSNOMEDCT extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return ProcedureOutcomeCodesSNOMEDCT.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'ProcedureOutcomeCodesSNOMEDCT cannot be constructed from JSON.');
     }
     return ProcedureOutcomeCodesSNOMEDCT._(value, element);
   }

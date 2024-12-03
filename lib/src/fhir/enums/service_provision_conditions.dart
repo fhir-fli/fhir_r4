@@ -16,6 +16,9 @@ class ServiceProvisionConditions extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return ServiceProvisionConditions.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'ServiceProvisionConditions cannot be constructed from JSON.');
     }
     return ServiceProvisionConditions._(value, element);
   }

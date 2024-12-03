@@ -16,6 +16,9 @@ class SubscriptionSearchModifier extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return SubscriptionSearchModifier.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'SubscriptionSearchModifier cannot be constructed from JSON.');
     }
     return SubscriptionSearchModifier._(value, element);
   }

@@ -16,6 +16,9 @@ class MessageSignificanceCategory extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return MessageSignificanceCategory.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'MessageSignificanceCategory cannot be constructed from JSON.');
     }
     return MessageSignificanceCategory._(value, element);
   }

@@ -28,60 +28,37 @@ class Annotation extends DataType {
   factory Annotation.fromJson(
     Map<String, dynamic> json,
   ) {
-    T? parseField<T extends FhirBase>(
-      dynamic value,
-      dynamic valueElement,
-      T Function(Map<String, dynamic>) fromJson,
-    ) =>
-        (value != null || valueElement != null)
-            ? fromJson({
-                'value': value,
-                '_value': valueElement,
-              })
-            : null;
-    List<T>? parseList<T extends FhirBase>(
-      List<dynamic>? values,
-      List<dynamic>? valueElements,
-      T Function(Map<String, dynamic>) fromJson,
-    ) =>
-        values?.asMap().entries.map((entry) {
-          final index = entry.key;
-          final value = entry.value;
-          final valueElement =
-              valueElements != null && valueElements.length > index
-                  ? valueElements[index]
-                  : null;
-          return fromJson({
-            'value': value,
-            '_value': valueElement,
-          });
-        }).toList();
     return Annotation(
-      id: parseField<FhirString>(
-        json['id'],
-        json['_id'],
-        FhirString.fromJson,
-      ),
-      extension_: parseList<FhirExtension>(
-        json['extension'] as List<dynamic>?,
-        json['_extension'] as List<dynamic>?,
-        FhirExtension.fromJson,
-      ),
+      id: json['id'] != null
+          ? FhirString.fromJson({'value': json['id']})
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
       authorReference: json['authorReference'] != null
           ? Reference.fromJson(
               json['authorReference'] as Map<String, dynamic>,
             )
           : null,
-      authorString: parseField<FhirString>(
-        json['authorString'],
-        json['_authorString'],
-        FhirString.fromJson,
-      ),
-      time: parseField<FhirDateTime>(
-        json['time'],
-        json['_time'],
-        FhirDateTime.fromJson,
-      ),
+      authorString:
+          (json['authorString'] != null || json['_authorString'] != null)
+              ? FhirString.fromJson({
+                  'value': json['authorString'],
+                  '_value': json['_authorString'],
+                })
+              : null,
+      time: (json['time'] != null || json['_time'] != null)
+          ? FhirDateTime.fromJson({
+              'value': json['time'],
+              '_value': json['_time'],
+            })
+          : null,
       text: FhirMarkdown.fromJson({
         'value': json['text'],
         '_value': json['_text'],

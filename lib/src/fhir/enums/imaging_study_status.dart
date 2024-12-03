@@ -16,6 +16,9 @@ class ImagingStudyStatus extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return ImagingStudyStatus.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'ImagingStudyStatus cannot be constructed from JSON.');
     }
     return ImagingStudyStatus._(value, element);
   }

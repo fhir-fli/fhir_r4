@@ -50,165 +50,197 @@ class Patient extends DomainResource {
   factory Patient.fromJson(
     Map<String, dynamic> json,
   ) {
-    T? parseField<T extends FhirBase>(
-      dynamic value,
-      dynamic valueElement,
-      T Function(Map<String, dynamic>) fromJson,
-    ) =>
-        (value != null || valueElement != null)
-            ? fromJson({
-                'value': value,
-                '_value': valueElement,
-              })
-            : null;
-    List<T>? parseList<T extends FhirBase>(
-      List<dynamic>? values,
-      List<dynamic>? valueElements,
-      T Function(Map<String, dynamic>) fromJson,
-    ) =>
-        values?.asMap().entries.map((entry) {
-          final index = entry.key;
-          final value = entry.value;
-          final valueElement =
-              valueElements != null && valueElements.length > index
-                  ? valueElements[index]
-                  : null;
-          return fromJson({
-            'value': value,
-            '_value': valueElement,
-          });
-        }).toList();
     return Patient(
-      id: parseField<FhirString>(
-        json['id'],
-        json['_id'],
-        FhirString.fromJson,
-      ),
+      id: json['id'] != null
+          ? FhirString.fromJson({'value': json['id']})
+          : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
-      implicitRules: parseField<FhirUri>(
-        json['implicitRules'],
-        json['_implicitRules'],
-        FhirUri.fromJson,
-      ),
-      language: parseField<CommonLanguages>(
-        json['language'],
-        json['_language'],
-        CommonLanguages.fromJson,
-      ),
+      implicitRules:
+          (json['implicitRules'] != null || json['_implicitRules'] != null)
+              ? FhirUri.fromJson({
+                  'value': json['implicitRules'],
+                  '_value': json['_implicitRules'],
+                })
+              : null,
+      language: (json['language'] != null || json['_language'] != null)
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
+          : null,
       text: json['text'] != null
           ? Narrative.fromJson(
               json['text'] as Map<String, dynamic>,
             )
           : null,
-      contained: parseList<Resource>(
-        json['contained'] as List<dynamic>?,
-        json['_contained'] as List<dynamic>?,
-        Resource.fromJson,
-      ),
-      extension_: parseList<FhirExtension>(
-        json['extension'] as List<dynamic>?,
-        json['_extension'] as List<dynamic>?,
-        FhirExtension.fromJson,
-      ),
-      modifierExtension: parseList<FhirExtension>(
-        json['modifierExtension'] as List<dynamic>?,
-        json['_modifierExtension'] as List<dynamic>?,
-        FhirExtension.fromJson,
-      ),
-      identifier: parseList<Identifier>(
-        json['identifier'] as List<dynamic>?,
-        json['_identifier'] as List<dynamic>?,
-        Identifier.fromJson,
-      ),
-      active: parseField<FhirBoolean>(
-        json['active'],
-        json['_active'],
-        FhirBoolean.fromJson,
-      ),
-      name: parseList<HumanName>(
-        json['name'] as List<dynamic>?,
-        json['_name'] as List<dynamic>?,
-        HumanName.fromJson,
-      ),
-      telecom: parseList<ContactPoint>(
-        json['telecom'] as List<dynamic>?,
-        json['_telecom'] as List<dynamic>?,
-        ContactPoint.fromJson,
-      ),
-      gender: parseField<AdministrativeGender>(
-        json['gender'],
-        json['_gender'],
-        AdministrativeGender.fromJson,
-      ),
-      birthDate: parseField<FhirDate>(
-        json['birthDate'],
-        json['_birthDate'],
-        FhirDate.fromJson,
-      ),
-      deceasedBoolean: parseField<FhirBoolean>(
-        json['deceasedBoolean'],
-        json['_deceasedBoolean'],
-        FhirBoolean.fromJson,
-      ),
-      deceasedDateTime: parseField<FhirDateTime>(
-        json['deceasedDateTime'],
-        json['_deceasedDateTime'],
-        FhirDateTime.fromJson,
-      ),
-      address: parseList<Address>(
-        json['address'] as List<dynamic>?,
-        json['_address'] as List<dynamic>?,
-        Address.fromJson,
-      ),
+      contained: json['contained'] != null
+          ? (json['contained'] as List<dynamic>)
+              .map<Resource>(
+                (v) => Resource.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      identifier: json['identifier'] != null
+          ? (json['identifier'] as List<dynamic>)
+              .map<Identifier>(
+                (v) => Identifier.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      active: (json['active'] != null || json['_active'] != null)
+          ? FhirBoolean.fromJson({
+              'value': json['active'],
+              '_value': json['_active'],
+            })
+          : null,
+      name: json['name'] != null
+          ? (json['name'] as List<dynamic>)
+              .map<HumanName>(
+                (v) => HumanName.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      telecom: json['telecom'] != null
+          ? (json['telecom'] as List<dynamic>)
+              .map<ContactPoint>(
+                (v) => ContactPoint.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      gender: (json['gender'] != null || json['_gender'] != null)
+          ? AdministrativeGender.fromJson({
+              'value': json['gender'],
+              '_value': json['_gender'],
+            })
+          : null,
+      birthDate: (json['birthDate'] != null || json['_birthDate'] != null)
+          ? FhirDate.fromJson({
+              'value': json['birthDate'],
+              '_value': json['_birthDate'],
+            })
+          : null,
+      deceasedBoolean:
+          (json['deceasedBoolean'] != null || json['_deceasedBoolean'] != null)
+              ? FhirBoolean.fromJson({
+                  'value': json['deceasedBoolean'],
+                  '_value': json['_deceasedBoolean'],
+                })
+              : null,
+      deceasedDateTime: (json['deceasedDateTime'] != null ||
+              json['_deceasedDateTime'] != null)
+          ? FhirDateTime.fromJson({
+              'value': json['deceasedDateTime'],
+              '_value': json['_deceasedDateTime'],
+            })
+          : null,
+      address: json['address'] != null
+          ? (json['address'] as List<dynamic>)
+              .map<Address>(
+                (v) => Address.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
       maritalStatus: json['maritalStatus'] != null
           ? CodeableConcept.fromJson(
               json['maritalStatus'] as Map<String, dynamic>,
             )
           : null,
-      multipleBirthBoolean: parseField<FhirBoolean>(
-        json['multipleBirthBoolean'],
-        json['_multipleBirthBoolean'],
-        FhirBoolean.fromJson,
-      ),
-      multipleBirthInteger: parseField<FhirInteger>(
-        json['multipleBirthInteger'],
-        json['_multipleBirthInteger'],
-        FhirInteger.fromJson,
-      ),
-      photo: parseList<Attachment>(
-        json['photo'] as List<dynamic>?,
-        json['_photo'] as List<dynamic>?,
-        Attachment.fromJson,
-      ),
-      contact: parseList<PatientContact>(
-        json['contact'] as List<dynamic>?,
-        json['_contact'] as List<dynamic>?,
-        PatientContact.fromJson,
-      ),
-      communication: parseList<PatientCommunication>(
-        json['communication'] as List<dynamic>?,
-        json['_communication'] as List<dynamic>?,
-        PatientCommunication.fromJson,
-      ),
-      generalPractitioner: parseList<Reference>(
-        json['generalPractitioner'] as List<dynamic>?,
-        json['_generalPractitioner'] as List<dynamic>?,
-        Reference.fromJson,
-      ),
+      multipleBirthBoolean: (json['multipleBirthBoolean'] != null ||
+              json['_multipleBirthBoolean'] != null)
+          ? FhirBoolean.fromJson({
+              'value': json['multipleBirthBoolean'],
+              '_value': json['_multipleBirthBoolean'],
+            })
+          : null,
+      multipleBirthInteger: (json['multipleBirthInteger'] != null ||
+              json['_multipleBirthInteger'] != null)
+          ? FhirInteger.fromJson({
+              'value': json['multipleBirthInteger'],
+              '_value': json['_multipleBirthInteger'],
+            })
+          : null,
+      photo: json['photo'] != null
+          ? (json['photo'] as List<dynamic>)
+              .map<Attachment>(
+                (v) => Attachment.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      contact: json['contact'] != null
+          ? (json['contact'] as List<dynamic>)
+              .map<PatientContact>(
+                (v) => PatientContact.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      communication: json['communication'] != null
+          ? (json['communication'] as List<dynamic>)
+              .map<PatientCommunication>(
+                (v) => PatientCommunication.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      generalPractitioner: json['generalPractitioner'] != null
+          ? (json['generalPractitioner'] as List<dynamic>)
+              .map<Reference>(
+                (v) => Reference.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
       managingOrganization: json['managingOrganization'] != null
           ? Reference.fromJson(
               json['managingOrganization'] as Map<String, dynamic>,
             )
           : null,
-      link: parseList<PatientLink>(
-        json['link'] as List<dynamic>?,
-        json['_link'] as List<dynamic>?,
-        PatientLink.fromJson,
-      ),
+      link: json['link'] != null
+          ? (json['link'] as List<dynamic>)
+              .map<PatientLink>(
+                (v) => PatientLink.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
     );
   }
 
@@ -533,75 +565,62 @@ class PatientContact extends BackboneElement {
   factory PatientContact.fromJson(
     Map<String, dynamic> json,
   ) {
-    T? parseField<T extends FhirBase>(
-      dynamic value,
-      dynamic valueElement,
-      T Function(Map<String, dynamic>) fromJson,
-    ) =>
-        (value != null || valueElement != null)
-            ? fromJson({
-                'value': value,
-                '_value': valueElement,
-              })
-            : null;
-    List<T>? parseList<T extends FhirBase>(
-      List<dynamic>? values,
-      List<dynamic>? valueElements,
-      T Function(Map<String, dynamic>) fromJson,
-    ) =>
-        values?.asMap().entries.map((entry) {
-          final index = entry.key;
-          final value = entry.value;
-          final valueElement =
-              valueElements != null && valueElements.length > index
-                  ? valueElements[index]
-                  : null;
-          return fromJson({
-            'value': value,
-            '_value': valueElement,
-          });
-        }).toList();
     return PatientContact(
-      id: parseField<FhirString>(
-        json['id'],
-        json['_id'],
-        FhirString.fromJson,
-      ),
-      extension_: parseList<FhirExtension>(
-        json['extension'] as List<dynamic>?,
-        json['_extension'] as List<dynamic>?,
-        FhirExtension.fromJson,
-      ),
-      modifierExtension: parseList<FhirExtension>(
-        json['modifierExtension'] as List<dynamic>?,
-        json['_modifierExtension'] as List<dynamic>?,
-        FhirExtension.fromJson,
-      ),
-      relationship: parseList<CodeableConcept>(
-        json['relationship'] as List<dynamic>?,
-        json['_relationship'] as List<dynamic>?,
-        CodeableConcept.fromJson,
-      ),
+      id: json['id'] != null
+          ? FhirString.fromJson({'value': json['id']})
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      relationship: json['relationship'] != null
+          ? (json['relationship'] as List<dynamic>)
+              .map<CodeableConcept>(
+                (v) => CodeableConcept.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
       name: json['name'] != null
           ? HumanName.fromJson(
               json['name'] as Map<String, dynamic>,
             )
           : null,
-      telecom: parseList<ContactPoint>(
-        json['telecom'] as List<dynamic>?,
-        json['_telecom'] as List<dynamic>?,
-        ContactPoint.fromJson,
-      ),
+      telecom: json['telecom'] != null
+          ? (json['telecom'] as List<dynamic>)
+              .map<ContactPoint>(
+                (v) => ContactPoint.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
       address: json['address'] != null
           ? Address.fromJson(
               json['address'] as Map<String, dynamic>,
             )
           : null,
-      gender: parseField<AdministrativeGender>(
-        json['gender'],
-        json['_gender'],
-        AdministrativeGender.fromJson,
-      ),
+      gender: (json['gender'] != null || json['_gender'] != null)
+          ? AdministrativeGender.fromJson({
+              'value': json['gender'],
+              '_value': json['_gender'],
+            })
+          : null,
       organization: json['organization'] != null
           ? Reference.fromJson(
               json['organization'] as Map<String, dynamic>,
@@ -806,58 +825,37 @@ class PatientCommunication extends BackboneElement {
   factory PatientCommunication.fromJson(
     Map<String, dynamic> json,
   ) {
-    T? parseField<T extends FhirBase>(
-      dynamic value,
-      dynamic valueElement,
-      T Function(Map<String, dynamic>) fromJson,
-    ) =>
-        (value != null || valueElement != null)
-            ? fromJson({
-                'value': value,
-                '_value': valueElement,
-              })
-            : null;
-    List<T>? parseList<T extends FhirBase>(
-      List<dynamic>? values,
-      List<dynamic>? valueElements,
-      T Function(Map<String, dynamic>) fromJson,
-    ) =>
-        values?.asMap().entries.map((entry) {
-          final index = entry.key;
-          final value = entry.value;
-          final valueElement =
-              valueElements != null && valueElements.length > index
-                  ? valueElements[index]
-                  : null;
-          return fromJson({
-            'value': value,
-            '_value': valueElement,
-          });
-        }).toList();
     return PatientCommunication(
-      id: parseField<FhirString>(
-        json['id'],
-        json['_id'],
-        FhirString.fromJson,
-      ),
-      extension_: parseList<FhirExtension>(
-        json['extension'] as List<dynamic>?,
-        json['_extension'] as List<dynamic>?,
-        FhirExtension.fromJson,
-      ),
-      modifierExtension: parseList<FhirExtension>(
-        json['modifierExtension'] as List<dynamic>?,
-        json['_modifierExtension'] as List<dynamic>?,
-        FhirExtension.fromJson,
-      ),
+      id: json['id'] != null
+          ? FhirString.fromJson({'value': json['id']})
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
       language: CodeableConcept.fromJson(
         json['language'] as Map<String, dynamic>,
       ),
-      preferred: parseField<FhirBoolean>(
-        json['preferred'],
-        json['_preferred'],
-        FhirBoolean.fromJson,
-      ),
+      preferred: (json['preferred'] != null || json['_preferred'] != null)
+          ? FhirBoolean.fromJson({
+              'value': json['preferred'],
+              '_value': json['_preferred'],
+            })
+          : null,
     );
   }
 
@@ -998,50 +996,28 @@ class PatientLink extends BackboneElement {
   factory PatientLink.fromJson(
     Map<String, dynamic> json,
   ) {
-    T? parseField<T extends FhirBase>(
-      dynamic value,
-      dynamic valueElement,
-      T Function(Map<String, dynamic>) fromJson,
-    ) =>
-        (value != null || valueElement != null)
-            ? fromJson({
-                'value': value,
-                '_value': valueElement,
-              })
-            : null;
-    List<T>? parseList<T extends FhirBase>(
-      List<dynamic>? values,
-      List<dynamic>? valueElements,
-      T Function(Map<String, dynamic>) fromJson,
-    ) =>
-        values?.asMap().entries.map((entry) {
-          final index = entry.key;
-          final value = entry.value;
-          final valueElement =
-              valueElements != null && valueElements.length > index
-                  ? valueElements[index]
-                  : null;
-          return fromJson({
-            'value': value,
-            '_value': valueElement,
-          });
-        }).toList();
     return PatientLink(
-      id: parseField<FhirString>(
-        json['id'],
-        json['_id'],
-        FhirString.fromJson,
-      ),
-      extension_: parseList<FhirExtension>(
-        json['extension'] as List<dynamic>?,
-        json['_extension'] as List<dynamic>?,
-        FhirExtension.fromJson,
-      ),
-      modifierExtension: parseList<FhirExtension>(
-        json['modifierExtension'] as List<dynamic>?,
-        json['_modifierExtension'] as List<dynamic>?,
-        FhirExtension.fromJson,
-      ),
+      id: json['id'] != null
+          ? FhirString.fromJson({'value': json['id']})
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
       other: Reference.fromJson(
         json['other'] as Map<String, dynamic>,
       ),

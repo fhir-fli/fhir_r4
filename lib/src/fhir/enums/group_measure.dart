@@ -16,6 +16,8 @@ class GroupMeasure extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return GroupMeasure.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError('GroupMeasure cannot be constructed from JSON.');
     }
     return GroupMeasure._(value, element);
   }

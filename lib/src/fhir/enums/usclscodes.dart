@@ -16,6 +16,8 @@ class USCLSCodes extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return USCLSCodes.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError('USCLSCodes cannot be constructed from JSON.');
     }
     return USCLSCodes._(value, element);
   }

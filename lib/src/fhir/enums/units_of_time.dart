@@ -16,6 +16,8 @@ class UnitsOfTime extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return UnitsOfTime.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError('UnitsOfTime cannot be constructed from JSON.');
     }
     return UnitsOfTime._(value, element);
   }

@@ -16,6 +16,9 @@ class OperationParameterUse extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return OperationParameterUse.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'OperationParameterUse cannot be constructed from JSON.');
     }
     return OperationParameterUse._(value, element);
   }

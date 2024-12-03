@@ -16,6 +16,9 @@ class SupplyRequestReason extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return SupplyRequestReason.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'SupplyRequestReason cannot be constructed from JSON.');
     }
     return SupplyRequestReason._(value, element);
   }

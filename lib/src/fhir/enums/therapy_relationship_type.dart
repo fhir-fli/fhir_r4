@@ -16,6 +16,9 @@ class TherapyRelationshipType extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return TherapyRelationshipType.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'TherapyRelationshipType cannot be constructed from JSON.');
     }
     return TherapyRelationshipType._(value, element);
   }

@@ -16,6 +16,9 @@ class ContractResourceScopeCodes extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return ContractResourceScopeCodes.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'ContractResourceScopeCodes cannot be constructed from JSON.');
     }
     return ContractResourceScopeCodes._(value, element);
   }

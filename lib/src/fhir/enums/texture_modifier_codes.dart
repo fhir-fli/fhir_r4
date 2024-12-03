@@ -16,6 +16,9 @@ class TextureModifierCodes extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return TextureModifierCodes.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'TextureModifierCodes cannot be constructed from JSON.');
     }
     return TextureModifierCodes._(value, element);
   }

@@ -16,6 +16,9 @@ class SpecimenCollectionEnum extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return SpecimenCollectionEnum.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'SpecimenCollectionEnum cannot be constructed from JSON.');
     }
     return SpecimenCollectionEnum._(value, element);
   }

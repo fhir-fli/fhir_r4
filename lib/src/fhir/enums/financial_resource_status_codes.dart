@@ -16,6 +16,9 @@ class FinancialResourceStatusCodes extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return FinancialResourceStatusCodes.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'FinancialResourceStatusCodes cannot be constructed from JSON.');
     }
     return FinancialResourceStatusCodes._(value, element);
   }

@@ -16,6 +16,8 @@ class ParticipantType extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return ParticipantType.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError('ParticipantType cannot be constructed from JSON.');
     }
     return ParticipantType._(value, element);
   }

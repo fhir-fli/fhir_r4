@@ -16,6 +16,8 @@ class EpisodeOfCareType extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return EpisodeOfCareType.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError('EpisodeOfCareType cannot be constructed from JSON.');
     }
     return EpisodeOfCareType._(value, element);
   }

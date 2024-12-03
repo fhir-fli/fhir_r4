@@ -16,6 +16,9 @@ class DocumentSectionCodes extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return DocumentSectionCodes.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'DocumentSectionCodes cannot be constructed from JSON.');
     }
     return DocumentSectionCodes._(value, element);
   }

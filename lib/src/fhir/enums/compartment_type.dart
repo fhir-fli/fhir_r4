@@ -16,6 +16,8 @@ class CompartmentType extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return CompartmentType.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError('CompartmentType cannot be constructed from JSON.');
     }
     return CompartmentType._(value, element);
   }

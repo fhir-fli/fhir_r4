@@ -16,6 +16,8 @@ class ChargeItemStatus extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return ChargeItemStatus.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError('ChargeItemStatus cannot be constructed from JSON.');
     }
     return ChargeItemStatus._(value, element);
   }

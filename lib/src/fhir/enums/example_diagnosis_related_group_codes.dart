@@ -16,6 +16,9 @@ class ExampleDiagnosisRelatedGroupCodes extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return ExampleDiagnosisRelatedGroupCodes.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'ExampleDiagnosisRelatedGroupCodes cannot be constructed from JSON.');
     }
     return ExampleDiagnosisRelatedGroupCodes._(value, element);
   }

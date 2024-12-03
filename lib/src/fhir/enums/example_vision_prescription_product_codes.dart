@@ -17,6 +17,9 @@ class ExampleVisionPrescriptionProductCodes extends PrimitiveType<String> {
     if (value == null && element != null) {
       return ExampleVisionPrescriptionProductCodes.elementOnly
           .withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'ExampleVisionPrescriptionProductCodes cannot be constructed from JSON.');
     }
     return ExampleVisionPrescriptionProductCodes._(value, element);
   }

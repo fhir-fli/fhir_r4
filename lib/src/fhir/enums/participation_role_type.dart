@@ -16,6 +16,9 @@ class ParticipationRoleType extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return ParticipationRoleType.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'ParticipationRoleType cannot be constructed from JSON.');
     }
     return ParticipationRoleType._(value, element);
   }

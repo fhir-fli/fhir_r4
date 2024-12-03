@@ -16,6 +16,9 @@ class CommonUCUMCodesForDistance extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return CommonUCUMCodesForDistance.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'CommonUCUMCodesForDistance cannot be constructed from JSON.');
     }
     return CommonUCUMCodesForDistance._(value, element);
   }

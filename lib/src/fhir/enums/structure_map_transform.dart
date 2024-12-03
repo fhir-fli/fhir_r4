@@ -16,6 +16,9 @@ class StructureMapTransform extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return StructureMapTransform.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'StructureMapTransform cannot be constructed from JSON.');
     }
     return StructureMapTransform._(value, element);
   }

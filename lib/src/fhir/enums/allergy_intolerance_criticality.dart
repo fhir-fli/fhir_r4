@@ -16,6 +16,9 @@ class AllergyIntoleranceCriticality extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return AllergyIntoleranceCriticality.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'AllergyIntoleranceCriticality cannot be constructed from JSON.');
     }
     return AllergyIntoleranceCriticality._(value, element);
   }

@@ -16,6 +16,9 @@ class ImmunizationFundingSource extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return ImmunizationFundingSource.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'ImmunizationFundingSource cannot be constructed from JSON.');
     }
     return ImmunizationFundingSource._(value, element);
   }

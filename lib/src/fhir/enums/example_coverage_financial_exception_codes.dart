@@ -17,6 +17,9 @@ class ExampleCoverageFinancialExceptionCodes extends PrimitiveType<String> {
     if (value == null && element != null) {
       return ExampleCoverageFinancialExceptionCodes.elementOnly
           .withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'ExampleCoverageFinancialExceptionCodes cannot be constructed from JSON.');
     }
     return ExampleCoverageFinancialExceptionCodes._(value, element);
   }

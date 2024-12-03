@@ -32,38 +32,28 @@ class Binary extends Resource {
   factory Binary.fromJson(
     Map<String, dynamic> json,
   ) {
-    T? parseField<T extends FhirBase>(
-      dynamic value,
-      dynamic valueElement,
-      T Function(Map<String, dynamic>) fromJson,
-    ) =>
-        (value != null || valueElement != null)
-            ? fromJson({
-                'value': value,
-                '_value': valueElement,
-              })
-            : null;
     return Binary(
-      id: parseField<FhirString>(
-        json['id'],
-        json['_id'],
-        FhirString.fromJson,
-      ),
+      id: json['id'] != null
+          ? FhirString.fromJson({'value': json['id']})
+          : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
-      implicitRules: parseField<FhirUri>(
-        json['implicitRules'],
-        json['_implicitRules'],
-        FhirUri.fromJson,
-      ),
-      language: parseField<CommonLanguages>(
-        json['language'],
-        json['_language'],
-        CommonLanguages.fromJson,
-      ),
+      implicitRules:
+          (json['implicitRules'] != null || json['_implicitRules'] != null)
+              ? FhirUri.fromJson({
+                  'value': json['implicitRules'],
+                  '_value': json['_implicitRules'],
+                })
+              : null,
+      language: (json['language'] != null || json['_language'] != null)
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
+          : null,
       contentType: FhirCode.fromJson({
         'value': json['contentType'],
         '_value': json['_contentType'],
@@ -73,11 +63,12 @@ class Binary extends Resource {
               json['securityContext'] as Map<String, dynamic>,
             )
           : null,
-      data: parseField<FhirBase64Binary>(
-        json['data'],
-        json['_data'],
-        FhirBase64Binary.fromJson,
-      ),
+      data: (json['data'] != null || json['_data'] != null)
+          ? FhirBase64Binary.fromJson({
+              'value': json['data'],
+              '_value': json['_data'],
+            })
+          : null,
     );
   }
 

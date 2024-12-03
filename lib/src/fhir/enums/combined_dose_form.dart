@@ -16,6 +16,8 @@ class CombinedDoseForm extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return CombinedDoseForm.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError('CombinedDoseForm cannot be constructed from JSON.');
     }
     return CombinedDoseForm._(value, element);
   }

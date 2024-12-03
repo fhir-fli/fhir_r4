@@ -16,6 +16,9 @@ class RegulatedAuthorizationType extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return RegulatedAuthorizationType.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'RegulatedAuthorizationType cannot be constructed from JSON.');
     }
     return RegulatedAuthorizationType._(value, element);
   }

@@ -16,6 +16,9 @@ class MessageheaderResponseRequest extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return MessageheaderResponseRequest.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'MessageheaderResponseRequest cannot be constructed from JSON.');
     }
     return MessageheaderResponseRequest._(value, element);
   }

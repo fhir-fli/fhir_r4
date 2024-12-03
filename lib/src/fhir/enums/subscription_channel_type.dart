@@ -16,6 +16,9 @@ class SubscriptionChannelType extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return SubscriptionChannelType.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'SubscriptionChannelType cannot be constructed from JSON.');
     }
     return SubscriptionChannelType._(value, element);
   }

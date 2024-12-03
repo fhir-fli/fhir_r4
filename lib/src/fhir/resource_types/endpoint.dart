@@ -45,80 +45,69 @@ class FhirEndpoint extends DomainResource {
   factory FhirEndpoint.fromJson(
     Map<String, dynamic> json,
   ) {
-    T? parseField<T extends FhirBase>(
-      dynamic value,
-      dynamic valueElement,
-      T Function(Map<String, dynamic>) fromJson,
-    ) =>
-        (value != null || valueElement != null)
-            ? fromJson({
-                'value': value,
-                '_value': valueElement,
-              })
-            : null;
-    List<T>? parseList<T extends FhirBase>(
-      List<dynamic>? values,
-      List<dynamic>? valueElements,
-      T Function(Map<String, dynamic>) fromJson,
-    ) =>
-        values?.asMap().entries.map((entry) {
-          final index = entry.key;
-          final value = entry.value;
-          final valueElement =
-              valueElements != null && valueElements.length > index
-                  ? valueElements[index]
-                  : null;
-          return fromJson({
-            'value': value,
-            '_value': valueElement,
-          });
-        }).toList();
     return FhirEndpoint(
-      id: parseField<FhirString>(
-        json['id'],
-        json['_id'],
-        FhirString.fromJson,
-      ),
+      id: json['id'] != null
+          ? FhirString.fromJson({'value': json['id']})
+          : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
-      implicitRules: parseField<FhirUri>(
-        json['implicitRules'],
-        json['_implicitRules'],
-        FhirUri.fromJson,
-      ),
-      language: parseField<CommonLanguages>(
-        json['language'],
-        json['_language'],
-        CommonLanguages.fromJson,
-      ),
+      implicitRules:
+          (json['implicitRules'] != null || json['_implicitRules'] != null)
+              ? FhirUri.fromJson({
+                  'value': json['implicitRules'],
+                  '_value': json['_implicitRules'],
+                })
+              : null,
+      language: (json['language'] != null || json['_language'] != null)
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
+          : null,
       text: json['text'] != null
           ? Narrative.fromJson(
               json['text'] as Map<String, dynamic>,
             )
           : null,
-      contained: parseList<Resource>(
-        json['contained'] as List<dynamic>?,
-        json['_contained'] as List<dynamic>?,
-        Resource.fromJson,
-      ),
-      extension_: parseList<FhirExtension>(
-        json['extension'] as List<dynamic>?,
-        json['_extension'] as List<dynamic>?,
-        FhirExtension.fromJson,
-      ),
-      modifierExtension: parseList<FhirExtension>(
-        json['modifierExtension'] as List<dynamic>?,
-        json['_modifierExtension'] as List<dynamic>?,
-        FhirExtension.fromJson,
-      ),
-      identifier: parseList<Identifier>(
-        json['identifier'] as List<dynamic>?,
-        json['_identifier'] as List<dynamic>?,
-        Identifier.fromJson,
-      ),
+      contained: json['contained'] != null
+          ? (json['contained'] as List<dynamic>)
+              .map<Resource>(
+                (v) => Resource.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      identifier: json['identifier'] != null
+          ? (json['identifier'] as List<dynamic>)
+              .map<Identifier>(
+                (v) => Identifier.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
       status: EndpointStatus.fromJson({
         'value': json['status'],
         '_value': json['_status'],
@@ -126,44 +115,53 @@ class FhirEndpoint extends DomainResource {
       connectionType: Coding.fromJson(
         json['connectionType'] as Map<String, dynamic>,
       ),
-      name: parseField<FhirString>(
-        json['name'],
-        json['_name'],
-        FhirString.fromJson,
-      ),
+      name: (json['name'] != null || json['_name'] != null)
+          ? FhirString.fromJson({
+              'value': json['name'],
+              '_value': json['_name'],
+            })
+          : null,
       managingOrganization: json['managingOrganization'] != null
           ? Reference.fromJson(
               json['managingOrganization'] as Map<String, dynamic>,
             )
           : null,
-      contact: parseList<ContactPoint>(
-        json['contact'] as List<dynamic>?,
-        json['_contact'] as List<dynamic>?,
-        ContactPoint.fromJson,
-      ),
+      contact: json['contact'] != null
+          ? (json['contact'] as List<dynamic>)
+              .map<ContactPoint>(
+                (v) => ContactPoint.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
       period: json['period'] != null
           ? Period.fromJson(
               json['period'] as Map<String, dynamic>,
             )
           : null,
-      payloadType: parseList<CodeableConcept>(
-        json['payloadType'] as List<dynamic>?,
-        json['_payloadType'] as List<dynamic>?,
-        CodeableConcept.fromJson,
-      )!,
-      payloadMimeType: parseList<FhirCode>(
+      payloadType: ensureNonNullList(
+        (json['payloadType'] as List<dynamic>)
+            .map<CodeableConcept>(
+              (v) => CodeableConcept.fromJson(
+                v as Map<String, dynamic>,
+              ),
+            )
+            .toList(),
+      ),
+      payloadMimeType: parsePrimitiveList<FhirCode>(
         json['payloadMimeType'] as List<dynamic>?,
         json['_payloadMimeType'] as List<dynamic>?,
-        FhirCode.fromJson,
+        fromJson: FhirCode.fromJson,
       ),
       address: FhirUrl.fromJson({
         'value': json['address'],
         '_value': json['_address'],
       }),
-      header: parseList<FhirString>(
+      header: parsePrimitiveList<FhirString>(
         json['header'] as List<dynamic>?,
         json['_header'] as List<dynamic>?,
-        FhirString.fromJson,
+        fromJson: FhirString.fromJson,
       ),
     );
   }

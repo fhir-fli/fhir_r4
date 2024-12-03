@@ -16,6 +16,8 @@ class ListOrderCodes extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return ListOrderCodes.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError('ListOrderCodes cannot be constructed from JSON.');
     }
     return ListOrderCodes._(value, element);
   }

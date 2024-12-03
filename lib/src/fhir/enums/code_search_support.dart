@@ -16,6 +16,8 @@ class CodeSearchSupport extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return CodeSearchSupport.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError('CodeSearchSupport cannot be constructed from JSON.');
     }
     return CodeSearchSupport._(value, element);
   }

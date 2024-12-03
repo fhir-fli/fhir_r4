@@ -16,6 +16,8 @@ class EncounterType extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return EncounterType.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError('EncounterType cannot be constructed from JSON.');
     }
     return EncounterType._(value, element);
   }

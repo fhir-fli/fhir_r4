@@ -16,6 +16,8 @@ class CareTeamStatus extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return CareTeamStatus.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError('CareTeamStatus cannot be constructed from JSON.');
     }
     return CareTeamStatus._(value, element);
   }

@@ -16,6 +16,8 @@ class FHIRVersion extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return FHIRVersion.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError('FHIRVersion cannot be constructed from JSON.');
     }
     return FHIRVersion._(value, element);
   }

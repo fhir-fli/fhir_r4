@@ -16,6 +16,8 @@ class WeightMethod extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return WeightMethod.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError('WeightMethod cannot be constructed from JSON.');
     }
     return WeightMethod._(value, element);
   }

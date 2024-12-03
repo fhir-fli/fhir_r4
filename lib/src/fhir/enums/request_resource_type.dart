@@ -16,6 +16,9 @@ class RequestResourceType extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return RequestResourceType.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'RequestResourceType cannot be constructed from JSON.');
     }
     return RequestResourceType._(value, element);
   }

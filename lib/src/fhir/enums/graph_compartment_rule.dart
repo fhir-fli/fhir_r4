@@ -16,6 +16,9 @@ class GraphCompartmentRule extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return GraphCompartmentRule.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'GraphCompartmentRule cannot be constructed from JSON.');
     }
     return GraphCompartmentRule._(value, element);
   }

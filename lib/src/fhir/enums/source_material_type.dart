@@ -16,6 +16,9 @@ class SourceMaterialType extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return SourceMaterialType.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'SourceMaterialType cannot be constructed from JSON.');
     }
     return SourceMaterialType._(value, element);
   }

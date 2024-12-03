@@ -16,6 +16,9 @@ class StructureMapInputMode extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return StructureMapInputMode.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'StructureMapInputMode cannot be constructed from JSON.');
     }
     return StructureMapInputMode._(value, element);
   }

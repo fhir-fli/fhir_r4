@@ -16,6 +16,8 @@ class AddressType extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return AddressType.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError('AddressType cannot be constructed from JSON.');
     }
     return AddressType._(value, element);
   }

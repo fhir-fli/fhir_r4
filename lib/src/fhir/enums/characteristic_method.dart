@@ -16,6 +16,9 @@ class CharacteristicMethod extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return CharacteristicMethod.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'CharacteristicMethod cannot be constructed from JSON.');
     }
     return CharacteristicMethod._(value, element);
   }

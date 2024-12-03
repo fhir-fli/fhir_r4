@@ -16,6 +16,9 @@ class CitationSummaryStyle extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return CitationSummaryStyle.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'CitationSummaryStyle cannot be constructed from JSON.');
     }
     return CitationSummaryStyle._(value, element);
   }

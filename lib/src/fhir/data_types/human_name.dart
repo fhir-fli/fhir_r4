@@ -30,74 +30,51 @@ class HumanName extends DataType {
   factory HumanName.fromJson(
     Map<String, dynamic> json,
   ) {
-    T? parseField<T extends FhirBase>(
-      dynamic value,
-      dynamic valueElement,
-      T Function(Map<String, dynamic>) fromJson,
-    ) =>
-        (value != null || valueElement != null)
-            ? fromJson({
-                'value': value,
-                '_value': valueElement,
-              })
-            : null;
-    List<T>? parseList<T extends FhirBase>(
-      List<dynamic>? values,
-      List<dynamic>? valueElements,
-      T Function(Map<String, dynamic>) fromJson,
-    ) =>
-        values?.asMap().entries.map((entry) {
-          final index = entry.key;
-          final value = entry.value;
-          final valueElement =
-              valueElements != null && valueElements.length > index
-                  ? valueElements[index]
-                  : null;
-          return fromJson({
-            'value': value,
-            '_value': valueElement,
-          });
-        }).toList();
     return HumanName(
-      id: parseField<FhirString>(
-        json['id'],
-        json['_id'],
-        FhirString.fromJson,
-      ),
-      extension_: parseList<FhirExtension>(
-        json['extension'] as List<dynamic>?,
-        json['_extension'] as List<dynamic>?,
-        FhirExtension.fromJson,
-      ),
-      use: parseField<NameUse>(
-        json['use'],
-        json['_use'],
-        NameUse.fromJson,
-      ),
-      text: parseField<FhirString>(
-        json['text'],
-        json['_text'],
-        FhirString.fromJson,
-      ),
-      family: parseField<FhirString>(
-        json['family'],
-        json['_family'],
-        FhirString.fromJson,
-      ),
-      given: parseList<FhirString>(
+      id: json['id'] != null
+          ? FhirString.fromJson({'value': json['id']})
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      use: (json['use'] != null || json['_use'] != null)
+          ? NameUse.fromJson({
+              'value': json['use'],
+              '_value': json['_use'],
+            })
+          : null,
+      text: (json['text'] != null || json['_text'] != null)
+          ? FhirString.fromJson({
+              'value': json['text'],
+              '_value': json['_text'],
+            })
+          : null,
+      family: (json['family'] != null || json['_family'] != null)
+          ? FhirString.fromJson({
+              'value': json['family'],
+              '_value': json['_family'],
+            })
+          : null,
+      given: parsePrimitiveList<FhirString>(
         json['given'] as List<dynamic>?,
         json['_given'] as List<dynamic>?,
-        FhirString.fromJson,
+        fromJson: FhirString.fromJson,
       ),
-      prefix: parseList<FhirString>(
+      prefix: parsePrimitiveList<FhirString>(
         json['prefix'] as List<dynamic>?,
         json['_prefix'] as List<dynamic>?,
-        FhirString.fromJson,
+        fromJson: FhirString.fromJson,
       ),
-      suffix: parseList<FhirString>(
+      suffix: parsePrimitiveList<FhirString>(
         json['suffix'] as List<dynamic>?,
         json['_suffix'] as List<dynamic>?,
-        FhirString.fromJson,
+        fromJson: FhirString.fromJson,
       ),
       period: json['period'] != null
           ? Period.fromJson(

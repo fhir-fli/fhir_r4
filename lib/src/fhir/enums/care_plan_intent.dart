@@ -16,6 +16,8 @@ class CarePlanIntent extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return CarePlanIntent.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError('CarePlanIntent cannot be constructed from JSON.');
     }
     return CarePlanIntent._(value, element);
   }

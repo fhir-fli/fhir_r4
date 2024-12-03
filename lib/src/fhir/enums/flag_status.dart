@@ -16,6 +16,8 @@ class FlagStatus extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return FlagStatus.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError('FlagStatus cannot be constructed from JSON.');
     }
     return FlagStatus._(value, element);
   }

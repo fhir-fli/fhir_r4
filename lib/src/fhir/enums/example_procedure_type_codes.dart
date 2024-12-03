@@ -16,6 +16,9 @@ class ExampleProcedureTypeCodes extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return ExampleProcedureTypeCodes.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'ExampleProcedureTypeCodes cannot be constructed from JSON.');
     }
     return ExampleProcedureTypeCodes._(value, element);
   }

@@ -16,6 +16,9 @@ class MeasureImprovementNotation extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return MeasureImprovementNotation.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'MeasureImprovementNotation cannot be constructed from JSON.');
     }
     return MeasureImprovementNotation._(value, element);
   }

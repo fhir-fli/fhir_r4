@@ -16,6 +16,9 @@ class ResearchStudyPhase extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return ResearchStudyPhase.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'ResearchStudyPhase cannot be constructed from JSON.');
     }
     return ResearchStudyPhase._(value, element);
   }

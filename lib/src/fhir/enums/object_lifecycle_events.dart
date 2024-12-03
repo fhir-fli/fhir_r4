@@ -16,6 +16,9 @@ class ObjectLifecycleEvents extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return ObjectLifecycleEvents.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'ObjectLifecycleEvents cannot be constructed from JSON.');
     }
     return ObjectLifecycleEvents._(value, element);
   }

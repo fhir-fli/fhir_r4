@@ -16,6 +16,9 @@ class ExampleMessageReasonCodes extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return ExampleMessageReasonCodes.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'ExampleMessageReasonCodes cannot be constructed from JSON.');
     }
     return ExampleMessageReasonCodes._(value, element);
   }

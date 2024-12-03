@@ -16,6 +16,8 @@ class EncounterStatus extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return EncounterStatus.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError('EncounterStatus cannot be constructed from JSON.');
     }
     return EncounterStatus._(value, element);
   }

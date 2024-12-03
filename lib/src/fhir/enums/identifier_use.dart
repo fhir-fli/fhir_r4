@@ -16,6 +16,8 @@ class IdentifierUse extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return IdentifierUse.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError('IdentifierUse cannot be constructed from JSON.');
     }
     return IdentifierUse._(value, element);
   }

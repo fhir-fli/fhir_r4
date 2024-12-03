@@ -16,6 +16,9 @@ class ObservationDataType extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return ObservationDataType.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'ObservationDataType cannot be constructed from JSON.');
     }
     return ObservationDataType._(value, element);
   }

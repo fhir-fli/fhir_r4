@@ -35,50 +35,28 @@ class Signature extends DataType {
   factory Signature.fromJson(
     Map<String, dynamic> json,
   ) {
-    T? parseField<T extends FhirBase>(
-      dynamic value,
-      dynamic valueElement,
-      T Function(Map<String, dynamic>) fromJson,
-    ) =>
-        (value != null || valueElement != null)
-            ? fromJson({
-                'value': value,
-                '_value': valueElement,
-              })
-            : null;
-    List<T>? parseList<T extends FhirBase>(
-      List<dynamic>? values,
-      List<dynamic>? valueElements,
-      T Function(Map<String, dynamic>) fromJson,
-    ) =>
-        values?.asMap().entries.map((entry) {
-          final index = entry.key;
-          final value = entry.value;
-          final valueElement =
-              valueElements != null && valueElements.length > index
-                  ? valueElements[index]
-                  : null;
-          return fromJson({
-            'value': value,
-            '_value': valueElement,
-          });
-        }).toList();
     return Signature(
-      id: parseField<FhirString>(
-        json['id'],
-        json['_id'],
-        FhirString.fromJson,
+      id: json['id'] != null
+          ? FhirString.fromJson({'value': json['id']})
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      type: ensureNonNullList(
+        (json['type'] as List<dynamic>)
+            .map<Coding>(
+              (v) => Coding.fromJson(
+                v as Map<String, dynamic>,
+              ),
+            )
+            .toList(),
       ),
-      extension_: parseList<FhirExtension>(
-        json['extension'] as List<dynamic>?,
-        json['_extension'] as List<dynamic>?,
-        FhirExtension.fromJson,
-      ),
-      type: parseList<Coding>(
-        json['type'] as List<dynamic>?,
-        json['_type'] as List<dynamic>?,
-        Coding.fromJson,
-      )!,
       when: FhirInstant.fromJson({
         'value': json['when'],
         '_value': json['_when'],
@@ -91,21 +69,25 @@ class Signature extends DataType {
               json['onBehalfOf'] as Map<String, dynamic>,
             )
           : null,
-      targetFormat: parseField<FhirCode>(
-        json['targetFormat'],
-        json['_targetFormat'],
-        FhirCode.fromJson,
-      ),
-      sigFormat: parseField<FhirCode>(
-        json['sigFormat'],
-        json['_sigFormat'],
-        FhirCode.fromJson,
-      ),
-      data: parseField<FhirBase64Binary>(
-        json['data'],
-        json['_data'],
-        FhirBase64Binary.fromJson,
-      ),
+      targetFormat:
+          (json['targetFormat'] != null || json['_targetFormat'] != null)
+              ? FhirCode.fromJson({
+                  'value': json['targetFormat'],
+                  '_value': json['_targetFormat'],
+                })
+              : null,
+      sigFormat: (json['sigFormat'] != null || json['_sigFormat'] != null)
+          ? FhirCode.fromJson({
+              'value': json['sigFormat'],
+              '_value': json['_sigFormat'],
+            })
+          : null,
+      data: (json['data'] != null || json['_data'] != null)
+          ? FhirBase64Binary.fromJson({
+              'value': json['data'],
+              '_value': json['_data'],
+            })
+          : null,
     );
   }
 

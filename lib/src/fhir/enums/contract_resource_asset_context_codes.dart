@@ -16,6 +16,9 @@ class ContractResourceAssetContextCodes extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return ContractResourceAssetContextCodes.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'ContractResourceAssetContextCodes cannot be constructed from JSON.');
     }
     return ContractResourceAssetContextCodes._(value, element);
   }

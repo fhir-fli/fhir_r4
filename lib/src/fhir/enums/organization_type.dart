@@ -16,6 +16,8 @@ class OrganizationType extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return OrganizationType.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError('OrganizationType cannot be constructed from JSON.');
     }
     return OrganizationType._(value, element);
   }

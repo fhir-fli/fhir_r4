@@ -16,6 +16,8 @@ class StatisticType extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return StatisticType.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError('StatisticType cannot be constructed from JSON.');
     }
     return StatisticType._(value, element);
   }

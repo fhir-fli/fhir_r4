@@ -16,6 +16,9 @@ class ClaimInformationCategoryCodes extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return ClaimInformationCategoryCodes.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'ClaimInformationCategoryCodes cannot be constructed from JSON.');
     }
     return ClaimInformationCategoryCodes._(value, element);
   }

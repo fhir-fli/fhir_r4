@@ -16,6 +16,8 @@ class TestReportStatus extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return TestReportStatus.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError('TestReportStatus cannot be constructed from JSON.');
     }
     return TestReportStatus._(value, element);
   }

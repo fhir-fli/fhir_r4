@@ -16,6 +16,9 @@ class CodeSystemHierarchyMeaning extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return CodeSystemHierarchyMeaning.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'CodeSystemHierarchyMeaning cannot be constructed from JSON.');
     }
     return CodeSystemHierarchyMeaning._(value, element);
   }

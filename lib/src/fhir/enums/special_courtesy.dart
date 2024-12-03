@@ -16,6 +16,8 @@ class SpecialCourtesy extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return SpecialCourtesy.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError('SpecialCourtesy cannot be constructed from JSON.');
     }
     return SpecialCourtesy._(value, element);
   }

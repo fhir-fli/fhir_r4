@@ -16,6 +16,9 @@ class InteractionIncidence extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return InteractionIncidence.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'InteractionIncidence cannot be constructed from JSON.');
     }
     return InteractionIncidence._(value, element);
   }

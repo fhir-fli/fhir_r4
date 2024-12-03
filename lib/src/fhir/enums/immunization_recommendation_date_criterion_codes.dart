@@ -18,6 +18,9 @@ class ImmunizationRecommendationDateCriterionCodes
     if (value == null && element != null) {
       return ImmunizationRecommendationDateCriterionCodes.elementOnly
           .withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'ImmunizationRecommendationDateCriterionCodes cannot be constructed from JSON.');
     }
     return ImmunizationRecommendationDateCriterionCodes._(value, element);
   }

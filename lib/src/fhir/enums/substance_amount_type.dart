@@ -16,6 +16,9 @@ class SubstanceAmountType extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return SubstanceAmountType.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'SubstanceAmountType cannot be constructed from JSON.');
     }
     return SubstanceAmountType._(value, element);
   }

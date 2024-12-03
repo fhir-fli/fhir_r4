@@ -16,6 +16,9 @@ class CoverageCopayTypeCodes extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return CoverageCopayTypeCodes.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'CoverageCopayTypeCodes cannot be constructed from JSON.');
     }
     return CoverageCopayTypeCodes._(value, element);
   }

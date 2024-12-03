@@ -31,79 +31,58 @@ class RelatedArtifact extends DataType {
   factory RelatedArtifact.fromJson(
     Map<String, dynamic> json,
   ) {
-    T? parseField<T extends FhirBase>(
-      dynamic value,
-      dynamic valueElement,
-      T Function(Map<String, dynamic>) fromJson,
-    ) =>
-        (value != null || valueElement != null)
-            ? fromJson({
-                'value': value,
-                '_value': valueElement,
-              })
-            : null;
-    List<T>? parseList<T extends FhirBase>(
-      List<dynamic>? values,
-      List<dynamic>? valueElements,
-      T Function(Map<String, dynamic>) fromJson,
-    ) =>
-        values?.asMap().entries.map((entry) {
-          final index = entry.key;
-          final value = entry.value;
-          final valueElement =
-              valueElements != null && valueElements.length > index
-                  ? valueElements[index]
-                  : null;
-          return fromJson({
-            'value': value,
-            '_value': valueElement,
-          });
-        }).toList();
     return RelatedArtifact(
-      id: parseField<FhirString>(
-        json['id'],
-        json['_id'],
-        FhirString.fromJson,
-      ),
-      extension_: parseList<FhirExtension>(
-        json['extension'] as List<dynamic>?,
-        json['_extension'] as List<dynamic>?,
-        FhirExtension.fromJson,
-      ),
+      id: json['id'] != null
+          ? FhirString.fromJson({'value': json['id']})
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
       type: RelatedArtifactType.fromJson({
         'value': json['type'],
         '_value': json['_type'],
       }),
-      label: parseField<FhirString>(
-        json['label'],
-        json['_label'],
-        FhirString.fromJson,
-      ),
-      display: parseField<FhirString>(
-        json['display'],
-        json['_display'],
-        FhirString.fromJson,
-      ),
-      citation: parseField<FhirMarkdown>(
-        json['citation'],
-        json['_citation'],
-        FhirMarkdown.fromJson,
-      ),
-      url: parseField<FhirUrl>(
-        json['url'],
-        json['_url'],
-        FhirUrl.fromJson,
-      ),
+      label: (json['label'] != null || json['_label'] != null)
+          ? FhirString.fromJson({
+              'value': json['label'],
+              '_value': json['_label'],
+            })
+          : null,
+      display: (json['display'] != null || json['_display'] != null)
+          ? FhirString.fromJson({
+              'value': json['display'],
+              '_value': json['_display'],
+            })
+          : null,
+      citation: (json['citation'] != null || json['_citation'] != null)
+          ? FhirMarkdown.fromJson({
+              'value': json['citation'],
+              '_value': json['_citation'],
+            })
+          : null,
+      url: (json['url'] != null || json['_url'] != null)
+          ? FhirUrl.fromJson({
+              'value': json['url'],
+              '_value': json['_url'],
+            })
+          : null,
       document: json['document'] != null
           ? Attachment.fromJson(
               json['document'] as Map<String, dynamic>,
             )
           : null,
-      resource: parseField<FhirCanonical>(
-        json['resource'],
-        json['_resource'],
-        FhirCanonical.fromJson,
-      ),
+      resource: (json['resource'] != null || json['_resource'] != null)
+          ? FhirCanonical.fromJson({
+              'value': json['resource'],
+              '_value': json['_resource'],
+            })
+          : null,
     );
   }
 

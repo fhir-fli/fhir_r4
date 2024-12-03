@@ -17,6 +17,9 @@ class MedicationDispensePerformerFunctionCodes extends PrimitiveType<String> {
     if (value == null && element != null) {
       return MedicationDispensePerformerFunctionCodes.elementOnly
           .withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'MedicationDispensePerformerFunctionCodes cannot be constructed from JSON.');
     }
     return MedicationDispensePerformerFunctionCodes._(value, element);
   }

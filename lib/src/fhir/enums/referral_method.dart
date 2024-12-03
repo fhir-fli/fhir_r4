@@ -16,6 +16,8 @@ class ReferralMethod extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return ReferralMethod.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError('ReferralMethod cannot be constructed from JSON.');
     }
     return ReferralMethod._(value, element);
   }

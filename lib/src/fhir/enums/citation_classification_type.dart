@@ -16,6 +16,9 @@ class CitationClassificationType extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return CitationClassificationType.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'CitationClassificationType cannot be constructed from JSON.');
     }
     return CitationClassificationType._(value, element);
   }

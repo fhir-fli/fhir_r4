@@ -16,6 +16,9 @@ class StructureTechnique extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return StructureTechnique.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'StructureTechnique cannot be constructed from JSON.');
     }
     return StructureTechnique._(value, element);
   }

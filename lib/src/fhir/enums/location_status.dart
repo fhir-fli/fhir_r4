@@ -16,6 +16,8 @@ class LocationStatus extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return LocationStatus.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError('LocationStatus cannot be constructed from JSON.');
     }
     return LocationStatus._(value, element);
   }

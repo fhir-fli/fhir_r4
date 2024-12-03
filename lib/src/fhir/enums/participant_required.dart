@@ -16,6 +16,9 @@ class ParticipantRequired extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return ParticipantRequired.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'ParticipantRequired cannot be constructed from JSON.');
     }
     return ParticipantRequired._(value, element);
   }

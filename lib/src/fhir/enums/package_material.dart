@@ -16,6 +16,8 @@ class PackageMaterial extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return PackageMaterial.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError('PackageMaterial cannot be constructed from JSON.');
     }
     return PackageMaterial._(value, element);
   }

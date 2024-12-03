@@ -16,6 +16,9 @@ class ConditionalReadStatus extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return ConditionalReadStatus.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'ConditionalReadStatus cannot be constructed from JSON.');
     }
     return ConditionalReadStatus._(value, element);
   }

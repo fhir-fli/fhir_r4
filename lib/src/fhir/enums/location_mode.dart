@@ -16,6 +16,8 @@ class LocationMode extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return LocationMode.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError('LocationMode cannot be constructed from JSON.');
     }
     return LocationMode._(value, element);
   }

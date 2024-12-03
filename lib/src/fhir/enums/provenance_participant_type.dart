@@ -16,6 +16,9 @@ class ProvenanceParticipantType extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return ProvenanceParticipantType.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'ProvenanceParticipantType cannot be constructed from JSON.');
     }
     return ProvenanceParticipantType._(value, element);
   }

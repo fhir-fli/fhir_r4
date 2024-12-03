@@ -16,6 +16,9 @@ class SearchModifierCode extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return SearchModifierCode.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'SearchModifierCode cannot be constructed from JSON.');
     }
     return SearchModifierCode._(value, element);
   }

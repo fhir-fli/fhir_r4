@@ -16,6 +16,9 @@ class PaymentStatusCodes extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return PaymentStatusCodes.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'PaymentStatusCodes cannot be constructed from JSON.');
     }
     return PaymentStatusCodes._(value, element);
   }

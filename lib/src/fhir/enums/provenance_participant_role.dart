@@ -16,6 +16,9 @@ class ProvenanceParticipantRole extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return ProvenanceParticipantRole.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'ProvenanceParticipantRole cannot be constructed from JSON.');
     }
     return ProvenanceParticipantRole._(value, element);
   }

@@ -16,6 +16,9 @@ class ContractResourceActionStatusCodes extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return ContractResourceActionStatusCodes.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'ContractResourceActionStatusCodes cannot be constructed from JSON.');
     }
     return ContractResourceActionStatusCodes._(value, element);
   }

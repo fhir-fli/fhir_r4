@@ -16,6 +16,9 @@ class GraphCompartmentUse extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return GraphCompartmentUse.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'GraphCompartmentUse cannot be constructed from JSON.');
     }
     return GraphCompartmentUse._(value, element);
   }

@@ -18,6 +18,9 @@ class CoverageEligibilityResponseAuthSupportCodes
     if (value == null && element != null) {
       return CoverageEligibilityResponseAuthSupportCodes.elementOnly
           .withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'CoverageEligibilityResponseAuthSupportCodes cannot be constructed from JSON.');
     }
     return CoverageEligibilityResponseAuthSupportCodes._(value, element);
   }

@@ -16,6 +16,9 @@ class CapabilityStatementKind extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return CapabilityStatementKind.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'CapabilityStatementKind cannot be constructed from JSON.');
     }
     return CapabilityStatementKind._(value, element);
   }

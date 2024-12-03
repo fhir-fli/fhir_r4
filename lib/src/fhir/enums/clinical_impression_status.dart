@@ -16,6 +16,9 @@ class ClinicalImpressionStatus extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return ClinicalImpressionStatus.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'ClinicalImpressionStatus cannot be constructed from JSON.');
     }
     return ClinicalImpressionStatus._(value, element);
   }

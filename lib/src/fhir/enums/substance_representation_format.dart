@@ -16,6 +16,9 @@ class SubstanceRepresentationFormat extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return SubstanceRepresentationFormat.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'SubstanceRepresentationFormat cannot be constructed from JSON.');
     }
     return SubstanceRepresentationFormat._(value, element);
   }

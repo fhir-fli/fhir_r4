@@ -16,6 +16,8 @@ class GoalStartEvent extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return GoalStartEvent.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError('GoalStartEvent cannot be constructed from JSON.');
     }
     return GoalStartEvent._(value, element);
   }

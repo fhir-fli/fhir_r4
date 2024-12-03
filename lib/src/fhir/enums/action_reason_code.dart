@@ -16,6 +16,8 @@ class ActionReasonCode extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return ActionReasonCode.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError('ActionReasonCode cannot be constructed from JSON.');
     }
     return ActionReasonCode._(value, element);
   }

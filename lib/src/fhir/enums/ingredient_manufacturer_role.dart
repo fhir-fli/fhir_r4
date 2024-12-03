@@ -16,6 +16,9 @@ class IngredientManufacturerRole extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return IngredientManufacturerRole.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'IngredientManufacturerRole cannot be constructed from JSON.');
     }
     return IngredientManufacturerRole._(value, element);
   }

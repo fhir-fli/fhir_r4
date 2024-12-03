@@ -28,70 +28,50 @@ class Coding extends DataType {
   factory Coding.fromJson(
     Map<String, dynamic> json,
   ) {
-    T? parseField<T extends FhirBase>(
-      dynamic value,
-      dynamic valueElement,
-      T Function(Map<String, dynamic>) fromJson,
-    ) =>
-        (value != null || valueElement != null)
-            ? fromJson({
-                'value': value,
-                '_value': valueElement,
-              })
-            : null;
-    List<T>? parseList<T extends FhirBase>(
-      List<dynamic>? values,
-      List<dynamic>? valueElements,
-      T Function(Map<String, dynamic>) fromJson,
-    ) =>
-        values?.asMap().entries.map((entry) {
-          final index = entry.key;
-          final value = entry.value;
-          final valueElement =
-              valueElements != null && valueElements.length > index
-                  ? valueElements[index]
-                  : null;
-          return fromJson({
-            'value': value,
-            '_value': valueElement,
-          });
-        }).toList();
     return Coding(
-      id: parseField<FhirString>(
-        json['id'],
-        json['_id'],
-        FhirString.fromJson,
-      ),
-      extension_: parseList<FhirExtension>(
-        json['extension'] as List<dynamic>?,
-        json['_extension'] as List<dynamic>?,
-        FhirExtension.fromJson,
-      ),
-      system: parseField<FhirUri>(
-        json['system'],
-        json['_system'],
-        FhirUri.fromJson,
-      ),
-      version: parseField<FhirString>(
-        json['version'],
-        json['_version'],
-        FhirString.fromJson,
-      ),
-      code: parseField<FhirCode>(
-        json['code'],
-        json['_code'],
-        FhirCode.fromJson,
-      ),
-      display: parseField<FhirString>(
-        json['display'],
-        json['_display'],
-        FhirString.fromJson,
-      ),
-      userSelected: parseField<FhirBoolean>(
-        json['userSelected'],
-        json['_userSelected'],
-        FhirBoolean.fromJson,
-      ),
+      id: json['id'] != null
+          ? FhirString.fromJson({'value': json['id']})
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      system: (json['system'] != null || json['_system'] != null)
+          ? FhirUri.fromJson({
+              'value': json['system'],
+              '_value': json['_system'],
+            })
+          : null,
+      version: (json['version'] != null || json['_version'] != null)
+          ? FhirString.fromJson({
+              'value': json['version'],
+              '_value': json['_version'],
+            })
+          : null,
+      code: (json['code'] != null || json['_code'] != null)
+          ? FhirCode.fromJson({
+              'value': json['code'],
+              '_value': json['_code'],
+            })
+          : null,
+      display: (json['display'] != null || json['_display'] != null)
+          ? FhirString.fromJson({
+              'value': json['display'],
+              '_value': json['_display'],
+            })
+          : null,
+      userSelected:
+          (json['userSelected'] != null || json['_userSelected'] != null)
+              ? FhirBoolean.fromJson({
+                  'value': json['userSelected'],
+                  '_value': json['_userSelected'],
+                })
+              : null,
     );
   }
 

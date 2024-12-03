@@ -16,6 +16,9 @@ class RestfulSecurityService extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return RestfulSecurityService.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'RestfulSecurityService cannot be constructed from JSON.');
     }
     return RestfulSecurityService._(value, element);
   }

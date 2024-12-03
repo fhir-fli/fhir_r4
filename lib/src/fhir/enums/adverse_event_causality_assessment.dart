@@ -16,6 +16,9 @@ class AdverseEventCausalityAssessment extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return AdverseEventCausalityAssessment.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'AdverseEventCausalityAssessment cannot be constructed from JSON.');
     }
     return AdverseEventCausalityAssessment._(value, element);
   }

@@ -16,6 +16,8 @@ class AddressUse extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return AddressUse.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError('AddressUse cannot be constructed from JSON.');
     }
     return AddressUse._(value, element);
   }

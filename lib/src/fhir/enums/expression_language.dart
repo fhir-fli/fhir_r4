@@ -16,6 +16,9 @@ class ExpressionLanguage extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return ExpressionLanguage.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'ExpressionLanguage cannot be constructed from JSON.');
     }
     return ExpressionLanguage._(value, element);
   }

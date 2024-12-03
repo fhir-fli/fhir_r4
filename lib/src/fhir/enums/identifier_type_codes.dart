@@ -16,6 +16,9 @@ class IdentifierTypeCodes extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return IdentifierTypeCodes.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'IdentifierTypeCodes cannot be constructed from JSON.');
     }
     return IdentifierTypeCodes._(value, element);
   }

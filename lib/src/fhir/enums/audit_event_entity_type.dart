@@ -16,6 +16,9 @@ class AuditEventEntityType extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return AuditEventEntityType.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'AuditEventEntityType cannot be constructed from JSON.');
     }
     return AuditEventEntityType._(value, element);
   }

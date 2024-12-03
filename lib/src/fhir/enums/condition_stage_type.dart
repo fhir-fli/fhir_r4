@@ -16,6 +16,9 @@ class ConditionStageType extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return ConditionStageType.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'ConditionStageType cannot be constructed from JSON.');
     }
     return ConditionStageType._(value, element);
   }

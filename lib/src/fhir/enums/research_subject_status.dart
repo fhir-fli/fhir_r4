@@ -16,6 +16,9 @@ class ResearchSubjectStatus extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return ResearchSubjectStatus.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'ResearchSubjectStatus cannot be constructed from JSON.');
     }
     return ResearchSubjectStatus._(value, element);
   }

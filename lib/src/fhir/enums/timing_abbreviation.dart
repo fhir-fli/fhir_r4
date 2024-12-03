@@ -16,6 +16,9 @@ class TimingAbbreviation extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return TimingAbbreviation.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'TimingAbbreviation cannot be constructed from JSON.');
     }
     return TimingAbbreviation._(value, element);
   }

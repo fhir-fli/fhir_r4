@@ -16,6 +16,9 @@ class QuestionnaireItemOperator extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return QuestionnaireItemOperator.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'QuestionnaireItemOperator cannot be constructed from JSON.');
     }
     return QuestionnaireItemOperator._(value, element);
   }

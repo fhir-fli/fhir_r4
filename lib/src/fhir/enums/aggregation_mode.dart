@@ -16,6 +16,8 @@ class AggregationMode extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return AggregationMode.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError('AggregationMode cannot be constructed from JSON.');
     }
     return AggregationMode._(value, element);
   }

@@ -16,6 +16,8 @@ class CommonLanguages extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return CommonLanguages.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError('CommonLanguages cannot be constructed from JSON.');
     }
     return CommonLanguages._(value, element);
   }

@@ -16,6 +16,8 @@ class DeviceMetricColor extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return DeviceMetricColor.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError('DeviceMetricColor cannot be constructed from JSON.');
     }
     return DeviceMetricColor._(value, element);
   }

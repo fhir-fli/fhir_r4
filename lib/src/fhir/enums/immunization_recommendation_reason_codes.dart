@@ -17,6 +17,9 @@ class ImmunizationRecommendationReasonCodes extends PrimitiveType<String> {
     if (value == null && element != null) {
       return ImmunizationRecommendationReasonCodes.elementOnly
           .withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'ImmunizationRecommendationReasonCodes cannot be constructed from JSON.');
     }
     return ImmunizationRecommendationReasonCodes._(value, element);
   }

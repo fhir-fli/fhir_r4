@@ -16,6 +16,9 @@ class PropertyRepresentation extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return PropertyRepresentation.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'PropertyRepresentation cannot be constructed from JSON.');
     }
     return PropertyRepresentation._(value, element);
   }

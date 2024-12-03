@@ -16,6 +16,9 @@ class AdditionalMonitoring extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return AdditionalMonitoring.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'AdditionalMonitoring cannot be constructed from JSON.');
     }
     return AdditionalMonitoring._(value, element);
   }

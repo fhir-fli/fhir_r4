@@ -16,6 +16,8 @@ class FilterOperator extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return FilterOperator.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError('FilterOperator cannot be constructed from JSON.');
     }
     return FilterOperator._(value, element);
   }

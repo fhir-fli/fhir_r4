@@ -16,6 +16,9 @@ class SpecialArrangements extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return SpecialArrangements.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'SpecialArrangements cannot be constructed from JSON.');
     }
     return SpecialArrangements._(value, element);
   }

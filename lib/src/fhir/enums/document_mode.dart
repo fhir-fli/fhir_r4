@@ -16,6 +16,8 @@ class DocumentMode extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return DocumentMode.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError('DocumentMode cannot be constructed from JSON.');
     }
     return DocumentMode._(value, element);
   }

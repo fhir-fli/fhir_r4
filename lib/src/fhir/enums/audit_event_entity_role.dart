@@ -16,6 +16,9 @@ class AuditEventEntityRole extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return AuditEventEntityRole.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'AuditEventEntityRole cannot be constructed from JSON.');
     }
     return AuditEventEntityRole._(value, element);
   }

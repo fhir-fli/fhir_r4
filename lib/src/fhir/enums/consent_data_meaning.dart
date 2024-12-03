@@ -16,6 +16,9 @@ class ConsentDataMeaning extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return ConsentDataMeaning.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'ConsentDataMeaning cannot be constructed from JSON.');
     }
     return ConsentDataMeaning._(value, element);
   }

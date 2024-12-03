@@ -16,6 +16,9 @@ class NamingSystemIdentifierType extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return NamingSystemIdentifierType.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'NamingSystemIdentifierType cannot be constructed from JSON.');
     }
     return NamingSystemIdentifierType._(value, element);
   }

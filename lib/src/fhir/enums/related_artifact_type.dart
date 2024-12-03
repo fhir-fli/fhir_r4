@@ -16,6 +16,9 @@ class RelatedArtifactType extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return RelatedArtifactType.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'RelatedArtifactType cannot be constructed from JSON.');
     }
     return RelatedArtifactType._(value, element);
   }

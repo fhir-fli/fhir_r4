@@ -16,6 +16,8 @@ class VisionEyes extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return VisionEyes.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError('VisionEyes cannot be constructed from JSON.');
     }
     return VisionEyes._(value, element);
   }

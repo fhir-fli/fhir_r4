@@ -25,55 +25,31 @@ class Money extends DataType {
   factory Money.fromJson(
     Map<String, dynamic> json,
   ) {
-    T? parseField<T extends FhirBase>(
-      dynamic value,
-      dynamic valueElement,
-      T Function(Map<String, dynamic>) fromJson,
-    ) =>
-        (value != null || valueElement != null)
-            ? fromJson({
-                'value': value,
-                '_value': valueElement,
-              })
-            : null;
-    List<T>? parseList<T extends FhirBase>(
-      List<dynamic>? values,
-      List<dynamic>? valueElements,
-      T Function(Map<String, dynamic>) fromJson,
-    ) =>
-        values?.asMap().entries.map((entry) {
-          final index = entry.key;
-          final value = entry.value;
-          final valueElement =
-              valueElements != null && valueElements.length > index
-                  ? valueElements[index]
-                  : null;
-          return fromJson({
-            'value': value,
-            '_value': valueElement,
-          });
-        }).toList();
     return Money(
-      id: parseField<FhirString>(
-        json['id'],
-        json['_id'],
-        FhirString.fromJson,
-      ),
-      extension_: parseList<FhirExtension>(
-        json['extension'] as List<dynamic>?,
-        json['_extension'] as List<dynamic>?,
-        FhirExtension.fromJson,
-      ),
-      value: parseField<FhirDecimal>(
-        json['value'],
-        json['_value'],
-        FhirDecimal.fromJson,
-      ),
-      currency: parseField<FhirCode>(
-        json['currency'],
-        json['_currency'],
-        FhirCode.fromJson,
-      ),
+      id: json['id'] != null
+          ? FhirString.fromJson({'value': json['id']})
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      value: (json['value'] != null || json['_value'] != null)
+          ? FhirDecimal.fromJson({
+              'value': json['value'],
+              '_value': json['_value'],
+            })
+          : null,
+      currency: (json['currency'] != null || json['_currency'] != null)
+          ? FhirCode.fromJson({
+              'value': json['currency'],
+              '_value': json['_currency'],
+            })
+          : null,
     );
   }
 

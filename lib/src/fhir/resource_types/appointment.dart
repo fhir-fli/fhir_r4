@@ -55,80 +55,69 @@ class Appointment extends DomainResource {
   factory Appointment.fromJson(
     Map<String, dynamic> json,
   ) {
-    T? parseField<T extends FhirBase>(
-      dynamic value,
-      dynamic valueElement,
-      T Function(Map<String, dynamic>) fromJson,
-    ) =>
-        (value != null || valueElement != null)
-            ? fromJson({
-                'value': value,
-                '_value': valueElement,
-              })
-            : null;
-    List<T>? parseList<T extends FhirBase>(
-      List<dynamic>? values,
-      List<dynamic>? valueElements,
-      T Function(Map<String, dynamic>) fromJson,
-    ) =>
-        values?.asMap().entries.map((entry) {
-          final index = entry.key;
-          final value = entry.value;
-          final valueElement =
-              valueElements != null && valueElements.length > index
-                  ? valueElements[index]
-                  : null;
-          return fromJson({
-            'value': value,
-            '_value': valueElement,
-          });
-        }).toList();
     return Appointment(
-      id: parseField<FhirString>(
-        json['id'],
-        json['_id'],
-        FhirString.fromJson,
-      ),
+      id: json['id'] != null
+          ? FhirString.fromJson({'value': json['id']})
+          : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
-      implicitRules: parseField<FhirUri>(
-        json['implicitRules'],
-        json['_implicitRules'],
-        FhirUri.fromJson,
-      ),
-      language: parseField<CommonLanguages>(
-        json['language'],
-        json['_language'],
-        CommonLanguages.fromJson,
-      ),
+      implicitRules:
+          (json['implicitRules'] != null || json['_implicitRules'] != null)
+              ? FhirUri.fromJson({
+                  'value': json['implicitRules'],
+                  '_value': json['_implicitRules'],
+                })
+              : null,
+      language: (json['language'] != null || json['_language'] != null)
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
+          : null,
       text: json['text'] != null
           ? Narrative.fromJson(
               json['text'] as Map<String, dynamic>,
             )
           : null,
-      contained: parseList<Resource>(
-        json['contained'] as List<dynamic>?,
-        json['_contained'] as List<dynamic>?,
-        Resource.fromJson,
-      ),
-      extension_: parseList<FhirExtension>(
-        json['extension'] as List<dynamic>?,
-        json['_extension'] as List<dynamic>?,
-        FhirExtension.fromJson,
-      ),
-      modifierExtension: parseList<FhirExtension>(
-        json['modifierExtension'] as List<dynamic>?,
-        json['_modifierExtension'] as List<dynamic>?,
-        FhirExtension.fromJson,
-      ),
-      identifier: parseList<Identifier>(
-        json['identifier'] as List<dynamic>?,
-        json['_identifier'] as List<dynamic>?,
-        Identifier.fromJson,
-      ),
+      contained: json['contained'] != null
+          ? (json['contained'] as List<dynamic>)
+              .map<Resource>(
+                (v) => Resource.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      identifier: json['identifier'] != null
+          ? (json['identifier'] as List<dynamic>)
+              .map<Identifier>(
+                (v) => Identifier.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
       status: AppointmentStatus.fromJson({
         'value': json['status'],
         '_value': json['_status'],
@@ -138,101 +127,151 @@ class Appointment extends DomainResource {
               json['cancelationReason'] as Map<String, dynamic>,
             )
           : null,
-      serviceCategory: parseList<CodeableConcept>(
-        json['serviceCategory'] as List<dynamic>?,
-        json['_serviceCategory'] as List<dynamic>?,
-        CodeableConcept.fromJson,
-      ),
-      serviceType: parseList<CodeableConcept>(
-        json['serviceType'] as List<dynamic>?,
-        json['_serviceType'] as List<dynamic>?,
-        CodeableConcept.fromJson,
-      ),
-      specialty: parseList<CodeableConcept>(
-        json['specialty'] as List<dynamic>?,
-        json['_specialty'] as List<dynamic>?,
-        CodeableConcept.fromJson,
-      ),
+      serviceCategory: json['serviceCategory'] != null
+          ? (json['serviceCategory'] as List<dynamic>)
+              .map<CodeableConcept>(
+                (v) => CodeableConcept.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      serviceType: json['serviceType'] != null
+          ? (json['serviceType'] as List<dynamic>)
+              .map<CodeableConcept>(
+                (v) => CodeableConcept.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      specialty: json['specialty'] != null
+          ? (json['specialty'] as List<dynamic>)
+              .map<CodeableConcept>(
+                (v) => CodeableConcept.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
       appointmentType: json['appointmentType'] != null
           ? CodeableConcept.fromJson(
               json['appointmentType'] as Map<String, dynamic>,
             )
           : null,
-      reasonCode: parseList<CodeableConcept>(
-        json['reasonCode'] as List<dynamic>?,
-        json['_reasonCode'] as List<dynamic>?,
-        CodeableConcept.fromJson,
+      reasonCode: json['reasonCode'] != null
+          ? (json['reasonCode'] as List<dynamic>)
+              .map<CodeableConcept>(
+                (v) => CodeableConcept.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      reasonReference: json['reasonReference'] != null
+          ? (json['reasonReference'] as List<dynamic>)
+              .map<Reference>(
+                (v) => Reference.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      priority: (json['priority'] != null || json['_priority'] != null)
+          ? FhirUnsignedInt.fromJson({
+              'value': json['priority'],
+              '_value': json['_priority'],
+            })
+          : null,
+      description: (json['description'] != null || json['_description'] != null)
+          ? FhirString.fromJson({
+              'value': json['description'],
+              '_value': json['_description'],
+            })
+          : null,
+      supportingInformation: json['supportingInformation'] != null
+          ? (json['supportingInformation'] as List<dynamic>)
+              .map<Reference>(
+                (v) => Reference.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      start: (json['start'] != null || json['_start'] != null)
+          ? FhirInstant.fromJson({
+              'value': json['start'],
+              '_value': json['_start'],
+            })
+          : null,
+      end: (json['end'] != null || json['_end'] != null)
+          ? FhirInstant.fromJson({
+              'value': json['end'],
+              '_value': json['_end'],
+            })
+          : null,
+      minutesDuration:
+          (json['minutesDuration'] != null || json['_minutesDuration'] != null)
+              ? FhirPositiveInt.fromJson({
+                  'value': json['minutesDuration'],
+                  '_value': json['_minutesDuration'],
+                })
+              : null,
+      slot: json['slot'] != null
+          ? (json['slot'] as List<dynamic>)
+              .map<Reference>(
+                (v) => Reference.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      created: (json['created'] != null || json['_created'] != null)
+          ? FhirDateTime.fromJson({
+              'value': json['created'],
+              '_value': json['_created'],
+            })
+          : null,
+      comment: (json['comment'] != null || json['_comment'] != null)
+          ? FhirString.fromJson({
+              'value': json['comment'],
+              '_value': json['_comment'],
+            })
+          : null,
+      patientInstruction: (json['patientInstruction'] != null ||
+              json['_patientInstruction'] != null)
+          ? FhirString.fromJson({
+              'value': json['patientInstruction'],
+              '_value': json['_patientInstruction'],
+            })
+          : null,
+      basedOn: json['basedOn'] != null
+          ? (json['basedOn'] as List<dynamic>)
+              .map<Reference>(
+                (v) => Reference.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      participant: ensureNonNullList(
+        (json['participant'] as List<dynamic>)
+            .map<AppointmentParticipant>(
+              (v) => AppointmentParticipant.fromJson(
+                v as Map<String, dynamic>,
+              ),
+            )
+            .toList(),
       ),
-      reasonReference: parseList<Reference>(
-        json['reasonReference'] as List<dynamic>?,
-        json['_reasonReference'] as List<dynamic>?,
-        Reference.fromJson,
-      ),
-      priority: parseField<FhirUnsignedInt>(
-        json['priority'],
-        json['_priority'],
-        FhirUnsignedInt.fromJson,
-      ),
-      description: parseField<FhirString>(
-        json['description'],
-        json['_description'],
-        FhirString.fromJson,
-      ),
-      supportingInformation: parseList<Reference>(
-        json['supportingInformation'] as List<dynamic>?,
-        json['_supportingInformation'] as List<dynamic>?,
-        Reference.fromJson,
-      ),
-      start: parseField<FhirInstant>(
-        json['start'],
-        json['_start'],
-        FhirInstant.fromJson,
-      ),
-      end: parseField<FhirInstant>(
-        json['end'],
-        json['_end'],
-        FhirInstant.fromJson,
-      ),
-      minutesDuration: parseField<FhirPositiveInt>(
-        json['minutesDuration'],
-        json['_minutesDuration'],
-        FhirPositiveInt.fromJson,
-      ),
-      slot: parseList<Reference>(
-        json['slot'] as List<dynamic>?,
-        json['_slot'] as List<dynamic>?,
-        Reference.fromJson,
-      ),
-      created: parseField<FhirDateTime>(
-        json['created'],
-        json['_created'],
-        FhirDateTime.fromJson,
-      ),
-      comment: parseField<FhirString>(
-        json['comment'],
-        json['_comment'],
-        FhirString.fromJson,
-      ),
-      patientInstruction: parseField<FhirString>(
-        json['patientInstruction'],
-        json['_patientInstruction'],
-        FhirString.fromJson,
-      ),
-      basedOn: parseList<Reference>(
-        json['basedOn'] as List<dynamic>?,
-        json['_basedOn'] as List<dynamic>?,
-        Reference.fromJson,
-      ),
-      participant: parseList<AppointmentParticipant>(
-        json['participant'] as List<dynamic>?,
-        json['_participant'] as List<dynamic>?,
-        AppointmentParticipant.fromJson,
-      )!,
-      requestedPeriod: parseList<Period>(
-        json['requestedPeriod'] as List<dynamic>?,
-        json['_requestedPeriod'] as List<dynamic>?,
-        Period.fromJson,
-      ),
+      requestedPeriod: json['requestedPeriod'] != null
+          ? (json['requestedPeriod'] as List<dynamic>)
+              .map<Period>(
+                (v) => Period.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
     );
   }
 
@@ -620,65 +659,48 @@ class AppointmentParticipant extends BackboneElement {
   factory AppointmentParticipant.fromJson(
     Map<String, dynamic> json,
   ) {
-    T? parseField<T extends FhirBase>(
-      dynamic value,
-      dynamic valueElement,
-      T Function(Map<String, dynamic>) fromJson,
-    ) =>
-        (value != null || valueElement != null)
-            ? fromJson({
-                'value': value,
-                '_value': valueElement,
-              })
-            : null;
-    List<T>? parseList<T extends FhirBase>(
-      List<dynamic>? values,
-      List<dynamic>? valueElements,
-      T Function(Map<String, dynamic>) fromJson,
-    ) =>
-        values?.asMap().entries.map((entry) {
-          final index = entry.key;
-          final value = entry.value;
-          final valueElement =
-              valueElements != null && valueElements.length > index
-                  ? valueElements[index]
-                  : null;
-          return fromJson({
-            'value': value,
-            '_value': valueElement,
-          });
-        }).toList();
     return AppointmentParticipant(
-      id: parseField<FhirString>(
-        json['id'],
-        json['_id'],
-        FhirString.fromJson,
-      ),
-      extension_: parseList<FhirExtension>(
-        json['extension'] as List<dynamic>?,
-        json['_extension'] as List<dynamic>?,
-        FhirExtension.fromJson,
-      ),
-      modifierExtension: parseList<FhirExtension>(
-        json['modifierExtension'] as List<dynamic>?,
-        json['_modifierExtension'] as List<dynamic>?,
-        FhirExtension.fromJson,
-      ),
-      type: parseList<CodeableConcept>(
-        json['type'] as List<dynamic>?,
-        json['_type'] as List<dynamic>?,
-        CodeableConcept.fromJson,
-      ),
+      id: json['id'] != null
+          ? FhirString.fromJson({'value': json['id']})
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      type: json['type'] != null
+          ? (json['type'] as List<dynamic>)
+              .map<CodeableConcept>(
+                (v) => CodeableConcept.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
       actor: json['actor'] != null
           ? Reference.fromJson(
               json['actor'] as Map<String, dynamic>,
             )
           : null,
-      required_: parseField<ParticipantRequired>(
-        json['required'],
-        json['_required'],
-        ParticipantRequired.fromJson,
-      ),
+      required_: (json['required'] != null || json['_required'] != null)
+          ? ParticipantRequired.fromJson({
+              'value': json['required'],
+              '_value': json['_required'],
+            })
+          : null,
       status: ParticipationStatus.fromJson({
         'value': json['status'],
         '_value': json['_status'],

@@ -16,6 +16,9 @@ class IngredientFunction extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return IngredientFunction.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'IngredientFunction cannot be constructed from JSON.');
     }
     return IngredientFunction._(value, element);
   }

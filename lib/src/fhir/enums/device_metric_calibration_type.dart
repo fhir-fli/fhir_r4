@@ -16,6 +16,9 @@ class DeviceMetricCalibrationType extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return DeviceMetricCalibrationType.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'DeviceMetricCalibrationType cannot be constructed from JSON.');
     }
     return DeviceMetricCalibrationType._(value, element);
   }

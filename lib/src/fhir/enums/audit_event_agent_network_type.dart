@@ -16,6 +16,9 @@ class AuditEventAgentNetworkType extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return AuditEventAgentNetworkType.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'AuditEventAgentNetworkType cannot be constructed from JSON.');
     }
     return AuditEventAgentNetworkType._(value, element);
   }

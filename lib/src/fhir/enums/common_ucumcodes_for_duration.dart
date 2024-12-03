@@ -16,6 +16,9 @@ class CommonUCUMCodesForDuration extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return CommonUCUMCodesForDuration.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'CommonUCUMCodesForDuration cannot be constructed from JSON.');
     }
     return CommonUCUMCodesForDuration._(value, element);
   }

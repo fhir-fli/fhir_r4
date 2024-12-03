@@ -16,6 +16,8 @@ class MeasureType extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return MeasureType.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError('MeasureType cannot be constructed from JSON.');
     }
     return MeasureType._(value, element);
   }

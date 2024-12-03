@@ -16,6 +16,9 @@ class ConditionDiagnosisSeverity extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return ConditionDiagnosisSeverity.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'ConditionDiagnosisSeverity cannot be constructed from JSON.');
     }
     return ConditionDiagnosisSeverity._(value, element);
   }

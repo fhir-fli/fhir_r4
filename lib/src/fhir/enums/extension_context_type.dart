@@ -16,6 +16,9 @@ class ExtensionContextType extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return ExtensionContextType.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'ExtensionContextType cannot be constructed from JSON.');
     }
     return ExtensionContextType._(value, element);
   }

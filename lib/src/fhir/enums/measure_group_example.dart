@@ -16,6 +16,9 @@ class MeasureGroupExample extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return MeasureGroupExample.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'MeasureGroupExample cannot be constructed from JSON.');
     }
     return MeasureGroupExample._(value, element);
   }

@@ -16,6 +16,9 @@ class MissingToothReasonCodes extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return MissingToothReasonCodes.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'MissingToothReasonCodes cannot be constructed from JSON.');
     }
     return MissingToothReasonCodes._(value, element);
   }

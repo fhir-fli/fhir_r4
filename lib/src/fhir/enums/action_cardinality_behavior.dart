@@ -16,6 +16,9 @@ class ActionCardinalityBehavior extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return ActionCardinalityBehavior.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'ActionCardinalityBehavior cannot be constructed from JSON.');
     }
     return ActionCardinalityBehavior._(value, element);
   }

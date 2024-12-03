@@ -16,6 +16,9 @@ class CatalogEntryRelationType extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return CatalogEntryRelationType.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'CatalogEntryRelationType cannot be constructed from JSON.');
     }
     return CatalogEntryRelationType._(value, element);
   }

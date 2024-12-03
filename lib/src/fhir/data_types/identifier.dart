@@ -30,65 +30,42 @@ class Identifier extends DataType {
   factory Identifier.fromJson(
     Map<String, dynamic> json,
   ) {
-    T? parseField<T extends FhirBase>(
-      dynamic value,
-      dynamic valueElement,
-      T Function(Map<String, dynamic>) fromJson,
-    ) =>
-        (value != null || valueElement != null)
-            ? fromJson({
-                'value': value,
-                '_value': valueElement,
-              })
-            : null;
-    List<T>? parseList<T extends FhirBase>(
-      List<dynamic>? values,
-      List<dynamic>? valueElements,
-      T Function(Map<String, dynamic>) fromJson,
-    ) =>
-        values?.asMap().entries.map((entry) {
-          final index = entry.key;
-          final value = entry.value;
-          final valueElement =
-              valueElements != null && valueElements.length > index
-                  ? valueElements[index]
-                  : null;
-          return fromJson({
-            'value': value,
-            '_value': valueElement,
-          });
-        }).toList();
     return Identifier(
-      id: parseField<FhirString>(
-        json['id'],
-        json['_id'],
-        FhirString.fromJson,
-      ),
-      extension_: parseList<FhirExtension>(
-        json['extension'] as List<dynamic>?,
-        json['_extension'] as List<dynamic>?,
-        FhirExtension.fromJson,
-      ),
-      use: parseField<IdentifierUse>(
-        json['use'],
-        json['_use'],
-        IdentifierUse.fromJson,
-      ),
+      id: json['id'] != null
+          ? FhirString.fromJson({'value': json['id']})
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      use: (json['use'] != null || json['_use'] != null)
+          ? IdentifierUse.fromJson({
+              'value': json['use'],
+              '_value': json['_use'],
+            })
+          : null,
       type: json['type'] != null
           ? CodeableConcept.fromJson(
               json['type'] as Map<String, dynamic>,
             )
           : null,
-      system: parseField<FhirUri>(
-        json['system'],
-        json['_system'],
-        FhirUri.fromJson,
-      ),
-      value: parseField<FhirString>(
-        json['value'],
-        json['_value'],
-        FhirString.fromJson,
-      ),
+      system: (json['system'] != null || json['_system'] != null)
+          ? FhirUri.fromJson({
+              'value': json['system'],
+              '_value': json['_system'],
+            })
+          : null,
+      value: (json['value'] != null || json['_value'] != null)
+          ? FhirString.fromJson({
+              'value': json['value'],
+              '_value': json['_value'],
+            })
+          : null,
       period: json['period'] != null
           ? Period.fromJson(
               json['period'] as Map<String, dynamic>,

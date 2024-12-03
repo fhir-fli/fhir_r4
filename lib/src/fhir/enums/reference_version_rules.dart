@@ -16,6 +16,9 @@ class ReferenceVersionRules extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return ReferenceVersionRules.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'ReferenceVersionRules cannot be constructed from JSON.');
     }
     return ReferenceVersionRules._(value, element);
   }

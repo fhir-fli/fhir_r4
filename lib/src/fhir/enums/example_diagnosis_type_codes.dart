@@ -16,6 +16,9 @@ class ExampleDiagnosisTypeCodes extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return ExampleDiagnosisTypeCodes.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'ExampleDiagnosisTypeCodes cannot be constructed from JSON.');
     }
     return ExampleDiagnosisTypeCodes._(value, element);
   }

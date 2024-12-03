@@ -16,6 +16,9 @@ class StructureDefinitionKind extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return StructureDefinitionKind.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'StructureDefinitionKind cannot be constructed from JSON.');
     }
     return StructureDefinitionKind._(value, element);
   }

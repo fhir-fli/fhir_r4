@@ -16,6 +16,9 @@ class AdverseEventCausalityMethod extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return AdverseEventCausalityMethod.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'AdverseEventCausalityMethod cannot be constructed from JSON.');
     }
     return AdverseEventCausalityMethod._(value, element);
   }

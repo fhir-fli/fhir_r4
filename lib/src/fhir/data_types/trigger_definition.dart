@@ -32,54 +32,29 @@ class TriggerDefinition extends DataType {
   factory TriggerDefinition.fromJson(
     Map<String, dynamic> json,
   ) {
-    T? parseField<T extends FhirBase>(
-      dynamic value,
-      dynamic valueElement,
-      T Function(Map<String, dynamic>) fromJson,
-    ) =>
-        (value != null || valueElement != null)
-            ? fromJson({
-                'value': value,
-                '_value': valueElement,
-              })
-            : null;
-    List<T>? parseList<T extends FhirBase>(
-      List<dynamic>? values,
-      List<dynamic>? valueElements,
-      T Function(Map<String, dynamic>) fromJson,
-    ) =>
-        values?.asMap().entries.map((entry) {
-          final index = entry.key;
-          final value = entry.value;
-          final valueElement =
-              valueElements != null && valueElements.length > index
-                  ? valueElements[index]
-                  : null;
-          return fromJson({
-            'value': value,
-            '_value': valueElement,
-          });
-        }).toList();
     return TriggerDefinition(
-      id: parseField<FhirString>(
-        json['id'],
-        json['_id'],
-        FhirString.fromJson,
-      ),
-      extension_: parseList<FhirExtension>(
-        json['extension'] as List<dynamic>?,
-        json['_extension'] as List<dynamic>?,
-        FhirExtension.fromJson,
-      ),
+      id: json['id'] != null
+          ? FhirString.fromJson({'value': json['id']})
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
       type: TriggerType.fromJson({
         'value': json['type'],
         '_value': json['_type'],
       }),
-      name: parseField<FhirString>(
-        json['name'],
-        json['_name'],
-        FhirString.fromJson,
-      ),
+      name: (json['name'] != null || json['_name'] != null)
+          ? FhirString.fromJson({
+              'value': json['name'],
+              '_value': json['_name'],
+            })
+          : null,
       timingTiming: json['timingTiming'] != null
           ? Timing.fromJson(
               json['timingTiming'] as Map<String, dynamic>,
@@ -90,21 +65,28 @@ class TriggerDefinition extends DataType {
               json['timingReference'] as Map<String, dynamic>,
             )
           : null,
-      timingDate: parseField<FhirDate>(
-        json['timingDate'],
-        json['_timingDate'],
-        FhirDate.fromJson,
-      ),
-      timingDateTime: parseField<FhirDateTime>(
-        json['timingDateTime'],
-        json['_timingDateTime'],
-        FhirDateTime.fromJson,
-      ),
-      data: parseList<DataRequirement>(
-        json['data'] as List<dynamic>?,
-        json['_data'] as List<dynamic>?,
-        DataRequirement.fromJson,
-      ),
+      timingDate: (json['timingDate'] != null || json['_timingDate'] != null)
+          ? FhirDate.fromJson({
+              'value': json['timingDate'],
+              '_value': json['_timingDate'],
+            })
+          : null,
+      timingDateTime:
+          (json['timingDateTime'] != null || json['_timingDateTime'] != null)
+              ? FhirDateTime.fromJson({
+                  'value': json['timingDateTime'],
+                  '_value': json['_timingDateTime'],
+                })
+              : null,
+      data: json['data'] != null
+          ? (json['data'] as List<dynamic>)
+              .map<DataRequirement>(
+                (v) => DataRequirement.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
       condition: json['condition'] != null
           ? FhirExpression.fromJson(
               json['condition'] as Map<String, dynamic>,

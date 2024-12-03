@@ -16,6 +16,8 @@ class StudyType extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return StudyType.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError('StudyType cannot be constructed from JSON.');
     }
     return StudyType._(value, element);
   }

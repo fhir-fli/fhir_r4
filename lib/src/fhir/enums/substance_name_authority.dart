@@ -16,6 +16,9 @@ class SubstanceNameAuthority extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return SubstanceNameAuthority.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'SubstanceNameAuthority cannot be constructed from JSON.');
     }
     return SubstanceNameAuthority._(value, element);
   }

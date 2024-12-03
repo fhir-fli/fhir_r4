@@ -16,6 +16,9 @@ class CriteriaNotExistsBehavior extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return CriteriaNotExistsBehavior.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'CriteriaNotExistsBehavior cannot be constructed from JSON.');
     }
     return CriteriaNotExistsBehavior._(value, element);
   }

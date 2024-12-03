@@ -16,6 +16,8 @@ class PublicationStatus extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return PublicationStatus.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError('PublicationStatus cannot be constructed from JSON.');
     }
     return PublicationStatus._(value, element);
   }

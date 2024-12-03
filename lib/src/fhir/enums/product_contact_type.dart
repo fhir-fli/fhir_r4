@@ -16,6 +16,9 @@ class ProductContactType extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return ProductContactType.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'ProductContactType cannot be constructed from JSON.');
     }
     return ProductContactType._(value, element);
   }

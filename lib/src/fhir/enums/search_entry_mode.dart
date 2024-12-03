@@ -16,6 +16,8 @@ class SearchEntryMode extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return SearchEntryMode.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError('SearchEntryMode cannot be constructed from JSON.');
     }
     return SearchEntryMode._(value, element);
   }

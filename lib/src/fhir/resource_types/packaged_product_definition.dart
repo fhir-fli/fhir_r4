@@ -45,141 +45,158 @@ class PackagedProductDefinition extends DomainResource {
   factory PackagedProductDefinition.fromJson(
     Map<String, dynamic> json,
   ) {
-    T? parseField<T extends FhirBase>(
-      dynamic value,
-      dynamic valueElement,
-      T Function(Map<String, dynamic>) fromJson,
-    ) =>
-        (value != null || valueElement != null)
-            ? fromJson({
-                'value': value,
-                '_value': valueElement,
-              })
-            : null;
-    List<T>? parseList<T extends FhirBase>(
-      List<dynamic>? values,
-      List<dynamic>? valueElements,
-      T Function(Map<String, dynamic>) fromJson,
-    ) =>
-        values?.asMap().entries.map((entry) {
-          final index = entry.key;
-          final value = entry.value;
-          final valueElement =
-              valueElements != null && valueElements.length > index
-                  ? valueElements[index]
-                  : null;
-          return fromJson({
-            'value': value,
-            '_value': valueElement,
-          });
-        }).toList();
     return PackagedProductDefinition(
-      id: parseField<FhirString>(
-        json['id'],
-        json['_id'],
-        FhirString.fromJson,
-      ),
+      id: json['id'] != null
+          ? FhirString.fromJson({'value': json['id']})
+          : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
-      implicitRules: parseField<FhirUri>(
-        json['implicitRules'],
-        json['_implicitRules'],
-        FhirUri.fromJson,
-      ),
-      language: parseField<CommonLanguages>(
-        json['language'],
-        json['_language'],
-        CommonLanguages.fromJson,
-      ),
+      implicitRules:
+          (json['implicitRules'] != null || json['_implicitRules'] != null)
+              ? FhirUri.fromJson({
+                  'value': json['implicitRules'],
+                  '_value': json['_implicitRules'],
+                })
+              : null,
+      language: (json['language'] != null || json['_language'] != null)
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
+          : null,
       text: json['text'] != null
           ? Narrative.fromJson(
               json['text'] as Map<String, dynamic>,
             )
           : null,
-      contained: parseList<Resource>(
-        json['contained'] as List<dynamic>?,
-        json['_contained'] as List<dynamic>?,
-        Resource.fromJson,
-      ),
-      extension_: parseList<FhirExtension>(
-        json['extension'] as List<dynamic>?,
-        json['_extension'] as List<dynamic>?,
-        FhirExtension.fromJson,
-      ),
-      modifierExtension: parseList<FhirExtension>(
-        json['modifierExtension'] as List<dynamic>?,
-        json['_modifierExtension'] as List<dynamic>?,
-        FhirExtension.fromJson,
-      ),
-      identifier: parseList<Identifier>(
-        json['identifier'] as List<dynamic>?,
-        json['_identifier'] as List<dynamic>?,
-        Identifier.fromJson,
-      ),
-      name: parseField<FhirString>(
-        json['name'],
-        json['_name'],
-        FhirString.fromJson,
-      ),
+      contained: json['contained'] != null
+          ? (json['contained'] as List<dynamic>)
+              .map<Resource>(
+                (v) => Resource.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      identifier: json['identifier'] != null
+          ? (json['identifier'] as List<dynamic>)
+              .map<Identifier>(
+                (v) => Identifier.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      name: (json['name'] != null || json['_name'] != null)
+          ? FhirString.fromJson({
+              'value': json['name'],
+              '_value': json['_name'],
+            })
+          : null,
       type: json['type'] != null
           ? CodeableConcept.fromJson(
               json['type'] as Map<String, dynamic>,
             )
           : null,
-      packageFor: parseList<Reference>(
-        json['packageFor'] as List<dynamic>?,
-        json['_packageFor'] as List<dynamic>?,
-        Reference.fromJson,
-      ),
+      packageFor: json['packageFor'] != null
+          ? (json['packageFor'] as List<dynamic>)
+              .map<Reference>(
+                (v) => Reference.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
       status: json['status'] != null
           ? CodeableConcept.fromJson(
               json['status'] as Map<String, dynamic>,
             )
           : null,
-      statusDate: parseField<FhirDateTime>(
-        json['statusDate'],
-        json['_statusDate'],
-        FhirDateTime.fromJson,
-      ),
-      containedItemQuantity: parseList<Quantity>(
-        json['containedItemQuantity'] as List<dynamic>?,
-        json['_containedItemQuantity'] as List<dynamic>?,
-        Quantity.fromJson,
-      ),
-      description: parseField<FhirMarkdown>(
-        json['description'],
-        json['_description'],
-        FhirMarkdown.fromJson,
-      ),
-      legalStatusOfSupply:
-          parseList<PackagedProductDefinitionLegalStatusOfSupply>(
-        json['legalStatusOfSupply'] as List<dynamic>?,
-        json['_legalStatusOfSupply'] as List<dynamic>?,
-        PackagedProductDefinitionLegalStatusOfSupply.fromJson,
-      ),
-      marketingStatus: parseList<MarketingStatus>(
-        json['marketingStatus'] as List<dynamic>?,
-        json['_marketingStatus'] as List<dynamic>?,
-        MarketingStatus.fromJson,
-      ),
-      characteristic: parseList<CodeableConcept>(
-        json['characteristic'] as List<dynamic>?,
-        json['_characteristic'] as List<dynamic>?,
-        CodeableConcept.fromJson,
-      ),
-      copackagedIndicator: parseField<FhirBoolean>(
-        json['copackagedIndicator'],
-        json['_copackagedIndicator'],
-        FhirBoolean.fromJson,
-      ),
-      manufacturer: parseList<Reference>(
-        json['manufacturer'] as List<dynamic>?,
-        json['_manufacturer'] as List<dynamic>?,
-        Reference.fromJson,
-      ),
+      statusDate: (json['statusDate'] != null || json['_statusDate'] != null)
+          ? FhirDateTime.fromJson({
+              'value': json['statusDate'],
+              '_value': json['_statusDate'],
+            })
+          : null,
+      containedItemQuantity: json['containedItemQuantity'] != null
+          ? (json['containedItemQuantity'] as List<dynamic>)
+              .map<Quantity>(
+                (v) => Quantity.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      description: (json['description'] != null || json['_description'] != null)
+          ? FhirMarkdown.fromJson({
+              'value': json['description'],
+              '_value': json['_description'],
+            })
+          : null,
+      legalStatusOfSupply: json['legalStatusOfSupply'] != null
+          ? (json['legalStatusOfSupply'] as List<dynamic>)
+              .map<PackagedProductDefinitionLegalStatusOfSupply>(
+                (v) => PackagedProductDefinitionLegalStatusOfSupply.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      marketingStatus: json['marketingStatus'] != null
+          ? (json['marketingStatus'] as List<dynamic>)
+              .map<MarketingStatus>(
+                (v) => MarketingStatus.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      characteristic: json['characteristic'] != null
+          ? (json['characteristic'] as List<dynamic>)
+              .map<CodeableConcept>(
+                (v) => CodeableConcept.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      copackagedIndicator: (json['copackagedIndicator'] != null ||
+              json['_copackagedIndicator'] != null)
+          ? FhirBoolean.fromJson({
+              'value': json['copackagedIndicator'],
+              '_value': json['_copackagedIndicator'],
+            })
+          : null,
+      manufacturer: json['manufacturer'] != null
+          ? (json['manufacturer'] as List<dynamic>)
+              .map<Reference>(
+                (v) => Reference.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
       package: json['package'] != null
           ? PackagedProductDefinitionPackage.fromJson(
               json['package'] as Map<String, dynamic>,
@@ -491,50 +508,28 @@ class PackagedProductDefinitionLegalStatusOfSupply extends BackboneElement {
   factory PackagedProductDefinitionLegalStatusOfSupply.fromJson(
     Map<String, dynamic> json,
   ) {
-    T? parseField<T extends FhirBase>(
-      dynamic value,
-      dynamic valueElement,
-      T Function(Map<String, dynamic>) fromJson,
-    ) =>
-        (value != null || valueElement != null)
-            ? fromJson({
-                'value': value,
-                '_value': valueElement,
-              })
-            : null;
-    List<T>? parseList<T extends FhirBase>(
-      List<dynamic>? values,
-      List<dynamic>? valueElements,
-      T Function(Map<String, dynamic>) fromJson,
-    ) =>
-        values?.asMap().entries.map((entry) {
-          final index = entry.key;
-          final value = entry.value;
-          final valueElement =
-              valueElements != null && valueElements.length > index
-                  ? valueElements[index]
-                  : null;
-          return fromJson({
-            'value': value,
-            '_value': valueElement,
-          });
-        }).toList();
     return PackagedProductDefinitionLegalStatusOfSupply(
-      id: parseField<FhirString>(
-        json['id'],
-        json['_id'],
-        FhirString.fromJson,
-      ),
-      extension_: parseList<FhirExtension>(
-        json['extension'] as List<dynamic>?,
-        json['_extension'] as List<dynamic>?,
-        FhirExtension.fromJson,
-      ),
-      modifierExtension: parseList<FhirExtension>(
-        json['modifierExtension'] as List<dynamic>?,
-        json['_modifierExtension'] as List<dynamic>?,
-        FhirExtension.fromJson,
-      ),
+      id: json['id'] != null
+          ? FhirString.fromJson({'value': json['id']})
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
       code: json['code'] != null
           ? CodeableConcept.fromJson(
               json['code'] as Map<String, dynamic>,
@@ -699,100 +694,111 @@ class PackagedProductDefinitionPackage extends BackboneElement {
   factory PackagedProductDefinitionPackage.fromJson(
     Map<String, dynamic> json,
   ) {
-    T? parseField<T extends FhirBase>(
-      dynamic value,
-      dynamic valueElement,
-      T Function(Map<String, dynamic>) fromJson,
-    ) =>
-        (value != null || valueElement != null)
-            ? fromJson({
-                'value': value,
-                '_value': valueElement,
-              })
-            : null;
-    List<T>? parseList<T extends FhirBase>(
-      List<dynamic>? values,
-      List<dynamic>? valueElements,
-      T Function(Map<String, dynamic>) fromJson,
-    ) =>
-        values?.asMap().entries.map((entry) {
-          final index = entry.key;
-          final value = entry.value;
-          final valueElement =
-              valueElements != null && valueElements.length > index
-                  ? valueElements[index]
-                  : null;
-          return fromJson({
-            'value': value,
-            '_value': valueElement,
-          });
-        }).toList();
     return PackagedProductDefinitionPackage(
-      id: parseField<FhirString>(
-        json['id'],
-        json['_id'],
-        FhirString.fromJson,
-      ),
-      extension_: parseList<FhirExtension>(
-        json['extension'] as List<dynamic>?,
-        json['_extension'] as List<dynamic>?,
-        FhirExtension.fromJson,
-      ),
-      modifierExtension: parseList<FhirExtension>(
-        json['modifierExtension'] as List<dynamic>?,
-        json['_modifierExtension'] as List<dynamic>?,
-        FhirExtension.fromJson,
-      ),
-      identifier: parseList<Identifier>(
-        json['identifier'] as List<dynamic>?,
-        json['_identifier'] as List<dynamic>?,
-        Identifier.fromJson,
-      ),
+      id: json['id'] != null
+          ? FhirString.fromJson({'value': json['id']})
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      identifier: json['identifier'] != null
+          ? (json['identifier'] as List<dynamic>)
+              .map<Identifier>(
+                (v) => Identifier.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
       type: json['type'] != null
           ? CodeableConcept.fromJson(
               json['type'] as Map<String, dynamic>,
             )
           : null,
-      quantity: parseField<FhirInteger>(
-        json['quantity'],
-        json['_quantity'],
-        FhirInteger.fromJson,
-      ),
-      material: parseList<CodeableConcept>(
-        json['material'] as List<dynamic>?,
-        json['_material'] as List<dynamic>?,
-        CodeableConcept.fromJson,
-      ),
-      alternateMaterial: parseList<CodeableConcept>(
-        json['alternateMaterial'] as List<dynamic>?,
-        json['_alternateMaterial'] as List<dynamic>?,
-        CodeableConcept.fromJson,
-      ),
-      shelfLifeStorage: parseList<PackagedProductDefinitionShelfLifeStorage>(
-        json['shelfLifeStorage'] as List<dynamic>?,
-        json['_shelfLifeStorage'] as List<dynamic>?,
-        PackagedProductDefinitionShelfLifeStorage.fromJson,
-      ),
-      manufacturer: parseList<Reference>(
-        json['manufacturer'] as List<dynamic>?,
-        json['_manufacturer'] as List<dynamic>?,
-        Reference.fromJson,
-      ),
-      property: parseList<PackagedProductDefinitionProperty>(
-        json['property'] as List<dynamic>?,
-        json['_property'] as List<dynamic>?,
-        PackagedProductDefinitionProperty.fromJson,
-      ),
-      containedItem: parseList<PackagedProductDefinitionContainedItem>(
-        json['containedItem'] as List<dynamic>?,
-        json['_containedItem'] as List<dynamic>?,
-        PackagedProductDefinitionContainedItem.fromJson,
-      ),
-      package: parseList<PackagedProductDefinitionPackage>(
-        json['package'] as List<dynamic>?,
-        json['_package'] as List<dynamic>?,
-        PackagedProductDefinitionPackage.fromJson,
-      ),
+      quantity: (json['quantity'] != null || json['_quantity'] != null)
+          ? FhirInteger.fromJson({
+              'value': json['quantity'],
+              '_value': json['_quantity'],
+            })
+          : null,
+      material: json['material'] != null
+          ? (json['material'] as List<dynamic>)
+              .map<CodeableConcept>(
+                (v) => CodeableConcept.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      alternateMaterial: json['alternateMaterial'] != null
+          ? (json['alternateMaterial'] as List<dynamic>)
+              .map<CodeableConcept>(
+                (v) => CodeableConcept.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      shelfLifeStorage: json['shelfLifeStorage'] != null
+          ? (json['shelfLifeStorage'] as List<dynamic>)
+              .map<PackagedProductDefinitionShelfLifeStorage>(
+                (v) => PackagedProductDefinitionShelfLifeStorage.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      manufacturer: json['manufacturer'] != null
+          ? (json['manufacturer'] as List<dynamic>)
+              .map<Reference>(
+                (v) => Reference.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      property: json['property'] != null
+          ? (json['property'] as List<dynamic>)
+              .map<PackagedProductDefinitionProperty>(
+                (v) => PackagedProductDefinitionProperty.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      containedItem: json['containedItem'] != null
+          ? (json['containedItem'] as List<dynamic>)
+              .map<PackagedProductDefinitionContainedItem>(
+                (v) => PackagedProductDefinitionContainedItem.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      package: json['package'] != null
+          ? (json['package'] as List<dynamic>)
+              .map<PackagedProductDefinitionPackage>(
+                (v) => PackagedProductDefinitionPackage.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
     );
   }
 
@@ -1022,50 +1028,28 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
   factory PackagedProductDefinitionShelfLifeStorage.fromJson(
     Map<String, dynamic> json,
   ) {
-    T? parseField<T extends FhirBase>(
-      dynamic value,
-      dynamic valueElement,
-      T Function(Map<String, dynamic>) fromJson,
-    ) =>
-        (value != null || valueElement != null)
-            ? fromJson({
-                'value': value,
-                '_value': valueElement,
-              })
-            : null;
-    List<T>? parseList<T extends FhirBase>(
-      List<dynamic>? values,
-      List<dynamic>? valueElements,
-      T Function(Map<String, dynamic>) fromJson,
-    ) =>
-        values?.asMap().entries.map((entry) {
-          final index = entry.key;
-          final value = entry.value;
-          final valueElement =
-              valueElements != null && valueElements.length > index
-                  ? valueElements[index]
-                  : null;
-          return fromJson({
-            'value': value,
-            '_value': valueElement,
-          });
-        }).toList();
     return PackagedProductDefinitionShelfLifeStorage(
-      id: parseField<FhirString>(
-        json['id'],
-        json['_id'],
-        FhirString.fromJson,
-      ),
-      extension_: parseList<FhirExtension>(
-        json['extension'] as List<dynamic>?,
-        json['_extension'] as List<dynamic>?,
-        FhirExtension.fromJson,
-      ),
-      modifierExtension: parseList<FhirExtension>(
-        json['modifierExtension'] as List<dynamic>?,
-        json['_modifierExtension'] as List<dynamic>?,
-        FhirExtension.fromJson,
-      ),
+      id: json['id'] != null
+          ? FhirString.fromJson({'value': json['id']})
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
       type: json['type'] != null
           ? CodeableConcept.fromJson(
               json['type'] as Map<String, dynamic>,
@@ -1076,16 +1060,22 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
               json['periodDuration'] as Map<String, dynamic>,
             )
           : null,
-      periodString: parseField<FhirString>(
-        json['periodString'],
-        json['_periodString'],
-        FhirString.fromJson,
-      ),
-      specialPrecautionsForStorage: parseList<CodeableConcept>(
-        json['specialPrecautionsForStorage'] as List<dynamic>?,
-        json['_specialPrecautionsForStorage'] as List<dynamic>?,
-        CodeableConcept.fromJson,
-      ),
+      periodString:
+          (json['periodString'] != null || json['_periodString'] != null)
+              ? FhirString.fromJson({
+                  'value': json['periodString'],
+                  '_value': json['_periodString'],
+                })
+              : null,
+      specialPrecautionsForStorage: json['specialPrecautionsForStorage'] != null
+          ? (json['specialPrecautionsForStorage'] as List<dynamic>)
+              .map<CodeableConcept>(
+                (v) => CodeableConcept.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
     );
   }
 
@@ -1267,50 +1257,28 @@ class PackagedProductDefinitionProperty extends BackboneElement {
   factory PackagedProductDefinitionProperty.fromJson(
     Map<String, dynamic> json,
   ) {
-    T? parseField<T extends FhirBase>(
-      dynamic value,
-      dynamic valueElement,
-      T Function(Map<String, dynamic>) fromJson,
-    ) =>
-        (value != null || valueElement != null)
-            ? fromJson({
-                'value': value,
-                '_value': valueElement,
-              })
-            : null;
-    List<T>? parseList<T extends FhirBase>(
-      List<dynamic>? values,
-      List<dynamic>? valueElements,
-      T Function(Map<String, dynamic>) fromJson,
-    ) =>
-        values?.asMap().entries.map((entry) {
-          final index = entry.key;
-          final value = entry.value;
-          final valueElement =
-              valueElements != null && valueElements.length > index
-                  ? valueElements[index]
-                  : null;
-          return fromJson({
-            'value': value,
-            '_value': valueElement,
-          });
-        }).toList();
     return PackagedProductDefinitionProperty(
-      id: parseField<FhirString>(
-        json['id'],
-        json['_id'],
-        FhirString.fromJson,
-      ),
-      extension_: parseList<FhirExtension>(
-        json['extension'] as List<dynamic>?,
-        json['_extension'] as List<dynamic>?,
-        FhirExtension.fromJson,
-      ),
-      modifierExtension: parseList<FhirExtension>(
-        json['modifierExtension'] as List<dynamic>?,
-        json['_modifierExtension'] as List<dynamic>?,
-        FhirExtension.fromJson,
-      ),
+      id: json['id'] != null
+          ? FhirString.fromJson({'value': json['id']})
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
       type: CodeableConcept.fromJson(
         json['type'] as Map<String, dynamic>,
       ),
@@ -1324,16 +1292,19 @@ class PackagedProductDefinitionProperty extends BackboneElement {
               json['valueQuantity'] as Map<String, dynamic>,
             )
           : null,
-      valueDate: parseField<FhirDate>(
-        json['valueDate'],
-        json['_valueDate'],
-        FhirDate.fromJson,
-      ),
-      valueBoolean: parseField<FhirBoolean>(
-        json['valueBoolean'],
-        json['_valueBoolean'],
-        FhirBoolean.fromJson,
-      ),
+      valueDate: (json['valueDate'] != null || json['_valueDate'] != null)
+          ? FhirDate.fromJson({
+              'value': json['valueDate'],
+              '_value': json['_valueDate'],
+            })
+          : null,
+      valueBoolean:
+          (json['valueBoolean'] != null || json['_valueBoolean'] != null)
+              ? FhirBoolean.fromJson({
+                  'value': json['valueBoolean'],
+                  '_value': json['_valueBoolean'],
+                })
+              : null,
       valueAttachment: json['valueAttachment'] != null
           ? Attachment.fromJson(
               json['valueAttachment'] as Map<String, dynamic>,
@@ -1512,50 +1483,28 @@ class PackagedProductDefinitionContainedItem extends BackboneElement {
   factory PackagedProductDefinitionContainedItem.fromJson(
     Map<String, dynamic> json,
   ) {
-    T? parseField<T extends FhirBase>(
-      dynamic value,
-      dynamic valueElement,
-      T Function(Map<String, dynamic>) fromJson,
-    ) =>
-        (value != null || valueElement != null)
-            ? fromJson({
-                'value': value,
-                '_value': valueElement,
-              })
-            : null;
-    List<T>? parseList<T extends FhirBase>(
-      List<dynamic>? values,
-      List<dynamic>? valueElements,
-      T Function(Map<String, dynamic>) fromJson,
-    ) =>
-        values?.asMap().entries.map((entry) {
-          final index = entry.key;
-          final value = entry.value;
-          final valueElement =
-              valueElements != null && valueElements.length > index
-                  ? valueElements[index]
-                  : null;
-          return fromJson({
-            'value': value,
-            '_value': valueElement,
-          });
-        }).toList();
     return PackagedProductDefinitionContainedItem(
-      id: parseField<FhirString>(
-        json['id'],
-        json['_id'],
-        FhirString.fromJson,
-      ),
-      extension_: parseList<FhirExtension>(
-        json['extension'] as List<dynamic>?,
-        json['_extension'] as List<dynamic>?,
-        FhirExtension.fromJson,
-      ),
-      modifierExtension: parseList<FhirExtension>(
-        json['modifierExtension'] as List<dynamic>?,
-        json['_modifierExtension'] as List<dynamic>?,
-        FhirExtension.fromJson,
-      ),
+      id: json['id'] != null
+          ? FhirString.fromJson({'value': json['id']})
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
       item: CodeableReference.fromJson(
         json['item'] as Map<String, dynamic>,
       ),

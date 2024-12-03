@@ -16,6 +16,8 @@ class InteractionType extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return InteractionType.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError('InteractionType cannot be constructed from JSON.');
     }
     return InteractionType._(value, element);
   }

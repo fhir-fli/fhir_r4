@@ -17,6 +17,9 @@ class MedicationRequestStatusReasonCodes extends PrimitiveType<String> {
     if (value == null && element != null) {
       return MedicationRequestStatusReasonCodes.elementOnly
           .withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'MedicationRequestStatusReasonCodes cannot be constructed from JSON.');
     }
     return MedicationRequestStatusReasonCodes._(value, element);
   }

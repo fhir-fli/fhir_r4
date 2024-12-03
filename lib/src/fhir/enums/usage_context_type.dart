@@ -16,6 +16,8 @@ class UsageContextType extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return UsageContextType.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError('UsageContextType cannot be constructed from JSON.');
     }
     return UsageContextType._(value, element);
   }

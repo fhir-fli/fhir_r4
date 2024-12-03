@@ -31,69 +31,47 @@ class FhirExpression extends DataType {
   factory FhirExpression.fromJson(
     Map<String, dynamic> json,
   ) {
-    T? parseField<T extends FhirBase>(
-      dynamic value,
-      dynamic valueElement,
-      T Function(Map<String, dynamic>) fromJson,
-    ) =>
-        (value != null || valueElement != null)
-            ? fromJson({
-                'value': value,
-                '_value': valueElement,
-              })
-            : null;
-    List<T>? parseList<T extends FhirBase>(
-      List<dynamic>? values,
-      List<dynamic>? valueElements,
-      T Function(Map<String, dynamic>) fromJson,
-    ) =>
-        values?.asMap().entries.map((entry) {
-          final index = entry.key;
-          final value = entry.value;
-          final valueElement =
-              valueElements != null && valueElements.length > index
-                  ? valueElements[index]
-                  : null;
-          return fromJson({
-            'value': value,
-            '_value': valueElement,
-          });
-        }).toList();
     return FhirExpression(
-      id: parseField<FhirString>(
-        json['id'],
-        json['_id'],
-        FhirString.fromJson,
-      ),
-      extension_: parseList<FhirExtension>(
-        json['extension'] as List<dynamic>?,
-        json['_extension'] as List<dynamic>?,
-        FhirExtension.fromJson,
-      ),
-      description: parseField<FhirString>(
-        json['description'],
-        json['_description'],
-        FhirString.fromJson,
-      ),
-      name: parseField<FhirId>(
-        json['name'],
-        json['_name'],
-        FhirId.fromJson,
-      ),
+      id: json['id'] != null
+          ? FhirString.fromJson({'value': json['id']})
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      description: (json['description'] != null || json['_description'] != null)
+          ? FhirString.fromJson({
+              'value': json['description'],
+              '_value': json['_description'],
+            })
+          : null,
+      name: (json['name'] != null || json['_name'] != null)
+          ? FhirId.fromJson({
+              'value': json['name'],
+              '_value': json['_name'],
+            })
+          : null,
       language: ExpressionLanguage.fromJson({
         'value': json['language'],
         '_value': json['_language'],
       }),
-      expression: parseField<FhirString>(
-        json['expression'],
-        json['_expression'],
-        FhirString.fromJson,
-      ),
-      reference: parseField<FhirUri>(
-        json['reference'],
-        json['_reference'],
-        FhirUri.fromJson,
-      ),
+      expression: (json['expression'] != null || json['_expression'] != null)
+          ? FhirString.fromJson({
+              'value': json['expression'],
+              '_value': json['_expression'],
+            })
+          : null,
+      reference: (json['reference'] != null || json['_reference'] != null)
+          ? FhirUri.fromJson({
+              'value': json['reference'],
+              '_value': json['_reference'],
+            })
+          : null,
     );
   }
 

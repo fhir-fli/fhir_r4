@@ -16,6 +16,8 @@ class FormCodes extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return FormCodes.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError('FormCodes cannot be constructed from JSON.');
     }
     return FormCodes._(value, element);
   }

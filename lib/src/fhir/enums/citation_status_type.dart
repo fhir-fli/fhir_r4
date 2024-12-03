@@ -16,6 +16,9 @@ class CitationStatusType extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return CitationStatusType.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'CitationStatusType cannot be constructed from JSON.');
     }
     return CitationStatusType._(value, element);
   }

@@ -16,6 +16,9 @@ class AuditEventSourceType extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return AuditEventSourceType.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'AuditEventSourceType cannot be constructed from JSON.');
     }
     return AuditEventSourceType._(value, element);
   }

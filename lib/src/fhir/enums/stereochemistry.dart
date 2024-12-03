@@ -16,6 +16,8 @@ class Stereochemistry extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return Stereochemistry.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError('Stereochemistry cannot be constructed from JSON.');
     }
     return Stereochemistry._(value, element);
   }

@@ -16,6 +16,9 @@ class IdentityAssuranceLevel extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return IdentityAssuranceLevel.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'IdentityAssuranceLevel cannot be constructed from JSON.');
     }
     return IdentityAssuranceLevel._(value, element);
   }

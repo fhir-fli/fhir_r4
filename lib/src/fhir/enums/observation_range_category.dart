@@ -16,6 +16,9 @@ class ObservationRangeCategory extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return ObservationRangeCategory.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'ObservationRangeCategory cannot be constructed from JSON.');
     }
     return ObservationRangeCategory._(value, element);
   }

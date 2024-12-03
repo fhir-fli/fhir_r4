@@ -16,6 +16,8 @@ class WarningType extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return WarningType.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError('WarningType cannot be constructed from JSON.');
     }
     return WarningType._(value, element);
   }

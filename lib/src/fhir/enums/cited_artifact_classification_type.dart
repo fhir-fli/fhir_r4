@@ -16,6 +16,9 @@ class CitedArtifactClassificationType extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return CitedArtifactClassificationType.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'CitedArtifactClassificationType cannot be constructed from JSON.');
     }
     return CitedArtifactClassificationType._(value, element);
   }

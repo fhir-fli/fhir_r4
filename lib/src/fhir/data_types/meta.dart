@@ -31,75 +31,60 @@ class FhirMeta extends DataType {
   factory FhirMeta.fromJson(
     Map<String, dynamic> json,
   ) {
-    T? parseField<T extends FhirBase>(
-      dynamic value,
-      dynamic valueElement,
-      T Function(Map<String, dynamic>) fromJson,
-    ) =>
-        (value != null || valueElement != null)
-            ? fromJson({
-                'value': value,
-                '_value': valueElement,
-              })
-            : null;
-    List<T>? parseList<T extends FhirBase>(
-      List<dynamic>? values,
-      List<dynamic>? valueElements,
-      T Function(Map<String, dynamic>) fromJson,
-    ) =>
-        values?.asMap().entries.map((entry) {
-          final index = entry.key;
-          final value = entry.value;
-          final valueElement =
-              valueElements != null && valueElements.length > index
-                  ? valueElements[index]
-                  : null;
-          return fromJson({
-            'value': value,
-            '_value': valueElement,
-          });
-        }).toList();
     return FhirMeta(
-      id: parseField<FhirString>(
-        json['id'],
-        json['_id'],
-        FhirString.fromJson,
-      ),
-      extension_: parseList<FhirExtension>(
-        json['extension'] as List<dynamic>?,
-        json['_extension'] as List<dynamic>?,
-        FhirExtension.fromJson,
-      ),
-      versionId: parseField<FhirId>(
-        json['versionId'],
-        json['_versionId'],
-        FhirId.fromJson,
-      ),
-      lastUpdated: parseField<FhirInstant>(
-        json['lastUpdated'],
-        json['_lastUpdated'],
-        FhirInstant.fromJson,
-      ),
-      source: parseField<FhirUri>(
-        json['source'],
-        json['_source'],
-        FhirUri.fromJson,
-      ),
-      profile: parseList<FhirCanonical>(
+      id: json['id'] != null
+          ? FhirString.fromJson({'value': json['id']})
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      versionId: (json['versionId'] != null || json['_versionId'] != null)
+          ? FhirId.fromJson({
+              'value': json['versionId'],
+              '_value': json['_versionId'],
+            })
+          : null,
+      lastUpdated: (json['lastUpdated'] != null || json['_lastUpdated'] != null)
+          ? FhirInstant.fromJson({
+              'value': json['lastUpdated'],
+              '_value': json['_lastUpdated'],
+            })
+          : null,
+      source: (json['source'] != null || json['_source'] != null)
+          ? FhirUri.fromJson({
+              'value': json['source'],
+              '_value': json['_source'],
+            })
+          : null,
+      profile: parsePrimitiveList<FhirCanonical>(
         json['profile'] as List<dynamic>?,
         json['_profile'] as List<dynamic>?,
-        FhirCanonical.fromJson,
+        fromJson: FhirCanonical.fromJson,
       ),
-      security: parseList<Coding>(
-        json['security'] as List<dynamic>?,
-        json['_security'] as List<dynamic>?,
-        Coding.fromJson,
-      ),
-      tag: parseList<Coding>(
-        json['tag'] as List<dynamic>?,
-        json['_tag'] as List<dynamic>?,
-        Coding.fromJson,
-      ),
+      security: json['security'] != null
+          ? (json['security'] as List<dynamic>)
+              .map<Coding>(
+                (v) => Coding.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      tag: json['tag'] != null
+          ? (json['tag'] as List<dynamic>)
+              .map<Coding>(
+                (v) => Coding.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
     );
   }
 

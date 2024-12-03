@@ -16,6 +16,9 @@ class FHIRDeviceStatusReason extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return FHIRDeviceStatusReason.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'FHIRDeviceStatusReason cannot be constructed from JSON.');
     }
     return FHIRDeviceStatusReason._(value, element);
   }

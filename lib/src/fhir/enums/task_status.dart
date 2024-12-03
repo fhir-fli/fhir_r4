@@ -16,6 +16,8 @@ class TaskStatus extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return TaskStatus.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError('TaskStatus cannot be constructed from JSON.');
     }
     return TaskStatus._(value, element);
   }

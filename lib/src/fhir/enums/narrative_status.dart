@@ -16,6 +16,8 @@ class NarrativeStatus extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return NarrativeStatus.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError('NarrativeStatus cannot be constructed from JSON.');
     }
     return NarrativeStatus._(value, element);
   }

@@ -16,6 +16,9 @@ class EvidenceDirectness extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return EvidenceDirectness.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'EvidenceDirectness cannot be constructed from JSON.');
     }
     return EvidenceDirectness._(value, element);
   }

@@ -16,6 +16,9 @@ class ConsentCategoryCodes extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return ConsentCategoryCodes.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'ConsentCategoryCodes cannot be constructed from JSON.');
     }
     return ConsentCategoryCodes._(value, element);
   }

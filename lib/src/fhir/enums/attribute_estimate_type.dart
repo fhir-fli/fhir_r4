@@ -16,6 +16,9 @@ class AttributeEstimateType extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return AttributeEstimateType.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'AttributeEstimateType cannot be constructed from JSON.');
     }
     return AttributeEstimateType._(value, element);
   }

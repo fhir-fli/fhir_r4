@@ -16,6 +16,9 @@ class HandlingConditionSet extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return HandlingConditionSet.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'HandlingConditionSet cannot be constructed from JSON.');
     }
     return HandlingConditionSet._(value, element);
   }

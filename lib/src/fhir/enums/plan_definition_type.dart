@@ -16,6 +16,9 @@ class PlanDefinitionType extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return PlanDefinitionType.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'PlanDefinitionType cannot be constructed from JSON.');
     }
     return PlanDefinitionType._(value, element);
   }

@@ -16,6 +16,9 @@ class QuestionnaireResponseStatus extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return QuestionnaireResponseStatus.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'QuestionnaireResponseStatus cannot be constructed from JSON.');
     }
     return QuestionnaireResponseStatus._(value, element);
   }

@@ -16,6 +16,9 @@ class ImmunizationStatusCodes extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return ImmunizationStatusCodes.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'ImmunizationStatusCodes cannot be constructed from JSON.');
     }
     return ImmunizationStatusCodes._(value, element);
   }

@@ -16,6 +16,8 @@ class ContributorRole extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return ContributorRole.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError('ContributorRole cannot be constructed from JSON.');
     }
     return ContributorRole._(value, element);
   }

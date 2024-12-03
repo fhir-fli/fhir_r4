@@ -16,6 +16,8 @@ class EventStatus extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return EventStatus.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError('EventStatus cannot be constructed from JSON.');
     }
     return EventStatus._(value, element);
   }

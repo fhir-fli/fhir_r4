@@ -16,6 +16,9 @@ class DocumentRelationshipType extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return DocumentRelationshipType.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'DocumentRelationshipType cannot be constructed from JSON.');
     }
     return DocumentRelationshipType._(value, element);
   }

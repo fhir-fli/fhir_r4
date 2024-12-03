@@ -16,6 +16,8 @@ class RequestPriority extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return RequestPriority.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError('RequestPriority cannot be constructed from JSON.');
     }
     return RequestPriority._(value, element);
   }

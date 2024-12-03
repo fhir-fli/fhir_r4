@@ -16,6 +16,9 @@ class ContainerMaterials extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return ContainerMaterials.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'ContainerMaterials cannot be constructed from JSON.');
     }
     return ContainerMaterials._(value, element);
   }

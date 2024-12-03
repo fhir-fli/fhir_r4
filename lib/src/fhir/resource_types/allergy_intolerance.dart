@@ -52,80 +52,69 @@ class AllergyIntolerance extends DomainResource {
   factory AllergyIntolerance.fromJson(
     Map<String, dynamic> json,
   ) {
-    T? parseField<T extends FhirBase>(
-      dynamic value,
-      dynamic valueElement,
-      T Function(Map<String, dynamic>) fromJson,
-    ) =>
-        (value != null || valueElement != null)
-            ? fromJson({
-                'value': value,
-                '_value': valueElement,
-              })
-            : null;
-    List<T>? parseList<T extends FhirBase>(
-      List<dynamic>? values,
-      List<dynamic>? valueElements,
-      T Function(Map<String, dynamic>) fromJson,
-    ) =>
-        values?.asMap().entries.map((entry) {
-          final index = entry.key;
-          final value = entry.value;
-          final valueElement =
-              valueElements != null && valueElements.length > index
-                  ? valueElements[index]
-                  : null;
-          return fromJson({
-            'value': value,
-            '_value': valueElement,
-          });
-        }).toList();
     return AllergyIntolerance(
-      id: parseField<FhirString>(
-        json['id'],
-        json['_id'],
-        FhirString.fromJson,
-      ),
+      id: json['id'] != null
+          ? FhirString.fromJson({'value': json['id']})
+          : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
-      implicitRules: parseField<FhirUri>(
-        json['implicitRules'],
-        json['_implicitRules'],
-        FhirUri.fromJson,
-      ),
-      language: parseField<CommonLanguages>(
-        json['language'],
-        json['_language'],
-        CommonLanguages.fromJson,
-      ),
+      implicitRules:
+          (json['implicitRules'] != null || json['_implicitRules'] != null)
+              ? FhirUri.fromJson({
+                  'value': json['implicitRules'],
+                  '_value': json['_implicitRules'],
+                })
+              : null,
+      language: (json['language'] != null || json['_language'] != null)
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
+          : null,
       text: json['text'] != null
           ? Narrative.fromJson(
               json['text'] as Map<String, dynamic>,
             )
           : null,
-      contained: parseList<Resource>(
-        json['contained'] as List<dynamic>?,
-        json['_contained'] as List<dynamic>?,
-        Resource.fromJson,
-      ),
-      extension_: parseList<FhirExtension>(
-        json['extension'] as List<dynamic>?,
-        json['_extension'] as List<dynamic>?,
-        FhirExtension.fromJson,
-      ),
-      modifierExtension: parseList<FhirExtension>(
-        json['modifierExtension'] as List<dynamic>?,
-        json['_modifierExtension'] as List<dynamic>?,
-        FhirExtension.fromJson,
-      ),
-      identifier: parseList<Identifier>(
-        json['identifier'] as List<dynamic>?,
-        json['_identifier'] as List<dynamic>?,
-        Identifier.fromJson,
-      ),
+      contained: json['contained'] != null
+          ? (json['contained'] as List<dynamic>)
+              .map<Resource>(
+                (v) => Resource.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      identifier: json['identifier'] != null
+          ? (json['identifier'] as List<dynamic>)
+              .map<Identifier>(
+                (v) => Identifier.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
       clinicalStatus: json['clinicalStatus'] != null
           ? CodeableConcept.fromJson(
               json['clinicalStatus'] as Map<String, dynamic>,
@@ -136,21 +125,23 @@ class AllergyIntolerance extends DomainResource {
               json['verificationStatus'] as Map<String, dynamic>,
             )
           : null,
-      type: parseField<AllergyIntoleranceType>(
-        json['type'],
-        json['_type'],
-        AllergyIntoleranceType.fromJson,
-      ),
-      category: parseList<AllergyIntoleranceCategory>(
+      type: (json['type'] != null || json['_type'] != null)
+          ? AllergyIntoleranceType.fromJson({
+              'value': json['type'],
+              '_value': json['_type'],
+            })
+          : null,
+      category: parsePrimitiveList<AllergyIntoleranceCategory>(
         json['category'] as List<dynamic>?,
         json['_category'] as List<dynamic>?,
-        AllergyIntoleranceCategory.fromJson,
+        fromJson: AllergyIntoleranceCategory.fromJson,
       ),
-      criticality: parseField<AllergyIntoleranceCriticality>(
-        json['criticality'],
-        json['_criticality'],
-        AllergyIntoleranceCriticality.fromJson,
-      ),
+      criticality: (json['criticality'] != null || json['_criticality'] != null)
+          ? AllergyIntoleranceCriticality.fromJson({
+              'value': json['criticality'],
+              '_value': json['_criticality'],
+            })
+          : null,
       code: json['code'] != null
           ? CodeableConcept.fromJson(
               json['code'] as Map<String, dynamic>,
@@ -164,11 +155,13 @@ class AllergyIntolerance extends DomainResource {
               json['encounter'] as Map<String, dynamic>,
             )
           : null,
-      onsetDateTime: parseField<FhirDateTime>(
-        json['onsetDateTime'],
-        json['_onsetDateTime'],
-        FhirDateTime.fromJson,
-      ),
+      onsetDateTime:
+          (json['onsetDateTime'] != null || json['_onsetDateTime'] != null)
+              ? FhirDateTime.fromJson({
+                  'value': json['onsetDateTime'],
+                  '_value': json['_onsetDateTime'],
+                })
+              : null,
       onsetAge: json['onsetAge'] != null
           ? Age.fromJson(
               json['onsetAge'] as Map<String, dynamic>,
@@ -184,16 +177,19 @@ class AllergyIntolerance extends DomainResource {
               json['onsetRange'] as Map<String, dynamic>,
             )
           : null,
-      onsetString: parseField<FhirString>(
-        json['onsetString'],
-        json['_onsetString'],
-        FhirString.fromJson,
-      ),
-      recordedDate: parseField<FhirDateTime>(
-        json['recordedDate'],
-        json['_recordedDate'],
-        FhirDateTime.fromJson,
-      ),
+      onsetString: (json['onsetString'] != null || json['_onsetString'] != null)
+          ? FhirString.fromJson({
+              'value': json['onsetString'],
+              '_value': json['_onsetString'],
+            })
+          : null,
+      recordedDate:
+          (json['recordedDate'] != null || json['_recordedDate'] != null)
+              ? FhirDateTime.fromJson({
+                  'value': json['recordedDate'],
+                  '_value': json['_recordedDate'],
+                })
+              : null,
       recorder: json['recorder'] != null
           ? Reference.fromJson(
               json['recorder'] as Map<String, dynamic>,
@@ -204,21 +200,31 @@ class AllergyIntolerance extends DomainResource {
               json['asserter'] as Map<String, dynamic>,
             )
           : null,
-      lastOccurrence: parseField<FhirDateTime>(
-        json['lastOccurrence'],
-        json['_lastOccurrence'],
-        FhirDateTime.fromJson,
-      ),
-      note: parseList<Annotation>(
-        json['note'] as List<dynamic>?,
-        json['_note'] as List<dynamic>?,
-        Annotation.fromJson,
-      ),
-      reaction: parseList<AllergyIntoleranceReaction>(
-        json['reaction'] as List<dynamic>?,
-        json['_reaction'] as List<dynamic>?,
-        AllergyIntoleranceReaction.fromJson,
-      ),
+      lastOccurrence:
+          (json['lastOccurrence'] != null || json['_lastOccurrence'] != null)
+              ? FhirDateTime.fromJson({
+                  'value': json['lastOccurrence'],
+                  '_value': json['_lastOccurrence'],
+                })
+              : null,
+      note: json['note'] != null
+          ? (json['note'] as List<dynamic>)
+              .map<Annotation>(
+                (v) => Annotation.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      reaction: json['reaction'] != null
+          ? (json['reaction'] as List<dynamic>)
+              .map<AllergyIntoleranceReaction>(
+                (v) => AllergyIntoleranceReaction.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
     );
   }
 
@@ -587,85 +593,74 @@ class AllergyIntoleranceReaction extends BackboneElement {
   factory AllergyIntoleranceReaction.fromJson(
     Map<String, dynamic> json,
   ) {
-    T? parseField<T extends FhirBase>(
-      dynamic value,
-      dynamic valueElement,
-      T Function(Map<String, dynamic>) fromJson,
-    ) =>
-        (value != null || valueElement != null)
-            ? fromJson({
-                'value': value,
-                '_value': valueElement,
-              })
-            : null;
-    List<T>? parseList<T extends FhirBase>(
-      List<dynamic>? values,
-      List<dynamic>? valueElements,
-      T Function(Map<String, dynamic>) fromJson,
-    ) =>
-        values?.asMap().entries.map((entry) {
-          final index = entry.key;
-          final value = entry.value;
-          final valueElement =
-              valueElements != null && valueElements.length > index
-                  ? valueElements[index]
-                  : null;
-          return fromJson({
-            'value': value,
-            '_value': valueElement,
-          });
-        }).toList();
     return AllergyIntoleranceReaction(
-      id: parseField<FhirString>(
-        json['id'],
-        json['_id'],
-        FhirString.fromJson,
-      ),
-      extension_: parseList<FhirExtension>(
-        json['extension'] as List<dynamic>?,
-        json['_extension'] as List<dynamic>?,
-        FhirExtension.fromJson,
-      ),
-      modifierExtension: parseList<FhirExtension>(
-        json['modifierExtension'] as List<dynamic>?,
-        json['_modifierExtension'] as List<dynamic>?,
-        FhirExtension.fromJson,
-      ),
+      id: json['id'] != null
+          ? FhirString.fromJson({'value': json['id']})
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
       substance: json['substance'] != null
           ? CodeableConcept.fromJson(
               json['substance'] as Map<String, dynamic>,
             )
           : null,
-      manifestation: parseList<CodeableConcept>(
-        json['manifestation'] as List<dynamic>?,
-        json['_manifestation'] as List<dynamic>?,
-        CodeableConcept.fromJson,
-      )!,
-      description: parseField<FhirString>(
-        json['description'],
-        json['_description'],
-        FhirString.fromJson,
+      manifestation: ensureNonNullList(
+        (json['manifestation'] as List<dynamic>)
+            .map<CodeableConcept>(
+              (v) => CodeableConcept.fromJson(
+                v as Map<String, dynamic>,
+              ),
+            )
+            .toList(),
       ),
-      onset: parseField<FhirDateTime>(
-        json['onset'],
-        json['_onset'],
-        FhirDateTime.fromJson,
-      ),
-      severity: parseField<AllergyIntoleranceSeverity>(
-        json['severity'],
-        json['_severity'],
-        AllergyIntoleranceSeverity.fromJson,
-      ),
+      description: (json['description'] != null || json['_description'] != null)
+          ? FhirString.fromJson({
+              'value': json['description'],
+              '_value': json['_description'],
+            })
+          : null,
+      onset: (json['onset'] != null || json['_onset'] != null)
+          ? FhirDateTime.fromJson({
+              'value': json['onset'],
+              '_value': json['_onset'],
+            })
+          : null,
+      severity: (json['severity'] != null || json['_severity'] != null)
+          ? AllergyIntoleranceSeverity.fromJson({
+              'value': json['severity'],
+              '_value': json['_severity'],
+            })
+          : null,
       exposureRoute: json['exposureRoute'] != null
           ? CodeableConcept.fromJson(
               json['exposureRoute'] as Map<String, dynamic>,
             )
           : null,
-      note: parseList<Annotation>(
-        json['note'] as List<dynamic>?,
-        json['_note'] as List<dynamic>?,
-        Annotation.fromJson,
-      ),
+      note: json['note'] != null
+          ? (json['note'] as List<dynamic>)
+              .map<Annotation>(
+                (v) => Annotation.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
     );
   }
 

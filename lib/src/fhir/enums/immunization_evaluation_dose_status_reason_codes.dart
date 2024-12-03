@@ -18,6 +18,9 @@ class ImmunizationEvaluationDoseStatusReasonCodes
     if (value == null && element != null) {
       return ImmunizationEvaluationDoseStatusReasonCodes.elementOnly
           .withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'ImmunizationEvaluationDoseStatusReasonCodes cannot be constructed from JSON.');
     }
     return ImmunizationEvaluationDoseStatusReasonCodes._(value, element);
   }

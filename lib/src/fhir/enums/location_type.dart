@@ -16,6 +16,8 @@ class LocationType extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return LocationType.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError('LocationType cannot be constructed from JSON.');
     }
     return LocationType._(value, element);
   }

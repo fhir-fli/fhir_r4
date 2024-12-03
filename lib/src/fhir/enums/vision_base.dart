@@ -16,6 +16,8 @@ class VisionBase extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return VisionBase.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError('VisionBase cannot be constructed from JSON.');
     }
     return VisionBase._(value, element);
   }

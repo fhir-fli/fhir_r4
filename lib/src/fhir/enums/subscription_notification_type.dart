@@ -16,6 +16,9 @@ class SubscriptionNotificationType extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return SubscriptionNotificationType.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'SubscriptionNotificationType cannot be constructed from JSON.');
     }
     return SubscriptionNotificationType._(value, element);
   }

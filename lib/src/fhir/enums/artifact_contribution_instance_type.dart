@@ -16,6 +16,9 @@ class ArtifactContributionInstanceType extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return ArtifactContributionInstanceType.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'ArtifactContributionInstanceType cannot be constructed from JSON.');
     }
     return ArtifactContributionInstanceType._(value, element);
   }

@@ -16,6 +16,8 @@ class SpecimenStatus extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return SpecimenStatus.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError('SpecimenStatus cannot be constructed from JSON.');
     }
     return SpecimenStatus._(value, element);
   }

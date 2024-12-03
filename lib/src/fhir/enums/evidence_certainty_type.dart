@@ -16,6 +16,9 @@ class EvidenceCertaintyType extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return EvidenceCertaintyType.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'EvidenceCertaintyType cannot be constructed from JSON.');
     }
     return EvidenceCertaintyType._(value, element);
   }

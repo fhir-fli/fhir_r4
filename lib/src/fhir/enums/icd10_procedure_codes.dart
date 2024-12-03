@@ -16,6 +16,9 @@ class ICD10ProcedureCodes extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return ICD10ProcedureCodes.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'ICD10ProcedureCodes cannot be constructed from JSON.');
     }
     return ICD10ProcedureCodes._(value, element);
   }

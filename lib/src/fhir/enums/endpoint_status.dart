@@ -16,6 +16,8 @@ class EndpointStatus extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return EndpointStatus.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError('EndpointStatus cannot be constructed from JSON.');
     }
     return EndpointStatus._(value, element);
   }

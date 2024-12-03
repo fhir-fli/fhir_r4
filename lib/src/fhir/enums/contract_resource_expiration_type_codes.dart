@@ -17,6 +17,9 @@ class ContractResourceExpirationTypeCodes extends PrimitiveType<String> {
     if (value == null && element != null) {
       return ContractResourceExpirationTypeCodes.elementOnly
           .withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'ContractResourceExpirationTypeCodes cannot be constructed from JSON.');
     }
     return ContractResourceExpirationTypeCodes._(value, element);
   }

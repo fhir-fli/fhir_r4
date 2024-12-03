@@ -16,6 +16,9 @@ class MeasureStratifierExample extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return MeasureStratifierExample.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'MeasureStratifierExample cannot be constructed from JSON.');
     }
     return MeasureStratifierExample._(value, element);
   }

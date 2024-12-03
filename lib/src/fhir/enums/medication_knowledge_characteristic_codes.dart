@@ -17,6 +17,9 @@ class MedicationKnowledgeCharacteristicCodes extends PrimitiveType<String> {
     if (value == null && element != null) {
       return MedicationKnowledgeCharacteristicCodes.elementOnly
           .withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'MedicationKnowledgeCharacteristicCodes cannot be constructed from JSON.');
     }
     return MedicationKnowledgeCharacteristicCodes._(value, element);
   }

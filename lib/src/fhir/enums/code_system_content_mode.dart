@@ -16,6 +16,9 @@ class CodeSystemContentMode extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return CodeSystemContentMode.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'CodeSystemContentMode cannot be constructed from JSON.');
     }
     return CodeSystemContentMode._(value, element);
   }

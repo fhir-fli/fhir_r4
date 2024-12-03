@@ -16,6 +16,8 @@ class PediatricUse extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return PediatricUse.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError('PediatricUse cannot be constructed from JSON.');
     }
     return PediatricUse._(value, element);
   }

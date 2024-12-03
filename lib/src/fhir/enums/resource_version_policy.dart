@@ -16,6 +16,9 @@ class ResourceVersionPolicy extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return ResourceVersionPolicy.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'ResourceVersionPolicy cannot be constructed from JSON.');
     }
     return ResourceVersionPolicy._(value, element);
   }

@@ -33,53 +33,27 @@ class DataRequirement extends DataType {
   factory DataRequirement.fromJson(
     Map<String, dynamic> json,
   ) {
-    T? parseField<T extends FhirBase>(
-      dynamic value,
-      dynamic valueElement,
-      T Function(Map<String, dynamic>) fromJson,
-    ) =>
-        (value != null || valueElement != null)
-            ? fromJson({
-                'value': value,
-                '_value': valueElement,
-              })
-            : null;
-    List<T>? parseList<T extends FhirBase>(
-      List<dynamic>? values,
-      List<dynamic>? valueElements,
-      T Function(Map<String, dynamic>) fromJson,
-    ) =>
-        values?.asMap().entries.map((entry) {
-          final index = entry.key;
-          final value = entry.value;
-          final valueElement =
-              valueElements != null && valueElements.length > index
-                  ? valueElements[index]
-                  : null;
-          return fromJson({
-            'value': value,
-            '_value': valueElement,
-          });
-        }).toList();
     return DataRequirement(
-      id: parseField<FhirString>(
-        json['id'],
-        json['_id'],
-        FhirString.fromJson,
-      ),
-      extension_: parseList<FhirExtension>(
-        json['extension'] as List<dynamic>?,
-        json['_extension'] as List<dynamic>?,
-        FhirExtension.fromJson,
-      ),
+      id: json['id'] != null
+          ? FhirString.fromJson({'value': json['id']})
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
       type: FHIRAllTypes.fromJson({
         'value': json['type'],
         '_value': json['_type'],
       }),
-      profile: parseList<FhirCanonical>(
+      profile: parsePrimitiveList<FhirCanonical>(
         json['profile'] as List<dynamic>?,
         json['_profile'] as List<dynamic>?,
-        FhirCanonical.fromJson,
+        fromJson: FhirCanonical.fromJson,
       ),
       subjectCodeableConcept: json['subjectCodeableConcept'] != null
           ? CodeableConcept.fromJson(
@@ -91,31 +65,44 @@ class DataRequirement extends DataType {
               json['subjectReference'] as Map<String, dynamic>,
             )
           : null,
-      mustSupport: parseList<FhirString>(
+      mustSupport: parsePrimitiveList<FhirString>(
         json['mustSupport'] as List<dynamic>?,
         json['_mustSupport'] as List<dynamic>?,
-        FhirString.fromJson,
+        fromJson: FhirString.fromJson,
       ),
-      codeFilter: parseList<DataRequirementCodeFilter>(
-        json['codeFilter'] as List<dynamic>?,
-        json['_codeFilter'] as List<dynamic>?,
-        DataRequirementCodeFilter.fromJson,
-      ),
-      dateFilter: parseList<DataRequirementDateFilter>(
-        json['dateFilter'] as List<dynamic>?,
-        json['_dateFilter'] as List<dynamic>?,
-        DataRequirementDateFilter.fromJson,
-      ),
-      limit: parseField<FhirPositiveInt>(
-        json['limit'],
-        json['_limit'],
-        FhirPositiveInt.fromJson,
-      ),
-      sort: parseList<DataRequirementSort>(
-        json['sort'] as List<dynamic>?,
-        json['_sort'] as List<dynamic>?,
-        DataRequirementSort.fromJson,
-      ),
+      codeFilter: json['codeFilter'] != null
+          ? (json['codeFilter'] as List<dynamic>)
+              .map<DataRequirementCodeFilter>(
+                (v) => DataRequirementCodeFilter.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      dateFilter: json['dateFilter'] != null
+          ? (json['dateFilter'] as List<dynamic>)
+              .map<DataRequirementDateFilter>(
+                (v) => DataRequirementDateFilter.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      limit: (json['limit'] != null || json['_limit'] != null)
+          ? FhirPositiveInt.fromJson({
+              'value': json['limit'],
+              '_value': json['_limit'],
+            })
+          : null,
+      sort: json['sort'] != null
+          ? (json['sort'] as List<dynamic>)
+              .map<DataRequirementSort>(
+                (v) => DataRequirementSort.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
     );
   }
 
@@ -349,65 +336,46 @@ class DataRequirementCodeFilter extends Element {
   factory DataRequirementCodeFilter.fromJson(
     Map<String, dynamic> json,
   ) {
-    T? parseField<T extends FhirBase>(
-      dynamic value,
-      dynamic valueElement,
-      T Function(Map<String, dynamic>) fromJson,
-    ) =>
-        (value != null || valueElement != null)
-            ? fromJson({
-                'value': value,
-                '_value': valueElement,
-              })
-            : null;
-    List<T>? parseList<T extends FhirBase>(
-      List<dynamic>? values,
-      List<dynamic>? valueElements,
-      T Function(Map<String, dynamic>) fromJson,
-    ) =>
-        values?.asMap().entries.map((entry) {
-          final index = entry.key;
-          final value = entry.value;
-          final valueElement =
-              valueElements != null && valueElements.length > index
-                  ? valueElements[index]
-                  : null;
-          return fromJson({
-            'value': value,
-            '_value': valueElement,
-          });
-        }).toList();
     return DataRequirementCodeFilter(
-      id: parseField<FhirString>(
-        json['id'],
-        json['_id'],
-        FhirString.fromJson,
-      ),
-      extension_: parseList<FhirExtension>(
-        json['extension'] as List<dynamic>?,
-        json['_extension'] as List<dynamic>?,
-        FhirExtension.fromJson,
-      ),
-      path: parseField<FhirString>(
-        json['path'],
-        json['_path'],
-        FhirString.fromJson,
-      ),
-      searchParam: parseField<FhirString>(
-        json['searchParam'],
-        json['_searchParam'],
-        FhirString.fromJson,
-      ),
-      valueSet: parseField<FhirCanonical>(
-        json['valueSet'],
-        json['_valueSet'],
-        FhirCanonical.fromJson,
-      ),
-      code: parseList<Coding>(
-        json['code'] as List<dynamic>?,
-        json['_code'] as List<dynamic>?,
-        Coding.fromJson,
-      ),
+      id: json['id'] != null
+          ? FhirString.fromJson({'value': json['id']})
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      path: (json['path'] != null || json['_path'] != null)
+          ? FhirString.fromJson({
+              'value': json['path'],
+              '_value': json['_path'],
+            })
+          : null,
+      searchParam: (json['searchParam'] != null || json['_searchParam'] != null)
+          ? FhirString.fromJson({
+              'value': json['searchParam'],
+              '_value': json['_searchParam'],
+            })
+          : null,
+      valueSet: (json['valueSet'] != null || json['_valueSet'] != null)
+          ? FhirCanonical.fromJson({
+              'value': json['valueSet'],
+              '_value': json['_valueSet'],
+            })
+          : null,
+      code: json['code'] != null
+          ? (json['code'] as List<dynamic>)
+              .map<Coding>(
+                (v) => Coding.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
     );
   }
 
@@ -574,60 +542,38 @@ class DataRequirementDateFilter extends Element {
   factory DataRequirementDateFilter.fromJson(
     Map<String, dynamic> json,
   ) {
-    T? parseField<T extends FhirBase>(
-      dynamic value,
-      dynamic valueElement,
-      T Function(Map<String, dynamic>) fromJson,
-    ) =>
-        (value != null || valueElement != null)
-            ? fromJson({
-                'value': value,
-                '_value': valueElement,
-              })
-            : null;
-    List<T>? parseList<T extends FhirBase>(
-      List<dynamic>? values,
-      List<dynamic>? valueElements,
-      T Function(Map<String, dynamic>) fromJson,
-    ) =>
-        values?.asMap().entries.map((entry) {
-          final index = entry.key;
-          final value = entry.value;
-          final valueElement =
-              valueElements != null && valueElements.length > index
-                  ? valueElements[index]
-                  : null;
-          return fromJson({
-            'value': value,
-            '_value': valueElement,
-          });
-        }).toList();
     return DataRequirementDateFilter(
-      id: parseField<FhirString>(
-        json['id'],
-        json['_id'],
-        FhirString.fromJson,
-      ),
-      extension_: parseList<FhirExtension>(
-        json['extension'] as List<dynamic>?,
-        json['_extension'] as List<dynamic>?,
-        FhirExtension.fromJson,
-      ),
-      path: parseField<FhirString>(
-        json['path'],
-        json['_path'],
-        FhirString.fromJson,
-      ),
-      searchParam: parseField<FhirString>(
-        json['searchParam'],
-        json['_searchParam'],
-        FhirString.fromJson,
-      ),
-      valueDateTime: parseField<FhirDateTime>(
-        json['valueDateTime'],
-        json['_valueDateTime'],
-        FhirDateTime.fromJson,
-      ),
+      id: json['id'] != null
+          ? FhirString.fromJson({'value': json['id']})
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      path: (json['path'] != null || json['_path'] != null)
+          ? FhirString.fromJson({
+              'value': json['path'],
+              '_value': json['_path'],
+            })
+          : null,
+      searchParam: (json['searchParam'] != null || json['_searchParam'] != null)
+          ? FhirString.fromJson({
+              'value': json['searchParam'],
+              '_value': json['_searchParam'],
+            })
+          : null,
+      valueDateTime:
+          (json['valueDateTime'] != null || json['_valueDateTime'] != null)
+              ? FhirDateTime.fromJson({
+                  'value': json['valueDateTime'],
+                  '_value': json['_valueDateTime'],
+                })
+              : null,
       valuePeriod: json['valuePeriod'] != null
           ? Period.fromJson(
               json['valuePeriod'] as Map<String, dynamic>,
@@ -817,45 +763,19 @@ class DataRequirementSort extends Element {
   factory DataRequirementSort.fromJson(
     Map<String, dynamic> json,
   ) {
-    T? parseField<T extends FhirBase>(
-      dynamic value,
-      dynamic valueElement,
-      T Function(Map<String, dynamic>) fromJson,
-    ) =>
-        (value != null || valueElement != null)
-            ? fromJson({
-                'value': value,
-                '_value': valueElement,
-              })
-            : null;
-    List<T>? parseList<T extends FhirBase>(
-      List<dynamic>? values,
-      List<dynamic>? valueElements,
-      T Function(Map<String, dynamic>) fromJson,
-    ) =>
-        values?.asMap().entries.map((entry) {
-          final index = entry.key;
-          final value = entry.value;
-          final valueElement =
-              valueElements != null && valueElements.length > index
-                  ? valueElements[index]
-                  : null;
-          return fromJson({
-            'value': value,
-            '_value': valueElement,
-          });
-        }).toList();
     return DataRequirementSort(
-      id: parseField<FhirString>(
-        json['id'],
-        json['_id'],
-        FhirString.fromJson,
-      ),
-      extension_: parseList<FhirExtension>(
-        json['extension'] as List<dynamic>?,
-        json['_extension'] as List<dynamic>?,
-        FhirExtension.fromJson,
-      ),
+      id: json['id'] != null
+          ? FhirString.fromJson({'value': json['id']})
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
       path: FhirString.fromJson({
         'value': json['path'],
         '_value': json['_path'],

@@ -16,6 +16,8 @@ class BenefitTermCodes extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return BenefitTermCodes.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError('BenefitTermCodes cannot be constructed from JSON.');
     }
     return BenefitTermCodes._(value, element);
   }

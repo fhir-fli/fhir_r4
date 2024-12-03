@@ -16,6 +16,9 @@ class ContributorSummaryStyle extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return ContributorSummaryStyle.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'ContributorSummaryStyle cannot be constructed from JSON.');
     }
     return ContributorSummaryStyle._(value, element);
   }

@@ -17,6 +17,9 @@ class ContractResourceSecurityControlCodes extends PrimitiveType<String> {
     if (value == null && element != null) {
       return ContractResourceSecurityControlCodes.elementOnly
           .withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'ContractResourceSecurityControlCodes cannot be constructed from JSON.');
     }
     return ContractResourceSecurityControlCodes._(value, element);
   }

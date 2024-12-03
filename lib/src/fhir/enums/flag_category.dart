@@ -16,6 +16,8 @@ class FlagCategory extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return FlagCategory.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError('FlagCategory cannot be constructed from JSON.');
     }
     return FlagCategory._(value, element);
   }

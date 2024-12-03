@@ -16,6 +16,9 @@ class FundsReservationCodes extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return FundsReservationCodes.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'FundsReservationCodes cannot be constructed from JSON.');
     }
     return FundsReservationCodes._(value, element);
   }

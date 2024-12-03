@@ -16,6 +16,9 @@ class ProcessPriorityCodes extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return ProcessPriorityCodes.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'ProcessPriorityCodes cannot be constructed from JSON.');
     }
     return ProcessPriorityCodes._(value, element);
   }

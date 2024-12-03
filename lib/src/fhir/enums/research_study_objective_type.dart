@@ -16,6 +16,9 @@ class ResearchStudyObjectiveType extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return ResearchStudyObjectiveType.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'ResearchStudyObjectiveType cannot be constructed from JSON.');
     }
     return ResearchStudyObjectiveType._(value, element);
   }

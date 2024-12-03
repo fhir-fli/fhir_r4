@@ -17,6 +17,9 @@ class MedicationRequestCourseOfTherapyCodes extends PrimitiveType<String> {
     if (value == null && element != null) {
       return MedicationRequestCourseOfTherapyCodes.elementOnly
           .withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'MedicationRequestCourseOfTherapyCodes cannot be constructed from JSON.');
     }
     return MedicationRequestCourseOfTherapyCodes._(value, element);
   }

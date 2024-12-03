@@ -16,6 +16,9 @@ class DefinitionUseCodes extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return DefinitionUseCodes.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'DefinitionUseCodes cannot be constructed from JSON.');
     }
     return DefinitionUseCodes._(value, element);
   }

@@ -17,6 +17,9 @@ class BiologicallyDerivedProductStorageScale extends PrimitiveType<String> {
     if (value == null && element != null) {
       return BiologicallyDerivedProductStorageScale.elementOnly
           .withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'BiologicallyDerivedProductStorageScale cannot be constructed from JSON.');
     }
     return BiologicallyDerivedProductStorageScale._(value, element);
   }

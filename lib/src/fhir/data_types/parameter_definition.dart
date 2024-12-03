@@ -33,78 +33,58 @@ class ParameterDefinition extends DataType {
   factory ParameterDefinition.fromJson(
     Map<String, dynamic> json,
   ) {
-    T? parseField<T extends FhirBase>(
-      dynamic value,
-      dynamic valueElement,
-      T Function(Map<String, dynamic>) fromJson,
-    ) =>
-        (value != null || valueElement != null)
-            ? fromJson({
-                'value': value,
-                '_value': valueElement,
-              })
-            : null;
-    List<T>? parseList<T extends FhirBase>(
-      List<dynamic>? values,
-      List<dynamic>? valueElements,
-      T Function(Map<String, dynamic>) fromJson,
-    ) =>
-        values?.asMap().entries.map((entry) {
-          final index = entry.key;
-          final value = entry.value;
-          final valueElement =
-              valueElements != null && valueElements.length > index
-                  ? valueElements[index]
-                  : null;
-          return fromJson({
-            'value': value,
-            '_value': valueElement,
-          });
-        }).toList();
     return ParameterDefinition(
-      id: parseField<FhirString>(
-        json['id'],
-        json['_id'],
-        FhirString.fromJson,
-      ),
-      extension_: parseList<FhirExtension>(
-        json['extension'] as List<dynamic>?,
-        json['_extension'] as List<dynamic>?,
-        FhirExtension.fromJson,
-      ),
-      name: parseField<FhirCode>(
-        json['name'],
-        json['_name'],
-        FhirCode.fromJson,
-      ),
+      id: json['id'] != null
+          ? FhirString.fromJson({'value': json['id']})
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      name: (json['name'] != null || json['_name'] != null)
+          ? FhirCode.fromJson({
+              'value': json['name'],
+              '_value': json['_name'],
+            })
+          : null,
       use: OperationParameterUse.fromJson({
         'value': json['use'],
         '_value': json['_use'],
       }),
-      min: parseField<FhirInteger>(
-        json['min'],
-        json['_min'],
-        FhirInteger.fromJson,
-      ),
-      max: parseField<FhirString>(
-        json['max'],
-        json['_max'],
-        FhirString.fromJson,
-      ),
-      documentation: parseField<FhirString>(
-        json['documentation'],
-        json['_documentation'],
-        FhirString.fromJson,
-      ),
+      min: (json['min'] != null || json['_min'] != null)
+          ? FhirInteger.fromJson({
+              'value': json['min'],
+              '_value': json['_min'],
+            })
+          : null,
+      max: (json['max'] != null || json['_max'] != null)
+          ? FhirString.fromJson({
+              'value': json['max'],
+              '_value': json['_max'],
+            })
+          : null,
+      documentation:
+          (json['documentation'] != null || json['_documentation'] != null)
+              ? FhirString.fromJson({
+                  'value': json['documentation'],
+                  '_value': json['_documentation'],
+                })
+              : null,
       type: FHIRAllTypes.fromJson({
         'value': json['type'],
         '_value': json['_type'],
       }),
-      profile: parseField<FhirCanonical>(
-        json['profile'],
-        json['_profile'],
-        FhirCanonical.fromJson,
-      ),
+      profile: (json['profile'] != null || json['_profile'] != null)
+          ? FhirCanonical.fromJson({
+              'value': json['profile'],
+              '_value': json['_profile'],
+            })
+          : null,
     );
   }
 

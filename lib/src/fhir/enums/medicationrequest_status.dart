@@ -16,6 +16,9 @@ class MedicationrequestStatus extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return MedicationrequestStatus.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+          'MedicationrequestStatus cannot be constructed from JSON.');
     }
     return MedicationrequestStatus._(value, element);
   }

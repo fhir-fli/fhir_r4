@@ -16,6 +16,8 @@ class Diet extends PrimitiveType<String> {
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return Diet.elementOnly.withElement(element);
+    } else if (value == null && element == null) {
+      throw ArgumentError('Diet cannot be constructed from JSON.');
     }
     return Diet._(value, element);
   }
