@@ -2,7 +2,6 @@
 
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:fhir_r4/src/fhir_path/java/fhir_path_utilities.dart';
-import 'package:fhir_r4/src/models/ports/property.dart';
 
 /// Represents class type information.
 class ClassTypeInfo extends FhirBase {
@@ -14,8 +13,6 @@ class ClassTypeInfo extends FhirBase {
 
   @override
   String get fhirType => 'ClassInfo';
-
-  void listChildren(List<Property> result) {}
 
   /// Returns the type of the instance.
   String? getIdBase() => null;
@@ -110,8 +107,6 @@ class FHIRConstant extends FhirBase {
 
   @override
   String get fhirType => '%constant';
-
-  void listChildren(List<Property> result) {}
 
   /// Returns the value of the constant.
   String? getIdBase() => null;

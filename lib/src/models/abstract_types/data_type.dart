@@ -6,7 +6,7 @@ import 'package:yaml/yaml.dart';
 /// Base class for all reusable types defined as part of the FHIR specification.
 abstract class DataType extends Element {
   /// Constructor for DataType
-  DataType({
+  const DataType({
     super.id,
     super.extension_,
     super.userData,

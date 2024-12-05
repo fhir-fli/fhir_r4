@@ -6,7 +6,7 @@ import 'package:yaml/yaml.dart';
 /// Base class for elements inside a resource but not those in a data type.
 abstract class BackboneElement extends DataType {
   /// Constructor for BackboneElement
-  BackboneElement({
+  const BackboneElement({
     super.id,
     super.extension_,
     this.modifierExtension,

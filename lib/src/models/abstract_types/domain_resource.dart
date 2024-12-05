@@ -6,7 +6,7 @@ import 'package:yaml/yaml.dart';
 /// [DomainResource] Base definition for all FHIR elements.
 abstract class DomainResource extends Resource {
   /// Main constructor for [DomainResource ]
-  DomainResource({
+  const DomainResource({
     required super.resourceType,
     super.id,
     super.meta,

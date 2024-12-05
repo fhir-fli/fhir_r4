@@ -6,7 +6,7 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Base class for all FHIR elements.
 abstract class FhirBase {
   /// Main constructor for [FhirBase].
-  FhirBase({
+  const FhirBase({
     this.userData,
     this.formatCommentsPre,
     this.formatCommentsPost,

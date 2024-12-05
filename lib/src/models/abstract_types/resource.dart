@@ -6,7 +6,7 @@ import 'package:yaml/yaml.dart';
 /// [Resource] Base definition for all FHIR elements.
 abstract class Resource extends FhirBase {
   /// Main constructor for [Resource ]
-  Resource({
+  const Resource({
     required this.resourceType,
     this.id,
     this.meta,

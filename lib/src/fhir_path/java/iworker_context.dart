@@ -1,21 +1,22 @@
-// ignore_for_file: avoid_positional_boolean_parameters, public_member_api_docs, require_trailing_commas, one_member_abstracts
+// ignore_for_file: avoid_positional_boolean_parameters, public_member_api_docs
+// ignore_for_file: require_trailing_commas, one_member_abstracts
 
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:ucum/ucum.dart';
 
 abstract class IWorkerContext {
-  // Inner Classes
+  // // Inner Classes
 
-  // Methods
+  // // Methods
   String getVersion();
-  String getSpecUrl();
-  UcumService? getUcumService();
+  // String getSpecUrl();
+  // UcumService? getUcumService();
 
-  IParser getParser(ParserType type);
-  IParser getParserFromType(String type);
-  IParser newJsonParser();
-  IParser newXmlParser();
-  IResourceValidator newValidator();
+  // IParser getParser(ParserType type);
+  // IParser getParserFromType(String type);
+  // IParser newJsonParser();
+  // IParser newXmlParser();
+  // IResourceValidator newValidator();
 
   T? fetchResource<T extends Resource>(Type classType, String uri);
   T fetchResourceWithException<T extends Resource>(Type classType, String uri);
@@ -23,110 +24,110 @@ abstract class IWorkerContext {
       Type classType, String uri, String version);
   T fetchResourceForSource<T extends Resource>(
       Type classType, String uri, CanonicalResource canonicalForSource);
-
   Resource? fetchResourceById(String type, String uri);
 
-  bool hasResource<T extends Resource>(Type classType, String uri);
+  // bool hasResource<T extends Resource>(Type classType, String uri);
 
-  void cacheResource(Resource resource);
-  void cacheResourceFromPackage(
-      Resource resource, PackageVersion packageDetails);
-  void cachePackage(
-      PackageDetails packageDetails, List<PackageVersion> dependencies);
+  // void cacheResource(Resource resource);
+  // void cacheResourceFromPackage(
+  //     Resource resource, PackageVersion packageDetails);
+  // void cachePackage(
+  //     PackageDetails packageDetails, List<PackageVersion> dependencies);
 
-  List<String> getResourceNames();
-  Set<String> getResourceNamesAsSet();
-  List<String> getTypeNames();
-  List<StructureDefinition> allStructures();
+  // List<String> getResourceNames();
+  // Set<String> getResourceNamesAsSet();
+  // List<String> getTypeNames();
+  // List<StructureDefinition> allStructures();
   List<StructureDefinition> getStructures();
-  List<CanonicalResource> allConformanceResources();
+  // List<CanonicalResource> allConformanceResources();
 
-  void generateSnapshot(StructureDefinition p);
-  void generateSnapshotConditional(StructureDefinition mr, bool ifLogical);
+  // void generateSnapshot(StructureDefinition p);
+  // void generateSnapshotConditional(StructureDefinition mr, bool ifLogical);
 
-  Parameters getExpansionParameters();
-  void setExpansionParameters(Parameters parameters);
+  // Parameters getExpansionParameters();
+  // void setExpansionParameters(Parameters parameters);
 
-  CodeSystem? fetchCodeSystem(String system);
-  CodeSystem? fetchCodeSystemWithVersion(String system, String version);
-  bool supportsSystem(String system);
+  // CodeSystem? fetchCodeSystem(String system);
+  // CodeSystem? fetchCodeSystemWithVersion(String system, String version);
+  // bool supportsSystem(String system);
 
-  List<ConceptMap> findMapsForSource(String url);
-  ValueSetExpansionOutcome expandVS(
-      ValueSet source, bool cacheOk, bool hierarchical);
-  ValueSetExpansionOutcome expandVSWithOptions(
-      ValueSet source, bool cacheOk, bool hierarchical, bool incompleteOk);
+  // List<ConceptMap> findMapsForSource(String url);
+  // ValueSetExpansionOutcome expandVS(
+  //     ValueSet source, bool cacheOk, bool hierarchical);
+  // ValueSetExpansionOutcome expandVSWithOptions(
+  //     ValueSet source, bool cacheOk, bool hierarchical, bool incompleteOk);
 
-  ValueSetExpansionOutcome expandVSWithBinding(
-      ElementDefinitionBinding binding, bool cacheOk, bool hierarchical);
+  // ValueSetExpansionOutcome expandVSWithBinding(
+  //     ElementDefinitionBinding binding, bool cacheOk, bool hierarchical);
 
-  ValueSetExpansionOutcome expandVSWithConceptSet(
-      Concept inc, bool hierarchical);
+  // ValueSetExpansionOutcome expandVSWithConceptSet(
+  //     Concept inc, bool hierarchical);
 
-  Locale getLocale();
-  void setLocale(Locale locale);
+  // Locale getLocale();
+  // void setLocale(Locale locale);
 
   String formatMessage(String message, List<Object> messageArguments);
   String formatMessagePlural(
       int plural, String message, List<Object> messageArguments);
-  void setValidationMessageLanguage(Locale locale);
+  // void setValidationMessageLanguage(Locale locale);
 
-  ValidationResult validateCode(
-      ValidationOptions options, String code, ValueSet vs);
-  ValidationResult validateCodeWithSystem(ValidationOptions options,
-      String system, String version, String code, String display);
-  ValidationResult validateCodeWithValueSet(ValidationOptions options,
-      String system, String version, String code, String display, ValueSet vs);
+  // ValidationResult validateCode(
+  //     ValidationOptions options, String code, ValueSet vs);
+  // ValidationResult validateCodeWithSystem(ValidationOptions options,
+  //     String system, String version, String code, String display);
+  // ValidationResult validateCodeWithValueSet(ValidationOptions options,
+  //     String system, String version, String code, String display, ValueSet 
+  // vs);
 
-  ValidationResult validateCodeWithCodeableConcept(
-      ValidationOptions options, CodeableConcept code, ValueSet vs);
-  ValidationResult validateCodeWithCoding(
-      ValidationOptions options, Coding code, ValueSet vs);
+  // ValidationResult validateCodeWithCodeableConcept(
+  //     ValidationOptions options, CodeableConcept code, ValueSet vs);
+  // ValidationResult validateCodeWithCoding(
+  //     ValidationOptions options, Coding code, ValueSet vs);
 
-  ValidationResult validateCodeBatch(ValidationOptions options,
-      List<CodingValidationRequest> codes, ValueSet vs);
+  // ValidationResult validateCodeBatch(ValidationOptions options,
+  //     List<CodingValidationRequest> codes, ValueSet vs);
 
-  String getAbbreviation(String name);
-  String oidToUri(String code);
-  bool hasCache();
+  // String getAbbreviation(String name);
+  // String oidToUri(String code);
+  // bool hasCache();
 
-  void setLogger(ILoggingService logger);
-  ILoggingService getLogger();
+  // void setLogger(ILoggingService logger);
+  // ILoggingService getLogger();
 
-  bool isNoTerminologyServer();
-  Set<String> getCodeSystemsUsed();
+  // bool isNoTerminologyServer();
+  // Set<String> getCodeSystemsUsed();
 
-  TranslationServices translator();
-  List<StructureMap> listTransforms();
-  StructureMap? getTransform(String url);
+  // TranslationServices translator();
+  // List<StructureMap> listTransforms();
+  // StructureMap? getTransform(String url);
 
-  String? getOverrideVersionNs();
-  void setOverrideVersionNs(String value);
+  // String? getOverrideVersionNs();
+  // void setOverrideVersionNs(String value);
 
   StructureDefinition? fetchTypeDefinition(String typeName);
-  StructureDefinition? fetchRawProfile(String url);
+  // StructureDefinition? fetchRawProfile(String url);
 
-  void setUcumService(UcumService ucumService);
+  // void setUcumService(UcumService ucumService);
 
-  String getLinkForUrl(String corePath, String url);
+  // String getLinkForUrl(String corePath, String url);
 
-  Map<String, List<int>> getBinaries();
+  // Map<String, List<int>> getBinaries();
 
-  int loadFromPackage(NpmPackage pi, IContextResourceLoader loader);
-  int loadFromPackageWithTypes(
-      NpmPackage pi, IContextResourceLoader loader, List<String> types);
-  int loadFromPackageWithDependencies(NpmPackage pi,
-      IContextResourceLoader loader, BasePackageCacheManager pcm);
+  // int loadFromPackage(NpmPackage pi, IContextResourceLoader loader);
+  // int loadFromPackageWithTypes(
+  //     NpmPackage pi, IContextResourceLoader loader, List<String> types);
+  // int loadFromPackageWithDependencies(NpmPackage pi,
+  //     IContextResourceLoader loader, BasePackageCacheManager pcm);
 
-  bool hasPackage(String id, String version);
-  bool hasPackageWithDetails(PackageVersion pack);
-  PackageDetails? getPackage(PackageVersion pack);
+  // bool hasPackage(String id, String version);
+  // bool hasPackageWithDetails(PackageVersion pack);
+  // PackageDetails? getPackage(PackageVersion pack);
 
-  int getClientRetryCount();
-  void setClientRetryCount(int value);
+  // int getClientRetryCount();
+  // void setClientRetryCount(int value);
 
-  TimeTracker clock();
-  PackageVersion? getPackageForUrl(String url);
+  // TimeTracker clock();
+  // PackageVersion? getPackageForUrl(String url);
 }
 
 class CodingValidationRequest {

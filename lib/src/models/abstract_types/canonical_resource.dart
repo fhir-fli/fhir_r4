@@ -6,7 +6,7 @@ import 'package:yaml/yaml.dart';
 /// [CanonicalResource] Base definition for all FHIR elements.
 abstract class CanonicalResource extends DomainResource {
   /// Main constructor for [CanonicalResource]
-  CanonicalResource({
+  const CanonicalResource({
     required super.resourceType,
     super.id,
     super.meta,

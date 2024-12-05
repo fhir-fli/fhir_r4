@@ -6,7 +6,7 @@ import 'package:yaml/yaml.dart';
 /// [Element] Base definition for all FHIR elements.
 class Element extends FhirBase {
   /// Constructor for Element with optional id and extensions
-  Element({
+  const Element({
     this.id,
     this.extension_,
     super.userData,

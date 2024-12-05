@@ -7,7 +7,7 @@ import 'package:yaml/yaml.dart';
 /// extensions.
 abstract class BackboneType extends DataType {
   /// Constructor for BackboneType
-  BackboneType({
+  const BackboneType({
     super.id,
     super.extension_,
     this.modifierExtension,
