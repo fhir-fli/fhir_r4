@@ -11,7 +11,7 @@ abstract class BackboneType extends DataType {
     super.id,
     super.extension_,
     this.modifierExtension,
-        super.disallowExtensions,
+    super.disallowExtensions,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
