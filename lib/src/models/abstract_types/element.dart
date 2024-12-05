@@ -9,6 +9,7 @@ class Element extends FhirBase {
   const Element({
     this.id,
     this.extension_,
+    this.disallowExtensions = false,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -65,6 +66,11 @@ class Element extends FhirBase {
 
   /// List of extensions for additional information
   final List<FhirExtension>? extension_;
+
+  /// This is used in the FHIRPath engine to record that no extensions are
+  /// allowed for this item in the context in which it is used.
+  /// to do: enforce this....
+  final bool disallowExtensions;
 
   /// Method to copy the current Element with modifications
   @override

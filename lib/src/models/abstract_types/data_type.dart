@@ -9,6 +9,7 @@ abstract class DataType extends Element {
   const DataType({
     super.id,
     super.extension_,
+    super.disallowExtensions,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
