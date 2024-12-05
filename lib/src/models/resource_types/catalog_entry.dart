@@ -9,7 +9,7 @@ class CatalogEntry extends DomainResource {
   /// Primary constructor for
   /// [CatalogEntry]
 
-  CatalogEntry({
+  const CatalogEntry({
     super.id,
     super.meta,
     super.implicitRules,
@@ -438,7 +438,7 @@ class CatalogEntryRelatedEntry extends BackboneElement {
   /// Primary constructor for
   /// [CatalogEntryRelatedEntry]
 
-  CatalogEntryRelatedEntry({
+  const CatalogEntryRelatedEntry({
     super.id,
     super.extension_,
     super.modifierExtension,

@@ -10,7 +10,7 @@ class ClinicalUseDefinition extends DomainResource {
   /// Primary constructor for
   /// [ClinicalUseDefinition]
 
-  ClinicalUseDefinition({
+  const ClinicalUseDefinition({
     super.id,
     super.meta,
     super.implicitRules,
@@ -404,7 +404,7 @@ class ClinicalUseDefinitionContraindication extends BackboneElement {
   /// Primary constructor for
   /// [ClinicalUseDefinitionContraindication]
 
-  ClinicalUseDefinitionContraindication({
+  const ClinicalUseDefinitionContraindication({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -636,7 +636,7 @@ class ClinicalUseDefinitionOtherTherapy extends BackboneElement {
   /// Primary constructor for
   /// [ClinicalUseDefinitionOtherTherapy]
 
-  ClinicalUseDefinitionOtherTherapy({
+  const ClinicalUseDefinitionOtherTherapy({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -797,7 +797,7 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
   /// Primary constructor for
   /// [ClinicalUseDefinitionIndication]
 
-  ClinicalUseDefinitionIndication({
+  const ClinicalUseDefinitionIndication({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1083,7 +1083,7 @@ class ClinicalUseDefinitionInteraction extends BackboneElement {
   /// Primary constructor for
   /// [ClinicalUseDefinitionInteraction]
 
-  ClinicalUseDefinitionInteraction({
+  const ClinicalUseDefinitionInteraction({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1310,7 +1310,7 @@ class ClinicalUseDefinitionInteractant extends BackboneElement {
   /// Primary constructor for
   /// [ClinicalUseDefinitionInteractant]
 
-  ClinicalUseDefinitionInteractant({
+  const ClinicalUseDefinitionInteractant({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1478,7 +1478,7 @@ class ClinicalUseDefinitionUndesirableEffect extends BackboneElement {
   /// Primary constructor for
   /// [ClinicalUseDefinitionUndesirableEffect]
 
-  ClinicalUseDefinitionUndesirableEffect({
+  const ClinicalUseDefinitionUndesirableEffect({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1666,7 +1666,7 @@ class ClinicalUseDefinitionWarning extends BackboneElement {
   /// Primary constructor for
   /// [ClinicalUseDefinitionWarning]
 
-  ClinicalUseDefinitionWarning({
+  const ClinicalUseDefinitionWarning({
     super.id,
     super.extension_,
     super.modifierExtension,

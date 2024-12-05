@@ -31,7 +31,7 @@ class MedicationStatement extends DomainResource {
   /// Primary constructor for
   /// [MedicationStatement]
 
-  MedicationStatement({
+  const MedicationStatement({
     super.id,
     super.meta,
     super.implicitRules,

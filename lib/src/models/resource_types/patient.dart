@@ -9,7 +9,7 @@ class Patient extends DomainResource {
   /// Primary constructor for
   /// [Patient]
 
-  Patient({
+  const Patient({
     super.id,
     super.meta,
     super.implicitRules,
@@ -536,7 +536,7 @@ class PatientContact extends BackboneElement {
   /// Primary constructor for
   /// [PatientContact]
 
-  PatientContact({
+  const PatientContact({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -795,7 +795,7 @@ class PatientCommunication extends BackboneElement {
   /// Primary constructor for
   /// [PatientCommunication]
 
-  PatientCommunication({
+  const PatientCommunication({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -960,7 +960,7 @@ class PatientLink extends BackboneElement {
   /// Primary constructor for
   /// [PatientLink]
 
-  PatientLink({
+  const PatientLink({
     super.id,
     super.extension_,
     super.modifierExtension,

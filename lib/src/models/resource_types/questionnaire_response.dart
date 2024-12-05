@@ -10,7 +10,7 @@ class QuestionnaireResponse extends DomainResource {
   /// Primary constructor for
   /// [QuestionnaireResponse]
 
-  QuestionnaireResponse({
+  const QuestionnaireResponse({
     super.id,
     super.meta,
     super.implicitRules,
@@ -404,7 +404,7 @@ class QuestionnaireResponseItem extends BackboneElement {
   /// Primary constructor for
   /// [QuestionnaireResponseItem]
 
-  QuestionnaireResponseItem({
+  const QuestionnaireResponseItem({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -622,7 +622,7 @@ class QuestionnaireResponseAnswer extends BackboneElement {
   /// Primary constructor for
   /// [QuestionnaireResponseAnswer]
 
-  QuestionnaireResponseAnswer({
+  const QuestionnaireResponseAnswer({
     super.id,
     super.extension_,
     super.modifierExtension,

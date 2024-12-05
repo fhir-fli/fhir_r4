@@ -10,7 +10,7 @@ class RequestGroup extends DomainResource {
   /// Primary constructor for
   /// [RequestGroup]
 
-  RequestGroup({
+  const RequestGroup({
     super.id,
     super.meta,
     super.implicitRules,
@@ -539,7 +539,7 @@ class RequestGroupAction extends BackboneElement {
   /// Primary constructor for
   /// [RequestGroupAction]
 
-  RequestGroupAction({
+  const RequestGroupAction({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1080,7 +1080,7 @@ class RequestGroupCondition extends BackboneElement {
   /// Primary constructor for
   /// [RequestGroupCondition]
 
-  RequestGroupCondition({
+  const RequestGroupCondition({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1245,7 +1245,7 @@ class RequestGroupRelatedAction extends BackboneElement {
   /// Primary constructor for
   /// [RequestGroupRelatedAction]
 
-  RequestGroupRelatedAction({
+  const RequestGroupRelatedAction({
     super.id,
     super.extension_,
     super.modifierExtension,

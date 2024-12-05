@@ -13,7 +13,7 @@ class ImagingStudy extends DomainResource {
   /// Primary constructor for
   /// [ImagingStudy]
 
-  ImagingStudy({
+  const ImagingStudy({
     super.id,
     super.meta,
     super.implicitRules,
@@ -579,7 +579,7 @@ class ImagingStudySeries extends BackboneElement {
   /// Primary constructor for
   /// [ImagingStudySeries]
 
-  ImagingStudySeries({
+  const ImagingStudySeries({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -921,7 +921,7 @@ class ImagingStudyPerformer extends BackboneElement {
   /// Primary constructor for
   /// [ImagingStudyPerformer]
 
-  ImagingStudyPerformer({
+  const ImagingStudyPerformer({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1085,7 +1085,7 @@ class ImagingStudyInstance extends BackboneElement {
   /// Primary constructor for
   /// [ImagingStudyInstance]
 
-  ImagingStudyInstance({
+  const ImagingStudyInstance({
     super.id,
     super.extension_,
     super.modifierExtension,

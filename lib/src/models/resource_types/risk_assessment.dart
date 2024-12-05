@@ -9,7 +9,7 @@ class RiskAssessment extends DomainResource {
   /// Primary constructor for
   /// [RiskAssessment]
 
-  RiskAssessment({
+  const RiskAssessment({
     super.id,
     super.meta,
     super.implicitRules,
@@ -515,7 +515,7 @@ class RiskAssessmentPrediction extends BackboneElement {
   /// Primary constructor for
   /// [RiskAssessmentPrediction]
 
-  RiskAssessmentPrediction({
+  const RiskAssessmentPrediction({
     super.id,
     super.extension_,
     super.modifierExtension,

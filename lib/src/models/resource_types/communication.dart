@@ -10,7 +10,7 @@ class Communication extends DomainResource {
   /// Primary constructor for
   /// [Communication]
 
-  Communication({
+  const Communication({
     super.id,
     super.meta,
     super.implicitRules,
@@ -650,7 +650,7 @@ class CommunicationPayload extends BackboneElement {
   /// Primary constructor for
   /// [CommunicationPayload]
 
-  CommunicationPayload({
+  const CommunicationPayload({
     super.id,
     super.extension_,
     super.modifierExtension,

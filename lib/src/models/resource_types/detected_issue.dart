@@ -11,7 +11,7 @@ class DetectedIssue extends DomainResource {
   /// Primary constructor for
   /// [DetectedIssue]
 
-  DetectedIssue({
+  const DetectedIssue({
     super.id,
     super.meta,
     super.implicitRules,
@@ -436,7 +436,7 @@ class DetectedIssueEvidence extends BackboneElement {
   /// Primary constructor for
   /// [DetectedIssueEvidence]
 
-  DetectedIssueEvidence({
+  const DetectedIssueEvidence({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -615,7 +615,7 @@ class DetectedIssueMitigation extends BackboneElement {
   /// Primary constructor for
   /// [DetectedIssueMitigation]
 
-  DetectedIssueMitigation({
+  const DetectedIssueMitigation({
     super.id,
     super.extension_,
     super.modifierExtension,

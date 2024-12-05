@@ -10,7 +10,7 @@ class NamingSystem extends DomainResource {
   /// Primary constructor for
   /// [NamingSystem]
 
-  NamingSystem({
+  const NamingSystem({
     super.id,
     super.meta,
     super.implicitRules,
@@ -431,7 +431,7 @@ class NamingSystemUniqueId extends BackboneElement {
   /// Primary constructor for
   /// [NamingSystemUniqueId]
 
-  NamingSystemUniqueId({
+  const NamingSystemUniqueId({
     super.id,
     super.extension_,
     super.modifierExtension,

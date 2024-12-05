@@ -9,7 +9,7 @@ class EnrollmentResponse extends DomainResource {
   /// Primary constructor for
   /// [EnrollmentResponse]
 
-  EnrollmentResponse({
+  const EnrollmentResponse({
     super.id,
     super.meta,
     super.implicitRules,

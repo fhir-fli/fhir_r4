@@ -10,7 +10,7 @@ class StructureDefinition extends CanonicalResource {
   /// Primary constructor for
   /// [StructureDefinition]
 
-  StructureDefinition({
+  const StructureDefinition({
     super.id,
     super.meta,
     super.implicitRules,
@@ -618,7 +618,7 @@ class StructureDefinitionMapping extends BackboneElement {
   /// Primary constructor for
   /// [StructureDefinitionMapping]
 
-  StructureDefinitionMapping({
+  const StructureDefinitionMapping({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -811,7 +811,7 @@ class StructureDefinitionContext extends BackboneElement {
   /// Primary constructor for
   /// [StructureDefinitionContext]
 
-  StructureDefinitionContext({
+  const StructureDefinitionContext({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -972,7 +972,7 @@ class StructureDefinitionSnapshot extends BackboneElement {
   /// Primary constructor for
   /// [StructureDefinitionSnapshot]
 
-  StructureDefinitionSnapshot({
+  const StructureDefinitionSnapshot({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1128,7 +1128,7 @@ class StructureDefinitionDifferential extends BackboneElement {
   /// Primary constructor for
   /// [StructureDefinitionDifferential]
 
-  StructureDefinitionDifferential({
+  const StructureDefinitionDifferential({
     super.id,
     super.extension_,
     super.modifierExtension,

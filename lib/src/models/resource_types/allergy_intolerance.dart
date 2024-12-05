@@ -9,7 +9,7 @@ class AllergyIntolerance extends DomainResource {
   /// Primary constructor for
   /// [AllergyIntolerance]
 
-  AllergyIntolerance({
+  const AllergyIntolerance({
     super.id,
     super.meta,
     super.implicitRules,
@@ -564,7 +564,7 @@ class AllergyIntoleranceReaction extends BackboneElement {
   /// Primary constructor for
   /// [AllergyIntoleranceReaction]
 
-  AllergyIntoleranceReaction({
+  const AllergyIntoleranceReaction({
     super.id,
     super.extension_,
     super.modifierExtension,

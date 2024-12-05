@@ -11,7 +11,7 @@ class CarePlan extends DomainResource {
   /// Primary constructor for
   /// [CarePlan]
 
-  CarePlan({
+  const CarePlan({
     super.id,
     super.meta,
     super.implicitRules,
@@ -645,7 +645,7 @@ class CarePlanActivity extends BackboneElement {
   /// Primary constructor for
   /// [CarePlanActivity]
 
-  CarePlanActivity({
+  const CarePlanActivity({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -886,7 +886,7 @@ class CarePlanDetail extends BackboneElement {
   /// Primary constructor for
   /// [CarePlanDetail]
 
-  CarePlanDetail({
+  const CarePlanDetail({
     super.id,
     super.extension_,
     super.modifierExtension,

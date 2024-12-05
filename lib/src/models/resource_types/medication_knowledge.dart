@@ -8,7 +8,7 @@ class MedicationKnowledge extends DomainResource {
   /// Primary constructor for
   /// [MedicationKnowledge]
 
-  MedicationKnowledge({
+  const MedicationKnowledge({
     super.id,
     super.meta,
     super.implicitRules,
@@ -655,7 +655,7 @@ class MedicationKnowledgeRelatedMedicationKnowledge extends BackboneElement {
   /// Primary constructor for
   /// [MedicationKnowledgeRelatedMedicationKnowledge]
 
-  MedicationKnowledgeRelatedMedicationKnowledge({
+  const MedicationKnowledgeRelatedMedicationKnowledge({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -823,7 +823,7 @@ class MedicationKnowledgeMonograph extends BackboneElement {
   /// Primary constructor for
   /// [MedicationKnowledgeMonograph]
 
-  MedicationKnowledgeMonograph({
+  const MedicationKnowledgeMonograph({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -991,7 +991,7 @@ class MedicationKnowledgeIngredient extends BackboneElement {
   /// Primary constructor for
   /// [MedicationKnowledgeIngredient]
 
-  MedicationKnowledgeIngredient({
+  const MedicationKnowledgeIngredient({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1193,7 +1193,7 @@ class MedicationKnowledgeCost extends BackboneElement {
   /// Primary constructor for
   /// [MedicationKnowledgeCost]
 
-  MedicationKnowledgeCost({
+  const MedicationKnowledgeCost({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1367,7 +1367,7 @@ class MedicationKnowledgeMonitoringProgram extends BackboneElement {
   /// Primary constructor for
   /// [MedicationKnowledgeMonitoringProgram]
 
-  MedicationKnowledgeMonitoringProgram({
+  const MedicationKnowledgeMonitoringProgram({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1532,7 +1532,7 @@ class MedicationKnowledgeAdministrationGuidelines extends BackboneElement {
   /// Primary constructor for
   /// [MedicationKnowledgeAdministrationGuidelines]
 
-  MedicationKnowledgeAdministrationGuidelines({
+  const MedicationKnowledgeAdministrationGuidelines({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1746,7 +1746,7 @@ class MedicationKnowledgeDosage extends BackboneElement {
   /// Primary constructor for
   /// [MedicationKnowledgeDosage]
 
-  MedicationKnowledgeDosage({
+  const MedicationKnowledgeDosage({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1915,7 +1915,7 @@ class MedicationKnowledgePatientCharacteristics extends BackboneElement {
   /// Primary constructor for
   /// [MedicationKnowledgePatientCharacteristics]
 
-  MedicationKnowledgePatientCharacteristics({
+  const MedicationKnowledgePatientCharacteristics({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2110,7 +2110,7 @@ class MedicationKnowledgeMedicineClassification extends BackboneElement {
   /// Primary constructor for
   /// [MedicationKnowledgeMedicineClassification]
 
-  MedicationKnowledgeMedicineClassification({
+  const MedicationKnowledgeMedicineClassification({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2280,7 +2280,7 @@ class MedicationKnowledgePackaging extends BackboneElement {
   /// Primary constructor for
   /// [MedicationKnowledgePackaging]
 
-  MedicationKnowledgePackaging({
+  const MedicationKnowledgePackaging({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2449,7 +2449,7 @@ class MedicationKnowledgeDrugCharacteristic extends BackboneElement {
   /// Primary constructor for
   /// [MedicationKnowledgeDrugCharacteristic]
 
-  MedicationKnowledgeDrugCharacteristic({
+  const MedicationKnowledgeDrugCharacteristic({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2662,7 +2662,7 @@ class MedicationKnowledgeRegulatory extends BackboneElement {
   /// Primary constructor for
   /// [MedicationKnowledgeRegulatory]
 
-  MedicationKnowledgeRegulatory({
+  const MedicationKnowledgeRegulatory({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2868,7 +2868,7 @@ class MedicationKnowledgeSubstitution extends BackboneElement {
   /// Primary constructor for
   /// [MedicationKnowledgeSubstitution]
 
-  MedicationKnowledgeSubstitution({
+  const MedicationKnowledgeSubstitution({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -3028,7 +3028,7 @@ class MedicationKnowledgeSchedule extends BackboneElement {
   /// Primary constructor for
   /// [MedicationKnowledgeSchedule]
 
-  MedicationKnowledgeSchedule({
+  const MedicationKnowledgeSchedule({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -3176,7 +3176,7 @@ class MedicationKnowledgeMaxDispense extends BackboneElement {
   /// Primary constructor for
   /// [MedicationKnowledgeMaxDispense]
 
-  MedicationKnowledgeMaxDispense({
+  const MedicationKnowledgeMaxDispense({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -3340,7 +3340,7 @@ class MedicationKnowledgeKinetics extends BackboneElement {
   /// Primary constructor for
   /// [MedicationKnowledgeKinetics]
 
-  MedicationKnowledgeKinetics({
+  const MedicationKnowledgeKinetics({
     super.id,
     super.extension_,
     super.modifierExtension,

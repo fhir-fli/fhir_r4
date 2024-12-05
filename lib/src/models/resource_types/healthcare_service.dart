@@ -8,7 +8,7 @@ class HealthcareService extends DomainResource {
   /// Primary constructor for
   /// [HealthcareService]
 
-  HealthcareService({
+  const HealthcareService({
     super.id,
     super.meta,
     super.implicitRules,
@@ -673,7 +673,7 @@ class HealthcareServiceEligibility extends BackboneElement {
   /// Primary constructor for
   /// [HealthcareServiceEligibility]
 
-  HealthcareServiceEligibility({
+  const HealthcareServiceEligibility({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -838,7 +838,7 @@ class HealthcareServiceAvailableTime extends BackboneElement {
   /// Primary constructor for
   /// [HealthcareServiceAvailableTime]
 
-  HealthcareServiceAvailableTime({
+  const HealthcareServiceAvailableTime({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1042,7 +1042,7 @@ class HealthcareServiceNotAvailable extends BackboneElement {
   /// Primary constructor for
   /// [HealthcareServiceNotAvailable]
 
-  HealthcareServiceNotAvailable({
+  const HealthcareServiceNotAvailable({
     super.id,
     super.extension_,
     super.modifierExtension,

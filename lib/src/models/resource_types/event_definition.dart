@@ -9,7 +9,7 @@ class EventDefinition extends CanonicalResource {
   /// Primary constructor for
   /// [EventDefinition]
 
-  EventDefinition({
+  const EventDefinition({
     super.id,
     super.meta,
     super.implicitRules,

@@ -9,7 +9,7 @@ class PractitionerRole extends DomainResource {
   /// Primary constructor for
   /// [PractitionerRole]
 
-  PractitionerRole({
+  const PractitionerRole({
     super.id,
     super.meta,
     super.implicitRules,
@@ -478,7 +478,7 @@ class PractitionerRoleAvailableTime extends BackboneElement {
   /// Primary constructor for
   /// [PractitionerRoleAvailableTime]
 
-  PractitionerRoleAvailableTime({
+  const PractitionerRoleAvailableTime({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -682,7 +682,7 @@ class PractitionerRoleNotAvailable extends BackboneElement {
   /// Primary constructor for
   /// [PractitionerRoleNotAvailable]
 
-  PractitionerRoleNotAvailable({
+  const PractitionerRoleNotAvailable({
     super.id,
     super.extension_,
     super.modifierExtension,

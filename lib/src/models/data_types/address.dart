@@ -12,7 +12,7 @@ class Address extends DataType {
   /// Primary constructor for
   /// [Address]
 
-  Address({
+  const Address({
     super.id,
     super.extension_,
     this.use,

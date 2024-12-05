@@ -10,7 +10,7 @@ class Location extends DomainResource {
   /// Primary constructor for
   /// [Location]
 
-  Location({
+  const Location({
     super.id,
     super.meta,
     super.implicitRules,
@@ -515,7 +515,7 @@ class LocationPosition extends BackboneElement {
   /// Primary constructor for
   /// [LocationPosition]
 
-  LocationPosition({
+  const LocationPosition({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -691,7 +691,7 @@ class LocationHoursOfOperation extends BackboneElement {
   /// Primary constructor for
   /// [LocationHoursOfOperation]
 
-  LocationHoursOfOperation({
+  const LocationHoursOfOperation({
     super.id,
     super.extension_,
     super.modifierExtension,

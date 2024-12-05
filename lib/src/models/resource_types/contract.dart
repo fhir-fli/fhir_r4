@@ -9,7 +9,7 @@ class Contract extends DomainResource {
   /// Primary constructor for
   /// [Contract]
 
-  Contract({
+  const Contract({
     super.id,
     super.meta,
     super.implicitRules,
@@ -878,7 +878,7 @@ class ContractContentDefinition extends BackboneElement {
   /// Primary constructor for
   /// [ContractContentDefinition]
 
-  ContractContentDefinition({
+  const ContractContentDefinition({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1109,7 +1109,7 @@ class ContractTerm extends BackboneElement {
   /// Primary constructor for
   /// [ContractTerm]
 
-  ContractTerm({
+  const ContractTerm({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1468,7 +1468,7 @@ class ContractSecurityLabel extends BackboneElement {
   /// Primary constructor for
   /// [ContractSecurityLabel]
 
-  ContractSecurityLabel({
+  const ContractSecurityLabel({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1679,7 +1679,7 @@ class ContractOffer extends BackboneElement {
   /// Primary constructor for
   /// [ContractOffer]
 
-  ContractOffer({
+  const ContractOffer({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2002,7 +2002,7 @@ class ContractParty extends BackboneElement {
   /// Primary constructor for
   /// [ContractParty]
 
-  ContractParty({
+  const ContractParty({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2169,7 +2169,7 @@ class ContractAnswer extends BackboneElement {
   /// Primary constructor for
   /// [ContractAnswer]
 
-  ContractAnswer({
+  const ContractAnswer({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2520,7 +2520,7 @@ class ContractAsset extends BackboneElement {
   /// Primary constructor for
   /// [ContractAsset]
 
-  ContractAsset({
+  const ContractAsset({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2942,7 +2942,7 @@ class ContractContext extends BackboneElement {
   /// Primary constructor for
   /// [ContractContext]
 
-  ContractContext({
+  const ContractContext({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -3130,7 +3130,7 @@ class ContractValuedItem extends BackboneElement {
   /// Primary constructor for
   /// [ContractValuedItem]
 
-  ContractValuedItem({
+  const ContractValuedItem({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -3522,7 +3522,7 @@ class ContractAction extends BackboneElement {
   /// Primary constructor for
   /// [ContractAction]
 
-  ContractAction({
+  const ContractAction({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -4084,7 +4084,7 @@ class ContractSubject extends BackboneElement {
   /// Primary constructor for
   /// [ContractSubject]
 
-  ContractSubject({
+  const ContractSubject({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -4258,7 +4258,7 @@ class ContractSigner extends BackboneElement {
   /// Primary constructor for
   /// [ContractSigner]
 
-  ContractSigner({
+  const ContractSigner({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -4443,7 +4443,7 @@ class ContractFriendly extends BackboneElement {
   /// Primary constructor for
   /// [ContractFriendly]
 
-  ContractFriendly({
+  const ContractFriendly({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -4614,7 +4614,7 @@ class ContractLegal extends BackboneElement {
   /// Primary constructor for
   /// [ContractLegal]
 
-  ContractLegal({
+  const ContractLegal({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -4782,7 +4782,7 @@ class ContractRule extends BackboneElement {
   /// Primary constructor for
   /// [ContractRule]
 
-  ContractRule({
+  const ContractRule({
     super.id,
     super.extension_,
     super.modifierExtension,

@@ -8,7 +8,7 @@ class HumanName extends DataType {
   /// Primary constructor for
   /// [HumanName]
 
-  HumanName({
+  const HumanName({
     super.id,
     super.extension_,
     this.use,

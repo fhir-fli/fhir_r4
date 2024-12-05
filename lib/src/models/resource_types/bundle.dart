@@ -8,7 +8,7 @@ class Bundle extends Resource {
   /// Primary constructor for
   /// [Bundle]
 
-  Bundle({
+  const Bundle({
     super.id,
     super.meta,
     super.implicitRules,
@@ -264,7 +264,7 @@ class BundleLink extends BackboneElement {
   /// Primary constructor for
   /// [BundleLink]
 
-  BundleLink({
+  const BundleLink({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -425,7 +425,7 @@ class BundleEntry extends BackboneElement {
   /// Primary constructor for
   /// [BundleEntry]
 
-  BundleEntry({
+  const BundleEntry({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -673,7 +673,7 @@ class BundleSearch extends BackboneElement {
   /// Primary constructor for
   /// [BundleSearch]
 
-  BundleSearch({
+  const BundleSearch({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -840,7 +840,7 @@ class BundleRequest extends BackboneElement {
   /// Primary constructor for
   /// [BundleRequest]
 
-  BundleRequest({
+  const BundleRequest({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1068,7 +1068,7 @@ class BundleResponse extends BackboneElement {
   /// Primary constructor for
   /// [BundleResponse]
 
-  BundleResponse({
+  const BundleResponse({
     super.id,
     super.extension_,
     super.modifierExtension,

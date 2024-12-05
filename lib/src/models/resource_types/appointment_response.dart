@@ -9,7 +9,7 @@ class AppointmentResponse extends DomainResource {
   /// Primary constructor for
   /// [AppointmentResponse]
 
-  AppointmentResponse({
+  const AppointmentResponse({
     super.id,
     super.meta,
     super.implicitRules,

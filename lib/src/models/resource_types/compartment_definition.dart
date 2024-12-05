@@ -9,7 +9,7 @@ class CompartmentDefinition extends DomainResource {
   /// Primary constructor for
   /// [CompartmentDefinition]
 
-  CompartmentDefinition({
+  const CompartmentDefinition({
     super.id,
     super.meta,
     super.implicitRules,
@@ -442,7 +442,7 @@ class CompartmentDefinitionResource extends BackboneElement {
   /// Primary constructor for
   /// [CompartmentDefinitionResource]
 
-  CompartmentDefinitionResource({
+  const CompartmentDefinitionResource({
     super.id,
     super.extension_,
     super.modifierExtension,

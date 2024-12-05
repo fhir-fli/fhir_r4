@@ -9,7 +9,7 @@ class Coverage extends DomainResource {
   /// Primary constructor for
   /// [Coverage]
 
-  Coverage({
+  const Coverage({
     super.id,
     super.meta,
     super.implicitRules,
@@ -502,7 +502,7 @@ class CoverageClass extends BackboneElement {
   /// Primary constructor for
   /// [CoverageClass]
 
-  CoverageClass({
+  const CoverageClass({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -679,7 +679,7 @@ class CoverageCostToBeneficiary extends BackboneElement {
   /// Primary constructor for
   /// [CoverageCostToBeneficiary]
 
-  CoverageCostToBeneficiary({
+  const CoverageCostToBeneficiary({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -884,7 +884,7 @@ class CoverageException extends BackboneElement {
   /// Primary constructor for
   /// [CoverageException]
 
-  CoverageException({
+  const CoverageException({
     super.id,
     super.extension_,
     super.modifierExtension,

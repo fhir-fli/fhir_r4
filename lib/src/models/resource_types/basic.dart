@@ -11,7 +11,7 @@ class Basic extends DomainResource {
   /// Primary constructor for
   /// [Basic]
 
-  Basic({
+  const Basic({
     super.id,
     super.meta,
     super.implicitRules,

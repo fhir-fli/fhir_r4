@@ -9,7 +9,7 @@ class FamilyMemberHistory extends DomainResource {
   /// Primary constructor for
   /// [FamilyMemberHistory]
 
-  FamilyMemberHistory({
+  const FamilyMemberHistory({
     super.id,
     super.meta,
     super.implicitRules,
@@ -658,7 +658,7 @@ class FamilyMemberHistoryCondition extends BackboneElement {
   /// Primary constructor for
   /// [FamilyMemberHistoryCondition]
 
-  FamilyMemberHistoryCondition({
+  const FamilyMemberHistoryCondition({
     super.id,
     super.extension_,
     super.modifierExtension,

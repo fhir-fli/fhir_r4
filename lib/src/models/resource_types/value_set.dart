@@ -11,7 +11,7 @@ class ValueSet extends CanonicalResource {
   /// Primary constructor for
   /// [ValueSet]
 
-  ValueSet({
+  const ValueSet({
     super.id,
     super.meta,
     super.implicitRules,
@@ -465,7 +465,7 @@ class ValueSetCompose extends BackboneElement {
   /// Primary constructor for
   /// [ValueSetCompose]
 
-  ValueSetCompose({
+  const ValueSetCompose({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -677,7 +677,7 @@ class ValueSetInclude extends BackboneElement {
   /// Primary constructor for
   /// [ValueSetInclude]
 
-  ValueSetInclude({
+  const ValueSetInclude({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -908,7 +908,7 @@ class ValueSetConcept extends BackboneElement {
   /// Primary constructor for
   /// [ValueSetConcept]
 
-  ValueSetConcept({
+  const ValueSetConcept({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1095,7 +1095,7 @@ class ValueSetDesignation extends BackboneElement {
   /// Primary constructor for
   /// [ValueSetDesignation]
 
-  ValueSetDesignation({
+  const ValueSetDesignation({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1275,7 +1275,7 @@ class ValueSetFilter extends BackboneElement {
   /// Primary constructor for
   /// [ValueSetFilter]
 
-  ValueSetFilter({
+  const ValueSetFilter({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1454,7 +1454,7 @@ class ValueSetExpansion extends BackboneElement {
   /// Primary constructor for
   /// [ValueSetExpansion]
 
-  ValueSetExpansion({
+  const ValueSetExpansion({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1696,7 +1696,7 @@ class ValueSetParameter extends BackboneElement {
   /// Primary constructor for
   /// [ValueSetParameter]
 
-  ValueSetParameter({
+  const ValueSetParameter({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1947,7 +1947,7 @@ class ValueSetContains extends BackboneElement {
   /// Primary constructor for
   /// [ValueSetContains]
 
-  ValueSetContains({
+  const ValueSetContains({
     super.id,
     super.extension_,
     super.modifierExtension,

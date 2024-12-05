@@ -8,7 +8,7 @@ class Reference extends DataType {
   /// Primary constructor for
   /// [Reference]
 
-  Reference({
+  const Reference({
     super.id,
     super.extension_,
     this.reference,

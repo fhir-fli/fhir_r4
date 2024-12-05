@@ -17,7 +17,7 @@ class Composition extends DomainResource {
   /// Primary constructor for
   /// [Composition]
 
-  Composition({
+  const Composition({
     super.id,
     super.meta,
     super.implicitRules,
@@ -480,7 +480,7 @@ class CompositionAttester extends BackboneElement {
   /// Primary constructor for
   /// [CompositionAttester]
 
-  CompositionAttester({
+  const CompositionAttester({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -658,7 +658,7 @@ class CompositionRelatesTo extends BackboneElement {
   /// Primary constructor for
   /// [CompositionRelatesTo]
 
-  CompositionRelatesTo({
+  const CompositionRelatesTo({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -839,7 +839,7 @@ class CompositionEvent extends BackboneElement {
   /// Primary constructor for
   /// [CompositionEvent]
 
-  CompositionEvent({
+  const CompositionEvent({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1038,7 +1038,7 @@ class CompositionSection extends BackboneElement {
   /// Primary constructor for
   /// [CompositionSection]
 
-  CompositionSection({
+  const CompositionSection({
     super.id,
     super.extension_,
     super.modifierExtension,

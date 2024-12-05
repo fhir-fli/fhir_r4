@@ -9,7 +9,7 @@ class Annotation extends DataType {
   /// Primary constructor for
   /// [Annotation]
 
-  Annotation({
+  const Annotation({
     super.id,
     super.extension_,
     this.authorReference,

@@ -9,7 +9,7 @@ class DeviceMetric extends DomainResource {
   /// Primary constructor for
   /// [DeviceMetric]
 
-  DeviceMetric({
+  const DeviceMetric({
     super.id,
     super.meta,
     super.implicitRules,
@@ -392,7 +392,7 @@ class DeviceMetricCalibration extends BackboneElement {
   /// Primary constructor for
   /// [DeviceMetricCalibration]
 
-  DeviceMetricCalibration({
+  const DeviceMetricCalibration({
     super.id,
     super.extension_,
     super.modifierExtension,

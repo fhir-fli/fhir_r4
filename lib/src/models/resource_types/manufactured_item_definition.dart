@@ -10,7 +10,7 @@ class ManufacturedItemDefinition extends DomainResource {
   /// Primary constructor for
   /// [ManufacturedItemDefinition]
 
-  ManufacturedItemDefinition({
+  const ManufacturedItemDefinition({
     super.id,
     super.meta,
     super.implicitRules,
@@ -335,7 +335,7 @@ class ManufacturedItemDefinitionProperty extends BackboneElement {
   /// Primary constructor for
   /// [ManufacturedItemDefinitionProperty]
 
-  ManufacturedItemDefinitionProperty({
+  const ManufacturedItemDefinitionProperty({
     super.id,
     super.extension_,
     super.modifierExtension,

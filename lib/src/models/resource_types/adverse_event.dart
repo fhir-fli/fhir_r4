@@ -11,7 +11,7 @@ class AdverseEvent extends DomainResource {
   /// Primary constructor for
   /// [AdverseEvent]
 
-  AdverseEvent({
+  const AdverseEvent({
     super.id,
     super.meta,
     super.implicitRules,
@@ -568,7 +568,7 @@ class AdverseEventSuspectEntity extends BackboneElement {
   /// Primary constructor for
   /// [AdverseEventSuspectEntity]
 
-  AdverseEventSuspectEntity({
+  const AdverseEventSuspectEntity({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -737,7 +737,7 @@ class AdverseEventCausality extends BackboneElement {
   /// Primary constructor for
   /// [AdverseEventCausality]
 
-  AdverseEventCausality({
+  const AdverseEventCausality({
     super.id,
     super.extension_,
     super.modifierExtension,

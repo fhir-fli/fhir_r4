@@ -10,7 +10,7 @@ class Immunization extends DomainResource {
   /// Primary constructor for
   /// [Immunization]
 
-  Immunization({
+  const Immunization({
     super.id,
     super.meta,
     super.implicitRules,
@@ -711,7 +711,7 @@ class ImmunizationPerformer extends BackboneElement {
   /// Primary constructor for
   /// [ImmunizationPerformer]
 
-  ImmunizationPerformer({
+  const ImmunizationPerformer({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -876,7 +876,7 @@ class ImmunizationEducation extends BackboneElement {
   /// Primary constructor for
   /// [ImmunizationEducation]
 
-  ImmunizationEducation({
+  const ImmunizationEducation({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1072,7 +1072,7 @@ class ImmunizationReaction extends BackboneElement {
   /// Primary constructor for
   /// [ImmunizationReaction]
 
-  ImmunizationReaction({
+  const ImmunizationReaction({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1252,7 +1252,7 @@ class ImmunizationProtocolApplied extends BackboneElement {
   /// Primary constructor for
   /// [ImmunizationProtocolApplied]
 
-  ImmunizationProtocolApplied({
+  const ImmunizationProtocolApplied({
     super.id,
     super.extension_,
     super.modifierExtension,

@@ -9,7 +9,7 @@ class TriggerDefinition extends DataType {
   /// Primary constructor for
   /// [TriggerDefinition]
 
-  TriggerDefinition({
+  const TriggerDefinition({
     super.id,
     super.extension_,
     required this.type,

@@ -11,7 +11,7 @@ class ParameterDefinition extends DataType {
   /// Primary constructor for
   /// [ParameterDefinition]
 
-  ParameterDefinition({
+  const ParameterDefinition({
     super.id,
     super.extension_,
     this.name,

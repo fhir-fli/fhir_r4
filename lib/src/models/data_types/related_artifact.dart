@@ -9,7 +9,7 @@ class RelatedArtifact extends DataType {
   /// Primary constructor for
   /// [RelatedArtifact]
 
-  RelatedArtifact({
+  const RelatedArtifact({
     super.id,
     super.extension_,
     required this.type,

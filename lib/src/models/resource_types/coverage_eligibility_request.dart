@@ -12,7 +12,7 @@ class CoverageEligibilityRequest extends DomainResource {
   /// Primary constructor for
   /// [CoverageEligibilityRequest]
 
-  CoverageEligibilityRequest({
+  const CoverageEligibilityRequest({
     super.id,
     super.meta,
     super.implicitRules,
@@ -469,7 +469,7 @@ class CoverageEligibilityRequestSupportingInfo extends BackboneElement {
   /// Primary constructor for
   /// [CoverageEligibilityRequestSupportingInfo]
 
-  CoverageEligibilityRequestSupportingInfo({
+  const CoverageEligibilityRequestSupportingInfo({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -648,7 +648,7 @@ class CoverageEligibilityRequestInsurance extends BackboneElement {
   /// Primary constructor for
   /// [CoverageEligibilityRequestInsurance]
 
-  CoverageEligibilityRequestInsurance({
+  const CoverageEligibilityRequestInsurance({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -831,7 +831,7 @@ class CoverageEligibilityRequestItem extends BackboneElement {
   /// Primary constructor for
   /// [CoverageEligibilityRequestItem]
 
-  CoverageEligibilityRequestItem({
+  const CoverageEligibilityRequestItem({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1151,7 +1151,7 @@ class CoverageEligibilityRequestDiagnosis extends BackboneElement {
   /// Primary constructor for
   /// [CoverageEligibilityRequestDiagnosis]
 
-  CoverageEligibilityRequestDiagnosis({
+  const CoverageEligibilityRequestDiagnosis({
     super.id,
     super.extension_,
     super.modifierExtension,

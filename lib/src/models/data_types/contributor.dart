@@ -9,7 +9,7 @@ class Contributor extends DataType {
   /// Primary constructor for
   /// [Contributor]
 
-  Contributor({
+  const Contributor({
     super.id,
     super.extension_,
     required this.type,

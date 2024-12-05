@@ -10,7 +10,7 @@ class Parameters extends Resource {
   /// Primary constructor for
   /// [Parameters]
 
-  Parameters({
+  const Parameters({
     super.id,
     super.meta,
     super.implicitRules,
@@ -168,7 +168,7 @@ class ParametersParameter extends BackboneElement {
   /// Primary constructor for
   /// [ParametersParameter]
 
-  ParametersParameter({
+  const ParametersParameter({
     super.id,
     super.extension_,
     super.modifierExtension,

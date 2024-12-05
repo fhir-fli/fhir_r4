@@ -11,7 +11,7 @@ class TerminologyCapabilities extends CanonicalResource {
   /// Primary constructor for
   /// [TerminologyCapabilities]
 
-  TerminologyCapabilities({
+  const TerminologyCapabilities({
     super.id,
     super.meta,
     super.implicitRules,
@@ -559,7 +559,7 @@ class TerminologyCapabilitiesSoftware extends BackboneElement {
   /// Primary constructor for
   /// [TerminologyCapabilitiesSoftware]
 
-  TerminologyCapabilitiesSoftware({
+  const TerminologyCapabilitiesSoftware({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -722,7 +722,7 @@ class TerminologyCapabilitiesImplementation extends BackboneElement {
   /// Primary constructor for
   /// [TerminologyCapabilitiesImplementation]
 
-  TerminologyCapabilitiesImplementation({
+  const TerminologyCapabilitiesImplementation({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -886,7 +886,7 @@ class TerminologyCapabilitiesCodeSystem extends BackboneElement {
   /// Primary constructor for
   /// [TerminologyCapabilitiesCodeSystem]
 
-  TerminologyCapabilitiesCodeSystem({
+  const TerminologyCapabilitiesCodeSystem({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1071,7 +1071,7 @@ class TerminologyCapabilitiesVersion extends BackboneElement {
   /// Primary constructor for
   /// [TerminologyCapabilitiesVersion]
 
-  TerminologyCapabilitiesVersion({
+  const TerminologyCapabilitiesVersion({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1310,7 +1310,7 @@ class TerminologyCapabilitiesFilter extends BackboneElement {
   /// Primary constructor for
   /// [TerminologyCapabilitiesFilter]
 
-  TerminologyCapabilitiesFilter({
+  const TerminologyCapabilitiesFilter({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1480,7 +1480,7 @@ class TerminologyCapabilitiesExpansion extends BackboneElement {
   /// Primary constructor for
   /// [TerminologyCapabilitiesExpansion]
 
-  TerminologyCapabilitiesExpansion({
+  const TerminologyCapabilitiesExpansion({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1692,7 +1692,7 @@ class TerminologyCapabilitiesParameter extends BackboneElement {
   /// Primary constructor for
   /// [TerminologyCapabilitiesParameter]
 
-  TerminologyCapabilitiesParameter({
+  const TerminologyCapabilitiesParameter({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1856,7 +1856,7 @@ class TerminologyCapabilitiesValidateCode extends BackboneElement {
   /// Primary constructor for
   /// [TerminologyCapabilitiesValidateCode]
 
-  TerminologyCapabilitiesValidateCode({
+  const TerminologyCapabilitiesValidateCode({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2004,7 +2004,7 @@ class TerminologyCapabilitiesTranslation extends BackboneElement {
   /// Primary constructor for
   /// [TerminologyCapabilitiesTranslation]
 
-  TerminologyCapabilitiesTranslation({
+  const TerminologyCapabilitiesTranslation({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2151,7 +2151,7 @@ class TerminologyCapabilitiesClosure extends BackboneElement {
   /// Primary constructor for
   /// [TerminologyCapabilitiesClosure]
 
-  TerminologyCapabilitiesClosure({
+  const TerminologyCapabilitiesClosure({
     super.id,
     super.extension_,
     super.modifierExtension,

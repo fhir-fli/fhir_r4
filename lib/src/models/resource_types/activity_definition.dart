@@ -10,7 +10,7 @@ class ActivityDefinition extends CanonicalResource {
   /// Primary constructor for
   /// [ActivityDefinition]
 
-  ActivityDefinition({
+  const ActivityDefinition({
     super.id,
     super.meta,
     super.implicitRules,
@@ -1144,7 +1144,7 @@ class ActivityDefinitionParticipant extends BackboneElement {
   /// Primary constructor for
   /// [ActivityDefinitionParticipant]
 
-  ActivityDefinitionParticipant({
+  const ActivityDefinitionParticipant({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1312,7 +1312,7 @@ class ActivityDefinitionDynamicValue extends BackboneElement {
   /// Primary constructor for
   /// [ActivityDefinitionDynamicValue]
 
-  ActivityDefinitionDynamicValue({
+  const ActivityDefinitionDynamicValue({
     super.id,
     super.extension_,
     super.modifierExtension,

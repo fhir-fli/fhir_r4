@@ -11,7 +11,7 @@ class FhirGroup extends DomainResource {
   /// Primary constructor for
   /// [FhirGroup]
 
-  FhirGroup({
+  const FhirGroup({
     super.id,
     super.meta,
     super.implicitRules,
@@ -376,7 +376,7 @@ class GroupCharacteristic extends BackboneElement {
   /// Primary constructor for
   /// [GroupCharacteristic]
 
-  GroupCharacteristic({
+  const GroupCharacteristic({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -637,7 +637,7 @@ class GroupMember extends BackboneElement {
   /// Primary constructor for
   /// [GroupMember]
 
-  GroupMember({
+  const GroupMember({
     super.id,
     super.extension_,
     super.modifierExtension,

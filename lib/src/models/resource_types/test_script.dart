@@ -9,7 +9,7 @@ class TestScript extends DomainResource {
   /// Primary constructor for
   /// [TestScript]
 
-  TestScript({
+  const TestScript({
     super.id,
     super.meta,
     super.implicitRules,
@@ -640,7 +640,7 @@ class TestScriptOrigin extends BackboneElement {
   /// Primary constructor for
   /// [TestScriptOrigin]
 
-  TestScriptOrigin({
+  const TestScriptOrigin({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -801,7 +801,7 @@ class TestScriptDestination extends BackboneElement {
   /// Primary constructor for
   /// [TestScriptDestination]
 
-  TestScriptDestination({
+  const TestScriptDestination({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -962,7 +962,7 @@ class TestScriptMetadata extends BackboneElement {
   /// Primary constructor for
   /// [TestScriptMetadata]
 
-  TestScriptMetadata({
+  const TestScriptMetadata({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1138,7 +1138,7 @@ class TestScriptLink extends BackboneElement {
   /// Primary constructor for
   /// [TestScriptLink]
 
-  TestScriptLink({
+  const TestScriptLink({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1301,7 +1301,7 @@ class TestScriptCapability extends BackboneElement {
   /// Primary constructor for
   /// [TestScriptCapability]
 
-  TestScriptCapability({
+  const TestScriptCapability({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1547,7 +1547,7 @@ class TestScriptFixture extends BackboneElement {
   /// Primary constructor for
   /// [TestScriptFixture]
 
-  TestScriptFixture({
+  const TestScriptFixture({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1730,7 +1730,7 @@ class TestScriptVariable extends BackboneElement {
   /// Primary constructor for
   /// [TestScriptVariable]
 
-  TestScriptVariable({
+  const TestScriptVariable({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1984,7 +1984,7 @@ class TestScriptSetup extends BackboneElement {
   /// Primary constructor for
   /// [TestScriptSetup]
 
-  TestScriptSetup({
+  const TestScriptSetup({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2139,7 +2139,7 @@ class TestScriptAction extends BackboneElement {
   /// Primary constructor for
   /// [TestScriptAction]
 
-  TestScriptAction({
+  const TestScriptAction({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2307,7 +2307,7 @@ class TestScriptOperation extends BackboneElement {
   /// Primary constructor for
   /// [TestScriptOperation]
 
-  TestScriptOperation({
+  const TestScriptOperation({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2696,7 +2696,7 @@ class TestScriptRequestHeader extends BackboneElement {
   /// Primary constructor for
   /// [TestScriptRequestHeader]
 
-  TestScriptRequestHeader({
+  const TestScriptRequestHeader({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2856,7 +2856,7 @@ class TestScriptAssert extends BackboneElement {
   /// Primary constructor for
   /// [TestScriptAssert]
 
-  TestScriptAssert({
+  const TestScriptAssert({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -3322,7 +3322,7 @@ class TestScriptTest extends BackboneElement {
   /// Primary constructor for
   /// [TestScriptTest]
 
-  TestScriptTest({
+  const TestScriptTest({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -3507,7 +3507,7 @@ class TestScriptAction1 extends BackboneElement {
   /// Primary constructor for
   /// [TestScriptAction1]
 
-  TestScriptAction1({
+  const TestScriptAction1({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -3676,7 +3676,7 @@ class TestScriptTeardown extends BackboneElement {
   /// Primary constructor for
   /// [TestScriptTeardown]
 
-  TestScriptTeardown({
+  const TestScriptTeardown({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -3831,7 +3831,7 @@ class TestScriptAction2 extends BackboneElement {
   /// Primary constructor for
   /// [TestScriptAction2]
 
-  TestScriptAction2({
+  const TestScriptAction2({
     super.id,
     super.extension_,
     super.modifierExtension,

@@ -9,7 +9,7 @@ class Observation extends DomainResource {
   /// Primary constructor for
   /// [Observation]
 
-  Observation({
+  const Observation({
     super.id,
     super.meta,
     super.implicitRules,
@@ -892,7 +892,7 @@ class ObservationReferenceRange extends BackboneElement {
   /// Primary constructor for
   /// [ObservationReferenceRange]
 
-  ObservationReferenceRange({
+  const ObservationReferenceRange({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1145,7 +1145,7 @@ class ObservationComponent extends BackboneElement {
   /// Primary constructor for
   /// [ObservationComponent]
 
-  ObservationComponent({
+  const ObservationComponent({
     super.id,
     super.extension_,
     super.modifierExtension,

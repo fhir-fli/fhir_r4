@@ -9,7 +9,7 @@ class CoverageEligibilityResponse extends DomainResource {
   /// Primary constructor for
   /// [CoverageEligibilityResponse]
 
-  CoverageEligibilityResponse({
+  const CoverageEligibilityResponse({
     super.id,
     super.meta,
     super.implicitRules,
@@ -464,7 +464,7 @@ class CoverageEligibilityResponseInsurance extends BackboneElement {
   /// Primary constructor for
   /// [CoverageEligibilityResponseInsurance]
 
-  CoverageEligibilityResponseInsurance({
+  const CoverageEligibilityResponseInsurance({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -668,7 +668,7 @@ class CoverageEligibilityResponseItem extends BackboneElement {
   /// Primary constructor for
   /// [CoverageEligibilityResponseItem]
 
-  CoverageEligibilityResponseItem({
+  const CoverageEligibilityResponseItem({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1046,7 +1046,7 @@ class CoverageEligibilityResponseBenefit extends BackboneElement {
   /// Primary constructor for
   /// [CoverageEligibilityResponseBenefit]
 
-  CoverageEligibilityResponseBenefit({
+  const CoverageEligibilityResponseBenefit({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1284,7 +1284,7 @@ class CoverageEligibilityResponseError extends BackboneElement {
   /// Primary constructor for
   /// [CoverageEligibilityResponseError]
 
-  CoverageEligibilityResponseError({
+  const CoverageEligibilityResponseError({
     super.id,
     super.extension_,
     super.modifierExtension,

@@ -8,7 +8,7 @@ class Population extends BackboneType {
   /// Primary constructor for
   /// [Population]
 
-  Population({
+  const Population({
     super.id,
     super.extension_,
     super.modifierExtension,

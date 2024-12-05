@@ -10,7 +10,7 @@ class CodeSystem extends CanonicalResource {
   /// Primary constructor for
   /// [CodeSystem]
 
-  CodeSystem({
+  const CodeSystem({
     super.id,
     super.meta,
     super.implicitRules,
@@ -597,7 +597,7 @@ class CodeSystemFilter extends BackboneElement {
   /// Primary constructor for
   /// [CodeSystemFilter]
 
-  CodeSystemFilter({
+  const CodeSystemFilter({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -794,7 +794,7 @@ class CodeSystemProperty extends BackboneElement {
   /// Primary constructor for
   /// [CodeSystemProperty]
 
-  CodeSystemProperty({
+  const CodeSystemProperty({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -990,7 +990,7 @@ class CodeSystemConcept extends BackboneElement {
   /// Primary constructor for
   /// [CodeSystemConcept]
 
-  CodeSystemConcept({
+  const CodeSystemConcept({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1234,7 +1234,7 @@ class CodeSystemDesignation extends BackboneElement {
   /// Primary constructor for
   /// [CodeSystemDesignation]
 
-  CodeSystemDesignation({
+  const CodeSystemDesignation({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1411,7 +1411,7 @@ class CodeSystemProperty1 extends BackboneElement {
   /// Primary constructor for
   /// [CodeSystemProperty1]
 
-  CodeSystemProperty1({
+  const CodeSystemProperty1({
     super.id,
     super.extension_,
     super.modifierExtension,

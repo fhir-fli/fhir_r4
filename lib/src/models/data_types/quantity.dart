@@ -11,7 +11,7 @@ class Quantity extends DataType {
   /// Primary constructor for
   /// [Quantity]
 
-  Quantity({
+  const Quantity({
     super.id,
     super.extension_,
     this.value,

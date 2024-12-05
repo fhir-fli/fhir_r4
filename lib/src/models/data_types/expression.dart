@@ -11,7 +11,7 @@ class FhirExpression extends DataType {
   /// Primary constructor for
   /// [FhirExpression]
 
-  FhirExpression({
+  const FhirExpression({
     super.id,
     super.extension_,
     this.description,

@@ -10,7 +10,7 @@ class ConceptMap extends CanonicalResource {
   /// Primary constructor for
   /// [ConceptMap]
 
-  ConceptMap({
+  const ConceptMap({
     super.id,
     super.meta,
     super.implicitRules,
@@ -491,7 +491,7 @@ class ConceptMapGroup extends BackboneElement {
   /// Primary constructor for
   /// [ConceptMapGroup]
 
-  ConceptMapGroup({
+  const ConceptMapGroup({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -728,7 +728,7 @@ class ConceptMapElement extends BackboneElement {
   /// Primary constructor for
   /// [ConceptMapElement]
 
-  ConceptMapElement({
+  const ConceptMapElement({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -912,7 +912,7 @@ class ConceptMapTarget extends BackboneElement {
   /// Primary constructor for
   /// [ConceptMapTarget]
 
-  ConceptMapTarget({
+  const ConceptMapTarget({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1153,7 +1153,7 @@ class ConceptMapDependsOn extends BackboneElement {
   /// Primary constructor for
   /// [ConceptMapDependsOn]
 
-  ConceptMapDependsOn({
+  const ConceptMapDependsOn({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1348,7 +1348,7 @@ class ConceptMapUnmapped extends BackboneElement {
   /// Primary constructor for
   /// [ConceptMapUnmapped]
 
-  ConceptMapUnmapped({
+  const ConceptMapUnmapped({
     super.id,
     super.extension_,
     super.modifierExtension,

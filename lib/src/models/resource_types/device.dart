@@ -10,7 +10,7 @@ class Device extends DomainResource {
   /// Primary constructor for
   /// [Device]
 
-  Device({
+  const Device({
     super.id,
     super.meta,
     super.implicitRules,
@@ -671,7 +671,7 @@ class DeviceUdiCarrier extends BackboneElement {
   /// Primary constructor for
   /// [DeviceUdiCarrier]
 
-  DeviceUdiCarrier({
+  const DeviceUdiCarrier({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -914,7 +914,7 @@ class DeviceDeviceName extends BackboneElement {
   /// Primary constructor for
   /// [DeviceDeviceName]
 
-  DeviceDeviceName({
+  const DeviceDeviceName({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1077,7 +1077,7 @@ class DeviceSpecialization extends BackboneElement {
   /// Primary constructor for
   /// [DeviceSpecialization]
 
-  DeviceSpecialization({
+  const DeviceSpecialization({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1239,7 +1239,7 @@ class DeviceVersion extends BackboneElement {
   /// Primary constructor for
   /// [DeviceVersion]
 
-  DeviceVersion({
+  const DeviceVersion({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1419,7 +1419,7 @@ class DeviceProperty extends BackboneElement {
   /// Primary constructor for
   /// [DeviceProperty]
 
-  DeviceProperty({
+  const DeviceProperty({
     super.id,
     super.extension_,
     super.modifierExtension,

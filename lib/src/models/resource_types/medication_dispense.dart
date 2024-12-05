@@ -12,7 +12,7 @@ class MedicationDispense extends DomainResource {
   /// Primary constructor for
   /// [MedicationDispense]
 
-  MedicationDispense({
+  const MedicationDispense({
     super.id,
     super.meta,
     super.implicitRules,
@@ -701,7 +701,7 @@ class MedicationDispensePerformer extends BackboneElement {
   /// Primary constructor for
   /// [MedicationDispensePerformer]
 
-  MedicationDispensePerformer({
+  const MedicationDispensePerformer({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -870,7 +870,7 @@ class MedicationDispenseSubstitution extends BackboneElement {
   /// Primary constructor for
   /// [MedicationDispenseSubstitution]
 
-  MedicationDispenseSubstitution({
+  const MedicationDispenseSubstitution({
     super.id,
     super.extension_,
     super.modifierExtension,

@@ -9,7 +9,7 @@ class DataRequirement extends DataType {
   /// Primary constructor for
   /// [DataRequirement]
 
-  DataRequirement({
+  const DataRequirement({
     super.id,
     super.extension_,
     required this.type,
@@ -311,7 +311,7 @@ class DataRequirementCodeFilter extends Element {
   /// Primary constructor for
   /// [DataRequirementCodeFilter]
 
-  DataRequirementCodeFilter({
+  const DataRequirementCodeFilter({
     super.id,
     super.extension_,
     this.path,
@@ -510,7 +510,7 @@ class DataRequirementDateFilter extends Element {
   /// Primary constructor for
   /// [DataRequirementDateFilter]
 
-  DataRequirementDateFilter({
+  const DataRequirementDateFilter({
     super.id,
     super.extension_,
     this.path,
@@ -728,7 +728,7 @@ class DataRequirementSort extends Element {
   /// Primary constructor for
   /// [DataRequirementSort]
 
-  DataRequirementSort({
+  const DataRequirementSort({
     super.id,
     super.extension_,
     required this.path,

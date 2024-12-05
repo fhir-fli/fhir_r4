@@ -8,7 +8,7 @@ class InsurancePlan extends DomainResource {
   /// Primary constructor for
   /// [InsurancePlan]
 
-  InsurancePlan({
+  const InsurancePlan({
     super.id,
     super.meta,
     super.implicitRules,
@@ -474,7 +474,7 @@ class InsurancePlanContact extends BackboneElement {
   /// Primary constructor for
   /// [InsurancePlanContact]
 
-  InsurancePlanContact({
+  const InsurancePlanContact({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -678,7 +678,7 @@ class InsurancePlanCoverage extends BackboneElement {
   /// Primary constructor for
   /// [InsurancePlanCoverage]
 
-  InsurancePlanCoverage({
+  const InsurancePlanCoverage({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -866,7 +866,7 @@ class InsurancePlanBenefit extends BackboneElement {
   /// Primary constructor for
   /// [InsurancePlanBenefit]
 
-  InsurancePlanBenefit({
+  const InsurancePlanBenefit({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1047,7 +1047,7 @@ class InsurancePlanLimit extends BackboneElement {
   /// Primary constructor for
   /// [InsurancePlanLimit]
 
-  InsurancePlanLimit({
+  const InsurancePlanLimit({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1215,7 +1215,7 @@ class InsurancePlanPlan extends BackboneElement {
   /// Primary constructor for
   /// [InsurancePlanPlan]
 
-  InsurancePlanPlan({
+  const InsurancePlanPlan({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1469,7 +1469,7 @@ class InsurancePlanGeneralCost extends BackboneElement {
   /// Primary constructor for
   /// [InsurancePlanGeneralCost]
 
-  InsurancePlanGeneralCost({
+  const InsurancePlanGeneralCost({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1665,7 +1665,7 @@ class InsurancePlanSpecificCost extends BackboneElement {
   /// Primary constructor for
   /// [InsurancePlanSpecificCost]
 
-  InsurancePlanSpecificCost({
+  const InsurancePlanSpecificCost({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1833,7 +1833,7 @@ class InsurancePlanBenefit1 extends BackboneElement {
   /// Primary constructor for
   /// [InsurancePlanBenefit1]
 
-  InsurancePlanBenefit1({
+  const InsurancePlanBenefit1({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2001,7 +2001,7 @@ class InsurancePlanCost extends BackboneElement {
   /// Primary constructor for
   /// [InsurancePlanCost]
 
-  InsurancePlanCost({
+  const InsurancePlanCost({
     super.id,
     super.extension_,
     super.modifierExtension,

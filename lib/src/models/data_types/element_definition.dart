@@ -9,7 +9,7 @@ class ElementDefinition extends BackboneType {
   /// Primary constructor for
   /// [ElementDefinition]
 
-  ElementDefinition({
+  const ElementDefinition({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -4527,7 +4527,7 @@ class ElementDefinitionSlicing extends Element {
   /// Primary constructor for
   /// [ElementDefinitionSlicing]
 
-  ElementDefinitionSlicing({
+  const ElementDefinitionSlicing({
     super.id,
     super.extension_,
     this.discriminator,
@@ -4718,7 +4718,7 @@ class ElementDefinitionDiscriminator extends Element {
   /// Primary constructor for
   /// [ElementDefinitionDiscriminator]
 
-  ElementDefinitionDiscriminator({
+  const ElementDefinitionDiscriminator({
     super.id,
     super.extension_,
     required this.type,
@@ -4869,7 +4869,7 @@ class ElementDefinitionBase extends Element {
   /// Primary constructor for
   /// [ElementDefinitionBase]
 
-  ElementDefinitionBase({
+  const ElementDefinitionBase({
     super.id,
     super.extension_,
     required this.path,
@@ -5028,7 +5028,7 @@ class ElementDefinitionType extends Element {
   /// Primary constructor for
   /// [ElementDefinitionType]
 
-  ElementDefinitionType({
+  const ElementDefinitionType({
     super.id,
     super.extension_,
     required this.code,
@@ -5253,7 +5253,7 @@ class ElementDefinitionExample extends Element {
   /// Primary constructor for
   /// [ElementDefinitionExample]
 
-  ElementDefinitionExample({
+  const ElementDefinitionExample({
     super.id,
     super.extension_,
     required this.label,
@@ -6226,7 +6226,7 @@ class ElementDefinitionConstraint extends Element {
   /// Primary constructor for
   /// [ElementDefinitionConstraint]
 
-  ElementDefinitionConstraint({
+  const ElementDefinitionConstraint({
     super.id,
     super.extension_,
     required this.key,
@@ -6445,7 +6445,7 @@ class ElementDefinitionBinding extends Element {
   /// Primary constructor for
   /// [ElementDefinitionBinding]
 
-  ElementDefinitionBinding({
+  const ElementDefinitionBinding({
     super.id,
     super.extension_,
     required this.strength,
@@ -6607,7 +6607,7 @@ class ElementDefinitionMapping extends Element {
   /// Primary constructor for
   /// [ElementDefinitionMapping]
 
-  ElementDefinitionMapping({
+  const ElementDefinitionMapping({
     super.id,
     super.extension_,
     required this.identity,

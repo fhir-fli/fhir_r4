@@ -10,7 +10,7 @@ class MessageDefinition extends CanonicalResource {
   /// Primary constructor for
   /// [MessageDefinition]
 
-  MessageDefinition({
+  const MessageDefinition({
     super.id,
     super.meta,
     super.implicitRules,
@@ -593,7 +593,7 @@ class MessageDefinitionFocus extends BackboneElement {
   /// Primary constructor for
   /// [MessageDefinitionFocus]
 
-  MessageDefinitionFocus({
+  const MessageDefinitionFocus({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -786,7 +786,7 @@ class MessageDefinitionAllowedResponse extends BackboneElement {
   /// Primary constructor for
   /// [MessageDefinitionAllowedResponse]
 
-  MessageDefinitionAllowedResponse({
+  const MessageDefinitionAllowedResponse({
     super.id,
     super.extension_,
     super.modifierExtension,

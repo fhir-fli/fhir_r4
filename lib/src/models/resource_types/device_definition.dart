@@ -9,7 +9,7 @@ class DeviceDefinition extends DomainResource {
   /// Primary constructor for
   /// [DeviceDefinition]
 
-  DeviceDefinition({
+  const DeviceDefinition({
     super.id,
     super.meta,
     super.implicitRules,
@@ -642,7 +642,7 @@ class DeviceDefinitionUdiDeviceIdentifier extends BackboneElement {
   /// Primary constructor for
   /// [DeviceDefinitionUdiDeviceIdentifier]
 
-  DeviceDefinitionUdiDeviceIdentifier({
+  const DeviceDefinitionUdiDeviceIdentifier({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -815,7 +815,7 @@ class DeviceDefinitionDeviceName extends BackboneElement {
   /// Primary constructor for
   /// [DeviceDefinitionDeviceName]
 
-  DeviceDefinitionDeviceName({
+  const DeviceDefinitionDeviceName({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -978,7 +978,7 @@ class DeviceDefinitionSpecialization extends BackboneElement {
   /// Primary constructor for
   /// [DeviceDefinitionSpecialization]
 
-  DeviceDefinitionSpecialization({
+  const DeviceDefinitionSpecialization({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1139,7 +1139,7 @@ class DeviceDefinitionCapability extends BackboneElement {
   /// Primary constructor for
   /// [DeviceDefinitionCapability]
 
-  DeviceDefinitionCapability({
+  const DeviceDefinitionCapability({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1307,7 +1307,7 @@ class DeviceDefinitionProperty extends BackboneElement {
   /// Primary constructor for
   /// [DeviceDefinitionProperty]
 
-  DeviceDefinitionProperty({
+  const DeviceDefinitionProperty({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1495,7 +1495,7 @@ class DeviceDefinitionMaterial extends BackboneElement {
   /// Primary constructor for
   /// [DeviceDefinitionMaterial]
 
-  DeviceDefinitionMaterial({
+  const DeviceDefinitionMaterial({
     super.id,
     super.extension_,
     super.modifierExtension,

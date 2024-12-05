@@ -8,7 +8,7 @@ class FhirDuration extends Quantity {
   /// Primary constructor for
   /// [FhirDuration]
 
-  FhirDuration({
+  const FhirDuration({
     super.id,
     super.extension_,
     super.value,

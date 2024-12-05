@@ -9,7 +9,7 @@ class ContactPoint extends DataType {
   /// Primary constructor for
   /// [ContactPoint]
 
-  ContactPoint({
+  const ContactPoint({
     super.id,
     super.extension_,
     this.system,

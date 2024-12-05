@@ -9,7 +9,7 @@ class Linkage extends DomainResource {
   /// Primary constructor for
   /// [Linkage]
 
-  Linkage({
+  const Linkage({
     super.id,
     super.meta,
     super.implicitRules,
@@ -265,7 +265,7 @@ class LinkageItem extends BackboneElement {
   /// Primary constructor for
   /// [LinkageItem]
 
-  LinkageItem({
+  const LinkageItem({
     super.id,
     super.extension_,
     super.modifierExtension,

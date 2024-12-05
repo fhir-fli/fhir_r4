@@ -9,7 +9,7 @@ class ObservationDefinition extends DomainResource {
   /// Primary constructor for
   /// [ObservationDefinition]
 
-  ObservationDefinition({
+  const ObservationDefinition({
     super.id,
     super.meta,
     super.implicitRules,
@@ -440,7 +440,7 @@ class ObservationDefinitionQuantitativeDetails extends BackboneElement {
   /// Primary constructor for
   /// [ObservationDefinitionQuantitativeDetails]
 
-  ObservationDefinitionQuantitativeDetails({
+  const ObservationDefinitionQuantitativeDetails({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -643,7 +643,7 @@ class ObservationDefinitionQualifiedInterval extends BackboneElement {
   /// Primary constructor for
   /// [ObservationDefinitionQualifiedInterval]
 
-  ObservationDefinitionQualifiedInterval({
+  const ObservationDefinitionQualifiedInterval({
     super.id,
     super.extension_,
     super.modifierExtension,

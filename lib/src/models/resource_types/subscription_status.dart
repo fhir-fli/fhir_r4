@@ -9,7 +9,7 @@ class SubscriptionStatus extends DomainResource {
   /// Primary constructor for
   /// [SubscriptionStatus]
 
-  SubscriptionStatus({
+  const SubscriptionStatus({
     super.id,
     super.meta,
     super.implicitRules,
@@ -326,7 +326,7 @@ class SubscriptionStatusNotificationEvent extends BackboneElement {
   /// Primary constructor for
   /// [SubscriptionStatusNotificationEvent]
 
-  SubscriptionStatusNotificationEvent({
+  const SubscriptionStatusNotificationEvent({
     super.id,
     super.extension_,
     super.modifierExtension,

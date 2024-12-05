@@ -10,7 +10,7 @@ class ExplanationOfBenefit extends DomainResource {
   /// Primary constructor for
   /// [ExplanationOfBenefit]
 
-  ExplanationOfBenefit({
+  const ExplanationOfBenefit({
     super.id,
     super.meta,
     super.implicitRules,
@@ -956,7 +956,7 @@ class ExplanationOfBenefitRelated extends BackboneElement {
   /// Primary constructor for
   /// [ExplanationOfBenefitRelated]
 
-  ExplanationOfBenefitRelated({
+  const ExplanationOfBenefitRelated({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1141,7 +1141,7 @@ class ExplanationOfBenefitPayee extends BackboneElement {
   /// Primary constructor for
   /// [ExplanationOfBenefitPayee]
 
-  ExplanationOfBenefitPayee({
+  const ExplanationOfBenefitPayee({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1309,7 +1309,7 @@ class ExplanationOfBenefitCareTeam extends BackboneElement {
   /// Primary constructor for
   /// [ExplanationOfBenefitCareTeam]
 
-  ExplanationOfBenefitCareTeam({
+  const ExplanationOfBenefitCareTeam({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1518,7 +1518,7 @@ class ExplanationOfBenefitSupportingInfo extends BackboneElement {
   /// Primary constructor for
   /// [ExplanationOfBenefitSupportingInfo]
 
-  ExplanationOfBenefitSupportingInfo({
+  const ExplanationOfBenefitSupportingInfo({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1830,7 +1830,7 @@ class ExplanationOfBenefitDiagnosis extends BackboneElement {
   /// Primary constructor for
   /// [ExplanationOfBenefitDiagnosis]
 
-  ExplanationOfBenefitDiagnosis({
+  const ExplanationOfBenefitDiagnosis({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2068,7 +2068,7 @@ class ExplanationOfBenefitProcedure extends BackboneElement {
   /// Primary constructor for
   /// [ExplanationOfBenefitProcedure]
 
-  ExplanationOfBenefitProcedure({
+  const ExplanationOfBenefitProcedure({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2305,7 +2305,7 @@ class ExplanationOfBenefitInsurance extends BackboneElement {
   /// Primary constructor for
   /// [ExplanationOfBenefitInsurance]
 
-  ExplanationOfBenefitInsurance({
+  const ExplanationOfBenefitInsurance({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2491,7 +2491,7 @@ class ExplanationOfBenefitAccident extends BackboneElement {
   /// Primary constructor for
   /// [ExplanationOfBenefitAccident]
 
-  ExplanationOfBenefitAccident({
+  const ExplanationOfBenefitAccident({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2692,7 +2692,7 @@ class ExplanationOfBenefitItem extends BackboneElement {
   /// Primary constructor for
   /// [ExplanationOfBenefitItem]
 
-  ExplanationOfBenefitItem({
+  const ExplanationOfBenefitItem({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -3305,7 +3305,7 @@ class ExplanationOfBenefitAdjudication extends BackboneElement {
   /// Primary constructor for
   /// [ExplanationOfBenefitAdjudication]
 
-  ExplanationOfBenefitAdjudication({
+  const ExplanationOfBenefitAdjudication({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -3504,7 +3504,7 @@ class ExplanationOfBenefitDetail extends BackboneElement {
   /// Primary constructor for
   /// [ExplanationOfBenefitDetail]
 
-  ExplanationOfBenefitDetail({
+  const ExplanationOfBenefitDetail({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -3890,7 +3890,7 @@ class ExplanationOfBenefitSubDetail extends BackboneElement {
   /// Primary constructor for
   /// [ExplanationOfBenefitSubDetail]
 
-  ExplanationOfBenefitSubDetail({
+  const ExplanationOfBenefitSubDetail({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -4257,7 +4257,7 @@ class ExplanationOfBenefitAddItem extends BackboneElement {
   /// Primary constructor for
   /// [ExplanationOfBenefitAddItem]
 
-  ExplanationOfBenefitAddItem({
+  const ExplanationOfBenefitAddItem({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -4779,7 +4779,7 @@ class ExplanationOfBenefitDetail1 extends BackboneElement {
   /// Primary constructor for
   /// [ExplanationOfBenefitDetail1]
 
-  ExplanationOfBenefitDetail1({
+  const ExplanationOfBenefitDetail1({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -5078,7 +5078,7 @@ class ExplanationOfBenefitSubDetail1 extends BackboneElement {
   /// Primary constructor for
   /// [ExplanationOfBenefitSubDetail1]
 
-  ExplanationOfBenefitSubDetail1({
+  const ExplanationOfBenefitSubDetail1({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -5357,7 +5357,7 @@ class ExplanationOfBenefitTotal extends BackboneElement {
   /// Primary constructor for
   /// [ExplanationOfBenefitTotal]
 
-  ExplanationOfBenefitTotal({
+  const ExplanationOfBenefitTotal({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -5520,7 +5520,7 @@ class ExplanationOfBenefitPayment extends BackboneElement {
   /// Primary constructor for
   /// [ExplanationOfBenefitPayment]
 
-  ExplanationOfBenefitPayment({
+  const ExplanationOfBenefitPayment({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -5753,7 +5753,7 @@ class ExplanationOfBenefitProcessNote extends BackboneElement {
   /// Primary constructor for
   /// [ExplanationOfBenefitProcessNote]
 
-  ExplanationOfBenefitProcessNote({
+  const ExplanationOfBenefitProcessNote({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -5946,7 +5946,7 @@ class ExplanationOfBenefitBenefitBalance extends BackboneElement {
   /// Primary constructor for
   /// [ExplanationOfBenefitBenefitBalance]
 
-  ExplanationOfBenefitBenefitBalance({
+  const ExplanationOfBenefitBenefitBalance({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -6208,7 +6208,7 @@ class ExplanationOfBenefitFinancial extends BackboneElement {
   /// Primary constructor for
   /// [ExplanationOfBenefitFinancial]
 
-  ExplanationOfBenefitFinancial({
+  const ExplanationOfBenefitFinancial({
     super.id,
     super.extension_,
     super.modifierExtension,

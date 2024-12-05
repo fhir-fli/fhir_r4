@@ -11,7 +11,7 @@ class EpisodeOfCare extends DomainResource {
   /// Primary constructor for
   /// [EpisodeOfCare]
 
-  EpisodeOfCare({
+  const EpisodeOfCare({
     super.id,
     super.meta,
     super.implicitRules,
@@ -434,7 +434,7 @@ class EpisodeOfCareStatusHistory extends BackboneElement {
   /// Primary constructor for
   /// [EpisodeOfCareStatusHistory]
 
-  EpisodeOfCareStatusHistory({
+  const EpisodeOfCareStatusHistory({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -593,7 +593,7 @@ class EpisodeOfCareDiagnosis extends BackboneElement {
   /// Primary constructor for
   /// [EpisodeOfCareDiagnosis]
 
-  EpisodeOfCareDiagnosis({
+  const EpisodeOfCareDiagnosis({
     super.id,
     super.extension_,
     super.modifierExtension,

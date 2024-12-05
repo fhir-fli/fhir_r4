@@ -9,7 +9,7 @@ class Ratio extends DataType {
   /// Primary constructor for
   /// [Ratio]
 
-  Ratio({
+  const Ratio({
     super.id,
     super.extension_,
     this.numerator,

@@ -9,7 +9,7 @@ class NutritionOrder extends DomainResource {
   /// Primary constructor for
   /// [NutritionOrder]
 
-  NutritionOrder({
+  const NutritionOrder({
     super.id,
     super.meta,
     super.implicitRules,
@@ -534,7 +534,7 @@ class NutritionOrderOralDiet extends BackboneElement {
   /// Primary constructor for
   /// [NutritionOrderOralDiet]
 
-  NutritionOrderOralDiet({
+  const NutritionOrderOralDiet({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -792,7 +792,7 @@ class NutritionOrderNutrient extends BackboneElement {
   /// Primary constructor for
   /// [NutritionOrderNutrient]
 
-  NutritionOrderNutrient({
+  const NutritionOrderNutrient({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -960,7 +960,7 @@ class NutritionOrderTexture extends BackboneElement {
   /// Primary constructor for
   /// [NutritionOrderTexture]
 
-  NutritionOrderTexture({
+  const NutritionOrderTexture({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1130,7 +1130,7 @@ class NutritionOrderSupplement extends BackboneElement {
   /// Primary constructor for
   /// [NutritionOrderSupplement]
 
-  NutritionOrderSupplement({
+  const NutritionOrderSupplement({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1351,7 +1351,7 @@ class NutritionOrderEnteralFormula extends BackboneElement {
   /// Primary constructor for
   /// [NutritionOrderEnteralFormula]
 
-  NutritionOrderEnteralFormula({
+  const NutritionOrderEnteralFormula({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1654,7 +1654,7 @@ class NutritionOrderAdministration extends BackboneElement {
   /// Primary constructor for
   /// [NutritionOrderAdministration]
 
-  NutritionOrderAdministration({
+  const NutritionOrderAdministration({
     super.id,
     super.extension_,
     super.modifierExtension,

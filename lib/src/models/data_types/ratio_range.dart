@@ -9,7 +9,7 @@ class RatioRange extends DataType {
   /// Primary constructor for
   /// [RatioRange]
 
-  RatioRange({
+  const RatioRange({
     super.id,
     super.extension_,
     this.lowNumerator,

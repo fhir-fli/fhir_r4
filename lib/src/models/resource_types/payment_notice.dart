@@ -9,7 +9,7 @@ class PaymentNotice extends DomainResource {
   /// Primary constructor for
   /// [PaymentNotice]
 
-  PaymentNotice({
+  const PaymentNotice({
     super.id,
     super.meta,
     super.implicitRules,

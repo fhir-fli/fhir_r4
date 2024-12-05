@@ -8,7 +8,7 @@ class Coding extends DataType {
   /// Primary constructor for
   /// [Coding]
 
-  Coding({
+  const Coding({
     super.id,
     super.extension_,
     this.system,

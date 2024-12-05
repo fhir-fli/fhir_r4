@@ -13,7 +13,7 @@ class DiagnosticReport extends DomainResource {
   /// Primary constructor for
   /// [DiagnosticReport]
 
-  DiagnosticReport({
+  const DiagnosticReport({
     super.id,
     super.meta,
     super.implicitRules,
@@ -574,7 +574,7 @@ class DiagnosticReportMedia extends BackboneElement {
   /// Primary constructor for
   /// [DiagnosticReportMedia]
 
-  DiagnosticReportMedia({
+  const DiagnosticReportMedia({
     super.id,
     super.extension_,
     super.modifierExtension,

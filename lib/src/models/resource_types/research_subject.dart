@@ -9,7 +9,7 @@ class ResearchSubject extends DomainResource {
   /// Primary constructor for
   /// [ResearchSubject]
 
-  ResearchSubject({
+  const ResearchSubject({
     super.id,
     super.meta,
     super.implicitRules,

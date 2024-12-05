@@ -11,7 +11,7 @@ class Library extends CanonicalResource {
   /// Primary constructor for
   /// [Library]
 
-  Library({
+  const Library({
     super.id,
     super.meta,
     super.implicitRules,

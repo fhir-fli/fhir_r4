@@ -11,7 +11,7 @@ class CapabilityStatement extends CanonicalResource {
   /// Primary constructor for
   /// [CapabilityStatement]
 
-  CapabilityStatement({
+  const CapabilityStatement({
     super.id,
     super.meta,
     super.implicitRules,
@@ -628,7 +628,7 @@ class CapabilityStatementSoftware extends BackboneElement {
   /// Primary constructor for
   /// [CapabilityStatementSoftware]
 
-  CapabilityStatementSoftware({
+  const CapabilityStatementSoftware({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -805,7 +805,7 @@ class CapabilityStatementImplementation extends BackboneElement {
   /// Primary constructor for
   /// [CapabilityStatementImplementation]
 
-  CapabilityStatementImplementation({
+  const CapabilityStatementImplementation({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -985,7 +985,7 @@ class CapabilityStatementRest extends BackboneElement {
   /// Primary constructor for
   /// [CapabilityStatementRest]
 
-  CapabilityStatementRest({
+  const CapabilityStatementRest({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1274,7 +1274,7 @@ class CapabilityStatementSecurity extends BackboneElement {
   /// Primary constructor for
   /// [CapabilityStatementSecurity]
 
-  CapabilityStatementSecurity({
+  const CapabilityStatementSecurity({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1459,7 +1459,7 @@ class CapabilityStatementResource extends BackboneElement {
   /// Primary constructor for
   /// [CapabilityStatementResource]
 
-  CapabilityStatementResource({
+  const CapabilityStatementResource({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1903,7 +1903,7 @@ class CapabilityStatementInteraction extends BackboneElement {
   /// Primary constructor for
   /// [CapabilityStatementInteraction]
 
-  CapabilityStatementInteraction({
+  const CapabilityStatementInteraction({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2069,7 +2069,7 @@ class CapabilityStatementSearchParam extends BackboneElement {
   /// Primary constructor for
   /// [CapabilityStatementSearchParam]
 
-  CapabilityStatementSearchParam({
+  const CapabilityStatementSearchParam({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2268,7 +2268,7 @@ class CapabilityStatementOperation extends BackboneElement {
   /// Primary constructor for
   /// [CapabilityStatementOperation]
 
-  CapabilityStatementOperation({
+  const CapabilityStatementOperation({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2454,7 +2454,7 @@ class CapabilityStatementInteraction1 extends BackboneElement {
   /// Primary constructor for
   /// [CapabilityStatementInteraction1]
 
-  CapabilityStatementInteraction1({
+  const CapabilityStatementInteraction1({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2618,7 +2618,7 @@ class CapabilityStatementMessaging extends BackboneElement {
   /// Primary constructor for
   /// [CapabilityStatementMessaging]
 
-  CapabilityStatementMessaging({
+  const CapabilityStatementMessaging({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2832,7 +2832,7 @@ class CapabilityStatementEndpoint extends BackboneElement {
   /// Primary constructor for
   /// [CapabilityStatementEndpoint]
 
-  CapabilityStatementEndpoint({
+  const CapabilityStatementEndpoint({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2994,7 +2994,7 @@ class CapabilityStatementSupportedMessage extends BackboneElement {
   /// Primary constructor for
   /// [CapabilityStatementSupportedMessage]
 
-  CapabilityStatementSupportedMessage({
+  const CapabilityStatementSupportedMessage({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -3155,7 +3155,7 @@ class CapabilityStatementDocument extends BackboneElement {
   /// Primary constructor for
   /// [CapabilityStatementDocument]
 
-  CapabilityStatementDocument({
+  const CapabilityStatementDocument({
     super.id,
     super.extension_,
     super.modifierExtension,

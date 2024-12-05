@@ -10,7 +10,7 @@ class OrganizationAffiliation extends DomainResource {
   /// Primary constructor for
   /// [OrganizationAffiliation]
 
-  OrganizationAffiliation({
+  const OrganizationAffiliation({
     super.id,
     super.meta,
     super.implicitRules,

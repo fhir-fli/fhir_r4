@@ -8,7 +8,7 @@ class Measure extends CanonicalResource {
   /// Primary constructor for
   /// [Measure]
 
-  Measure({
+  const Measure({
     super.id,
     super.meta,
     super.implicitRules,
@@ -911,7 +911,7 @@ class MeasureGroup extends BackboneElement {
   /// Primary constructor for
   /// [MeasureGroup]
 
-  MeasureGroup({
+  const MeasureGroup({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1120,7 +1120,7 @@ class MeasurePopulation extends BackboneElement {
   /// Primary constructor for
   /// [MeasurePopulation]
 
-  MeasurePopulation({
+  const MeasurePopulation({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1300,7 +1300,7 @@ class MeasureStratifier extends BackboneElement {
   /// Primary constructor for
   /// [MeasureStratifier]
 
-  MeasureStratifier({
+  const MeasureStratifier({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1510,7 +1510,7 @@ class MeasureComponent extends BackboneElement {
   /// Primary constructor for
   /// [MeasureComponent]
 
-  MeasureComponent({
+  const MeasureComponent({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1695,7 +1695,7 @@ class MeasureSupplementalData extends BackboneElement {
   /// Primary constructor for
   /// [MeasureSupplementalData]
 
-  MeasureSupplementalData({
+  const MeasureSupplementalData({
     super.id,
     super.extension_,
     super.modifierExtension,

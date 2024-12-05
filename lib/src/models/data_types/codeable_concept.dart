@@ -9,7 +9,7 @@ class CodeableConcept extends DataType {
   /// Primary constructor for
   /// [CodeableConcept]
 
-  CodeableConcept({
+  const CodeableConcept({
     super.id,
     super.extension_,
     this.coding,

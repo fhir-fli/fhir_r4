@@ -9,7 +9,7 @@ class SubscriptionTopic extends CanonicalResource {
   /// Primary constructor for
   /// [SubscriptionTopic]
 
-  SubscriptionTopic({
+  const SubscriptionTopic({
     super.id,
     super.meta,
     super.implicitRules,
@@ -558,7 +558,7 @@ class SubscriptionTopicResourceTrigger extends BackboneElement {
   /// Primary constructor for
   /// [SubscriptionTopicResourceTrigger]
 
-  SubscriptionTopicResourceTrigger({
+  const SubscriptionTopicResourceTrigger({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -784,7 +784,7 @@ class SubscriptionTopicQueryCriteria extends BackboneElement {
   /// Primary constructor for
   /// [SubscriptionTopicQueryCriteria]
 
-  SubscriptionTopicQueryCriteria({
+  const SubscriptionTopicQueryCriteria({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -997,7 +997,7 @@ class SubscriptionTopicEventTrigger extends BackboneElement {
   /// Primary constructor for
   /// [SubscriptionTopicEventTrigger]
 
-  SubscriptionTopicEventTrigger({
+  const SubscriptionTopicEventTrigger({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1183,7 +1183,7 @@ class SubscriptionTopicCanFilterBy extends BackboneElement {
   /// Primary constructor for
   /// [SubscriptionTopicCanFilterBy]
 
-  SubscriptionTopicCanFilterBy({
+  const SubscriptionTopicCanFilterBy({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1407,7 +1407,7 @@ class SubscriptionTopicNotificationShape extends BackboneElement {
   /// Primary constructor for
   /// [SubscriptionTopicNotificationShape]
 
-  SubscriptionTopicNotificationShape({
+  const SubscriptionTopicNotificationShape({
     super.id,
     super.extension_,
     super.modifierExtension,

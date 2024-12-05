@@ -8,7 +8,7 @@ class Substance extends DomainResource {
   /// Primary constructor for
   /// [Substance]
 
-  Substance({
+  const Substance({
     super.id,
     super.meta,
     super.implicitRules,
@@ -331,7 +331,7 @@ class SubstanceInstance extends BackboneElement {
   /// Primary constructor for
   /// [SubstanceInstance]
 
-  SubstanceInstance({
+  const SubstanceInstance({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -514,7 +514,7 @@ class SubstanceIngredient extends BackboneElement {
   /// Primary constructor for
   /// [SubstanceIngredient]
 
-  SubstanceIngredient({
+  const SubstanceIngredient({
     super.id,
     super.extension_,
     super.modifierExtension,

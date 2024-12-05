@@ -9,7 +9,7 @@ class TestReport extends DomainResource {
   /// Primary constructor for
   /// [TestReport]
 
-  TestReport({
+  const TestReport({
     super.id,
     super.meta,
     super.implicitRules,
@@ -396,7 +396,7 @@ class TestReportParticipant extends BackboneElement {
   /// Primary constructor for
   /// [TestReportParticipant]
 
-  TestReportParticipant({
+  const TestReportParticipant({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -570,7 +570,7 @@ class TestReportSetup extends BackboneElement {
   /// Primary constructor for
   /// [TestReportSetup]
 
-  TestReportSetup({
+  const TestReportSetup({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -725,7 +725,7 @@ class TestReportAction extends BackboneElement {
   /// Primary constructor for
   /// [TestReportAction]
 
-  TestReportAction({
+  const TestReportAction({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -892,7 +892,7 @@ class TestReportOperation extends BackboneElement {
   /// Primary constructor for
   /// [TestReportOperation]
 
-  TestReportOperation({
+  const TestReportOperation({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1067,7 +1067,7 @@ class TestReportAssert extends BackboneElement {
   /// Primary constructor for
   /// [TestReportAssert]
 
-  TestReportAssert({
+  const TestReportAssert({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1242,7 +1242,7 @@ class TestReportTest extends BackboneElement {
   /// Primary constructor for
   /// [TestReportTest]
 
-  TestReportTest({
+  const TestReportTest({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1427,7 +1427,7 @@ class TestReportAction1 extends BackboneElement {
   /// Primary constructor for
   /// [TestReportAction1]
 
-  TestReportAction1({
+  const TestReportAction1({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1595,7 +1595,7 @@ class TestReportTeardown extends BackboneElement {
   /// Primary constructor for
   /// [TestReportTeardown]
 
-  TestReportTeardown({
+  const TestReportTeardown({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1750,7 +1750,7 @@ class TestReportAction2 extends BackboneElement {
   /// Primary constructor for
   /// [TestReportAction2]
 
-  TestReportAction2({
+  const TestReportAction2({
     super.id,
     super.extension_,
     super.modifierExtension,

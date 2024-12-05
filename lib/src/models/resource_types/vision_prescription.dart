@@ -9,7 +9,7 @@ class VisionPrescription extends DomainResource {
   /// Primary constructor for
   /// [VisionPrescription]
 
-  VisionPrescription({
+  const VisionPrescription({
     super.id,
     super.meta,
     super.implicitRules,
@@ -331,7 +331,7 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
   /// Primary constructor for
   /// [VisionPrescriptionLensSpecification]
 
-  VisionPrescriptionLensSpecification({
+  const VisionPrescriptionLensSpecification({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -674,7 +674,7 @@ class VisionPrescriptionPrism extends BackboneElement {
   /// Primary constructor for
   /// [VisionPrescriptionPrism]
 
-  VisionPrescriptionPrism({
+  const VisionPrescriptionPrism({
     super.id,
     super.extension_,
     super.modifierExtension,

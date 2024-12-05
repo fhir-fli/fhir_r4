@@ -8,7 +8,7 @@ class Attachment extends DataType {
   /// Primary constructor for
   /// [Attachment]
 
-  Attachment({
+  const Attachment({
     super.id,
     super.extension_,
     this.contentType,

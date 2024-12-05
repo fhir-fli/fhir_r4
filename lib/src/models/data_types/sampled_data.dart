@@ -9,7 +9,7 @@ class SampledData extends DataType {
   /// Primary constructor for
   /// [SampledData]
 
-  SampledData({
+  const SampledData({
     super.id,
     super.extension_,
     required this.origin,

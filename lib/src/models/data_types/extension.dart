@@ -8,7 +8,7 @@ class FhirExtension extends DataType {
   /// Primary constructor for
   /// [FhirExtension]
 
-  FhirExtension({
+  const FhirExtension({
     super.id,
     super.extension_,
     required this.url,

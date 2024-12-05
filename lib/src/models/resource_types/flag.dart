@@ -9,7 +9,7 @@ class Flag extends DomainResource {
   /// Primary constructor for
   /// [Flag]
 
-  Flag({
+  const Flag({
     super.id,
     super.meta,
     super.implicitRules,

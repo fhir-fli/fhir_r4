@@ -8,7 +8,7 @@ class NutritionProduct extends DomainResource {
   /// Primary constructor for
   /// [NutritionProduct]
 
-  NutritionProduct({
+  const NutritionProduct({
     super.id,
     super.meta,
     super.implicitRules,
@@ -398,7 +398,7 @@ class NutritionProductNutrient extends BackboneElement {
   /// Primary constructor for
   /// [NutritionProductNutrient]
 
-  NutritionProductNutrient({
+  const NutritionProductNutrient({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -570,7 +570,7 @@ class NutritionProductIngredient extends BackboneElement {
   /// Primary constructor for
   /// [NutritionProductIngredient]
 
-  NutritionProductIngredient({
+  const NutritionProductIngredient({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -737,7 +737,7 @@ class NutritionProductProductCharacteristic extends BackboneElement {
   /// Primary constructor for
   /// [NutritionProductProductCharacteristic]
 
-  NutritionProductProductCharacteristic({
+  const NutritionProductProductCharacteristic({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -978,7 +978,7 @@ class NutritionProductInstance extends BackboneElement {
   /// Primary constructor for
   /// [NutritionProductInstance]
 
-  NutritionProductInstance({
+  const NutritionProductInstance({
     super.id,
     super.extension_,
     super.modifierExtension,

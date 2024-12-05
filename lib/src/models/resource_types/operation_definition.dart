@@ -9,7 +9,7 @@ class OperationDefinition extends CanonicalResource {
   /// Primary constructor for
   /// [OperationDefinition]
 
-  OperationDefinition({
+  const OperationDefinition({
     super.id,
     super.meta,
     super.implicitRules,
@@ -574,7 +574,7 @@ class OperationDefinitionParameter extends BackboneElement {
   /// Primary constructor for
   /// [OperationDefinitionParameter]
 
-  OperationDefinitionParameter({
+  const OperationDefinitionParameter({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -889,7 +889,7 @@ class OperationDefinitionBinding extends BackboneElement {
   /// Primary constructor for
   /// [OperationDefinitionBinding]
 
-  OperationDefinitionBinding({
+  const OperationDefinitionBinding({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1052,7 +1052,7 @@ class OperationDefinitionReferencedFrom extends BackboneElement {
   /// Primary constructor for
   /// [OperationDefinitionReferencedFrom]
 
-  OperationDefinitionReferencedFrom({
+  const OperationDefinitionReferencedFrom({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1218,7 +1218,7 @@ class OperationDefinitionOverload extends BackboneElement {
   /// Primary constructor for
   /// [OperationDefinitionOverload]
 
-  OperationDefinitionOverload({
+  const OperationDefinitionOverload({
     super.id,
     super.extension_,
     super.modifierExtension,

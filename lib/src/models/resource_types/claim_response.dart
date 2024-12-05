@@ -9,7 +9,7 @@ class ClaimResponse extends DomainResource {
   /// Primary constructor for
   /// [ClaimResponse]
 
-  ClaimResponse({
+  const ClaimResponse({
     super.id,
     super.meta,
     super.implicitRules,
@@ -665,7 +665,7 @@ class ClaimResponseItem extends BackboneElement {
   /// Primary constructor for
   /// [ClaimResponseItem]
 
-  ClaimResponseItem({
+  const ClaimResponseItem({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -878,7 +878,7 @@ class ClaimResponseAdjudication extends BackboneElement {
   /// Primary constructor for
   /// [ClaimResponseAdjudication]
 
-  ClaimResponseAdjudication({
+  const ClaimResponseAdjudication({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1079,7 +1079,7 @@ class ClaimResponseDetail extends BackboneElement {
   /// Primary constructor for
   /// [ClaimResponseDetail]
 
-  ClaimResponseDetail({
+  const ClaimResponseDetail({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1287,7 +1287,7 @@ class ClaimResponseSubDetail extends BackboneElement {
   /// Primary constructor for
   /// [ClaimResponseSubDetail]
 
-  ClaimResponseSubDetail({
+  const ClaimResponseSubDetail({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1476,7 +1476,7 @@ class ClaimResponseAddItem extends BackboneElement {
   /// Primary constructor for
   /// [ClaimResponseAddItem]
 
-  ClaimResponseAddItem({
+  const ClaimResponseAddItem({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1998,7 +1998,7 @@ class ClaimResponseDetail1 extends BackboneElement {
   /// Primary constructor for
   /// [ClaimResponseDetail1]
 
-  ClaimResponseDetail1({
+  const ClaimResponseDetail1({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2297,7 +2297,7 @@ class ClaimResponseSubDetail1 extends BackboneElement {
   /// Primary constructor for
   /// [ClaimResponseSubDetail1]
 
-  ClaimResponseSubDetail1({
+  const ClaimResponseSubDetail1({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2576,7 +2576,7 @@ class ClaimResponseTotal extends BackboneElement {
   /// Primary constructor for
   /// [ClaimResponseTotal]
 
-  ClaimResponseTotal({
+  const ClaimResponseTotal({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2739,7 +2739,7 @@ class ClaimResponsePayment extends BackboneElement {
   /// Primary constructor for
   /// [ClaimResponsePayment]
 
-  ClaimResponsePayment({
+  const ClaimResponsePayment({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2964,7 +2964,7 @@ class ClaimResponseProcessNote extends BackboneElement {
   /// Primary constructor for
   /// [ClaimResponseProcessNote]
 
-  ClaimResponseProcessNote({
+  const ClaimResponseProcessNote({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -3156,7 +3156,7 @@ class ClaimResponseInsurance extends BackboneElement {
   /// Primary constructor for
   /// [ClaimResponseInsurance]
 
-  ClaimResponseInsurance({
+  const ClaimResponseInsurance({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -3365,7 +3365,7 @@ class ClaimResponseError extends BackboneElement {
   /// Primary constructor for
   /// [ClaimResponseError]
 
-  ClaimResponseError({
+  const ClaimResponseError({
     super.id,
     super.extension_,
     super.modifierExtension,

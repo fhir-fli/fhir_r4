@@ -12,7 +12,7 @@ class Citation extends DomainResource {
   /// Primary constructor for
   /// [Citation]
 
-  Citation({
+  const Citation({
     super.id,
     super.meta,
     super.implicitRules,
@@ -741,7 +741,7 @@ class CitationSummary extends BackboneElement {
   /// Primary constructor for
   /// [CitationSummary]
 
-  CitationSummary({
+  const CitationSummary({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -904,7 +904,7 @@ class CitationClassification extends BackboneElement {
   /// Primary constructor for
   /// [CitationClassification]
 
-  CitationClassification({
+  const CitationClassification({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1075,7 +1075,7 @@ class CitationStatusDate extends BackboneElement {
   /// Primary constructor for
   /// [CitationStatusDate]
 
-  CitationStatusDate({
+  const CitationStatusDate({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1248,7 +1248,7 @@ class CitationRelatesTo extends BackboneElement {
   /// Primary constructor for
   /// [CitationRelatesTo]
 
-  CitationRelatesTo({
+  const CitationRelatesTo({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1478,7 +1478,7 @@ class CitationCitedArtifact extends BackboneElement {
   /// Primary constructor for
   /// [CitationCitedArtifact]
 
-  CitationCitedArtifact({
+  const CitationCitedArtifact({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1903,7 +1903,7 @@ class CitationVersion extends BackboneElement {
   /// Primary constructor for
   /// [CitationVersion]
 
-  CitationVersion({
+  const CitationVersion({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2066,7 +2066,7 @@ class CitationStatusDate1 extends BackboneElement {
   /// Primary constructor for
   /// [CitationStatusDate1]
 
-  CitationStatusDate1({
+  const CitationStatusDate1({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2239,7 +2239,7 @@ class CitationTitle extends BackboneElement {
   /// Primary constructor for
   /// [CitationTitle]
 
-  CitationTitle({
+  const CitationTitle({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2422,7 +2422,7 @@ class CitationAbstract extends BackboneElement {
   /// Primary constructor for
   /// [CitationAbstract]
 
-  CitationAbstract({
+  const CitationAbstract({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2615,7 +2615,7 @@ class CitationPart extends BackboneElement {
   /// Primary constructor for
   /// [CitationPart]
 
-  CitationPart({
+  const CitationPart({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2796,7 +2796,7 @@ class CitationRelatesTo1 extends BackboneElement {
   /// Primary constructor for
   /// [CitationRelatesTo1]
 
-  CitationRelatesTo1({
+  const CitationRelatesTo1({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -3027,7 +3027,7 @@ class CitationPublicationForm extends BackboneElement {
   /// Primary constructor for
   /// [CitationPublicationForm]
 
-  CitationPublicationForm({
+  const CitationPublicationForm({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -3330,7 +3330,7 @@ class CitationPublishedIn extends BackboneElement {
   /// Primary constructor for
   /// [CitationPublishedIn]
 
-  CitationPublishedIn({
+  const CitationPublishedIn({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -3547,7 +3547,7 @@ class CitationPeriodicRelease extends BackboneElement {
   /// Primary constructor for
   /// [CitationPeriodicRelease]
 
-  CitationPeriodicRelease({
+  const CitationPeriodicRelease({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -3743,7 +3743,7 @@ class CitationDateOfPublication extends BackboneElement {
   /// Primary constructor for
   /// [CitationDateOfPublication]
 
-  CitationDateOfPublication({
+  const CitationDateOfPublication({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -3963,7 +3963,7 @@ class CitationWebLocation extends BackboneElement {
   /// Primary constructor for
   /// [CitationWebLocation]
 
-  CitationWebLocation({
+  const CitationWebLocation({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -4128,7 +4128,7 @@ class CitationClassification1 extends BackboneElement {
   /// Primary constructor for
   /// [CitationClassification1]
 
-  CitationClassification1({
+  const CitationClassification1({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -4315,7 +4315,7 @@ class CitationWhoClassified extends BackboneElement {
   /// Primary constructor for
   /// [CitationWhoClassified]
 
-  CitationWhoClassified({
+  const CitationWhoClassified({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -4529,7 +4529,7 @@ class CitationContributorship extends BackboneElement {
   /// Primary constructor for
   /// [CitationContributorship]
 
-  CitationContributorship({
+  const CitationContributorship({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -4719,7 +4719,7 @@ class CitationEntry extends BackboneElement {
   /// Primary constructor for
   /// [CitationEntry]
 
-  CitationEntry({
+  const CitationEntry({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -5069,7 +5069,7 @@ class CitationAffiliationInfo extends BackboneElement {
   /// Primary constructor for
   /// [CitationAffiliationInfo]
 
-  CitationAffiliationInfo({
+  const CitationAffiliationInfo({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -5252,7 +5252,7 @@ class CitationContributionInstance extends BackboneElement {
   /// Primary constructor for
   /// [CitationContributionInstance]
 
-  CitationContributionInstance({
+  const CitationContributionInstance({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -5414,7 +5414,7 @@ class CitationSummary1 extends BackboneElement {
   /// Primary constructor for
   /// [CitationSummary1]
 
-  CitationSummary1({
+  const CitationSummary1({
     super.id,
     super.extension_,
     super.modifierExtension,

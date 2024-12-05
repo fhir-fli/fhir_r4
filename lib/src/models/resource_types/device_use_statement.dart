@@ -9,7 +9,7 @@ class DeviceUseStatement extends DomainResource {
   /// Primary constructor for
   /// [DeviceUseStatement]
 
-  DeviceUseStatement({
+  const DeviceUseStatement({
     super.id,
     super.meta,
     super.implicitRules,

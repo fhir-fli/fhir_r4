@@ -10,7 +10,7 @@ class MeasureReport extends DomainResource {
   /// Primary constructor for
   /// [MeasureReport]
 
-  MeasureReport({
+  const MeasureReport({
     super.id,
     super.meta,
     super.implicitRules,
@@ -394,7 +394,7 @@ class MeasureReportGroup extends BackboneElement {
   /// Primary constructor for
   /// [MeasureReportGroup]
 
-  MeasureReportGroup({
+  const MeasureReportGroup({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -607,7 +607,7 @@ class MeasureReportPopulation extends BackboneElement {
   /// Primary constructor for
   /// [MeasureReportPopulation]
 
-  MeasureReportPopulation({
+  const MeasureReportPopulation({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -790,7 +790,7 @@ class MeasureReportStratifier extends BackboneElement {
   /// Primary constructor for
   /// [MeasureReportStratifier]
 
-  MeasureReportStratifier({
+  const MeasureReportStratifier({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -969,7 +969,7 @@ class MeasureReportStratum extends BackboneElement {
   /// Primary constructor for
   /// [MeasureReportStratum]
 
-  MeasureReportStratum({
+  const MeasureReportStratum({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1181,7 +1181,7 @@ class MeasureReportComponent extends BackboneElement {
   /// Primary constructor for
   /// [MeasureReportComponent]
 
-  MeasureReportComponent({
+  const MeasureReportComponent({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1341,7 +1341,7 @@ class MeasureReportPopulation1 extends BackboneElement {
   /// Primary constructor for
   /// [MeasureReportPopulation1]
 
-  MeasureReportPopulation1({
+  const MeasureReportPopulation1({
     super.id,
     super.extension_,
     super.modifierExtension,

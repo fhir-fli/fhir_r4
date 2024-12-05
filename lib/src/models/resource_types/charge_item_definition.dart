@@ -12,7 +12,7 @@ class ChargeItemDefinition extends DomainResource {
   /// Primary constructor for
   /// [ChargeItemDefinition]
 
-  ChargeItemDefinition({
+  const ChargeItemDefinition({
     super.id,
     super.meta,
     super.implicitRules,
@@ -643,7 +643,7 @@ class ChargeItemDefinitionApplicability extends BackboneElement {
   /// Primary constructor for
   /// [ChargeItemDefinitionApplicability]
 
-  ChargeItemDefinitionApplicability({
+  const ChargeItemDefinitionApplicability({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -828,7 +828,7 @@ class ChargeItemDefinitionPropertyGroup extends BackboneElement {
   /// Primary constructor for
   /// [ChargeItemDefinitionPropertyGroup]
 
-  ChargeItemDefinitionPropertyGroup({
+  const ChargeItemDefinitionPropertyGroup({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1014,7 +1014,7 @@ class ChargeItemDefinitionPriceComponent extends BackboneElement {
   /// Primary constructor for
   /// [ChargeItemDefinitionPriceComponent]
 
-  ChargeItemDefinitionPriceComponent({
+  const ChargeItemDefinitionPriceComponent({
     super.id,
     super.extension_,
     super.modifierExtension,

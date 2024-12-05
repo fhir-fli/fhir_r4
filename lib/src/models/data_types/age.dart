@@ -8,7 +8,7 @@ class Age extends Quantity {
   /// Primary constructor for
   /// [Age]
 
-  Age({
+  const Age({
     super.id,
     super.extension_,
     super.value,

@@ -9,7 +9,7 @@ class ProductShelfLife extends BackboneType {
   /// Primary constructor for
   /// [ProductShelfLife]
 
-  ProductShelfLife({
+  const ProductShelfLife({
     super.id,
     super.extension_,
     super.modifierExtension,

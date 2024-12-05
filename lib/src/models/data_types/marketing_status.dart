@@ -10,7 +10,7 @@ class MarketingStatus extends BackboneType {
   /// Primary constructor for
   /// [MarketingStatus]
 
-  MarketingStatus({
+  const MarketingStatus({
     super.id,
     super.extension_,
     super.modifierExtension,

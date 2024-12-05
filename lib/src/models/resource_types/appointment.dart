@@ -10,7 +10,7 @@ class Appointment extends DomainResource {
   /// Primary constructor for
   /// [Appointment]
 
-  Appointment({
+  const Appointment({
     super.id,
     super.meta,
     super.implicitRules,
@@ -632,7 +632,7 @@ class AppointmentParticipant extends BackboneElement {
   /// Primary constructor for
   /// [AppointmentParticipant]
 
-  AppointmentParticipant({
+  const AppointmentParticipant({
     super.id,
     super.extension_,
     super.modifierExtension,

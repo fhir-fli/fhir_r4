@@ -11,7 +11,7 @@ class GraphDefinition extends CanonicalResource {
   /// Primary constructor for
   /// [GraphDefinition]
 
-  GraphDefinition({
+  const GraphDefinition({
     super.id,
     super.meta,
     super.implicitRules,
@@ -402,7 +402,7 @@ class GraphDefinitionLink extends BackboneElement {
   /// Primary constructor for
   /// [GraphDefinitionLink]
 
-  GraphDefinitionLink({
+  const GraphDefinitionLink({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -629,7 +629,7 @@ class GraphDefinitionTarget extends BackboneElement {
   /// Primary constructor for
   /// [GraphDefinitionTarget]
 
-  GraphDefinitionTarget({
+  const GraphDefinitionTarget({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -844,7 +844,7 @@ class GraphDefinitionCompartment extends BackboneElement {
   /// Primary constructor for
   /// [GraphDefinitionCompartment]
 
-  GraphDefinitionCompartment({
+  const GraphDefinitionCompartment({
     super.id,
     super.extension_,
     super.modifierExtension,

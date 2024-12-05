@@ -10,7 +10,7 @@ class GuidanceResponse extends DomainResource {
   /// Primary constructor for
   /// [GuidanceResponse]
 
-  GuidanceResponse({
+  const GuidanceResponse({
     super.id,
     super.meta,
     super.implicitRules,

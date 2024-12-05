@@ -13,7 +13,7 @@ class MedicationRequest extends DomainResource {
   /// Primary constructor for
   /// [MedicationRequest]
 
-  MedicationRequest({
+  const MedicationRequest({
     super.id,
     super.meta,
     super.implicitRules,
@@ -857,7 +857,7 @@ class MedicationRequestDispenseRequest extends BackboneElement {
   /// Primary constructor for
   /// [MedicationRequestDispenseRequest]
 
-  MedicationRequestDispenseRequest({
+  const MedicationRequestDispenseRequest({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1118,7 +1118,7 @@ class MedicationRequestInitialFill extends BackboneElement {
   /// Primary constructor for
   /// [MedicationRequestInitialFill]
 
-  MedicationRequestInitialFill({
+  const MedicationRequestInitialFill({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1288,7 +1288,7 @@ class MedicationRequestSubstitution extends BackboneElement {
   /// Primary constructor for
   /// [MedicationRequestSubstitution]
 
-  MedicationRequestSubstitution({
+  const MedicationRequestSubstitution({
     super.id,
     super.extension_,
     super.modifierExtension,

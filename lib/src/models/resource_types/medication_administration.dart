@@ -12,7 +12,7 @@ class MedicationAdministration extends DomainResource {
   /// Primary constructor for
   /// [MedicationAdministration]
 
-  MedicationAdministration({
+  const MedicationAdministration({
     super.id,
     super.meta,
     super.implicitRules,
@@ -618,7 +618,7 @@ class MedicationAdministrationPerformer extends BackboneElement {
   /// Primary constructor for
   /// [MedicationAdministrationPerformer]
 
-  MedicationAdministrationPerformer({
+  const MedicationAdministrationPerformer({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -783,7 +783,7 @@ class MedicationAdministrationDosage extends BackboneElement {
   /// Primary constructor for
   /// [MedicationAdministrationDosage]
 
-  MedicationAdministrationDosage({
+  const MedicationAdministrationDosage({
     super.id,
     super.extension_,
     super.modifierExtension,

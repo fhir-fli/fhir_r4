@@ -10,7 +10,7 @@ class Binary extends Resource {
   /// Primary constructor for
   /// [Binary]
 
-  Binary({
+  const Binary({
     super.id,
     super.meta,
     super.implicitRules,

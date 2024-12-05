@@ -8,7 +8,7 @@ class Range extends DataType {
   /// Primary constructor for
   /// [Range]
 
-  Range({
+  const Range({
     super.id,
     super.extension_,
     this.low,

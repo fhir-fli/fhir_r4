@@ -8,7 +8,7 @@ class Distance extends Quantity {
   /// Primary constructor for
   /// [Distance]
 
-  Distance({
+  const Distance({
     super.id,
     super.extension_,
     super.value,

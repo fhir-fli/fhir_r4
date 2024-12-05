@@ -13,7 +13,7 @@ class Timing extends BackboneType {
   /// Primary constructor for
   /// [Timing]
 
-  Timing({
+  const Timing({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -206,7 +206,7 @@ class TimingRepeat extends Element {
   /// Primary constructor for
   /// [TimingRepeat]
 
-  TimingRepeat({
+  const TimingRepeat({
     super.id,
     super.extension_,
     this.boundsDuration,

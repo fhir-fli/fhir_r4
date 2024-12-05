@@ -11,7 +11,7 @@ class RegulatedAuthorization extends DomainResource {
   /// Primary constructor for
   /// [RegulatedAuthorization]
 
-  RegulatedAuthorization({
+  const RegulatedAuthorization({
     super.id,
     super.meta,
     super.implicitRules,
@@ -469,7 +469,7 @@ class RegulatedAuthorizationCase extends BackboneElement {
   /// Primary constructor for
   /// [RegulatedAuthorizationCase]
 
-  RegulatedAuthorizationCase({
+  const RegulatedAuthorizationCase({
     super.id,
     super.extension_,
     super.modifierExtension,

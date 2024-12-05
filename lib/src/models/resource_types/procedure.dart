@@ -10,7 +10,7 @@ class Procedure extends DomainResource {
   /// Primary constructor for
   /// [Procedure]
 
-  Procedure({
+  const Procedure({
     super.id,
     super.meta,
     super.implicitRules,
@@ -826,7 +826,7 @@ class ProcedurePerformer extends BackboneElement {
   /// Primary constructor for
   /// [ProcedurePerformer]
 
-  ProcedurePerformer({
+  const ProcedurePerformer({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1008,7 +1008,7 @@ class ProcedureFocalDevice extends BackboneElement {
   /// Primary constructor for
   /// [ProcedureFocalDevice]
 
-  ProcedureFocalDevice({
+  const ProcedureFocalDevice({
     super.id,
     super.extension_,
     super.modifierExtension,

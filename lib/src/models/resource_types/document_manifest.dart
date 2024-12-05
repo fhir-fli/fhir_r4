@@ -9,7 +9,7 @@ class DocumentManifest extends DomainResource {
   /// Primary constructor for
   /// [DocumentManifest]
 
-  DocumentManifest({
+  const DocumentManifest({
     super.id,
     super.meta,
     super.implicitRules,
@@ -424,7 +424,7 @@ class DocumentManifestRelated extends BackboneElement {
   /// Primary constructor for
   /// [DocumentManifestRelated]
 
-  DocumentManifestRelated({
+  const DocumentManifestRelated({
     super.id,
     super.extension_,
     super.modifierExtension,

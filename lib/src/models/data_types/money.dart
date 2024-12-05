@@ -8,7 +8,7 @@ class Money extends DataType {
   /// Primary constructor for
   /// [Money]
 
-  Money({
+  const Money({
     super.id,
     super.extension_,
     this.value,

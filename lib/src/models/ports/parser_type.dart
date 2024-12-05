@@ -4,12 +4,12 @@ enum ParserType {
   /// XML as specified in specification
   xml,
 
-   /// JSON as specified in the specification
+  /// JSON as specified in the specification
   json,
 
-   /// XHTML - write narrative (generate if necessary). No read
+  /// XHTML - write narrative (generate if necessary). No read
   xhtml,
 
-   /// RDF is not supported yet
-   rdfTurtle,
+  /// RDF is not supported yet
+  rdfTurtle,
 }

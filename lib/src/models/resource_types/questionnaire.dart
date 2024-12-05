@@ -11,7 +11,7 @@ class Questionnaire extends CanonicalResource {
   /// Primary constructor for
   /// [Questionnaire]
 
-  Questionnaire({
+  const Questionnaire({
     super.id,
     super.meta,
     super.implicitRules,
@@ -545,7 +545,7 @@ class QuestionnaireItem extends BackboneElement {
   /// Primary constructor for
   /// [QuestionnaireItem]
 
-  QuestionnaireItem({
+  const QuestionnaireItem({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -968,7 +968,7 @@ class QuestionnaireEnableWhen extends BackboneElement {
   /// Primary constructor for
   /// [QuestionnaireEnableWhen]
 
-  QuestionnaireEnableWhen({
+  const QuestionnaireEnableWhen({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1289,7 +1289,7 @@ class QuestionnaireAnswerOption extends BackboneElement {
   /// Primary constructor for
   /// [QuestionnaireAnswerOption]
 
-  QuestionnaireAnswerOption({
+  const QuestionnaireAnswerOption({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1530,7 +1530,7 @@ class QuestionnaireInitial extends BackboneElement {
   /// Primary constructor for
   /// [QuestionnaireInitial]
 
-  QuestionnaireInitial({
+  const QuestionnaireInitial({
     super.id,
     super.extension_,
     super.modifierExtension,

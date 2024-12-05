@@ -9,7 +9,7 @@ class EvidenceVariable extends DomainResource {
   /// Primary constructor for
   /// [EvidenceVariable]
 
-  EvidenceVariable({
+  const EvidenceVariable({
     super.id,
     super.meta,
     super.implicitRules,
@@ -655,7 +655,7 @@ class EvidenceVariableCharacteristic extends BackboneElement {
   /// Primary constructor for
   /// [EvidenceVariableCharacteristic]
 
-  EvidenceVariableCharacteristic({
+  const EvidenceVariableCharacteristic({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -962,7 +962,7 @@ class EvidenceVariableTimeFromStart extends BackboneElement {
   /// Primary constructor for
   /// [EvidenceVariableTimeFromStart]
 
-  EvidenceVariableTimeFromStart({
+  const EvidenceVariableTimeFromStart({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1166,7 +1166,7 @@ class EvidenceVariableCategory extends BackboneElement {
   /// Primary constructor for
   /// [EvidenceVariableCategory]
 
-  EvidenceVariableCategory({
+  const EvidenceVariableCategory({
     super.id,
     super.extension_,
     super.modifierExtension,

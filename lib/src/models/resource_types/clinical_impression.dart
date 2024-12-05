@@ -15,7 +15,7 @@ class ClinicalImpression extends DomainResource {
   /// Primary constructor for
   /// [ClinicalImpression]
 
-  ClinicalImpression({
+  const ClinicalImpression({
     super.id,
     super.meta,
     super.implicitRules,
@@ -595,7 +595,7 @@ class ClinicalImpressionInvestigation extends BackboneElement {
   /// Primary constructor for
   /// [ClinicalImpressionInvestigation]
 
-  ClinicalImpressionInvestigation({
+  const ClinicalImpressionInvestigation({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -766,7 +766,7 @@ class ClinicalImpressionFinding extends BackboneElement {
   /// Primary constructor for
   /// [ClinicalImpressionFinding]
 
-  ClinicalImpressionFinding({
+  const ClinicalImpressionFinding({
     super.id,
     super.extension_,
     super.modifierExtension,

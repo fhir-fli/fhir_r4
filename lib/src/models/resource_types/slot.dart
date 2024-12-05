@@ -9,7 +9,7 @@ class Slot extends DomainResource {
   /// Primary constructor for
   /// [Slot]
 
-  Slot({
+  const Slot({
     super.id,
     super.meta,
     super.implicitRules,

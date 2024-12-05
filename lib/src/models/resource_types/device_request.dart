@@ -10,7 +10,7 @@ class DeviceRequest extends DomainResource {
   /// Primary constructor for
   /// [DeviceRequest]
 
-  DeviceRequest({
+  const DeviceRequest({
     super.id,
     super.meta,
     super.implicitRules,
@@ -706,7 +706,7 @@ class DeviceRequestParameter extends BackboneElement {
   /// Primary constructor for
   /// [DeviceRequestParameter]
 
-  DeviceRequestParameter({
+  const DeviceRequestParameter({
     super.id,
     super.extension_,
     super.modifierExtension,

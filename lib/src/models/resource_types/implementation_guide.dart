@@ -12,7 +12,7 @@ class ImplementationGuide extends CanonicalResource {
   /// Primary constructor for
   /// [ImplementationGuide]
 
-  ImplementationGuide({
+  const ImplementationGuide({
     super.id,
     super.meta,
     super.implicitRules,
@@ -504,7 +504,7 @@ class ImplementationGuideDependsOn extends BackboneElement {
   /// Primary constructor for
   /// [ImplementationGuideDependsOn]
 
-  ImplementationGuideDependsOn({
+  const ImplementationGuideDependsOn({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -682,7 +682,7 @@ class ImplementationGuideGlobal extends BackboneElement {
   /// Primary constructor for
   /// [ImplementationGuideGlobal]
 
-  ImplementationGuideGlobal({
+  const ImplementationGuideGlobal({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -842,7 +842,7 @@ class ImplementationGuideDefinition extends BackboneElement {
   /// Primary constructor for
   /// [ImplementationGuideDefinition]
 
-  ImplementationGuideDefinition({
+  const ImplementationGuideDefinition({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1079,7 +1079,7 @@ class ImplementationGuideGrouping extends BackboneElement {
   /// Primary constructor for
   /// [ImplementationGuideGrouping]
 
-  ImplementationGuideGrouping({
+  const ImplementationGuideGrouping({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1244,7 +1244,7 @@ class ImplementationGuideResource extends BackboneElement {
   /// Primary constructor for
   /// [ImplementationGuideResource]
 
-  ImplementationGuideResource({
+  const ImplementationGuideResource({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1493,7 +1493,7 @@ class ImplementationGuidePage extends BackboneElement {
   /// Primary constructor for
   /// [ImplementationGuidePage]
 
-  ImplementationGuidePage({
+  const ImplementationGuidePage({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1703,7 +1703,7 @@ class ImplementationGuideParameter extends BackboneElement {
   /// Primary constructor for
   /// [ImplementationGuideParameter]
 
-  ImplementationGuideParameter({
+  const ImplementationGuideParameter({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1864,7 +1864,7 @@ class ImplementationGuideTemplate extends BackboneElement {
   /// Primary constructor for
   /// [ImplementationGuideTemplate]
 
-  ImplementationGuideTemplate({
+  const ImplementationGuideTemplate({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2038,7 +2038,7 @@ class ImplementationGuideManifest extends BackboneElement {
   /// Primary constructor for
   /// [ImplementationGuideManifest]
 
-  ImplementationGuideManifest({
+  const ImplementationGuideManifest({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2276,7 +2276,7 @@ class ImplementationGuideResource1 extends BackboneElement {
   /// Primary constructor for
   /// [ImplementationGuideResource1]
 
-  ImplementationGuideResource1({
+  const ImplementationGuideResource1({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2472,7 +2472,7 @@ class ImplementationGuidePage1 extends BackboneElement {
   /// Primary constructor for
   /// [ImplementationGuidePage1]
 
-  ImplementationGuidePage1({
+  const ImplementationGuidePage1({
     super.id,
     super.extension_,
     super.modifierExtension,

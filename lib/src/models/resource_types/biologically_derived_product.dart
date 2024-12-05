@@ -10,7 +10,7 @@ class BiologicallyDerivedProduct extends DomainResource {
   /// Primary constructor for
   /// [BiologicallyDerivedProduct]
 
-  BiologicallyDerivedProduct({
+  const BiologicallyDerivedProduct({
     super.id,
     super.meta,
     super.implicitRules,
@@ -409,7 +409,7 @@ class BiologicallyDerivedProductCollection extends BackboneElement {
   /// Primary constructor for
   /// [BiologicallyDerivedProductCollection]
 
-  BiologicallyDerivedProductCollection({
+  const BiologicallyDerivedProductCollection({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -610,7 +610,7 @@ class BiologicallyDerivedProductProcessing extends BackboneElement {
   /// Primary constructor for
   /// [BiologicallyDerivedProductProcessing]
 
-  BiologicallyDerivedProductProcessing({
+  const BiologicallyDerivedProductProcessing({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -824,7 +824,7 @@ class BiologicallyDerivedProductManipulation extends BackboneElement {
   /// Primary constructor for
   /// [BiologicallyDerivedProductManipulation]
 
-  BiologicallyDerivedProductManipulation({
+  const BiologicallyDerivedProductManipulation({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1004,7 +1004,7 @@ class BiologicallyDerivedProductStorage extends BackboneElement {
   /// Primary constructor for
   /// [BiologicallyDerivedProductStorage]
 
-  BiologicallyDerivedProductStorage({
+  const BiologicallyDerivedProductStorage({
     super.id,
     super.extension_,
     super.modifierExtension,

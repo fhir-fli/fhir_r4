@@ -9,7 +9,7 @@ class StructureMap extends CanonicalResource {
   /// Primary constructor for
   /// [StructureMap]
 
-  StructureMap({
+  const StructureMap({
     super.id,
     super.meta,
     super.implicitRules,
@@ -469,7 +469,7 @@ class StructureMapStructure extends BackboneElement {
   /// Primary constructor for
   /// [StructureMapStructure]
 
-  StructureMapStructure({
+  const StructureMapStructure({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -658,7 +658,7 @@ class StructureMapGroup extends BackboneElement {
   /// Primary constructor for
   /// [StructureMapGroup]
 
-  StructureMapGroup({
+  const StructureMapGroup({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -890,7 +890,7 @@ class StructureMapInput extends BackboneElement {
   /// Primary constructor for
   /// [StructureMapInput]
 
-  StructureMapInput({
+  const StructureMapInput({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1078,7 +1078,7 @@ class StructureMapRule extends BackboneElement {
   /// Primary constructor for
   /// [StructureMapRule]
 
-  StructureMapRule({
+  const StructureMapRule({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1320,7 +1320,7 @@ class StructureMapSource extends BackboneElement {
   /// Primary constructor for
   /// [StructureMapSource]
 
-  StructureMapSource({
+  const StructureMapSource({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2409,7 +2409,7 @@ class StructureMapTarget extends BackboneElement {
   /// Primary constructor for
   /// [StructureMapTarget]
 
-  StructureMapTarget({
+  const StructureMapTarget({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2668,7 +2668,7 @@ class StructureMapParameter extends BackboneElement {
   /// Primary constructor for
   /// [StructureMapParameter]
 
-  StructureMapParameter({
+  const StructureMapParameter({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2876,7 +2876,7 @@ class StructureMapDependent extends BackboneElement {
   /// Primary constructor for
   /// [StructureMapDependent]
 
-  StructureMapDependent({
+  const StructureMapDependent({
     super.id,
     super.extension_,
     super.modifierExtension,

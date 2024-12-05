@@ -9,7 +9,7 @@ class CareTeam extends DomainResource {
   /// Primary constructor for
   /// [CareTeam]
 
-  CareTeam({
+  const CareTeam({
     super.id,
     super.meta,
     super.implicitRules,
@@ -457,7 +457,7 @@ class CareTeamParticipant extends BackboneElement {
   /// Primary constructor for
   /// [CareTeamParticipant]
 
-  CareTeamParticipant({
+  const CareTeamParticipant({
     super.id,
     super.extension_,
     super.modifierExtension,

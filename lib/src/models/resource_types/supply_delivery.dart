@@ -8,7 +8,7 @@ class SupplyDelivery extends DomainResource {
   /// Primary constructor for
   /// [SupplyDelivery]
 
-  SupplyDelivery({
+  const SupplyDelivery({
     super.id,
     super.meta,
     super.implicitRules,
@@ -435,7 +435,7 @@ class SupplyDeliverySuppliedItem extends BackboneElement {
   /// Primary constructor for
   /// [SupplyDeliverySuppliedItem]
 
-  SupplyDeliverySuppliedItem({
+  const SupplyDeliverySuppliedItem({
     super.id,
     super.extension_,
     super.modifierExtension,

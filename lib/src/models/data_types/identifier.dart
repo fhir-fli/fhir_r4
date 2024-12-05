@@ -9,7 +9,7 @@ class Identifier extends DataType {
   /// Primary constructor for
   /// [Identifier]
 
-  Identifier({
+  const Identifier({
     super.id,
     super.extension_,
     this.use,

@@ -10,7 +10,7 @@ class AuditEvent extends DomainResource {
   /// Primary constructor for
   /// [AuditEvent]
 
-  AuditEvent({
+  const AuditEvent({
     super.id,
     super.meta,
     super.implicitRules,
@@ -387,7 +387,7 @@ class AuditEventAgent extends BackboneElement {
   /// Primary constructor for
   /// [AuditEventAgent]
 
-  AuditEventAgent({
+  const AuditEventAgent({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -716,7 +716,7 @@ class AuditEventNetwork extends BackboneElement {
   /// Primary constructor for
   /// [AuditEventNetwork]
 
-  AuditEventNetwork({
+  const AuditEventNetwork({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -881,7 +881,7 @@ class AuditEventSource extends BackboneElement {
   /// Primary constructor for
   /// [AuditEventSource]
 
-  AuditEventSource({
+  const AuditEventSource({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1064,7 +1064,7 @@ class AuditEventEntity extends BackboneElement {
   /// Primary constructor for
   /// [AuditEventEntity]
 
-  AuditEventEntity({
+  const AuditEventEntity({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1349,7 +1349,7 @@ class AuditEventDetail extends BackboneElement {
   /// Primary constructor for
   /// [AuditEventDetail]
 
-  AuditEventDetail({
+  const AuditEventDetail({
     super.id,
     super.extension_,
     super.modifierExtension,

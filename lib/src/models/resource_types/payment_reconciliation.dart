@@ -9,7 +9,7 @@ class PaymentReconciliation extends DomainResource {
   /// Primary constructor for
   /// [PaymentReconciliation]
 
-  PaymentReconciliation({
+  const PaymentReconciliation({
     super.id,
     super.meta,
     super.implicitRules,
@@ -446,7 +446,7 @@ class PaymentReconciliationDetail extends BackboneElement {
   /// Primary constructor for
   /// [PaymentReconciliationDetail]
 
-  PaymentReconciliationDetail({
+  const PaymentReconciliationDetail({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -741,7 +741,7 @@ class PaymentReconciliationProcessNote extends BackboneElement {
   /// Primary constructor for
   /// [PaymentReconciliationProcessNote]
 
-  PaymentReconciliationProcessNote({
+  const PaymentReconciliationProcessNote({
     super.id,
     super.extension_,
     super.modifierExtension,

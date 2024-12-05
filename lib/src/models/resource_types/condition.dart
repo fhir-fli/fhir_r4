@@ -9,7 +9,7 @@ class Condition extends DomainResource {
   /// Primary constructor for
   /// [Condition]
 
-  Condition({
+  const Condition({
     super.id,
     super.meta,
     super.implicitRules,
@@ -656,7 +656,7 @@ class ConditionStage extends BackboneElement {
   /// Primary constructor for
   /// [ConditionStage]
 
-  ConditionStage({
+  const ConditionStage({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -847,7 +847,7 @@ class ConditionEvidence extends BackboneElement {
   /// Primary constructor for
   /// [ConditionEvidence]
 
-  ConditionEvidence({
+  const ConditionEvidence({
     super.id,
     super.extension_,
     super.modifierExtension,

@@ -10,7 +10,7 @@ class Encounter extends DomainResource {
   /// Primary constructor for
   /// [Encounter]
 
-  Encounter({
+  const Encounter({
     super.id,
     super.meta,
     super.implicitRules,
@@ -654,7 +654,7 @@ class EncounterStatusHistory extends BackboneElement {
   /// Primary constructor for
   /// [EncounterStatusHistory]
 
-  EncounterStatusHistory({
+  const EncounterStatusHistory({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -820,7 +820,7 @@ class EncounterClassHistory extends BackboneElement {
   /// Primary constructor for
   /// [EncounterClassHistory]
 
-  EncounterClassHistory({
+  const EncounterClassHistory({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -979,7 +979,7 @@ class EncounterParticipant extends BackboneElement {
   /// Primary constructor for
   /// [EncounterParticipant]
 
-  EncounterParticipant({
+  const EncounterParticipant({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1168,7 +1168,7 @@ class EncounterDiagnosis extends BackboneElement {
   /// Primary constructor for
   /// [EncounterDiagnosis]
 
-  EncounterDiagnosis({
+  const EncounterDiagnosis({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1349,7 +1349,7 @@ class EncounterHospitalization extends BackboneElement {
   /// Primary constructor for
   /// [EncounterHospitalization]
 
-  EncounterHospitalization({
+  const EncounterHospitalization({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1644,7 +1644,7 @@ class EncounterLocation extends BackboneElement {
   /// Primary constructor for
   /// [EncounterLocation]
 
-  EncounterLocation({
+  const EncounterLocation({
     super.id,
     super.extension_,
     super.modifierExtension,

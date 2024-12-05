@@ -18,7 +18,7 @@ class Provenance extends DomainResource {
   /// Primary constructor for
   /// [Provenance]
 
-  Provenance({
+  const Provenance({
     super.id,
     super.meta,
     super.implicitRules,
@@ -421,7 +421,7 @@ class ProvenanceAgent extends BackboneElement {
   /// Primary constructor for
   /// [ProvenanceAgent]
 
-  ProvenanceAgent({
+  const ProvenanceAgent({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -621,7 +621,7 @@ class ProvenanceEntity extends BackboneElement {
   /// Primary constructor for
   /// [ProvenanceEntity]
 
-  ProvenanceEntity({
+  const ProvenanceEntity({
     super.id,
     super.extension_,
     super.modifierExtension,

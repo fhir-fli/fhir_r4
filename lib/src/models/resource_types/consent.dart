@@ -11,7 +11,7 @@ class Consent extends DomainResource {
   /// Primary constructor for
   /// [Consent]
 
-  Consent({
+  const Consent({
     super.id,
     super.meta,
     super.implicitRules,
@@ -468,7 +468,7 @@ class ConsentPolicy extends BackboneElement {
   /// Primary constructor for
   /// [ConsentPolicy]
 
-  ConsentPolicy({
+  const ConsentPolicy({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -636,7 +636,7 @@ class ConsentVerification extends BackboneElement {
   /// Primary constructor for
   /// [ConsentVerification]
 
-  ConsentVerification({
+  const ConsentVerification({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -816,7 +816,7 @@ class ConsentProvision extends BackboneElement {
   /// Primary constructor for
   /// [ConsentProvision]
 
-  ConsentProvision({
+  const ConsentProvision({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1166,7 +1166,7 @@ class ConsentActor extends BackboneElement {
   /// Primary constructor for
   /// [ConsentActor]
 
-  ConsentActor({
+  const ConsentActor({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1329,7 +1329,7 @@ class ConsentData extends BackboneElement {
   /// Primary constructor for
   /// [ConsentData]
 
-  ConsentData({
+  const ConsentData({
     super.id,
     super.extension_,
     super.modifierExtension,

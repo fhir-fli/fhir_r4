@@ -9,7 +9,7 @@ class Narrative extends DataType {
   /// Primary constructor for
   /// [Narrative]
 
-  Narrative({
+  const Narrative({
     super.id,
     super.extension_,
     required this.status,

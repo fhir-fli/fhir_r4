@@ -9,7 +9,7 @@ class CodeableReference extends DataType {
   /// Primary constructor for
   /// [CodeableReference]
 
-  CodeableReference({
+  const CodeableReference({
     super.id,
     super.extension_,
     this.concept,

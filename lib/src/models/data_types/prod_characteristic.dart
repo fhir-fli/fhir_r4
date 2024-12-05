@@ -10,7 +10,7 @@ class ProdCharacteristic extends BackboneType {
   /// Primary constructor for
   /// [ProdCharacteristic]
 
-  ProdCharacteristic({
+  const ProdCharacteristic({
     super.id,
     super.extension_,
     super.modifierExtension,

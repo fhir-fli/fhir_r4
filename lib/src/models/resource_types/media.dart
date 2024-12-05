@@ -9,7 +9,7 @@ class Media extends DomainResource {
   /// Primary constructor for
   /// [Media]
 
-  Media({
+  const Media({
     super.id,
     super.meta,
     super.implicitRules,

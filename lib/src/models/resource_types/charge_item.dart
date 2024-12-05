@@ -13,7 +13,7 @@ class ChargeItem extends DomainResource {
   /// Primary constructor for
   /// [ChargeItem]
 
-  ChargeItem({
+  const ChargeItem({
     super.id,
     super.meta,
     super.implicitRules,
@@ -721,7 +721,7 @@ class ChargeItemPerformer extends BackboneElement {
   /// Primary constructor for
   /// [ChargeItemPerformer]
 
-  ChargeItemPerformer({
+  const ChargeItemPerformer({
     super.id,
     super.extension_,
     super.modifierExtension,

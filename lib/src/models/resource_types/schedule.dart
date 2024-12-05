@@ -9,7 +9,7 @@ class Schedule extends DomainResource {
   /// Primary constructor for
   /// [Schedule]
 
-  Schedule({
+  const Schedule({
     super.id,
     super.meta,
     super.implicitRules,

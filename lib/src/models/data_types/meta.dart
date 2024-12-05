@@ -10,7 +10,7 @@ class FhirMeta extends DataType {
   /// Primary constructor for
   /// [FhirMeta]
 
-  FhirMeta({
+  const FhirMeta({
     super.id,
     super.extension_,
     this.versionId,

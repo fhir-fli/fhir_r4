@@ -10,7 +10,7 @@ class ImmunizationRecommendation extends DomainResource {
   /// Primary constructor for
   /// [ImmunizationRecommendation]
 
-  ImmunizationRecommendation({
+  const ImmunizationRecommendation({
     super.id,
     super.meta,
     super.implicitRules,
@@ -289,7 +289,7 @@ class ImmunizationRecommendationRecommendation extends BackboneElement {
   /// Primary constructor for
   /// [ImmunizationRecommendationRecommendation]
 
-  ImmunizationRecommendationRecommendation({
+  const ImmunizationRecommendationRecommendation({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -681,7 +681,7 @@ class ImmunizationRecommendationDateCriterion extends BackboneElement {
   /// Primary constructor for
   /// [ImmunizationRecommendationDateCriterion]
 
-  ImmunizationRecommendationDateCriterion({
+  const ImmunizationRecommendationDateCriterion({
     super.id,
     super.extension_,
     super.modifierExtension,

@@ -9,7 +9,7 @@ class Dosage extends BackboneType {
   /// Primary constructor for
   /// [Dosage]
 
-  Dosage({
+  const Dosage({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -382,7 +382,7 @@ class DosageDoseAndRate extends Element {
   /// Primary constructor for
   /// [DosageDoseAndRate]
 
-  DosageDoseAndRate({
+  const DosageDoseAndRate({
     super.id,
     super.extension_,
     this.type,

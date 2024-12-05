@@ -10,7 +10,7 @@ class CommunicationRequest extends DomainResource {
   /// Primary constructor for
   /// [CommunicationRequest]
 
-  CommunicationRequest({
+  const CommunicationRequest({
     super.id,
     super.meta,
     super.implicitRules,
@@ -631,7 +631,7 @@ class CommunicationRequestPayload extends BackboneElement {
   /// Primary constructor for
   /// [CommunicationRequestPayload]
 
-  CommunicationRequestPayload({
+  const CommunicationRequestPayload({
     super.id,
     super.extension_,
     super.modifierExtension,

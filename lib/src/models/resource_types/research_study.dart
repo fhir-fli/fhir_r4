@@ -14,7 +14,7 @@ class ResearchStudy extends DomainResource {
   /// Primary constructor for
   /// [ResearchStudy]
 
-  ResearchStudy({
+  const ResearchStudy({
     super.id,
     super.meta,
     super.implicitRules,
@@ -680,7 +680,7 @@ class ResearchStudyArm extends BackboneElement {
   /// Primary constructor for
   /// [ResearchStudyArm]
 
-  ResearchStudyArm({
+  const ResearchStudyArm({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -861,7 +861,7 @@ class ResearchStudyObjective extends BackboneElement {
   /// Primary constructor for
   /// [ResearchStudyObjective]
 
-  ResearchStudyObjective({
+  const ResearchStudyObjective({
     super.id,
     super.extension_,
     super.modifierExtension,

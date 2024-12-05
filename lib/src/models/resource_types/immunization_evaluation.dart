@@ -10,7 +10,7 @@ class ImmunizationEvaluation extends DomainResource {
   /// Primary constructor for
   /// [ImmunizationEvaluation]
 
-  ImmunizationEvaluation({
+  const ImmunizationEvaluation({
     super.id,
     super.meta,
     super.implicitRules,

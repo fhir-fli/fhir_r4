@@ -8,7 +8,7 @@ class Task extends DomainResource {
   /// Primary constructor for
   /// [Task]
 
-  Task({
+  const Task({
     super.id,
     super.meta,
     super.implicitRules,
@@ -751,7 +751,7 @@ class TaskRestriction extends BackboneElement {
   /// Primary constructor for
   /// [TaskRestriction]
 
-  TaskRestriction({
+  const TaskRestriction({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -937,7 +937,7 @@ class TaskInput extends BackboneElement {
   /// Primary constructor for
   /// [TaskInput]
 
-  TaskInput({
+  const TaskInput({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1859,7 +1859,7 @@ class TaskOutput extends BackboneElement {
   /// Primary constructor for
   /// [TaskOutput]
 
-  TaskOutput({
+  const TaskOutput({
     super.id,
     super.extension_,
     super.modifierExtension,

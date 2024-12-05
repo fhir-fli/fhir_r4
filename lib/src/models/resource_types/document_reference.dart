@@ -13,7 +13,7 @@ class DocumentReference extends DomainResource {
   /// Primary constructor for
   /// [DocumentReference]
 
-  DocumentReference({
+  const DocumentReference({
     super.id,
     super.meta,
     super.implicitRules,
@@ -502,7 +502,7 @@ class DocumentReferenceRelatesTo extends BackboneElement {
   /// Primary constructor for
   /// [DocumentReferenceRelatesTo]
 
-  DocumentReferenceRelatesTo({
+  const DocumentReferenceRelatesTo({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -662,7 +662,7 @@ class DocumentReferenceContent extends BackboneElement {
   /// Primary constructor for
   /// [DocumentReferenceContent]
 
-  DocumentReferenceContent({
+  const DocumentReferenceContent({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -828,7 +828,7 @@ class DocumentReferenceContext extends BackboneElement {
   /// Primary constructor for
   /// [DocumentReferenceContext]
 
-  DocumentReferenceContext({
+  const DocumentReferenceContext({
     super.id,
     super.extension_,
     super.modifierExtension,

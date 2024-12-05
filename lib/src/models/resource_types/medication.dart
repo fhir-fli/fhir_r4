@@ -11,7 +11,7 @@ class Medication extends DomainResource {
   /// Primary constructor for
   /// [Medication]
 
-  Medication({
+  const Medication({
     super.id,
     super.meta,
     super.implicitRules,
@@ -354,7 +354,7 @@ class MedicationIngredient extends BackboneElement {
   /// Primary constructor for
   /// [MedicationIngredient]
 
-  MedicationIngredient({
+  const MedicationIngredient({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -556,7 +556,7 @@ class MedicationBatch extends BackboneElement {
   /// Primary constructor for
   /// [MedicationBatch]
 
-  MedicationBatch({
+  const MedicationBatch({
     super.id,
     super.extension_,
     super.modifierExtension,

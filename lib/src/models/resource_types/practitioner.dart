@@ -9,7 +9,7 @@ class Practitioner extends DomainResource {
   /// Primary constructor for
   /// [Practitioner]
 
-  Practitioner({
+  const Practitioner({
     super.id,
     super.meta,
     super.implicitRules,
@@ -400,7 +400,7 @@ class PractitionerQualification extends BackboneElement {
   /// Primary constructor for
   /// [PractitionerQualification]
 
-  PractitionerQualification({
+  const PractitionerQualification({
     super.id,
     super.extension_,
     super.modifierExtension,

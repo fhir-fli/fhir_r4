@@ -8,7 +8,7 @@ class Period extends DataType {
   /// Primary constructor for
   /// [Period]
 
-  Period({
+  const Period({
     super.id,
     super.extension_,
     this.start,

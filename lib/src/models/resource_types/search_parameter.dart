@@ -9,7 +9,7 @@ class SearchParameter extends CanonicalResource {
   /// Primary constructor for
   /// [SearchParameter]
 
-  SearchParameter({
+  const SearchParameter({
     super.id,
     super.meta,
     super.implicitRules,
@@ -598,7 +598,7 @@ class SearchParameterComponent extends BackboneElement {
   /// Primary constructor for
   /// [SearchParameterComponent]
 
-  SearchParameterComponent({
+  const SearchParameterComponent({
     super.id,
     super.extension_,
     super.modifierExtension,

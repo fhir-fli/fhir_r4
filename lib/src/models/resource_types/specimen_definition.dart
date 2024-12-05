@@ -8,7 +8,7 @@ class SpecimenDefinition extends DomainResource {
   /// Primary constructor for
   /// [SpecimenDefinition]
 
-  SpecimenDefinition({
+  const SpecimenDefinition({
     super.id,
     super.meta,
     super.implicitRules,
@@ -316,7 +316,7 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
   /// Primary constructor for
   /// [SpecimenDefinitionTypeTested]
 
-  SpecimenDefinitionTypeTested({
+  const SpecimenDefinitionTypeTested({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -584,7 +584,7 @@ class SpecimenDefinitionContainer extends BackboneElement {
   /// Primary constructor for
   /// [SpecimenDefinitionContainer]
 
-  SpecimenDefinitionContainer({
+  const SpecimenDefinitionContainer({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -866,7 +866,7 @@ class SpecimenDefinitionAdditive extends BackboneElement {
   /// Primary constructor for
   /// [SpecimenDefinitionAdditive]
 
-  SpecimenDefinitionAdditive({
+  const SpecimenDefinitionAdditive({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1037,7 +1037,7 @@ class SpecimenDefinitionHandling extends BackboneElement {
   /// Primary constructor for
   /// [SpecimenDefinitionHandling]
 
-  SpecimenDefinitionHandling({
+  const SpecimenDefinitionHandling({
     super.id,
     super.extension_,
     super.modifierExtension,

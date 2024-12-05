@@ -13,7 +13,7 @@ class Subscription extends DomainResource {
   /// Primary constructor for
   /// [Subscription]
 
-  Subscription({
+  const Subscription({
     super.id,
     super.meta,
     super.implicitRules,
@@ -314,7 +314,7 @@ class SubscriptionChannel extends BackboneElement {
   /// Primary constructor for
   /// [SubscriptionChannel]
 
-  SubscriptionChannel({
+  const SubscriptionChannel({
     super.id,
     super.extension_,
     super.modifierExtension,

@@ -11,7 +11,7 @@ class ResearchDefinition extends DomainResource {
   /// Primary constructor for
   /// [ResearchDefinition]
 
-  ResearchDefinition({
+  const ResearchDefinition({
     super.id,
     super.meta,
     super.implicitRules,

@@ -9,7 +9,7 @@ class SupplyRequest extends DomainResource {
   /// Primary constructor for
   /// [SupplyRequest]
 
-  SupplyRequest({
+  const SupplyRequest({
     super.id,
     super.meta,
     super.implicitRules,
@@ -516,7 +516,7 @@ class SupplyRequestParameter extends BackboneElement {
   /// Primary constructor for
   /// [SupplyRequestParameter]
 
-  SupplyRequestParameter({
+  const SupplyRequestParameter({
     super.id,
     super.extension_,
     super.modifierExtension,

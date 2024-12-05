@@ -13,7 +13,7 @@ class Signature extends DataType {
   /// Primary constructor for
   /// [Signature]
 
-  Signature({
+  const Signature({
     super.id,
     super.extension_,
     required this.type,

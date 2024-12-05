@@ -9,7 +9,7 @@ class SubstanceDefinition extends DomainResource {
   /// Primary constructor for
   /// [SubstanceDefinition]
 
-  SubstanceDefinition({
+  const SubstanceDefinition({
     super.id,
     super.meta,
     super.implicitRules,
@@ -571,7 +571,7 @@ class SubstanceDefinitionMoiety extends BackboneElement {
   /// Primary constructor for
   /// [SubstanceDefinitionMoiety]
 
-  SubstanceDefinitionMoiety({
+  const SubstanceDefinitionMoiety({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -850,7 +850,7 @@ class SubstanceDefinitionProperty extends BackboneElement {
   /// Primary constructor for
   /// [SubstanceDefinitionProperty]
 
-  SubstanceDefinitionProperty({
+  const SubstanceDefinitionProperty({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1075,7 +1075,7 @@ class SubstanceDefinitionMolecularWeight extends BackboneElement {
   /// Primary constructor for
   /// [SubstanceDefinitionMolecularWeight]
 
-  SubstanceDefinitionMolecularWeight({
+  const SubstanceDefinitionMolecularWeight({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1258,7 +1258,7 @@ class SubstanceDefinitionStructure extends BackboneElement {
   /// Primary constructor for
   /// [SubstanceDefinitionStructure]
 
-  SubstanceDefinitionStructure({
+  const SubstanceDefinitionStructure({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1536,7 +1536,7 @@ class SubstanceDefinitionRepresentation extends BackboneElement {
   /// Primary constructor for
   /// [SubstanceDefinitionRepresentation]
 
-  SubstanceDefinitionRepresentation({
+  const SubstanceDefinitionRepresentation({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1739,7 +1739,7 @@ class SubstanceDefinitionCode extends BackboneElement {
   /// Primary constructor for
   /// [SubstanceDefinitionCode]
 
-  SubstanceDefinitionCode({
+  const SubstanceDefinitionCode({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1961,7 +1961,7 @@ class SubstanceDefinitionName extends BackboneElement {
   /// Primary constructor for
   /// [SubstanceDefinitionName]
 
-  SubstanceDefinitionName({
+  const SubstanceDefinitionName({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2296,7 +2296,7 @@ class SubstanceDefinitionOfficial extends BackboneElement {
   /// Primary constructor for
   /// [SubstanceDefinitionOfficial]
 
-  SubstanceDefinitionOfficial({
+  const SubstanceDefinitionOfficial({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2479,7 +2479,7 @@ class SubstanceDefinitionRelationship extends BackboneElement {
   /// Primary constructor for
   /// [SubstanceDefinitionRelationship]
 
-  SubstanceDefinitionRelationship({
+  const SubstanceDefinitionRelationship({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2789,7 +2789,7 @@ class SubstanceDefinitionSourceMaterial extends BackboneElement {
   /// Primary constructor for
   /// [SubstanceDefinitionSourceMaterial]
 
-  SubstanceDefinitionSourceMaterial({
+  const SubstanceDefinitionSourceMaterial({
     super.id,
     super.extension_,
     super.modifierExtension,

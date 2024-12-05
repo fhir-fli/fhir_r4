@@ -10,7 +10,7 @@ class Account extends DomainResource {
   /// Primary constructor for
   /// [Account]
 
-  Account({
+  const Account({
     super.id,
     super.meta,
     super.implicitRules,
@@ -402,7 +402,7 @@ class AccountCoverage extends BackboneElement {
   /// Primary constructor for
   /// [AccountCoverage]
 
-  AccountCoverage({
+  const AccountCoverage({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -569,7 +569,7 @@ class AccountGuarantor extends BackboneElement {
   /// Primary constructor for
   /// [AccountGuarantor]
 
-  AccountGuarantor({
+  const AccountGuarantor({
     super.id,
     super.extension_,
     super.modifierExtension,

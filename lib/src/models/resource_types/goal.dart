@@ -11,7 +11,7 @@ class Goal extends DomainResource {
   /// Primary constructor for
   /// [Goal]
 
-  Goal({
+  const Goal({
     super.id,
     super.meta,
     super.implicitRules,
@@ -504,7 +504,7 @@ class GoalTarget extends BackboneElement {
   /// Primary constructor for
   /// [GoalTarget]
 
-  GoalTarget({
+  const GoalTarget({
     super.id,
     super.extension_,
     super.modifierExtension,

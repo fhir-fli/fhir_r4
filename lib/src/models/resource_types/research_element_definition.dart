@@ -9,7 +9,7 @@ class ResearchElementDefinition extends DomainResource {
   /// Primary constructor for
   /// [ResearchElementDefinition]
 
-  ResearchElementDefinition({
+  const ResearchElementDefinition({
     super.id,
     super.meta,
     super.implicitRules,
@@ -836,7 +836,7 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
   /// Primary constructor for
   /// [ResearchElementDefinitionCharacteristic]
 
-  ResearchElementDefinitionCharacteristic({
+  const ResearchElementDefinitionCharacteristic({
     super.id,
     super.extension_,
     super.modifierExtension,

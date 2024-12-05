@@ -10,7 +10,7 @@ class RelatedPerson extends DomainResource {
   /// Primary constructor for
   /// [RelatedPerson]
 
-  RelatedPerson({
+  const RelatedPerson({
     super.id,
     super.meta,
     super.implicitRules,
@@ -425,7 +425,7 @@ class RelatedPersonCommunication extends BackboneElement {
   /// Primary constructor for
   /// [RelatedPersonCommunication]
 
-  RelatedPersonCommunication({
+  const RelatedPersonCommunication({
     super.id,
     super.extension_,
     super.modifierExtension,

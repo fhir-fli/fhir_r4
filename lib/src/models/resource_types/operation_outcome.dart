@@ -9,7 +9,7 @@ class OperationOutcome extends DomainResource {
   /// Primary constructor for
   /// [OperationOutcome]
 
-  OperationOutcome({
+  const OperationOutcome({
     super.id,
     super.meta,
     super.implicitRules,
@@ -230,7 +230,7 @@ class OperationOutcomeIssue extends BackboneElement {
   /// Primary constructor for
   /// [OperationOutcomeIssue]
 
-  OperationOutcomeIssue({
+  const OperationOutcomeIssue({
     super.id,
     super.extension_,
     super.modifierExtension,

@@ -12,7 +12,7 @@ class Evidence extends DomainResource {
   /// Primary constructor for
   /// [Evidence]
 
-  Evidence({
+  const Evidence({
     super.id,
     super.meta,
     super.implicitRules,
@@ -688,7 +688,7 @@ class EvidenceVariableDefinition extends BackboneElement {
   /// Primary constructor for
   /// [EvidenceVariableDefinition]
 
-  EvidenceVariableDefinition({
+  const EvidenceVariableDefinition({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -919,7 +919,7 @@ class EvidenceStatistic extends BackboneElement {
   /// Primary constructor for
   /// [EvidenceStatistic]
 
-  EvidenceStatistic({
+  const EvidenceStatistic({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1229,7 +1229,7 @@ class EvidenceSampleSize extends BackboneElement {
   /// Primary constructor for
   /// [EvidenceSampleSize]
 
-  EvidenceSampleSize({
+  const EvidenceSampleSize({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1445,7 +1445,7 @@ class EvidenceAttributeEstimate extends BackboneElement {
   /// Primary constructor for
   /// [EvidenceAttributeEstimate]
 
-  EvidenceAttributeEstimate({
+  const EvidenceAttributeEstimate({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1700,7 +1700,7 @@ class EvidenceModelCharacteristic extends BackboneElement {
   /// Primary constructor for
   /// [EvidenceModelCharacteristic]
 
-  EvidenceModelCharacteristic({
+  const EvidenceModelCharacteristic({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1905,7 +1905,7 @@ class EvidenceModelCharacteristicVariable extends BackboneElement {
   /// Primary constructor for
   /// [EvidenceModelCharacteristicVariable]
 
-  EvidenceModelCharacteristicVariable({
+  const EvidenceModelCharacteristicVariable({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2127,7 +2127,7 @@ class EvidenceCertainty extends BackboneElement {
   /// Primary constructor for
   /// [EvidenceCertainty]
 
-  EvidenceCertainty({
+  const EvidenceCertainty({
     super.id,
     super.extension_,
     super.modifierExtension,

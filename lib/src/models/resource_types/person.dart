@@ -9,7 +9,7 @@ class Person extends DomainResource {
   /// Primary constructor for
   /// [Person]
 
-  Person({
+  const Person({
     super.id,
     super.meta,
     super.implicitRules,
@@ -384,7 +384,7 @@ class PersonLink extends BackboneElement {
   /// Primary constructor for
   /// [PersonLink]
 
-  PersonLink({
+  const PersonLink({
     super.id,
     super.extension_,
     super.modifierExtension,

@@ -8,7 +8,7 @@ class MolecularSequence extends DomainResource {
   /// Primary constructor for
   /// [MolecularSequence]
 
-  MolecularSequence({
+  const MolecularSequence({
     super.id,
     super.meta,
     super.implicitRules,
@@ -494,7 +494,7 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
   /// Primary constructor for
   /// [MolecularSequenceReferenceSeq]
 
-  MolecularSequenceReferenceSeq({
+  const MolecularSequenceReferenceSeq({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -784,7 +784,7 @@ class MolecularSequenceVariant extends BackboneElement {
   /// Primary constructor for
   /// [MolecularSequenceVariant]
 
-  MolecularSequenceVariant({
+  const MolecularSequenceVariant({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1028,7 +1028,7 @@ class MolecularSequenceQuality extends BackboneElement {
   /// Primary constructor for
   /// [MolecularSequenceQuality]
 
-  MolecularSequenceQuality({
+  const MolecularSequenceQuality({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1402,7 +1402,7 @@ class MolecularSequenceRoc extends BackboneElement {
   /// Primary constructor for
   /// [MolecularSequenceRoc]
 
-  MolecularSequenceRoc({
+  const MolecularSequenceRoc({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1685,7 +1685,7 @@ class MolecularSequenceRepository extends BackboneElement {
   /// Primary constructor for
   /// [MolecularSequenceRepository]
 
-  MolecularSequenceRepository({
+  const MolecularSequenceRepository({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1910,7 +1910,7 @@ class MolecularSequenceStructureVariant extends BackboneElement {
   /// Primary constructor for
   /// [MolecularSequenceStructureVariant]
 
-  MolecularSequenceStructureVariant({
+  const MolecularSequenceStructureVariant({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2122,7 +2122,7 @@ class MolecularSequenceOuter extends BackboneElement {
   /// Primary constructor for
   /// [MolecularSequenceOuter]
 
-  MolecularSequenceOuter({
+  const MolecularSequenceOuter({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2289,7 +2289,7 @@ class MolecularSequenceInner extends BackboneElement {
   /// Primary constructor for
   /// [MolecularSequenceInner]
 
-  MolecularSequenceInner({
+  const MolecularSequenceInner({
     super.id,
     super.extension_,
     super.modifierExtension,

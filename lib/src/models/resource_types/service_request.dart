@@ -9,7 +9,7 @@ class ServiceRequest extends DomainResource {
   /// Primary constructor for
   /// [ServiceRequest]
 
-  ServiceRequest({
+  const ServiceRequest({
     super.id,
     super.meta,
     super.implicitRules,

@@ -12,7 +12,7 @@ class PlanDefinition extends CanonicalResource {
   /// Primary constructor for
   /// [PlanDefinition]
 
-  PlanDefinition({
+  const PlanDefinition({
     super.id,
     super.meta,
     super.implicitRules,
@@ -776,7 +776,7 @@ class PlanDefinitionGoal extends BackboneElement {
   /// Primary constructor for
   /// [PlanDefinitionGoal]
 
-  PlanDefinitionGoal({
+  const PlanDefinitionGoal({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1038,7 +1038,7 @@ class PlanDefinitionTarget extends BackboneElement {
   /// Primary constructor for
   /// [PlanDefinitionTarget]
 
-  PlanDefinitionTarget({
+  const PlanDefinitionTarget({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1278,7 +1278,7 @@ class PlanDefinitionAction extends BackboneElement {
   /// Primary constructor for
   /// [PlanDefinitionAction]
 
-  PlanDefinitionAction({
+  const PlanDefinitionAction({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2052,7 +2052,7 @@ class PlanDefinitionCondition extends BackboneElement {
   /// Primary constructor for
   /// [PlanDefinitionCondition]
 
-  PlanDefinitionCondition({
+  const PlanDefinitionCondition({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2217,7 +2217,7 @@ class PlanDefinitionRelatedAction extends BackboneElement {
   /// Primary constructor for
   /// [PlanDefinitionRelatedAction]
 
-  PlanDefinitionRelatedAction({
+  const PlanDefinitionRelatedAction({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2410,7 +2410,7 @@ class PlanDefinitionParticipant extends BackboneElement {
   /// Primary constructor for
   /// [PlanDefinitionParticipant]
 
-  PlanDefinitionParticipant({
+  const PlanDefinitionParticipant({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2578,7 +2578,7 @@ class PlanDefinitionDynamicValue extends BackboneElement {
   /// Primary constructor for
   /// [PlanDefinitionDynamicValue]
 
-  PlanDefinitionDynamicValue({
+  const PlanDefinitionDynamicValue({
     super.id,
     super.extension_,
     super.modifierExtension,

@@ -8,7 +8,7 @@ class FhirList extends DomainResource {
   /// Primary constructor for
   /// [FhirList]
 
-  FhirList({
+  const FhirList({
     super.id,
     super.meta,
     super.implicitRules,
@@ -422,7 +422,7 @@ class ListEntry extends BackboneElement {
   /// Primary constructor for
   /// [ListEntry]
 
-  ListEntry({
+  const ListEntry({
     super.id,
     super.extension_,
     super.modifierExtension,

@@ -10,7 +10,7 @@ class AdministrableProductDefinition extends DomainResource {
   /// Primary constructor for
   /// [AdministrableProductDefinition]
 
-  AdministrableProductDefinition({
+  const AdministrableProductDefinition({
     super.id,
     super.meta,
     super.implicitRules,
@@ -428,7 +428,7 @@ class AdministrableProductDefinitionProperty extends BackboneElement {
   /// Primary constructor for
   /// [AdministrableProductDefinitionProperty]
 
-  AdministrableProductDefinitionProperty({
+  const AdministrableProductDefinitionProperty({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -672,7 +672,7 @@ class AdministrableProductDefinitionRouteOfAdministration
   /// Primary constructor for
   /// [AdministrableProductDefinitionRouteOfAdministration]
 
-  AdministrableProductDefinitionRouteOfAdministration({
+  const AdministrableProductDefinitionRouteOfAdministration({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -925,7 +925,7 @@ class AdministrableProductDefinitionTargetSpecies extends BackboneElement {
   /// Primary constructor for
   /// [AdministrableProductDefinitionTargetSpecies]
 
-  AdministrableProductDefinitionTargetSpecies({
+  const AdministrableProductDefinitionTargetSpecies({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1096,7 +1096,7 @@ class AdministrableProductDefinitionWithdrawalPeriod extends BackboneElement {
   /// Primary constructor for
   /// [AdministrableProductDefinitionWithdrawalPeriod]
 
-  AdministrableProductDefinitionWithdrawalPeriod({
+  const AdministrableProductDefinitionWithdrawalPeriod({
     super.id,
     super.extension_,
     super.modifierExtension,

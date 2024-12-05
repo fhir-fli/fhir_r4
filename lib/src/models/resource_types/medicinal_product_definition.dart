@@ -14,7 +14,7 @@ class MedicinalProductDefinition extends DomainResource {
   /// Primary constructor for
   /// [MedicinalProductDefinition]
 
-  MedicinalProductDefinition({
+  const MedicinalProductDefinition({
     super.id,
     super.meta,
     super.implicitRules,
@@ -787,7 +787,7 @@ class MedicinalProductDefinitionContact extends BackboneElement {
   /// Primary constructor for
   /// [MedicinalProductDefinitionContact]
 
-  MedicinalProductDefinitionContact({
+  const MedicinalProductDefinitionContact({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -951,7 +951,7 @@ class MedicinalProductDefinitionName extends BackboneElement {
   /// Primary constructor for
   /// [MedicinalProductDefinitionName]
 
-  MedicinalProductDefinitionName({
+  const MedicinalProductDefinitionName({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1156,7 +1156,7 @@ class MedicinalProductDefinitionNamePart extends BackboneElement {
   /// Primary constructor for
   /// [MedicinalProductDefinitionNamePart]
 
-  MedicinalProductDefinitionNamePart({
+  const MedicinalProductDefinitionNamePart({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1316,7 +1316,7 @@ class MedicinalProductDefinitionCountryLanguage extends BackboneElement {
   /// Primary constructor for
   /// [MedicinalProductDefinitionCountryLanguage]
 
-  MedicinalProductDefinitionCountryLanguage({
+  const MedicinalProductDefinitionCountryLanguage({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1494,7 +1494,7 @@ class MedicinalProductDefinitionCrossReference extends BackboneElement {
   /// Primary constructor for
   /// [MedicinalProductDefinitionCrossReference]
 
-  MedicinalProductDefinitionCrossReference({
+  const MedicinalProductDefinitionCrossReference({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1662,7 +1662,7 @@ class MedicinalProductDefinitionOperation extends BackboneElement {
   /// Primary constructor for
   /// [MedicinalProductDefinitionOperation]
 
-  MedicinalProductDefinitionOperation({
+  const MedicinalProductDefinitionOperation({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1872,7 +1872,7 @@ class MedicinalProductDefinitionCharacteristic extends BackboneElement {
   /// Primary constructor for
   /// [MedicinalProductDefinitionCharacteristic]
 
-  MedicinalProductDefinitionCharacteristic({
+  const MedicinalProductDefinitionCharacteristic({
     super.id,
     super.extension_,
     super.modifierExtension,

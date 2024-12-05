@@ -9,7 +9,7 @@ class Invoice extends DomainResource {
   /// Primary constructor for
   /// [Invoice]
 
-  Invoice({
+  const Invoice({
     super.id,
     super.meta,
     super.implicitRules,
@@ -489,7 +489,7 @@ class InvoiceParticipant extends BackboneElement {
   /// Primary constructor for
   /// [InvoiceParticipant]
 
-  InvoiceParticipant({
+  const InvoiceParticipant({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -657,7 +657,7 @@ class InvoiceLineItem extends BackboneElement {
   /// Primary constructor for
   /// [InvoiceLineItem]
 
-  InvoiceLineItem({
+  const InvoiceLineItem({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -875,7 +875,7 @@ class InvoicePriceComponent extends BackboneElement {
   /// Primary constructor for
   /// [InvoicePriceComponent]
 
-  InvoicePriceComponent({
+  const InvoicePriceComponent({
     super.id,
     super.extension_,
     super.modifierExtension,

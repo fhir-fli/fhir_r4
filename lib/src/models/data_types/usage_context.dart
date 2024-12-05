@@ -11,7 +11,7 @@ class UsageContext extends DataType {
   /// Primary constructor for
   /// [UsageContext]
 
-  UsageContext({
+  const UsageContext({
     super.id,
     super.extension_,
     required this.code,

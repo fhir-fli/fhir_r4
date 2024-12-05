@@ -8,7 +8,7 @@ class Ingredient extends DomainResource {
   /// Primary constructor for
   /// [Ingredient]
 
-  Ingredient({
+  const Ingredient({
     super.id,
     super.meta,
     super.implicitRules,
@@ -353,7 +353,7 @@ class IngredientManufacturer extends BackboneElement {
   /// Primary constructor for
   /// [IngredientManufacturer]
 
-  IngredientManufacturer({
+  const IngredientManufacturer({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -517,7 +517,7 @@ class IngredientSubstance extends BackboneElement {
   /// Primary constructor for
   /// [IngredientSubstance]
 
-  IngredientSubstance({
+  const IngredientSubstance({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -692,7 +692,7 @@ class IngredientStrength extends BackboneElement {
   /// Primary constructor for
   /// [IngredientStrength]
 
-  IngredientStrength({
+  const IngredientStrength({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1008,7 +1008,7 @@ class IngredientReferenceStrength extends BackboneElement {
   /// Primary constructor for
   /// [IngredientReferenceStrength]
 
-  IngredientReferenceStrength({
+  const IngredientReferenceStrength({
     super.id,
     super.extension_,
     super.modifierExtension,

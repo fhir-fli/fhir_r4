@@ -9,7 +9,7 @@ class VerificationResult extends DomainResource {
   /// Primary constructor for
   /// [VerificationResult]
 
-  VerificationResult({
+  const VerificationResult({
     super.id,
     super.meta,
     super.implicitRules,
@@ -450,7 +450,7 @@ class VerificationResultPrimarySource extends BackboneElement {
   /// Primary constructor for
   /// [VerificationResultPrimarySource]
 
-  VerificationResultPrimarySource({
+  const VerificationResultPrimarySource({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -715,7 +715,7 @@ class VerificationResultAttestation extends BackboneElement {
   /// Primary constructor for
   /// [VerificationResultAttestation]
 
-  VerificationResultAttestation({
+  const VerificationResultAttestation({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -982,7 +982,7 @@ class VerificationResultValidator extends BackboneElement {
   /// Primary constructor for
   /// [VerificationResultValidator]
 
-  VerificationResultValidator({
+  const VerificationResultValidator({
     super.id,
     super.extension_,
     super.modifierExtension,

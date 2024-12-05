@@ -11,7 +11,7 @@ class Count extends Quantity {
   /// Primary constructor for
   /// [Count]
 
-  Count({
+  const Count({
     super.id,
     super.extension_,
     super.value,

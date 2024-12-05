@@ -8,7 +8,7 @@ class ContactDetail extends DataType {
   /// Primary constructor for
   /// [ContactDetail]
 
-  ContactDetail({
+  const ContactDetail({
     super.id,
     super.extension_,
     this.name,

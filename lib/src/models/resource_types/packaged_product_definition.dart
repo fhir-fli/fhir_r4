@@ -8,7 +8,7 @@ class PackagedProductDefinition extends DomainResource {
   /// Primary constructor for
   /// [PackagedProductDefinition]
 
-  PackagedProductDefinition({
+  const PackagedProductDefinition({
     super.id,
     super.meta,
     super.implicitRules,
@@ -484,7 +484,7 @@ class PackagedProductDefinitionLegalStatusOfSupply extends BackboneElement {
   /// Primary constructor for
   /// [PackagedProductDefinitionLegalStatusOfSupply]
 
-  PackagedProductDefinitionLegalStatusOfSupply({
+  const PackagedProductDefinitionLegalStatusOfSupply({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -656,7 +656,7 @@ class PackagedProductDefinitionPackage extends BackboneElement {
   /// Primary constructor for
   /// [PackagedProductDefinitionPackage]
 
-  PackagedProductDefinitionPackage({
+  const PackagedProductDefinitionPackage({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -990,7 +990,7 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
   /// Primary constructor for
   /// [PackagedProductDefinitionShelfLifeStorage]
 
-  PackagedProductDefinitionShelfLifeStorage({
+  const PackagedProductDefinitionShelfLifeStorage({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1211,7 +1211,7 @@ class PackagedProductDefinitionProperty extends BackboneElement {
   /// Primary constructor for
   /// [PackagedProductDefinitionProperty]
 
-  PackagedProductDefinitionProperty({
+  const PackagedProductDefinitionProperty({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1435,7 +1435,7 @@ class PackagedProductDefinitionContainedItem extends BackboneElement {
   /// Primary constructor for
   /// [PackagedProductDefinitionContainedItem]
 
-  PackagedProductDefinitionContainedItem({
+  const PackagedProductDefinitionContainedItem({
     super.id,
     super.extension_,
     super.modifierExtension,

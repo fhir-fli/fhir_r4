@@ -12,7 +12,7 @@ class MessageHeader extends DomainResource {
   /// Primary constructor for
   /// [MessageHeader]
 
-  MessageHeader({
+  const MessageHeader({
     super.id,
     super.meta,
     super.implicitRules,
@@ -421,7 +421,7 @@ class MessageHeaderDestination extends BackboneElement {
   /// Primary constructor for
   /// [MessageHeaderDestination]
 
-  MessageHeaderDestination({
+  const MessageHeaderDestination({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -617,7 +617,7 @@ class MessageHeaderSource extends BackboneElement {
   /// Primary constructor for
   /// [MessageHeaderSource]
 
-  MessageHeaderSource({
+  const MessageHeaderSource({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -825,7 +825,7 @@ class MessageHeaderResponse extends BackboneElement {
   /// Primary constructor for
   /// [MessageHeaderResponse]
 
-  MessageHeaderResponse({
+  const MessageHeaderResponse({
     super.id,
     super.extension_,
     super.modifierExtension,

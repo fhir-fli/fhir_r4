@@ -10,7 +10,7 @@ class Claim extends DomainResource {
   /// Primary constructor for
   /// [Claim]
 
-  Claim({
+  const Claim({
     super.id,
     super.meta,
     super.implicitRules,
@@ -666,7 +666,7 @@ class ClaimRelated extends BackboneElement {
   /// Primary constructor for
   /// [ClaimRelated]
 
-  ClaimRelated({
+  const ClaimRelated({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -851,7 +851,7 @@ class ClaimPayee extends BackboneElement {
   /// Primary constructor for
   /// [ClaimPayee]
 
-  ClaimPayee({
+  const ClaimPayee({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1015,7 +1015,7 @@ class ClaimCareTeam extends BackboneElement {
   /// Primary constructor for
   /// [ClaimCareTeam]
 
-  ClaimCareTeam({
+  const ClaimCareTeam({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1224,7 +1224,7 @@ class ClaimSupportingInfo extends BackboneElement {
   /// Primary constructor for
   /// [ClaimSupportingInfo]
 
-  ClaimSupportingInfo({
+  const ClaimSupportingInfo({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1536,7 +1536,7 @@ class ClaimDiagnosis extends BackboneElement {
   /// Primary constructor for
   /// [ClaimDiagnosis]
 
-  ClaimDiagnosis({
+  const ClaimDiagnosis({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1774,7 +1774,7 @@ class ClaimProcedure extends BackboneElement {
   /// Primary constructor for
   /// [ClaimProcedure]
 
-  ClaimProcedure({
+  const ClaimProcedure({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2011,7 +2011,7 @@ class ClaimInsurance extends BackboneElement {
   /// Primary constructor for
   /// [ClaimInsurance]
 
-  ClaimInsurance({
+  const ClaimInsurance({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2260,7 +2260,7 @@ class ClaimAccident extends BackboneElement {
   /// Primary constructor for
   /// [ClaimAccident]
 
-  ClaimAccident({
+  const ClaimAccident({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2459,7 +2459,7 @@ class ClaimItem extends BackboneElement {
   /// Primary constructor for
   /// [ClaimItem]
 
-  ClaimItem({
+  const ClaimItem({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -3029,7 +3029,7 @@ class ClaimDetail extends BackboneElement {
   /// Primary constructor for
   /// [ClaimDetail]
 
-  ClaimDetail({
+  const ClaimDetail({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -3375,7 +3375,7 @@ class ClaimSubDetail extends BackboneElement {
   /// Primary constructor for
   /// [ClaimSubDetail]
 
-  ClaimSubDetail({
+  const ClaimSubDetail({
     super.id,
     super.extension_,
     super.modifierExtension,

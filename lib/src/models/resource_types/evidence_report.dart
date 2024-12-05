@@ -11,7 +11,7 @@ class EvidenceReport extends DomainResource {
   /// Primary constructor for
   /// [EvidenceReport]
 
-  EvidenceReport({
+  const EvidenceReport({
     super.id,
     super.meta,
     super.implicitRules,
@@ -575,7 +575,7 @@ class EvidenceReportSubject extends BackboneElement {
   /// Primary constructor for
   /// [EvidenceReportSubject]
 
-  EvidenceReportSubject({
+  const EvidenceReportSubject({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -750,7 +750,7 @@ class EvidenceReportCharacteristic extends BackboneElement {
   /// Primary constructor for
   /// [EvidenceReportCharacteristic]
 
-  EvidenceReportCharacteristic({
+  const EvidenceReportCharacteristic({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1007,7 +1007,7 @@ class EvidenceReportRelatesTo extends BackboneElement {
   /// Primary constructor for
   /// [EvidenceReportRelatesTo]
 
-  EvidenceReportRelatesTo({
+  const EvidenceReportRelatesTo({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1187,7 +1187,7 @@ class EvidenceReportSection extends BackboneElement {
   /// Primary constructor for
   /// [EvidenceReportSection]
 
-  EvidenceReportSection({
+  const EvidenceReportSection({
     super.id,
     super.extension_,
     super.modifierExtension,

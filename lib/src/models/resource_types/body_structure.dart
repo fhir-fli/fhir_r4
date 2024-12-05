@@ -10,7 +10,7 @@ class BodyStructure extends DomainResource {
   /// Primary constructor for
   /// [BodyStructure]
 
-  BodyStructure({
+  const BodyStructure({
     super.id,
     super.meta,
     super.implicitRules,

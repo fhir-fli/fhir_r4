@@ -11,7 +11,7 @@ class Organization extends DomainResource {
   /// Primary constructor for
   /// [Organization]
 
-  Organization({
+  const Organization({
     super.id,
     super.meta,
     super.implicitRules,
@@ -397,7 +397,7 @@ class OrganizationContact extends BackboneElement {
   /// Primary constructor for
   /// [OrganizationContact]
 
-  OrganizationContact({
+  const OrganizationContact({
     super.id,
     super.extension_,
     super.modifierExtension,

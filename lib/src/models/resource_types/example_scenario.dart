@@ -8,7 +8,7 @@ class ExampleScenario extends DomainResource {
   /// Primary constructor for
   /// [ExampleScenario]
 
-  ExampleScenario({
+  const ExampleScenario({
     super.id,
     super.meta,
     super.implicitRules,
@@ -526,7 +526,7 @@ class ExampleScenarioActor extends BackboneElement {
   /// Primary constructor for
   /// [ExampleScenarioActor]
 
-  ExampleScenarioActor({
+  const ExampleScenarioActor({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -713,7 +713,7 @@ class ExampleScenarioInstance extends BackboneElement {
   /// Primary constructor for
   /// [ExampleScenarioInstance]
 
-  ExampleScenarioInstance({
+  const ExampleScenarioInstance({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -942,7 +942,7 @@ class ExampleScenarioVersion extends BackboneElement {
   /// Primary constructor for
   /// [ExampleScenarioVersion]
 
-  ExampleScenarioVersion({
+  const ExampleScenarioVersion({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1102,7 +1102,7 @@ class ExampleScenarioContainedInstance extends BackboneElement {
   /// Primary constructor for
   /// [ExampleScenarioContainedInstance]
 
-  ExampleScenarioContainedInstance({
+  const ExampleScenarioContainedInstance({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1263,7 +1263,7 @@ class ExampleScenarioProcess extends BackboneElement {
   /// Primary constructor for
   /// [ExampleScenarioProcess]
 
-  ExampleScenarioProcess({
+  const ExampleScenarioProcess({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1474,7 +1474,7 @@ class ExampleScenarioStep extends BackboneElement {
   /// Primary constructor for
   /// [ExampleScenarioStep]
 
-  ExampleScenarioStep({
+  const ExampleScenarioStep({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1680,7 +1680,7 @@ class ExampleScenarioOperation extends BackboneElement {
   /// Primary constructor for
   /// [ExampleScenarioOperation]
 
-  ExampleScenarioOperation({
+  const ExampleScenarioOperation({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -1960,7 +1960,7 @@ class ExampleScenarioAlternative extends BackboneElement {
   /// Primary constructor for
   /// [ExampleScenarioAlternative]
 
-  ExampleScenarioAlternative({
+  const ExampleScenarioAlternative({
     super.id,
     super.extension_,
     super.modifierExtension,

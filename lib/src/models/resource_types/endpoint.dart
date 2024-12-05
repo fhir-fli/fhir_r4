@@ -11,7 +11,7 @@ class FhirEndpoint extends DomainResource {
   /// Primary constructor for
   /// [FhirEndpoint]
 
-  FhirEndpoint({
+  const FhirEndpoint({
     super.id,
     super.meta,
     super.implicitRules,
