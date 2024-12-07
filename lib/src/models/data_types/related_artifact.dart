@@ -19,6 +19,7 @@ class RelatedArtifact extends DataType {
     this.url,
     this.document,
     this.resource,
+    super.disallowExtensions,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,

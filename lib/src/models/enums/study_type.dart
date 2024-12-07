@@ -81,18 +81,6 @@ class StudyType extends PrimitiveType<String> {
         element?.clone() as Element?,
       );
 
-  /// Sets a property on the associated [Element], returning a new instance.
-  @override
-  StudyType setElement(
-    String name,
-    dynamic elementValue,
-  ) {
-    return StudyType._(
-      value,
-      element?.setProperty(name, elementValue),
-    );
-  }
-
   /// Returns the enum value with an element attached
   StudyType withElement(Element? newElement) {
     return StudyType._(value, newElement);
@@ -114,11 +102,13 @@ class StudyType extends PrimitiveType<String> {
   StudyType copyWith({
     String? newValue,
     Element? element,
+    FhirString? id,
+    List<FhirExtension>? extension_,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
-    Map<String, List<void Function()>>? propertyChanged,
     List<dynamic>? annotations,
+    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');

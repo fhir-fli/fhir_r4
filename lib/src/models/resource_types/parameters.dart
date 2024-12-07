@@ -225,6 +225,7 @@ class ParametersParameter extends BackboneElement {
     this.valueMeta,
     this.resource,
     this.part_,
+    super.disallowExtensions,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,

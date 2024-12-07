@@ -65,18 +65,6 @@ class StructureMapTargetListMode extends PrimitiveType<String> {
         element?.clone() as Element?,
       );
 
-  /// Sets a property on the associated [Element], returning a new instance.
-  @override
-  StructureMapTargetListMode setElement(
-    String name,
-    dynamic elementValue,
-  ) {
-    return StructureMapTargetListMode._(
-      value,
-      element?.setProperty(name, elementValue),
-    );
-  }
-
   /// Returns the enum value with an element attached
   StructureMapTargetListMode withElement(Element? newElement) {
     return StructureMapTargetListMode._(value, newElement);
@@ -98,11 +86,13 @@ class StructureMapTargetListMode extends PrimitiveType<String> {
   StructureMapTargetListMode copyWith({
     String? newValue,
     Element? element,
+    FhirString? id,
+    List<FhirExtension>? extension_,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
-    Map<String, List<void Function()>>? propertyChanged,
     List<dynamic>? annotations,
+    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');

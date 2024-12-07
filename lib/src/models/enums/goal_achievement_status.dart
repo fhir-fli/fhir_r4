@@ -93,18 +93,6 @@ class GoalAchievementStatus extends PrimitiveType<String> {
         element?.clone() as Element?,
       );
 
-  /// Sets a property on the associated [Element], returning a new instance.
-  @override
-  GoalAchievementStatus setElement(
-    String name,
-    dynamic elementValue,
-  ) {
-    return GoalAchievementStatus._(
-      value,
-      element?.setProperty(name, elementValue),
-    );
-  }
-
   /// Returns the enum value with an element attached
   GoalAchievementStatus withElement(Element? newElement) {
     return GoalAchievementStatus._(value, newElement);
@@ -126,11 +114,13 @@ class GoalAchievementStatus extends PrimitiveType<String> {
   GoalAchievementStatus copyWith({
     String? newValue,
     Element? element,
+    FhirString? id,
+    List<FhirExtension>? extension_,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
-    Map<String, List<void Function()>>? propertyChanged,
     List<dynamic>? annotations,
+    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');

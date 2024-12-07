@@ -520,18 +520,6 @@ class StatisticModelCode extends PrimitiveType<String> {
         element?.clone() as Element?,
       );
 
-  /// Sets a property on the associated [Element], returning a new instance.
-  @override
-  StatisticModelCode setElement(
-    String name,
-    dynamic elementValue,
-  ) {
-    return StatisticModelCode._(
-      value,
-      element?.setProperty(name, elementValue),
-    );
-  }
-
   /// Returns the enum value with an element attached
   StatisticModelCode withElement(Element? newElement) {
     return StatisticModelCode._(value, newElement);
@@ -553,11 +541,13 @@ class StatisticModelCode extends PrimitiveType<String> {
   StatisticModelCode copyWith({
     String? newValue,
     Element? element,
+    FhirString? id,
+    List<FhirExtension>? extension_,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
-    Map<String, List<void Function()>>? propertyChanged,
     List<dynamic>? annotations,
+    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');

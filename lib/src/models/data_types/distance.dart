@@ -16,6 +16,7 @@ class Distance extends Quantity {
     super.unit,
     super.system,
     super.code,
+    super.disallowExtensions,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,

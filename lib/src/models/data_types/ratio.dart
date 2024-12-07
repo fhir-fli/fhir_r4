@@ -14,6 +14,7 @@ class Ratio extends DataType {
     super.extension_,
     this.numerator,
     this.denominator,
+    super.disallowExtensions,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,

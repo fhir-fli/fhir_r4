@@ -14,6 +14,7 @@ class CodeableConcept extends DataType {
     super.extension_,
     this.coding,
     this.text,
+    super.disallowExtensions,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,

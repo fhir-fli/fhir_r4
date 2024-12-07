@@ -45,18 +45,6 @@ class MaritalStatusCodes extends PrimitiveType<String> {
         element?.clone() as Element?,
       );
 
-  /// Sets a property on the associated [Element], returning a new instance.
-  @override
-  MaritalStatusCodes setElement(
-    String name,
-    dynamic elementValue,
-  ) {
-    return MaritalStatusCodes._(
-      value,
-      element?.setProperty(name, elementValue),
-    );
-  }
-
   /// Returns the enum value with an element attached
   MaritalStatusCodes withElement(Element? newElement) {
     return MaritalStatusCodes._(value, newElement);
@@ -78,11 +66,13 @@ class MaritalStatusCodes extends PrimitiveType<String> {
   MaritalStatusCodes copyWith({
     String? newValue,
     Element? element,
+    FhirString? id,
+    List<FhirExtension>? extension_,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
-    Map<String, List<void Function()>>? propertyChanged,
     List<dynamic>? annotations,
+    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');

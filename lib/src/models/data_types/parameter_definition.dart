@@ -21,6 +21,7 @@ class ParameterDefinition extends DataType {
     this.documentation,
     required this.type,
     this.profile,
+    super.disallowExtensions,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,

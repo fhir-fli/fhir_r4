@@ -118,13 +118,6 @@ void main() {
       expect(originalInteger.value, equals(validInteger));
     });
 
-    test('FhirPositiveInt setElement', () {
-      final originalInteger = FhirPositiveInt(validInteger);
-      final updatedInteger =
-          originalInteger.setElement('elementName', 'newElementValue');
-      expect(updatedInteger.value, equals(validInteger));
-    });
-
     test('FhirPositiveInt with Element', () {
       final fhirInteger = FhirPositiveInt(validInteger, element);
       expect(fhirInteger.element?.id, equals('testElement'.toFhirString));

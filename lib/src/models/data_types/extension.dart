@@ -63,6 +63,7 @@ class FhirExtension extends DataType {
     this.valueTriggerDefinition,
     this.valueUsageContext,
     this.valueDosage,
+    super.disallowExtensions,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,

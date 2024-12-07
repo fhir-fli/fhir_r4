@@ -19,6 +19,7 @@ class SampledData extends DataType {
     this.upperLimit,
     required this.dimensions,
     this.data,
+    super.disallowExtensions,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,

@@ -345,6 +345,7 @@ class ManufacturedItemDefinitionProperty extends BackboneElement {
     this.valueDate,
     this.valueBoolean,
     this.valueAttachment,
+    super.disallowExtensions,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,

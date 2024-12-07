@@ -13,6 +13,7 @@ class Range extends DataType {
     super.extension_,
     this.low,
     this.high,
+    super.disallowExtensions,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,

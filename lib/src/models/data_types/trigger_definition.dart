@@ -20,6 +20,7 @@ class TriggerDefinition extends DataType {
     this.timingDateTime,
     this.data,
     this.condition,
+    super.disallowExtensions,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,

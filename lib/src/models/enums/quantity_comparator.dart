@@ -63,18 +63,6 @@ class QuantityComparator extends PrimitiveType<String> {
         element?.clone() as Element?,
       );
 
-  /// Sets a property on the associated [Element], returning a new instance.
-  @override
-  QuantityComparator setElement(
-    String name,
-    dynamic elementValue,
-  ) {
-    return QuantityComparator._(
-      value,
-      element?.setProperty(name, elementValue),
-    );
-  }
-
   /// Returns the enum value with an element attached
   QuantityComparator withElement(Element? newElement) {
     return QuantityComparator._(value, newElement);
@@ -96,11 +84,13 @@ class QuantityComparator extends PrimitiveType<String> {
   QuantityComparator copyWith({
     String? newValue,
     Element? element,
+    FhirString? id,
+    List<FhirExtension>? extension_,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
-    Map<String, List<void Function()>>? propertyChanged,
     List<dynamic>? annotations,
+    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');

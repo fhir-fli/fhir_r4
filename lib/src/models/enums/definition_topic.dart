@@ -57,18 +57,6 @@ class DefinitionTopic extends PrimitiveType<String> {
         element?.clone() as Element?,
       );
 
-  /// Sets a property on the associated [Element], returning a new instance.
-  @override
-  DefinitionTopic setElement(
-    String name,
-    dynamic elementValue,
-  ) {
-    return DefinitionTopic._(
-      value,
-      element?.setProperty(name, elementValue),
-    );
-  }
-
   /// Returns the enum value with an element attached
   DefinitionTopic withElement(Element? newElement) {
     return DefinitionTopic._(value, newElement);
@@ -90,11 +78,13 @@ class DefinitionTopic extends PrimitiveType<String> {
   DefinitionTopic copyWith({
     String? newValue,
     Element? element,
+    FhirString? id,
+    List<FhirExtension>? extension_,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
-    Map<String, List<void Function()>>? propertyChanged,
     List<dynamic>? annotations,
+    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');

@@ -271,6 +271,7 @@ class LinkageItem extends BackboneElement {
     super.modifierExtension,
     required this.type,
     required this.resource,
+    super.disallowExtensions,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,

@@ -3615,18 +3615,6 @@ class ServiceType extends PrimitiveType<String> {
         element?.clone() as Element?,
       );
 
-  /// Sets a property on the associated [Element], returning a new instance.
-  @override
-  ServiceType setElement(
-    String name,
-    dynamic elementValue,
-  ) {
-    return ServiceType._(
-      value,
-      element?.setProperty(name, elementValue),
-    );
-  }
-
   /// Returns the enum value with an element attached
   ServiceType withElement(Element? newElement) {
     return ServiceType._(value, newElement);
@@ -3648,11 +3636,13 @@ class ServiceType extends PrimitiveType<String> {
   ServiceType copyWith({
     String? newValue,
     Element? element,
+    FhirString? id,
+    List<FhirExtension>? extension_,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
-    Map<String, List<void Function()>>? propertyChanged,
     List<dynamic>? annotations,
+    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');

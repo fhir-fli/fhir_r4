@@ -75,18 +75,6 @@ class DefinitionUseCodes extends PrimitiveType<String> {
         element?.clone() as Element?,
       );
 
-  /// Sets a property on the associated [Element], returning a new instance.
-  @override
-  DefinitionUseCodes setElement(
-    String name,
-    dynamic elementValue,
-  ) {
-    return DefinitionUseCodes._(
-      value,
-      element?.setProperty(name, elementValue),
-    );
-  }
-
   /// Returns the enum value with an element attached
   DefinitionUseCodes withElement(Element? newElement) {
     return DefinitionUseCodes._(value, newElement);
@@ -108,11 +96,13 @@ class DefinitionUseCodes extends PrimitiveType<String> {
   DefinitionUseCodes copyWith({
     String? newValue,
     Element? element,
+    FhirString? id,
+    List<FhirExtension>? extension_,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
-    Map<String, List<void Function()>>? propertyChanged,
     List<dynamic>? annotations,
+    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');

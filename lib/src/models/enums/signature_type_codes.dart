@@ -165,18 +165,6 @@ class SignatureTypeCodes extends PrimitiveType<String> {
         element?.clone() as Element?,
       );
 
-  /// Sets a property on the associated [Element], returning a new instance.
-  @override
-  SignatureTypeCodes setElement(
-    String name,
-    dynamic elementValue,
-  ) {
-    return SignatureTypeCodes._(
-      value,
-      element?.setProperty(name, elementValue),
-    );
-  }
-
   /// Returns the enum value with an element attached
   SignatureTypeCodes withElement(Element? newElement) {
     return SignatureTypeCodes._(value, newElement);
@@ -198,11 +186,13 @@ class SignatureTypeCodes extends PrimitiveType<String> {
   SignatureTypeCodes copyWith({
     String? newValue,
     Element? element,
+    FhirString? id,
+    List<FhirExtension>? extension_,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
-    Map<String, List<void Function()>>? propertyChanged,
     List<dynamic>? annotations,
+    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');

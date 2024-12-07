@@ -525,6 +525,7 @@ class SupplyRequestParameter extends BackboneElement {
     this.valueQuantity,
     this.valueRange,
     this.valueBoolean,
+    super.disallowExtensions,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,

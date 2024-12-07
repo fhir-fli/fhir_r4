@@ -136,18 +136,6 @@ class ProductNamePartType extends PrimitiveType<String> {
         element?.clone() as Element?,
       );
 
-  /// Sets a property on the associated [Element], returning a new instance.
-  @override
-  ProductNamePartType setElement(
-    String name,
-    dynamic elementValue,
-  ) {
-    return ProductNamePartType._(
-      value,
-      element?.setProperty(name, elementValue),
-    );
-  }
-
   /// Returns the enum value with an element attached
   ProductNamePartType withElement(Element? newElement) {
     return ProductNamePartType._(value, newElement);
@@ -169,11 +157,13 @@ class ProductNamePartType extends PrimitiveType<String> {
   ProductNamePartType copyWith({
     String? newValue,
     Element? element,
+    FhirString? id,
+    List<FhirExtension>? extension_,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
-    Map<String, List<void Function()>>? propertyChanged,
     List<dynamic>? annotations,
+    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');

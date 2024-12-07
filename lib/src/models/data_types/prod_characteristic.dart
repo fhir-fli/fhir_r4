@@ -25,6 +25,7 @@ class ProdCharacteristic extends BackboneType {
     this.imprint,
     this.image,
     this.scoring,
+    super.disallowExtensions,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,

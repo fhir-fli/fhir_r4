@@ -431,6 +431,7 @@ class RelatedPersonCommunication extends BackboneElement {
     super.modifierExtension,
     required this.language,
     this.preferred,
+    super.disallowExtensions,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,

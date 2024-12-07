@@ -604,6 +604,7 @@ class SearchParameterComponent extends BackboneElement {
     super.modifierExtension,
     required this.definition,
     required this.expression,
+    super.disallowExtensions,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,

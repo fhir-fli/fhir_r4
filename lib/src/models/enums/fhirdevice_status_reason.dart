@@ -89,18 +89,6 @@ class FHIRDeviceStatusReason extends PrimitiveType<String> {
         element?.clone() as Element?,
       );
 
-  /// Sets a property on the associated [Element], returning a new instance.
-  @override
-  FHIRDeviceStatusReason setElement(
-    String name,
-    dynamic elementValue,
-  ) {
-    return FHIRDeviceStatusReason._(
-      value,
-      element?.setProperty(name, elementValue),
-    );
-  }
-
   /// Returns the enum value with an element attached
   FHIRDeviceStatusReason withElement(Element? newElement) {
     return FHIRDeviceStatusReason._(value, newElement);
@@ -122,11 +110,13 @@ class FHIRDeviceStatusReason extends PrimitiveType<String> {
   FHIRDeviceStatusReason copyWith({
     String? newValue,
     Element? element,
+    FhirString? id,
+    List<FhirExtension>? extension_,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
-    Map<String, List<void Function()>>? propertyChanged,
     List<dynamic>? annotations,
+    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');

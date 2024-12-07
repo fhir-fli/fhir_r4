@@ -240,6 +240,7 @@ class OperationOutcomeIssue extends BackboneElement {
     this.diagnostics,
     this.location,
     this.expression,
+    super.disallowExtensions,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,

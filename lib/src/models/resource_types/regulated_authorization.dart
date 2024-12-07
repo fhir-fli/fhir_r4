@@ -479,6 +479,7 @@ class RegulatedAuthorizationCase extends BackboneElement {
     this.datePeriod,
     this.dateDateTime,
     this.application,
+    super.disallowExtensions,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,

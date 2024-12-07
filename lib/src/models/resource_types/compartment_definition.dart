@@ -449,6 +449,7 @@ class CompartmentDefinitionResource extends BackboneElement {
     required this.code,
     this.param,
     this.documentation,
+    super.disallowExtensions,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,

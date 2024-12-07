@@ -575,6 +575,7 @@ class AllergyIntoleranceReaction extends BackboneElement {
     this.severity,
     this.exposureRoute,
     this.note,
+    super.disallowExtensions,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,

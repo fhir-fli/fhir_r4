@@ -527,6 +527,7 @@ class RiskAssessmentPrediction extends BackboneElement {
     this.whenPeriod,
     this.whenRange,
     this.rationale,
+    super.disallowExtensions,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,

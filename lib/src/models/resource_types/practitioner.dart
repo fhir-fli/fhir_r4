@@ -408,6 +408,7 @@ class PractitionerQualification extends BackboneElement {
     required this.code,
     this.period,
     this.issuer,
+    super.disallowExtensions,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,

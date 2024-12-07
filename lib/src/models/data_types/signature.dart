@@ -23,6 +23,7 @@ class Signature extends DataType {
     this.targetFormat,
     this.sigFormat,
     this.data,
+    super.disallowExtensions,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,

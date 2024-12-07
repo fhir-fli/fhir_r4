@@ -17,6 +17,7 @@ class ContactPoint extends DataType {
     this.use,
     this.rank,
     this.period,
+    super.disallowExtensions,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,

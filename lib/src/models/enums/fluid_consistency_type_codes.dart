@@ -68,18 +68,6 @@ class FluidConsistencyTypeCodes extends PrimitiveType<String> {
         element?.clone() as Element?,
       );
 
-  /// Sets a property on the associated [Element], returning a new instance.
-  @override
-  FluidConsistencyTypeCodes setElement(
-    String name,
-    dynamic elementValue,
-  ) {
-    return FluidConsistencyTypeCodes._(
-      value,
-      element?.setProperty(name, elementValue),
-    );
-  }
-
   /// Returns the enum value with an element attached
   FluidConsistencyTypeCodes withElement(Element? newElement) {
     return FluidConsistencyTypeCodes._(value, newElement);
@@ -101,11 +89,13 @@ class FluidConsistencyTypeCodes extends PrimitiveType<String> {
   FluidConsistencyTypeCodes copyWith({
     String? newValue,
     Element? element,
+    FhirString? id,
+    List<FhirExtension>? extension_,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
-    Map<String, List<void Function()>>? propertyChanged,
     List<dynamic>? annotations,
+    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');

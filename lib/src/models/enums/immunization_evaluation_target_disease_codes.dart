@@ -105,18 +105,6 @@ class ImmunizationEvaluationTargetDiseaseCodes extends PrimitiveType<String> {
         element?.clone() as Element?,
       );
 
-  /// Sets a property on the associated [Element], returning a new instance.
-  @override
-  ImmunizationEvaluationTargetDiseaseCodes setElement(
-    String name,
-    dynamic elementValue,
-  ) {
-    return ImmunizationEvaluationTargetDiseaseCodes._(
-      value,
-      element?.setProperty(name, elementValue),
-    );
-  }
-
   /// Returns the enum value with an element attached
   ImmunizationEvaluationTargetDiseaseCodes withElement(Element? newElement) {
     return ImmunizationEvaluationTargetDiseaseCodes._(value, newElement);
@@ -138,11 +126,13 @@ class ImmunizationEvaluationTargetDiseaseCodes extends PrimitiveType<String> {
   ImmunizationEvaluationTargetDiseaseCodes copyWith({
     String? newValue,
     Element? element,
+    FhirString? id,
+    List<FhirExtension>? extension_,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
-    Map<String, List<void Function()>>? propertyChanged,
     List<dynamic>? annotations,
+    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');

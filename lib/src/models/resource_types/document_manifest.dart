@@ -430,6 +430,7 @@ class DocumentManifestRelated extends BackboneElement {
     super.modifierExtension,
     this.identifier,
     this.ref,
+    super.disallowExtensions,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,

@@ -35,7 +35,7 @@ class ExtensionContextType extends PrimitiveType<String> {
   );
 
   /// extension_
-  static final ExtensionContextType extension_ = ExtensionContextType._(
+  static final ExtensionContextType extensionValue = ExtensionContextType._(
     'extension',
   );
 
@@ -47,7 +47,7 @@ class ExtensionContextType extends PrimitiveType<String> {
   static final List<ExtensionContextType> values = [
     fhirpath,
     element_,
-    extension_,
+    extensionValue,
   ];
 
   /// Clones the current instance
@@ -56,18 +56,6 @@ class ExtensionContextType extends PrimitiveType<String> {
         value,
         element?.clone() as Element?,
       );
-
-  /// Sets a property on the associated [Element], returning a new instance.
-  @override
-  ExtensionContextType setElement(
-    String name,
-    dynamic elementValue,
-  ) {
-    return ExtensionContextType._(
-      value,
-      element?.setProperty(name, elementValue),
-    );
-  }
 
   /// Returns the enum value with an element attached
   ExtensionContextType withElement(Element? newElement) {
@@ -90,11 +78,13 @@ class ExtensionContextType extends PrimitiveType<String> {
   ExtensionContextType copyWith({
     String? newValue,
     Element? element,
+    FhirString? id,
+    List<FhirExtension>? extension_,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
-    Map<String, List<void Function()>>? propertyChanged,
     List<dynamic>? annotations,
+    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');

@@ -641,6 +641,7 @@ class AppointmentParticipant extends BackboneElement {
     this.required_,
     required this.status,
     this.period,
+    super.disallowExtensions,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,

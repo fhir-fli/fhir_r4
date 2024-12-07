@@ -727,6 +727,7 @@ class ChargeItemPerformer extends BackboneElement {
     super.modifierExtension,
     this.function_,
     required this.actor,
+    super.disallowExtensions,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,

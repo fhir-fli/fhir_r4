@@ -62,18 +62,6 @@ class ExampleProviderQualificationCodes extends PrimitiveType<String> {
         element?.clone() as Element?,
       );
 
-  /// Sets a property on the associated [Element], returning a new instance.
-  @override
-  ExampleProviderQualificationCodes setElement(
-    String name,
-    dynamic elementValue,
-  ) {
-    return ExampleProviderQualificationCodes._(
-      value,
-      element?.setProperty(name, elementValue),
-    );
-  }
-
   /// Returns the enum value with an element attached
   ExampleProviderQualificationCodes withElement(Element? newElement) {
     return ExampleProviderQualificationCodes._(value, newElement);
@@ -95,11 +83,13 @@ class ExampleProviderQualificationCodes extends PrimitiveType<String> {
   ExampleProviderQualificationCodes copyWith({
     String? newValue,
     Element? element,
+    FhirString? id,
+    List<FhirExtension>? extension_,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
-    Map<String, List<void Function()>>? propertyChanged,
     List<dynamic>? annotations,
+    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');

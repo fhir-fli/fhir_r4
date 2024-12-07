@@ -19,6 +19,7 @@ class Attachment extends DataType {
     this.hash,
     this.title,
     this.creation,
+    super.disallowExtensions,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,

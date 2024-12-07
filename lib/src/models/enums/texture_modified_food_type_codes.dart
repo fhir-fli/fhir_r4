@@ -138,18 +138,6 @@ class TextureModifiedFoodTypeCodes extends PrimitiveType<String> {
         element?.clone() as Element?,
       );
 
-  /// Sets a property on the associated [Element], returning a new instance.
-  @override
-  TextureModifiedFoodTypeCodes setElement(
-    String name,
-    dynamic elementValue,
-  ) {
-    return TextureModifiedFoodTypeCodes._(
-      value,
-      element?.setProperty(name, elementValue),
-    );
-  }
-
   /// Returns the enum value with an element attached
   TextureModifiedFoodTypeCodes withElement(Element? newElement) {
     return TextureModifiedFoodTypeCodes._(value, newElement);
@@ -171,11 +159,13 @@ class TextureModifiedFoodTypeCodes extends PrimitiveType<String> {
   TextureModifiedFoodTypeCodes copyWith({
     String? newValue,
     Element? element,
+    FhirString? id,
+    List<FhirExtension>? extension_,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
-    Map<String, List<void Function()>>? propertyChanged,
     List<dynamic>? annotations,
+    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');

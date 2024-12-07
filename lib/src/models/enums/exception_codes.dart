@@ -51,18 +51,6 @@ class ExceptionCodes extends PrimitiveType<String> {
         element?.clone() as Element?,
       );
 
-  /// Sets a property on the associated [Element], returning a new instance.
-  @override
-  ExceptionCodes setElement(
-    String name,
-    dynamic elementValue,
-  ) {
-    return ExceptionCodes._(
-      value,
-      element?.setProperty(name, elementValue),
-    );
-  }
-
   /// Returns the enum value with an element attached
   ExceptionCodes withElement(Element? newElement) {
     return ExceptionCodes._(value, newElement);
@@ -84,11 +72,13 @@ class ExceptionCodes extends PrimitiveType<String> {
   ExceptionCodes copyWith({
     String? newValue,
     Element? element,
+    FhirString? id,
+    List<FhirExtension>? extension_,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
-    Map<String, List<void Function()>>? propertyChanged,
     List<dynamic>? annotations,
+    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');

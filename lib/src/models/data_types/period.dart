@@ -13,6 +13,7 @@ class Period extends DataType {
     super.extension_,
     this.start,
     this.end,
+    super.disallowExtensions,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,

@@ -101,13 +101,6 @@ void main() {
       ); // Original should remain unchanged
     });
 
-    test('FhirCode setElement', () {
-      final originalCode = FhirCode(validCode);
-      final updatedCode =
-          originalCode.setElement('elementName', 'newElementValue');
-      expect(updatedCode.value, equals(validCode));
-    });
-
     test('FhirCode toJsonString', () {
       final fhirCode = FhirCode(validCode);
       expect(fhirCode.toJsonString(), equals('{"value":"$validCode"}'));

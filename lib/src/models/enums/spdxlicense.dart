@@ -2115,18 +2115,6 @@ class SPDXLicense extends PrimitiveType<String> {
         element?.clone() as Element?,
       );
 
-  /// Sets a property on the associated [Element], returning a new instance.
-  @override
-  SPDXLicense setElement(
-    String name,
-    dynamic elementValue,
-  ) {
-    return SPDXLicense._(
-      value,
-      element?.setProperty(name, elementValue),
-    );
-  }
-
   /// Returns the enum value with an element attached
   SPDXLicense withElement(Element? newElement) {
     return SPDXLicense._(value, newElement);
@@ -2148,11 +2136,13 @@ class SPDXLicense extends PrimitiveType<String> {
   SPDXLicense copyWith({
     String? newValue,
     Element? element,
+    FhirString? id,
+    List<FhirExtension>? extension_,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
-    Map<String, List<void Function()>>? propertyChanged,
     List<dynamic>? annotations,
+    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');

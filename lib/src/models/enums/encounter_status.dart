@@ -93,18 +93,6 @@ class EncounterStatus extends PrimitiveType<String> {
         element?.clone() as Element?,
       );
 
-  /// Sets a property on the associated [Element], returning a new instance.
-  @override
-  EncounterStatus setElement(
-    String name,
-    dynamic elementValue,
-  ) {
-    return EncounterStatus._(
-      value,
-      element?.setProperty(name, elementValue),
-    );
-  }
-
   /// Returns the enum value with an element attached
   EncounterStatus withElement(Element? newElement) {
     return EncounterStatus._(value, newElement);
@@ -126,11 +114,13 @@ class EncounterStatus extends PrimitiveType<String> {
   EncounterStatus copyWith({
     String? newValue,
     Element? element,
+    FhirString? id,
+    List<FhirExtension>? extension_,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
-    Map<String, List<void Function()>>? propertyChanged,
     List<dynamic>? annotations,
+    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');

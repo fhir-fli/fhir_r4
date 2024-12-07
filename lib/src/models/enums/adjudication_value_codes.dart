@@ -88,18 +88,6 @@ class AdjudicationValueCodes extends PrimitiveType<String> {
         element?.clone() as Element?,
       );
 
-  /// Sets a property on the associated [Element], returning a new instance.
-  @override
-  AdjudicationValueCodes setElement(
-    String name,
-    dynamic elementValue,
-  ) {
-    return AdjudicationValueCodes._(
-      value,
-      element?.setProperty(name, elementValue),
-    );
-  }
-
   /// Returns the enum value with an element attached
   AdjudicationValueCodes withElement(Element? newElement) {
     return AdjudicationValueCodes._(value, newElement);
@@ -121,11 +109,13 @@ class AdjudicationValueCodes extends PrimitiveType<String> {
   AdjudicationValueCodes copyWith({
     String? newValue,
     Element? element,
+    FhirString? id,
+    List<FhirExtension>? extension_,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
-    Map<String, List<void Function()>>? propertyChanged,
     List<dynamic>? annotations,
+    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');

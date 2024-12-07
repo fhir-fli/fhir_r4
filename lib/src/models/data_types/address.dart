@@ -25,6 +25,7 @@ class Address extends DataType {
     this.postalCode,
     this.country,
     this.period,
+    super.disallowExtensions,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,

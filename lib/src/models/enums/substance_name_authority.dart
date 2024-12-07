@@ -130,18 +130,6 @@ class SubstanceNameAuthority extends PrimitiveType<String> {
         element?.clone() as Element?,
       );
 
-  /// Sets a property on the associated [Element], returning a new instance.
-  @override
-  SubstanceNameAuthority setElement(
-    String name,
-    dynamic elementValue,
-  ) {
-    return SubstanceNameAuthority._(
-      value,
-      element?.setProperty(name, elementValue),
-    );
-  }
-
   /// Returns the enum value with an element attached
   SubstanceNameAuthority withElement(Element? newElement) {
     return SubstanceNameAuthority._(value, newElement);
@@ -163,11 +151,13 @@ class SubstanceNameAuthority extends PrimitiveType<String> {
   SubstanceNameAuthority copyWith({
     String? newValue,
     Element? element,
+    FhirString? id,
+    List<FhirExtension>? extension_,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
-    Map<String, List<void Function()>>? propertyChanged,
     List<dynamic>? annotations,
+    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');

@@ -144,7 +144,7 @@ class FhirUri extends PrimitiveType<Uri> {
   /// Clones this [FhirUri] instance
   @override
   FhirUri clone() => FhirUri.fromUri(value, element?.clone() as Element?);
-  
+
   /// Creates a modified copy with updated properties
   @override
   FhirUri copyWith({

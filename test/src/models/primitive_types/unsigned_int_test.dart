@@ -118,13 +118,6 @@ void main() {
       expect(originalInteger.value, equals(validInteger));
     });
 
-    test('FhirUnsignedInt setElement', () {
-      final originalInteger = FhirUnsignedInt(validInteger);
-      final updatedInteger =
-          originalInteger.setElement('elementName', 'newElementValue');
-      expect(updatedInteger.value, equals(validInteger));
-    });
-
     test('FhirUnsignedInt with Element', () {
       final fhirInteger = FhirUnsignedInt(validInteger, element);
       expect(fhirInteger.element?.id, equals('testElement'.toFhirString));

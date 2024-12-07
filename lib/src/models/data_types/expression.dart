@@ -19,6 +19,7 @@ class FhirExpression extends DataType {
     required this.language,
     this.expression,
     this.reference,
+    super.disallowExtensions,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,

@@ -440,6 +440,7 @@ class NamingSystemUniqueId extends BackboneElement {
     this.preferred,
     this.comment,
     this.period,
+    super.disallowExtensions,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,

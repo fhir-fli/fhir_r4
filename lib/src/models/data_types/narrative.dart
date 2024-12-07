@@ -14,6 +14,7 @@ class Narrative extends DataType {
     super.extension_,
     required this.status,
     required this.div,
+    super.disallowExtensions,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,

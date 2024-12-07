@@ -105,18 +105,6 @@ class AttributeEstimateType extends PrimitiveType<String> {
         element?.clone() as Element?,
       );
 
-  /// Sets a property on the associated [Element], returning a new instance.
-  @override
-  AttributeEstimateType setElement(
-    String name,
-    dynamic elementValue,
-  ) {
-    return AttributeEstimateType._(
-      value,
-      element?.setProperty(name, elementValue),
-    );
-  }
-
   /// Returns the enum value with an element attached
   AttributeEstimateType withElement(Element? newElement) {
     return AttributeEstimateType._(value, newElement);
@@ -138,11 +126,13 @@ class AttributeEstimateType extends PrimitiveType<String> {
   AttributeEstimateType copyWith({
     String? newValue,
     Element? element,
+    FhirString? id,
+    List<FhirExtension>? extension_,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
-    Map<String, List<void Function()>>? propertyChanged,
     List<dynamic>? annotations,
+    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');

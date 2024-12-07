@@ -17,6 +17,7 @@ class ProductShelfLife extends BackboneType {
     required this.type,
     required this.period,
     this.specialPrecautionsForStorage,
+    super.disallowExtensions,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,

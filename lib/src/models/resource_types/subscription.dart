@@ -322,6 +322,7 @@ class SubscriptionChannel extends BackboneElement {
     this.endpoint,
     this.payload,
     this.header,
+    super.disallowExtensions,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,

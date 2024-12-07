@@ -13,6 +13,7 @@ class Money extends DataType {
     super.extension_,
     this.value,
     this.currency,
+    super.disallowExtensions,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,

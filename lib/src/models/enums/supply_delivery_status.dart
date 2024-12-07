@@ -63,18 +63,6 @@ class SupplyDeliveryStatus extends PrimitiveType<String> {
         element?.clone() as Element?,
       );
 
-  /// Sets a property on the associated [Element], returning a new instance.
-  @override
-  SupplyDeliveryStatus setElement(
-    String name,
-    dynamic elementValue,
-  ) {
-    return SupplyDeliveryStatus._(
-      value,
-      element?.setProperty(name, elementValue),
-    );
-  }
-
   /// Returns the enum value with an element attached
   SupplyDeliveryStatus withElement(Element? newElement) {
     return SupplyDeliveryStatus._(value, newElement);
@@ -96,11 +84,13 @@ class SupplyDeliveryStatus extends PrimitiveType<String> {
   SupplyDeliveryStatus copyWith({
     String? newValue,
     Element? element,
+    FhirString? id,
+    List<FhirExtension>? extension_,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
-    Map<String, List<void Function()>>? propertyChanged,
     List<dynamic>? annotations,
+    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');

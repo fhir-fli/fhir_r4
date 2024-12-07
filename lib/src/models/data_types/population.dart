@@ -17,6 +17,7 @@ class Population extends BackboneType {
     this.gender,
     this.race,
     this.physiologicalCondition,
+    super.disallowExtensions,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,

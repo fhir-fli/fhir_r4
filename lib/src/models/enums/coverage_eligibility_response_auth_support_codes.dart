@@ -99,18 +99,6 @@ class CoverageEligibilityResponseAuthSupportCodes
         element?.clone() as Element?,
       );
 
-  /// Sets a property on the associated [Element], returning a new instance.
-  @override
-  CoverageEligibilityResponseAuthSupportCodes setElement(
-    String name,
-    dynamic elementValue,
-  ) {
-    return CoverageEligibilityResponseAuthSupportCodes._(
-      value,
-      element?.setProperty(name, elementValue),
-    );
-  }
-
   /// Returns the enum value with an element attached
   CoverageEligibilityResponseAuthSupportCodes withElement(Element? newElement) {
     return CoverageEligibilityResponseAuthSupportCodes._(value, newElement);
@@ -132,11 +120,13 @@ class CoverageEligibilityResponseAuthSupportCodes
   CoverageEligibilityResponseAuthSupportCodes copyWith({
     String? newValue,
     Element? element,
+    FhirString? id,
+    List<FhirExtension>? extension_,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
-    Map<String, List<void Function()>>? propertyChanged,
     List<dynamic>? annotations,
+    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');

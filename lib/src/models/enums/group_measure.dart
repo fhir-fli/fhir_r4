@@ -75,18 +75,6 @@ class GroupMeasure extends PrimitiveType<String> {
         element?.clone() as Element?,
       );
 
-  /// Sets a property on the associated [Element], returning a new instance.
-  @override
-  GroupMeasure setElement(
-    String name,
-    dynamic elementValue,
-  ) {
-    return GroupMeasure._(
-      value,
-      element?.setProperty(name, elementValue),
-    );
-  }
-
   /// Returns the enum value with an element attached
   GroupMeasure withElement(Element? newElement) {
     return GroupMeasure._(value, newElement);
@@ -108,11 +96,13 @@ class GroupMeasure extends PrimitiveType<String> {
   GroupMeasure copyWith({
     String? newValue,
     Element? element,
+    FhirString? id,
+    List<FhirExtension>? extension_,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
-    Map<String, List<void Function()>>? propertyChanged,
     List<dynamic>? annotations,
+    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');

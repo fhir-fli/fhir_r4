@@ -405,6 +405,7 @@ class OrganizationContact extends BackboneElement {
     this.name,
     this.telecom,
     this.address,
+    super.disallowExtensions,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,

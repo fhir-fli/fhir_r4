@@ -15,6 +15,7 @@ class Reference extends DataType {
     this.type,
     this.identifier,
     this.display,
+    super.disallowExtensions,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,

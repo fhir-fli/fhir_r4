@@ -99,18 +99,6 @@ class FlagCategory extends PrimitiveType<String> {
         element?.clone() as Element?,
       );
 
-  /// Sets a property on the associated [Element], returning a new instance.
-  @override
-  FlagCategory setElement(
-    String name,
-    dynamic elementValue,
-  ) {
-    return FlagCategory._(
-      value,
-      element?.setProperty(name, elementValue),
-    );
-  }
-
   /// Returns the enum value with an element attached
   FlagCategory withElement(Element? newElement) {
     return FlagCategory._(value, newElement);
@@ -132,11 +120,13 @@ class FlagCategory extends PrimitiveType<String> {
   FlagCategory copyWith({
     String? newValue,
     Element? element,
+    FhirString? id,
+    List<FhirExtension>? extension_,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
-    Map<String, List<void Function()>>? propertyChanged,
     List<dynamic>? annotations,
+    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');

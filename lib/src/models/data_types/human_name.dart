@@ -18,6 +18,7 @@ class HumanName extends DataType {
     this.prefix,
     this.suffix,
     this.period,
+    super.disallowExtensions,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,

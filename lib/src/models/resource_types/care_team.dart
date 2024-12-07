@@ -465,6 +465,7 @@ class CareTeamParticipant extends BackboneElement {
     this.member,
     this.onBehalfOf,
     this.period,
+    super.disallowExtensions,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,

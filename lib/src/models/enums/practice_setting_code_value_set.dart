@@ -845,18 +845,6 @@ class PracticeSettingCodeValueSet extends PrimitiveType<String> {
         element?.clone() as Element?,
       );
 
-  /// Sets a property on the associated [Element], returning a new instance.
-  @override
-  PracticeSettingCodeValueSet setElement(
-    String name,
-    dynamic elementValue,
-  ) {
-    return PracticeSettingCodeValueSet._(
-      value,
-      element?.setProperty(name, elementValue),
-    );
-  }
-
   /// Returns the enum value with an element attached
   PracticeSettingCodeValueSet withElement(Element? newElement) {
     return PracticeSettingCodeValueSet._(value, newElement);
@@ -878,11 +866,13 @@ class PracticeSettingCodeValueSet extends PrimitiveType<String> {
   PracticeSettingCodeValueSet copyWith({
     String? newValue,
     Element? element,
+    FhirString? id,
+    List<FhirExtension>? extension_,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
-    Map<String, List<void Function()>>? propertyChanged,
     List<dynamic>? annotations,
+    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');

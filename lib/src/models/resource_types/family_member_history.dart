@@ -670,6 +670,7 @@ class FamilyMemberHistoryCondition extends BackboneElement {
     this.onsetPeriod,
     this.onsetString,
     this.note,
+    super.disallowExtensions,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,

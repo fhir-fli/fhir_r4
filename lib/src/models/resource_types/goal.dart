@@ -518,6 +518,7 @@ class GoalTarget extends BackboneElement {
     this.detailRatio,
     this.dueDate,
     this.dueDuration,
+    super.disallowExtensions,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,

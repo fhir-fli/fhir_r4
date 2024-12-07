@@ -580,6 +580,7 @@ class DiagnosticReportMedia extends BackboneElement {
     super.modifierExtension,
     this.comment,
     required this.link,
+    super.disallowExtensions,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,

@@ -14,6 +14,7 @@ class CodeableReference extends DataType {
     super.extension_,
     this.concept,
     this.reference,
+    super.disallowExtensions,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,

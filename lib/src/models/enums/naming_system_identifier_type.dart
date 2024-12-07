@@ -64,18 +64,6 @@ class NamingSystemIdentifierType extends PrimitiveType<String> {
         element?.clone() as Element?,
       );
 
-  /// Sets a property on the associated [Element], returning a new instance.
-  @override
-  NamingSystemIdentifierType setElement(
-    String name,
-    dynamic elementValue,
-  ) {
-    return NamingSystemIdentifierType._(
-      value,
-      element?.setProperty(name, elementValue),
-    );
-  }
-
   /// Returns the enum value with an element attached
   NamingSystemIdentifierType withElement(Element? newElement) {
     return NamingSystemIdentifierType._(value, newElement);
@@ -97,11 +85,13 @@ class NamingSystemIdentifierType extends PrimitiveType<String> {
   NamingSystemIdentifierType copyWith({
     String? newValue,
     Element? element,
+    FhirString? id,
+    List<FhirExtension>? extension_,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
-    Map<String, List<void Function()>>? propertyChanged,
     List<dynamic>? annotations,
+    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');

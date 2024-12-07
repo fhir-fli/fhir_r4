@@ -15,6 +15,7 @@ class RatioRange extends DataType {
     this.lowNumerator,
     this.highNumerator,
     this.denominator,
+    super.disallowExtensions,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,

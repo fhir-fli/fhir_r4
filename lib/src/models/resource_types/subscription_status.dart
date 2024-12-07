@@ -334,6 +334,7 @@ class SubscriptionStatusNotificationEvent extends BackboneElement {
     this.timestamp,
     this.focus,
     this.additionalContext,
+    super.disallowExtensions,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,

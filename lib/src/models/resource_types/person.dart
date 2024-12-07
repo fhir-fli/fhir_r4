@@ -390,6 +390,7 @@ class PersonLink extends BackboneElement {
     super.modifierExtension,
     required this.target,
     this.assurance,
+    super.disallowExtensions,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,

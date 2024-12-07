@@ -119,15 +119,7 @@ void main() {
       expect(clonedBase64Binary, equals(base64Binary));
       expect(clonedBase64Binary.value, equals(validBase64String));
     });
-
-    test('Set Element', () {
-      const validBase64String = 'dGVzdA==';
-      final base64Binary = FhirBase64Binary(validBase64String);
-      final newElement = Element();
-      final updatedBase64Binary = base64Binary.setElement('dummy', newElement);
-      expect(updatedBase64Binary.value, equals(validBase64String));
-    });
-
+    
     test('CopyWith - without new value', () {
       const validBase64String = 'dGVzdA==';
       final base64Binary = FhirBase64Binary(validBase64String);

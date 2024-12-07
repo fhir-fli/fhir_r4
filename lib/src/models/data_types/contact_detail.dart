@@ -13,6 +13,7 @@ class ContactDetail extends DataType {
     super.extension_,
     this.name,
     this.telecom,
+    super.disallowExtensions,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,

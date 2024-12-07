@@ -57,18 +57,6 @@ class ResearchElementType extends PrimitiveType<String> {
         element?.clone() as Element?,
       );
 
-  /// Sets a property on the associated [Element], returning a new instance.
-  @override
-  ResearchElementType setElement(
-    String name,
-    dynamic elementValue,
-  ) {
-    return ResearchElementType._(
-      value,
-      element?.setProperty(name, elementValue),
-    );
-  }
-
   /// Returns the enum value with an element attached
   ResearchElementType withElement(Element? newElement) {
     return ResearchElementType._(value, newElement);
@@ -90,11 +78,13 @@ class ResearchElementType extends PrimitiveType<String> {
   ResearchElementType copyWith({
     String? newValue,
     Element? element,
+    FhirString? id,
+    List<FhirExtension>? extension_,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
-    Map<String, List<void Function()>>? propertyChanged,
     List<dynamic>? annotations,
+    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');

@@ -189,18 +189,6 @@ class MedicationDispenseStatusReasonCodes extends PrimitiveType<String> {
         element?.clone() as Element?,
       );
 
-  /// Sets a property on the associated [Element], returning a new instance.
-  @override
-  MedicationDispenseStatusReasonCodes setElement(
-    String name,
-    dynamic elementValue,
-  ) {
-    return MedicationDispenseStatusReasonCodes._(
-      value,
-      element?.setProperty(name, elementValue),
-    );
-  }
-
   /// Returns the enum value with an element attached
   MedicationDispenseStatusReasonCodes withElement(Element? newElement) {
     return MedicationDispenseStatusReasonCodes._(value, newElement);
@@ -222,11 +210,13 @@ class MedicationDispenseStatusReasonCodes extends PrimitiveType<String> {
   MedicationDispenseStatusReasonCodes copyWith({
     String? newValue,
     Element? element,
+    FhirString? id,
+    List<FhirExtension>? extension_,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
-    Map<String, List<void Function()>>? propertyChanged,
     List<dynamic>? annotations,
+    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');

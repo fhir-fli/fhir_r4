@@ -19,6 +19,7 @@ class UsageContext extends DataType {
     this.valueQuantity,
     this.valueRange,
     this.valueReference,
+    super.disallowExtensions,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,

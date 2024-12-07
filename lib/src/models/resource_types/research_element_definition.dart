@@ -861,6 +861,7 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
     this.participantEffectiveTiming,
     this.participantEffectiveTimeFromStart,
     this.participantEffectiveGroupMeasure,
+    super.disallowExtensions,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,

@@ -19,6 +19,7 @@ class FhirMeta extends DataType {
     this.profile,
     this.security,
     this.tag,
+    super.disallowExtensions,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,

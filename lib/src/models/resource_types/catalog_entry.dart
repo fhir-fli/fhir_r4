@@ -444,6 +444,7 @@ class CatalogEntryRelatedEntry extends BackboneElement {
     super.modifierExtension,
     required this.relationtype,
     required this.item,
+    super.disallowExtensions,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,

@@ -16,6 +16,7 @@ class Coding extends DataType {
     this.code,
     this.display,
     this.userSelected,
+    super.disallowExtensions,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,

@@ -15,6 +15,7 @@ class Contributor extends DataType {
     required this.type,
     required this.name,
     this.contact,
+    super.disallowExtensions,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,

@@ -19,6 +19,7 @@ class MarketingStatus extends BackboneType {
     required this.status,
     this.dateRange,
     this.restoreDate,
+    super.disallowExtensions,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,

@@ -120,7 +120,7 @@ class IssueType extends PrimitiveType<String> {
   );
 
   /// extension_
-  static final IssueType extension_ = IssueType._(
+  static final IssueType extensionValue = IssueType._(
     'extension',
   );
 
@@ -204,7 +204,7 @@ class IssueType extends PrimitiveType<String> {
     deleted,
     too_long,
     code_invalid,
-    extension_,
+    extensionValue,
     too_costly,
     business_rule,
     conflict,
@@ -224,18 +224,6 @@ class IssueType extends PrimitiveType<String> {
         value,
         element?.clone() as Element?,
       );
-
-  /// Sets a property on the associated [Element], returning a new instance.
-  @override
-  IssueType setElement(
-    String name,
-    dynamic elementValue,
-  ) {
-    return IssueType._(
-      value,
-      element?.setProperty(name, elementValue),
-    );
-  }
 
   /// Returns the enum value with an element attached
   IssueType withElement(Element? newElement) {
@@ -258,11 +246,13 @@ class IssueType extends PrimitiveType<String> {
   IssueType copyWith({
     String? newValue,
     Element? element,
+    FhirString? id,
+    List<FhirExtension>? extension_,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
-    Map<String, List<void Function()>>? propertyChanged,
     List<dynamic>? annotations,
+    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');

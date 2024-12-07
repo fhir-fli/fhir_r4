@@ -93,14 +93,6 @@ void main() {
       expect(clonedCanonical.value, equals(Uri.parse(validCanonicalString)));
     });
 
-    test('Set Element', () {
-      const validCanonicalString = 'http://example.com/Patient/123';
-      final canonical = FhirUrl(validCanonicalString);
-      final newElement = Element();
-      final updatedCanonical = canonical.setElement('dummy', newElement);
-      expect(updatedCanonical.value, equals(Uri.parse(validCanonicalString)));
-    });
-
     test('CopyWith - No New Value', () {
       const validCanonicalString = 'http://example.com/Patient/123';
       final canonical = FhirUrl(validCanonicalString);

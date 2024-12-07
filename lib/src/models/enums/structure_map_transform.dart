@@ -30,7 +30,7 @@ class StructureMapTransform extends PrimitiveType<String> {
   );
 
   /// copy
-  static final StructureMapTransform copy = StructureMapTransform._(
+  static final StructureMapTransform copy_ = StructureMapTransform._(
     'copy',
   );
 
@@ -100,7 +100,7 @@ class StructureMapTransform extends PrimitiveType<String> {
   );
 
   /// id
-  static final StructureMapTransform id = StructureMapTransform._(
+  static final StructureMapTransform id_ = StructureMapTransform._(
     'id',
   );
 
@@ -116,7 +116,7 @@ class StructureMapTransform extends PrimitiveType<String> {
   /// List of all enum-like values
   static final List<StructureMapTransform> values = [
     create,
-    copy,
+    copy_,
     truncate,
     escape,
     cast,
@@ -130,7 +130,7 @@ class StructureMapTransform extends PrimitiveType<String> {
     cc,
     c,
     qty,
-    id,
+    id_,
     cp,
   ];
 
@@ -140,18 +140,6 @@ class StructureMapTransform extends PrimitiveType<String> {
         value,
         element?.clone() as Element?,
       );
-
-  /// Sets a property on the associated [Element], returning a new instance.
-  @override
-  StructureMapTransform setElement(
-    String name,
-    dynamic elementValue,
-  ) {
-    return StructureMapTransform._(
-      value,
-      element?.setProperty(name, elementValue),
-    );
-  }
 
   /// Returns the enum value with an element attached
   StructureMapTransform withElement(Element? newElement) {
@@ -174,11 +162,13 @@ class StructureMapTransform extends PrimitiveType<String> {
   StructureMapTransform copyWith({
     String? newValue,
     Element? element,
+    FhirString? id,
+    List<FhirExtension>? extension_,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
-    Map<String, List<void Function()>>? propertyChanged,
     List<dynamic>? annotations,
+    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');

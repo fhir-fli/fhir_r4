@@ -337,5 +337,4 @@ class FhirTime extends PrimitiveType<String> implements Comparable<FhirTime> {
   /// Creates a clone of the current [FhirTime].
   @override
   FhirTime clone() => FhirTime(value, element?.clone() as Element?);
-
 }

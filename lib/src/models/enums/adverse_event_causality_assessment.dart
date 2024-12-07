@@ -82,18 +82,6 @@ class AdverseEventCausalityAssessment extends PrimitiveType<String> {
         element?.clone() as Element?,
       );
 
-  /// Sets a property on the associated [Element], returning a new instance.
-  @override
-  AdverseEventCausalityAssessment setElement(
-    String name,
-    dynamic elementValue,
-  ) {
-    return AdverseEventCausalityAssessment._(
-      value,
-      element?.setProperty(name, elementValue),
-    );
-  }
-
   /// Returns the enum value with an element attached
   AdverseEventCausalityAssessment withElement(Element? newElement) {
     return AdverseEventCausalityAssessment._(value, newElement);
@@ -115,11 +103,13 @@ class AdverseEventCausalityAssessment extends PrimitiveType<String> {
   AdverseEventCausalityAssessment copyWith({
     String? newValue,
     Element? element,
+    FhirString? id,
+    List<FhirExtension>? extension_,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
-    Map<String, List<void Function()>>? propertyChanged,
     List<dynamic>? annotations,
+    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');

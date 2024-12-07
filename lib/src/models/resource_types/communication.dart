@@ -657,6 +657,7 @@ class CommunicationPayload extends BackboneElement {
     this.contentString,
     this.contentAttachment,
     this.contentReference,
+    super.disallowExtensions,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,

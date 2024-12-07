@@ -110,18 +110,6 @@ class ProcedureFollowUpCodesSNOMEDCT extends PrimitiveType<String> {
         element?.clone() as Element?,
       );
 
-  /// Sets a property on the associated [Element], returning a new instance.
-  @override
-  ProcedureFollowUpCodesSNOMEDCT setElement(
-    String name,
-    dynamic elementValue,
-  ) {
-    return ProcedureFollowUpCodesSNOMEDCT._(
-      value,
-      element?.setProperty(name, elementValue),
-    );
-  }
-
   /// Returns the enum value with an element attached
   ProcedureFollowUpCodesSNOMEDCT withElement(Element? newElement) {
     return ProcedureFollowUpCodesSNOMEDCT._(value, newElement);
@@ -143,11 +131,13 @@ class ProcedureFollowUpCodesSNOMEDCT extends PrimitiveType<String> {
   ProcedureFollowUpCodesSNOMEDCT copyWith({
     String? newValue,
     Element? element,
+    FhirString? id,
+    List<FhirExtension>? extension_,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
-    Map<String, List<void Function()>>? propertyChanged,
     List<dynamic>? annotations,
+    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');

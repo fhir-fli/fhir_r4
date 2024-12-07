@@ -399,6 +399,7 @@ class DeviceMetricCalibration extends BackboneElement {
     this.type,
     this.state,
     this.time,
+    super.disallowExtensions,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,

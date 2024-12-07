@@ -196,18 +196,6 @@ class MedicationKnowledgePackageTypeCodes extends PrimitiveType<String> {
         element?.clone() as Element?,
       );
 
-  /// Sets a property on the associated [Element], returning a new instance.
-  @override
-  MedicationKnowledgePackageTypeCodes setElement(
-    String name,
-    dynamic elementValue,
-  ) {
-    return MedicationKnowledgePackageTypeCodes._(
-      value,
-      element?.setProperty(name, elementValue),
-    );
-  }
-
   /// Returns the enum value with an element attached
   MedicationKnowledgePackageTypeCodes withElement(Element? newElement) {
     return MedicationKnowledgePackageTypeCodes._(value, newElement);
@@ -229,11 +217,13 @@ class MedicationKnowledgePackageTypeCodes extends PrimitiveType<String> {
   MedicationKnowledgePackageTypeCodes copyWith({
     String? newValue,
     Element? element,
+    FhirString? id,
+    List<FhirExtension>? extension_,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
-    Map<String, List<void Function()>>? propertyChanged,
     List<dynamic>? annotations,
+    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');

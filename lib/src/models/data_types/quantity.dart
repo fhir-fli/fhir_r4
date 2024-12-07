@@ -19,6 +19,7 @@ class Quantity extends DataType {
     this.unit,
     this.system,
     this.code,
+    super.disallowExtensions,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,

@@ -16,6 +16,7 @@ class Annotation extends DataType {
     this.authorString,
     this.time,
     required this.text,
+    super.disallowExtensions,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,

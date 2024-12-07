@@ -442,6 +442,7 @@ class SupplyDeliverySuppliedItem extends BackboneElement {
     this.quantity,
     this.itemCodeableConcept,
     this.itemReference,
+    super.disallowExtensions,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,

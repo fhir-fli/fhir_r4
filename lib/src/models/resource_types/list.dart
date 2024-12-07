@@ -430,6 +430,7 @@ class ListEntry extends BackboneElement {
     this.deleted,
     this.date,
     required this.item,
+    super.disallowExtensions,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,

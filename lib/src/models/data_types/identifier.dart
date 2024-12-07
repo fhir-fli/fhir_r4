@@ -18,6 +18,7 @@ class Identifier extends DataType {
     this.value,
     this.period,
     this.assigner,
+    super.disallowExtensions,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
