@@ -25,10 +25,6 @@ class Basic extends DomainResource {
     this.subject,
     this.created,
     this.author,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.Basic,
         );
@@ -277,10 +273,6 @@ class Basic extends DomainResource {
       subject: subject ?? this.subject,
       created: created ?? this.created,
       author: author ?? this.author,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

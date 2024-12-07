@@ -59,10 +59,6 @@ class MedicationStatement extends DomainResource {
     this.reasonReference,
     this.note,
     this.dosage,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.MedicationStatement,
         );
@@ -576,10 +572,6 @@ class MedicationStatement extends DomainResource {
       reasonReference: reasonReference ?? this.reasonReference,
       note: note ?? this.note,
       dosage: dosage ?? this.dosage,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Codes providing the status/availability of a specimen.
 class SpecimenStatus extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  SpecimenStatus._(super.value, [super.element]);
+  SpecimenStatus._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [SpecimenStatus] from JSON.
   factory SpecimenStatus.fromJson(
@@ -21,32 +26,32 @@ class SpecimenStatus extends PrimitiveType<String> {
         'SpecimenStatus cannot be constructed from JSON.',
       );
     }
-    return SpecimenStatus._(value, element);
+    return SpecimenStatus._(value: value, element: element);
   }
 
   /// available
   static final SpecimenStatus available = SpecimenStatus._(
-    'available',
+    value: 'available',
   );
 
   /// unavailable
   static final SpecimenStatus unavailable = SpecimenStatus._(
-    'unavailable',
+    value: 'unavailable',
   );
 
   /// unsatisfactory
   static final SpecimenStatus unsatisfactory = SpecimenStatus._(
-    'unsatisfactory',
+    value: 'unsatisfactory',
   );
 
   /// entered_in_error
   static final SpecimenStatus entered_in_error = SpecimenStatus._(
-    'entered-in-error',
+    value: 'entered-in-error',
   );
 
   /// For instances where an Element is present but not value
 
-  static final SpecimenStatus elementOnly = SpecimenStatus._('');
+  static final SpecimenStatus elementOnly = SpecimenStatus._(value: '');
 
   /// List of all enum-like values
   static final List<SpecimenStatus> values = [
@@ -59,13 +64,13 @@ class SpecimenStatus extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   SpecimenStatus clone() => SpecimenStatus._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   SpecimenStatus withElement(Element? newElement) {
-    return SpecimenStatus._(value, newElement);
+    return SpecimenStatus._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -90,14 +95,13 @@ class SpecimenStatus extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return SpecimenStatus._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// How slices are interpreted when evaluating an instance.
 class SlicingRules extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  SlicingRules._(super.value, [super.element]);
+  SlicingRules._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [SlicingRules] from JSON.
   factory SlicingRules.fromJson(
@@ -21,27 +26,27 @@ class SlicingRules extends PrimitiveType<String> {
         'SlicingRules cannot be constructed from JSON.',
       );
     }
-    return SlicingRules._(value, element);
+    return SlicingRules._(value: value, element: element);
   }
 
   /// closed
   static final SlicingRules closed = SlicingRules._(
-    'closed',
+    value: 'closed',
   );
 
   /// open
   static final SlicingRules open = SlicingRules._(
-    'open',
+    value: 'open',
   );
 
   /// openAtEnd
   static final SlicingRules openAtEnd = SlicingRules._(
-    'openAtEnd',
+    value: 'openAtEnd',
   );
 
   /// For instances where an Element is present but not value
 
-  static final SlicingRules elementOnly = SlicingRules._('');
+  static final SlicingRules elementOnly = SlicingRules._(value: '');
 
   /// List of all enum-like values
   static final List<SlicingRules> values = [
@@ -53,13 +58,13 @@ class SlicingRules extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   SlicingRules clone() => SlicingRules._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   SlicingRules withElement(Element? newElement) {
-    return SlicingRules._(value, newElement);
+    return SlicingRules._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -84,14 +89,13 @@ class SlicingRules extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return SlicingRules._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Whether an operation is a normal operation or a query.
 class OperationKind extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  OperationKind._(super.value, [super.element]);
+  OperationKind._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [OperationKind] from JSON.
   factory OperationKind.fromJson(
@@ -21,22 +26,22 @@ class OperationKind extends PrimitiveType<String> {
         'OperationKind cannot be constructed from JSON.',
       );
     }
-    return OperationKind._(value, element);
+    return OperationKind._(value: value, element: element);
   }
 
   /// operation
   static final OperationKind operation = OperationKind._(
-    'operation',
+    value: 'operation',
   );
 
   /// query
   static final OperationKind query = OperationKind._(
-    'query',
+    value: 'query',
   );
 
   /// For instances where an Element is present but not value
 
-  static final OperationKind elementOnly = OperationKind._('');
+  static final OperationKind elementOnly = OperationKind._(value: '');
 
   /// List of all enum-like values
   static final List<OperationKind> values = [
@@ -47,13 +52,13 @@ class OperationKind extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   OperationKind clone() => OperationKind._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   OperationKind withElement(Element? newElement) {
-    return OperationKind._(value, newElement);
+    return OperationKind._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -78,14 +83,13 @@ class OperationKind extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return OperationKind._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

@@ -22,10 +22,6 @@ class DataRequirement extends DataType {
     this.limit,
     this.sort,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -295,10 +291,6 @@ class DataRequirement extends DataType {
       dateFilter: dateFilter ?? this.dateFilter,
       limit: limit ?? this.limit,
       sort: sort ?? this.sort,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -320,10 +312,6 @@ class DataRequirementCodeFilter extends Element {
     this.valueSet,
     this.code,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -495,10 +483,6 @@ class DataRequirementCodeFilter extends Element {
       searchParam: searchParam ?? this.searchParam,
       valueSet: valueSet ?? this.valueSet,
       code: code ?? this.code,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -521,10 +505,6 @@ class DataRequirementDateFilter extends Element {
     this.valuePeriod,
     this.valueDuration,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -717,10 +697,6 @@ class DataRequirementDateFilter extends Element {
       valueDateTime: valueDateTime ?? this.valueDateTime,
       valuePeriod: valuePeriod ?? this.valuePeriod,
       valueDuration: valueDuration ?? this.valueDuration,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -737,10 +713,6 @@ class DataRequirementSort extends Element {
     required this.path,
     required this.direction,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -864,10 +836,6 @@ class DataRequirementSort extends Element {
       extension_: extension_ ?? this.extension_,
       path: path ?? this.path,
       direction: direction ?? this.direction,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

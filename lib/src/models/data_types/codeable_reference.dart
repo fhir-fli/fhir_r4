@@ -15,10 +15,6 @@ class CodeableReference extends DataType {
     this.concept,
     this.reference,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -148,10 +144,6 @@ class CodeableReference extends DataType {
       extension_: extension_ ?? this.extension_,
       concept: concept ?? this.concept,
       reference: reference ?? this.reference,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

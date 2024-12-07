@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value set includes a sample set of Forms codes.
 class FormCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  FormCodes._(super.value, [super.element]);
+  FormCodes._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [FormCodes] from JSON.
   factory FormCodes.fromJson(
@@ -21,22 +26,22 @@ class FormCodes extends PrimitiveType<String> {
         'FormCodes cannot be constructed from JSON.',
       );
     }
-    return FormCodes._(value, element);
+    return FormCodes._(value: value, element: element);
   }
 
   /// value1
   static final FormCodes value1 = FormCodes._(
-    '1',
+    value: '1',
   );
 
   /// value2
   static final FormCodes value2 = FormCodes._(
-    '2',
+    value: '2',
   );
 
   /// For instances where an Element is present but not value
 
-  static final FormCodes elementOnly = FormCodes._('');
+  static final FormCodes elementOnly = FormCodes._(value: '');
 
   /// List of all enum-like values
   static final List<FormCodes> values = [
@@ -47,13 +52,13 @@ class FormCodes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   FormCodes clone() => FormCodes._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   FormCodes withElement(Element? newElement) {
-    return FormCodes._(value, newElement);
+    return FormCodes._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -78,14 +83,13 @@ class FormCodes extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return FormCodes._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Color of the container cap.
 class ContainerCap extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ContainerCap._(super.value, [super.element]);
+  ContainerCap._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [ContainerCap] from JSON.
   factory ContainerCap.fromJson(
@@ -21,72 +26,72 @@ class ContainerCap extends PrimitiveType<String> {
         'ContainerCap cannot be constructed from JSON.',
       );
     }
-    return ContainerCap._(value, element);
+    return ContainerCap._(value: value, element: element);
   }
 
   /// red
   static final ContainerCap red = ContainerCap._(
-    'red',
+    value: 'red',
   );
 
   /// yellow
   static final ContainerCap yellow = ContainerCap._(
-    'yellow',
+    value: 'yellow',
   );
 
   /// dark_yellow
   static final ContainerCap dark_yellow = ContainerCap._(
-    'dark-yellow',
+    value: 'dark-yellow',
   );
 
   /// grey
   static final ContainerCap grey = ContainerCap._(
-    'grey',
+    value: 'grey',
   );
 
   /// light_blue
   static final ContainerCap light_blue = ContainerCap._(
-    'light-blue',
+    value: 'light-blue',
   );
 
   /// black
   static final ContainerCap black = ContainerCap._(
-    'black',
+    value: 'black',
   );
 
   /// green
   static final ContainerCap green = ContainerCap._(
-    'green',
+    value: 'green',
   );
 
   /// light_green
   static final ContainerCap light_green = ContainerCap._(
-    'light-green',
+    value: 'light-green',
   );
 
   /// lavender
   static final ContainerCap lavender = ContainerCap._(
-    'lavender',
+    value: 'lavender',
   );
 
   /// brown
   static final ContainerCap brown = ContainerCap._(
-    'brown',
+    value: 'brown',
   );
 
   /// white
   static final ContainerCap white = ContainerCap._(
-    'white',
+    value: 'white',
   );
 
   /// pink
   static final ContainerCap pink = ContainerCap._(
-    'pink',
+    value: 'pink',
   );
 
   /// For instances where an Element is present but not value
 
-  static final ContainerCap elementOnly = ContainerCap._('');
+  static final ContainerCap elementOnly = ContainerCap._(value: '');
 
   /// List of all enum-like values
   static final List<ContainerCap> values = [
@@ -107,13 +112,13 @@ class ContainerCap extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ContainerCap clone() => ContainerCap._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ContainerCap withElement(Element? newElement) {
-    return ContainerCap._(value, newElement);
+    return ContainerCap._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -138,14 +143,13 @@ class ContainerCap extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ContainerCap._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

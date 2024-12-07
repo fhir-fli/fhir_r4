@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The type of participant.
 class TestReportParticipantType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  TestReportParticipantType._(super.value, [super.element]);
+  TestReportParticipantType._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [TestReportParticipantType] from JSON.
   factory TestReportParticipantType.fromJson(
@@ -21,29 +26,29 @@ class TestReportParticipantType extends PrimitiveType<String> {
         'TestReportParticipantType cannot be constructed from JSON.',
       );
     }
-    return TestReportParticipantType._(value, element);
+    return TestReportParticipantType._(value: value, element: element);
   }
 
   /// test_engine
   static final TestReportParticipantType test_engine =
       TestReportParticipantType._(
-    'test-engine',
+    value: 'test-engine',
   );
 
   /// client
   static final TestReportParticipantType client = TestReportParticipantType._(
-    'client',
+    value: 'client',
   );
 
   /// server
   static final TestReportParticipantType server = TestReportParticipantType._(
-    'server',
+    value: 'server',
   );
 
   /// For instances where an Element is present but not value
 
   static final TestReportParticipantType elementOnly =
-      TestReportParticipantType._('');
+      TestReportParticipantType._(value: '');
 
   /// List of all enum-like values
   static final List<TestReportParticipantType> values = [
@@ -55,13 +60,13 @@ class TestReportParticipantType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   TestReportParticipantType clone() => TestReportParticipantType._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   TestReportParticipantType withElement(Element? newElement) {
-    return TestReportParticipantType._(value, newElement);
+    return TestReportParticipantType._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -86,14 +91,13 @@ class TestReportParticipantType extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return TestReportParticipantType._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

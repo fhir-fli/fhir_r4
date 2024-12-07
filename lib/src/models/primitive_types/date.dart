@@ -42,23 +42,29 @@ class FhirDate extends FhirDateTimeBase {
     required super.isUtc,
     super.timeZoneOffset,
     super.element,
+    super.id,
+    super.extension_,
   });
 
   /// Factory constructor to create a [FhirDate] from a [String].
   ///
   /// The input must be a valid date string.
-  factory FhirDate.fromString(String? inValue, [Element? element]) =>
-      inValue == null && element == null
+  factory FhirDate.fromString(String? input, [Element? element]) =>
+      input == null && element == null
           ? throw ArgumentError('A value or element is required')
-          : FhirDateTimeBase.constructor<FhirDate>(inValue, element)
-              as FhirDate;
+          : FhirDateTimeBase.constructor<FhirDate>(
+              input: input,
+              element: element,
+            ) as FhirDate;
 
   /// Factory constructor to create a [FhirDate] from a [DateTime].
-  factory FhirDate.fromDateTime(DateTime? inValue, [Element? element]) =>
-      inValue == null && element == null
+  factory FhirDate.fromDateTime(DateTime? input, [Element? element]) =>
+      input == null && element == null
           ? throw ArgumentError('A value or element is required')
-          : FhirDateTimeBase.constructor<FhirDate>(inValue, element)
-              as FhirDate;
+          : FhirDateTimeBase.constructor<FhirDate>(
+              input: input,
+              element: element,
+            ) as FhirDate;
 
   /// Factory constructor to create a [FhirDateTime] from a JSON input.
   ///
@@ -165,7 +171,6 @@ class FhirDate extends FhirDateTimeBase {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     return FhirDate.fromDateTime(
       value,

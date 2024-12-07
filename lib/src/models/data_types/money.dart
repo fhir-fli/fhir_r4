@@ -14,10 +14,6 @@ class Money extends DataType {
     this.value,
     this.currency,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -141,10 +137,6 @@ class Money extends DataType {
       extension_: extension_ ?? this.extension_,
       value: value ?? this.value,
       currency: currency ?? this.currency,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

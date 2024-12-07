@@ -6,7 +6,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 class ImmunizationRecommendationTargetDiseaseCodes
     extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ImmunizationRecommendationTargetDiseaseCodes._(super.value, [super.element]);
+  ImmunizationRecommendationTargetDiseaseCodes._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [ImmunizationRecommendationTargetDiseaseCodes] from JSON.
   factory ImmunizationRecommendationTargetDiseaseCodes.fromJson(
@@ -23,67 +28,68 @@ class ImmunizationRecommendationTargetDiseaseCodes
         'ImmunizationRecommendationTargetDiseaseCodes cannot be constructed from JSON.',
       );
     }
-    return ImmunizationRecommendationTargetDiseaseCodes._(value, element);
+    return ImmunizationRecommendationTargetDiseaseCodes._(
+        value: value, element: element);
   }
 
   /// value1857005
   static final ImmunizationRecommendationTargetDiseaseCodes value1857005 =
       ImmunizationRecommendationTargetDiseaseCodes._(
-    '1857005',
+    value: '1857005',
   );
 
   /// value397430003
   static final ImmunizationRecommendationTargetDiseaseCodes value397430003 =
       ImmunizationRecommendationTargetDiseaseCodes._(
-    '397430003',
+    value: '397430003',
   );
 
   /// value14189004
   static final ImmunizationRecommendationTargetDiseaseCodes value14189004 =
       ImmunizationRecommendationTargetDiseaseCodes._(
-    '14189004',
+    value: '14189004',
   );
 
   /// value36989005
   static final ImmunizationRecommendationTargetDiseaseCodes value36989005 =
       ImmunizationRecommendationTargetDiseaseCodes._(
-    '36989005',
+    value: '36989005',
   );
 
   /// value36653000
   static final ImmunizationRecommendationTargetDiseaseCodes value36653000 =
       ImmunizationRecommendationTargetDiseaseCodes._(
-    '36653000',
+    value: '36653000',
   );
 
   /// value76902006
   static final ImmunizationRecommendationTargetDiseaseCodes value76902006 =
       ImmunizationRecommendationTargetDiseaseCodes._(
-    '76902006',
+    value: '76902006',
   );
 
   /// value709410003
   static final ImmunizationRecommendationTargetDiseaseCodes value709410003 =
       ImmunizationRecommendationTargetDiseaseCodes._(
-    '709410003',
+    value: '709410003',
   );
 
   /// value27836007
   static final ImmunizationRecommendationTargetDiseaseCodes value27836007 =
       ImmunizationRecommendationTargetDiseaseCodes._(
-    '27836007',
+    value: '27836007',
   );
 
   /// value398102009
   static final ImmunizationRecommendationTargetDiseaseCodes value398102009 =
       ImmunizationRecommendationTargetDiseaseCodes._(
-    '398102009',
+    value: '398102009',
   );
 
   /// For instances where an Element is present but not value
 
   static final ImmunizationRecommendationTargetDiseaseCodes elementOnly =
-      ImmunizationRecommendationTargetDiseaseCodes._('');
+      ImmunizationRecommendationTargetDiseaseCodes._(value: '');
 
   /// List of all enum-like values
   static final List<ImmunizationRecommendationTargetDiseaseCodes> values = [
@@ -102,14 +108,15 @@ class ImmunizationRecommendationTargetDiseaseCodes
   @override
   ImmunizationRecommendationTargetDiseaseCodes clone() =>
       ImmunizationRecommendationTargetDiseaseCodes._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ImmunizationRecommendationTargetDiseaseCodes withElement(
       Element? newElement) {
-    return ImmunizationRecommendationTargetDiseaseCodes._(value, newElement);
+    return ImmunizationRecommendationTargetDiseaseCodes._(
+        value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -134,14 +141,13 @@ class ImmunizationRecommendationTargetDiseaseCodes
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ImmunizationRecommendationTargetDiseaseCodes._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

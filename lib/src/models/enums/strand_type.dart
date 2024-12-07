@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Type for strand.
 class StrandType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  StrandType._(super.value, [super.element]);
+  StrandType._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [StrandType] from JSON.
   factory StrandType.fromJson(
@@ -21,22 +26,22 @@ class StrandType extends PrimitiveType<String> {
         'StrandType cannot be constructed from JSON.',
       );
     }
-    return StrandType._(value, element);
+    return StrandType._(value: value, element: element);
   }
 
   /// watson
   static final StrandType watson = StrandType._(
-    'watson',
+    value: 'watson',
   );
 
   /// crick
   static final StrandType crick = StrandType._(
-    'crick',
+    value: 'crick',
   );
 
   /// For instances where an Element is present but not value
 
-  static final StrandType elementOnly = StrandType._('');
+  static final StrandType elementOnly = StrandType._(value: '');
 
   /// List of all enum-like values
   static final List<StrandType> values = [
@@ -47,13 +52,13 @@ class StrandType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   StrandType clone() => StrandType._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   StrandType withElement(Element? newElement) {
-    return StrandType._(value, newElement);
+    return StrandType._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -78,14 +83,13 @@ class StrandType extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return StrandType._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

@@ -16,10 +16,6 @@ class Reference extends DataType {
     this.identifier,
     this.display,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -195,10 +191,6 @@ class Reference extends DataType {
       type: type ?? this.type,
       identifier: identifier ?? this.identifier,
       display: display ?? this.display,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

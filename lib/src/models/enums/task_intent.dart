@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Distinguishes whether the task is a proposal, plan or full order.
 class TaskIntent extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  TaskIntent._(super.value, [super.element]);
+  TaskIntent._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [TaskIntent] from JSON.
   factory TaskIntent.fromJson(
@@ -21,62 +26,62 @@ class TaskIntent extends PrimitiveType<String> {
         'TaskIntent cannot be constructed from JSON.',
       );
     }
-    return TaskIntent._(value, element);
+    return TaskIntent._(value: value, element: element);
   }
 
   /// unknown
   static final TaskIntent unknown = TaskIntent._(
-    'unknown',
+    value: 'unknown',
   );
 
   /// proposal
   static final TaskIntent proposal = TaskIntent._(
-    'proposal',
+    value: 'proposal',
   );
 
   /// plan
   static final TaskIntent plan = TaskIntent._(
-    'plan',
+    value: 'plan',
   );
 
   /// directive
   static final TaskIntent directive = TaskIntent._(
-    'directive',
+    value: 'directive',
   );
 
   /// order
   static final TaskIntent order = TaskIntent._(
-    'order',
+    value: 'order',
   );
 
   /// original_order
   static final TaskIntent original_order = TaskIntent._(
-    'original-order',
+    value: 'original-order',
   );
 
   /// reflex_order
   static final TaskIntent reflex_order = TaskIntent._(
-    'reflex-order',
+    value: 'reflex-order',
   );
 
   /// filler_order
   static final TaskIntent filler_order = TaskIntent._(
-    'filler-order',
+    value: 'filler-order',
   );
 
   /// instance_order
   static final TaskIntent instance_order = TaskIntent._(
-    'instance-order',
+    value: 'instance-order',
   );
 
   /// option
   static final TaskIntent option = TaskIntent._(
-    'option',
+    value: 'option',
   );
 
   /// For instances where an Element is present but not value
 
-  static final TaskIntent elementOnly = TaskIntent._('');
+  static final TaskIntent elementOnly = TaskIntent._(value: '');
 
   /// List of all enum-like values
   static final List<TaskIntent> values = [
@@ -95,13 +100,13 @@ class TaskIntent extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   TaskIntent clone() => TaskIntent._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   TaskIntent withElement(Element? newElement) {
-    return TaskIntent._(value, newElement);
+    return TaskIntent._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -126,14 +131,13 @@ class TaskIntent extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return TaskIntent._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Indicates whether the account is available to be used.
 class AccountStatus extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  AccountStatus._(super.value, [super.element]);
+  AccountStatus._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [AccountStatus] from JSON.
   factory AccountStatus.fromJson(
@@ -21,37 +26,37 @@ class AccountStatus extends PrimitiveType<String> {
         'AccountStatus cannot be constructed from JSON.',
       );
     }
-    return AccountStatus._(value, element);
+    return AccountStatus._(value: value, element: element);
   }
 
   /// active
   static final AccountStatus active = AccountStatus._(
-    'active',
+    value: 'active',
   );
 
   /// inactive
   static final AccountStatus inactive = AccountStatus._(
-    'inactive',
+    value: 'inactive',
   );
 
   /// entered_in_error
   static final AccountStatus entered_in_error = AccountStatus._(
-    'entered-in-error',
+    value: 'entered-in-error',
   );
 
   /// on_hold
   static final AccountStatus on_hold = AccountStatus._(
-    'on-hold',
+    value: 'on-hold',
   );
 
   /// unknown
   static final AccountStatus unknown = AccountStatus._(
-    'unknown',
+    value: 'unknown',
   );
 
   /// For instances where an Element is present but not value
 
-  static final AccountStatus elementOnly = AccountStatus._('');
+  static final AccountStatus elementOnly = AccountStatus._(value: '');
 
   /// List of all enum-like values
   static final List<AccountStatus> values = [
@@ -65,13 +70,13 @@ class AccountStatus extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   AccountStatus clone() => AccountStatus._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   AccountStatus withElement(Element? newElement) {
-    return AccountStatus._(value, newElement);
+    return AccountStatus._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -96,14 +101,13 @@ class AccountStatus extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return AccountStatus._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

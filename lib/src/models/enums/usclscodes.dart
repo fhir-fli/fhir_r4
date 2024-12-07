@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value set includes a smattering of USCLS codes.
 class USCLSCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  USCLSCodes._(super.value, [super.element]);
+  USCLSCodes._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [USCLSCodes] from JSON.
   factory USCLSCodes.fromJson(
@@ -21,112 +26,112 @@ class USCLSCodes extends PrimitiveType<String> {
         'USCLSCodes cannot be constructed from JSON.',
       );
     }
-    return USCLSCodes._(value, element);
+    return USCLSCodes._(value: value, element: element);
   }
 
   /// value1101
   static final USCLSCodes value1101 = USCLSCodes._(
-    '1101',
+    value: '1101',
   );
 
   /// value1102
   static final USCLSCodes value1102 = USCLSCodes._(
-    '1102',
+    value: '1102',
   );
 
   /// value1103
   static final USCLSCodes value1103 = USCLSCodes._(
-    '1103',
+    value: '1103',
   );
 
   /// value1201
   static final USCLSCodes value1201 = USCLSCodes._(
-    '1201',
+    value: '1201',
   );
 
   /// value1205
   static final USCLSCodes value1205 = USCLSCodes._(
-    '1205',
+    value: '1205',
   );
 
   /// value2101
   static final USCLSCodes value2101 = USCLSCodes._(
-    '2101',
+    value: '2101',
   );
 
   /// value2102
   static final USCLSCodes value2102 = USCLSCodes._(
-    '2102',
+    value: '2102',
   );
 
   /// value2141
   static final USCLSCodes value2141 = USCLSCodes._(
-    '2141',
+    value: '2141',
   );
 
   /// value2601
   static final USCLSCodes value2601 = USCLSCodes._(
-    '2601',
+    value: '2601',
   );
 
   /// value11101
   static final USCLSCodes value11101 = USCLSCodes._(
-    '11101',
+    value: '11101',
   );
 
   /// value11102
   static final USCLSCodes value11102 = USCLSCodes._(
-    '11102',
+    value: '11102',
   );
 
   /// value11103
   static final USCLSCodes value11103 = USCLSCodes._(
-    '11103',
+    value: '11103',
   );
 
   /// value11104
   static final USCLSCodes value11104 = USCLSCodes._(
-    '11104',
+    value: '11104',
   );
 
   /// value21211
   static final USCLSCodes value21211 = USCLSCodes._(
-    '21211',
+    value: '21211',
   );
 
   /// value21212
   static final USCLSCodes value21212 = USCLSCodes._(
-    '21212',
+    value: '21212',
   );
 
   /// value27211
   static final USCLSCodes value27211 = USCLSCodes._(
-    '27211',
+    value: '27211',
   );
 
   /// value67211
   static final USCLSCodes value67211 = USCLSCodes._(
-    '67211',
+    value: '67211',
   );
 
   /// value99111
   static final USCLSCodes value99111 = USCLSCodes._(
-    '99111',
+    value: '99111',
   );
 
   /// value99333
   static final USCLSCodes value99333 = USCLSCodes._(
-    '99333',
+    value: '99333',
   );
 
   /// value99555
   static final USCLSCodes value99555 = USCLSCodes._(
-    '99555',
+    value: '99555',
   );
 
   /// For instances where an Element is present but not value
 
-  static final USCLSCodes elementOnly = USCLSCodes._('');
+  static final USCLSCodes elementOnly = USCLSCodes._(value: '');
 
   /// List of all enum-like values
   static final List<USCLSCodes> values = [
@@ -155,13 +160,13 @@ class USCLSCodes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   USCLSCodes clone() => USCLSCodes._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   USCLSCodes withElement(Element? newElement) {
-    return USCLSCodes._(value, newElement);
+    return USCLSCodes._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -186,14 +191,13 @@ class USCLSCodes extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return USCLSCodes._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

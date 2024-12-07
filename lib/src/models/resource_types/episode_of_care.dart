@@ -32,10 +32,6 @@ class EpisodeOfCare extends DomainResource {
     this.careManager,
     this.team,
     this.account,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.EpisodeOfCare,
         );
@@ -419,10 +415,6 @@ class EpisodeOfCare extends DomainResource {
       careManager: careManager ?? this.careManager,
       team: team ?? this.team,
       account: account ?? this.account,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -441,10 +433,6 @@ class EpisodeOfCareStatusHistory extends BackboneElement {
     required this.status,
     required this.period,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -580,10 +568,6 @@ class EpisodeOfCareStatusHistory extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       status: status ?? this.status,
       period: period ?? this.period,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -602,10 +586,6 @@ class EpisodeOfCareDiagnosis extends BackboneElement {
     this.role,
     this.rank,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -760,10 +740,6 @@ class EpisodeOfCareDiagnosis extends BackboneElement {
       condition: condition ?? this.condition,
       role: role ?? this.role,
       rank: rank ?? this.rank,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

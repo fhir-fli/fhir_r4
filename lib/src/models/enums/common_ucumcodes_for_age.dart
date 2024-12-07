@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Unified Code for Units of Measure (UCUM). This value set includes all UCUM codes
 class CommonUCUMCodesForAge extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  CommonUCUMCodesForAge._(super.value, [super.element]);
+  CommonUCUMCodesForAge._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [CommonUCUMCodesForAge] from JSON.
   factory CommonUCUMCodesForAge.fromJson(
@@ -21,42 +26,43 @@ class CommonUCUMCodesForAge extends PrimitiveType<String> {
         'CommonUCUMCodesForAge cannot be constructed from JSON.',
       );
     }
-    return CommonUCUMCodesForAge._(value, element);
+    return CommonUCUMCodesForAge._(value: value, element: element);
   }
 
   /// min
   static final CommonUCUMCodesForAge min = CommonUCUMCodesForAge._(
-    'min',
+    value: 'min',
   );
 
   /// h
   static final CommonUCUMCodesForAge h = CommonUCUMCodesForAge._(
-    'h',
+    value: 'h',
   );
 
   /// d
   static final CommonUCUMCodesForAge d = CommonUCUMCodesForAge._(
-    'd',
+    value: 'd',
   );
 
   /// wk
   static final CommonUCUMCodesForAge wk = CommonUCUMCodesForAge._(
-    'wk',
+    value: 'wk',
   );
 
   /// mo
   static final CommonUCUMCodesForAge mo = CommonUCUMCodesForAge._(
-    'mo',
+    value: 'mo',
   );
 
   /// a
   static final CommonUCUMCodesForAge a = CommonUCUMCodesForAge._(
-    'a',
+    value: 'a',
   );
 
   /// For instances where an Element is present but not value
 
-  static final CommonUCUMCodesForAge elementOnly = CommonUCUMCodesForAge._('');
+  static final CommonUCUMCodesForAge elementOnly =
+      CommonUCUMCodesForAge._(value: '');
 
   /// List of all enum-like values
   static final List<CommonUCUMCodesForAge> values = [
@@ -71,13 +77,13 @@ class CommonUCUMCodesForAge extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   CommonUCUMCodesForAge clone() => CommonUCUMCodesForAge._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   CommonUCUMCodesForAge withElement(Element? newElement) {
-    return CommonUCUMCodesForAge._(value, newElement);
+    return CommonUCUMCodesForAge._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -102,14 +108,13 @@ class CommonUCUMCodesForAge extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return CommonUCUMCodesForAge._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

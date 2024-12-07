@@ -55,10 +55,6 @@ class ResearchDefinition extends DomainResource {
     this.exposure,
     this.exposureAlternative,
     this.outcome,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.ResearchDefinition,
         );
@@ -833,10 +829,6 @@ class ResearchDefinition extends DomainResource {
       exposure: exposure ?? this.exposure,
       exposureAlternative: exposureAlternative ?? this.exposureAlternative,
       outcome: outcome ?? this.outcome,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

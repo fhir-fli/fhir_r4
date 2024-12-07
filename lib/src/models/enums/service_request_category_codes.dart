@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// An example value set of SNOMED CT concepts that can classify a requested service
 class ServiceRequestCategoryCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ServiceRequestCategoryCodes._(super.value, [super.element]);
+  ServiceRequestCategoryCodes._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [ServiceRequestCategoryCodes] from JSON.
   factory ServiceRequestCategoryCodes.fromJson(
@@ -21,43 +26,43 @@ class ServiceRequestCategoryCodes extends PrimitiveType<String> {
         'ServiceRequestCategoryCodes cannot be constructed from JSON.',
       );
     }
-    return ServiceRequestCategoryCodes._(value, element);
+    return ServiceRequestCategoryCodes._(value: value, element: element);
   }
 
   /// value108252007
   static final ServiceRequestCategoryCodes value108252007 =
       ServiceRequestCategoryCodes._(
-    '108252007',
+    value: '108252007',
   );
 
   /// value363679005
   static final ServiceRequestCategoryCodes value363679005 =
       ServiceRequestCategoryCodes._(
-    '363679005',
+    value: '363679005',
   );
 
   /// value409063005
   static final ServiceRequestCategoryCodes value409063005 =
       ServiceRequestCategoryCodes._(
-    '409063005',
+    value: '409063005',
   );
 
   /// value409073007
   static final ServiceRequestCategoryCodes value409073007 =
       ServiceRequestCategoryCodes._(
-    '409073007',
+    value: '409073007',
   );
 
   /// value387713003
   static final ServiceRequestCategoryCodes value387713003 =
       ServiceRequestCategoryCodes._(
-    '387713003',
+    value: '387713003',
   );
 
   /// For instances where an Element is present but not value
 
   static final ServiceRequestCategoryCodes elementOnly =
-      ServiceRequestCategoryCodes._('');
+      ServiceRequestCategoryCodes._(value: '');
 
   /// List of all enum-like values
   static final List<ServiceRequestCategoryCodes> values = [
@@ -71,13 +76,13 @@ class ServiceRequestCategoryCodes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ServiceRequestCategoryCodes clone() => ServiceRequestCategoryCodes._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ServiceRequestCategoryCodes withElement(Element? newElement) {
-    return ServiceRequestCategoryCodes._(value, newElement);
+    return ServiceRequestCategoryCodes._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -102,14 +107,13 @@ class ServiceRequestCategoryCodes extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ServiceRequestCategoryCodes._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

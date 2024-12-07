@@ -14,10 +14,6 @@ class Range extends DataType {
     this.low,
     this.high,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -145,10 +141,6 @@ class Range extends DataType {
       extension_: extension_ ?? this.extension_,
       low: low ?? this.low,
       high: high ?? this.high,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

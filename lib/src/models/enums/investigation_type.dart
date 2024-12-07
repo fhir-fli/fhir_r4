@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Example value set for investigation type.
 class InvestigationType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  InvestigationType._(super.value, [super.element]);
+  InvestigationType._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [InvestigationType] from JSON.
   factory InvestigationType.fromJson(
@@ -21,22 +26,22 @@ class InvestigationType extends PrimitiveType<String> {
         'InvestigationType cannot be constructed from JSON.',
       );
     }
-    return InvestigationType._(value, element);
+    return InvestigationType._(value: value, element: element);
   }
 
   /// value271336007
   static final InvestigationType value271336007 = InvestigationType._(
-    '271336007',
+    value: '271336007',
   );
 
   /// value160237006
   static final InvestigationType value160237006 = InvestigationType._(
-    '160237006',
+    value: '160237006',
   );
 
   /// For instances where an Element is present but not value
 
-  static final InvestigationType elementOnly = InvestigationType._('');
+  static final InvestigationType elementOnly = InvestigationType._(value: '');
 
   /// List of all enum-like values
   static final List<InvestigationType> values = [
@@ -47,13 +52,13 @@ class InvestigationType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   InvestigationType clone() => InvestigationType._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   InvestigationType withElement(Element? newElement) {
-    return InvestigationType._(value, newElement);
+    return InvestigationType._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -78,14 +83,13 @@ class InvestigationType extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return InvestigationType._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

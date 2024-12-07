@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Codes describing the reason why a family member's history is not available.
 class FamilyHistoryAbsentReason extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  FamilyHistoryAbsentReason._(super.value, [super.element]);
+  FamilyHistoryAbsentReason._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [FamilyHistoryAbsentReason] from JSON.
   factory FamilyHistoryAbsentReason.fromJson(
@@ -21,36 +26,36 @@ class FamilyHistoryAbsentReason extends PrimitiveType<String> {
         'FamilyHistoryAbsentReason cannot be constructed from JSON.',
       );
     }
-    return FamilyHistoryAbsentReason._(value, element);
+    return FamilyHistoryAbsentReason._(value: value, element: element);
   }
 
   /// subject_unknown
   static final FamilyHistoryAbsentReason subject_unknown =
       FamilyHistoryAbsentReason._(
-    'subject-unknown',
+    value: 'subject-unknown',
   );
 
   /// withheld
   static final FamilyHistoryAbsentReason withheld = FamilyHistoryAbsentReason._(
-    'withheld',
+    value: 'withheld',
   );
 
   /// unable_to_obtain
   static final FamilyHistoryAbsentReason unable_to_obtain =
       FamilyHistoryAbsentReason._(
-    'unable-to-obtain',
+    value: 'unable-to-obtain',
   );
 
   /// deferred_
   static final FamilyHistoryAbsentReason deferred_ =
       FamilyHistoryAbsentReason._(
-    'deferred',
+    value: 'deferred',
   );
 
   /// For instances where an Element is present but not value
 
   static final FamilyHistoryAbsentReason elementOnly =
-      FamilyHistoryAbsentReason._('');
+      FamilyHistoryAbsentReason._(value: '');
 
   /// List of all enum-like values
   static final List<FamilyHistoryAbsentReason> values = [
@@ -63,13 +68,13 @@ class FamilyHistoryAbsentReason extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   FamilyHistoryAbsentReason clone() => FamilyHistoryAbsentReason._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   FamilyHistoryAbsentReason withElement(Element? newElement) {
-    return FamilyHistoryAbsentReason._(value, newElement);
+    return FamilyHistoryAbsentReason._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -94,14 +99,13 @@ class FamilyHistoryAbsentReason extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return FamilyHistoryAbsentReason._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

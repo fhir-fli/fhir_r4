@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Real world event relating to the schedule.
 class EventTiming extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  EventTiming._(super.value, [super.element]);
+  EventTiming._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [EventTiming] from JSON.
   factory EventTiming.fromJson(
@@ -21,142 +26,142 @@ class EventTiming extends PrimitiveType<String> {
         'EventTiming cannot be constructed from JSON.',
       );
     }
-    return EventTiming._(value, element);
+    return EventTiming._(value: value, element: element);
   }
 
   /// MORN
   static final EventTiming MORN = EventTiming._(
-    'MORN',
+    value: 'MORN',
   );
 
   /// MORN_early
   static final EventTiming MORN_early = EventTiming._(
-    'MORN.early',
+    value: 'MORN.early',
   );
 
   /// MORN_late
   static final EventTiming MORN_late = EventTiming._(
-    'MORN.late',
+    value: 'MORN.late',
   );
 
   /// NOON
   static final EventTiming NOON = EventTiming._(
-    'NOON',
+    value: 'NOON',
   );
 
   /// AFT
   static final EventTiming AFT = EventTiming._(
-    'AFT',
+    value: 'AFT',
   );
 
   /// AFT_early
   static final EventTiming AFT_early = EventTiming._(
-    'AFT.early',
+    value: 'AFT.early',
   );
 
   /// AFT_late
   static final EventTiming AFT_late = EventTiming._(
-    'AFT.late',
+    value: 'AFT.late',
   );
 
   /// EVE
   static final EventTiming EVE = EventTiming._(
-    'EVE',
+    value: 'EVE',
   );
 
   /// EVE_early
   static final EventTiming EVE_early = EventTiming._(
-    'EVE.early',
+    value: 'EVE.early',
   );
 
   /// EVE_late
   static final EventTiming EVE_late = EventTiming._(
-    'EVE.late',
+    value: 'EVE.late',
   );
 
   /// NIGHT
   static final EventTiming NIGHT = EventTiming._(
-    'NIGHT',
+    value: 'NIGHT',
   );
 
   /// PHS
   static final EventTiming PHS = EventTiming._(
-    'PHS',
+    value: 'PHS',
   );
 
   /// HS
   static final EventTiming HS = EventTiming._(
-    'HS',
+    value: 'HS',
   );
 
   /// WAKE
   static final EventTiming WAKE = EventTiming._(
-    'WAKE',
+    value: 'WAKE',
   );
 
   /// C
   static final EventTiming C = EventTiming._(
-    'C',
+    value: 'C',
   );
 
   /// CM
   static final EventTiming CM = EventTiming._(
-    'CM',
+    value: 'CM',
   );
 
   /// CD
   static final EventTiming CD = EventTiming._(
-    'CD',
+    value: 'CD',
   );
 
   /// CV
   static final EventTiming CV = EventTiming._(
-    'CV',
+    value: 'CV',
   );
 
   /// AC
   static final EventTiming AC = EventTiming._(
-    'AC',
+    value: 'AC',
   );
 
   /// ACM
   static final EventTiming ACM = EventTiming._(
-    'ACM',
+    value: 'ACM',
   );
 
   /// ACD
   static final EventTiming ACD = EventTiming._(
-    'ACD',
+    value: 'ACD',
   );
 
   /// ACV
   static final EventTiming ACV = EventTiming._(
-    'ACV',
+    value: 'ACV',
   );
 
   /// PC
   static final EventTiming PC = EventTiming._(
-    'PC',
+    value: 'PC',
   );
 
   /// PCM
   static final EventTiming PCM = EventTiming._(
-    'PCM',
+    value: 'PCM',
   );
 
   /// PCD
   static final EventTiming PCD = EventTiming._(
-    'PCD',
+    value: 'PCD',
   );
 
   /// PCV
   static final EventTiming PCV = EventTiming._(
-    'PCV',
+    value: 'PCV',
   );
 
   /// For instances where an Element is present but not value
 
-  static final EventTiming elementOnly = EventTiming._('');
+  static final EventTiming elementOnly = EventTiming._(value: '');
 
   /// List of all enum-like values
   static final List<EventTiming> values = [
@@ -191,13 +196,13 @@ class EventTiming extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   EventTiming clone() => EventTiming._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   EventTiming withElement(Element? newElement) {
-    return EventTiming._(value, newElement);
+    return EventTiming._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -222,14 +227,13 @@ class EventTiming extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return EventTiming._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

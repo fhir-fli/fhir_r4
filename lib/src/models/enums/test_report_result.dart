@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The reported execution result.
 class TestReportResult extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  TestReportResult._(super.value, [super.element]);
+  TestReportResult._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [TestReportResult] from JSON.
   factory TestReportResult.fromJson(
@@ -21,27 +26,27 @@ class TestReportResult extends PrimitiveType<String> {
         'TestReportResult cannot be constructed from JSON.',
       );
     }
-    return TestReportResult._(value, element);
+    return TestReportResult._(value: value, element: element);
   }
 
   /// pass
   static final TestReportResult pass = TestReportResult._(
-    'pass',
+    value: 'pass',
   );
 
   /// fail
   static final TestReportResult fail = TestReportResult._(
-    'fail',
+    value: 'fail',
   );
 
   /// pending
   static final TestReportResult pending = TestReportResult._(
-    'pending',
+    value: 'pending',
   );
 
   /// For instances where an Element is present but not value
 
-  static final TestReportResult elementOnly = TestReportResult._('');
+  static final TestReportResult elementOnly = TestReportResult._(value: '');
 
   /// List of all enum-like values
   static final List<TestReportResult> values = [
@@ -53,13 +58,13 @@ class TestReportResult extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   TestReportResult clone() => TestReportResult._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   TestReportResult withElement(Element? newElement) {
-    return TestReportResult._(value, newElement);
+    return TestReportResult._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -84,14 +89,13 @@ class TestReportResult extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return TestReportResult._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

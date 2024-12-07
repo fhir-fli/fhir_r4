@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// A list of all the concrete types defined in this version of the FHIR specification - Abstract Types, Data Types and Resource Types.
 class FHIRAllTypes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  FHIRAllTypes._(super.value, [super.element]);
+  FHIRAllTypes._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [FHIRAllTypes] from JSON.
   factory FHIRAllTypes.fromJson(
@@ -21,1057 +26,1057 @@ class FHIRAllTypes extends PrimitiveType<String> {
         'FHIRAllTypes cannot be constructed from JSON.',
       );
     }
-    return FHIRAllTypes._(value, element);
+    return FHIRAllTypes._(value: value, element: element);
   }
 
   /// Address
   static final FHIRAllTypes Address = FHIRAllTypes._(
-    'Address',
+    value: 'Address',
   );
 
   /// Age
   static final FHIRAllTypes Age = FHIRAllTypes._(
-    'Age',
+    value: 'Age',
   );
 
   /// Annotation
   static final FHIRAllTypes Annotation = FHIRAllTypes._(
-    'Annotation',
+    value: 'Annotation',
   );
 
   /// Attachment
   static final FHIRAllTypes Attachment = FHIRAllTypes._(
-    'Attachment',
+    value: 'Attachment',
   );
 
   /// BackboneElement
   static final FHIRAllTypes BackboneElement = FHIRAllTypes._(
-    'BackboneElement',
+    value: 'BackboneElement',
   );
 
   /// CodeableConcept
   static final FHIRAllTypes CodeableConcept = FHIRAllTypes._(
-    'CodeableConcept',
+    value: 'CodeableConcept',
   );
 
   /// CodeableReference
   static final FHIRAllTypes CodeableReference = FHIRAllTypes._(
-    'CodeableReference',
+    value: 'CodeableReference',
   );
 
   /// Coding
   static final FHIRAllTypes Coding = FHIRAllTypes._(
-    'Coding',
+    value: 'Coding',
   );
 
   /// ContactDetail
   static final FHIRAllTypes ContactDetail = FHIRAllTypes._(
-    'ContactDetail',
+    value: 'ContactDetail',
   );
 
   /// ContactPoint
   static final FHIRAllTypes ContactPoint = FHIRAllTypes._(
-    'ContactPoint',
+    value: 'ContactPoint',
   );
 
   /// Contributor
   static final FHIRAllTypes Contributor = FHIRAllTypes._(
-    'Contributor',
+    value: 'Contributor',
   );
 
   /// Count
   static final FHIRAllTypes Count = FHIRAllTypes._(
-    'Count',
+    value: 'Count',
   );
 
   /// DataRequirement
   static final FHIRAllTypes DataRequirement = FHIRAllTypes._(
-    'DataRequirement',
+    value: 'DataRequirement',
   );
 
   /// Distance
   static final FHIRAllTypes Distance = FHIRAllTypes._(
-    'Distance',
+    value: 'Distance',
   );
 
   /// Dosage
   static final FHIRAllTypes Dosage = FHIRAllTypes._(
-    'Dosage',
+    value: 'Dosage',
   );
 
   /// Duration
   static final FHIRAllTypes Duration = FHIRAllTypes._(
-    'Duration',
+    value: 'Duration',
   );
 
   /// Element_
   static final FHIRAllTypes Element_ = FHIRAllTypes._(
-    'Element',
+    value: 'Element',
   );
 
   /// ElementDefinition
   static final FHIRAllTypes ElementDefinition = FHIRAllTypes._(
-    'ElementDefinition',
+    value: 'ElementDefinition',
   );
 
   /// Expression
   static final FHIRAllTypes Expression = FHIRAllTypes._(
-    'Expression',
+    value: 'Expression',
   );
 
   /// Extension
   static final FHIRAllTypes Extension = FHIRAllTypes._(
-    'Extension',
+    value: 'Extension',
   );
 
   /// HumanName
   static final FHIRAllTypes HumanName = FHIRAllTypes._(
-    'HumanName',
+    value: 'HumanName',
   );
 
   /// Identifier
   static final FHIRAllTypes Identifier = FHIRAllTypes._(
-    'Identifier',
+    value: 'Identifier',
   );
 
   /// MarketingStatus
   static final FHIRAllTypes MarketingStatus = FHIRAllTypes._(
-    'MarketingStatus',
+    value: 'MarketingStatus',
   );
 
   /// Meta
   static final FHIRAllTypes Meta = FHIRAllTypes._(
-    'Meta',
+    value: 'Meta',
   );
 
   /// Money
   static final FHIRAllTypes Money = FHIRAllTypes._(
-    'Money',
+    value: 'Money',
   );
 
   /// MoneyQuantity
   static final FHIRAllTypes MoneyQuantity = FHIRAllTypes._(
-    'MoneyQuantity',
+    value: 'MoneyQuantity',
   );
 
   /// Narrative
   static final FHIRAllTypes Narrative = FHIRAllTypes._(
-    'Narrative',
+    value: 'Narrative',
   );
 
   /// ParameterDefinition
   static final FHIRAllTypes ParameterDefinition = FHIRAllTypes._(
-    'ParameterDefinition',
+    value: 'ParameterDefinition',
   );
 
   /// Period
   static final FHIRAllTypes Period = FHIRAllTypes._(
-    'Period',
+    value: 'Period',
   );
 
   /// Population
   static final FHIRAllTypes Population = FHIRAllTypes._(
-    'Population',
+    value: 'Population',
   );
 
   /// ProdCharacteristic
   static final FHIRAllTypes ProdCharacteristic = FHIRAllTypes._(
-    'ProdCharacteristic',
+    value: 'ProdCharacteristic',
   );
 
   /// ProductShelfLife
   static final FHIRAllTypes ProductShelfLife = FHIRAllTypes._(
-    'ProductShelfLife',
+    value: 'ProductShelfLife',
   );
 
   /// Quantity
   static final FHIRAllTypes Quantity = FHIRAllTypes._(
-    'Quantity',
+    value: 'Quantity',
   );
 
   /// Range
   static final FHIRAllTypes Range = FHIRAllTypes._(
-    'Range',
+    value: 'Range',
   );
 
   /// Ratio
   static final FHIRAllTypes Ratio = FHIRAllTypes._(
-    'Ratio',
+    value: 'Ratio',
   );
 
   /// RatioRange
   static final FHIRAllTypes RatioRange = FHIRAllTypes._(
-    'RatioRange',
+    value: 'RatioRange',
   );
 
   /// Reference
   static final FHIRAllTypes Reference = FHIRAllTypes._(
-    'Reference',
+    value: 'Reference',
   );
 
   /// RelatedArtifact
   static final FHIRAllTypes RelatedArtifact = FHIRAllTypes._(
-    'RelatedArtifact',
+    value: 'RelatedArtifact',
   );
 
   /// SampledData
   static final FHIRAllTypes SampledData = FHIRAllTypes._(
-    'SampledData',
+    value: 'SampledData',
   );
 
   /// Signature
   static final FHIRAllTypes Signature = FHIRAllTypes._(
-    'Signature',
+    value: 'Signature',
   );
 
   /// SimpleQuantity
   static final FHIRAllTypes SimpleQuantity = FHIRAllTypes._(
-    'SimpleQuantity',
+    value: 'SimpleQuantity',
   );
 
   /// Timing
   static final FHIRAllTypes Timing = FHIRAllTypes._(
-    'Timing',
+    value: 'Timing',
   );
 
   /// TriggerDefinition
   static final FHIRAllTypes TriggerDefinition = FHIRAllTypes._(
-    'TriggerDefinition',
+    value: 'TriggerDefinition',
   );
 
   /// UsageContext
   static final FHIRAllTypes UsageContext = FHIRAllTypes._(
-    'UsageContext',
+    value: 'UsageContext',
   );
 
   /// base64Binary
   static final FHIRAllTypes base64Binary = FHIRAllTypes._(
-    'base64Binary',
+    value: 'base64Binary',
   );
 
   /// boolean
   static final FHIRAllTypes boolean = FHIRAllTypes._(
-    'boolean',
+    value: 'boolean',
   );
 
   /// canonical
   static final FHIRAllTypes canonical = FHIRAllTypes._(
-    'canonical',
+    value: 'canonical',
   );
 
   /// code
   static final FHIRAllTypes code = FHIRAllTypes._(
-    'code',
+    value: 'code',
   );
 
   /// date
   static final FHIRAllTypes date = FHIRAllTypes._(
-    'date',
+    value: 'date',
   );
 
   /// dateTime
   static final FHIRAllTypes dateTime = FHIRAllTypes._(
-    'dateTime',
+    value: 'dateTime',
   );
 
   /// decimal
   static final FHIRAllTypes decimal = FHIRAllTypes._(
-    'decimal',
+    value: 'decimal',
   );
 
   /// id
   static final FHIRAllTypes id_ = FHIRAllTypes._(
-    'id',
+    value: 'id',
   );
 
   /// instant
   static final FHIRAllTypes instant = FHIRAllTypes._(
-    'instant',
+    value: 'instant',
   );
 
   /// integer
   static final FHIRAllTypes integer = FHIRAllTypes._(
-    'integer',
+    value: 'integer',
   );
 
   /// markdown
   static final FHIRAllTypes markdown = FHIRAllTypes._(
-    'markdown',
+    value: 'markdown',
   );
 
   /// oid
   static final FHIRAllTypes oid = FHIRAllTypes._(
-    'oid',
+    value: 'oid',
   );
 
   /// positiveInt
   static final FHIRAllTypes positiveInt = FHIRAllTypes._(
-    'positiveInt',
+    value: 'positiveInt',
   );
 
   /// string
   static final FHIRAllTypes string = FHIRAllTypes._(
-    'string',
+    value: 'string',
   );
 
   /// time
   static final FHIRAllTypes time = FHIRAllTypes._(
-    'time',
+    value: 'time',
   );
 
   /// unsignedInt
   static final FHIRAllTypes unsignedInt = FHIRAllTypes._(
-    'unsignedInt',
+    value: 'unsignedInt',
   );
 
   /// uri
   static final FHIRAllTypes uri = FHIRAllTypes._(
-    'uri',
+    value: 'uri',
   );
 
   /// url
   static final FHIRAllTypes url = FHIRAllTypes._(
-    'url',
+    value: 'url',
   );
 
   /// uuid
   static final FHIRAllTypes uuid = FHIRAllTypes._(
-    'uuid',
+    value: 'uuid',
   );
 
   /// xhtml
   static final FHIRAllTypes xhtml = FHIRAllTypes._(
-    'xhtml',
+    value: 'xhtml',
   );
 
   /// Resource
   static final FHIRAllTypes Resource = FHIRAllTypes._(
-    'Resource',
+    value: 'Resource',
   );
 
   /// Binary
   static final FHIRAllTypes Binary = FHIRAllTypes._(
-    'Binary',
+    value: 'Binary',
   );
 
   /// Bundle
   static final FHIRAllTypes Bundle = FHIRAllTypes._(
-    'Bundle',
+    value: 'Bundle',
   );
 
   /// DomainResource
   static final FHIRAllTypes DomainResource = FHIRAllTypes._(
-    'DomainResource',
+    value: 'DomainResource',
   );
 
   /// Account
   static final FHIRAllTypes Account = FHIRAllTypes._(
-    'Account',
+    value: 'Account',
   );
 
   /// ActivityDefinition
   static final FHIRAllTypes ActivityDefinition = FHIRAllTypes._(
-    'ActivityDefinition',
+    value: 'ActivityDefinition',
   );
 
   /// AdministrableProductDefinition
   static final FHIRAllTypes AdministrableProductDefinition = FHIRAllTypes._(
-    'AdministrableProductDefinition',
+    value: 'AdministrableProductDefinition',
   );
 
   /// AdverseEvent
   static final FHIRAllTypes AdverseEvent = FHIRAllTypes._(
-    'AdverseEvent',
+    value: 'AdverseEvent',
   );
 
   /// AllergyIntolerance
   static final FHIRAllTypes AllergyIntolerance = FHIRAllTypes._(
-    'AllergyIntolerance',
+    value: 'AllergyIntolerance',
   );
 
   /// Appointment
   static final FHIRAllTypes Appointment = FHIRAllTypes._(
-    'Appointment',
+    value: 'Appointment',
   );
 
   /// AppointmentResponse
   static final FHIRAllTypes AppointmentResponse = FHIRAllTypes._(
-    'AppointmentResponse',
+    value: 'AppointmentResponse',
   );
 
   /// AuditEvent
   static final FHIRAllTypes AuditEvent = FHIRAllTypes._(
-    'AuditEvent',
+    value: 'AuditEvent',
   );
 
   /// Basic
   static final FHIRAllTypes Basic = FHIRAllTypes._(
-    'Basic',
+    value: 'Basic',
   );
 
   /// BiologicallyDerivedProduct
   static final FHIRAllTypes BiologicallyDerivedProduct = FHIRAllTypes._(
-    'BiologicallyDerivedProduct',
+    value: 'BiologicallyDerivedProduct',
   );
 
   /// BodyStructure
   static final FHIRAllTypes BodyStructure = FHIRAllTypes._(
-    'BodyStructure',
+    value: 'BodyStructure',
   );
 
   /// CapabilityStatement
   static final FHIRAllTypes CapabilityStatement = FHIRAllTypes._(
-    'CapabilityStatement',
+    value: 'CapabilityStatement',
   );
 
   /// CarePlan
   static final FHIRAllTypes CarePlan = FHIRAllTypes._(
-    'CarePlan',
+    value: 'CarePlan',
   );
 
   /// CareTeam
   static final FHIRAllTypes CareTeam = FHIRAllTypes._(
-    'CareTeam',
+    value: 'CareTeam',
   );
 
   /// CatalogEntry
   static final FHIRAllTypes CatalogEntry = FHIRAllTypes._(
-    'CatalogEntry',
+    value: 'CatalogEntry',
   );
 
   /// ChargeItem
   static final FHIRAllTypes ChargeItem = FHIRAllTypes._(
-    'ChargeItem',
+    value: 'ChargeItem',
   );
 
   /// ChargeItemDefinition
   static final FHIRAllTypes ChargeItemDefinition = FHIRAllTypes._(
-    'ChargeItemDefinition',
+    value: 'ChargeItemDefinition',
   );
 
   /// Citation
   static final FHIRAllTypes Citation = FHIRAllTypes._(
-    'Citation',
+    value: 'Citation',
   );
 
   /// Claim
   static final FHIRAllTypes Claim = FHIRAllTypes._(
-    'Claim',
+    value: 'Claim',
   );
 
   /// ClaimResponse
   static final FHIRAllTypes ClaimResponse = FHIRAllTypes._(
-    'ClaimResponse',
+    value: 'ClaimResponse',
   );
 
   /// ClinicalImpression
   static final FHIRAllTypes ClinicalImpression = FHIRAllTypes._(
-    'ClinicalImpression',
+    value: 'ClinicalImpression',
   );
 
   /// ClinicalUseDefinition
   static final FHIRAllTypes ClinicalUseDefinition = FHIRAllTypes._(
-    'ClinicalUseDefinition',
+    value: 'ClinicalUseDefinition',
   );
 
   /// CodeSystem
   static final FHIRAllTypes CodeSystem = FHIRAllTypes._(
-    'CodeSystem',
+    value: 'CodeSystem',
   );
 
   /// Communication
   static final FHIRAllTypes Communication = FHIRAllTypes._(
-    'Communication',
+    value: 'Communication',
   );
 
   /// CommunicationRequest
   static final FHIRAllTypes CommunicationRequest = FHIRAllTypes._(
-    'CommunicationRequest',
+    value: 'CommunicationRequest',
   );
 
   /// CompartmentDefinition
   static final FHIRAllTypes CompartmentDefinition = FHIRAllTypes._(
-    'CompartmentDefinition',
+    value: 'CompartmentDefinition',
   );
 
   /// Composition
   static final FHIRAllTypes Composition = FHIRAllTypes._(
-    'Composition',
+    value: 'Composition',
   );
 
   /// ConceptMap
   static final FHIRAllTypes ConceptMap = FHIRAllTypes._(
-    'ConceptMap',
+    value: 'ConceptMap',
   );
 
   /// Condition
   static final FHIRAllTypes Condition = FHIRAllTypes._(
-    'Condition',
+    value: 'Condition',
   );
 
   /// Consent
   static final FHIRAllTypes Consent = FHIRAllTypes._(
-    'Consent',
+    value: 'Consent',
   );
 
   /// Contract
   static final FHIRAllTypes Contract = FHIRAllTypes._(
-    'Contract',
+    value: 'Contract',
   );
 
   /// Coverage
   static final FHIRAllTypes Coverage = FHIRAllTypes._(
-    'Coverage',
+    value: 'Coverage',
   );
 
   /// CoverageEligibilityRequest
   static final FHIRAllTypes CoverageEligibilityRequest = FHIRAllTypes._(
-    'CoverageEligibilityRequest',
+    value: 'CoverageEligibilityRequest',
   );
 
   /// CoverageEligibilityResponse
   static final FHIRAllTypes CoverageEligibilityResponse = FHIRAllTypes._(
-    'CoverageEligibilityResponse',
+    value: 'CoverageEligibilityResponse',
   );
 
   /// DetectedIssue
   static final FHIRAllTypes DetectedIssue = FHIRAllTypes._(
-    'DetectedIssue',
+    value: 'DetectedIssue',
   );
 
   /// Device
   static final FHIRAllTypes Device = FHIRAllTypes._(
-    'Device',
+    value: 'Device',
   );
 
   /// DeviceDefinition
   static final FHIRAllTypes DeviceDefinition = FHIRAllTypes._(
-    'DeviceDefinition',
+    value: 'DeviceDefinition',
   );
 
   /// DeviceMetric
   static final FHIRAllTypes DeviceMetric = FHIRAllTypes._(
-    'DeviceMetric',
+    value: 'DeviceMetric',
   );
 
   /// DeviceRequest
   static final FHIRAllTypes DeviceRequest = FHIRAllTypes._(
-    'DeviceRequest',
+    value: 'DeviceRequest',
   );
 
   /// DeviceUseStatement
   static final FHIRAllTypes DeviceUseStatement = FHIRAllTypes._(
-    'DeviceUseStatement',
+    value: 'DeviceUseStatement',
   );
 
   /// DiagnosticReport
   static final FHIRAllTypes DiagnosticReport = FHIRAllTypes._(
-    'DiagnosticReport',
+    value: 'DiagnosticReport',
   );
 
   /// DocumentManifest
   static final FHIRAllTypes DocumentManifest = FHIRAllTypes._(
-    'DocumentManifest',
+    value: 'DocumentManifest',
   );
 
   /// DocumentReference
   static final FHIRAllTypes DocumentReference = FHIRAllTypes._(
-    'DocumentReference',
+    value: 'DocumentReference',
   );
 
   /// Encounter
   static final FHIRAllTypes Encounter = FHIRAllTypes._(
-    'Encounter',
+    value: 'Encounter',
   );
 
   /// Endpoint
   static final FHIRAllTypes Endpoint = FHIRAllTypes._(
-    'Endpoint',
+    value: 'Endpoint',
   );
 
   /// EnrollmentRequest
   static final FHIRAllTypes EnrollmentRequest = FHIRAllTypes._(
-    'EnrollmentRequest',
+    value: 'EnrollmentRequest',
   );
 
   /// EnrollmentResponse
   static final FHIRAllTypes EnrollmentResponse = FHIRAllTypes._(
-    'EnrollmentResponse',
+    value: 'EnrollmentResponse',
   );
 
   /// EpisodeOfCare
   static final FHIRAllTypes EpisodeOfCare = FHIRAllTypes._(
-    'EpisodeOfCare',
+    value: 'EpisodeOfCare',
   );
 
   /// EventDefinition
   static final FHIRAllTypes EventDefinition = FHIRAllTypes._(
-    'EventDefinition',
+    value: 'EventDefinition',
   );
 
   /// Evidence
   static final FHIRAllTypes Evidence = FHIRAllTypes._(
-    'Evidence',
+    value: 'Evidence',
   );
 
   /// EvidenceReport
   static final FHIRAllTypes EvidenceReport = FHIRAllTypes._(
-    'EvidenceReport',
+    value: 'EvidenceReport',
   );
 
   /// EvidenceVariable
   static final FHIRAllTypes EvidenceVariable = FHIRAllTypes._(
-    'EvidenceVariable',
+    value: 'EvidenceVariable',
   );
 
   /// ExampleScenario
   static final FHIRAllTypes ExampleScenario = FHIRAllTypes._(
-    'ExampleScenario',
+    value: 'ExampleScenario',
   );
 
   /// ExplanationOfBenefit
   static final FHIRAllTypes ExplanationOfBenefit = FHIRAllTypes._(
-    'ExplanationOfBenefit',
+    value: 'ExplanationOfBenefit',
   );
 
   /// FamilyMemberHistory
   static final FHIRAllTypes FamilyMemberHistory = FHIRAllTypes._(
-    'FamilyMemberHistory',
+    value: 'FamilyMemberHistory',
   );
 
   /// Flag
   static final FHIRAllTypes Flag = FHIRAllTypes._(
-    'Flag',
+    value: 'Flag',
   );
 
   /// Goal
   static final FHIRAllTypes Goal = FHIRAllTypes._(
-    'Goal',
+    value: 'Goal',
   );
 
   /// GraphDefinition
   static final FHIRAllTypes GraphDefinition = FHIRAllTypes._(
-    'GraphDefinition',
+    value: 'GraphDefinition',
   );
 
   /// Group
   static final FHIRAllTypes Group = FHIRAllTypes._(
-    'Group',
+    value: 'Group',
   );
 
   /// GuidanceResponse
   static final FHIRAllTypes GuidanceResponse = FHIRAllTypes._(
-    'GuidanceResponse',
+    value: 'GuidanceResponse',
   );
 
   /// HealthcareService
   static final FHIRAllTypes HealthcareService = FHIRAllTypes._(
-    'HealthcareService',
+    value: 'HealthcareService',
   );
 
   /// ImagingStudy
   static final FHIRAllTypes ImagingStudy = FHIRAllTypes._(
-    'ImagingStudy',
+    value: 'ImagingStudy',
   );
 
   /// Immunization
   static final FHIRAllTypes Immunization = FHIRAllTypes._(
-    'Immunization',
+    value: 'Immunization',
   );
 
   /// ImmunizationEvaluation
   static final FHIRAllTypes ImmunizationEvaluation = FHIRAllTypes._(
-    'ImmunizationEvaluation',
+    value: 'ImmunizationEvaluation',
   );
 
   /// ImmunizationRecommendation
   static final FHIRAllTypes ImmunizationRecommendation = FHIRAllTypes._(
-    'ImmunizationRecommendation',
+    value: 'ImmunizationRecommendation',
   );
 
   /// ImplementationGuide
   static final FHIRAllTypes ImplementationGuide = FHIRAllTypes._(
-    'ImplementationGuide',
+    value: 'ImplementationGuide',
   );
 
   /// Ingredient
   static final FHIRAllTypes Ingredient = FHIRAllTypes._(
-    'Ingredient',
+    value: 'Ingredient',
   );
 
   /// InsurancePlan
   static final FHIRAllTypes InsurancePlan = FHIRAllTypes._(
-    'InsurancePlan',
+    value: 'InsurancePlan',
   );
 
   /// Invoice
   static final FHIRAllTypes Invoice = FHIRAllTypes._(
-    'Invoice',
+    value: 'Invoice',
   );
 
   /// Library
   static final FHIRAllTypes Library = FHIRAllTypes._(
-    'Library',
+    value: 'Library',
   );
 
   /// Linkage
   static final FHIRAllTypes Linkage = FHIRAllTypes._(
-    'Linkage',
+    value: 'Linkage',
   );
 
   /// List_
   static final FHIRAllTypes List_ = FHIRAllTypes._(
-    'List',
+    value: 'List',
   );
 
   /// Location
   static final FHIRAllTypes Location = FHIRAllTypes._(
-    'Location',
+    value: 'Location',
   );
 
   /// ManufacturedItemDefinition
   static final FHIRAllTypes ManufacturedItemDefinition = FHIRAllTypes._(
-    'ManufacturedItemDefinition',
+    value: 'ManufacturedItemDefinition',
   );
 
   /// Measure
   static final FHIRAllTypes Measure = FHIRAllTypes._(
-    'Measure',
+    value: 'Measure',
   );
 
   /// MeasureReport
   static final FHIRAllTypes MeasureReport = FHIRAllTypes._(
-    'MeasureReport',
+    value: 'MeasureReport',
   );
 
   /// Media
   static final FHIRAllTypes Media = FHIRAllTypes._(
-    'Media',
+    value: 'Media',
   );
 
   /// Medication
   static final FHIRAllTypes Medication = FHIRAllTypes._(
-    'Medication',
+    value: 'Medication',
   );
 
   /// MedicationAdministration
   static final FHIRAllTypes MedicationAdministration = FHIRAllTypes._(
-    'MedicationAdministration',
+    value: 'MedicationAdministration',
   );
 
   /// MedicationDispense
   static final FHIRAllTypes MedicationDispense = FHIRAllTypes._(
-    'MedicationDispense',
+    value: 'MedicationDispense',
   );
 
   /// MedicationKnowledge
   static final FHIRAllTypes MedicationKnowledge = FHIRAllTypes._(
-    'MedicationKnowledge',
+    value: 'MedicationKnowledge',
   );
 
   /// MedicationRequest
   static final FHIRAllTypes MedicationRequest = FHIRAllTypes._(
-    'MedicationRequest',
+    value: 'MedicationRequest',
   );
 
   /// MedicationStatement
   static final FHIRAllTypes MedicationStatement = FHIRAllTypes._(
-    'MedicationStatement',
+    value: 'MedicationStatement',
   );
 
   /// MedicinalProductDefinition
   static final FHIRAllTypes MedicinalProductDefinition = FHIRAllTypes._(
-    'MedicinalProductDefinition',
+    value: 'MedicinalProductDefinition',
   );
 
   /// MessageDefinition
   static final FHIRAllTypes MessageDefinition = FHIRAllTypes._(
-    'MessageDefinition',
+    value: 'MessageDefinition',
   );
 
   /// MessageHeader
   static final FHIRAllTypes MessageHeader = FHIRAllTypes._(
-    'MessageHeader',
+    value: 'MessageHeader',
   );
 
   /// MolecularSequence
   static final FHIRAllTypes MolecularSequence = FHIRAllTypes._(
-    'MolecularSequence',
+    value: 'MolecularSequence',
   );
 
   /// NamingSystem
   static final FHIRAllTypes NamingSystem = FHIRAllTypes._(
-    'NamingSystem',
+    value: 'NamingSystem',
   );
 
   /// NutritionOrder
   static final FHIRAllTypes NutritionOrder = FHIRAllTypes._(
-    'NutritionOrder',
+    value: 'NutritionOrder',
   );
 
   /// NutritionProduct
   static final FHIRAllTypes NutritionProduct = FHIRAllTypes._(
-    'NutritionProduct',
+    value: 'NutritionProduct',
   );
 
   /// Observation
   static final FHIRAllTypes Observation = FHIRAllTypes._(
-    'Observation',
+    value: 'Observation',
   );
 
   /// ObservationDefinition
   static final FHIRAllTypes ObservationDefinition = FHIRAllTypes._(
-    'ObservationDefinition',
+    value: 'ObservationDefinition',
   );
 
   /// OperationDefinition
   static final FHIRAllTypes OperationDefinition = FHIRAllTypes._(
-    'OperationDefinition',
+    value: 'OperationDefinition',
   );
 
   /// OperationOutcome
   static final FHIRAllTypes OperationOutcome = FHIRAllTypes._(
-    'OperationOutcome',
+    value: 'OperationOutcome',
   );
 
   /// Organization
   static final FHIRAllTypes Organization = FHIRAllTypes._(
-    'Organization',
+    value: 'Organization',
   );
 
   /// OrganizationAffiliation
   static final FHIRAllTypes OrganizationAffiliation = FHIRAllTypes._(
-    'OrganizationAffiliation',
+    value: 'OrganizationAffiliation',
   );
 
   /// PackagedProductDefinition
   static final FHIRAllTypes PackagedProductDefinition = FHIRAllTypes._(
-    'PackagedProductDefinition',
+    value: 'PackagedProductDefinition',
   );
 
   /// Patient
   static final FHIRAllTypes Patient = FHIRAllTypes._(
-    'Patient',
+    value: 'Patient',
   );
 
   /// PaymentNotice
   static final FHIRAllTypes PaymentNotice = FHIRAllTypes._(
-    'PaymentNotice',
+    value: 'PaymentNotice',
   );
 
   /// PaymentReconciliation
   static final FHIRAllTypes PaymentReconciliation = FHIRAllTypes._(
-    'PaymentReconciliation',
+    value: 'PaymentReconciliation',
   );
 
   /// Person
   static final FHIRAllTypes Person = FHIRAllTypes._(
-    'Person',
+    value: 'Person',
   );
 
   /// PlanDefinition
   static final FHIRAllTypes PlanDefinition = FHIRAllTypes._(
-    'PlanDefinition',
+    value: 'PlanDefinition',
   );
 
   /// Practitioner
   static final FHIRAllTypes Practitioner = FHIRAllTypes._(
-    'Practitioner',
+    value: 'Practitioner',
   );
 
   /// PractitionerRole
   static final FHIRAllTypes PractitionerRole = FHIRAllTypes._(
-    'PractitionerRole',
+    value: 'PractitionerRole',
   );
 
   /// Procedure
   static final FHIRAllTypes Procedure = FHIRAllTypes._(
-    'Procedure',
+    value: 'Procedure',
   );
 
   /// Provenance
   static final FHIRAllTypes Provenance = FHIRAllTypes._(
-    'Provenance',
+    value: 'Provenance',
   );
 
   /// Questionnaire
   static final FHIRAllTypes Questionnaire = FHIRAllTypes._(
-    'Questionnaire',
+    value: 'Questionnaire',
   );
 
   /// QuestionnaireResponse
   static final FHIRAllTypes QuestionnaireResponse = FHIRAllTypes._(
-    'QuestionnaireResponse',
+    value: 'QuestionnaireResponse',
   );
 
   /// RegulatedAuthorization
   static final FHIRAllTypes RegulatedAuthorization = FHIRAllTypes._(
-    'RegulatedAuthorization',
+    value: 'RegulatedAuthorization',
   );
 
   /// RelatedPerson
   static final FHIRAllTypes RelatedPerson = FHIRAllTypes._(
-    'RelatedPerson',
+    value: 'RelatedPerson',
   );
 
   /// RequestGroup
   static final FHIRAllTypes RequestGroup = FHIRAllTypes._(
-    'RequestGroup',
+    value: 'RequestGroup',
   );
 
   /// ResearchDefinition
   static final FHIRAllTypes ResearchDefinition = FHIRAllTypes._(
-    'ResearchDefinition',
+    value: 'ResearchDefinition',
   );
 
   /// ResearchElementDefinition
   static final FHIRAllTypes ResearchElementDefinition = FHIRAllTypes._(
-    'ResearchElementDefinition',
+    value: 'ResearchElementDefinition',
   );
 
   /// ResearchStudy
   static final FHIRAllTypes ResearchStudy = FHIRAllTypes._(
-    'ResearchStudy',
+    value: 'ResearchStudy',
   );
 
   /// ResearchSubject
   static final FHIRAllTypes ResearchSubject = FHIRAllTypes._(
-    'ResearchSubject',
+    value: 'ResearchSubject',
   );
 
   /// RiskAssessment
   static final FHIRAllTypes RiskAssessment = FHIRAllTypes._(
-    'RiskAssessment',
+    value: 'RiskAssessment',
   );
 
   /// Schedule
   static final FHIRAllTypes Schedule = FHIRAllTypes._(
-    'Schedule',
+    value: 'Schedule',
   );
 
   /// SearchParameter
   static final FHIRAllTypes SearchParameter = FHIRAllTypes._(
-    'SearchParameter',
+    value: 'SearchParameter',
   );
 
   /// ServiceRequest
   static final FHIRAllTypes ServiceRequest = FHIRAllTypes._(
-    'ServiceRequest',
+    value: 'ServiceRequest',
   );
 
   /// Slot
   static final FHIRAllTypes Slot = FHIRAllTypes._(
-    'Slot',
+    value: 'Slot',
   );
 
   /// Specimen
   static final FHIRAllTypes Specimen = FHIRAllTypes._(
-    'Specimen',
+    value: 'Specimen',
   );
 
   /// SpecimenDefinition
   static final FHIRAllTypes SpecimenDefinition = FHIRAllTypes._(
-    'SpecimenDefinition',
+    value: 'SpecimenDefinition',
   );
 
   /// StructureDefinition
   static final FHIRAllTypes StructureDefinition = FHIRAllTypes._(
-    'StructureDefinition',
+    value: 'StructureDefinition',
   );
 
   /// StructureMap
   static final FHIRAllTypes StructureMap = FHIRAllTypes._(
-    'StructureMap',
+    value: 'StructureMap',
   );
 
   /// Subscription
   static final FHIRAllTypes Subscription = FHIRAllTypes._(
-    'Subscription',
+    value: 'Subscription',
   );
 
   /// SubscriptionStatus
   static final FHIRAllTypes SubscriptionStatus = FHIRAllTypes._(
-    'SubscriptionStatus',
+    value: 'SubscriptionStatus',
   );
 
   /// SubscriptionTopic
   static final FHIRAllTypes SubscriptionTopic = FHIRAllTypes._(
-    'SubscriptionTopic',
+    value: 'SubscriptionTopic',
   );
 
   /// Substance
   static final FHIRAllTypes Substance = FHIRAllTypes._(
-    'Substance',
+    value: 'Substance',
   );
 
   /// SubstanceDefinition
   static final FHIRAllTypes SubstanceDefinition = FHIRAllTypes._(
-    'SubstanceDefinition',
+    value: 'SubstanceDefinition',
   );
 
   /// SupplyDelivery
   static final FHIRAllTypes SupplyDelivery = FHIRAllTypes._(
-    'SupplyDelivery',
+    value: 'SupplyDelivery',
   );
 
   /// SupplyRequest
   static final FHIRAllTypes SupplyRequest = FHIRAllTypes._(
-    'SupplyRequest',
+    value: 'SupplyRequest',
   );
 
   /// Task
   static final FHIRAllTypes Task = FHIRAllTypes._(
-    'Task',
+    value: 'Task',
   );
 
   /// TerminologyCapabilities
   static final FHIRAllTypes TerminologyCapabilities = FHIRAllTypes._(
-    'TerminologyCapabilities',
+    value: 'TerminologyCapabilities',
   );
 
   /// TestReport
   static final FHIRAllTypes TestReport = FHIRAllTypes._(
-    'TestReport',
+    value: 'TestReport',
   );
 
   /// TestScript
   static final FHIRAllTypes TestScript = FHIRAllTypes._(
-    'TestScript',
+    value: 'TestScript',
   );
 
   /// ValueSet
   static final FHIRAllTypes ValueSet = FHIRAllTypes._(
-    'ValueSet',
+    value: 'ValueSet',
   );
 
   /// VerificationResult
   static final FHIRAllTypes VerificationResult = FHIRAllTypes._(
-    'VerificationResult',
+    value: 'VerificationResult',
   );
 
   /// VisionPrescription
   static final FHIRAllTypes VisionPrescription = FHIRAllTypes._(
-    'VisionPrescription',
+    value: 'VisionPrescription',
   );
 
   /// Parameters
   static final FHIRAllTypes Parameters = FHIRAllTypes._(
-    'Parameters',
+    value: 'Parameters',
   );
 
   /// Type
   static final FHIRAllTypes Type = FHIRAllTypes._(
-    'Type',
+    value: 'Type',
   );
 
   /// Any
   static final FHIRAllTypes Any = FHIRAllTypes._(
-    'Any',
+    value: 'Any',
   );
 
   /// For instances where an Element is present but not value
 
-  static final FHIRAllTypes elementOnly = FHIRAllTypes._('');
+  static final FHIRAllTypes elementOnly = FHIRAllTypes._(value: '');
 
   /// List of all enum-like values
   static final List<FHIRAllTypes> values = [
@@ -1289,13 +1294,13 @@ class FHIRAllTypes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   FHIRAllTypes clone() => FHIRAllTypes._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   FHIRAllTypes withElement(Element? newElement) {
-    return FHIRAllTypes._(value, newElement);
+    return FHIRAllTypes._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -1320,14 +1325,13 @@ class FHIRAllTypes extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return FHIRAllTypes._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

@@ -56,10 +56,6 @@ class MedicationRequest extends DomainResource {
     this.priorPrescription,
     this.detectedIssue,
     this.eventHistory,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.MedicationRequest,
         );
@@ -838,10 +834,6 @@ class MedicationRequest extends DomainResource {
       priorPrescription: priorPrescription ?? this.priorPrescription,
       detectedIssue: detectedIssue ?? this.detectedIssue,
       eventHistory: eventHistory ?? this.eventHistory,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -869,10 +861,6 @@ class MedicationRequestDispenseRequest extends BackboneElement {
     this.expectedSupplyDuration,
     this.performer,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1104,10 +1092,6 @@ class MedicationRequestDispenseRequest extends BackboneElement {
       expectedSupplyDuration:
           expectedSupplyDuration ?? this.expectedSupplyDuration,
       performer: performer ?? this.performer,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1126,10 +1110,6 @@ class MedicationRequestInitialFill extends BackboneElement {
     this.quantity,
     this.duration,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1273,10 +1253,6 @@ class MedicationRequestInitialFill extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       quantity: quantity ?? this.quantity,
       duration: duration ?? this.duration,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1298,10 +1274,6 @@ class MedicationRequestSubstitution extends BackboneElement {
     this.allowedCodeableConcept,
     this.reason,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1463,10 +1435,6 @@ class MedicationRequestSubstitution extends BackboneElement {
       allowedCodeableConcept:
           allowedCodeableConcept ?? this.allowedCodeableConcept,
       reason: reason ?? this.reason,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

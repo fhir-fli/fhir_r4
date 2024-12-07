@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The composite scoring method of the measure.
 class CompositeMeasureScoring extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  CompositeMeasureScoring._(super.value, [super.element]);
+  CompositeMeasureScoring._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [CompositeMeasureScoring] from JSON.
   factory CompositeMeasureScoring.fromJson(
@@ -21,34 +26,34 @@ class CompositeMeasureScoring extends PrimitiveType<String> {
         'CompositeMeasureScoring cannot be constructed from JSON.',
       );
     }
-    return CompositeMeasureScoring._(value, element);
+    return CompositeMeasureScoring._(value: value, element: element);
   }
 
   /// opportunity
   static final CompositeMeasureScoring opportunity = CompositeMeasureScoring._(
-    'opportunity',
+    value: 'opportunity',
   );
 
   /// all_or_nothing
   static final CompositeMeasureScoring all_or_nothing =
       CompositeMeasureScoring._(
-    'all-or-nothing',
+    value: 'all-or-nothing',
   );
 
   /// linear
   static final CompositeMeasureScoring linear = CompositeMeasureScoring._(
-    'linear',
+    value: 'linear',
   );
 
   /// weighted
   static final CompositeMeasureScoring weighted = CompositeMeasureScoring._(
-    'weighted',
+    value: 'weighted',
   );
 
   /// For instances where an Element is present but not value
 
   static final CompositeMeasureScoring elementOnly =
-      CompositeMeasureScoring._('');
+      CompositeMeasureScoring._(value: '');
 
   /// List of all enum-like values
   static final List<CompositeMeasureScoring> values = [
@@ -61,13 +66,13 @@ class CompositeMeasureScoring extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   CompositeMeasureScoring clone() => CompositeMeasureScoring._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   CompositeMeasureScoring withElement(Element? newElement) {
-    return CompositeMeasureScoring._(value, newElement);
+    return CompositeMeasureScoring._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -92,14 +97,13 @@ class CompositeMeasureScoring extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return CompositeMeasureScoring._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

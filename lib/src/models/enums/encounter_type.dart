@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This example value set defines a set of codes that can be used to indicate the type of encounter: a specific code indicating type of service provided.
 class EncounterType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  EncounterType._(super.value, [super.element]);
+  EncounterType._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [EncounterType] from JSON.
   factory EncounterType.fromJson(
@@ -21,32 +26,32 @@ class EncounterType extends PrimitiveType<String> {
         'EncounterType cannot be constructed from JSON.',
       );
     }
-    return EncounterType._(value, element);
+    return EncounterType._(value: value, element: element);
   }
 
   /// ADMS
   static final EncounterType ADMS = EncounterType._(
-    'ADMS',
+    value: 'ADMS',
   );
 
   /// BD_BM_clin
   static final EncounterType BD_BM_clin = EncounterType._(
-    'BD/BM-clin',
+    value: 'BD/BM-clin',
   );
 
   /// CCS60
   static final EncounterType CCS60 = EncounterType._(
-    'CCS60',
+    value: 'CCS60',
   );
 
   /// OKI
   static final EncounterType OKI = EncounterType._(
-    'OKI',
+    value: 'OKI',
   );
 
   /// For instances where an Element is present but not value
 
-  static final EncounterType elementOnly = EncounterType._('');
+  static final EncounterType elementOnly = EncounterType._(value: '');
 
   /// List of all enum-like values
   static final List<EncounterType> values = [
@@ -59,13 +64,13 @@ class EncounterType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   EncounterType clone() => EncounterType._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   EncounterType withElement(Element? newElement) {
-    return EncounterType._(value, newElement);
+    return EncounterType._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -90,14 +95,13 @@ class EncounterType extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return EncounterType._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

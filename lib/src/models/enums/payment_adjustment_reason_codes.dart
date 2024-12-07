@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value set includes smattering of Payment Adjustment Reason codes.
 class PaymentAdjustmentReasonCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  PaymentAdjustmentReasonCodes._(super.value, [super.element]);
+  PaymentAdjustmentReasonCodes._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [PaymentAdjustmentReasonCodes] from JSON.
   factory PaymentAdjustmentReasonCodes.fromJson(
@@ -21,25 +26,25 @@ class PaymentAdjustmentReasonCodes extends PrimitiveType<String> {
         'PaymentAdjustmentReasonCodes cannot be constructed from JSON.',
       );
     }
-    return PaymentAdjustmentReasonCodes._(value, element);
+    return PaymentAdjustmentReasonCodes._(value: value, element: element);
   }
 
   /// a001
   static final PaymentAdjustmentReasonCodes a001 =
       PaymentAdjustmentReasonCodes._(
-    'a001',
+    value: 'a001',
   );
 
   /// a002
   static final PaymentAdjustmentReasonCodes a002 =
       PaymentAdjustmentReasonCodes._(
-    'a002',
+    value: 'a002',
   );
 
   /// For instances where an Element is present but not value
 
   static final PaymentAdjustmentReasonCodes elementOnly =
-      PaymentAdjustmentReasonCodes._('');
+      PaymentAdjustmentReasonCodes._(value: '');
 
   /// List of all enum-like values
   static final List<PaymentAdjustmentReasonCodes> values = [
@@ -50,13 +55,13 @@ class PaymentAdjustmentReasonCodes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   PaymentAdjustmentReasonCodes clone() => PaymentAdjustmentReasonCodes._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   PaymentAdjustmentReasonCodes withElement(Element? newElement) {
-    return PaymentAdjustmentReasonCodes._(value, newElement);
+    return PaymentAdjustmentReasonCodes._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -81,14 +86,13 @@ class PaymentAdjustmentReasonCodes extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return PaymentAdjustmentReasonCodes._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

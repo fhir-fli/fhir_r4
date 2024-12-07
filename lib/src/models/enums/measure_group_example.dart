@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Example Measure Groups for the Measure Resource.
 class MeasureGroupExample extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  MeasureGroupExample._(super.value, [super.element]);
+  MeasureGroupExample._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [MeasureGroupExample] from JSON.
   factory MeasureGroupExample.fromJson(
@@ -21,22 +26,23 @@ class MeasureGroupExample extends PrimitiveType<String> {
         'MeasureGroupExample cannot be constructed from JSON.',
       );
     }
-    return MeasureGroupExample._(value, element);
+    return MeasureGroupExample._(value: value, element: element);
   }
 
   /// primary_rate
   static final MeasureGroupExample primary_rate = MeasureGroupExample._(
-    'primary-rate',
+    value: 'primary-rate',
   );
 
   /// secondary_rate
   static final MeasureGroupExample secondary_rate = MeasureGroupExample._(
-    'secondary-rate',
+    value: 'secondary-rate',
   );
 
   /// For instances where an Element is present but not value
 
-  static final MeasureGroupExample elementOnly = MeasureGroupExample._('');
+  static final MeasureGroupExample elementOnly =
+      MeasureGroupExample._(value: '');
 
   /// List of all enum-like values
   static final List<MeasureGroupExample> values = [
@@ -47,13 +53,13 @@ class MeasureGroupExample extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   MeasureGroupExample clone() => MeasureGroupExample._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   MeasureGroupExample withElement(Element? newElement) {
-    return MeasureGroupExample._(value, newElement);
+    return MeasureGroupExample._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -78,14 +84,13 @@ class MeasureGroupExample extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return MeasureGroupExample._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

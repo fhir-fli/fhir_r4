@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The results of executing an action.
 class TestReportActionResult extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  TestReportActionResult._(super.value, [super.element]);
+  TestReportActionResult._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [TestReportActionResult] from JSON.
   factory TestReportActionResult.fromJson(
@@ -21,38 +26,38 @@ class TestReportActionResult extends PrimitiveType<String> {
         'TestReportActionResult cannot be constructed from JSON.',
       );
     }
-    return TestReportActionResult._(value, element);
+    return TestReportActionResult._(value: value, element: element);
   }
 
   /// pass
   static final TestReportActionResult pass = TestReportActionResult._(
-    'pass',
+    value: 'pass',
   );
 
   /// skip
   static final TestReportActionResult skip = TestReportActionResult._(
-    'skip',
+    value: 'skip',
   );
 
   /// fail
   static final TestReportActionResult fail = TestReportActionResult._(
-    'fail',
+    value: 'fail',
   );
 
   /// warning
   static final TestReportActionResult warning = TestReportActionResult._(
-    'warning',
+    value: 'warning',
   );
 
   /// error
   static final TestReportActionResult error = TestReportActionResult._(
-    'error',
+    value: 'error',
   );
 
   /// For instances where an Element is present but not value
 
   static final TestReportActionResult elementOnly =
-      TestReportActionResult._('');
+      TestReportActionResult._(value: '');
 
   /// List of all enum-like values
   static final List<TestReportActionResult> values = [
@@ -66,13 +71,13 @@ class TestReportActionResult extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   TestReportActionResult clone() => TestReportActionResult._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   TestReportActionResult withElement(Element? newElement) {
-    return TestReportActionResult._(value, newElement);
+    return TestReportActionResult._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -97,14 +102,13 @@ class TestReportActionResult extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return TestReportActionResult._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

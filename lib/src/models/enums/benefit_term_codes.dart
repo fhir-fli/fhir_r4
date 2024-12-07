@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value set includes a smattering of Benefit Term codes.
 class BenefitTermCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  BenefitTermCodes._(super.value, [super.element]);
+  BenefitTermCodes._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [BenefitTermCodes] from JSON.
   factory BenefitTermCodes.fromJson(
@@ -21,27 +26,27 @@ class BenefitTermCodes extends PrimitiveType<String> {
         'BenefitTermCodes cannot be constructed from JSON.',
       );
     }
-    return BenefitTermCodes._(value, element);
+    return BenefitTermCodes._(value: value, element: element);
   }
 
   /// annual
   static final BenefitTermCodes annual = BenefitTermCodes._(
-    'annual',
+    value: 'annual',
   );
 
   /// day
   static final BenefitTermCodes day = BenefitTermCodes._(
-    'day',
+    value: 'day',
   );
 
   /// lifetime
   static final BenefitTermCodes lifetime = BenefitTermCodes._(
-    'lifetime',
+    value: 'lifetime',
   );
 
   /// For instances where an Element is present but not value
 
-  static final BenefitTermCodes elementOnly = BenefitTermCodes._('');
+  static final BenefitTermCodes elementOnly = BenefitTermCodes._(value: '');
 
   /// List of all enum-like values
   static final List<BenefitTermCodes> values = [
@@ -53,13 +58,13 @@ class BenefitTermCodes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   BenefitTermCodes clone() => BenefitTermCodes._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   BenefitTermCodes withElement(Element? newElement) {
-    return BenefitTermCodes._(value, newElement);
+    return BenefitTermCodes._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -84,14 +89,13 @@ class BenefitTermCodes extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return BenefitTermCodes._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

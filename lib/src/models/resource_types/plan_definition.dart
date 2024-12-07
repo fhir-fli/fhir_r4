@@ -54,10 +54,6 @@ class PlanDefinition extends CanonicalResource {
     this.library_,
     this.goal,
     this.action,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.PlanDefinition,
         );
@@ -758,10 +754,6 @@ class PlanDefinition extends CanonicalResource {
       library_: library_ ?? this.library_,
       goal: goal ?? this.goal,
       action: action ?? this.action,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -788,10 +780,6 @@ class PlanDefinitionGoal extends BackboneElement {
     this.documentation,
     this.target,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1025,10 +1013,6 @@ class PlanDefinitionGoal extends BackboneElement {
       addresses: addresses ?? this.addresses,
       documentation: documentation ?? this.documentation,
       target: target ?? this.target,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1049,10 +1033,6 @@ class PlanDefinitionTarget extends BackboneElement {
     this.detailCodeableConcept,
     this.due,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1262,10 +1242,6 @@ class PlanDefinitionTarget extends BackboneElement {
       detailCodeableConcept:
           detailCodeableConcept ?? this.detailCodeableConcept,
       due: due ?? this.due,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1320,10 +1296,6 @@ class PlanDefinitionAction extends BackboneElement {
     this.dynamicValue,
     this.action,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -2040,10 +2012,6 @@ class PlanDefinitionAction extends BackboneElement {
       transform: transform ?? this.transform,
       dynamicValue: dynamicValue ?? this.dynamicValue,
       action: action ?? this.action,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -2062,10 +2030,6 @@ class PlanDefinitionCondition extends BackboneElement {
     required this.kind,
     this.expression,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -2206,10 +2170,6 @@ class PlanDefinitionCondition extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       kind: kind ?? this.kind,
       expression: expression ?? this.expression,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -2230,10 +2190,6 @@ class PlanDefinitionRelatedAction extends BackboneElement {
     this.offsetDuration,
     this.offsetRange,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -2401,10 +2357,6 @@ class PlanDefinitionRelatedAction extends BackboneElement {
       relationship: relationship ?? this.relationship,
       offsetDuration: offsetDuration ?? this.offsetDuration,
       offsetRange: offsetRange ?? this.offsetRange,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -2422,10 +2374,6 @@ class PlanDefinitionParticipant extends BackboneElement {
     required this.type,
     this.role,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -2566,10 +2514,6 @@ class PlanDefinitionParticipant extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
       role: role ?? this.role,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -2591,10 +2535,6 @@ class PlanDefinitionDynamicValue extends BackboneElement {
     this.path,
     this.expression,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -2744,10 +2684,6 @@ class PlanDefinitionDynamicValue extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       path: path ?? this.path,
       expression: expression ?? this.expression,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

@@ -26,10 +26,6 @@ class Schedule extends DomainResource {
     required this.actor,
     this.planningHorizon,
     this.comment,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.Schedule,
         );
@@ -348,10 +344,6 @@ class Schedule extends DomainResource {
       actor: actor ?? this.actor,
       planningHorizon: planningHorizon ?? this.planningHorizon,
       comment: comment ?? this.comment,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

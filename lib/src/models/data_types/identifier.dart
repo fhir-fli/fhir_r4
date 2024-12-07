@@ -19,10 +19,6 @@ class Identifier extends DataType {
     this.period,
     this.assigner,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -207,10 +203,6 @@ class Identifier extends DataType {
       value: value ?? this.value,
       period: period ?? this.period,
       assigner: assigner ?? this.assigner,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

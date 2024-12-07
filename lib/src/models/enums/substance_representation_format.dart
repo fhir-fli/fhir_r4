@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// A format of a substance representation.
 class SubstanceRepresentationFormat extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  SubstanceRepresentationFormat._(super.value, [super.element]);
+  SubstanceRepresentationFormat._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [SubstanceRepresentationFormat] from JSON.
   factory SubstanceRepresentationFormat.fromJson(
@@ -21,55 +26,55 @@ class SubstanceRepresentationFormat extends PrimitiveType<String> {
         'SubstanceRepresentationFormat cannot be constructed from JSON.',
       );
     }
-    return SubstanceRepresentationFormat._(value, element);
+    return SubstanceRepresentationFormat._(value: value, element: element);
   }
 
   /// InChI
   static final SubstanceRepresentationFormat InChI =
       SubstanceRepresentationFormat._(
-    'InChI',
+    value: 'InChI',
   );
 
   /// SMILES
   static final SubstanceRepresentationFormat SMILES =
       SubstanceRepresentationFormat._(
-    'SMILES',
+    value: 'SMILES',
   );
 
   /// MOLFILE
   static final SubstanceRepresentationFormat MOLFILE =
       SubstanceRepresentationFormat._(
-    'MOLFILE',
+    value: 'MOLFILE',
   );
 
   /// CDX
   static final SubstanceRepresentationFormat CDX =
       SubstanceRepresentationFormat._(
-    'CDX',
+    value: 'CDX',
   );
 
   /// SDF
   static final SubstanceRepresentationFormat SDF =
       SubstanceRepresentationFormat._(
-    'SDF',
+    value: 'SDF',
   );
 
   /// PDB
   static final SubstanceRepresentationFormat PDB =
       SubstanceRepresentationFormat._(
-    'PDB',
+    value: 'PDB',
   );
 
   /// mmCIF
   static final SubstanceRepresentationFormat mmCIF =
       SubstanceRepresentationFormat._(
-    'mmCIF',
+    value: 'mmCIF',
   );
 
   /// For instances where an Element is present but not value
 
   static final SubstanceRepresentationFormat elementOnly =
-      SubstanceRepresentationFormat._('');
+      SubstanceRepresentationFormat._(value: '');
 
   /// List of all enum-like values
   static final List<SubstanceRepresentationFormat> values = [
@@ -85,13 +90,13 @@ class SubstanceRepresentationFormat extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   SubstanceRepresentationFormat clone() => SubstanceRepresentationFormat._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   SubstanceRepresentationFormat withElement(Element? newElement) {
-    return SubstanceRepresentationFormat._(value, newElement);
+    return SubstanceRepresentationFormat._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -116,14 +121,13 @@ class SubstanceRepresentationFormat extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return SubstanceRepresentationFormat._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

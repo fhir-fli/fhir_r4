@@ -20,10 +20,6 @@ class FhirMeta extends DataType {
     this.security,
     this.tag,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -230,10 +226,6 @@ class FhirMeta extends DataType {
       profile: profile ?? this.profile,
       security: security ?? this.security,
       tag: tag ?? this.tag,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

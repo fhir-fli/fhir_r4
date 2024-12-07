@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Identifies types of events that might trigger the start of a goal.
 class GoalStartEvent extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  GoalStartEvent._(super.value, [super.element]);
+  GoalStartEvent._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [GoalStartEvent] from JSON.
   factory GoalStartEvent.fromJson(
@@ -21,32 +26,32 @@ class GoalStartEvent extends PrimitiveType<String> {
         'GoalStartEvent cannot be constructed from JSON.',
       );
     }
-    return GoalStartEvent._(value, element);
+    return GoalStartEvent._(value: value, element: element);
   }
 
   /// value32485007
   static final GoalStartEvent value32485007 = GoalStartEvent._(
-    '32485007',
+    value: '32485007',
   );
 
   /// value308283009
   static final GoalStartEvent value308283009 = GoalStartEvent._(
-    '308283009',
+    value: '308283009',
   );
 
   /// value442137000
   static final GoalStartEvent value442137000 = GoalStartEvent._(
-    '442137000',
+    value: '442137000',
   );
 
   /// value386216000
   static final GoalStartEvent value386216000 = GoalStartEvent._(
-    '386216000',
+    value: '386216000',
   );
 
   /// For instances where an Element is present but not value
 
-  static final GoalStartEvent elementOnly = GoalStartEvent._('');
+  static final GoalStartEvent elementOnly = GoalStartEvent._(value: '');
 
   /// List of all enum-like values
   static final List<GoalStartEvent> values = [
@@ -59,13 +64,13 @@ class GoalStartEvent extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   GoalStartEvent clone() => GoalStartEvent._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   GoalStartEvent withElement(Element? newElement) {
-    return GoalStartEvent._(value, newElement);
+    return GoalStartEvent._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -90,14 +95,13 @@ class GoalStartEvent extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return GoalStartEvent._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

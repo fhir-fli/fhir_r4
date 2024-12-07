@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// A unit of time (units from UCUM).
 class UnitsOfTime extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  UnitsOfTime._(super.value, [super.element]);
+  UnitsOfTime._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [UnitsOfTime] from JSON.
   factory UnitsOfTime.fromJson(
@@ -21,47 +26,47 @@ class UnitsOfTime extends PrimitiveType<String> {
         'UnitsOfTime cannot be constructed from JSON.',
       );
     }
-    return UnitsOfTime._(value, element);
+    return UnitsOfTime._(value: value, element: element);
   }
 
   /// s
   static final UnitsOfTime s = UnitsOfTime._(
-    's',
+    value: 's',
   );
 
   /// min
   static final UnitsOfTime min = UnitsOfTime._(
-    'min',
+    value: 'min',
   );
 
   /// h
   static final UnitsOfTime h = UnitsOfTime._(
-    'h',
+    value: 'h',
   );
 
   /// d
   static final UnitsOfTime d = UnitsOfTime._(
-    'd',
+    value: 'd',
   );
 
   /// wk
   static final UnitsOfTime wk = UnitsOfTime._(
-    'wk',
+    value: 'wk',
   );
 
   /// mo
   static final UnitsOfTime mo = UnitsOfTime._(
-    'mo',
+    value: 'mo',
   );
 
   /// a
   static final UnitsOfTime a = UnitsOfTime._(
-    'a',
+    value: 'a',
   );
 
   /// For instances where an Element is present but not value
 
-  static final UnitsOfTime elementOnly = UnitsOfTime._('');
+  static final UnitsOfTime elementOnly = UnitsOfTime._(value: '');
 
   /// List of all enum-like values
   static final List<UnitsOfTime> values = [
@@ -77,13 +82,13 @@ class UnitsOfTime extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   UnitsOfTime clone() => UnitsOfTime._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   UnitsOfTime withElement(Element? newElement) {
-    return UnitsOfTime._(value, newElement);
+    return UnitsOfTime._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -108,14 +113,13 @@ class UnitsOfTime extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return UnitsOfTime._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

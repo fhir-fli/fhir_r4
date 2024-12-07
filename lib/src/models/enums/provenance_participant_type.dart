@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The type of participation a provenance participant.
 class ProvenanceParticipantType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ProvenanceParticipantType._(super.value, [super.element]);
+  ProvenanceParticipantType._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [ProvenanceParticipantType] from JSON.
   factory ProvenanceParticipantType.fromJson(
@@ -21,67 +26,67 @@ class ProvenanceParticipantType extends PrimitiveType<String> {
         'ProvenanceParticipantType cannot be constructed from JSON.',
       );
     }
-    return ProvenanceParticipantType._(value, element);
+    return ProvenanceParticipantType._(value: value, element: element);
   }
 
   /// enterer
   static final ProvenanceParticipantType enterer = ProvenanceParticipantType._(
-    'enterer',
+    value: 'enterer',
   );
 
   /// performer
   static final ProvenanceParticipantType performer =
       ProvenanceParticipantType._(
-    'performer',
+    value: 'performer',
   );
 
   /// author
   static final ProvenanceParticipantType author = ProvenanceParticipantType._(
-    'author',
+    value: 'author',
   );
 
   /// verifier
   static final ProvenanceParticipantType verifier = ProvenanceParticipantType._(
-    'verifier',
+    value: 'verifier',
   );
 
   /// legal
   static final ProvenanceParticipantType legal = ProvenanceParticipantType._(
-    'legal',
+    value: 'legal',
   );
 
   /// attester
   static final ProvenanceParticipantType attester = ProvenanceParticipantType._(
-    'attester',
+    value: 'attester',
   );
 
   /// informant
   static final ProvenanceParticipantType informant =
       ProvenanceParticipantType._(
-    'informant',
+    value: 'informant',
   );
 
   /// custodian
   static final ProvenanceParticipantType custodian =
       ProvenanceParticipantType._(
-    'custodian',
+    value: 'custodian',
   );
 
   /// assembler
   static final ProvenanceParticipantType assembler =
       ProvenanceParticipantType._(
-    'assembler',
+    value: 'assembler',
   );
 
   /// composer
   static final ProvenanceParticipantType composer = ProvenanceParticipantType._(
-    'composer',
+    value: 'composer',
   );
 
   /// For instances where an Element is present but not value
 
   static final ProvenanceParticipantType elementOnly =
-      ProvenanceParticipantType._('');
+      ProvenanceParticipantType._(value: '');
 
   /// List of all enum-like values
   static final List<ProvenanceParticipantType> values = [
@@ -100,13 +105,13 @@ class ProvenanceParticipantType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ProvenanceParticipantType clone() => ProvenanceParticipantType._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ProvenanceParticipantType withElement(Element? newElement) {
-    return ProvenanceParticipantType._(value, newElement);
+    return ProvenanceParticipantType._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -131,14 +136,13 @@ class ProvenanceParticipantType extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ProvenanceParticipantType._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

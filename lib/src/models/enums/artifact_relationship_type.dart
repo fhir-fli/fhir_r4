@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Artifact Relationship Type
 class ArtifactRelationshipType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ArtifactRelationshipType._(super.value, [super.element]);
+  ArtifactRelationshipType._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [ArtifactRelationshipType] from JSON.
   factory ArtifactRelationshipType.fromJson(
@@ -21,144 +26,144 @@ class ArtifactRelationshipType extends PrimitiveType<String> {
         'ArtifactRelationshipType cannot be constructed from JSON.',
       );
     }
-    return ArtifactRelationshipType._(value, element);
+    return ArtifactRelationshipType._(value: value, element: element);
   }
 
   /// replaces
   static final ArtifactRelationshipType replaces = ArtifactRelationshipType._(
-    'replaces',
+    value: 'replaces',
   );
 
   /// amends
   static final ArtifactRelationshipType amends = ArtifactRelationshipType._(
-    'amends',
+    value: 'amends',
   );
 
   /// appends
   static final ArtifactRelationshipType appends = ArtifactRelationshipType._(
-    'appends',
+    value: 'appends',
   );
 
   /// transforms
   static final ArtifactRelationshipType transforms = ArtifactRelationshipType._(
-    'transforms',
+    value: 'transforms',
   );
 
   /// replaced_with
   static final ArtifactRelationshipType replaced_with =
       ArtifactRelationshipType._(
-    'replaced-with',
+    value: 'replaced-with',
   );
 
   /// amended_with
   static final ArtifactRelationshipType amended_with =
       ArtifactRelationshipType._(
-    'amended-with',
+    value: 'amended-with',
   );
 
   /// appended_with
   static final ArtifactRelationshipType appended_with =
       ArtifactRelationshipType._(
-    'appended-with',
+    value: 'appended-with',
   );
 
   /// transformed_with
   static final ArtifactRelationshipType transformed_with =
       ArtifactRelationshipType._(
-    'transformed-with',
+    value: 'transformed-with',
   );
 
   /// derived_from
   static final ArtifactRelationshipType derived_from =
       ArtifactRelationshipType._(
-    'derived-from',
+    value: 'derived-from',
   );
 
   /// transformed_into
   static final ArtifactRelationshipType transformed_into =
       ArtifactRelationshipType._(
-    'transformed-into',
+    value: 'transformed-into',
   );
 
   /// composed_of
   static final ArtifactRelationshipType composed_of =
       ArtifactRelationshipType._(
-    'composed-of',
+    value: 'composed-of',
   );
 
   /// part_of
   static final ArtifactRelationshipType part_of = ArtifactRelationshipType._(
-    'part-of',
+    value: 'part-of',
   );
 
   /// supports
   static final ArtifactRelationshipType supports = ArtifactRelationshipType._(
-    'supports',
+    value: 'supports',
   );
 
   /// supported_with
   static final ArtifactRelationshipType supported_with =
       ArtifactRelationshipType._(
-    'supported-with',
+    value: 'supported-with',
   );
 
   /// depends_on
   static final ArtifactRelationshipType depends_on = ArtifactRelationshipType._(
-    'depends-on',
+    value: 'depends-on',
   );
 
   /// similar_to
   static final ArtifactRelationshipType similar_to = ArtifactRelationshipType._(
-    'similar-to',
+    value: 'similar-to',
   );
 
   /// cites
   static final ArtifactRelationshipType cites = ArtifactRelationshipType._(
-    'cites',
+    value: 'cites',
   );
 
   /// cited_by
   static final ArtifactRelationshipType cited_by = ArtifactRelationshipType._(
-    'cited-by',
+    value: 'cited-by',
   );
 
   /// retracts
   static final ArtifactRelationshipType retracts = ArtifactRelationshipType._(
-    'retracts',
+    value: 'retracts',
   );
 
   /// retracted_by
   static final ArtifactRelationshipType retracted_by =
       ArtifactRelationshipType._(
-    'retracted-by',
+    value: 'retracted-by',
   );
 
   /// comments_on
   static final ArtifactRelationshipType comments_on =
       ArtifactRelationshipType._(
-    'comments-on',
+    value: 'comments-on',
   );
 
   /// comment_in
   static final ArtifactRelationshipType comment_in = ArtifactRelationshipType._(
-    'comment-in',
+    value: 'comment-in',
   );
 
   /// corrects
   static final ArtifactRelationshipType corrects = ArtifactRelationshipType._(
-    'corrects',
+    value: 'corrects',
   );
 
   /// correction_in
   static final ArtifactRelationshipType correction_in =
       ArtifactRelationshipType._(
-    'correction-in',
+    value: 'correction-in',
   );
 
   /// For instances where an Element is present but not value
 
   static final ArtifactRelationshipType elementOnly =
-      ArtifactRelationshipType._('');
+      ArtifactRelationshipType._(value: '');
 
   /// List of all enum-like values
   static final List<ArtifactRelationshipType> values = [
@@ -191,13 +196,13 @@ class ArtifactRelationshipType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ArtifactRelationshipType clone() => ArtifactRelationshipType._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ArtifactRelationshipType withElement(Element? newElement) {
-    return ArtifactRelationshipType._(value, newElement);
+    return ArtifactRelationshipType._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -222,14 +227,13 @@ class ArtifactRelationshipType extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ArtifactRelationshipType._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

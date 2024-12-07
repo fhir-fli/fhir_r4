@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Mode for this instance of data.
 class StructureMapInputMode extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  StructureMapInputMode._(super.value, [super.element]);
+  StructureMapInputMode._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [StructureMapInputMode] from JSON.
   factory StructureMapInputMode.fromJson(
@@ -21,22 +26,23 @@ class StructureMapInputMode extends PrimitiveType<String> {
         'StructureMapInputMode cannot be constructed from JSON.',
       );
     }
-    return StructureMapInputMode._(value, element);
+    return StructureMapInputMode._(value: value, element: element);
   }
 
   /// source
   static final StructureMapInputMode source = StructureMapInputMode._(
-    'source',
+    value: 'source',
   );
 
   /// target
   static final StructureMapInputMode target = StructureMapInputMode._(
-    'target',
+    value: 'target',
   );
 
   /// For instances where an Element is present but not value
 
-  static final StructureMapInputMode elementOnly = StructureMapInputMode._('');
+  static final StructureMapInputMode elementOnly =
+      StructureMapInputMode._(value: '');
 
   /// List of all enum-like values
   static final List<StructureMapInputMode> values = [
@@ -47,13 +53,13 @@ class StructureMapInputMode extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   StructureMapInputMode clone() => StructureMapInputMode._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   StructureMapInputMode withElement(Element? newElement) {
-    return StructureMapInputMode._(value, newElement);
+    return StructureMapInputMode._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -78,14 +84,13 @@ class StructureMapInputMode extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return StructureMapInputMode._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

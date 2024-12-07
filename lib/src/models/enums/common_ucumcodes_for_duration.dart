@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Unified Code for Units of Measure (UCUM). This value set includes all UCUM codes
 class CommonUCUMCodesForDuration extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  CommonUCUMCodesForDuration._(super.value, [super.element]);
+  CommonUCUMCodesForDuration._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [CommonUCUMCodesForDuration] from JSON.
   factory CommonUCUMCodesForDuration.fromJson(
@@ -21,53 +26,53 @@ class CommonUCUMCodesForDuration extends PrimitiveType<String> {
         'CommonUCUMCodesForDuration cannot be constructed from JSON.',
       );
     }
-    return CommonUCUMCodesForDuration._(value, element);
+    return CommonUCUMCodesForDuration._(value: value, element: element);
   }
 
   /// ms
   static final CommonUCUMCodesForDuration ms = CommonUCUMCodesForDuration._(
-    'ms',
+    value: 'ms',
   );
 
   /// s
   static final CommonUCUMCodesForDuration s = CommonUCUMCodesForDuration._(
-    's',
+    value: 's',
   );
 
   /// min
   static final CommonUCUMCodesForDuration min = CommonUCUMCodesForDuration._(
-    'min',
+    value: 'min',
   );
 
   /// h
   static final CommonUCUMCodesForDuration h = CommonUCUMCodesForDuration._(
-    'h',
+    value: 'h',
   );
 
   /// d
   static final CommonUCUMCodesForDuration d = CommonUCUMCodesForDuration._(
-    'd',
+    value: 'd',
   );
 
   /// wk
   static final CommonUCUMCodesForDuration wk = CommonUCUMCodesForDuration._(
-    'wk',
+    value: 'wk',
   );
 
   /// mo
   static final CommonUCUMCodesForDuration mo = CommonUCUMCodesForDuration._(
-    'mo',
+    value: 'mo',
   );
 
   /// a
   static final CommonUCUMCodesForDuration a = CommonUCUMCodesForDuration._(
-    'a',
+    value: 'a',
   );
 
   /// For instances where an Element is present but not value
 
   static final CommonUCUMCodesForDuration elementOnly =
-      CommonUCUMCodesForDuration._('');
+      CommonUCUMCodesForDuration._(value: '');
 
   /// List of all enum-like values
   static final List<CommonUCUMCodesForDuration> values = [
@@ -84,13 +89,13 @@ class CommonUCUMCodesForDuration extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   CommonUCUMCodesForDuration clone() => CommonUCUMCodesForDuration._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   CommonUCUMCodesForDuration withElement(Element? newElement) {
-    return CommonUCUMCodesForDuration._(value, newElement);
+    return CommonUCUMCodesForDuration._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -115,14 +120,13 @@ class CommonUCUMCodesForDuration extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return CommonUCUMCodesForDuration._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

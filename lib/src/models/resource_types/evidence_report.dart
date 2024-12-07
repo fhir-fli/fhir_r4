@@ -39,10 +39,6 @@ class EvidenceReport extends DomainResource {
     this.endorser,
     this.relatesTo,
     this.section,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.EvidenceReport,
         );
@@ -560,10 +556,6 @@ class EvidenceReport extends DomainResource {
       endorser: endorser ?? this.endorser,
       relatesTo: relatesTo ?? this.relatesTo,
       section: section ?? this.section,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -582,10 +574,6 @@ class EvidenceReportSubject extends BackboneElement {
     this.characteristic,
     this.note,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -737,10 +725,6 @@ class EvidenceReportSubject extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       characteristic: characteristic ?? this.characteristic,
       note: note ?? this.note,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -764,10 +748,6 @@ class EvidenceReportCharacteristic extends BackboneElement {
     this.exclude,
     this.period,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -994,10 +974,6 @@ class EvidenceReportCharacteristic extends BackboneElement {
       valueRange: valueRange ?? this.valueRange,
       exclude: exclude ?? this.exclude,
       period: period ?? this.period,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1017,10 +993,6 @@ class EvidenceReportRelatesTo extends BackboneElement {
     this.targetIdentifier,
     this.targetReference,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1176,10 +1148,6 @@ class EvidenceReportRelatesTo extends BackboneElement {
       code: code ?? this.code,
       targetIdentifier: targetIdentifier ?? this.targetIdentifier,
       targetReference: targetReference ?? this.targetReference,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1207,10 +1175,6 @@ class EvidenceReportSection extends BackboneElement {
     this.emptyReason,
     this.section,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1535,10 +1499,6 @@ class EvidenceReportSection extends BackboneElement {
       entryQuantity: entryQuantity ?? this.entryQuantity,
       emptyReason: emptyReason ?? this.emptyReason,
       section: section ?? this.section,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

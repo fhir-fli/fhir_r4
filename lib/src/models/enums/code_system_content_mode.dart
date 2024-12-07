@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The extent of the content of the code system (the concepts and codes it defines) are represented in a code system resource.
 class CodeSystemContentMode extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  CodeSystemContentMode._(super.value, [super.element]);
+  CodeSystemContentMode._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [CodeSystemContentMode] from JSON.
   factory CodeSystemContentMode.fromJson(
@@ -21,37 +26,38 @@ class CodeSystemContentMode extends PrimitiveType<String> {
         'CodeSystemContentMode cannot be constructed from JSON.',
       );
     }
-    return CodeSystemContentMode._(value, element);
+    return CodeSystemContentMode._(value: value, element: element);
   }
 
   /// not_present
   static final CodeSystemContentMode not_present = CodeSystemContentMode._(
-    'not-present',
+    value: 'not-present',
   );
 
   /// example
   static final CodeSystemContentMode example = CodeSystemContentMode._(
-    'example',
+    value: 'example',
   );
 
   /// fragment
   static final CodeSystemContentMode fragment = CodeSystemContentMode._(
-    'fragment',
+    value: 'fragment',
   );
 
   /// complete
   static final CodeSystemContentMode complete = CodeSystemContentMode._(
-    'complete',
+    value: 'complete',
   );
 
   /// supplement
   static final CodeSystemContentMode supplement = CodeSystemContentMode._(
-    'supplement',
+    value: 'supplement',
   );
 
   /// For instances where an Element is present but not value
 
-  static final CodeSystemContentMode elementOnly = CodeSystemContentMode._('');
+  static final CodeSystemContentMode elementOnly =
+      CodeSystemContentMode._(value: '');
 
   /// List of all enum-like values
   static final List<CodeSystemContentMode> values = [
@@ -65,13 +71,13 @@ class CodeSystemContentMode extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   CodeSystemContentMode clone() => CodeSystemContentMode._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   CodeSystemContentMode withElement(Element? newElement) {
-    return CodeSystemContentMode._(value, newElement);
+    return CodeSystemContentMode._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -96,14 +102,13 @@ class CodeSystemContentMode extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return CodeSystemContentMode._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

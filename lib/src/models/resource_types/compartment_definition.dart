@@ -32,10 +32,6 @@ class CompartmentDefinition extends DomainResource {
     required this.code,
     required this.search,
     this.resource,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.CompartmentDefinition,
         );
@@ -428,10 +424,6 @@ class CompartmentDefinition extends DomainResource {
       code: code ?? this.code,
       search: search ?? this.search,
       resource: resource ?? this.resource,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -450,10 +442,6 @@ class CompartmentDefinitionResource extends BackboneElement {
     this.param,
     this.documentation,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -613,10 +601,6 @@ class CompartmentDefinitionResource extends BackboneElement {
       code: code ?? this.code,
       param: param ?? this.param,
       documentation: documentation ?? this.documentation,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

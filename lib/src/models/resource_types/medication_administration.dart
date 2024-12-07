@@ -42,10 +42,6 @@ class MedicationAdministration extends DomainResource {
     this.note,
     this.dosage,
     this.eventHistory,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.MedicationAdministration,
         );
@@ -603,10 +599,6 @@ class MedicationAdministration extends DomainResource {
       note: note ?? this.note,
       dosage: dosage ?? this.dosage,
       eventHistory: eventHistory ?? this.eventHistory,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -625,10 +617,6 @@ class MedicationAdministrationPerformer extends BackboneElement {
     this.function_,
     required this.actor,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -769,10 +757,6 @@ class MedicationAdministrationPerformer extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       function_: function_ ?? this.function_,
       actor: actor ?? this.actor,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -796,10 +780,6 @@ class MedicationAdministrationDosage extends BackboneElement {
     this.rateRatio,
     this.rateQuantity,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1035,10 +1015,6 @@ class MedicationAdministrationDosage extends BackboneElement {
       dose: dose ?? this.dose,
       rateRatio: rateRatio ?? this.rateRatio,
       rateQuantity: rateQuantity ?? this.rateQuantity,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

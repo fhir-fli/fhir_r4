@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// A code specifying the types of information being requested.
 class EligibilityResponsePurpose extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  EligibilityResponsePurpose._(super.value, [super.element]);
+  EligibilityResponsePurpose._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [EligibilityResponsePurpose] from JSON.
   factory EligibilityResponsePurpose.fromJson(
@@ -21,37 +26,37 @@ class EligibilityResponsePurpose extends PrimitiveType<String> {
         'EligibilityResponsePurpose cannot be constructed from JSON.',
       );
     }
-    return EligibilityResponsePurpose._(value, element);
+    return EligibilityResponsePurpose._(value: value, element: element);
   }
 
   /// auth_requirements
   static final EligibilityResponsePurpose auth_requirements =
       EligibilityResponsePurpose._(
-    'auth-requirements',
+    value: 'auth-requirements',
   );
 
   /// benefits
   static final EligibilityResponsePurpose benefits =
       EligibilityResponsePurpose._(
-    'benefits',
+    value: 'benefits',
   );
 
   /// discovery
   static final EligibilityResponsePurpose discovery =
       EligibilityResponsePurpose._(
-    'discovery',
+    value: 'discovery',
   );
 
   /// validation
   static final EligibilityResponsePurpose validation =
       EligibilityResponsePurpose._(
-    'validation',
+    value: 'validation',
   );
 
   /// For instances where an Element is present but not value
 
   static final EligibilityResponsePurpose elementOnly =
-      EligibilityResponsePurpose._('');
+      EligibilityResponsePurpose._(value: '');
 
   /// List of all enum-like values
   static final List<EligibilityResponsePurpose> values = [
@@ -64,13 +69,13 @@ class EligibilityResponsePurpose extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   EligibilityResponsePurpose clone() => EligibilityResponsePurpose._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   EligibilityResponsePurpose withElement(Element? newElement) {
-    return EligibilityResponsePurpose._(value, newElement);
+    return EligibilityResponsePurpose._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -95,14 +100,13 @@ class EligibilityResponsePurpose extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return EligibilityResponsePurpose._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

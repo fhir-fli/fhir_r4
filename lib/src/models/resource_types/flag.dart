@@ -26,10 +26,6 @@ class Flag extends DomainResource {
     this.period,
     this.encounter,
     this.author,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.Flag,
         );
@@ -326,10 +322,6 @@ class Flag extends DomainResource {
       period: period ?? this.period,
       encounter: encounter ?? this.encounter,
       author: author ?? this.author,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

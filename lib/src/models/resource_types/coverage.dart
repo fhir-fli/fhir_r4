@@ -35,10 +35,6 @@ class Coverage extends DomainResource {
     this.costToBeneficiary,
     this.subrogation,
     this.contract,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.Coverage,
         );
@@ -488,10 +484,6 @@ class Coverage extends DomainResource {
       costToBeneficiary: costToBeneficiary ?? this.costToBeneficiary,
       subrogation: subrogation ?? this.subrogation,
       contract: contract ?? this.contract,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -510,10 +502,6 @@ class CoverageClass extends BackboneElement {
     required this.value,
     this.name,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -664,10 +652,6 @@ class CoverageClass extends BackboneElement {
       type: type ?? this.type,
       value: value ?? this.value,
       name: name ?? this.name,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -689,10 +673,6 @@ class CoverageCostToBeneficiary extends BackboneElement {
     this.valueMoney,
     this.exception,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -871,10 +851,6 @@ class CoverageCostToBeneficiary extends BackboneElement {
       valueQuantity: valueQuantity ?? this.valueQuantity,
       valueMoney: valueMoney ?? this.valueMoney,
       exception: exception ?? this.exception,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -893,10 +869,6 @@ class CoverageException extends BackboneElement {
     required this.type,
     this.period,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1036,10 +1008,6 @@ class CoverageException extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
       period: period ?? this.period,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Defines which action to take if there is no match in the group.
 class ConceptMapGroupUnmappedMode extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ConceptMapGroupUnmappedMode._(super.value, [super.element]);
+  ConceptMapGroupUnmappedMode._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [ConceptMapGroupUnmappedMode] from JSON.
   factory ConceptMapGroupUnmappedMode.fromJson(
@@ -21,31 +26,31 @@ class ConceptMapGroupUnmappedMode extends PrimitiveType<String> {
         'ConceptMapGroupUnmappedMode cannot be constructed from JSON.',
       );
     }
-    return ConceptMapGroupUnmappedMode._(value, element);
+    return ConceptMapGroupUnmappedMode._(value: value, element: element);
   }
 
   /// provided
   static final ConceptMapGroupUnmappedMode provided =
       ConceptMapGroupUnmappedMode._(
-    'provided',
+    value: 'provided',
   );
 
   /// fixed
   static final ConceptMapGroupUnmappedMode fixed =
       ConceptMapGroupUnmappedMode._(
-    'fixed',
+    value: 'fixed',
   );
 
   /// other_map
   static final ConceptMapGroupUnmappedMode other_map =
       ConceptMapGroupUnmappedMode._(
-    'other-map',
+    value: 'other-map',
   );
 
   /// For instances where an Element is present but not value
 
   static final ConceptMapGroupUnmappedMode elementOnly =
-      ConceptMapGroupUnmappedMode._('');
+      ConceptMapGroupUnmappedMode._(value: '');
 
   /// List of all enum-like values
   static final List<ConceptMapGroupUnmappedMode> values = [
@@ -57,13 +62,13 @@ class ConceptMapGroupUnmappedMode extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ConceptMapGroupUnmappedMode clone() => ConceptMapGroupUnmappedMode._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ConceptMapGroupUnmappedMode withElement(Element? newElement) {
-    return ConceptMapGroupUnmappedMode._(value, newElement);
+    return ConceptMapGroupUnmappedMode._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -88,14 +93,13 @@ class ConceptMapGroupUnmappedMode extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ConceptMapGroupUnmappedMode._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

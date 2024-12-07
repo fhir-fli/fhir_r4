@@ -42,10 +42,6 @@ class Communication extends DomainResource {
     this.reasonReference,
     this.payload,
     this.note,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.Communication,
         );
@@ -635,10 +631,6 @@ class Communication extends DomainResource {
       reasonReference: reasonReference ?? this.reasonReference,
       payload: payload ?? this.payload,
       note: note ?? this.note,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -658,10 +650,6 @@ class CommunicationPayload extends BackboneElement {
     this.contentAttachment,
     this.contentReference,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -822,10 +810,6 @@ class CommunicationPayload extends BackboneElement {
       contentString: contentString ?? this.contentString,
       contentAttachment: contentAttachment ?? this.contentAttachment,
       contentReference: contentReference ?? this.contentReference,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

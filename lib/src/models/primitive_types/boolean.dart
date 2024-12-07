@@ -5,14 +5,18 @@ import 'package:yaml/yaml.dart';
 /// Extension to convert a [bool] to [FhirBoolean]
 extension FhirBooleanExtension on bool {
   /// Converts a [bool] to [FhirBoolean]
-  FhirBoolean get toFhirBoolean => FhirBoolean(this);
+  FhirBoolean get toFhirBoolean => FhirBoolean(input: this);
 }
 
 /// [FhirBoolean] class representing the FHIR primitive type `boolean`
 class FhirBoolean extends PrimitiveType<bool> {
-  /// Public generative constructor
-  // ignore: avoid_positional_boolean_parameters
-  FhirBoolean(super.input, [super.element]) {
+  /// Constructor with original input
+  FhirBoolean({
+    required this.input,
+    super.element,
+    super.id,
+    super.extension_,
+  }) : super(value: input) {
     if (value == null && element == null) {
       throw ArgumentError('A value or element is required');
     }
@@ -23,7 +27,7 @@ class FhirBoolean extends PrimitiveType<bool> {
     final value = json['value'] as bool?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    return FhirBoolean(value, element);
+    return FhirBoolean(input: value, element: element);
   }
 
   /// Factory constructor to create a [FhirBoolean] from YAML
@@ -36,21 +40,24 @@ class FhirBoolean extends PrimitiveType<bool> {
               jsonDecode(jsonEncode(yaml)) as Map<String, dynamic>,
             )
           : throw ArgumentError(
-              'FhirBoolean cannot be constructed from input provided,'
-              ' it is neither a yaml string nor a yaml map.');
+              'FhirBoolean cannot be constructed from the provided input,'
+              ' it is neither a YAML string nor a YAML map.');
 
-  /// This method tries to parse a dynamic input into a FHIR boolean
+  /// Static method to try parsing a dynamic input into [FhirBoolean]
   static FhirBoolean? tryParse(dynamic input) {
     if (input is bool) {
-      return FhirBoolean(input);
+      return FhirBoolean(input: input);
     } else if (input is String) {
       final lowerValue = input.toLowerCase();
       if (lowerValue == 'true' || lowerValue == 'false') {
-        return FhirBoolean(lowerValue == 'true');
+        return FhirBoolean(input: lowerValue == 'true');
       }
     }
     return null;
   }
+
+  /// The original input value (for serialization purposes)
+  final bool? input;
 
   /// Boolean getter to determine if only a value is present
   bool get valueOnly => value != null && element == null;
@@ -64,7 +71,7 @@ class FhirBoolean extends PrimitiveType<bool> {
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        if (value != null) 'value': value,
+        if (input != null) 'value': input,
         if (element != null) '_value': element!.toJson(),
       };
 
@@ -78,23 +85,20 @@ class FhirBoolean extends PrimitiveType<bool> {
         'Values and elements must have the same length',
       );
     }
-
     return List.generate(values.length, (i) {
       final value = values[i] as bool?;
       final element = elements?[i] != null
           ? Element.fromJson(elements![i] as Map<String, dynamic>)
           : null;
-      return FhirBoolean(value, element);
+      return FhirBoolean(input: value, element: element);
     });
   }
 
   /// Converts a list of [FhirBoolean] instances to a JSON-compatible map
-  static Map<String, dynamic> toJsonList(List<FhirBoolean> booleans) {
-    return {
-      'value': booleans.map((boolean) => boolean.value).toList(),
-      '_value': booleans.map((boolean) => boolean.element?.toJson()).toList(),
-    };
-  }
+  static Map<String, dynamic> toJsonList(List<FhirBoolean> booleans) => {
+        'value': booleans.map((boolean) => boolean.input).toList(),
+        '_value': booleans.map((boolean) => boolean.element?.toJson()).toList(),
+      };
 
   /// Provides a string representation of the instance
   @override
@@ -105,17 +109,18 @@ class FhirBoolean extends PrimitiveType<bool> {
   // ignore: avoid_equals_and_hash_code_on_mutable_classes
   bool operator ==(Object other) =>
       identical(this, other) ||
-      (other is FhirBoolean && other.value == value) ||
-      (other is bool && other == value);
+      (other is FhirBoolean && other.input == input) ||
+      (other is bool && other == input);
 
   /// Overrides `hashCode` for use in hash-based collections
   @override
   // ignore: avoid_equals_and_hash_code_on_mutable_classes
-  int get hashCode => Object.hash(value, element);
+  int get hashCode => Object.hash(input, element);
 
   /// Creates a deep copy of the instance
   @override
-  FhirBoolean clone() => FhirBoolean(value, element?.clone() as Element?);
+  FhirBoolean clone() =>
+      FhirBoolean(input: input, element: element?.clone() as Element?);
 
   /// Creates a modified copy with updated properties
   @override
@@ -128,17 +133,18 @@ class FhirBoolean extends PrimitiveType<bool> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     return FhirBoolean(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      input: newValue ?? input,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:
             formatCommentsPost ?? this.element?.formatCommentsPost,
         annotations: annotations ?? this.element?.annotations,
       ),
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
     );
   }
 }

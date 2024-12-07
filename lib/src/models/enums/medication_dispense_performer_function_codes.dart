@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// MedicationDispense Performer Function Codes
 class MedicationDispensePerformerFunctionCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  MedicationDispensePerformerFunctionCodes._(super.value, [super.element]);
+  MedicationDispensePerformerFunctionCodes._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [MedicationDispensePerformerFunctionCodes] from JSON.
   factory MedicationDispensePerformerFunctionCodes.fromJson(
@@ -22,37 +27,38 @@ class MedicationDispensePerformerFunctionCodes extends PrimitiveType<String> {
         'MedicationDispensePerformerFunctionCodes cannot be constructed from JSON.',
       );
     }
-    return MedicationDispensePerformerFunctionCodes._(value, element);
+    return MedicationDispensePerformerFunctionCodes._(
+        value: value, element: element);
   }
 
   /// dataenterer
   static final MedicationDispensePerformerFunctionCodes dataenterer =
       MedicationDispensePerformerFunctionCodes._(
-    'dataenterer',
+    value: 'dataenterer',
   );
 
   /// packager
   static final MedicationDispensePerformerFunctionCodes packager =
       MedicationDispensePerformerFunctionCodes._(
-    'packager',
+    value: 'packager',
   );
 
   /// checker
   static final MedicationDispensePerformerFunctionCodes checker =
       MedicationDispensePerformerFunctionCodes._(
-    'checker',
+    value: 'checker',
   );
 
   /// finalchecker
   static final MedicationDispensePerformerFunctionCodes finalchecker =
       MedicationDispensePerformerFunctionCodes._(
-    'finalchecker',
+    value: 'finalchecker',
   );
 
   /// For instances where an Element is present but not value
 
   static final MedicationDispensePerformerFunctionCodes elementOnly =
-      MedicationDispensePerformerFunctionCodes._('');
+      MedicationDispensePerformerFunctionCodes._(value: '');
 
   /// List of all enum-like values
   static final List<MedicationDispensePerformerFunctionCodes> values = [
@@ -66,13 +72,14 @@ class MedicationDispensePerformerFunctionCodes extends PrimitiveType<String> {
   @override
   MedicationDispensePerformerFunctionCodes clone() =>
       MedicationDispensePerformerFunctionCodes._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   MedicationDispensePerformerFunctionCodes withElement(Element? newElement) {
-    return MedicationDispensePerformerFunctionCodes._(value, newElement);
+    return MedicationDispensePerformerFunctionCodes._(
+        value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -97,14 +104,13 @@ class MedicationDispensePerformerFunctionCodes extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return MedicationDispensePerformerFunctionCodes._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

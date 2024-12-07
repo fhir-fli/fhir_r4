@@ -48,10 +48,6 @@ class Task extends DomainResource {
     this.restriction,
     this.input,
     this.output,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.Task,
         );
@@ -734,10 +730,6 @@ class Task extends DomainResource {
       restriction: restriction ?? this.restriction,
       input: input ?? this.input,
       output: output ?? this.output,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -759,10 +751,6 @@ class TaskRestriction extends BackboneElement {
     this.period,
     this.recipient,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -924,10 +912,6 @@ class TaskRestriction extends BackboneElement {
       repetitions: repetitions ?? this.repetitions,
       period: period ?? this.period,
       recipient: recipient ?? this.recipient,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -994,10 +978,6 @@ class TaskInput extends BackboneElement {
     this.valueDosage,
     this.valueMeta,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1847,10 +1827,6 @@ class TaskInput extends BackboneElement {
       valueUsageContext: valueUsageContext ?? this.valueUsageContext,
       valueDosage: valueDosage ?? this.valueDosage,
       valueMeta: valueMeta ?? this.valueMeta,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1917,10 +1893,6 @@ class TaskOutput extends BackboneElement {
     this.valueDosage,
     this.valueMeta,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -2769,10 +2741,6 @@ class TaskOutput extends BackboneElement {
       valueUsageContext: valueUsageContext ?? this.valueUsageContext,
       valueDosage: valueDosage ?? this.valueDosage,
       valueMeta: valueMeta ?? this.valueMeta,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

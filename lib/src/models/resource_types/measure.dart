@@ -59,10 +59,6 @@ class Measure extends CanonicalResource {
     this.guidance,
     this.group,
     this.supplementalData,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.Measure,
         );
@@ -897,10 +893,6 @@ class Measure extends CanonicalResource {
       guidance: guidance ?? this.guidance,
       group: group ?? this.group,
       supplementalData: supplementalData ?? this.supplementalData,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -920,10 +912,6 @@ class MeasureGroup extends BackboneElement {
     this.population,
     this.stratifier,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1107,10 +1095,6 @@ class MeasureGroup extends BackboneElement {
       description: description ?? this.description,
       population: population ?? this.population,
       stratifier: stratifier ?? this.stratifier,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1129,10 +1113,6 @@ class MeasurePopulation extends BackboneElement {
     this.description,
     required this.criteria,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1286,10 +1266,6 @@ class MeasurePopulation extends BackboneElement {
       code: code ?? this.code,
       description: description ?? this.description,
       criteria: criteria ?? this.criteria,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1311,10 +1287,6 @@ class MeasureStratifier extends BackboneElement {
     this.criteria,
     this.component,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1497,10 +1469,6 @@ class MeasureStratifier extends BackboneElement {
       description: description ?? this.description,
       criteria: criteria ?? this.criteria,
       component: component ?? this.component,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1521,10 +1489,6 @@ class MeasureComponent extends BackboneElement {
     this.description,
     required this.criteria,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1683,10 +1647,6 @@ class MeasureComponent extends BackboneElement {
       code: code ?? this.code,
       description: description ?? this.description,
       criteria: criteria ?? this.criteria,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1708,10 +1668,6 @@ class MeasureSupplementalData extends BackboneElement {
     this.description,
     required this.criteria,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1894,10 +1850,6 @@ class MeasureSupplementalData extends BackboneElement {
       usage: usage ?? this.usage,
       description: description ?? this.description,
       criteria: criteria ?? this.criteria,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

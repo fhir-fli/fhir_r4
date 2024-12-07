@@ -27,10 +27,6 @@ class BodyStructure extends DomainResource {
     this.description,
     this.image,
     required this.patient,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.BodyStructure,
         );
@@ -332,10 +328,6 @@ class BodyStructure extends DomainResource {
       description: description ?? this.description,
       image: image ?? this.image,
       patient: patient ?? this.patient,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

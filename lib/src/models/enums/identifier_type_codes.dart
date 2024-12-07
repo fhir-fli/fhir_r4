@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// A coded type for an identifier that can be used to determine which identifier to use for a specific purpose.
 class IdentifierTypeCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  IdentifierTypeCodes._(super.value, [super.element]);
+  IdentifierTypeCodes._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [IdentifierTypeCodes] from JSON.
   factory IdentifierTypeCodes.fromJson(
@@ -21,102 +26,103 @@ class IdentifierTypeCodes extends PrimitiveType<String> {
         'IdentifierTypeCodes cannot be constructed from JSON.',
       );
     }
-    return IdentifierTypeCodes._(value, element);
+    return IdentifierTypeCodes._(value: value, element: element);
   }
 
   /// DL
   static final IdentifierTypeCodes DL = IdentifierTypeCodes._(
-    'DL',
+    value: 'DL',
   );
 
   /// PPN
   static final IdentifierTypeCodes PPN = IdentifierTypeCodes._(
-    'PPN',
+    value: 'PPN',
   );
 
   /// BRN
   static final IdentifierTypeCodes BRN = IdentifierTypeCodes._(
-    'BRN',
+    value: 'BRN',
   );
 
   /// MR
   static final IdentifierTypeCodes MR = IdentifierTypeCodes._(
-    'MR',
+    value: 'MR',
   );
 
   /// MCN
   static final IdentifierTypeCodes MCN = IdentifierTypeCodes._(
-    'MCN',
+    value: 'MCN',
   );
 
   /// EN
   static final IdentifierTypeCodes EN = IdentifierTypeCodes._(
-    'EN',
+    value: 'EN',
   );
 
   /// TAX
   static final IdentifierTypeCodes TAX = IdentifierTypeCodes._(
-    'TAX',
+    value: 'TAX',
   );
 
   /// NIIP
   static final IdentifierTypeCodes NIIP = IdentifierTypeCodes._(
-    'NIIP',
+    value: 'NIIP',
   );
 
   /// PRN
   static final IdentifierTypeCodes PRN = IdentifierTypeCodes._(
-    'PRN',
+    value: 'PRN',
   );
 
   /// MD
   static final IdentifierTypeCodes MD = IdentifierTypeCodes._(
-    'MD',
+    value: 'MD',
   );
 
   /// DR
   static final IdentifierTypeCodes DR = IdentifierTypeCodes._(
-    'DR',
+    value: 'DR',
   );
 
   /// ACSN
   static final IdentifierTypeCodes ACSN = IdentifierTypeCodes._(
-    'ACSN',
+    value: 'ACSN',
   );
 
   /// UDI
   static final IdentifierTypeCodes UDI = IdentifierTypeCodes._(
-    'UDI',
+    value: 'UDI',
   );
 
   /// SNO
   static final IdentifierTypeCodes SNO = IdentifierTypeCodes._(
-    'SNO',
+    value: 'SNO',
   );
 
   /// SB
   static final IdentifierTypeCodes SB = IdentifierTypeCodes._(
-    'SB',
+    value: 'SB',
   );
 
   /// PLAC
   static final IdentifierTypeCodes PLAC = IdentifierTypeCodes._(
-    'PLAC',
+    value: 'PLAC',
   );
 
   /// FILL
   static final IdentifierTypeCodes FILL = IdentifierTypeCodes._(
-    'FILL',
+    value: 'FILL',
   );
 
   /// JHN
   static final IdentifierTypeCodes JHN = IdentifierTypeCodes._(
-    'JHN',
+    value: 'JHN',
   );
 
   /// For instances where an Element is present but not value
 
-  static final IdentifierTypeCodes elementOnly = IdentifierTypeCodes._('');
+  static final IdentifierTypeCodes elementOnly =
+      IdentifierTypeCodes._(value: '');
 
   /// List of all enum-like values
   static final List<IdentifierTypeCodes> values = [
@@ -143,13 +149,13 @@ class IdentifierTypeCodes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   IdentifierTypeCodes clone() => IdentifierTypeCodes._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   IdentifierTypeCodes withElement(Element? newElement) {
-    return IdentifierTypeCodes._(value, newElement);
+    return IdentifierTypeCodes._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -174,14 +180,13 @@ class IdentifierTypeCodes extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return IdentifierTypeCodes._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

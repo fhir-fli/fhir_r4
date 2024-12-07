@@ -42,10 +42,6 @@ class ImagingStudy extends DomainResource {
     this.note,
     this.description,
     this.series,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.ImagingStudy,
         );
@@ -565,10 +561,6 @@ class ImagingStudy extends DomainResource {
       note: note ?? this.note,
       description: description ?? this.description,
       series: series ?? this.series,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -596,10 +588,6 @@ class ImagingStudySeries extends BackboneElement {
     this.performer,
     this.instance,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -908,10 +896,6 @@ class ImagingStudySeries extends BackboneElement {
       started: started ?? this.started,
       performer: performer ?? this.performer,
       instance: instance ?? this.instance,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -929,10 +913,6 @@ class ImagingStudyPerformer extends BackboneElement {
     this.function_,
     required this.actor,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1072,10 +1052,6 @@ class ImagingStudyPerformer extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       function_: function_ ?? this.function_,
       actor: actor ?? this.actor,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1096,10 +1072,6 @@ class ImagingStudyInstance extends BackboneElement {
     this.number,
     this.title,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1261,10 +1233,6 @@ class ImagingStudyInstance extends BackboneElement {
       sopClass: sopClass ?? this.sopClass,
       number: number ?? this.number,
       title: title ?? this.title,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

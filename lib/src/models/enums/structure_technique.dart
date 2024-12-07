@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The method used to elucidate the structure or characterization of the drug substance.
 class StructureTechnique extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  StructureTechnique._(super.value, [super.element]);
+  StructureTechnique._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [StructureTechnique] from JSON.
   factory StructureTechnique.fromJson(
@@ -21,37 +26,37 @@ class StructureTechnique extends PrimitiveType<String> {
         'StructureTechnique cannot be constructed from JSON.',
       );
     }
-    return StructureTechnique._(value, element);
+    return StructureTechnique._(value: value, element: element);
   }
 
   /// X_Ray
   static final StructureTechnique X_Ray = StructureTechnique._(
-    'X-Ray',
+    value: 'X-Ray',
   );
 
   /// HPLC
   static final StructureTechnique HPLC = StructureTechnique._(
-    'HPLC',
+    value: 'HPLC',
   );
 
   /// NMR
   static final StructureTechnique NMR = StructureTechnique._(
-    'NMR',
+    value: 'NMR',
   );
 
   /// PeptideMapping
   static final StructureTechnique PeptideMapping = StructureTechnique._(
-    'PeptideMapping',
+    value: 'PeptideMapping',
   );
 
   /// LigandBindingAssay
   static final StructureTechnique LigandBindingAssay = StructureTechnique._(
-    'LigandBindingAssay',
+    value: 'LigandBindingAssay',
   );
 
   /// For instances where an Element is present but not value
 
-  static final StructureTechnique elementOnly = StructureTechnique._('');
+  static final StructureTechnique elementOnly = StructureTechnique._(value: '');
 
   /// List of all enum-like values
   static final List<StructureTechnique> values = [
@@ -65,13 +70,13 @@ class StructureTechnique extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   StructureTechnique clone() => StructureTechnique._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   StructureTechnique withElement(Element? newElement) {
-    return StructureTechnique._(value, newElement);
+    return StructureTechnique._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -96,14 +101,13 @@ class StructureTechnique extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return StructureTechnique._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

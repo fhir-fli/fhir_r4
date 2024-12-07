@@ -35,10 +35,6 @@ class NutritionOrder extends DomainResource {
     this.supplement,
     this.enteralFormula,
     this.note,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.NutritionOrder,
         );
@@ -520,10 +516,6 @@ class NutritionOrder extends DomainResource {
       supplement: supplement ?? this.supplement,
       enteralFormula: enteralFormula ?? this.enteralFormula,
       note: note ?? this.note,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -545,10 +537,6 @@ class NutritionOrderOralDiet extends BackboneElement {
     this.fluidConsistencyType,
     this.instruction,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -778,10 +766,6 @@ class NutritionOrderOralDiet extends BackboneElement {
       texture: texture ?? this.texture,
       fluidConsistencyType: fluidConsistencyType ?? this.fluidConsistencyType,
       instruction: instruction ?? this.instruction,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -800,10 +784,6 @@ class NutritionOrderNutrient extends BackboneElement {
     this.modifier,
     this.amount,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -947,10 +927,6 @@ class NutritionOrderNutrient extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       modifier: modifier ?? this.modifier,
       amount: amount ?? this.amount,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -969,10 +945,6 @@ class NutritionOrderTexture extends BackboneElement {
     this.modifier,
     this.foodType,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1118,10 +1090,6 @@ class NutritionOrderTexture extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       modifier: modifier ?? this.modifier,
       foodType: foodType ?? this.foodType,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1143,10 +1111,6 @@ class NutritionOrderSupplement extends BackboneElement {
     this.quantity,
     this.instruction,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1340,10 +1304,6 @@ class NutritionOrderSupplement extends BackboneElement {
       schedule: schedule ?? this.schedule,
       quantity: quantity ?? this.quantity,
       instruction: instruction ?? this.instruction,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1369,10 +1329,6 @@ class NutritionOrderEnteralFormula extends BackboneElement {
     this.maxVolumeToDeliver,
     this.administrationInstruction,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1641,10 +1597,6 @@ class NutritionOrderEnteralFormula extends BackboneElement {
       maxVolumeToDeliver: maxVolumeToDeliver ?? this.maxVolumeToDeliver,
       administrationInstruction:
           administrationInstruction ?? this.administrationInstruction,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1668,10 +1620,6 @@ class NutritionOrderAdministration extends BackboneElement {
     this.rateQuantity,
     this.rateRatio,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1849,10 +1797,6 @@ class NutritionOrderAdministration extends BackboneElement {
       quantity: quantity ?? this.quantity,
       rateQuantity: rateQuantity ?? this.rateQuantity,
       rateRatio: rateRatio ?? this.rateRatio,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

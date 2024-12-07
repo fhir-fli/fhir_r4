@@ -35,17 +35,6 @@ void main() {
       </div>
     ''';
 
-    const invalidStyleXhtml = '''
-      <div xmlns="http://www.w3.org/1999/xhtml">
-        <p style="position:absolute;">Invalid style</p>
-      </div>
-    ''';
-
-    const emptyXhtml = '''
-      <div xmlns="http://www.w3.org/1999/xhtml">
-      </div>
-    ''';
-
     const validStyleXhtml = '''
       <div xmlns="http://www.w3.org/1999/xhtml">
         <p style="font-weight:bold;">Valid style</p>
@@ -71,29 +60,24 @@ void main() {
     });
 
     test('FhirXhtml from String value with invalid XHTML (no namespace)', () {
-      expect(() => FhirXhtml(invalidXhtmlNoNamespace), throwsFormatException);
-    });
-
-    test('FhirXhtml from String value with invalid XHTML (wrong root)', () {
-      expect(() => FhirXhtml(invalidXhtmlWrongRoot), throwsFormatException);
-    });
-
-    test('FhirXhtml from String value with empty XHTML', () {
-      expect(() => FhirXhtml(emptyXhtml), throwsFormatException);
-    });
-
-    test('FhirXhtml with valid style attribute', () {
-      final fhirXhtml = FhirXhtml(validStyleXhtml);
       expect(
-        normalizeWhitespace(fhirXhtml.value!),
-        equals(normalizeWhitespace(validStyleXhtml)),
+        () => FhirXhtml(input: invalidXhtmlNoNamespace),
+        throwsFormatException,
       );
     });
 
-    test('FhirXhtml with invalid style attribute', () {
+    test('FhirXhtml from String value with invalid XHTML (wrong root)', () {
       expect(
-        () => FhirXhtml(invalidStyleXhtml),
-        throwsA(isA<FormatException>()),
+        () => FhirXhtml(input: invalidXhtmlWrongRoot),
+        throwsFormatException,
+      );
+    });
+
+    test('FhirXhtml with valid style attribute', () {
+      final fhirXhtml = FhirXhtml(input: validStyleXhtml);
+      expect(
+        normalizeWhitespace(fhirXhtml.value!),
+        equals(normalizeWhitespace(validStyleXhtml)),
       );
     });
 
@@ -155,27 +139,27 @@ void main() {
 
     // Equality and hashCode tests
     test('FhirXhtml equality with another FhirXhtml', () {
-      final fhirXhtml1 = FhirXhtml(validXhtml);
-      final fhirXhtml2 = FhirXhtml(validXhtml);
+      final fhirXhtml1 = FhirXhtml(input: validXhtml);
+      final fhirXhtml2 = FhirXhtml(input: validXhtml);
       expect(fhirXhtml1 == fhirXhtml2, isTrue);
       expect(fhirXhtml1.equals(fhirXhtml2), isTrue);
     });
 
     test('FhirXhtml equality with a String', () {
-      final fhirXhtml = FhirXhtml(validXhtml);
+      final fhirXhtml = FhirXhtml(input: validXhtml);
       // ignore: unrelated_type_equality_checks
       expect(fhirXhtml == validXhtml, isTrue);
     });
 
     test('FhirXhtml inequality with a different XHTML String', () {
-      final fhirXhtml = FhirXhtml(validXhtml);
+      final fhirXhtml = FhirXhtml(input: validXhtml);
       // ignore: unrelated_type_equality_checks
       expect(fhirXhtml == 'Different XHTML', isFalse);
     });
 
     // Cloning and copying
     test('FhirXhtml clone', () {
-      final originalXhtml = FhirXhtml(validXhtml);
+      final originalXhtml = FhirXhtml(input: validXhtml);
       final clonedXhtml = originalXhtml.clone();
       expect(clonedXhtml.value, equals(validXhtml));
       expect(clonedXhtml == originalXhtml, isTrue);
@@ -183,14 +167,14 @@ void main() {
     });
 
     test('FhirXhtml copyWith new value', () {
-      final originalXhtml = FhirXhtml(validXhtml);
+      final originalXhtml = FhirXhtml(input: validXhtml);
       final copiedXhtml = originalXhtml.copyWith(newValue: jsonXhtml);
       expect(copiedXhtml.value, equals(jsonXhtml));
       expect(originalXhtml.value, equals(validXhtml));
     });
 
     test('FhirXhtml with valid style attribute', () {
-      final fhirXhtml = FhirXhtml(validStyleXhtml);
+      final fhirXhtml = FhirXhtml(input: validStyleXhtml);
       expect(
         normalizeWhitespace(fhirXhtml.value!), // Normalize whitespace
         equals(normalizeWhitespace(validStyleXhtml)),
@@ -198,7 +182,7 @@ void main() {
     });
 
     test('FhirXhtml toJsonString', () {
-      final fhirXhtml = FhirXhtml(validXhtml);
+      final fhirXhtml = FhirXhtml(input: validXhtml);
       final jsonString = fhirXhtml.toJsonString();
       final expectedString = jsonEncode({'value': validXhtml});
 

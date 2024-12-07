@@ -40,10 +40,6 @@ class SubscriptionTopic extends CanonicalResource {
     this.eventTrigger,
     this.canFilterBy,
     this.notificationShape,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.SubscriptionTopic,
         );
@@ -539,10 +535,6 @@ class SubscriptionTopic extends CanonicalResource {
       eventTrigger: eventTrigger ?? this.eventTrigger,
       canFilterBy: canFilterBy ?? this.canFilterBy,
       notificationShape: notificationShape ?? this.notificationShape,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -568,10 +560,6 @@ class SubscriptionTopicResourceTrigger extends BackboneElement {
     this.queryCriteria,
     this.fhirPathCriteria,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -770,10 +758,6 @@ class SubscriptionTopicResourceTrigger extends BackboneElement {
       supportedInteraction: supportedInteraction ?? this.supportedInteraction,
       queryCriteria: queryCriteria ?? this.queryCriteria,
       fhirPathCriteria: fhirPathCriteria ?? this.fhirPathCriteria,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -795,10 +779,6 @@ class SubscriptionTopicQueryCriteria extends BackboneElement {
     this.resultForDelete,
     this.requireBoth,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -985,10 +965,6 @@ class SubscriptionTopicQueryCriteria extends BackboneElement {
       current: current ?? this.current,
       resultForDelete: resultForDelete ?? this.resultForDelete,
       requireBoth: requireBoth ?? this.requireBoth,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1007,10 +983,6 @@ class SubscriptionTopicEventTrigger extends BackboneElement {
     required this.event,
     required this.resource,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1169,10 +1141,6 @@ class SubscriptionTopicEventTrigger extends BackboneElement {
       description: description ?? this.description,
       event: event ?? this.event,
       resource: resource ?? this.resource,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1196,10 +1164,6 @@ class SubscriptionTopicCanFilterBy extends BackboneElement {
     this.filterDefinition,
     this.modifier,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1396,10 +1360,6 @@ class SubscriptionTopicCanFilterBy extends BackboneElement {
       filterParameter: filterParameter ?? this.filterParameter,
       filterDefinition: filterDefinition ?? this.filterDefinition,
       modifier: modifier ?? this.modifier,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1419,10 +1379,6 @@ class SubscriptionTopicNotificationShape extends BackboneElement {
     this.include,
     this.revInclude,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1598,10 +1554,6 @@ class SubscriptionTopicNotificationShape extends BackboneElement {
       resource: resource ?? this.resource,
       include: include ?? this.include,
       revInclude: revInclude ?? this.revInclude,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

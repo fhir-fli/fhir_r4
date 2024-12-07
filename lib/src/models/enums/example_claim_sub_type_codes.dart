@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value set includes sample Claim SubType codes which are used to distinguish the claim types for example within type institutional there may be subtypes for emergency services, bed stay and transportation.
 class ExampleClaimSubTypeCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ExampleClaimSubTypeCodes._(super.value, [super.element]);
+  ExampleClaimSubTypeCodes._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [ExampleClaimSubTypeCodes] from JSON.
   factory ExampleClaimSubTypeCodes.fromJson(
@@ -21,23 +26,23 @@ class ExampleClaimSubTypeCodes extends PrimitiveType<String> {
         'ExampleClaimSubTypeCodes cannot be constructed from JSON.',
       );
     }
-    return ExampleClaimSubTypeCodes._(value, element);
+    return ExampleClaimSubTypeCodes._(value: value, element: element);
   }
 
   /// ortho
   static final ExampleClaimSubTypeCodes ortho = ExampleClaimSubTypeCodes._(
-    'ortho',
+    value: 'ortho',
   );
 
   /// emergency
   static final ExampleClaimSubTypeCodes emergency = ExampleClaimSubTypeCodes._(
-    'emergency',
+    value: 'emergency',
   );
 
   /// For instances where an Element is present but not value
 
   static final ExampleClaimSubTypeCodes elementOnly =
-      ExampleClaimSubTypeCodes._('');
+      ExampleClaimSubTypeCodes._(value: '');
 
   /// List of all enum-like values
   static final List<ExampleClaimSubTypeCodes> values = [
@@ -48,13 +53,13 @@ class ExampleClaimSubTypeCodes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ExampleClaimSubTypeCodes clone() => ExampleClaimSubTypeCodes._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ExampleClaimSubTypeCodes withElement(Element? newElement) {
-    return ExampleClaimSubTypeCodes._(value, newElement);
+    return ExampleClaimSubTypeCodes._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -79,14 +84,13 @@ class ExampleClaimSubTypeCodes extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ExampleClaimSubTypeCodes._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

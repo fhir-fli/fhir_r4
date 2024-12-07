@@ -37,10 +37,6 @@ class RequestGroup extends DomainResource {
     this.reasonReference,
     this.note,
     this.action,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.RequestGroup,
         );
@@ -525,10 +521,6 @@ class RequestGroup extends DomainResource {
       reasonReference: reasonReference ?? this.reasonReference,
       note: note ?? this.note,
       action: action ?? this.action,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -568,10 +560,6 @@ class RequestGroupAction extends BackboneElement {
     this.resource,
     this.action,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1066,10 +1054,6 @@ class RequestGroupAction extends BackboneElement {
       cardinalityBehavior: cardinalityBehavior ?? this.cardinalityBehavior,
       resource: resource ?? this.resource,
       action: action ?? this.action,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1088,10 +1072,6 @@ class RequestGroupCondition extends BackboneElement {
     required this.kind,
     this.expression,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1232,10 +1212,6 @@ class RequestGroupCondition extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       kind: kind ?? this.kind,
       expression: expression ?? this.expression,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1256,10 +1232,6 @@ class RequestGroupRelatedAction extends BackboneElement {
     this.offsetDuration,
     this.offsetRange,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1427,10 +1399,6 @@ class RequestGroupRelatedAction extends BackboneElement {
       relationship: relationship ?? this.relationship,
       offsetDuration: offsetDuration ?? this.offsetDuration,
       offsetRange: offsetRange ?? this.offsetRange,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

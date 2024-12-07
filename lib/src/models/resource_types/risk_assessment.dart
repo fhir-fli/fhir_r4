@@ -36,10 +36,6 @@ class RiskAssessment extends DomainResource {
     this.prediction,
     this.mitigation,
     this.note,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.RiskAssessment,
         );
@@ -501,10 +497,6 @@ class RiskAssessment extends DomainResource {
       prediction: prediction ?? this.prediction,
       mitigation: mitigation ?? this.mitigation,
       note: note ?? this.note,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -528,10 +520,6 @@ class RiskAssessmentPrediction extends BackboneElement {
     this.whenRange,
     this.rationale,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -768,10 +756,6 @@ class RiskAssessmentPrediction extends BackboneElement {
       whenPeriod: whenPeriod ?? this.whenPeriod,
       whenRange: whenRange ?? this.whenRange,
       rationale: rationale ?? this.rationale,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

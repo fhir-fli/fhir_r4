@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The verification status to support or decline the clinical status of the condition or diagnosis.
 class ConditionVerificationStatus extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ConditionVerificationStatus._(super.value, [super.element]);
+  ConditionVerificationStatus._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [ConditionVerificationStatus] from JSON.
   factory ConditionVerificationStatus.fromJson(
@@ -21,49 +26,49 @@ class ConditionVerificationStatus extends PrimitiveType<String> {
         'ConditionVerificationStatus cannot be constructed from JSON.',
       );
     }
-    return ConditionVerificationStatus._(value, element);
+    return ConditionVerificationStatus._(value: value, element: element);
   }
 
   /// unconfirmed
   static final ConditionVerificationStatus unconfirmed =
       ConditionVerificationStatus._(
-    'unconfirmed',
+    value: 'unconfirmed',
   );
 
   /// provisional
   static final ConditionVerificationStatus provisional =
       ConditionVerificationStatus._(
-    'provisional',
+    value: 'provisional',
   );
 
   /// differential
   static final ConditionVerificationStatus differential =
       ConditionVerificationStatus._(
-    'differential',
+    value: 'differential',
   );
 
   /// confirmed
   static final ConditionVerificationStatus confirmed =
       ConditionVerificationStatus._(
-    'confirmed',
+    value: 'confirmed',
   );
 
   /// refuted
   static final ConditionVerificationStatus refuted =
       ConditionVerificationStatus._(
-    'refuted',
+    value: 'refuted',
   );
 
   /// entered_in_error
   static final ConditionVerificationStatus entered_in_error =
       ConditionVerificationStatus._(
-    'entered-in-error',
+    value: 'entered-in-error',
   );
 
   /// For instances where an Element is present but not value
 
   static final ConditionVerificationStatus elementOnly =
-      ConditionVerificationStatus._('');
+      ConditionVerificationStatus._(value: '');
 
   /// List of all enum-like values
   static final List<ConditionVerificationStatus> values = [
@@ -78,13 +83,13 @@ class ConditionVerificationStatus extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ConditionVerificationStatus clone() => ConditionVerificationStatus._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ConditionVerificationStatus withElement(Element? newElement) {
-    return ConditionVerificationStatus._(value, newElement);
+    return ConditionVerificationStatus._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -109,14 +114,13 @@ class ConditionVerificationStatus extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ConditionVerificationStatus._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

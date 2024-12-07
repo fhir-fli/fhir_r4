@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Possible types of subjects.
 class SubjectType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  SubjectType._(super.value, [super.element]);
+  SubjectType._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [SubjectType] from JSON.
   factory SubjectType.fromJson(
@@ -21,727 +26,727 @@ class SubjectType extends PrimitiveType<String> {
         'SubjectType cannot be constructed from JSON.',
       );
     }
-    return SubjectType._(value, element);
+    return SubjectType._(value: value, element: element);
   }
 
   /// Resource
   static final SubjectType Resource = SubjectType._(
-    'Resource',
+    value: 'Resource',
   );
 
   /// Binary
   static final SubjectType Binary = SubjectType._(
-    'Binary',
+    value: 'Binary',
   );
 
   /// Bundle
   static final SubjectType Bundle = SubjectType._(
-    'Bundle',
+    value: 'Bundle',
   );
 
   /// DomainResource
   static final SubjectType DomainResource = SubjectType._(
-    'DomainResource',
+    value: 'DomainResource',
   );
 
   /// Account
   static final SubjectType Account = SubjectType._(
-    'Account',
+    value: 'Account',
   );
 
   /// ActivityDefinition
   static final SubjectType ActivityDefinition = SubjectType._(
-    'ActivityDefinition',
+    value: 'ActivityDefinition',
   );
 
   /// AdministrableProductDefinition
   static final SubjectType AdministrableProductDefinition = SubjectType._(
-    'AdministrableProductDefinition',
+    value: 'AdministrableProductDefinition',
   );
 
   /// AdverseEvent
   static final SubjectType AdverseEvent = SubjectType._(
-    'AdverseEvent',
+    value: 'AdverseEvent',
   );
 
   /// AllergyIntolerance
   static final SubjectType AllergyIntolerance = SubjectType._(
-    'AllergyIntolerance',
+    value: 'AllergyIntolerance',
   );
 
   /// Appointment
   static final SubjectType Appointment = SubjectType._(
-    'Appointment',
+    value: 'Appointment',
   );
 
   /// AppointmentResponse
   static final SubjectType AppointmentResponse = SubjectType._(
-    'AppointmentResponse',
+    value: 'AppointmentResponse',
   );
 
   /// AuditEvent
   static final SubjectType AuditEvent = SubjectType._(
-    'AuditEvent',
+    value: 'AuditEvent',
   );
 
   /// Basic
   static final SubjectType Basic = SubjectType._(
-    'Basic',
+    value: 'Basic',
   );
 
   /// BiologicallyDerivedProduct
   static final SubjectType BiologicallyDerivedProduct = SubjectType._(
-    'BiologicallyDerivedProduct',
+    value: 'BiologicallyDerivedProduct',
   );
 
   /// BodyStructure
   static final SubjectType BodyStructure = SubjectType._(
-    'BodyStructure',
+    value: 'BodyStructure',
   );
 
   /// CapabilityStatement
   static final SubjectType CapabilityStatement = SubjectType._(
-    'CapabilityStatement',
+    value: 'CapabilityStatement',
   );
 
   /// CarePlan
   static final SubjectType CarePlan = SubjectType._(
-    'CarePlan',
+    value: 'CarePlan',
   );
 
   /// CareTeam
   static final SubjectType CareTeam = SubjectType._(
-    'CareTeam',
+    value: 'CareTeam',
   );
 
   /// CatalogEntry
   static final SubjectType CatalogEntry = SubjectType._(
-    'CatalogEntry',
+    value: 'CatalogEntry',
   );
 
   /// ChargeItem
   static final SubjectType ChargeItem = SubjectType._(
-    'ChargeItem',
+    value: 'ChargeItem',
   );
 
   /// ChargeItemDefinition
   static final SubjectType ChargeItemDefinition = SubjectType._(
-    'ChargeItemDefinition',
+    value: 'ChargeItemDefinition',
   );
 
   /// Citation
   static final SubjectType Citation = SubjectType._(
-    'Citation',
+    value: 'Citation',
   );
 
   /// Claim
   static final SubjectType Claim = SubjectType._(
-    'Claim',
+    value: 'Claim',
   );
 
   /// ClaimResponse
   static final SubjectType ClaimResponse = SubjectType._(
-    'ClaimResponse',
+    value: 'ClaimResponse',
   );
 
   /// ClinicalImpression
   static final SubjectType ClinicalImpression = SubjectType._(
-    'ClinicalImpression',
+    value: 'ClinicalImpression',
   );
 
   /// ClinicalUseDefinition
   static final SubjectType ClinicalUseDefinition = SubjectType._(
-    'ClinicalUseDefinition',
+    value: 'ClinicalUseDefinition',
   );
 
   /// CodeSystem
   static final SubjectType CodeSystem = SubjectType._(
-    'CodeSystem',
+    value: 'CodeSystem',
   );
 
   /// Communication
   static final SubjectType Communication = SubjectType._(
-    'Communication',
+    value: 'Communication',
   );
 
   /// CommunicationRequest
   static final SubjectType CommunicationRequest = SubjectType._(
-    'CommunicationRequest',
+    value: 'CommunicationRequest',
   );
 
   /// CompartmentDefinition
   static final SubjectType CompartmentDefinition = SubjectType._(
-    'CompartmentDefinition',
+    value: 'CompartmentDefinition',
   );
 
   /// Composition
   static final SubjectType Composition = SubjectType._(
-    'Composition',
+    value: 'Composition',
   );
 
   /// ConceptMap
   static final SubjectType ConceptMap = SubjectType._(
-    'ConceptMap',
+    value: 'ConceptMap',
   );
 
   /// Condition
   static final SubjectType Condition = SubjectType._(
-    'Condition',
+    value: 'Condition',
   );
 
   /// Consent
   static final SubjectType Consent = SubjectType._(
-    'Consent',
+    value: 'Consent',
   );
 
   /// Contract
   static final SubjectType Contract = SubjectType._(
-    'Contract',
+    value: 'Contract',
   );
 
   /// Coverage
   static final SubjectType Coverage = SubjectType._(
-    'Coverage',
+    value: 'Coverage',
   );
 
   /// CoverageEligibilityRequest
   static final SubjectType CoverageEligibilityRequest = SubjectType._(
-    'CoverageEligibilityRequest',
+    value: 'CoverageEligibilityRequest',
   );
 
   /// CoverageEligibilityResponse
   static final SubjectType CoverageEligibilityResponse = SubjectType._(
-    'CoverageEligibilityResponse',
+    value: 'CoverageEligibilityResponse',
   );
 
   /// DetectedIssue
   static final SubjectType DetectedIssue = SubjectType._(
-    'DetectedIssue',
+    value: 'DetectedIssue',
   );
 
   /// Device
   static final SubjectType Device = SubjectType._(
-    'Device',
+    value: 'Device',
   );
 
   /// DeviceDefinition
   static final SubjectType DeviceDefinition = SubjectType._(
-    'DeviceDefinition',
+    value: 'DeviceDefinition',
   );
 
   /// DeviceMetric
   static final SubjectType DeviceMetric = SubjectType._(
-    'DeviceMetric',
+    value: 'DeviceMetric',
   );
 
   /// DeviceRequest
   static final SubjectType DeviceRequest = SubjectType._(
-    'DeviceRequest',
+    value: 'DeviceRequest',
   );
 
   /// DeviceUseStatement
   static final SubjectType DeviceUseStatement = SubjectType._(
-    'DeviceUseStatement',
+    value: 'DeviceUseStatement',
   );
 
   /// DiagnosticReport
   static final SubjectType DiagnosticReport = SubjectType._(
-    'DiagnosticReport',
+    value: 'DiagnosticReport',
   );
 
   /// DocumentManifest
   static final SubjectType DocumentManifest = SubjectType._(
-    'DocumentManifest',
+    value: 'DocumentManifest',
   );
 
   /// DocumentReference
   static final SubjectType DocumentReference = SubjectType._(
-    'DocumentReference',
+    value: 'DocumentReference',
   );
 
   /// Encounter
   static final SubjectType Encounter = SubjectType._(
-    'Encounter',
+    value: 'Encounter',
   );
 
   /// Endpoint
   static final SubjectType Endpoint = SubjectType._(
-    'Endpoint',
+    value: 'Endpoint',
   );
 
   /// EnrollmentRequest
   static final SubjectType EnrollmentRequest = SubjectType._(
-    'EnrollmentRequest',
+    value: 'EnrollmentRequest',
   );
 
   /// EnrollmentResponse
   static final SubjectType EnrollmentResponse = SubjectType._(
-    'EnrollmentResponse',
+    value: 'EnrollmentResponse',
   );
 
   /// EpisodeOfCare
   static final SubjectType EpisodeOfCare = SubjectType._(
-    'EpisodeOfCare',
+    value: 'EpisodeOfCare',
   );
 
   /// EventDefinition
   static final SubjectType EventDefinition = SubjectType._(
-    'EventDefinition',
+    value: 'EventDefinition',
   );
 
   /// Evidence
   static final SubjectType Evidence = SubjectType._(
-    'Evidence',
+    value: 'Evidence',
   );
 
   /// EvidenceReport
   static final SubjectType EvidenceReport = SubjectType._(
-    'EvidenceReport',
+    value: 'EvidenceReport',
   );
 
   /// EvidenceVariable
   static final SubjectType EvidenceVariable = SubjectType._(
-    'EvidenceVariable',
+    value: 'EvidenceVariable',
   );
 
   /// ExampleScenario
   static final SubjectType ExampleScenario = SubjectType._(
-    'ExampleScenario',
+    value: 'ExampleScenario',
   );
 
   /// ExplanationOfBenefit
   static final SubjectType ExplanationOfBenefit = SubjectType._(
-    'ExplanationOfBenefit',
+    value: 'ExplanationOfBenefit',
   );
 
   /// FamilyMemberHistory
   static final SubjectType FamilyMemberHistory = SubjectType._(
-    'FamilyMemberHistory',
+    value: 'FamilyMemberHistory',
   );
 
   /// Flag
   static final SubjectType Flag = SubjectType._(
-    'Flag',
+    value: 'Flag',
   );
 
   /// Goal
   static final SubjectType Goal = SubjectType._(
-    'Goal',
+    value: 'Goal',
   );
 
   /// GraphDefinition
   static final SubjectType GraphDefinition = SubjectType._(
-    'GraphDefinition',
+    value: 'GraphDefinition',
   );
 
   /// Group
   static final SubjectType Group = SubjectType._(
-    'Group',
+    value: 'Group',
   );
 
   /// GuidanceResponse
   static final SubjectType GuidanceResponse = SubjectType._(
-    'GuidanceResponse',
+    value: 'GuidanceResponse',
   );
 
   /// HealthcareService
   static final SubjectType HealthcareService = SubjectType._(
-    'HealthcareService',
+    value: 'HealthcareService',
   );
 
   /// ImagingStudy
   static final SubjectType ImagingStudy = SubjectType._(
-    'ImagingStudy',
+    value: 'ImagingStudy',
   );
 
   /// Immunization
   static final SubjectType Immunization = SubjectType._(
-    'Immunization',
+    value: 'Immunization',
   );
 
   /// ImmunizationEvaluation
   static final SubjectType ImmunizationEvaluation = SubjectType._(
-    'ImmunizationEvaluation',
+    value: 'ImmunizationEvaluation',
   );
 
   /// ImmunizationRecommendation
   static final SubjectType ImmunizationRecommendation = SubjectType._(
-    'ImmunizationRecommendation',
+    value: 'ImmunizationRecommendation',
   );
 
   /// ImplementationGuide
   static final SubjectType ImplementationGuide = SubjectType._(
-    'ImplementationGuide',
+    value: 'ImplementationGuide',
   );
 
   /// Ingredient
   static final SubjectType Ingredient = SubjectType._(
-    'Ingredient',
+    value: 'Ingredient',
   );
 
   /// InsurancePlan
   static final SubjectType InsurancePlan = SubjectType._(
-    'InsurancePlan',
+    value: 'InsurancePlan',
   );
 
   /// Invoice
   static final SubjectType Invoice = SubjectType._(
-    'Invoice',
+    value: 'Invoice',
   );
 
   /// Library
   static final SubjectType Library = SubjectType._(
-    'Library',
+    value: 'Library',
   );
 
   /// Linkage
   static final SubjectType Linkage = SubjectType._(
-    'Linkage',
+    value: 'Linkage',
   );
 
   /// List_
   static final SubjectType List_ = SubjectType._(
-    'List',
+    value: 'List',
   );
 
   /// Location
   static final SubjectType Location = SubjectType._(
-    'Location',
+    value: 'Location',
   );
 
   /// ManufacturedItemDefinition
   static final SubjectType ManufacturedItemDefinition = SubjectType._(
-    'ManufacturedItemDefinition',
+    value: 'ManufacturedItemDefinition',
   );
 
   /// Measure
   static final SubjectType Measure = SubjectType._(
-    'Measure',
+    value: 'Measure',
   );
 
   /// MeasureReport
   static final SubjectType MeasureReport = SubjectType._(
-    'MeasureReport',
+    value: 'MeasureReport',
   );
 
   /// Media
   static final SubjectType Media = SubjectType._(
-    'Media',
+    value: 'Media',
   );
 
   /// Medication
   static final SubjectType Medication = SubjectType._(
-    'Medication',
+    value: 'Medication',
   );
 
   /// MedicationAdministration
   static final SubjectType MedicationAdministration = SubjectType._(
-    'MedicationAdministration',
+    value: 'MedicationAdministration',
   );
 
   /// MedicationDispense
   static final SubjectType MedicationDispense = SubjectType._(
-    'MedicationDispense',
+    value: 'MedicationDispense',
   );
 
   /// MedicationKnowledge
   static final SubjectType MedicationKnowledge = SubjectType._(
-    'MedicationKnowledge',
+    value: 'MedicationKnowledge',
   );
 
   /// MedicationRequest
   static final SubjectType MedicationRequest = SubjectType._(
-    'MedicationRequest',
+    value: 'MedicationRequest',
   );
 
   /// MedicationStatement
   static final SubjectType MedicationStatement = SubjectType._(
-    'MedicationStatement',
+    value: 'MedicationStatement',
   );
 
   /// MedicinalProductDefinition
   static final SubjectType MedicinalProductDefinition = SubjectType._(
-    'MedicinalProductDefinition',
+    value: 'MedicinalProductDefinition',
   );
 
   /// MessageDefinition
   static final SubjectType MessageDefinition = SubjectType._(
-    'MessageDefinition',
+    value: 'MessageDefinition',
   );
 
   /// MessageHeader
   static final SubjectType MessageHeader = SubjectType._(
-    'MessageHeader',
+    value: 'MessageHeader',
   );
 
   /// MolecularSequence
   static final SubjectType MolecularSequence = SubjectType._(
-    'MolecularSequence',
+    value: 'MolecularSequence',
   );
 
   /// NamingSystem
   static final SubjectType NamingSystem = SubjectType._(
-    'NamingSystem',
+    value: 'NamingSystem',
   );
 
   /// NutritionOrder
   static final SubjectType NutritionOrder = SubjectType._(
-    'NutritionOrder',
+    value: 'NutritionOrder',
   );
 
   /// NutritionProduct
   static final SubjectType NutritionProduct = SubjectType._(
-    'NutritionProduct',
+    value: 'NutritionProduct',
   );
 
   /// Observation
   static final SubjectType Observation = SubjectType._(
-    'Observation',
+    value: 'Observation',
   );
 
   /// ObservationDefinition
   static final SubjectType ObservationDefinition = SubjectType._(
-    'ObservationDefinition',
+    value: 'ObservationDefinition',
   );
 
   /// OperationDefinition
   static final SubjectType OperationDefinition = SubjectType._(
-    'OperationDefinition',
+    value: 'OperationDefinition',
   );
 
   /// OperationOutcome
   static final SubjectType OperationOutcome = SubjectType._(
-    'OperationOutcome',
+    value: 'OperationOutcome',
   );
 
   /// Organization
   static final SubjectType Organization = SubjectType._(
-    'Organization',
+    value: 'Organization',
   );
 
   /// OrganizationAffiliation
   static final SubjectType OrganizationAffiliation = SubjectType._(
-    'OrganizationAffiliation',
+    value: 'OrganizationAffiliation',
   );
 
   /// PackagedProductDefinition
   static final SubjectType PackagedProductDefinition = SubjectType._(
-    'PackagedProductDefinition',
+    value: 'PackagedProductDefinition',
   );
 
   /// Patient
   static final SubjectType Patient = SubjectType._(
-    'Patient',
+    value: 'Patient',
   );
 
   /// PaymentNotice
   static final SubjectType PaymentNotice = SubjectType._(
-    'PaymentNotice',
+    value: 'PaymentNotice',
   );
 
   /// PaymentReconciliation
   static final SubjectType PaymentReconciliation = SubjectType._(
-    'PaymentReconciliation',
+    value: 'PaymentReconciliation',
   );
 
   /// Person
   static final SubjectType Person = SubjectType._(
-    'Person',
+    value: 'Person',
   );
 
   /// PlanDefinition
   static final SubjectType PlanDefinition = SubjectType._(
-    'PlanDefinition',
+    value: 'PlanDefinition',
   );
 
   /// Practitioner
   static final SubjectType Practitioner = SubjectType._(
-    'Practitioner',
+    value: 'Practitioner',
   );
 
   /// PractitionerRole
   static final SubjectType PractitionerRole = SubjectType._(
-    'PractitionerRole',
+    value: 'PractitionerRole',
   );
 
   /// Procedure
   static final SubjectType Procedure = SubjectType._(
-    'Procedure',
+    value: 'Procedure',
   );
 
   /// Provenance
   static final SubjectType Provenance = SubjectType._(
-    'Provenance',
+    value: 'Provenance',
   );
 
   /// Questionnaire
   static final SubjectType Questionnaire = SubjectType._(
-    'Questionnaire',
+    value: 'Questionnaire',
   );
 
   /// QuestionnaireResponse
   static final SubjectType QuestionnaireResponse = SubjectType._(
-    'QuestionnaireResponse',
+    value: 'QuestionnaireResponse',
   );
 
   /// RegulatedAuthorization
   static final SubjectType RegulatedAuthorization = SubjectType._(
-    'RegulatedAuthorization',
+    value: 'RegulatedAuthorization',
   );
 
   /// RelatedPerson
   static final SubjectType RelatedPerson = SubjectType._(
-    'RelatedPerson',
+    value: 'RelatedPerson',
   );
 
   /// RequestGroup
   static final SubjectType RequestGroup = SubjectType._(
-    'RequestGroup',
+    value: 'RequestGroup',
   );
 
   /// ResearchDefinition
   static final SubjectType ResearchDefinition = SubjectType._(
-    'ResearchDefinition',
+    value: 'ResearchDefinition',
   );
 
   /// ResearchElementDefinition
   static final SubjectType ResearchElementDefinition = SubjectType._(
-    'ResearchElementDefinition',
+    value: 'ResearchElementDefinition',
   );
 
   /// ResearchStudy
   static final SubjectType ResearchStudy = SubjectType._(
-    'ResearchStudy',
+    value: 'ResearchStudy',
   );
 
   /// ResearchSubject
   static final SubjectType ResearchSubject = SubjectType._(
-    'ResearchSubject',
+    value: 'ResearchSubject',
   );
 
   /// RiskAssessment
   static final SubjectType RiskAssessment = SubjectType._(
-    'RiskAssessment',
+    value: 'RiskAssessment',
   );
 
   /// Schedule
   static final SubjectType Schedule = SubjectType._(
-    'Schedule',
+    value: 'Schedule',
   );
 
   /// SearchParameter
   static final SubjectType SearchParameter = SubjectType._(
-    'SearchParameter',
+    value: 'SearchParameter',
   );
 
   /// ServiceRequest
   static final SubjectType ServiceRequest = SubjectType._(
-    'ServiceRequest',
+    value: 'ServiceRequest',
   );
 
   /// Slot
   static final SubjectType Slot = SubjectType._(
-    'Slot',
+    value: 'Slot',
   );
 
   /// Specimen
   static final SubjectType Specimen = SubjectType._(
-    'Specimen',
+    value: 'Specimen',
   );
 
   /// SpecimenDefinition
   static final SubjectType SpecimenDefinition = SubjectType._(
-    'SpecimenDefinition',
+    value: 'SpecimenDefinition',
   );
 
   /// StructureDefinition
   static final SubjectType StructureDefinition = SubjectType._(
-    'StructureDefinition',
+    value: 'StructureDefinition',
   );
 
   /// StructureMap
   static final SubjectType StructureMap = SubjectType._(
-    'StructureMap',
+    value: 'StructureMap',
   );
 
   /// Subscription
   static final SubjectType Subscription = SubjectType._(
-    'Subscription',
+    value: 'Subscription',
   );
 
   /// SubscriptionStatus
   static final SubjectType SubscriptionStatus = SubjectType._(
-    'SubscriptionStatus',
+    value: 'SubscriptionStatus',
   );
 
   /// SubscriptionTopic
   static final SubjectType SubscriptionTopic = SubjectType._(
-    'SubscriptionTopic',
+    value: 'SubscriptionTopic',
   );
 
   /// Substance
   static final SubjectType Substance = SubjectType._(
-    'Substance',
+    value: 'Substance',
   );
 
   /// SubstanceDefinition
   static final SubjectType SubstanceDefinition = SubjectType._(
-    'SubstanceDefinition',
+    value: 'SubstanceDefinition',
   );
 
   /// SupplyDelivery
   static final SubjectType SupplyDelivery = SubjectType._(
-    'SupplyDelivery',
+    value: 'SupplyDelivery',
   );
 
   /// SupplyRequest
   static final SubjectType SupplyRequest = SubjectType._(
-    'SupplyRequest',
+    value: 'SupplyRequest',
   );
 
   /// Task
   static final SubjectType Task = SubjectType._(
-    'Task',
+    value: 'Task',
   );
 
   /// TerminologyCapabilities
   static final SubjectType TerminologyCapabilities = SubjectType._(
-    'TerminologyCapabilities',
+    value: 'TerminologyCapabilities',
   );
 
   /// TestReport
   static final SubjectType TestReport = SubjectType._(
-    'TestReport',
+    value: 'TestReport',
   );
 
   /// TestScript
   static final SubjectType TestScript = SubjectType._(
-    'TestScript',
+    value: 'TestScript',
   );
 
   /// ValueSet
   static final SubjectType ValueSet = SubjectType._(
-    'ValueSet',
+    value: 'ValueSet',
   );
 
   /// VerificationResult
   static final SubjectType VerificationResult = SubjectType._(
-    'VerificationResult',
+    value: 'VerificationResult',
   );
 
   /// VisionPrescription
   static final SubjectType VisionPrescription = SubjectType._(
-    'VisionPrescription',
+    value: 'VisionPrescription',
   );
 
   /// Parameters
   static final SubjectType Parameters = SubjectType._(
-    'Parameters',
+    value: 'Parameters',
   );
 
   /// For instances where an Element is present but not value
 
-  static final SubjectType elementOnly = SubjectType._('');
+  static final SubjectType elementOnly = SubjectType._(value: '');
 
   /// List of all enum-like values
   static final List<SubjectType> values = [
@@ -893,13 +898,13 @@ class SubjectType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   SubjectType clone() => SubjectType._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   SubjectType withElement(Element? newElement) {
-    return SubjectType._(value, newElement);
+    return SubjectType._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -924,14 +929,13 @@ class SubjectType extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return SubjectType._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

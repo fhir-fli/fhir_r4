@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Example Message Reasons. These are the set of codes that might be used an updating an encounter using admin-update.
 class ExampleMessageReasonCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ExampleMessageReasonCodes._(super.value, [super.element]);
+  ExampleMessageReasonCodes._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [ExampleMessageReasonCodes] from JSON.
   factory ExampleMessageReasonCodes.fromJson(
@@ -21,44 +26,44 @@ class ExampleMessageReasonCodes extends PrimitiveType<String> {
         'ExampleMessageReasonCodes cannot be constructed from JSON.',
       );
     }
-    return ExampleMessageReasonCodes._(value, element);
+    return ExampleMessageReasonCodes._(value: value, element: element);
   }
 
   /// admit
   static final ExampleMessageReasonCodes admit = ExampleMessageReasonCodes._(
-    'admit',
+    value: 'admit',
   );
 
   /// discharge
   static final ExampleMessageReasonCodes discharge =
       ExampleMessageReasonCodes._(
-    'discharge',
+    value: 'discharge',
   );
 
   /// absent
   static final ExampleMessageReasonCodes absent = ExampleMessageReasonCodes._(
-    'absent',
+    value: 'absent',
   );
 
   /// return_
   static final ExampleMessageReasonCodes return_ = ExampleMessageReasonCodes._(
-    'return',
+    value: 'return',
   );
 
   /// moved
   static final ExampleMessageReasonCodes moved = ExampleMessageReasonCodes._(
-    'moved',
+    value: 'moved',
   );
 
   /// edit
   static final ExampleMessageReasonCodes edit = ExampleMessageReasonCodes._(
-    'edit',
+    value: 'edit',
   );
 
   /// For instances where an Element is present but not value
 
   static final ExampleMessageReasonCodes elementOnly =
-      ExampleMessageReasonCodes._('');
+      ExampleMessageReasonCodes._(value: '');
 
   /// List of all enum-like values
   static final List<ExampleMessageReasonCodes> values = [
@@ -73,13 +78,13 @@ class ExampleMessageReasonCodes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ExampleMessageReasonCodes clone() => ExampleMessageReasonCodes._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ExampleMessageReasonCodes withElement(Element? newElement) {
-    return ExampleMessageReasonCodes._(value, newElement);
+    return ExampleMessageReasonCodes._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -104,14 +109,13 @@ class ExampleMessageReasonCodes extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ExampleMessageReasonCodes._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

@@ -42,10 +42,6 @@ class Questionnaire extends CanonicalResource {
     this.effectivePeriod,
     this.code,
     this.item,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.Questionnaire,
         );
@@ -530,10 +526,6 @@ class Questionnaire extends CanonicalResource {
       effectivePeriod: effectivePeriod ?? this.effectivePeriod,
       code: code ?? this.code,
       item: item ?? this.item,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -566,10 +558,6 @@ class QuestionnaireItem extends BackboneElement {
     this.initial,
     this.item,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -953,10 +941,6 @@ class QuestionnaireItem extends BackboneElement {
       answerOption: answerOption ?? this.answerOption,
       initial: initial ?? this.initial,
       item: item ?? this.item,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -986,10 +970,6 @@ class QuestionnaireEnableWhen extends BackboneElement {
     this.answerQuantity,
     this.answerReference,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1277,10 +1257,6 @@ class QuestionnaireEnableWhen extends BackboneElement {
       answerCoding: answerCoding ?? this.answerCoding,
       answerQuantity: answerQuantity ?? this.answerQuantity,
       answerReference: answerReference ?? this.answerReference,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1303,10 +1279,6 @@ class QuestionnaireAnswerOption extends BackboneElement {
     this.valueReference,
     this.initialSelected,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1518,10 +1490,6 @@ class QuestionnaireAnswerOption extends BackboneElement {
       valueCoding: valueCoding ?? this.valueCoding,
       valueReference: valueReference ?? this.valueReference,
       initialSelected: initialSelected ?? this.initialSelected,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1550,10 +1518,6 @@ class QuestionnaireInitial extends BackboneElement {
     this.valueQuantity,
     this.valueReference,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1835,10 +1799,6 @@ class QuestionnaireInitial extends BackboneElement {
       valueCoding: valueCoding ?? this.valueCoding,
       valueQuantity: valueQuantity ?? this.valueQuantity,
       valueReference: valueReference ?? this.valueReference,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

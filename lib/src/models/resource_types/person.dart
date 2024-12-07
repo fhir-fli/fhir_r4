@@ -28,10 +28,6 @@ class Person extends DomainResource {
     this.managingOrganization,
     this.active,
     this.link,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.Person,
         );
@@ -370,10 +366,6 @@ class Person extends DomainResource {
       managingOrganization: managingOrganization ?? this.managingOrganization,
       active: active ?? this.active,
       link: link ?? this.link,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -391,10 +383,6 @@ class PersonLink extends BackboneElement {
     required this.target,
     this.assurance,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -533,10 +521,6 @@ class PersonLink extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       target: target ?? this.target,
       assurance: assurance ?? this.assurance,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

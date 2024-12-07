@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Laterality: SNOMED-CT concepts for 'left', 'right', and 'bilateral'
 class Laterality extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  Laterality._(super.value, [super.element]);
+  Laterality._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [Laterality] from JSON.
   factory Laterality.fromJson(
@@ -21,27 +26,27 @@ class Laterality extends PrimitiveType<String> {
         'Laterality cannot be constructed from JSON.',
       );
     }
-    return Laterality._(value, element);
+    return Laterality._(value: value, element: element);
   }
 
   /// value419161000
   static final Laterality value419161000 = Laterality._(
-    '419161000',
+    value: '419161000',
   );
 
   /// value419465000
   static final Laterality value419465000 = Laterality._(
-    '419465000',
+    value: '419465000',
   );
 
   /// value51440002
   static final Laterality value51440002 = Laterality._(
-    '51440002',
+    value: '51440002',
   );
 
   /// For instances where an Element is present but not value
 
-  static final Laterality elementOnly = Laterality._('');
+  static final Laterality elementOnly = Laterality._(value: '');
 
   /// List of all enum-like values
   static final List<Laterality> values = [
@@ -53,13 +58,13 @@ class Laterality extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   Laterality clone() => Laterality._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   Laterality withElement(Element? newElement) {
-    return Laterality._(value, newElement);
+    return Laterality._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -84,14 +89,13 @@ class Laterality extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return Laterality._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

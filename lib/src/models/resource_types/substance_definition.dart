@@ -37,10 +37,6 @@ class SubstanceDefinition extends DomainResource {
     this.name,
     this.relationship,
     this.sourceMaterial,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.SubstanceDefinition,
         );
@@ -557,10 +553,6 @@ class SubstanceDefinition extends DomainResource {
       name: name ?? this.name,
       relationship: relationship ?? this.relationship,
       sourceMaterial: sourceMaterial ?? this.sourceMaterial,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -585,10 +577,6 @@ class SubstanceDefinitionMoiety extends BackboneElement {
     this.amountString,
     this.measurementType,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -837,10 +825,6 @@ class SubstanceDefinitionMoiety extends BackboneElement {
       amountQuantity: amountQuantity ?? this.amountQuantity,
       amountString: amountString ?? this.amountString,
       measurementType: measurementType ?? this.measurementType,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -862,10 +846,6 @@ class SubstanceDefinitionProperty extends BackboneElement {
     this.valueBoolean,
     this.valueAttachment,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1062,10 +1042,6 @@ class SubstanceDefinitionProperty extends BackboneElement {
       valueDate: valueDate ?? this.valueDate,
       valueBoolean: valueBoolean ?? this.valueBoolean,
       valueAttachment: valueAttachment ?? this.valueAttachment,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1085,10 +1061,6 @@ class SubstanceDefinitionMolecularWeight extends BackboneElement {
     this.type,
     required this.amount,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1247,10 +1219,6 @@ class SubstanceDefinitionMolecularWeight extends BackboneElement {
       method: method ?? this.method,
       type: type ?? this.type,
       amount: amount ?? this.amount,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1274,10 +1242,6 @@ class SubstanceDefinitionStructure extends BackboneElement {
     this.sourceDocument,
     this.representation,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1526,10 +1490,6 @@ class SubstanceDefinitionStructure extends BackboneElement {
       technique: technique ?? this.technique,
       sourceDocument: sourceDocument ?? this.sourceDocument,
       representation: representation ?? this.representation,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1549,10 +1509,6 @@ class SubstanceDefinitionRepresentation extends BackboneElement {
     this.format,
     this.document,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1730,10 +1686,6 @@ class SubstanceDefinitionRepresentation extends BackboneElement {
       representation: representation ?? this.representation,
       format: format ?? this.format,
       document: document ?? this.document,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1754,10 +1706,6 @@ class SubstanceDefinitionCode extends BackboneElement {
     this.note,
     this.source,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1953,10 +1901,6 @@ class SubstanceDefinitionCode extends BackboneElement {
       statusDate: statusDate ?? this.statusDate,
       note: note ?? this.note,
       source: source ?? this.source,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1983,10 +1927,6 @@ class SubstanceDefinitionName extends BackboneElement {
     this.official,
     this.source,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -2289,10 +2229,6 @@ class SubstanceDefinitionName extends BackboneElement {
       translation: translation ?? this.translation,
       official: official ?? this.official,
       source: source ?? this.source,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -2311,10 +2247,6 @@ class SubstanceDefinitionOfficial extends BackboneElement {
     this.status,
     this.date,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -2472,10 +2404,6 @@ class SubstanceDefinitionOfficial extends BackboneElement {
       authority: authority ?? this.authority,
       status: status ?? this.status,
       date: date ?? this.date,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -2502,10 +2430,6 @@ class SubstanceDefinitionRelationship extends BackboneElement {
     this.comparator,
     this.source,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -2784,10 +2708,6 @@ class SubstanceDefinitionRelationship extends BackboneElement {
       ratioHighLimitAmount: ratioHighLimitAmount ?? this.ratioHighLimitAmount,
       comparator: comparator ?? this.comparator,
       source: source ?? this.source,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -2808,10 +2728,6 @@ class SubstanceDefinitionSourceMaterial extends BackboneElement {
     this.part_,
     this.countryOfOrigin,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -3008,10 +2924,6 @@ class SubstanceDefinitionSourceMaterial extends BackboneElement {
       species: species ?? this.species,
       part_: part_ ?? this.part_,
       countryOfOrigin: countryOfOrigin ?? this.countryOfOrigin,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

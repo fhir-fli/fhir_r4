@@ -33,10 +33,6 @@ class PaymentReconciliation extends DomainResource {
     this.detail,
     this.formCode,
     this.processNote,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.PaymentReconciliation,
         );
@@ -431,10 +427,6 @@ class PaymentReconciliation extends DomainResource {
       detail: detail ?? this.detail,
       formCode: formCode ?? this.formCode,
       processNote: processNote ?? this.processNote,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -461,10 +453,6 @@ class PaymentReconciliationDetail extends BackboneElement {
     this.payee,
     this.amount,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -727,10 +715,6 @@ class PaymentReconciliationDetail extends BackboneElement {
       responsible: responsible ?? this.responsible,
       payee: payee ?? this.payee,
       amount: amount ?? this.amount,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -749,10 +733,6 @@ class PaymentReconciliationProcessNote extends BackboneElement {
     this.type,
     this.text,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -892,10 +872,6 @@ class PaymentReconciliationProcessNote extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
       text: text ?? this.text,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

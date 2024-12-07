@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Commonly used classifiers for evidence sets.
 class EvidenceClassifier extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  EvidenceClassifier._(super.value, [super.element]);
+  EvidenceClassifier._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [EvidenceClassifier] from JSON.
   factory EvidenceClassifier.fromJson(
@@ -21,170 +26,170 @@ class EvidenceClassifier extends PrimitiveType<String> {
         'EvidenceClassifier cannot be constructed from JSON.',
       );
     }
-    return EvidenceClassifier._(value, element);
+    return EvidenceClassifier._(value: value, element: element);
   }
 
   /// COVID19Specific
   static final EvidenceClassifier COVID19Specific = EvidenceClassifier._(
-    'COVID19Specific',
+    value: 'COVID19Specific',
   );
 
   /// COVID19Relevant
   static final EvidenceClassifier COVID19Relevant = EvidenceClassifier._(
-    'COVID19Relevant',
+    value: 'COVID19Relevant',
   );
 
   /// COVID19HumanResearch
   static final EvidenceClassifier COVID19HumanResearch = EvidenceClassifier._(
-    'COVID19HumanResearch',
+    value: 'COVID19HumanResearch',
   );
 
   /// OriginalResearch
   static final EvidenceClassifier OriginalResearch = EvidenceClassifier._(
-    'OriginalResearch',
+    value: 'OriginalResearch',
   );
 
   /// ResearchSynthesis
   static final EvidenceClassifier ResearchSynthesis = EvidenceClassifier._(
-    'ResearchSynthesis',
+    value: 'ResearchSynthesis',
   );
 
   /// Guideline
   static final EvidenceClassifier Guideline = EvidenceClassifier._(
-    'Guideline',
+    value: 'Guideline',
   );
 
   /// ResearchProtocol
   static final EvidenceClassifier ResearchProtocol = EvidenceClassifier._(
-    'ResearchProtocol',
+    value: 'ResearchProtocol',
   );
 
   /// NotResearchNotGuideline
   static final EvidenceClassifier NotResearchNotGuideline =
       EvidenceClassifier._(
-    'NotResearchNotGuideline',
+    value: 'NotResearchNotGuideline',
   );
 
   /// Treatment
   static final EvidenceClassifier Treatment = EvidenceClassifier._(
-    'Treatment',
+    value: 'Treatment',
   );
 
   /// PreventionAndControl
   static final EvidenceClassifier PreventionAndControl = EvidenceClassifier._(
-    'PreventionAndControl',
+    value: 'PreventionAndControl',
   );
 
   /// Diagnosis
   static final EvidenceClassifier Diagnosis = EvidenceClassifier._(
-    'Diagnosis',
+    value: 'Diagnosis',
   );
 
   /// PrognosisPrediction
   static final EvidenceClassifier PrognosisPrediction = EvidenceClassifier._(
-    'PrognosisPrediction',
+    value: 'PrognosisPrediction',
   );
 
   /// RatedAsYes
   static final EvidenceClassifier RatedAsYes = EvidenceClassifier._(
-    'RatedAsYes',
+    value: 'RatedAsYes',
   );
 
   /// RatedAsNo
   static final EvidenceClassifier RatedAsNo = EvidenceClassifier._(
-    'RatedAsNo',
+    value: 'RatedAsNo',
   );
 
   /// NotAssessed
   static final EvidenceClassifier NotAssessed = EvidenceClassifier._(
-    'NotAssessed',
+    value: 'NotAssessed',
   );
 
   /// RatedAsRCT
   static final EvidenceClassifier RatedAsRCT = EvidenceClassifier._(
-    'RatedAsRCT',
+    value: 'RatedAsRCT',
   );
 
   /// RatedAsControlledTrial
   static final EvidenceClassifier RatedAsControlledTrial = EvidenceClassifier._(
-    'RatedAsControlledTrial',
+    value: 'RatedAsControlledTrial',
   );
 
   /// RatedAsComparativeCohort
   static final EvidenceClassifier RatedAsComparativeCohort =
       EvidenceClassifier._(
-    'RatedAsComparativeCohort',
+    value: 'RatedAsComparativeCohort',
   );
 
   /// RatedAsCaseControl
   static final EvidenceClassifier RatedAsCaseControl = EvidenceClassifier._(
-    'RatedAsCaseControl',
+    value: 'RatedAsCaseControl',
   );
 
   /// RatedAsUncontrolledSeries
   static final EvidenceClassifier RatedAsUncontrolledSeries =
       EvidenceClassifier._(
-    'RatedAsUncontrolledSeries',
+    value: 'RatedAsUncontrolledSeries',
   );
 
   /// RatedAsMixedMethods
   static final EvidenceClassifier RatedAsMixedMethods = EvidenceClassifier._(
-    'RatedAsMixedMethods',
+    value: 'RatedAsMixedMethods',
   );
 
   /// RatedAsOther
   static final EvidenceClassifier RatedAsOther = EvidenceClassifier._(
-    'RatedAsOther',
+    value: 'RatedAsOther',
   );
 
   /// RiskOfBias
   static final EvidenceClassifier RiskOfBias = EvidenceClassifier._(
-    'RiskOfBias',
+    value: 'RiskOfBias',
   );
 
   /// NoBlinding
   static final EvidenceClassifier NoBlinding = EvidenceClassifier._(
-    'NoBlinding',
+    value: 'NoBlinding',
   );
 
   /// AllocConcealNotStated
   static final EvidenceClassifier AllocConcealNotStated = EvidenceClassifier._(
-    'AllocConcealNotStated',
+    value: 'AllocConcealNotStated',
   );
 
   /// EarlyTrialTermination
   static final EvidenceClassifier EarlyTrialTermination = EvidenceClassifier._(
-    'EarlyTrialTermination',
+    value: 'EarlyTrialTermination',
   );
 
   /// NoITT
   static final EvidenceClassifier NoITT = EvidenceClassifier._(
-    'NoITT',
+    value: 'NoITT',
   );
 
   /// Preprint
   static final EvidenceClassifier Preprint = EvidenceClassifier._(
-    'Preprint',
+    value: 'Preprint',
   );
 
   /// PreliminaryAnalysis
   static final EvidenceClassifier PreliminaryAnalysis = EvidenceClassifier._(
-    'PreliminaryAnalysis',
+    value: 'PreliminaryAnalysis',
   );
 
   /// BaselineImbalance
   static final EvidenceClassifier BaselineImbalance = EvidenceClassifier._(
-    'BaselineImbalance',
+    value: 'BaselineImbalance',
   );
 
   /// SubgroupAnalysis
   static final EvidenceClassifier SubgroupAnalysis = EvidenceClassifier._(
-    'SubgroupAnalysis',
+    value: 'SubgroupAnalysis',
   );
 
   /// For instances where an Element is present but not value
 
-  static final EvidenceClassifier elementOnly = EvidenceClassifier._('');
+  static final EvidenceClassifier elementOnly = EvidenceClassifier._(value: '');
 
   /// List of all enum-like values
   static final List<EvidenceClassifier> values = [
@@ -224,13 +229,13 @@ class EvidenceClassifier extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   EvidenceClassifier clone() => EvidenceClassifier._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   EvidenceClassifier withElement(Element? newElement) {
-    return EvidenceClassifier._(value, newElement);
+    return EvidenceClassifier._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -255,14 +260,13 @@ class EvidenceClassifier extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return EvidenceClassifier._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

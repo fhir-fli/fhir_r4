@@ -29,10 +29,6 @@ class Slot extends DomainResource {
     required this.end,
     this.overbooked,
     this.comment,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.Slot,
         );
@@ -376,10 +372,6 @@ class Slot extends DomainResource {
       end: end ?? this.end,
       overbooked: overbooked ?? this.overbooked,
       comment: comment ?? this.comment,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

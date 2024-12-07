@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// A classification of the ingredient identifying its purpose within the product.
 class IngredientRole extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  IngredientRole._(super.value, [super.element]);
+  IngredientRole._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [IngredientRole] from JSON.
   factory IngredientRole.fromJson(
@@ -21,57 +26,57 @@ class IngredientRole extends PrimitiveType<String> {
         'IngredientRole cannot be constructed from JSON.',
       );
     }
-    return IngredientRole._(value, element);
+    return IngredientRole._(value: value, element: element);
   }
 
   /// value100000072072
   static final IngredientRole value100000072072 = IngredientRole._(
-    '100000072072',
+    value: '100000072072',
   );
 
   /// value100000072073
   static final IngredientRole value100000072073 = IngredientRole._(
-    '100000072073',
+    value: '100000072073',
   );
 
   /// value100000072082
   static final IngredientRole value100000072082 = IngredientRole._(
-    '100000072082',
+    value: '100000072082',
   );
 
   /// value100000136065
   static final IngredientRole value100000136065 = IngredientRole._(
-    '100000136065',
+    value: '100000136065',
   );
 
   /// value100000136066
   static final IngredientRole value100000136066 = IngredientRole._(
-    '100000136066',
+    value: '100000136066',
   );
 
   /// value100000136178
   static final IngredientRole value100000136178 = IngredientRole._(
-    '100000136178',
+    value: '100000136178',
   );
 
   /// value100000136179
   static final IngredientRole value100000136179 = IngredientRole._(
-    '100000136179',
+    value: '100000136179',
   );
 
   /// value100000136561
   static final IngredientRole value100000136561 = IngredientRole._(
-    '100000136561',
+    value: '100000136561',
   );
 
   /// value200000003427
   static final IngredientRole value200000003427 = IngredientRole._(
-    '200000003427',
+    value: '200000003427',
   );
 
   /// For instances where an Element is present but not value
 
-  static final IngredientRole elementOnly = IngredientRole._('');
+  static final IngredientRole elementOnly = IngredientRole._(value: '');
 
   /// List of all enum-like values
   static final List<IngredientRole> values = [
@@ -89,13 +94,13 @@ class IngredientRole extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   IngredientRole clone() => IngredientRole._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   IngredientRole withElement(Element? newElement) {
-    return IngredientRole._(value, newElement);
+    return IngredientRole._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -120,14 +125,13 @@ class IngredientRole extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return IngredientRole._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

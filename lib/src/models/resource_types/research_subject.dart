@@ -26,10 +26,6 @@ class ResearchSubject extends DomainResource {
     this.assignedArm,
     this.actualArm,
     this.consent,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.ResearchSubject,
         );
@@ -313,10 +309,6 @@ class ResearchSubject extends DomainResource {
       assignedArm: assignedArm ?? this.assignedArm,
       actualArm: actualArm ?? this.actualArm,
       consent: consent ?? this.consent,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

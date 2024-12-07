@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The possible types of research elements (E.g. Population, Exposure, Outcome).
 class ResearchElementType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ResearchElementType._(super.value, [super.element]);
+  ResearchElementType._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [ResearchElementType] from JSON.
   factory ResearchElementType.fromJson(
@@ -21,27 +26,28 @@ class ResearchElementType extends PrimitiveType<String> {
         'ResearchElementType cannot be constructed from JSON.',
       );
     }
-    return ResearchElementType._(value, element);
+    return ResearchElementType._(value: value, element: element);
   }
 
   /// population
   static final ResearchElementType population = ResearchElementType._(
-    'population',
+    value: 'population',
   );
 
   /// exposure
   static final ResearchElementType exposure = ResearchElementType._(
-    'exposure',
+    value: 'exposure',
   );
 
   /// outcome
   static final ResearchElementType outcome = ResearchElementType._(
-    'outcome',
+    value: 'outcome',
   );
 
   /// For instances where an Element is present but not value
 
-  static final ResearchElementType elementOnly = ResearchElementType._('');
+  static final ResearchElementType elementOnly =
+      ResearchElementType._(value: '');
 
   /// List of all enum-like values
   static final List<ResearchElementType> values = [
@@ -53,13 +59,13 @@ class ResearchElementType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ResearchElementType clone() => ResearchElementType._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ResearchElementType withElement(Element? newElement) {
-    return ResearchElementType._(value, newElement);
+    return ResearchElementType._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -84,14 +90,13 @@ class ResearchElementType extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ResearchElementType._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

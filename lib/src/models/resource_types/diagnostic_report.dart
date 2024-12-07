@@ -41,10 +41,6 @@ class DiagnosticReport extends DomainResource {
     this.conclusion,
     this.conclusionCode,
     this.presentedForm,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.DiagnosticReport,
         );
@@ -558,10 +554,6 @@ class DiagnosticReport extends DomainResource {
       conclusion: conclusion ?? this.conclusion,
       conclusionCode: conclusionCode ?? this.conclusionCode,
       presentedForm: presentedForm ?? this.presentedForm,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -581,10 +573,6 @@ class DiagnosticReportMedia extends BackboneElement {
     this.comment,
     required this.link,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -724,10 +712,6 @@ class DiagnosticReportMedia extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       comment: comment ?? this.comment,
       link: link ?? this.link,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

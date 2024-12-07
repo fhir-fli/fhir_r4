@@ -30,10 +30,6 @@ class MeasureReport extends DomainResource {
     this.improvementNotation,
     this.group,
     this.evaluatedResource,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.MeasureReport,
         );
@@ -379,10 +375,6 @@ class MeasureReport extends DomainResource {
       improvementNotation: improvementNotation ?? this.improvementNotation,
       group: group ?? this.group,
       evaluatedResource: evaluatedResource ?? this.evaluatedResource,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -403,10 +395,6 @@ class MeasureReportGroup extends BackboneElement {
     this.measureScore,
     this.stratifier,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -593,10 +581,6 @@ class MeasureReportGroup extends BackboneElement {
       population: population ?? this.population,
       measureScore: measureScore ?? this.measureScore,
       stratifier: stratifier ?? this.stratifier,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -616,10 +600,6 @@ class MeasureReportPopulation extends BackboneElement {
     this.count,
     this.subjectResults,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -777,10 +757,6 @@ class MeasureReportPopulation extends BackboneElement {
       code: code ?? this.code,
       count: count ?? this.count,
       subjectResults: subjectResults ?? this.subjectResults,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -799,10 +775,6 @@ class MeasureReportStratifier extends BackboneElement {
     this.code,
     this.stratum,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -956,10 +928,6 @@ class MeasureReportStratifier extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       code: code ?? this.code,
       stratum: stratum ?? this.stratum,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -981,10 +949,6 @@ class MeasureReportStratum extends BackboneElement {
     this.population,
     this.measureScore,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1171,10 +1135,6 @@ class MeasureReportStratum extends BackboneElement {
       component: component ?? this.component,
       population: population ?? this.population,
       measureScore: measureScore ?? this.measureScore,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1192,10 +1152,6 @@ class MeasureReportComponent extends BackboneElement {
     required this.code,
     required this.value,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1331,10 +1287,6 @@ class MeasureReportComponent extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       code: code ?? this.code,
       value: value ?? this.value,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1354,10 +1306,6 @@ class MeasureReportPopulation1 extends BackboneElement {
     this.count,
     this.subjectResults,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1515,10 +1463,6 @@ class MeasureReportPopulation1 extends BackboneElement {
       code: code ?? this.code,
       count: count ?? this.count,
       subjectResults: subjectResults ?? this.subjectResults,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

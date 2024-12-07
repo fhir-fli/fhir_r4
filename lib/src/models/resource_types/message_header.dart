@@ -33,10 +33,6 @@ class MessageHeader extends DomainResource {
     this.response,
     this.focus,
     this.definition,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.MessageHeader,
         );
@@ -407,10 +403,6 @@ class MessageHeader extends DomainResource {
       response: response ?? this.response,
       focus: focus ?? this.focus,
       definition: definition ?? this.definition,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -430,10 +422,6 @@ class MessageHeaderDestination extends BackboneElement {
     required this.endpoint,
     this.receiver,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -604,10 +592,6 @@ class MessageHeaderDestination extends BackboneElement {
       target: target ?? this.target,
       endpoint: endpoint ?? this.endpoint,
       receiver: receiver ?? this.receiver,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -628,10 +612,6 @@ class MessageHeaderSource extends BackboneElement {
     this.contact,
     required this.endpoint,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -812,10 +792,6 @@ class MessageHeaderSource extends BackboneElement {
       version: version ?? this.version,
       contact: contact ?? this.contact,
       endpoint: endpoint ?? this.endpoint,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -835,10 +811,6 @@ class MessageHeaderResponse extends BackboneElement {
     required this.code,
     this.details,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -991,10 +963,6 @@ class MessageHeaderResponse extends BackboneElement {
       identifier: identifier ?? this.identifier,
       code: code ?? this.code,
       details: details ?? this.details,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Type for orientation.
 class OrientationType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  OrientationType._(super.value, [super.element]);
+  OrientationType._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [OrientationType] from JSON.
   factory OrientationType.fromJson(
@@ -21,22 +26,22 @@ class OrientationType extends PrimitiveType<String> {
         'OrientationType cannot be constructed from JSON.',
       );
     }
-    return OrientationType._(value, element);
+    return OrientationType._(value: value, element: element);
   }
 
   /// sense
   static final OrientationType sense = OrientationType._(
-    'sense',
+    value: 'sense',
   );
 
   /// antisense
   static final OrientationType antisense = OrientationType._(
-    'antisense',
+    value: 'antisense',
   );
 
   /// For instances where an Element is present but not value
 
-  static final OrientationType elementOnly = OrientationType._('');
+  static final OrientationType elementOnly = OrientationType._(value: '');
 
   /// List of all enum-like values
   static final List<OrientationType> values = [
@@ -47,13 +52,13 @@ class OrientationType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   OrientationType clone() => OrientationType._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   OrientationType withElement(Element? newElement) {
-    return OrientationType._(value, newElement);
+    return OrientationType._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -78,14 +83,13 @@ class OrientationType extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return OrientationType._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The value set to instantiate this attribute should be drawn from a terminologically robust code system that consists of or contains concepts to support describing the reason why a dose of vaccine was not administered. This value set is provided as a suggestive example.
 class ImmunizationStatusReasonCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ImmunizationStatusReasonCodes._(super.value, [super.element]);
+  ImmunizationStatusReasonCodes._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [ImmunizationStatusReasonCodes] from JSON.
   factory ImmunizationStatusReasonCodes.fromJson(
@@ -21,37 +26,37 @@ class ImmunizationStatusReasonCodes extends PrimitiveType<String> {
         'ImmunizationStatusReasonCodes cannot be constructed from JSON.',
       );
     }
-    return ImmunizationStatusReasonCodes._(value, element);
+    return ImmunizationStatusReasonCodes._(value: value, element: element);
   }
 
   /// IMMUNE
   static final ImmunizationStatusReasonCodes IMMUNE =
       ImmunizationStatusReasonCodes._(
-    'IMMUNE',
+    value: 'IMMUNE',
   );
 
   /// MEDPREC
   static final ImmunizationStatusReasonCodes MEDPREC =
       ImmunizationStatusReasonCodes._(
-    'MEDPREC',
+    value: 'MEDPREC',
   );
 
   /// OSTOCK
   static final ImmunizationStatusReasonCodes OSTOCK =
       ImmunizationStatusReasonCodes._(
-    'OSTOCK',
+    value: 'OSTOCK',
   );
 
   /// PATOBJ
   static final ImmunizationStatusReasonCodes PATOBJ =
       ImmunizationStatusReasonCodes._(
-    'PATOBJ',
+    value: 'PATOBJ',
   );
 
   /// For instances where an Element is present but not value
 
   static final ImmunizationStatusReasonCodes elementOnly =
-      ImmunizationStatusReasonCodes._('');
+      ImmunizationStatusReasonCodes._(value: '');
 
   /// List of all enum-like values
   static final List<ImmunizationStatusReasonCodes> values = [
@@ -64,13 +69,13 @@ class ImmunizationStatusReasonCodes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ImmunizationStatusReasonCodes clone() => ImmunizationStatusReasonCodes._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ImmunizationStatusReasonCodes withElement(Element? newElement) {
-    return ImmunizationStatusReasonCodes._(value, newElement);
+    return ImmunizationStatusReasonCodes._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -95,14 +100,13 @@ class ImmunizationStatusReasonCodes extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ImmunizationStatusReasonCodes._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

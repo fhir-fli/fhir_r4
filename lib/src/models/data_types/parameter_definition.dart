@@ -22,10 +22,6 @@ class ParameterDefinition extends DataType {
     required this.type,
     this.profile,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -216,10 +212,6 @@ class ParameterDefinition extends DataType {
       documentation: documentation ?? this.documentation,
       type: type ?? this.type,
       profile: profile ?? this.profile,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

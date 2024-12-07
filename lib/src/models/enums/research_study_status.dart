@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Codes that convey the current status of the research study.
 class ResearchStudyStatus extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ResearchStudyStatus._(super.value, [super.element]);
+  ResearchStudyStatus._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [ResearchStudyStatus] from JSON.
   factory ResearchStudyStatus.fromJson(
@@ -21,71 +26,72 @@ class ResearchStudyStatus extends PrimitiveType<String> {
         'ResearchStudyStatus cannot be constructed from JSON.',
       );
     }
-    return ResearchStudyStatus._(value, element);
+    return ResearchStudyStatus._(value: value, element: element);
   }
 
   /// active
   static final ResearchStudyStatus active = ResearchStudyStatus._(
-    'active',
+    value: 'active',
   );
 
   /// administratively_completed
   static final ResearchStudyStatus administratively_completed =
       ResearchStudyStatus._(
-    'administratively-completed',
+    value: 'administratively-completed',
   );
 
   /// approved
   static final ResearchStudyStatus approved = ResearchStudyStatus._(
-    'approved',
+    value: 'approved',
   );
 
   /// closed_to_accrual
   static final ResearchStudyStatus closed_to_accrual = ResearchStudyStatus._(
-    'closed-to-accrual',
+    value: 'closed-to-accrual',
   );
 
   /// closed_to_accrual_and_intervention
   static final ResearchStudyStatus closed_to_accrual_and_intervention =
       ResearchStudyStatus._(
-    'closed-to-accrual-and-intervention',
+    value: 'closed-to-accrual-and-intervention',
   );
 
   /// completed
   static final ResearchStudyStatus completed = ResearchStudyStatus._(
-    'completed',
+    value: 'completed',
   );
 
   /// disapproved
   static final ResearchStudyStatus disapproved = ResearchStudyStatus._(
-    'disapproved',
+    value: 'disapproved',
   );
 
   /// in_review
   static final ResearchStudyStatus in_review = ResearchStudyStatus._(
-    'in-review',
+    value: 'in-review',
   );
 
   /// temporarily_closed_to_accrual
   static final ResearchStudyStatus temporarily_closed_to_accrual =
       ResearchStudyStatus._(
-    'temporarily-closed-to-accrual',
+    value: 'temporarily-closed-to-accrual',
   );
 
   /// temporarily_closed_to_accrual_and_intervention
   static final ResearchStudyStatus
       temporarily_closed_to_accrual_and_intervention = ResearchStudyStatus._(
-    'temporarily-closed-to-accrual-and-intervention',
+    value: 'temporarily-closed-to-accrual-and-intervention',
   );
 
   /// withdrawn
   static final ResearchStudyStatus withdrawn = ResearchStudyStatus._(
-    'withdrawn',
+    value: 'withdrawn',
   );
 
   /// For instances where an Element is present but not value
 
-  static final ResearchStudyStatus elementOnly = ResearchStudyStatus._('');
+  static final ResearchStudyStatus elementOnly =
+      ResearchStudyStatus._(value: '');
 
   /// List of all enum-like values
   static final List<ResearchStudyStatus> values = [
@@ -105,13 +111,13 @@ class ResearchStudyStatus extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ResearchStudyStatus clone() => ResearchStudyStatus._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ResearchStudyStatus withElement(Element? newElement) {
-    return ResearchStudyStatus._(value, newElement);
+    return ResearchStudyStatus._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -136,14 +142,13 @@ class ResearchStudyStatus extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ResearchStudyStatus._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

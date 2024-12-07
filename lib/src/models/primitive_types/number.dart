@@ -7,46 +7,81 @@ import 'package:yaml/yaml.dart';
 abstract class FhirNumber extends PrimitiveType<num?>
     implements Comparable<FhirNumber> {
   /// Constructor accepting a [num] value and an optional [element].
-  FhirNumber(super.input, [super.element]) {
+  FhirNumber({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  }) {
     if (value == null && element == null) {
       throw ArgumentError('A value or element is required');
     }
   }
 
   /// Factory to create either a [FhirInteger] or [FhirDecimal] based on input.
-  factory FhirNumber.fromNum(num? value, [Element? element]) {
-    if (value == null) {
-      throw const FormatException(
-        'FhirNumber cannot be created with a null value',
-      );
-    }
+  factory FhirNumber.fromNum({
+    required num value,
+    Element? element,
+    FhirString? id,
+    List<FhirExtension>? extension_,
+  }) {
     return value is int
-        ? FhirInteger(value, element)
-        : FhirDecimal(value, element);
+        ? FhirInteger(
+            input: value,
+            element: element,
+            id: id,
+            extension_: extension_,
+          )
+        : FhirDecimal(
+            input: value,
+            element: element,
+            id: id,
+            extension_: extension_,
+          );
   }
 
-  /// Factory to create either a [FhirInteger] or [FhirDecimal] based on input.
-  factory FhirNumber.fromNumPositiveInt(num? value, [Element? element]) {
-    if (value == null) {
-      throw const FormatException(
-        'FhirNumber cannot be created with a null value',
-      );
-    }
+  /// Factory to create either a [FhirInteger] or [FhirDecimal] for PositiveInt.
+  factory FhirNumber.fromNumPositiveInt({
+    required num value,
+    Element? element,
+    FhirString? id,
+    List<FhirExtension>? extension_,
+  }) {
     return value is int
-        ? FhirPositiveInt(value, element)
-        : FhirDecimal(value, element);
+        ? FhirPositiveInt(
+            input: value,
+            element: element,
+            id: id,
+            extension_: extension_,
+          )
+        : FhirDecimal(
+            input: value,
+            element: element,
+            id: id,
+            extension_: extension_,
+          );
   }
 
-  /// Factory to create either a [FhirInteger] or [FhirDecimal] based on input.
-  factory FhirNumber.fromNumUnsignedInt(num? value, [Element? element]) {
-    if (value == null) {
-      throw const FormatException(
-        'FhirNumber cannot be created with a null value',
-      );
-    }
+  /// Factory to create either a [FhirInteger] or [FhirDecimal] for UnsignedInt.
+  factory FhirNumber.fromNumUnsignedInt({
+    required num value,
+    Element? element,
+    FhirString? id,
+    List<FhirExtension>? extension_,
+  }) {
     return value is int
-        ? FhirUnsignedInt(value, element)
-        : FhirDecimal(value, element);
+        ? FhirUnsignedInt(
+            input: value,
+            element: element,
+            id: id,
+            extension_: extension_,
+          )
+        : FhirDecimal(
+            input: value,
+            element: element,
+            id: id,
+            extension_: extension_,
+          );
   }
 
   /// Factory constructor to create a [FhirNumber] from JSON input.
@@ -54,25 +89,32 @@ abstract class FhirNumber extends PrimitiveType<num?>
     final value = json['value'] as num?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    return FhirNumber.fromNum(value, element);
+    if (value == null) {
+      throw const FormatException(
+        'FhirNumber cannot be created with a null value.',
+      );
+    }
+    return FhirNumber.fromNum(value: value, element: element);
   }
 
   /// Factory constructor to create a [FhirNumber] from YAML input.
-  static FhirNumber fromYaml(dynamic yaml) => yaml is String
-      ? FhirNumber.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, dynamic>,
-        )
-      : yaml is YamlMap
-          ? FhirNumber.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, dynamic>,
-            )
-          : throw ArgumentError('Input must be a YAML string or YAML map.');
+  static FhirNumber fromYaml(dynamic yaml) {
+    return yaml is String
+        ? FhirNumber.fromJson(
+            jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, dynamic>,
+          )
+        : yaml is YamlMap
+            ? FhirNumber.fromJson(
+                jsonDecode(jsonEncode(yaml)) as Map<String, dynamic>,
+              )
+            : throw ArgumentError('Input must be a YAML string or YAML map.');
+  }
 
   /// Returns the FHIR type: 'number'.
   @override
   String get fhirType => 'number';
 
-  /// Serializes the instance to JSON with standardized keys
+  /// Serializes the instance to JSON with standardized keys.
   @override
   Map<String, dynamic> toJson() => {
         if (value != null) 'value': value,
@@ -89,13 +131,12 @@ abstract class FhirNumber extends PrimitiveType<num?>
         'Values and elements must have the same length.',
       );
     }
-
     return List.generate(values.length, (i) {
       final value = values[i] as num?;
       final element = elements?[i] != null
           ? Element.fromJson(elements![i] as Map<String, dynamic>)
           : null;
-      return FhirNumber.fromNum(value, element);
+      return FhirNumber.fromNum(value: value!, element: element);
     });
   }
 
@@ -129,7 +170,8 @@ abstract class FhirNumber extends PrimitiveType<num?>
     return value!.compareTo(other.value!);
   }
 
-  /// Arithmetic Operators
+  /// Arithmetic operators.
+  /// Returns null if either value is null.
 
   /// Addition operator.
   FhirNumber? operator +(Object other) =>
@@ -151,17 +193,17 @@ abstract class FhirNumber extends PrimitiveType<num?>
   FhirNumber? operator %(Object other) =>
       _operateOrNull(other, (a, b) => a % b);
 
-  /// Truncating division operator.
+  /// Integer division operator.
   FhirNumber? operator ~/(Object other) =>
       _operateOrNull(other, (a, b) => a ~/ b);
 
-  /// Unary minus operator.
+  /// Unary negation operator.
   FhirNumber? operator -() =>
-      value == null ? null : FhirNumber.fromNum(-value!);
+      value == null ? null : FhirNumber.fromNum(value: -value!);
 
-  /// Comparison Operators
+  /// Comparison operators.
 
-  /// Equality operator.
+  /// Greater than operator.
   bool operator >(Object other) => _compareOrFalse(other, (a, b) => a > b);
 
   /// Greater than or equal to operator.
@@ -173,19 +215,26 @@ abstract class FhirNumber extends PrimitiveType<num?>
   /// Less than or equal to operator.
   bool operator <=(Object other) => _compareOrFalse(other, (a, b) => a <= b);
 
-  // Helper Methods
+  /// Rounding methods.
+  int round() => value!.round();
 
+  /// Flooring methods.
+  int floor() => value!.floor();
+
+  /// Ceiling methods.
+  int ceil() => value!.ceil();
+
+  /// Absolute value method.
+  num abs() => value!.abs();
+
+  /// Helper methods for arithmetic and comparisons.
   bool _bothNonNull(Object other) =>
       value != null && _extractValue(other) != null;
 
   FhirNumber? _operateOrNull(Object other, num Function(num, num) operation) {
     if (!_bothNonNull(other)) return null;
     final otherValue = _extractValue(other)!;
-    return this is FhirPositiveInt
-        ? FhirNumber.fromNumPositiveInt(operation(value!, otherValue))
-        : this is FhirUnsignedInt
-            ? FhirNumber.fromNumUnsignedInt(operation(value!, otherValue))
-            : FhirNumber.fromNum(operation(value!, otherValue));
+    return FhirNumber.fromNum(value: operation(value!, otherValue));
   }
 
   bool _compareOrFalse(Object other, bool Function(num, num) comparison) {
@@ -198,56 +247,9 @@ abstract class FhirNumber extends PrimitiveType<num?>
     throw ArgumentError('Expected FhirNumber or num, but got: $other.');
   }
 
-  // Additional Methods
-
-  /// Returns the absolute value of the number.
-  num? abs() => value?.abs();
-
-  /// Returns the sign of the number.
-  num? get sign => value?.sign;
-
-  /// Returns the remainder of the division of this number by [other].
-  num? clamp(num lowerLimit, num upperLimit) =>
-      value?.clamp(lowerLimit, upperLimit);
-
-  /// Returns the integer value closest to this number.
-  int? round() => value?.round();
-
-  /// Returns the greatest integer no greater than this number.
-  int? floor() => value?.floor();
-
-  /// Returns the smallest integer no smaller than this number.
-  int? ceil() => value?.ceil();
-
-  /// Returns the integer obtained by discarding any fractional digits.
-  int? truncate() => value?.truncate();
-
-  /// Returns the number rounded to the nearest integer.
-  double? roundToDouble() => value?.roundToDouble();
-
-  /// Returns the greatest double value no greater than this number.
-  double? floorToDouble() => value?.floorToDouble();
-
-  /// Returns the smallest double value no smaller than this number.
-  double? ceilToDouble() => value?.ceilToDouble();
-
-  /// Returns the double obtained by discarding any fractional digits.
-  double? truncateToDouble() => value?.truncateToDouble();
-
-  /// Returns the number raised to the power of [exponent].
-  String? toStringAsFixed(int fractionDigits) =>
-      value?.toStringAsFixed(fractionDigits);
-
-  /// Returns the number in exponential notation.
-  String? toStringAsExponential([int? fractionDigits]) =>
-      value?.toStringAsExponential(fractionDigits);
-
-  /// Returns the number in decimal notation.
-  String? toStringAsPrecision(int precision) =>
-      value?.toStringAsPrecision(precision);
-
   @override
-  FhirNumber clone() => FhirNumber.fromNum(value, element?.clone() as Element?);
+  FhirNumber clone() =>
+      FhirNumber.fromNum(value: value!, element: element?.clone() as Element?);
 
   @override
   FhirNumber copyWith({
@@ -259,17 +261,18 @@ abstract class FhirNumber extends PrimitiveType<num?>
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     return FhirNumber.fromNum(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value!,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:
             formatCommentsPost ?? this.element?.formatCommentsPost,
         annotations: annotations ?? this.element?.annotations,
       ),
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
     );
   }
 }

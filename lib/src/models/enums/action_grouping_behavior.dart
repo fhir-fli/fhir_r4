@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Defines organization behavior of a group.
 class ActionGroupingBehavior extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ActionGroupingBehavior._(super.value, [super.element]);
+  ActionGroupingBehavior._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [ActionGroupingBehavior] from JSON.
   factory ActionGroupingBehavior.fromJson(
@@ -21,28 +26,28 @@ class ActionGroupingBehavior extends PrimitiveType<String> {
         'ActionGroupingBehavior cannot be constructed from JSON.',
       );
     }
-    return ActionGroupingBehavior._(value, element);
+    return ActionGroupingBehavior._(value: value, element: element);
   }
 
   /// visual_group
   static final ActionGroupingBehavior visual_group = ActionGroupingBehavior._(
-    'visual-group',
+    value: 'visual-group',
   );
 
   /// logical_group
   static final ActionGroupingBehavior logical_group = ActionGroupingBehavior._(
-    'logical-group',
+    value: 'logical-group',
   );
 
   /// sentence_group
   static final ActionGroupingBehavior sentence_group = ActionGroupingBehavior._(
-    'sentence-group',
+    value: 'sentence-group',
   );
 
   /// For instances where an Element is present but not value
 
   static final ActionGroupingBehavior elementOnly =
-      ActionGroupingBehavior._('');
+      ActionGroupingBehavior._(value: '');
 
   /// List of all enum-like values
   static final List<ActionGroupingBehavior> values = [
@@ -54,13 +59,13 @@ class ActionGroupingBehavior extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ActionGroupingBehavior clone() => ActionGroupingBehavior._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ActionGroupingBehavior withElement(Element? newElement) {
-    return ActionGroupingBehavior._(value, newElement);
+    return ActionGroupingBehavior._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -85,14 +90,13 @@ class ActionGroupingBehavior extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ActionGroupingBehavior._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

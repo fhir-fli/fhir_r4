@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// FHIR RESTful interaction codes used for SubscriptionTopic trigger.
 class InteractionTrigger extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  InteractionTrigger._(super.value, [super.element]);
+  InteractionTrigger._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [InteractionTrigger] from JSON.
   factory InteractionTrigger.fromJson(
@@ -21,97 +26,97 @@ class InteractionTrigger extends PrimitiveType<String> {
         'InteractionTrigger cannot be constructed from JSON.',
       );
     }
-    return InteractionTrigger._(value, element);
+    return InteractionTrigger._(value: value, element: element);
   }
 
   /// read
   static final InteractionTrigger read = InteractionTrigger._(
-    'read',
+    value: 'read',
   );
 
   /// vread
   static final InteractionTrigger vread = InteractionTrigger._(
-    'vread',
+    value: 'vread',
   );
 
   /// update
   static final InteractionTrigger update = InteractionTrigger._(
-    'update',
+    value: 'update',
   );
 
   /// patch
   static final InteractionTrigger patch = InteractionTrigger._(
-    'patch',
+    value: 'patch',
   );
 
   /// delete
   static final InteractionTrigger delete = InteractionTrigger._(
-    'delete',
+    value: 'delete',
   );
 
   /// history
   static final InteractionTrigger history = InteractionTrigger._(
-    'history',
+    value: 'history',
   );
 
   /// history_instance
   static final InteractionTrigger history_instance = InteractionTrigger._(
-    'history-instance',
+    value: 'history-instance',
   );
 
   /// history_type
   static final InteractionTrigger history_type = InteractionTrigger._(
-    'history-type',
+    value: 'history-type',
   );
 
   /// history_system
   static final InteractionTrigger history_system = InteractionTrigger._(
-    'history-system',
+    value: 'history-system',
   );
 
   /// create
   static final InteractionTrigger create = InteractionTrigger._(
-    'create',
+    value: 'create',
   );
 
   /// search
   static final InteractionTrigger search = InteractionTrigger._(
-    'search',
+    value: 'search',
   );
 
   /// search_type
   static final InteractionTrigger search_type = InteractionTrigger._(
-    'search-type',
+    value: 'search-type',
   );
 
   /// search_system
   static final InteractionTrigger search_system = InteractionTrigger._(
-    'search-system',
+    value: 'search-system',
   );
 
   /// capabilities
   static final InteractionTrigger capabilities = InteractionTrigger._(
-    'capabilities',
+    value: 'capabilities',
   );
 
   /// transaction
   static final InteractionTrigger transaction = InteractionTrigger._(
-    'transaction',
+    value: 'transaction',
   );
 
   /// batch
   static final InteractionTrigger batch = InteractionTrigger._(
-    'batch',
+    value: 'batch',
   );
 
   /// operation
   static final InteractionTrigger operation = InteractionTrigger._(
-    'operation',
+    value: 'operation',
   );
 
   /// For instances where an Element is present but not value
 
-  static final InteractionTrigger elementOnly = InteractionTrigger._('');
+  static final InteractionTrigger elementOnly = InteractionTrigger._(value: '');
 
   /// List of all enum-like values
   static final List<InteractionTrigger> values = [
@@ -137,13 +142,13 @@ class InteractionTrigger extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   InteractionTrigger clone() => InteractionTrigger._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   InteractionTrigger withElement(Element? newElement) {
-    return InteractionTrigger._(value, newElement);
+    return InteractionTrigger._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -168,14 +173,13 @@ class InteractionTrigger extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return InteractionTrigger._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

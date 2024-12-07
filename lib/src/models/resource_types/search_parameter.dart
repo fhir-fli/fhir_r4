@@ -44,10 +44,6 @@ class SearchParameter extends CanonicalResource {
     this.modifier,
     this.chain,
     this.component,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.SearchParameter,
         );
@@ -584,10 +580,6 @@ class SearchParameter extends CanonicalResource {
       modifier: modifier ?? this.modifier,
       chain: chain ?? this.chain,
       component: component ?? this.component,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -605,10 +597,6 @@ class SearchParameterComponent extends BackboneElement {
     required this.definition,
     required this.expression,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -745,10 +733,6 @@ class SearchParameterComponent extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       definition: definition ?? this.definition,
       expression: expression ?? this.expression,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Used to code the format of the display string.
 class ContributorRole extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ContributorRole._(super.value, [super.element]);
+  ContributorRole._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [ContributorRole] from JSON.
   factory ContributorRole.fromJson(
@@ -21,47 +26,47 @@ class ContributorRole extends PrimitiveType<String> {
         'ContributorRole cannot be constructed from JSON.',
       );
     }
-    return ContributorRole._(value, element);
+    return ContributorRole._(value: value, element: element);
   }
 
   /// publisher
   static final ContributorRole publisher = ContributorRole._(
-    'publisher',
+    value: 'publisher',
   );
 
   /// author
   static final ContributorRole author = ContributorRole._(
-    'author',
+    value: 'author',
   );
 
   /// reviewer
   static final ContributorRole reviewer = ContributorRole._(
-    'reviewer',
+    value: 'reviewer',
   );
 
   /// endorser
   static final ContributorRole endorser = ContributorRole._(
-    'endorser',
+    value: 'endorser',
   );
 
   /// editor
   static final ContributorRole editor = ContributorRole._(
-    'editor',
+    value: 'editor',
   );
 
   /// informant
   static final ContributorRole informant = ContributorRole._(
-    'informant',
+    value: 'informant',
   );
 
   /// funder
   static final ContributorRole funder = ContributorRole._(
-    'funder',
+    value: 'funder',
   );
 
   /// For instances where an Element is present but not value
 
-  static final ContributorRole elementOnly = ContributorRole._('');
+  static final ContributorRole elementOnly = ContributorRole._(value: '');
 
   /// List of all enum-like values
   static final List<ContributorRole> values = [
@@ -77,13 +82,13 @@ class ContributorRole extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ContributorRole clone() => ContributorRole._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ContributorRole withElement(Element? newElement) {
-    return ContributorRole._(value, newElement);
+    return ContributorRole._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -108,14 +113,13 @@ class ContributorRole extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ContributorRole._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

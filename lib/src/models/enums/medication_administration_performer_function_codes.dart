@@ -6,8 +6,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 class MedicationAdministrationPerformerFunctionCodes
     extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  MedicationAdministrationPerformerFunctionCodes._(super.value,
-      [super.element]);
+  MedicationAdministrationPerformerFunctionCodes._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [MedicationAdministrationPerformerFunctionCodes] from JSON.
   factory MedicationAdministrationPerformerFunctionCodes.fromJson(
@@ -24,31 +28,32 @@ class MedicationAdministrationPerformerFunctionCodes
         'MedicationAdministrationPerformerFunctionCodes cannot be constructed from JSON.',
       );
     }
-    return MedicationAdministrationPerformerFunctionCodes._(value, element);
+    return MedicationAdministrationPerformerFunctionCodes._(
+        value: value, element: element);
   }
 
   /// performer
   static final MedicationAdministrationPerformerFunctionCodes performer =
       MedicationAdministrationPerformerFunctionCodes._(
-    'performer',
+    value: 'performer',
   );
 
   /// verifier
   static final MedicationAdministrationPerformerFunctionCodes verifier =
       MedicationAdministrationPerformerFunctionCodes._(
-    'verifier',
+    value: 'verifier',
   );
 
   /// witness
   static final MedicationAdministrationPerformerFunctionCodes witness =
       MedicationAdministrationPerformerFunctionCodes._(
-    'witness',
+    value: 'witness',
   );
 
   /// For instances where an Element is present but not value
 
   static final MedicationAdministrationPerformerFunctionCodes elementOnly =
-      MedicationAdministrationPerformerFunctionCodes._('');
+      MedicationAdministrationPerformerFunctionCodes._(value: '');
 
   /// List of all enum-like values
   static final List<MedicationAdministrationPerformerFunctionCodes> values = [
@@ -61,14 +66,15 @@ class MedicationAdministrationPerformerFunctionCodes
   @override
   MedicationAdministrationPerformerFunctionCodes clone() =>
       MedicationAdministrationPerformerFunctionCodes._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   MedicationAdministrationPerformerFunctionCodes withElement(
       Element? newElement) {
-    return MedicationAdministrationPerformerFunctionCodes._(value, newElement);
+    return MedicationAdministrationPerformerFunctionCodes._(
+        value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -93,14 +99,13 @@ class MedicationAdministrationPerformerFunctionCodes
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return MedicationAdministrationPerformerFunctionCodes._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

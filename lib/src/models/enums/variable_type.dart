@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The possible types of variables for exposures or outcomes (E.g. Dichotomous, Continuous, Descriptive).
 class VariableType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  VariableType._(super.value, [super.element]);
+  VariableType._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [VariableType] from JSON.
   factory VariableType.fromJson(
@@ -21,27 +26,27 @@ class VariableType extends PrimitiveType<String> {
         'VariableType cannot be constructed from JSON.',
       );
     }
-    return VariableType._(value, element);
+    return VariableType._(value: value, element: element);
   }
 
   /// dichotomous
   static final VariableType dichotomous = VariableType._(
-    'dichotomous',
+    value: 'dichotomous',
   );
 
   /// continuous
   static final VariableType continuous = VariableType._(
-    'continuous',
+    value: 'continuous',
   );
 
   /// descriptive
   static final VariableType descriptive = VariableType._(
-    'descriptive',
+    value: 'descriptive',
   );
 
   /// For instances where an Element is present but not value
 
-  static final VariableType elementOnly = VariableType._('');
+  static final VariableType elementOnly = VariableType._(value: '');
 
   /// List of all enum-like values
   static final List<VariableType> values = [
@@ -53,13 +58,13 @@ class VariableType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   VariableType clone() => VariableType._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   VariableType withElement(Element? newElement) {
-    return VariableType._(value, newElement);
+    return VariableType._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -84,14 +89,13 @@ class VariableType extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return VariableType._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

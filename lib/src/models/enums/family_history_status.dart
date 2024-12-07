@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// A code that identifies the status of the family history record.
 class FamilyHistoryStatus extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  FamilyHistoryStatus._(super.value, [super.element]);
+  FamilyHistoryStatus._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [FamilyHistoryStatus] from JSON.
   factory FamilyHistoryStatus.fromJson(
@@ -21,32 +26,33 @@ class FamilyHistoryStatus extends PrimitiveType<String> {
         'FamilyHistoryStatus cannot be constructed from JSON.',
       );
     }
-    return FamilyHistoryStatus._(value, element);
+    return FamilyHistoryStatus._(value: value, element: element);
   }
 
   /// partial
   static final FamilyHistoryStatus partial = FamilyHistoryStatus._(
-    'partial',
+    value: 'partial',
   );
 
   /// completed
   static final FamilyHistoryStatus completed = FamilyHistoryStatus._(
-    'completed',
+    value: 'completed',
   );
 
   /// entered_in_error
   static final FamilyHistoryStatus entered_in_error = FamilyHistoryStatus._(
-    'entered-in-error',
+    value: 'entered-in-error',
   );
 
   /// health_unknown
   static final FamilyHistoryStatus health_unknown = FamilyHistoryStatus._(
-    'health-unknown',
+    value: 'health-unknown',
   );
 
   /// For instances where an Element is present but not value
 
-  static final FamilyHistoryStatus elementOnly = FamilyHistoryStatus._('');
+  static final FamilyHistoryStatus elementOnly =
+      FamilyHistoryStatus._(value: '');
 
   /// List of all enum-like values
   static final List<FamilyHistoryStatus> values = [
@@ -59,13 +65,13 @@ class FamilyHistoryStatus extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   FamilyHistoryStatus clone() => FamilyHistoryStatus._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   FamilyHistoryStatus withElement(Element? newElement) {
-    return FamilyHistoryStatus._(value, newElement);
+    return FamilyHistoryStatus._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -90,14 +96,13 @@ class FamilyHistoryStatus extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return FamilyHistoryStatus._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

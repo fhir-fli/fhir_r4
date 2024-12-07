@@ -30,10 +30,6 @@ class FhirGroup extends DomainResource {
     this.managingEntity,
     this.characteristic,
     this.member,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.FhirGroup,
         );
@@ -361,10 +357,6 @@ class FhirGroup extends DomainResource {
       managingEntity: managingEntity ?? this.managingEntity,
       characteristic: characteristic ?? this.characteristic,
       member: member ?? this.member,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -389,10 +381,6 @@ class GroupCharacteristic extends BackboneElement {
     required this.exclude,
     this.period,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -624,10 +612,6 @@ class GroupCharacteristic extends BackboneElement {
       valueReference: valueReference ?? this.valueReference,
       exclude: exclude ?? this.exclude,
       period: period ?? this.period,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -646,10 +630,6 @@ class GroupMember extends BackboneElement {
     this.period,
     this.inactive,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -805,10 +785,6 @@ class GroupMember extends BackboneElement {
       entity: entity ?? this.entity,
       period: period ?? this.period,
       inactive: inactive ?? this.inactive,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

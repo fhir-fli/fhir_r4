@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The current status of the task.
 class TaskStatus extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  TaskStatus._(super.value, [super.element]);
+  TaskStatus._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [TaskStatus] from JSON.
   factory TaskStatus.fromJson(
@@ -21,72 +26,72 @@ class TaskStatus extends PrimitiveType<String> {
         'TaskStatus cannot be constructed from JSON.',
       );
     }
-    return TaskStatus._(value, element);
+    return TaskStatus._(value: value, element: element);
   }
 
   /// draft
   static final TaskStatus draft = TaskStatus._(
-    'draft',
+    value: 'draft',
   );
 
   /// requested
   static final TaskStatus requested = TaskStatus._(
-    'requested',
+    value: 'requested',
   );
 
   /// received
   static final TaskStatus received = TaskStatus._(
-    'received',
+    value: 'received',
   );
 
   /// accepted
   static final TaskStatus accepted = TaskStatus._(
-    'accepted',
+    value: 'accepted',
   );
 
   /// rejected
   static final TaskStatus rejected = TaskStatus._(
-    'rejected',
+    value: 'rejected',
   );
 
   /// ready
   static final TaskStatus ready = TaskStatus._(
-    'ready',
+    value: 'ready',
   );
 
   /// cancelled
   static final TaskStatus cancelled = TaskStatus._(
-    'cancelled',
+    value: 'cancelled',
   );
 
   /// in_progress
   static final TaskStatus in_progress = TaskStatus._(
-    'in-progress',
+    value: 'in-progress',
   );
 
   /// on_hold
   static final TaskStatus on_hold = TaskStatus._(
-    'on-hold',
+    value: 'on-hold',
   );
 
   /// failed
   static final TaskStatus failed = TaskStatus._(
-    'failed',
+    value: 'failed',
   );
 
   /// completed
   static final TaskStatus completed = TaskStatus._(
-    'completed',
+    value: 'completed',
   );
 
   /// entered_in_error
   static final TaskStatus entered_in_error = TaskStatus._(
-    'entered-in-error',
+    value: 'entered-in-error',
   );
 
   /// For instances where an Element is present but not value
 
-  static final TaskStatus elementOnly = TaskStatus._('');
+  static final TaskStatus elementOnly = TaskStatus._(value: '');
 
   /// List of all enum-like values
   static final List<TaskStatus> values = [
@@ -107,13 +112,13 @@ class TaskStatus extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   TaskStatus clone() => TaskStatus._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   TaskStatus withElement(Element? newElement) {
-    return TaskStatus._(value, newElement);
+    return TaskStatus._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -138,14 +143,13 @@ class TaskStatus extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return TaskStatus._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

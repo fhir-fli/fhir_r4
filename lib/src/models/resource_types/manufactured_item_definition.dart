@@ -26,10 +26,6 @@ class ManufacturedItemDefinition extends DomainResource {
     this.manufacturer,
     this.ingredient,
     this.property,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.ManufacturedItemDefinition,
         );
@@ -321,10 +317,6 @@ class ManufacturedItemDefinition extends DomainResource {
       manufacturer: manufacturer ?? this.manufacturer,
       ingredient: ingredient ?? this.ingredient,
       property: property ?? this.property,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -346,10 +338,6 @@ class ManufacturedItemDefinitionProperty extends BackboneElement {
     this.valueBoolean,
     this.valueAttachment,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -546,10 +534,6 @@ class ManufacturedItemDefinitionProperty extends BackboneElement {
       valueDate: valueDate ?? this.valueDate,
       valueBoolean: valueBoolean ?? this.valueBoolean,
       valueAttachment: valueAttachment ?? this.valueAttachment,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

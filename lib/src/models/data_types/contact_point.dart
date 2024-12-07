@@ -18,10 +18,6 @@ class ContactPoint extends DataType {
     this.rank,
     this.period,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -190,10 +186,6 @@ class ContactPoint extends DataType {
       use: use ?? this.use,
       rank: rank ?? this.rank,
       period: period ?? this.period,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

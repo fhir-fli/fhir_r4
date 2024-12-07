@@ -38,10 +38,6 @@ class AllergyIntolerance extends DomainResource {
     this.lastOccurrence,
     this.note,
     this.reaction,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.AllergyIntolerance,
         );
@@ -549,10 +545,6 @@ class AllergyIntolerance extends DomainResource {
       lastOccurrence: lastOccurrence ?? this.lastOccurrence,
       note: note ?? this.note,
       reaction: reaction ?? this.reaction,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -576,10 +568,6 @@ class AllergyIntoleranceReaction extends BackboneElement {
     this.exposureRoute,
     this.note,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -815,10 +803,6 @@ class AllergyIntoleranceReaction extends BackboneElement {
       severity: severity ?? this.severity,
       exposureRoute: exposureRoute ?? this.exposureRoute,
       note: note ?? this.note,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

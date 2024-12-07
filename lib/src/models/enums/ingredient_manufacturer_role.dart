@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The way in which this manufacturer is associated with the ingredient. For example whether it is a possible one (others allowed), or an exclusive authorized one for this ingredient. Note that this is not the manufacturing process role.
 class IngredientManufacturerRole extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  IngredientManufacturerRole._(super.value, [super.element]);
+  IngredientManufacturerRole._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [IngredientManufacturerRole] from JSON.
   factory IngredientManufacturerRole.fromJson(
@@ -21,30 +26,30 @@ class IngredientManufacturerRole extends PrimitiveType<String> {
         'IngredientManufacturerRole cannot be constructed from JSON.',
       );
     }
-    return IngredientManufacturerRole._(value, element);
+    return IngredientManufacturerRole._(value: value, element: element);
   }
 
   /// allowed
   static final IngredientManufacturerRole allowed =
       IngredientManufacturerRole._(
-    'allowed',
+    value: 'allowed',
   );
 
   /// possible
   static final IngredientManufacturerRole possible =
       IngredientManufacturerRole._(
-    'possible',
+    value: 'possible',
   );
 
   /// actual
   static final IngredientManufacturerRole actual = IngredientManufacturerRole._(
-    'actual',
+    value: 'actual',
   );
 
   /// For instances where an Element is present but not value
 
   static final IngredientManufacturerRole elementOnly =
-      IngredientManufacturerRole._('');
+      IngredientManufacturerRole._(value: '');
 
   /// List of all enum-like values
   static final List<IngredientManufacturerRole> values = [
@@ -56,13 +61,13 @@ class IngredientManufacturerRole extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   IngredientManufacturerRole clone() => IngredientManufacturerRole._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   IngredientManufacturerRole withElement(Element? newElement) {
-    return IngredientManufacturerRole._(value, newElement);
+    return IngredientManufacturerRole._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -87,14 +92,13 @@ class IngredientManufacturerRole extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return IngredientManufacturerRole._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

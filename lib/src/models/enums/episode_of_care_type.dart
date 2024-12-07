@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This example value set defines a set of codes that can be used to express the usage type of an EpisodeOfCare record.
 class EpisodeOfCareType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  EpisodeOfCareType._(super.value, [super.element]);
+  EpisodeOfCareType._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [EpisodeOfCareType] from JSON.
   factory EpisodeOfCareType.fromJson(
@@ -21,37 +26,37 @@ class EpisodeOfCareType extends PrimitiveType<String> {
         'EpisodeOfCareType cannot be constructed from JSON.',
       );
     }
-    return EpisodeOfCareType._(value, element);
+    return EpisodeOfCareType._(value: value, element: element);
   }
 
   /// hacc
   static final EpisodeOfCareType hacc = EpisodeOfCareType._(
-    'hacc',
+    value: 'hacc',
   );
 
   /// pac
   static final EpisodeOfCareType pac = EpisodeOfCareType._(
-    'pac',
+    value: 'pac',
   );
 
   /// diab
   static final EpisodeOfCareType diab = EpisodeOfCareType._(
-    'diab',
+    value: 'diab',
   );
 
   /// da
   static final EpisodeOfCareType da = EpisodeOfCareType._(
-    'da',
+    value: 'da',
   );
 
   /// cacp
   static final EpisodeOfCareType cacp = EpisodeOfCareType._(
-    'cacp',
+    value: 'cacp',
   );
 
   /// For instances where an Element is present but not value
 
-  static final EpisodeOfCareType elementOnly = EpisodeOfCareType._('');
+  static final EpisodeOfCareType elementOnly = EpisodeOfCareType._(value: '');
 
   /// List of all enum-like values
   static final List<EpisodeOfCareType> values = [
@@ -65,13 +70,13 @@ class EpisodeOfCareType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   EpisodeOfCareType clone() => EpisodeOfCareType._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   EpisodeOfCareType withElement(Element? newElement) {
-    return EpisodeOfCareType._(value, newElement);
+    return EpisodeOfCareType._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -96,14 +101,13 @@ class EpisodeOfCareType extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return EpisodeOfCareType._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

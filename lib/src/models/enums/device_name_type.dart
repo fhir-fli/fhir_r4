@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The type of name the device is referred by.
 class DeviceNameType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  DeviceNameType._(super.value, [super.element]);
+  DeviceNameType._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [DeviceNameType] from JSON.
   factory DeviceNameType.fromJson(
@@ -21,42 +26,42 @@ class DeviceNameType extends PrimitiveType<String> {
         'DeviceNameType cannot be constructed from JSON.',
       );
     }
-    return DeviceNameType._(value, element);
+    return DeviceNameType._(value: value, element: element);
   }
 
   /// udi_label_name
   static final DeviceNameType udi_label_name = DeviceNameType._(
-    'udi-label-name',
+    value: 'udi-label-name',
   );
 
   /// user_friendly_name
   static final DeviceNameType user_friendly_name = DeviceNameType._(
-    'user-friendly-name',
+    value: 'user-friendly-name',
   );
 
   /// patient_reported_name
   static final DeviceNameType patient_reported_name = DeviceNameType._(
-    'patient-reported-name',
+    value: 'patient-reported-name',
   );
 
   /// manufacturer_name
   static final DeviceNameType manufacturer_name = DeviceNameType._(
-    'manufacturer-name',
+    value: 'manufacturer-name',
   );
 
   /// model_name
   static final DeviceNameType model_name = DeviceNameType._(
-    'model-name',
+    value: 'model-name',
   );
 
   /// other
   static final DeviceNameType other = DeviceNameType._(
-    'other',
+    value: 'other',
   );
 
   /// For instances where an Element is present but not value
 
-  static final DeviceNameType elementOnly = DeviceNameType._('');
+  static final DeviceNameType elementOnly = DeviceNameType._(value: '');
 
   /// List of all enum-like values
   static final List<DeviceNameType> values = [
@@ -71,13 +76,13 @@ class DeviceNameType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   DeviceNameType clone() => DeviceNameType._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   DeviceNameType withElement(Element? newElement) {
-    return DeviceNameType._(value, newElement);
+    return DeviceNameType._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -102,14 +107,13 @@ class DeviceNameType extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return DeviceNameType._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

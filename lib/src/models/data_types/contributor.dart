@@ -16,10 +16,6 @@ class Contributor extends DataType {
     required this.name,
     this.contact,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -160,10 +156,6 @@ class Contributor extends DataType {
       type: type ?? this.type,
       name: name ?? this.name,
       contact: contact ?? this.contact,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

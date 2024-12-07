@@ -44,10 +44,6 @@ class FamilyMemberHistory extends DomainResource {
     this.reasonReference,
     this.note,
     this.condition,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.FamilyMemberHistory,
         );
@@ -641,10 +637,6 @@ class FamilyMemberHistory extends DomainResource {
       reasonReference: reasonReference ?? this.reasonReference,
       note: note ?? this.note,
       condition: condition ?? this.condition,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -671,10 +663,6 @@ class FamilyMemberHistoryCondition extends BackboneElement {
     this.onsetString,
     this.note,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -919,10 +907,6 @@ class FamilyMemberHistoryCondition extends BackboneElement {
       onsetPeriod: onsetPeriod ?? this.onsetPeriod,
       onsetString: onsetString ?? this.onsetString,
       note: note ?? this.note,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

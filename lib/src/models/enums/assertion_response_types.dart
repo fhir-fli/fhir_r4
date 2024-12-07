@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The type of response code to use for assertion.
 class AssertionResponseTypes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  AssertionResponseTypes._(super.value, [super.element]);
+  AssertionResponseTypes._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [AssertionResponseTypes] from JSON.
   factory AssertionResponseTypes.fromJson(
@@ -21,75 +26,75 @@ class AssertionResponseTypes extends PrimitiveType<String> {
         'AssertionResponseTypes cannot be constructed from JSON.',
       );
     }
-    return AssertionResponseTypes._(value, element);
+    return AssertionResponseTypes._(value: value, element: element);
   }
 
   /// okay
   static final AssertionResponseTypes okay = AssertionResponseTypes._(
-    'okay',
+    value: 'okay',
   );
 
   /// created
   static final AssertionResponseTypes created = AssertionResponseTypes._(
-    'created',
+    value: 'created',
   );
 
   /// noContent
   static final AssertionResponseTypes noContent = AssertionResponseTypes._(
-    'noContent',
+    value: 'noContent',
   );
 
   /// notModified
   static final AssertionResponseTypes notModified = AssertionResponseTypes._(
-    'notModified',
+    value: 'notModified',
   );
 
   /// bad
   static final AssertionResponseTypes bad = AssertionResponseTypes._(
-    'bad',
+    value: 'bad',
   );
 
   /// forbidden
   static final AssertionResponseTypes forbidden = AssertionResponseTypes._(
-    'forbidden',
+    value: 'forbidden',
   );
 
   /// notFound
   static final AssertionResponseTypes notFound = AssertionResponseTypes._(
-    'notFound',
+    value: 'notFound',
   );
 
   /// methodNotAllowed
   static final AssertionResponseTypes methodNotAllowed =
       AssertionResponseTypes._(
-    'methodNotAllowed',
+    value: 'methodNotAllowed',
   );
 
   /// conflict
   static final AssertionResponseTypes conflict = AssertionResponseTypes._(
-    'conflict',
+    value: 'conflict',
   );
 
   /// gone
   static final AssertionResponseTypes gone = AssertionResponseTypes._(
-    'gone',
+    value: 'gone',
   );
 
   /// preconditionFailed
   static final AssertionResponseTypes preconditionFailed =
       AssertionResponseTypes._(
-    'preconditionFailed',
+    value: 'preconditionFailed',
   );
 
   /// unprocessable
   static final AssertionResponseTypes unprocessable = AssertionResponseTypes._(
-    'unprocessable',
+    value: 'unprocessable',
   );
 
   /// For instances where an Element is present but not value
 
   static final AssertionResponseTypes elementOnly =
-      AssertionResponseTypes._('');
+      AssertionResponseTypes._(value: '');
 
   /// List of all enum-like values
   static final List<AssertionResponseTypes> values = [
@@ -110,13 +115,13 @@ class AssertionResponseTypes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   AssertionResponseTypes clone() => AssertionResponseTypes._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   AssertionResponseTypes withElement(Element? newElement) {
-    return AssertionResponseTypes._(value, newElement);
+    return AssertionResponseTypes._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -141,14 +146,13 @@ class AssertionResponseTypes extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return AssertionResponseTypes._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

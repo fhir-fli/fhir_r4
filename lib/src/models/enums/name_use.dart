@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The use of a human name.
 class NameUse extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  NameUse._(super.value, [super.element]);
+  NameUse._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [NameUse] from JSON.
   factory NameUse.fromJson(
@@ -21,47 +26,47 @@ class NameUse extends PrimitiveType<String> {
         'NameUse cannot be constructed from JSON.',
       );
     }
-    return NameUse._(value, element);
+    return NameUse._(value: value, element: element);
   }
 
   /// usual
   static final NameUse usual = NameUse._(
-    'usual',
+    value: 'usual',
   );
 
   /// official
   static final NameUse official = NameUse._(
-    'official',
+    value: 'official',
   );
 
   /// temp
   static final NameUse temp = NameUse._(
-    'temp',
+    value: 'temp',
   );
 
   /// nickname
   static final NameUse nickname = NameUse._(
-    'nickname',
+    value: 'nickname',
   );
 
   /// anonymous
   static final NameUse anonymous = NameUse._(
-    'anonymous',
+    value: 'anonymous',
   );
 
   /// old
   static final NameUse old = NameUse._(
-    'old',
+    value: 'old',
   );
 
   /// maiden
   static final NameUse maiden = NameUse._(
-    'maiden',
+    value: 'maiden',
   );
 
   /// For instances where an Element is present but not value
 
-  static final NameUse elementOnly = NameUse._('');
+  static final NameUse elementOnly = NameUse._(value: '');
 
   /// List of all enum-like values
   static final List<NameUse> values = [
@@ -77,13 +82,13 @@ class NameUse extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   NameUse clone() => NameUse._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   NameUse withElement(Element? newElement) {
-    return NameUse._(value, newElement);
+    return NameUse._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -108,14 +113,13 @@ class NameUse extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return NameUse._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

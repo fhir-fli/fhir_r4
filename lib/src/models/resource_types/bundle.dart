@@ -20,10 +20,6 @@ class Bundle extends Resource {
     this.link,
     this.entry,
     this.signature,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.Bundle,
         );
@@ -250,10 +246,6 @@ class Bundle extends Resource {
       link: link ?? this.link,
       entry: entry ?? this.entry,
       signature: signature ?? this.signature,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -271,10 +263,6 @@ class BundleLink extends BackboneElement {
     required this.relation,
     required this.url,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -411,10 +399,6 @@ class BundleLink extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       relation: relation ?? this.relation,
       url: url ?? this.url,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -437,10 +421,6 @@ class BundleEntry extends BackboneElement {
     this.request,
     this.response,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -660,10 +640,6 @@ class BundleEntry extends BackboneElement {
       search: search ?? this.search,
       request: request ?? this.request,
       response: response ?? this.response,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -682,10 +658,6 @@ class BundleSearch extends BackboneElement {
     this.mode,
     this.score,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -827,10 +799,6 @@ class BundleSearch extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       mode: mode ?? this.mode,
       score: score ?? this.score,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -854,10 +822,6 @@ class BundleRequest extends BackboneElement {
     this.ifMatch,
     this.ifNoneExist,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1056,10 +1020,6 @@ class BundleRequest extends BackboneElement {
       ifModifiedSince: ifModifiedSince ?? this.ifModifiedSince,
       ifMatch: ifMatch ?? this.ifMatch,
       ifNoneExist: ifNoneExist ?? this.ifNoneExist,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1082,10 +1042,6 @@ class BundleResponse extends BackboneElement {
     this.lastModified,
     this.outcome,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1272,10 +1228,6 @@ class BundleResponse extends BackboneElement {
       etag: etag ?? this.etag,
       lastModified: lastModified ?? this.lastModified,
       outcome: outcome ?? this.outcome,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

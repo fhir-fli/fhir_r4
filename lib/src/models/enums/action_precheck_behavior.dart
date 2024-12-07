@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Defines selection frequency behavior for an action or group.
 class ActionPrecheckBehavior extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ActionPrecheckBehavior._(super.value, [super.element]);
+  ActionPrecheckBehavior._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [ActionPrecheckBehavior] from JSON.
   factory ActionPrecheckBehavior.fromJson(
@@ -21,23 +26,23 @@ class ActionPrecheckBehavior extends PrimitiveType<String> {
         'ActionPrecheckBehavior cannot be constructed from JSON.',
       );
     }
-    return ActionPrecheckBehavior._(value, element);
+    return ActionPrecheckBehavior._(value: value, element: element);
   }
 
   /// yes
   static final ActionPrecheckBehavior yes = ActionPrecheckBehavior._(
-    'yes',
+    value: 'yes',
   );
 
   /// no
   static final ActionPrecheckBehavior no = ActionPrecheckBehavior._(
-    'no',
+    value: 'no',
   );
 
   /// For instances where an Element is present but not value
 
   static final ActionPrecheckBehavior elementOnly =
-      ActionPrecheckBehavior._('');
+      ActionPrecheckBehavior._(value: '');
 
   /// List of all enum-like values
   static final List<ActionPrecheckBehavior> values = [
@@ -48,13 +53,13 @@ class ActionPrecheckBehavior extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ActionPrecheckBehavior clone() => ActionPrecheckBehavior._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ActionPrecheckBehavior withElement(Element? newElement) {
-    return ActionPrecheckBehavior._(value, newElement);
+    return ActionPrecheckBehavior._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -79,14 +84,13 @@ class ActionPrecheckBehavior extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ActionPrecheckBehavior._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

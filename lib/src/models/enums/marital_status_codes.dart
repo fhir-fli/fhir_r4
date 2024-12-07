@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value set defines the set of codes that can be used to indicate the marital status of a person.
 class MaritalStatusCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  MaritalStatusCodes._(super.value, [super.element]);
+  MaritalStatusCodes._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [MaritalStatusCodes] from JSON.
   factory MaritalStatusCodes.fromJson(
@@ -21,17 +26,17 @@ class MaritalStatusCodes extends PrimitiveType<String> {
         'MaritalStatusCodes cannot be constructed from JSON.',
       );
     }
-    return MaritalStatusCodes._(value, element);
+    return MaritalStatusCodes._(value: value, element: element);
   }
 
   /// UNK
   static final MaritalStatusCodes UNK = MaritalStatusCodes._(
-    'UNK',
+    value: 'UNK',
   );
 
   /// For instances where an Element is present but not value
 
-  static final MaritalStatusCodes elementOnly = MaritalStatusCodes._('');
+  static final MaritalStatusCodes elementOnly = MaritalStatusCodes._(value: '');
 
   /// List of all enum-like values
   static final List<MaritalStatusCodes> values = [
@@ -41,13 +46,13 @@ class MaritalStatusCodes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   MaritalStatusCodes clone() => MaritalStatusCodes._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   MaritalStatusCodes withElement(Element? newElement) {
-    return MaritalStatusCodes._(value, newElement);
+    return MaritalStatusCodes._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -72,14 +77,13 @@ class MaritalStatusCodes extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return MaritalStatusCodes._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

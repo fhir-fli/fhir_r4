@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The type of a property value.
 class PropertyTypeEnum extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  PropertyTypeEnum._(super.value, [super.element]);
+  PropertyTypeEnum._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [PropertyTypeEnum] from JSON.
   factory PropertyTypeEnum.fromJson(
@@ -21,47 +26,47 @@ class PropertyTypeEnum extends PrimitiveType<String> {
         'PropertyTypeEnum cannot be constructed from JSON.',
       );
     }
-    return PropertyTypeEnum._(value, element);
+    return PropertyTypeEnum._(value: value, element: element);
   }
 
   /// code
   static final PropertyTypeEnum code = PropertyTypeEnum._(
-    'code',
+    value: 'code',
   );
 
   /// Coding
   static final PropertyTypeEnum Coding = PropertyTypeEnum._(
-    'Coding',
+    value: 'Coding',
   );
 
   /// string
   static final PropertyTypeEnum string = PropertyTypeEnum._(
-    'string',
+    value: 'string',
   );
 
   /// integer
   static final PropertyTypeEnum integer = PropertyTypeEnum._(
-    'integer',
+    value: 'integer',
   );
 
   /// boolean
   static final PropertyTypeEnum boolean = PropertyTypeEnum._(
-    'boolean',
+    value: 'boolean',
   );
 
   /// dateTime
   static final PropertyTypeEnum dateTime = PropertyTypeEnum._(
-    'dateTime',
+    value: 'dateTime',
   );
 
   /// decimal
   static final PropertyTypeEnum decimal = PropertyTypeEnum._(
-    'decimal',
+    value: 'decimal',
   );
 
   /// For instances where an Element is present but not value
 
-  static final PropertyTypeEnum elementOnly = PropertyTypeEnum._('');
+  static final PropertyTypeEnum elementOnly = PropertyTypeEnum._(value: '');
 
   /// List of all enum-like values
   static final List<PropertyTypeEnum> values = [
@@ -77,13 +82,13 @@ class PropertyTypeEnum extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   PropertyTypeEnum clone() => PropertyTypeEnum._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   PropertyTypeEnum withElement(Element? newElement) {
-    return PropertyTypeEnum._(value, newElement);
+    return PropertyTypeEnum._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -108,14 +113,13 @@ class PropertyTypeEnum extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return PropertyTypeEnum._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

@@ -186,7 +186,7 @@ class FhirPatchRequest extends FhirRequest {
   final String id;
 
   /// Patch body
-  final Map<String, dynamic> patchBody;
+  final PatchBody patchBody;
 
   @override
   Uri buildUri() {
@@ -195,7 +195,14 @@ class FhirPatchRequest extends FhirRequest {
   }
 
   @override
-  String buildBody() => jsonEncode(patchBody);
+  String buildBody() => patchBody.toJson();
+
+  @override
+  Map<String, String> buildHeaders() {
+    final headers = super.buildHeaders();
+    headers['Content-Type'] = 'application/json-patch+json';
+    return headers;
+  }
 
   @override
   Future<http.Response> sendRequest() {

@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The type of direction to use for assertion.
 class AssertionDirectionType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  AssertionDirectionType._(super.value, [super.element]);
+  AssertionDirectionType._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [AssertionDirectionType] from JSON.
   factory AssertionDirectionType.fromJson(
@@ -21,23 +26,23 @@ class AssertionDirectionType extends PrimitiveType<String> {
         'AssertionDirectionType cannot be constructed from JSON.',
       );
     }
-    return AssertionDirectionType._(value, element);
+    return AssertionDirectionType._(value: value, element: element);
   }
 
   /// response
   static final AssertionDirectionType response = AssertionDirectionType._(
-    'response',
+    value: 'response',
   );
 
   /// request
   static final AssertionDirectionType request = AssertionDirectionType._(
-    'request',
+    value: 'request',
   );
 
   /// For instances where an Element is present but not value
 
   static final AssertionDirectionType elementOnly =
-      AssertionDirectionType._('');
+      AssertionDirectionType._(value: '');
 
   /// List of all enum-like values
   static final List<AssertionDirectionType> values = [
@@ -48,13 +53,13 @@ class AssertionDirectionType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   AssertionDirectionType clone() => AssertionDirectionType._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   AssertionDirectionType withElement(Element? newElement) {
-    return AssertionDirectionType._(value, newElement);
+    return AssertionDirectionType._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -79,14 +84,13 @@ class AssertionDirectionType extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return AssertionDirectionType._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

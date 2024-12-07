@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Describes the typical color of representation.
 class DeviceMetricColor extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  DeviceMetricColor._(super.value, [super.element]);
+  DeviceMetricColor._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [DeviceMetricColor] from JSON.
   factory DeviceMetricColor.fromJson(
@@ -21,52 +26,52 @@ class DeviceMetricColor extends PrimitiveType<String> {
         'DeviceMetricColor cannot be constructed from JSON.',
       );
     }
-    return DeviceMetricColor._(value, element);
+    return DeviceMetricColor._(value: value, element: element);
   }
 
   /// black
   static final DeviceMetricColor black = DeviceMetricColor._(
-    'black',
+    value: 'black',
   );
 
   /// red
   static final DeviceMetricColor red = DeviceMetricColor._(
-    'red',
+    value: 'red',
   );
 
   /// green
   static final DeviceMetricColor green = DeviceMetricColor._(
-    'green',
+    value: 'green',
   );
 
   /// yellow
   static final DeviceMetricColor yellow = DeviceMetricColor._(
-    'yellow',
+    value: 'yellow',
   );
 
   /// blue
   static final DeviceMetricColor blue = DeviceMetricColor._(
-    'blue',
+    value: 'blue',
   );
 
   /// magenta
   static final DeviceMetricColor magenta = DeviceMetricColor._(
-    'magenta',
+    value: 'magenta',
   );
 
   /// cyan
   static final DeviceMetricColor cyan = DeviceMetricColor._(
-    'cyan',
+    value: 'cyan',
   );
 
   /// white
   static final DeviceMetricColor white = DeviceMetricColor._(
-    'white',
+    value: 'white',
   );
 
   /// For instances where an Element is present but not value
 
-  static final DeviceMetricColor elementOnly = DeviceMetricColor._('');
+  static final DeviceMetricColor elementOnly = DeviceMetricColor._(value: '');
 
   /// List of all enum-like values
   static final List<DeviceMetricColor> values = [
@@ -83,13 +88,13 @@ class DeviceMetricColor extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   DeviceMetricColor clone() => DeviceMetricColor._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   DeviceMetricColor withElement(Element? newElement) {
-    return DeviceMetricColor._(value, newElement);
+    return DeviceMetricColor._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -114,14 +119,13 @@ class DeviceMetricColor extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return DeviceMetricColor._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

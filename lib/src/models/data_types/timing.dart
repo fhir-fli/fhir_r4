@@ -21,10 +21,6 @@ class Timing extends BackboneType {
     this.repeat,
     this.code,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -193,10 +189,6 @@ class Timing extends BackboneType {
       event: event ?? this.event,
       repeat: repeat ?? this.repeat,
       code: code ?? this.code,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -228,10 +220,6 @@ class TimingRepeat extends Element {
     this.when,
     this.offset,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -601,10 +589,6 @@ class TimingRepeat extends Element {
       timeOfDay: timeOfDay ?? this.timeOfDay,
       when: when ?? this.when,
       offset: offset ?? this.offset,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

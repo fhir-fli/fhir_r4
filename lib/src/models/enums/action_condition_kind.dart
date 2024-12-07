@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Defines the kinds of conditions that can appear on actions.
 class ActionConditionKind extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ActionConditionKind._(super.value, [super.element]);
+  ActionConditionKind._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [ActionConditionKind] from JSON.
   factory ActionConditionKind.fromJson(
@@ -21,27 +26,28 @@ class ActionConditionKind extends PrimitiveType<String> {
         'ActionConditionKind cannot be constructed from JSON.',
       );
     }
-    return ActionConditionKind._(value, element);
+    return ActionConditionKind._(value: value, element: element);
   }
 
   /// applicability
   static final ActionConditionKind applicability = ActionConditionKind._(
-    'applicability',
+    value: 'applicability',
   );
 
   /// start
   static final ActionConditionKind start = ActionConditionKind._(
-    'start',
+    value: 'start',
   );
 
   /// stop
   static final ActionConditionKind stop = ActionConditionKind._(
-    'stop',
+    value: 'stop',
   );
 
   /// For instances where an Element is present but not value
 
-  static final ActionConditionKind elementOnly = ActionConditionKind._('');
+  static final ActionConditionKind elementOnly =
+      ActionConditionKind._(value: '');
 
   /// List of all enum-like values
   static final List<ActionConditionKind> values = [
@@ -53,13 +59,13 @@ class ActionConditionKind extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ActionConditionKind clone() => ActionConditionKind._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ActionConditionKind withElement(Element? newElement) {
-    return ActionConditionKind._(value, newElement);
+    return ActionConditionKind._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -84,14 +90,13 @@ class ActionConditionKind extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ActionConditionKind._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

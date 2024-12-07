@@ -31,10 +31,6 @@ class RelatedPerson extends DomainResource {
     this.photo,
     this.period,
     this.communication,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.RelatedPerson,
         );
@@ -410,10 +406,6 @@ class RelatedPerson extends DomainResource {
       photo: photo ?? this.photo,
       period: period ?? this.period,
       communication: communication ?? this.communication,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -432,10 +424,6 @@ class RelatedPersonCommunication extends BackboneElement {
     required this.language,
     this.preferred,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -577,10 +565,6 @@ class RelatedPersonCommunication extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       language: language ?? this.language,
       preferred: preferred ?? this.preferred,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

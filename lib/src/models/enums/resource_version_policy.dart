@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// How the system supports versioning for a resource.
 class ResourceVersionPolicy extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ResourceVersionPolicy._(super.value, [super.element]);
+  ResourceVersionPolicy._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [ResourceVersionPolicy] from JSON.
   factory ResourceVersionPolicy.fromJson(
@@ -21,27 +26,28 @@ class ResourceVersionPolicy extends PrimitiveType<String> {
         'ResourceVersionPolicy cannot be constructed from JSON.',
       );
     }
-    return ResourceVersionPolicy._(value, element);
+    return ResourceVersionPolicy._(value: value, element: element);
   }
 
   /// no_version
   static final ResourceVersionPolicy no_version = ResourceVersionPolicy._(
-    'no-version',
+    value: 'no-version',
   );
 
   /// versioned
   static final ResourceVersionPolicy versioned = ResourceVersionPolicy._(
-    'versioned',
+    value: 'versioned',
   );
 
   /// versioned_update
   static final ResourceVersionPolicy versioned_update = ResourceVersionPolicy._(
-    'versioned-update',
+    value: 'versioned-update',
   );
 
   /// For instances where an Element is present but not value
 
-  static final ResourceVersionPolicy elementOnly = ResourceVersionPolicy._('');
+  static final ResourceVersionPolicy elementOnly =
+      ResourceVersionPolicy._(value: '');
 
   /// List of all enum-like values
   static final List<ResourceVersionPolicy> values = [
@@ -53,13 +59,13 @@ class ResourceVersionPolicy extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ResourceVersionPolicy clone() => ResourceVersionPolicy._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ResourceVersionPolicy withElement(Element? newElement) {
-    return ResourceVersionPolicy._(value, newElement);
+    return ResourceVersionPolicy._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -84,14 +90,13 @@ class ResourceVersionPolicy extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ResourceVersionPolicy._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

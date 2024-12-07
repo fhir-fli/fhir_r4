@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Resource types defined as part of FHIR that can be represented as in-line definitions of a care plan activity.
 class CarePlanActivityKind extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  CarePlanActivityKind._(super.value, [super.element]);
+  CarePlanActivityKind._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [CarePlanActivityKind] from JSON.
   factory CarePlanActivityKind.fromJson(
@@ -21,758 +26,759 @@ class CarePlanActivityKind extends PrimitiveType<String> {
         'CarePlanActivityKind cannot be constructed from JSON.',
       );
     }
-    return CarePlanActivityKind._(value, element);
+    return CarePlanActivityKind._(value: value, element: element);
   }
 
   /// Resource
   static final CarePlanActivityKind Resource = CarePlanActivityKind._(
-    'Resource',
+    value: 'Resource',
   );
 
   /// Binary
   static final CarePlanActivityKind Binary = CarePlanActivityKind._(
-    'Binary',
+    value: 'Binary',
   );
 
   /// Bundle
   static final CarePlanActivityKind Bundle = CarePlanActivityKind._(
-    'Bundle',
+    value: 'Bundle',
   );
 
   /// DomainResource
   static final CarePlanActivityKind DomainResource = CarePlanActivityKind._(
-    'DomainResource',
+    value: 'DomainResource',
   );
 
   /// Account
   static final CarePlanActivityKind Account = CarePlanActivityKind._(
-    'Account',
+    value: 'Account',
   );
 
   /// ActivityDefinition
   static final CarePlanActivityKind ActivityDefinition = CarePlanActivityKind._(
-    'ActivityDefinition',
+    value: 'ActivityDefinition',
   );
 
   /// AdministrableProductDefinition
   static final CarePlanActivityKind AdministrableProductDefinition =
       CarePlanActivityKind._(
-    'AdministrableProductDefinition',
+    value: 'AdministrableProductDefinition',
   );
 
   /// AdverseEvent
   static final CarePlanActivityKind AdverseEvent = CarePlanActivityKind._(
-    'AdverseEvent',
+    value: 'AdverseEvent',
   );
 
   /// AllergyIntolerance
   static final CarePlanActivityKind AllergyIntolerance = CarePlanActivityKind._(
-    'AllergyIntolerance',
+    value: 'AllergyIntolerance',
   );
 
   /// Appointment
   static final CarePlanActivityKind Appointment = CarePlanActivityKind._(
-    'Appointment',
+    value: 'Appointment',
   );
 
   /// AppointmentResponse
   static final CarePlanActivityKind AppointmentResponse =
       CarePlanActivityKind._(
-    'AppointmentResponse',
+    value: 'AppointmentResponse',
   );
 
   /// AuditEvent
   static final CarePlanActivityKind AuditEvent = CarePlanActivityKind._(
-    'AuditEvent',
+    value: 'AuditEvent',
   );
 
   /// Basic
   static final CarePlanActivityKind Basic = CarePlanActivityKind._(
-    'Basic',
+    value: 'Basic',
   );
 
   /// BiologicallyDerivedProduct
   static final CarePlanActivityKind BiologicallyDerivedProduct =
       CarePlanActivityKind._(
-    'BiologicallyDerivedProduct',
+    value: 'BiologicallyDerivedProduct',
   );
 
   /// BodyStructure
   static final CarePlanActivityKind BodyStructure = CarePlanActivityKind._(
-    'BodyStructure',
+    value: 'BodyStructure',
   );
 
   /// CapabilityStatement
   static final CarePlanActivityKind CapabilityStatement =
       CarePlanActivityKind._(
-    'CapabilityStatement',
+    value: 'CapabilityStatement',
   );
 
   /// CarePlan
   static final CarePlanActivityKind CarePlan = CarePlanActivityKind._(
-    'CarePlan',
+    value: 'CarePlan',
   );
 
   /// CareTeam
   static final CarePlanActivityKind CareTeam = CarePlanActivityKind._(
-    'CareTeam',
+    value: 'CareTeam',
   );
 
   /// CatalogEntry
   static final CarePlanActivityKind CatalogEntry = CarePlanActivityKind._(
-    'CatalogEntry',
+    value: 'CatalogEntry',
   );
 
   /// ChargeItem
   static final CarePlanActivityKind ChargeItem = CarePlanActivityKind._(
-    'ChargeItem',
+    value: 'ChargeItem',
   );
 
   /// ChargeItemDefinition
   static final CarePlanActivityKind ChargeItemDefinition =
       CarePlanActivityKind._(
-    'ChargeItemDefinition',
+    value: 'ChargeItemDefinition',
   );
 
   /// Citation
   static final CarePlanActivityKind Citation = CarePlanActivityKind._(
-    'Citation',
+    value: 'Citation',
   );
 
   /// Claim
   static final CarePlanActivityKind Claim = CarePlanActivityKind._(
-    'Claim',
+    value: 'Claim',
   );
 
   /// ClaimResponse
   static final CarePlanActivityKind ClaimResponse = CarePlanActivityKind._(
-    'ClaimResponse',
+    value: 'ClaimResponse',
   );
 
   /// ClinicalImpression
   static final CarePlanActivityKind ClinicalImpression = CarePlanActivityKind._(
-    'ClinicalImpression',
+    value: 'ClinicalImpression',
   );
 
   /// ClinicalUseDefinition
   static final CarePlanActivityKind ClinicalUseDefinition =
       CarePlanActivityKind._(
-    'ClinicalUseDefinition',
+    value: 'ClinicalUseDefinition',
   );
 
   /// CodeSystem
   static final CarePlanActivityKind CodeSystem = CarePlanActivityKind._(
-    'CodeSystem',
+    value: 'CodeSystem',
   );
 
   /// Communication
   static final CarePlanActivityKind Communication = CarePlanActivityKind._(
-    'Communication',
+    value: 'Communication',
   );
 
   /// CommunicationRequest
   static final CarePlanActivityKind CommunicationRequest =
       CarePlanActivityKind._(
-    'CommunicationRequest',
+    value: 'CommunicationRequest',
   );
 
   /// CompartmentDefinition
   static final CarePlanActivityKind CompartmentDefinition =
       CarePlanActivityKind._(
-    'CompartmentDefinition',
+    value: 'CompartmentDefinition',
   );
 
   /// Composition
   static final CarePlanActivityKind Composition = CarePlanActivityKind._(
-    'Composition',
+    value: 'Composition',
   );
 
   /// ConceptMap
   static final CarePlanActivityKind ConceptMap = CarePlanActivityKind._(
-    'ConceptMap',
+    value: 'ConceptMap',
   );
 
   /// Condition
   static final CarePlanActivityKind Condition = CarePlanActivityKind._(
-    'Condition',
+    value: 'Condition',
   );
 
   /// Consent
   static final CarePlanActivityKind Consent = CarePlanActivityKind._(
-    'Consent',
+    value: 'Consent',
   );
 
   /// Contract
   static final CarePlanActivityKind Contract = CarePlanActivityKind._(
-    'Contract',
+    value: 'Contract',
   );
 
   /// Coverage
   static final CarePlanActivityKind Coverage = CarePlanActivityKind._(
-    'Coverage',
+    value: 'Coverage',
   );
 
   /// CoverageEligibilityRequest
   static final CarePlanActivityKind CoverageEligibilityRequest =
       CarePlanActivityKind._(
-    'CoverageEligibilityRequest',
+    value: 'CoverageEligibilityRequest',
   );
 
   /// CoverageEligibilityResponse
   static final CarePlanActivityKind CoverageEligibilityResponse =
       CarePlanActivityKind._(
-    'CoverageEligibilityResponse',
+    value: 'CoverageEligibilityResponse',
   );
 
   /// DetectedIssue
   static final CarePlanActivityKind DetectedIssue = CarePlanActivityKind._(
-    'DetectedIssue',
+    value: 'DetectedIssue',
   );
 
   /// Device
   static final CarePlanActivityKind Device = CarePlanActivityKind._(
-    'Device',
+    value: 'Device',
   );
 
   /// DeviceDefinition
   static final CarePlanActivityKind DeviceDefinition = CarePlanActivityKind._(
-    'DeviceDefinition',
+    value: 'DeviceDefinition',
   );
 
   /// DeviceMetric
   static final CarePlanActivityKind DeviceMetric = CarePlanActivityKind._(
-    'DeviceMetric',
+    value: 'DeviceMetric',
   );
 
   /// DeviceRequest
   static final CarePlanActivityKind DeviceRequest = CarePlanActivityKind._(
-    'DeviceRequest',
+    value: 'DeviceRequest',
   );
 
   /// DeviceUseStatement
   static final CarePlanActivityKind DeviceUseStatement = CarePlanActivityKind._(
-    'DeviceUseStatement',
+    value: 'DeviceUseStatement',
   );
 
   /// DiagnosticReport
   static final CarePlanActivityKind DiagnosticReport = CarePlanActivityKind._(
-    'DiagnosticReport',
+    value: 'DiagnosticReport',
   );
 
   /// DocumentManifest
   static final CarePlanActivityKind DocumentManifest = CarePlanActivityKind._(
-    'DocumentManifest',
+    value: 'DocumentManifest',
   );
 
   /// DocumentReference
   static final CarePlanActivityKind DocumentReference = CarePlanActivityKind._(
-    'DocumentReference',
+    value: 'DocumentReference',
   );
 
   /// Encounter
   static final CarePlanActivityKind Encounter = CarePlanActivityKind._(
-    'Encounter',
+    value: 'Encounter',
   );
 
   /// Endpoint
   static final CarePlanActivityKind Endpoint = CarePlanActivityKind._(
-    'Endpoint',
+    value: 'Endpoint',
   );
 
   /// EnrollmentRequest
   static final CarePlanActivityKind EnrollmentRequest = CarePlanActivityKind._(
-    'EnrollmentRequest',
+    value: 'EnrollmentRequest',
   );
 
   /// EnrollmentResponse
   static final CarePlanActivityKind EnrollmentResponse = CarePlanActivityKind._(
-    'EnrollmentResponse',
+    value: 'EnrollmentResponse',
   );
 
   /// EpisodeOfCare
   static final CarePlanActivityKind EpisodeOfCare = CarePlanActivityKind._(
-    'EpisodeOfCare',
+    value: 'EpisodeOfCare',
   );
 
   /// EventDefinition
   static final CarePlanActivityKind EventDefinition = CarePlanActivityKind._(
-    'EventDefinition',
+    value: 'EventDefinition',
   );
 
   /// Evidence
   static final CarePlanActivityKind Evidence = CarePlanActivityKind._(
-    'Evidence',
+    value: 'Evidence',
   );
 
   /// EvidenceReport
   static final CarePlanActivityKind EvidenceReport = CarePlanActivityKind._(
-    'EvidenceReport',
+    value: 'EvidenceReport',
   );
 
   /// EvidenceVariable
   static final CarePlanActivityKind EvidenceVariable = CarePlanActivityKind._(
-    'EvidenceVariable',
+    value: 'EvidenceVariable',
   );
 
   /// ExampleScenario
   static final CarePlanActivityKind ExampleScenario = CarePlanActivityKind._(
-    'ExampleScenario',
+    value: 'ExampleScenario',
   );
 
   /// ExplanationOfBenefit
   static final CarePlanActivityKind ExplanationOfBenefit =
       CarePlanActivityKind._(
-    'ExplanationOfBenefit',
+    value: 'ExplanationOfBenefit',
   );
 
   /// FamilyMemberHistory
   static final CarePlanActivityKind FamilyMemberHistory =
       CarePlanActivityKind._(
-    'FamilyMemberHistory',
+    value: 'FamilyMemberHistory',
   );
 
   /// Flag
   static final CarePlanActivityKind Flag = CarePlanActivityKind._(
-    'Flag',
+    value: 'Flag',
   );
 
   /// Goal
   static final CarePlanActivityKind Goal = CarePlanActivityKind._(
-    'Goal',
+    value: 'Goal',
   );
 
   /// GraphDefinition
   static final CarePlanActivityKind GraphDefinition = CarePlanActivityKind._(
-    'GraphDefinition',
+    value: 'GraphDefinition',
   );
 
   /// Group
   static final CarePlanActivityKind Group = CarePlanActivityKind._(
-    'Group',
+    value: 'Group',
   );
 
   /// GuidanceResponse
   static final CarePlanActivityKind GuidanceResponse = CarePlanActivityKind._(
-    'GuidanceResponse',
+    value: 'GuidanceResponse',
   );
 
   /// HealthcareService
   static final CarePlanActivityKind HealthcareService = CarePlanActivityKind._(
-    'HealthcareService',
+    value: 'HealthcareService',
   );
 
   /// ImagingStudy
   static final CarePlanActivityKind ImagingStudy = CarePlanActivityKind._(
-    'ImagingStudy',
+    value: 'ImagingStudy',
   );
 
   /// Immunization
   static final CarePlanActivityKind Immunization = CarePlanActivityKind._(
-    'Immunization',
+    value: 'Immunization',
   );
 
   /// ImmunizationEvaluation
   static final CarePlanActivityKind ImmunizationEvaluation =
       CarePlanActivityKind._(
-    'ImmunizationEvaluation',
+    value: 'ImmunizationEvaluation',
   );
 
   /// ImmunizationRecommendation
   static final CarePlanActivityKind ImmunizationRecommendation =
       CarePlanActivityKind._(
-    'ImmunizationRecommendation',
+    value: 'ImmunizationRecommendation',
   );
 
   /// ImplementationGuide
   static final CarePlanActivityKind ImplementationGuide =
       CarePlanActivityKind._(
-    'ImplementationGuide',
+    value: 'ImplementationGuide',
   );
 
   /// Ingredient
   static final CarePlanActivityKind Ingredient = CarePlanActivityKind._(
-    'Ingredient',
+    value: 'Ingredient',
   );
 
   /// InsurancePlan
   static final CarePlanActivityKind InsurancePlan = CarePlanActivityKind._(
-    'InsurancePlan',
+    value: 'InsurancePlan',
   );
 
   /// Invoice
   static final CarePlanActivityKind Invoice = CarePlanActivityKind._(
-    'Invoice',
+    value: 'Invoice',
   );
 
   /// Library
   static final CarePlanActivityKind Library = CarePlanActivityKind._(
-    'Library',
+    value: 'Library',
   );
 
   /// Linkage
   static final CarePlanActivityKind Linkage = CarePlanActivityKind._(
-    'Linkage',
+    value: 'Linkage',
   );
 
   /// List_
   static final CarePlanActivityKind List_ = CarePlanActivityKind._(
-    'List',
+    value: 'List',
   );
 
   /// Location
   static final CarePlanActivityKind Location = CarePlanActivityKind._(
-    'Location',
+    value: 'Location',
   );
 
   /// ManufacturedItemDefinition
   static final CarePlanActivityKind ManufacturedItemDefinition =
       CarePlanActivityKind._(
-    'ManufacturedItemDefinition',
+    value: 'ManufacturedItemDefinition',
   );
 
   /// Measure
   static final CarePlanActivityKind Measure = CarePlanActivityKind._(
-    'Measure',
+    value: 'Measure',
   );
 
   /// MeasureReport
   static final CarePlanActivityKind MeasureReport = CarePlanActivityKind._(
-    'MeasureReport',
+    value: 'MeasureReport',
   );
 
   /// Media
   static final CarePlanActivityKind Media = CarePlanActivityKind._(
-    'Media',
+    value: 'Media',
   );
 
   /// Medication
   static final CarePlanActivityKind Medication = CarePlanActivityKind._(
-    'Medication',
+    value: 'Medication',
   );
 
   /// MedicationAdministration
   static final CarePlanActivityKind MedicationAdministration =
       CarePlanActivityKind._(
-    'MedicationAdministration',
+    value: 'MedicationAdministration',
   );
 
   /// MedicationDispense
   static final CarePlanActivityKind MedicationDispense = CarePlanActivityKind._(
-    'MedicationDispense',
+    value: 'MedicationDispense',
   );
 
   /// MedicationKnowledge
   static final CarePlanActivityKind MedicationKnowledge =
       CarePlanActivityKind._(
-    'MedicationKnowledge',
+    value: 'MedicationKnowledge',
   );
 
   /// MedicationRequest
   static final CarePlanActivityKind MedicationRequest = CarePlanActivityKind._(
-    'MedicationRequest',
+    value: 'MedicationRequest',
   );
 
   /// MedicationStatement
   static final CarePlanActivityKind MedicationStatement =
       CarePlanActivityKind._(
-    'MedicationStatement',
+    value: 'MedicationStatement',
   );
 
   /// MedicinalProductDefinition
   static final CarePlanActivityKind MedicinalProductDefinition =
       CarePlanActivityKind._(
-    'MedicinalProductDefinition',
+    value: 'MedicinalProductDefinition',
   );
 
   /// MessageDefinition
   static final CarePlanActivityKind MessageDefinition = CarePlanActivityKind._(
-    'MessageDefinition',
+    value: 'MessageDefinition',
   );
 
   /// MessageHeader
   static final CarePlanActivityKind MessageHeader = CarePlanActivityKind._(
-    'MessageHeader',
+    value: 'MessageHeader',
   );
 
   /// MolecularSequence
   static final CarePlanActivityKind MolecularSequence = CarePlanActivityKind._(
-    'MolecularSequence',
+    value: 'MolecularSequence',
   );
 
   /// NamingSystem
   static final CarePlanActivityKind NamingSystem = CarePlanActivityKind._(
-    'NamingSystem',
+    value: 'NamingSystem',
   );
 
   /// NutritionOrder
   static final CarePlanActivityKind NutritionOrder = CarePlanActivityKind._(
-    'NutritionOrder',
+    value: 'NutritionOrder',
   );
 
   /// NutritionProduct
   static final CarePlanActivityKind NutritionProduct = CarePlanActivityKind._(
-    'NutritionProduct',
+    value: 'NutritionProduct',
   );
 
   /// Observation
   static final CarePlanActivityKind Observation = CarePlanActivityKind._(
-    'Observation',
+    value: 'Observation',
   );
 
   /// ObservationDefinition
   static final CarePlanActivityKind ObservationDefinition =
       CarePlanActivityKind._(
-    'ObservationDefinition',
+    value: 'ObservationDefinition',
   );
 
   /// OperationDefinition
   static final CarePlanActivityKind OperationDefinition =
       CarePlanActivityKind._(
-    'OperationDefinition',
+    value: 'OperationDefinition',
   );
 
   /// OperationOutcome
   static final CarePlanActivityKind OperationOutcome = CarePlanActivityKind._(
-    'OperationOutcome',
+    value: 'OperationOutcome',
   );
 
   /// Organization
   static final CarePlanActivityKind Organization = CarePlanActivityKind._(
-    'Organization',
+    value: 'Organization',
   );
 
   /// OrganizationAffiliation
   static final CarePlanActivityKind OrganizationAffiliation =
       CarePlanActivityKind._(
-    'OrganizationAffiliation',
+    value: 'OrganizationAffiliation',
   );
 
   /// PackagedProductDefinition
   static final CarePlanActivityKind PackagedProductDefinition =
       CarePlanActivityKind._(
-    'PackagedProductDefinition',
+    value: 'PackagedProductDefinition',
   );
 
   /// Patient
   static final CarePlanActivityKind Patient = CarePlanActivityKind._(
-    'Patient',
+    value: 'Patient',
   );
 
   /// PaymentNotice
   static final CarePlanActivityKind PaymentNotice = CarePlanActivityKind._(
-    'PaymentNotice',
+    value: 'PaymentNotice',
   );
 
   /// PaymentReconciliation
   static final CarePlanActivityKind PaymentReconciliation =
       CarePlanActivityKind._(
-    'PaymentReconciliation',
+    value: 'PaymentReconciliation',
   );
 
   /// Person
   static final CarePlanActivityKind Person = CarePlanActivityKind._(
-    'Person',
+    value: 'Person',
   );
 
   /// PlanDefinition
   static final CarePlanActivityKind PlanDefinition = CarePlanActivityKind._(
-    'PlanDefinition',
+    value: 'PlanDefinition',
   );
 
   /// Practitioner
   static final CarePlanActivityKind Practitioner = CarePlanActivityKind._(
-    'Practitioner',
+    value: 'Practitioner',
   );
 
   /// PractitionerRole
   static final CarePlanActivityKind PractitionerRole = CarePlanActivityKind._(
-    'PractitionerRole',
+    value: 'PractitionerRole',
   );
 
   /// Procedure
   static final CarePlanActivityKind Procedure = CarePlanActivityKind._(
-    'Procedure',
+    value: 'Procedure',
   );
 
   /// Provenance
   static final CarePlanActivityKind Provenance = CarePlanActivityKind._(
-    'Provenance',
+    value: 'Provenance',
   );
 
   /// Questionnaire
   static final CarePlanActivityKind Questionnaire = CarePlanActivityKind._(
-    'Questionnaire',
+    value: 'Questionnaire',
   );
 
   /// QuestionnaireResponse
   static final CarePlanActivityKind QuestionnaireResponse =
       CarePlanActivityKind._(
-    'QuestionnaireResponse',
+    value: 'QuestionnaireResponse',
   );
 
   /// RegulatedAuthorization
   static final CarePlanActivityKind RegulatedAuthorization =
       CarePlanActivityKind._(
-    'RegulatedAuthorization',
+    value: 'RegulatedAuthorization',
   );
 
   /// RelatedPerson
   static final CarePlanActivityKind RelatedPerson = CarePlanActivityKind._(
-    'RelatedPerson',
+    value: 'RelatedPerson',
   );
 
   /// RequestGroup
   static final CarePlanActivityKind RequestGroup = CarePlanActivityKind._(
-    'RequestGroup',
+    value: 'RequestGroup',
   );
 
   /// ResearchDefinition
   static final CarePlanActivityKind ResearchDefinition = CarePlanActivityKind._(
-    'ResearchDefinition',
+    value: 'ResearchDefinition',
   );
 
   /// ResearchElementDefinition
   static final CarePlanActivityKind ResearchElementDefinition =
       CarePlanActivityKind._(
-    'ResearchElementDefinition',
+    value: 'ResearchElementDefinition',
   );
 
   /// ResearchStudy
   static final CarePlanActivityKind ResearchStudy = CarePlanActivityKind._(
-    'ResearchStudy',
+    value: 'ResearchStudy',
   );
 
   /// ResearchSubject
   static final CarePlanActivityKind ResearchSubject = CarePlanActivityKind._(
-    'ResearchSubject',
+    value: 'ResearchSubject',
   );
 
   /// RiskAssessment
   static final CarePlanActivityKind RiskAssessment = CarePlanActivityKind._(
-    'RiskAssessment',
+    value: 'RiskAssessment',
   );
 
   /// Schedule
   static final CarePlanActivityKind Schedule = CarePlanActivityKind._(
-    'Schedule',
+    value: 'Schedule',
   );
 
   /// SearchParameter
   static final CarePlanActivityKind SearchParameter = CarePlanActivityKind._(
-    'SearchParameter',
+    value: 'SearchParameter',
   );
 
   /// ServiceRequest
   static final CarePlanActivityKind ServiceRequest = CarePlanActivityKind._(
-    'ServiceRequest',
+    value: 'ServiceRequest',
   );
 
   /// Slot
   static final CarePlanActivityKind Slot = CarePlanActivityKind._(
-    'Slot',
+    value: 'Slot',
   );
 
   /// Specimen
   static final CarePlanActivityKind Specimen = CarePlanActivityKind._(
-    'Specimen',
+    value: 'Specimen',
   );
 
   /// SpecimenDefinition
   static final CarePlanActivityKind SpecimenDefinition = CarePlanActivityKind._(
-    'SpecimenDefinition',
+    value: 'SpecimenDefinition',
   );
 
   /// StructureDefinition
   static final CarePlanActivityKind StructureDefinition =
       CarePlanActivityKind._(
-    'StructureDefinition',
+    value: 'StructureDefinition',
   );
 
   /// StructureMap
   static final CarePlanActivityKind StructureMap = CarePlanActivityKind._(
-    'StructureMap',
+    value: 'StructureMap',
   );
 
   /// Subscription
   static final CarePlanActivityKind Subscription = CarePlanActivityKind._(
-    'Subscription',
+    value: 'Subscription',
   );
 
   /// SubscriptionStatus
   static final CarePlanActivityKind SubscriptionStatus = CarePlanActivityKind._(
-    'SubscriptionStatus',
+    value: 'SubscriptionStatus',
   );
 
   /// SubscriptionTopic
   static final CarePlanActivityKind SubscriptionTopic = CarePlanActivityKind._(
-    'SubscriptionTopic',
+    value: 'SubscriptionTopic',
   );
 
   /// Substance
   static final CarePlanActivityKind Substance = CarePlanActivityKind._(
-    'Substance',
+    value: 'Substance',
   );
 
   /// SubstanceDefinition
   static final CarePlanActivityKind SubstanceDefinition =
       CarePlanActivityKind._(
-    'SubstanceDefinition',
+    value: 'SubstanceDefinition',
   );
 
   /// SupplyDelivery
   static final CarePlanActivityKind SupplyDelivery = CarePlanActivityKind._(
-    'SupplyDelivery',
+    value: 'SupplyDelivery',
   );
 
   /// SupplyRequest
   static final CarePlanActivityKind SupplyRequest = CarePlanActivityKind._(
-    'SupplyRequest',
+    value: 'SupplyRequest',
   );
 
   /// Task
   static final CarePlanActivityKind Task = CarePlanActivityKind._(
-    'Task',
+    value: 'Task',
   );
 
   /// TerminologyCapabilities
   static final CarePlanActivityKind TerminologyCapabilities =
       CarePlanActivityKind._(
-    'TerminologyCapabilities',
+    value: 'TerminologyCapabilities',
   );
 
   /// TestReport
   static final CarePlanActivityKind TestReport = CarePlanActivityKind._(
-    'TestReport',
+    value: 'TestReport',
   );
 
   /// TestScript
   static final CarePlanActivityKind TestScript = CarePlanActivityKind._(
-    'TestScript',
+    value: 'TestScript',
   );
 
   /// ValueSet
   static final CarePlanActivityKind ValueSet = CarePlanActivityKind._(
-    'ValueSet',
+    value: 'ValueSet',
   );
 
   /// VerificationResult
   static final CarePlanActivityKind VerificationResult = CarePlanActivityKind._(
-    'VerificationResult',
+    value: 'VerificationResult',
   );
 
   /// VisionPrescription
   static final CarePlanActivityKind VisionPrescription = CarePlanActivityKind._(
-    'VisionPrescription',
+    value: 'VisionPrescription',
   );
 
   /// Parameters
   static final CarePlanActivityKind Parameters = CarePlanActivityKind._(
-    'Parameters',
+    value: 'Parameters',
   );
 
   /// For instances where an Element is present but not value
 
-  static final CarePlanActivityKind elementOnly = CarePlanActivityKind._('');
+  static final CarePlanActivityKind elementOnly =
+      CarePlanActivityKind._(value: '');
 
   /// List of all enum-like values
   static final List<CarePlanActivityKind> values = [
@@ -924,13 +930,13 @@ class CarePlanActivityKind extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   CarePlanActivityKind clone() => CarePlanActivityKind._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   CarePlanActivityKind withElement(Element? newElement) {
-    return CarePlanActivityKind._(value, newElement);
+    return CarePlanActivityKind._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -955,14 +961,13 @@ class CarePlanActivityKind extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return CarePlanActivityKind._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

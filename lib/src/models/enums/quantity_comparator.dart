@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// How the Quantity should be understood and represented.
 class QuantityComparator extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  QuantityComparator._(super.value, [super.element]);
+  QuantityComparator._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [QuantityComparator] from JSON.
   factory QuantityComparator.fromJson(
@@ -21,32 +26,32 @@ class QuantityComparator extends PrimitiveType<String> {
         'QuantityComparator cannot be constructed from JSON.',
       );
     }
-    return QuantityComparator._(value, element);
+    return QuantityComparator._(value: value, element: element);
   }
 
   /// lt
   static final QuantityComparator lt = QuantityComparator._(
-    '<',
+    value: '<',
   );
 
   /// le
   static final QuantityComparator le = QuantityComparator._(
-    '<=',
+    value: '<=',
   );
 
   /// ge
   static final QuantityComparator ge = QuantityComparator._(
-    '>=',
+    value: '>=',
   );
 
   /// gt
   static final QuantityComparator gt = QuantityComparator._(
-    '>',
+    value: '>',
   );
 
   /// For instances where an Element is present but not value
 
-  static final QuantityComparator elementOnly = QuantityComparator._('');
+  static final QuantityComparator elementOnly = QuantityComparator._(value: '');
 
   /// List of all enum-like values
   static final List<QuantityComparator> values = [
@@ -59,13 +64,13 @@ class QuantityComparator extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   QuantityComparator clone() => QuantityComparator._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   QuantityComparator withElement(Element? newElement) {
-    return QuantityComparator._(value, newElement);
+    return QuantityComparator._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -90,14 +95,13 @@ class QuantityComparator extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return QuantityComparator._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

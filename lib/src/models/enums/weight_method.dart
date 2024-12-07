@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The method by which the substance weight was measured.
 class WeightMethod extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  WeightMethod._(super.value, [super.element]);
+  WeightMethod._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [WeightMethod] from JSON.
   factory WeightMethod.fromJson(
@@ -21,52 +26,52 @@ class WeightMethod extends PrimitiveType<String> {
         'WeightMethod cannot be constructed from JSON.',
       );
     }
-    return WeightMethod._(value, element);
+    return WeightMethod._(value: value, element: element);
   }
 
   /// SDS_PAGE
   static final WeightMethod SDS_PAGE = WeightMethod._(
-    'SDS-PAGE',
+    value: 'SDS-PAGE',
   );
 
   /// Calculated
   static final WeightMethod Calculated = WeightMethod._(
-    'Calculated',
+    value: 'Calculated',
   );
 
   /// LighScattering
   static final WeightMethod LighScattering = WeightMethod._(
-    'LighScattering',
+    value: 'LighScattering',
   );
 
   /// Viscosity
   static final WeightMethod Viscosity = WeightMethod._(
-    'Viscosity',
+    value: 'Viscosity',
   );
 
   /// GelPermeationCentrifugation
   static final WeightMethod GelPermeationCentrifugation = WeightMethod._(
-    'GelPermeationCentrifugation',
+    value: 'GelPermeationCentrifugation',
   );
 
   /// End_groupAnalysis
   static final WeightMethod End_groupAnalysis = WeightMethod._(
-    'End-groupAnalysis',
+    value: 'End-groupAnalysis',
   );
 
   /// End_groupTitration
   static final WeightMethod End_groupTitration = WeightMethod._(
-    'End-groupTitration',
+    value: 'End-groupTitration',
   );
 
   /// Size_ExclusionChromatography
   static final WeightMethod Size_ExclusionChromatography = WeightMethod._(
-    'Size-ExclusionChromatography',
+    value: 'Size-ExclusionChromatography',
   );
 
   /// For instances where an Element is present but not value
 
-  static final WeightMethod elementOnly = WeightMethod._('');
+  static final WeightMethod elementOnly = WeightMethod._(value: '');
 
   /// List of all enum-like values
   static final List<WeightMethod> values = [
@@ -83,13 +88,13 @@ class WeightMethod extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   WeightMethod clone() => WeightMethod._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   WeightMethod withElement(Element? newElement) {
-    return WeightMethod._(value, newElement);
+    return WeightMethod._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -114,14 +119,13 @@ class WeightMethod extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return WeightMethod._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

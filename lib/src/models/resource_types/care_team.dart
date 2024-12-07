@@ -31,10 +31,6 @@ class CareTeam extends DomainResource {
     this.managingOrganization,
     this.telecom,
     this.note,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.CareTeam,
         );
@@ -442,10 +438,6 @@ class CareTeam extends DomainResource {
       managingOrganization: managingOrganization ?? this.managingOrganization,
       telecom: telecom ?? this.telecom,
       note: note ?? this.note,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -466,10 +458,6 @@ class CareTeamParticipant extends BackboneElement {
     this.onBehalfOf,
     this.period,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -651,10 +639,6 @@ class CareTeamParticipant extends BackboneElement {
       member: member ?? this.member,
       onBehalfOf: onBehalfOf ?? this.onBehalfOf,
       period: period ?? this.period,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

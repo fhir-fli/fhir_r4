@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The processing mode that applies to this list.
 class ListMode extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ListMode._(super.value, [super.element]);
+  ListMode._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [ListMode] from JSON.
   factory ListMode.fromJson(
@@ -21,27 +26,27 @@ class ListMode extends PrimitiveType<String> {
         'ListMode cannot be constructed from JSON.',
       );
     }
-    return ListMode._(value, element);
+    return ListMode._(value: value, element: element);
   }
 
   /// working
   static final ListMode working = ListMode._(
-    'working',
+    value: 'working',
   );
 
   /// snapshot
   static final ListMode snapshot = ListMode._(
-    'snapshot',
+    value: 'snapshot',
   );
 
   /// changes
   static final ListMode changes = ListMode._(
-    'changes',
+    value: 'changes',
   );
 
   /// For instances where an Element is present but not value
 
-  static final ListMode elementOnly = ListMode._('');
+  static final ListMode elementOnly = ListMode._(value: '');
 
   /// List of all enum-like values
   static final List<ListMode> values = [
@@ -53,13 +58,13 @@ class ListMode extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ListMode clone() => ListMode._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ListMode withElement(Element? newElement) {
-    return ListMode._(value, newElement);
+    return ListMode._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -84,14 +89,13 @@ class ListMode extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ListMode._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

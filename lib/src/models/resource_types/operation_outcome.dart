@@ -19,10 +19,6 @@ class OperationOutcome extends DomainResource {
     super.extension_,
     super.modifierExtension,
     required this.issue,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.OperationOutcome,
         );
@@ -215,10 +211,6 @@ class OperationOutcome extends DomainResource {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       issue: issue ?? this.issue,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -241,10 +233,6 @@ class OperationOutcomeIssue extends BackboneElement {
     this.location,
     this.expression,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -461,10 +449,6 @@ class OperationOutcomeIssue extends BackboneElement {
       diagnostics: diagnostics ?? this.diagnostics,
       location: location ?? this.location,
       expression: expression ?? this.expression,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

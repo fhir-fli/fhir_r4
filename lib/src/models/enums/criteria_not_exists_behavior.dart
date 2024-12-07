@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Behavior a server can exhibit when a criteria state does not exist (e.g., state prior to a create or after a delete).
 class CriteriaNotExistsBehavior extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  CriteriaNotExistsBehavior._(super.value, [super.element]);
+  CriteriaNotExistsBehavior._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [CriteriaNotExistsBehavior] from JSON.
   factory CriteriaNotExistsBehavior.fromJson(
@@ -21,25 +26,25 @@ class CriteriaNotExistsBehavior extends PrimitiveType<String> {
         'CriteriaNotExistsBehavior cannot be constructed from JSON.',
       );
     }
-    return CriteriaNotExistsBehavior._(value, element);
+    return CriteriaNotExistsBehavior._(value: value, element: element);
   }
 
   /// test_passes
   static final CriteriaNotExistsBehavior test_passes =
       CriteriaNotExistsBehavior._(
-    'test-passes',
+    value: 'test-passes',
   );
 
   /// test_fails
   static final CriteriaNotExistsBehavior test_fails =
       CriteriaNotExistsBehavior._(
-    'test-fails',
+    value: 'test-fails',
   );
 
   /// For instances where an Element is present but not value
 
   static final CriteriaNotExistsBehavior elementOnly =
-      CriteriaNotExistsBehavior._('');
+      CriteriaNotExistsBehavior._(value: '');
 
   /// List of all enum-like values
   static final List<CriteriaNotExistsBehavior> values = [
@@ -50,13 +55,13 @@ class CriteriaNotExistsBehavior extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   CriteriaNotExistsBehavior clone() => CriteriaNotExistsBehavior._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   CriteriaNotExistsBehavior withElement(Element? newElement) {
-    return CriteriaNotExistsBehavior._(value, newElement);
+    return CriteriaNotExistsBehavior._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -81,14 +86,13 @@ class CriteriaNotExistsBehavior extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return CriteriaNotExistsBehavior._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

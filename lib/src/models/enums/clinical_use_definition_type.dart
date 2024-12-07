@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Overall defining type of this clinical use definition.
 class ClinicalUseDefinitionType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ClinicalUseDefinitionType._(super.value, [super.element]);
+  ClinicalUseDefinitionType._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [ClinicalUseDefinitionType] from JSON.
   factory ClinicalUseDefinitionType.fromJson(
@@ -21,42 +26,42 @@ class ClinicalUseDefinitionType extends PrimitiveType<String> {
         'ClinicalUseDefinitionType cannot be constructed from JSON.',
       );
     }
-    return ClinicalUseDefinitionType._(value, element);
+    return ClinicalUseDefinitionType._(value: value, element: element);
   }
 
   /// indication
   static final ClinicalUseDefinitionType indication =
       ClinicalUseDefinitionType._(
-    'indication',
+    value: 'indication',
   );
 
   /// contraindication
   static final ClinicalUseDefinitionType contraindication =
       ClinicalUseDefinitionType._(
-    'contraindication',
+    value: 'contraindication',
   );
 
   /// interaction
   static final ClinicalUseDefinitionType interaction =
       ClinicalUseDefinitionType._(
-    'interaction',
+    value: 'interaction',
   );
 
   /// undesirable_effect
   static final ClinicalUseDefinitionType undesirable_effect =
       ClinicalUseDefinitionType._(
-    'undesirable-effect',
+    value: 'undesirable-effect',
   );
 
   /// warning
   static final ClinicalUseDefinitionType warning = ClinicalUseDefinitionType._(
-    'warning',
+    value: 'warning',
   );
 
   /// For instances where an Element is present but not value
 
   static final ClinicalUseDefinitionType elementOnly =
-      ClinicalUseDefinitionType._('');
+      ClinicalUseDefinitionType._(value: '');
 
   /// List of all enum-like values
   static final List<ClinicalUseDefinitionType> values = [
@@ -70,13 +75,13 @@ class ClinicalUseDefinitionType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ClinicalUseDefinitionType clone() => ClinicalUseDefinitionType._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ClinicalUseDefinitionType withElement(Element? newElement) {
-    return ClinicalUseDefinitionType._(value, newElement);
+    return ClinicalUseDefinitionType._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -101,14 +106,13 @@ class ClinicalUseDefinitionType extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ClinicalUseDefinitionType._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

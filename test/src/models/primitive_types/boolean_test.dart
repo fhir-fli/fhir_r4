@@ -4,14 +4,14 @@ import 'package:test/test.dart';
 void main() {
   group('FhirBoolean Tests', () {
     test('True Boolean Value', () {
-      final fhirBool = FhirBoolean(true);
+      final fhirBool = FhirBoolean(input: true);
       expect(fhirBool.value, isTrue);
       expect(fhirBool.toJson(), equals({'value': true}));
       expect(fhirBool.toString(), equals('true'));
     });
 
     test('False Boolean Value', () {
-      final fhirBool = FhirBoolean(false);
+      final fhirBool = FhirBoolean(input: false);
       expect(fhirBool.value, isFalse);
       expect(fhirBool.toJson(), equals({'value': false}));
       expect(fhirBool.toString(), equals('false'));
@@ -71,30 +71,30 @@ void main() {
     });
 
     test('ToJson', () {
-      final fhirBool = FhirBoolean(true);
+      final fhirBool = FhirBoolean(input: true);
       expect(fhirBool.toJson(), equals({'value': true}));
     });
 
     test('ToString', () {
-      final fhirBool = FhirBoolean(true);
+      final fhirBool = FhirBoolean(input: true);
       expect(fhirBool.toString(), equals('true'));
     });
 
     test('Clone', () {
-      final fhirBool = FhirBoolean(true);
+      final fhirBool = FhirBoolean(input: true);
       final clonedBool = fhirBool.clone();
       expect(clonedBool, equals(fhirBool));
       expect(clonedBool.value, equals(true));
     });
 
     test('CopyWith - No New Value', () {
-      final fhirBool = FhirBoolean(true);
+      final fhirBool = FhirBoolean(input: true);
       final copiedBool = fhirBool.copyWith();
       expect(copiedBool.value, equals(fhirBool.value));
     });
 
     test('CopyWith - New Value', () {
-      final fhirBool = FhirBoolean(true);
+      final fhirBool = FhirBoolean(input: true);
       final copiedBool = fhirBool.copyWith(newValue: false);
       expect(copiedBool.value, isFalse);
     });

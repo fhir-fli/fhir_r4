@@ -20,10 +20,6 @@ class Count extends Quantity {
     super.system,
     super.code,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -167,10 +163,6 @@ class Count extends Quantity {
       unit: unit ?? this.unit,
       system: system ?? this.system,
       code: code ?? this.code,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

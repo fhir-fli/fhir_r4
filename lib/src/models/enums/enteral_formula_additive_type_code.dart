@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// EnteralFormulaAdditiveType: Codes for the type of modular component such as protein, carbohydrate or fiber to be provided in addition to or mixed with the base formula. This value set is provided as a suggestive example.
 class EnteralFormulaAdditiveTypeCode extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  EnteralFormulaAdditiveTypeCode._(super.value, [super.element]);
+  EnteralFormulaAdditiveTypeCode._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [EnteralFormulaAdditiveTypeCode] from JSON.
   factory EnteralFormulaAdditiveTypeCode.fromJson(
@@ -21,43 +26,43 @@ class EnteralFormulaAdditiveTypeCode extends PrimitiveType<String> {
         'EnteralFormulaAdditiveTypeCode cannot be constructed from JSON.',
       );
     }
-    return EnteralFormulaAdditiveTypeCode._(value, element);
+    return EnteralFormulaAdditiveTypeCode._(value: value, element: element);
   }
 
   /// lipid
   static final EnteralFormulaAdditiveTypeCode lipid =
       EnteralFormulaAdditiveTypeCode._(
-    'lipid',
+    value: 'lipid',
   );
 
   /// protein
   static final EnteralFormulaAdditiveTypeCode protein =
       EnteralFormulaAdditiveTypeCode._(
-    'protein',
+    value: 'protein',
   );
 
   /// carbohydrate
   static final EnteralFormulaAdditiveTypeCode carbohydrate =
       EnteralFormulaAdditiveTypeCode._(
-    'carbohydrate',
+    value: 'carbohydrate',
   );
 
   /// fiber
   static final EnteralFormulaAdditiveTypeCode fiber =
       EnteralFormulaAdditiveTypeCode._(
-    'fiber',
+    value: 'fiber',
   );
 
   /// water
   static final EnteralFormulaAdditiveTypeCode water =
       EnteralFormulaAdditiveTypeCode._(
-    'water',
+    value: 'water',
   );
 
   /// For instances where an Element is present but not value
 
   static final EnteralFormulaAdditiveTypeCode elementOnly =
-      EnteralFormulaAdditiveTypeCode._('');
+      EnteralFormulaAdditiveTypeCode._(value: '');
 
   /// List of all enum-like values
   static final List<EnteralFormulaAdditiveTypeCode> values = [
@@ -71,13 +76,13 @@ class EnteralFormulaAdditiveTypeCode extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   EnteralFormulaAdditiveTypeCode clone() => EnteralFormulaAdditiveTypeCode._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   EnteralFormulaAdditiveTypeCode withElement(Element? newElement) {
-    return EnteralFormulaAdditiveTypeCode._(value, newElement);
+    return EnteralFormulaAdditiveTypeCode._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -102,14 +107,13 @@ class EnteralFormulaAdditiveTypeCode extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return EnteralFormulaAdditiveTypeCode._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

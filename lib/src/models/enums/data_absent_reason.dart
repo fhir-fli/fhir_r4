@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Used to specify why the normally expected content of the data element is missing.
 class DataAbsentReason extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  DataAbsentReason._(super.value, [super.element]);
+  DataAbsentReason._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [DataAbsentReason] from JSON.
   factory DataAbsentReason.fromJson(
@@ -21,87 +26,87 @@ class DataAbsentReason extends PrimitiveType<String> {
         'DataAbsentReason cannot be constructed from JSON.',
       );
     }
-    return DataAbsentReason._(value, element);
+    return DataAbsentReason._(value: value, element: element);
   }
 
   /// unknown
   static final DataAbsentReason unknown = DataAbsentReason._(
-    'unknown',
+    value: 'unknown',
   );
 
   /// asked_unknown
   static final DataAbsentReason asked_unknown = DataAbsentReason._(
-    'asked-unknown',
+    value: 'asked-unknown',
   );
 
   /// temp_unknown
   static final DataAbsentReason temp_unknown = DataAbsentReason._(
-    'temp-unknown',
+    value: 'temp-unknown',
   );
 
   /// not_asked
   static final DataAbsentReason not_asked = DataAbsentReason._(
-    'not-asked',
+    value: 'not-asked',
   );
 
   /// asked_declined
   static final DataAbsentReason asked_declined = DataAbsentReason._(
-    'asked-declined',
+    value: 'asked-declined',
   );
 
   /// masked
   static final DataAbsentReason masked = DataAbsentReason._(
-    'masked',
+    value: 'masked',
   );
 
   /// not_applicable
   static final DataAbsentReason not_applicable = DataAbsentReason._(
-    'not-applicable',
+    value: 'not-applicable',
   );
 
   /// unsupported
   static final DataAbsentReason unsupported = DataAbsentReason._(
-    'unsupported',
+    value: 'unsupported',
   );
 
   /// as_text
   static final DataAbsentReason as_text = DataAbsentReason._(
-    'as-text',
+    value: 'as-text',
   );
 
   /// error
   static final DataAbsentReason error = DataAbsentReason._(
-    'error',
+    value: 'error',
   );
 
   /// not_a_number
   static final DataAbsentReason not_a_number = DataAbsentReason._(
-    'not-a-number',
+    value: 'not-a-number',
   );
 
   /// negative_infinity
   static final DataAbsentReason negative_infinity = DataAbsentReason._(
-    'negative-infinity',
+    value: 'negative-infinity',
   );
 
   /// positive_infinity
   static final DataAbsentReason positive_infinity = DataAbsentReason._(
-    'positive-infinity',
+    value: 'positive-infinity',
   );
 
   /// not_performed
   static final DataAbsentReason not_performed = DataAbsentReason._(
-    'not-performed',
+    value: 'not-performed',
   );
 
   /// not_permitted
   static final DataAbsentReason not_permitted = DataAbsentReason._(
-    'not-permitted',
+    value: 'not-permitted',
   );
 
   /// For instances where an Element is present but not value
 
-  static final DataAbsentReason elementOnly = DataAbsentReason._('');
+  static final DataAbsentReason elementOnly = DataAbsentReason._(value: '');
 
   /// List of all enum-like values
   static final List<DataAbsentReason> values = [
@@ -125,13 +130,13 @@ class DataAbsentReason extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   DataAbsentReason clone() => DataAbsentReason._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   DataAbsentReason withElement(Element? newElement) {
-    return DataAbsentReason._(value, newElement);
+    return DataAbsentReason._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -156,14 +161,13 @@ class DataAbsentReason extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return DataAbsentReason._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

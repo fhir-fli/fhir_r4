@@ -46,10 +46,6 @@ class DeviceRequest extends DomainResource {
     this.supportingInfo,
     this.note,
     this.relevantHistory,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.DeviceRequest,
         );
@@ -691,10 +687,6 @@ class DeviceRequest extends DomainResource {
       supportingInfo: supportingInfo ?? this.supportingInfo,
       note: note ?? this.note,
       relevantHistory: relevantHistory ?? this.relevantHistory,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -716,10 +708,6 @@ class DeviceRequestParameter extends BackboneElement {
     this.valueRange,
     this.valueBoolean,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -907,10 +895,6 @@ class DeviceRequestParameter extends BackboneElement {
       valueQuantity: valueQuantity ?? this.valueQuantity,
       valueRange: valueRange ?? this.valueRange,
       valueBoolean: valueBoolean ?? this.valueBoolean,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

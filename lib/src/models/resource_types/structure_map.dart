@@ -36,10 +36,6 @@ class StructureMap extends CanonicalResource {
     this.structure,
     this.import_,
     required this.group,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.StructureMap,
         );
@@ -453,10 +449,6 @@ class StructureMap extends CanonicalResource {
       structure: structure ?? this.structure,
       import_: import_ ?? this.import_,
       group: group ?? this.group,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -478,10 +470,6 @@ class StructureMapStructure extends BackboneElement {
     this.alias,
     this.documentation,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -644,10 +632,6 @@ class StructureMapStructure extends BackboneElement {
       mode: mode ?? this.mode,
       alias: alias ?? this.alias,
       documentation: documentation ?? this.documentation,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -670,10 +654,6 @@ class StructureMapGroup extends BackboneElement {
     required this.input,
     required this.rule,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -877,10 +857,6 @@ class StructureMapGroup extends BackboneElement {
       documentation: documentation ?? this.documentation,
       input: input ?? this.input,
       rule: rule ?? this.rule,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -901,10 +877,6 @@ class StructureMapInput extends BackboneElement {
     required this.mode,
     this.documentation,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1067,10 +1039,6 @@ class StructureMapInput extends BackboneElement {
       type: type ?? this.type,
       mode: mode ?? this.mode,
       documentation: documentation ?? this.documentation,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1092,10 +1060,6 @@ class StructureMapRule extends BackboneElement {
     this.dependent,
     this.documentation,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1310,10 +1274,6 @@ class StructureMapRule extends BackboneElement {
       rule: rule ?? this.rule,
       dependent: dependent ?? this.dependent,
       documentation: documentation ?? this.documentation,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1389,10 +1349,6 @@ class StructureMapSource extends BackboneElement {
     this.check,
     this.logMessage,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -2400,10 +2356,6 @@ class StructureMapSource extends BackboneElement {
       condition: condition ?? this.condition,
       check: check ?? this.check,
       logMessage: logMessage ?? this.logMessage,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -2427,10 +2379,6 @@ class StructureMapTarget extends BackboneElement {
     this.transform,
     this.parameter,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -2660,10 +2608,6 @@ class StructureMapTarget extends BackboneElement {
       listRuleId: listRuleId ?? this.listRuleId,
       transform: transform ?? this.transform,
       parameter: parameter ?? this.parameter,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -2684,10 +2628,6 @@ class StructureMapParameter extends BackboneElement {
     this.valueInteger,
     this.valueDecimal,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -2869,10 +2809,6 @@ class StructureMapParameter extends BackboneElement {
       valueBoolean: valueBoolean ?? this.valueBoolean,
       valueInteger: valueInteger ?? this.valueInteger,
       valueDecimal: valueDecimal ?? this.valueDecimal,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -2890,10 +2826,6 @@ class StructureMapDependent extends BackboneElement {
     required this.name,
     required this.variable,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -3039,10 +2971,6 @@ class StructureMapDependent extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       name: name ?? this.name,
       variable: variable ?? this.variable,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

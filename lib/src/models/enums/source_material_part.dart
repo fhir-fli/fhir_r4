@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// An anatomical origin of the source material within an organism.
 class SourceMaterialPart extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  SourceMaterialPart._(super.value, [super.element]);
+  SourceMaterialPart._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [SourceMaterialPart] from JSON.
   factory SourceMaterialPart.fromJson(
@@ -21,27 +26,27 @@ class SourceMaterialPart extends PrimitiveType<String> {
         'SourceMaterialPart cannot be constructed from JSON.',
       );
     }
-    return SourceMaterialPart._(value, element);
+    return SourceMaterialPart._(value: value, element: element);
   }
 
   /// Animal
   static final SourceMaterialPart Animal = SourceMaterialPart._(
-    'Animal',
+    value: 'Animal',
   );
 
   /// Plant
   static final SourceMaterialPart Plant = SourceMaterialPart._(
-    'Plant',
+    value: 'Plant',
   );
 
   /// Mineral
   static final SourceMaterialPart Mineral = SourceMaterialPart._(
-    'Mineral',
+    value: 'Mineral',
   );
 
   /// For instances where an Element is present but not value
 
-  static final SourceMaterialPart elementOnly = SourceMaterialPart._('');
+  static final SourceMaterialPart elementOnly = SourceMaterialPart._(value: '');
 
   /// List of all enum-like values
   static final List<SourceMaterialPart> values = [
@@ -53,13 +58,13 @@ class SourceMaterialPart extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   SourceMaterialPart clone() => SourceMaterialPart._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   SourceMaterialPart withElement(Element? newElement) {
-    return SourceMaterialPart._(value, newElement);
+    return SourceMaterialPart._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -84,14 +89,13 @@ class SourceMaterialPart extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return SourceMaterialPart._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

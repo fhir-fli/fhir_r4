@@ -26,10 +26,6 @@ class EnrollmentResponse extends DomainResource {
     this.created,
     this.organization,
     this.requestProvider,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.EnrollmentResponse,
         );
@@ -320,10 +316,6 @@ class EnrollmentResponse extends DomainResource {
       created: created ?? this.created,
       organization: organization ?? this.organization,
       requestProvider: requestProvider ?? this.requestProvider,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

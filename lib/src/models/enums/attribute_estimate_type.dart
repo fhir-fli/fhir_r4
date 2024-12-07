@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// A statistic about a statistic, e.g. Confidence interval or p-value
 class AttributeEstimateType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  AttributeEstimateType._(super.value, [super.element]);
+  AttributeEstimateType._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [AttributeEstimateType] from JSON.
   factory AttributeEstimateType.fromJson(
@@ -21,67 +26,68 @@ class AttributeEstimateType extends PrimitiveType<String> {
         'AttributeEstimateType cannot be constructed from JSON.',
       );
     }
-    return AttributeEstimateType._(value, element);
+    return AttributeEstimateType._(value: value, element: element);
   }
 
   /// value0000419
   static final AttributeEstimateType value0000419 = AttributeEstimateType._(
-    '0000419',
+    value: '0000419',
   );
 
   /// C53324
   static final AttributeEstimateType C53324 = AttributeEstimateType._(
-    'C53324',
+    value: 'C53324',
   );
 
   /// value0000455
   static final AttributeEstimateType value0000455 = AttributeEstimateType._(
-    '0000455',
+    value: '0000455',
   );
 
   /// value0000420
   static final AttributeEstimateType value0000420 = AttributeEstimateType._(
-    '0000420',
+    value: '0000420',
   );
 
   /// C53245
   static final AttributeEstimateType C53245 = AttributeEstimateType._(
-    'C53245',
+    value: 'C53245',
   );
 
   /// C44185
   static final AttributeEstimateType C44185 = AttributeEstimateType._(
-    'C44185',
+    value: 'C44185',
   );
 
   /// C38013
   static final AttributeEstimateType C38013 = AttributeEstimateType._(
-    'C38013',
+    value: 'C38013',
   );
 
   /// C53322
   static final AttributeEstimateType C53322 = AttributeEstimateType._(
-    'C53322',
+    value: 'C53322',
   );
 
   /// value0000037
   static final AttributeEstimateType value0000037 = AttributeEstimateType._(
-    '0000037',
+    value: '0000037',
   );
 
   /// value0000421
   static final AttributeEstimateType value0000421 = AttributeEstimateType._(
-    '0000421',
+    value: '0000421',
   );
 
   /// C48918
   static final AttributeEstimateType C48918 = AttributeEstimateType._(
-    'C48918',
+    value: 'C48918',
   );
 
   /// For instances where an Element is present but not value
 
-  static final AttributeEstimateType elementOnly = AttributeEstimateType._('');
+  static final AttributeEstimateType elementOnly =
+      AttributeEstimateType._(value: '');
 
   /// List of all enum-like values
   static final List<AttributeEstimateType> values = [
@@ -101,13 +107,13 @@ class AttributeEstimateType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   AttributeEstimateType clone() => AttributeEstimateType._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   AttributeEstimateType withElement(Element? newElement) {
-    return AttributeEstimateType._(value, newElement);
+    return AttributeEstimateType._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -132,14 +138,13 @@ class AttributeEstimateType extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return AttributeEstimateType._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

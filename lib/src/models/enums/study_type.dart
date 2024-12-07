@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The type of study the evidence was derived from.
 class StudyType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  StudyType._(super.value, [super.element]);
+  StudyType._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [StudyType] from JSON.
   factory StudyType.fromJson(
@@ -21,47 +26,47 @@ class StudyType extends PrimitiveType<String> {
         'StudyType cannot be constructed from JSON.',
       );
     }
-    return StudyType._(value, element);
+    return StudyType._(value: value, element: element);
   }
 
   /// RCT
   static final StudyType RCT = StudyType._(
-    'RCT',
+    value: 'RCT',
   );
 
   /// CCT
   static final StudyType CCT = StudyType._(
-    'CCT',
+    value: 'CCT',
   );
 
   /// cohort
   static final StudyType cohort = StudyType._(
-    'cohort',
+    value: 'cohort',
   );
 
   /// case_control
   static final StudyType case_control = StudyType._(
-    'case-control',
+    value: 'case-control',
   );
 
   /// series
   static final StudyType series = StudyType._(
-    'series',
+    value: 'series',
   );
 
   /// case_report
   static final StudyType case_report = StudyType._(
-    'case-report',
+    value: 'case-report',
   );
 
   /// mixed
   static final StudyType mixed = StudyType._(
-    'mixed',
+    value: 'mixed',
   );
 
   /// For instances where an Element is present but not value
 
-  static final StudyType elementOnly = StudyType._('');
+  static final StudyType elementOnly = StudyType._(value: '');
 
   /// List of all enum-like values
   static final List<StudyType> values = [
@@ -77,13 +82,13 @@ class StudyType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   StudyType clone() => StudyType._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   StudyType withElement(Element? newElement) {
-    return StudyType._(value, newElement);
+    return StudyType._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -108,14 +113,13 @@ class StudyType extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return StudyType._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

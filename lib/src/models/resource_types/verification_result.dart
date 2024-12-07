@@ -32,10 +32,6 @@ class VerificationResult extends DomainResource {
     this.primarySource,
     this.attestation,
     this.validator,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.VerificationResult,
         );
@@ -436,10 +432,6 @@ class VerificationResult extends DomainResource {
       primarySource: primarySource ?? this.primarySource,
       attestation: attestation ?? this.attestation,
       validator: validator ?? this.validator,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -462,10 +454,6 @@ class VerificationResultPrimarySource extends BackboneElement {
     this.canPushUpdates,
     this.pushTypeAvailable,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -702,10 +690,6 @@ class VerificationResultPrimarySource extends BackboneElement {
       validationDate: validationDate ?? this.validationDate,
       canPushUpdates: canPushUpdates ?? this.canPushUpdates,
       pushTypeAvailable: pushTypeAvailable ?? this.pushTypeAvailable,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -729,10 +713,6 @@ class VerificationResultAttestation extends BackboneElement {
     this.proxySignature,
     this.sourceSignature,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -970,10 +950,6 @@ class VerificationResultAttestation extends BackboneElement {
           proxyIdentityCertificate ?? this.proxyIdentityCertificate,
       proxySignature: proxySignature ?? this.proxySignature,
       sourceSignature: sourceSignature ?? this.sourceSignature,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -992,10 +968,6 @@ class VerificationResultValidator extends BackboneElement {
     this.identityCertificate,
     this.attestationSignature,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1150,10 +1122,6 @@ class VerificationResultValidator extends BackboneElement {
       organization: organization ?? this.organization,
       identityCertificate: identityCertificate ?? this.identityCertificate,
       attestationSignature: attestationSignature ?? this.attestationSignature,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

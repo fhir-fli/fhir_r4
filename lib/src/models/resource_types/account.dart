@@ -30,10 +30,6 @@ class Account extends DomainResource {
     this.description,
     this.guarantor,
     this.partOf,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.Account,
         );
@@ -387,10 +383,6 @@ class Account extends DomainResource {
       description: description ?? this.description,
       guarantor: guarantor ?? this.guarantor,
       partOf: partOf ?? this.partOf,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -409,10 +401,6 @@ class AccountCoverage extends BackboneElement {
     required this.coverage,
     this.priority,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -555,10 +543,6 @@ class AccountCoverage extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       coverage: coverage ?? this.coverage,
       priority: priority ?? this.priority,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -578,10 +562,6 @@ class AccountGuarantor extends BackboneElement {
     this.onHold,
     this.period,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -736,10 +716,6 @@ class AccountGuarantor extends BackboneElement {
       party: party ?? this.party,
       onHold: onHold ?? this.onHold,
       period: period ?? this.period,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

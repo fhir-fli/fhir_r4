@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value set includes sample Modifier type codes.
 class ModifierTypeCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ModifierTypeCodes._(super.value, [super.element]);
+  ModifierTypeCodes._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [ModifierTypeCodes] from JSON.
   factory ModifierTypeCodes.fromJson(
@@ -21,42 +26,42 @@ class ModifierTypeCodes extends PrimitiveType<String> {
         'ModifierTypeCodes cannot be constructed from JSON.',
       );
     }
-    return ModifierTypeCodes._(value, element);
+    return ModifierTypeCodes._(value: value, element: element);
   }
 
   /// a
   static final ModifierTypeCodes a = ModifierTypeCodes._(
-    'a',
+    value: 'a',
   );
 
   /// b
   static final ModifierTypeCodes b = ModifierTypeCodes._(
-    'b',
+    value: 'b',
   );
 
   /// c
   static final ModifierTypeCodes c = ModifierTypeCodes._(
-    'c',
+    value: 'c',
   );
 
   /// e
   static final ModifierTypeCodes e = ModifierTypeCodes._(
-    'e',
+    value: 'e',
   );
 
   /// rooh
   static final ModifierTypeCodes rooh = ModifierTypeCodes._(
-    'rooh',
+    value: 'rooh',
   );
 
   /// x
   static final ModifierTypeCodes x = ModifierTypeCodes._(
-    'x',
+    value: 'x',
   );
 
   /// For instances where an Element is present but not value
 
-  static final ModifierTypeCodes elementOnly = ModifierTypeCodes._('');
+  static final ModifierTypeCodes elementOnly = ModifierTypeCodes._(value: '');
 
   /// List of all enum-like values
   static final List<ModifierTypeCodes> values = [
@@ -71,13 +76,13 @@ class ModifierTypeCodes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ModifierTypeCodes clone() => ModifierTypeCodes._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ModifierTypeCodes withElement(Element? newElement) {
-    return ModifierTypeCodes._(value, newElement);
+    return ModifierTypeCodes._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -102,14 +107,13 @@ class ModifierTypeCodes extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ModifierTypeCodes._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

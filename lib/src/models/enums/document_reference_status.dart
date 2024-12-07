@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The status of the document reference.
 class DocumentReferenceStatus extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  DocumentReferenceStatus._(super.value, [super.element]);
+  DocumentReferenceStatus._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [DocumentReferenceStatus] from JSON.
   factory DocumentReferenceStatus.fromJson(
@@ -21,29 +26,29 @@ class DocumentReferenceStatus extends PrimitiveType<String> {
         'DocumentReferenceStatus cannot be constructed from JSON.',
       );
     }
-    return DocumentReferenceStatus._(value, element);
+    return DocumentReferenceStatus._(value: value, element: element);
   }
 
   /// current
   static final DocumentReferenceStatus current = DocumentReferenceStatus._(
-    'current',
+    value: 'current',
   );
 
   /// superseded
   static final DocumentReferenceStatus superseded = DocumentReferenceStatus._(
-    'superseded',
+    value: 'superseded',
   );
 
   /// entered_in_error
   static final DocumentReferenceStatus entered_in_error =
       DocumentReferenceStatus._(
-    'entered-in-error',
+    value: 'entered-in-error',
   );
 
   /// For instances where an Element is present but not value
 
   static final DocumentReferenceStatus elementOnly =
-      DocumentReferenceStatus._('');
+      DocumentReferenceStatus._(value: '');
 
   /// List of all enum-like values
   static final List<DocumentReferenceStatus> values = [
@@ -55,13 +60,13 @@ class DocumentReferenceStatus extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   DocumentReferenceStatus clone() => DocumentReferenceStatus._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   DocumentReferenceStatus withElement(Element? newElement) {
-    return DocumentReferenceStatus._(value, newElement);
+    return DocumentReferenceStatus._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -86,14 +91,13 @@ class DocumentReferenceStatus extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return DocumentReferenceStatus._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

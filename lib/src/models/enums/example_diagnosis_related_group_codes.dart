@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value set includes example Diagnosis Related Group codes.
 class ExampleDiagnosisRelatedGroupCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ExampleDiagnosisRelatedGroupCodes._(super.value, [super.element]);
+  ExampleDiagnosisRelatedGroupCodes._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [ExampleDiagnosisRelatedGroupCodes] from JSON.
   factory ExampleDiagnosisRelatedGroupCodes.fromJson(
@@ -21,37 +26,37 @@ class ExampleDiagnosisRelatedGroupCodes extends PrimitiveType<String> {
         'ExampleDiagnosisRelatedGroupCodes cannot be constructed from JSON.',
       );
     }
-    return ExampleDiagnosisRelatedGroupCodes._(value, element);
+    return ExampleDiagnosisRelatedGroupCodes._(value: value, element: element);
   }
 
   /// value100
   static final ExampleDiagnosisRelatedGroupCodes value100 =
       ExampleDiagnosisRelatedGroupCodes._(
-    '100',
+    value: '100',
   );
 
   /// value101
   static final ExampleDiagnosisRelatedGroupCodes value101 =
       ExampleDiagnosisRelatedGroupCodes._(
-    '101',
+    value: '101',
   );
 
   /// value300
   static final ExampleDiagnosisRelatedGroupCodes value300 =
       ExampleDiagnosisRelatedGroupCodes._(
-    '300',
+    value: '300',
   );
 
   /// value400
   static final ExampleDiagnosisRelatedGroupCodes value400 =
       ExampleDiagnosisRelatedGroupCodes._(
-    '400',
+    value: '400',
   );
 
   /// For instances where an Element is present but not value
 
   static final ExampleDiagnosisRelatedGroupCodes elementOnly =
-      ExampleDiagnosisRelatedGroupCodes._('');
+      ExampleDiagnosisRelatedGroupCodes._(value: '');
 
   /// List of all enum-like values
   static final List<ExampleDiagnosisRelatedGroupCodes> values = [
@@ -65,13 +70,14 @@ class ExampleDiagnosisRelatedGroupCodes extends PrimitiveType<String> {
   @override
   ExampleDiagnosisRelatedGroupCodes clone() =>
       ExampleDiagnosisRelatedGroupCodes._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ExampleDiagnosisRelatedGroupCodes withElement(Element? newElement) {
-    return ExampleDiagnosisRelatedGroupCodes._(value, newElement);
+    return ExampleDiagnosisRelatedGroupCodes._(
+        value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -96,14 +102,13 @@ class ExampleDiagnosisRelatedGroupCodes extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ExampleDiagnosisRelatedGroupCodes._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

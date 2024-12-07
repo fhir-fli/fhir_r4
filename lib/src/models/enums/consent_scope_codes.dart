@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value set includes the four Consent scope codes.
 class ConsentScopeCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ConsentScopeCodes._(super.value, [super.element]);
+  ConsentScopeCodes._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [ConsentScopeCodes] from JSON.
   factory ConsentScopeCodes.fromJson(
@@ -21,32 +26,32 @@ class ConsentScopeCodes extends PrimitiveType<String> {
         'ConsentScopeCodes cannot be constructed from JSON.',
       );
     }
-    return ConsentScopeCodes._(value, element);
+    return ConsentScopeCodes._(value: value, element: element);
   }
 
   /// adr
   static final ConsentScopeCodes adr = ConsentScopeCodes._(
-    'adr',
+    value: 'adr',
   );
 
   /// research
   static final ConsentScopeCodes research = ConsentScopeCodes._(
-    'research',
+    value: 'research',
   );
 
   /// patient_privacy
   static final ConsentScopeCodes patient_privacy = ConsentScopeCodes._(
-    'patient-privacy',
+    value: 'patient-privacy',
   );
 
   /// treatment
   static final ConsentScopeCodes treatment = ConsentScopeCodes._(
-    'treatment',
+    value: 'treatment',
   );
 
   /// For instances where an Element is present but not value
 
-  static final ConsentScopeCodes elementOnly = ConsentScopeCodes._('');
+  static final ConsentScopeCodes elementOnly = ConsentScopeCodes._(value: '');
 
   /// List of all enum-like values
   static final List<ConsentScopeCodes> values = [
@@ -59,13 +64,13 @@ class ConsentScopeCodes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ConsentScopeCodes clone() => ConsentScopeCodes._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ConsentScopeCodes withElement(Element? newElement) {
-    return ConsentScopeCodes._(value, newElement);
+    return ConsentScopeCodes._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -90,14 +95,13 @@ class ConsentScopeCodes extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ConsentScopeCodes._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value set includes sample Related Claim Relationship codes.
 class ExampleRelatedClaimRelationshipCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ExampleRelatedClaimRelationshipCodes._(super.value, [super.element]);
+  ExampleRelatedClaimRelationshipCodes._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [ExampleRelatedClaimRelationshipCodes] from JSON.
   factory ExampleRelatedClaimRelationshipCodes.fromJson(
@@ -22,25 +27,26 @@ class ExampleRelatedClaimRelationshipCodes extends PrimitiveType<String> {
         'ExampleRelatedClaimRelationshipCodes cannot be constructed from JSON.',
       );
     }
-    return ExampleRelatedClaimRelationshipCodes._(value, element);
+    return ExampleRelatedClaimRelationshipCodes._(
+        value: value, element: element);
   }
 
   /// prior
   static final ExampleRelatedClaimRelationshipCodes prior =
       ExampleRelatedClaimRelationshipCodes._(
-    'prior',
+    value: 'prior',
   );
 
   /// associated
   static final ExampleRelatedClaimRelationshipCodes associated =
       ExampleRelatedClaimRelationshipCodes._(
-    'associated',
+    value: 'associated',
   );
 
   /// For instances where an Element is present but not value
 
   static final ExampleRelatedClaimRelationshipCodes elementOnly =
-      ExampleRelatedClaimRelationshipCodes._('');
+      ExampleRelatedClaimRelationshipCodes._(value: '');
 
   /// List of all enum-like values
   static final List<ExampleRelatedClaimRelationshipCodes> values = [
@@ -52,13 +58,14 @@ class ExampleRelatedClaimRelationshipCodes extends PrimitiveType<String> {
   @override
   ExampleRelatedClaimRelationshipCodes clone() =>
       ExampleRelatedClaimRelationshipCodes._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ExampleRelatedClaimRelationshipCodes withElement(Element? newElement) {
-    return ExampleRelatedClaimRelationshipCodes._(value, newElement);
+    return ExampleRelatedClaimRelationshipCodes._(
+        value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -83,14 +90,13 @@ class ExampleRelatedClaimRelationshipCodes extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ExampleRelatedClaimRelationshipCodes._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

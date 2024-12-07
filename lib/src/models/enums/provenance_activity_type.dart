@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value set contains representative Activity Type codes, which includes codes from the HL7 DocumentCompletion, ActStatus, and DataOperations code system, W3C PROV-DM and PROV-N concepts and display names, several HL7 Lifecycle Event codes for which there are agreed upon definitions, and non-duplicated codes from the HL7 Security and Privacy Ontology Operations codes.
 class ProvenanceActivityType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ProvenanceActivityType._(super.value, [super.element]);
+  ProvenanceActivityType._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [ProvenanceActivityType] from JSON.
   factory ProvenanceActivityType.fromJson(
@@ -21,68 +26,68 @@ class ProvenanceActivityType extends PrimitiveType<String> {
         'ProvenanceActivityType cannot be constructed from JSON.',
       );
     }
-    return ProvenanceActivityType._(value, element);
+    return ProvenanceActivityType._(value: value, element: element);
   }
 
   /// LA
   static final ProvenanceActivityType LA = ProvenanceActivityType._(
-    'LA',
+    value: 'LA',
   );
 
   /// ANONY
   static final ProvenanceActivityType ANONY = ProvenanceActivityType._(
-    'ANONY',
+    value: 'ANONY',
   );
 
   /// DEID
   static final ProvenanceActivityType DEID = ProvenanceActivityType._(
-    'DEID',
+    value: 'DEID',
   );
 
   /// MASK
   static final ProvenanceActivityType MASK = ProvenanceActivityType._(
-    'MASK',
+    value: 'MASK',
   );
 
   /// LABEL
   static final ProvenanceActivityType LABEL = ProvenanceActivityType._(
-    'LABEL',
+    value: 'LABEL',
   );
 
   /// PSEUD
   static final ProvenanceActivityType PSEUD = ProvenanceActivityType._(
-    'PSEUD',
+    value: 'PSEUD',
   );
 
   /// CREATE
   static final ProvenanceActivityType CREATE = ProvenanceActivityType._(
-    'CREATE',
+    value: 'CREATE',
   );
 
   /// DELETE
   static final ProvenanceActivityType DELETE = ProvenanceActivityType._(
-    'DELETE',
+    value: 'DELETE',
   );
 
   /// UPDATE
   static final ProvenanceActivityType UPDATE = ProvenanceActivityType._(
-    'UPDATE',
+    value: 'UPDATE',
   );
 
   /// APPEND
   static final ProvenanceActivityType APPEND = ProvenanceActivityType._(
-    'APPEND',
+    value: 'APPEND',
   );
 
   /// NULLIFY
   static final ProvenanceActivityType NULLIFY = ProvenanceActivityType._(
-    'NULLIFY',
+    value: 'NULLIFY',
   );
 
   /// For instances where an Element is present but not value
 
   static final ProvenanceActivityType elementOnly =
-      ProvenanceActivityType._('');
+      ProvenanceActivityType._(value: '');
 
   /// List of all enum-like values
   static final List<ProvenanceActivityType> values = [
@@ -102,13 +107,13 @@ class ProvenanceActivityType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ProvenanceActivityType clone() => ProvenanceActivityType._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ProvenanceActivityType withElement(Element? newElement) {
-    return ProvenanceActivityType._(value, newElement);
+    return ProvenanceActivityType._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -133,14 +138,13 @@ class ProvenanceActivityType extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ProvenanceActivityType._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

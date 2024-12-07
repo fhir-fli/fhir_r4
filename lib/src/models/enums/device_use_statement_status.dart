@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// A coded concept indicating the current status of the Device Usage.
 class DeviceUseStatementStatus extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  DeviceUseStatementStatus._(super.value, [super.element]);
+  DeviceUseStatementStatus._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [DeviceUseStatementStatus] from JSON.
   factory DeviceUseStatementStatus.fromJson(
@@ -21,44 +26,44 @@ class DeviceUseStatementStatus extends PrimitiveType<String> {
         'DeviceUseStatementStatus cannot be constructed from JSON.',
       );
     }
-    return DeviceUseStatementStatus._(value, element);
+    return DeviceUseStatementStatus._(value: value, element: element);
   }
 
   /// active
   static final DeviceUseStatementStatus active = DeviceUseStatementStatus._(
-    'active',
+    value: 'active',
   );
 
   /// completed
   static final DeviceUseStatementStatus completed = DeviceUseStatementStatus._(
-    'completed',
+    value: 'completed',
   );
 
   /// entered_in_error
   static final DeviceUseStatementStatus entered_in_error =
       DeviceUseStatementStatus._(
-    'entered-in-error',
+    value: 'entered-in-error',
   );
 
   /// intended
   static final DeviceUseStatementStatus intended = DeviceUseStatementStatus._(
-    'intended',
+    value: 'intended',
   );
 
   /// stopped
   static final DeviceUseStatementStatus stopped = DeviceUseStatementStatus._(
-    'stopped',
+    value: 'stopped',
   );
 
   /// on_hold
   static final DeviceUseStatementStatus on_hold = DeviceUseStatementStatus._(
-    'on-hold',
+    value: 'on-hold',
   );
 
   /// For instances where an Element is present but not value
 
   static final DeviceUseStatementStatus elementOnly =
-      DeviceUseStatementStatus._('');
+      DeviceUseStatementStatus._(value: '');
 
   /// List of all enum-like values
   static final List<DeviceUseStatementStatus> values = [
@@ -73,13 +78,13 @@ class DeviceUseStatementStatus extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   DeviceUseStatementStatus clone() => DeviceUseStatementStatus._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   DeviceUseStatementStatus withElement(Element? newElement) {
-    return DeviceUseStatementStatus._(value, newElement);
+    return DeviceUseStatementStatus._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -104,14 +109,13 @@ class DeviceUseStatementStatus extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return DeviceUseStatementStatus._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

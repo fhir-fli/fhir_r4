@@ -47,10 +47,6 @@ class ResearchStudy extends DomainResource {
     this.note,
     this.arm,
     this.objective,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.ResearchStudy,
         );
@@ -664,10 +660,6 @@ class ResearchStudy extends DomainResource {
       note: note ?? this.note,
       arm: arm ?? this.arm,
       objective: objective ?? this.objective,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -688,10 +680,6 @@ class ResearchStudyArm extends BackboneElement {
     this.type,
     this.description,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -846,10 +834,6 @@ class ResearchStudyArm extends BackboneElement {
       name: name ?? this.name,
       type: type ?? this.type,
       description: description ?? this.description,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -869,10 +853,6 @@ class ResearchStudyObjective extends BackboneElement {
     this.name,
     this.type,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1014,10 +994,6 @@ class ResearchStudyObjective extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       name: name ?? this.name,
       type: type ?? this.type,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

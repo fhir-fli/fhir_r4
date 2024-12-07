@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The handling of the variable in statistical analysis for exposures or outcomes.
 class StatisticModelCode extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  StatisticModelCode._(super.value, [super.element]);
+  StatisticModelCode._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [StatisticModelCode] from JSON.
   factory StatisticModelCode.fromJson(
@@ -21,414 +26,414 @@ class StatisticModelCode extends PrimitiveType<String> {
         'StatisticModelCode cannot be constructed from JSON.',
       );
     }
-    return StatisticModelCode._(value, element);
+    return StatisticModelCode._(value: value, element: element);
   }
 
   /// oneTailedTest
   static final StatisticModelCode oneTailedTest = StatisticModelCode._(
-    'oneTailedTest',
+    value: 'oneTailedTest',
   );
 
   /// twoTailedTest
   static final StatisticModelCode twoTailedTest = StatisticModelCode._(
-    'twoTailedTest',
+    value: 'twoTailedTest',
   );
 
   /// zTest
   static final StatisticModelCode zTest = StatisticModelCode._(
-    'zTest',
+    value: 'zTest',
   );
 
   /// oneSampleTTest
   static final StatisticModelCode oneSampleTTest = StatisticModelCode._(
-    'oneSampleTTest',
+    value: 'oneSampleTTest',
   );
 
   /// twoSampleTTest
   static final StatisticModelCode twoSampleTTest = StatisticModelCode._(
-    'twoSampleTTest',
+    value: 'twoSampleTTest',
   );
 
   /// pairedTTest
   static final StatisticModelCode pairedTTest = StatisticModelCode._(
-    'pairedTTest',
+    value: 'pairedTTest',
   );
 
   /// chiSquareTest
   static final StatisticModelCode chiSquareTest = StatisticModelCode._(
-    'chiSquareTest',
+    value: 'chiSquareTest',
   );
 
   /// chiSquareTestTrend
   static final StatisticModelCode chiSquareTestTrend = StatisticModelCode._(
-    'chiSquareTestTrend',
+    value: 'chiSquareTestTrend',
   );
 
   /// pearsonCorrelation
   static final StatisticModelCode pearsonCorrelation = StatisticModelCode._(
-    'pearsonCorrelation',
+    value: 'pearsonCorrelation',
   );
 
   /// anova
   static final StatisticModelCode anova = StatisticModelCode._(
-    'anova',
+    value: 'anova',
   );
 
   /// anovaOneWay
   static final StatisticModelCode anovaOneWay = StatisticModelCode._(
-    'anovaOneWay',
+    value: 'anovaOneWay',
   );
 
   /// anovaTwoWay
   static final StatisticModelCode anovaTwoWay = StatisticModelCode._(
-    'anovaTwoWay',
+    value: 'anovaTwoWay',
   );
 
   /// anovaTwoWayReplication
   static final StatisticModelCode anovaTwoWayReplication = StatisticModelCode._(
-    'anovaTwoWayReplication',
+    value: 'anovaTwoWayReplication',
   );
 
   /// manova
   static final StatisticModelCode manova = StatisticModelCode._(
-    'manova',
+    value: 'manova',
   );
 
   /// anovaThreeWay
   static final StatisticModelCode anovaThreeWay = StatisticModelCode._(
-    'anovaThreeWay',
+    value: 'anovaThreeWay',
   );
 
   /// signTest
   static final StatisticModelCode signTest = StatisticModelCode._(
-    'signTest',
+    value: 'signTest',
   );
 
   /// wilcoxonSignedRankTest
   static final StatisticModelCode wilcoxonSignedRankTest = StatisticModelCode._(
-    'wilcoxonSignedRankTest',
+    value: 'wilcoxonSignedRankTest',
   );
 
   /// wilcoxonRankSumTest
   static final StatisticModelCode wilcoxonRankSumTest = StatisticModelCode._(
-    'wilcoxonRankSumTest',
+    value: 'wilcoxonRankSumTest',
   );
 
   /// mannWhitneyUTest
   static final StatisticModelCode mannWhitneyUTest = StatisticModelCode._(
-    'mannWhitneyUTest',
+    value: 'mannWhitneyUTest',
   );
 
   /// fishersExactTest
   static final StatisticModelCode fishersExactTest = StatisticModelCode._(
-    'fishersExactTest',
+    value: 'fishersExactTest',
   );
 
   /// mcnemarsTest
   static final StatisticModelCode mcnemarsTest = StatisticModelCode._(
-    'mcnemarsTest',
+    value: 'mcnemarsTest',
   );
 
   /// kruskalWallisTest
   static final StatisticModelCode kruskalWallisTest = StatisticModelCode._(
-    'kruskalWallisTest',
+    value: 'kruskalWallisTest',
   );
 
   /// spearmanCorrelation
   static final StatisticModelCode spearmanCorrelation = StatisticModelCode._(
-    'spearmanCorrelation',
+    value: 'spearmanCorrelation',
   );
 
   /// kendallCorrelation
   static final StatisticModelCode kendallCorrelation = StatisticModelCode._(
-    'kendallCorrelation',
+    value: 'kendallCorrelation',
   );
 
   /// friedmanTest
   static final StatisticModelCode friedmanTest = StatisticModelCode._(
-    'friedmanTest',
+    value: 'friedmanTest',
   );
 
   /// goodmanKruskasGamma
   static final StatisticModelCode goodmanKruskasGamma = StatisticModelCode._(
-    'goodmanKruskasGamma',
+    value: 'goodmanKruskasGamma',
   );
 
   /// glm
   static final StatisticModelCode glm = StatisticModelCode._(
-    'glm',
+    value: 'glm',
   );
 
   /// glmProbit
   static final StatisticModelCode glmProbit = StatisticModelCode._(
-    'glmProbit',
+    value: 'glmProbit',
   );
 
   /// glmLogit
   static final StatisticModelCode glmLogit = StatisticModelCode._(
-    'glmLogit',
+    value: 'glmLogit',
   );
 
   /// glmIdentity
   static final StatisticModelCode glmIdentity = StatisticModelCode._(
-    'glmIdentity',
+    value: 'glmIdentity',
   );
 
   /// glmLog
   static final StatisticModelCode glmLog = StatisticModelCode._(
-    'glmLog',
+    value: 'glmLog',
   );
 
   /// glmGeneralizedLogit
   static final StatisticModelCode glmGeneralizedLogit = StatisticModelCode._(
-    'glmGeneralizedLogit',
+    value: 'glmGeneralizedLogit',
   );
 
   /// glmm
   static final StatisticModelCode glmm = StatisticModelCode._(
-    'glmm',
+    value: 'glmm',
   );
 
   /// glmmProbit
   static final StatisticModelCode glmmProbit = StatisticModelCode._(
-    'glmmProbit',
+    value: 'glmmProbit',
   );
 
   /// glmmLogit
   static final StatisticModelCode glmmLogit = StatisticModelCode._(
-    'glmmLogit',
+    value: 'glmmLogit',
   );
 
   /// glmmIdentity
   static final StatisticModelCode glmmIdentity = StatisticModelCode._(
-    'glmmIdentity',
+    value: 'glmmIdentity',
   );
 
   /// glmmLog
   static final StatisticModelCode glmmLog = StatisticModelCode._(
-    'glmmLog',
+    value: 'glmmLog',
   );
 
   /// glmmGeneralizedLogit
   static final StatisticModelCode glmmGeneralizedLogit = StatisticModelCode._(
-    'glmmGeneralizedLogit',
+    value: 'glmmGeneralizedLogit',
   );
 
   /// linearRegression
   static final StatisticModelCode linearRegression = StatisticModelCode._(
-    'linearRegression',
+    value: 'linearRegression',
   );
 
   /// logisticRegression
   static final StatisticModelCode logisticRegression = StatisticModelCode._(
-    'logisticRegression',
+    value: 'logisticRegression',
   );
 
   /// polynomialRegression
   static final StatisticModelCode polynomialRegression = StatisticModelCode._(
-    'polynomialRegression',
+    value: 'polynomialRegression',
   );
 
   /// coxProportionalHazards
   static final StatisticModelCode coxProportionalHazards = StatisticModelCode._(
-    'coxProportionalHazards',
+    value: 'coxProportionalHazards',
   );
 
   /// binomialDistributionRegression
   static final StatisticModelCode binomialDistributionRegression =
       StatisticModelCode._(
-    'binomialDistributionRegression',
+    value: 'binomialDistributionRegression',
   );
 
   /// multinomialDistributionRegression
   static final StatisticModelCode multinomialDistributionRegression =
       StatisticModelCode._(
-    'multinomialDistributionRegression',
+    value: 'multinomialDistributionRegression',
   );
 
   /// poissonRegression
   static final StatisticModelCode poissonRegression = StatisticModelCode._(
-    'poissonRegression',
+    value: 'poissonRegression',
   );
 
   /// negativeBinomialRegression
   static final StatisticModelCode negativeBinomialRegression =
       StatisticModelCode._(
-    'negativeBinomialRegression',
+    value: 'negativeBinomialRegression',
   );
 
   /// zeroCellConstant
   static final StatisticModelCode zeroCellConstant = StatisticModelCode._(
-    'zeroCellConstant',
+    value: 'zeroCellConstant',
   );
 
   /// zeroCellContinuityCorrection
   static final StatisticModelCode zeroCellContinuityCorrection =
       StatisticModelCode._(
-    'zeroCellContinuityCorrection',
+    value: 'zeroCellContinuityCorrection',
   );
 
   /// adjusted
   static final StatisticModelCode adjusted = StatisticModelCode._(
-    'adjusted',
+    value: 'adjusted',
   );
 
   /// interactionTerm
   static final StatisticModelCode interactionTerm = StatisticModelCode._(
-    'interactionTerm',
+    value: 'interactionTerm',
   );
 
   /// manteHaenszelMethod
   static final StatisticModelCode manteHaenszelMethod = StatisticModelCode._(
-    'manteHaenszelMethod',
+    value: 'manteHaenszelMethod',
   );
 
   /// metaAnalysis
   static final StatisticModelCode metaAnalysis = StatisticModelCode._(
-    'metaAnalysis',
+    value: 'metaAnalysis',
   );
 
   /// inverseVariance
   static final StatisticModelCode inverseVariance = StatisticModelCode._(
-    'inverseVariance',
+    value: 'inverseVariance',
   );
 
   /// petoMethod
   static final StatisticModelCode petoMethod = StatisticModelCode._(
-    'petoMethod',
+    value: 'petoMethod',
   );
 
   /// hartungKnapp
   static final StatisticModelCode hartungKnapp = StatisticModelCode._(
-    'hartungKnapp',
+    value: 'hartungKnapp',
   );
 
   /// modifiedHartungKnapp
   static final StatisticModelCode modifiedHartungKnapp = StatisticModelCode._(
-    'modifiedHartungKnapp',
+    value: 'modifiedHartungKnapp',
   );
 
   /// effectsFixed
   static final StatisticModelCode effectsFixed = StatisticModelCode._(
-    'effectsFixed',
+    value: 'effectsFixed',
   );
 
   /// effectsRandom
   static final StatisticModelCode effectsRandom = StatisticModelCode._(
-    'effectsRandom',
+    value: 'effectsRandom',
   );
 
   /// chiSquareTestHomogeneity
   static final StatisticModelCode chiSquareTestHomogeneity =
       StatisticModelCode._(
-    'chiSquareTestHomogeneity',
+    value: 'chiSquareTestHomogeneity',
   );
 
   /// dersimonianLairdMethod
   static final StatisticModelCode dersimonianLairdMethod = StatisticModelCode._(
-    'dersimonianLairdMethod',
+    value: 'dersimonianLairdMethod',
   );
 
   /// pauleMandelMethod
   static final StatisticModelCode pauleMandelMethod = StatisticModelCode._(
-    'pauleMandelMethod',
+    value: 'pauleMandelMethod',
   );
 
   /// restrictedLikelihood
   static final StatisticModelCode restrictedLikelihood = StatisticModelCode._(
-    'restrictedLikelihood',
+    value: 'restrictedLikelihood',
   );
 
   /// maximumLikelihood
   static final StatisticModelCode maximumLikelihood = StatisticModelCode._(
-    'maximumLikelihood',
+    value: 'maximumLikelihood',
   );
 
   /// empiricalBayes
   static final StatisticModelCode empiricalBayes = StatisticModelCode._(
-    'empiricalBayes',
+    value: 'empiricalBayes',
   );
 
   /// hunterSchmidt
   static final StatisticModelCode hunterSchmidt = StatisticModelCode._(
-    'hunterSchmidt',
+    value: 'hunterSchmidt',
   );
 
   /// sidikJonkman
   static final StatisticModelCode sidikJonkman = StatisticModelCode._(
-    'sidikJonkman',
+    value: 'sidikJonkman',
   );
 
   /// hedgesMethod
   static final StatisticModelCode hedgesMethod = StatisticModelCode._(
-    'hedgesMethod',
+    value: 'hedgesMethod',
   );
 
   /// tauDersimonianLaird
   static final StatisticModelCode tauDersimonianLaird = StatisticModelCode._(
-    'tauDersimonianLaird',
+    value: 'tauDersimonianLaird',
   );
 
   /// tauPauleMandel
   static final StatisticModelCode tauPauleMandel = StatisticModelCode._(
-    'tauPauleMandel',
+    value: 'tauPauleMandel',
   );
 
   /// tauRestrictedMaximumLikelihood
   static final StatisticModelCode tauRestrictedMaximumLikelihood =
       StatisticModelCode._(
-    'tauRestrictedMaximumLikelihood',
+    value: 'tauRestrictedMaximumLikelihood',
   );
 
   /// tauMaximumLikelihood
   static final StatisticModelCode tauMaximumLikelihood = StatisticModelCode._(
-    'tauMaximumLikelihood',
+    value: 'tauMaximumLikelihood',
   );
 
   /// tauEmpiricalBayes
   static final StatisticModelCode tauEmpiricalBayes = StatisticModelCode._(
-    'tauEmpiricalBayes',
+    value: 'tauEmpiricalBayes',
   );
 
   /// tauHunterSchmidt
   static final StatisticModelCode tauHunterSchmidt = StatisticModelCode._(
-    'tauHunterSchmidt',
+    value: 'tauHunterSchmidt',
   );
 
   /// tauSidikJonkman
   static final StatisticModelCode tauSidikJonkman = StatisticModelCode._(
-    'tauSidikJonkman',
+    value: 'tauSidikJonkman',
   );
 
   /// tauHedges
   static final StatisticModelCode tauHedges = StatisticModelCode._(
-    'tauHedges',
+    value: 'tauHedges',
   );
 
   /// poolMantelHaenzsel
   static final StatisticModelCode poolMantelHaenzsel = StatisticModelCode._(
-    'poolMantelHaenzsel',
+    value: 'poolMantelHaenzsel',
   );
 
   /// poolInverseVariance
   static final StatisticModelCode poolInverseVariance = StatisticModelCode._(
-    'poolInverseVariance',
+    value: 'poolInverseVariance',
   );
 
   /// poolPeto
   static final StatisticModelCode poolPeto = StatisticModelCode._(
-    'poolPeto',
+    value: 'poolPeto',
   );
 
   /// poolGeneralizedLinearMixedModel
   static final StatisticModelCode poolGeneralizedLinearMixedModel =
       StatisticModelCode._(
-    'poolGeneralizedLinearMixedModel',
+    value: 'poolGeneralizedLinearMixedModel',
   );
 
   /// For instances where an Element is present but not value
 
-  static final StatisticModelCode elementOnly = StatisticModelCode._('');
+  static final StatisticModelCode elementOnly = StatisticModelCode._(value: '');
 
   /// List of all enum-like values
   static final List<StatisticModelCode> values = [
@@ -516,13 +521,13 @@ class StatisticModelCode extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   StatisticModelCode clone() => StatisticModelCode._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   StatisticModelCode withElement(Element? newElement) {
-    return StatisticModelCode._(value, newElement);
+    return StatisticModelCode._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -547,14 +552,13 @@ class StatisticModelCode extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return StatisticModelCode._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

@@ -31,10 +31,6 @@ class InsurancePlan extends DomainResource {
     this.network,
     this.coverage,
     this.plan,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.InsurancePlan,
         );
@@ -460,10 +456,6 @@ class InsurancePlan extends DomainResource {
       network: network ?? this.network,
       coverage: coverage ?? this.coverage,
       plan: plan ?? this.plan,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -483,10 +475,6 @@ class InsurancePlanContact extends BackboneElement {
     this.telecom,
     this.address,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -665,10 +653,6 @@ class InsurancePlanContact extends BackboneElement {
       name: name ?? this.name,
       telecom: telecom ?? this.telecom,
       address: address ?? this.address,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -687,10 +671,6 @@ class InsurancePlanCoverage extends BackboneElement {
     this.network,
     required this.benefit,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -854,10 +834,6 @@ class InsurancePlanCoverage extends BackboneElement {
       type: type ?? this.type,
       network: network ?? this.network,
       benefit: benefit ?? this.benefit,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -876,10 +852,6 @@ class InsurancePlanBenefit extends BackboneElement {
     this.requirement,
     this.limit,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1036,10 +1008,6 @@ class InsurancePlanBenefit extends BackboneElement {
       type: type ?? this.type,
       requirement: requirement ?? this.requirement,
       limit: limit ?? this.limit,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1057,10 +1025,6 @@ class InsurancePlanLimit extends BackboneElement {
     this.value,
     this.code,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1205,10 +1169,6 @@ class InsurancePlanLimit extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       value: value ?? this.value,
       code: code ?? this.code,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1230,10 +1190,6 @@ class InsurancePlanPlan extends BackboneElement {
     this.generalCost,
     this.specificCost,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1460,10 +1416,6 @@ class InsurancePlanPlan extends BackboneElement {
       network: network ?? this.network,
       generalCost: generalCost ?? this.generalCost,
       specificCost: specificCost ?? this.specificCost,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1483,10 +1435,6 @@ class InsurancePlanGeneralCost extends BackboneElement {
     this.cost,
     this.comment,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1657,10 +1605,6 @@ class InsurancePlanGeneralCost extends BackboneElement {
       groupSize: groupSize ?? this.groupSize,
       cost: cost ?? this.cost,
       comment: comment ?? this.comment,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1678,10 +1622,6 @@ class InsurancePlanSpecificCost extends BackboneElement {
     required this.category,
     this.benefit,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1826,10 +1766,6 @@ class InsurancePlanSpecificCost extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       category: category ?? this.category,
       benefit: benefit ?? this.benefit,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1847,10 +1783,6 @@ class InsurancePlanBenefit1 extends BackboneElement {
     required this.type,
     this.cost,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1995,10 +1927,6 @@ class InsurancePlanBenefit1 extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
       cost: cost ?? this.cost,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -2018,10 +1946,6 @@ class InsurancePlanCost extends BackboneElement {
     this.qualifiers,
     this.value,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -2199,10 +2123,6 @@ class InsurancePlanCost extends BackboneElement {
       applicability: applicability ?? this.applicability,
       qualifiers: qualifiers ?? this.qualifiers,
       value: value ?? this.value,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

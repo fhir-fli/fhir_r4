@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Details of how a designation would be used
 class DesignationUse extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  DesignationUse._(super.value, [super.element]);
+  DesignationUse._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [DesignationUse] from JSON.
   factory DesignationUse.fromJson(
@@ -21,22 +26,22 @@ class DesignationUse extends PrimitiveType<String> {
         'DesignationUse cannot be constructed from JSON.',
       );
     }
-    return DesignationUse._(value, element);
+    return DesignationUse._(value: value, element: element);
   }
 
   /// value900000000000003001
   static final DesignationUse value900000000000003001 = DesignationUse._(
-    '900000000000003001',
+    value: '900000000000003001',
   );
 
   /// value900000000000013009
   static final DesignationUse value900000000000013009 = DesignationUse._(
-    '900000000000013009',
+    value: '900000000000013009',
   );
 
   /// For instances where an Element is present but not value
 
-  static final DesignationUse elementOnly = DesignationUse._('');
+  static final DesignationUse elementOnly = DesignationUse._(value: '');
 
   /// List of all enum-like values
   static final List<DesignationUse> values = [
@@ -47,13 +52,13 @@ class DesignationUse extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   DesignationUse clone() => DesignationUse._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   DesignationUse withElement(Element? newElement) {
-    return DesignationUse._(value, newElement);
+    return DesignationUse._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -78,14 +83,13 @@ class DesignationUse extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return DesignationUse._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

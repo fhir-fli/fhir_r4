@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Distinguishes groups from questions and display text and indicates data type for questions.
 class QuestionnaireItemType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  QuestionnaireItemType._(super.value, [super.element]);
+  QuestionnaireItemType._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [QuestionnaireItemType] from JSON.
   factory QuestionnaireItemType.fromJson(
@@ -21,97 +26,98 @@ class QuestionnaireItemType extends PrimitiveType<String> {
         'QuestionnaireItemType cannot be constructed from JSON.',
       );
     }
-    return QuestionnaireItemType._(value, element);
+    return QuestionnaireItemType._(value: value, element: element);
   }
 
   /// group
   static final QuestionnaireItemType group = QuestionnaireItemType._(
-    'group',
+    value: 'group',
   );
 
   /// display
   static final QuestionnaireItemType display = QuestionnaireItemType._(
-    'display',
+    value: 'display',
   );
 
   /// question
   static final QuestionnaireItemType question = QuestionnaireItemType._(
-    'question',
+    value: 'question',
   );
 
   /// boolean
   static final QuestionnaireItemType boolean = QuestionnaireItemType._(
-    'boolean',
+    value: 'boolean',
   );
 
   /// decimal
   static final QuestionnaireItemType decimal = QuestionnaireItemType._(
-    'decimal',
+    value: 'decimal',
   );
 
   /// integer
   static final QuestionnaireItemType integer = QuestionnaireItemType._(
-    'integer',
+    value: 'integer',
   );
 
   /// date
   static final QuestionnaireItemType date = QuestionnaireItemType._(
-    'date',
+    value: 'date',
   );
 
   /// dateTime
   static final QuestionnaireItemType dateTime = QuestionnaireItemType._(
-    'dateTime',
+    value: 'dateTime',
   );
 
   /// time
   static final QuestionnaireItemType time = QuestionnaireItemType._(
-    'time',
+    value: 'time',
   );
 
   /// string
   static final QuestionnaireItemType string = QuestionnaireItemType._(
-    'string',
+    value: 'string',
   );
 
   /// text
   static final QuestionnaireItemType text = QuestionnaireItemType._(
-    'text',
+    value: 'text',
   );
 
   /// url
   static final QuestionnaireItemType url = QuestionnaireItemType._(
-    'url',
+    value: 'url',
   );
 
   /// choice
   static final QuestionnaireItemType choice = QuestionnaireItemType._(
-    'choice',
+    value: 'choice',
   );
 
   /// open_choice
   static final QuestionnaireItemType open_choice = QuestionnaireItemType._(
-    'open-choice',
+    value: 'open-choice',
   );
 
   /// attachment
   static final QuestionnaireItemType attachment = QuestionnaireItemType._(
-    'attachment',
+    value: 'attachment',
   );
 
   /// reference
   static final QuestionnaireItemType reference = QuestionnaireItemType._(
-    'reference',
+    value: 'reference',
   );
 
   /// quantity
   static final QuestionnaireItemType quantity = QuestionnaireItemType._(
-    'quantity',
+    value: 'quantity',
   );
 
   /// For instances where an Element is present but not value
 
-  static final QuestionnaireItemType elementOnly = QuestionnaireItemType._('');
+  static final QuestionnaireItemType elementOnly =
+      QuestionnaireItemType._(value: '');
 
   /// List of all enum-like values
   static final List<QuestionnaireItemType> values = [
@@ -137,13 +143,13 @@ class QuestionnaireItemType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   QuestionnaireItemType clone() => QuestionnaireItemType._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   QuestionnaireItemType withElement(Element? newElement) {
-    return QuestionnaireItemType._(value, newElement);
+    return QuestionnaireItemType._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -168,14 +174,13 @@ class QuestionnaireItemType extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return QuestionnaireItemType._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

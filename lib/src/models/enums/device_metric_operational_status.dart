@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Describes the operational status of the DeviceMetric.
 class DeviceMetricOperationalStatus extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  DeviceMetricOperationalStatus._(super.value, [super.element]);
+  DeviceMetricOperationalStatus._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [DeviceMetricOperationalStatus] from JSON.
   factory DeviceMetricOperationalStatus.fromJson(
@@ -21,37 +26,37 @@ class DeviceMetricOperationalStatus extends PrimitiveType<String> {
         'DeviceMetricOperationalStatus cannot be constructed from JSON.',
       );
     }
-    return DeviceMetricOperationalStatus._(value, element);
+    return DeviceMetricOperationalStatus._(value: value, element: element);
   }
 
   /// on_
   static final DeviceMetricOperationalStatus on_ =
       DeviceMetricOperationalStatus._(
-    'on',
+    value: 'on',
   );
 
   /// off
   static final DeviceMetricOperationalStatus off =
       DeviceMetricOperationalStatus._(
-    'off',
+    value: 'off',
   );
 
   /// standby
   static final DeviceMetricOperationalStatus standby =
       DeviceMetricOperationalStatus._(
-    'standby',
+    value: 'standby',
   );
 
   /// entered_in_error
   static final DeviceMetricOperationalStatus entered_in_error =
       DeviceMetricOperationalStatus._(
-    'entered-in-error',
+    value: 'entered-in-error',
   );
 
   /// For instances where an Element is present but not value
 
   static final DeviceMetricOperationalStatus elementOnly =
-      DeviceMetricOperationalStatus._('');
+      DeviceMetricOperationalStatus._(value: '');
 
   /// List of all enum-like values
   static final List<DeviceMetricOperationalStatus> values = [
@@ -64,13 +69,13 @@ class DeviceMetricOperationalStatus extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   DeviceMetricOperationalStatus clone() => DeviceMetricOperationalStatus._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   DeviceMetricOperationalStatus withElement(Element? newElement) {
-    return DeviceMetricOperationalStatus._(value, newElement);
+    return DeviceMetricOperationalStatus._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -95,14 +100,13 @@ class DeviceMetricOperationalStatus extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return DeviceMetricOperationalStatus._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

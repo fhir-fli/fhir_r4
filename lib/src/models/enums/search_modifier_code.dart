@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// A supported modifier for a search parameter.
 class SearchModifierCode extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  SearchModifierCode._(super.value, [super.element]);
+  SearchModifierCode._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [SearchModifierCode] from JSON.
   factory SearchModifierCode.fromJson(
@@ -21,72 +26,72 @@ class SearchModifierCode extends PrimitiveType<String> {
         'SearchModifierCode cannot be constructed from JSON.',
       );
     }
-    return SearchModifierCode._(value, element);
+    return SearchModifierCode._(value: value, element: element);
   }
 
   /// missing
   static final SearchModifierCode missing = SearchModifierCode._(
-    'missing',
+    value: 'missing',
   );
 
   /// exact
   static final SearchModifierCode exact = SearchModifierCode._(
-    'exact',
+    value: 'exact',
   );
 
   /// contains
   static final SearchModifierCode contains = SearchModifierCode._(
-    'contains',
+    value: 'contains',
   );
 
   /// not
   static final SearchModifierCode not = SearchModifierCode._(
-    'not',
+    value: 'not',
   );
 
   /// text
   static final SearchModifierCode text = SearchModifierCode._(
-    'text',
+    value: 'text',
   );
 
   /// in_
   static final SearchModifierCode in_ = SearchModifierCode._(
-    'in',
+    value: 'in',
   );
 
   /// not_in
   static final SearchModifierCode not_in = SearchModifierCode._(
-    'not-in',
+    value: 'not-in',
   );
 
   /// below
   static final SearchModifierCode below = SearchModifierCode._(
-    'below',
+    value: 'below',
   );
 
   /// above
   static final SearchModifierCode above = SearchModifierCode._(
-    'above',
+    value: 'above',
   );
 
   /// type
   static final SearchModifierCode type = SearchModifierCode._(
-    'type',
+    value: 'type',
   );
 
   /// identifier
   static final SearchModifierCode identifier = SearchModifierCode._(
-    'identifier',
+    value: 'identifier',
   );
 
   /// ofType
   static final SearchModifierCode ofType = SearchModifierCode._(
-    'ofType',
+    value: 'ofType',
   );
 
   /// For instances where an Element is present but not value
 
-  static final SearchModifierCode elementOnly = SearchModifierCode._('');
+  static final SearchModifierCode elementOnly = SearchModifierCode._(value: '');
 
   /// List of all enum-like values
   static final List<SearchModifierCode> values = [
@@ -107,13 +112,13 @@ class SearchModifierCode extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   SearchModifierCode clone() => SearchModifierCode._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   SearchModifierCode withElement(Element? newElement) {
-    return SearchModifierCode._(value, newElement);
+    return SearchModifierCode._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -138,14 +143,13 @@ class SearchModifierCode extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return SearchModifierCode._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

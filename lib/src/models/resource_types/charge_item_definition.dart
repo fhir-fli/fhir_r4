@@ -44,10 +44,6 @@ class ChargeItemDefinition extends DomainResource {
     this.instance,
     this.applicability,
     this.propertyGroup,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.ChargeItemDefinition,
         );
@@ -629,10 +625,6 @@ class ChargeItemDefinition extends DomainResource {
       instance: instance ?? this.instance,
       applicability: applicability ?? this.applicability,
       propertyGroup: propertyGroup ?? this.propertyGroup,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -651,10 +643,6 @@ class ChargeItemDefinitionApplicability extends BackboneElement {
     this.language,
     this.expression,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -813,10 +801,6 @@ class ChargeItemDefinitionApplicability extends BackboneElement {
       description: description ?? this.description,
       language: language ?? this.language,
       expression: expression ?? this.expression,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -836,10 +820,6 @@ class ChargeItemDefinitionPropertyGroup extends BackboneElement {
     this.applicability,
     this.priceComponent,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -997,10 +977,6 @@ class ChargeItemDefinitionPropertyGroup extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       applicability: applicability ?? this.applicability,
       priceComponent: priceComponent ?? this.priceComponent,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1025,10 +1001,6 @@ class ChargeItemDefinitionPriceComponent extends BackboneElement {
     this.factor,
     this.amount,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1198,10 +1170,6 @@ class ChargeItemDefinitionPriceComponent extends BackboneElement {
       code: code ?? this.code,
       factor: factor ?? this.factor,
       amount: amount ?? this.amount,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

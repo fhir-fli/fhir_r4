@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The type of notification represented by the status message.
 class SubscriptionNotificationType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  SubscriptionNotificationType._(super.value, [super.element]);
+  SubscriptionNotificationType._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [SubscriptionNotificationType] from JSON.
   factory SubscriptionNotificationType.fromJson(
@@ -21,43 +26,43 @@ class SubscriptionNotificationType extends PrimitiveType<String> {
         'SubscriptionNotificationType cannot be constructed from JSON.',
       );
     }
-    return SubscriptionNotificationType._(value, element);
+    return SubscriptionNotificationType._(value: value, element: element);
   }
 
   /// handshake
   static final SubscriptionNotificationType handshake =
       SubscriptionNotificationType._(
-    'handshake',
+    value: 'handshake',
   );
 
   /// heartbeat
   static final SubscriptionNotificationType heartbeat =
       SubscriptionNotificationType._(
-    'heartbeat',
+    value: 'heartbeat',
   );
 
   /// event_notification
   static final SubscriptionNotificationType event_notification =
       SubscriptionNotificationType._(
-    'event-notification',
+    value: 'event-notification',
   );
 
   /// query_status
   static final SubscriptionNotificationType query_status =
       SubscriptionNotificationType._(
-    'query-status',
+    value: 'query-status',
   );
 
   /// query_event
   static final SubscriptionNotificationType query_event =
       SubscriptionNotificationType._(
-    'query-event',
+    value: 'query-event',
   );
 
   /// For instances where an Element is present but not value
 
   static final SubscriptionNotificationType elementOnly =
-      SubscriptionNotificationType._('');
+      SubscriptionNotificationType._(value: '');
 
   /// List of all enum-like values
   static final List<SubscriptionNotificationType> values = [
@@ -71,13 +76,13 @@ class SubscriptionNotificationType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   SubscriptionNotificationType clone() => SubscriptionNotificationType._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   SubscriptionNotificationType withElement(Element? newElement) {
-    return SubscriptionNotificationType._(value, newElement);
+    return SubscriptionNotificationType._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -102,14 +107,13 @@ class SubscriptionNotificationType extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return SubscriptionNotificationType._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The type of substance weight measurement.
 class WeightType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  WeightType._(super.value, [super.element]);
+  WeightType._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [WeightType] from JSON.
   factory WeightType.fromJson(
@@ -21,27 +26,27 @@ class WeightType extends PrimitiveType<String> {
         'WeightType cannot be constructed from JSON.',
       );
     }
-    return WeightType._(value, element);
+    return WeightType._(value: value, element: element);
   }
 
   /// Exact
   static final WeightType Exact = WeightType._(
-    'Exact',
+    value: 'Exact',
   );
 
   /// Average
   static final WeightType Average = WeightType._(
-    'Average',
+    value: 'Average',
   );
 
   /// WeightAverage
   static final WeightType WeightAverage = WeightType._(
-    'WeightAverage',
+    value: 'WeightAverage',
   );
 
   /// For instances where an Element is present but not value
 
-  static final WeightType elementOnly = WeightType._('');
+  static final WeightType elementOnly = WeightType._(value: '');
 
   /// List of all enum-like values
   static final List<WeightType> values = [
@@ -53,13 +58,13 @@ class WeightType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   WeightType clone() => WeightType._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   WeightType withElement(Element? newElement) {
-    return WeightType._(value, newElement);
+    return WeightType._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -84,14 +89,13 @@ class WeightType extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return WeightType._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

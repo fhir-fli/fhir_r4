@@ -34,10 +34,6 @@ class ExampleScenario extends DomainResource {
     this.instance,
     this.process,
     this.workflow,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.ExampleScenario,
         );
@@ -512,10 +508,6 @@ class ExampleScenario extends DomainResource {
       instance: instance ?? this.instance,
       process: process ?? this.process,
       workflow: workflow ?? this.workflow,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -535,10 +527,6 @@ class ExampleScenarioActor extends BackboneElement {
     this.name,
     this.description,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -700,10 +688,6 @@ class ExampleScenarioActor extends BackboneElement {
       type: type ?? this.type,
       name: name ?? this.name,
       description: description ?? this.description,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -725,10 +709,6 @@ class ExampleScenarioInstance extends BackboneElement {
     this.version,
     this.containedInstance,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -930,10 +910,6 @@ class ExampleScenarioInstance extends BackboneElement {
       description: description ?? this.description,
       version: version ?? this.version,
       containedInstance: containedInstance ?? this.containedInstance,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -951,10 +927,6 @@ class ExampleScenarioVersion extends BackboneElement {
     required this.versionId,
     required this.description,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1090,10 +1062,6 @@ class ExampleScenarioVersion extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       versionId: versionId ?? this.versionId,
       description: description ?? this.description,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1112,10 +1080,6 @@ class ExampleScenarioContainedInstance extends BackboneElement {
     required this.resourceId,
     this.versionId,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1253,10 +1217,6 @@ class ExampleScenarioContainedInstance extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       resourceId: resourceId ?? this.resourceId,
       versionId: versionId ?? this.versionId,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1277,10 +1237,6 @@ class ExampleScenarioProcess extends BackboneElement {
     this.postConditions,
     this.step,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1465,10 +1421,6 @@ class ExampleScenarioProcess extends BackboneElement {
       preConditions: preConditions ?? this.preConditions,
       postConditions: postConditions ?? this.postConditions,
       step: step ?? this.step,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1488,10 +1440,6 @@ class ExampleScenarioStep extends BackboneElement {
     this.operation,
     this.alternative,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1672,10 +1620,6 @@ class ExampleScenarioStep extends BackboneElement {
       pause: pause ?? this.pause,
       operation: operation ?? this.operation,
       alternative: alternative ?? this.alternative,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1701,10 +1645,6 @@ class ExampleScenarioOperation extends BackboneElement {
     this.request,
     this.response,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1952,10 +1892,6 @@ class ExampleScenarioOperation extends BackboneElement {
       receiverActive: receiverActive ?? this.receiverActive,
       request: request ?? this.request,
       response: response ?? this.response,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1975,10 +1911,6 @@ class ExampleScenarioAlternative extends BackboneElement {
     this.description,
     this.step,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -2137,10 +2069,6 @@ class ExampleScenarioAlternative extends BackboneElement {
       title: title ?? this.title,
       description: description ?? this.description,
       step: step ?? this.step,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

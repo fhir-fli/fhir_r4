@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The value set to instantiate this attribute should be drawn from a terminologically robust code system that consists of or contains concepts to support describing the current status of the evaluation for vaccine administration event.
 class ImmunizationEvaluationStatusCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ImmunizationEvaluationStatusCodes._(super.value, [super.element]);
+  ImmunizationEvaluationStatusCodes._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [ImmunizationEvaluationStatusCodes] from JSON.
   factory ImmunizationEvaluationStatusCodes.fromJson(
@@ -21,55 +26,55 @@ class ImmunizationEvaluationStatusCodes extends PrimitiveType<String> {
         'ImmunizationEvaluationStatusCodes cannot be constructed from JSON.',
       );
     }
-    return ImmunizationEvaluationStatusCodes._(value, element);
+    return ImmunizationEvaluationStatusCodes._(value: value, element: element);
   }
 
   /// in_progress
   static final ImmunizationEvaluationStatusCodes in_progress =
       ImmunizationEvaluationStatusCodes._(
-    'in-progress',
+    value: 'in-progress',
   );
 
   /// not_done
   static final ImmunizationEvaluationStatusCodes not_done =
       ImmunizationEvaluationStatusCodes._(
-    'not-done',
+    value: 'not-done',
   );
 
   /// on_hold
   static final ImmunizationEvaluationStatusCodes on_hold =
       ImmunizationEvaluationStatusCodes._(
-    'on-hold',
+    value: 'on-hold',
   );
 
   /// completed
   static final ImmunizationEvaluationStatusCodes completed =
       ImmunizationEvaluationStatusCodes._(
-    'completed',
+    value: 'completed',
   );
 
   /// entered_in_error
   static final ImmunizationEvaluationStatusCodes entered_in_error =
       ImmunizationEvaluationStatusCodes._(
-    'entered-in-error',
+    value: 'entered-in-error',
   );
 
   /// stopped
   static final ImmunizationEvaluationStatusCodes stopped =
       ImmunizationEvaluationStatusCodes._(
-    'stopped',
+    value: 'stopped',
   );
 
   /// unknown
   static final ImmunizationEvaluationStatusCodes unknown =
       ImmunizationEvaluationStatusCodes._(
-    'unknown',
+    value: 'unknown',
   );
 
   /// For instances where an Element is present but not value
 
   static final ImmunizationEvaluationStatusCodes elementOnly =
-      ImmunizationEvaluationStatusCodes._('');
+      ImmunizationEvaluationStatusCodes._(value: '');
 
   /// List of all enum-like values
   static final List<ImmunizationEvaluationStatusCodes> values = [
@@ -86,13 +91,14 @@ class ImmunizationEvaluationStatusCodes extends PrimitiveType<String> {
   @override
   ImmunizationEvaluationStatusCodes clone() =>
       ImmunizationEvaluationStatusCodes._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ImmunizationEvaluationStatusCodes withElement(Element? newElement) {
-    return ImmunizationEvaluationStatusCodes._(value, newElement);
+    return ImmunizationEvaluationStatusCodes._(
+        value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -117,14 +123,13 @@ class ImmunizationEvaluationStatusCodes extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ImmunizationEvaluationStatusCodes._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

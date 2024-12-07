@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Indicates the level of importance associated with reaching or sustaining a goal.
 class GoalPriority extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  GoalPriority._(super.value, [super.element]);
+  GoalPriority._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [GoalPriority] from JSON.
   factory GoalPriority.fromJson(
@@ -21,27 +26,27 @@ class GoalPriority extends PrimitiveType<String> {
         'GoalPriority cannot be constructed from JSON.',
       );
     }
-    return GoalPriority._(value, element);
+    return GoalPriority._(value: value, element: element);
   }
 
   /// high_priority
   static final GoalPriority high_priority = GoalPriority._(
-    'high-priority',
+    value: 'high-priority',
   );
 
   /// medium_priority
   static final GoalPriority medium_priority = GoalPriority._(
-    'medium-priority',
+    value: 'medium-priority',
   );
 
   /// low_priority
   static final GoalPriority low_priority = GoalPriority._(
-    'low-priority',
+    value: 'low-priority',
   );
 
   /// For instances where an Element is present but not value
 
-  static final GoalPriority elementOnly = GoalPriority._('');
+  static final GoalPriority elementOnly = GoalPriority._(value: '');
 
   /// List of all enum-like values
   static final List<GoalPriority> values = [
@@ -53,13 +58,13 @@ class GoalPriority extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   GoalPriority clone() => GoalPriority._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   GoalPriority withElement(Element? newElement) {
-    return GoalPriority._(value, newElement);
+    return GoalPriority._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -84,14 +89,13 @@ class GoalPriority extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return GoalPriority._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

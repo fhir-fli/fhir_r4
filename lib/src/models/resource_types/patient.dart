@@ -36,10 +36,6 @@ class Patient extends DomainResource {
     this.generalPractitioner,
     this.managingOrganization,
     this.link,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.Patient,
         );
@@ -522,10 +518,6 @@ class Patient extends DomainResource {
       generalPractitioner: generalPractitioner ?? this.generalPractitioner,
       managingOrganization: managingOrganization ?? this.managingOrganization,
       link: link ?? this.link,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -548,10 +540,6 @@ class PatientContact extends BackboneElement {
     this.organization,
     this.period,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -781,10 +769,6 @@ class PatientContact extends BackboneElement {
       gender: gender ?? this.gender,
       organization: organization ?? this.organization,
       period: period ?? this.period,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -803,10 +787,6 @@ class PatientCommunication extends BackboneElement {
     required this.language,
     this.preferred,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -948,10 +928,6 @@ class PatientCommunication extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       language: language ?? this.language,
       preferred: preferred ?? this.preferred,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -969,10 +945,6 @@ class PatientLink extends BackboneElement {
     required this.other,
     required this.type,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1109,10 +1081,6 @@ class PatientLink extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       other: other ?? this.other,
       type: type ?? this.type,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

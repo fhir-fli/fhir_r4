@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// HL7-defined table of codes which identify conditions under which acknowledgments are required to be returned in response to a message.
 class MessageheaderResponseRequest extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  MessageheaderResponseRequest._(super.value, [super.element]);
+  MessageheaderResponseRequest._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [MessageheaderResponseRequest] from JSON.
   factory MessageheaderResponseRequest.fromJson(
@@ -21,37 +26,37 @@ class MessageheaderResponseRequest extends PrimitiveType<String> {
         'MessageheaderResponseRequest cannot be constructed from JSON.',
       );
     }
-    return MessageheaderResponseRequest._(value, element);
+    return MessageheaderResponseRequest._(value: value, element: element);
   }
 
   /// always
   static final MessageheaderResponseRequest always =
       MessageheaderResponseRequest._(
-    'always',
+    value: 'always',
   );
 
   /// on_error
   static final MessageheaderResponseRequest on_error =
       MessageheaderResponseRequest._(
-    'on-error',
+    value: 'on-error',
   );
 
   /// never
   static final MessageheaderResponseRequest never =
       MessageheaderResponseRequest._(
-    'never',
+    value: 'never',
   );
 
   /// on_success
   static final MessageheaderResponseRequest on_success =
       MessageheaderResponseRequest._(
-    'on-success',
+    value: 'on-success',
   );
 
   /// For instances where an Element is present but not value
 
   static final MessageheaderResponseRequest elementOnly =
-      MessageheaderResponseRequest._('');
+      MessageheaderResponseRequest._(value: '');
 
   /// List of all enum-like values
   static final List<MessageheaderResponseRequest> values = [
@@ -64,13 +69,13 @@ class MessageheaderResponseRequest extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   MessageheaderResponseRequest clone() => MessageheaderResponseRequest._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   MessageheaderResponseRequest withElement(Element? newElement) {
-    return MessageheaderResponseRequest._(value, newElement);
+    return MessageheaderResponseRequest._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -95,14 +100,13 @@ class MessageheaderResponseRequest extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return MessageheaderResponseRequest._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

@@ -42,10 +42,6 @@ class TestScript extends DomainResource {
     this.setup,
     this.test,
     this.teardown,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.TestScript,
         );
@@ -625,10 +621,6 @@ class TestScript extends DomainResource {
       setup: setup ?? this.setup,
       test: test ?? this.test,
       teardown: teardown ?? this.teardown,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -647,10 +639,6 @@ class TestScriptOrigin extends BackboneElement {
     required this.index,
     required this.profile,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -787,10 +775,6 @@ class TestScriptOrigin extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       index: index ?? this.index,
       profile: profile ?? this.profile,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -809,10 +793,6 @@ class TestScriptDestination extends BackboneElement {
     required this.index,
     required this.profile,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -949,10 +929,6 @@ class TestScriptDestination extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       index: index ?? this.index,
       profile: profile ?? this.profile,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -971,10 +947,6 @@ class TestScriptMetadata extends BackboneElement {
     this.link,
     required this.capability,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1127,10 +1099,6 @@ class TestScriptMetadata extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       link: link ?? this.link,
       capability: capability ?? this.capability,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1148,10 +1116,6 @@ class TestScriptLink extends BackboneElement {
     required this.url,
     this.description,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1290,10 +1254,6 @@ class TestScriptLink extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       url: url ?? this.url,
       description: description ?? this.description,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1317,10 +1277,6 @@ class TestScriptCapability extends BackboneElement {
     this.link,
     required this.capabilities,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1537,10 +1493,6 @@ class TestScriptCapability extends BackboneElement {
       destination: destination ?? this.destination,
       link: link ?? this.link,
       capabilities: capabilities ?? this.capabilities,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1560,10 +1512,6 @@ class TestScriptFixture extends BackboneElement {
     required this.autodelete,
     this.resource,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1721,10 +1669,6 @@ class TestScriptFixture extends BackboneElement {
       autocreate: autocreate ?? this.autocreate,
       autodelete: autodelete ?? this.autodelete,
       resource: resource ?? this.resource,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1749,10 +1693,6 @@ class TestScriptVariable extends BackboneElement {
     this.path,
     this.sourceId,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1977,10 +1917,6 @@ class TestScriptVariable extends BackboneElement {
       hint: hint ?? this.hint,
       path: path ?? this.path,
       sourceId: sourceId ?? this.sourceId,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1997,10 +1933,6 @@ class TestScriptSetup extends BackboneElement {
     super.modifierExtension,
     required this.action,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -2133,10 +2065,6 @@ class TestScriptSetup extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       action: action ?? this.action,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -2154,10 +2082,6 @@ class TestScriptAction extends BackboneElement {
     this.operation,
     this.assert_,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -2302,10 +2226,6 @@ class TestScriptAction extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       operation: operation ?? this.operation,
       assert_: assert_ ?? this.assert_,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -2338,10 +2258,6 @@ class TestScriptOperation extends BackboneElement {
     this.targetId,
     this.url,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -2692,10 +2608,6 @@ class TestScriptOperation extends BackboneElement {
       sourceId: sourceId ?? this.sourceId,
       targetId: targetId ?? this.targetId,
       url: url ?? this.url,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -2713,10 +2625,6 @@ class TestScriptRequestHeader extends BackboneElement {
     required this.field,
     required this.value,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -2852,10 +2760,6 @@ class TestScriptRequestHeader extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       field: field ?? this.field,
       value: value ?? this.value,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -2894,10 +2798,6 @@ class TestScriptAssert extends BackboneElement {
     this.value,
     required this.warningOnly,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -3320,10 +3220,6 @@ class TestScriptAssert extends BackboneElement {
       validateProfileId: validateProfileId ?? this.validateProfileId,
       value: value ?? this.value,
       warningOnly: warningOnly ?? this.warningOnly,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -3342,10 +3238,6 @@ class TestScriptTest extends BackboneElement {
     this.description,
     required this.action,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -3506,10 +3398,6 @@ class TestScriptTest extends BackboneElement {
       name: name ?? this.name,
       description: description ?? this.description,
       action: action ?? this.action,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -3527,10 +3415,6 @@ class TestScriptAction1 extends BackboneElement {
     this.operation,
     this.assert_,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -3675,10 +3559,6 @@ class TestScriptAction1 extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       operation: operation ?? this.operation,
       assert_: assert_ ?? this.assert_,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -3696,10 +3576,6 @@ class TestScriptTeardown extends BackboneElement {
     super.modifierExtension,
     required this.action,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -3832,10 +3708,6 @@ class TestScriptTeardown extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       action: action ?? this.action,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -3852,10 +3724,6 @@ class TestScriptAction2 extends BackboneElement {
     super.modifierExtension,
     required this.operation,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -3980,10 +3848,6 @@ class TestScriptAction2 extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       operation: operation ?? this.operation,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

@@ -214,10 +214,6 @@ class ElementDefinition extends BackboneType {
     this.binding,
     this.mapping,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -4507,10 +4503,6 @@ class ElementDefinition extends BackboneType {
       isSummary: isSummary ?? this.isSummary,
       binding: binding ?? this.binding,
       mapping: mapping ?? this.mapping,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -4536,10 +4528,6 @@ class ElementDefinitionSlicing extends Element {
     this.ordered,
     required this.rules,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -4702,10 +4690,6 @@ class ElementDefinitionSlicing extends Element {
       description: description ?? this.description,
       ordered: ordered ?? this.ordered,
       rules: rules ?? this.rules,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -4726,10 +4710,6 @@ class ElementDefinitionDiscriminator extends Element {
     required this.type,
     required this.path,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -4851,10 +4831,6 @@ class ElementDefinitionDiscriminator extends Element {
       extension_: extension_ ?? this.extension_,
       type: type ?? this.type,
       path: path ?? this.path,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -4879,10 +4855,6 @@ class ElementDefinitionBase extends Element {
     required this.min,
     required this.max,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -5017,10 +4989,6 @@ class ElementDefinitionBase extends Element {
       path: path ?? this.path,
       min: min ?? this.min,
       max: max ?? this.max,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -5041,10 +5009,6 @@ class ElementDefinitionType extends Element {
     this.aggregation,
     this.versioning,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -5243,10 +5207,6 @@ class ElementDefinitionType extends Element {
       targetProfile: targetProfile ?? this.targetProfile,
       aggregation: aggregation ?? this.aggregation,
       versioning: versioning ?? this.versioning,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -5314,10 +5274,6 @@ class ElementDefinitionExample extends Element {
     this.valueUsageContext,
     this.valueDosage,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -6217,10 +6173,6 @@ class ElementDefinitionExample extends Element {
           valueTriggerDefinition ?? this.valueTriggerDefinition,
       valueUsageContext: valueUsageContext ?? this.valueUsageContext,
       valueDosage: valueDosage ?? this.valueDosage,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -6243,10 +6195,6 @@ class ElementDefinitionConstraint extends Element {
     this.xpath,
     this.source,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -6437,10 +6385,6 @@ class ElementDefinitionConstraint extends Element {
       expression: expression ?? this.expression,
       xpath: xpath ?? this.xpath,
       source: source ?? this.source,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -6459,10 +6403,6 @@ class ElementDefinitionBinding extends Element {
     this.description,
     this.valueSet,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -6600,10 +6540,6 @@ class ElementDefinitionBinding extends Element {
       strength: strength ?? this.strength,
       description: description ?? this.description,
       valueSet: valueSet ?? this.valueSet,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -6623,10 +6559,6 @@ class ElementDefinitionMapping extends Element {
     required this.map,
     this.comment,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -6773,10 +6705,6 @@ class ElementDefinitionMapping extends Element {
       language: language ?? this.language,
       map: map ?? this.map,
       comment: comment ?? this.comment,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

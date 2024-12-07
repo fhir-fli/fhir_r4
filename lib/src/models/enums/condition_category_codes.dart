@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Preferred value set for Condition Categories.
 class ConditionCategoryCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ConditionCategoryCodes._(super.value, [super.element]);
+  ConditionCategoryCodes._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [ConditionCategoryCodes] from JSON.
   factory ConditionCategoryCodes.fromJson(
@@ -21,25 +26,25 @@ class ConditionCategoryCodes extends PrimitiveType<String> {
         'ConditionCategoryCodes cannot be constructed from JSON.',
       );
     }
-    return ConditionCategoryCodes._(value, element);
+    return ConditionCategoryCodes._(value: value, element: element);
   }
 
   /// problem_list_item
   static final ConditionCategoryCodes problem_list_item =
       ConditionCategoryCodes._(
-    'problem-list-item',
+    value: 'problem-list-item',
   );
 
   /// encounter_diagnosis
   static final ConditionCategoryCodes encounter_diagnosis =
       ConditionCategoryCodes._(
-    'encounter-diagnosis',
+    value: 'encounter-diagnosis',
   );
 
   /// For instances where an Element is present but not value
 
   static final ConditionCategoryCodes elementOnly =
-      ConditionCategoryCodes._('');
+      ConditionCategoryCodes._(value: '');
 
   /// List of all enum-like values
   static final List<ConditionCategoryCodes> values = [
@@ -50,13 +55,13 @@ class ConditionCategoryCodes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ConditionCategoryCodes clone() => ConditionCategoryCodes._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ConditionCategoryCodes withElement(Element? newElement) {
-    return ConditionCategoryCodes._(value, newElement);
+    return ConditionCategoryCodes._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -81,14 +86,13 @@ class ConditionCategoryCodes extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ConditionCategoryCodes._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

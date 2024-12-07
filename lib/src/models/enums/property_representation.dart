@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// How a property is represented when serialized.
 class PropertyRepresentation extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  PropertyRepresentation._(super.value, [super.element]);
+  PropertyRepresentation._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [PropertyRepresentation] from JSON.
   factory PropertyRepresentation.fromJson(
@@ -21,38 +26,38 @@ class PropertyRepresentation extends PrimitiveType<String> {
         'PropertyRepresentation cannot be constructed from JSON.',
       );
     }
-    return PropertyRepresentation._(value, element);
+    return PropertyRepresentation._(value: value, element: element);
   }
 
   /// xmlAttr
   static final PropertyRepresentation xmlAttr = PropertyRepresentation._(
-    'xmlAttr',
+    value: 'xmlAttr',
   );
 
   /// xmlText
   static final PropertyRepresentation xmlText = PropertyRepresentation._(
-    'xmlText',
+    value: 'xmlText',
   );
 
   /// typeAttr
   static final PropertyRepresentation typeAttr = PropertyRepresentation._(
-    'typeAttr',
+    value: 'typeAttr',
   );
 
   /// cdaText
   static final PropertyRepresentation cdaText = PropertyRepresentation._(
-    'cdaText',
+    value: 'cdaText',
   );
 
   /// xhtml
   static final PropertyRepresentation xhtml = PropertyRepresentation._(
-    'xhtml',
+    value: 'xhtml',
   );
 
   /// For instances where an Element is present but not value
 
   static final PropertyRepresentation elementOnly =
-      PropertyRepresentation._('');
+      PropertyRepresentation._(value: '');
 
   /// List of all enum-like values
   static final List<PropertyRepresentation> values = [
@@ -66,13 +71,13 @@ class PropertyRepresentation extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   PropertyRepresentation clone() => PropertyRepresentation._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   PropertyRepresentation withElement(Element? newElement) {
-    return PropertyRepresentation._(value, newElement);
+    return PropertyRepresentation._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -97,14 +102,13 @@ class PropertyRepresentation extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return PropertyRepresentation._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

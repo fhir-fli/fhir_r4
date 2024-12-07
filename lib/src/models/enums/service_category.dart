@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value set defines an example set of codes that can be used to classify groupings of service-types/specialties.
 class ServiceCategory extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ServiceCategory._(super.value, [super.element]);
+  ServiceCategory._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [ServiceCategory] from JSON.
   factory ServiceCategory.fromJson(
@@ -21,202 +26,202 @@ class ServiceCategory extends PrimitiveType<String> {
         'ServiceCategory cannot be constructed from JSON.',
       );
     }
-    return ServiceCategory._(value, element);
+    return ServiceCategory._(value: value, element: element);
   }
 
   /// value1
   static final ServiceCategory value1 = ServiceCategory._(
-    '1',
+    value: '1',
   );
 
   /// value2
   static final ServiceCategory value2 = ServiceCategory._(
-    '2',
+    value: '2',
   );
 
   /// value34
   static final ServiceCategory value34 = ServiceCategory._(
-    '34',
+    value: '34',
   );
 
   /// value3
   static final ServiceCategory value3 = ServiceCategory._(
-    '3',
+    value: '3',
   );
 
   /// value4
   static final ServiceCategory value4 = ServiceCategory._(
-    '4',
+    value: '4',
   );
 
   /// value5
   static final ServiceCategory value5 = ServiceCategory._(
-    '5',
+    value: '5',
   );
 
   /// value6
   static final ServiceCategory value6 = ServiceCategory._(
-    '6',
+    value: '6',
   );
 
   /// value7
   static final ServiceCategory value7 = ServiceCategory._(
-    '7',
+    value: '7',
   );
 
   /// value8
   static final ServiceCategory value8 = ServiceCategory._(
-    '8',
+    value: '8',
   );
 
   /// value36
   static final ServiceCategory value36 = ServiceCategory._(
-    '36',
+    value: '36',
   );
 
   /// value9
   static final ServiceCategory value9 = ServiceCategory._(
-    '9',
+    value: '9',
   );
 
   /// value10
   static final ServiceCategory value10 = ServiceCategory._(
-    '10',
+    value: '10',
   );
 
   /// value11
   static final ServiceCategory value11 = ServiceCategory._(
-    '11',
+    value: '11',
   );
 
   /// value12
   static final ServiceCategory value12 = ServiceCategory._(
-    '12',
+    value: '12',
   );
 
   /// value13
   static final ServiceCategory value13 = ServiceCategory._(
-    '13',
+    value: '13',
   );
 
   /// value14
   static final ServiceCategory value14 = ServiceCategory._(
-    '14',
+    value: '14',
   );
 
   /// value15
   static final ServiceCategory value15 = ServiceCategory._(
-    '15',
+    value: '15',
   );
 
   /// value16
   static final ServiceCategory value16 = ServiceCategory._(
-    '16',
+    value: '16',
   );
 
   /// value17
   static final ServiceCategory value17 = ServiceCategory._(
-    '17',
+    value: '17',
   );
 
   /// value35
   static final ServiceCategory value35 = ServiceCategory._(
-    '35',
+    value: '35',
   );
 
   /// value18
   static final ServiceCategory value18 = ServiceCategory._(
-    '18',
+    value: '18',
   );
 
   /// value19
   static final ServiceCategory value19 = ServiceCategory._(
-    '19',
+    value: '19',
   );
 
   /// value20
   static final ServiceCategory value20 = ServiceCategory._(
-    '20',
+    value: '20',
   );
 
   /// value21
   static final ServiceCategory value21 = ServiceCategory._(
-    '21',
+    value: '21',
   );
 
   /// value22
   static final ServiceCategory value22 = ServiceCategory._(
-    '22',
+    value: '22',
   );
 
   /// value38
   static final ServiceCategory value38 = ServiceCategory._(
-    '38',
+    value: '38',
   );
 
   /// value23
   static final ServiceCategory value23 = ServiceCategory._(
-    '23',
+    value: '23',
   );
 
   /// value24
   static final ServiceCategory value24 = ServiceCategory._(
-    '24',
+    value: '24',
   );
 
   /// value25
   static final ServiceCategory value25 = ServiceCategory._(
-    '25',
+    value: '25',
   );
 
   /// value26
   static final ServiceCategory value26 = ServiceCategory._(
-    '26',
+    value: '26',
   );
 
   /// value27
   static final ServiceCategory value27 = ServiceCategory._(
-    '27',
+    value: '27',
   );
 
   /// value28
   static final ServiceCategory value28 = ServiceCategory._(
-    '28',
+    value: '28',
   );
 
   /// value29
   static final ServiceCategory value29 = ServiceCategory._(
-    '29',
+    value: '29',
   );
 
   /// value30
   static final ServiceCategory value30 = ServiceCategory._(
-    '30',
+    value: '30',
   );
 
   /// value31
   static final ServiceCategory value31 = ServiceCategory._(
-    '31',
+    value: '31',
   );
 
   /// value32
   static final ServiceCategory value32 = ServiceCategory._(
-    '32',
+    value: '32',
   );
 
   /// value37
   static final ServiceCategory value37 = ServiceCategory._(
-    '37',
+    value: '37',
   );
 
   /// value33
   static final ServiceCategory value33 = ServiceCategory._(
-    '33',
+    value: '33',
   );
 
   /// For instances where an Element is present but not value
 
-  static final ServiceCategory elementOnly = ServiceCategory._('');
+  static final ServiceCategory elementOnly = ServiceCategory._(value: '');
 
   /// List of all enum-like values
   static final List<ServiceCategory> values = [
@@ -263,13 +268,13 @@ class ServiceCategory extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ServiceCategory clone() => ServiceCategory._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ServiceCategory withElement(Element? newElement) {
-    return ServiceCategory._(value, newElement);
+    return ServiceCategory._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -294,14 +299,13 @@ class ServiceCategory extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ServiceCategory._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

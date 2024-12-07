@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Codes identifying the lifecycle stage of a product.
 class NutritionProductStatus extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  NutritionProductStatus._(super.value, [super.element]);
+  NutritionProductStatus._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [NutritionProductStatus] from JSON.
   factory NutritionProductStatus.fromJson(
@@ -21,29 +26,29 @@ class NutritionProductStatus extends PrimitiveType<String> {
         'NutritionProductStatus cannot be constructed from JSON.',
       );
     }
-    return NutritionProductStatus._(value, element);
+    return NutritionProductStatus._(value: value, element: element);
   }
 
   /// active
   static final NutritionProductStatus active = NutritionProductStatus._(
-    'active',
+    value: 'active',
   );
 
   /// inactive
   static final NutritionProductStatus inactive = NutritionProductStatus._(
-    'inactive',
+    value: 'inactive',
   );
 
   /// entered_in_error
   static final NutritionProductStatus entered_in_error =
       NutritionProductStatus._(
-    'entered-in-error',
+    value: 'entered-in-error',
   );
 
   /// For instances where an Element is present but not value
 
   static final NutritionProductStatus elementOnly =
-      NutritionProductStatus._('');
+      NutritionProductStatus._(value: '');
 
   /// List of all enum-like values
   static final List<NutritionProductStatus> values = [
@@ -55,13 +60,13 @@ class NutritionProductStatus extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   NutritionProductStatus clone() => NutritionProductStatus._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   NutritionProductStatus withElement(Element? newElement) {
-    return NutritionProductStatus._(value, newElement);
+    return NutritionProductStatus._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -86,14 +91,13 @@ class NutritionProductStatus extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return NutritionProductStatus._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

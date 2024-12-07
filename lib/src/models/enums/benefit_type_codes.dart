@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value set includes a smattering of Benefit type codes.
 class BenefitTypeCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  BenefitTypeCodes._(super.value, [super.element]);
+  BenefitTypeCodes._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [BenefitTypeCodes] from JSON.
   factory BenefitTypeCodes.fromJson(
@@ -21,72 +26,72 @@ class BenefitTypeCodes extends PrimitiveType<String> {
         'BenefitTypeCodes cannot be constructed from JSON.',
       );
     }
-    return BenefitTypeCodes._(value, element);
+    return BenefitTypeCodes._(value: value, element: element);
   }
 
   /// benefit
   static final BenefitTypeCodes benefit = BenefitTypeCodes._(
-    'benefit',
+    value: 'benefit',
   );
 
   /// deductible
   static final BenefitTypeCodes deductible = BenefitTypeCodes._(
-    'deductible',
+    value: 'deductible',
   );
 
   /// visit
   static final BenefitTypeCodes visit = BenefitTypeCodes._(
-    'visit',
+    value: 'visit',
   );
 
   /// room
   static final BenefitTypeCodes room = BenefitTypeCodes._(
-    'room',
+    value: 'room',
   );
 
   /// copay
   static final BenefitTypeCodes copay = BenefitTypeCodes._(
-    'copay',
+    value: 'copay',
   );
 
   /// copay_percent
   static final BenefitTypeCodes copay_percent = BenefitTypeCodes._(
-    'copay-percent',
+    value: 'copay-percent',
   );
 
   /// copay_maximum
   static final BenefitTypeCodes copay_maximum = BenefitTypeCodes._(
-    'copay-maximum',
+    value: 'copay-maximum',
   );
 
   /// vision_exam
   static final BenefitTypeCodes vision_exam = BenefitTypeCodes._(
-    'vision-exam',
+    value: 'vision-exam',
   );
 
   /// vision_glasses
   static final BenefitTypeCodes vision_glasses = BenefitTypeCodes._(
-    'vision-glasses',
+    value: 'vision-glasses',
   );
 
   /// vision_contacts
   static final BenefitTypeCodes vision_contacts = BenefitTypeCodes._(
-    'vision-contacts',
+    value: 'vision-contacts',
   );
 
   /// medical_primarycare
   static final BenefitTypeCodes medical_primarycare = BenefitTypeCodes._(
-    'medical-primarycare',
+    value: 'medical-primarycare',
   );
 
   /// pharmacy_dispense
   static final BenefitTypeCodes pharmacy_dispense = BenefitTypeCodes._(
-    'pharmacy-dispense',
+    value: 'pharmacy-dispense',
   );
 
   /// For instances where an Element is present but not value
 
-  static final BenefitTypeCodes elementOnly = BenefitTypeCodes._('');
+  static final BenefitTypeCodes elementOnly = BenefitTypeCodes._(value: '');
 
   /// List of all enum-like values
   static final List<BenefitTypeCodes> values = [
@@ -107,13 +112,13 @@ class BenefitTypeCodes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   BenefitTypeCodes clone() => BenefitTypeCodes._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   BenefitTypeCodes withElement(Element? newElement) {
-    return BenefitTypeCodes._(value, newElement);
+    return BenefitTypeCodes._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -138,14 +143,13 @@ class BenefitTypeCodes extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return BenefitTypeCodes._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

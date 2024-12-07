@@ -39,10 +39,6 @@ class ConceptMap extends CanonicalResource {
     this.targetUri,
     this.targetCanonical,
     this.group,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.ConceptMap,
         );
@@ -477,10 +473,6 @@ class ConceptMap extends CanonicalResource {
       targetUri: targetUri ?? this.targetUri,
       targetCanonical: targetCanonical ?? this.targetCanonical,
       group: group ?? this.group,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -502,10 +494,6 @@ class ConceptMapGroup extends BackboneElement {
     required this.element,
     this.unmapped,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -714,10 +702,6 @@ class ConceptMapGroup extends BackboneElement {
       targetVersion: targetVersion ?? this.targetVersion,
       element: element ?? this.element,
       unmapped: unmapped ?? this.unmapped,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -737,10 +721,6 @@ class ConceptMapElement extends BackboneElement {
     this.display,
     this.target,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -900,10 +880,6 @@ class ConceptMapElement extends BackboneElement {
       code: code ?? this.code,
       display: display ?? this.display,
       target: target ?? this.target,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -925,10 +901,6 @@ class ConceptMapTarget extends BackboneElement {
     this.dependsOn,
     this.product,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1140,10 +1112,6 @@ class ConceptMapTarget extends BackboneElement {
       comment: comment ?? this.comment,
       dependsOn: dependsOn ?? this.dependsOn,
       product: product ?? this.product,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1165,10 +1133,6 @@ class ConceptMapDependsOn extends BackboneElement {
     required this.value,
     this.display,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1336,10 +1300,6 @@ class ConceptMapDependsOn extends BackboneElement {
       system: system ?? this.system,
       value: value ?? this.value,
       display: display ?? this.display,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1361,10 +1321,6 @@ class ConceptMapUnmapped extends BackboneElement {
     this.display,
     this.url,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1537,10 +1493,6 @@ class ConceptMapUnmapped extends BackboneElement {
       code: code ?? this.code,
       display: display ?? this.display,
       url: url ?? this.url,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

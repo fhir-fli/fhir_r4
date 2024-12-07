@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value set includes sample Payee Type codes.
 class ClaimPayeeTypeCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ClaimPayeeTypeCodes._(super.value, [super.element]);
+  ClaimPayeeTypeCodes._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [ClaimPayeeTypeCodes] from JSON.
   factory ClaimPayeeTypeCodes.fromJson(
@@ -21,27 +26,28 @@ class ClaimPayeeTypeCodes extends PrimitiveType<String> {
         'ClaimPayeeTypeCodes cannot be constructed from JSON.',
       );
     }
-    return ClaimPayeeTypeCodes._(value, element);
+    return ClaimPayeeTypeCodes._(value: value, element: element);
   }
 
   /// subscriber
   static final ClaimPayeeTypeCodes subscriber = ClaimPayeeTypeCodes._(
-    'subscriber',
+    value: 'subscriber',
   );
 
   /// provider
   static final ClaimPayeeTypeCodes provider = ClaimPayeeTypeCodes._(
-    'provider',
+    value: 'provider',
   );
 
   /// other
   static final ClaimPayeeTypeCodes other = ClaimPayeeTypeCodes._(
-    'other',
+    value: 'other',
   );
 
   /// For instances where an Element is present but not value
 
-  static final ClaimPayeeTypeCodes elementOnly = ClaimPayeeTypeCodes._('');
+  static final ClaimPayeeTypeCodes elementOnly =
+      ClaimPayeeTypeCodes._(value: '');
 
   /// List of all enum-like values
   static final List<ClaimPayeeTypeCodes> values = [
@@ -53,13 +59,13 @@ class ClaimPayeeTypeCodes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ClaimPayeeTypeCodes clone() => ClaimPayeeTypeCodes._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ClaimPayeeTypeCodes withElement(Element? newElement) {
-    return ClaimPayeeTypeCodes._(value, newElement);
+    return ClaimPayeeTypeCodes._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -84,14 +90,13 @@ class ClaimPayeeTypeCodes extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ClaimPayeeTypeCodes._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

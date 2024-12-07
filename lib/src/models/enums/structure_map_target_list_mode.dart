@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// If field is a list, how to manage the production.
 class StructureMapTargetListMode extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  StructureMapTargetListMode._(super.value, [super.element]);
+  StructureMapTargetListMode._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [StructureMapTargetListMode] from JSON.
   factory StructureMapTargetListMode.fromJson(
@@ -21,34 +26,34 @@ class StructureMapTargetListMode extends PrimitiveType<String> {
         'StructureMapTargetListMode cannot be constructed from JSON.',
       );
     }
-    return StructureMapTargetListMode._(value, element);
+    return StructureMapTargetListMode._(value: value, element: element);
   }
 
   /// first
   static final StructureMapTargetListMode first = StructureMapTargetListMode._(
-    'first',
+    value: 'first',
   );
 
   /// share
   static final StructureMapTargetListMode share = StructureMapTargetListMode._(
-    'share',
+    value: 'share',
   );
 
   /// last
   static final StructureMapTargetListMode last = StructureMapTargetListMode._(
-    'last',
+    value: 'last',
   );
 
   /// collate
   static final StructureMapTargetListMode collate =
       StructureMapTargetListMode._(
-    'collate',
+    value: 'collate',
   );
 
   /// For instances where an Element is present but not value
 
   static final StructureMapTargetListMode elementOnly =
-      StructureMapTargetListMode._('');
+      StructureMapTargetListMode._(value: '');
 
   /// List of all enum-like values
   static final List<StructureMapTargetListMode> values = [
@@ -61,13 +66,13 @@ class StructureMapTargetListMode extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   StructureMapTargetListMode clone() => StructureMapTargetListMode._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   StructureMapTargetListMode withElement(Element? newElement) {
-    return StructureMapTargetListMode._(value, newElement);
+    return StructureMapTargetListMode._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -92,14 +97,13 @@ class StructureMapTargetListMode extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return StructureMapTargetListMode._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

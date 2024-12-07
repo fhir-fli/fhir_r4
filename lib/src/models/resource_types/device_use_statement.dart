@@ -33,10 +33,6 @@ class DeviceUseStatement extends DomainResource {
     this.reasonReference,
     this.bodySite,
     this.note,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.DeviceUseStatement,
         );
@@ -454,10 +450,6 @@ class DeviceUseStatement extends DomainResource {
       reasonReference: reasonReference ?? this.reasonReference,
       bodySite: bodySite ?? this.bodySite,
       note: note ?? this.note,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

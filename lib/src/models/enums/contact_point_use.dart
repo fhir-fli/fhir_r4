@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Use of contact point.
 class ContactPointUse extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ContactPointUse._(super.value, [super.element]);
+  ContactPointUse._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [ContactPointUse] from JSON.
   factory ContactPointUse.fromJson(
@@ -21,37 +26,37 @@ class ContactPointUse extends PrimitiveType<String> {
         'ContactPointUse cannot be constructed from JSON.',
       );
     }
-    return ContactPointUse._(value, element);
+    return ContactPointUse._(value: value, element: element);
   }
 
   /// home
   static final ContactPointUse home = ContactPointUse._(
-    'home',
+    value: 'home',
   );
 
   /// work
   static final ContactPointUse work = ContactPointUse._(
-    'work',
+    value: 'work',
   );
 
   /// temp
   static final ContactPointUse temp = ContactPointUse._(
-    'temp',
+    value: 'temp',
   );
 
   /// old
   static final ContactPointUse old = ContactPointUse._(
-    'old',
+    value: 'old',
   );
 
   /// mobile
   static final ContactPointUse mobile = ContactPointUse._(
-    'mobile',
+    value: 'mobile',
   );
 
   /// For instances where an Element is present but not value
 
-  static final ContactPointUse elementOnly = ContactPointUse._('');
+  static final ContactPointUse elementOnly = ContactPointUse._(value: '');
 
   /// List of all enum-like values
   static final List<ContactPointUse> values = [
@@ -65,13 +70,13 @@ class ContactPointUse extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ContactPointUse clone() => ContactPointUse._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ContactPointUse withElement(Element? newElement) {
-    return ContactPointUse._(value, newElement);
+    return ContactPointUse._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -96,14 +101,13 @@ class ContactPointUse extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ContactPointUse._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

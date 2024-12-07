@@ -36,10 +36,6 @@ class Location extends DomainResource {
     this.hoursOfOperation,
     this.availabilityExceptions,
     this.endpoint,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.Location,
         );
@@ -500,10 +496,6 @@ class Location extends DomainResource {
       availabilityExceptions:
           availabilityExceptions ?? this.availabilityExceptions,
       endpoint: endpoint ?? this.endpoint,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -523,10 +515,6 @@ class LocationPosition extends BackboneElement {
     required this.latitude,
     this.altitude,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -678,10 +666,6 @@ class LocationPosition extends BackboneElement {
       longitude: longitude ?? this.longitude,
       latitude: latitude ?? this.latitude,
       altitude: altitude ?? this.altitude,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -701,10 +685,6 @@ class LocationHoursOfOperation extends BackboneElement {
     this.openingTime,
     this.closingTime,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -877,10 +857,6 @@ class LocationHoursOfOperation extends BackboneElement {
       allDay: allDay ?? this.allDay,
       openingTime: openingTime ?? this.openingTime,
       closingTime: closingTime ?? this.closingTime,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

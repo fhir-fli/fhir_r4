@@ -44,10 +44,6 @@ class TerminologyCapabilities extends CanonicalResource {
     this.validateCode,
     this.translation,
     this.closure,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.TerminologyCapabilities,
         );
@@ -543,10 +539,6 @@ class TerminologyCapabilities extends CanonicalResource {
       validateCode: validateCode ?? this.validateCode,
       translation: translation ?? this.translation,
       closure: closure ?? this.closure,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -566,10 +558,6 @@ class TerminologyCapabilitiesSoftware extends BackboneElement {
     required this.name,
     this.version,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -707,10 +695,6 @@ class TerminologyCapabilitiesSoftware extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       name: name ?? this.name,
       version: version ?? this.version,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -730,10 +714,6 @@ class TerminologyCapabilitiesImplementation extends BackboneElement {
     required this.description,
     this.url,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -872,10 +852,6 @@ class TerminologyCapabilitiesImplementation extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       description: description ?? this.description,
       url: url ?? this.url,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -896,10 +872,6 @@ class TerminologyCapabilitiesCodeSystem extends BackboneElement {
     this.version,
     this.subsumption,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1059,10 +1031,6 @@ class TerminologyCapabilitiesCodeSystem extends BackboneElement {
       uri: uri ?? this.uri,
       version: version ?? this.version,
       subsumption: subsumption ?? this.subsumption,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1085,10 +1053,6 @@ class TerminologyCapabilitiesVersion extends BackboneElement {
     this.filter,
     this.property,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1300,10 +1264,6 @@ class TerminologyCapabilitiesVersion extends BackboneElement {
       language: language ?? this.language,
       filter: filter ?? this.filter,
       property: property ?? this.property,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1321,10 +1281,6 @@ class TerminologyCapabilitiesFilter extends BackboneElement {
     required this.code,
     required this.op,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1470,10 +1426,6 @@ class TerminologyCapabilitiesFilter extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       code: code ?? this.code,
       op: op ?? this.op,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1495,10 +1447,6 @@ class TerminologyCapabilitiesExpansion extends BackboneElement {
     this.parameter,
     this.textFilter,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1684,10 +1632,6 @@ class TerminologyCapabilitiesExpansion extends BackboneElement {
       incomplete: incomplete ?? this.incomplete,
       parameter: parameter ?? this.parameter,
       textFilter: textFilter ?? this.textFilter,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1705,10 +1649,6 @@ class TerminologyCapabilitiesParameter extends BackboneElement {
     required this.name,
     this.documentation,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1847,10 +1787,6 @@ class TerminologyCapabilitiesParameter extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       name: name ?? this.name,
       documentation: documentation ?? this.documentation,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1869,10 +1805,6 @@ class TerminologyCapabilitiesValidateCode extends BackboneElement {
     super.modifierExtension,
     required this.translations,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1997,10 +1929,6 @@ class TerminologyCapabilitiesValidateCode extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       translations: translations ?? this.translations,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -2018,10 +1946,6 @@ class TerminologyCapabilitiesTranslation extends BackboneElement {
     super.modifierExtension,
     required this.needsMap,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -2146,10 +2070,6 @@ class TerminologyCapabilitiesTranslation extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       needsMap: needsMap ?? this.needsMap,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -2166,10 +2086,6 @@ class TerminologyCapabilitiesClosure extends BackboneElement {
     super.modifierExtension,
     this.translation,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -2296,10 +2212,6 @@ class TerminologyCapabilitiesClosure extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       translation: translation ?? this.translation,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

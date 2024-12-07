@@ -15,10 +15,6 @@ class Narrative extends DataType {
     required this.status,
     required this.div,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -140,10 +136,6 @@ class Narrative extends DataType {
       extension_: extension_ ?? this.extension_,
       status: status ?? this.status,
       div: div ?? this.div,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

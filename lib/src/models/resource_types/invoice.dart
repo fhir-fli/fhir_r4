@@ -34,10 +34,6 @@ class Invoice extends DomainResource {
     this.totalGross,
     this.paymentTerms,
     this.note,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.Invoice,
         );
@@ -475,10 +471,6 @@ class Invoice extends DomainResource {
       totalGross: totalGross ?? this.totalGross,
       paymentTerms: paymentTerms ?? this.paymentTerms,
       note: note ?? this.note,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -496,10 +488,6 @@ class InvoiceParticipant extends BackboneElement {
     this.role,
     required this.actor,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -642,10 +630,6 @@ class InvoiceParticipant extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       role: role ?? this.role,
       actor: actor ?? this.actor,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -667,10 +651,6 @@ class InvoiceLineItem extends BackboneElement {
     this.chargeItemCodeableConcept,
     this.priceComponent,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -858,10 +838,6 @@ class InvoiceLineItem extends BackboneElement {
       chargeItemCodeableConcept:
           chargeItemCodeableConcept ?? this.chargeItemCodeableConcept,
       priceComponent: priceComponent ?? this.priceComponent,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -886,10 +862,6 @@ class InvoicePriceComponent extends BackboneElement {
     this.factor,
     this.amount,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1059,10 +1031,6 @@ class InvoicePriceComponent extends BackboneElement {
       code: code ?? this.code,
       factor: factor ?? this.factor,
       amount: amount ?? this.amount,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

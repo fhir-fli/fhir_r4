@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Structure Definition Use Codes / Keywords
 class DefinitionUseCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  DefinitionUseCodes._(super.value, [super.element]);
+  DefinitionUseCodes._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [DefinitionUseCodes] from JSON.
   factory DefinitionUseCodes.fromJson(
@@ -21,42 +26,42 @@ class DefinitionUseCodes extends PrimitiveType<String> {
         'DefinitionUseCodes cannot be constructed from JSON.',
       );
     }
-    return DefinitionUseCodes._(value, element);
+    return DefinitionUseCodes._(value: value, element: element);
   }
 
   /// fhir_structure
   static final DefinitionUseCodes fhir_structure = DefinitionUseCodes._(
-    'fhir-structure',
+    value: 'fhir-structure',
   );
 
   /// custom_resource
   static final DefinitionUseCodes custom_resource = DefinitionUseCodes._(
-    'custom-resource',
+    value: 'custom-resource',
   );
 
   /// dam
   static final DefinitionUseCodes dam = DefinitionUseCodes._(
-    'dam',
+    value: 'dam',
   );
 
   /// wire_format
   static final DefinitionUseCodes wire_format = DefinitionUseCodes._(
-    'wire-format',
+    value: 'wire-format',
   );
 
   /// archetype
   static final DefinitionUseCodes archetype = DefinitionUseCodes._(
-    'archetype',
+    value: 'archetype',
   );
 
   /// template
   static final DefinitionUseCodes template = DefinitionUseCodes._(
-    'template',
+    value: 'template',
   );
 
   /// For instances where an Element is present but not value
 
-  static final DefinitionUseCodes elementOnly = DefinitionUseCodes._('');
+  static final DefinitionUseCodes elementOnly = DefinitionUseCodes._(value: '');
 
   /// List of all enum-like values
   static final List<DefinitionUseCodes> values = [
@@ -71,13 +76,13 @@ class DefinitionUseCodes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   DefinitionUseCodes clone() => DefinitionUseCodes._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   DefinitionUseCodes withElement(Element? newElement) {
-    return DefinitionUseCodes._(value, newElement);
+    return DefinitionUseCodes._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -102,14 +107,13 @@ class DefinitionUseCodes extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return DefinitionUseCodes._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

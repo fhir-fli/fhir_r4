@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Indicates whether this flag is active and needs to be displayed to a user, or whether it is no longer needed or was entered in error.
 class FlagStatus extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  FlagStatus._(super.value, [super.element]);
+  FlagStatus._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [FlagStatus] from JSON.
   factory FlagStatus.fromJson(
@@ -21,27 +26,27 @@ class FlagStatus extends PrimitiveType<String> {
         'FlagStatus cannot be constructed from JSON.',
       );
     }
-    return FlagStatus._(value, element);
+    return FlagStatus._(value: value, element: element);
   }
 
   /// active
   static final FlagStatus active = FlagStatus._(
-    'active',
+    value: 'active',
   );
 
   /// inactive
   static final FlagStatus inactive = FlagStatus._(
-    'inactive',
+    value: 'inactive',
   );
 
   /// entered_in_error
   static final FlagStatus entered_in_error = FlagStatus._(
-    'entered-in-error',
+    value: 'entered-in-error',
   );
 
   /// For instances where an Element is present but not value
 
-  static final FlagStatus elementOnly = FlagStatus._('');
+  static final FlagStatus elementOnly = FlagStatus._(value: '');
 
   /// List of all enum-like values
   static final List<FlagStatus> values = [
@@ -53,13 +58,13 @@ class FlagStatus extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   FlagStatus clone() => FlagStatus._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   FlagStatus withElement(Element? newElement) {
-    return FlagStatus._(value, newElement);
+    return FlagStatus._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -84,14 +89,13 @@ class FlagStatus extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return FlagStatus._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

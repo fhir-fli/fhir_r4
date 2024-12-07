@@ -35,10 +35,6 @@ class GraphDefinition extends CanonicalResource {
     required this.start,
     this.profile,
     this.link,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.GraphDefinition,
         );
@@ -388,10 +384,6 @@ class GraphDefinition extends CanonicalResource {
       start: start ?? this.start,
       profile: profile ?? this.profile,
       link: link ?? this.link,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -413,10 +405,6 @@ class GraphDefinitionLink extends BackboneElement {
     this.description,
     this.target,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -616,10 +604,6 @@ class GraphDefinitionLink extends BackboneElement {
       max: max ?? this.max,
       description: description ?? this.description,
       target: target ?? this.target,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -640,10 +624,6 @@ class GraphDefinitionTarget extends BackboneElement {
     this.compartment,
     this.link,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -832,10 +812,6 @@ class GraphDefinitionTarget extends BackboneElement {
       profile: profile ?? this.profile,
       compartment: compartment ?? this.compartment,
       link: link ?? this.link,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -856,10 +832,6 @@ class GraphDefinitionCompartment extends BackboneElement {
     this.expression,
     this.description,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1034,10 +1006,6 @@ class GraphDefinitionCompartment extends BackboneElement {
       rule: rule ?? this.rule,
       expression: expression ?? this.expression,
       description: description ?? this.description,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

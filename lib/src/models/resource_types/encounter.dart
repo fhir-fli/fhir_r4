@@ -42,10 +42,6 @@ class Encounter extends DomainResource {
     this.location,
     this.serviceProvider,
     this.partOf,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.Encounter,
         );
@@ -638,10 +634,6 @@ class Encounter extends DomainResource {
       location: location ?? this.location,
       serviceProvider: serviceProvider ?? this.serviceProvider,
       partOf: partOf ?? this.partOf,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -661,10 +653,6 @@ class EncounterStatusHistory extends BackboneElement {
     required this.status,
     required this.period,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -801,10 +789,6 @@ class EncounterStatusHistory extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       status: status ?? this.status,
       period: period ?? this.period,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -828,10 +812,6 @@ class EncounterClassHistory extends BackboneElement {
     required this.class_,
     required this.period,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -967,10 +947,6 @@ class EncounterClassHistory extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       class_: class_ ?? this.class_,
       period: period ?? this.period,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -989,10 +965,6 @@ class EncounterParticipant extends BackboneElement {
     this.period,
     this.individual,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1157,10 +1129,6 @@ class EncounterParticipant extends BackboneElement {
       type: type ?? this.type,
       period: period ?? this.period,
       individual: individual ?? this.individual,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1179,10 +1147,6 @@ class EncounterDiagnosis extends BackboneElement {
     this.use,
     this.rank,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1339,10 +1303,6 @@ class EncounterDiagnosis extends BackboneElement {
       condition: condition ?? this.condition,
       use: use ?? this.use,
       rank: rank ?? this.rank,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1367,10 +1327,6 @@ class EncounterHospitalization extends BackboneElement {
     this.destination,
     this.dischargeDisposition,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1635,10 +1591,6 @@ class EncounterHospitalization extends BackboneElement {
       specialArrangement: specialArrangement ?? this.specialArrangement,
       destination: destination ?? this.destination,
       dischargeDisposition: dischargeDisposition ?? this.dischargeDisposition,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1658,10 +1610,6 @@ class EncounterLocation extends BackboneElement {
     this.physicalType,
     this.period,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1832,10 +1780,6 @@ class EncounterLocation extends BackboneElement {
       status: status ?? this.status,
       physicalType: physicalType ?? this.physicalType,
       period: period ?? this.period,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

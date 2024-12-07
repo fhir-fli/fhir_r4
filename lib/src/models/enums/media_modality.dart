@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Detailed information about the type of the image - its kind, purpose, or the kind of equipment used to generate it.
 class MediaModality extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  MediaModality._(super.value, [super.element]);
+  MediaModality._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [MediaModality] from JSON.
   factory MediaModality.fromJson(
@@ -21,52 +26,52 @@ class MediaModality extends PrimitiveType<String> {
         'MediaModality cannot be constructed from JSON.',
       );
     }
-    return MediaModality._(value, element);
+    return MediaModality._(value: value, element: element);
   }
 
   /// diagram
   static final MediaModality diagram = MediaModality._(
-    'diagram',
+    value: 'diagram',
   );
 
   /// fax
   static final MediaModality fax = MediaModality._(
-    'fax',
+    value: 'fax',
   );
 
   /// scan
   static final MediaModality scan = MediaModality._(
-    'scan',
+    value: 'scan',
   );
 
   /// retina
   static final MediaModality retina = MediaModality._(
-    'retina',
+    value: 'retina',
   );
 
   /// fingerprint
   static final MediaModality fingerprint = MediaModality._(
-    'fingerprint',
+    value: 'fingerprint',
   );
 
   /// iris
   static final MediaModality iris = MediaModality._(
-    'iris',
+    value: 'iris',
   );
 
   /// palm
   static final MediaModality palm = MediaModality._(
-    'palm',
+    value: 'palm',
   );
 
   /// face
   static final MediaModality face = MediaModality._(
-    'face',
+    value: 'face',
   );
 
   /// For instances where an Element is present but not value
 
-  static final MediaModality elementOnly = MediaModality._('');
+  static final MediaModality elementOnly = MediaModality._(value: '');
 
   /// List of all enum-like values
   static final List<MediaModality> values = [
@@ -83,13 +88,13 @@ class MediaModality extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   MediaModality clone() => MediaModality._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   MediaModality withElement(Element? newElement) {
-    return MediaModality._(value, newElement);
+    return MediaModality._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -114,14 +119,13 @@ class MediaModality extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return MediaModality._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This example value set defines a set of codes that can be used to indicate the role of one Organization in relation to another.
 class OrganizationAffiliationRole extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  OrganizationAffiliationRole._(super.value, [super.element]);
+  OrganizationAffiliationRole._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [OrganizationAffiliationRole] from JSON.
   factory OrganizationAffiliationRole.fromJson(
@@ -21,61 +26,61 @@ class OrganizationAffiliationRole extends PrimitiveType<String> {
         'OrganizationAffiliationRole cannot be constructed from JSON.',
       );
     }
-    return OrganizationAffiliationRole._(value, element);
+    return OrganizationAffiliationRole._(value: value, element: element);
   }
 
   /// provider
   static final OrganizationAffiliationRole provider =
       OrganizationAffiliationRole._(
-    'provider',
+    value: 'provider',
   );
 
   /// agency
   static final OrganizationAffiliationRole agency =
       OrganizationAffiliationRole._(
-    'agency',
+    value: 'agency',
   );
 
   /// research
   static final OrganizationAffiliationRole research =
       OrganizationAffiliationRole._(
-    'research',
+    value: 'research',
   );
 
   /// payer
   static final OrganizationAffiliationRole payer =
       OrganizationAffiliationRole._(
-    'payer',
+    value: 'payer',
   );
 
   /// diagnostics
   static final OrganizationAffiliationRole diagnostics =
       OrganizationAffiliationRole._(
-    'diagnostics',
+    value: 'diagnostics',
   );
 
   /// supplier
   static final OrganizationAffiliationRole supplier =
       OrganizationAffiliationRole._(
-    'supplier',
+    value: 'supplier',
   );
 
   /// HIE_HIO
   static final OrganizationAffiliationRole HIE_HIO =
       OrganizationAffiliationRole._(
-    'HIE/HIO',
+    value: 'HIE/HIO',
   );
 
   /// member
   static final OrganizationAffiliationRole member =
       OrganizationAffiliationRole._(
-    'member',
+    value: 'member',
   );
 
   /// For instances where an Element is present but not value
 
   static final OrganizationAffiliationRole elementOnly =
-      OrganizationAffiliationRole._('');
+      OrganizationAffiliationRole._(value: '');
 
   /// List of all enum-like values
   static final List<OrganizationAffiliationRole> values = [
@@ -92,13 +97,13 @@ class OrganizationAffiliationRole extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   OrganizationAffiliationRole clone() => OrganizationAffiliationRole._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   OrganizationAffiliationRole withElement(Element? newElement) {
-    return OrganizationAffiliationRole._(value, newElement);
+    return OrganizationAffiliationRole._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -123,14 +128,13 @@ class OrganizationAffiliationRole extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return OrganizationAffiliationRole._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

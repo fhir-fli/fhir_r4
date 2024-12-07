@@ -30,10 +30,6 @@ class AuditEvent extends DomainResource {
     required this.agent,
     required this.source,
     this.entity,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.AuditEvent,
         );
@@ -373,10 +369,6 @@ class AuditEvent extends DomainResource {
       agent: agent ?? this.agent,
       source: source ?? this.source,
       entity: entity ?? this.entity,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -403,10 +395,6 @@ class AuditEventAgent extends BackboneElement {
     this.network,
     this.purposeOfUse,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -702,10 +690,6 @@ class AuditEventAgent extends BackboneElement {
       media: media ?? this.media,
       network: network ?? this.network,
       purposeOfUse: purposeOfUse ?? this.purposeOfUse,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -724,10 +708,6 @@ class AuditEventNetwork extends BackboneElement {
     this.address,
     this.type,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -869,10 +849,6 @@ class AuditEventNetwork extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       address: address ?? this.address,
       type: type ?? this.type,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -891,10 +867,6 @@ class AuditEventSource extends BackboneElement {
     required this.observer,
     this.type,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1053,10 +1025,6 @@ class AuditEventSource extends BackboneElement {
       site: site ?? this.site,
       observer: observer ?? this.observer,
       type: type ?? this.type,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1081,10 +1049,6 @@ class AuditEventEntity extends BackboneElement {
     this.query,
     this.detail,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1338,10 +1302,6 @@ class AuditEventEntity extends BackboneElement {
       description: description ?? this.description,
       query: query ?? this.query,
       detail: detail ?? this.detail,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1361,10 +1321,6 @@ class AuditEventDetail extends BackboneElement {
     this.valueString,
     this.valueBase64Binary,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1516,10 +1472,6 @@ class AuditEventDetail extends BackboneElement {
       type: type ?? this.type,
       valueString: valueString ?? this.valueString,
       valueBase64Binary: valueBase64Binary ?? this.valueBase64Binary,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

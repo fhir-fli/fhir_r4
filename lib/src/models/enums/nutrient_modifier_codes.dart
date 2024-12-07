@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// NutrientModifier : Codes for types of nutrients that are being modified such as carbohydrate or sodium. This value set includes codes from [SNOMED CT](http://snomed.info/sct) where concept is-a 226355009 (Nutrients(substance)), and the concepts for Sodium, Potassium and Fluid. This is provided as a suggestive example.
 class NutrientModifierCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  NutrientModifierCodes._(super.value, [super.element]);
+  NutrientModifierCodes._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [NutrientModifierCodes] from JSON.
   factory NutrientModifierCodes.fromJson(
@@ -21,27 +26,28 @@ class NutrientModifierCodes extends PrimitiveType<String> {
         'NutrientModifierCodes cannot be constructed from JSON.',
       );
     }
-    return NutrientModifierCodes._(value, element);
+    return NutrientModifierCodes._(value: value, element: element);
   }
 
   /// value33463005
   static final NutrientModifierCodes value33463005 = NutrientModifierCodes._(
-    '33463005',
+    value: '33463005',
   );
 
   /// value39972003
   static final NutrientModifierCodes value39972003 = NutrientModifierCodes._(
-    '39972003',
+    value: '39972003',
   );
 
   /// value88480006
   static final NutrientModifierCodes value88480006 = NutrientModifierCodes._(
-    '88480006',
+    value: '88480006',
   );
 
   /// For instances where an Element is present but not value
 
-  static final NutrientModifierCodes elementOnly = NutrientModifierCodes._('');
+  static final NutrientModifierCodes elementOnly =
+      NutrientModifierCodes._(value: '');
 
   /// List of all enum-like values
   static final List<NutrientModifierCodes> values = [
@@ -53,13 +59,13 @@ class NutrientModifierCodes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   NutrientModifierCodes clone() => NutrientModifierCodes._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   NutrientModifierCodes withElement(Element? newElement) {
-    return NutrientModifierCodes._(value, newElement);
+    return NutrientModifierCodes._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -84,14 +90,13 @@ class NutrientModifierCodes extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return NutrientModifierCodes._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

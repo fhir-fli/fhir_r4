@@ -45,10 +45,6 @@ class ClinicalImpression extends DomainResource {
     this.prognosisReference,
     this.supportingInfo,
     this.note,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.ClinicalImpression,
         );
@@ -577,10 +573,6 @@ class ClinicalImpression extends DomainResource {
       prognosisReference: prognosisReference ?? this.prognosisReference,
       supportingInfo: supportingInfo ?? this.supportingInfo,
       note: note ?? this.note,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -602,10 +594,6 @@ class ClinicalImpressionInvestigation extends BackboneElement {
     required this.code,
     this.item,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -752,10 +740,6 @@ class ClinicalImpressionInvestigation extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       code: code ?? this.code,
       item: item ?? this.item,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -775,10 +759,6 @@ class ClinicalImpressionFinding extends BackboneElement {
     this.itemReference,
     this.basis,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -937,10 +917,6 @@ class ClinicalImpressionFinding extends BackboneElement {
       itemCodeableConcept: itemCodeableConcept ?? this.itemCodeableConcept,
       itemReference: itemReference ?? this.itemReference,
       basis: basis ?? this.basis,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

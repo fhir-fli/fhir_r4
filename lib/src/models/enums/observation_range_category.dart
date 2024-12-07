@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Codes identifying the category of observation range.
 class ObservationRangeCategory extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ObservationRangeCategory._(super.value, [super.element]);
+  ObservationRangeCategory._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [ObservationRangeCategory] from JSON.
   factory ObservationRangeCategory.fromJson(
@@ -21,28 +26,28 @@ class ObservationRangeCategory extends PrimitiveType<String> {
         'ObservationRangeCategory cannot be constructed from JSON.',
       );
     }
-    return ObservationRangeCategory._(value, element);
+    return ObservationRangeCategory._(value: value, element: element);
   }
 
   /// reference
   static final ObservationRangeCategory reference = ObservationRangeCategory._(
-    'reference',
+    value: 'reference',
   );
 
   /// critical
   static final ObservationRangeCategory critical = ObservationRangeCategory._(
-    'critical',
+    value: 'critical',
   );
 
   /// absolute
   static final ObservationRangeCategory absolute = ObservationRangeCategory._(
-    'absolute',
+    value: 'absolute',
   );
 
   /// For instances where an Element is present but not value
 
   static final ObservationRangeCategory elementOnly =
-      ObservationRangeCategory._('');
+      ObservationRangeCategory._(value: '');
 
   /// List of all enum-like values
   static final List<ObservationRangeCategory> values = [
@@ -54,13 +59,13 @@ class ObservationRangeCategory extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ObservationRangeCategory clone() => ObservationRangeCategory._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ObservationRangeCategory withElement(Element? newElement) {
-    return ObservationRangeCategory._(value, newElement);
+    return ObservationRangeCategory._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -85,14 +90,13 @@ class ObservationRangeCategory extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ObservationRangeCategory._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

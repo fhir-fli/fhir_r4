@@ -30,10 +30,6 @@ class DocumentManifest extends DomainResource {
     this.description,
     required this.content,
     this.related,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.DocumentManifest,
         );
@@ -410,10 +406,6 @@ class DocumentManifest extends DomainResource {
       description: description ?? this.description,
       content: content ?? this.content,
       related: related ?? this.related,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -431,10 +423,6 @@ class DocumentManifestRelated extends BackboneElement {
     this.identifier,
     this.ref,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -580,10 +568,6 @@ class DocumentManifestRelated extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       identifier: identifier ?? this.identifier,
       ref: ref ?? this.ref,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

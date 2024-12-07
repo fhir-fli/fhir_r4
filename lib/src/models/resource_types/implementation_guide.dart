@@ -41,10 +41,6 @@ class ImplementationGuide extends CanonicalResource {
     this.global,
     this.definition,
     this.manifest,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.ImplementationGuide,
         );
@@ -488,10 +484,6 @@ class ImplementationGuide extends CanonicalResource {
       global: global ?? this.global,
       definition: definition ?? this.definition,
       manifest: manifest ?? this.manifest,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -512,10 +504,6 @@ class ImplementationGuideDependsOn extends BackboneElement {
     this.packageId,
     this.version,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -668,10 +656,6 @@ class ImplementationGuideDependsOn extends BackboneElement {
       uri: uri ?? this.uri,
       packageId: packageId ?? this.packageId,
       version: version ?? this.version,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -690,10 +674,6 @@ class ImplementationGuideGlobal extends BackboneElement {
     required this.type,
     required this.profile,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -829,10 +809,6 @@ class ImplementationGuideGlobal extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
       profile: profile ?? this.profile,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -854,10 +830,6 @@ class ImplementationGuideDefinition extends BackboneElement {
     this.parameter,
     this.template,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1067,10 +1039,6 @@ class ImplementationGuideDefinition extends BackboneElement {
       page: page ?? this.page,
       parameter: parameter ?? this.parameter,
       template: template ?? this.template,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1089,10 +1057,6 @@ class ImplementationGuideGrouping extends BackboneElement {
     required this.name,
     this.description,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1231,10 +1195,6 @@ class ImplementationGuideGrouping extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       name: name ?? this.name,
       description: description ?? this.description,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1260,10 +1220,6 @@ class ImplementationGuideResource extends BackboneElement {
     this.exampleCanonical,
     this.groupingId,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1483,10 +1439,6 @@ class ImplementationGuideResource extends BackboneElement {
       exampleBoolean: exampleBoolean ?? this.exampleBoolean,
       exampleCanonical: exampleCanonical ?? this.exampleCanonical,
       groupingId: groupingId ?? this.groupingId,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1508,10 +1460,6 @@ class ImplementationGuidePage extends BackboneElement {
     required this.generation,
     this.page,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1695,10 +1643,6 @@ class ImplementationGuidePage extends BackboneElement {
       title: title ?? this.title,
       generation: generation ?? this.generation,
       page: page ?? this.page,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1716,10 +1660,6 @@ class ImplementationGuideParameter extends BackboneElement {
     required this.code,
     required this.value,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1857,10 +1797,6 @@ class ImplementationGuideParameter extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       code: code ?? this.code,
       value: value ?? this.value,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1879,10 +1815,6 @@ class ImplementationGuideTemplate extends BackboneElement {
     required this.source,
     this.scope,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -2031,10 +1963,6 @@ class ImplementationGuideTemplate extends BackboneElement {
       code: code ?? this.code,
       source: source ?? this.source,
       scope: scope ?? this.scope,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -2056,10 +1984,6 @@ class ImplementationGuideManifest extends BackboneElement {
     this.image,
     this.other,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -2268,10 +2192,6 @@ class ImplementationGuideManifest extends BackboneElement {
       page: page ?? this.page,
       image: image ?? this.image,
       other: other ?? this.other,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -2294,10 +2214,6 @@ class ImplementationGuideResource1 extends BackboneElement {
     this.exampleCanonical,
     this.relativePath,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -2468,10 +2384,6 @@ class ImplementationGuideResource1 extends BackboneElement {
       exampleBoolean: exampleBoolean ?? this.exampleBoolean,
       exampleCanonical: exampleCanonical ?? this.exampleCanonical,
       relativePath: relativePath ?? this.relativePath,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -2490,10 +2402,6 @@ class ImplementationGuidePage1 extends BackboneElement {
     this.title,
     this.anchor,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -2650,10 +2558,6 @@ class ImplementationGuidePage1 extends BackboneElement {
       name: name ?? this.name,
       title: title ?? this.title,
       anchor: anchor ?? this.anchor,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

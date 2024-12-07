@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Permitted data type for observation value.
 class ObservationDataType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ObservationDataType._(super.value, [super.element]);
+  ObservationDataType._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [ObservationDataType] from JSON.
   factory ObservationDataType.fromJson(
@@ -21,67 +26,68 @@ class ObservationDataType extends PrimitiveType<String> {
         'ObservationDataType cannot be constructed from JSON.',
       );
     }
-    return ObservationDataType._(value, element);
+    return ObservationDataType._(value: value, element: element);
   }
 
   /// Quantity
   static final ObservationDataType Quantity = ObservationDataType._(
-    'Quantity',
+    value: 'Quantity',
   );
 
   /// CodeableConcept
   static final ObservationDataType CodeableConcept = ObservationDataType._(
-    'CodeableConcept',
+    value: 'CodeableConcept',
   );
 
   /// string
   static final ObservationDataType string = ObservationDataType._(
-    'string',
+    value: 'string',
   );
 
   /// boolean
   static final ObservationDataType boolean = ObservationDataType._(
-    'boolean',
+    value: 'boolean',
   );
 
   /// integer
   static final ObservationDataType integer = ObservationDataType._(
-    'integer',
+    value: 'integer',
   );
 
   /// Range
   static final ObservationDataType Range = ObservationDataType._(
-    'Range',
+    value: 'Range',
   );
 
   /// Ratio
   static final ObservationDataType Ratio = ObservationDataType._(
-    'Ratio',
+    value: 'Ratio',
   );
 
   /// SampledData
   static final ObservationDataType SampledData = ObservationDataType._(
-    'SampledData',
+    value: 'SampledData',
   );
 
   /// time
   static final ObservationDataType time = ObservationDataType._(
-    'time',
+    value: 'time',
   );
 
   /// dateTime
   static final ObservationDataType dateTime = ObservationDataType._(
-    'dateTime',
+    value: 'dateTime',
   );
 
   /// Period
   static final ObservationDataType Period = ObservationDataType._(
-    'Period',
+    value: 'Period',
   );
 
   /// For instances where an Element is present but not value
 
-  static final ObservationDataType elementOnly = ObservationDataType._('');
+  static final ObservationDataType elementOnly =
+      ObservationDataType._(value: '');
 
   /// List of all enum-like values
   static final List<ObservationDataType> values = [
@@ -101,13 +107,13 @@ class ObservationDataType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ObservationDataType clone() => ObservationDataType._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ObservationDataType withElement(Element? newElement) {
-    return ObservationDataType._(value, newElement);
+    return ObservationDataType._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -132,14 +138,13 @@ class ObservationDataType extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ObservationDataType._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

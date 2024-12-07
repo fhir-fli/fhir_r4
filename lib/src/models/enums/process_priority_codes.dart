@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value set includes the financial processing priority codes.
 class ProcessPriorityCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ProcessPriorityCodes._(super.value, [super.element]);
+  ProcessPriorityCodes._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [ProcessPriorityCodes] from JSON.
   factory ProcessPriorityCodes.fromJson(
@@ -21,27 +26,28 @@ class ProcessPriorityCodes extends PrimitiveType<String> {
         'ProcessPriorityCodes cannot be constructed from JSON.',
       );
     }
-    return ProcessPriorityCodes._(value, element);
+    return ProcessPriorityCodes._(value: value, element: element);
   }
 
   /// stat
   static final ProcessPriorityCodes stat = ProcessPriorityCodes._(
-    'stat',
+    value: 'stat',
   );
 
   /// normal
   static final ProcessPriorityCodes normal = ProcessPriorityCodes._(
-    'normal',
+    value: 'normal',
   );
 
   /// deferred_
   static final ProcessPriorityCodes deferred_ = ProcessPriorityCodes._(
-    'deferred',
+    value: 'deferred',
   );
 
   /// For instances where an Element is present but not value
 
-  static final ProcessPriorityCodes elementOnly = ProcessPriorityCodes._('');
+  static final ProcessPriorityCodes elementOnly =
+      ProcessPriorityCodes._(value: '');
 
   /// List of all enum-like values
   static final List<ProcessPriorityCodes> values = [
@@ -53,13 +59,13 @@ class ProcessPriorityCodes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ProcessPriorityCodes clone() => ProcessPriorityCodes._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ProcessPriorityCodes withElement(Element? newElement) {
-    return ProcessPriorityCodes._(value, newElement);
+    return ProcessPriorityCodes._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -84,14 +90,13 @@ class ProcessPriorityCodes extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ProcessPriorityCodes._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

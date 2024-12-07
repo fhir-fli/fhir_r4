@@ -30,10 +30,6 @@ class Organization extends DomainResource {
     this.partOf,
     this.contact,
     this.endpoint,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.Organization,
         );
@@ -383,10 +379,6 @@ class Organization extends DomainResource {
       partOf: partOf ?? this.partOf,
       contact: contact ?? this.contact,
       endpoint: endpoint ?? this.endpoint,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -406,10 +398,6 @@ class OrganizationContact extends BackboneElement {
     this.telecom,
     this.address,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -588,10 +576,6 @@ class OrganizationContact extends BackboneElement {
       name: name ?? this.name,
       telecom: telecom ?? this.telecom,
       address: address ?? this.address,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

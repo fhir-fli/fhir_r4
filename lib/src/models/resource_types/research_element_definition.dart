@@ -52,10 +52,6 @@ class ResearchElementDefinition extends DomainResource {
     required this.type,
     this.variableType,
     required this.characteristic,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.ResearchElementDefinition,
         );
@@ -821,10 +817,6 @@ class ResearchElementDefinition extends DomainResource {
       type: type ?? this.type,
       variableType: variableType ?? this.variableType,
       characteristic: characteristic ?? this.characteristic,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -862,10 +854,6 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
     this.participantEffectiveTimeFromStart,
     this.participantEffectiveGroupMeasure,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1329,10 +1317,6 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
           this.participantEffectiveTimeFromStart,
       participantEffectiveGroupMeasure: participantEffectiveGroupMeasure ??
           this.participantEffectiveGroupMeasure,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

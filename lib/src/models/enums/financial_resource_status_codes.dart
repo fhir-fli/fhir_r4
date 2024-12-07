@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value set includes Status codes.
 class FinancialResourceStatusCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  FinancialResourceStatusCodes._(super.value, [super.element]);
+  FinancialResourceStatusCodes._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [FinancialResourceStatusCodes] from JSON.
   factory FinancialResourceStatusCodes.fromJson(
@@ -21,37 +26,37 @@ class FinancialResourceStatusCodes extends PrimitiveType<String> {
         'FinancialResourceStatusCodes cannot be constructed from JSON.',
       );
     }
-    return FinancialResourceStatusCodes._(value, element);
+    return FinancialResourceStatusCodes._(value: value, element: element);
   }
 
   /// active
   static final FinancialResourceStatusCodes active =
       FinancialResourceStatusCodes._(
-    'active',
+    value: 'active',
   );
 
   /// cancelled
   static final FinancialResourceStatusCodes cancelled =
       FinancialResourceStatusCodes._(
-    'cancelled',
+    value: 'cancelled',
   );
 
   /// draft
   static final FinancialResourceStatusCodes draft =
       FinancialResourceStatusCodes._(
-    'draft',
+    value: 'draft',
   );
 
   /// entered_in_error
   static final FinancialResourceStatusCodes entered_in_error =
       FinancialResourceStatusCodes._(
-    'entered-in-error',
+    value: 'entered-in-error',
   );
 
   /// For instances where an Element is present but not value
 
   static final FinancialResourceStatusCodes elementOnly =
-      FinancialResourceStatusCodes._('');
+      FinancialResourceStatusCodes._(value: '');
 
   /// List of all enum-like values
   static final List<FinancialResourceStatusCodes> values = [
@@ -64,13 +69,13 @@ class FinancialResourceStatusCodes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   FinancialResourceStatusCodes clone() => FinancialResourceStatusCodes._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   FinancialResourceStatusCodes withElement(Element? newElement) {
-    return FinancialResourceStatusCodes._(value, newElement);
+    return FinancialResourceStatusCodes._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -95,14 +100,13 @@ class FinancialResourceStatusCodes extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return FinancialResourceStatusCodes._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

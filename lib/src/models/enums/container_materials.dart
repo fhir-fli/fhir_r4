@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value set includes SNOMED CT codes for materials that specimen containers are made of
 class ContainerMaterials extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ContainerMaterials._(super.value, [super.element]);
+  ContainerMaterials._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [ContainerMaterials] from JSON.
   factory ContainerMaterials.fromJson(
@@ -21,27 +26,27 @@ class ContainerMaterials extends PrimitiveType<String> {
         'ContainerMaterials cannot be constructed from JSON.',
       );
     }
-    return ContainerMaterials._(value, element);
+    return ContainerMaterials._(value: value, element: element);
   }
 
   /// value32039001
   static final ContainerMaterials value32039001 = ContainerMaterials._(
-    '32039001',
+    value: '32039001',
   );
 
   /// value61088005
   static final ContainerMaterials value61088005 = ContainerMaterials._(
-    '61088005',
+    value: '61088005',
   );
 
   /// value425620007
   static final ContainerMaterials value425620007 = ContainerMaterials._(
-    '425620007',
+    value: '425620007',
   );
 
   /// For instances where an Element is present but not value
 
-  static final ContainerMaterials elementOnly = ContainerMaterials._('');
+  static final ContainerMaterials elementOnly = ContainerMaterials._(value: '');
 
   /// List of all enum-like values
   static final List<ContainerMaterials> values = [
@@ -53,13 +58,13 @@ class ContainerMaterials extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ContainerMaterials clone() => ContainerMaterials._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ContainerMaterials withElement(Element? newElement) {
-    return ContainerMaterials._(value, newElement);
+    return ContainerMaterials._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -84,14 +89,13 @@ class ContainerMaterials extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ContainerMaterials._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

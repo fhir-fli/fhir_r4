@@ -25,10 +25,6 @@ class SubscriptionStatus extends DomainResource {
     required this.subscription,
     this.topic,
     this.error,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.SubscriptionStatus,
         );
@@ -311,10 +307,6 @@ class SubscriptionStatus extends DomainResource {
       subscription: subscription ?? this.subscription,
       topic: topic ?? this.topic,
       error: error ?? this.error,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -335,10 +327,6 @@ class SubscriptionStatusNotificationEvent extends BackboneElement {
     this.focus,
     this.additionalContext,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -517,10 +505,6 @@ class SubscriptionStatusNotificationEvent extends BackboneElement {
       timestamp: timestamp ?? this.timestamp,
       focus: focus ?? this.focus,
       additionalContext: additionalContext ?? this.additionalContext,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

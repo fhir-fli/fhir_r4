@@ -3,7 +3,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Abstract base class for all FHIR primitive types
 abstract class PrimitiveType<T> extends DataType {
   /// Main constructor for [PrimitiveType<T> ]
-  PrimitiveType(this.value, [this.element]);
+  PrimitiveType({
+    this.value,
+    this.element,
+    super.id,
+    super.extension_,
+  });
 
   @override
   String get fhirType => 'PrimitiveType';

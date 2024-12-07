@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Procedure follow up codes: A selection of SNOMED CT codes relevant to procedure follow up.
 class ProcedureFollowUpCodesSNOMEDCT extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ProcedureFollowUpCodesSNOMEDCT._(super.value, [super.element]);
+  ProcedureFollowUpCodesSNOMEDCT._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [ProcedureFollowUpCodesSNOMEDCT] from JSON.
   factory ProcedureFollowUpCodesSNOMEDCT.fromJson(
@@ -21,73 +26,73 @@ class ProcedureFollowUpCodesSNOMEDCT extends PrimitiveType<String> {
         'ProcedureFollowUpCodesSNOMEDCT cannot be constructed from JSON.',
       );
     }
-    return ProcedureFollowUpCodesSNOMEDCT._(value, element);
+    return ProcedureFollowUpCodesSNOMEDCT._(value: value, element: element);
   }
 
   /// value18949003
   static final ProcedureFollowUpCodesSNOMEDCT value18949003 =
       ProcedureFollowUpCodesSNOMEDCT._(
-    '18949003',
+    value: '18949003',
   );
 
   /// value30549001
   static final ProcedureFollowUpCodesSNOMEDCT value30549001 =
       ProcedureFollowUpCodesSNOMEDCT._(
-    '30549001',
+    value: '30549001',
   );
 
   /// value241031001
   static final ProcedureFollowUpCodesSNOMEDCT value241031001 =
       ProcedureFollowUpCodesSNOMEDCT._(
-    '241031001',
+    value: '241031001',
   );
 
   /// value35963001
   static final ProcedureFollowUpCodesSNOMEDCT value35963001 =
       ProcedureFollowUpCodesSNOMEDCT._(
-    '35963001',
+    value: '35963001',
   );
 
   /// value225164002
   static final ProcedureFollowUpCodesSNOMEDCT value225164002 =
       ProcedureFollowUpCodesSNOMEDCT._(
-    '225164002',
+    value: '225164002',
   );
 
   /// value447346005
   static final ProcedureFollowUpCodesSNOMEDCT value447346005 =
       ProcedureFollowUpCodesSNOMEDCT._(
-    '447346005',
+    value: '447346005',
   );
 
   /// value229506003
   static final ProcedureFollowUpCodesSNOMEDCT value229506003 =
       ProcedureFollowUpCodesSNOMEDCT._(
-    '229506003',
+    value: '229506003',
   );
 
   /// value274441001
   static final ProcedureFollowUpCodesSNOMEDCT value274441001 =
       ProcedureFollowUpCodesSNOMEDCT._(
-    '274441001',
+    value: '274441001',
   );
 
   /// value394725008
   static final ProcedureFollowUpCodesSNOMEDCT value394725008 =
       ProcedureFollowUpCodesSNOMEDCT._(
-    '394725008',
+    value: '394725008',
   );
 
   /// value359825008
   static final ProcedureFollowUpCodesSNOMEDCT value359825008 =
       ProcedureFollowUpCodesSNOMEDCT._(
-    '359825008',
+    value: '359825008',
   );
 
   /// For instances where an Element is present but not value
 
   static final ProcedureFollowUpCodesSNOMEDCT elementOnly =
-      ProcedureFollowUpCodesSNOMEDCT._('');
+      ProcedureFollowUpCodesSNOMEDCT._(value: '');
 
   /// List of all enum-like values
   static final List<ProcedureFollowUpCodesSNOMEDCT> values = [
@@ -106,13 +111,13 @@ class ProcedureFollowUpCodesSNOMEDCT extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ProcedureFollowUpCodesSNOMEDCT clone() => ProcedureFollowUpCodesSNOMEDCT._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ProcedureFollowUpCodesSNOMEDCT withElement(Element? newElement) {
-    return ProcedureFollowUpCodesSNOMEDCT._(value, newElement);
+    return ProcedureFollowUpCodesSNOMEDCT._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -137,14 +142,13 @@ class ProcedureFollowUpCodesSNOMEDCT extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ProcedureFollowUpCodesSNOMEDCT._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

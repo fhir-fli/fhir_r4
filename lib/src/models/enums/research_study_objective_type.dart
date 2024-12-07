@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Codes for the kind of study objective.
 class ResearchStudyObjectiveType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ResearchStudyObjectiveType._(super.value, [super.element]);
+  ResearchStudyObjectiveType._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [ResearchStudyObjectiveType] from JSON.
   factory ResearchStudyObjectiveType.fromJson(
@@ -21,31 +26,31 @@ class ResearchStudyObjectiveType extends PrimitiveType<String> {
         'ResearchStudyObjectiveType cannot be constructed from JSON.',
       );
     }
-    return ResearchStudyObjectiveType._(value, element);
+    return ResearchStudyObjectiveType._(value: value, element: element);
   }
 
   /// primary
   static final ResearchStudyObjectiveType primary =
       ResearchStudyObjectiveType._(
-    'primary',
+    value: 'primary',
   );
 
   /// secondary
   static final ResearchStudyObjectiveType secondary =
       ResearchStudyObjectiveType._(
-    'secondary',
+    value: 'secondary',
   );
 
   /// exploratory
   static final ResearchStudyObjectiveType exploratory =
       ResearchStudyObjectiveType._(
-    'exploratory',
+    value: 'exploratory',
   );
 
   /// For instances where an Element is present but not value
 
   static final ResearchStudyObjectiveType elementOnly =
-      ResearchStudyObjectiveType._('');
+      ResearchStudyObjectiveType._(value: '');
 
   /// List of all enum-like values
   static final List<ResearchStudyObjectiveType> values = [
@@ -57,13 +62,13 @@ class ResearchStudyObjectiveType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ResearchStudyObjectiveType clone() => ResearchStudyObjectiveType._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ResearchStudyObjectiveType withElement(Element? newElement) {
-    return ResearchStudyObjectiveType._(value, newElement);
+    return ResearchStudyObjectiveType._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -88,14 +93,13 @@ class ResearchStudyObjectiveType extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ResearchStudyObjectiveType._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

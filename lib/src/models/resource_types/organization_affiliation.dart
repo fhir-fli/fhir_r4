@@ -31,10 +31,6 @@ class OrganizationAffiliation extends DomainResource {
     this.healthcareService,
     this.telecom,
     this.endpoint,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.OrganizationAffiliation,
         );
@@ -429,10 +425,6 @@ class OrganizationAffiliation extends DomainResource {
       healthcareService: healthcareService ?? this.healthcareService,
       telecom: telecom ?? this.telecom,
       endpoint: endpoint ?? this.endpoint,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

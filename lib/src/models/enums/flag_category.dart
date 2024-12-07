@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Example list of general categories for flagged issues. (Not complete or necessarily appropriate.)
 class FlagCategory extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  FlagCategory._(super.value, [super.element]);
+  FlagCategory._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [FlagCategory] from JSON.
   factory FlagCategory.fromJson(
@@ -21,62 +26,62 @@ class FlagCategory extends PrimitiveType<String> {
         'FlagCategory cannot be constructed from JSON.',
       );
     }
-    return FlagCategory._(value, element);
+    return FlagCategory._(value: value, element: element);
   }
 
   /// diet
   static final FlagCategory diet = FlagCategory._(
-    'diet',
+    value: 'diet',
   );
 
   /// drug
   static final FlagCategory drug = FlagCategory._(
-    'drug',
+    value: 'drug',
   );
 
   /// lab
   static final FlagCategory lab = FlagCategory._(
-    'lab',
+    value: 'lab',
   );
 
   /// admin
   static final FlagCategory admin = FlagCategory._(
-    'admin',
+    value: 'admin',
   );
 
   /// contact
   static final FlagCategory contact = FlagCategory._(
-    'contact',
+    value: 'contact',
   );
 
   /// clinical
   static final FlagCategory clinical = FlagCategory._(
-    'clinical',
+    value: 'clinical',
   );
 
   /// behavioral
   static final FlagCategory behavioral = FlagCategory._(
-    'behavioral',
+    value: 'behavioral',
   );
 
   /// research
   static final FlagCategory research = FlagCategory._(
-    'research',
+    value: 'research',
   );
 
   /// advance_directive
   static final FlagCategory advance_directive = FlagCategory._(
-    'advance-directive',
+    value: 'advance-directive',
   );
 
   /// safety
   static final FlagCategory safety = FlagCategory._(
-    'safety',
+    value: 'safety',
   );
 
   /// For instances where an Element is present but not value
 
-  static final FlagCategory elementOnly = FlagCategory._('');
+  static final FlagCategory elementOnly = FlagCategory._(value: '');
 
   /// List of all enum-like values
   static final List<FlagCategory> values = [
@@ -95,13 +100,13 @@ class FlagCategory extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   FlagCategory clone() => FlagCategory._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   FlagCategory withElement(Element? newElement) {
-    return FlagCategory._(value, newElement);
+    return FlagCategory._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -126,14 +131,13 @@ class FlagCategory extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return FlagCategory._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

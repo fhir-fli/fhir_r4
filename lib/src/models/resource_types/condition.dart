@@ -43,10 +43,6 @@ class Condition extends DomainResource {
     this.stage,
     this.evidence,
     this.note,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.Condition,
         );
@@ -641,10 +637,6 @@ class Condition extends DomainResource {
       stage: stage ?? this.stage,
       evidence: evidence ?? this.evidence,
       note: note ?? this.note,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -664,10 +656,6 @@ class ConditionStage extends BackboneElement {
     this.assessment,
     this.type,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -832,10 +820,6 @@ class ConditionStage extends BackboneElement {
       summary: summary ?? this.summary,
       assessment: assessment ?? this.assessment,
       type: type ?? this.type,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -855,10 +839,6 @@ class ConditionEvidence extends BackboneElement {
     this.code,
     this.detail,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1010,10 +990,6 @@ class ConditionEvidence extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       code: code ?? this.code,
       detail: detail ?? this.detail,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

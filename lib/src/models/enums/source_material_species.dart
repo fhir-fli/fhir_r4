@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// A species of origin a substance raw material.
 class SourceMaterialSpecies extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  SourceMaterialSpecies._(super.value, [super.element]);
+  SourceMaterialSpecies._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [SourceMaterialSpecies] from JSON.
   factory SourceMaterialSpecies.fromJson(
@@ -21,22 +26,23 @@ class SourceMaterialSpecies extends PrimitiveType<String> {
         'SourceMaterialSpecies cannot be constructed from JSON.',
       );
     }
-    return SourceMaterialSpecies._(value, element);
+    return SourceMaterialSpecies._(value: value, element: element);
   }
 
   /// GinkgoBiloba
   static final SourceMaterialSpecies GinkgoBiloba = SourceMaterialSpecies._(
-    'GinkgoBiloba',
+    value: 'GinkgoBiloba',
   );
 
   /// OleaEuropaea
   static final SourceMaterialSpecies OleaEuropaea = SourceMaterialSpecies._(
-    'OleaEuropaea',
+    value: 'OleaEuropaea',
   );
 
   /// For instances where an Element is present but not value
 
-  static final SourceMaterialSpecies elementOnly = SourceMaterialSpecies._('');
+  static final SourceMaterialSpecies elementOnly =
+      SourceMaterialSpecies._(value: '');
 
   /// List of all enum-like values
   static final List<SourceMaterialSpecies> values = [
@@ -47,13 +53,13 @@ class SourceMaterialSpecies extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   SourceMaterialSpecies clone() => SourceMaterialSpecies._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   SourceMaterialSpecies withElement(Element? newElement) {
-    return SourceMaterialSpecies._(value, newElement);
+    return SourceMaterialSpecies._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -78,14 +84,13 @@ class SourceMaterialSpecies extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return SourceMaterialSpecies._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

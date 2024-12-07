@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Codes describing the purpose or content of the communication.
 class CommunicationTopic extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  CommunicationTopic._(super.value, [super.element]);
+  CommunicationTopic._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [CommunicationTopic] from JSON.
   factory CommunicationTopic.fromJson(
@@ -21,43 +26,43 @@ class CommunicationTopic extends PrimitiveType<String> {
         'CommunicationTopic cannot be constructed from JSON.',
       );
     }
-    return CommunicationTopic._(value, element);
+    return CommunicationTopic._(value: value, element: element);
   }
 
   /// prescription_refill_request
   static final CommunicationTopic prescription_refill_request =
       CommunicationTopic._(
-    'prescription-refill-request',
+    value: 'prescription-refill-request',
   );
 
   /// progress_update
   static final CommunicationTopic progress_update = CommunicationTopic._(
-    'progress-update',
+    value: 'progress-update',
   );
 
   /// report_labs
   static final CommunicationTopic report_labs = CommunicationTopic._(
-    'report-labs',
+    value: 'report-labs',
   );
 
   /// appointment_reminder
   static final CommunicationTopic appointment_reminder = CommunicationTopic._(
-    'appointment-reminder',
+    value: 'appointment-reminder',
   );
 
   /// phone_consult
   static final CommunicationTopic phone_consult = CommunicationTopic._(
-    'phone-consult',
+    value: 'phone-consult',
   );
 
   /// summary_report
   static final CommunicationTopic summary_report = CommunicationTopic._(
-    'summary-report',
+    value: 'summary-report',
   );
 
   /// For instances where an Element is present but not value
 
-  static final CommunicationTopic elementOnly = CommunicationTopic._('');
+  static final CommunicationTopic elementOnly = CommunicationTopic._(value: '');
 
   /// List of all enum-like values
   static final List<CommunicationTopic> values = [
@@ -72,13 +77,13 @@ class CommunicationTopic extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   CommunicationTopic clone() => CommunicationTopic._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   CommunicationTopic withElement(Element? newElement) {
-    return CommunicationTopic._(value, newElement);
+    return CommunicationTopic._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -103,14 +108,13 @@ class CommunicationTopic extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return CommunicationTopic._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

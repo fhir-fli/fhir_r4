@@ -30,10 +30,6 @@ class ClinicalUseDefinition extends DomainResource {
     this.population,
     this.undesirableEffect,
     this.warning,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.ClinicalUseDefinition,
         );
@@ -390,10 +386,6 @@ class ClinicalUseDefinition extends DomainResource {
       population: population ?? this.population,
       undesirableEffect: undesirableEffect ?? this.undesirableEffect,
       warning: warning ?? this.warning,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -414,10 +406,6 @@ class ClinicalUseDefinitionContraindication extends BackboneElement {
     this.indication,
     this.otherTherapy,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -622,10 +610,6 @@ class ClinicalUseDefinitionContraindication extends BackboneElement {
       comorbidity: comorbidity ?? this.comorbidity,
       indication: indication ?? this.indication,
       otherTherapy: otherTherapy ?? this.otherTherapy,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -644,10 +628,6 @@ class ClinicalUseDefinitionOtherTherapy extends BackboneElement {
     required this.relationshipType,
     required this.therapy,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -785,10 +765,6 @@ class ClinicalUseDefinitionOtherTherapy extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       relationshipType: relationshipType ?? this.relationshipType,
       therapy: therapy ?? this.therapy,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -812,10 +788,6 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
     this.undesirableEffect,
     this.otherTherapy,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1072,10 +1044,6 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
       durationString: durationString ?? this.durationString,
       undesirableEffect: undesirableEffect ?? this.undesirableEffect,
       otherTherapy: otherTherapy ?? this.otherTherapy,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1096,10 +1064,6 @@ class ClinicalUseDefinitionInteraction extends BackboneElement {
     this.incidence,
     this.management,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1299,10 +1263,6 @@ class ClinicalUseDefinitionInteraction extends BackboneElement {
       effect: effect ?? this.effect,
       incidence: incidence ?? this.incidence,
       management: management ?? this.management,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1321,10 +1281,6 @@ class ClinicalUseDefinitionInteractant extends BackboneElement {
     this.itemReference,
     this.itemCodeableConcept,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1468,10 +1424,6 @@ class ClinicalUseDefinitionInteractant extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       itemReference: itemReference ?? this.itemReference,
       itemCodeableConcept: itemCodeableConcept ?? this.itemCodeableConcept,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1491,10 +1443,6 @@ class ClinicalUseDefinitionUndesirableEffect extends BackboneElement {
     this.classification,
     this.frequencyOfOccurrence,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1655,10 +1603,6 @@ class ClinicalUseDefinitionUndesirableEffect extends BackboneElement {
       classification: classification ?? this.classification,
       frequencyOfOccurrence:
           frequencyOfOccurrence ?? this.frequencyOfOccurrence,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1679,10 +1623,6 @@ class ClinicalUseDefinitionWarning extends BackboneElement {
     this.description,
     this.code,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1824,10 +1764,6 @@ class ClinicalUseDefinitionWarning extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       description: description ?? this.description,
       code: code ?? this.code,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

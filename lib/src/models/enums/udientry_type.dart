@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Codes to identify how UDI data was entered.
 class UDIEntryType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  UDIEntryType._(super.value, [super.element]);
+  UDIEntryType._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [UDIEntryType] from JSON.
   factory UDIEntryType.fromJson(
@@ -21,42 +26,42 @@ class UDIEntryType extends PrimitiveType<String> {
         'UDIEntryType cannot be constructed from JSON.',
       );
     }
-    return UDIEntryType._(value, element);
+    return UDIEntryType._(value: value, element: element);
   }
 
   /// barcode
   static final UDIEntryType barcode = UDIEntryType._(
-    'barcode',
+    value: 'barcode',
   );
 
   /// rfid
   static final UDIEntryType rfid = UDIEntryType._(
-    'rfid',
+    value: 'rfid',
   );
 
   /// manual
   static final UDIEntryType manual = UDIEntryType._(
-    'manual',
+    value: 'manual',
   );
 
   /// card
   static final UDIEntryType card = UDIEntryType._(
-    'card',
+    value: 'card',
   );
 
   /// self_reported
   static final UDIEntryType self_reported = UDIEntryType._(
-    'self-reported',
+    value: 'self-reported',
   );
 
   /// unknown
   static final UDIEntryType unknown = UDIEntryType._(
-    'unknown',
+    value: 'unknown',
   );
 
   /// For instances where an Element is present but not value
 
-  static final UDIEntryType elementOnly = UDIEntryType._('');
+  static final UDIEntryType elementOnly = UDIEntryType._(value: '');
 
   /// List of all enum-like values
   static final List<UDIEntryType> values = [
@@ -71,13 +76,13 @@ class UDIEntryType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   UDIEntryType clone() => UDIEntryType._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   UDIEntryType withElement(Element? newElement) {
-    return UDIEntryType._(value, newElement);
+    return UDIEntryType._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -102,14 +107,13 @@ class UDIEntryType extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return UDIEntryType._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

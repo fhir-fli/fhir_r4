@@ -42,10 +42,6 @@ class EvidenceVariable extends DomainResource {
     this.characteristic,
     this.handling,
     this.category,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.EvidenceVariable,
         );
@@ -640,10 +636,6 @@ class EvidenceVariable extends DomainResource {
       characteristic: characteristic ?? this.characteristic,
       handling: handling ?? this.handling,
       category: category ?? this.category,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -670,10 +662,6 @@ class EvidenceVariableCharacteristic extends BackboneElement {
     this.timeFromStart,
     this.groupMeasure,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -948,10 +936,6 @@ class EvidenceVariableCharacteristic extends BackboneElement {
       exclude: exclude ?? this.exclude,
       timeFromStart: timeFromStart ?? this.timeFromStart,
       groupMeasure: groupMeasure ?? this.groupMeasure,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -972,10 +956,6 @@ class EvidenceVariableTimeFromStart extends BackboneElement {
     this.range,
     this.note,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1153,10 +1133,6 @@ class EvidenceVariableTimeFromStart extends BackboneElement {
       quantity: quantity ?? this.quantity,
       range: range ?? this.range,
       note: note ?? this.note,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1177,10 +1153,6 @@ class EvidenceVariableCategory extends BackboneElement {
     this.valueQuantity,
     this.valueRange,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1352,10 +1324,6 @@ class EvidenceVariableCategory extends BackboneElement {
       valueCodeableConcept: valueCodeableConcept ?? this.valueCodeableConcept,
       valueQuantity: valueQuantity ?? this.valueQuantity,
       valueRange: valueRange ?? this.valueRange,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

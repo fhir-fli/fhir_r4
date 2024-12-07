@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Example Measure Stratification Value for MeasureReports Resource.
 class MeasureReportStratifierValueExample extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  MeasureReportStratifierValueExample._(super.value, [super.element]);
+  MeasureReportStratifierValueExample._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [MeasureReportStratifierValueExample] from JSON.
   factory MeasureReportStratifierValueExample.fromJson(
@@ -22,37 +27,38 @@ class MeasureReportStratifierValueExample extends PrimitiveType<String> {
         'MeasureReportStratifierValueExample cannot be constructed from JSON.',
       );
     }
-    return MeasureReportStratifierValueExample._(value, element);
+    return MeasureReportStratifierValueExample._(
+        value: value, element: element);
   }
 
   /// northwest
   static final MeasureReportStratifierValueExample northwest =
       MeasureReportStratifierValueExample._(
-    'northwest',
+    value: 'northwest',
   );
 
   /// northeast
   static final MeasureReportStratifierValueExample northeast =
       MeasureReportStratifierValueExample._(
-    'northeast',
+    value: 'northeast',
   );
 
   /// southwest
   static final MeasureReportStratifierValueExample southwest =
       MeasureReportStratifierValueExample._(
-    'southwest',
+    value: 'southwest',
   );
 
   /// southeast
   static final MeasureReportStratifierValueExample southeast =
       MeasureReportStratifierValueExample._(
-    'southeast',
+    value: 'southeast',
   );
 
   /// For instances where an Element is present but not value
 
   static final MeasureReportStratifierValueExample elementOnly =
-      MeasureReportStratifierValueExample._('');
+      MeasureReportStratifierValueExample._(value: '');
 
   /// List of all enum-like values
   static final List<MeasureReportStratifierValueExample> values = [
@@ -66,13 +72,14 @@ class MeasureReportStratifierValueExample extends PrimitiveType<String> {
   @override
   MeasureReportStratifierValueExample clone() =>
       MeasureReportStratifierValueExample._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   MeasureReportStratifierValueExample withElement(Element? newElement) {
-    return MeasureReportStratifierValueExample._(value, newElement);
+    return MeasureReportStratifierValueExample._(
+        value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -97,14 +104,13 @@ class MeasureReportStratifierValueExample extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return MeasureReportStratifierValueExample._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

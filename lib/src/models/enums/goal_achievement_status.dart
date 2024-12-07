@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Describes the progression, or lack thereof, towards the goal against the target.
 class GoalAchievementStatus extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  GoalAchievementStatus._(super.value, [super.element]);
+  GoalAchievementStatus._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [GoalAchievementStatus] from JSON.
   factory GoalAchievementStatus.fromJson(
@@ -21,57 +26,58 @@ class GoalAchievementStatus extends PrimitiveType<String> {
         'GoalAchievementStatus cannot be constructed from JSON.',
       );
     }
-    return GoalAchievementStatus._(value, element);
+    return GoalAchievementStatus._(value: value, element: element);
   }
 
   /// in_progress
   static final GoalAchievementStatus in_progress = GoalAchievementStatus._(
-    'in-progress',
+    value: 'in-progress',
   );
 
   /// improving
   static final GoalAchievementStatus improving = GoalAchievementStatus._(
-    'improving',
+    value: 'improving',
   );
 
   /// worsening
   static final GoalAchievementStatus worsening = GoalAchievementStatus._(
-    'worsening',
+    value: 'worsening',
   );
 
   /// no_change
   static final GoalAchievementStatus no_change = GoalAchievementStatus._(
-    'no-change',
+    value: 'no-change',
   );
 
   /// achieved
   static final GoalAchievementStatus achieved = GoalAchievementStatus._(
-    'achieved',
+    value: 'achieved',
   );
 
   /// sustaining
   static final GoalAchievementStatus sustaining = GoalAchievementStatus._(
-    'sustaining',
+    value: 'sustaining',
   );
 
   /// not_achieved
   static final GoalAchievementStatus not_achieved = GoalAchievementStatus._(
-    'not-achieved',
+    value: 'not-achieved',
   );
 
   /// no_progress
   static final GoalAchievementStatus no_progress = GoalAchievementStatus._(
-    'no-progress',
+    value: 'no-progress',
   );
 
   /// not_attainable
   static final GoalAchievementStatus not_attainable = GoalAchievementStatus._(
-    'not-attainable',
+    value: 'not-attainable',
   );
 
   /// For instances where an Element is present but not value
 
-  static final GoalAchievementStatus elementOnly = GoalAchievementStatus._('');
+  static final GoalAchievementStatus elementOnly =
+      GoalAchievementStatus._(value: '');
 
   /// List of all enum-like values
   static final List<GoalAchievementStatus> values = [
@@ -89,13 +95,13 @@ class GoalAchievementStatus extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   GoalAchievementStatus clone() => GoalAchievementStatus._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   GoalAchievementStatus withElement(Element? newElement) {
-    return GoalAchievementStatus._(value, newElement);
+    return GoalAchievementStatus._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -120,14 +126,13 @@ class GoalAchievementStatus extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return GoalAchievementStatus._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

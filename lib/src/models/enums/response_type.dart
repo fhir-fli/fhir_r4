@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The kind of response to a message.
 class ResponseType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ResponseType._(super.value, [super.element]);
+  ResponseType._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [ResponseType] from JSON.
   factory ResponseType.fromJson(
@@ -21,27 +26,27 @@ class ResponseType extends PrimitiveType<String> {
         'ResponseType cannot be constructed from JSON.',
       );
     }
-    return ResponseType._(value, element);
+    return ResponseType._(value: value, element: element);
   }
 
   /// ok
   static final ResponseType ok = ResponseType._(
-    'ok',
+    value: 'ok',
   );
 
   /// transient_error
   static final ResponseType transient_error = ResponseType._(
-    'transient-error',
+    value: 'transient-error',
   );
 
   /// fatal_error
   static final ResponseType fatal_error = ResponseType._(
-    'fatal-error',
+    value: 'fatal-error',
   );
 
   /// For instances where an Element is present but not value
 
-  static final ResponseType elementOnly = ResponseType._('');
+  static final ResponseType elementOnly = ResponseType._(value: '');
 
   /// List of all enum-like values
   static final List<ResponseType> values = [
@@ -53,13 +58,13 @@ class ResponseType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ResponseType clone() => ResponseType._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ResponseType withElement(Element? newElement) {
-    return ResponseType._(value, newElement);
+    return ResponseType._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -84,14 +89,13 @@ class ResponseType extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ResponseType._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

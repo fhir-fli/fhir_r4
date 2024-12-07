@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Example use codes for the List resource - typical kinds of use.
 class ExampleUseCodesForList extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ExampleUseCodesForList._(super.value, [super.element]);
+  ExampleUseCodesForList._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [ExampleUseCodesForList] from JSON.
   factory ExampleUseCodesForList.fromJson(
@@ -21,58 +26,58 @@ class ExampleUseCodesForList extends PrimitiveType<String> {
         'ExampleUseCodesForList cannot be constructed from JSON.',
       );
     }
-    return ExampleUseCodesForList._(value, element);
+    return ExampleUseCodesForList._(value: value, element: element);
   }
 
   /// alerts
   static final ExampleUseCodesForList alerts = ExampleUseCodesForList._(
-    'alerts',
+    value: 'alerts',
   );
 
   /// adverserxns
   static final ExampleUseCodesForList adverserxns = ExampleUseCodesForList._(
-    'adverserxns',
+    value: 'adverserxns',
   );
 
   /// allergies
   static final ExampleUseCodesForList allergies = ExampleUseCodesForList._(
-    'allergies',
+    value: 'allergies',
   );
 
   /// medications
   static final ExampleUseCodesForList medications = ExampleUseCodesForList._(
-    'medications',
+    value: 'medications',
   );
 
   /// problems
   static final ExampleUseCodesForList problems = ExampleUseCodesForList._(
-    'problems',
+    value: 'problems',
   );
 
   /// worklist
   static final ExampleUseCodesForList worklist = ExampleUseCodesForList._(
-    'worklist',
+    value: 'worklist',
   );
 
   /// waiting
   static final ExampleUseCodesForList waiting = ExampleUseCodesForList._(
-    'waiting',
+    value: 'waiting',
   );
 
   /// protocols
   static final ExampleUseCodesForList protocols = ExampleUseCodesForList._(
-    'protocols',
+    value: 'protocols',
   );
 
   /// plans
   static final ExampleUseCodesForList plans = ExampleUseCodesForList._(
-    'plans',
+    value: 'plans',
   );
 
   /// For instances where an Element is present but not value
 
   static final ExampleUseCodesForList elementOnly =
-      ExampleUseCodesForList._('');
+      ExampleUseCodesForList._(value: '');
 
   /// List of all enum-like values
   static final List<ExampleUseCodesForList> values = [
@@ -90,13 +95,13 @@ class ExampleUseCodesForList extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ExampleUseCodesForList clone() => ExampleUseCodesForList._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ExampleUseCodesForList withElement(Element? newElement) {
-    return ExampleUseCodesForList._(value, newElement);
+    return ExampleUseCodesForList._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -121,14 +126,13 @@ class ExampleUseCodesForList extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ExampleUseCodesForList._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

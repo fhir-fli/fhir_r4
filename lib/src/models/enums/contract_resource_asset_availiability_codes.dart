@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value set has asset availability codes.
 class ContractResourceAssetAvailiabilityCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ContractResourceAssetAvailiabilityCodes._(super.value, [super.element]);
+  ContractResourceAssetAvailiabilityCodes._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [ContractResourceAssetAvailiabilityCodes] from JSON.
   factory ContractResourceAssetAvailiabilityCodes.fromJson(
@@ -22,19 +27,20 @@ class ContractResourceAssetAvailiabilityCodes extends PrimitiveType<String> {
         'ContractResourceAssetAvailiabilityCodes cannot be constructed from JSON.',
       );
     }
-    return ContractResourceAssetAvailiabilityCodes._(value, element);
+    return ContractResourceAssetAvailiabilityCodes._(
+        value: value, element: element);
   }
 
   /// lease
   static final ContractResourceAssetAvailiabilityCodes lease =
       ContractResourceAssetAvailiabilityCodes._(
-    'lease',
+    value: 'lease',
   );
 
   /// For instances where an Element is present but not value
 
   static final ContractResourceAssetAvailiabilityCodes elementOnly =
-      ContractResourceAssetAvailiabilityCodes._('');
+      ContractResourceAssetAvailiabilityCodes._(value: '');
 
   /// List of all enum-like values
   static final List<ContractResourceAssetAvailiabilityCodes> values = [
@@ -45,13 +51,14 @@ class ContractResourceAssetAvailiabilityCodes extends PrimitiveType<String> {
   @override
   ContractResourceAssetAvailiabilityCodes clone() =>
       ContractResourceAssetAvailiabilityCodes._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ContractResourceAssetAvailiabilityCodes withElement(Element? newElement) {
-    return ContractResourceAssetAvailiabilityCodes._(value, newElement);
+    return ContractResourceAssetAvailiabilityCodes._(
+        value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -76,14 +83,13 @@ class ContractResourceAssetAvailiabilityCodes extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ContractResourceAssetAvailiabilityCodes._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

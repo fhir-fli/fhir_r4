@@ -26,10 +26,6 @@ class ProdCharacteristic extends BackboneType {
     this.image,
     this.scoring,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -343,10 +339,6 @@ class ProdCharacteristic extends BackboneType {
       imprint: imprint ?? this.imprint,
       image: image ?? this.image,
       scoring: scoring ?? this.scoring,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

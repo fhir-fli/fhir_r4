@@ -34,10 +34,6 @@ class Consent extends DomainResource {
     this.policyRule,
     this.verification,
     this.provision,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.Consent,
         );
@@ -452,10 +448,6 @@ class Consent extends DomainResource {
       policyRule: policyRule ?? this.policyRule,
       verification: verification ?? this.verification,
       provision: provision ?? this.provision,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -475,10 +467,6 @@ class ConsentPolicy extends BackboneElement {
     this.authority,
     this.uri,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -621,10 +609,6 @@ class ConsentPolicy extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       authority: authority ?? this.authority,
       uri: uri ?? this.uri,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -645,10 +629,6 @@ class ConsentVerification extends BackboneElement {
     this.verifiedWith,
     this.verificationDate,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -803,10 +783,6 @@ class ConsentVerification extends BackboneElement {
       verified: verified ?? this.verified,
       verifiedWith: verifiedWith ?? this.verifiedWith,
       verificationDate: verificationDate ?? this.verificationDate,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -834,10 +810,6 @@ class ConsentProvision extends BackboneElement {
     this.data,
     this.provision,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1154,10 +1126,6 @@ class ConsentProvision extends BackboneElement {
       dataPeriod: dataPeriod ?? this.dataPeriod,
       data: data ?? this.data,
       provision: provision ?? this.provision,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1176,10 +1144,6 @@ class ConsentActor extends BackboneElement {
     required this.role,
     required this.reference,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1318,10 +1282,6 @@ class ConsentActor extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       role: role ?? this.role,
       reference: reference ?? this.reference,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1340,10 +1300,6 @@ class ConsentData extends BackboneElement {
     required this.meaning,
     required this.reference,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1481,10 +1437,6 @@ class ConsentData extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       meaning: meaning ?? this.meaning,
       reference: reference ?? this.reference,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

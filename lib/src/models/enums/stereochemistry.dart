@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The optical rotation type of a substance.
 class Stereochemistry extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  Stereochemistry._(super.value, [super.element]);
+  Stereochemistry._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [Stereochemistry] from JSON.
   factory Stereochemistry.fromJson(
@@ -21,27 +26,27 @@ class Stereochemistry extends PrimitiveType<String> {
         'Stereochemistry cannot be constructed from JSON.',
       );
     }
-    return Stereochemistry._(value, element);
+    return Stereochemistry._(value: value, element: element);
   }
 
   /// ConstitutionalIsomer
   static final Stereochemistry ConstitutionalIsomer = Stereochemistry._(
-    'ConstitutionalIsomer',
+    value: 'ConstitutionalIsomer',
   );
 
   /// Stereoisomer
   static final Stereochemistry Stereoisomer = Stereochemistry._(
-    'Stereoisomer',
+    value: 'Stereoisomer',
   );
 
   /// Enantiomer
   static final Stereochemistry Enantiomer = Stereochemistry._(
-    'Enantiomer',
+    value: 'Enantiomer',
   );
 
   /// For instances where an Element is present but not value
 
-  static final Stereochemistry elementOnly = Stereochemistry._('');
+  static final Stereochemistry elementOnly = Stereochemistry._(value: '');
 
   /// List of all enum-like values
   static final List<Stereochemistry> values = [
@@ -53,13 +58,13 @@ class Stereochemistry extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   Stereochemistry clone() => Stereochemistry._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   Stereochemistry withElement(Element? newElement) {
-    return Stereochemistry._(value, newElement);
+    return Stereochemistry._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -84,14 +89,13 @@ class Stereochemistry extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return Stereochemistry._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

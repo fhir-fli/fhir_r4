@@ -46,10 +46,6 @@ class CapabilityStatement extends CanonicalResource {
     this.rest,
     this.messaging,
     this.document,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.CapabilityStatement,
         );
@@ -612,10 +608,6 @@ class CapabilityStatement extends CanonicalResource {
       rest: rest ?? this.rest,
       messaging: messaging ?? this.messaging,
       document: document ?? this.document,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -636,10 +628,6 @@ class CapabilityStatementSoftware extends BackboneElement {
     this.version,
     this.releaseDate,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -790,10 +778,6 @@ class CapabilityStatementSoftware extends BackboneElement {
       name: name ?? this.name,
       version: version ?? this.version,
       releaseDate: releaseDate ?? this.releaseDate,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -814,10 +798,6 @@ class CapabilityStatementImplementation extends BackboneElement {
     this.url,
     this.custodian,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -973,10 +953,6 @@ class CapabilityStatementImplementation extends BackboneElement {
       description: description ?? this.description,
       url: url ?? this.url,
       custodian: custodian ?? this.custodian,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1000,10 +976,6 @@ class CapabilityStatementRest extends BackboneElement {
     this.operation,
     this.compartment,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1262,10 +1234,6 @@ class CapabilityStatementRest extends BackboneElement {
       searchParam: searchParam ?? this.searchParam,
       operation: operation ?? this.operation,
       compartment: compartment ?? this.compartment,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1285,10 +1253,6 @@ class CapabilityStatementSecurity extends BackboneElement {
     this.service,
     this.description,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1448,10 +1412,6 @@ class CapabilityStatementSecurity extends BackboneElement {
       cors: cors ?? this.cors,
       service: service ?? this.service,
       description: description ?? this.description,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1485,10 +1445,6 @@ class CapabilityStatementResource extends BackboneElement {
     this.searchParam,
     this.operation,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1894,10 +1850,6 @@ class CapabilityStatementResource extends BackboneElement {
       searchRevInclude: searchRevInclude ?? this.searchRevInclude,
       searchParam: searchParam ?? this.searchParam,
       operation: operation ?? this.operation,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1915,10 +1867,6 @@ class CapabilityStatementInteraction extends BackboneElement {
     required this.code,
     this.documentation,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -2059,10 +2007,6 @@ class CapabilityStatementInteraction extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       code: code ?? this.code,
       documentation: documentation ?? this.documentation,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -2084,10 +2028,6 @@ class CapabilityStatementSearchParam extends BackboneElement {
     required this.type,
     this.documentation,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -2258,10 +2198,6 @@ class CapabilityStatementSearchParam extends BackboneElement {
       definition: definition ?? this.definition,
       type: type ?? this.type,
       documentation: documentation ?? this.documentation,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -2283,10 +2219,6 @@ class CapabilityStatementOperation extends BackboneElement {
     required this.definition,
     this.documentation,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -2448,10 +2380,6 @@ class CapabilityStatementOperation extends BackboneElement {
       name: name ?? this.name,
       definition: definition ?? this.definition,
       documentation: documentation ?? this.documentation,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -2469,10 +2397,6 @@ class CapabilityStatementInteraction1 extends BackboneElement {
     required this.code,
     this.documentation,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -2613,10 +2537,6 @@ class CapabilityStatementInteraction1 extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       code: code ?? this.code,
       documentation: documentation ?? this.documentation,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -2636,10 +2556,6 @@ class CapabilityStatementMessaging extends BackboneElement {
     this.documentation,
     this.supportedMessage,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -2827,10 +2743,6 @@ class CapabilityStatementMessaging extends BackboneElement {
       reliableCache: reliableCache ?? this.reliableCache,
       documentation: documentation ?? this.documentation,
       supportedMessage: supportedMessage ?? this.supportedMessage,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -2849,10 +2761,6 @@ class CapabilityStatementEndpoint extends BackboneElement {
     required this.protocol,
     required this.address,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -2990,10 +2898,6 @@ class CapabilityStatementEndpoint extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       protocol: protocol ?? this.protocol,
       address: address ?? this.address,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -3012,10 +2916,6 @@ class CapabilityStatementSupportedMessage extends BackboneElement {
     required this.mode,
     required this.definition,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -3153,10 +3053,6 @@ class CapabilityStatementSupportedMessage extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       mode: mode ?? this.mode,
       definition: definition ?? this.definition,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -3175,10 +3071,6 @@ class CapabilityStatementDocument extends BackboneElement {
     this.documentation,
     required this.profile,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -3332,10 +3224,6 @@ class CapabilityStatementDocument extends BackboneElement {
       mode: mode ?? this.mode,
       documentation: documentation ?? this.documentation,
       profile: profile ?? this.profile,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

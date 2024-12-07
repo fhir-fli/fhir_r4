@@ -51,10 +51,6 @@ class Procedure extends DomainResource {
     this.focalDevice,
     this.usedReference,
     this.usedCode,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.Procedure,
         );
@@ -812,10 +808,6 @@ class Procedure extends DomainResource {
       focalDevice: focalDevice ?? this.focalDevice,
       usedReference: usedReference ?? this.usedReference,
       usedCode: usedCode ?? this.usedCode,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -834,10 +826,6 @@ class ProcedurePerformer extends BackboneElement {
     required this.actor,
     this.onBehalfOf,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -993,10 +981,6 @@ class ProcedurePerformer extends BackboneElement {
       function_: function_ ?? this.function_,
       actor: actor ?? this.actor,
       onBehalfOf: onBehalfOf ?? this.onBehalfOf,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1016,10 +1000,6 @@ class ProcedureFocalDevice extends BackboneElement {
     this.action,
     required this.manipulated,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1159,10 +1139,6 @@ class ProcedureFocalDevice extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       action: action ?? this.action,
       manipulated: manipulated ?? this.manipulated,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

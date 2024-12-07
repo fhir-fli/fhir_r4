@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Indicates the progression of a study subject through a study.
 class ResearchSubjectStatus extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ResearchSubjectStatus._(super.value, [super.element]);
+  ResearchSubjectStatus._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [ResearchSubjectStatus] from JSON.
   factory ResearchSubjectStatus.fromJson(
@@ -21,80 +26,81 @@ class ResearchSubjectStatus extends PrimitiveType<String> {
         'ResearchSubjectStatus cannot be constructed from JSON.',
       );
     }
-    return ResearchSubjectStatus._(value, element);
+    return ResearchSubjectStatus._(value: value, element: element);
   }
 
   /// candidate
   static final ResearchSubjectStatus candidate = ResearchSubjectStatus._(
-    'candidate',
+    value: 'candidate',
   );
 
   /// eligible
   static final ResearchSubjectStatus eligible = ResearchSubjectStatus._(
-    'eligible',
+    value: 'eligible',
   );
 
   /// follow_up
   static final ResearchSubjectStatus follow_up = ResearchSubjectStatus._(
-    'follow-up',
+    value: 'follow-up',
   );
 
   /// ineligible
   static final ResearchSubjectStatus ineligible = ResearchSubjectStatus._(
-    'ineligible',
+    value: 'ineligible',
   );
 
   /// not_registered
   static final ResearchSubjectStatus not_registered = ResearchSubjectStatus._(
-    'not-registered',
+    value: 'not-registered',
   );
 
   /// off_study
   static final ResearchSubjectStatus off_study = ResearchSubjectStatus._(
-    'off-study',
+    value: 'off-study',
   );
 
   /// on_study
   static final ResearchSubjectStatus on_study = ResearchSubjectStatus._(
-    'on-study',
+    value: 'on-study',
   );
 
   /// on_study_intervention
   static final ResearchSubjectStatus on_study_intervention =
       ResearchSubjectStatus._(
-    'on-study-intervention',
+    value: 'on-study-intervention',
   );
 
   /// on_study_observation
   static final ResearchSubjectStatus on_study_observation =
       ResearchSubjectStatus._(
-    'on-study-observation',
+    value: 'on-study-observation',
   );
 
   /// pending_on_study
   static final ResearchSubjectStatus pending_on_study = ResearchSubjectStatus._(
-    'pending-on-study',
+    value: 'pending-on-study',
   );
 
   /// potential_candidate
   static final ResearchSubjectStatus potential_candidate =
       ResearchSubjectStatus._(
-    'potential-candidate',
+    value: 'potential-candidate',
   );
 
   /// screening
   static final ResearchSubjectStatus screening = ResearchSubjectStatus._(
-    'screening',
+    value: 'screening',
   );
 
   /// withdrawn
   static final ResearchSubjectStatus withdrawn = ResearchSubjectStatus._(
-    'withdrawn',
+    value: 'withdrawn',
   );
 
   /// For instances where an Element is present but not value
 
-  static final ResearchSubjectStatus elementOnly = ResearchSubjectStatus._('');
+  static final ResearchSubjectStatus elementOnly =
+      ResearchSubjectStatus._(value: '');
 
   /// List of all enum-like values
   static final List<ResearchSubjectStatus> values = [
@@ -116,13 +122,13 @@ class ResearchSubjectStatus extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ResearchSubjectStatus clone() => ResearchSubjectStatus._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ResearchSubjectStatus withElement(Element? newElement) {
-    return ResearchSubjectStatus._(value, newElement);
+    return ResearchSubjectStatus._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -147,14 +153,13 @@ class ResearchSubjectStatus extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ResearchSubjectStatus._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

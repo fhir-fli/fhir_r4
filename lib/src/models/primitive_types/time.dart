@@ -5,7 +5,7 @@ import 'package:yaml/yaml.dart';
 /// Extension on String to convert a String to [FhirTime].
 extension FhirTimeExtension on String {
   /// Converts a String to a [FhirTime] object.
-  FhirTime get toFhirTime => FhirTime(this);
+  FhirTime get toFhirTime => FhirTime(input: this);
 }
 
 /// Class to handle FHIR time values.
@@ -13,8 +13,12 @@ extension FhirTimeExtension on String {
 class FhirTime extends PrimitiveType<String> implements Comparable<FhirTime> {
   /// Constructor that accepts a valid [String] input representing a time and
   /// validates the input. Optionally takes an [Element].
-  FhirTime(String? input, [Element? element])
-      : super(_validateTime(input), element) {
+  FhirTime({
+    String? input,
+    super.element,
+    super.id,
+    super.extension_,
+  }) : super(value: _validateTime(input)) {
     if (value == null && element == null) {
       throw ArgumentError('A value or element is required');
     }
@@ -38,32 +42,37 @@ class FhirTime extends PrimitiveType<String> implements Comparable<FhirTime> {
         }
       }
     }
-    return FhirTime(timeString);
+    return FhirTime(input: timeString);
   }
 
-  /// Factory method to construct [FhirTime] from JSON input. Validates the
-  /// input and throws a [FormatException] if the input is not a valid String.
-
-  /// Factory constructor to create from JSON with standardized keys
+  /// Factory constructor to create [FhirTime] from JSON.
   factory FhirTime.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    return FhirTime(value, element);
+    return FhirTime(input: value, element: element);
   }
 
-  /// Factory method to construct [FhirTime] from YAML input.
-  factory FhirTime.fromYaml(String yaml) => FhirTime.fromJson(
-        jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, dynamic>,
-      );
+  /// Factory constructor to create [FhirTime] from YAML.
+  factory FhirTime.fromYaml(dynamic yaml) {
+    return yaml is String
+        ? FhirTime.fromJson(
+            jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, dynamic>,
+          )
+        : yaml is YamlMap
+            ? FhirTime.fromJson(
+                jsonDecode(jsonEncode(yaml)) as Map<String, dynamic>,
+              )
+            : throw const FormatException('Invalid YAML format for FhirTime');
+  }
 
   /// Method to attempt parsing the input into a [FhirTime]. Returns [null] if
   /// parsing fails.
   static FhirTime? tryParse(dynamic input) {
     if (input is String) {
       try {
-        return FhirTime(input);
-      } catch (e) {
+        return FhirTime(input: input);
+      } catch (_) {
         return null;
       }
     } else {
@@ -184,7 +193,7 @@ class FhirTime extends PrimitiveType<String> implements Comparable<FhirTime> {
     final rhs = other is FhirTime
         ? other
         : other is String
-            ? FhirTime(other)
+            ? FhirTime(input: other)
             : null;
 
     if (rhs == null) {
@@ -320,21 +329,23 @@ class FhirTime extends PrimitiveType<String> implements Comparable<FhirTime> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     return FhirTime(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      input: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:
             formatCommentsPost ?? this.element?.formatCommentsPost,
         annotations: annotations ?? this.element?.annotations,
       ),
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
     );
   }
 
   /// Creates a clone of the current [FhirTime].
   @override
-  FhirTime clone() => FhirTime(value, element?.clone() as Element?);
+  FhirTime clone() =>
+      FhirTime(input: value, element: element?.clone() as Element?);
 }

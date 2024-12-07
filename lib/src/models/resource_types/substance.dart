@@ -24,10 +24,6 @@ class Substance extends DomainResource {
     this.description,
     this.instance,
     this.ingredient,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.Substance,
         );
@@ -316,10 +312,6 @@ class Substance extends DomainResource {
       description: description ?? this.description,
       instance: instance ?? this.instance,
       ingredient: ingredient ?? this.ingredient,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -339,10 +331,6 @@ class SubstanceInstance extends BackboneElement {
     this.expiry,
     this.quantity,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -501,10 +489,6 @@ class SubstanceInstance extends BackboneElement {
       identifier: identifier ?? this.identifier,
       expiry: expiry ?? this.expiry,
       quantity: quantity ?? this.quantity,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -523,10 +507,6 @@ class SubstanceIngredient extends BackboneElement {
     this.substanceCodeableConcept,
     this.substanceReference,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -686,10 +666,6 @@ class SubstanceIngredient extends BackboneElement {
       substanceCodeableConcept:
           substanceCodeableConcept ?? this.substanceCodeableConcept,
       substanceReference: substanceReference ?? this.substanceReference,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

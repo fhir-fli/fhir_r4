@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Type of a name for a Medicinal Product.
 class ProductNameType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ProductNameType._(super.value, [super.element]);
+  ProductNameType._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [ProductNameType] from JSON.
   factory ProductNameType.fromJson(
@@ -21,37 +26,37 @@ class ProductNameType extends PrimitiveType<String> {
         'ProductNameType cannot be constructed from JSON.',
       );
     }
-    return ProductNameType._(value, element);
+    return ProductNameType._(value: value, element: element);
   }
 
   /// BAN
   static final ProductNameType BAN = ProductNameType._(
-    'BAN',
+    value: 'BAN',
   );
 
   /// INN
   static final ProductNameType INN = ProductNameType._(
-    'INN',
+    value: 'INN',
   );
 
   /// INNM
   static final ProductNameType INNM = ProductNameType._(
-    'INNM',
+    value: 'INNM',
   );
 
   /// pINN
   static final ProductNameType pINN = ProductNameType._(
-    'pINN',
+    value: 'pINN',
   );
 
   /// rINN
   static final ProductNameType rINN = ProductNameType._(
-    'rINN',
+    value: 'rINN',
   );
 
   /// For instances where an Element is present but not value
 
-  static final ProductNameType elementOnly = ProductNameType._('');
+  static final ProductNameType elementOnly = ProductNameType._(value: '');
 
   /// List of all enum-like values
   static final List<ProductNameType> values = [
@@ -65,13 +70,13 @@ class ProductNameType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ProductNameType clone() => ProductNameType._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ProductNameType withElement(Element? newElement) {
-    return ProductNameType._(value, newElement);
+    return ProductNameType._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -96,14 +101,13 @@ class ProductNameType extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ProductNameType._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

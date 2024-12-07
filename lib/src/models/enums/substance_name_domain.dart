@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The use context of a substance name for example if there is a different name when used as a drug active ingredient as opposed to a food colour additive.
 class SubstanceNameDomain extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  SubstanceNameDomain._(super.value, [super.element]);
+  SubstanceNameDomain._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [SubstanceNameDomain] from JSON.
   factory SubstanceNameDomain.fromJson(
@@ -21,22 +26,23 @@ class SubstanceNameDomain extends PrimitiveType<String> {
         'SubstanceNameDomain cannot be constructed from JSON.',
       );
     }
-    return SubstanceNameDomain._(value, element);
+    return SubstanceNameDomain._(value: value, element: element);
   }
 
   /// ActiveIngredient
   static final SubstanceNameDomain ActiveIngredient = SubstanceNameDomain._(
-    'ActiveIngredient',
+    value: 'ActiveIngredient',
   );
 
   /// FoodColorAdditive
   static final SubstanceNameDomain FoodColorAdditive = SubstanceNameDomain._(
-    'FoodColorAdditive',
+    value: 'FoodColorAdditive',
   );
 
   /// For instances where an Element is present but not value
 
-  static final SubstanceNameDomain elementOnly = SubstanceNameDomain._('');
+  static final SubstanceNameDomain elementOnly =
+      SubstanceNameDomain._(value: '');
 
   /// List of all enum-like values
   static final List<SubstanceNameDomain> values = [
@@ -47,13 +53,13 @@ class SubstanceNameDomain extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   SubstanceNameDomain clone() => SubstanceNameDomain._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   SubstanceNameDomain withElement(Element? newElement) {
-    return SubstanceNameDomain._(value, newElement);
+    return SubstanceNameDomain._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -78,14 +84,13 @@ class SubstanceNameDomain extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return SubstanceNameDomain._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

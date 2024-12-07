@@ -47,10 +47,6 @@ class MedicationDispense extends DomainResource {
     this.substitution,
     this.detectedIssue,
     this.eventHistory,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.MedicationDispense,
         );
@@ -687,10 +683,6 @@ class MedicationDispense extends DomainResource {
       substitution: substitution ?? this.substitution,
       detectedIssue: detectedIssue ?? this.detectedIssue,
       eventHistory: eventHistory ?? this.eventHistory,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -708,10 +700,6 @@ class MedicationDispensePerformer extends BackboneElement {
     this.function_,
     required this.actor,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -853,10 +841,6 @@ class MedicationDispensePerformer extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       function_: function_ ?? this.function_,
       actor: actor ?? this.actor,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -880,10 +864,6 @@ class MedicationDispenseSubstitution extends BackboneElement {
     this.reason,
     this.responsibleParty,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1066,10 +1046,6 @@ class MedicationDispenseSubstitution extends BackboneElement {
       type: type ?? this.type,
       reason: reason ?? this.reason,
       responsibleParty: responsibleParty ?? this.responsibleParty,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

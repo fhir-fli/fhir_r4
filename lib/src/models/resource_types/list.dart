@@ -30,10 +30,6 @@ class FhirList extends DomainResource {
     this.note,
     this.entry,
     this.emptyReason,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.FhirList,
         );
@@ -408,10 +404,6 @@ class FhirList extends DomainResource {
       note: note ?? this.note,
       entry: entry ?? this.entry,
       emptyReason: emptyReason ?? this.emptyReason,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -431,10 +423,6 @@ class ListEntry extends BackboneElement {
     this.date,
     required this.item,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -601,10 +589,6 @@ class ListEntry extends BackboneElement {
       deleted: deleted ?? this.deleted,
       date: date ?? this.date,
       item: item ?? this.item,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

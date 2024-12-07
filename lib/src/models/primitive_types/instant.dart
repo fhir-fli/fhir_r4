@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
@@ -58,25 +57,29 @@ class FhirInstant extends FhirDateTimeBase {
     required super.timeZoneOffset,
     required super.isUtc,
     super.element,
+    super.id,
+    super.extension_,
   });
 
   /// Factory constructor restricted to String or DateTime inputs.
-  factory FhirInstant.fromString(String? inValue, [Element? element]) =>
-      inValue == null && element == null
+  factory FhirInstant.fromString(String? input, [Element? element]) =>
+      input == null && element == null
           ? throw ArgumentError('A value or element is required')
-          : FhirDateTimeBase.constructor<FhirInstant>(inValue, element)
-              as FhirInstant;
+          : FhirDateTimeBase.constructor<FhirInstant>(
+              input: input,
+              element: element,
+            ) as FhirInstant;
 
   /// Factory constructor to create a [FhirInstant] from a [DateTime].
-  factory FhirInstant.fromDateTime(DateTime? inValue, [Element? element]) =>
-      inValue == null && element == null
+  factory FhirInstant.fromDateTime(DateTime? input, [Element? element]) =>
+      input == null && element == null
           ? throw ArgumentError('A value or element is required')
-          : FhirDateTimeBase.constructor<FhirInstant>(inValue, element)
-              as FhirInstant;
+          : FhirDateTimeBase.constructor<FhirInstant>(
+              input: input,
+              element: element,
+            ) as FhirInstant;
 
-  /// Factory constructor to create a [FhirInstantTime] from a JSON input.
-  ///
-  /// The input must be a [String], otherwise throws a [FormatException].
+  /// Factory constructor to create a [FhirInstant] from JSON input.
   factory FhirInstant.fromJson(Map<String, dynamic> json) {
     final value = json['value'];
     final element = json['_value'] is Map<String, dynamic>
@@ -91,12 +94,12 @@ class FhirInstant extends FhirDateTimeBase {
       return FhirInstant.fromString(null, element);
     } else {
       throw const FormatException(
-        'Invalid input for FhirInstant: Input must be a String?',
+        'Invalid input for FhirInstant: Input must be a String or DateTime.',
       );
     }
   }
 
-  /// Factory constructor to create [FhirInstant] from YAML
+  /// Factory constructor to create [FhirInstant] from YAML input.
   static FhirInstant fromYaml(dynamic yaml) => yaml is String
       ? FhirInstant.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, dynamic>,
@@ -107,7 +110,8 @@ class FhirInstant extends FhirDateTimeBase {
             )
           : throw ArgumentError(
               'FhirInstant cannot be constructed from the provided input,'
-              ' it is neither a YAML string nor a YAML map.');
+              ' it must be a YAML string or map.',
+            );
 
   /// Tries to parse a value into a [FhirInstant].
   ///
@@ -119,7 +123,7 @@ class FhirInstant extends FhirDateTimeBase {
       } else if (value is String) {
         return FhirInstant.fromString(value);
       }
-    } catch (e) {
+    } catch (_) {
       return null;
     }
     return null;
@@ -176,7 +180,6 @@ class FhirInstant extends FhirDateTimeBase {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     return FhirInstant.fromBase(
       year: year,
@@ -196,6 +199,8 @@ class FhirInstant extends FhirDateTimeBase {
             formatCommentsPost ?? this.element?.formatCommentsPost,
         annotations: annotations ?? this.element?.annotations,
       ),
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
     );
   }
 }

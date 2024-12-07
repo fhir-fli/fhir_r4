@@ -20,10 +20,6 @@ class MarketingStatus extends BackboneType {
     this.dateRange,
     this.restoreDate,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -226,10 +222,6 @@ class MarketingStatus extends BackboneType {
       status: status ?? this.status,
       dateRange: dateRange ?? this.dateRange,
       restoreDate: restoreDate ?? this.restoreDate,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Codes providing the status of an observation.
 class ObservationStatus extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ObservationStatus._(super.value, [super.element]);
+  ObservationStatus._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [ObservationStatus] from JSON.
   factory ObservationStatus.fromJson(
@@ -21,52 +26,52 @@ class ObservationStatus extends PrimitiveType<String> {
         'ObservationStatus cannot be constructed from JSON.',
       );
     }
-    return ObservationStatus._(value, element);
+    return ObservationStatus._(value: value, element: element);
   }
 
   /// registered
   static final ObservationStatus registered = ObservationStatus._(
-    'registered',
+    value: 'registered',
   );
 
   /// preliminary
   static final ObservationStatus preliminary = ObservationStatus._(
-    'preliminary',
+    value: 'preliminary',
   );
 
   /// final_
   static final ObservationStatus final_ = ObservationStatus._(
-    'final',
+    value: 'final',
   );
 
   /// amended
   static final ObservationStatus amended = ObservationStatus._(
-    'amended',
+    value: 'amended',
   );
 
   /// corrected
   static final ObservationStatus corrected = ObservationStatus._(
-    'corrected',
+    value: 'corrected',
   );
 
   /// cancelled
   static final ObservationStatus cancelled = ObservationStatus._(
-    'cancelled',
+    value: 'cancelled',
   );
 
   /// entered_in_error
   static final ObservationStatus entered_in_error = ObservationStatus._(
-    'entered-in-error',
+    value: 'entered-in-error',
   );
 
   /// unknown
   static final ObservationStatus unknown = ObservationStatus._(
-    'unknown',
+    value: 'unknown',
   );
 
   /// For instances where an Element is present but not value
 
-  static final ObservationStatus elementOnly = ObservationStatus._('');
+  static final ObservationStatus elementOnly = ObservationStatus._(value: '');
 
   /// List of all enum-like values
   static final List<ObservationStatus> values = [
@@ -83,13 +88,13 @@ class ObservationStatus extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ObservationStatus clone() => ObservationStatus._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ObservationStatus withElement(Element? newElement) {
-    return ObservationStatus._(value, newElement);
+    return ObservationStatus._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -114,14 +119,13 @@ class ObservationStatus extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ObservationStatus._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

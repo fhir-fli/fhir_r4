@@ -33,10 +33,6 @@ class DetectedIssue extends DomainResource {
     this.detail,
     this.reference,
     this.mitigation,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.DetectedIssue,
         );
@@ -420,10 +416,6 @@ class DetectedIssue extends DomainResource {
       detail: detail ?? this.detail,
       reference: reference ?? this.reference,
       mitigation: mitigation ?? this.mitigation,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -443,10 +435,6 @@ class DetectedIssueEvidence extends BackboneElement {
     this.code,
     this.detail,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -599,10 +587,6 @@ class DetectedIssueEvidence extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       code: code ?? this.code,
       detail: detail ?? this.detail,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -624,10 +608,6 @@ class DetectedIssueMitigation extends BackboneElement {
     this.date,
     this.author,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -782,10 +762,6 @@ class DetectedIssueMitigation extends BackboneElement {
       action: action ?? this.action,
       date: date ?? this.date,
       author: author ?? this.author,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

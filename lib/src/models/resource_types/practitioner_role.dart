@@ -32,10 +32,6 @@ class PractitionerRole extends DomainResource {
     this.notAvailable,
     this.availabilityExceptions,
     this.endpoint,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.PractitionerRole,
         );
@@ -463,10 +459,6 @@ class PractitionerRole extends DomainResource {
       availabilityExceptions:
           availabilityExceptions ?? this.availabilityExceptions,
       endpoint: endpoint ?? this.endpoint,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -487,10 +479,6 @@ class PractitionerRoleAvailableTime extends BackboneElement {
     this.availableStartTime,
     this.availableEndTime,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -668,10 +656,6 @@ class PractitionerRoleAvailableTime extends BackboneElement {
       allDay: allDay ?? this.allDay,
       availableStartTime: availableStartTime ?? this.availableStartTime,
       availableEndTime: availableEndTime ?? this.availableEndTime,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -690,10 +674,6 @@ class PractitionerRoleNotAvailable extends BackboneElement {
     required this.description,
     this.during,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -835,10 +815,6 @@ class PractitionerRoleNotAvailable extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       description: description ?? this.description,
       during: during ?? this.during,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

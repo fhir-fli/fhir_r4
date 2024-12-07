@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Codes indicating the degree of authority/intentionality associated with a care plan.
 class CarePlanIntent extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  CarePlanIntent._(super.value, [super.element]);
+  CarePlanIntent._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [CarePlanIntent] from JSON.
   factory CarePlanIntent.fromJson(
@@ -21,57 +26,57 @@ class CarePlanIntent extends PrimitiveType<String> {
         'CarePlanIntent cannot be constructed from JSON.',
       );
     }
-    return CarePlanIntent._(value, element);
+    return CarePlanIntent._(value: value, element: element);
   }
 
   /// proposal
   static final CarePlanIntent proposal = CarePlanIntent._(
-    'proposal',
+    value: 'proposal',
   );
 
   /// plan
   static final CarePlanIntent plan = CarePlanIntent._(
-    'plan',
+    value: 'plan',
   );
 
   /// directive
   static final CarePlanIntent directive = CarePlanIntent._(
-    'directive',
+    value: 'directive',
   );
 
   /// order
   static final CarePlanIntent order = CarePlanIntent._(
-    'order',
+    value: 'order',
   );
 
   /// original_order
   static final CarePlanIntent original_order = CarePlanIntent._(
-    'original-order',
+    value: 'original-order',
   );
 
   /// reflex_order
   static final CarePlanIntent reflex_order = CarePlanIntent._(
-    'reflex-order',
+    value: 'reflex-order',
   );
 
   /// filler_order
   static final CarePlanIntent filler_order = CarePlanIntent._(
-    'filler-order',
+    value: 'filler-order',
   );
 
   /// instance_order
   static final CarePlanIntent instance_order = CarePlanIntent._(
-    'instance-order',
+    value: 'instance-order',
   );
 
   /// option
   static final CarePlanIntent option = CarePlanIntent._(
-    'option',
+    value: 'option',
   );
 
   /// For instances where an Element is present but not value
 
-  static final CarePlanIntent elementOnly = CarePlanIntent._('');
+  static final CarePlanIntent elementOnly = CarePlanIntent._(value: '');
 
   /// List of all enum-like values
   static final List<CarePlanIntent> values = [
@@ -89,13 +94,13 @@ class CarePlanIntent extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   CarePlanIntent clone() => CarePlanIntent._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   CarePlanIntent withElement(Element? newElement) {
-    return CarePlanIntent._(value, newElement);
+    return CarePlanIntent._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -120,14 +125,13 @@ class CarePlanIntent extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return CarePlanIntent._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

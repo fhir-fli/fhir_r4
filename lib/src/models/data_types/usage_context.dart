@@ -20,10 +20,6 @@ class UsageContext extends DataType {
     this.valueRange,
     this.valueReference,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -197,10 +193,6 @@ class UsageContext extends DataType {
       valueQuantity: valueQuantity ?? this.valueQuantity,
       valueRange: valueRange ?? this.valueRange,
       valueReference: valueReference ?? this.valueReference,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

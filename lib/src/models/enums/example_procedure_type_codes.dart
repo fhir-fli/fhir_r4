@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value set includes example Procedure Type codes.
 class ExampleProcedureTypeCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ExampleProcedureTypeCodes._(super.value, [super.element]);
+  ExampleProcedureTypeCodes._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [ExampleProcedureTypeCodes] from JSON.
   factory ExampleProcedureTypeCodes.fromJson(
@@ -21,24 +26,24 @@ class ExampleProcedureTypeCodes extends PrimitiveType<String> {
         'ExampleProcedureTypeCodes cannot be constructed from JSON.',
       );
     }
-    return ExampleProcedureTypeCodes._(value, element);
+    return ExampleProcedureTypeCodes._(value: value, element: element);
   }
 
   /// primary
   static final ExampleProcedureTypeCodes primary = ExampleProcedureTypeCodes._(
-    'primary',
+    value: 'primary',
   );
 
   /// secondary
   static final ExampleProcedureTypeCodes secondary =
       ExampleProcedureTypeCodes._(
-    'secondary',
+    value: 'secondary',
   );
 
   /// For instances where an Element is present but not value
 
   static final ExampleProcedureTypeCodes elementOnly =
-      ExampleProcedureTypeCodes._('');
+      ExampleProcedureTypeCodes._(value: '');
 
   /// List of all enum-like values
   static final List<ExampleProcedureTypeCodes> values = [
@@ -49,13 +54,13 @@ class ExampleProcedureTypeCodes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ExampleProcedureTypeCodes clone() => ExampleProcedureTypeCodes._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ExampleProcedureTypeCodes withElement(Element? newElement) {
-    return ExampleProcedureTypeCodes._(value, newElement);
+    return ExampleProcedureTypeCodes._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -80,14 +85,13 @@ class ExampleProcedureTypeCodes extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ExampleProcedureTypeCodes._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

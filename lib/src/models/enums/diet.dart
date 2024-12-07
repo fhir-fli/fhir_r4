@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value set defines a set of codes that can be used to indicate dietary preferences or restrictions a patient may have.
 class Diet extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  Diet._(super.value, [super.element]);
+  Diet._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [Diet] from JSON.
   factory Diet.fromJson(
@@ -21,47 +26,47 @@ class Diet extends PrimitiveType<String> {
         'Diet cannot be constructed from JSON.',
       );
     }
-    return Diet._(value, element);
+    return Diet._(value: value, element: element);
   }
 
   /// vegetarian
   static final Diet vegetarian = Diet._(
-    'vegetarian',
+    value: 'vegetarian',
   );
 
   /// dairy_free
   static final Diet dairy_free = Diet._(
-    'dairy-free',
+    value: 'dairy-free',
   );
 
   /// nut_free
   static final Diet nut_free = Diet._(
-    'nut-free',
+    value: 'nut-free',
   );
 
   /// gluten_free
   static final Diet gluten_free = Diet._(
-    'gluten-free',
+    value: 'gluten-free',
   );
 
   /// vegan
   static final Diet vegan = Diet._(
-    'vegan',
+    value: 'vegan',
   );
 
   /// halal
   static final Diet halal = Diet._(
-    'halal',
+    value: 'halal',
   );
 
   /// kosher
   static final Diet kosher = Diet._(
-    'kosher',
+    value: 'kosher',
   );
 
   /// For instances where an Element is present but not value
 
-  static final Diet elementOnly = Diet._('');
+  static final Diet elementOnly = Diet._(value: '');
 
   /// List of all enum-like values
   static final List<Diet> values = [
@@ -77,13 +82,13 @@ class Diet extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   Diet clone() => Diet._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   Diet withElement(Element? newElement) {
-    return Diet._(value, newElement);
+    return Diet._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -108,14 +113,13 @@ class Diet extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return Diet._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

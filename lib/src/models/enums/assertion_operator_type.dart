@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The type of operator to use for assertion.
 class AssertionOperatorType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  AssertionOperatorType._(super.value, [super.element]);
+  AssertionOperatorType._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [AssertionOperatorType] from JSON.
   factory AssertionOperatorType.fromJson(
@@ -21,67 +26,68 @@ class AssertionOperatorType extends PrimitiveType<String> {
         'AssertionOperatorType cannot be constructed from JSON.',
       );
     }
-    return AssertionOperatorType._(value, element);
+    return AssertionOperatorType._(value: value, element: element);
   }
 
   /// equals
   static final AssertionOperatorType equals_ = AssertionOperatorType._(
-    'equals',
+    value: 'equals',
   );
 
   /// notEquals
   static final AssertionOperatorType notEquals = AssertionOperatorType._(
-    'notEquals',
+    value: 'notEquals',
   );
 
   /// in_
   static final AssertionOperatorType in_ = AssertionOperatorType._(
-    'in',
+    value: 'in',
   );
 
   /// notIn
   static final AssertionOperatorType notIn = AssertionOperatorType._(
-    'notIn',
+    value: 'notIn',
   );
 
   /// greaterThan
   static final AssertionOperatorType greaterThan = AssertionOperatorType._(
-    'greaterThan',
+    value: 'greaterThan',
   );
 
   /// lessThan
   static final AssertionOperatorType lessThan = AssertionOperatorType._(
-    'lessThan',
+    value: 'lessThan',
   );
 
   /// empty
   static final AssertionOperatorType empty = AssertionOperatorType._(
-    'empty',
+    value: 'empty',
   );
 
   /// notEmpty
   static final AssertionOperatorType notEmpty = AssertionOperatorType._(
-    'notEmpty',
+    value: 'notEmpty',
   );
 
   /// contains
   static final AssertionOperatorType contains = AssertionOperatorType._(
-    'contains',
+    value: 'contains',
   );
 
   /// notContains
   static final AssertionOperatorType notContains = AssertionOperatorType._(
-    'notContains',
+    value: 'notContains',
   );
 
   /// eval
   static final AssertionOperatorType eval = AssertionOperatorType._(
-    'eval',
+    value: 'eval',
   );
 
   /// For instances where an Element is present but not value
 
-  static final AssertionOperatorType elementOnly = AssertionOperatorType._('');
+  static final AssertionOperatorType elementOnly =
+      AssertionOperatorType._(value: '');
 
   /// List of all enum-like values
   static final List<AssertionOperatorType> values = [
@@ -101,13 +107,13 @@ class AssertionOperatorType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   AssertionOperatorType clone() => AssertionOperatorType._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   AssertionOperatorType withElement(Element? newElement) {
-    return AssertionOperatorType._(value, newElement);
+    return AssertionOperatorType._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -132,14 +138,13 @@ class AssertionOperatorType extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return AssertionOperatorType._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

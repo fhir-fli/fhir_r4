@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value set includes common codes from BCP-47 (http://tools.ietf.org/html/bcp47)
 class CommonLanguages extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  CommonLanguages._(super.value, [super.element]);
+  CommonLanguages._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [CommonLanguages] from JSON.
   factory CommonLanguages.fromJson(
@@ -21,292 +26,292 @@ class CommonLanguages extends PrimitiveType<String> {
         'CommonLanguages cannot be constructed from JSON.',
       );
     }
-    return CommonLanguages._(value, element);
+    return CommonLanguages._(value: value, element: element);
   }
 
   /// ar
   static final CommonLanguages ar = CommonLanguages._(
-    'ar',
+    value: 'ar',
   );
 
   /// bn
   static final CommonLanguages bn = CommonLanguages._(
-    'bn',
+    value: 'bn',
   );
 
   /// cs
   static final CommonLanguages cs = CommonLanguages._(
-    'cs',
+    value: 'cs',
   );
 
   /// da
   static final CommonLanguages da = CommonLanguages._(
-    'da',
+    value: 'da',
   );
 
   /// de
   static final CommonLanguages de = CommonLanguages._(
-    'de',
+    value: 'de',
   );
 
   /// de_AT
   static final CommonLanguages de_AT = CommonLanguages._(
-    'de-AT',
+    value: 'de-AT',
   );
 
   /// de_CH
   static final CommonLanguages de_CH = CommonLanguages._(
-    'de-CH',
+    value: 'de-CH',
   );
 
   /// de_DE
   static final CommonLanguages de_DE = CommonLanguages._(
-    'de-DE',
+    value: 'de-DE',
   );
 
   /// el
   static final CommonLanguages el = CommonLanguages._(
-    'el',
+    value: 'el',
   );
 
   /// en
   static final CommonLanguages en = CommonLanguages._(
-    'en',
+    value: 'en',
   );
 
   /// en_AU
   static final CommonLanguages en_AU = CommonLanguages._(
-    'en-AU',
+    value: 'en-AU',
   );
 
   /// en_CA
   static final CommonLanguages en_CA = CommonLanguages._(
-    'en-CA',
+    value: 'en-CA',
   );
 
   /// en_GB
   static final CommonLanguages en_GB = CommonLanguages._(
-    'en-GB',
+    value: 'en-GB',
   );
 
   /// en_IN
   static final CommonLanguages en_IN = CommonLanguages._(
-    'en-IN',
+    value: 'en-IN',
   );
 
   /// en_NZ
   static final CommonLanguages en_NZ = CommonLanguages._(
-    'en-NZ',
+    value: 'en-NZ',
   );
 
   /// en_SG
   static final CommonLanguages en_SG = CommonLanguages._(
-    'en-SG',
+    value: 'en-SG',
   );
 
   /// en_US
   static final CommonLanguages en_US = CommonLanguages._(
-    'en-US',
+    value: 'en-US',
   );
 
   /// es
   static final CommonLanguages es = CommonLanguages._(
-    'es',
+    value: 'es',
   );
 
   /// es_AR
   static final CommonLanguages es_AR = CommonLanguages._(
-    'es-AR',
+    value: 'es-AR',
   );
 
   /// es_ES
   static final CommonLanguages es_ES = CommonLanguages._(
-    'es-ES',
+    value: 'es-ES',
   );
 
   /// es_UY
   static final CommonLanguages es_UY = CommonLanguages._(
-    'es-UY',
+    value: 'es-UY',
   );
 
   /// fi
   static final CommonLanguages fi = CommonLanguages._(
-    'fi',
+    value: 'fi',
   );
 
   /// fr
   static final CommonLanguages fr = CommonLanguages._(
-    'fr',
+    value: 'fr',
   );
 
   /// fr_BE
   static final CommonLanguages fr_BE = CommonLanguages._(
-    'fr-BE',
+    value: 'fr-BE',
   );
 
   /// fr_CH
   static final CommonLanguages fr_CH = CommonLanguages._(
-    'fr-CH',
+    value: 'fr-CH',
   );
 
   /// fr_FR
   static final CommonLanguages fr_FR = CommonLanguages._(
-    'fr-FR',
+    value: 'fr-FR',
   );
 
   /// fy
   static final CommonLanguages fy = CommonLanguages._(
-    'fy',
+    value: 'fy',
   );
 
   /// fy_NL
   static final CommonLanguages fy_NL = CommonLanguages._(
-    'fy-NL',
+    value: 'fy-NL',
   );
 
   /// hi
   static final CommonLanguages hi = CommonLanguages._(
-    'hi',
+    value: 'hi',
   );
 
   /// hr
   static final CommonLanguages hr = CommonLanguages._(
-    'hr',
+    value: 'hr',
   );
 
   /// it
   static final CommonLanguages it = CommonLanguages._(
-    'it',
+    value: 'it',
   );
 
   /// it_CH
   static final CommonLanguages it_CH = CommonLanguages._(
-    'it-CH',
+    value: 'it-CH',
   );
 
   /// it_IT
   static final CommonLanguages it_IT = CommonLanguages._(
-    'it-IT',
+    value: 'it-IT',
   );
 
   /// ja
   static final CommonLanguages ja = CommonLanguages._(
-    'ja',
+    value: 'ja',
   );
 
   /// ko
   static final CommonLanguages ko = CommonLanguages._(
-    'ko',
+    value: 'ko',
   );
 
   /// nl
   static final CommonLanguages nl = CommonLanguages._(
-    'nl',
+    value: 'nl',
   );
 
   /// nl_BE
   static final CommonLanguages nl_BE = CommonLanguages._(
-    'nl-BE',
+    value: 'nl-BE',
   );
 
   /// nl_NL
   static final CommonLanguages nl_NL = CommonLanguages._(
-    'nl-NL',
+    value: 'nl-NL',
   );
 
   /// no
   static final CommonLanguages no = CommonLanguages._(
-    'no',
+    value: 'no',
   );
 
   /// no_NO
   static final CommonLanguages no_NO = CommonLanguages._(
-    'no-NO',
+    value: 'no-NO',
   );
 
   /// pa
   static final CommonLanguages pa = CommonLanguages._(
-    'pa',
+    value: 'pa',
   );
 
   /// pl
   static final CommonLanguages pl = CommonLanguages._(
-    'pl',
+    value: 'pl',
   );
 
   /// pt
   static final CommonLanguages pt = CommonLanguages._(
-    'pt',
+    value: 'pt',
   );
 
   /// pt_BR
   static final CommonLanguages pt_BR = CommonLanguages._(
-    'pt-BR',
+    value: 'pt-BR',
   );
 
   /// ru
   static final CommonLanguages ru = CommonLanguages._(
-    'ru',
+    value: 'ru',
   );
 
   /// ru_RU
   static final CommonLanguages ru_RU = CommonLanguages._(
-    'ru-RU',
+    value: 'ru-RU',
   );
 
   /// sr
   static final CommonLanguages sr = CommonLanguages._(
-    'sr',
+    value: 'sr',
   );
 
   /// sr_RS
   static final CommonLanguages sr_RS = CommonLanguages._(
-    'sr-RS',
+    value: 'sr-RS',
   );
 
   /// sv
   static final CommonLanguages sv = CommonLanguages._(
-    'sv',
+    value: 'sv',
   );
 
   /// sv_SE
   static final CommonLanguages sv_SE = CommonLanguages._(
-    'sv-SE',
+    value: 'sv-SE',
   );
 
   /// te
   static final CommonLanguages te = CommonLanguages._(
-    'te',
+    value: 'te',
   );
 
   /// zh
   static final CommonLanguages zh = CommonLanguages._(
-    'zh',
+    value: 'zh',
   );
 
   /// zh_CN
   static final CommonLanguages zh_CN = CommonLanguages._(
-    'zh-CN',
+    value: 'zh-CN',
   );
 
   /// zh_HK
   static final CommonLanguages zh_HK = CommonLanguages._(
-    'zh-HK',
+    value: 'zh-HK',
   );
 
   /// zh_SG
   static final CommonLanguages zh_SG = CommonLanguages._(
-    'zh-SG',
+    value: 'zh-SG',
   );
 
   /// zh_TW
   static final CommonLanguages zh_TW = CommonLanguages._(
-    'zh-TW',
+    value: 'zh-TW',
   );
 
   /// For instances where an Element is present but not value
 
-  static final CommonLanguages elementOnly = CommonLanguages._('');
+  static final CommonLanguages elementOnly = CommonLanguages._(value: '');
 
   /// List of all enum-like values
   static final List<CommonLanguages> values = [
@@ -371,13 +376,13 @@ class CommonLanguages extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   CommonLanguages clone() => CommonLanguages._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   CommonLanguages withElement(Element? newElement) {
-    return CommonLanguages._(value, newElement);
+    return CommonLanguages._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -402,14 +407,13 @@ class CommonLanguages extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return CommonLanguages._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

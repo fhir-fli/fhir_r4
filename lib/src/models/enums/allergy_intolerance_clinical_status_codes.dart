@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Preferred value set for AllergyIntolerance Clinical Status.
 class AllergyIntoleranceClinicalStatusCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  AllergyIntoleranceClinicalStatusCodes._(super.value, [super.element]);
+  AllergyIntoleranceClinicalStatusCodes._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [AllergyIntoleranceClinicalStatusCodes] from JSON.
   factory AllergyIntoleranceClinicalStatusCodes.fromJson(
@@ -22,31 +27,32 @@ class AllergyIntoleranceClinicalStatusCodes extends PrimitiveType<String> {
         'AllergyIntoleranceClinicalStatusCodes cannot be constructed from JSON.',
       );
     }
-    return AllergyIntoleranceClinicalStatusCodes._(value, element);
+    return AllergyIntoleranceClinicalStatusCodes._(
+        value: value, element: element);
   }
 
   /// active
   static final AllergyIntoleranceClinicalStatusCodes active =
       AllergyIntoleranceClinicalStatusCodes._(
-    'active',
+    value: 'active',
   );
 
   /// inactive
   static final AllergyIntoleranceClinicalStatusCodes inactive =
       AllergyIntoleranceClinicalStatusCodes._(
-    'inactive',
+    value: 'inactive',
   );
 
   /// resolved
   static final AllergyIntoleranceClinicalStatusCodes resolved =
       AllergyIntoleranceClinicalStatusCodes._(
-    'resolved',
+    value: 'resolved',
   );
 
   /// For instances where an Element is present but not value
 
   static final AllergyIntoleranceClinicalStatusCodes elementOnly =
-      AllergyIntoleranceClinicalStatusCodes._('');
+      AllergyIntoleranceClinicalStatusCodes._(value: '');
 
   /// List of all enum-like values
   static final List<AllergyIntoleranceClinicalStatusCodes> values = [
@@ -59,13 +65,14 @@ class AllergyIntoleranceClinicalStatusCodes extends PrimitiveType<String> {
   @override
   AllergyIntoleranceClinicalStatusCodes clone() =>
       AllergyIntoleranceClinicalStatusCodes._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   AllergyIntoleranceClinicalStatusCodes withElement(Element? newElement) {
-    return AllergyIntoleranceClinicalStatusCodes._(value, newElement);
+    return AllergyIntoleranceClinicalStatusCodes._(
+        value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -90,14 +97,13 @@ class AllergyIntoleranceClinicalStatusCodes extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return AllergyIntoleranceClinicalStatusCodes._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The value set to instantiate this attribute should be drawn from a terminologically robust code system that consists of or contains concepts to support describing the source of the data when the report of the immunization event is not based on information from the person, entity or organization who administered the vaccine. This value set is provided as a suggestive example.
 class ImmunizationOriginCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ImmunizationOriginCodes._(super.value, [super.element]);
+  ImmunizationOriginCodes._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [ImmunizationOriginCodes] from JSON.
   factory ImmunizationOriginCodes.fromJson(
@@ -21,38 +26,38 @@ class ImmunizationOriginCodes extends PrimitiveType<String> {
         'ImmunizationOriginCodes cannot be constructed from JSON.',
       );
     }
-    return ImmunizationOriginCodes._(value, element);
+    return ImmunizationOriginCodes._(value: value, element: element);
   }
 
   /// provider
   static final ImmunizationOriginCodes provider = ImmunizationOriginCodes._(
-    'provider',
+    value: 'provider',
   );
 
   /// record
   static final ImmunizationOriginCodes record = ImmunizationOriginCodes._(
-    'record',
+    value: 'record',
   );
 
   /// recall
   static final ImmunizationOriginCodes recall = ImmunizationOriginCodes._(
-    'recall',
+    value: 'recall',
   );
 
   /// school
   static final ImmunizationOriginCodes school = ImmunizationOriginCodes._(
-    'school',
+    value: 'school',
   );
 
   /// jurisdiction
   static final ImmunizationOriginCodes jurisdiction = ImmunizationOriginCodes._(
-    'jurisdiction',
+    value: 'jurisdiction',
   );
 
   /// For instances where an Element is present but not value
 
   static final ImmunizationOriginCodes elementOnly =
-      ImmunizationOriginCodes._('');
+      ImmunizationOriginCodes._(value: '');
 
   /// List of all enum-like values
   static final List<ImmunizationOriginCodes> values = [
@@ -66,13 +71,13 @@ class ImmunizationOriginCodes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ImmunizationOriginCodes clone() => ImmunizationOriginCodes._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ImmunizationOriginCodes withElement(Element? newElement) {
-    return ImmunizationOriginCodes._(value, newElement);
+    return ImmunizationOriginCodes._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -97,14 +102,13 @@ class ImmunizationOriginCodes extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ImmunizationOriginCodes._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

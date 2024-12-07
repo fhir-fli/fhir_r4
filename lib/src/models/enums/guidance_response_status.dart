@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The status of a guidance response.
 class GuidanceResponseStatus extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  GuidanceResponseStatus._(super.value, [super.element]);
+  GuidanceResponseStatus._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [GuidanceResponseStatus] from JSON.
   factory GuidanceResponseStatus.fromJson(
@@ -21,44 +26,44 @@ class GuidanceResponseStatus extends PrimitiveType<String> {
         'GuidanceResponseStatus cannot be constructed from JSON.',
       );
     }
-    return GuidanceResponseStatus._(value, element);
+    return GuidanceResponseStatus._(value: value, element: element);
   }
 
   /// success
   static final GuidanceResponseStatus success = GuidanceResponseStatus._(
-    'success',
+    value: 'success',
   );
 
   /// data_requested
   static final GuidanceResponseStatus data_requested = GuidanceResponseStatus._(
-    'data-requested',
+    value: 'data-requested',
   );
 
   /// data_required
   static final GuidanceResponseStatus data_required = GuidanceResponseStatus._(
-    'data-required',
+    value: 'data-required',
   );
 
   /// in_progress
   static final GuidanceResponseStatus in_progress = GuidanceResponseStatus._(
-    'in-progress',
+    value: 'in-progress',
   );
 
   /// failure
   static final GuidanceResponseStatus failure = GuidanceResponseStatus._(
-    'failure',
+    value: 'failure',
   );
 
   /// entered_in_error
   static final GuidanceResponseStatus entered_in_error =
       GuidanceResponseStatus._(
-    'entered-in-error',
+    value: 'entered-in-error',
   );
 
   /// For instances where an Element is present but not value
 
   static final GuidanceResponseStatus elementOnly =
-      GuidanceResponseStatus._('');
+      GuidanceResponseStatus._(value: '');
 
   /// List of all enum-like values
   static final List<GuidanceResponseStatus> values = [
@@ -73,13 +78,13 @@ class GuidanceResponseStatus extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   GuidanceResponseStatus clone() => GuidanceResponseStatus._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   GuidanceResponseStatus withElement(Element? newElement) {
-    return GuidanceResponseStatus._(value, newElement);
+    return GuidanceResponseStatus._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -104,14 +109,13 @@ class GuidanceResponseStatus extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return GuidanceResponseStatus._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

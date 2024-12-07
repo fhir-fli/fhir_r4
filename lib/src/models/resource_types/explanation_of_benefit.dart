@@ -62,10 +62,6 @@ class ExplanationOfBenefit extends DomainResource {
     this.processNote,
     this.benefitPeriod,
     this.benefitBalance,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.ExplanationOfBenefit,
         );
@@ -941,10 +937,6 @@ class ExplanationOfBenefit extends DomainResource {
       processNote: processNote ?? this.processNote,
       benefitPeriod: benefitPeriod ?? this.benefitPeriod,
       benefitBalance: benefitBalance ?? this.benefitBalance,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -964,10 +956,6 @@ class ExplanationOfBenefitRelated extends BackboneElement {
     this.relationship,
     this.reference,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1127,10 +1115,6 @@ class ExplanationOfBenefitRelated extends BackboneElement {
       claim: claim ?? this.claim,
       relationship: relationship ?? this.relationship,
       reference: reference ?? this.reference,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1149,10 +1133,6 @@ class ExplanationOfBenefitPayee extends BackboneElement {
     this.type,
     this.party,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1297,10 +1277,6 @@ class ExplanationOfBenefitPayee extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
       party: party ?? this.party,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1321,10 +1297,6 @@ class ExplanationOfBenefitCareTeam extends BackboneElement {
     this.role,
     this.qualification,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1506,10 +1478,6 @@ class ExplanationOfBenefitCareTeam extends BackboneElement {
       responsible: responsible ?? this.responsible,
       role: role ?? this.role,
       qualification: qualification ?? this.qualification,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1537,10 +1505,6 @@ class ExplanationOfBenefitSupportingInfo extends BackboneElement {
     this.valueReference,
     this.reason,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1820,10 +1784,6 @@ class ExplanationOfBenefitSupportingInfo extends BackboneElement {
       valueAttachment: valueAttachment ?? this.valueAttachment,
       valueReference: valueReference ?? this.valueReference,
       reason: reason ?? this.reason,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1845,10 +1805,6 @@ class ExplanationOfBenefitDiagnosis extends BackboneElement {
     this.onAdmission,
     this.packageCode,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -2058,10 +2014,6 @@ class ExplanationOfBenefitDiagnosis extends BackboneElement {
       type: type ?? this.type,
       onAdmission: onAdmission ?? this.onAdmission,
       packageCode: packageCode ?? this.packageCode,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -2084,10 +2036,6 @@ class ExplanationOfBenefitProcedure extends BackboneElement {
     this.procedureReference,
     this.udi,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -2296,10 +2244,6 @@ class ExplanationOfBenefitProcedure extends BackboneElement {
           procedureCodeableConcept ?? this.procedureCodeableConcept,
       procedureReference: procedureReference ?? this.procedureReference,
       udi: udi ?? this.udi,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -2319,10 +2263,6 @@ class ExplanationOfBenefitInsurance extends BackboneElement {
     required this.coverage,
     this.preAuthRef,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -2483,10 +2423,6 @@ class ExplanationOfBenefitInsurance extends BackboneElement {
       focal: focal ?? this.focal,
       coverage: coverage ?? this.coverage,
       preAuthRef: preAuthRef ?? this.preAuthRef,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -2507,10 +2443,6 @@ class ExplanationOfBenefitAccident extends BackboneElement {
     this.locationAddress,
     this.locationReference,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -2685,10 +2617,6 @@ class ExplanationOfBenefitAccident extends BackboneElement {
       type: type ?? this.type,
       locationAddress: locationAddress ?? this.locationAddress,
       locationReference: locationReference ?? this.locationReference,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -2731,10 +2659,6 @@ class ExplanationOfBenefitItem extends BackboneElement {
     this.adjudication,
     this.detail,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -3298,10 +3222,6 @@ class ExplanationOfBenefitItem extends BackboneElement {
       noteNumber: noteNumber ?? this.noteNumber,
       adjudication: adjudication ?? this.adjudication,
       detail: detail ?? this.detail,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -3323,10 +3243,6 @@ class ExplanationOfBenefitAdjudication extends BackboneElement {
     this.amount,
     this.value,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -3500,10 +3416,6 @@ class ExplanationOfBenefitAdjudication extends BackboneElement {
       reason: reason ?? this.reason,
       amount: amount ?? this.amount,
       value: value ?? this.value,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -3533,10 +3445,6 @@ class ExplanationOfBenefitDetail extends BackboneElement {
     this.adjudication,
     this.subDetail,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -3887,10 +3795,6 @@ class ExplanationOfBenefitDetail extends BackboneElement {
       noteNumber: noteNumber ?? this.noteNumber,
       adjudication: adjudication ?? this.adjudication,
       subDetail: subDetail ?? this.subDetail,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -3919,10 +3823,6 @@ class ExplanationOfBenefitSubDetail extends BackboneElement {
     this.noteNumber,
     this.adjudication,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -4254,10 +4154,6 @@ class ExplanationOfBenefitSubDetail extends BackboneElement {
       udi: udi ?? this.udi,
       noteNumber: noteNumber ?? this.noteNumber,
       adjudication: adjudication ?? this.adjudication,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -4295,10 +4191,6 @@ class ExplanationOfBenefitAddItem extends BackboneElement {
     this.adjudication,
     this.detail,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -4778,10 +4670,6 @@ class ExplanationOfBenefitAddItem extends BackboneElement {
       noteNumber: noteNumber ?? this.noteNumber,
       adjudication: adjudication ?? this.adjudication,
       detail: detail ?? this.detail,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -4806,10 +4694,6 @@ class ExplanationOfBenefitDetail1 extends BackboneElement {
     this.adjudication,
     this.subDetail,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -5078,10 +4962,6 @@ class ExplanationOfBenefitDetail1 extends BackboneElement {
       noteNumber: noteNumber ?? this.noteNumber,
       adjudication: adjudication ?? this.adjudication,
       subDetail: subDetail ?? this.subDetail,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -5105,10 +4985,6 @@ class ExplanationOfBenefitSubDetail1 extends BackboneElement {
     this.noteNumber,
     this.adjudication,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -5358,10 +5234,6 @@ class ExplanationOfBenefitSubDetail1 extends BackboneElement {
       net: net ?? this.net,
       noteNumber: noteNumber ?? this.noteNumber,
       adjudication: adjudication ?? this.adjudication,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -5379,10 +5251,6 @@ class ExplanationOfBenefitTotal extends BackboneElement {
     required this.category,
     required this.amount,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -5522,10 +5390,6 @@ class ExplanationOfBenefitTotal extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       category: category ?? this.category,
       amount: amount ?? this.amount,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -5547,10 +5411,6 @@ class ExplanationOfBenefitPayment extends BackboneElement {
     this.amount,
     this.identifier,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -5755,10 +5615,6 @@ class ExplanationOfBenefitPayment extends BackboneElement {
       date: date ?? this.date,
       amount: amount ?? this.amount,
       identifier: identifier ?? this.identifier,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -5779,10 +5635,6 @@ class ExplanationOfBenefitProcessNote extends BackboneElement {
     this.text,
     this.language,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -5950,10 +5802,6 @@ class ExplanationOfBenefitProcessNote extends BackboneElement {
       type: type ?? this.type,
       text: text ?? this.text,
       language: language ?? this.language,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -5977,10 +5825,6 @@ class ExplanationOfBenefitBenefitBalance extends BackboneElement {
     this.term,
     this.financial,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -6213,10 +6057,6 @@ class ExplanationOfBenefitBenefitBalance extends BackboneElement {
       unit: unit ?? this.unit,
       term: term ?? this.term,
       financial: financial ?? this.financial,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -6238,10 +6078,6 @@ class ExplanationOfBenefitFinancial extends BackboneElement {
     this.usedUnsignedInt,
     this.usedMoney,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -6438,10 +6274,6 @@ class ExplanationOfBenefitFinancial extends BackboneElement {
       allowedMoney: allowedMoney ?? this.allowedMoney,
       usedUnsignedInt: usedUnsignedInt ?? this.usedUnsignedInt,
       usedMoney: usedMoney ?? this.usedMoney,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

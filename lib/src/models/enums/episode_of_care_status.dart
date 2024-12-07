@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The status of the episode of care.
 class EpisodeOfCareStatus extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  EpisodeOfCareStatus._(super.value, [super.element]);
+  EpisodeOfCareStatus._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [EpisodeOfCareStatus] from JSON.
   factory EpisodeOfCareStatus.fromJson(
@@ -21,47 +26,48 @@ class EpisodeOfCareStatus extends PrimitiveType<String> {
         'EpisodeOfCareStatus cannot be constructed from JSON.',
       );
     }
-    return EpisodeOfCareStatus._(value, element);
+    return EpisodeOfCareStatus._(value: value, element: element);
   }
 
   /// planned
   static final EpisodeOfCareStatus planned = EpisodeOfCareStatus._(
-    'planned',
+    value: 'planned',
   );
 
   /// waitlist
   static final EpisodeOfCareStatus waitlist = EpisodeOfCareStatus._(
-    'waitlist',
+    value: 'waitlist',
   );
 
   /// active
   static final EpisodeOfCareStatus active = EpisodeOfCareStatus._(
-    'active',
+    value: 'active',
   );
 
   /// onhold
   static final EpisodeOfCareStatus onhold = EpisodeOfCareStatus._(
-    'onhold',
+    value: 'onhold',
   );
 
   /// finished
   static final EpisodeOfCareStatus finished = EpisodeOfCareStatus._(
-    'finished',
+    value: 'finished',
   );
 
   /// cancelled
   static final EpisodeOfCareStatus cancelled = EpisodeOfCareStatus._(
-    'cancelled',
+    value: 'cancelled',
   );
 
   /// entered_in_error
   static final EpisodeOfCareStatus entered_in_error = EpisodeOfCareStatus._(
-    'entered-in-error',
+    value: 'entered-in-error',
   );
 
   /// For instances where an Element is present but not value
 
-  static final EpisodeOfCareStatus elementOnly = EpisodeOfCareStatus._('');
+  static final EpisodeOfCareStatus elementOnly =
+      EpisodeOfCareStatus._(value: '');
 
   /// List of all enum-like values
   static final List<EpisodeOfCareStatus> values = [
@@ -77,13 +83,13 @@ class EpisodeOfCareStatus extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   EpisodeOfCareStatus clone() => EpisodeOfCareStatus._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   EpisodeOfCareStatus withElement(Element? newElement) {
-    return EpisodeOfCareStatus._(value, newElement);
+    return EpisodeOfCareStatus._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -108,14 +114,13 @@ class EpisodeOfCareStatus extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return EpisodeOfCareStatus._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

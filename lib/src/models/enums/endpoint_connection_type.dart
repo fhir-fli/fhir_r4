@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This is an example value set defined by the FHIR project, that could be used to represent possible connection type profile values.
 class EndpointConnectionType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  EndpointConnectionType._(super.value, [super.element]);
+  EndpointConnectionType._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [EndpointConnectionType] from JSON.
   factory EndpointConnectionType.fromJson(
@@ -21,83 +26,83 @@ class EndpointConnectionType extends PrimitiveType<String> {
         'EndpointConnectionType cannot be constructed from JSON.',
       );
     }
-    return EndpointConnectionType._(value, element);
+    return EndpointConnectionType._(value: value, element: element);
   }
 
   /// ihe_xcpd
   static final EndpointConnectionType ihe_xcpd = EndpointConnectionType._(
-    'ihe-xcpd',
+    value: 'ihe-xcpd',
   );
 
   /// ihe_xca
   static final EndpointConnectionType ihe_xca = EndpointConnectionType._(
-    'ihe-xca',
+    value: 'ihe-xca',
   );
 
   /// ihe_xdr
   static final EndpointConnectionType ihe_xdr = EndpointConnectionType._(
-    'ihe-xdr',
+    value: 'ihe-xdr',
   );
 
   /// ihe_xds
   static final EndpointConnectionType ihe_xds = EndpointConnectionType._(
-    'ihe-xds',
+    value: 'ihe-xds',
   );
 
   /// ihe_iid
   static final EndpointConnectionType ihe_iid = EndpointConnectionType._(
-    'ihe-iid',
+    value: 'ihe-iid',
   );
 
   /// dicom_wado_rs
   static final EndpointConnectionType dicom_wado_rs = EndpointConnectionType._(
-    'dicom-wado-rs',
+    value: 'dicom-wado-rs',
   );
 
   /// dicom_qido_rs
   static final EndpointConnectionType dicom_qido_rs = EndpointConnectionType._(
-    'dicom-qido-rs',
+    value: 'dicom-qido-rs',
   );
 
   /// dicom_stow_rs
   static final EndpointConnectionType dicom_stow_rs = EndpointConnectionType._(
-    'dicom-stow-rs',
+    value: 'dicom-stow-rs',
   );
 
   /// dicom_wado_uri
   static final EndpointConnectionType dicom_wado_uri = EndpointConnectionType._(
-    'dicom-wado-uri',
+    value: 'dicom-wado-uri',
   );
 
   /// hl7_fhir_rest
   static final EndpointConnectionType hl7_fhir_rest = EndpointConnectionType._(
-    'hl7-fhir-rest',
+    value: 'hl7-fhir-rest',
   );
 
   /// hl7_fhir_msg
   static final EndpointConnectionType hl7_fhir_msg = EndpointConnectionType._(
-    'hl7-fhir-msg',
+    value: 'hl7-fhir-msg',
   );
 
   /// hl7v2_mllp
   static final EndpointConnectionType hl7v2_mllp = EndpointConnectionType._(
-    'hl7v2-mllp',
+    value: 'hl7v2-mllp',
   );
 
   /// secure_email
   static final EndpointConnectionType secure_email = EndpointConnectionType._(
-    'secure-email',
+    value: 'secure-email',
   );
 
   /// direct_project
   static final EndpointConnectionType direct_project = EndpointConnectionType._(
-    'direct-project',
+    value: 'direct-project',
   );
 
   /// For instances where an Element is present but not value
 
   static final EndpointConnectionType elementOnly =
-      EndpointConnectionType._('');
+      EndpointConnectionType._(value: '');
 
   /// List of all enum-like values
   static final List<EndpointConnectionType> values = [
@@ -120,13 +125,13 @@ class EndpointConnectionType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   EndpointConnectionType clone() => EndpointConnectionType._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   EndpointConnectionType withElement(Element? newElement) {
-    return EndpointConnectionType._(value, newElement);
+    return EndpointConnectionType._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -151,14 +156,13 @@ class EndpointConnectionType extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return EndpointConnectionType._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The type of process where the audit event originated from.
 class AuditEventSourceType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  AuditEventSourceType._(super.value, [super.element]);
+  AuditEventSourceType._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [AuditEventSourceType] from JSON.
   factory AuditEventSourceType.fromJson(
@@ -21,57 +26,58 @@ class AuditEventSourceType extends PrimitiveType<String> {
         'AuditEventSourceType cannot be constructed from JSON.',
       );
     }
-    return AuditEventSourceType._(value, element);
+    return AuditEventSourceType._(value: value, element: element);
   }
 
   /// value1
   static final AuditEventSourceType value1 = AuditEventSourceType._(
-    '1',
+    value: '1',
   );
 
   /// value2
   static final AuditEventSourceType value2 = AuditEventSourceType._(
-    '2',
+    value: '2',
   );
 
   /// value3
   static final AuditEventSourceType value3 = AuditEventSourceType._(
-    '3',
+    value: '3',
   );
 
   /// value4
   static final AuditEventSourceType value4 = AuditEventSourceType._(
-    '4',
+    value: '4',
   );
 
   /// value5
   static final AuditEventSourceType value5 = AuditEventSourceType._(
-    '5',
+    value: '5',
   );
 
   /// value6
   static final AuditEventSourceType value6 = AuditEventSourceType._(
-    '6',
+    value: '6',
   );
 
   /// value7
   static final AuditEventSourceType value7 = AuditEventSourceType._(
-    '7',
+    value: '7',
   );
 
   /// value8
   static final AuditEventSourceType value8 = AuditEventSourceType._(
-    '8',
+    value: '8',
   );
 
   /// value9
   static final AuditEventSourceType value9 = AuditEventSourceType._(
-    '9',
+    value: '9',
   );
 
   /// For instances where an Element is present but not value
 
-  static final AuditEventSourceType elementOnly = AuditEventSourceType._('');
+  static final AuditEventSourceType elementOnly =
+      AuditEventSourceType._(value: '');
 
   /// List of all enum-like values
   static final List<AuditEventSourceType> values = [
@@ -89,13 +95,13 @@ class AuditEventSourceType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   AuditEventSourceType clone() => AuditEventSourceType._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   AuditEventSourceType withElement(Element? newElement) {
-    return AuditEventSourceType._(value, newElement);
+    return AuditEventSourceType._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -120,14 +126,13 @@ class AuditEventSourceType extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return AuditEventSourceType._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

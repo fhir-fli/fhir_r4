@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This example value set defines a set of codes that can be used to indicate the physical form of the Location.
 class LocationType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  LocationType._(super.value, [super.element]);
+  LocationType._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [LocationType] from JSON.
   factory LocationType.fromJson(
@@ -21,82 +26,82 @@ class LocationType extends PrimitiveType<String> {
         'LocationType cannot be constructed from JSON.',
       );
     }
-    return LocationType._(value, element);
+    return LocationType._(value: value, element: element);
   }
 
   /// si
   static final LocationType si = LocationType._(
-    'si',
+    value: 'si',
   );
 
   /// bu
   static final LocationType bu = LocationType._(
-    'bu',
+    value: 'bu',
   );
 
   /// wi
   static final LocationType wi = LocationType._(
-    'wi',
+    value: 'wi',
   );
 
   /// wa
   static final LocationType wa = LocationType._(
-    'wa',
+    value: 'wa',
   );
 
   /// lvl
   static final LocationType lvl = LocationType._(
-    'lvl',
+    value: 'lvl',
   );
 
   /// co
   static final LocationType co = LocationType._(
-    'co',
+    value: 'co',
   );
 
   /// ro
   static final LocationType ro = LocationType._(
-    'ro',
+    value: 'ro',
   );
 
   /// bd
   static final LocationType bd = LocationType._(
-    'bd',
+    value: 'bd',
   );
 
   /// ve
   static final LocationType ve = LocationType._(
-    've',
+    value: 've',
   );
 
   /// ho
   static final LocationType ho = LocationType._(
-    'ho',
+    value: 'ho',
   );
 
   /// ca
   static final LocationType ca = LocationType._(
-    'ca',
+    value: 'ca',
   );
 
   /// rd
   static final LocationType rd = LocationType._(
-    'rd',
+    value: 'rd',
   );
 
   /// area
   static final LocationType area = LocationType._(
-    'area',
+    value: 'area',
   );
 
   /// jdn
   static final LocationType jdn = LocationType._(
-    'jdn',
+    value: 'jdn',
   );
 
   /// For instances where an Element is present but not value
 
-  static final LocationType elementOnly = LocationType._('');
+  static final LocationType elementOnly = LocationType._(value: '');
 
   /// List of all enum-like values
   static final List<LocationType> values = [
@@ -119,13 +124,13 @@ class LocationType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   LocationType clone() => LocationType._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   LocationType withElement(Element? newElement) {
-    return LocationType._(value, newElement);
+    return LocationType._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -150,14 +155,13 @@ class LocationType extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return LocationType._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

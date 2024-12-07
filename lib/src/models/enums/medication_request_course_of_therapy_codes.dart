@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// MedicationRequest Course of Therapy Codes
 class MedicationRequestCourseOfTherapyCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  MedicationRequestCourseOfTherapyCodes._(super.value, [super.element]);
+  MedicationRequestCourseOfTherapyCodes._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [MedicationRequestCourseOfTherapyCodes] from JSON.
   factory MedicationRequestCourseOfTherapyCodes.fromJson(
@@ -22,31 +27,32 @@ class MedicationRequestCourseOfTherapyCodes extends PrimitiveType<String> {
         'MedicationRequestCourseOfTherapyCodes cannot be constructed from JSON.',
       );
     }
-    return MedicationRequestCourseOfTherapyCodes._(value, element);
+    return MedicationRequestCourseOfTherapyCodes._(
+        value: value, element: element);
   }
 
   /// continuous
   static final MedicationRequestCourseOfTherapyCodes continuous =
       MedicationRequestCourseOfTherapyCodes._(
-    'continuous',
+    value: 'continuous',
   );
 
   /// acute
   static final MedicationRequestCourseOfTherapyCodes acute =
       MedicationRequestCourseOfTherapyCodes._(
-    'acute',
+    value: 'acute',
   );
 
   /// seasonal
   static final MedicationRequestCourseOfTherapyCodes seasonal =
       MedicationRequestCourseOfTherapyCodes._(
-    'seasonal',
+    value: 'seasonal',
   );
 
   /// For instances where an Element is present but not value
 
   static final MedicationRequestCourseOfTherapyCodes elementOnly =
-      MedicationRequestCourseOfTherapyCodes._('');
+      MedicationRequestCourseOfTherapyCodes._(value: '');
 
   /// List of all enum-like values
   static final List<MedicationRequestCourseOfTherapyCodes> values = [
@@ -59,13 +65,14 @@ class MedicationRequestCourseOfTherapyCodes extends PrimitiveType<String> {
   @override
   MedicationRequestCourseOfTherapyCodes clone() =>
       MedicationRequestCourseOfTherapyCodes._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   MedicationRequestCourseOfTherapyCodes withElement(Element? newElement) {
-    return MedicationRequestCourseOfTherapyCodes._(value, newElement);
+    return MedicationRequestCourseOfTherapyCodes._(
+        value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -90,14 +97,13 @@ class MedicationRequestCourseOfTherapyCodes extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return MedicationRequestCourseOfTherapyCodes._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

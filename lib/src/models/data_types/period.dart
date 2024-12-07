@@ -14,10 +14,6 @@ class Period extends DataType {
     this.start,
     this.end,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -144,10 +140,6 @@ class Period extends DataType {
       extension_: extension_ ?? this.extension_,
       start: start ?? this.start,
       end: end ?? this.end,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// MedicationKnowledge Characteristic Codes
 class MedicationKnowledgeCharacteristicCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  MedicationKnowledgeCharacteristicCodes._(super.value, [super.element]);
+  MedicationKnowledgeCharacteristicCodes._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [MedicationKnowledgeCharacteristicCodes] from JSON.
   factory MedicationKnowledgeCharacteristicCodes.fromJson(
@@ -22,55 +27,56 @@ class MedicationKnowledgeCharacteristicCodes extends PrimitiveType<String> {
         'MedicationKnowledgeCharacteristicCodes cannot be constructed from JSON.',
       );
     }
-    return MedicationKnowledgeCharacteristicCodes._(value, element);
+    return MedicationKnowledgeCharacteristicCodes._(
+        value: value, element: element);
   }
 
   /// imprintcd
   static final MedicationKnowledgeCharacteristicCodes imprintcd =
       MedicationKnowledgeCharacteristicCodes._(
-    'imprintcd',
+    value: 'imprintcd',
   );
 
   /// size
   static final MedicationKnowledgeCharacteristicCodes size =
       MedicationKnowledgeCharacteristicCodes._(
-    'size',
+    value: 'size',
   );
 
   /// shape
   static final MedicationKnowledgeCharacteristicCodes shape =
       MedicationKnowledgeCharacteristicCodes._(
-    'shape',
+    value: 'shape',
   );
 
   /// color
   static final MedicationKnowledgeCharacteristicCodes color =
       MedicationKnowledgeCharacteristicCodes._(
-    'color',
+    value: 'color',
   );
 
   /// coating
   static final MedicationKnowledgeCharacteristicCodes coating =
       MedicationKnowledgeCharacteristicCodes._(
-    'coating',
+    value: 'coating',
   );
 
   /// scoring
   static final MedicationKnowledgeCharacteristicCodes scoring =
       MedicationKnowledgeCharacteristicCodes._(
-    'scoring',
+    value: 'scoring',
   );
 
   /// logo
   static final MedicationKnowledgeCharacteristicCodes logo =
       MedicationKnowledgeCharacteristicCodes._(
-    'logo',
+    value: 'logo',
   );
 
   /// For instances where an Element is present but not value
 
   static final MedicationKnowledgeCharacteristicCodes elementOnly =
-      MedicationKnowledgeCharacteristicCodes._('');
+      MedicationKnowledgeCharacteristicCodes._(value: '');
 
   /// List of all enum-like values
   static final List<MedicationKnowledgeCharacteristicCodes> values = [
@@ -87,13 +93,14 @@ class MedicationKnowledgeCharacteristicCodes extends PrimitiveType<String> {
   @override
   MedicationKnowledgeCharacteristicCodes clone() =>
       MedicationKnowledgeCharacteristicCodes._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   MedicationKnowledgeCharacteristicCodes withElement(Element? newElement) {
-    return MedicationKnowledgeCharacteristicCodes._(value, newElement);
+    return MedicationKnowledgeCharacteristicCodes._(
+        value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -118,14 +125,13 @@ class MedicationKnowledgeCharacteristicCodes extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return MedicationKnowledgeCharacteristicCodes._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

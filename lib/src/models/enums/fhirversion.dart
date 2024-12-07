@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// All published FHIR Versions.
 class FHIRVersion extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  FHIRVersion._(super.value, [super.element]);
+  FHIRVersion._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [FHIRVersion] from JSON.
   factory FHIRVersion.fromJson(
@@ -21,147 +26,147 @@ class FHIRVersion extends PrimitiveType<String> {
         'FHIRVersion cannot be constructed from JSON.',
       );
     }
-    return FHIRVersion._(value, element);
+    return FHIRVersion._(value: value, element: element);
   }
 
   /// value0_01
   static final FHIRVersion value0_01 = FHIRVersion._(
-    '0.01',
+    value: '0.01',
   );
 
   /// value0_05
   static final FHIRVersion value0_05 = FHIRVersion._(
-    '0.05',
+    value: '0.05',
   );
 
   /// value0_06
   static final FHIRVersion value0_06 = FHIRVersion._(
-    '0.06',
+    value: '0.06',
   );
 
   /// value0_11
   static final FHIRVersion value0_11 = FHIRVersion._(
-    '0.11',
+    value: '0.11',
   );
 
   /// value0_0_80
   static final FHIRVersion value0_0_80 = FHIRVersion._(
-    '0.0.80',
+    value: '0.0.80',
   );
 
   /// value0_0_81
   static final FHIRVersion value0_0_81 = FHIRVersion._(
-    '0.0.81',
+    value: '0.0.81',
   );
 
   /// value0_0_82
   static final FHIRVersion value0_0_82 = FHIRVersion._(
-    '0.0.82',
+    value: '0.0.82',
   );
 
   /// value0_4_0
   static final FHIRVersion value0_4_0 = FHIRVersion._(
-    '0.4.0',
+    value: '0.4.0',
   );
 
   /// value0_5_0
   static final FHIRVersion value0_5_0 = FHIRVersion._(
-    '0.5.0',
+    value: '0.5.0',
   );
 
   /// value1_0_0
   static final FHIRVersion value1_0_0 = FHIRVersion._(
-    '1.0.0',
+    value: '1.0.0',
   );
 
   /// value1_0_1
   static final FHIRVersion value1_0_1 = FHIRVersion._(
-    '1.0.1',
+    value: '1.0.1',
   );
 
   /// value1_0_2
   static final FHIRVersion value1_0_2 = FHIRVersion._(
-    '1.0.2',
+    value: '1.0.2',
   );
 
   /// value1_1_0
   static final FHIRVersion value1_1_0 = FHIRVersion._(
-    '1.1.0',
+    value: '1.1.0',
   );
 
   /// value1_4_0
   static final FHIRVersion value1_4_0 = FHIRVersion._(
-    '1.4.0',
+    value: '1.4.0',
   );
 
   /// value1_6_0
   static final FHIRVersion value1_6_0 = FHIRVersion._(
-    '1.6.0',
+    value: '1.6.0',
   );
 
   /// value1_8_0
   static final FHIRVersion value1_8_0 = FHIRVersion._(
-    '1.8.0',
+    value: '1.8.0',
   );
 
   /// value3_0_0
   static final FHIRVersion value3_0_0 = FHIRVersion._(
-    '3.0.0',
+    value: '3.0.0',
   );
 
   /// value3_0_1
   static final FHIRVersion value3_0_1 = FHIRVersion._(
-    '3.0.1',
+    value: '3.0.1',
   );
 
   /// value3_0_2
   static final FHIRVersion value3_0_2 = FHIRVersion._(
-    '3.0.2',
+    value: '3.0.2',
   );
 
   /// value3_3_0
   static final FHIRVersion value3_3_0 = FHIRVersion._(
-    '3.3.0',
+    value: '3.3.0',
   );
 
   /// value3_5_0
   static final FHIRVersion value3_5_0 = FHIRVersion._(
-    '3.5.0',
+    value: '3.5.0',
   );
 
   /// value4_0_0
   static final FHIRVersion value4_0_0 = FHIRVersion._(
-    '4.0.0',
+    value: '4.0.0',
   );
 
   /// value4_0_1
   static final FHIRVersion value4_0_1 = FHIRVersion._(
-    '4.0.1',
+    value: '4.0.1',
   );
 
   /// value4_1_0
   static final FHIRVersion value4_1_0 = FHIRVersion._(
-    '4.1.0',
+    value: '4.1.0',
   );
 
   /// value4_3_0_cibuild
   static final FHIRVersion value4_3_0_cibuild = FHIRVersion._(
-    '4.3.0-cibuild',
+    value: '4.3.0-cibuild',
   );
 
   /// value4_3_0_snapshot1
   static final FHIRVersion value4_3_0_snapshot1 = FHIRVersion._(
-    '4.3.0-snapshot1',
+    value: '4.3.0-snapshot1',
   );
 
   /// value4_3_0
   static final FHIRVersion value4_3_0 = FHIRVersion._(
-    '4.3.0',
+    value: '4.3.0',
   );
 
   /// For instances where an Element is present but not value
 
-  static final FHIRVersion elementOnly = FHIRVersion._('');
+  static final FHIRVersion elementOnly = FHIRVersion._(value: '');
 
   /// List of all enum-like values
   static final List<FHIRVersion> values = [
@@ -197,13 +202,13 @@ class FHIRVersion extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   FHIRVersion clone() => FHIRVersion._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   FHIRVersion withElement(Element? newElement) {
-    return FHIRVersion._(value, newElement);
+    return FHIRVersion._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -228,14 +233,13 @@ class FHIRVersion extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return FHIRVersion._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

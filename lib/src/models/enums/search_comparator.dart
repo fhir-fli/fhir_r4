@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// What Search Comparator Codes are supported in search.
 class SearchComparator extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  SearchComparator._(super.value, [super.element]);
+  SearchComparator._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [SearchComparator] from JSON.
   factory SearchComparator.fromJson(
@@ -21,57 +26,57 @@ class SearchComparator extends PrimitiveType<String> {
         'SearchComparator cannot be constructed from JSON.',
       );
     }
-    return SearchComparator._(value, element);
+    return SearchComparator._(value: value, element: element);
   }
 
   /// eq
   static final SearchComparator eq = SearchComparator._(
-    'eq',
+    value: 'eq',
   );
 
   /// ne
   static final SearchComparator ne = SearchComparator._(
-    'ne',
+    value: 'ne',
   );
 
   /// gt
   static final SearchComparator gt = SearchComparator._(
-    'gt',
+    value: 'gt',
   );
 
   /// lt
   static final SearchComparator lt = SearchComparator._(
-    'lt',
+    value: 'lt',
   );
 
   /// ge
   static final SearchComparator ge = SearchComparator._(
-    'ge',
+    value: 'ge',
   );
 
   /// le
   static final SearchComparator le = SearchComparator._(
-    'le',
+    value: 'le',
   );
 
   /// sa
   static final SearchComparator sa = SearchComparator._(
-    'sa',
+    value: 'sa',
   );
 
   /// eb
   static final SearchComparator eb = SearchComparator._(
-    'eb',
+    value: 'eb',
   );
 
   /// ap
   static final SearchComparator ap = SearchComparator._(
-    'ap',
+    value: 'ap',
   );
 
   /// For instances where an Element is present but not value
 
-  static final SearchComparator elementOnly = SearchComparator._('');
+  static final SearchComparator elementOnly = SearchComparator._(value: '');
 
   /// List of all enum-like values
   static final List<SearchComparator> values = [
@@ -89,13 +94,13 @@ class SearchComparator extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   SearchComparator clone() => SearchComparator._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   SearchComparator withElement(Element? newElement) {
-    return SearchComparator._(value, newElement);
+    return SearchComparator._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -120,14 +125,13 @@ class SearchComparator extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return SearchComparator._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

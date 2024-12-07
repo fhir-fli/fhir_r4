@@ -28,10 +28,6 @@ class Dosage extends BackboneType {
     this.maxDosePerAdministration,
     this.maxDosePerLifetime,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -369,10 +365,6 @@ class Dosage extends BackboneType {
       maxDosePerAdministration:
           maxDosePerAdministration ?? this.maxDosePerAdministration,
       maxDosePerLifetime: maxDosePerLifetime ?? this.maxDosePerLifetime,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -393,10 +385,6 @@ class DosageDoseAndRate extends Element {
     this.rateRange,
     this.rateQuantity,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -584,10 +572,6 @@ class DosageDoseAndRate extends Element {
       rateRatio: rateRatio ?? this.rateRatio,
       rateRange: rateRange ?? this.rateRange,
       rateQuantity: rateQuantity ?? this.rateQuantity,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

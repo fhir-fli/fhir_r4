@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Base values for the order of the items in a list resource.
 class ListOrderCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ListOrderCodes._(super.value, [super.element]);
+  ListOrderCodes._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [ListOrderCodes] from JSON.
   factory ListOrderCodes.fromJson(
@@ -21,52 +26,52 @@ class ListOrderCodes extends PrimitiveType<String> {
         'ListOrderCodes cannot be constructed from JSON.',
       );
     }
-    return ListOrderCodes._(value, element);
+    return ListOrderCodes._(value: value, element: element);
   }
 
   /// user
   static final ListOrderCodes user = ListOrderCodes._(
-    'user',
+    value: 'user',
   );
 
   /// system
   static final ListOrderCodes system = ListOrderCodes._(
-    'system',
+    value: 'system',
   );
 
   /// event_date
   static final ListOrderCodes event_date = ListOrderCodes._(
-    'event-date',
+    value: 'event-date',
   );
 
   /// entry_date
   static final ListOrderCodes entry_date = ListOrderCodes._(
-    'entry-date',
+    value: 'entry-date',
   );
 
   /// priority
   static final ListOrderCodes priority = ListOrderCodes._(
-    'priority',
+    value: 'priority',
   );
 
   /// alphabetic
   static final ListOrderCodes alphabetic = ListOrderCodes._(
-    'alphabetic',
+    value: 'alphabetic',
   );
 
   /// category
   static final ListOrderCodes category = ListOrderCodes._(
-    'category',
+    value: 'category',
   );
 
   /// patient
   static final ListOrderCodes patient = ListOrderCodes._(
-    'patient',
+    value: 'patient',
   );
 
   /// For instances where an Element is present but not value
 
-  static final ListOrderCodes elementOnly = ListOrderCodes._('');
+  static final ListOrderCodes elementOnly = ListOrderCodes._(value: '');
 
   /// List of all enum-like values
   static final List<ListOrderCodes> values = [
@@ -83,13 +88,13 @@ class ListOrderCodes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ListOrderCodes clone() => ListOrderCodes._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ListOrderCodes withElement(Element? newElement) {
-    return ListOrderCodes._(value, newElement);
+    return ListOrderCodes._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -114,14 +119,13 @@ class ListOrderCodes extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ListOrderCodes._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

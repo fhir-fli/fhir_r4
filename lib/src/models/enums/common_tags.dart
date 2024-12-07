@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Common Tag Codes defined by FHIR project
 class CommonTags extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  CommonTags._(super.value, [super.element]);
+  CommonTags._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [CommonTags] from JSON.
   factory CommonTags.fromJson(
@@ -21,17 +26,17 @@ class CommonTags extends PrimitiveType<String> {
         'CommonTags cannot be constructed from JSON.',
       );
     }
-    return CommonTags._(value, element);
+    return CommonTags._(value: value, element: element);
   }
 
   /// actionable
   static final CommonTags actionable = CommonTags._(
-    'actionable',
+    value: 'actionable',
   );
 
   /// For instances where an Element is present but not value
 
-  static final CommonTags elementOnly = CommonTags._('');
+  static final CommonTags elementOnly = CommonTags._(value: '');
 
   /// List of all enum-like values
   static final List<CommonTags> values = [
@@ -41,13 +46,13 @@ class CommonTags extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   CommonTags clone() => CommonTags._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   CommonTags withElement(Element? newElement) {
-    return CommonTags._(value, newElement);
+    return CommonTags._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -72,14 +77,13 @@ class CommonTags extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return CommonTags._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

@@ -29,10 +29,6 @@ class AdministrableProductDefinition extends DomainResource {
     this.device,
     this.property,
     required this.routeOfAdministration,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.AdministrableProductDefinition,
         );
@@ -414,10 +410,6 @@ class AdministrableProductDefinition extends DomainResource {
       property: property ?? this.property,
       routeOfAdministration:
           routeOfAdministration ?? this.routeOfAdministration,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -440,10 +432,6 @@ class AdministrableProductDefinitionProperty extends BackboneElement {
     this.valueAttachment,
     this.status,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -655,10 +643,6 @@ class AdministrableProductDefinitionProperty extends BackboneElement {
       valueBoolean: valueBoolean ?? this.valueBoolean,
       valueAttachment: valueAttachment ?? this.valueAttachment,
       status: status ?? this.status,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -685,10 +669,6 @@ class AdministrableProductDefinitionRouteOfAdministration
     this.maxTreatmentPeriod,
     this.targetSpecies,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -913,10 +893,6 @@ class AdministrableProductDefinitionRouteOfAdministration
           maxDosePerTreatmentPeriod ?? this.maxDosePerTreatmentPeriod,
       maxTreatmentPeriod: maxTreatmentPeriod ?? this.maxTreatmentPeriod,
       targetSpecies: targetSpecies ?? this.targetSpecies,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -934,10 +910,6 @@ class AdministrableProductDefinitionTargetSpecies extends BackboneElement {
     required this.code,
     this.withdrawalPeriod,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1084,10 +1056,6 @@ class AdministrableProductDefinitionTargetSpecies extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       code: code ?? this.code,
       withdrawalPeriod: withdrawalPeriod ?? this.withdrawalPeriod,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1107,10 +1075,6 @@ class AdministrableProductDefinitionWithdrawalPeriod extends BackboneElement {
     required this.value,
     this.supportingInformation,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1263,10 +1227,6 @@ class AdministrableProductDefinitionWithdrawalPeriod extends BackboneElement {
       value: value ?? this.value,
       supportingInformation:
           supportingInformation ?? this.supportingInformation,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

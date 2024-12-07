@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Example value set for the type of stages of cancer and other conditions
 class ConditionStageType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ConditionStageType._(super.value, [super.element]);
+  ConditionStageType._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [ConditionStageType] from JSON.
   factory ConditionStageType.fromJson(
@@ -21,22 +26,22 @@ class ConditionStageType extends PrimitiveType<String> {
         'ConditionStageType cannot be constructed from JSON.',
       );
     }
-    return ConditionStageType._(value, element);
+    return ConditionStageType._(value: value, element: element);
   }
 
   /// value261023001
   static final ConditionStageType value261023001 = ConditionStageType._(
-    '261023001',
+    value: '261023001',
   );
 
   /// value260998006
   static final ConditionStageType value260998006 = ConditionStageType._(
-    '260998006',
+    value: '260998006',
   );
 
   /// For instances where an Element is present but not value
 
-  static final ConditionStageType elementOnly = ConditionStageType._('');
+  static final ConditionStageType elementOnly = ConditionStageType._(value: '');
 
   /// List of all enum-like values
   static final List<ConditionStageType> values = [
@@ -47,13 +52,13 @@ class ConditionStageType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ConditionStageType clone() => ConditionStageType._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ConditionStageType withElement(Element? newElement) {
-    return ConditionStageType._(value, newElement);
+    return ConditionStageType._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -78,14 +83,13 @@ class ConditionStageType extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ConditionStageType._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

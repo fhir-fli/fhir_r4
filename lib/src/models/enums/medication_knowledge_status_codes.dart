@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// MedicationKnowledge Status Codes
 class MedicationKnowledgeStatusCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  MedicationKnowledgeStatusCodes._(super.value, [super.element]);
+  MedicationKnowledgeStatusCodes._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [MedicationKnowledgeStatusCodes] from JSON.
   factory MedicationKnowledgeStatusCodes.fromJson(
@@ -21,31 +26,31 @@ class MedicationKnowledgeStatusCodes extends PrimitiveType<String> {
         'MedicationKnowledgeStatusCodes cannot be constructed from JSON.',
       );
     }
-    return MedicationKnowledgeStatusCodes._(value, element);
+    return MedicationKnowledgeStatusCodes._(value: value, element: element);
   }
 
   /// active
   static final MedicationKnowledgeStatusCodes active =
       MedicationKnowledgeStatusCodes._(
-    'active',
+    value: 'active',
   );
 
   /// inactive
   static final MedicationKnowledgeStatusCodes inactive =
       MedicationKnowledgeStatusCodes._(
-    'inactive',
+    value: 'inactive',
   );
 
   /// entered_in_error
   static final MedicationKnowledgeStatusCodes entered_in_error =
       MedicationKnowledgeStatusCodes._(
-    'entered-in-error',
+    value: 'entered-in-error',
   );
 
   /// For instances where an Element is present but not value
 
   static final MedicationKnowledgeStatusCodes elementOnly =
-      MedicationKnowledgeStatusCodes._('');
+      MedicationKnowledgeStatusCodes._(value: '');
 
   /// List of all enum-like values
   static final List<MedicationKnowledgeStatusCodes> values = [
@@ -57,13 +62,13 @@ class MedicationKnowledgeStatusCodes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   MedicationKnowledgeStatusCodes clone() => MedicationKnowledgeStatusCodes._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   MedicationKnowledgeStatusCodes withElement(Element? newElement) {
-    return MedicationKnowledgeStatusCodes._(value, newElement);
+    return MedicationKnowledgeStatusCodes._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -88,14 +93,13 @@ class MedicationKnowledgeStatusCodes extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return MedicationKnowledgeStatusCodes._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

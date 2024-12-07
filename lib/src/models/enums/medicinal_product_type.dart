@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Overall defining type of this Medicinal Product.
 class MedicinalProductType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  MedicinalProductType._(super.value, [super.element]);
+  MedicinalProductType._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [MedicinalProductType] from JSON.
   factory MedicinalProductType.fromJson(
@@ -21,23 +26,24 @@ class MedicinalProductType extends PrimitiveType<String> {
         'MedicinalProductType cannot be constructed from JSON.',
       );
     }
-    return MedicinalProductType._(value, element);
+    return MedicinalProductType._(value: value, element: element);
   }
 
   /// MedicinalProduct
   static final MedicinalProductType MedicinalProduct = MedicinalProductType._(
-    'MedicinalProduct',
+    value: 'MedicinalProduct',
   );
 
   /// InvestigationalProduct
   static final MedicinalProductType InvestigationalProduct =
       MedicinalProductType._(
-    'InvestigationalProduct',
+    value: 'InvestigationalProduct',
   );
 
   /// For instances where an Element is present but not value
 
-  static final MedicinalProductType elementOnly = MedicinalProductType._('');
+  static final MedicinalProductType elementOnly =
+      MedicinalProductType._(value: '');
 
   /// List of all enum-like values
   static final List<MedicinalProductType> values = [
@@ -48,13 +54,13 @@ class MedicinalProductType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   MedicinalProductType clone() => MedicinalProductType._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   MedicinalProductType withElement(Element? newElement) {
-    return MedicinalProductType._(value, newElement);
+    return MedicinalProductType._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -79,14 +85,13 @@ class MedicinalProductType extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return MedicinalProductType._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

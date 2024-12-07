@@ -45,10 +45,6 @@ class CodeSystem extends CanonicalResource {
     this.filter,
     this.property,
     this.concept,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.CodeSystem,
         );
@@ -582,10 +578,6 @@ class CodeSystem extends CanonicalResource {
       filter: filter ?? this.filter,
       property: property ?? this.property,
       concept: concept ?? this.concept,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -606,10 +598,6 @@ class CodeSystemFilter extends BackboneElement {
     required this.operator_,
     required this.value,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -780,10 +768,6 @@ class CodeSystemFilter extends BackboneElement {
       description: description ?? this.description,
       operator_: operator_ ?? this.operator_,
       value: value ?? this.value,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -804,10 +788,6 @@ class CodeSystemProperty extends BackboneElement {
     this.description,
     required this.type,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -976,10 +956,6 @@ class CodeSystemProperty extends BackboneElement {
       uri: uri ?? this.uri,
       description: description ?? this.description,
       type: type ?? this.type,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1003,10 +979,6 @@ class CodeSystemConcept extends BackboneElement {
     this.property,
     this.concept,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1222,10 +1194,6 @@ class CodeSystemConcept extends BackboneElement {
       designation: designation ?? this.designation,
       property: property ?? this.property,
       concept: concept ?? this.concept,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1245,10 +1213,6 @@ class CodeSystemDesignation extends BackboneElement {
     this.use,
     required this.value,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1401,10 +1365,6 @@ class CodeSystemDesignation extends BackboneElement {
       language: language ?? this.language,
       use: use ?? this.use,
       value: value ?? this.value,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1428,10 +1388,6 @@ class CodeSystemProperty1 extends BackboneElement {
     this.valueDateTime,
     this.valueDecimal,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1653,10 +1609,6 @@ class CodeSystemProperty1 extends BackboneElement {
       valueBoolean: valueBoolean ?? this.valueBoolean,
       valueDateTime: valueDateTime ?? this.valueDateTime,
       valueDecimal: valueDecimal ?? this.valueDecimal,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

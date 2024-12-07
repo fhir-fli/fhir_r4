@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value set includes a smattering of Service Place codes.
 class ExampleServicePlaceCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ExampleServicePlaceCodes._(super.value, [super.element]);
+  ExampleServicePlaceCodes._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [ExampleServicePlaceCodes] from JSON.
   factory ExampleServicePlaceCodes.fromJson(
@@ -21,98 +26,98 @@ class ExampleServicePlaceCodes extends PrimitiveType<String> {
         'ExampleServicePlaceCodes cannot be constructed from JSON.',
       );
     }
-    return ExampleServicePlaceCodes._(value, element);
+    return ExampleServicePlaceCodes._(value: value, element: element);
   }
 
   /// value01
   static final ExampleServicePlaceCodes value01 = ExampleServicePlaceCodes._(
-    '01',
+    value: '01',
   );
 
   /// value03
   static final ExampleServicePlaceCodes value03 = ExampleServicePlaceCodes._(
-    '03',
+    value: '03',
   );
 
   /// value04
   static final ExampleServicePlaceCodes value04 = ExampleServicePlaceCodes._(
-    '04',
+    value: '04',
   );
 
   /// value05
   static final ExampleServicePlaceCodes value05 = ExampleServicePlaceCodes._(
-    '05',
+    value: '05',
   );
 
   /// value06
   static final ExampleServicePlaceCodes value06 = ExampleServicePlaceCodes._(
-    '06',
+    value: '06',
   );
 
   /// value07
   static final ExampleServicePlaceCodes value07 = ExampleServicePlaceCodes._(
-    '07',
+    value: '07',
   );
 
   /// value08
   static final ExampleServicePlaceCodes value08 = ExampleServicePlaceCodes._(
-    '08',
+    value: '08',
   );
 
   /// value09
   static final ExampleServicePlaceCodes value09 = ExampleServicePlaceCodes._(
-    '09',
+    value: '09',
   );
 
   /// value11
   static final ExampleServicePlaceCodes value11 = ExampleServicePlaceCodes._(
-    '11',
+    value: '11',
   );
 
   /// value12
   static final ExampleServicePlaceCodes value12 = ExampleServicePlaceCodes._(
-    '12',
+    value: '12',
   );
 
   /// value13
   static final ExampleServicePlaceCodes value13 = ExampleServicePlaceCodes._(
-    '13',
+    value: '13',
   );
 
   /// value14
   static final ExampleServicePlaceCodes value14 = ExampleServicePlaceCodes._(
-    '14',
+    value: '14',
   );
 
   /// value15
   static final ExampleServicePlaceCodes value15 = ExampleServicePlaceCodes._(
-    '15',
+    value: '15',
   );
 
   /// value19
   static final ExampleServicePlaceCodes value19 = ExampleServicePlaceCodes._(
-    '19',
+    value: '19',
   );
 
   /// value20
   static final ExampleServicePlaceCodes value20 = ExampleServicePlaceCodes._(
-    '20',
+    value: '20',
   );
 
   /// value21
   static final ExampleServicePlaceCodes value21 = ExampleServicePlaceCodes._(
-    '21',
+    value: '21',
   );
 
   /// value41
   static final ExampleServicePlaceCodes value41 = ExampleServicePlaceCodes._(
-    '41',
+    value: '41',
   );
 
   /// For instances where an Element is present but not value
 
   static final ExampleServicePlaceCodes elementOnly =
-      ExampleServicePlaceCodes._('');
+      ExampleServicePlaceCodes._(value: '');
 
   /// List of all enum-like values
   static final List<ExampleServicePlaceCodes> values = [
@@ -138,13 +143,13 @@ class ExampleServicePlaceCodes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ExampleServicePlaceCodes clone() => ExampleServicePlaceCodes._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ExampleServicePlaceCodes withElement(Element? newElement) {
-    return ExampleServicePlaceCodes._(value, newElement);
+    return ExampleServicePlaceCodes._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -169,14 +174,13 @@ class ExampleServicePlaceCodes extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ExampleServicePlaceCodes._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

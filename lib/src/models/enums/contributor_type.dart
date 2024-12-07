@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The type of contributor.
 class ContributorType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ContributorType._(super.value, [super.element]);
+  ContributorType._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [ContributorType] from JSON.
   factory ContributorType.fromJson(
@@ -21,32 +26,32 @@ class ContributorType extends PrimitiveType<String> {
         'ContributorType cannot be constructed from JSON.',
       );
     }
-    return ContributorType._(value, element);
+    return ContributorType._(value: value, element: element);
   }
 
   /// author
   static final ContributorType author = ContributorType._(
-    'author',
+    value: 'author',
   );
 
   /// editor
   static final ContributorType editor = ContributorType._(
-    'editor',
+    value: 'editor',
   );
 
   /// reviewer
   static final ContributorType reviewer = ContributorType._(
-    'reviewer',
+    value: 'reviewer',
   );
 
   /// endorser
   static final ContributorType endorser = ContributorType._(
-    'endorser',
+    value: 'endorser',
   );
 
   /// For instances where an Element is present but not value
 
-  static final ContributorType elementOnly = ContributorType._('');
+  static final ContributorType elementOnly = ContributorType._(value: '');
 
   /// List of all enum-like values
   static final List<ContributorType> values = [
@@ -59,13 +64,13 @@ class ContributorType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ContributorType clone() => ContributorType._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ContributorType withElement(Element? newElement) {
-    return ContributorType._(value, newElement);
+    return ContributorType._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -90,14 +95,13 @@ class ContributorType extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ContributorType._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

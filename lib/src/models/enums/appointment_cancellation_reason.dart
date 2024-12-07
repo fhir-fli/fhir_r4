@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This example value set defines a set of reasons for the cancellation of an appointment.
 class AppointmentCancellationReason extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  AppointmentCancellationReason._(super.value, [super.element]);
+  AppointmentCancellationReason._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [AppointmentCancellationReason] from JSON.
   factory AppointmentCancellationReason.fromJson(
@@ -21,205 +26,205 @@ class AppointmentCancellationReason extends PrimitiveType<String> {
         'AppointmentCancellationReason cannot be constructed from JSON.',
       );
     }
-    return AppointmentCancellationReason._(value, element);
+    return AppointmentCancellationReason._(value: value, element: element);
   }
 
   /// pat
   static final AppointmentCancellationReason pat =
       AppointmentCancellationReason._(
-    'pat',
+    value: 'pat',
   );
 
   /// pat_crs
   static final AppointmentCancellationReason pat_crs =
       AppointmentCancellationReason._(
-    'pat-crs',
+    value: 'pat-crs',
   );
 
   /// pat_cpp
   static final AppointmentCancellationReason pat_cpp =
       AppointmentCancellationReason._(
-    'pat-cpp',
+    value: 'pat-cpp',
   );
 
   /// pat_dec
   static final AppointmentCancellationReason pat_dec =
       AppointmentCancellationReason._(
-    'pat-dec',
+    value: 'pat-dec',
   );
 
   /// pat_fb
   static final AppointmentCancellationReason pat_fb =
       AppointmentCancellationReason._(
-    'pat-fb',
+    value: 'pat-fb',
   );
 
   /// pat_lt
   static final AppointmentCancellationReason pat_lt =
       AppointmentCancellationReason._(
-    'pat-lt',
+    value: 'pat-lt',
   );
 
   /// pat_mt
   static final AppointmentCancellationReason pat_mt =
       AppointmentCancellationReason._(
-    'pat-mt',
+    value: 'pat-mt',
   );
 
   /// pat_mv
   static final AppointmentCancellationReason pat_mv =
       AppointmentCancellationReason._(
-    'pat-mv',
+    value: 'pat-mv',
   );
 
   /// pat_preg
   static final AppointmentCancellationReason pat_preg =
       AppointmentCancellationReason._(
-    'pat-preg',
+    value: 'pat-preg',
   );
 
   /// pat_swl
   static final AppointmentCancellationReason pat_swl =
       AppointmentCancellationReason._(
-    'pat-swl',
+    value: 'pat-swl',
   );
 
   /// pat_ucp
   static final AppointmentCancellationReason pat_ucp =
       AppointmentCancellationReason._(
-    'pat-ucp',
+    value: 'pat-ucp',
   );
 
   /// prov
   static final AppointmentCancellationReason prov =
       AppointmentCancellationReason._(
-    'prov',
+    value: 'prov',
   );
 
   /// prov_pers
   static final AppointmentCancellationReason prov_pers =
       AppointmentCancellationReason._(
-    'prov-pers',
+    value: 'prov-pers',
   );
 
   /// prov_dch
   static final AppointmentCancellationReason prov_dch =
       AppointmentCancellationReason._(
-    'prov-dch',
+    value: 'prov-dch',
   );
 
   /// prov_edu
   static final AppointmentCancellationReason prov_edu =
       AppointmentCancellationReason._(
-    'prov-edu',
+    value: 'prov-edu',
   );
 
   /// prov_hosp
   static final AppointmentCancellationReason prov_hosp =
       AppointmentCancellationReason._(
-    'prov-hosp',
+    value: 'prov-hosp',
   );
 
   /// prov_labs
   static final AppointmentCancellationReason prov_labs =
       AppointmentCancellationReason._(
-    'prov-labs',
+    value: 'prov-labs',
   );
 
   /// prov_mri
   static final AppointmentCancellationReason prov_mri =
       AppointmentCancellationReason._(
-    'prov-mri',
+    value: 'prov-mri',
   );
 
   /// prov_onc
   static final AppointmentCancellationReason prov_onc =
       AppointmentCancellationReason._(
-    'prov-onc',
+    value: 'prov-onc',
   );
 
   /// maint
   static final AppointmentCancellationReason maint =
       AppointmentCancellationReason._(
-    'maint',
+    value: 'maint',
   );
 
   /// meds_inc
   static final AppointmentCancellationReason meds_inc =
       AppointmentCancellationReason._(
-    'meds-inc',
+    value: 'meds-inc',
   );
 
   /// other
   static final AppointmentCancellationReason other =
       AppointmentCancellationReason._(
-    'other',
+    value: 'other',
   );
 
   /// oth_cms
   static final AppointmentCancellationReason oth_cms =
       AppointmentCancellationReason._(
-    'oth-cms',
+    value: 'oth-cms',
   );
 
   /// oth_err
   static final AppointmentCancellationReason oth_err =
       AppointmentCancellationReason._(
-    'oth-err',
+    value: 'oth-err',
   );
 
   /// oth_fin
   static final AppointmentCancellationReason oth_fin =
       AppointmentCancellationReason._(
-    'oth-fin',
+    value: 'oth-fin',
   );
 
   /// oth_iv
   static final AppointmentCancellationReason oth_iv =
       AppointmentCancellationReason._(
-    'oth-iv',
+    value: 'oth-iv',
   );
 
   /// oth_int
   static final AppointmentCancellationReason oth_int =
       AppointmentCancellationReason._(
-    'oth-int',
+    value: 'oth-int',
   );
 
   /// oth_mu
   static final AppointmentCancellationReason oth_mu =
       AppointmentCancellationReason._(
-    'oth-mu',
+    value: 'oth-mu',
   );
 
   /// oth_room
   static final AppointmentCancellationReason oth_room =
       AppointmentCancellationReason._(
-    'oth-room',
+    value: 'oth-room',
   );
 
   /// oth_oerr
   static final AppointmentCancellationReason oth_oerr =
       AppointmentCancellationReason._(
-    'oth-oerr',
+    value: 'oth-oerr',
   );
 
   /// oth_swie
   static final AppointmentCancellationReason oth_swie =
       AppointmentCancellationReason._(
-    'oth-swie',
+    value: 'oth-swie',
   );
 
   /// oth_weath
   static final AppointmentCancellationReason oth_weath =
       AppointmentCancellationReason._(
-    'oth-weath',
+    value: 'oth-weath',
   );
 
   /// For instances where an Element is present but not value
 
   static final AppointmentCancellationReason elementOnly =
-      AppointmentCancellationReason._('');
+      AppointmentCancellationReason._(value: '');
 
   /// List of all enum-like values
   static final List<AppointmentCancellationReason> values = [
@@ -260,13 +265,13 @@ class AppointmentCancellationReason extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   AppointmentCancellationReason clone() => AppointmentCancellationReason._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   AppointmentCancellationReason withElement(Element? newElement) {
-    return AppointmentCancellationReason._(value, newElement);
+    return AppointmentCancellationReason._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -291,14 +296,13 @@ class AppointmentCancellationReason extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return AppointmentCancellationReason._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value set defines a set of codes that can be used to express the role of a diagnosis on the Encounter or EpisodeOfCare record.
 class DiagnosisRole extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  DiagnosisRole._(super.value, [super.element]);
+  DiagnosisRole._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [DiagnosisRole] from JSON.
   factory DiagnosisRole.fromJson(
@@ -21,47 +26,47 @@ class DiagnosisRole extends PrimitiveType<String> {
         'DiagnosisRole cannot be constructed from JSON.',
       );
     }
-    return DiagnosisRole._(value, element);
+    return DiagnosisRole._(value: value, element: element);
   }
 
   /// AD
   static final DiagnosisRole AD = DiagnosisRole._(
-    'AD',
+    value: 'AD',
   );
 
   /// DD
   static final DiagnosisRole DD = DiagnosisRole._(
-    'DD',
+    value: 'DD',
   );
 
   /// CC
   static final DiagnosisRole CC = DiagnosisRole._(
-    'CC',
+    value: 'CC',
   );
 
   /// CM
   static final DiagnosisRole CM = DiagnosisRole._(
-    'CM',
+    value: 'CM',
   );
 
   /// pre_op
   static final DiagnosisRole pre_op = DiagnosisRole._(
-    'pre-op',
+    value: 'pre-op',
   );
 
   /// post_op
   static final DiagnosisRole post_op = DiagnosisRole._(
-    'post-op',
+    value: 'post-op',
   );
 
   /// billing
   static final DiagnosisRole billing = DiagnosisRole._(
-    'billing',
+    value: 'billing',
   );
 
   /// For instances where an Element is present but not value
 
-  static final DiagnosisRole elementOnly = DiagnosisRole._('');
+  static final DiagnosisRole elementOnly = DiagnosisRole._(value: '');
 
   /// List of all enum-like values
   static final List<DiagnosisRole> values = [
@@ -77,13 +82,13 @@ class DiagnosisRole extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   DiagnosisRole clone() => DiagnosisRole._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   DiagnosisRole withElement(Element? newElement) {
-    return DiagnosisRole._(value, newElement);
+    return DiagnosisRole._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -108,14 +113,13 @@ class DiagnosisRole extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return DiagnosisRole._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

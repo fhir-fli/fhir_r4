@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value set defines a set of codes that can be used to indicate how an individual participates in an encounter.
 class ParticipantType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ParticipantType._(super.value, [super.element]);
+  ParticipantType._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [ParticipantType] from JSON.
   factory ParticipantType.fromJson(
@@ -21,37 +26,37 @@ class ParticipantType extends PrimitiveType<String> {
         'ParticipantType cannot be constructed from JSON.',
       );
     }
-    return ParticipantType._(value, element);
+    return ParticipantType._(value: value, element: element);
   }
 
   /// SPRF
   static final ParticipantType SPRF = ParticipantType._(
-    'SPRF',
+    value: 'SPRF',
   );
 
   /// PPRF
   static final ParticipantType PPRF = ParticipantType._(
-    'PPRF',
+    value: 'PPRF',
   );
 
   /// PART
   static final ParticipantType PART = ParticipantType._(
-    'PART',
+    value: 'PART',
   );
 
   /// translator
   static final ParticipantType translator = ParticipantType._(
-    'translator',
+    value: 'translator',
   );
 
   /// emergency
   static final ParticipantType emergency = ParticipantType._(
-    'emergency',
+    value: 'emergency',
   );
 
   /// For instances where an Element is present but not value
 
-  static final ParticipantType elementOnly = ParticipantType._('');
+  static final ParticipantType elementOnly = ParticipantType._(value: '');
 
   /// List of all enum-like values
   static final List<ParticipantType> values = [
@@ -65,13 +70,13 @@ class ParticipantType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ParticipantType clone() => ParticipantType._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ParticipantType withElement(Element? newElement) {
-    return ParticipantType._(value, newElement);
+    return ParticipantType._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -96,14 +101,13 @@ class ParticipantType extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ParticipantType._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

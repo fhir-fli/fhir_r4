@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The kind of dose or rate specified.
 class DoseAndRateType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  DoseAndRateType._(super.value, [super.element]);
+  DoseAndRateType._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [DoseAndRateType] from JSON.
   factory DoseAndRateType.fromJson(
@@ -21,22 +26,22 @@ class DoseAndRateType extends PrimitiveType<String> {
         'DoseAndRateType cannot be constructed from JSON.',
       );
     }
-    return DoseAndRateType._(value, element);
+    return DoseAndRateType._(value: value, element: element);
   }
 
   /// calculated
   static final DoseAndRateType calculated = DoseAndRateType._(
-    'calculated',
+    value: 'calculated',
   );
 
   /// ordered
   static final DoseAndRateType ordered = DoseAndRateType._(
-    'ordered',
+    value: 'ordered',
   );
 
   /// For instances where an Element is present but not value
 
-  static final DoseAndRateType elementOnly = DoseAndRateType._('');
+  static final DoseAndRateType elementOnly = DoseAndRateType._(value: '');
 
   /// List of all enum-like values
   static final List<DoseAndRateType> values = [
@@ -47,13 +52,13 @@ class DoseAndRateType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   DoseAndRateType clone() => DoseAndRateType._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   DoseAndRateType withElement(Element? newElement) {
-    return DoseAndRateType._(value, newElement);
+    return DoseAndRateType._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -78,14 +83,13 @@ class DoseAndRateType extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return DoseAndRateType._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

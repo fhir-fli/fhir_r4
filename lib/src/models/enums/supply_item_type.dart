@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value sets refers to a specific supply item.
 class SupplyItemType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  SupplyItemType._(super.value, [super.element]);
+  SupplyItemType._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [SupplyItemType] from JSON.
   factory SupplyItemType.fromJson(
@@ -21,22 +26,22 @@ class SupplyItemType extends PrimitiveType<String> {
         'SupplyItemType cannot be constructed from JSON.',
       );
     }
-    return SupplyItemType._(value, element);
+    return SupplyItemType._(value: value, element: element);
   }
 
   /// medication
   static final SupplyItemType medication = SupplyItemType._(
-    'medication',
+    value: 'medication',
   );
 
   /// device
   static final SupplyItemType device = SupplyItemType._(
-    'device',
+    value: 'device',
   );
 
   /// For instances where an Element is present but not value
 
-  static final SupplyItemType elementOnly = SupplyItemType._('');
+  static final SupplyItemType elementOnly = SupplyItemType._(value: '');
 
   /// List of all enum-like values
   static final List<SupplyItemType> values = [
@@ -47,13 +52,13 @@ class SupplyItemType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   SupplyItemType clone() => SupplyItemType._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   SupplyItemType withElement(Element? newElement) {
-    return SupplyItemType._(value, newElement);
+    return SupplyItemType._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -78,14 +83,13 @@ class SupplyItemType extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return SupplyItemType._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

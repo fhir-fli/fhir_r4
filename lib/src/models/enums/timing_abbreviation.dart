@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Code for a known / defined timing pattern.
 class TimingAbbreviation extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  TimingAbbreviation._(super.value, [super.element]);
+  TimingAbbreviation._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [TimingAbbreviation] from JSON.
   factory TimingAbbreviation.fromJson(
@@ -21,92 +26,92 @@ class TimingAbbreviation extends PrimitiveType<String> {
         'TimingAbbreviation cannot be constructed from JSON.',
       );
     }
-    return TimingAbbreviation._(value, element);
+    return TimingAbbreviation._(value: value, element: element);
   }
 
   /// BID
   static final TimingAbbreviation BID = TimingAbbreviation._(
-    'BID',
+    value: 'BID',
   );
 
   /// TID
   static final TimingAbbreviation TID = TimingAbbreviation._(
-    'TID',
+    value: 'TID',
   );
 
   /// QID
   static final TimingAbbreviation QID = TimingAbbreviation._(
-    'QID',
+    value: 'QID',
   );
 
   /// AM
   static final TimingAbbreviation AM = TimingAbbreviation._(
-    'AM',
+    value: 'AM',
   );
 
   /// PM
   static final TimingAbbreviation PM = TimingAbbreviation._(
-    'PM',
+    value: 'PM',
   );
 
   /// QD
   static final TimingAbbreviation QD = TimingAbbreviation._(
-    'QD',
+    value: 'QD',
   );
 
   /// QOD
   static final TimingAbbreviation QOD = TimingAbbreviation._(
-    'QOD',
+    value: 'QOD',
   );
 
   /// Q1H
   static final TimingAbbreviation Q1H = TimingAbbreviation._(
-    'Q1H',
+    value: 'Q1H',
   );
 
   /// Q2H
   static final TimingAbbreviation Q2H = TimingAbbreviation._(
-    'Q2H',
+    value: 'Q2H',
   );
 
   /// Q3H
   static final TimingAbbreviation Q3H = TimingAbbreviation._(
-    'Q3H',
+    value: 'Q3H',
   );
 
   /// Q4H
   static final TimingAbbreviation Q4H = TimingAbbreviation._(
-    'Q4H',
+    value: 'Q4H',
   );
 
   /// Q6H
   static final TimingAbbreviation Q6H = TimingAbbreviation._(
-    'Q6H',
+    value: 'Q6H',
   );
 
   /// Q8H
   static final TimingAbbreviation Q8H = TimingAbbreviation._(
-    'Q8H',
+    value: 'Q8H',
   );
 
   /// BED
   static final TimingAbbreviation BED = TimingAbbreviation._(
-    'BED',
+    value: 'BED',
   );
 
   /// WK
   static final TimingAbbreviation WK = TimingAbbreviation._(
-    'WK',
+    value: 'WK',
   );
 
   /// MO
   static final TimingAbbreviation MO = TimingAbbreviation._(
-    'MO',
+    value: 'MO',
   );
 
   /// For instances where an Element is present but not value
 
-  static final TimingAbbreviation elementOnly = TimingAbbreviation._('');
+  static final TimingAbbreviation elementOnly = TimingAbbreviation._(value: '');
 
   /// List of all enum-like values
   static final List<TimingAbbreviation> values = [
@@ -131,13 +136,13 @@ class TimingAbbreviation extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   TimingAbbreviation clone() => TimingAbbreviation._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   TimingAbbreviation withElement(Element? newElement) {
-    return TimingAbbreviation._(value, newElement);
+    return TimingAbbreviation._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -162,14 +167,13 @@ class TimingAbbreviation extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return TimingAbbreviation._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

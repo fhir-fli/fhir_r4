@@ -30,10 +30,6 @@ class BiologicallyDerivedProduct extends DomainResource {
     this.processing,
     this.manipulation,
     this.storage,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.BiologicallyDerivedProduct,
         );
@@ -395,10 +391,6 @@ class BiologicallyDerivedProduct extends DomainResource {
       processing: processing ?? this.processing,
       manipulation: manipulation ?? this.manipulation,
       storage: storage ?? this.storage,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -418,10 +410,6 @@ class BiologicallyDerivedProductCollection extends BackboneElement {
     this.collectedDateTime,
     this.collectedPeriod,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -595,10 +583,6 @@ class BiologicallyDerivedProductCollection extends BackboneElement {
       source: source ?? this.source,
       collectedDateTime: collectedDateTime ?? this.collectedDateTime,
       collectedPeriod: collectedPeriod ?? this.collectedPeriod,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -621,10 +605,6 @@ class BiologicallyDerivedProductProcessing extends BackboneElement {
     this.timeDateTime,
     this.timePeriod,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -810,10 +790,6 @@ class BiologicallyDerivedProductProcessing extends BackboneElement {
       additive: additive ?? this.additive,
       timeDateTime: timeDateTime ?? this.timeDateTime,
       timePeriod: timePeriod ?? this.timePeriod,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -834,10 +810,6 @@ class BiologicallyDerivedProductManipulation extends BackboneElement {
     this.timeDateTime,
     this.timePeriod,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -993,10 +965,6 @@ class BiologicallyDerivedProductManipulation extends BackboneElement {
       description: description ?? this.description,
       timeDateTime: timeDateTime ?? this.timeDateTime,
       timePeriod: timePeriod ?? this.timePeriod,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1016,10 +984,6 @@ class BiologicallyDerivedProductStorage extends BackboneElement {
     this.scale,
     this.duration,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1187,10 +1151,6 @@ class BiologicallyDerivedProductStorage extends BackboneElement {
       temperature: temperature ?? this.temperature,
       scale: scale ?? this.scale,
       duration: duration ?? this.duration,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

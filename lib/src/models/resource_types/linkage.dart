@@ -21,10 +21,6 @@ class Linkage extends DomainResource {
     this.active,
     this.author,
     required this.item,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.Linkage,
         );
@@ -249,10 +245,6 @@ class Linkage extends DomainResource {
       active: active ?? this.active,
       author: author ?? this.author,
       item: item ?? this.item,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -272,10 +264,6 @@ class LinkageItem extends BackboneElement {
     required this.type,
     required this.resource,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -412,10 +400,6 @@ class LinkageItem extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
       resource: resource ?? this.resource,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

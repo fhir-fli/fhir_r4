@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// A categorisation for a frequency of occurence of an undesirable effect.
 class UndesirablEffectFrequency extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  UndesirablEffectFrequency._(super.value, [super.element]);
+  UndesirablEffectFrequency._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [UndesirablEffectFrequency] from JSON.
   factory UndesirablEffectFrequency.fromJson(
@@ -21,28 +26,28 @@ class UndesirablEffectFrequency extends PrimitiveType<String> {
         'UndesirablEffectFrequency cannot be constructed from JSON.',
       );
     }
-    return UndesirablEffectFrequency._(value, element);
+    return UndesirablEffectFrequency._(value: value, element: element);
   }
 
   /// Common
   static final UndesirablEffectFrequency Common = UndesirablEffectFrequency._(
-    'Common',
+    value: 'Common',
   );
 
   /// Uncommon
   static final UndesirablEffectFrequency Uncommon = UndesirablEffectFrequency._(
-    'Uncommon',
+    value: 'Uncommon',
   );
 
   /// Rare
   static final UndesirablEffectFrequency Rare = UndesirablEffectFrequency._(
-    'Rare',
+    value: 'Rare',
   );
 
   /// For instances where an Element is present but not value
 
   static final UndesirablEffectFrequency elementOnly =
-      UndesirablEffectFrequency._('');
+      UndesirablEffectFrequency._(value: '');
 
   /// List of all enum-like values
   static final List<UndesirablEffectFrequency> values = [
@@ -54,13 +59,13 @@ class UndesirablEffectFrequency extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   UndesirablEffectFrequency clone() => UndesirablEffectFrequency._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   UndesirablEffectFrequency withElement(Element? newElement) {
-    return UndesirablEffectFrequency._(value, newElement);
+    return UndesirablEffectFrequency._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -85,14 +90,13 @@ class UndesirablEffectFrequency extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return UndesirablEffectFrequency._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

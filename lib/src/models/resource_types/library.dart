@@ -52,10 +52,6 @@ class Library extends CanonicalResource {
     this.parameter,
     this.dataRequirement,
     this.content,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.Library,
         );
@@ -720,10 +716,6 @@ class Library extends CanonicalResource {
       parameter: parameter ?? this.parameter,
       dataRequirement: dataRequirement ?? this.dataRequirement,
       content: content ?? this.content,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

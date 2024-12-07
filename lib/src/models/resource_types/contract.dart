@@ -53,10 +53,6 @@ class Contract extends DomainResource {
     this.rule,
     this.legallyBindingAttachment,
     this.legallyBindingReference,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.Contract,
         );
@@ -862,10 +858,6 @@ class Contract extends DomainResource {
           legallyBindingAttachment ?? this.legallyBindingAttachment,
       legallyBindingReference:
           legallyBindingReference ?? this.legallyBindingReference,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -889,10 +881,6 @@ class ContractContentDefinition extends BackboneElement {
     required this.publicationStatus,
     this.copyright,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1095,10 +1083,6 @@ class ContractContentDefinition extends BackboneElement {
       publicationDate: publicationDate ?? this.publicationDate,
       publicationStatus: publicationStatus ?? this.publicationStatus,
       copyright: copyright ?? this.copyright,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1128,10 +1112,6 @@ class ContractTerm extends BackboneElement {
     this.action,
     this.group,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1455,10 +1435,6 @@ class ContractTerm extends BackboneElement {
       asset: asset ?? this.asset,
       action: action ?? this.action,
       group: group ?? this.group,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1479,10 +1455,6 @@ class ContractSecurityLabel extends BackboneElement {
     this.category,
     this.control,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1668,10 +1640,6 @@ class ContractSecurityLabel extends BackboneElement {
       classification: classification ?? this.classification,
       category: category ?? this.category,
       control: control ?? this.control,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1697,10 +1665,6 @@ class ContractOffer extends BackboneElement {
     this.linkId,
     this.securityLabelNumber,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1992,10 +1956,6 @@ class ContractOffer extends BackboneElement {
       text: text ?? this.text,
       linkId: linkId ?? this.linkId,
       securityLabelNumber: securityLabelNumber ?? this.securityLabelNumber,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -2013,10 +1973,6 @@ class ContractParty extends BackboneElement {
     required this.reference,
     required this.role,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -2160,10 +2116,6 @@ class ContractParty extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       reference: reference ?? this.reference,
       role: role ?? this.role,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -2191,10 +2143,6 @@ class ContractAnswer extends BackboneElement {
     this.valueQuantity,
     this.valueReference,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -2512,10 +2460,6 @@ class ContractAnswer extends BackboneElement {
       valueCoding: valueCoding ?? this.valueCoding,
       valueQuantity: valueQuantity ?? this.valueQuantity,
       valueReference: valueReference ?? this.valueReference,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -2546,10 +2490,6 @@ class ContractAsset extends BackboneElement {
     this.securityLabelNumber,
     this.valuedItem,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -2935,10 +2875,6 @@ class ContractAsset extends BackboneElement {
       answer: answer ?? this.answer,
       securityLabelNumber: securityLabelNumber ?? this.securityLabelNumber,
       valuedItem: valuedItem ?? this.valuedItem,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -2957,10 +2893,6 @@ class ContractContext extends BackboneElement {
     this.code,
     this.text,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -3124,10 +3056,6 @@ class ContractContext extends BackboneElement {
       reference: reference ?? this.reference,
       code: code ?? this.code,
       text: text ?? this.text,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -3158,10 +3086,6 @@ class ContractValuedItem extends BackboneElement {
     this.linkId,
     this.securityLabelNumber,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -3516,10 +3440,6 @@ class ContractValuedItem extends BackboneElement {
       recipient: recipient ?? this.recipient,
       linkId: linkId ?? this.linkId,
       securityLabelNumber: securityLabelNumber ?? this.securityLabelNumber,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -3559,10 +3479,6 @@ class ContractAction extends BackboneElement {
     this.note,
     this.securityLabelNumber,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -4080,10 +3996,6 @@ class ContractAction extends BackboneElement {
       reasonLinkId: reasonLinkId ?? this.reasonLinkId,
       note: note ?? this.note,
       securityLabelNumber: securityLabelNumber ?? this.securityLabelNumber,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -4101,10 +4013,6 @@ class ContractSubject extends BackboneElement {
     required this.reference,
     this.role,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -4252,10 +4160,6 @@ class ContractSubject extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       reference: reference ?? this.reference,
       role: role ?? this.role,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -4277,10 +4181,6 @@ class ContractSigner extends BackboneElement {
     required this.party,
     required this.signature,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -4435,10 +4335,6 @@ class ContractSigner extends BackboneElement {
       type: type ?? this.type,
       party: party ?? this.party,
       signature: signature ?? this.signature,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -4462,10 +4358,6 @@ class ContractFriendly extends BackboneElement {
     this.contentAttachment,
     this.contentReference,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -4613,10 +4505,6 @@ class ContractFriendly extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       contentAttachment: contentAttachment ?? this.contentAttachment,
       contentReference: contentReference ?? this.contentReference,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -4634,10 +4522,6 @@ class ContractLegal extends BackboneElement {
     this.contentAttachment,
     this.contentReference,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -4781,10 +4665,6 @@ class ContractLegal extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       contentAttachment: contentAttachment ?? this.contentAttachment,
       contentReference: contentReference ?? this.contentReference,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -4803,10 +4683,6 @@ class ContractRule extends BackboneElement {
     this.contentAttachment,
     this.contentReference,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -4952,10 +4828,6 @@ class ContractRule extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       contentAttachment: contentAttachment ?? this.contentAttachment,
       contentReference: contentReference ?? this.contentReference,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

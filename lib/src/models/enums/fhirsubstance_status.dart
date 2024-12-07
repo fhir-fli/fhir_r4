@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// A code to indicate if the substance is actively used.
 class FHIRSubstanceStatus extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  FHIRSubstanceStatus._(super.value, [super.element]);
+  FHIRSubstanceStatus._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [FHIRSubstanceStatus] from JSON.
   factory FHIRSubstanceStatus.fromJson(
@@ -21,27 +26,28 @@ class FHIRSubstanceStatus extends PrimitiveType<String> {
         'FHIRSubstanceStatus cannot be constructed from JSON.',
       );
     }
-    return FHIRSubstanceStatus._(value, element);
+    return FHIRSubstanceStatus._(value: value, element: element);
   }
 
   /// active
   static final FHIRSubstanceStatus active = FHIRSubstanceStatus._(
-    'active',
+    value: 'active',
   );
 
   /// inactive
   static final FHIRSubstanceStatus inactive = FHIRSubstanceStatus._(
-    'inactive',
+    value: 'inactive',
   );
 
   /// entered_in_error
   static final FHIRSubstanceStatus entered_in_error = FHIRSubstanceStatus._(
-    'entered-in-error',
+    value: 'entered-in-error',
   );
 
   /// For instances where an Element is present but not value
 
-  static final FHIRSubstanceStatus elementOnly = FHIRSubstanceStatus._('');
+  static final FHIRSubstanceStatus elementOnly =
+      FHIRSubstanceStatus._(value: '');
 
   /// List of all enum-like values
   static final List<FHIRSubstanceStatus> values = [
@@ -53,13 +59,13 @@ class FHIRSubstanceStatus extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   FHIRSubstanceStatus clone() => FHIRSubstanceStatus._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   FHIRSubstanceStatus withElement(Element? newElement) {
-    return FHIRSubstanceStatus._(value, newElement);
+    return FHIRSubstanceStatus._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -84,14 +90,13 @@ class FHIRSubstanceStatus extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return FHIRSubstanceStatus._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

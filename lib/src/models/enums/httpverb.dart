@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// HTTP verbs (in the HTTP command line). See [HTTP rfc](https://tools.ietf.org/html/rfc7231) for details.
 class HTTPVerb extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  HTTPVerb._(super.value, [super.element]);
+  HTTPVerb._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [HTTPVerb] from JSON.
   factory HTTPVerb.fromJson(
@@ -21,42 +26,42 @@ class HTTPVerb extends PrimitiveType<String> {
         'HTTPVerb cannot be constructed from JSON.',
       );
     }
-    return HTTPVerb._(value, element);
+    return HTTPVerb._(value: value, element: element);
   }
 
   /// GET
   static final HTTPVerb GET = HTTPVerb._(
-    'GET',
+    value: 'GET',
   );
 
   /// HEAD
   static final HTTPVerb HEAD = HTTPVerb._(
-    'HEAD',
+    value: 'HEAD',
   );
 
   /// POST
   static final HTTPVerb POST = HTTPVerb._(
-    'POST',
+    value: 'POST',
   );
 
   /// PUT
   static final HTTPVerb PUT = HTTPVerb._(
-    'PUT',
+    value: 'PUT',
   );
 
   /// DELETE
   static final HTTPVerb DELETE = HTTPVerb._(
-    'DELETE',
+    value: 'DELETE',
   );
 
   /// PATCH
   static final HTTPVerb PATCH = HTTPVerb._(
-    'PATCH',
+    value: 'PATCH',
   );
 
   /// For instances where an Element is present but not value
 
-  static final HTTPVerb elementOnly = HTTPVerb._('');
+  static final HTTPVerb elementOnly = HTTPVerb._(value: '');
 
   /// List of all enum-like values
   static final List<HTTPVerb> values = [
@@ -71,13 +76,13 @@ class HTTPVerb extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   HTTPVerb clone() => HTTPVerb._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   HTTPVerb withElement(Element? newElement) {
-    return HTTPVerb._(value, newElement);
+    return HTTPVerb._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -102,14 +107,13 @@ class HTTPVerb extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return HTTPVerb._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

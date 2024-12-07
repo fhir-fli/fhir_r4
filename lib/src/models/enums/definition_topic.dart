@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// High-level categorization of the definition, used for searching, sorting, and filtering.
 class DefinitionTopic extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  DefinitionTopic._(super.value, [super.element]);
+  DefinitionTopic._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [DefinitionTopic] from JSON.
   factory DefinitionTopic.fromJson(
@@ -21,27 +26,27 @@ class DefinitionTopic extends PrimitiveType<String> {
         'DefinitionTopic cannot be constructed from JSON.',
       );
     }
-    return DefinitionTopic._(value, element);
+    return DefinitionTopic._(value: value, element: element);
   }
 
   /// treatment
   static final DefinitionTopic treatment = DefinitionTopic._(
-    'treatment',
+    value: 'treatment',
   );
 
   /// education
   static final DefinitionTopic education = DefinitionTopic._(
-    'education',
+    value: 'education',
   );
 
   /// assessment
   static final DefinitionTopic assessment = DefinitionTopic._(
-    'assessment',
+    value: 'assessment',
   );
 
   /// For instances where an Element is present but not value
 
-  static final DefinitionTopic elementOnly = DefinitionTopic._('');
+  static final DefinitionTopic elementOnly = DefinitionTopic._(value: '');
 
   /// List of all enum-like values
   static final List<DefinitionTopic> values = [
@@ -53,13 +58,13 @@ class DefinitionTopic extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   DefinitionTopic clone() => DefinitionTopic._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   DefinitionTopic withElement(Element? newElement) {
-    return DefinitionTopic._(value, newElement);
+    return DefinitionTopic._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -84,14 +89,13 @@ class DefinitionTopic extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return DefinitionTopic._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

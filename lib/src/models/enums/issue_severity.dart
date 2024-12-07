@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// How the issue affects the success of the action.
 class IssueSeverity extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  IssueSeverity._(super.value, [super.element]);
+  IssueSeverity._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [IssueSeverity] from JSON.
   factory IssueSeverity.fromJson(
@@ -21,32 +26,32 @@ class IssueSeverity extends PrimitiveType<String> {
         'IssueSeverity cannot be constructed from JSON.',
       );
     }
-    return IssueSeverity._(value, element);
+    return IssueSeverity._(value: value, element: element);
   }
 
   /// fatal
   static final IssueSeverity fatal = IssueSeverity._(
-    'fatal',
+    value: 'fatal',
   );
 
   /// error
   static final IssueSeverity error = IssueSeverity._(
-    'error',
+    value: 'error',
   );
 
   /// warning
   static final IssueSeverity warning = IssueSeverity._(
-    'warning',
+    value: 'warning',
   );
 
   /// information
   static final IssueSeverity information = IssueSeverity._(
-    'information',
+    value: 'information',
   );
 
   /// For instances where an Element is present but not value
 
-  static final IssueSeverity elementOnly = IssueSeverity._('');
+  static final IssueSeverity elementOnly = IssueSeverity._(value: '');
 
   /// List of all enum-like values
   static final List<IssueSeverity> values = [
@@ -59,13 +64,13 @@ class IssueSeverity extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   IssueSeverity clone() => IssueSeverity._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   IssueSeverity withElement(Element? newElement) {
-    return IssueSeverity._(value, newElement);
+    return IssueSeverity._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -90,14 +95,13 @@ class IssueSeverity extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return IssueSeverity._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

@@ -28,10 +28,6 @@ class Medication extends DomainResource {
     this.amount,
     this.ingredient,
     this.batch,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.Medication,
         );
@@ -340,10 +336,6 @@ class Medication extends DomainResource {
       amount: amount ?? this.amount,
       ingredient: ingredient ?? this.ingredient,
       batch: batch ?? this.batch,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -363,10 +355,6 @@ class MedicationIngredient extends BackboneElement {
     this.isActive,
     this.strength,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -543,10 +531,6 @@ class MedicationIngredient extends BackboneElement {
       itemReference: itemReference ?? this.itemReference,
       isActive: isActive ?? this.isActive,
       strength: strength ?? this.strength,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -564,10 +548,6 @@ class MedicationBatch extends BackboneElement {
     this.lotNumber,
     this.expirationDate,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -708,10 +688,6 @@ class MedicationBatch extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       lotNumber: lotNumber ?? this.lotNumber,
       expirationDate: expirationDate ?? this.expirationDate,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

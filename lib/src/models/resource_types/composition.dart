@@ -41,10 +41,6 @@ class Composition extends DomainResource {
     this.relatesTo,
     this.event,
     this.section,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.Composition,
         );
@@ -465,10 +461,6 @@ class Composition extends DomainResource {
       relatesTo: relatesTo ?? this.relatesTo,
       event: event ?? this.event,
       section: section ?? this.section,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -488,10 +480,6 @@ class CompositionAttester extends BackboneElement {
     this.time,
     this.party,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -644,10 +632,6 @@ class CompositionAttester extends BackboneElement {
       mode: mode ?? this.mode,
       time: time ?? this.time,
       party: party ?? this.party,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -667,10 +651,6 @@ class CompositionRelatesTo extends BackboneElement {
     this.targetIdentifier,
     this.targetReference,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -826,10 +806,6 @@ class CompositionRelatesTo extends BackboneElement {
       code: code ?? this.code,
       targetIdentifier: targetIdentifier ?? this.targetIdentifier,
       targetReference: targetReference ?? this.targetReference,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -849,10 +825,6 @@ class CompositionEvent extends BackboneElement {
     this.period,
     this.detail,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1027,10 +999,6 @@ class CompositionEvent extends BackboneElement {
       code: code ?? this.code,
       period: period ?? this.period,
       detail: detail ?? this.detail,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1056,10 +1024,6 @@ class CompositionSection extends BackboneElement {
     this.emptyReason,
     this.section,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1352,10 +1316,6 @@ class CompositionSection extends BackboneElement {
       entry: entry ?? this.entry,
       emptyReason: emptyReason ?? this.emptyReason,
       section: section ?? this.section,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

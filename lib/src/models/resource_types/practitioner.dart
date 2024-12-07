@@ -28,10 +28,6 @@ class Practitioner extends DomainResource {
     this.photo,
     this.qualification,
     this.communication,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.Practitioner,
         );
@@ -383,10 +379,6 @@ class Practitioner extends DomainResource {
       photo: photo ?? this.photo,
       qualification: qualification ?? this.qualification,
       communication: communication ?? this.communication,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -409,10 +401,6 @@ class PractitionerQualification extends BackboneElement {
     this.period,
     this.issuer,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -586,10 +574,6 @@ class PractitionerQualification extends BackboneElement {
       code: code ?? this.code,
       period: period ?? this.period,
       issuer: issuer ?? this.issuer,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

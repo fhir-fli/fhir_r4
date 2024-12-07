@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The status of the endpoint.
 class EndpointStatus extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  EndpointStatus._(super.value, [super.element]);
+  EndpointStatus._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [EndpointStatus] from JSON.
   factory EndpointStatus.fromJson(
@@ -21,42 +26,42 @@ class EndpointStatus extends PrimitiveType<String> {
         'EndpointStatus cannot be constructed from JSON.',
       );
     }
-    return EndpointStatus._(value, element);
+    return EndpointStatus._(value: value, element: element);
   }
 
   /// active
   static final EndpointStatus active = EndpointStatus._(
-    'active',
+    value: 'active',
   );
 
   /// suspended
   static final EndpointStatus suspended = EndpointStatus._(
-    'suspended',
+    value: 'suspended',
   );
 
   /// error
   static final EndpointStatus error = EndpointStatus._(
-    'error',
+    value: 'error',
   );
 
   /// off
   static final EndpointStatus off = EndpointStatus._(
-    'off',
+    value: 'off',
   );
 
   /// entered_in_error
   static final EndpointStatus entered_in_error = EndpointStatus._(
-    'entered-in-error',
+    value: 'entered-in-error',
   );
 
   /// test
   static final EndpointStatus test = EndpointStatus._(
-    'test',
+    value: 'test',
   );
 
   /// For instances where an Element is present but not value
 
-  static final EndpointStatus elementOnly = EndpointStatus._('');
+  static final EndpointStatus elementOnly = EndpointStatus._(value: '');
 
   /// List of all enum-like values
   static final List<EndpointStatus> values = [
@@ -71,13 +76,13 @@ class EndpointStatus extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   EndpointStatus clone() => EndpointStatus._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   EndpointStatus withElement(Element? newElement) {
-    return EndpointStatus._(value, newElement);
+    return EndpointStatus._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -102,14 +107,13 @@ class EndpointStatus extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return EndpointStatus._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

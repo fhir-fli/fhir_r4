@@ -36,10 +36,6 @@ class GuidanceResponse extends DomainResource {
     this.outputParameters,
     this.result,
     this.dataRequirement,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.GuidanceResponse,
         );
@@ -519,10 +515,6 @@ class GuidanceResponse extends DomainResource {
       outputParameters: outputParameters ?? this.outputParameters,
       result: result ?? this.result,
       dataRequirement: dataRequirement ?? this.dataRequirement,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

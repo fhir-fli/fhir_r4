@@ -50,10 +50,6 @@ class Citation extends DomainResource {
     this.statusDate,
     this.relatesTo,
     this.citedArtifact,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.Citation,
         );
@@ -727,10 +723,6 @@ class Citation extends DomainResource {
       statusDate: statusDate ?? this.statusDate,
       relatesTo: relatesTo ?? this.relatesTo,
       citedArtifact: citedArtifact ?? this.citedArtifact,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -748,10 +740,6 @@ class CitationSummary extends BackboneElement {
     this.style,
     required this.text,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -891,10 +879,6 @@ class CitationSummary extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       style: style ?? this.style,
       text: text ?? this.text,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -912,10 +896,6 @@ class CitationClassification extends BackboneElement {
     this.type,
     this.classifier,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1063,10 +1043,6 @@ class CitationClassification extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
       classifier: classifier ?? this.classifier,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1085,10 +1061,6 @@ class CitationStatusDate extends BackboneElement {
     this.actual,
     required this.period,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1237,10 +1209,6 @@ class CitationStatusDate extends BackboneElement {
       activity: activity ?? this.activity,
       actual: actual ?? this.actual,
       period: period ?? this.period,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1262,10 +1230,6 @@ class CitationRelatesTo extends BackboneElement {
     this.targetReference,
     this.targetAttachment,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1468,10 +1432,6 @@ class CitationRelatesTo extends BackboneElement {
       targetIdentifier: targetIdentifier ?? this.targetIdentifier,
       targetReference: targetReference ?? this.targetReference,
       targetAttachment: targetAttachment ?? this.targetAttachment,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1502,10 +1462,6 @@ class CitationCitedArtifact extends BackboneElement {
     this.contributorship,
     this.note,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1894,10 +1850,6 @@ class CitationCitedArtifact extends BackboneElement {
       classification: classification ?? this.classification,
       contributorship: contributorship ?? this.contributorship,
       note: note ?? this.note,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1915,10 +1867,6 @@ class CitationVersion extends BackboneElement {
     required this.value,
     this.baseCitation,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -2058,10 +2006,6 @@ class CitationVersion extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       value: value ?? this.value,
       baseCitation: baseCitation ?? this.baseCitation,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -2080,10 +2024,6 @@ class CitationStatusDate1 extends BackboneElement {
     this.actual,
     required this.period,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -2232,10 +2172,6 @@ class CitationStatusDate1 extends BackboneElement {
       activity: activity ?? this.activity,
       actual: actual ?? this.actual,
       period: period ?? this.period,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -2254,10 +2190,6 @@ class CitationTitle extends BackboneElement {
     this.language,
     required this.text,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -2416,10 +2348,6 @@ class CitationTitle extends BackboneElement {
       type: type ?? this.type,
       language: language ?? this.language,
       text: text ?? this.text,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -2439,10 +2367,6 @@ class CitationAbstract extends BackboneElement {
     required this.text,
     this.copyright,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -2610,10 +2534,6 @@ class CitationAbstract extends BackboneElement {
       language: language ?? this.language,
       text: text ?? this.text,
       copyright: copyright ?? this.copyright,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -2632,10 +2552,6 @@ class CitationPart extends BackboneElement {
     this.value,
     this.baseCitation,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -2792,10 +2708,6 @@ class CitationPart extends BackboneElement {
       type: type ?? this.type,
       value: value ?? this.value,
       baseCitation: baseCitation ?? this.baseCitation,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -2817,10 +2729,6 @@ class CitationRelatesTo1 extends BackboneElement {
     this.targetReference,
     this.targetAttachment,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -3023,10 +2931,6 @@ class CitationRelatesTo1 extends BackboneElement {
       targetIdentifier: targetIdentifier ?? this.targetIdentifier,
       targetReference: targetReference ?? this.targetReference,
       targetAttachment: targetAttachment ?? this.targetAttachment,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -3054,10 +2958,6 @@ class CitationPublicationForm extends BackboneElement {
     this.pageCount,
     this.copyright,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -3328,10 +3228,6 @@ class CitationPublicationForm extends BackboneElement {
       lastPage: lastPage ?? this.lastPage,
       pageCount: pageCount ?? this.pageCount,
       copyright: copyright ?? this.copyright,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -3352,10 +3248,6 @@ class CitationPublishedIn extends BackboneElement {
     this.publisher,
     this.publisherLocation,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -3546,10 +3438,6 @@ class CitationPublishedIn extends BackboneElement {
       title: title ?? this.title,
       publisher: publisher ?? this.publisher,
       publisherLocation: publisherLocation ?? this.publisherLocation,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -3569,10 +3457,6 @@ class CitationPeriodicRelease extends BackboneElement {
     this.issue,
     this.dateOfPublication,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -3743,10 +3627,6 @@ class CitationPeriodicRelease extends BackboneElement {
       volume: volume ?? this.volume,
       issue: issue ?? this.issue,
       dateOfPublication: dateOfPublication ?? this.dateOfPublication,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -3768,10 +3648,6 @@ class CitationDateOfPublication extends BackboneElement {
     this.season,
     this.text,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -3964,10 +3840,6 @@ class CitationDateOfPublication extends BackboneElement {
       day: day ?? this.day,
       season: season ?? this.season,
       text: text ?? this.text,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -3985,10 +3857,6 @@ class CitationWebLocation extends BackboneElement {
     this.type,
     this.url,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -4130,10 +3998,6 @@ class CitationWebLocation extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
       url: url ?? this.url,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -4152,10 +4016,6 @@ class CitationClassification1 extends BackboneElement {
     this.classifier,
     this.whoClassified,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -4318,10 +4178,6 @@ class CitationClassification1 extends BackboneElement {
       type: type ?? this.type,
       classifier: classifier ?? this.classifier,
       whoClassified: whoClassified ?? this.whoClassified,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -4342,10 +4198,6 @@ class CitationWhoClassified extends BackboneElement {
     this.classifierCopyright,
     this.freeToShare,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -4532,10 +4384,6 @@ class CitationWhoClassified extends BackboneElement {
       publisher: publisher ?? this.publisher,
       classifierCopyright: classifierCopyright ?? this.classifierCopyright,
       freeToShare: freeToShare ?? this.freeToShare,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -4555,10 +4403,6 @@ class CitationContributorship extends BackboneElement {
     this.entry,
     this.summary,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -4724,10 +4568,6 @@ class CitationContributorship extends BackboneElement {
       complete: complete ?? this.complete,
       entry: entry ?? this.entry,
       summary: summary ?? this.summary,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -4755,10 +4595,6 @@ class CitationEntry extends BackboneElement {
     this.correspondingContact,
     this.listOrder,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -5075,10 +4911,6 @@ class CitationEntry extends BackboneElement {
       contributionInstance: contributionInstance ?? this.contributionInstance,
       correspondingContact: correspondingContact ?? this.correspondingContact,
       listOrder: listOrder ?? this.listOrder,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -5097,10 +4929,6 @@ class CitationAffiliationInfo extends BackboneElement {
     this.role,
     this.identifier,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -5259,10 +5087,6 @@ class CitationAffiliationInfo extends BackboneElement {
       affiliation: affiliation ?? this.affiliation,
       role: role ?? this.role,
       identifier: identifier ?? this.identifier,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -5280,10 +5104,6 @@ class CitationContributionInstance extends BackboneElement {
     required this.type,
     this.time,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -5421,10 +5241,6 @@ class CitationContributionInstance extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
       time: time ?? this.time,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -5445,10 +5261,6 @@ class CitationSummary1 extends BackboneElement {
     this.source,
     required this.value,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -5620,10 +5432,6 @@ class CitationSummary1 extends BackboneElement {
       style: style ?? this.style,
       source: source ?? this.source,
       value: value ?? this.value,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

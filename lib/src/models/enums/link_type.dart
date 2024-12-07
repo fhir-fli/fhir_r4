@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The type of link between this patient resource and another patient resource.
 class LinkType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  LinkType._(super.value, [super.element]);
+  LinkType._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [LinkType] from JSON.
   factory LinkType.fromJson(
@@ -21,32 +26,32 @@ class LinkType extends PrimitiveType<String> {
         'LinkType cannot be constructed from JSON.',
       );
     }
-    return LinkType._(value, element);
+    return LinkType._(value: value, element: element);
   }
 
   /// replaced_by
   static final LinkType replaced_by = LinkType._(
-    'replaced-by',
+    value: 'replaced-by',
   );
 
   /// replaces
   static final LinkType replaces = LinkType._(
-    'replaces',
+    value: 'replaces',
   );
 
   /// refer
   static final LinkType refer = LinkType._(
-    'refer',
+    value: 'refer',
   );
 
   /// seealso
   static final LinkType seealso = LinkType._(
-    'seealso',
+    value: 'seealso',
   );
 
   /// For instances where an Element is present but not value
 
-  static final LinkType elementOnly = LinkType._('');
+  static final LinkType elementOnly = LinkType._(value: '');
 
   /// List of all enum-like values
   static final List<LinkType> values = [
@@ -59,13 +64,13 @@ class LinkType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   LinkType clone() => LinkType._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   LinkType withElement(Element? newElement) {
-    return LinkType._(value, newElement);
+    return LinkType._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -90,14 +95,13 @@ class LinkType extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return LinkType._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

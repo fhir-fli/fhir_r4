@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This example value set defines a set of codes that can be used to indicate a type of organization.
 class OrganizationType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  OrganizationType._(super.value, [super.element]);
+  OrganizationType._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [OrganizationType] from JSON.
   factory OrganizationType.fromJson(
@@ -21,72 +26,72 @@ class OrganizationType extends PrimitiveType<String> {
         'OrganizationType cannot be constructed from JSON.',
       );
     }
-    return OrganizationType._(value, element);
+    return OrganizationType._(value: value, element: element);
   }
 
   /// prov
   static final OrganizationType prov = OrganizationType._(
-    'prov',
+    value: 'prov',
   );
 
   /// dept
   static final OrganizationType dept = OrganizationType._(
-    'dept',
+    value: 'dept',
   );
 
   /// team
   static final OrganizationType team = OrganizationType._(
-    'team',
+    value: 'team',
   );
 
   /// govt
   static final OrganizationType govt = OrganizationType._(
-    'govt',
+    value: 'govt',
   );
 
   /// ins
   static final OrganizationType ins = OrganizationType._(
-    'ins',
+    value: 'ins',
   );
 
   /// pay
   static final OrganizationType pay = OrganizationType._(
-    'pay',
+    value: 'pay',
   );
 
   /// edu
   static final OrganizationType edu = OrganizationType._(
-    'edu',
+    value: 'edu',
   );
 
   /// reli
   static final OrganizationType reli = OrganizationType._(
-    'reli',
+    value: 'reli',
   );
 
   /// crs
   static final OrganizationType crs = OrganizationType._(
-    'crs',
+    value: 'crs',
   );
 
   /// cg
   static final OrganizationType cg = OrganizationType._(
-    'cg',
+    value: 'cg',
   );
 
   /// bus
   static final OrganizationType bus = OrganizationType._(
-    'bus',
+    value: 'bus',
   );
 
   /// other
   static final OrganizationType other = OrganizationType._(
-    'other',
+    value: 'other',
   );
 
   /// For instances where an Element is present but not value
 
-  static final OrganizationType elementOnly = OrganizationType._('');
+  static final OrganizationType elementOnly = OrganizationType._(value: '');
 
   /// List of all enum-like values
   static final List<OrganizationType> values = [
@@ -107,13 +112,13 @@ class OrganizationType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   OrganizationType clone() => OrganizationType._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   OrganizationType withElement(Element? newElement) {
-    return OrganizationType._(value, newElement);
+    return OrganizationType._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -138,14 +143,13 @@ class OrganizationType extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return OrganizationType._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

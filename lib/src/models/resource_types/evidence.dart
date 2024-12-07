@@ -47,10 +47,6 @@ class Evidence extends DomainResource {
     this.studyType,
     this.statistic,
     this.certainty,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.Evidence,
         );
@@ -674,10 +670,6 @@ class Evidence extends DomainResource {
       studyType: studyType ?? this.studyType,
       statistic: statistic ?? this.statistic,
       certainty: certainty ?? this.certainty,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -699,10 +691,6 @@ class EvidenceVariableDefinition extends BackboneElement {
     this.intended,
     this.directnessMatch,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -906,10 +894,6 @@ class EvidenceVariableDefinition extends BackboneElement {
       observed: observed ?? this.observed,
       intended: intended ?? this.intended,
       directnessMatch: directnessMatch ?? this.directnessMatch,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -935,10 +919,6 @@ class EvidenceStatistic extends BackboneElement {
     this.attributeEstimate,
     this.modelCharacteristic,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1217,10 +1197,6 @@ class EvidenceStatistic extends BackboneElement {
       sampleSize: sampleSize ?? this.sampleSize,
       attributeEstimate: attributeEstimate ?? this.attributeEstimate,
       modelCharacteristic: modelCharacteristic ?? this.modelCharacteristic,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1241,10 +1217,6 @@ class EvidenceSampleSize extends BackboneElement {
     this.numberOfParticipants,
     this.knownDataCount,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1433,10 +1405,6 @@ class EvidenceSampleSize extends BackboneElement {
       numberOfStudies: numberOfStudies ?? this.numberOfStudies,
       numberOfParticipants: numberOfParticipants ?? this.numberOfParticipants,
       knownDataCount: knownDataCount ?? this.knownDataCount,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1460,10 +1428,6 @@ class EvidenceAttributeEstimate extends BackboneElement {
     this.range,
     this.attributeEstimate,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1690,10 +1654,6 @@ class EvidenceAttributeEstimate extends BackboneElement {
       level: level ?? this.level,
       range: range ?? this.range,
       attributeEstimate: attributeEstimate ?? this.attributeEstimate,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1713,10 +1673,6 @@ class EvidenceModelCharacteristic extends BackboneElement {
     this.variable,
     this.attributeEstimate,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1896,10 +1852,6 @@ class EvidenceModelCharacteristic extends BackboneElement {
       value: value ?? this.value,
       variable: variable ?? this.variable,
       attributeEstimate: attributeEstimate ?? this.attributeEstimate,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1920,10 +1872,6 @@ class EvidenceModelCharacteristicVariable extends BackboneElement {
     this.valueQuantity,
     this.valueRange,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -2118,10 +2066,6 @@ class EvidenceModelCharacteristicVariable extends BackboneElement {
       valueCategory: valueCategory ?? this.valueCategory,
       valueQuantity: valueQuantity ?? this.valueQuantity,
       valueRange: valueRange ?? this.valueRange,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -2144,10 +2088,6 @@ class EvidenceCertainty extends BackboneElement {
     this.rater,
     this.subcomponent,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -2355,10 +2295,6 @@ class EvidenceCertainty extends BackboneElement {
       rating: rating ?? this.rating,
       rater: rater ?? this.rater,
       subcomponent: subcomponent ?? this.subcomponent,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

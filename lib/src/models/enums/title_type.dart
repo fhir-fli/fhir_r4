@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Used to express the reason and specific aspect for the variant title, such as language and specific language.
 class TitleType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  TitleType._(super.value, [super.element]);
+  TitleType._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [TitleType] from JSON.
   factory TitleType.fromJson(
@@ -21,77 +26,77 @@ class TitleType extends PrimitiveType<String> {
         'TitleType cannot be constructed from JSON.',
       );
     }
-    return TitleType._(value, element);
+    return TitleType._(value: value, element: element);
   }
 
   /// primary
   static final TitleType primary = TitleType._(
-    'primary',
+    value: 'primary',
   );
 
   /// official
   static final TitleType official = TitleType._(
-    'official',
+    value: 'official',
   );
 
   /// scientific
   static final TitleType scientific = TitleType._(
-    'scientific',
+    value: 'scientific',
   );
 
   /// plain_language
   static final TitleType plain_language = TitleType._(
-    'plain-language',
+    value: 'plain-language',
   );
 
   /// subtitle
   static final TitleType subtitle = TitleType._(
-    'subtitle',
+    value: 'subtitle',
   );
 
   /// short_title
   static final TitleType short_title = TitleType._(
-    'short-title',
+    value: 'short-title',
   );
 
   /// acronym
   static final TitleType acronym = TitleType._(
-    'acronym',
+    value: 'acronym',
   );
 
   /// earlier_title
   static final TitleType earlier_title = TitleType._(
-    'earlier-title',
+    value: 'earlier-title',
   );
 
   /// language
   static final TitleType language = TitleType._(
-    'language',
+    value: 'language',
   );
 
   /// autotranslated
   static final TitleType autotranslated = TitleType._(
-    'autotranslated',
+    value: 'autotranslated',
   );
 
   /// human_use
   static final TitleType human_use = TitleType._(
-    'human-use',
+    value: 'human-use',
   );
 
   /// machine_use
   static final TitleType machine_use = TitleType._(
-    'machine-use',
+    value: 'machine-use',
   );
 
   /// duplicate_uid
   static final TitleType duplicate_uid = TitleType._(
-    'duplicate-uid',
+    value: 'duplicate-uid',
   );
 
   /// For instances where an Element is present but not value
 
-  static final TitleType elementOnly = TitleType._('');
+  static final TitleType elementOnly = TitleType._(value: '');
 
   /// List of all enum-like values
   static final List<TitleType> values = [
@@ -113,13 +118,13 @@ class TitleType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   TitleType clone() => TitleType._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   TitleType withElement(Element? newElement) {
-    return TitleType._(value, newElement);
+    return TitleType._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -144,14 +149,13 @@ class TitleType extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return TitleType._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

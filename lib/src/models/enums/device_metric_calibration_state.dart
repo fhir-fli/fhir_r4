@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Describes the state of a metric calibration.
 class DeviceMetricCalibrationState extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  DeviceMetricCalibrationState._(super.value, [super.element]);
+  DeviceMetricCalibrationState._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [DeviceMetricCalibrationState] from JSON.
   factory DeviceMetricCalibrationState.fromJson(
@@ -21,37 +26,37 @@ class DeviceMetricCalibrationState extends PrimitiveType<String> {
         'DeviceMetricCalibrationState cannot be constructed from JSON.',
       );
     }
-    return DeviceMetricCalibrationState._(value, element);
+    return DeviceMetricCalibrationState._(value: value, element: element);
   }
 
   /// not_calibrated
   static final DeviceMetricCalibrationState not_calibrated =
       DeviceMetricCalibrationState._(
-    'not-calibrated',
+    value: 'not-calibrated',
   );
 
   /// calibration_required
   static final DeviceMetricCalibrationState calibration_required =
       DeviceMetricCalibrationState._(
-    'calibration-required',
+    value: 'calibration-required',
   );
 
   /// calibrated
   static final DeviceMetricCalibrationState calibrated =
       DeviceMetricCalibrationState._(
-    'calibrated',
+    value: 'calibrated',
   );
 
   /// unspecified
   static final DeviceMetricCalibrationState unspecified =
       DeviceMetricCalibrationState._(
-    'unspecified',
+    value: 'unspecified',
   );
 
   /// For instances where an Element is present but not value
 
   static final DeviceMetricCalibrationState elementOnly =
-      DeviceMetricCalibrationState._('');
+      DeviceMetricCalibrationState._(value: '');
 
   /// List of all enum-like values
   static final List<DeviceMetricCalibrationState> values = [
@@ -64,13 +69,13 @@ class DeviceMetricCalibrationState extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   DeviceMetricCalibrationState clone() => DeviceMetricCalibrationState._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   DeviceMetricCalibrationState withElement(Element? newElement) {
-    return DeviceMetricCalibrationState._(value, newElement);
+    return DeviceMetricCalibrationState._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -95,14 +100,13 @@ class DeviceMetricCalibrationState extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return DeviceMetricCalibrationState._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

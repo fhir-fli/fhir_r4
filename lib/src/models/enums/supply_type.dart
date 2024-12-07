@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value sets refers to a Category of supply.
 class SupplyType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  SupplyType._(super.value, [super.element]);
+  SupplyType._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [SupplyType] from JSON.
   factory SupplyType.fromJson(
@@ -21,22 +26,22 @@ class SupplyType extends PrimitiveType<String> {
         'SupplyType cannot be constructed from JSON.',
       );
     }
-    return SupplyType._(value, element);
+    return SupplyType._(value: value, element: element);
   }
 
   /// central
   static final SupplyType central = SupplyType._(
-    'central',
+    value: 'central',
   );
 
   /// nonstock
   static final SupplyType nonstock = SupplyType._(
-    'nonstock',
+    value: 'nonstock',
   );
 
   /// For instances where an Element is present but not value
 
-  static final SupplyType elementOnly = SupplyType._('');
+  static final SupplyType elementOnly = SupplyType._(value: '');
 
   /// List of all enum-like values
   static final List<SupplyType> values = [
@@ -47,13 +52,13 @@ class SupplyType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   SupplyType clone() => SupplyType._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   SupplyType withElement(Element? newElement) {
-    return SupplyType._(value, newElement);
+    return SupplyType._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -78,14 +83,13 @@ class SupplyType extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return SupplyType._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

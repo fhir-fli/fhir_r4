@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The validation status of the target
 class Status extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  Status._(super.value, [super.element]);
+  Status._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [Status] from JSON.
   factory Status.fromJson(
@@ -21,42 +26,42 @@ class Status extends PrimitiveType<String> {
         'Status cannot be constructed from JSON.',
       );
     }
-    return Status._(value, element);
+    return Status._(value: value, element: element);
   }
 
   /// attested
   static final Status attested = Status._(
-    'attested',
+    value: 'attested',
   );
 
   /// validated
   static final Status validated = Status._(
-    'validated',
+    value: 'validated',
   );
 
   /// in_process
   static final Status in_process = Status._(
-    'in-process',
+    value: 'in-process',
   );
 
   /// req_revalid
   static final Status req_revalid = Status._(
-    'req-revalid',
+    value: 'req-revalid',
   );
 
   /// val_fail
   static final Status val_fail = Status._(
-    'val-fail',
+    value: 'val-fail',
   );
 
   /// reval_fail
   static final Status reval_fail = Status._(
-    'reval-fail',
+    value: 'reval-fail',
   );
 
   /// For instances where an Element is present but not value
 
-  static final Status elementOnly = Status._('');
+  static final Status elementOnly = Status._(value: '');
 
   /// List of all enum-like values
   static final List<Status> values = [
@@ -71,13 +76,13 @@ class Status extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   Status clone() => Status._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   Status withElement(Element? newElement) {
-    return Status._(value, newElement);
+    return Status._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -102,14 +107,13 @@ class Status extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return Status._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

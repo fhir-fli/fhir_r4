@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Whether the application produces or consumes documents.
 class DocumentMode extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  DocumentMode._(super.value, [super.element]);
+  DocumentMode._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [DocumentMode] from JSON.
   factory DocumentMode.fromJson(
@@ -21,22 +26,22 @@ class DocumentMode extends PrimitiveType<String> {
         'DocumentMode cannot be constructed from JSON.',
       );
     }
-    return DocumentMode._(value, element);
+    return DocumentMode._(value: value, element: element);
   }
 
   /// producer
   static final DocumentMode producer = DocumentMode._(
-    'producer',
+    value: 'producer',
   );
 
   /// consumer
   static final DocumentMode consumer = DocumentMode._(
-    'consumer',
+    value: 'consumer',
   );
 
   /// For instances where an Element is present but not value
 
-  static final DocumentMode elementOnly = DocumentMode._('');
+  static final DocumentMode elementOnly = DocumentMode._(value: '');
 
   /// List of all enum-like values
   static final List<DocumentMode> values = [
@@ -47,13 +52,13 @@ class DocumentMode extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   DocumentMode clone() => DocumentMode._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   DocumentMode withElement(Element? newElement) {
-    return DocumentMode._(value, newElement);
+    return DocumentMode._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -78,14 +83,13 @@ class DocumentMode extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return DocumentMode._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

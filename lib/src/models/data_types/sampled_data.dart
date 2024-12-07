@@ -20,10 +20,6 @@ class SampledData extends DataType {
     required this.dimensions,
     this.data,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -216,10 +212,6 @@ class SampledData extends DataType {
       upperLimit: upperLimit ?? this.upperLimit,
       dimensions: dimensions ?? this.dimensions,
       data: data ?? this.data,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

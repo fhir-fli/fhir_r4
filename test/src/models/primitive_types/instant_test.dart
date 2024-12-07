@@ -60,7 +60,7 @@ void main() {
   });
 
   test('FhirDateTime regex check', () {
-    final issued = FhirDateTime.fromDateTime(DateTime.now());
+    final issued = FhirDateTime.fromDateTime(input: DateTime.now());
     expect(patternDateTime.hasMatch(issued.toString()), true);
   });
 

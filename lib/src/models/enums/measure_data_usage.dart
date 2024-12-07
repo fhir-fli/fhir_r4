@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The intended usage for supplemental data elements in the measure.
 class MeasureDataUsage extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  MeasureDataUsage._(super.value, [super.element]);
+  MeasureDataUsage._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [MeasureDataUsage] from JSON.
   factory MeasureDataUsage.fromJson(
@@ -21,22 +26,22 @@ class MeasureDataUsage extends PrimitiveType<String> {
         'MeasureDataUsage cannot be constructed from JSON.',
       );
     }
-    return MeasureDataUsage._(value, element);
+    return MeasureDataUsage._(value: value, element: element);
   }
 
   /// supplemental_data
   static final MeasureDataUsage supplemental_data = MeasureDataUsage._(
-    'supplemental-data',
+    value: 'supplemental-data',
   );
 
   /// risk_adjustment_factor
   static final MeasureDataUsage risk_adjustment_factor = MeasureDataUsage._(
-    'risk-adjustment-factor',
+    value: 'risk-adjustment-factor',
   );
 
   /// For instances where an Element is present but not value
 
-  static final MeasureDataUsage elementOnly = MeasureDataUsage._('');
+  static final MeasureDataUsage elementOnly = MeasureDataUsage._(value: '');
 
   /// List of all enum-like values
   static final List<MeasureDataUsage> values = [
@@ -47,13 +52,13 @@ class MeasureDataUsage extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   MeasureDataUsage clone() => MeasureDataUsage._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   MeasureDataUsage withElement(Element? newElement) {
-    return MeasureDataUsage._(value, newElement);
+    return MeasureDataUsage._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -78,14 +83,13 @@ class MeasureDataUsage extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return MeasureDataUsage._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Indicates the state of the consent.
 class ConsentState extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ConsentState._(super.value, [super.element]);
+  ConsentState._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [ConsentState] from JSON.
   factory ConsentState.fromJson(
@@ -21,42 +26,42 @@ class ConsentState extends PrimitiveType<String> {
         'ConsentState cannot be constructed from JSON.',
       );
     }
-    return ConsentState._(value, element);
+    return ConsentState._(value: value, element: element);
   }
 
   /// draft
   static final ConsentState draft = ConsentState._(
-    'draft',
+    value: 'draft',
   );
 
   /// proposed
   static final ConsentState proposed = ConsentState._(
-    'proposed',
+    value: 'proposed',
   );
 
   /// active
   static final ConsentState active = ConsentState._(
-    'active',
+    value: 'active',
   );
 
   /// rejected
   static final ConsentState rejected = ConsentState._(
-    'rejected',
+    value: 'rejected',
   );
 
   /// inactive
   static final ConsentState inactive = ConsentState._(
-    'inactive',
+    value: 'inactive',
   );
 
   /// entered_in_error
   static final ConsentState entered_in_error = ConsentState._(
-    'entered-in-error',
+    value: 'entered-in-error',
   );
 
   /// For instances where an Element is present but not value
 
-  static final ConsentState elementOnly = ConsentState._('');
+  static final ConsentState elementOnly = ConsentState._(value: '');
 
   /// List of all enum-like values
   static final List<ConsentState> values = [
@@ -71,13 +76,13 @@ class ConsentState extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ConsentState clone() => ConsentState._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ConsentState withElement(Element? newElement) {
-    return ConsentState._(value, newElement);
+    return ConsentState._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -102,14 +107,13 @@ class ConsentState extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ConsentState._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

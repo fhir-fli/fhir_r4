@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value set includes example Payment Type codes.
 class ExamplePaymentTypeCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ExamplePaymentTypeCodes._(super.value, [super.element]);
+  ExamplePaymentTypeCodes._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [ExamplePaymentTypeCodes] from JSON.
   factory ExamplePaymentTypeCodes.fromJson(
@@ -21,23 +26,23 @@ class ExamplePaymentTypeCodes extends PrimitiveType<String> {
         'ExamplePaymentTypeCodes cannot be constructed from JSON.',
       );
     }
-    return ExamplePaymentTypeCodes._(value, element);
+    return ExamplePaymentTypeCodes._(value: value, element: element);
   }
 
   /// complete
   static final ExamplePaymentTypeCodes complete = ExamplePaymentTypeCodes._(
-    'complete',
+    value: 'complete',
   );
 
   /// partial
   static final ExamplePaymentTypeCodes partial = ExamplePaymentTypeCodes._(
-    'partial',
+    value: 'partial',
   );
 
   /// For instances where an Element is present but not value
 
   static final ExamplePaymentTypeCodes elementOnly =
-      ExamplePaymentTypeCodes._('');
+      ExamplePaymentTypeCodes._(value: '');
 
   /// List of all enum-like values
   static final List<ExamplePaymentTypeCodes> values = [
@@ -48,13 +53,13 @@ class ExamplePaymentTypeCodes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ExamplePaymentTypeCodes clone() => ExamplePaymentTypeCodes._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ExamplePaymentTypeCodes withElement(Element? newElement) {
-    return ExamplePaymentTypeCodes._(value, newElement);
+    return ExamplePaymentTypeCodes._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -79,14 +84,13 @@ class ExamplePaymentTypeCodes extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ExamplePaymentTypeCodes._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

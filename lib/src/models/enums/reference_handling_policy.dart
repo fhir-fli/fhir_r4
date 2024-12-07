@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// A set of flags that defines how references are supported.
 class ReferenceHandlingPolicy extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ReferenceHandlingPolicy._(super.value, [super.element]);
+  ReferenceHandlingPolicy._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [ReferenceHandlingPolicy] from JSON.
   factory ReferenceHandlingPolicy.fromJson(
@@ -21,38 +26,38 @@ class ReferenceHandlingPolicy extends PrimitiveType<String> {
         'ReferenceHandlingPolicy cannot be constructed from JSON.',
       );
     }
-    return ReferenceHandlingPolicy._(value, element);
+    return ReferenceHandlingPolicy._(value: value, element: element);
   }
 
   /// literal
   static final ReferenceHandlingPolicy literal = ReferenceHandlingPolicy._(
-    'literal',
+    value: 'literal',
   );
 
   /// logical
   static final ReferenceHandlingPolicy logical = ReferenceHandlingPolicy._(
-    'logical',
+    value: 'logical',
   );
 
   /// resolves
   static final ReferenceHandlingPolicy resolves = ReferenceHandlingPolicy._(
-    'resolves',
+    value: 'resolves',
   );
 
   /// enforced
   static final ReferenceHandlingPolicy enforced = ReferenceHandlingPolicy._(
-    'enforced',
+    value: 'enforced',
   );
 
   /// local
   static final ReferenceHandlingPolicy local = ReferenceHandlingPolicy._(
-    'local',
+    value: 'local',
   );
 
   /// For instances where an Element is present but not value
 
   static final ReferenceHandlingPolicy elementOnly =
-      ReferenceHandlingPolicy._('');
+      ReferenceHandlingPolicy._(value: '');
 
   /// List of all enum-like values
   static final List<ReferenceHandlingPolicy> values = [
@@ -66,13 +71,13 @@ class ReferenceHandlingPolicy extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ReferenceHandlingPolicy clone() => ReferenceHandlingPolicy._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ReferenceHandlingPolicy withElement(Element? newElement) {
-    return ReferenceHandlingPolicy._(value, newElement);
+    return ReferenceHandlingPolicy._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -97,14 +102,13 @@ class ReferenceHandlingPolicy extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ReferenceHandlingPolicy._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

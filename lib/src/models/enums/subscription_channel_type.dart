@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The type of method used to execute a subscription.
 class SubscriptionChannelType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  SubscriptionChannelType._(super.value, [super.element]);
+  SubscriptionChannelType._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [SubscriptionChannelType] from JSON.
   factory SubscriptionChannelType.fromJson(
@@ -21,38 +26,38 @@ class SubscriptionChannelType extends PrimitiveType<String> {
         'SubscriptionChannelType cannot be constructed from JSON.',
       );
     }
-    return SubscriptionChannelType._(value, element);
+    return SubscriptionChannelType._(value: value, element: element);
   }
 
   /// rest_hook
   static final SubscriptionChannelType rest_hook = SubscriptionChannelType._(
-    'rest-hook',
+    value: 'rest-hook',
   );
 
   /// websocket
   static final SubscriptionChannelType websocket = SubscriptionChannelType._(
-    'websocket',
+    value: 'websocket',
   );
 
   /// email
   static final SubscriptionChannelType email = SubscriptionChannelType._(
-    'email',
+    value: 'email',
   );
 
   /// sms
   static final SubscriptionChannelType sms = SubscriptionChannelType._(
-    'sms',
+    value: 'sms',
   );
 
   /// message
   static final SubscriptionChannelType message = SubscriptionChannelType._(
-    'message',
+    value: 'message',
   );
 
   /// For instances where an Element is present but not value
 
   static final SubscriptionChannelType elementOnly =
-      SubscriptionChannelType._('');
+      SubscriptionChannelType._(value: '');
 
   /// List of all enum-like values
   static final List<SubscriptionChannelType> values = [
@@ -66,13 +71,13 @@ class SubscriptionChannelType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   SubscriptionChannelType clone() => SubscriptionChannelType._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   SubscriptionChannelType withElement(Element? newElement) {
-    return SubscriptionChannelType._(value, newElement);
+    return SubscriptionChannelType._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -97,14 +102,13 @@ class SubscriptionChannelType extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return SubscriptionChannelType._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Citation contribution.
 class ArtifactContributionType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ArtifactContributionType._(super.value, [super.element]);
+  ArtifactContributionType._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [ArtifactContributionType] from JSON.
   factory ArtifactContributionType.fromJson(
@@ -21,94 +26,94 @@ class ArtifactContributionType extends PrimitiveType<String> {
         'ArtifactContributionType cannot be constructed from JSON.',
       );
     }
-    return ArtifactContributionType._(value, element);
+    return ArtifactContributionType._(value: value, element: element);
   }
 
   /// conceptualization
   static final ArtifactContributionType conceptualization =
       ArtifactContributionType._(
-    'conceptualization',
+    value: 'conceptualization',
   );
 
   /// data_curation
   static final ArtifactContributionType data_curation =
       ArtifactContributionType._(
-    'data-curation',
+    value: 'data-curation',
   );
 
   /// formal_analysis
   static final ArtifactContributionType formal_analysis =
       ArtifactContributionType._(
-    'formal-analysis',
+    value: 'formal-analysis',
   );
 
   /// funding_acquisition
   static final ArtifactContributionType funding_acquisition =
       ArtifactContributionType._(
-    'funding-acquisition',
+    value: 'funding-acquisition',
   );
 
   /// investigation
   static final ArtifactContributionType investigation =
       ArtifactContributionType._(
-    'investigation',
+    value: 'investigation',
   );
 
   /// methodology
   static final ArtifactContributionType methodology =
       ArtifactContributionType._(
-    'methodology',
+    value: 'methodology',
   );
 
   /// project_administration
   static final ArtifactContributionType project_administration =
       ArtifactContributionType._(
-    'project-administration',
+    value: 'project-administration',
   );
 
   /// resources
   static final ArtifactContributionType resources = ArtifactContributionType._(
-    'resources',
+    value: 'resources',
   );
 
   /// software
   static final ArtifactContributionType software = ArtifactContributionType._(
-    'software',
+    value: 'software',
   );
 
   /// supervision
   static final ArtifactContributionType supervision =
       ArtifactContributionType._(
-    'supervision',
+    value: 'supervision',
   );
 
   /// validation
   static final ArtifactContributionType validation = ArtifactContributionType._(
-    'validation',
+    value: 'validation',
   );
 
   /// visualization
   static final ArtifactContributionType visualization =
       ArtifactContributionType._(
-    'visualization',
+    value: 'visualization',
   );
 
   /// writing_original_draft
   static final ArtifactContributionType writing_original_draft =
       ArtifactContributionType._(
-    'writing-original-draft',
+    value: 'writing-original-draft',
   );
 
   /// writing_review_editing
   static final ArtifactContributionType writing_review_editing =
       ArtifactContributionType._(
-    'writing-review-editing',
+    value: 'writing-review-editing',
   );
 
   /// For instances where an Element is present but not value
 
   static final ArtifactContributionType elementOnly =
-      ArtifactContributionType._('');
+      ArtifactContributionType._(value: '');
 
   /// List of all enum-like values
   static final List<ArtifactContributionType> values = [
@@ -131,13 +136,13 @@ class ArtifactContributionType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ArtifactContributionType clone() => ArtifactContributionType._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ArtifactContributionType withElement(Element? newElement) {
-    return ArtifactContributionType._(value, newElement);
+    return ArtifactContributionType._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -162,14 +167,13 @@ class ArtifactContributionType extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ArtifactContributionType._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

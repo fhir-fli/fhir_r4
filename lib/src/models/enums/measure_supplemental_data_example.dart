@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Supplemental data in a population for measuring purposes.
 class MeasureSupplementalDataExample extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  MeasureSupplementalDataExample._(super.value, [super.element]);
+  MeasureSupplementalDataExample._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [MeasureSupplementalDataExample] from JSON.
   factory MeasureSupplementalDataExample.fromJson(
@@ -21,37 +26,37 @@ class MeasureSupplementalDataExample extends PrimitiveType<String> {
         'MeasureSupplementalDataExample cannot be constructed from JSON.',
       );
     }
-    return MeasureSupplementalDataExample._(value, element);
+    return MeasureSupplementalDataExample._(value: value, element: element);
   }
 
   /// age
   static final MeasureSupplementalDataExample age =
       MeasureSupplementalDataExample._(
-    'age',
+    value: 'age',
   );
 
   /// gender
   static final MeasureSupplementalDataExample gender =
       MeasureSupplementalDataExample._(
-    'gender',
+    value: 'gender',
   );
 
   /// ethnicity
   static final MeasureSupplementalDataExample ethnicity =
       MeasureSupplementalDataExample._(
-    'ethnicity',
+    value: 'ethnicity',
   );
 
   /// payer
   static final MeasureSupplementalDataExample payer =
       MeasureSupplementalDataExample._(
-    'payer',
+    value: 'payer',
   );
 
   /// For instances where an Element is present but not value
 
   static final MeasureSupplementalDataExample elementOnly =
-      MeasureSupplementalDataExample._('');
+      MeasureSupplementalDataExample._(value: '');
 
   /// List of all enum-like values
   static final List<MeasureSupplementalDataExample> values = [
@@ -64,13 +69,13 @@ class MeasureSupplementalDataExample extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   MeasureSupplementalDataExample clone() => MeasureSupplementalDataExample._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   MeasureSupplementalDataExample withElement(Element? newElement) {
-    return MeasureSupplementalDataExample._(value, newElement);
+    return MeasureSupplementalDataExample._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -95,14 +100,13 @@ class MeasureSupplementalDataExample extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return MeasureSupplementalDataExample._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

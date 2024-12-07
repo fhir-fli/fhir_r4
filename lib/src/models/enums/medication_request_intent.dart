@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// MedicationRequest Intent Codes
 class MedicationRequestIntent extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  MedicationRequestIntent._(super.value, [super.element]);
+  MedicationRequestIntent._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [MedicationRequestIntent] from JSON.
   factory MedicationRequestIntent.fromJson(
@@ -21,55 +26,55 @@ class MedicationRequestIntent extends PrimitiveType<String> {
         'MedicationRequestIntent cannot be constructed from JSON.',
       );
     }
-    return MedicationRequestIntent._(value, element);
+    return MedicationRequestIntent._(value: value, element: element);
   }
 
   /// proposal
   static final MedicationRequestIntent proposal = MedicationRequestIntent._(
-    'proposal',
+    value: 'proposal',
   );
 
   /// plan
   static final MedicationRequestIntent plan = MedicationRequestIntent._(
-    'plan',
+    value: 'plan',
   );
 
   /// order
   static final MedicationRequestIntent order = MedicationRequestIntent._(
-    'order',
+    value: 'order',
   );
 
   /// original_order
   static final MedicationRequestIntent original_order =
       MedicationRequestIntent._(
-    'original-order',
+    value: 'original-order',
   );
 
   /// reflex_order
   static final MedicationRequestIntent reflex_order = MedicationRequestIntent._(
-    'reflex-order',
+    value: 'reflex-order',
   );
 
   /// filler_order
   static final MedicationRequestIntent filler_order = MedicationRequestIntent._(
-    'filler-order',
+    value: 'filler-order',
   );
 
   /// instance_order
   static final MedicationRequestIntent instance_order =
       MedicationRequestIntent._(
-    'instance-order',
+    value: 'instance-order',
   );
 
   /// option
   static final MedicationRequestIntent option = MedicationRequestIntent._(
-    'option',
+    value: 'option',
   );
 
   /// For instances where an Element is present but not value
 
   static final MedicationRequestIntent elementOnly =
-      MedicationRequestIntent._('');
+      MedicationRequestIntent._(value: '');
 
   /// List of all enum-like values
   static final List<MedicationRequestIntent> values = [
@@ -86,13 +91,13 @@ class MedicationRequestIntent extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   MedicationRequestIntent clone() => MedicationRequestIntent._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   MedicationRequestIntent withElement(Element? newElement) {
-    return MedicationRequestIntent._(value, newElement);
+    return MedicationRequestIntent._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -117,14 +122,13 @@ class MedicationRequestIntent extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return MedicationRequestIntent._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

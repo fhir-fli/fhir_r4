@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The gender of a person used for administrative purposes.
 class AdministrativeGender extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  AdministrativeGender._(super.value, [super.element]);
+  AdministrativeGender._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [AdministrativeGender] from JSON.
   factory AdministrativeGender.fromJson(
@@ -21,32 +26,33 @@ class AdministrativeGender extends PrimitiveType<String> {
         'AdministrativeGender cannot be constructed from JSON.',
       );
     }
-    return AdministrativeGender._(value, element);
+    return AdministrativeGender._(value: value, element: element);
   }
 
   /// male
   static final AdministrativeGender male = AdministrativeGender._(
-    'male',
+    value: 'male',
   );
 
   /// female
   static final AdministrativeGender female = AdministrativeGender._(
-    'female',
+    value: 'female',
   );
 
   /// other
   static final AdministrativeGender other = AdministrativeGender._(
-    'other',
+    value: 'other',
   );
 
   /// unknown
   static final AdministrativeGender unknown = AdministrativeGender._(
-    'unknown',
+    value: 'unknown',
   );
 
   /// For instances where an Element is present but not value
 
-  static final AdministrativeGender elementOnly = AdministrativeGender._('');
+  static final AdministrativeGender elementOnly =
+      AdministrativeGender._(value: '');
 
   /// List of all enum-like values
   static final List<AdministrativeGender> values = [
@@ -59,13 +65,13 @@ class AdministrativeGender extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   AdministrativeGender clone() => AdministrativeGender._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   AdministrativeGender withElement(Element? newElement) {
-    return AdministrativeGender._(value, newElement);
+    return AdministrativeGender._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -90,14 +96,13 @@ class AdministrativeGender extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return AdministrativeGender._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

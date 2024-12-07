@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Code the reason for different URLs, eg abstract and full-text.
 class ArticleUrlType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ArticleUrlType._(super.value, [super.element]);
+  ArticleUrlType._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [ArticleUrlType] from JSON.
   factory ArticleUrlType.fromJson(
@@ -21,92 +26,92 @@ class ArticleUrlType extends PrimitiveType<String> {
         'ArticleUrlType cannot be constructed from JSON.',
       );
     }
-    return ArticleUrlType._(value, element);
+    return ArticleUrlType._(value: value, element: element);
   }
 
   /// abstract_
   static final ArticleUrlType abstract_ = ArticleUrlType._(
-    'abstract',
+    value: 'abstract',
   );
 
   /// abstract_version
   static final ArticleUrlType abstract_version = ArticleUrlType._(
-    'abstract-version',
+    value: 'abstract-version',
   );
 
   /// doi_based
   static final ArticleUrlType doi_based = ArticleUrlType._(
-    'doi-based',
+    value: 'doi-based',
   );
 
   /// full_text
   static final ArticleUrlType full_text = ArticleUrlType._(
-    'full-text',
+    value: 'full-text',
   );
 
   /// full_text_version
   static final ArticleUrlType full_text_version = ArticleUrlType._(
-    'full-text-version',
+    value: 'full-text-version',
   );
 
   /// pdf
   static final ArticleUrlType pdf = ArticleUrlType._(
-    'pdf',
+    value: 'pdf',
   );
 
   /// pdf_version
   static final ArticleUrlType pdf_version = ArticleUrlType._(
-    'pdf-version',
+    value: 'pdf-version',
   );
 
   /// webpage
   static final ArticleUrlType webpage = ArticleUrlType._(
-    'webpage',
+    value: 'webpage',
   );
 
   /// not_specified
   static final ArticleUrlType not_specified = ArticleUrlType._(
-    'not-specified',
+    value: 'not-specified',
   );
 
   /// json
   static final ArticleUrlType json = ArticleUrlType._(
-    'json',
+    value: 'json',
   );
 
   /// json_version
   static final ArticleUrlType json_version = ArticleUrlType._(
-    'json-version',
+    value: 'json-version',
   );
 
   /// xml
   static final ArticleUrlType xml = ArticleUrlType._(
-    'xml',
+    value: 'xml',
   );
 
   /// xml_version
   static final ArticleUrlType xml_version = ArticleUrlType._(
-    'xml-version',
+    value: 'xml-version',
   );
 
   /// supplement
   static final ArticleUrlType supplement = ArticleUrlType._(
-    'supplement',
+    value: 'supplement',
   );
 
   /// supplementary_file_directory
   static final ArticleUrlType supplementary_file_directory = ArticleUrlType._(
-    'supplementary-file-directory',
+    value: 'supplementary-file-directory',
   );
 
   /// compressed_file
   static final ArticleUrlType compressed_file = ArticleUrlType._(
-    'compressed-file',
+    value: 'compressed-file',
   );
 
   /// For instances where an Element is present but not value
 
-  static final ArticleUrlType elementOnly = ArticleUrlType._('');
+  static final ArticleUrlType elementOnly = ArticleUrlType._(value: '');
 
   /// List of all enum-like values
   static final List<ArticleUrlType> values = [
@@ -131,13 +136,13 @@ class ArticleUrlType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ArticleUrlType clone() => ArticleUrlType._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ArticleUrlType withElement(Element? newElement) {
-    return ArticleUrlType._(value, newElement);
+    return ArticleUrlType._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -162,14 +167,13 @@ class ArticleUrlType extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ArticleUrlType._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

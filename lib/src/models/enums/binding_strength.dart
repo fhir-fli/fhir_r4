@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Indication of the degree of conformance expectations associated with a binding.
 class BindingStrength extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  BindingStrength._(super.value, [super.element]);
+  BindingStrength._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [BindingStrength] from JSON.
   factory BindingStrength.fromJson(
@@ -21,32 +26,32 @@ class BindingStrength extends PrimitiveType<String> {
         'BindingStrength cannot be constructed from JSON.',
       );
     }
-    return BindingStrength._(value, element);
+    return BindingStrength._(value: value, element: element);
   }
 
   /// required_
   static final BindingStrength required_ = BindingStrength._(
-    'required',
+    value: 'required',
   );
 
   /// extensible
   static final BindingStrength extensible = BindingStrength._(
-    'extensible',
+    value: 'extensible',
   );
 
   /// preferred
   static final BindingStrength preferred = BindingStrength._(
-    'preferred',
+    value: 'preferred',
   );
 
   /// example
   static final BindingStrength example = BindingStrength._(
-    'example',
+    value: 'example',
   );
 
   /// For instances where an Element is present but not value
 
-  static final BindingStrength elementOnly = BindingStrength._('');
+  static final BindingStrength elementOnly = BindingStrength._(value: '');
 
   /// List of all enum-like values
   static final List<BindingStrength> values = [
@@ -59,13 +64,13 @@ class BindingStrength extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   BindingStrength clone() => BindingStrength._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   BindingStrength withElement(Element? newElement) {
-    return BindingStrength._(value, newElement);
+    return BindingStrength._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -90,14 +95,13 @@ class BindingStrength extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return BindingStrength._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

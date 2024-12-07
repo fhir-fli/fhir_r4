@@ -18,10 +18,6 @@ class Population extends BackboneType {
     this.race,
     this.physiologicalCondition,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -212,10 +208,6 @@ class Population extends BackboneType {
       race: race ?? this.race,
       physiologicalCondition:
           physiologicalCondition ?? this.physiologicalCondition,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

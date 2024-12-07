@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value set includes sample Provider Qualification codes.
 class ExampleProviderQualificationCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ExampleProviderQualificationCodes._(super.value, [super.element]);
+  ExampleProviderQualificationCodes._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [ExampleProviderQualificationCodes] from JSON.
   factory ExampleProviderQualificationCodes.fromJson(
@@ -21,31 +26,31 @@ class ExampleProviderQualificationCodes extends PrimitiveType<String> {
         'ExampleProviderQualificationCodes cannot be constructed from JSON.',
       );
     }
-    return ExampleProviderQualificationCodes._(value, element);
+    return ExampleProviderQualificationCodes._(value: value, element: element);
   }
 
   /// value311405
   static final ExampleProviderQualificationCodes value311405 =
       ExampleProviderQualificationCodes._(
-    '311405',
+    value: '311405',
   );
 
   /// value604215
   static final ExampleProviderQualificationCodes value604215 =
       ExampleProviderQualificationCodes._(
-    '604215',
+    value: '604215',
   );
 
   /// value604210
   static final ExampleProviderQualificationCodes value604210 =
       ExampleProviderQualificationCodes._(
-    '604210',
+    value: '604210',
   );
 
   /// For instances where an Element is present but not value
 
   static final ExampleProviderQualificationCodes elementOnly =
-      ExampleProviderQualificationCodes._('');
+      ExampleProviderQualificationCodes._(value: '');
 
   /// List of all enum-like values
   static final List<ExampleProviderQualificationCodes> values = [
@@ -58,13 +63,14 @@ class ExampleProviderQualificationCodes extends PrimitiveType<String> {
   @override
   ExampleProviderQualificationCodes clone() =>
       ExampleProviderQualificationCodes._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ExampleProviderQualificationCodes withElement(Element? newElement) {
-    return ExampleProviderQualificationCodes._(value, newElement);
+    return ExampleProviderQualificationCodes._(
+        value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -89,14 +95,13 @@ class ExampleProviderQualificationCodes extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ExampleProviderQualificationCodes._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

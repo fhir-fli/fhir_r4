@@ -31,10 +31,6 @@ class CatalogEntry extends DomainResource {
     this.additionalCharacteristic,
     this.additionalClassification,
     this.relatedEntry,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.CatalogEntry,
         );
@@ -423,10 +419,6 @@ class CatalogEntry extends DomainResource {
       additionalClassification:
           additionalClassification ?? this.additionalClassification,
       relatedEntry: relatedEntry ?? this.relatedEntry,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -445,10 +437,6 @@ class CatalogEntryRelatedEntry extends BackboneElement {
     required this.relationtype,
     required this.item,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -585,10 +573,6 @@ class CatalogEntryRelatedEntry extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       relationtype: relationtype ?? this.relationtype,
       item: item ?? this.item,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

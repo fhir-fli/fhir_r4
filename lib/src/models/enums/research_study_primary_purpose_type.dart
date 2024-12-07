@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Codes for the main intent of the study.
 class ResearchStudyPrimaryPurposeType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ResearchStudyPrimaryPurposeType._(super.value, [super.element]);
+  ResearchStudyPrimaryPurposeType._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [ResearchStudyPrimaryPurposeType] from JSON.
   factory ResearchStudyPrimaryPurposeType.fromJson(
@@ -21,61 +26,61 @@ class ResearchStudyPrimaryPurposeType extends PrimitiveType<String> {
         'ResearchStudyPrimaryPurposeType cannot be constructed from JSON.',
       );
     }
-    return ResearchStudyPrimaryPurposeType._(value, element);
+    return ResearchStudyPrimaryPurposeType._(value: value, element: element);
   }
 
   /// treatment
   static final ResearchStudyPrimaryPurposeType treatment =
       ResearchStudyPrimaryPurposeType._(
-    'treatment',
+    value: 'treatment',
   );
 
   /// prevention
   static final ResearchStudyPrimaryPurposeType prevention =
       ResearchStudyPrimaryPurposeType._(
-    'prevention',
+    value: 'prevention',
   );
 
   /// diagnostic
   static final ResearchStudyPrimaryPurposeType diagnostic =
       ResearchStudyPrimaryPurposeType._(
-    'diagnostic',
+    value: 'diagnostic',
   );
 
   /// supportive_care
   static final ResearchStudyPrimaryPurposeType supportive_care =
       ResearchStudyPrimaryPurposeType._(
-    'supportive-care',
+    value: 'supportive-care',
   );
 
   /// screening
   static final ResearchStudyPrimaryPurposeType screening =
       ResearchStudyPrimaryPurposeType._(
-    'screening',
+    value: 'screening',
   );
 
   /// health_services_research
   static final ResearchStudyPrimaryPurposeType health_services_research =
       ResearchStudyPrimaryPurposeType._(
-    'health-services-research',
+    value: 'health-services-research',
   );
 
   /// basic_science
   static final ResearchStudyPrimaryPurposeType basic_science =
       ResearchStudyPrimaryPurposeType._(
-    'basic-science',
+    value: 'basic-science',
   );
 
   /// device_feasibility
   static final ResearchStudyPrimaryPurposeType device_feasibility =
       ResearchStudyPrimaryPurposeType._(
-    'device-feasibility',
+    value: 'device-feasibility',
   );
 
   /// For instances where an Element is present but not value
 
   static final ResearchStudyPrimaryPurposeType elementOnly =
-      ResearchStudyPrimaryPurposeType._('');
+      ResearchStudyPrimaryPurposeType._(value: '');
 
   /// List of all enum-like values
   static final List<ResearchStudyPrimaryPurposeType> values = [
@@ -92,13 +97,13 @@ class ResearchStudyPrimaryPurposeType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ResearchStudyPrimaryPurposeType clone() => ResearchStudyPrimaryPurposeType._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ResearchStudyPrimaryPurposeType withElement(Element? newElement) {
-    return ResearchStudyPrimaryPurposeType._(value, newElement);
+    return ResearchStudyPrimaryPurposeType._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -123,14 +128,13 @@ class ResearchStudyPrimaryPurposeType extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ResearchStudyPrimaryPurposeType._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

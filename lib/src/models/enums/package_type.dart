@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// A high level categorisation of a package.
 class PackageType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  PackageType._(super.value, [super.element]);
+  PackageType._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [PackageType] from JSON.
   factory PackageType.fromJson(
@@ -21,27 +26,27 @@ class PackageType extends PrimitiveType<String> {
         'PackageType cannot be constructed from JSON.',
       );
     }
-    return PackageType._(value, element);
+    return PackageType._(value: value, element: element);
   }
 
   /// MedicinalProductPack
   static final PackageType MedicinalProductPack = PackageType._(
-    'MedicinalProductPack',
+    value: 'MedicinalProductPack',
   );
 
   /// RawMaterialPackage
   static final PackageType RawMaterialPackage = PackageType._(
-    'RawMaterialPackage',
+    value: 'RawMaterialPackage',
   );
 
   /// Shipping_TransportContainer
   static final PackageType Shipping_TransportContainer = PackageType._(
-    'Shipping-TransportContainer',
+    value: 'Shipping-TransportContainer',
   );
 
   /// For instances where an Element is present but not value
 
-  static final PackageType elementOnly = PackageType._('');
+  static final PackageType elementOnly = PackageType._(value: '');
 
   /// List of all enum-like values
   static final List<PackageType> values = [
@@ -53,13 +58,13 @@ class PackageType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   PackageType clone() => PackageType._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   PackageType withElement(Element? newElement) {
-    return PackageType._(value, newElement);
+    return PackageType._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -84,14 +89,13 @@ class PackageType extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return PackageType._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Type for quality report.
 class QualityType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  QualityType._(super.value, [super.element]);
+  QualityType._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [QualityType] from JSON.
   factory QualityType.fromJson(
@@ -21,27 +26,27 @@ class QualityType extends PrimitiveType<String> {
         'QualityType cannot be constructed from JSON.',
       );
     }
-    return QualityType._(value, element);
+    return QualityType._(value: value, element: element);
   }
 
   /// indel
   static final QualityType indel = QualityType._(
-    'indel',
+    value: 'indel',
   );
 
   /// snp
   static final QualityType snp = QualityType._(
-    'snp',
+    value: 'snp',
   );
 
   /// unknown
   static final QualityType unknown = QualityType._(
-    'unknown',
+    value: 'unknown',
   );
 
   /// For instances where an Element is present but not value
 
-  static final QualityType elementOnly = QualityType._('');
+  static final QualityType elementOnly = QualityType._(value: '');
 
   /// List of all enum-like values
   static final List<QualityType> values = [
@@ -53,13 +58,13 @@ class QualityType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   QualityType clone() => QualityType._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   QualityType withElement(Element? newElement) {
-    return QualityType._(value, newElement);
+    return QualityType._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -84,14 +89,13 @@ class QualityType extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return QualityType._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

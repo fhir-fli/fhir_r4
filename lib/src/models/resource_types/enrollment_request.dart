@@ -25,10 +25,6 @@ class EnrollmentRequest extends DomainResource {
     this.provider,
     this.candidate,
     this.coverage,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.EnrollmentRequest,
         );
@@ -307,10 +303,6 @@ class EnrollmentRequest extends DomainResource {
       provider: provider ?? this.provider,
       candidate: candidate ?? this.candidate,
       coverage: coverage ?? this.coverage,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

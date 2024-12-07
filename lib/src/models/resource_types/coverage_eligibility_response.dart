@@ -34,10 +34,6 @@ class CoverageEligibilityResponse extends DomainResource {
     this.preAuthRef,
     this.form,
     this.error,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.CoverageEligibilityResponse,
         );
@@ -449,10 +445,6 @@ class CoverageEligibilityResponse extends DomainResource {
       preAuthRef: preAuthRef ?? this.preAuthRef,
       form: form ?? this.form,
       error: error ?? this.error,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -473,10 +465,6 @@ class CoverageEligibilityResponseInsurance extends BackboneElement {
     this.benefitPeriod,
     this.item,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -654,10 +642,6 @@ class CoverageEligibilityResponseInsurance extends BackboneElement {
       inforce: inforce ?? this.inforce,
       benefitPeriod: benefitPeriod ?? this.benefitPeriod,
       item: item ?? this.item,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -688,10 +672,6 @@ class CoverageEligibilityResponseItem extends BackboneElement {
     this.authorizationSupporting,
     this.authorizationUrl,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1034,10 +1014,6 @@ class CoverageEligibilityResponseItem extends BackboneElement {
       authorizationSupporting:
           authorizationSupporting ?? this.authorizationSupporting,
       authorizationUrl: authorizationUrl ?? this.authorizationUrl,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1060,10 +1036,6 @@ class CoverageEligibilityResponseBenefit extends BackboneElement {
     this.usedString,
     this.usedMoney,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1273,10 +1245,6 @@ class CoverageEligibilityResponseBenefit extends BackboneElement {
       usedUnsignedInt: usedUnsignedInt ?? this.usedUnsignedInt,
       usedString: usedString ?? this.usedString,
       usedMoney: usedMoney ?? this.usedMoney,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1293,10 +1261,6 @@ class CoverageEligibilityResponseError extends BackboneElement {
     super.modifierExtension,
     required this.code,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1422,10 +1386,6 @@ class CoverageEligibilityResponseError extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       code: code ?? this.code,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

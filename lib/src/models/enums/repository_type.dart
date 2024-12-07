@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Type for access of external URI.
 class RepositoryType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  RepositoryType._(super.value, [super.element]);
+  RepositoryType._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [RepositoryType] from JSON.
   factory RepositoryType.fromJson(
@@ -21,37 +26,37 @@ class RepositoryType extends PrimitiveType<String> {
         'RepositoryType cannot be constructed from JSON.',
       );
     }
-    return RepositoryType._(value, element);
+    return RepositoryType._(value: value, element: element);
   }
 
   /// directlink
   static final RepositoryType directlink = RepositoryType._(
-    'directlink',
+    value: 'directlink',
   );
 
   /// openapi
   static final RepositoryType openapi = RepositoryType._(
-    'openapi',
+    value: 'openapi',
   );
 
   /// login
   static final RepositoryType login = RepositoryType._(
-    'login',
+    value: 'login',
   );
 
   /// oauth
   static final RepositoryType oauth = RepositoryType._(
-    'oauth',
+    value: 'oauth',
   );
 
   /// other
   static final RepositoryType other = RepositoryType._(
-    'other',
+    value: 'other',
   );
 
   /// For instances where an Element is present but not value
 
-  static final RepositoryType elementOnly = RepositoryType._('');
+  static final RepositoryType elementOnly = RepositoryType._(value: '');
 
   /// List of all enum-like values
   static final List<RepositoryType> values = [
@@ -65,13 +70,13 @@ class RepositoryType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   RepositoryType clone() => RepositoryType._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   RepositoryType withElement(Element? newElement) {
-    return RepositoryType._(value, newElement);
+    return RepositoryType._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -96,14 +101,13 @@ class RepositoryType extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return RepositoryType._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

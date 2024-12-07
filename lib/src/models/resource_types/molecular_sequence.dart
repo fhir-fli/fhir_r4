@@ -33,10 +33,6 @@ class MolecularSequence extends DomainResource {
     this.repository,
     this.pointer,
     this.structureVariant,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.MolecularSequence,
         );
@@ -479,10 +475,6 @@ class MolecularSequence extends DomainResource {
       repository: repository ?? this.repository,
       pointer: pointer ?? this.pointer,
       structureVariant: structureVariant ?? this.structureVariant,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -508,10 +500,6 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
     this.windowStart,
     this.windowEnd,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -767,10 +755,6 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
       strand: strand ?? this.strand,
       windowStart: windowStart ?? this.windowStart,
       windowEnd: windowEnd ?? this.windowEnd,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -796,10 +780,6 @@ class MolecularSequenceVariant extends BackboneElement {
     this.cigar,
     this.variantPointer,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1014,10 +994,6 @@ class MolecularSequenceVariant extends BackboneElement {
       referenceAllele: referenceAllele ?? this.referenceAllele,
       cigar: cigar ?? this.cigar,
       variantPointer: variantPointer ?? this.variantPointer,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1050,10 +1026,6 @@ class MolecularSequenceQuality extends BackboneElement {
     this.fScore,
     this.roc,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1390,10 +1362,6 @@ class MolecularSequenceQuality extends BackboneElement {
       recall: recall ?? this.recall,
       fScore: fScore ?? this.fScore,
       roc: roc ?? this.roc,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1417,10 +1385,6 @@ class MolecularSequenceRoc extends BackboneElement {
     this.sensitivity,
     this.fMeasure,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1674,10 +1638,6 @@ class MolecularSequenceRoc extends BackboneElement {
       precision: precision ?? this.precision,
       sensitivity: sensitivity ?? this.sensitivity,
       fMeasure: fMeasure ?? this.fMeasure,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1700,10 +1660,6 @@ class MolecularSequenceRepository extends BackboneElement {
     this.variantsetId,
     this.readsetId,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1901,10 +1857,6 @@ class MolecularSequenceRepository extends BackboneElement {
       datasetId: datasetId ?? this.datasetId,
       variantsetId: variantsetId ?? this.variantsetId,
       readsetId: readsetId ?? this.readsetId,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1925,10 +1877,6 @@ class MolecularSequenceStructureVariant extends BackboneElement {
     this.outer,
     this.inner,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -2114,10 +2062,6 @@ class MolecularSequenceStructureVariant extends BackboneElement {
       length: length ?? this.length,
       outer: outer ?? this.outer,
       inner: inner ?? this.inner,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -2135,10 +2079,6 @@ class MolecularSequenceOuter extends BackboneElement {
     this.start,
     this.end,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -2282,10 +2222,6 @@ class MolecularSequenceOuter extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       start: start ?? this.start,
       end: end ?? this.end,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -2303,10 +2239,6 @@ class MolecularSequenceInner extends BackboneElement {
     this.start,
     this.end,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -2450,10 +2382,6 @@ class MolecularSequenceInner extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       start: start ?? this.start,
       end: end ?? this.end,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

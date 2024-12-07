@@ -36,10 +36,6 @@ class CoverageEligibilityRequest extends DomainResource {
     this.supportingInfo,
     this.insurance,
     this.item,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.CoverageEligibilityRequest,
         );
@@ -454,10 +450,6 @@ class CoverageEligibilityRequest extends DomainResource {
       supportingInfo: supportingInfo ?? this.supportingInfo,
       insurance: insurance ?? this.insurance,
       item: item ?? this.item,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -477,10 +469,6 @@ class CoverageEligibilityRequestSupportingInfo extends BackboneElement {
     required this.information,
     this.appliesToAll,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -634,10 +622,6 @@ class CoverageEligibilityRequestSupportingInfo extends BackboneElement {
       sequence: sequence ?? this.sequence,
       information: information ?? this.information,
       appliesToAll: appliesToAll ?? this.appliesToAll,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -657,10 +641,6 @@ class CoverageEligibilityRequestInsurance extends BackboneElement {
     required this.coverage,
     this.businessArrangement,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -817,10 +797,6 @@ class CoverageEligibilityRequestInsurance extends BackboneElement {
       focal: focal ?? this.focal,
       coverage: coverage ?? this.coverage,
       businessArrangement: businessArrangement ?? this.businessArrangement,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -848,10 +824,6 @@ class CoverageEligibilityRequestItem extends BackboneElement {
     this.diagnosis,
     this.detail,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1140,10 +1112,6 @@ class CoverageEligibilityRequestItem extends BackboneElement {
       facility: facility ?? this.facility,
       diagnosis: diagnosis ?? this.diagnosis,
       detail: detail ?? this.detail,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1161,10 +1129,6 @@ class CoverageEligibilityRequestDiagnosis extends BackboneElement {
     this.diagnosisCodeableConcept,
     this.diagnosisReference,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1311,10 +1275,6 @@ class CoverageEligibilityRequestDiagnosis extends BackboneElement {
       diagnosisCodeableConcept:
           diagnosisCodeableConcept ?? this.diagnosisCodeableConcept,
       diagnosisReference: diagnosisReference ?? this.diagnosisReference,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

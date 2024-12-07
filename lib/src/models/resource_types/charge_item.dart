@@ -51,10 +51,6 @@ class ChargeItem extends DomainResource {
     this.account,
     this.note,
     this.supportingInformation,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.ChargeItem,
         );
@@ -707,10 +703,6 @@ class ChargeItem extends DomainResource {
       note: note ?? this.note,
       supportingInformation:
           supportingInformation ?? this.supportingInformation,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -728,10 +720,6 @@ class ChargeItemPerformer extends BackboneElement {
     this.function_,
     required this.actor,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -873,10 +861,6 @@ class ChargeItemPerformer extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       function_: function_ ?? this.function_,
       actor: actor ?? this.actor,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

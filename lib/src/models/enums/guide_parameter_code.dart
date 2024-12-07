@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Code of parameter that is input to the guide.
 class GuideParameterCode extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  GuideParameterCode._(super.value, [super.element]);
+  GuideParameterCode._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [GuideParameterCode] from JSON.
   factory GuideParameterCode.fromJson(
@@ -21,62 +26,62 @@ class GuideParameterCode extends PrimitiveType<String> {
         'GuideParameterCode cannot be constructed from JSON.',
       );
     }
-    return GuideParameterCode._(value, element);
+    return GuideParameterCode._(value: value, element: element);
   }
 
   /// apply
   static final GuideParameterCode apply = GuideParameterCode._(
-    'apply',
+    value: 'apply',
   );
 
   /// path_resource
   static final GuideParameterCode path_resource = GuideParameterCode._(
-    'path-resource',
+    value: 'path-resource',
   );
 
   /// path_pages
   static final GuideParameterCode path_pages = GuideParameterCode._(
-    'path-pages',
+    value: 'path-pages',
   );
 
   /// path_tx_cache
   static final GuideParameterCode path_tx_cache = GuideParameterCode._(
-    'path-tx-cache',
+    value: 'path-tx-cache',
   );
 
   /// expansion_parameter
   static final GuideParameterCode expansion_parameter = GuideParameterCode._(
-    'expansion-parameter',
+    value: 'expansion-parameter',
   );
 
   /// rule_broken_links
   static final GuideParameterCode rule_broken_links = GuideParameterCode._(
-    'rule-broken-links',
+    value: 'rule-broken-links',
   );
 
   /// generate_xml
   static final GuideParameterCode generate_xml = GuideParameterCode._(
-    'generate-xml',
+    value: 'generate-xml',
   );
 
   /// generate_json
   static final GuideParameterCode generate_json = GuideParameterCode._(
-    'generate-json',
+    value: 'generate-json',
   );
 
   /// generate_turtle
   static final GuideParameterCode generate_turtle = GuideParameterCode._(
-    'generate-turtle',
+    value: 'generate-turtle',
   );
 
   /// html_template
   static final GuideParameterCode html_template = GuideParameterCode._(
-    'html-template',
+    value: 'html-template',
   );
 
   /// For instances where an Element is present but not value
 
-  static final GuideParameterCode elementOnly = GuideParameterCode._('');
+  static final GuideParameterCode elementOnly = GuideParameterCode._(value: '');
 
   /// List of all enum-like values
   static final List<GuideParameterCode> values = [
@@ -95,13 +100,13 @@ class GuideParameterCode extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   GuideParameterCode clone() => GuideParameterCode._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   GuideParameterCode withElement(Element? newElement) {
-    return GuideParameterCode._(value, newElement);
+    return GuideParameterCode._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -126,14 +131,13 @@ class GuideParameterCode extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return GuideParameterCode._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

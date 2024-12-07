@@ -94,9 +94,14 @@ final Parser<DateTimeParser> DATETIME = (char('@') &
 });
 
 /// Follows DateTime format specified in FHIRPath (I have also updated the FHIR)
-final Parser<TimeParser> TIME = (char('@') & char('T') & TIMEFORMAT)
-    .flatten()
-    .map((String value) => TimeParser(FhirTime(value.replaceFirst('@T', ''))));
+final Parser<TimeParser> TIME =
+    (char('@') & char('T') & TIMEFORMAT).flatten().map(
+          (String value) => TimeParser(
+            FhirTime(
+              input: value.replaceFirst('@T', ''),
+            ),
+          ),
+        );
 
 /// Follows DateTime format specified in FHIRPath (I have also updated the FHIR)
 final Parser<String> DATEFORMAT = (pattern('0-9').times(4) &

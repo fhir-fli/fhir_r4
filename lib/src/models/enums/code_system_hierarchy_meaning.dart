@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The meaning of the hierarchy of concepts in a code system.
 class CodeSystemHierarchyMeaning extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  CodeSystemHierarchyMeaning._(super.value, [super.element]);
+  CodeSystemHierarchyMeaning._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [CodeSystemHierarchyMeaning] from JSON.
   factory CodeSystemHierarchyMeaning.fromJson(
@@ -21,36 +26,36 @@ class CodeSystemHierarchyMeaning extends PrimitiveType<String> {
         'CodeSystemHierarchyMeaning cannot be constructed from JSON.',
       );
     }
-    return CodeSystemHierarchyMeaning._(value, element);
+    return CodeSystemHierarchyMeaning._(value: value, element: element);
   }
 
   /// grouped_by
   static final CodeSystemHierarchyMeaning grouped_by =
       CodeSystemHierarchyMeaning._(
-    'grouped-by',
+    value: 'grouped-by',
   );
 
   /// is_a
   static final CodeSystemHierarchyMeaning is_a = CodeSystemHierarchyMeaning._(
-    'is-a',
+    value: 'is-a',
   );
 
   /// part_of
   static final CodeSystemHierarchyMeaning part_of =
       CodeSystemHierarchyMeaning._(
-    'part-of',
+    value: 'part-of',
   );
 
   /// classified_with
   static final CodeSystemHierarchyMeaning classified_with =
       CodeSystemHierarchyMeaning._(
-    'classified-with',
+    value: 'classified-with',
   );
 
   /// For instances where an Element is present but not value
 
   static final CodeSystemHierarchyMeaning elementOnly =
-      CodeSystemHierarchyMeaning._('');
+      CodeSystemHierarchyMeaning._(value: '');
 
   /// List of all enum-like values
   static final List<CodeSystemHierarchyMeaning> values = [
@@ -63,13 +68,13 @@ class CodeSystemHierarchyMeaning extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   CodeSystemHierarchyMeaning clone() => CodeSystemHierarchyMeaning._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   CodeSystemHierarchyMeaning withElement(Element? newElement) {
-    return CodeSystemHierarchyMeaning._(value, newElement);
+    return CodeSystemHierarchyMeaning._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -94,14 +99,13 @@ class CodeSystemHierarchyMeaning extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return CodeSystemHierarchyMeaning._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

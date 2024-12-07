@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// A characteristic of a package.
 class PackageCharacteristic extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  PackageCharacteristic._(super.value, [super.element]);
+  PackageCharacteristic._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [PackageCharacteristic] from JSON.
   factory PackageCharacteristic.fromJson(
@@ -21,28 +26,29 @@ class PackageCharacteristic extends PrimitiveType<String> {
         'PackageCharacteristic cannot be constructed from JSON.',
       );
     }
-    return PackageCharacteristic._(value, element);
+    return PackageCharacteristic._(value: value, element: element);
   }
 
   /// HospitalPack
   static final PackageCharacteristic HospitalPack = PackageCharacteristic._(
-    'HospitalPack',
+    value: 'HospitalPack',
   );
 
   /// NursePrescribable
   static final PackageCharacteristic NursePrescribable =
       PackageCharacteristic._(
-    'NursePrescribable',
+    value: 'NursePrescribable',
   );
 
   /// CalendarPack
   static final PackageCharacteristic CalendarPack = PackageCharacteristic._(
-    'CalendarPack',
+    value: 'CalendarPack',
   );
 
   /// For instances where an Element is present but not value
 
-  static final PackageCharacteristic elementOnly = PackageCharacteristic._('');
+  static final PackageCharacteristic elementOnly =
+      PackageCharacteristic._(value: '');
 
   /// List of all enum-like values
   static final List<PackageCharacteristic> values = [
@@ -54,13 +60,13 @@ class PackageCharacteristic extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   PackageCharacteristic clone() => PackageCharacteristic._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   PackageCharacteristic withElement(Element? newElement) {
-    return PackageCharacteristic._(value, newElement);
+    return PackageCharacteristic._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -85,14 +91,13 @@ class PackageCharacteristic extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return PackageCharacteristic._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

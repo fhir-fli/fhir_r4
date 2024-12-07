@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The status of a subscription.
 class SubscriptionStatusCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  SubscriptionStatusCodes._(super.value, [super.element]);
+  SubscriptionStatusCodes._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [SubscriptionStatusCodes] from JSON.
   factory SubscriptionStatusCodes.fromJson(
@@ -21,33 +26,33 @@ class SubscriptionStatusCodes extends PrimitiveType<String> {
         'SubscriptionStatusCodes cannot be constructed from JSON.',
       );
     }
-    return SubscriptionStatusCodes._(value, element);
+    return SubscriptionStatusCodes._(value: value, element: element);
   }
 
   /// requested
   static final SubscriptionStatusCodes requested = SubscriptionStatusCodes._(
-    'requested',
+    value: 'requested',
   );
 
   /// active
   static final SubscriptionStatusCodes active = SubscriptionStatusCodes._(
-    'active',
+    value: 'active',
   );
 
   /// error
   static final SubscriptionStatusCodes error = SubscriptionStatusCodes._(
-    'error',
+    value: 'error',
   );
 
   /// off
   static final SubscriptionStatusCodes off = SubscriptionStatusCodes._(
-    'off',
+    value: 'off',
   );
 
   /// For instances where an Element is present but not value
 
   static final SubscriptionStatusCodes elementOnly =
-      SubscriptionStatusCodes._('');
+      SubscriptionStatusCodes._(value: '');
 
   /// List of all enum-like values
   static final List<SubscriptionStatusCodes> values = [
@@ -60,13 +65,13 @@ class SubscriptionStatusCodes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   SubscriptionStatusCodes clone() => SubscriptionStatusCodes._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   SubscriptionStatusCodes withElement(Element? newElement) {
-    return SubscriptionStatusCodes._(value, newElement);
+    return SubscriptionStatusCodes._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -91,14 +96,13 @@ class SubscriptionStatusCodes extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return SubscriptionStatusCodes._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Codes for general categories of communications such as alerts, instructions, etc.
 class CommunicationCategory extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  CommunicationCategory._(super.value, [super.element]);
+  CommunicationCategory._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [CommunicationCategory] from JSON.
   factory CommunicationCategory.fromJson(
@@ -21,32 +26,33 @@ class CommunicationCategory extends PrimitiveType<String> {
         'CommunicationCategory cannot be constructed from JSON.',
       );
     }
-    return CommunicationCategory._(value, element);
+    return CommunicationCategory._(value: value, element: element);
   }
 
   /// alert
   static final CommunicationCategory alert = CommunicationCategory._(
-    'alert',
+    value: 'alert',
   );
 
   /// notification
   static final CommunicationCategory notification = CommunicationCategory._(
-    'notification',
+    value: 'notification',
   );
 
   /// reminder
   static final CommunicationCategory reminder = CommunicationCategory._(
-    'reminder',
+    value: 'reminder',
   );
 
   /// instruction
   static final CommunicationCategory instruction = CommunicationCategory._(
-    'instruction',
+    value: 'instruction',
   );
 
   /// For instances where an Element is present but not value
 
-  static final CommunicationCategory elementOnly = CommunicationCategory._('');
+  static final CommunicationCategory elementOnly =
+      CommunicationCategory._(value: '');
 
   /// List of all enum-like values
   static final List<CommunicationCategory> values = [
@@ -59,13 +65,13 @@ class CommunicationCategory extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   CommunicationCategory clone() => CommunicationCategory._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   CommunicationCategory withElement(Element? newElement) {
-    return CommunicationCategory._(value, newElement);
+    return CommunicationCategory._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -90,14 +96,13 @@ class CommunicationCategory extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return CommunicationCategory._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

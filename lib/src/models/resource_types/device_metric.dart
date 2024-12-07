@@ -28,10 +28,6 @@ class DeviceMetric extends DomainResource {
     required this.category,
     this.measurementPeriod,
     this.calibration,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.DeviceMetric,
         );
@@ -377,10 +373,6 @@ class DeviceMetric extends DomainResource {
       category: category ?? this.category,
       measurementPeriod: measurementPeriod ?? this.measurementPeriod,
       calibration: calibration ?? this.calibration,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -400,10 +392,6 @@ class DeviceMetricCalibration extends BackboneElement {
     this.state,
     this.time,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -556,10 +544,6 @@ class DeviceMetricCalibration extends BackboneElement {
       type: type ?? this.type,
       state: state ?? this.state,
       time: time ?? this.time,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

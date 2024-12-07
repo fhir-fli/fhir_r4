@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Preferred value set for AllergyIntolerance Verification Status.
 class AllergyIntoleranceVerificationStatusCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  AllergyIntoleranceVerificationStatusCodes._(super.value, [super.element]);
+  AllergyIntoleranceVerificationStatusCodes._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [AllergyIntoleranceVerificationStatusCodes] from JSON.
   factory AllergyIntoleranceVerificationStatusCodes.fromJson(
@@ -22,37 +27,38 @@ class AllergyIntoleranceVerificationStatusCodes extends PrimitiveType<String> {
         'AllergyIntoleranceVerificationStatusCodes cannot be constructed from JSON.',
       );
     }
-    return AllergyIntoleranceVerificationStatusCodes._(value, element);
+    return AllergyIntoleranceVerificationStatusCodes._(
+        value: value, element: element);
   }
 
   /// unconfirmed
   static final AllergyIntoleranceVerificationStatusCodes unconfirmed =
       AllergyIntoleranceVerificationStatusCodes._(
-    'unconfirmed',
+    value: 'unconfirmed',
   );
 
   /// confirmed
   static final AllergyIntoleranceVerificationStatusCodes confirmed =
       AllergyIntoleranceVerificationStatusCodes._(
-    'confirmed',
+    value: 'confirmed',
   );
 
   /// refuted
   static final AllergyIntoleranceVerificationStatusCodes refuted =
       AllergyIntoleranceVerificationStatusCodes._(
-    'refuted',
+    value: 'refuted',
   );
 
   /// entered_in_error
   static final AllergyIntoleranceVerificationStatusCodes entered_in_error =
       AllergyIntoleranceVerificationStatusCodes._(
-    'entered-in-error',
+    value: 'entered-in-error',
   );
 
   /// For instances where an Element is present but not value
 
   static final AllergyIntoleranceVerificationStatusCodes elementOnly =
-      AllergyIntoleranceVerificationStatusCodes._('');
+      AllergyIntoleranceVerificationStatusCodes._(value: '');
 
   /// List of all enum-like values
   static final List<AllergyIntoleranceVerificationStatusCodes> values = [
@@ -66,13 +72,14 @@ class AllergyIntoleranceVerificationStatusCodes extends PrimitiveType<String> {
   @override
   AllergyIntoleranceVerificationStatusCodes clone() =>
       AllergyIntoleranceVerificationStatusCodes._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   AllergyIntoleranceVerificationStatusCodes withElement(Element? newElement) {
-    return AllergyIntoleranceVerificationStatusCodes._(value, newElement);
+    return AllergyIntoleranceVerificationStatusCodes._(
+        value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -97,14 +104,13 @@ class AllergyIntoleranceVerificationStatusCodes extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return AllergyIntoleranceVerificationStatusCodes._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

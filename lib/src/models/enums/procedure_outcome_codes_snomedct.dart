@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Procedure Outcome code: A selection of relevant SNOMED CT codes.
 class ProcedureOutcomeCodesSNOMEDCT extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ProcedureOutcomeCodesSNOMEDCT._(super.value, [super.element]);
+  ProcedureOutcomeCodesSNOMEDCT._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [ProcedureOutcomeCodesSNOMEDCT] from JSON.
   factory ProcedureOutcomeCodesSNOMEDCT.fromJson(
@@ -21,31 +26,31 @@ class ProcedureOutcomeCodesSNOMEDCT extends PrimitiveType<String> {
         'ProcedureOutcomeCodesSNOMEDCT cannot be constructed from JSON.',
       );
     }
-    return ProcedureOutcomeCodesSNOMEDCT._(value, element);
+    return ProcedureOutcomeCodesSNOMEDCT._(value: value, element: element);
   }
 
   /// value385669000
   static final ProcedureOutcomeCodesSNOMEDCT value385669000 =
       ProcedureOutcomeCodesSNOMEDCT._(
-    '385669000',
+    value: '385669000',
   );
 
   /// value385671000
   static final ProcedureOutcomeCodesSNOMEDCT value385671000 =
       ProcedureOutcomeCodesSNOMEDCT._(
-    '385671000',
+    value: '385671000',
   );
 
   /// value385670004
   static final ProcedureOutcomeCodesSNOMEDCT value385670004 =
       ProcedureOutcomeCodesSNOMEDCT._(
-    '385670004',
+    value: '385670004',
   );
 
   /// For instances where an Element is present but not value
 
   static final ProcedureOutcomeCodesSNOMEDCT elementOnly =
-      ProcedureOutcomeCodesSNOMEDCT._('');
+      ProcedureOutcomeCodesSNOMEDCT._(value: '');
 
   /// List of all enum-like values
   static final List<ProcedureOutcomeCodesSNOMEDCT> values = [
@@ -57,13 +62,13 @@ class ProcedureOutcomeCodesSNOMEDCT extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ProcedureOutcomeCodesSNOMEDCT clone() => ProcedureOutcomeCodesSNOMEDCT._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ProcedureOutcomeCodesSNOMEDCT withElement(Element? newElement) {
-    return ProcedureOutcomeCodesSNOMEDCT._(value, newElement);
+    return ProcedureOutcomeCodesSNOMEDCT._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -88,14 +93,13 @@ class ProcedureOutcomeCodesSNOMEDCT extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ProcedureOutcomeCodesSNOMEDCT._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

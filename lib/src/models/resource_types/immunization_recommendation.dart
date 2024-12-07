@@ -24,10 +24,6 @@ class ImmunizationRecommendation extends DomainResource {
     required this.date,
     this.authority,
     required this.recommendation,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.ImmunizationRecommendation,
         );
@@ -275,10 +271,6 @@ class ImmunizationRecommendation extends DomainResource {
       date: date ?? this.date,
       authority: authority ?? this.authority,
       recommendation: recommendation ?? this.recommendation,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -308,10 +300,6 @@ class ImmunizationRecommendationRecommendation extends BackboneElement {
     this.supportingImmunization,
     this.supportingPatientInformation,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -667,10 +655,6 @@ class ImmunizationRecommendationRecommendation extends BackboneElement {
           supportingImmunization ?? this.supportingImmunization,
       supportingPatientInformation:
           supportingPatientInformation ?? this.supportingPatientInformation,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -689,10 +673,6 @@ class ImmunizationRecommendationDateCriterion extends BackboneElement {
     required this.code,
     required this.value,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -829,10 +809,6 @@ class ImmunizationRecommendationDateCriterion extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       code: code ?? this.code,
       value: value ?? this.value,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

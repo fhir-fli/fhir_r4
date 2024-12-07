@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value set defines an example set of codes that could be can be used to classify groupings of service-types/specialties.
 class Program extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  Program._(super.value, [super.element]);
+  Program._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [Program] from JSON.
   factory Program.fromJson(
@@ -21,237 +26,237 @@ class Program extends PrimitiveType<String> {
         'Program cannot be constructed from JSON.',
       );
     }
-    return Program._(value, element);
+    return Program._(value: value, element: element);
   }
 
   /// value1
   static final Program value1 = Program._(
-    '1',
+    value: '1',
   );
 
   /// value2
   static final Program value2 = Program._(
-    '2',
+    value: '2',
   );
 
   /// value3
   static final Program value3 = Program._(
-    '3',
+    value: '3',
   );
 
   /// value4
   static final Program value4 = Program._(
-    '4',
+    value: '4',
   );
 
   /// value5
   static final Program value5 = Program._(
-    '5',
+    value: '5',
   );
 
   /// value6
   static final Program value6 = Program._(
-    '6',
+    value: '6',
   );
 
   /// value7
   static final Program value7 = Program._(
-    '7',
+    value: '7',
   );
 
   /// value8
   static final Program value8 = Program._(
-    '8',
+    value: '8',
   );
 
   /// value9
   static final Program value9 = Program._(
-    '9',
+    value: '9',
   );
 
   /// value10
   static final Program value10 = Program._(
-    '10',
+    value: '10',
   );
 
   /// value11
   static final Program value11 = Program._(
-    '11',
+    value: '11',
   );
 
   /// value12
   static final Program value12 = Program._(
-    '12',
+    value: '12',
   );
 
   /// value13
   static final Program value13 = Program._(
-    '13',
+    value: '13',
   );
 
   /// value14
   static final Program value14 = Program._(
-    '14',
+    value: '14',
   );
 
   /// value15
   static final Program value15 = Program._(
-    '15',
+    value: '15',
   );
 
   /// value16
   static final Program value16 = Program._(
-    '16',
+    value: '16',
   );
 
   /// value17
   static final Program value17 = Program._(
-    '17',
+    value: '17',
   );
 
   /// value18
   static final Program value18 = Program._(
-    '18',
+    value: '18',
   );
 
   /// value19
   static final Program value19 = Program._(
-    '19',
+    value: '19',
   );
 
   /// value20
   static final Program value20 = Program._(
-    '20',
+    value: '20',
   );
 
   /// value21
   static final Program value21 = Program._(
-    '21',
+    value: '21',
   );
 
   /// value22
   static final Program value22 = Program._(
-    '22',
+    value: '22',
   );
 
   /// value23
   static final Program value23 = Program._(
-    '23',
+    value: '23',
   );
 
   /// value24
   static final Program value24 = Program._(
-    '24',
+    value: '24',
   );
 
   /// value25
   static final Program value25 = Program._(
-    '25',
+    value: '25',
   );
 
   /// value26
   static final Program value26 = Program._(
-    '26',
+    value: '26',
   );
 
   /// value27
   static final Program value27 = Program._(
-    '27',
+    value: '27',
   );
 
   /// value28
   static final Program value28 = Program._(
-    '28',
+    value: '28',
   );
 
   /// value29
   static final Program value29 = Program._(
-    '29',
+    value: '29',
   );
 
   /// value30
   static final Program value30 = Program._(
-    '30',
+    value: '30',
   );
 
   /// value31
   static final Program value31 = Program._(
-    '31',
+    value: '31',
   );
 
   /// value32
   static final Program value32 = Program._(
-    '32',
+    value: '32',
   );
 
   /// value33
   static final Program value33 = Program._(
-    '33',
+    value: '33',
   );
 
   /// value34
   static final Program value34 = Program._(
-    '34',
+    value: '34',
   );
 
   /// value35
   static final Program value35 = Program._(
-    '35',
+    value: '35',
   );
 
   /// value36
   static final Program value36 = Program._(
-    '36',
+    value: '36',
   );
 
   /// value37
   static final Program value37 = Program._(
-    '37',
+    value: '37',
   );
 
   /// value38
   static final Program value38 = Program._(
-    '38',
+    value: '38',
   );
 
   /// value39
   static final Program value39 = Program._(
-    '39',
+    value: '39',
   );
 
   /// value40
   static final Program value40 = Program._(
-    '40',
+    value: '40',
   );
 
   /// value41
   static final Program value41 = Program._(
-    '41',
+    value: '41',
   );
 
   /// value42
   static final Program value42 = Program._(
-    '42',
+    value: '42',
   );
 
   /// value43
   static final Program value43 = Program._(
-    '43',
+    value: '43',
   );
 
   /// value44
   static final Program value44 = Program._(
-    '44',
+    value: '44',
   );
 
   /// value45
   static final Program value45 = Program._(
-    '45',
+    value: '45',
   );
 
   /// For instances where an Element is present but not value
 
-  static final Program elementOnly = Program._('');
+  static final Program elementOnly = Program._(value: '');
 
   /// List of all enum-like values
   static final List<Program> values = [
@@ -305,13 +310,13 @@ class Program extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   Program clone() => Program._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   Program withElement(Element? newElement) {
-    return Program._(value, newElement);
+    return Program._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -336,14 +341,13 @@ class Program extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return Program._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

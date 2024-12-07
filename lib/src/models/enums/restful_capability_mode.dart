@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The mode of a RESTful capability statement.
 class RestfulCapabilityMode extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  RestfulCapabilityMode._(super.value, [super.element]);
+  RestfulCapabilityMode._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [RestfulCapabilityMode] from JSON.
   factory RestfulCapabilityMode.fromJson(
@@ -21,22 +26,23 @@ class RestfulCapabilityMode extends PrimitiveType<String> {
         'RestfulCapabilityMode cannot be constructed from JSON.',
       );
     }
-    return RestfulCapabilityMode._(value, element);
+    return RestfulCapabilityMode._(value: value, element: element);
   }
 
   /// client
   static final RestfulCapabilityMode client = RestfulCapabilityMode._(
-    'client',
+    value: 'client',
   );
 
   /// server
   static final RestfulCapabilityMode server = RestfulCapabilityMode._(
-    'server',
+    value: 'server',
   );
 
   /// For instances where an Element is present but not value
 
-  static final RestfulCapabilityMode elementOnly = RestfulCapabilityMode._('');
+  static final RestfulCapabilityMode elementOnly =
+      RestfulCapabilityMode._(value: '');
 
   /// List of all enum-like values
   static final List<RestfulCapabilityMode> values = [
@@ -47,13 +53,13 @@ class RestfulCapabilityMode extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   RestfulCapabilityMode clone() => RestfulCapabilityMode._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   RestfulCapabilityMode withElement(Element? newElement) {
-    return RestfulCapabilityMode._(value, newElement);
+    return RestfulCapabilityMode._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -78,14 +84,13 @@ class RestfulCapabilityMode extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return RestfulCapabilityMode._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

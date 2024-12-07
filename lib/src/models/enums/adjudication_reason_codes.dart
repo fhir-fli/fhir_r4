@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value set includes smattering of Adjudication Reason codes.
 class AdjudicationReasonCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  AdjudicationReasonCodes._(super.value, [super.element]);
+  AdjudicationReasonCodes._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [AdjudicationReasonCodes] from JSON.
   factory AdjudicationReasonCodes.fromJson(
@@ -21,23 +26,23 @@ class AdjudicationReasonCodes extends PrimitiveType<String> {
         'AdjudicationReasonCodes cannot be constructed from JSON.',
       );
     }
-    return AdjudicationReasonCodes._(value, element);
+    return AdjudicationReasonCodes._(value: value, element: element);
   }
 
   /// ar001
   static final AdjudicationReasonCodes ar001 = AdjudicationReasonCodes._(
-    'ar001',
+    value: 'ar001',
   );
 
   /// ar002
   static final AdjudicationReasonCodes ar002 = AdjudicationReasonCodes._(
-    'ar002',
+    value: 'ar002',
   );
 
   /// For instances where an Element is present but not value
 
   static final AdjudicationReasonCodes elementOnly =
-      AdjudicationReasonCodes._('');
+      AdjudicationReasonCodes._(value: '');
 
   /// List of all enum-like values
   static final List<AdjudicationReasonCodes> values = [
@@ -48,13 +53,13 @@ class AdjudicationReasonCodes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   AdjudicationReasonCodes clone() => AdjudicationReasonCodes._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   AdjudicationReasonCodes withElement(Element? newElement) {
-    return AdjudicationReasonCodes._(value, newElement);
+    return AdjudicationReasonCodes._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -79,14 +84,13 @@ class AdjudicationReasonCodes extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return AdjudicationReasonCodes._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

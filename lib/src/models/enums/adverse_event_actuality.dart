@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Overall nature of the adverse event, e.g. real or potential.
 class AdverseEventActuality extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  AdverseEventActuality._(super.value, [super.element]);
+  AdverseEventActuality._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [AdverseEventActuality] from JSON.
   factory AdverseEventActuality.fromJson(
@@ -21,22 +26,23 @@ class AdverseEventActuality extends PrimitiveType<String> {
         'AdverseEventActuality cannot be constructed from JSON.',
       );
     }
-    return AdverseEventActuality._(value, element);
+    return AdverseEventActuality._(value: value, element: element);
   }
 
   /// actual
   static final AdverseEventActuality actual = AdverseEventActuality._(
-    'actual',
+    value: 'actual',
   );
 
   /// potential
   static final AdverseEventActuality potential = AdverseEventActuality._(
-    'potential',
+    value: 'potential',
   );
 
   /// For instances where an Element is present but not value
 
-  static final AdverseEventActuality elementOnly = AdverseEventActuality._('');
+  static final AdverseEventActuality elementOnly =
+      AdverseEventActuality._(value: '');
 
   /// List of all enum-like values
   static final List<AdverseEventActuality> values = [
@@ -47,13 +53,13 @@ class AdverseEventActuality extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   AdverseEventActuality clone() => AdverseEventActuality._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   AdverseEventActuality withElement(Element? newElement) {
-    return AdverseEventActuality._(value, newElement);
+    return AdverseEventActuality._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -78,14 +84,13 @@ class AdverseEventActuality extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return AdverseEventActuality._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

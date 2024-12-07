@@ -38,10 +38,6 @@ class DocumentReference extends DomainResource {
     this.securityLabel,
     required this.content,
     this.context,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.DocumentReference,
         );
@@ -487,10 +483,6 @@ class DocumentReference extends DomainResource {
       securityLabel: securityLabel ?? this.securityLabel,
       content: content ?? this.content,
       context: context ?? this.context,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -509,10 +501,6 @@ class DocumentReferenceRelatesTo extends BackboneElement {
     required this.code,
     required this.target,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -648,10 +636,6 @@ class DocumentReferenceRelatesTo extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       code: code ?? this.code,
       target: target ?? this.target,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -670,10 +654,6 @@ class DocumentReferenceContent extends BackboneElement {
     required this.attachment,
     this.format,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -816,10 +796,6 @@ class DocumentReferenceContent extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       attachment: attachment ?? this.attachment,
       format: format ?? this.format,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -842,10 +818,6 @@ class DocumentReferenceContext extends BackboneElement {
     this.sourcePatientInfo,
     this.related,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1084,10 +1056,6 @@ class DocumentReferenceContext extends BackboneElement {
       practiceSetting: practiceSetting ?? this.practiceSetting,
       sourcePatientInfo: sourcePatientInfo ?? this.sourcePatientInfo,
       related: related ?? this.related,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

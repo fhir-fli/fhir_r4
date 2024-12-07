@@ -73,10 +73,6 @@ class ActivityDefinition extends CanonicalResource {
     this.observationResultRequirement,
     this.transform,
     this.dynamicValue,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.ActivityDefinition,
         );
@@ -1130,10 +1126,6 @@ class ActivityDefinition extends CanonicalResource {
           observationResultRequirement ?? this.observationResultRequirement,
       transform: transform ?? this.transform,
       dynamicValue: dynamicValue ?? this.dynamicValue,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1151,10 +1143,6 @@ class ActivityDefinitionParticipant extends BackboneElement {
     required this.type,
     this.role,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1295,10 +1283,6 @@ class ActivityDefinitionParticipant extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
       role: role ?? this.role,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1320,10 +1304,6 @@ class ActivityDefinitionDynamicValue extends BackboneElement {
     required this.path,
     required this.expression,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1467,10 +1447,6 @@ class ActivityDefinitionDynamicValue extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       path: path ?? this.path,
       expression: expression ?? this.expression,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

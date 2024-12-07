@@ -48,10 +48,6 @@ class Immunization extends DomainResource {
     this.fundingSource,
     this.reaction,
     this.protocolApplied,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.Immunization,
         );
@@ -697,10 +693,6 @@ class Immunization extends DomainResource {
       fundingSource: fundingSource ?? this.fundingSource,
       reaction: reaction ?? this.reaction,
       protocolApplied: protocolApplied ?? this.protocolApplied,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -718,10 +710,6 @@ class ImmunizationPerformer extends BackboneElement {
     this.function_,
     required this.actor,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -862,10 +850,6 @@ class ImmunizationPerformer extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       function_: function_ ?? this.function_,
       actor: actor ?? this.actor,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -886,10 +870,6 @@ class ImmunizationEducation extends BackboneElement {
     this.publicationDate,
     this.presentationDate,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1059,10 +1039,6 @@ class ImmunizationEducation extends BackboneElement {
       reference: reference ?? this.reference,
       publicationDate: publicationDate ?? this.publicationDate,
       presentationDate: presentationDate ?? this.presentationDate,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1082,10 +1058,6 @@ class ImmunizationReaction extends BackboneElement {
     this.detail,
     this.reported,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1240,10 +1212,6 @@ class ImmunizationReaction extends BackboneElement {
       date: date ?? this.date,
       detail: detail ?? this.detail,
       reported: reported ?? this.reported,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1267,10 +1235,6 @@ class ImmunizationProtocolApplied extends BackboneElement {
     this.seriesDosesPositiveInt,
     this.seriesDosesString,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1491,10 +1455,6 @@ class ImmunizationProtocolApplied extends BackboneElement {
       seriesDosesPositiveInt:
           seriesDosesPositiveInt ?? this.seriesDosesPositiveInt,
       seriesDosesString: seriesDosesString ?? this.seriesDosesString,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

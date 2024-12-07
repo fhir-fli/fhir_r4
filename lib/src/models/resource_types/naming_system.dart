@@ -32,10 +32,6 @@ class NamingSystem extends DomainResource {
     this.jurisdiction,
     this.usage,
     required this.uniqueId,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.NamingSystem,
         );
@@ -416,10 +412,6 @@ class NamingSystem extends DomainResource {
       jurisdiction: jurisdiction ?? this.jurisdiction,
       usage: usage ?? this.usage,
       uniqueId: uniqueId ?? this.uniqueId,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -441,10 +433,6 @@ class NamingSystemUniqueId extends BackboneElement {
     this.comment,
     this.period,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -626,10 +614,6 @@ class NamingSystemUniqueId extends BackboneElement {
       preferred: preferred ?? this.preferred,
       comment: comment ?? this.comment,
       period: period ?? this.period,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// MedicationDispense Status Codes
 class MedicationDispenseStatusCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  MedicationDispenseStatusCodes._(super.value, [super.element]);
+  MedicationDispenseStatusCodes._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [MedicationDispenseStatusCodes] from JSON.
   factory MedicationDispenseStatusCodes.fromJson(
@@ -21,67 +26,67 @@ class MedicationDispenseStatusCodes extends PrimitiveType<String> {
         'MedicationDispenseStatusCodes cannot be constructed from JSON.',
       );
     }
-    return MedicationDispenseStatusCodes._(value, element);
+    return MedicationDispenseStatusCodes._(value: value, element: element);
   }
 
   /// preparation
   static final MedicationDispenseStatusCodes preparation =
       MedicationDispenseStatusCodes._(
-    'preparation',
+    value: 'preparation',
   );
 
   /// in_progress
   static final MedicationDispenseStatusCodes in_progress =
       MedicationDispenseStatusCodes._(
-    'in-progress',
+    value: 'in-progress',
   );
 
   /// cancelled
   static final MedicationDispenseStatusCodes cancelled =
       MedicationDispenseStatusCodes._(
-    'cancelled',
+    value: 'cancelled',
   );
 
   /// on_hold
   static final MedicationDispenseStatusCodes on_hold =
       MedicationDispenseStatusCodes._(
-    'on-hold',
+    value: 'on-hold',
   );
 
   /// completed
   static final MedicationDispenseStatusCodes completed =
       MedicationDispenseStatusCodes._(
-    'completed',
+    value: 'completed',
   );
 
   /// entered_in_error
   static final MedicationDispenseStatusCodes entered_in_error =
       MedicationDispenseStatusCodes._(
-    'entered-in-error',
+    value: 'entered-in-error',
   );
 
   /// stopped
   static final MedicationDispenseStatusCodes stopped =
       MedicationDispenseStatusCodes._(
-    'stopped',
+    value: 'stopped',
   );
 
   /// declined
   static final MedicationDispenseStatusCodes declined =
       MedicationDispenseStatusCodes._(
-    'declined',
+    value: 'declined',
   );
 
   /// unknown
   static final MedicationDispenseStatusCodes unknown =
       MedicationDispenseStatusCodes._(
-    'unknown',
+    value: 'unknown',
   );
 
   /// For instances where an Element is present but not value
 
   static final MedicationDispenseStatusCodes elementOnly =
-      MedicationDispenseStatusCodes._('');
+      MedicationDispenseStatusCodes._(value: '');
 
   /// List of all enum-like values
   static final List<MedicationDispenseStatusCodes> values = [
@@ -99,13 +104,13 @@ class MedicationDispenseStatusCodes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   MedicationDispenseStatusCodes clone() => MedicationDispenseStatusCodes._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   MedicationDispenseStatusCodes withElement(Element? newElement) {
-    return MedicationDispenseStatusCodes._(value, newElement);
+    return MedicationDispenseStatusCodes._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -130,14 +135,13 @@ class MedicationDispenseStatusCodes extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return MedicationDispenseStatusCodes._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

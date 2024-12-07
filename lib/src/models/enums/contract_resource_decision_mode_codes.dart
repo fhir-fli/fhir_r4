@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value set contract specific codes for decision modes.
 class ContractResourceDecisionModeCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ContractResourceDecisionModeCodes._(super.value, [super.element]);
+  ContractResourceDecisionModeCodes._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [ContractResourceDecisionModeCodes] from JSON.
   factory ContractResourceDecisionModeCodes.fromJson(
@@ -21,19 +26,19 @@ class ContractResourceDecisionModeCodes extends PrimitiveType<String> {
         'ContractResourceDecisionModeCodes cannot be constructed from JSON.',
       );
     }
-    return ContractResourceDecisionModeCodes._(value, element);
+    return ContractResourceDecisionModeCodes._(value: value, element: element);
   }
 
   /// policy
   static final ContractResourceDecisionModeCodes policy =
       ContractResourceDecisionModeCodes._(
-    'policy',
+    value: 'policy',
   );
 
   /// For instances where an Element is present but not value
 
   static final ContractResourceDecisionModeCodes elementOnly =
-      ContractResourceDecisionModeCodes._('');
+      ContractResourceDecisionModeCodes._(value: '');
 
   /// List of all enum-like values
   static final List<ContractResourceDecisionModeCodes> values = [
@@ -44,13 +49,14 @@ class ContractResourceDecisionModeCodes extends PrimitiveType<String> {
   @override
   ContractResourceDecisionModeCodes clone() =>
       ContractResourceDecisionModeCodes._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ContractResourceDecisionModeCodes withElement(Element? newElement) {
-    return ContractResourceDecisionModeCodes._(value, newElement);
+    return ContractResourceDecisionModeCodes._(
+        value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -75,14 +81,13 @@ class ContractResourceDecisionModeCodes extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ContractResourceDecisionModeCodes._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

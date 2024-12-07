@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This example value set defines a set of codes that can be used to indicate the method by which a specimen was collected.
 class FHIRSpecimenCollectionMethod extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  FHIRSpecimenCollectionMethod._(super.value, [super.element]);
+  FHIRSpecimenCollectionMethod._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [FHIRSpecimenCollectionMethod] from JSON.
   factory FHIRSpecimenCollectionMethod.fromJson(
@@ -21,73 +26,73 @@ class FHIRSpecimenCollectionMethod extends PrimitiveType<String> {
         'FHIRSpecimenCollectionMethod cannot be constructed from JSON.',
       );
     }
-    return FHIRSpecimenCollectionMethod._(value, element);
+    return FHIRSpecimenCollectionMethod._(value: value, element: element);
   }
 
   /// value129316008
   static final FHIRSpecimenCollectionMethod value129316008 =
       FHIRSpecimenCollectionMethod._(
-    '129316008',
+    value: '129316008',
   );
 
   /// value129314006
   static final FHIRSpecimenCollectionMethod value129314006 =
       FHIRSpecimenCollectionMethod._(
-    '129314006',
+    value: '129314006',
   );
 
   /// value129300006
   static final FHIRSpecimenCollectionMethod value129300006 =
       FHIRSpecimenCollectionMethod._(
-    '129300006',
+    value: '129300006',
   );
 
   /// value129304002
   static final FHIRSpecimenCollectionMethod value129304002 =
       FHIRSpecimenCollectionMethod._(
-    '129304002',
+    value: '129304002',
   );
 
   /// value129323009
   static final FHIRSpecimenCollectionMethod value129323009 =
       FHIRSpecimenCollectionMethod._(
-    '129323009',
+    value: '129323009',
   );
 
   /// value73416001
   static final FHIRSpecimenCollectionMethod value73416001 =
       FHIRSpecimenCollectionMethod._(
-    '73416001',
+    value: '73416001',
   );
 
   /// value225113003
   static final FHIRSpecimenCollectionMethod value225113003 =
       FHIRSpecimenCollectionMethod._(
-    '225113003',
+    value: '225113003',
   );
 
   /// value70777001
   static final FHIRSpecimenCollectionMethod value70777001 =
       FHIRSpecimenCollectionMethod._(
-    '70777001',
+    value: '70777001',
   );
 
   /// value386089008
   static final FHIRSpecimenCollectionMethod value386089008 =
       FHIRSpecimenCollectionMethod._(
-    '386089008',
+    value: '386089008',
   );
 
   /// value278450005
   static final FHIRSpecimenCollectionMethod value278450005 =
       FHIRSpecimenCollectionMethod._(
-    '278450005',
+    value: '278450005',
   );
 
   /// For instances where an Element is present but not value
 
   static final FHIRSpecimenCollectionMethod elementOnly =
-      FHIRSpecimenCollectionMethod._('');
+      FHIRSpecimenCollectionMethod._(value: '');
 
   /// List of all enum-like values
   static final List<FHIRSpecimenCollectionMethod> values = [
@@ -106,13 +111,13 @@ class FHIRSpecimenCollectionMethod extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   FHIRSpecimenCollectionMethod clone() => FHIRSpecimenCollectionMethod._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   FHIRSpecimenCollectionMethod withElement(Element? newElement) {
-    return FHIRSpecimenCollectionMethod._(value, newElement);
+    return FHIRSpecimenCollectionMethod._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -137,14 +142,13 @@ class FHIRSpecimenCollectionMethod extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return FHIRSpecimenCollectionMethod._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

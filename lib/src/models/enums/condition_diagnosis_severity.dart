@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Preferred value set for Condition/Diagnosis severity grading.
 class ConditionDiagnosisSeverity extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ConditionDiagnosisSeverity._(super.value, [super.element]);
+  ConditionDiagnosisSeverity._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [ConditionDiagnosisSeverity] from JSON.
   factory ConditionDiagnosisSeverity.fromJson(
@@ -21,31 +26,31 @@ class ConditionDiagnosisSeverity extends PrimitiveType<String> {
         'ConditionDiagnosisSeverity cannot be constructed from JSON.',
       );
     }
-    return ConditionDiagnosisSeverity._(value, element);
+    return ConditionDiagnosisSeverity._(value: value, element: element);
   }
 
   /// value24484000
   static final ConditionDiagnosisSeverity value24484000 =
       ConditionDiagnosisSeverity._(
-    '24484000',
+    value: '24484000',
   );
 
   /// value6736007
   static final ConditionDiagnosisSeverity value6736007 =
       ConditionDiagnosisSeverity._(
-    '6736007',
+    value: '6736007',
   );
 
   /// value255604002
   static final ConditionDiagnosisSeverity value255604002 =
       ConditionDiagnosisSeverity._(
-    '255604002',
+    value: '255604002',
   );
 
   /// For instances where an Element is present but not value
 
   static final ConditionDiagnosisSeverity elementOnly =
-      ConditionDiagnosisSeverity._('');
+      ConditionDiagnosisSeverity._(value: '');
 
   /// List of all enum-like values
   static final List<ConditionDiagnosisSeverity> values = [
@@ -57,13 +62,13 @@ class ConditionDiagnosisSeverity extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ConditionDiagnosisSeverity clone() => ConditionDiagnosisSeverity._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ConditionDiagnosisSeverity withElement(Element? newElement) {
-    return ConditionDiagnosisSeverity._(value, newElement);
+    return ConditionDiagnosisSeverity._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -88,14 +93,13 @@ class ConditionDiagnosisSeverity extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ConditionDiagnosisSeverity._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

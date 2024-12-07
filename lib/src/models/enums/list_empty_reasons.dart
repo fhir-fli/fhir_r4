@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// General reasons for a list to be empty. Reasons are either related to a summary list (i.e. problem or medication list) or to a workflow related list (i.e. consultation list).
 class ListEmptyReasons extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ListEmptyReasons._(super.value, [super.element]);
+  ListEmptyReasons._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [ListEmptyReasons] from JSON.
   factory ListEmptyReasons.fromJson(
@@ -21,42 +26,42 @@ class ListEmptyReasons extends PrimitiveType<String> {
         'ListEmptyReasons cannot be constructed from JSON.',
       );
     }
-    return ListEmptyReasons._(value, element);
+    return ListEmptyReasons._(value: value, element: element);
   }
 
   /// nilknown
   static final ListEmptyReasons nilknown = ListEmptyReasons._(
-    'nilknown',
+    value: 'nilknown',
   );
 
   /// notasked
   static final ListEmptyReasons notasked = ListEmptyReasons._(
-    'notasked',
+    value: 'notasked',
   );
 
   /// withheld
   static final ListEmptyReasons withheld = ListEmptyReasons._(
-    'withheld',
+    value: 'withheld',
   );
 
   /// unavailable
   static final ListEmptyReasons unavailable = ListEmptyReasons._(
-    'unavailable',
+    value: 'unavailable',
   );
 
   /// notstarted
   static final ListEmptyReasons notstarted = ListEmptyReasons._(
-    'notstarted',
+    value: 'notstarted',
   );
 
   /// closed
   static final ListEmptyReasons closed = ListEmptyReasons._(
-    'closed',
+    value: 'closed',
   );
 
   /// For instances where an Element is present but not value
 
-  static final ListEmptyReasons elementOnly = ListEmptyReasons._('');
+  static final ListEmptyReasons elementOnly = ListEmptyReasons._(value: '');
 
   /// List of all enum-like values
   static final List<ListEmptyReasons> values = [
@@ -71,13 +76,13 @@ class ListEmptyReasons extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ListEmptyReasons clone() => ListEmptyReasons._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ListEmptyReasons withElement(Element? newElement) {
-    return ListEmptyReasons._(value, newElement);
+    return ListEmptyReasons._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -102,14 +107,13 @@ class ListEmptyReasons extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ListEmptyReasons._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

@@ -55,10 +55,6 @@ class Observation extends DomainResource {
     this.hasMember,
     this.derivedFrom,
     this.component,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.Observation,
         );
@@ -875,10 +871,6 @@ class Observation extends DomainResource {
       hasMember: hasMember ?? this.hasMember,
       derivedFrom: derivedFrom ?? this.derivedFrom,
       component: component ?? this.component,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -903,10 +895,6 @@ class ObservationReferenceRange extends BackboneElement {
     this.age,
     this.text,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1128,10 +1116,6 @@ class ObservationReferenceRange extends BackboneElement {
       appliesTo: appliesTo ?? this.appliesTo,
       age: age ?? this.age,
       text: text ?? this.text,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1166,10 +1150,6 @@ class ObservationComponent extends BackboneElement {
     this.interpretation,
     this.referenceRange,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1520,10 +1500,6 @@ class ObservationComponent extends BackboneElement {
       dataAbsentReason: dataAbsentReason ?? this.dataAbsentReason,
       interpretation: interpretation ?? this.interpretation,
       referenceRange: referenceRange ?? this.referenceRange,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

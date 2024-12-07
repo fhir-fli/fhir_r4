@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The mode of a message capability statement.
 class EventCapabilityMode extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  EventCapabilityMode._(super.value, [super.element]);
+  EventCapabilityMode._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [EventCapabilityMode] from JSON.
   factory EventCapabilityMode.fromJson(
@@ -21,22 +26,23 @@ class EventCapabilityMode extends PrimitiveType<String> {
         'EventCapabilityMode cannot be constructed from JSON.',
       );
     }
-    return EventCapabilityMode._(value, element);
+    return EventCapabilityMode._(value: value, element: element);
   }
 
   /// sender
   static final EventCapabilityMode sender = EventCapabilityMode._(
-    'sender',
+    value: 'sender',
   );
 
   /// receiver
   static final EventCapabilityMode receiver = EventCapabilityMode._(
-    'receiver',
+    value: 'receiver',
   );
 
   /// For instances where an Element is present but not value
 
-  static final EventCapabilityMode elementOnly = EventCapabilityMode._('');
+  static final EventCapabilityMode elementOnly =
+      EventCapabilityMode._(value: '');
 
   /// List of all enum-like values
   static final List<EventCapabilityMode> values = [
@@ -47,13 +53,13 @@ class EventCapabilityMode extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   EventCapabilityMode clone() => EventCapabilityMode._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   EventCapabilityMode withElement(Element? newElement) {
-    return EventCapabilityMode._(value, newElement);
+    return EventCapabilityMode._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -78,14 +84,13 @@ class EventCapabilityMode extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return EventCapabilityMode._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

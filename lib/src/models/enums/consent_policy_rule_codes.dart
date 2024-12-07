@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value set includes sample Regulatory consent policy types from the US and other regions.
 class ConsentPolicyRuleCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ConsentPolicyRuleCodes._(super.value, [super.element]);
+  ConsentPolicyRuleCodes._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [ConsentPolicyRuleCodes] from JSON.
   factory ConsentPolicyRuleCodes.fromJson(
@@ -21,146 +26,146 @@ class ConsentPolicyRuleCodes extends PrimitiveType<String> {
         'ConsentPolicyRuleCodes cannot be constructed from JSON.',
       );
     }
-    return ConsentPolicyRuleCodes._(value, element);
+    return ConsentPolicyRuleCodes._(value: value, element: element);
   }
 
   /// cric
   static final ConsentPolicyRuleCodes cric = ConsentPolicyRuleCodes._(
-    'cric',
+    value: 'cric',
   );
 
   /// illinois_minor_procedure
   static final ConsentPolicyRuleCodes illinois_minor_procedure =
       ConsentPolicyRuleCodes._(
-    'illinois-minor-procedure',
+    value: 'illinois-minor-procedure',
   );
 
   /// hipaa_auth
   static final ConsentPolicyRuleCodes hipaa_auth = ConsentPolicyRuleCodes._(
-    'hipaa-auth',
+    value: 'hipaa-auth',
   );
 
   /// hipaa_npp
   static final ConsentPolicyRuleCodes hipaa_npp = ConsentPolicyRuleCodes._(
-    'hipaa-npp',
+    value: 'hipaa-npp',
   );
 
   /// hipaa_restrictions
   static final ConsentPolicyRuleCodes hipaa_restrictions =
       ConsentPolicyRuleCodes._(
-    'hipaa-restrictions',
+    value: 'hipaa-restrictions',
   );
 
   /// hipaa_research
   static final ConsentPolicyRuleCodes hipaa_research = ConsentPolicyRuleCodes._(
-    'hipaa-research',
+    value: 'hipaa-research',
   );
 
   /// hipaa_self_pay
   static final ConsentPolicyRuleCodes hipaa_self_pay = ConsentPolicyRuleCodes._(
-    'hipaa-self-pay',
+    value: 'hipaa-self-pay',
   );
 
   /// mdhhs_5515
   static final ConsentPolicyRuleCodes mdhhs_5515 = ConsentPolicyRuleCodes._(
-    'mdhhs-5515',
+    value: 'mdhhs-5515',
   );
 
   /// nyssipp
   static final ConsentPolicyRuleCodes nyssipp = ConsentPolicyRuleCodes._(
-    'nyssipp',
+    value: 'nyssipp',
   );
 
   /// va_10_0484
   static final ConsentPolicyRuleCodes va_10_0484 = ConsentPolicyRuleCodes._(
-    'va-10-0484',
+    value: 'va-10-0484',
   );
 
   /// va_10_0485
   static final ConsentPolicyRuleCodes va_10_0485 = ConsentPolicyRuleCodes._(
-    'va-10-0485',
+    value: 'va-10-0485',
   );
 
   /// va_10_5345
   static final ConsentPolicyRuleCodes va_10_5345 = ConsentPolicyRuleCodes._(
-    'va-10-5345',
+    value: 'va-10-5345',
   );
 
   /// va_10_5345a
   static final ConsentPolicyRuleCodes va_10_5345a = ConsentPolicyRuleCodes._(
-    'va-10-5345a',
+    value: 'va-10-5345a',
   );
 
   /// va_10_5345a_mhv
   static final ConsentPolicyRuleCodes va_10_5345a_mhv =
       ConsentPolicyRuleCodes._(
-    'va-10-5345a-mhv',
+    value: 'va-10-5345a-mhv',
   );
 
   /// va_10_10116
   static final ConsentPolicyRuleCodes va_10_10116 = ConsentPolicyRuleCodes._(
-    'va-10-10116',
+    value: 'va-10-10116',
   );
 
   /// va_21_4142
   static final ConsentPolicyRuleCodes va_21_4142 = ConsentPolicyRuleCodes._(
-    'va-21-4142',
+    value: 'va-21-4142',
   );
 
   /// ssa_827
   static final ConsentPolicyRuleCodes ssa_827 = ConsentPolicyRuleCodes._(
-    'ssa-827',
+    value: 'ssa-827',
   );
 
   /// dch_3927
   static final ConsentPolicyRuleCodes dch_3927 = ConsentPolicyRuleCodes._(
-    'dch-3927',
+    value: 'dch-3927',
   );
 
   /// squaxin
   static final ConsentPolicyRuleCodes squaxin = ConsentPolicyRuleCodes._(
-    'squaxin',
+    value: 'squaxin',
   );
 
   /// nl_lsp
   static final ConsentPolicyRuleCodes nl_lsp = ConsentPolicyRuleCodes._(
-    'nl-lsp',
+    value: 'nl-lsp',
   );
 
   /// at_elga
   static final ConsentPolicyRuleCodes at_elga = ConsentPolicyRuleCodes._(
-    'at-elga',
+    value: 'at-elga',
   );
 
   /// nih_hipaa
   static final ConsentPolicyRuleCodes nih_hipaa = ConsentPolicyRuleCodes._(
-    'nih-hipaa',
+    value: 'nih-hipaa',
   );
 
   /// nci
   static final ConsentPolicyRuleCodes nci = ConsentPolicyRuleCodes._(
-    'nci',
+    value: 'nci',
   );
 
   /// nih_grdr
   static final ConsentPolicyRuleCodes nih_grdr = ConsentPolicyRuleCodes._(
-    'nih-grdr',
+    value: 'nih-grdr',
   );
 
   /// nih_527
   static final ConsentPolicyRuleCodes nih_527 = ConsentPolicyRuleCodes._(
-    'nih-527',
+    value: 'nih-527',
   );
 
   /// ga4gh
   static final ConsentPolicyRuleCodes ga4gh = ConsentPolicyRuleCodes._(
-    'ga4gh',
+    value: 'ga4gh',
   );
 
   /// For instances where an Element is present but not value
 
   static final ConsentPolicyRuleCodes elementOnly =
-      ConsentPolicyRuleCodes._('');
+      ConsentPolicyRuleCodes._(value: '');
 
   /// List of all enum-like values
   static final List<ConsentPolicyRuleCodes> values = [
@@ -195,13 +200,13 @@ class ConsentPolicyRuleCodes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ConsentPolicyRuleCodes clone() => ConsentPolicyRuleCodes._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ConsentPolicyRuleCodes withElement(Element? newElement) {
-    return ConsentPolicyRuleCodes._(value, newElement);
+    return ConsentPolicyRuleCodes._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -226,14 +231,13 @@ class ConsentPolicyRuleCodes extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ConsentPolicyRuleCodes._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

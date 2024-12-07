@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// A code that indicates how the server supports conditional read.
 class ConditionalReadStatus extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ConditionalReadStatus._(super.value, [super.element]);
+  ConditionalReadStatus._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [ConditionalReadStatus] from JSON.
   factory ConditionalReadStatus.fromJson(
@@ -21,32 +26,33 @@ class ConditionalReadStatus extends PrimitiveType<String> {
         'ConditionalReadStatus cannot be constructed from JSON.',
       );
     }
-    return ConditionalReadStatus._(value, element);
+    return ConditionalReadStatus._(value: value, element: element);
   }
 
   /// not_supported
   static final ConditionalReadStatus not_supported = ConditionalReadStatus._(
-    'not-supported',
+    value: 'not-supported',
   );
 
   /// modified_since
   static final ConditionalReadStatus modified_since = ConditionalReadStatus._(
-    'modified-since',
+    value: 'modified-since',
   );
 
   /// not_match
   static final ConditionalReadStatus not_match = ConditionalReadStatus._(
-    'not-match',
+    value: 'not-match',
   );
 
   /// full_support
   static final ConditionalReadStatus full_support = ConditionalReadStatus._(
-    'full-support',
+    value: 'full-support',
   );
 
   /// For instances where an Element is present but not value
 
-  static final ConditionalReadStatus elementOnly = ConditionalReadStatus._('');
+  static final ConditionalReadStatus elementOnly =
+      ConditionalReadStatus._(value: '');
 
   /// List of all enum-like values
   static final List<ConditionalReadStatus> values = [
@@ -59,13 +65,13 @@ class ConditionalReadStatus extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ConditionalReadStatus clone() => ConditionalReadStatus._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ConditionalReadStatus withElement(Element? newElement) {
-    return ConditionalReadStatus._(value, newElement);
+    return ConditionalReadStatus._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -90,14 +96,13 @@ class ConditionalReadStatus extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ConditionalReadStatus._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

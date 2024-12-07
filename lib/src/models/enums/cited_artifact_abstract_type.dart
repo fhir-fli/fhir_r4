@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Used to express the reason and specific aspect for the variant abstract, such as language and specific language.
 class CitedArtifactAbstractType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  CitedArtifactAbstractType._(super.value, [super.element]);
+  CitedArtifactAbstractType._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [CitedArtifactAbstractType] from JSON.
   factory CitedArtifactAbstractType.fromJson(
@@ -21,78 +26,78 @@ class CitedArtifactAbstractType extends PrimitiveType<String> {
         'CitedArtifactAbstractType cannot be constructed from JSON.',
       );
     }
-    return CitedArtifactAbstractType._(value, element);
+    return CitedArtifactAbstractType._(value: value, element: element);
   }
 
   /// primary_human_use
   static final CitedArtifactAbstractType primary_human_use =
       CitedArtifactAbstractType._(
-    'primary-human-use',
+    value: 'primary-human-use',
   );
 
   /// primary_machine_use
   static final CitedArtifactAbstractType primary_machine_use =
       CitedArtifactAbstractType._(
-    'primary-machine-use',
+    value: 'primary-machine-use',
   );
 
   /// truncated
   static final CitedArtifactAbstractType truncated =
       CitedArtifactAbstractType._(
-    'truncated',
+    value: 'truncated',
   );
 
   /// short_abstract
   static final CitedArtifactAbstractType short_abstract =
       CitedArtifactAbstractType._(
-    'short-abstract',
+    value: 'short-abstract',
   );
 
   /// long_abstract
   static final CitedArtifactAbstractType long_abstract =
       CitedArtifactAbstractType._(
-    'long-abstract',
+    value: 'long-abstract',
   );
 
   /// plain_language
   static final CitedArtifactAbstractType plain_language =
       CitedArtifactAbstractType._(
-    'plain-language',
+    value: 'plain-language',
   );
 
   /// different_publisher
   static final CitedArtifactAbstractType different_publisher =
       CitedArtifactAbstractType._(
-    'different-publisher',
+    value: 'different-publisher',
   );
 
   /// language
   static final CitedArtifactAbstractType language = CitedArtifactAbstractType._(
-    'language',
+    value: 'language',
   );
 
   /// autotranslated
   static final CitedArtifactAbstractType autotranslated =
       CitedArtifactAbstractType._(
-    'autotranslated',
+    value: 'autotranslated',
   );
 
   /// duplicate_pmid
   static final CitedArtifactAbstractType duplicate_pmid =
       CitedArtifactAbstractType._(
-    'duplicate-pmid',
+    value: 'duplicate-pmid',
   );
 
   /// earlier_abstract
   static final CitedArtifactAbstractType earlier_abstract =
       CitedArtifactAbstractType._(
-    'earlier-abstract',
+    value: 'earlier-abstract',
   );
 
   /// For instances where an Element is present but not value
 
   static final CitedArtifactAbstractType elementOnly =
-      CitedArtifactAbstractType._('');
+      CitedArtifactAbstractType._(value: '');
 
   /// List of all enum-like values
   static final List<CitedArtifactAbstractType> values = [
@@ -112,13 +117,13 @@ class CitedArtifactAbstractType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   CitedArtifactAbstractType clone() => CitedArtifactAbstractType._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   CitedArtifactAbstractType withElement(Element? newElement) {
-    return CitedArtifactAbstractType._(value, newElement);
+    return CitedArtifactAbstractType._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -143,14 +148,13 @@ class CitedArtifactAbstractType extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return CitedArtifactAbstractType._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

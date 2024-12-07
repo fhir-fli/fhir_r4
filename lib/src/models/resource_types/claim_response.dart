@@ -45,10 +45,6 @@ class ClaimResponse extends DomainResource {
     this.communicationRequest,
     this.insurance,
     this.error,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.ClaimResponse,
         );
@@ -650,10 +646,6 @@ class ClaimResponse extends DomainResource {
       communicationRequest: communicationRequest ?? this.communicationRequest,
       insurance: insurance ?? this.insurance,
       error: error ?? this.error,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -674,10 +666,6 @@ class ClaimResponseItem extends BackboneElement {
     required this.adjudication,
     this.detail,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -863,10 +851,6 @@ class ClaimResponseItem extends BackboneElement {
       noteNumber: noteNumber ?? this.noteNumber,
       adjudication: adjudication ?? this.adjudication,
       detail: detail ?? this.detail,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -888,10 +872,6 @@ class ClaimResponseAdjudication extends BackboneElement {
     this.amount,
     this.value,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1066,10 +1046,6 @@ class ClaimResponseAdjudication extends BackboneElement {
       reason: reason ?? this.reason,
       amount: amount ?? this.amount,
       value: value ?? this.value,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1090,10 +1066,6 @@ class ClaimResponseDetail extends BackboneElement {
     required this.adjudication,
     this.subDetail,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1276,10 +1248,6 @@ class ClaimResponseDetail extends BackboneElement {
       noteNumber: noteNumber ?? this.noteNumber,
       adjudication: adjudication ?? this.adjudication,
       subDetail: subDetail ?? this.subDetail,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1298,10 +1266,6 @@ class ClaimResponseSubDetail extends BackboneElement {
     this.noteNumber,
     this.adjudication,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1465,10 +1429,6 @@ class ClaimResponseSubDetail extends BackboneElement {
       subDetailSequence: subDetailSequence ?? this.subDetailSequence,
       noteNumber: noteNumber ?? this.noteNumber,
       adjudication: adjudication ?? this.adjudication,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1506,10 +1466,6 @@ class ClaimResponseAddItem extends BackboneElement {
     required this.adjudication,
     this.detail,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1989,10 +1945,6 @@ class ClaimResponseAddItem extends BackboneElement {
       noteNumber: noteNumber ?? this.noteNumber,
       adjudication: adjudication ?? this.adjudication,
       detail: detail ?? this.detail,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -2017,10 +1969,6 @@ class ClaimResponseDetail1 extends BackboneElement {
     required this.adjudication,
     this.subDetail,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -2289,10 +2237,6 @@ class ClaimResponseDetail1 extends BackboneElement {
       noteNumber: noteNumber ?? this.noteNumber,
       adjudication: adjudication ?? this.adjudication,
       subDetail: subDetail ?? this.subDetail,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -2316,10 +2260,6 @@ class ClaimResponseSubDetail1 extends BackboneElement {
     this.noteNumber,
     required this.adjudication,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -2569,10 +2509,6 @@ class ClaimResponseSubDetail1 extends BackboneElement {
       net: net ?? this.net,
       noteNumber: noteNumber ?? this.noteNumber,
       adjudication: adjudication ?? this.adjudication,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -2590,10 +2526,6 @@ class ClaimResponseTotal extends BackboneElement {
     required this.category,
     required this.amount,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -2733,10 +2665,6 @@ class ClaimResponseTotal extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       category: category ?? this.category,
       amount: amount ?? this.amount,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -2758,10 +2686,6 @@ class ClaimResponsePayment extends BackboneElement {
     required this.amount,
     this.identifier,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -2958,10 +2882,6 @@ class ClaimResponsePayment extends BackboneElement {
       date: date ?? this.date,
       amount: amount ?? this.amount,
       identifier: identifier ?? this.identifier,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -2982,10 +2902,6 @@ class ClaimResponseProcessNote extends BackboneElement {
     required this.text,
     this.language,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -3151,10 +3067,6 @@ class ClaimResponseProcessNote extends BackboneElement {
       type: type ?? this.type,
       text: text ?? this.text,
       language: language ?? this.language,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -3176,10 +3088,6 @@ class ClaimResponseInsurance extends BackboneElement {
     this.businessArrangement,
     this.claimResponse,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -3362,10 +3270,6 @@ class ClaimResponseInsurance extends BackboneElement {
       coverage: coverage ?? this.coverage,
       businessArrangement: businessArrangement ?? this.businessArrangement,
       claimResponse: claimResponse ?? this.claimResponse,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -3385,10 +3289,6 @@ class ClaimResponseError extends BackboneElement {
     this.subDetailSequence,
     required this.code,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -3562,10 +3462,6 @@ class ClaimResponseError extends BackboneElement {
       detailSequence: detailSequence ?? this.detailSequence,
       subDetailSequence: subDetailSequence ?? this.subDetailSequence,
       code: code ?? this.code,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

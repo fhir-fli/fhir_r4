@@ -18,10 +18,6 @@ class Binary extends Resource {
     required this.contentType,
     this.securityContext,
     this.data,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.Binary,
         );
@@ -187,10 +183,6 @@ class Binary extends Resource {
       contentType: contentType ?? this.contentType,
       securityContext: securityContext ?? this.securityContext,
       data: data ?? this.data,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

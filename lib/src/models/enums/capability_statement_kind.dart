@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// How a capability statement is intended to be used.
 class CapabilityStatementKind extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  CapabilityStatementKind._(super.value, [super.element]);
+  CapabilityStatementKind._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [CapabilityStatementKind] from JSON.
   factory CapabilityStatementKind.fromJson(
@@ -21,28 +26,28 @@ class CapabilityStatementKind extends PrimitiveType<String> {
         'CapabilityStatementKind cannot be constructed from JSON.',
       );
     }
-    return CapabilityStatementKind._(value, element);
+    return CapabilityStatementKind._(value: value, element: element);
   }
 
   /// instance
   static final CapabilityStatementKind instance = CapabilityStatementKind._(
-    'instance',
+    value: 'instance',
   );
 
   /// capability
   static final CapabilityStatementKind capability = CapabilityStatementKind._(
-    'capability',
+    value: 'capability',
   );
 
   /// requirements
   static final CapabilityStatementKind requirements = CapabilityStatementKind._(
-    'requirements',
+    value: 'requirements',
   );
 
   /// For instances where an Element is present but not value
 
   static final CapabilityStatementKind elementOnly =
-      CapabilityStatementKind._('');
+      CapabilityStatementKind._(value: '');
 
   /// List of all enum-like values
   static final List<CapabilityStatementKind> values = [
@@ -54,13 +59,13 @@ class CapabilityStatementKind extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   CapabilityStatementKind clone() => CapabilityStatementKind._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   CapabilityStatementKind withElement(Element? newElement) {
-    return CapabilityStatementKind._(value, newElement);
+    return CapabilityStatementKind._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -85,14 +90,13 @@ class CapabilityStatementKind extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return CapabilityStatementKind._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

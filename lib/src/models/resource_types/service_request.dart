@@ -56,10 +56,6 @@ class ServiceRequest extends DomainResource {
     this.note,
     this.patientInstruction,
     this.relevantHistory,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.ServiceRequest,
         );
@@ -910,10 +906,6 @@ class ServiceRequest extends DomainResource {
       note: note ?? this.note,
       patientInstruction: patientInstruction ?? this.patientInstruction,
       relevantHistory: relevantHistory ?? this.relevantHistory,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

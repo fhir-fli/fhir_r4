@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Logical grouping of characteristics.
 class CharacteristicCombination extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  CharacteristicCombination._(super.value, [super.element]);
+  CharacteristicCombination._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [CharacteristicCombination] from JSON.
   factory CharacteristicCombination.fromJson(
@@ -21,24 +26,24 @@ class CharacteristicCombination extends PrimitiveType<String> {
         'CharacteristicCombination cannot be constructed from JSON.',
       );
     }
-    return CharacteristicCombination._(value, element);
+    return CharacteristicCombination._(value: value, element: element);
   }
 
   /// intersection
   static final CharacteristicCombination intersection =
       CharacteristicCombination._(
-    'intersection',
+    value: 'intersection',
   );
 
   /// union
   static final CharacteristicCombination union = CharacteristicCombination._(
-    'union',
+    value: 'union',
   );
 
   /// For instances where an Element is present but not value
 
   static final CharacteristicCombination elementOnly =
-      CharacteristicCombination._('');
+      CharacteristicCombination._(value: '');
 
   /// List of all enum-like values
   static final List<CharacteristicCombination> values = [
@@ -49,13 +54,13 @@ class CharacteristicCombination extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   CharacteristicCombination clone() => CharacteristicCombination._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   CharacteristicCombination withElement(Element? newElement) {
-    return CharacteristicCombination._(value, newElement);
+    return CharacteristicCombination._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -80,14 +85,13 @@ class CharacteristicCombination extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return CharacteristicCombination._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

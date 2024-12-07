@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value set defines a set of codes that can be used to indicate the meaning/use of a reference range for a particular target population.
 class ObservationReferenceRangeMeaningCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ObservationReferenceRangeMeaningCodes._(super.value, [super.element]);
+  ObservationReferenceRangeMeaningCodes._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [ObservationReferenceRangeMeaningCodes] from JSON.
   factory ObservationReferenceRangeMeaningCodes.fromJson(
@@ -22,91 +27,92 @@ class ObservationReferenceRangeMeaningCodes extends PrimitiveType<String> {
         'ObservationReferenceRangeMeaningCodes cannot be constructed from JSON.',
       );
     }
-    return ObservationReferenceRangeMeaningCodes._(value, element);
+    return ObservationReferenceRangeMeaningCodes._(
+        value: value, element: element);
   }
 
   /// type
   static final ObservationReferenceRangeMeaningCodes type =
       ObservationReferenceRangeMeaningCodes._(
-    'type',
+    value: 'type',
   );
 
   /// normal
   static final ObservationReferenceRangeMeaningCodes normal =
       ObservationReferenceRangeMeaningCodes._(
-    'normal',
+    value: 'normal',
   );
 
   /// recommended
   static final ObservationReferenceRangeMeaningCodes recommended =
       ObservationReferenceRangeMeaningCodes._(
-    'recommended',
+    value: 'recommended',
   );
 
   /// treatment
   static final ObservationReferenceRangeMeaningCodes treatment =
       ObservationReferenceRangeMeaningCodes._(
-    'treatment',
+    value: 'treatment',
   );
 
   /// therapeutic
   static final ObservationReferenceRangeMeaningCodes therapeutic =
       ObservationReferenceRangeMeaningCodes._(
-    'therapeutic',
+    value: 'therapeutic',
   );
 
   /// pre
   static final ObservationReferenceRangeMeaningCodes pre =
       ObservationReferenceRangeMeaningCodes._(
-    'pre',
+    value: 'pre',
   );
 
   /// post
   static final ObservationReferenceRangeMeaningCodes post =
       ObservationReferenceRangeMeaningCodes._(
-    'post',
+    value: 'post',
   );
 
   /// endocrine
   static final ObservationReferenceRangeMeaningCodes endocrine =
       ObservationReferenceRangeMeaningCodes._(
-    'endocrine',
+    value: 'endocrine',
   );
 
   /// pre_puberty
   static final ObservationReferenceRangeMeaningCodes pre_puberty =
       ObservationReferenceRangeMeaningCodes._(
-    'pre-puberty',
+    value: 'pre-puberty',
   );
 
   /// follicular
   static final ObservationReferenceRangeMeaningCodes follicular =
       ObservationReferenceRangeMeaningCodes._(
-    'follicular',
+    value: 'follicular',
   );
 
   /// midcycle
   static final ObservationReferenceRangeMeaningCodes midcycle =
       ObservationReferenceRangeMeaningCodes._(
-    'midcycle',
+    value: 'midcycle',
   );
 
   /// luteal
   static final ObservationReferenceRangeMeaningCodes luteal =
       ObservationReferenceRangeMeaningCodes._(
-    'luteal',
+    value: 'luteal',
   );
 
   /// postmenopausal
   static final ObservationReferenceRangeMeaningCodes postmenopausal =
       ObservationReferenceRangeMeaningCodes._(
-    'postmenopausal',
+    value: 'postmenopausal',
   );
 
   /// For instances where an Element is present but not value
 
   static final ObservationReferenceRangeMeaningCodes elementOnly =
-      ObservationReferenceRangeMeaningCodes._('');
+      ObservationReferenceRangeMeaningCodes._(value: '');
 
   /// List of all enum-like values
   static final List<ObservationReferenceRangeMeaningCodes> values = [
@@ -129,13 +135,14 @@ class ObservationReferenceRangeMeaningCodes extends PrimitiveType<String> {
   @override
   ObservationReferenceRangeMeaningCodes clone() =>
       ObservationReferenceRangeMeaningCodes._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ObservationReferenceRangeMeaningCodes withElement(Element? newElement) {
-    return ObservationReferenceRangeMeaningCodes._(value, newElement);
+    return ObservationReferenceRangeMeaningCodes._(
+        value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -160,14 +167,13 @@ class ObservationReferenceRangeMeaningCodes extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ObservationReferenceRangeMeaningCodes._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

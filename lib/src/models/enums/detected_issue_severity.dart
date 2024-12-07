@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Indicates the potential degree of impact of the identified issue on the patient.
 class DetectedIssueSeverity extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  DetectedIssueSeverity._(super.value, [super.element]);
+  DetectedIssueSeverity._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [DetectedIssueSeverity] from JSON.
   factory DetectedIssueSeverity.fromJson(
@@ -21,27 +26,28 @@ class DetectedIssueSeverity extends PrimitiveType<String> {
         'DetectedIssueSeverity cannot be constructed from JSON.',
       );
     }
-    return DetectedIssueSeverity._(value, element);
+    return DetectedIssueSeverity._(value: value, element: element);
   }
 
   /// high
   static final DetectedIssueSeverity high = DetectedIssueSeverity._(
-    'high',
+    value: 'high',
   );
 
   /// moderate
   static final DetectedIssueSeverity moderate = DetectedIssueSeverity._(
-    'moderate',
+    value: 'moderate',
   );
 
   /// low
   static final DetectedIssueSeverity low = DetectedIssueSeverity._(
-    'low',
+    value: 'low',
   );
 
   /// For instances where an Element is present but not value
 
-  static final DetectedIssueSeverity elementOnly = DetectedIssueSeverity._('');
+  static final DetectedIssueSeverity elementOnly =
+      DetectedIssueSeverity._(value: '');
 
   /// List of all enum-like values
   static final List<DetectedIssueSeverity> values = [
@@ -53,13 +59,13 @@ class DetectedIssueSeverity extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   DetectedIssueSeverity clone() => DetectedIssueSeverity._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   DetectedIssueSeverity withElement(Element? newElement) {
-    return DetectedIssueSeverity._(value, newElement);
+    return DetectedIssueSeverity._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -84,14 +90,13 @@ class DetectedIssueSeverity extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return DetectedIssueSeverity._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

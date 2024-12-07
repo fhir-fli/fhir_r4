@@ -31,10 +31,6 @@ class PackagedProductDefinition extends DomainResource {
     this.copackagedIndicator,
     this.manufacturer,
     this.package,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.PackagedProductDefinition,
         );
@@ -469,10 +465,6 @@ class PackagedProductDefinition extends DomainResource {
       copackagedIndicator: copackagedIndicator ?? this.copackagedIndicator,
       manufacturer: manufacturer ?? this.manufacturer,
       package: package ?? this.package,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -491,10 +483,6 @@ class PackagedProductDefinitionLegalStatusOfSupply extends BackboneElement {
     this.code,
     this.jurisdiction,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -641,10 +629,6 @@ class PackagedProductDefinitionLegalStatusOfSupply extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       code: code ?? this.code,
       jurisdiction: jurisdiction ?? this.jurisdiction,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -672,10 +656,6 @@ class PackagedProductDefinitionPackage extends BackboneElement {
     this.containedItem,
     this.package,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -978,10 +958,6 @@ class PackagedProductDefinitionPackage extends BackboneElement {
       property: property ?? this.property,
       containedItem: containedItem ?? this.containedItem,
       package: package ?? this.package,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1001,10 +977,6 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
     this.periodString,
     this.specialPrecautionsForStorage,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1200,10 +1172,6 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
       periodString: periodString ?? this.periodString,
       specialPrecautionsForStorage:
           specialPrecautionsForStorage ?? this.specialPrecautionsForStorage,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1225,10 +1193,6 @@ class PackagedProductDefinitionProperty extends BackboneElement {
     this.valueBoolean,
     this.valueAttachment,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1425,10 +1389,6 @@ class PackagedProductDefinitionProperty extends BackboneElement {
       valueDate: valueDate ?? this.valueDate,
       valueBoolean: valueBoolean ?? this.valueBoolean,
       valueAttachment: valueAttachment ?? this.valueAttachment,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1446,10 +1406,6 @@ class PackagedProductDefinitionContainedItem extends BackboneElement {
     required this.item,
     this.amount,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1596,10 +1552,6 @@ class PackagedProductDefinitionContainedItem extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       item: item ?? this.item,
       amount: amount ?? this.amount,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The type of population.
 class MeasurePopulationType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  MeasurePopulationType._(super.value, [super.element]);
+  MeasurePopulationType._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [MeasurePopulationType] from JSON.
   factory MeasurePopulationType.fromJson(
@@ -21,64 +26,65 @@ class MeasurePopulationType extends PrimitiveType<String> {
         'MeasurePopulationType cannot be constructed from JSON.',
       );
     }
-    return MeasurePopulationType._(value, element);
+    return MeasurePopulationType._(value: value, element: element);
   }
 
   /// initial_population
   static final MeasurePopulationType initial_population =
       MeasurePopulationType._(
-    'initial-population',
+    value: 'initial-population',
   );
 
   /// numerator
   static final MeasurePopulationType numerator = MeasurePopulationType._(
-    'numerator',
+    value: 'numerator',
   );
 
   /// numerator_exclusion
   static final MeasurePopulationType numerator_exclusion =
       MeasurePopulationType._(
-    'numerator-exclusion',
+    value: 'numerator-exclusion',
   );
 
   /// denominator
   static final MeasurePopulationType denominator = MeasurePopulationType._(
-    'denominator',
+    value: 'denominator',
   );
 
   /// denominator_exclusion
   static final MeasurePopulationType denominator_exclusion =
       MeasurePopulationType._(
-    'denominator-exclusion',
+    value: 'denominator-exclusion',
   );
 
   /// denominator_exception
   static final MeasurePopulationType denominator_exception =
       MeasurePopulationType._(
-    'denominator-exception',
+    value: 'denominator-exception',
   );
 
   /// measure_population
   static final MeasurePopulationType measure_population =
       MeasurePopulationType._(
-    'measure-population',
+    value: 'measure-population',
   );
 
   /// measure_population_exclusion
   static final MeasurePopulationType measure_population_exclusion =
       MeasurePopulationType._(
-    'measure-population-exclusion',
+    value: 'measure-population-exclusion',
   );
 
   /// measure_observation
   static final MeasurePopulationType measure_observation =
       MeasurePopulationType._(
-    'measure-observation',
+    value: 'measure-observation',
   );
 
   /// For instances where an Element is present but not value
 
-  static final MeasurePopulationType elementOnly = MeasurePopulationType._('');
+  static final MeasurePopulationType elementOnly =
+      MeasurePopulationType._(value: '');
 
   /// List of all enum-like values
   static final List<MeasurePopulationType> values = [
@@ -96,13 +102,13 @@ class MeasurePopulationType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   MeasurePopulationType clone() => MeasurePopulationType._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   MeasurePopulationType withElement(Element? newElement) {
-    return MeasurePopulationType._(value, newElement);
+    return MeasurePopulationType._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -127,14 +133,13 @@ class MeasurePopulationType extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return MeasurePopulationType._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

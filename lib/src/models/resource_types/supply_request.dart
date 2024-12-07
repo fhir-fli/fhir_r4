@@ -36,10 +36,6 @@ class SupplyRequest extends DomainResource {
     this.reasonReference,
     this.deliverFrom,
     this.deliverTo,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.SupplyRequest,
         );
@@ -501,10 +497,6 @@ class SupplyRequest extends DomainResource {
       reasonReference: reasonReference ?? this.reasonReference,
       deliverFrom: deliverFrom ?? this.deliverFrom,
       deliverTo: deliverTo ?? this.deliverTo,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -526,10 +518,6 @@ class SupplyRequestParameter extends BackboneElement {
     this.valueRange,
     this.valueBoolean,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -717,10 +705,6 @@ class SupplyRequestParameter extends BackboneElement {
       valueQuantity: valueQuantity ?? this.valueQuantity,
       valueRange: valueRange ?? this.valueRange,
       valueBoolean: valueBoolean ?? this.valueBoolean,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

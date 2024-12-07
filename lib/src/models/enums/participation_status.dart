@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The Participation status of an appointment.
 class ParticipationStatus extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ParticipationStatus._(super.value, [super.element]);
+  ParticipationStatus._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [ParticipationStatus] from JSON.
   factory ParticipationStatus.fromJson(
@@ -21,32 +26,33 @@ class ParticipationStatus extends PrimitiveType<String> {
         'ParticipationStatus cannot be constructed from JSON.',
       );
     }
-    return ParticipationStatus._(value, element);
+    return ParticipationStatus._(value: value, element: element);
   }
 
   /// accepted
   static final ParticipationStatus accepted = ParticipationStatus._(
-    'accepted',
+    value: 'accepted',
   );
 
   /// declined
   static final ParticipationStatus declined = ParticipationStatus._(
-    'declined',
+    value: 'declined',
   );
 
   /// tentative
   static final ParticipationStatus tentative = ParticipationStatus._(
-    'tentative',
+    value: 'tentative',
   );
 
   /// needs_action
   static final ParticipationStatus needs_action = ParticipationStatus._(
-    'needs-action',
+    value: 'needs-action',
   );
 
   /// For instances where an Element is present but not value
 
-  static final ParticipationStatus elementOnly = ParticipationStatus._('');
+  static final ParticipationStatus elementOnly =
+      ParticipationStatus._(value: '');
 
   /// List of all enum-like values
   static final List<ParticipationStatus> values = [
@@ -59,13 +65,13 @@ class ParticipationStatus extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ParticipationStatus clone() => ParticipationStatus._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ParticipationStatus withElement(Element? newElement) {
-    return ParticipationStatus._(value, newElement);
+    return ParticipationStatus._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -90,14 +96,13 @@ class ParticipationStatus extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ParticipationStatus._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

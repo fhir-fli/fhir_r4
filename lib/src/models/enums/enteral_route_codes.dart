@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// EnteralRouteOfAdministration: Codes specifying the route of administration of enteral formula. This value set is composed of HL7 V3 codes and is provided as a suggestive example.
 class EnteralRouteCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  EnteralRouteCodes._(super.value, [super.element]);
+  EnteralRouteCodes._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [EnteralRouteCodes] from JSON.
   factory EnteralRouteCodes.fromJson(
@@ -21,57 +26,57 @@ class EnteralRouteCodes extends PrimitiveType<String> {
         'EnteralRouteCodes cannot be constructed from JSON.',
       );
     }
-    return EnteralRouteCodes._(value, element);
+    return EnteralRouteCodes._(value: value, element: element);
   }
 
   /// PO
   static final EnteralRouteCodes PO = EnteralRouteCodes._(
-    'PO',
+    value: 'PO',
   );
 
   /// EFT
   static final EnteralRouteCodes EFT = EnteralRouteCodes._(
-    'EFT',
+    value: 'EFT',
   );
 
   /// ENTINSTL
   static final EnteralRouteCodes ENTINSTL = EnteralRouteCodes._(
-    'ENTINSTL',
+    value: 'ENTINSTL',
   );
 
   /// GT
   static final EnteralRouteCodes GT = EnteralRouteCodes._(
-    'GT',
+    value: 'GT',
   );
 
   /// NGT
   static final EnteralRouteCodes NGT = EnteralRouteCodes._(
-    'NGT',
+    value: 'NGT',
   );
 
   /// OGT
   static final EnteralRouteCodes OGT = EnteralRouteCodes._(
-    'OGT',
+    value: 'OGT',
   );
 
   /// GJT
   static final EnteralRouteCodes GJT = EnteralRouteCodes._(
-    'GJT',
+    value: 'GJT',
   );
 
   /// JJTINSTL
   static final EnteralRouteCodes JJTINSTL = EnteralRouteCodes._(
-    'JJTINSTL',
+    value: 'JJTINSTL',
   );
 
   /// OJJ
   static final EnteralRouteCodes OJJ = EnteralRouteCodes._(
-    'OJJ',
+    value: 'OJJ',
   );
 
   /// For instances where an Element is present but not value
 
-  static final EnteralRouteCodes elementOnly = EnteralRouteCodes._('');
+  static final EnteralRouteCodes elementOnly = EnteralRouteCodes._(value: '');
 
   /// List of all enum-like values
   static final List<EnteralRouteCodes> values = [
@@ -89,13 +94,13 @@ class EnteralRouteCodes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   EnteralRouteCodes clone() => EnteralRouteCodes._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   EnteralRouteCodes withElement(Element? newElement) {
-    return EnteralRouteCodes._(value, newElement);
+    return EnteralRouteCodes._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -120,14 +125,13 @@ class EnteralRouteCodes extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return EnteralRouteCodes._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

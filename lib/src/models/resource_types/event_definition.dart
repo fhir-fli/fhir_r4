@@ -47,10 +47,6 @@ class EventDefinition extends CanonicalResource {
     this.endorser,
     this.relatedArtifact,
     required this.trigger,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.EventDefinition,
         );
@@ -660,10 +656,6 @@ class EventDefinition extends CanonicalResource {
       endorser: endorser ?? this.endorser,
       relatedArtifact: relatedArtifact ?? this.relatedArtifact,
       trigger: trigger ?? this.trigger,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Indicates whether the location is still in use.
 class LocationStatus extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  LocationStatus._(super.value, [super.element]);
+  LocationStatus._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [LocationStatus] from JSON.
   factory LocationStatus.fromJson(
@@ -21,27 +26,27 @@ class LocationStatus extends PrimitiveType<String> {
         'LocationStatus cannot be constructed from JSON.',
       );
     }
-    return LocationStatus._(value, element);
+    return LocationStatus._(value: value, element: element);
   }
 
   /// active
   static final LocationStatus active = LocationStatus._(
-    'active',
+    value: 'active',
   );
 
   /// suspended
   static final LocationStatus suspended = LocationStatus._(
-    'suspended',
+    value: 'suspended',
   );
 
   /// inactive
   static final LocationStatus inactive = LocationStatus._(
-    'inactive',
+    value: 'inactive',
   );
 
   /// For instances where an Element is present but not value
 
-  static final LocationStatus elementOnly = LocationStatus._('');
+  static final LocationStatus elementOnly = LocationStatus._(value: '');
 
   /// List of all enum-like values
   static final List<LocationStatus> values = [
@@ -53,13 +58,13 @@ class LocationStatus extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   LocationStatus clone() => LocationStatus._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   LocationStatus withElement(Element? newElement) {
-    return LocationStatus._(value, newElement);
+    return LocationStatus._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -84,14 +89,13 @@ class LocationStatus extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return LocationStatus._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

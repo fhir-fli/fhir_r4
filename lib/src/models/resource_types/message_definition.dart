@@ -44,10 +44,6 @@ class MessageDefinition extends CanonicalResource {
     this.responseRequired,
     this.allowedResponse,
     this.graph,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.MessageDefinition,
         );
@@ -577,10 +573,6 @@ class MessageDefinition extends CanonicalResource {
       responseRequired: responseRequired ?? this.responseRequired,
       allowedResponse: allowedResponse ?? this.allowedResponse,
       graph: graph ?? this.graph,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -602,10 +594,6 @@ class MessageDefinitionFocus extends BackboneElement {
     required this.min,
     this.max,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -772,10 +760,6 @@ class MessageDefinitionFocus extends BackboneElement {
       profile: profile ?? this.profile,
       min: min ?? this.min,
       max: max ?? this.max,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -794,10 +778,6 @@ class MessageDefinitionAllowedResponse extends BackboneElement {
     required this.message,
     this.situation,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -937,10 +917,6 @@ class MessageDefinitionAllowedResponse extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       message: message ?? this.message,
       situation: situation ?? this.situation,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

@@ -44,10 +44,6 @@ class OperationDefinition extends CanonicalResource {
     this.outputProfile,
     this.parameter,
     this.overload,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.OperationDefinition,
         );
@@ -560,10 +556,6 @@ class OperationDefinition extends CanonicalResource {
       outputProfile: outputProfile ?? this.outputProfile,
       parameter: parameter ?? this.parameter,
       overload: overload ?? this.overload,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -590,10 +582,6 @@ class OperationDefinitionParameter extends BackboneElement {
     this.referencedFrom,
     this.part_,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -875,10 +863,6 @@ class OperationDefinitionParameter extends BackboneElement {
       binding: binding ?? this.binding,
       referencedFrom: referencedFrom ?? this.referencedFrom,
       part_: part_ ?? this.part_,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -897,10 +881,6 @@ class OperationDefinitionBinding extends BackboneElement {
     required this.strength,
     required this.valueSet,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1039,10 +1019,6 @@ class OperationDefinitionBinding extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       strength: strength ?? this.strength,
       valueSet: valueSet ?? this.valueSet,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1061,10 +1037,6 @@ class OperationDefinitionReferencedFrom extends BackboneElement {
     required this.source,
     this.sourceId,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1205,10 +1177,6 @@ class OperationDefinitionReferencedFrom extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       source: source ?? this.source,
       sourceId: sourceId ?? this.sourceId,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1228,10 +1196,6 @@ class OperationDefinitionOverload extends BackboneElement {
     this.parameterName,
     this.comment,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1377,10 +1341,6 @@ class OperationDefinitionOverload extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       parameterName: parameterName ?? this.parameterName,
       comment: comment ?? this.comment,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

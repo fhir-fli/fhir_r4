@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value set includes a smattering of FDI oral site codes.
 class OralSiteCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  OralSiteCodes._(super.value, [super.element]);
+  OralSiteCodes._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [OralSiteCodes] from JSON.
   factory OralSiteCodes.fromJson(
@@ -21,217 +26,217 @@ class OralSiteCodes extends PrimitiveType<String> {
         'OralSiteCodes cannot be constructed from JSON.',
       );
     }
-    return OralSiteCodes._(value, element);
+    return OralSiteCodes._(value: value, element: element);
   }
 
   /// value0
   static final OralSiteCodes value0 = OralSiteCodes._(
-    '0',
+    value: '0',
   );
 
   /// value1
   static final OralSiteCodes value1 = OralSiteCodes._(
-    '1',
+    value: '1',
   );
 
   /// value2
   static final OralSiteCodes value2 = OralSiteCodes._(
-    '2',
+    value: '2',
   );
 
   /// value3
   static final OralSiteCodes value3 = OralSiteCodes._(
-    '3',
+    value: '3',
   );
 
   /// value4
   static final OralSiteCodes value4 = OralSiteCodes._(
-    '4',
+    value: '4',
   );
 
   /// value5
   static final OralSiteCodes value5 = OralSiteCodes._(
-    '5',
+    value: '5',
   );
 
   /// value6
   static final OralSiteCodes value6 = OralSiteCodes._(
-    '6',
+    value: '6',
   );
 
   /// value7
   static final OralSiteCodes value7 = OralSiteCodes._(
-    '7',
+    value: '7',
   );
 
   /// value8
   static final OralSiteCodes value8 = OralSiteCodes._(
-    '8',
+    value: '8',
   );
 
   /// value11
   static final OralSiteCodes value11 = OralSiteCodes._(
-    '11',
+    value: '11',
   );
 
   /// value12
   static final OralSiteCodes value12 = OralSiteCodes._(
-    '12',
+    value: '12',
   );
 
   /// value13
   static final OralSiteCodes value13 = OralSiteCodes._(
-    '13',
+    value: '13',
   );
 
   /// value14
   static final OralSiteCodes value14 = OralSiteCodes._(
-    '14',
+    value: '14',
   );
 
   /// value15
   static final OralSiteCodes value15 = OralSiteCodes._(
-    '15',
+    value: '15',
   );
 
   /// value16
   static final OralSiteCodes value16 = OralSiteCodes._(
-    '16',
+    value: '16',
   );
 
   /// value17
   static final OralSiteCodes value17 = OralSiteCodes._(
-    '17',
+    value: '17',
   );
 
   /// value18
   static final OralSiteCodes value18 = OralSiteCodes._(
-    '18',
+    value: '18',
   );
 
   /// value21
   static final OralSiteCodes value21 = OralSiteCodes._(
-    '21',
+    value: '21',
   );
 
   /// value22
   static final OralSiteCodes value22 = OralSiteCodes._(
-    '22',
+    value: '22',
   );
 
   /// value23
   static final OralSiteCodes value23 = OralSiteCodes._(
-    '23',
+    value: '23',
   );
 
   /// value24
   static final OralSiteCodes value24 = OralSiteCodes._(
-    '24',
+    value: '24',
   );
 
   /// value25
   static final OralSiteCodes value25 = OralSiteCodes._(
-    '25',
+    value: '25',
   );
 
   /// value26
   static final OralSiteCodes value26 = OralSiteCodes._(
-    '26',
+    value: '26',
   );
 
   /// value27
   static final OralSiteCodes value27 = OralSiteCodes._(
-    '27',
+    value: '27',
   );
 
   /// value28
   static final OralSiteCodes value28 = OralSiteCodes._(
-    '28',
+    value: '28',
   );
 
   /// value31
   static final OralSiteCodes value31 = OralSiteCodes._(
-    '31',
+    value: '31',
   );
 
   /// value32
   static final OralSiteCodes value32 = OralSiteCodes._(
-    '32',
+    value: '32',
   );
 
   /// value33
   static final OralSiteCodes value33 = OralSiteCodes._(
-    '33',
+    value: '33',
   );
 
   /// value34
   static final OralSiteCodes value34 = OralSiteCodes._(
-    '34',
+    value: '34',
   );
 
   /// value35
   static final OralSiteCodes value35 = OralSiteCodes._(
-    '35',
+    value: '35',
   );
 
   /// value36
   static final OralSiteCodes value36 = OralSiteCodes._(
-    '36',
+    value: '36',
   );
 
   /// value37
   static final OralSiteCodes value37 = OralSiteCodes._(
-    '37',
+    value: '37',
   );
 
   /// value38
   static final OralSiteCodes value38 = OralSiteCodes._(
-    '38',
+    value: '38',
   );
 
   /// value41
   static final OralSiteCodes value41 = OralSiteCodes._(
-    '41',
+    value: '41',
   );
 
   /// value42
   static final OralSiteCodes value42 = OralSiteCodes._(
-    '42',
+    value: '42',
   );
 
   /// value43
   static final OralSiteCodes value43 = OralSiteCodes._(
-    '43',
+    value: '43',
   );
 
   /// value44
   static final OralSiteCodes value44 = OralSiteCodes._(
-    '44',
+    value: '44',
   );
 
   /// value45
   static final OralSiteCodes value45 = OralSiteCodes._(
-    '45',
+    value: '45',
   );
 
   /// value46
   static final OralSiteCodes value46 = OralSiteCodes._(
-    '46',
+    value: '46',
   );
 
   /// value47
   static final OralSiteCodes value47 = OralSiteCodes._(
-    '47',
+    value: '47',
   );
 
   /// value48
   static final OralSiteCodes value48 = OralSiteCodes._(
-    '48',
+    value: '48',
   );
 
   /// For instances where an Element is present but not value
 
-  static final OralSiteCodes elementOnly = OralSiteCodes._('');
+  static final OralSiteCodes elementOnly = OralSiteCodes._(value: '');
 
   /// List of all enum-like values
   static final List<OralSiteCodes> values = [
@@ -281,13 +286,13 @@ class OralSiteCodes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   OralSiteCodes clone() => OralSiteCodes._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   OralSiteCodes withElement(Element? newElement) {
-    return OralSiteCodes._(value, newElement);
+    return OralSiteCodes._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -312,14 +317,13 @@ class OralSiteCodes extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return OralSiteCodes._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

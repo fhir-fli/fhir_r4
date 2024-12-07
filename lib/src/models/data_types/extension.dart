@@ -64,10 +64,6 @@ class FhirExtension extends DataType {
     this.valueUsageContext,
     this.valueDosage,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -968,10 +964,6 @@ class FhirExtension extends DataType {
           valueTriggerDefinition ?? this.valueTriggerDefinition,
       valueUsageContext: valueUsageContext ?? this.valueUsageContext,
       valueDosage: valueDosage ?? this.valueDosage,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

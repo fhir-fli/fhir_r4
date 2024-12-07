@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value set includes a smattering of adjudication codes.
 class AdjudicationErrorCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  AdjudicationErrorCodes._(super.value, [super.element]);
+  AdjudicationErrorCodes._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [AdjudicationErrorCodes] from JSON.
   factory AdjudicationErrorCodes.fromJson(
@@ -21,23 +26,23 @@ class AdjudicationErrorCodes extends PrimitiveType<String> {
         'AdjudicationErrorCodes cannot be constructed from JSON.',
       );
     }
-    return AdjudicationErrorCodes._(value, element);
+    return AdjudicationErrorCodes._(value: value, element: element);
   }
 
   /// a001
   static final AdjudicationErrorCodes a001 = AdjudicationErrorCodes._(
-    'a001',
+    value: 'a001',
   );
 
   /// a002
   static final AdjudicationErrorCodes a002 = AdjudicationErrorCodes._(
-    'a002',
+    value: 'a002',
   );
 
   /// For instances where an Element is present but not value
 
   static final AdjudicationErrorCodes elementOnly =
-      AdjudicationErrorCodes._('');
+      AdjudicationErrorCodes._(value: '');
 
   /// List of all enum-like values
   static final List<AdjudicationErrorCodes> values = [
@@ -48,13 +53,13 @@ class AdjudicationErrorCodes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   AdjudicationErrorCodes clone() => AdjudicationErrorCodes._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   AdjudicationErrorCodes withElement(Element? newElement) {
-    return AdjudicationErrorCodes._(value, newElement);
+    return AdjudicationErrorCodes._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -79,14 +84,13 @@ class AdjudicationErrorCodes extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return AdjudicationErrorCodes._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

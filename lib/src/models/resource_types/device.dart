@@ -45,10 +45,6 @@ class Device extends DomainResource {
     this.note,
     this.safety,
     this.parent,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.Device,
         );
@@ -654,10 +650,6 @@ class Device extends DomainResource {
       note: note ?? this.note,
       safety: safety ?? this.safety,
       parent: parent ?? this.parent,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -682,10 +674,6 @@ class DeviceUdiCarrier extends BackboneElement {
     this.carrierHRF,
     this.entryType,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -898,10 +886,6 @@ class DeviceUdiCarrier extends BackboneElement {
       carrierAIDC: carrierAIDC ?? this.carrierAIDC,
       carrierHRF: carrierHRF ?? this.carrierHRF,
       entryType: entryType ?? this.entryType,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -922,10 +906,6 @@ class DeviceDeviceName extends BackboneElement {
     required this.name,
     required this.type,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1063,10 +1043,6 @@ class DeviceDeviceName extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       name: name ?? this.name,
       type: type ?? this.type,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1086,10 +1062,6 @@ class DeviceSpecialization extends BackboneElement {
     required this.systemType,
     this.version,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1227,10 +1199,6 @@ class DeviceSpecialization extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       systemType: systemType ?? this.systemType,
       version: version ?? this.version,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1250,10 +1218,6 @@ class DeviceVersion extends BackboneElement {
     this.component,
     required this.value,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1408,10 +1372,6 @@ class DeviceVersion extends BackboneElement {
       type: type ?? this.type,
       component: component ?? this.component,
       value: value ?? this.value,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1431,10 +1391,6 @@ class DeviceProperty extends BackboneElement {
     this.valueQuantity,
     this.valueCode,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1598,10 +1554,6 @@ class DeviceProperty extends BackboneElement {
       type: type ?? this.type,
       valueQuantity: valueQuantity ?? this.valueQuantity,
       valueCode: valueCode ?? this.valueCode,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

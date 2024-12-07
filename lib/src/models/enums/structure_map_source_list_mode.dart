@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// If field is a list, how to manage the source.
 class StructureMapSourceListMode extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  StructureMapSourceListMode._(super.value, [super.element]);
+  StructureMapSourceListMode._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [StructureMapSourceListMode] from JSON.
   factory StructureMapSourceListMode.fromJson(
@@ -21,41 +26,41 @@ class StructureMapSourceListMode extends PrimitiveType<String> {
         'StructureMapSourceListMode cannot be constructed from JSON.',
       );
     }
-    return StructureMapSourceListMode._(value, element);
+    return StructureMapSourceListMode._(value: value, element: element);
   }
 
   /// first
   static final StructureMapSourceListMode first = StructureMapSourceListMode._(
-    'first',
+    value: 'first',
   );
 
   /// not_first
   static final StructureMapSourceListMode not_first =
       StructureMapSourceListMode._(
-    'not_first',
+    value: 'not_first',
   );
 
   /// last
   static final StructureMapSourceListMode last = StructureMapSourceListMode._(
-    'last',
+    value: 'last',
   );
 
   /// not_last
   static final StructureMapSourceListMode not_last =
       StructureMapSourceListMode._(
-    'not_last',
+    value: 'not_last',
   );
 
   /// only_one
   static final StructureMapSourceListMode only_one =
       StructureMapSourceListMode._(
-    'only_one',
+    value: 'only_one',
   );
 
   /// For instances where an Element is present but not value
 
   static final StructureMapSourceListMode elementOnly =
-      StructureMapSourceListMode._('');
+      StructureMapSourceListMode._(value: '');
 
   /// List of all enum-like values
   static final List<StructureMapSourceListMode> values = [
@@ -69,13 +74,13 @@ class StructureMapSourceListMode extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   StructureMapSourceListMode clone() => StructureMapSourceListMode._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   StructureMapSourceListMode withElement(Element? newElement) {
-    return StructureMapSourceListMode._(value, newElement);
+    return StructureMapSourceListMode._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -100,14 +105,13 @@ class StructureMapSourceListMode extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return StructureMapSourceListMode._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

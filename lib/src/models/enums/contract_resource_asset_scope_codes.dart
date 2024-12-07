@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value set contract specific codes for asset scope.
 class ContractResourceAssetScopeCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ContractResourceAssetScopeCodes._(super.value, [super.element]);
+  ContractResourceAssetScopeCodes._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [ContractResourceAssetScopeCodes] from JSON.
   factory ContractResourceAssetScopeCodes.fromJson(
@@ -21,19 +26,19 @@ class ContractResourceAssetScopeCodes extends PrimitiveType<String> {
         'ContractResourceAssetScopeCodes cannot be constructed from JSON.',
       );
     }
-    return ContractResourceAssetScopeCodes._(value, element);
+    return ContractResourceAssetScopeCodes._(value: value, element: element);
   }
 
   /// thing
   static final ContractResourceAssetScopeCodes thing =
       ContractResourceAssetScopeCodes._(
-    'thing',
+    value: 'thing',
   );
 
   /// For instances where an Element is present but not value
 
   static final ContractResourceAssetScopeCodes elementOnly =
-      ContractResourceAssetScopeCodes._('');
+      ContractResourceAssetScopeCodes._(value: '');
 
   /// List of all enum-like values
   static final List<ContractResourceAssetScopeCodes> values = [
@@ -43,13 +48,13 @@ class ContractResourceAssetScopeCodes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ContractResourceAssetScopeCodes clone() => ContractResourceAssetScopeCodes._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ContractResourceAssetScopeCodes withElement(Element? newElement) {
-    return ContractResourceAssetScopeCodes._(value, newElement);
+    return ContractResourceAssetScopeCodes._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -74,14 +79,13 @@ class ContractResourceAssetScopeCodes extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ContractResourceAssetScopeCodes._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The type of relationship between reports.
 class ReportRelationshipType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ReportRelationshipType._(super.value, [super.element]);
+  ReportRelationshipType._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [ReportRelationshipType] from JSON.
   factory ReportRelationshipType.fromJson(
@@ -21,54 +26,54 @@ class ReportRelationshipType extends PrimitiveType<String> {
         'ReportRelationshipType cannot be constructed from JSON.',
       );
     }
-    return ReportRelationshipType._(value, element);
+    return ReportRelationshipType._(value: value, element: element);
   }
 
   /// replaces
   static final ReportRelationshipType replaces = ReportRelationshipType._(
-    'replaces',
+    value: 'replaces',
   );
 
   /// amends
   static final ReportRelationshipType amends = ReportRelationshipType._(
-    'amends',
+    value: 'amends',
   );
 
   /// appends
   static final ReportRelationshipType appends = ReportRelationshipType._(
-    'appends',
+    value: 'appends',
   );
 
   /// transforms
   static final ReportRelationshipType transforms = ReportRelationshipType._(
-    'transforms',
+    value: 'transforms',
   );
 
   /// replacedWith
   static final ReportRelationshipType replacedWith = ReportRelationshipType._(
-    'replacedWith',
+    value: 'replacedWith',
   );
 
   /// amendedWith
   static final ReportRelationshipType amendedWith = ReportRelationshipType._(
-    'amendedWith',
+    value: 'amendedWith',
   );
 
   /// appendedWith
   static final ReportRelationshipType appendedWith = ReportRelationshipType._(
-    'appendedWith',
+    value: 'appendedWith',
   );
 
   /// transformedWith
   static final ReportRelationshipType transformedWith =
       ReportRelationshipType._(
-    'transformedWith',
+    value: 'transformedWith',
   );
 
   /// For instances where an Element is present but not value
 
   static final ReportRelationshipType elementOnly =
-      ReportRelationshipType._('');
+      ReportRelationshipType._(value: '');
 
   /// List of all enum-like values
   static final List<ReportRelationshipType> values = [
@@ -85,13 +90,13 @@ class ReportRelationshipType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ReportRelationshipType clone() => ReportRelationshipType._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ReportRelationshipType withElement(Element? newElement) {
-    return ReportRelationshipType._(value, newElement);
+    return ReportRelationshipType._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -116,14 +121,13 @@ class ReportRelationshipType extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ReportRelationshipType._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

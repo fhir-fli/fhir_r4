@@ -96,8 +96,10 @@ abstract class Resource extends FhirBase {
   String get resourceTypeString => fhirType;
 
   /// Convenience method to return a [Reference] referring to that [Resource]
-  Reference get thisReference =>
-      Reference(reference: FhirString(path), type: FhirUri(resourceTypeString));
+  Reference get thisReference => Reference(
+        reference: FhirString(input: path),
+        type: FhirUri(input: resourceTypeString),
+      );
 
   /// Local Reference for this Resource, form is "ResourceType/Id"
   String get path => '$fhirType/$id';

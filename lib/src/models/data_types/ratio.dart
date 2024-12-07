@@ -15,10 +15,6 @@ class Ratio extends DataType {
     this.numerator,
     this.denominator,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -146,10 +142,6 @@ class Ratio extends DataType {
       extension_: extension_ ?? this.extension_,
       numerator: numerator ?? this.numerator,
       denominator: denominator ?? this.denominator,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

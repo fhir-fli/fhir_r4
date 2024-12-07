@@ -40,10 +40,6 @@ class AdverseEvent extends DomainResource {
     this.subjectMedicalHistory,
     this.referenceDocument,
     this.study,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.AdverseEvent,
         );
@@ -553,10 +549,6 @@ class AdverseEvent extends DomainResource {
           subjectMedicalHistory ?? this.subjectMedicalHistory,
       referenceDocument: referenceDocument ?? this.referenceDocument,
       study: study ?? this.study,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -575,10 +567,6 @@ class AdverseEventSuspectEntity extends BackboneElement {
     required this.instance,
     this.causality,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -724,10 +712,6 @@ class AdverseEventSuspectEntity extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       instance: instance ?? this.instance,
       causality: causality ?? this.causality,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -747,10 +731,6 @@ class AdverseEventCausality extends BackboneElement {
     this.author,
     this.method,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -923,10 +903,6 @@ class AdverseEventCausality extends BackboneElement {
       productRelatedness: productRelatedness ?? this.productRelatedness,
       author: author ?? this.author,
       method: method ?? this.method,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

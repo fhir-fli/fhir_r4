@@ -16,10 +16,6 @@ class RatioRange extends DataType {
     this.highNumerator,
     this.denominator,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -162,10 +158,6 @@ class RatioRange extends DataType {
       lowNumerator: lowNumerator ?? this.lowNumerator,
       highNumerator: highNumerator ?? this.highNumerator,
       denominator: denominator ?? this.denominator,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

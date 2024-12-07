@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Type if a sequence -- DNA, RNA, or amino acid sequence.
 class SequenceType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  SequenceType._(super.value, [super.element]);
+  SequenceType._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [SequenceType] from JSON.
   factory SequenceType.fromJson(
@@ -21,27 +26,27 @@ class SequenceType extends PrimitiveType<String> {
         'SequenceType cannot be constructed from JSON.',
       );
     }
-    return SequenceType._(value, element);
+    return SequenceType._(value: value, element: element);
   }
 
   /// aa
   static final SequenceType aa = SequenceType._(
-    'aa',
+    value: 'aa',
   );
 
   /// dna
   static final SequenceType dna = SequenceType._(
-    'dna',
+    value: 'dna',
   );
 
   /// rna
   static final SequenceType rna = SequenceType._(
-    'rna',
+    value: 'rna',
   );
 
   /// For instances where an Element is present but not value
 
-  static final SequenceType elementOnly = SequenceType._('');
+  static final SequenceType elementOnly = SequenceType._(value: '');
 
   /// List of all enum-like values
   static final List<SequenceType> values = [
@@ -53,13 +58,13 @@ class SequenceType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   SequenceType clone() => SequenceType._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   SequenceType withElement(Element? newElement) {
-    return SequenceType._(value, newElement);
+    return SequenceType._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -84,14 +89,13 @@ class SequenceType extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return SequenceType._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

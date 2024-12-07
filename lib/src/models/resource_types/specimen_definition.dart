@@ -23,10 +23,6 @@ class SpecimenDefinition extends DomainResource {
     this.timeAspect,
     this.collection,
     this.typeTested,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.SpecimenDefinition,
         );
@@ -301,10 +297,6 @@ class SpecimenDefinition extends DomainResource {
       timeAspect: timeAspect ?? this.timeAspect,
       collection: collection ?? this.collection,
       typeTested: typeTested ?? this.typeTested,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -329,10 +321,6 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
     this.rejectionCriterion,
     this.handling,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -571,10 +559,6 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
       retentionTime: retentionTime ?? this.retentionTime,
       rejectionCriterion: rejectionCriterion ?? this.rejectionCriterion,
       handling: handling ?? this.handling,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -599,10 +583,6 @@ class SpecimenDefinitionContainer extends BackboneElement {
     this.additive,
     this.preparation,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -853,10 +833,6 @@ class SpecimenDefinitionContainer extends BackboneElement {
       minimumVolumeString: minimumVolumeString ?? this.minimumVolumeString,
       additive: additive ?? this.additive,
       preparation: preparation ?? this.preparation,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -875,10 +851,6 @@ class SpecimenDefinitionAdditive extends BackboneElement {
     this.additiveCodeableConcept,
     this.additiveReference,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1025,10 +997,6 @@ class SpecimenDefinitionAdditive extends BackboneElement {
       additiveCodeableConcept:
           additiveCodeableConcept ?? this.additiveCodeableConcept,
       additiveReference: additiveReference ?? this.additiveReference,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1049,10 +1017,6 @@ class SpecimenDefinitionHandling extends BackboneElement {
     this.maxDuration,
     this.instruction,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1228,10 +1192,6 @@ class SpecimenDefinitionHandling extends BackboneElement {
       temperatureRange: temperatureRange ?? this.temperatureRange,
       maxDuration: maxDuration ?? this.maxDuration,
       instruction: instruction ?? this.instruction,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

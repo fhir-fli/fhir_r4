@@ -31,10 +31,6 @@ class FhirEndpoint extends DomainResource {
     this.payloadMimeType,
     required this.address,
     this.header,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.FhirEndpoint,
         );
@@ -388,10 +384,6 @@ class FhirEndpoint extends DomainResource {
       payloadMimeType: payloadMimeType ?? this.payloadMimeType,
       address: address ?? this.address,
       header: header ?? this.header,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The role that a provenance participant played
 class ProvenanceParticipantRole extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ProvenanceParticipantRole._(super.value, [super.element]);
+  ProvenanceParticipantRole._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [ProvenanceParticipantRole] from JSON.
   factory ProvenanceParticipantRole.fromJson(
@@ -21,67 +26,67 @@ class ProvenanceParticipantRole extends PrimitiveType<String> {
         'ProvenanceParticipantRole cannot be constructed from JSON.',
       );
     }
-    return ProvenanceParticipantRole._(value, element);
+    return ProvenanceParticipantRole._(value: value, element: element);
   }
 
   /// enterer
   static final ProvenanceParticipantRole enterer = ProvenanceParticipantRole._(
-    'enterer',
+    value: 'enterer',
   );
 
   /// performer
   static final ProvenanceParticipantRole performer =
       ProvenanceParticipantRole._(
-    'performer',
+    value: 'performer',
   );
 
   /// author
   static final ProvenanceParticipantRole author = ProvenanceParticipantRole._(
-    'author',
+    value: 'author',
   );
 
   /// verifier
   static final ProvenanceParticipantRole verifier = ProvenanceParticipantRole._(
-    'verifier',
+    value: 'verifier',
   );
 
   /// legal
   static final ProvenanceParticipantRole legal = ProvenanceParticipantRole._(
-    'legal',
+    value: 'legal',
   );
 
   /// attester
   static final ProvenanceParticipantRole attester = ProvenanceParticipantRole._(
-    'attester',
+    value: 'attester',
   );
 
   /// informant
   static final ProvenanceParticipantRole informant =
       ProvenanceParticipantRole._(
-    'informant',
+    value: 'informant',
   );
 
   /// custodian
   static final ProvenanceParticipantRole custodian =
       ProvenanceParticipantRole._(
-    'custodian',
+    value: 'custodian',
   );
 
   /// assembler
   static final ProvenanceParticipantRole assembler =
       ProvenanceParticipantRole._(
-    'assembler',
+    value: 'assembler',
   );
 
   /// composer
   static final ProvenanceParticipantRole composer = ProvenanceParticipantRole._(
-    'composer',
+    value: 'composer',
   );
 
   /// For instances where an Element is present but not value
 
   static final ProvenanceParticipantRole elementOnly =
-      ProvenanceParticipantRole._('');
+      ProvenanceParticipantRole._(value: '');
 
   /// List of all enum-like values
   static final List<ProvenanceParticipantRole> values = [
@@ -100,13 +105,13 @@ class ProvenanceParticipantRole extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ProvenanceParticipantRole clone() => ProvenanceParticipantRole._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ProvenanceParticipantRole withElement(Element? newElement) {
-    return ProvenanceParticipantRole._(value, newElement);
+    return ProvenanceParticipantRole._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -131,14 +136,13 @@ class ProvenanceParticipantRole extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ProvenanceParticipantRole._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

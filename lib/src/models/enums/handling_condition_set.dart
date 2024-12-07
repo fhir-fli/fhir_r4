@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Set of handling instructions prior testing of the specimen.
 class HandlingConditionSet extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  HandlingConditionSet._(super.value, [super.element]);
+  HandlingConditionSet._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [HandlingConditionSet] from JSON.
   factory HandlingConditionSet.fromJson(
@@ -21,27 +26,28 @@ class HandlingConditionSet extends PrimitiveType<String> {
         'HandlingConditionSet cannot be constructed from JSON.',
       );
     }
-    return HandlingConditionSet._(value, element);
+    return HandlingConditionSet._(value: value, element: element);
   }
 
   /// room
   static final HandlingConditionSet room = HandlingConditionSet._(
-    'room',
+    value: 'room',
   );
 
   /// refrigerated
   static final HandlingConditionSet refrigerated = HandlingConditionSet._(
-    'refrigerated',
+    value: 'refrigerated',
   );
 
   /// frozen
   static final HandlingConditionSet frozen = HandlingConditionSet._(
-    'frozen',
+    value: 'frozen',
   );
 
   /// For instances where an Element is present but not value
 
-  static final HandlingConditionSet elementOnly = HandlingConditionSet._('');
+  static final HandlingConditionSet elementOnly =
+      HandlingConditionSet._(value: '');
 
   /// List of all enum-like values
   static final List<HandlingConditionSet> values = [
@@ -53,13 +59,13 @@ class HandlingConditionSet extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   HandlingConditionSet clone() => HandlingConditionSet._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   HandlingConditionSet withElement(Element? newElement) {
-    return HandlingConditionSet._(value, newElement);
+    return HandlingConditionSet._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -84,14 +90,13 @@ class HandlingConditionSet extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return HandlingConditionSet._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

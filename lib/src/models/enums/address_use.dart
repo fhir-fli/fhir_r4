@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The use of an address.
 class AddressUse extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  AddressUse._(super.value, [super.element]);
+  AddressUse._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [AddressUse] from JSON.
   factory AddressUse.fromJson(
@@ -21,37 +26,37 @@ class AddressUse extends PrimitiveType<String> {
         'AddressUse cannot be constructed from JSON.',
       );
     }
-    return AddressUse._(value, element);
+    return AddressUse._(value: value, element: element);
   }
 
   /// home
   static final AddressUse home = AddressUse._(
-    'home',
+    value: 'home',
   );
 
   /// work
   static final AddressUse work = AddressUse._(
-    'work',
+    value: 'work',
   );
 
   /// temp
   static final AddressUse temp = AddressUse._(
-    'temp',
+    value: 'temp',
   );
 
   /// old
   static final AddressUse old = AddressUse._(
-    'old',
+    value: 'old',
   );
 
   /// billing
   static final AddressUse billing = AddressUse._(
-    'billing',
+    value: 'billing',
   );
 
   /// For instances where an Element is present but not value
 
-  static final AddressUse elementOnly = AddressUse._('');
+  static final AddressUse elementOnly = AddressUse._(value: '');
 
   /// List of all enum-like values
   static final List<AddressUse> values = [
@@ -65,13 +70,13 @@ class AddressUse extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   AddressUse clone() => AddressUse._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   AddressUse withElement(Element? newElement) {
-    return AddressUse._(value, newElement);
+    return AddressUse._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -96,14 +101,13 @@ class AddressUse extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return AddressUse._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

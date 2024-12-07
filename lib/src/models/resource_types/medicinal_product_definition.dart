@@ -51,10 +51,6 @@ class MedicinalProductDefinition extends DomainResource {
     this.crossReference,
     this.operation,
     this.characteristic,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.MedicinalProductDefinition,
         );
@@ -773,10 +769,6 @@ class MedicinalProductDefinition extends DomainResource {
       crossReference: crossReference ?? this.crossReference,
       operation: operation ?? this.operation,
       characteristic: characteristic ?? this.characteristic,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -794,10 +786,6 @@ class MedicinalProductDefinitionContact extends BackboneElement {
     this.type,
     required this.contact,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -938,10 +926,6 @@ class MedicinalProductDefinitionContact extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
       contact: contact ?? this.contact,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -961,10 +945,6 @@ class MedicinalProductDefinitionName extends BackboneElement {
     this.namePart,
     this.countryLanguage,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1144,10 +1124,6 @@ class MedicinalProductDefinitionName extends BackboneElement {
       type: type ?? this.type,
       namePart: namePart ?? this.namePart,
       countryLanguage: countryLanguage ?? this.countryLanguage,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1165,10 +1141,6 @@ class MedicinalProductDefinitionNamePart extends BackboneElement {
     required this.part_,
     required this.type,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1304,10 +1276,6 @@ class MedicinalProductDefinitionNamePart extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       part_: part_ ?? this.part_,
       type: type ?? this.type,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1327,10 +1295,6 @@ class MedicinalProductDefinitionCountryLanguage extends BackboneElement {
     this.jurisdiction,
     required this.language,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1483,10 +1447,6 @@ class MedicinalProductDefinitionCountryLanguage extends BackboneElement {
       country: country ?? this.country,
       jurisdiction: jurisdiction ?? this.jurisdiction,
       language: language ?? this.language,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1505,10 +1465,6 @@ class MedicinalProductDefinitionCrossReference extends BackboneElement {
     required this.product,
     this.type,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1652,10 +1608,6 @@ class MedicinalProductDefinitionCrossReference extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       product: product ?? this.product,
       type: type ?? this.type,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1676,10 +1628,6 @@ class MedicinalProductDefinitionOperation extends BackboneElement {
     this.organization,
     this.confidentialityIndicator,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1863,10 +1811,6 @@ class MedicinalProductDefinitionOperation extends BackboneElement {
       organization: organization ?? this.organization,
       confidentialityIndicator:
           confidentialityIndicator ?? this.confidentialityIndicator,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1889,10 +1833,6 @@ class MedicinalProductDefinitionCharacteristic extends BackboneElement {
     this.valueBoolean,
     this.valueAttachment,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -2090,10 +2030,6 @@ class MedicinalProductDefinitionCharacteristic extends BackboneElement {
       valueDate: valueDate ?? this.valueDate,
       valueBoolean: valueBoolean ?? this.valueBoolean,
       valueAttachment: valueAttachment ?? this.valueAttachment,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

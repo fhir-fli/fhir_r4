@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The current state of the list.
 class ListStatus extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ListStatus._(super.value, [super.element]);
+  ListStatus._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [ListStatus] from JSON.
   factory ListStatus.fromJson(
@@ -21,27 +26,27 @@ class ListStatus extends PrimitiveType<String> {
         'ListStatus cannot be constructed from JSON.',
       );
     }
-    return ListStatus._(value, element);
+    return ListStatus._(value: value, element: element);
   }
 
   /// current
   static final ListStatus current = ListStatus._(
-    'current',
+    value: 'current',
   );
 
   /// retired
   static final ListStatus retired = ListStatus._(
-    'retired',
+    value: 'retired',
   );
 
   /// entered_in_error
   static final ListStatus entered_in_error = ListStatus._(
-    'entered-in-error',
+    value: 'entered-in-error',
   );
 
   /// For instances where an Element is present but not value
 
-  static final ListStatus elementOnly = ListStatus._('');
+  static final ListStatus elementOnly = ListStatus._(value: '');
 
   /// List of all enum-like values
   static final List<ListStatus> values = [
@@ -53,13 +58,13 @@ class ListStatus extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ListStatus clone() => ListStatus._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ListStatus withElement(Element? newElement) {
-    return ListStatus._(value, newElement);
+    return ListStatus._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -84,14 +89,13 @@ class ListStatus extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ListStatus._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

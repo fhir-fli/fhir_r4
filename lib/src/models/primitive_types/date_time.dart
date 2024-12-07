@@ -1,12 +1,11 @@
 import 'dart:convert';
-
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
 /// Extension on [DateTime] to convert it to a [FhirDateTime].
 extension FhirDateTimeExtension on DateTime {
   /// Converts a [DateTime] to a [FhirDateTime].
-  FhirDateTime get toFhirDateTime => FhirDateTime.fromDateTime(this);
+  FhirDateTime get toFhirDateTime => FhirDateTime.fromDateTime(input: this);
 }
 
 /// Extension on [String] to convert it to a [FhirDateTime].
@@ -19,10 +18,6 @@ extension FhirDateTimeStringExtension on String {
 /// [FhirDateTimeBase].
 class FhirDateTime extends FhirDateTimeBase {
   /// Factory constructor to create a [FhirDateTime] from individual units.
-  ///
-  /// Requires the [year] to be specified, while other components like [month],
-  /// [day], [hour], [minute], [second], [millisecond], and [microsecond] are
-  /// optional.
   factory FhirDateTime.fromUnits({
     required int year,
     int? month,
@@ -63,27 +58,44 @@ class FhirDateTime extends FhirDateTimeBase {
     required super.timeZoneOffset,
     required super.isUtc,
     super.element,
+    super.id,
+    super.extension_,
   });
 
   /// Factory constructor to create a [FhirDateTime] from a [String].
-  ///
-  /// The input must be a valid date-time string.
-  factory FhirDateTime.fromString(String? inValue, [Element? element]) =>
-      inValue == null && element == null
+  factory FhirDateTime.fromString(String? input, [Element? element]) =>
+      input == null && element == null
           ? throw ArgumentError('A value or element is required')
-          : FhirDateTimeBase.constructor<FhirDateTime>(inValue, element)
-              as FhirDateTime;
+          : FhirDateTimeBase.constructor<FhirDateTime>(
+              input: input,
+              element: element,
+            ) as FhirDateTime;
 
   /// Factory constructor to create a [FhirDateTime] from a [DateTime].
-  factory FhirDateTime.fromDateTime(DateTime? inValue, [Element? element]) =>
-      inValue == null && element == null
+  factory FhirDateTime.fromDateTime({
+    DateTime? input,
+    Element? element,
+    FhirString? id,
+    List<FhirExtension>? extension_,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+  }) =>
+      input == null && element == null
           ? throw ArgumentError('A value or element is required')
-          : FhirDateTimeBase.constructor<FhirDateTime>(inValue, element)
-              as FhirDateTime;
+          : FhirDateTimeBase.constructor<FhirDateTime>(
+              input: input,
+              element: element,
+              id: id,
+              extension_: extension_,
+              userData: userData,
+              formatCommentsPre: formatCommentsPre,
+              formatCommentsPost: formatCommentsPost,
+              annotations: annotations,
+            ) as FhirDateTime;
 
-  /// Factory constructor to create a [FhirDateTime] from a JSON input.
-  ///
-  /// The input must be a [String], otherwise throws a [FormatException].
+  /// Factory constructor to create a [FhirDateTime] from JSON input.
   factory FhirDateTime.fromJson(Map<String, dynamic> json) {
     final value = json['value'];
     final element = json['_value'] is Map<String, dynamic>
@@ -93,17 +105,17 @@ class FhirDateTime extends FhirDateTimeBase {
     if (value is String) {
       return FhirDateTime.fromString(value, element);
     } else if (value is DateTime) {
-      return FhirDateTime.fromDateTime(value, element);
+      return FhirDateTime.fromDateTime(input: value, element: element);
     } else if (value == null) {
       return FhirDateTime.fromString(null, element);
     } else {
       throw const FormatException(
-        'Invalid input for FhirInstant: Input must be a String?',
+        'Invalid input for FhirDateTime: Input must be a String or DateTime',
       );
     }
   }
 
-  /// Factory constructor to create [FhirDateTime] from YAML
+  /// Factory constructor to create [FhirDateTime] from YAML.
   static FhirDateTime fromYaml(dynamic yaml) => yaml is String
       ? FhirDateTime.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, dynamic>,
@@ -114,13 +126,14 @@ class FhirDateTime extends FhirDateTimeBase {
             )
           : throw ArgumentError(
               'FhirDateTime cannot be constructed from the provided input,'
-              ' it is neither a YAML string nor a YAML map.');
+              ' it must be a YAML string or map.');
 
-  /// Tries to parse a value as [FhirDateTime], returns `null` if parsing fails.
+  /// Attempts to parse a value as [FhirDateTime], returns `null` if parsing
+  /// fails.
   static FhirDateTime? tryParse(dynamic value) {
     try {
       if (value is DateTime) {
-        return FhirDateTime.fromDateTime(value);
+        return FhirDateTime.fromDateTime(input: value);
       } else if (value is String) {
         return FhirDateTime.fromString(value);
       }
@@ -149,13 +162,11 @@ class FhirDateTime extends FhirDateTimeBase {
   @override
   bool equals(Object other) => isEqual(other) ?? false;
 
-  /// Adds a duration ([ExtendedDuration]) to the current [FhirDateTime] and
-  /// returns a new instance.
+  /// Adds a duration ([ExtendedDuration]) to the current [FhirDateTime].
   FhirDateTime plus(ExtendedDuration other) =>
       FhirDateTimeBase.plus<FhirDateTime>(this, other) as FhirDateTime;
 
-  /// Subtracts a duration ([ExtendedDuration]) from the current [FhirDateTime]
-  /// and returns a new instance.
+  /// Subtracts a duration ([ExtendedDuration]) from the current [FhirDateTime].
   FhirDateTime subtract(ExtendedDuration other) =>
       FhirDateTimeBase.subtract<FhirDateTime>(this, other) as FhirDateTime;
 
@@ -165,8 +176,8 @@ class FhirDateTime extends FhirDateTimeBase {
   FhirDateTime operator +(ExtendedDuration other) =>
       FhirDateTimeBase.plus<FhirDateTime>(this, other) as FhirDateTime;
 
-  /// Subtracts an [ExtendedDuration] from the current [FhirDateTime] using the
-  /// `-` operator.
+  /// Subtracts an [ExtendedDuration] from the current [FhirDateTime] using
+  /// the `-` operator.
   @override
   FhirDateTime operator -(ExtendedDuration other) =>
       FhirDateTimeBase.subtract<FhirDateTime>(this, other) as FhirDateTime;
@@ -179,6 +190,7 @@ class FhirDateTime extends FhirDateTimeBase {
   ///
   /// Supports changing the [value] and associated [element], as well as other
   /// optional metadata.
+  /// Creates a modified copy with updated properties.
   @override
   FhirDateTime copyWith({
     DateTime? newValue,
@@ -189,17 +201,22 @@ class FhirDateTime extends FhirDateTimeBase {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     return FhirDateTime.fromDateTime(
-      value,
-      (element ?? this.element)?.copyWith(
+      input: value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:
             formatCommentsPost ?? this.element?.formatCommentsPost,
         annotations: annotations ?? this.element?.annotations,
       ),
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
     );
   }
 }

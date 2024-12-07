@@ -27,10 +27,6 @@ class NutritionProduct extends DomainResource {
     this.productCharacteristic,
     this.instance,
     this.note,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.NutritionProduct,
         );
@@ -384,10 +380,6 @@ class NutritionProduct extends DomainResource {
           productCharacteristic ?? this.productCharacteristic,
       instance: instance ?? this.instance,
       note: note ?? this.note,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -405,10 +397,6 @@ class NutritionProductNutrient extends BackboneElement {
     this.item,
     this.amount,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -557,10 +545,6 @@ class NutritionProductNutrient extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       item: item ?? this.item,
       amount: amount ?? this.amount,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -578,10 +562,6 @@ class NutritionProductIngredient extends BackboneElement {
     required this.item,
     this.amount,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -725,10 +705,6 @@ class NutritionProductIngredient extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       item: item ?? this.item,
       amount: amount ?? this.amount,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -751,10 +727,6 @@ class NutritionProductProductCharacteristic extends BackboneElement {
     this.valueAttachment,
     this.valueBoolean,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -966,10 +938,6 @@ class NutritionProductProductCharacteristic extends BackboneElement {
       valueBase64Binary: valueBase64Binary ?? this.valueBase64Binary,
       valueAttachment: valueAttachment ?? this.valueAttachment,
       valueBoolean: valueBoolean ?? this.valueBoolean,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -991,10 +959,6 @@ class NutritionProductInstance extends BackboneElement {
     this.expiry,
     this.useBy,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1184,10 +1148,6 @@ class NutritionProductInstance extends BackboneElement {
       lotNumber: lotNumber ?? this.lotNumber,
       expiry: expiry ?? this.expiry,
       useBy: useBy ?? this.useBy,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

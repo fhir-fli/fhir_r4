@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Extra measures defined for a Medicinal Product, such as heightened reporting requirements.
 class PediatricUse extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  PediatricUse._(super.value, [super.element]);
+  PediatricUse._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [PediatricUse] from JSON.
   factory PediatricUse.fromJson(
@@ -21,82 +26,82 @@ class PediatricUse extends PrimitiveType<String> {
         'PediatricUse cannot be constructed from JSON.',
       );
     }
-    return PediatricUse._(value, element);
+    return PediatricUse._(value: value, element: element);
   }
 
   /// InUtero
   static final PediatricUse InUtero = PediatricUse._(
-    'InUtero',
+    value: 'InUtero',
   );
 
   /// PretermNewborn
   static final PediatricUse PretermNewborn = PediatricUse._(
-    'PretermNewborn',
+    value: 'PretermNewborn',
   );
 
   /// TermNewborn
   static final PediatricUse TermNewborn = PediatricUse._(
-    'TermNewborn',
+    value: 'TermNewborn',
   );
 
   /// Infants
   static final PediatricUse Infants = PediatricUse._(
-    'Infants',
+    value: 'Infants',
   );
 
   /// Children
   static final PediatricUse Children = PediatricUse._(
-    'Children',
+    value: 'Children',
   );
 
   /// Adolescents
   static final PediatricUse Adolescents = PediatricUse._(
-    'Adolescents',
+    value: 'Adolescents',
   );
 
   /// Adults
   static final PediatricUse Adults = PediatricUse._(
-    'Adults',
+    value: 'Adults',
   );
 
   /// Elderly
   static final PediatricUse Elderly = PediatricUse._(
-    'Elderly',
+    value: 'Elderly',
   );
 
   /// Neonate
   static final PediatricUse Neonate = PediatricUse._(
-    'Neonate',
+    value: 'Neonate',
   );
 
   /// PediatricPopulation
   static final PediatricUse PediatricPopulation = PediatricUse._(
-    'PediatricPopulation',
+    value: 'PediatricPopulation',
   );
 
   /// All
   static final PediatricUse All = PediatricUse._(
-    'All',
+    value: 'All',
   );
 
   /// Prepubertal
   static final PediatricUse Prepubertal = PediatricUse._(
-    'Prepubertal',
+    value: 'Prepubertal',
   );
 
   /// AdultsAndElderly
   static final PediatricUse AdultsAndElderly = PediatricUse._(
-    'AdultsAndElderly',
+    value: 'AdultsAndElderly',
   );
 
   /// PubertalAndPostpubertal
   static final PediatricUse PubertalAndPostpubertal = PediatricUse._(
-    'PubertalAndPostpubertal',
+    value: 'PubertalAndPostpubertal',
   );
 
   /// For instances where an Element is present but not value
 
-  static final PediatricUse elementOnly = PediatricUse._('');
+  static final PediatricUse elementOnly = PediatricUse._(value: '');
 
   /// List of all enum-like values
   static final List<PediatricUse> values = [
@@ -119,13 +124,13 @@ class PediatricUse extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   PediatricUse clone() => PediatricUse._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   PediatricUse withElement(Element? newElement) {
-    return PediatricUse._(value, newElement);
+    return PediatricUse._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -150,14 +155,13 @@ class PediatricUse extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return PediatricUse._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

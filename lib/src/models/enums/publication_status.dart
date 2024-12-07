@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The lifecycle status of an artifact.
 class PublicationStatus extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  PublicationStatus._(super.value, [super.element]);
+  PublicationStatus._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [PublicationStatus] from JSON.
   factory PublicationStatus.fromJson(
@@ -21,32 +26,32 @@ class PublicationStatus extends PrimitiveType<String> {
         'PublicationStatus cannot be constructed from JSON.',
       );
     }
-    return PublicationStatus._(value, element);
+    return PublicationStatus._(value: value, element: element);
   }
 
   /// draft
   static final PublicationStatus draft = PublicationStatus._(
-    'draft',
+    value: 'draft',
   );
 
   /// active
   static final PublicationStatus active = PublicationStatus._(
-    'active',
+    value: 'active',
   );
 
   /// retired
   static final PublicationStatus retired = PublicationStatus._(
-    'retired',
+    value: 'retired',
   );
 
   /// unknown
   static final PublicationStatus unknown = PublicationStatus._(
-    'unknown',
+    value: 'unknown',
   );
 
   /// For instances where an Element is present but not value
 
-  static final PublicationStatus elementOnly = PublicationStatus._('');
+  static final PublicationStatus elementOnly = PublicationStatus._(value: '');
 
   /// List of all enum-like values
   static final List<PublicationStatus> values = [
@@ -59,13 +64,13 @@ class PublicationStatus extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   PublicationStatus clone() => PublicationStatus._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   PublicationStatus withElement(Element? newElement) {
-    return PublicationStatus._(value, newElement);
+    return PublicationStatus._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -90,14 +95,13 @@ class PublicationStatus extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return PublicationStatus._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value set includes example Diagnosis Type codes.
 class ExampleDiagnosisTypeCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ExampleDiagnosisTypeCodes._(super.value, [super.element]);
+  ExampleDiagnosisTypeCodes._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [ExampleDiagnosisTypeCodes] from JSON.
   factory ExampleDiagnosisTypeCodes.fromJson(
@@ -21,80 +26,80 @@ class ExampleDiagnosisTypeCodes extends PrimitiveType<String> {
         'ExampleDiagnosisTypeCodes cannot be constructed from JSON.',
       );
     }
-    return ExampleDiagnosisTypeCodes._(value, element);
+    return ExampleDiagnosisTypeCodes._(value: value, element: element);
   }
 
   /// admitting
   static final ExampleDiagnosisTypeCodes admitting =
       ExampleDiagnosisTypeCodes._(
-    'admitting',
+    value: 'admitting',
   );
 
   /// clinical
   static final ExampleDiagnosisTypeCodes clinical = ExampleDiagnosisTypeCodes._(
-    'clinical',
+    value: 'clinical',
   );
 
   /// differential
   static final ExampleDiagnosisTypeCodes differential =
       ExampleDiagnosisTypeCodes._(
-    'differential',
+    value: 'differential',
   );
 
   /// discharge
   static final ExampleDiagnosisTypeCodes discharge =
       ExampleDiagnosisTypeCodes._(
-    'discharge',
+    value: 'discharge',
   );
 
   /// laboratory
   static final ExampleDiagnosisTypeCodes laboratory =
       ExampleDiagnosisTypeCodes._(
-    'laboratory',
+    value: 'laboratory',
   );
 
   /// nursing
   static final ExampleDiagnosisTypeCodes nursing = ExampleDiagnosisTypeCodes._(
-    'nursing',
+    value: 'nursing',
   );
 
   /// prenatal
   static final ExampleDiagnosisTypeCodes prenatal = ExampleDiagnosisTypeCodes._(
-    'prenatal',
+    value: 'prenatal',
   );
 
   /// principal
   static final ExampleDiagnosisTypeCodes principal =
       ExampleDiagnosisTypeCodes._(
-    'principal',
+    value: 'principal',
   );
 
   /// radiology
   static final ExampleDiagnosisTypeCodes radiology =
       ExampleDiagnosisTypeCodes._(
-    'radiology',
+    value: 'radiology',
   );
 
   /// remote
   static final ExampleDiagnosisTypeCodes remote = ExampleDiagnosisTypeCodes._(
-    'remote',
+    value: 'remote',
   );
 
   /// retrospective
   static final ExampleDiagnosisTypeCodes retrospective =
       ExampleDiagnosisTypeCodes._(
-    'retrospective',
+    value: 'retrospective',
   );
 
   /// self
   static final ExampleDiagnosisTypeCodes self = ExampleDiagnosisTypeCodes._(
-    'self',
+    value: 'self',
   );
 
   /// For instances where an Element is present but not value
 
   static final ExampleDiagnosisTypeCodes elementOnly =
-      ExampleDiagnosisTypeCodes._('');
+      ExampleDiagnosisTypeCodes._(value: '');
 
   /// List of all enum-like values
   static final List<ExampleDiagnosisTypeCodes> values = [
@@ -115,13 +120,13 @@ class ExampleDiagnosisTypeCodes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ExampleDiagnosisTypeCodes clone() => ExampleDiagnosisTypeCodes._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ExampleDiagnosisTypeCodes withElement(Element? newElement) {
-    return ExampleDiagnosisTypeCodes._(value, newElement);
+    return ExampleDiagnosisTypeCodes._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -146,14 +151,13 @@ class ExampleDiagnosisTypeCodes extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ExampleDiagnosisTypeCodes._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

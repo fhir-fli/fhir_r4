@@ -41,10 +41,6 @@ class DeviceDefinition extends DomainResource {
     this.quantity,
     this.parentDevice,
     this.material,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.DeviceDefinition,
         );
@@ -625,10 +621,6 @@ class DeviceDefinition extends DomainResource {
       quantity: quantity ?? this.quantity,
       parentDevice: parentDevice ?? this.parentDevice,
       material: material ?? this.material,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -650,10 +642,6 @@ class DeviceDefinitionUdiDeviceIdentifier extends BackboneElement {
     required this.issuer,
     required this.jurisdiction,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -802,10 +790,6 @@ class DeviceDefinitionUdiDeviceIdentifier extends BackboneElement {
       deviceIdentifier: deviceIdentifier ?? this.deviceIdentifier,
       issuer: issuer ?? this.issuer,
       jurisdiction: jurisdiction ?? this.jurisdiction,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -823,10 +807,6 @@ class DeviceDefinitionDeviceName extends BackboneElement {
     required this.name,
     required this.type,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -964,10 +944,6 @@ class DeviceDefinitionDeviceName extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       name: name ?? this.name,
       type: type ?? this.type,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -987,10 +963,6 @@ class DeviceDefinitionSpecialization extends BackboneElement {
     required this.systemType,
     this.version,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1128,10 +1100,6 @@ class DeviceDefinitionSpecialization extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       systemType: systemType ?? this.systemType,
       version: version ?? this.version,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1149,10 +1117,6 @@ class DeviceDefinitionCapability extends BackboneElement {
     required this.type,
     this.description,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1296,10 +1260,6 @@ class DeviceDefinitionCapability extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
       description: description ?? this.description,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1319,10 +1279,6 @@ class DeviceDefinitionProperty extends BackboneElement {
     this.valueQuantity,
     this.valueCode,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1486,10 +1442,6 @@ class DeviceDefinitionProperty extends BackboneElement {
       type: type ?? this.type,
       valueQuantity: valueQuantity ?? this.valueQuantity,
       valueCode: valueCode ?? this.valueCode,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1508,10 +1460,6 @@ class DeviceDefinitionMaterial extends BackboneElement {
     this.alternate,
     this.allergenicIndicator,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1663,10 +1611,6 @@ class DeviceDefinitionMaterial extends BackboneElement {
       substance: substance ?? this.substance,
       alternate: alternate ?? this.alternate,
       allergenicIndicator: allergenicIndicator ?? this.allergenicIndicator,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

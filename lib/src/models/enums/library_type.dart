@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The type of knowledge asset this library contains.
 class LibraryType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  LibraryType._(super.value, [super.element]);
+  LibraryType._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [LibraryType] from JSON.
   factory LibraryType.fromJson(
@@ -21,32 +26,32 @@ class LibraryType extends PrimitiveType<String> {
         'LibraryType cannot be constructed from JSON.',
       );
     }
-    return LibraryType._(value, element);
+    return LibraryType._(value: value, element: element);
   }
 
   /// logic_library
   static final LibraryType logic_library = LibraryType._(
-    'logic-library',
+    value: 'logic-library',
   );
 
   /// model_definition
   static final LibraryType model_definition = LibraryType._(
-    'model-definition',
+    value: 'model-definition',
   );
 
   /// asset_collection
   static final LibraryType asset_collection = LibraryType._(
-    'asset-collection',
+    value: 'asset-collection',
   );
 
   /// module_definition
   static final LibraryType module_definition = LibraryType._(
-    'module-definition',
+    value: 'module-definition',
   );
 
   /// For instances where an Element is present but not value
 
-  static final LibraryType elementOnly = LibraryType._('');
+  static final LibraryType elementOnly = LibraryType._(value: '');
 
   /// List of all enum-like values
   static final List<LibraryType> values = [
@@ -59,13 +64,13 @@ class LibraryType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   LibraryType clone() => LibraryType._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   LibraryType withElement(Element? newElement) {
-    return LibraryType._(value, newElement);
+    return LibraryType._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -90,14 +95,13 @@ class LibraryType extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return LibraryType._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

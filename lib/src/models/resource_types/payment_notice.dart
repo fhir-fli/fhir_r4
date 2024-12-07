@@ -30,10 +30,6 @@ class PaymentNotice extends DomainResource {
     required this.recipient,
     required this.amount,
     this.paymentStatus,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.PaymentNotice,
         );
@@ -370,10 +366,6 @@ class PaymentNotice extends DomainResource {
       recipient: recipient ?? this.recipient,
       amount: amount ?? this.amount,
       paymentStatus: paymentStatus ?? this.paymentStatus,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

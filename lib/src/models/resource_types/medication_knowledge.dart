@@ -39,10 +39,6 @@ class MedicationKnowledge extends DomainResource {
     this.contraindication,
     this.regulatory,
     this.kinetics,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.MedicationKnowledge,
         );
@@ -641,10 +637,6 @@ class MedicationKnowledge extends DomainResource {
       contraindication: contraindication ?? this.contraindication,
       regulatory: regulatory ?? this.regulatory,
       kinetics: kinetics ?? this.kinetics,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -662,10 +654,6 @@ class MedicationKnowledgeRelatedMedicationKnowledge extends BackboneElement {
     required this.type,
     required this.reference,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -810,10 +798,6 @@ class MedicationKnowledgeRelatedMedicationKnowledge extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
       reference: reference ?? this.reference,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -831,10 +815,6 @@ class MedicationKnowledgeMonograph extends BackboneElement {
     this.type,
     this.source,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -979,10 +959,6 @@ class MedicationKnowledgeMonograph extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
       source: source ?? this.source,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1002,10 +978,6 @@ class MedicationKnowledgeIngredient extends BackboneElement {
     this.isActive,
     this.strength,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1182,10 +1154,6 @@ class MedicationKnowledgeIngredient extends BackboneElement {
       itemReference: itemReference ?? this.itemReference,
       isActive: isActive ?? this.isActive,
       strength: strength ?? this.strength,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1204,10 +1172,6 @@ class MedicationKnowledgeCost extends BackboneElement {
     this.source,
     required this.cost,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1357,10 +1321,6 @@ class MedicationKnowledgeCost extends BackboneElement {
       type: type ?? this.type,
       source: source ?? this.source,
       cost: cost ?? this.cost,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1378,10 +1338,6 @@ class MedicationKnowledgeMonitoringProgram extends BackboneElement {
     this.type,
     this.name,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1523,10 +1479,6 @@ class MedicationKnowledgeMonitoringProgram extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
       name: name ?? this.name,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1546,10 +1498,6 @@ class MedicationKnowledgeAdministrationGuidelines extends BackboneElement {
     this.indicationReference,
     this.patientCharacteristics,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1738,10 +1686,6 @@ class MedicationKnowledgeAdministrationGuidelines extends BackboneElement {
       indicationReference: indicationReference ?? this.indicationReference,
       patientCharacteristics:
           patientCharacteristics ?? this.patientCharacteristics,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1759,10 +1703,6 @@ class MedicationKnowledgeDosage extends BackboneElement {
     required this.type,
     required this.dosage,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1907,10 +1847,6 @@ class MedicationKnowledgeDosage extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
       dosage: dosage ?? this.dosage,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1930,10 +1866,6 @@ class MedicationKnowledgePatientCharacteristics extends BackboneElement {
     this.characteristicQuantity,
     this.value,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -2103,10 +2035,6 @@ class MedicationKnowledgePatientCharacteristics extends BackboneElement {
       characteristicQuantity:
           characteristicQuantity ?? this.characteristicQuantity,
       value: value ?? this.value,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -2125,10 +2053,6 @@ class MedicationKnowledgeMedicineClassification extends BackboneElement {
     required this.type,
     this.classification,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -2275,10 +2199,6 @@ class MedicationKnowledgeMedicineClassification extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
       classification: classification ?? this.classification,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -2296,10 +2216,6 @@ class MedicationKnowledgePackaging extends BackboneElement {
     this.type,
     this.quantity,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -2444,10 +2360,6 @@ class MedicationKnowledgePackaging extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
       quantity: quantity ?? this.quantity,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -2469,10 +2381,6 @@ class MedicationKnowledgeDrugCharacteristic extends BackboneElement {
     this.valueQuantity,
     this.valueBase64Binary,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -2659,10 +2567,6 @@ class MedicationKnowledgeDrugCharacteristic extends BackboneElement {
       valueString: valueString ?? this.valueString,
       valueQuantity: valueQuantity ?? this.valueQuantity,
       valueBase64Binary: valueBase64Binary ?? this.valueBase64Binary,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -2682,10 +2586,6 @@ class MedicationKnowledgeRegulatory extends BackboneElement {
     this.schedule,
     this.maxDispense,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -2865,10 +2765,6 @@ class MedicationKnowledgeRegulatory extends BackboneElement {
       substitution: substitution ?? this.substitution,
       schedule: schedule ?? this.schedule,
       maxDispense: maxDispense ?? this.maxDispense,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -2887,10 +2783,6 @@ class MedicationKnowledgeSubstitution extends BackboneElement {
     required this.type,
     required this.allowed,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -3027,10 +2919,6 @@ class MedicationKnowledgeSubstitution extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
       allowed: allowed ?? this.allowed,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -3047,10 +2935,6 @@ class MedicationKnowledgeSchedule extends BackboneElement {
     super.modifierExtension,
     required this.schedule,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -3175,10 +3059,6 @@ class MedicationKnowledgeSchedule extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       schedule: schedule ?? this.schedule,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -3197,10 +3077,6 @@ class MedicationKnowledgeMaxDispense extends BackboneElement {
     required this.quantity,
     this.period,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -3340,10 +3216,6 @@ class MedicationKnowledgeMaxDispense extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       quantity: quantity ?? this.quantity,
       period: period ?? this.period,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -3363,10 +3235,6 @@ class MedicationKnowledgeKinetics extends BackboneElement {
     this.lethalDose50,
     this.halfLifePeriod,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -3534,10 +3402,6 @@ class MedicationKnowledgeKinetics extends BackboneElement {
       areaUnderCurve: areaUnderCurve ?? this.areaUnderCurve,
       lethalDose50: lethalDose50 ?? this.lethalDose50,
       halfLifePeriod: halfLifePeriod ?? this.halfLifePeriod,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

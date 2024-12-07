@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Degree of preference of a type of conditioned specimen.
 class SpecimenContainedPreference extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  SpecimenContainedPreference._(super.value, [super.element]);
+  SpecimenContainedPreference._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [SpecimenContainedPreference] from JSON.
   factory SpecimenContainedPreference.fromJson(
@@ -21,25 +26,25 @@ class SpecimenContainedPreference extends PrimitiveType<String> {
         'SpecimenContainedPreference cannot be constructed from JSON.',
       );
     }
-    return SpecimenContainedPreference._(value, element);
+    return SpecimenContainedPreference._(value: value, element: element);
   }
 
   /// preferred
   static final SpecimenContainedPreference preferred =
       SpecimenContainedPreference._(
-    'preferred',
+    value: 'preferred',
   );
 
   /// alternate
   static final SpecimenContainedPreference alternate =
       SpecimenContainedPreference._(
-    'alternate',
+    value: 'alternate',
   );
 
   /// For instances where an Element is present but not value
 
   static final SpecimenContainedPreference elementOnly =
-      SpecimenContainedPreference._('');
+      SpecimenContainedPreference._(value: '');
 
   /// List of all enum-like values
   static final List<SpecimenContainedPreference> values = [
@@ -50,13 +55,13 @@ class SpecimenContainedPreference extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   SpecimenContainedPreference clone() => SpecimenContainedPreference._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   SpecimenContainedPreference withElement(Element? newElement) {
-    return SpecimenContainedPreference._(value, newElement);
+    return SpecimenContainedPreference._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -81,14 +86,13 @@ class SpecimenContainedPreference extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return SpecimenContainedPreference._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

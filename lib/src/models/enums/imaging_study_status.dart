@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The status of the ImagingStudy.
 class ImagingStudyStatus extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ImagingStudyStatus._(super.value, [super.element]);
+  ImagingStudyStatus._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [ImagingStudyStatus] from JSON.
   factory ImagingStudyStatus.fromJson(
@@ -21,37 +26,37 @@ class ImagingStudyStatus extends PrimitiveType<String> {
         'ImagingStudyStatus cannot be constructed from JSON.',
       );
     }
-    return ImagingStudyStatus._(value, element);
+    return ImagingStudyStatus._(value: value, element: element);
   }
 
   /// registered
   static final ImagingStudyStatus registered = ImagingStudyStatus._(
-    'registered',
+    value: 'registered',
   );
 
   /// available
   static final ImagingStudyStatus available = ImagingStudyStatus._(
-    'available',
+    value: 'available',
   );
 
   /// cancelled
   static final ImagingStudyStatus cancelled = ImagingStudyStatus._(
-    'cancelled',
+    value: 'cancelled',
   );
 
   /// entered_in_error
   static final ImagingStudyStatus entered_in_error = ImagingStudyStatus._(
-    'entered-in-error',
+    value: 'entered-in-error',
   );
 
   /// unknown
   static final ImagingStudyStatus unknown = ImagingStudyStatus._(
-    'unknown',
+    value: 'unknown',
   );
 
   /// For instances where an Element is present but not value
 
-  static final ImagingStudyStatus elementOnly = ImagingStudyStatus._('');
+  static final ImagingStudyStatus elementOnly = ImagingStudyStatus._(value: '');
 
   /// List of all enum-like values
   static final List<ImagingStudyStatus> values = [
@@ -65,13 +70,13 @@ class ImagingStudyStatus extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ImagingStudyStatus clone() => ImagingStudyStatus._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ImagingStudyStatus withElement(Element? newElement) {
-    return ImagingStudyStatus._(value, newElement);
+    return ImagingStudyStatus._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -96,14 +101,13 @@ class ImagingStudyStatus extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ImagingStudyStatus._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

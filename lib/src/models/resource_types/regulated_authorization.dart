@@ -34,10 +34,6 @@ class RegulatedAuthorization extends DomainResource {
     this.holder,
     this.regulator,
     this.case_,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.RegulatedAuthorization,
         );
@@ -449,10 +445,6 @@ class RegulatedAuthorization extends DomainResource {
       holder: holder ?? this.holder,
       regulator: regulator ?? this.regulator,
       case_: case_ ?? this.case_,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -480,10 +472,6 @@ class RegulatedAuthorizationCase extends BackboneElement {
     this.dateDateTime,
     this.application,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -694,10 +682,6 @@ class RegulatedAuthorizationCase extends BackboneElement {
       datePeriod: datePeriod ?? this.datePeriod,
       dateDateTime: dateDateTime ?? this.dateDateTime,
       application: application ?? this.application,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The value set to instantiate this attribute should be drawn from a terminologically robust code system that consists of or contains concepts to support describing the current status of the administered dose of vaccine.
 class ImmunizationStatusCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ImmunizationStatusCodes._(super.value, [super.element]);
+  ImmunizationStatusCodes._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [ImmunizationStatusCodes] from JSON.
   factory ImmunizationStatusCodes.fromJson(
@@ -21,54 +26,54 @@ class ImmunizationStatusCodes extends PrimitiveType<String> {
         'ImmunizationStatusCodes cannot be constructed from JSON.',
       );
     }
-    return ImmunizationStatusCodes._(value, element);
+    return ImmunizationStatusCodes._(value: value, element: element);
   }
 
   /// preparation
   static final ImmunizationStatusCodes preparation = ImmunizationStatusCodes._(
-    'preparation',
+    value: 'preparation',
   );
 
   /// in_progress
   static final ImmunizationStatusCodes in_progress = ImmunizationStatusCodes._(
-    'in-progress',
+    value: 'in-progress',
   );
 
   /// not_done
   static final ImmunizationStatusCodes not_done = ImmunizationStatusCodes._(
-    'not-done',
+    value: 'not-done',
   );
 
   /// on_hold
   static final ImmunizationStatusCodes on_hold = ImmunizationStatusCodes._(
-    'on-hold',
+    value: 'on-hold',
   );
 
   /// stopped
   static final ImmunizationStatusCodes stopped = ImmunizationStatusCodes._(
-    'stopped',
+    value: 'stopped',
   );
 
   /// completed
   static final ImmunizationStatusCodes completed = ImmunizationStatusCodes._(
-    'completed',
+    value: 'completed',
   );
 
   /// entered_in_error
   static final ImmunizationStatusCodes entered_in_error =
       ImmunizationStatusCodes._(
-    'entered-in-error',
+    value: 'entered-in-error',
   );
 
   /// unknown
   static final ImmunizationStatusCodes unknown = ImmunizationStatusCodes._(
-    'unknown',
+    value: 'unknown',
   );
 
   /// For instances where an Element is present but not value
 
   static final ImmunizationStatusCodes elementOnly =
-      ImmunizationStatusCodes._('');
+      ImmunizationStatusCodes._(value: '');
 
   /// List of all enum-like values
   static final List<ImmunizationStatusCodes> values = [
@@ -85,13 +90,13 @@ class ImmunizationStatusCodes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ImmunizationStatusCodes clone() => ImmunizationStatusCodes._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ImmunizationStatusCodes withElement(Element? newElement) {
-    return ImmunizationStatusCodes._(value, newElement);
+    return ImmunizationStatusCodes._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -116,14 +121,13 @@ class ImmunizationStatusCodes extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ImmunizationStatusCodes._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

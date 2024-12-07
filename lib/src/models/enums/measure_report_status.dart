@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The status of the measure report.
 class MeasureReportStatus extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  MeasureReportStatus._(super.value, [super.element]);
+  MeasureReportStatus._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [MeasureReportStatus] from JSON.
   factory MeasureReportStatus.fromJson(
@@ -21,27 +26,28 @@ class MeasureReportStatus extends PrimitiveType<String> {
         'MeasureReportStatus cannot be constructed from JSON.',
       );
     }
-    return MeasureReportStatus._(value, element);
+    return MeasureReportStatus._(value: value, element: element);
   }
 
   /// complete
   static final MeasureReportStatus complete = MeasureReportStatus._(
-    'complete',
+    value: 'complete',
   );
 
   /// pending
   static final MeasureReportStatus pending = MeasureReportStatus._(
-    'pending',
+    value: 'pending',
   );
 
   /// error
   static final MeasureReportStatus error = MeasureReportStatus._(
-    'error',
+    value: 'error',
   );
 
   /// For instances where an Element is present but not value
 
-  static final MeasureReportStatus elementOnly = MeasureReportStatus._('');
+  static final MeasureReportStatus elementOnly =
+      MeasureReportStatus._(value: '');
 
   /// List of all enum-like values
   static final List<MeasureReportStatus> values = [
@@ -53,13 +59,13 @@ class MeasureReportStatus extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   MeasureReportStatus clone() => MeasureReportStatus._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   MeasureReportStatus withElement(Element? newElement) {
-    return MeasureReportStatus._(value, newElement);
+    return MeasureReportStatus._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -84,14 +90,13 @@ class MeasureReportStatus extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return MeasureReportStatus._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

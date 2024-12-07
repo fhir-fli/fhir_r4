@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// MedicationRequest Status Reason Codes
 class MedicationRequestStatusReasonCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  MedicationRequestStatusReasonCodes._(super.value, [super.element]);
+  MedicationRequestStatusReasonCodes._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [MedicationRequestStatusReasonCodes] from JSON.
   factory MedicationRequestStatusReasonCodes.fromJson(
@@ -22,91 +27,91 @@ class MedicationRequestStatusReasonCodes extends PrimitiveType<String> {
         'MedicationRequestStatusReasonCodes cannot be constructed from JSON.',
       );
     }
-    return MedicationRequestStatusReasonCodes._(value, element);
+    return MedicationRequestStatusReasonCodes._(value: value, element: element);
   }
 
   /// altchoice
   static final MedicationRequestStatusReasonCodes altchoice =
       MedicationRequestStatusReasonCodes._(
-    'altchoice',
+    value: 'altchoice',
   );
 
   /// clarif
   static final MedicationRequestStatusReasonCodes clarif =
       MedicationRequestStatusReasonCodes._(
-    'clarif',
+    value: 'clarif',
   );
 
   /// drughigh
   static final MedicationRequestStatusReasonCodes drughigh =
       MedicationRequestStatusReasonCodes._(
-    'drughigh',
+    value: 'drughigh',
   );
 
   /// hospadm
   static final MedicationRequestStatusReasonCodes hospadm =
       MedicationRequestStatusReasonCodes._(
-    'hospadm',
+    value: 'hospadm',
   );
 
   /// labint
   static final MedicationRequestStatusReasonCodes labint =
       MedicationRequestStatusReasonCodes._(
-    'labint',
+    value: 'labint',
   );
 
   /// non_avail
   static final MedicationRequestStatusReasonCodes non_avail =
       MedicationRequestStatusReasonCodes._(
-    'non-avail',
+    value: 'non-avail',
   );
 
   /// preg
   static final MedicationRequestStatusReasonCodes preg =
       MedicationRequestStatusReasonCodes._(
-    'preg',
+    value: 'preg',
   );
 
   /// salg
   static final MedicationRequestStatusReasonCodes salg =
       MedicationRequestStatusReasonCodes._(
-    'salg',
+    value: 'salg',
   );
 
   /// sddi
   static final MedicationRequestStatusReasonCodes sddi =
       MedicationRequestStatusReasonCodes._(
-    'sddi',
+    value: 'sddi',
   );
 
   /// sdupther
   static final MedicationRequestStatusReasonCodes sdupther =
       MedicationRequestStatusReasonCodes._(
-    'sdupther',
+    value: 'sdupther',
   );
 
   /// sintol
   static final MedicationRequestStatusReasonCodes sintol =
       MedicationRequestStatusReasonCodes._(
-    'sintol',
+    value: 'sintol',
   );
 
   /// surg
   static final MedicationRequestStatusReasonCodes surg =
       MedicationRequestStatusReasonCodes._(
-    'surg',
+    value: 'surg',
   );
 
   /// washout
   static final MedicationRequestStatusReasonCodes washout =
       MedicationRequestStatusReasonCodes._(
-    'washout',
+    value: 'washout',
   );
 
   /// For instances where an Element is present but not value
 
   static final MedicationRequestStatusReasonCodes elementOnly =
-      MedicationRequestStatusReasonCodes._('');
+      MedicationRequestStatusReasonCodes._(value: '');
 
   /// List of all enum-like values
   static final List<MedicationRequestStatusReasonCodes> values = [
@@ -129,13 +134,14 @@ class MedicationRequestStatusReasonCodes extends PrimitiveType<String> {
   @override
   MedicationRequestStatusReasonCodes clone() =>
       MedicationRequestStatusReasonCodes._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   MedicationRequestStatusReasonCodes withElement(Element? newElement) {
-    return MedicationRequestStatusReasonCodes._(value, newElement);
+    return MedicationRequestStatusReasonCodes._(
+        value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -160,14 +166,13 @@ class MedicationRequestStatusReasonCodes extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return MedicationRequestStatusReasonCodes._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

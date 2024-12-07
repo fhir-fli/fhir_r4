@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Type of part of a name for a Medicinal Product.
 class ProductNamePartType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ProductNamePartType._(super.value, [super.element]);
+  ProductNamePartType._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [ProductNamePartType] from JSON.
   factory ProductNamePartType.fromJson(
@@ -21,93 +26,94 @@ class ProductNamePartType extends PrimitiveType<String> {
         'ProductNamePartType cannot be constructed from JSON.',
       );
     }
-    return ProductNamePartType._(value, element);
+    return ProductNamePartType._(value: value, element: element);
   }
 
   /// FullName
   static final ProductNamePartType FullName = ProductNamePartType._(
-    'FullName',
+    value: 'FullName',
   );
 
   /// InventedNamePart
   static final ProductNamePartType InventedNamePart = ProductNamePartType._(
-    'InventedNamePart',
+    value: 'InventedNamePart',
   );
 
   /// ScientificNamePart
   static final ProductNamePartType ScientificNamePart = ProductNamePartType._(
-    'ScientificNamePart',
+    value: 'ScientificNamePart',
   );
 
   /// StrengthPart
   static final ProductNamePartType StrengthPart = ProductNamePartType._(
-    'StrengthPart',
+    value: 'StrengthPart',
   );
 
   /// DoseFormPart
   static final ProductNamePartType DoseFormPart = ProductNamePartType._(
-    'DoseFormPart',
+    value: 'DoseFormPart',
   );
 
   /// FormulationPart
   static final ProductNamePartType FormulationPart = ProductNamePartType._(
-    'FormulationPart',
+    value: 'FormulationPart',
   );
 
   /// IntendedUsePart
   static final ProductNamePartType IntendedUsePart = ProductNamePartType._(
-    'IntendedUsePart',
+    value: 'IntendedUsePart',
   );
 
   /// PopulationPart
   static final ProductNamePartType PopulationPart = ProductNamePartType._(
-    'PopulationPart',
+    value: 'PopulationPart',
   );
 
   /// ContainerPart
   static final ProductNamePartType ContainerPart = ProductNamePartType._(
-    'ContainerPart',
+    value: 'ContainerPart',
   );
 
   /// DevicePart
   static final ProductNamePartType DevicePart = ProductNamePartType._(
-    'DevicePart',
+    value: 'DevicePart',
   );
 
   /// TrademarkOrCompanyPart
   static final ProductNamePartType TrademarkOrCompanyPart =
       ProductNamePartType._(
-    'TrademarkOrCompanyPart',
+    value: 'TrademarkOrCompanyPart',
   );
 
   /// TimeOrPeriodPart
   static final ProductNamePartType TimeOrPeriodPart = ProductNamePartType._(
-    'TimeOrPeriodPart',
+    value: 'TimeOrPeriodPart',
   );
 
   /// FlavorPart
   static final ProductNamePartType FlavorPart = ProductNamePartType._(
-    'FlavorPart',
+    value: 'FlavorPart',
   );
 
   /// DelimiterPart
   static final ProductNamePartType DelimiterPart = ProductNamePartType._(
-    'DelimiterPart',
+    value: 'DelimiterPart',
   );
 
   /// LegacyNamePart
   static final ProductNamePartType LegacyNamePart = ProductNamePartType._(
-    'LegacyNamePart',
+    value: 'LegacyNamePart',
   );
 
   /// SpeciesNamePart
   static final ProductNamePartType SpeciesNamePart = ProductNamePartType._(
-    'SpeciesNamePart',
+    value: 'SpeciesNamePart',
   );
 
   /// For instances where an Element is present but not value
 
-  static final ProductNamePartType elementOnly = ProductNamePartType._('');
+  static final ProductNamePartType elementOnly =
+      ProductNamePartType._(value: '');
 
   /// List of all enum-like values
   static final List<ProductNamePartType> values = [
@@ -132,13 +138,13 @@ class ProductNamePartType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ProductNamePartType clone() => ProductNamePartType._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ProductNamePartType withElement(Element? newElement) {
-    return ProductNamePartType._(value, newElement);
+    return ProductNamePartType._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -163,14 +169,13 @@ class ProductNamePartType extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ProductNamePartType._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

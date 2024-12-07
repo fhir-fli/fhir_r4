@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Identification of the underlying physiological mechanism for a Reaction Risk.
 class AllergyIntoleranceType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  AllergyIntoleranceType._(super.value, [super.element]);
+  AllergyIntoleranceType._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [AllergyIntoleranceType] from JSON.
   factory AllergyIntoleranceType.fromJson(
@@ -21,23 +26,23 @@ class AllergyIntoleranceType extends PrimitiveType<String> {
         'AllergyIntoleranceType cannot be constructed from JSON.',
       );
     }
-    return AllergyIntoleranceType._(value, element);
+    return AllergyIntoleranceType._(value: value, element: element);
   }
 
   /// allergy
   static final AllergyIntoleranceType allergy = AllergyIntoleranceType._(
-    'allergy',
+    value: 'allergy',
   );
 
   /// intolerance
   static final AllergyIntoleranceType intolerance = AllergyIntoleranceType._(
-    'intolerance',
+    value: 'intolerance',
   );
 
   /// For instances where an Element is present but not value
 
   static final AllergyIntoleranceType elementOnly =
-      AllergyIntoleranceType._('');
+      AllergyIntoleranceType._(value: '');
 
   /// List of all enum-like values
   static final List<AllergyIntoleranceType> values = [
@@ -48,13 +53,13 @@ class AllergyIntoleranceType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   AllergyIntoleranceType clone() => AllergyIntoleranceType._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   AllergyIntoleranceType withElement(Element? newElement) {
-    return AllergyIntoleranceType._(value, newElement);
+    return AllergyIntoleranceType._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -79,14 +84,13 @@ class AllergyIntoleranceType extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return AllergyIntoleranceType._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

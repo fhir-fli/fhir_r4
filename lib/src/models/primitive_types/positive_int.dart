@@ -6,16 +6,21 @@ import 'package:yaml/yaml.dart';
 extension FhirPositiveIntExtension on num {
   /// Converts a [num] to a [FhirPositiveInt].
   FhirPositiveInt get toFhirPositiveInt => this is int
-      ? FhirPositiveInt(this as int)
+      ? FhirPositiveInt(input: this as int)
       : int.tryParse(toString()) != null
-          ? FhirPositiveInt(int.parse(toString()))
+          ? FhirPositiveInt(input: int.parse(toString()))
           : throw FormatException('Invalid input for FhirPositiveInt: $this');
 }
 
 /// Represents the FHIR primitive type `integer`.
 class FhirPositiveInt extends FhirNumber {
   /// Constructor that ensures valid input.
-  FhirPositiveInt(int? super.input, [super.element]) {
+  FhirPositiveInt({
+    required int? input,
+    super.element,
+    super.id,
+    super.extension_,
+  }) : super(value: input) {
     if (value == null && element == null) {
       throw ArgumentError('A value or element is required');
     }
@@ -26,7 +31,7 @@ class FhirPositiveInt extends FhirNumber {
     final value = json['value'] as num?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    return FhirPositiveInt(value?.toInt(), element);
+    return FhirPositiveInt(input: value?.toInt(), element: element);
   }
 
   /// Factory constructor to create [FhirPositiveInt] from YAML input.
@@ -40,8 +45,8 @@ class FhirPositiveInt extends FhirNumber {
                 jsonDecode(jsonEncode(yaml)) as Map<String, dynamic>,
               )
             : throw const FormatException(
-                'Invalid input for FhirPositiveInt: not a valid YAML string '
-                'or map.',
+                'Invalid input for FhirPositiveInt: '
+                'not a valid YAML string or map.',
               );
   }
 
@@ -50,8 +55,8 @@ class FhirPositiveInt extends FhirNumber {
   static FhirPositiveInt? tryParse(dynamic input) {
     if (input is int) {
       try {
-        return FhirPositiveInt(input);
-      } catch (e) {
+        return FhirPositiveInt(input: input);
+      } catch (_) {
         return null;
       }
     }
@@ -62,7 +67,7 @@ class FhirPositiveInt extends FhirNumber {
   @override
   String get fhirType => 'integer';
 
-  /// Serializes the instance to JSON with standardized keys
+  /// Serializes the instance to JSON with standardized keys.
   @override
   Map<String, dynamic> toJson() => {
         if (value != null) 'value': value,
@@ -85,7 +90,7 @@ class FhirPositiveInt extends FhirNumber {
       final element = elements?[i] != null
           ? Element.fromJson(elements![i] as Map<String, dynamic>)
           : null;
-      return FhirPositiveInt(value?.toInt(), element);
+      return FhirPositiveInt(input: value?.toInt(), element: element);
     });
   }
 
@@ -116,8 +121,10 @@ class FhirPositiveInt extends FhirNumber {
 
   /// Clones the current instance.
   @override
-  FhirPositiveInt clone() =>
-      FhirPositiveInt(value as int?, element?.clone() as Element?);
+  FhirPositiveInt clone() => FhirPositiveInt(
+        input: value as int?,
+        element: element?.clone() as Element?,
+      );
 
   /// Creates a modified copy with updated properties.
   @override
@@ -130,20 +137,21 @@ class FhirPositiveInt extends FhirNumber {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirPositiveInt: $newValue');
     }
     return FhirPositiveInt(
-      (newValue ?? value) as int?,
-      (element ?? this.element)?.copyWith(
+      input: (newValue ?? value) as int?,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:
             formatCommentsPost ?? this.element?.formatCommentsPost,
         annotations: annotations ?? this.element?.annotations,
       ),
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
     );
   }
 }

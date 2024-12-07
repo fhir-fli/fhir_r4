@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// SHALL applications comply with this constraint?
 class ConstraintSeverity extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ConstraintSeverity._(super.value, [super.element]);
+  ConstraintSeverity._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [ConstraintSeverity] from JSON.
   factory ConstraintSeverity.fromJson(
@@ -21,22 +26,22 @@ class ConstraintSeverity extends PrimitiveType<String> {
         'ConstraintSeverity cannot be constructed from JSON.',
       );
     }
-    return ConstraintSeverity._(value, element);
+    return ConstraintSeverity._(value: value, element: element);
   }
 
   /// error
   static final ConstraintSeverity error = ConstraintSeverity._(
-    'error',
+    value: 'error',
   );
 
   /// warning
   static final ConstraintSeverity warning = ConstraintSeverity._(
-    'warning',
+    value: 'warning',
   );
 
   /// For instances where an Element is present but not value
 
-  static final ConstraintSeverity elementOnly = ConstraintSeverity._('');
+  static final ConstraintSeverity elementOnly = ConstraintSeverity._(value: '');
 
   /// List of all enum-like values
   static final List<ConstraintSeverity> values = [
@@ -47,13 +52,13 @@ class ConstraintSeverity extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ConstraintSeverity clone() => ConstraintSeverity._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ConstraintSeverity withElement(Element? newElement) {
-    return ConstraintSeverity._(value, newElement);
+    return ConstraintSeverity._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -78,14 +83,13 @@ class ConstraintSeverity extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ConstraintSeverity._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

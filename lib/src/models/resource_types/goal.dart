@@ -37,10 +37,6 @@ class Goal extends DomainResource {
     this.note,
     this.outcomeCode,
     this.outcomeReference,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.Goal,
         );
@@ -490,10 +486,6 @@ class Goal extends DomainResource {
       note: note ?? this.note,
       outcomeCode: outcomeCode ?? this.outcomeCode,
       outcomeReference: outcomeReference ?? this.outcomeReference,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -519,10 +511,6 @@ class GoalTarget extends BackboneElement {
     this.dueDate,
     this.dueDuration,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -820,10 +808,6 @@ class GoalTarget extends BackboneElement {
       detailRatio: detailRatio ?? this.detailRatio,
       dueDate: dueDate ?? this.dueDate,
       dueDuration: dueDuration ?? this.dueDuration,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

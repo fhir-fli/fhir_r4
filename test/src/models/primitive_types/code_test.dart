@@ -8,34 +8,34 @@ void main() {
     const yamlCode = 'YAML_CODE';
 
     test('Code', () {
-      expect(FhirCode('Patient/123456').toString(), 'Patient/123456');
-      expect(FhirCode('Patient/123456').toJson()['value'], 'Patient/123456');
-      expect(FhirCode('Patient/123456').value, 'Patient/123456');
+      expect(FhirCode(input: 'Patient/123456').toString(), 'Patient/123456');
+      expect(FhirCode(input: 'Patient/123456').toJson()['value'], 'Patient/123456');
+      expect(FhirCode(input: 'Patient/123456').value, 'Patient/123456');
       expect(
-        FhirCode('http://Patient.com/123456').toString(),
+        FhirCode(input: 'http://Patient.com/123456').toString(),
         'http://Patient.com/123456',
       );
       expect(
-        FhirCode('http://Patient.com/123456').toJson()['value'],
+        FhirCode(input: 'http://Patient.com/123456').toJson()['value'],
         'http://Patient.com/123456',
       );
       expect(
-        FhirCode('http://Patient.com/123456').value,
+        FhirCode(input: 'http://Patient.com/123456').value,
         'http://Patient.com/123456',
       );
-      expect(FhirCode('___').toString(), '___');
-      expect(FhirCode('___').toJson()['value'], '___');
+      expect(FhirCode(input: '___').toString(), '___');
+      expect(FhirCode(input: '___').toJson()['value'], '___');
     });
 
     test('Valid FhirCode from String', () {
-      final fhirCode = FhirCode(validCode);
+      final fhirCode = FhirCode(input: validCode);
       expect(fhirCode.value, equals(validCode));
       expect(fhirCode.toString(), equals(validCode));
       expect(fhirCode.toJson()['value'], equals(validCode));
     });
 
     test('Invalid FhirCode throws FormatException', () {
-      expect(() => FhirCode(''), throwsFormatException);
+      expect(() => FhirCode(input: ''), throwsFormatException);
     });
 
     test('FhirCode tryParse with valid String', () {
@@ -65,26 +65,26 @@ void main() {
     });
 
     test('FhirCode equality with another FhirCode', () {
-      final fhirCode1 = FhirCode(validCode);
-      final fhirCode2 = FhirCode(validCode);
+      final fhirCode1 = FhirCode(input: validCode);
+      final fhirCode2 = FhirCode(input: validCode);
       expect(fhirCode1 == fhirCode2, isTrue);
       expect(fhirCode1.equals(fhirCode2), isTrue);
     });
 
     test('FhirCode equality with a String', () {
-      final fhirCode = FhirCode(validCode);
+      final fhirCode = FhirCode(input: validCode);
       // ignore: unrelated_type_equality_checks
       expect(fhirCode == validCode, isTrue);
     });
 
     test('FhirCode inequality with a different String', () {
-      final fhirCode = FhirCode(validCode);
+      final fhirCode = FhirCode(input: validCode);
       // ignore: unrelated_type_equality_checks
       expect(fhirCode == 'DIFFERENT', isFalse);
     });
 
     test('FhirCode clone', () {
-      final originalCode = FhirCode(validCode);
+      final originalCode = FhirCode(input: validCode);
       final clonedCode = originalCode.clone();
       expect(clonedCode.value, equals(validCode));
       expect(clonedCode == originalCode, isTrue);
@@ -92,7 +92,7 @@ void main() {
     });
 
     test('FhirCode copyWith new value', () {
-      final originalCode = FhirCode(validCode);
+      final originalCode = FhirCode(input: validCode);
       final copiedCode = originalCode.copyWith(newValue: 'NEW_CODE');
       expect(copiedCode.value, equals('NEW_CODE'));
       expect(
@@ -102,7 +102,7 @@ void main() {
     });
 
     test('FhirCode toJsonString', () {
-      final fhirCode = FhirCode(validCode);
+      final fhirCode = FhirCode(input: validCode);
       expect(fhirCode.toJsonString(), equals('{"value":"$validCode"}'));
     });
   });

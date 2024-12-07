@@ -6,16 +6,21 @@ import 'package:yaml/yaml.dart';
 extension FhirUnsignedIntExtension on num {
   /// Converts a [num] to a [FhirUnsignedInt].
   FhirUnsignedInt get toFhirUnsignedInt => this is int
-      ? FhirUnsignedInt(this as int)
+      ? FhirUnsignedInt(input: this as int)
       : int.tryParse(toString()) != null
-          ? FhirUnsignedInt(int.parse(toString()))
+          ? FhirUnsignedInt(input: int.parse(toString()))
           : throw FormatException('Invalid input for FhirUnsignedInt: $this');
 }
 
 /// Represents the FHIR primitive type `integer`.
 class FhirUnsignedInt extends FhirNumber {
   /// Constructor that ensures valid input.
-  FhirUnsignedInt(int? super.input, [super.element]) {
+  FhirUnsignedInt({
+    required int? input,
+    super.element,
+    super.id,
+    super.extension_,
+  }) : super(value: input) {
     if (value == null && element == null) {
       throw ArgumentError('A value or element is required');
     }
@@ -26,7 +31,7 @@ class FhirUnsignedInt extends FhirNumber {
     final value = json['value'] as num?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    return FhirUnsignedInt(value?.toInt(), element);
+    return FhirUnsignedInt(input: value?.toInt(), element: element);
   }
 
   /// Factory constructor to create [FhirUnsignedInt] from YAML input.
@@ -50,8 +55,8 @@ class FhirUnsignedInt extends FhirNumber {
   static FhirUnsignedInt? tryParse(dynamic input) {
     if (input is int) {
       try {
-        return FhirUnsignedInt(input);
-      } catch (e) {
+        return FhirUnsignedInt(input: input);
+      } catch (_) {
         return null;
       }
     }
@@ -62,7 +67,7 @@ class FhirUnsignedInt extends FhirNumber {
   @override
   String get fhirType => 'integer';
 
-  /// Serializes the instance to JSON with standardized keys
+  /// Serializes the instance to JSON with standardized keys.
   @override
   Map<String, dynamic> toJson() => {
         if (value != null) 'value': value,
@@ -85,7 +90,7 @@ class FhirUnsignedInt extends FhirNumber {
       final element = elements?[i] != null
           ? Element.fromJson(elements![i] as Map<String, dynamic>)
           : null;
-      return FhirUnsignedInt(value?.toInt(), element);
+      return FhirUnsignedInt(input: value?.toInt(), element: element);
     });
   }
 
@@ -116,8 +121,10 @@ class FhirUnsignedInt extends FhirNumber {
 
   /// Clones the current instance.
   @override
-  FhirUnsignedInt clone() =>
-      FhirUnsignedInt(value as int?, element?.clone() as Element?);
+  FhirUnsignedInt clone() => FhirUnsignedInt(
+        input: value as int?,
+        element: element?.clone() as Element?,
+      );
 
   /// Creates a modified copy with updated properties.
   @override
@@ -130,20 +137,21 @@ class FhirUnsignedInt extends FhirNumber {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirUnsignedInt: $newValue');
     }
     return FhirUnsignedInt(
-      (newValue ?? value) as int?,
-      (element ?? this.element)?.copyWith(
+      input: (newValue ?? value) as int?,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:
             formatCommentsPost ?? this.element?.formatCommentsPost,
         annotations: annotations ?? this.element?.annotations,
       ),
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
     );
   }
 }

@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Operations supported by REST at the type or instance level.
 class TypeRestfulInteraction extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  TypeRestfulInteraction._(super.value, [super.element]);
+  TypeRestfulInteraction._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [TypeRestfulInteraction] from JSON.
   factory TypeRestfulInteraction.fromJson(
@@ -21,99 +26,99 @@ class TypeRestfulInteraction extends PrimitiveType<String> {
         'TypeRestfulInteraction cannot be constructed from JSON.',
       );
     }
-    return TypeRestfulInteraction._(value, element);
+    return TypeRestfulInteraction._(value: value, element: element);
   }
 
   /// read
   static final TypeRestfulInteraction read = TypeRestfulInteraction._(
-    'read',
+    value: 'read',
   );
 
   /// vread
   static final TypeRestfulInteraction vread = TypeRestfulInteraction._(
-    'vread',
+    value: 'vread',
   );
 
   /// update
   static final TypeRestfulInteraction update = TypeRestfulInteraction._(
-    'update',
+    value: 'update',
   );
 
   /// patch
   static final TypeRestfulInteraction patch = TypeRestfulInteraction._(
-    'patch',
+    value: 'patch',
   );
 
   /// delete
   static final TypeRestfulInteraction delete = TypeRestfulInteraction._(
-    'delete',
+    value: 'delete',
   );
 
   /// history
   static final TypeRestfulInteraction history = TypeRestfulInteraction._(
-    'history',
+    value: 'history',
   );
 
   /// history_instance
   static final TypeRestfulInteraction history_instance =
       TypeRestfulInteraction._(
-    'history-instance',
+    value: 'history-instance',
   );
 
   /// history_type
   static final TypeRestfulInteraction history_type = TypeRestfulInteraction._(
-    'history-type',
+    value: 'history-type',
   );
 
   /// history_system
   static final TypeRestfulInteraction history_system = TypeRestfulInteraction._(
-    'history-system',
+    value: 'history-system',
   );
 
   /// create
   static final TypeRestfulInteraction create = TypeRestfulInteraction._(
-    'create',
+    value: 'create',
   );
 
   /// search
   static final TypeRestfulInteraction search = TypeRestfulInteraction._(
-    'search',
+    value: 'search',
   );
 
   /// search_type
   static final TypeRestfulInteraction search_type = TypeRestfulInteraction._(
-    'search-type',
+    value: 'search-type',
   );
 
   /// search_system
   static final TypeRestfulInteraction search_system = TypeRestfulInteraction._(
-    'search-system',
+    value: 'search-system',
   );
 
   /// capabilities
   static final TypeRestfulInteraction capabilities = TypeRestfulInteraction._(
-    'capabilities',
+    value: 'capabilities',
   );
 
   /// transaction
   static final TypeRestfulInteraction transaction = TypeRestfulInteraction._(
-    'transaction',
+    value: 'transaction',
   );
 
   /// batch
   static final TypeRestfulInteraction batch = TypeRestfulInteraction._(
-    'batch',
+    value: 'batch',
   );
 
   /// operation
   static final TypeRestfulInteraction operation = TypeRestfulInteraction._(
-    'operation',
+    value: 'operation',
   );
 
   /// For instances where an Element is present but not value
 
   static final TypeRestfulInteraction elementOnly =
-      TypeRestfulInteraction._('');
+      TypeRestfulInteraction._(value: '');
 
   /// List of all enum-like values
   static final List<TypeRestfulInteraction> values = [
@@ -139,13 +144,13 @@ class TypeRestfulInteraction extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   TypeRestfulInteraction clone() => TypeRestfulInteraction._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   TypeRestfulInteraction withElement(Element? newElement) {
-    return TypeRestfulInteraction._(value, newElement);
+    return TypeRestfulInteraction._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -170,14 +175,13 @@ class TypeRestfulInteraction extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return TypeRestfulInteraction._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

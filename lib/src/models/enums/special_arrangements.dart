@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value set defines a set of codes that can be used to indicate the kinds of special arrangements in place for a patients visit.
 class SpecialArrangements extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  SpecialArrangements._(super.value, [super.element]);
+  SpecialArrangements._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [SpecialArrangements] from JSON.
   factory SpecialArrangements.fromJson(
@@ -21,37 +26,38 @@ class SpecialArrangements extends PrimitiveType<String> {
         'SpecialArrangements cannot be constructed from JSON.',
       );
     }
-    return SpecialArrangements._(value, element);
+    return SpecialArrangements._(value: value, element: element);
   }
 
   /// wheel
   static final SpecialArrangements wheel = SpecialArrangements._(
-    'wheel',
+    value: 'wheel',
   );
 
   /// add_bed
   static final SpecialArrangements add_bed = SpecialArrangements._(
-    'add-bed',
+    value: 'add-bed',
   );
 
   /// int_
   static final SpecialArrangements int_ = SpecialArrangements._(
-    'int',
+    value: 'int',
   );
 
   /// att
   static final SpecialArrangements att = SpecialArrangements._(
-    'att',
+    value: 'att',
   );
 
   /// dog
   static final SpecialArrangements dog = SpecialArrangements._(
-    'dog',
+    value: 'dog',
   );
 
   /// For instances where an Element is present but not value
 
-  static final SpecialArrangements elementOnly = SpecialArrangements._('');
+  static final SpecialArrangements elementOnly =
+      SpecialArrangements._(value: '');
 
   /// List of all enum-like values
   static final List<SpecialArrangements> values = [
@@ -65,13 +71,13 @@ class SpecialArrangements extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   SpecialArrangements clone() => SpecialArrangements._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   SpecialArrangements withElement(Element? newElement) {
-    return SpecialArrangements._(value, newElement);
+    return SpecialArrangements._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -96,14 +102,13 @@ class SpecialArrangements extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return SpecialArrangements._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

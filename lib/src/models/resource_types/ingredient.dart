@@ -25,10 +25,6 @@ class Ingredient extends DomainResource {
     this.allergenicIndicator,
     this.manufacturer,
     required this.substance,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.Ingredient,
         );
@@ -334,10 +330,6 @@ class Ingredient extends DomainResource {
       allergenicIndicator: allergenicIndicator ?? this.allergenicIndicator,
       manufacturer: manufacturer ?? this.manufacturer,
       substance: substance ?? this.substance,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -360,10 +352,6 @@ class IngredientManufacturer extends BackboneElement {
     this.role,
     required this.manufacturer,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -504,10 +492,6 @@ class IngredientManufacturer extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       role: role ?? this.role,
       manufacturer: manufacturer ?? this.manufacturer,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -525,10 +509,6 @@ class IngredientSubstance extends BackboneElement {
     required this.code,
     this.strength,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -676,10 +656,6 @@ class IngredientSubstance extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       code: code ?? this.code,
       strength: strength ?? this.strength,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -708,10 +684,6 @@ class IngredientStrength extends BackboneElement {
     this.country,
     this.referenceStrength,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -991,10 +963,6 @@ class IngredientStrength extends BackboneElement {
       measurementPoint: measurementPoint ?? this.measurementPoint,
       country: country ?? this.country,
       referenceStrength: referenceStrength ?? this.referenceStrength,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1021,10 +989,6 @@ class IngredientReferenceStrength extends BackboneElement {
     this.measurementPoint,
     this.country,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1216,10 +1180,6 @@ class IngredientReferenceStrength extends BackboneElement {
       strengthRatioRange: strengthRatioRange ?? this.strengthRatioRange,
       measurementPoint: measurementPoint ?? this.measurementPoint,
       country: country ?? this.country,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

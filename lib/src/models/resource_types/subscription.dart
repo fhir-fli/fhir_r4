@@ -29,10 +29,6 @@ class Subscription extends DomainResource {
     required this.criteria,
     this.error,
     required this.channel,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.Subscription,
         );
@@ -299,10 +295,6 @@ class Subscription extends DomainResource {
       criteria: criteria ?? this.criteria,
       error: error ?? this.error,
       channel: channel ?? this.channel,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -323,10 +315,6 @@ class SubscriptionChannel extends BackboneElement {
     this.payload,
     this.header,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -499,10 +487,6 @@ class SubscriptionChannel extends BackboneElement {
       endpoint: endpoint ?? this.endpoint,
       payload: payload ?? this.payload,
       header: header ?? this.header,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

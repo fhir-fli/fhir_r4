@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The type of action to be performed.
 class ActionType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ActionType._(super.value, [super.element]);
+  ActionType._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [ActionType] from JSON.
   factory ActionType.fromJson(
@@ -21,32 +26,32 @@ class ActionType extends PrimitiveType<String> {
         'ActionType cannot be constructed from JSON.',
       );
     }
-    return ActionType._(value, element);
+    return ActionType._(value: value, element: element);
   }
 
   /// create
   static final ActionType create = ActionType._(
-    'create',
+    value: 'create',
   );
 
   /// update
   static final ActionType update = ActionType._(
-    'update',
+    value: 'update',
   );
 
   /// remove
   static final ActionType remove = ActionType._(
-    'remove',
+    value: 'remove',
   );
 
   /// fire_event
   static final ActionType fire_event = ActionType._(
-    'fire-event',
+    value: 'fire-event',
   );
 
   /// For instances where an Element is present but not value
 
-  static final ActionType elementOnly = ActionType._('');
+  static final ActionType elementOnly = ActionType._(value: '');
 
   /// List of all enum-like values
   static final List<ActionType> values = [
@@ -59,13 +64,13 @@ class ActionType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ActionType clone() => ActionType._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ActionType withElement(Element? newElement) {
-    return ActionType._(value, newElement);
+    return ActionType._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -90,14 +95,13 @@ class ActionType extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ActionType._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

@@ -5,16 +5,19 @@ import 'package:yaml/yaml.dart';
 /// Extension to convert a [String] to a [FhirId].
 extension FhirIdExtension on String {
   /// Converts a [String] to a [FhirId].
-  FhirId get toFhirId => FhirId(this);
+  FhirId get toFhirId => FhirId(input: this);
 }
 
 /// Represents the FHIR primitive type `id`.
 class FhirId extends PrimitiveType<String> {
   /// Public constructor with input validation.
-  FhirId(String? input, [Element? element])
-      : super(
-          input != null ? _validateId(input) : null,
-          element,
+  FhirId({
+    String? input,
+    super.element,
+    super.id,
+    super.extension_,
+  }) : super(
+          value: input != null ? _validateId(input) : null,
         ) {
     if (value == null && element == null) {
       throw ArgumentError('A value or element is required');
@@ -26,28 +29,31 @@ class FhirId extends PrimitiveType<String> {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    return FhirId(value, element);
+    return FhirId(input: value, element: element);
   }
 
   /// Factory constructor to create [FhirId] from YAML input.
-  static FhirId fromYaml(dynamic yaml) => yaml is String
-      ? FhirId.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, dynamic>,
-        )
-      : yaml is YamlMap
-          ? FhirId.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, dynamic>,
-            )
-          : throw ArgumentError(
-              'FhirId cannot be constructed from provided input. '
-              'It must be a YAML string or YAML map.');
+  static FhirId fromYaml(dynamic yaml) {
+    return yaml is String
+        ? FhirId.fromJson(
+            jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, dynamic>,
+          )
+        : yaml is YamlMap
+            ? FhirId.fromJson(
+                jsonDecode(jsonEncode(yaml)) as Map<String, dynamic>,
+              )
+            : throw ArgumentError(
+                'FhirId cannot be constructed from provided input. '
+                'It must be a YAML string or YAML map.',
+              );
+  }
 
-  /// Static method to try parsing the input.
+  /// Static method to try parsing the input as [FhirId].
   static FhirId? tryParse(dynamic input) {
     if (input is String) {
       try {
-        return FhirId(input);
-      } catch (e) {
+        return FhirId(input: input);
+      } catch (_) {
         return null;
       }
     }
@@ -74,12 +80,14 @@ class FhirId extends PrimitiveType<String> {
   @override
   String get fhirType => 'id';
 
-  /// Serializes the instance to JSON with standardized keys
+  /// Serializes the instance to JSON with standardized keys.
   @override
-  Map<String, dynamic> toJson() => {
-        if (value != null) 'value': value,
-        if (element != null) '_value': element!.toJson(),
-      };
+  Map<String, dynamic> toJson() {
+    return {
+      if (value != null) 'value': value,
+      if (element != null) '_value': element!.toJson(),
+    };
+  }
 
   /// Converts a list of JSON values to a list of [FhirId] instances.
   static List<FhirId> fromJsonList(
@@ -88,7 +96,7 @@ class FhirId extends PrimitiveType<String> {
   ) {
     if (elements != null && elements.length != values.length) {
       throw const FormatException(
-        'Values and elements must have the same length',
+        'Values and elements must have the same length.',
       );
     }
 
@@ -97,7 +105,7 @@ class FhirId extends PrimitiveType<String> {
       final element = elements?[i] != null
           ? Element.fromJson(elements![i] as Map<String, dynamic>)
           : null;
-      return FhirId(value, element);
+      return FhirId(input: value, element: element);
     });
   }
 
@@ -128,7 +136,10 @@ class FhirId extends PrimitiveType<String> {
 
   /// Creates a deep copy of the instance.
   @override
-  FhirId clone() => FhirId(value, element?.clone() as Element?);
+  FhirId clone() => FhirId(
+        input: value,
+        element: element?.clone() as Element?,
+      );
 
   /// Creates a modified copy of the instance with updated properties.
   @override
@@ -141,17 +152,18 @@ class FhirId extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     return FhirId(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      input: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:
             formatCommentsPost ?? this.element?.formatCommentsPost,
         annotations: annotations ?? this.element?.annotations,
       ),
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
     );
   }
 }

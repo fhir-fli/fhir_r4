@@ -41,10 +41,6 @@ class Media extends DomainResource {
     this.duration,
     required this.content,
     this.note,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.Media,
         );
@@ -577,10 +573,6 @@ class Media extends DomainResource {
       duration: duration ?? this.duration,
       content: content ?? this.content,
       note: note ?? this.note,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This example value set defines a set of codes that can be used to indicate the purpose for which you would contact a contact party.
 class ContactEntityType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ContactEntityType._(super.value, [super.element]);
+  ContactEntityType._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [ContactEntityType] from JSON.
   factory ContactEntityType.fromJson(
@@ -21,42 +26,42 @@ class ContactEntityType extends PrimitiveType<String> {
         'ContactEntityType cannot be constructed from JSON.',
       );
     }
-    return ContactEntityType._(value, element);
+    return ContactEntityType._(value: value, element: element);
   }
 
   /// BILL
   static final ContactEntityType BILL = ContactEntityType._(
-    'BILL',
+    value: 'BILL',
   );
 
   /// ADMIN
   static final ContactEntityType ADMIN = ContactEntityType._(
-    'ADMIN',
+    value: 'ADMIN',
   );
 
   /// HR
   static final ContactEntityType HR = ContactEntityType._(
-    'HR',
+    value: 'HR',
   );
 
   /// PAYOR
   static final ContactEntityType PAYOR = ContactEntityType._(
-    'PAYOR',
+    value: 'PAYOR',
   );
 
   /// PATINF
   static final ContactEntityType PATINF = ContactEntityType._(
-    'PATINF',
+    value: 'PATINF',
   );
 
   /// PRESS
   static final ContactEntityType PRESS = ContactEntityType._(
-    'PRESS',
+    value: 'PRESS',
   );
 
   /// For instances where an Element is present but not value
 
-  static final ContactEntityType elementOnly = ContactEntityType._('');
+  static final ContactEntityType elementOnly = ContactEntityType._(value: '');
 
   /// List of all enum-like values
   static final List<ContactEntityType> values = [
@@ -71,13 +76,13 @@ class ContactEntityType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ContactEntityType clone() => ContactEntityType._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ContactEntityType withElement(Element? newElement) {
-    return ContactEntityType._(value, newElement);
+    return ContactEntityType._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -102,14 +107,13 @@ class ContactEntityType extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ContactEntityType._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

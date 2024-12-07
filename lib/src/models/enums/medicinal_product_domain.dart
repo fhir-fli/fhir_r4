@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Applicable domain for this product (e.g. human, veterinary)
 class MedicinalProductDomain extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  MedicinalProductDomain._(super.value, [super.element]);
+  MedicinalProductDomain._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [MedicinalProductDomain] from JSON.
   factory MedicinalProductDomain.fromJson(
@@ -21,29 +26,29 @@ class MedicinalProductDomain extends PrimitiveType<String> {
         'MedicinalProductDomain cannot be constructed from JSON.',
       );
     }
-    return MedicinalProductDomain._(value, element);
+    return MedicinalProductDomain._(value: value, element: element);
   }
 
   /// Human
   static final MedicinalProductDomain Human = MedicinalProductDomain._(
-    'Human',
+    value: 'Human',
   );
 
   /// Veterinary
   static final MedicinalProductDomain Veterinary = MedicinalProductDomain._(
-    'Veterinary',
+    value: 'Veterinary',
   );
 
   /// HumanAndVeterinary
   static final MedicinalProductDomain HumanAndVeterinary =
       MedicinalProductDomain._(
-    'HumanAndVeterinary',
+    value: 'HumanAndVeterinary',
   );
 
   /// For instances where an Element is present but not value
 
   static final MedicinalProductDomain elementOnly =
-      MedicinalProductDomain._('');
+      MedicinalProductDomain._(value: '');
 
   /// List of all enum-like values
   static final List<MedicinalProductDomain> values = [
@@ -55,13 +60,13 @@ class MedicinalProductDomain extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   MedicinalProductDomain clone() => MedicinalProductDomain._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   MedicinalProductDomain withElement(Element? newElement) {
-    return MedicinalProductDomain._(value, newElement);
+    return MedicinalProductDomain._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -86,14 +91,13 @@ class MedicinalProductDomain extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return MedicinalProductDomain._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

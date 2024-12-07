@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// A code that indicates how the page is generated.
 class GuidePageGeneration extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  GuidePageGeneration._(super.value, [super.element]);
+  GuidePageGeneration._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [GuidePageGeneration] from JSON.
   factory GuidePageGeneration.fromJson(
@@ -21,32 +26,33 @@ class GuidePageGeneration extends PrimitiveType<String> {
         'GuidePageGeneration cannot be constructed from JSON.',
       );
     }
-    return GuidePageGeneration._(value, element);
+    return GuidePageGeneration._(value: value, element: element);
   }
 
   /// html
   static final GuidePageGeneration html = GuidePageGeneration._(
-    'html',
+    value: 'html',
   );
 
   /// markdown
   static final GuidePageGeneration markdown = GuidePageGeneration._(
-    'markdown',
+    value: 'markdown',
   );
 
   /// xml
   static final GuidePageGeneration xml = GuidePageGeneration._(
-    'xml',
+    value: 'xml',
   );
 
   /// generated
   static final GuidePageGeneration generated = GuidePageGeneration._(
-    'generated',
+    value: 'generated',
   );
 
   /// For instances where an Element is present but not value
 
-  static final GuidePageGeneration elementOnly = GuidePageGeneration._('');
+  static final GuidePageGeneration elementOnly =
+      GuidePageGeneration._(value: '');
 
   /// List of all enum-like values
   static final List<GuidePageGeneration> values = [
@@ -59,13 +65,13 @@ class GuidePageGeneration extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   GuidePageGeneration clone() => GuidePageGeneration._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   GuidePageGeneration withElement(Element? newElement) {
-    return GuidePageGeneration._(value, newElement);
+    return GuidePageGeneration._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -90,14 +96,13 @@ class GuidePageGeneration extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return GuidePageGeneration._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

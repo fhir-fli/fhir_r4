@@ -38,10 +38,6 @@ class Provenance extends DomainResource {
     required this.agent,
     this.entity,
     this.signature,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.Provenance,
         );
@@ -406,10 +402,6 @@ class Provenance extends DomainResource {
       agent: agent ?? this.agent,
       entity: entity ?? this.entity,
       signature: signature ?? this.signature,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -430,10 +422,6 @@ class ProvenanceAgent extends BackboneElement {
     required this.who,
     this.onBehalfOf,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -608,10 +596,6 @@ class ProvenanceAgent extends BackboneElement {
       role: role ?? this.role,
       who: who ?? this.who,
       onBehalfOf: onBehalfOf ?? this.onBehalfOf,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -630,10 +614,6 @@ class ProvenanceEntity extends BackboneElement {
     required this.what,
     this.agent,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -792,10 +772,6 @@ class ProvenanceEntity extends BackboneElement {
       role: role ?? this.role,
       what: what ?? this.what,
       agent: agent ?? this.agent,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

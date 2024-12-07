@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// A coded concept listing the eye codes.
 class VisionEyes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  VisionEyes._(super.value, [super.element]);
+  VisionEyes._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [VisionEyes] from JSON.
   factory VisionEyes.fromJson(
@@ -21,22 +26,22 @@ class VisionEyes extends PrimitiveType<String> {
         'VisionEyes cannot be constructed from JSON.',
       );
     }
-    return VisionEyes._(value, element);
+    return VisionEyes._(value: value, element: element);
   }
 
   /// right
   static final VisionEyes right = VisionEyes._(
-    'right',
+    value: 'right',
   );
 
   /// left
   static final VisionEyes left = VisionEyes._(
-    'left',
+    value: 'left',
   );
 
   /// For instances where an Element is present but not value
 
-  static final VisionEyes elementOnly = VisionEyes._('');
+  static final VisionEyes elementOnly = VisionEyes._(value: '');
 
   /// List of all enum-like values
   static final List<VisionEyes> values = [
@@ -47,13 +52,13 @@ class VisionEyes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   VisionEyes clone() => VisionEyes._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   VisionEyes withElement(Element? newElement) {
-    return VisionEyes._(value, newElement);
+    return VisionEyes._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -78,14 +83,13 @@ class VisionEyes extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return VisionEyes._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The type of relations between entries.
 class CatalogEntryRelationType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  CatalogEntryRelationType._(super.value, [super.element]);
+  CatalogEntryRelationType._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [CatalogEntryRelationType] from JSON.
   factory CatalogEntryRelationType.fromJson(
@@ -21,24 +26,24 @@ class CatalogEntryRelationType extends PrimitiveType<String> {
         'CatalogEntryRelationType cannot be constructed from JSON.',
       );
     }
-    return CatalogEntryRelationType._(value, element);
+    return CatalogEntryRelationType._(value: value, element: element);
   }
 
   /// triggers
   static final CatalogEntryRelationType triggers = CatalogEntryRelationType._(
-    'triggers',
+    value: 'triggers',
   );
 
   /// is_replaced_by
   static final CatalogEntryRelationType is_replaced_by =
       CatalogEntryRelationType._(
-    'is-replaced-by',
+    value: 'is-replaced-by',
   );
 
   /// For instances where an Element is present but not value
 
   static final CatalogEntryRelationType elementOnly =
-      CatalogEntryRelationType._('');
+      CatalogEntryRelationType._(value: '');
 
   /// List of all enum-like values
   static final List<CatalogEntryRelationType> values = [
@@ -49,13 +54,13 @@ class CatalogEntryRelationType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   CatalogEntryRelationType clone() => CatalogEntryRelationType._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   CatalogEntryRelationType withElement(Element? newElement) {
-    return CatalogEntryRelationType._(value, newElement);
+    return CatalogEntryRelationType._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -80,14 +85,13 @@ class CatalogEntryRelationType extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return CatalogEntryRelationType._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

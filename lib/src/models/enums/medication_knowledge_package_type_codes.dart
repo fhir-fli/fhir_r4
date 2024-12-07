@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// MedicationKnowledge Package Type Codes
 class MedicationKnowledgePackageTypeCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  MedicationKnowledgePackageTypeCodes._(super.value, [super.element]);
+  MedicationKnowledgePackageTypeCodes._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [MedicationKnowledgePackageTypeCodes] from JSON.
   factory MedicationKnowledgePackageTypeCodes.fromJson(
@@ -22,145 +27,146 @@ class MedicationKnowledgePackageTypeCodes extends PrimitiveType<String> {
         'MedicationKnowledgePackageTypeCodes cannot be constructed from JSON.',
       );
     }
-    return MedicationKnowledgePackageTypeCodes._(value, element);
+    return MedicationKnowledgePackageTypeCodes._(
+        value: value, element: element);
   }
 
   /// amp
   static final MedicationKnowledgePackageTypeCodes amp =
       MedicationKnowledgePackageTypeCodes._(
-    'amp',
+    value: 'amp',
   );
 
   /// bag
   static final MedicationKnowledgePackageTypeCodes bag =
       MedicationKnowledgePackageTypeCodes._(
-    'bag',
+    value: 'bag',
   );
 
   /// blstrpk
   static final MedicationKnowledgePackageTypeCodes blstrpk =
       MedicationKnowledgePackageTypeCodes._(
-    'blstrpk',
+    value: 'blstrpk',
   );
 
   /// bot
   static final MedicationKnowledgePackageTypeCodes bot =
       MedicationKnowledgePackageTypeCodes._(
-    'bot',
+    value: 'bot',
   );
 
   /// box
   static final MedicationKnowledgePackageTypeCodes box =
       MedicationKnowledgePackageTypeCodes._(
-    'box',
+    value: 'box',
   );
 
   /// can
   static final MedicationKnowledgePackageTypeCodes can =
       MedicationKnowledgePackageTypeCodes._(
-    'can',
+    value: 'can',
   );
 
   /// cart
   static final MedicationKnowledgePackageTypeCodes cart =
       MedicationKnowledgePackageTypeCodes._(
-    'cart',
+    value: 'cart',
   );
 
   /// disk
   static final MedicationKnowledgePackageTypeCodes disk =
       MedicationKnowledgePackageTypeCodes._(
-    'disk',
+    value: 'disk',
   );
 
   /// doset
   static final MedicationKnowledgePackageTypeCodes doset =
       MedicationKnowledgePackageTypeCodes._(
-    'doset',
+    value: 'doset',
   );
 
   /// jar
   static final MedicationKnowledgePackageTypeCodes jar =
       MedicationKnowledgePackageTypeCodes._(
-    'jar',
+    value: 'jar',
   );
 
   /// jug
   static final MedicationKnowledgePackageTypeCodes jug =
       MedicationKnowledgePackageTypeCodes._(
-    'jug',
+    value: 'jug',
   );
 
   /// minim
   static final MedicationKnowledgePackageTypeCodes minim =
       MedicationKnowledgePackageTypeCodes._(
-    'minim',
+    value: 'minim',
   );
 
   /// nebamp
   static final MedicationKnowledgePackageTypeCodes nebamp =
       MedicationKnowledgePackageTypeCodes._(
-    'nebamp',
+    value: 'nebamp',
   );
 
   /// ovul
   static final MedicationKnowledgePackageTypeCodes ovul =
       MedicationKnowledgePackageTypeCodes._(
-    'ovul',
+    value: 'ovul',
   );
 
   /// pch
   static final MedicationKnowledgePackageTypeCodes pch =
       MedicationKnowledgePackageTypeCodes._(
-    'pch',
+    value: 'pch',
   );
 
   /// pkt
   static final MedicationKnowledgePackageTypeCodes pkt =
       MedicationKnowledgePackageTypeCodes._(
-    'pkt',
+    value: 'pkt',
   );
 
   /// sash
   static final MedicationKnowledgePackageTypeCodes sash =
       MedicationKnowledgePackageTypeCodes._(
-    'sash',
+    value: 'sash',
   );
 
   /// strip
   static final MedicationKnowledgePackageTypeCodes strip =
       MedicationKnowledgePackageTypeCodes._(
-    'strip',
+    value: 'strip',
   );
 
   /// tin
   static final MedicationKnowledgePackageTypeCodes tin =
       MedicationKnowledgePackageTypeCodes._(
-    'tin',
+    value: 'tin',
   );
 
   /// tub
   static final MedicationKnowledgePackageTypeCodes tub =
       MedicationKnowledgePackageTypeCodes._(
-    'tub',
+    value: 'tub',
   );
 
   /// tube
   static final MedicationKnowledgePackageTypeCodes tube =
       MedicationKnowledgePackageTypeCodes._(
-    'tube',
+    value: 'tube',
   );
 
   /// vial
   static final MedicationKnowledgePackageTypeCodes vial =
       MedicationKnowledgePackageTypeCodes._(
-    'vial',
+    value: 'vial',
   );
 
   /// For instances where an Element is present but not value
 
   static final MedicationKnowledgePackageTypeCodes elementOnly =
-      MedicationKnowledgePackageTypeCodes._('');
+      MedicationKnowledgePackageTypeCodes._(value: '');
 
   /// List of all enum-like values
   static final List<MedicationKnowledgePackageTypeCodes> values = [
@@ -192,13 +198,14 @@ class MedicationKnowledgePackageTypeCodes extends PrimitiveType<String> {
   @override
   MedicationKnowledgePackageTypeCodes clone() =>
       MedicationKnowledgePackageTypeCodes._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   MedicationKnowledgePackageTypeCodes withElement(Element? newElement) {
-    return MedicationKnowledgePackageTypeCodes._(value, newElement);
+    return MedicationKnowledgePackageTypeCodes._(
+        value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -223,14 +230,13 @@ class MedicationKnowledgePackageTypeCodes extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return MedicationKnowledgePackageTypeCodes._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

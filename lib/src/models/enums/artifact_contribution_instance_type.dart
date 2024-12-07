@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Artifact Contribution Instance Type
 class ArtifactContributionInstanceType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ArtifactContributionInstanceType._(super.value, [super.element]);
+  ArtifactContributionInstanceType._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [ArtifactContributionInstanceType] from JSON.
   factory ArtifactContributionInstanceType.fromJson(
@@ -21,31 +26,31 @@ class ArtifactContributionInstanceType extends PrimitiveType<String> {
         'ArtifactContributionInstanceType cannot be constructed from JSON.',
       );
     }
-    return ArtifactContributionInstanceType._(value, element);
+    return ArtifactContributionInstanceType._(value: value, element: element);
   }
 
   /// reviewed
   static final ArtifactContributionInstanceType reviewed =
       ArtifactContributionInstanceType._(
-    'reviewed',
+    value: 'reviewed',
   );
 
   /// approved
   static final ArtifactContributionInstanceType approved =
       ArtifactContributionInstanceType._(
-    'approved',
+    value: 'approved',
   );
 
   /// edited
   static final ArtifactContributionInstanceType edited =
       ArtifactContributionInstanceType._(
-    'edited',
+    value: 'edited',
   );
 
   /// For instances where an Element is present but not value
 
   static final ArtifactContributionInstanceType elementOnly =
-      ArtifactContributionInstanceType._('');
+      ArtifactContributionInstanceType._(value: '');
 
   /// List of all enum-like values
   static final List<ArtifactContributionInstanceType> values = [
@@ -58,13 +63,14 @@ class ArtifactContributionInstanceType extends PrimitiveType<String> {
   @override
   ArtifactContributionInstanceType clone() =>
       ArtifactContributionInstanceType._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ArtifactContributionInstanceType withElement(Element? newElement) {
-    return ArtifactContributionInstanceType._(value, newElement);
+    return ArtifactContributionInstanceType._(
+        value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -89,14 +95,13 @@ class ArtifactContributionInstanceType extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ArtifactContributionInstanceType._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

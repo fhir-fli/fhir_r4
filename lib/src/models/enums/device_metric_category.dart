@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Describes the category of the metric.
 class DeviceMetricCategory extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  DeviceMetricCategory._(super.value, [super.element]);
+  DeviceMetricCategory._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [DeviceMetricCategory] from JSON.
   factory DeviceMetricCategory.fromJson(
@@ -21,32 +26,33 @@ class DeviceMetricCategory extends PrimitiveType<String> {
         'DeviceMetricCategory cannot be constructed from JSON.',
       );
     }
-    return DeviceMetricCategory._(value, element);
+    return DeviceMetricCategory._(value: value, element: element);
   }
 
   /// measurement
   static final DeviceMetricCategory measurement = DeviceMetricCategory._(
-    'measurement',
+    value: 'measurement',
   );
 
   /// setting
   static final DeviceMetricCategory setting = DeviceMetricCategory._(
-    'setting',
+    value: 'setting',
   );
 
   /// calculation
   static final DeviceMetricCategory calculation = DeviceMetricCategory._(
-    'calculation',
+    value: 'calculation',
   );
 
   /// unspecified
   static final DeviceMetricCategory unspecified = DeviceMetricCategory._(
-    'unspecified',
+    value: 'unspecified',
   );
 
   /// For instances where an Element is present but not value
 
-  static final DeviceMetricCategory elementOnly = DeviceMetricCategory._('');
+  static final DeviceMetricCategory elementOnly =
+      DeviceMetricCategory._(value: '');
 
   /// List of all enum-like values
   static final List<DeviceMetricCategory> values = [
@@ -59,13 +65,13 @@ class DeviceMetricCategory extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   DeviceMetricCategory clone() => DeviceMetricCategory._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   DeviceMetricCategory withElement(Element? newElement) {
-    return DeviceMetricCategory._(value, newElement);
+    return DeviceMetricCategory._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -90,14 +96,13 @@ class DeviceMetricCategory extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return DeviceMetricCategory._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

@@ -34,10 +34,6 @@ class ImmunizationEvaluation extends DomainResource {
     this.doseNumberString,
     this.seriesDosesPositiveInt,
     this.seriesDosesString,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.ImmunizationEvaluation,
         );
@@ -421,10 +417,6 @@ class ImmunizationEvaluation extends DomainResource {
       seriesDosesPositiveInt:
           seriesDosesPositiveInt ?? this.seriesDosesPositiveInt,
       seriesDosesString: seriesDosesString ?? this.seriesDosesString,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

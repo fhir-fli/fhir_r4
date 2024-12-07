@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Indicates the purpose of a bundle - how it is intended to be used.
 class BundleType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  BundleType._(super.value, [super.element]);
+  BundleType._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [BundleType] from JSON.
   factory BundleType.fromJson(
@@ -21,57 +26,57 @@ class BundleType extends PrimitiveType<String> {
         'BundleType cannot be constructed from JSON.',
       );
     }
-    return BundleType._(value, element);
+    return BundleType._(value: value, element: element);
   }
 
   /// document
   static final BundleType document = BundleType._(
-    'document',
+    value: 'document',
   );
 
   /// message
   static final BundleType message = BundleType._(
-    'message',
+    value: 'message',
   );
 
   /// transaction
   static final BundleType transaction = BundleType._(
-    'transaction',
+    value: 'transaction',
   );
 
   /// transaction_response
   static final BundleType transaction_response = BundleType._(
-    'transaction-response',
+    value: 'transaction-response',
   );
 
   /// batch
   static final BundleType batch = BundleType._(
-    'batch',
+    value: 'batch',
   );
 
   /// batch_response
   static final BundleType batch_response = BundleType._(
-    'batch-response',
+    value: 'batch-response',
   );
 
   /// history
   static final BundleType history = BundleType._(
-    'history',
+    value: 'history',
   );
 
   /// searchset
   static final BundleType searchset = BundleType._(
-    'searchset',
+    value: 'searchset',
   );
 
   /// collection
   static final BundleType collection = BundleType._(
-    'collection',
+    value: 'collection',
   );
 
   /// For instances where an Element is present but not value
 
-  static final BundleType elementOnly = BundleType._('');
+  static final BundleType elementOnly = BundleType._(value: '');
 
   /// List of all enum-like values
   static final List<BundleType> values = [
@@ -89,13 +94,13 @@ class BundleType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   BundleType clone() => BundleType._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   BundleType withElement(Element? newElement) {
-    return BundleType._(value, newElement);
+    return BundleType._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -120,14 +125,13 @@ class BundleType extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return BundleType._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

@@ -41,10 +41,6 @@ class Appointment extends DomainResource {
     this.basedOn,
     required this.participant,
     this.requestedPeriod,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.Appointment,
         );
@@ -618,10 +614,6 @@ class Appointment extends DomainResource {
       basedOn: basedOn ?? this.basedOn,
       participant: participant ?? this.participant,
       requestedPeriod: requestedPeriod ?? this.requestedPeriod,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -642,10 +634,6 @@ class AppointmentParticipant extends BackboneElement {
     required this.status,
     this.period,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -835,10 +823,6 @@ class AppointmentParticipant extends BackboneElement {
       required_: required_ ?? this.required_,
       status: status ?? this.status,
       period: period ?? this.period,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

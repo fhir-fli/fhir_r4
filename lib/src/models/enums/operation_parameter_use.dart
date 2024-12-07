@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Whether an operation parameter is an input or an output parameter.
 class OperationParameterUse extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  OperationParameterUse._(super.value, [super.element]);
+  OperationParameterUse._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [OperationParameterUse] from JSON.
   factory OperationParameterUse.fromJson(
@@ -21,22 +26,23 @@ class OperationParameterUse extends PrimitiveType<String> {
         'OperationParameterUse cannot be constructed from JSON.',
       );
     }
-    return OperationParameterUse._(value, element);
+    return OperationParameterUse._(value: value, element: element);
   }
 
   /// in_
   static final OperationParameterUse in_ = OperationParameterUse._(
-    'in',
+    value: 'in',
   );
 
   /// out
   static final OperationParameterUse out = OperationParameterUse._(
-    'out',
+    value: 'out',
   );
 
   /// For instances where an Element is present but not value
 
-  static final OperationParameterUse elementOnly = OperationParameterUse._('');
+  static final OperationParameterUse elementOnly =
+      OperationParameterUse._(value: '');
 
   /// List of all enum-like values
   static final List<OperationParameterUse> values = [
@@ -47,13 +53,13 @@ class OperationParameterUse extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   OperationParameterUse clone() => OperationParameterUse._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   OperationParameterUse withElement(Element? newElement) {
-    return OperationParameterUse._(value, newElement);
+    return OperationParameterUse._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -78,14 +84,13 @@ class OperationParameterUse extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return OperationParameterUse._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

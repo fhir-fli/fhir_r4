@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Overall seriousness of this event for the patient.
 class AdverseEventSeriousness extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  AdverseEventSeriousness._(super.value, [super.element]);
+  AdverseEventSeriousness._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [AdverseEventSeriousness] from JSON.
   factory AdverseEventSeriousness.fromJson(
@@ -21,59 +26,59 @@ class AdverseEventSeriousness extends PrimitiveType<String> {
         'AdverseEventSeriousness cannot be constructed from JSON.',
       );
     }
-    return AdverseEventSeriousness._(value, element);
+    return AdverseEventSeriousness._(value: value, element: element);
   }
 
   /// Non_serious
   static final AdverseEventSeriousness Non_serious = AdverseEventSeriousness._(
-    'Non-serious',
+    value: 'Non-serious',
   );
 
   /// Serious
   static final AdverseEventSeriousness Serious = AdverseEventSeriousness._(
-    'Serious',
+    value: 'Serious',
   );
 
   /// SeriousResultsInDeath
   static final AdverseEventSeriousness SeriousResultsInDeath =
       AdverseEventSeriousness._(
-    'SeriousResultsInDeath',
+    value: 'SeriousResultsInDeath',
   );
 
   /// SeriousIsLifeThreatening
   static final AdverseEventSeriousness SeriousIsLifeThreatening =
       AdverseEventSeriousness._(
-    'SeriousIsLifeThreatening',
+    value: 'SeriousIsLifeThreatening',
   );
 
   /// SeriousResultsInHospitalization
   static final AdverseEventSeriousness SeriousResultsInHospitalization =
       AdverseEventSeriousness._(
-    'SeriousResultsInHospitalization',
+    value: 'SeriousResultsInHospitalization',
   );
 
   /// SeriousResultsInDisability
   static final AdverseEventSeriousness SeriousResultsInDisability =
       AdverseEventSeriousness._(
-    'SeriousResultsInDisability',
+    value: 'SeriousResultsInDisability',
   );
 
   /// SeriousIsBirthDefect
   static final AdverseEventSeriousness SeriousIsBirthDefect =
       AdverseEventSeriousness._(
-    'SeriousIsBirthDefect',
+    value: 'SeriousIsBirthDefect',
   );
 
   /// SeriousRequiresPreventImpairment
   static final AdverseEventSeriousness SeriousRequiresPreventImpairment =
       AdverseEventSeriousness._(
-    'SeriousRequiresPreventImpairment',
+    value: 'SeriousRequiresPreventImpairment',
   );
 
   /// For instances where an Element is present but not value
 
   static final AdverseEventSeriousness elementOnly =
-      AdverseEventSeriousness._('');
+      AdverseEventSeriousness._(value: '');
 
   /// List of all enum-like values
   static final List<AdverseEventSeriousness> values = [
@@ -90,13 +95,13 @@ class AdverseEventSeriousness extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   AdverseEventSeriousness clone() => AdverseEventSeriousness._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   AdverseEventSeriousness withElement(Element? newElement) {
-    return AdverseEventSeriousness._(value, newElement);
+    return AdverseEventSeriousness._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -121,14 +126,13 @@ class AdverseEventSeriousness extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return AdverseEventSeriousness._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

@@ -30,10 +30,6 @@ class Specimen extends DomainResource {
     this.container,
     this.condition,
     this.note,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.Specimen,
         );
@@ -435,10 +431,6 @@ class Specimen extends DomainResource {
       container: container ?? this.container,
       condition: condition ?? this.condition,
       note: note ?? this.note,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -463,10 +455,6 @@ class SpecimenCollection extends BackboneElement {
     this.fastingStatusCodeableConcept,
     this.fastingStatusDuration,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -725,10 +713,6 @@ class SpecimenCollection extends BackboneElement {
           fastingStatusCodeableConcept ?? this.fastingStatusCodeableConcept,
       fastingStatusDuration:
           fastingStatusDuration ?? this.fastingStatusDuration,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -749,10 +733,6 @@ class SpecimenProcessing extends BackboneElement {
     this.timeDateTime,
     this.timePeriod,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -946,10 +926,6 @@ class SpecimenProcessing extends BackboneElement {
       additive: additive ?? this.additive,
       timeDateTime: timeDateTime ?? this.timeDateTime,
       timePeriod: timePeriod ?? this.timePeriod,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -973,10 +949,6 @@ class SpecimenContainer extends BackboneElement {
     this.additiveCodeableConcept,
     this.additiveReference,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1204,10 +1176,6 @@ class SpecimenContainer extends BackboneElement {
       additiveCodeableConcept:
           additiveCodeableConcept ?? this.additiveCodeableConcept,
       additiveReference: additiveReference ?? this.additiveReference,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

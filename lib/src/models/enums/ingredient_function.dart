@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// A classification of the ingredient identifying its precise purpose(s) in the drug product (beyond e.g. active/inactive).
 class IngredientFunction extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  IngredientFunction._(super.value, [super.element]);
+  IngredientFunction._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [IngredientFunction] from JSON.
   factory IngredientFunction.fromJson(
@@ -21,22 +26,22 @@ class IngredientFunction extends PrimitiveType<String> {
         'IngredientFunction cannot be constructed from JSON.',
       );
     }
-    return IngredientFunction._(value, element);
+    return IngredientFunction._(value: value, element: element);
   }
 
   /// Antioxidant
   static final IngredientFunction Antioxidant = IngredientFunction._(
-    'Antioxidant',
+    value: 'Antioxidant',
   );
 
   /// AlkalizingAgent
   static final IngredientFunction AlkalizingAgent = IngredientFunction._(
-    'AlkalizingAgent',
+    value: 'AlkalizingAgent',
   );
 
   /// For instances where an Element is present but not value
 
-  static final IngredientFunction elementOnly = IngredientFunction._('');
+  static final IngredientFunction elementOnly = IngredientFunction._(value: '');
 
   /// List of all enum-like values
   static final List<IngredientFunction> values = [
@@ -47,13 +52,13 @@ class IngredientFunction extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   IngredientFunction clone() => IngredientFunction._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   IngredientFunction withElement(Element? newElement) {
-    return IngredientFunction._(value, newElement);
+    return IngredientFunction._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -78,14 +83,13 @@ class IngredientFunction extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return IngredientFunction._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

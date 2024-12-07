@@ -21,10 +21,6 @@ class TriggerDefinition extends DataType {
     this.data,
     this.condition,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -243,10 +239,6 @@ class TriggerDefinition extends DataType {
       timingDateTime: timingDateTime ?? this.timingDateTime,
       data: data ?? this.data,
       condition: condition ?? this.condition,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

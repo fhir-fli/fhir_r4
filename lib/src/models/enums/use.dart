@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The purpose of the Claim: predetermination, preauthorization, claim.
 class Use extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  Use._(super.value, [super.element]);
+  Use._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [Use] from JSON.
   factory Use.fromJson(
@@ -21,27 +26,27 @@ class Use extends PrimitiveType<String> {
         'Use cannot be constructed from JSON.',
       );
     }
-    return Use._(value, element);
+    return Use._(value: value, element: element);
   }
 
   /// claim
   static final Use claim = Use._(
-    'claim',
+    value: 'claim',
   );
 
   /// preauthorization
   static final Use preauthorization = Use._(
-    'preauthorization',
+    value: 'preauthorization',
   );
 
   /// predetermination
   static final Use predetermination = Use._(
-    'predetermination',
+    value: 'predetermination',
   );
 
   /// For instances where an Element is present but not value
 
-  static final Use elementOnly = Use._('');
+  static final Use elementOnly = Use._(value: '');
 
   /// List of all enum-like values
   static final List<Use> values = [
@@ -53,13 +58,13 @@ class Use extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   Use clone() => Use._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   Use withElement(Element? newElement) {
-    return Use._(value, newElement);
+    return Use._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -84,14 +89,13 @@ class Use extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return Use._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

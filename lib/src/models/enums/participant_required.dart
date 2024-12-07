@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Is the Participant required to attend the appointment.
 class ParticipantRequired extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ParticipantRequired._(super.value, [super.element]);
+  ParticipantRequired._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [ParticipantRequired] from JSON.
   factory ParticipantRequired.fromJson(
@@ -21,27 +26,28 @@ class ParticipantRequired extends PrimitiveType<String> {
         'ParticipantRequired cannot be constructed from JSON.',
       );
     }
-    return ParticipantRequired._(value, element);
+    return ParticipantRequired._(value: value, element: element);
   }
 
   /// required_
   static final ParticipantRequired required_ = ParticipantRequired._(
-    'required',
+    value: 'required',
   );
 
   /// optional
   static final ParticipantRequired optional = ParticipantRequired._(
-    'optional',
+    value: 'optional',
   );
 
   /// information_only
   static final ParticipantRequired information_only = ParticipantRequired._(
-    'information-only',
+    value: 'information-only',
   );
 
   /// For instances where an Element is present but not value
 
-  static final ParticipantRequired elementOnly = ParticipantRequired._('');
+  static final ParticipantRequired elementOnly =
+      ParticipantRequired._(value: '');
 
   /// List of all enum-like values
   static final List<ParticipantRequired> values = [
@@ -53,13 +59,13 @@ class ParticipantRequired extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ParticipantRequired clone() => ParticipantRequired._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ParticipantRequired withElement(Element? newElement) {
-    return ParticipantRequired._(value, newElement);
+    return ParticipantRequired._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -84,14 +90,13 @@ class ParticipantRequired extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ParticipantRequired._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The type of publication such as book, database, or journal.
 class PublishedInType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  PublishedInType._(super.value, [super.element]);
+  PublishedInType._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [PublishedInType] from JSON.
   factory PublishedInType.fromJson(
@@ -21,32 +26,32 @@ class PublishedInType extends PrimitiveType<String> {
         'PublishedInType cannot be constructed from JSON.',
       );
     }
-    return PublishedInType._(value, element);
+    return PublishedInType._(value: value, element: element);
   }
 
   /// D020492
   static final PublishedInType D020492 = PublishedInType._(
-    'D020492',
+    value: 'D020492',
   );
 
   /// D019991
   static final PublishedInType D019991 = PublishedInType._(
-    'D019991',
+    value: 'D019991',
   );
 
   /// D001877
   static final PublishedInType D001877 = PublishedInType._(
-    'D001877',
+    value: 'D001877',
   );
 
   /// D064886
   static final PublishedInType D064886 = PublishedInType._(
-    'D064886',
+    value: 'D064886',
   );
 
   /// For instances where an Element is present but not value
 
-  static final PublishedInType elementOnly = PublishedInType._('');
+  static final PublishedInType elementOnly = PublishedInType._(value: '');
 
   /// List of all enum-like values
   static final List<PublishedInType> values = [
@@ -59,13 +64,13 @@ class PublishedInType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   PublishedInType clone() => PublishedInType._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   PublishedInType withElement(Element? newElement) {
-    return PublishedInType._(value, newElement);
+    return PublishedInType._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -90,14 +95,13 @@ class PublishedInType extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return PublishedInType._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

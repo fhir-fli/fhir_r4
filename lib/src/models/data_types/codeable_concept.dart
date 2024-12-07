@@ -15,10 +15,6 @@ class CodeableConcept extends DataType {
     this.coding,
     this.text,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -150,10 +146,6 @@ class CodeableConcept extends DataType {
       extension_: extension_ ?? this.extension_,
       coding: coding ?? this.coding,
       text: text ?? this.text,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

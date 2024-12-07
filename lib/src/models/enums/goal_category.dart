@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Example codes for grouping goals to use for filtering or presentation.
 class GoalCategory extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  GoalCategory._(super.value, [super.element]);
+  GoalCategory._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [GoalCategory] from JSON.
   factory GoalCategory.fromJson(
@@ -21,37 +26,37 @@ class GoalCategory extends PrimitiveType<String> {
         'GoalCategory cannot be constructed from JSON.',
       );
     }
-    return GoalCategory._(value, element);
+    return GoalCategory._(value: value, element: element);
   }
 
   /// dietary
   static final GoalCategory dietary = GoalCategory._(
-    'dietary',
+    value: 'dietary',
   );
 
   /// safety
   static final GoalCategory safety = GoalCategory._(
-    'safety',
+    value: 'safety',
   );
 
   /// behavioral
   static final GoalCategory behavioral = GoalCategory._(
-    'behavioral',
+    value: 'behavioral',
   );
 
   /// nursing
   static final GoalCategory nursing = GoalCategory._(
-    'nursing',
+    value: 'nursing',
   );
 
   /// physiotherapy
   static final GoalCategory physiotherapy = GoalCategory._(
-    'physiotherapy',
+    value: 'physiotherapy',
   );
 
   /// For instances where an Element is present but not value
 
-  static final GoalCategory elementOnly = GoalCategory._('');
+  static final GoalCategory elementOnly = GoalCategory._(value: '');
 
   /// List of all enum-like values
   static final List<GoalCategory> values = [
@@ -65,13 +70,13 @@ class GoalCategory extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   GoalCategory clone() => GoalCategory._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   GoalCategory withElement(Element? newElement) {
-    return GoalCategory._(value, newElement);
+    return GoalCategory._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -96,14 +101,13 @@ class GoalCategory extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return GoalCategory._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

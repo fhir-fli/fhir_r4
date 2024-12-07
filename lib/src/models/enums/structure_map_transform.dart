@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// How data is copied/created.
 class StructureMapTransform extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  StructureMapTransform._(super.value, [super.element]);
+  StructureMapTransform._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [StructureMapTransform] from JSON.
   factory StructureMapTransform.fromJson(
@@ -21,97 +26,98 @@ class StructureMapTransform extends PrimitiveType<String> {
         'StructureMapTransform cannot be constructed from JSON.',
       );
     }
-    return StructureMapTransform._(value, element);
+    return StructureMapTransform._(value: value, element: element);
   }
 
   /// create
   static final StructureMapTransform create = StructureMapTransform._(
-    'create',
+    value: 'create',
   );
 
   /// copy
   static final StructureMapTransform copy_ = StructureMapTransform._(
-    'copy',
+    value: 'copy',
   );
 
   /// truncate
   static final StructureMapTransform truncate = StructureMapTransform._(
-    'truncate',
+    value: 'truncate',
   );
 
   /// escape
   static final StructureMapTransform escape = StructureMapTransform._(
-    'escape',
+    value: 'escape',
   );
 
   /// cast
   static final StructureMapTransform cast = StructureMapTransform._(
-    'cast',
+    value: 'cast',
   );
 
   /// append
   static final StructureMapTransform append = StructureMapTransform._(
-    'append',
+    value: 'append',
   );
 
   /// translate
   static final StructureMapTransform translate = StructureMapTransform._(
-    'translate',
+    value: 'translate',
   );
 
   /// reference
   static final StructureMapTransform reference = StructureMapTransform._(
-    'reference',
+    value: 'reference',
   );
 
   /// dateOp
   static final StructureMapTransform dateOp = StructureMapTransform._(
-    'dateOp',
+    value: 'dateOp',
   );
 
   /// uuid
   static final StructureMapTransform uuid = StructureMapTransform._(
-    'uuid',
+    value: 'uuid',
   );
 
   /// pointer
   static final StructureMapTransform pointer = StructureMapTransform._(
-    'pointer',
+    value: 'pointer',
   );
 
   /// evaluate
   static final StructureMapTransform evaluate = StructureMapTransform._(
-    'evaluate',
+    value: 'evaluate',
   );
 
   /// cc
   static final StructureMapTransform cc = StructureMapTransform._(
-    'cc',
+    value: 'cc',
   );
 
   /// c
   static final StructureMapTransform c = StructureMapTransform._(
-    'c',
+    value: 'c',
   );
 
   /// qty
   static final StructureMapTransform qty = StructureMapTransform._(
-    'qty',
+    value: 'qty',
   );
 
   /// id
   static final StructureMapTransform id_ = StructureMapTransform._(
-    'id',
+    value: 'id',
   );
 
   /// cp
   static final StructureMapTransform cp = StructureMapTransform._(
-    'cp',
+    value: 'cp',
   );
 
   /// For instances where an Element is present but not value
 
-  static final StructureMapTransform elementOnly = StructureMapTransform._('');
+  static final StructureMapTransform elementOnly =
+      StructureMapTransform._(value: '');
 
   /// List of all enum-like values
   static final List<StructureMapTransform> values = [
@@ -137,13 +143,13 @@ class StructureMapTransform extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   StructureMapTransform clone() => StructureMapTransform._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   StructureMapTransform withElement(Element? newElement) {
-    return StructureMapTransform._(value, newElement);
+    return StructureMapTransform._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -168,14 +174,13 @@ class StructureMapTransform extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return StructureMapTransform._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

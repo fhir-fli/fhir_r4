@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// A categorisation for incidence of occurence of an interaction.
 class InteractionIncidence extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  InteractionIncidence._(super.value, [super.element]);
+  InteractionIncidence._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [InteractionIncidence] from JSON.
   factory InteractionIncidence.fromJson(
@@ -21,22 +26,23 @@ class InteractionIncidence extends PrimitiveType<String> {
         'InteractionIncidence cannot be constructed from JSON.',
       );
     }
-    return InteractionIncidence._(value, element);
+    return InteractionIncidence._(value: value, element: element);
   }
 
   /// Theoretical
   static final InteractionIncidence Theoretical = InteractionIncidence._(
-    'Theoretical',
+    value: 'Theoretical',
   );
 
   /// Observed
   static final InteractionIncidence Observed = InteractionIncidence._(
-    'Observed',
+    value: 'Observed',
   );
 
   /// For instances where an Element is present but not value
 
-  static final InteractionIncidence elementOnly = InteractionIncidence._('');
+  static final InteractionIncidence elementOnly =
+      InteractionIncidence._(value: '');
 
   /// List of all enum-like values
   static final List<InteractionIncidence> values = [
@@ -47,13 +53,13 @@ class InteractionIncidence extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   InteractionIncidence clone() => InteractionIncidence._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   InteractionIncidence withElement(Element? newElement) {
-    return InteractionIncidence._(value, newElement);
+    return InteractionIncidence._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -78,14 +84,13 @@ class InteractionIncidence extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return InteractionIncidence._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

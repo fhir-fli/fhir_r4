@@ -43,10 +43,6 @@ class CarePlan extends DomainResource {
     this.goal,
     this.activity,
     this.note,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.CarePlan,
         );
@@ -629,10 +625,6 @@ class CarePlan extends DomainResource {
       goal: goal ?? this.goal,
       activity: activity ?? this.activity,
       note: note ?? this.note,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -655,10 +647,6 @@ class CarePlanActivity extends BackboneElement {
     this.reference,
     this.detail,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -871,10 +859,6 @@ class CarePlanActivity extends BackboneElement {
       progress: progress ?? this.progress,
       reference: reference ?? this.reference,
       detail: detail ?? this.detail,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -912,10 +896,6 @@ class CarePlanDetail extends BackboneElement {
     this.quantity,
     this.description,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1377,10 +1357,6 @@ class CarePlanDetail extends BackboneElement {
       dailyAmount: dailyAmount ?? this.dailyAmount,
       quantity: quantity ?? this.quantity,
       description: description ?? this.description,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

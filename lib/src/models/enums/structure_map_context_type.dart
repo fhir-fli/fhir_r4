@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// How to interpret the context.
 class StructureMapContextType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  StructureMapContextType._(super.value, [super.element]);
+  StructureMapContextType._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [StructureMapContextType] from JSON.
   factory StructureMapContextType.fromJson(
@@ -21,23 +26,23 @@ class StructureMapContextType extends PrimitiveType<String> {
         'StructureMapContextType cannot be constructed from JSON.',
       );
     }
-    return StructureMapContextType._(value, element);
+    return StructureMapContextType._(value: value, element: element);
   }
 
   /// type
   static final StructureMapContextType type = StructureMapContextType._(
-    'type',
+    value: 'type',
   );
 
   /// variable
   static final StructureMapContextType variable = StructureMapContextType._(
-    'variable',
+    value: 'variable',
   );
 
   /// For instances where an Element is present but not value
 
   static final StructureMapContextType elementOnly =
-      StructureMapContextType._('');
+      StructureMapContextType._(value: '');
 
   /// List of all enum-like values
   static final List<StructureMapContextType> values = [
@@ -48,13 +53,13 @@ class StructureMapContextType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   StructureMapContextType clone() => StructureMapContextType._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   StructureMapContextType withElement(Element? newElement) {
-    return StructureMapContextType._(value, newElement);
+    return StructureMapContextType._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -79,14 +84,13 @@ class StructureMapContextType extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return StructureMapContextType._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

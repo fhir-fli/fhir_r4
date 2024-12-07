@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Preferred value set for Condition Clinical Status.
 class ConditionClinicalStatusCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ConditionClinicalStatusCodes._(super.value, [super.element]);
+  ConditionClinicalStatusCodes._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [ConditionClinicalStatusCodes] from JSON.
   factory ConditionClinicalStatusCodes.fromJson(
@@ -21,49 +26,49 @@ class ConditionClinicalStatusCodes extends PrimitiveType<String> {
         'ConditionClinicalStatusCodes cannot be constructed from JSON.',
       );
     }
-    return ConditionClinicalStatusCodes._(value, element);
+    return ConditionClinicalStatusCodes._(value: value, element: element);
   }
 
   /// active
   static final ConditionClinicalStatusCodes active =
       ConditionClinicalStatusCodes._(
-    'active',
+    value: 'active',
   );
 
   /// recurrence
   static final ConditionClinicalStatusCodes recurrence =
       ConditionClinicalStatusCodes._(
-    'recurrence',
+    value: 'recurrence',
   );
 
   /// relapse
   static final ConditionClinicalStatusCodes relapse =
       ConditionClinicalStatusCodes._(
-    'relapse',
+    value: 'relapse',
   );
 
   /// inactive
   static final ConditionClinicalStatusCodes inactive =
       ConditionClinicalStatusCodes._(
-    'inactive',
+    value: 'inactive',
   );
 
   /// remission
   static final ConditionClinicalStatusCodes remission =
       ConditionClinicalStatusCodes._(
-    'remission',
+    value: 'remission',
   );
 
   /// resolved
   static final ConditionClinicalStatusCodes resolved =
       ConditionClinicalStatusCodes._(
-    'resolved',
+    value: 'resolved',
   );
 
   /// For instances where an Element is present but not value
 
   static final ConditionClinicalStatusCodes elementOnly =
-      ConditionClinicalStatusCodes._('');
+      ConditionClinicalStatusCodes._(value: '');
 
   /// List of all enum-like values
   static final List<ConditionClinicalStatusCodes> values = [
@@ -78,13 +83,13 @@ class ConditionClinicalStatusCodes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ConditionClinicalStatusCodes clone() => ConditionClinicalStatusCodes._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ConditionClinicalStatusCodes withElement(Element? newElement) {
-    return ConditionClinicalStatusCodes._(value, newElement);
+    return ConditionClinicalStatusCodes._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -109,14 +114,13 @@ class ConditionClinicalStatusCodes extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ConditionClinicalStatusCodes._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

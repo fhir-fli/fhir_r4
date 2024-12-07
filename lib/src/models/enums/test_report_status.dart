@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The current status of the test report.
 class TestReportStatus extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  TestReportStatus._(super.value, [super.element]);
+  TestReportStatus._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [TestReportStatus] from JSON.
   factory TestReportStatus.fromJson(
@@ -21,37 +26,37 @@ class TestReportStatus extends PrimitiveType<String> {
         'TestReportStatus cannot be constructed from JSON.',
       );
     }
-    return TestReportStatus._(value, element);
+    return TestReportStatus._(value: value, element: element);
   }
 
   /// completed
   static final TestReportStatus completed = TestReportStatus._(
-    'completed',
+    value: 'completed',
   );
 
   /// in_progress
   static final TestReportStatus in_progress = TestReportStatus._(
-    'in-progress',
+    value: 'in-progress',
   );
 
   /// waiting
   static final TestReportStatus waiting = TestReportStatus._(
-    'waiting',
+    value: 'waiting',
   );
 
   /// stopped
   static final TestReportStatus stopped = TestReportStatus._(
-    'stopped',
+    value: 'stopped',
   );
 
   /// entered_in_error
   static final TestReportStatus entered_in_error = TestReportStatus._(
-    'entered-in-error',
+    value: 'entered-in-error',
   );
 
   /// For instances where an Element is present but not value
 
-  static final TestReportStatus elementOnly = TestReportStatus._('');
+  static final TestReportStatus elementOnly = TestReportStatus._(value: '');
 
   /// List of all enum-like values
   static final List<TestReportStatus> values = [
@@ -65,13 +70,13 @@ class TestReportStatus extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   TestReportStatus clone() => TestReportStatus._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   TestReportStatus withElement(Element? newElement) {
-    return TestReportStatus._(value, newElement);
+    return TestReportStatus._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -96,14 +101,13 @@ class TestReportStatus extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return TestReportStatus._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

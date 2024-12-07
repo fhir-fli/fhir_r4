@@ -41,10 +41,6 @@ class HealthcareService extends DomainResource {
     this.notAvailable,
     this.availabilityExceptions,
     this.endpoint,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.HealthcareService,
         );
@@ -658,10 +654,6 @@ class HealthcareService extends DomainResource {
       availabilityExceptions:
           availabilityExceptions ?? this.availabilityExceptions,
       endpoint: endpoint ?? this.endpoint,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -680,10 +672,6 @@ class HealthcareServiceEligibility extends BackboneElement {
     this.code,
     this.comment,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -825,10 +813,6 @@ class HealthcareServiceEligibility extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       code: code ?? this.code,
       comment: comment ?? this.comment,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -848,10 +832,6 @@ class HealthcareServiceAvailableTime extends BackboneElement {
     this.availableStartTime,
     this.availableEndTime,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1029,10 +1009,6 @@ class HealthcareServiceAvailableTime extends BackboneElement {
       allDay: allDay ?? this.allDay,
       availableStartTime: availableStartTime ?? this.availableStartTime,
       availableEndTime: availableEndTime ?? this.availableEndTime,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1051,10 +1027,6 @@ class HealthcareServiceNotAvailable extends BackboneElement {
     required this.description,
     this.during,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1196,10 +1168,6 @@ class HealthcareServiceNotAvailable extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       description: description ?? this.description,
       during: during ?? this.during,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

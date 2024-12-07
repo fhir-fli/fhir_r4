@@ -30,10 +30,6 @@ class SupplyDelivery extends DomainResource {
     this.supplier,
     this.destination,
     this.receiver,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.SupplyDelivery,
         );
@@ -421,10 +417,6 @@ class SupplyDelivery extends DomainResource {
       supplier: supplier ?? this.supplier,
       destination: destination ?? this.destination,
       receiver: receiver ?? this.receiver,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -443,10 +435,6 @@ class SupplyDeliverySuppliedItem extends BackboneElement {
     this.itemCodeableConcept,
     this.itemReference,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -609,10 +597,6 @@ class SupplyDeliverySuppliedItem extends BackboneElement {
       quantity: quantity ?? this.quantity,
       itemCodeableConcept: itemCodeableConcept ?? this.itemCodeableConcept,
       itemReference: itemReference ?? this.itemReference,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

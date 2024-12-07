@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Unified Code for Units of Measure (UCUM). This value set includes common UCUM codes for units of distance
 class CommonUCUMCodesForDistance extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  CommonUCUMCodesForDistance._(super.value, [super.element]);
+  CommonUCUMCodesForDistance._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [CommonUCUMCodesForDistance] from JSON.
   factory CommonUCUMCodesForDistance.fromJson(
@@ -21,38 +26,38 @@ class CommonUCUMCodesForDistance extends PrimitiveType<String> {
         'CommonUCUMCodesForDistance cannot be constructed from JSON.',
       );
     }
-    return CommonUCUMCodesForDistance._(value, element);
+    return CommonUCUMCodesForDistance._(value: value, element: element);
   }
 
   /// nm
   static final CommonUCUMCodesForDistance nm = CommonUCUMCodesForDistance._(
-    'nm',
+    value: 'nm',
   );
 
   /// um
   static final CommonUCUMCodesForDistance um = CommonUCUMCodesForDistance._(
-    'um',
+    value: 'um',
   );
 
   /// mm
   static final CommonUCUMCodesForDistance mm = CommonUCUMCodesForDistance._(
-    'mm',
+    value: 'mm',
   );
 
   /// m
   static final CommonUCUMCodesForDistance m = CommonUCUMCodesForDistance._(
-    'm',
+    value: 'm',
   );
 
   /// km
   static final CommonUCUMCodesForDistance km = CommonUCUMCodesForDistance._(
-    'km',
+    value: 'km',
   );
 
   /// For instances where an Element is present but not value
 
   static final CommonUCUMCodesForDistance elementOnly =
-      CommonUCUMCodesForDistance._('');
+      CommonUCUMCodesForDistance._(value: '');
 
   /// List of all enum-like values
   static final List<CommonUCUMCodesForDistance> values = [
@@ -66,13 +71,13 @@ class CommonUCUMCodesForDistance extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   CommonUCUMCodesForDistance clone() => CommonUCUMCodesForDistance._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   CommonUCUMCodesForDistance withElement(Element? newElement) {
-    return CommonUCUMCodesForDistance._(value, newElement);
+    return CommonUCUMCodesForDistance._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -97,14 +102,13 @@ class CommonUCUMCodesForDistance extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return CommonUCUMCodesForDistance._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The genus of an organism, typically referring to the Latin epithet of the genus element of the plant/animal scientific name.
 class SourceMaterialGenus extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  SourceMaterialGenus._(super.value, [super.element]);
+  SourceMaterialGenus._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [SourceMaterialGenus] from JSON.
   factory SourceMaterialGenus.fromJson(
@@ -21,27 +26,28 @@ class SourceMaterialGenus extends PrimitiveType<String> {
         'SourceMaterialGenus cannot be constructed from JSON.',
       );
     }
-    return SourceMaterialGenus._(value, element);
+    return SourceMaterialGenus._(value: value, element: element);
   }
 
   /// Mycobacterium
   static final SourceMaterialGenus Mycobacterium = SourceMaterialGenus._(
-    'Mycobacterium',
+    value: 'Mycobacterium',
   );
 
   /// InfluenzavirusA
   static final SourceMaterialGenus InfluenzavirusA = SourceMaterialGenus._(
-    'InfluenzavirusA',
+    value: 'InfluenzavirusA',
   );
 
   /// Ginkgo
   static final SourceMaterialGenus Ginkgo = SourceMaterialGenus._(
-    'Ginkgo',
+    value: 'Ginkgo',
   );
 
   /// For instances where an Element is present but not value
 
-  static final SourceMaterialGenus elementOnly = SourceMaterialGenus._('');
+  static final SourceMaterialGenus elementOnly =
+      SourceMaterialGenus._(value: '');
 
   /// List of all enum-like values
   static final List<SourceMaterialGenus> values = [
@@ -53,13 +59,13 @@ class SourceMaterialGenus extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   SourceMaterialGenus clone() => SourceMaterialGenus._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   SourceMaterialGenus withElement(Element? newElement) {
-    return SourceMaterialGenus._(value, newElement);
+    return SourceMaterialGenus._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -84,14 +90,13 @@ class SourceMaterialGenus extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return SourceMaterialGenus._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

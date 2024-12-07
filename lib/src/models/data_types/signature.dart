@@ -24,10 +24,6 @@ class Signature extends DataType {
     this.sigFormat,
     this.data,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -231,10 +227,6 @@ class Signature extends DataType {
       targetFormat: targetFormat ?? this.targetFormat,
       sigFormat: sigFormat ?? this.sigFormat,
       data: data ?? this.data,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value set contract specific codes for status.
 class ContractResourceExpirationTypeCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ContractResourceExpirationTypeCodes._(super.value, [super.element]);
+  ContractResourceExpirationTypeCodes._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [ContractResourceExpirationTypeCodes] from JSON.
   factory ContractResourceExpirationTypeCodes.fromJson(
@@ -22,19 +27,20 @@ class ContractResourceExpirationTypeCodes extends PrimitiveType<String> {
         'ContractResourceExpirationTypeCodes cannot be constructed from JSON.',
       );
     }
-    return ContractResourceExpirationTypeCodes._(value, element);
+    return ContractResourceExpirationTypeCodes._(
+        value: value, element: element);
   }
 
   /// breach
   static final ContractResourceExpirationTypeCodes breach =
       ContractResourceExpirationTypeCodes._(
-    'breach',
+    value: 'breach',
   );
 
   /// For instances where an Element is present but not value
 
   static final ContractResourceExpirationTypeCodes elementOnly =
-      ContractResourceExpirationTypeCodes._('');
+      ContractResourceExpirationTypeCodes._(value: '');
 
   /// List of all enum-like values
   static final List<ContractResourceExpirationTypeCodes> values = [
@@ -45,13 +51,14 @@ class ContractResourceExpirationTypeCodes extends PrimitiveType<String> {
   @override
   ContractResourceExpirationTypeCodes clone() =>
       ContractResourceExpirationTypeCodes._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ContractResourceExpirationTypeCodes withElement(Element? newElement) {
-    return ContractResourceExpirationTypeCodes._(value, newElement);
+    return ContractResourceExpirationTypeCodes._(
+        value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -76,14 +83,13 @@ class ContractResourceExpirationTypeCodes extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ContractResourceExpirationTypeCodes._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

@@ -31,10 +31,6 @@ class ObservationDefinition extends DomainResource {
     this.normalCodedValueSet,
     this.abnormalCodedValueSet,
     this.criticalCodedValueSet,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.ObservationDefinition,
         );
@@ -426,10 +422,6 @@ class ObservationDefinition extends DomainResource {
           abnormalCodedValueSet ?? this.abnormalCodedValueSet,
       criticalCodedValueSet:
           criticalCodedValueSet ?? this.criticalCodedValueSet,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -449,10 +441,6 @@ class ObservationDefinitionQuantitativeDetails extends BackboneElement {
     this.conversionFactor,
     this.decimalPrecision,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -629,10 +617,6 @@ class ObservationDefinitionQuantitativeDetails extends BackboneElement {
       unit: unit ?? this.unit,
       conversionFactor: conversionFactor ?? this.conversionFactor,
       decimalPrecision: decimalPrecision ?? this.decimalPrecision,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -657,10 +641,6 @@ class ObservationDefinitionQualifiedInterval extends BackboneElement {
     this.gestationalAge,
     this.condition,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -898,10 +878,6 @@ class ObservationDefinitionQualifiedInterval extends BackboneElement {
       age: age ?? this.age,
       gestationalAge: gestationalAge ?? this.gestationalAge,
       condition: condition ?? this.condition,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

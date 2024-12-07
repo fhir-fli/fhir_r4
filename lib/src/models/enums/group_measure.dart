@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Possible group measure aggregates (E.g. Mean, Median).
 class GroupMeasure extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  GroupMeasure._(super.value, [super.element]);
+  GroupMeasure._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [GroupMeasure] from JSON.
   factory GroupMeasure.fromJson(
@@ -21,42 +26,42 @@ class GroupMeasure extends PrimitiveType<String> {
         'GroupMeasure cannot be constructed from JSON.',
       );
     }
-    return GroupMeasure._(value, element);
+    return GroupMeasure._(value: value, element: element);
   }
 
   /// mean
   static final GroupMeasure mean = GroupMeasure._(
-    'mean',
+    value: 'mean',
   );
 
   /// median
   static final GroupMeasure median = GroupMeasure._(
-    'median',
+    value: 'median',
   );
 
   /// mean_of_mean
   static final GroupMeasure mean_of_mean = GroupMeasure._(
-    'mean-of-mean',
+    value: 'mean-of-mean',
   );
 
   /// mean_of_median
   static final GroupMeasure mean_of_median = GroupMeasure._(
-    'mean-of-median',
+    value: 'mean-of-median',
   );
 
   /// median_of_mean
   static final GroupMeasure median_of_mean = GroupMeasure._(
-    'median-of-mean',
+    value: 'median-of-mean',
   );
 
   /// median_of_median
   static final GroupMeasure median_of_median = GroupMeasure._(
-    'median-of-median',
+    value: 'median-of-median',
   );
 
   /// For instances where an Element is present but not value
 
-  static final GroupMeasure elementOnly = GroupMeasure._('');
+  static final GroupMeasure elementOnly = GroupMeasure._(value: '');
 
   /// List of all enum-like values
   static final List<GroupMeasure> values = [
@@ -71,13 +76,13 @@ class GroupMeasure extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   GroupMeasure clone() => GroupMeasure._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   GroupMeasure withElement(Element? newElement) {
-    return GroupMeasure._(value, newElement);
+    return GroupMeasure._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -102,14 +107,13 @@ class GroupMeasure extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return GroupMeasure._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

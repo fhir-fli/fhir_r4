@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The media type of the expression language.
 class ExpressionLanguage extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ExpressionLanguage._(super.value, [super.element]);
+  ExpressionLanguage._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [ExpressionLanguage] from JSON.
   factory ExpressionLanguage.fromJson(
@@ -21,38 +26,38 @@ class ExpressionLanguage extends PrimitiveType<String> {
         'ExpressionLanguage cannot be constructed from JSON.',
       );
     }
-    return ExpressionLanguage._(value, element);
+    return ExpressionLanguage._(value: value, element: element);
   }
 
   /// text_cql
   static final ExpressionLanguage text_cql = ExpressionLanguage._(
-    'text/cql',
+    value: 'text/cql',
   );
 
   /// text_fhirpath
   static final ExpressionLanguage text_fhirpath = ExpressionLanguage._(
-    'text/fhirpath',
+    value: 'text/fhirpath',
   );
 
   /// application_x_fhir_query
   static final ExpressionLanguage application_x_fhir_query =
       ExpressionLanguage._(
-    'application/x-fhir-query',
+    value: 'application/x-fhir-query',
   );
 
   /// text_cql_identifier
   static final ExpressionLanguage text_cql_identifier = ExpressionLanguage._(
-    'text/cql-identifier',
+    value: 'text/cql-identifier',
   );
 
   /// text_cql_expression
   static final ExpressionLanguage text_cql_expression = ExpressionLanguage._(
-    'text/cql-expression',
+    value: 'text/cql-expression',
   );
 
   /// For instances where an Element is present but not value
 
-  static final ExpressionLanguage elementOnly = ExpressionLanguage._('');
+  static final ExpressionLanguage elementOnly = ExpressionLanguage._(value: '');
 
   /// List of all enum-like values
   static final List<ExpressionLanguage> values = [
@@ -66,13 +71,13 @@ class ExpressionLanguage extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ExpressionLanguage clone() => ExpressionLanguage._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ExpressionLanguage withElement(Element? newElement) {
-    return ExpressionLanguage._(value, newElement);
+    return ExpressionLanguage._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -97,14 +102,13 @@ class ExpressionLanguage extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ExpressionLanguage._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Types of resources that are part of group.
 class GroupType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  GroupType._(super.value, [super.element]);
+  GroupType._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [GroupType] from JSON.
   factory GroupType.fromJson(
@@ -21,42 +26,42 @@ class GroupType extends PrimitiveType<String> {
         'GroupType cannot be constructed from JSON.',
       );
     }
-    return GroupType._(value, element);
+    return GroupType._(value: value, element: element);
   }
 
   /// person
   static final GroupType person = GroupType._(
-    'person',
+    value: 'person',
   );
 
   /// animal
   static final GroupType animal = GroupType._(
-    'animal',
+    value: 'animal',
   );
 
   /// practitioner
   static final GroupType practitioner = GroupType._(
-    'practitioner',
+    value: 'practitioner',
   );
 
   /// device
   static final GroupType device = GroupType._(
-    'device',
+    value: 'device',
   );
 
   /// medication
   static final GroupType medication = GroupType._(
-    'medication',
+    value: 'medication',
   );
 
   /// substance
   static final GroupType substance = GroupType._(
-    'substance',
+    value: 'substance',
   );
 
   /// For instances where an Element is present but not value
 
-  static final GroupType elementOnly = GroupType._('');
+  static final GroupType elementOnly = GroupType._(value: '');
 
   /// List of all enum-like values
   static final List<GroupType> values = [
@@ -71,13 +76,13 @@ class GroupType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   GroupType clone() => GroupType._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   GroupType withElement(Element? newElement) {
-    return GroupType._(value, newElement);
+    return GroupType._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -102,14 +107,13 @@ class GroupType extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return GroupType._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

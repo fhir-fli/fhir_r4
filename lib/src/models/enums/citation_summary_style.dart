@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The format for display of the citation.
 class CitationSummaryStyle extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  CitationSummaryStyle._(super.value, [super.element]);
+  CitationSummaryStyle._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [CitationSummaryStyle] from JSON.
   factory CitationSummaryStyle.fromJson(
@@ -21,82 +26,83 @@ class CitationSummaryStyle extends PrimitiveType<String> {
         'CitationSummaryStyle cannot be constructed from JSON.',
       );
     }
-    return CitationSummaryStyle._(value, element);
+    return CitationSummaryStyle._(value: value, element: element);
   }
 
   /// vancouver
   static final CitationSummaryStyle vancouver = CitationSummaryStyle._(
-    'vancouver',
+    value: 'vancouver',
   );
 
   /// ama11
   static final CitationSummaryStyle ama11 = CitationSummaryStyle._(
-    'ama11',
+    value: 'ama11',
   );
 
   /// apa7
   static final CitationSummaryStyle apa7 = CitationSummaryStyle._(
-    'apa7',
+    value: 'apa7',
   );
 
   /// apa6
   static final CitationSummaryStyle apa6 = CitationSummaryStyle._(
-    'apa6',
+    value: 'apa6',
   );
 
   /// asa6
   static final CitationSummaryStyle asa6 = CitationSummaryStyle._(
-    'asa6',
+    value: 'asa6',
   );
 
   /// mla8
   static final CitationSummaryStyle mla8 = CitationSummaryStyle._(
-    'mla8',
+    value: 'mla8',
   );
 
   /// cochrane
   static final CitationSummaryStyle cochrane = CitationSummaryStyle._(
-    'cochrane',
+    value: 'cochrane',
   );
 
   /// elsevier_harvard
   static final CitationSummaryStyle elsevier_harvard = CitationSummaryStyle._(
-    'elsevier-harvard',
+    value: 'elsevier-harvard',
   );
 
   /// nature
   static final CitationSummaryStyle nature = CitationSummaryStyle._(
-    'nature',
+    value: 'nature',
   );
 
   /// acs
   static final CitationSummaryStyle acs = CitationSummaryStyle._(
-    'acs',
+    value: 'acs',
   );
 
   /// chicago_a_17
   static final CitationSummaryStyle chicago_a_17 = CitationSummaryStyle._(
-    'chicago-a-17',
+    value: 'chicago-a-17',
   );
 
   /// chicago_b_17
   static final CitationSummaryStyle chicago_b_17 = CitationSummaryStyle._(
-    'chicago-b-17',
+    value: 'chicago-b-17',
   );
 
   /// ieee
   static final CitationSummaryStyle ieee = CitationSummaryStyle._(
-    'ieee',
+    value: 'ieee',
   );
 
   /// comppub
   static final CitationSummaryStyle comppub = CitationSummaryStyle._(
-    'comppub',
+    value: 'comppub',
   );
 
   /// For instances where an Element is present but not value
 
-  static final CitationSummaryStyle elementOnly = CitationSummaryStyle._('');
+  static final CitationSummaryStyle elementOnly =
+      CitationSummaryStyle._(value: '');
 
   /// List of all enum-like values
   static final List<CitationSummaryStyle> values = [
@@ -119,13 +125,13 @@ class CitationSummaryStyle extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   CitationSummaryStyle clone() => CitationSummaryStyle._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   CitationSummaryStyle withElement(Element? newElement) {
-    return CitationSummaryStyle._(value, newElement);
+    return CitationSummaryStyle._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -150,14 +156,13 @@ class CitationSummaryStyle extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return CitationSummaryStyle._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Codes identifying the lifecycle stage of a request.
 class RequestStatus extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  RequestStatus._(super.value, [super.element]);
+  RequestStatus._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [RequestStatus] from JSON.
   factory RequestStatus.fromJson(
@@ -21,47 +26,47 @@ class RequestStatus extends PrimitiveType<String> {
         'RequestStatus cannot be constructed from JSON.',
       );
     }
-    return RequestStatus._(value, element);
+    return RequestStatus._(value: value, element: element);
   }
 
   /// draft
   static final RequestStatus draft = RequestStatus._(
-    'draft',
+    value: 'draft',
   );
 
   /// active
   static final RequestStatus active = RequestStatus._(
-    'active',
+    value: 'active',
   );
 
   /// on_hold
   static final RequestStatus on_hold = RequestStatus._(
-    'on-hold',
+    value: 'on-hold',
   );
 
   /// revoked
   static final RequestStatus revoked = RequestStatus._(
-    'revoked',
+    value: 'revoked',
   );
 
   /// completed
   static final RequestStatus completed = RequestStatus._(
-    'completed',
+    value: 'completed',
   );
 
   /// entered_in_error
   static final RequestStatus entered_in_error = RequestStatus._(
-    'entered-in-error',
+    value: 'entered-in-error',
   );
 
   /// unknown
   static final RequestStatus unknown = RequestStatus._(
-    'unknown',
+    value: 'unknown',
   );
 
   /// For instances where an Element is present but not value
 
-  static final RequestStatus elementOnly = RequestStatus._('');
+  static final RequestStatus elementOnly = RequestStatus._(value: '');
 
   /// List of all enum-like values
   static final List<RequestStatus> values = [
@@ -77,13 +82,13 @@ class RequestStatus extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   RequestStatus clone() => RequestStatus._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   RequestStatus withElement(Element? newElement) {
-    return RequestStatus._(value, newElement);
+    return RequestStatus._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -108,14 +113,13 @@ class RequestStatus extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return RequestStatus._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

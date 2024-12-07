@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Observation Category codes.
 class ObservationCategoryCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ObservationCategoryCodes._(super.value, [super.element]);
+  ObservationCategoryCodes._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [ObservationCategoryCodes] from JSON.
   factory ObservationCategoryCodes.fromJson(
@@ -21,60 +26,60 @@ class ObservationCategoryCodes extends PrimitiveType<String> {
         'ObservationCategoryCodes cannot be constructed from JSON.',
       );
     }
-    return ObservationCategoryCodes._(value, element);
+    return ObservationCategoryCodes._(value: value, element: element);
   }
 
   /// social_history
   static final ObservationCategoryCodes social_history =
       ObservationCategoryCodes._(
-    'social-history',
+    value: 'social-history',
   );
 
   /// vital_signs
   static final ObservationCategoryCodes vital_signs =
       ObservationCategoryCodes._(
-    'vital-signs',
+    value: 'vital-signs',
   );
 
   /// imaging
   static final ObservationCategoryCodes imaging = ObservationCategoryCodes._(
-    'imaging',
+    value: 'imaging',
   );
 
   /// laboratory
   static final ObservationCategoryCodes laboratory = ObservationCategoryCodes._(
-    'laboratory',
+    value: 'laboratory',
   );
 
   /// procedure
   static final ObservationCategoryCodes procedure = ObservationCategoryCodes._(
-    'procedure',
+    value: 'procedure',
   );
 
   /// survey
   static final ObservationCategoryCodes survey = ObservationCategoryCodes._(
-    'survey',
+    value: 'survey',
   );
 
   /// exam
   static final ObservationCategoryCodes exam = ObservationCategoryCodes._(
-    'exam',
+    value: 'exam',
   );
 
   /// therapy
   static final ObservationCategoryCodes therapy = ObservationCategoryCodes._(
-    'therapy',
+    value: 'therapy',
   );
 
   /// activity
   static final ObservationCategoryCodes activity = ObservationCategoryCodes._(
-    'activity',
+    value: 'activity',
   );
 
   /// For instances where an Element is present but not value
 
   static final ObservationCategoryCodes elementOnly =
-      ObservationCategoryCodes._('');
+      ObservationCategoryCodes._(value: '');
 
   /// List of all enum-like values
   static final List<ObservationCategoryCodes> values = [
@@ -92,13 +97,13 @@ class ObservationCategoryCodes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ObservationCategoryCodes clone() => ObservationCategoryCodes._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ObservationCategoryCodes withElement(Element? newElement) {
-    return ObservationCategoryCodes._(value, newElement);
+    return ObservationCategoryCodes._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -123,14 +128,13 @@ class ObservationCategoryCodes extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ObservationCategoryCodes._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

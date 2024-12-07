@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The criteria by which a question is enabled.
 class QuestionnaireItemOperator extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  QuestionnaireItemOperator._(super.value, [super.element]);
+  QuestionnaireItemOperator._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [QuestionnaireItemOperator] from JSON.
   factory QuestionnaireItemOperator.fromJson(
@@ -21,48 +26,48 @@ class QuestionnaireItemOperator extends PrimitiveType<String> {
         'QuestionnaireItemOperator cannot be constructed from JSON.',
       );
     }
-    return QuestionnaireItemOperator._(value, element);
+    return QuestionnaireItemOperator._(value: value, element: element);
   }
 
   /// exists
   static final QuestionnaireItemOperator exists = QuestionnaireItemOperator._(
-    'exists',
+    value: 'exists',
   );
 
   /// eq
   static final QuestionnaireItemOperator eq = QuestionnaireItemOperator._(
-    '=',
+    value: '=',
   );
 
   /// ne
   static final QuestionnaireItemOperator ne = QuestionnaireItemOperator._(
-    '!=',
+    value: '!=',
   );
 
   /// gt
   static final QuestionnaireItemOperator gt = QuestionnaireItemOperator._(
-    '>',
+    value: '>',
   );
 
   /// lt
   static final QuestionnaireItemOperator lt = QuestionnaireItemOperator._(
-    '<',
+    value: '<',
   );
 
   /// ge
   static final QuestionnaireItemOperator ge = QuestionnaireItemOperator._(
-    '>=',
+    value: '>=',
   );
 
   /// le
   static final QuestionnaireItemOperator le = QuestionnaireItemOperator._(
-    '<=',
+    value: '<=',
   );
 
   /// For instances where an Element is present but not value
 
   static final QuestionnaireItemOperator elementOnly =
-      QuestionnaireItemOperator._('');
+      QuestionnaireItemOperator._(value: '');
 
   /// List of all enum-like values
   static final List<QuestionnaireItemOperator> values = [
@@ -78,13 +83,13 @@ class QuestionnaireItemOperator extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   QuestionnaireItemOperator clone() => QuestionnaireItemOperator._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   QuestionnaireItemOperator withElement(Element? newElement) {
-    return QuestionnaireItemOperator._(value, newElement);
+    return QuestionnaireItemOperator._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -109,14 +114,13 @@ class QuestionnaireItemOperator extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return QuestionnaireItemOperator._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

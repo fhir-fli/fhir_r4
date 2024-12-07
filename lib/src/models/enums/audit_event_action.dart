@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Indicator for type of action performed during the event that generated the event.
 class AuditEventAction extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  AuditEventAction._(super.value, [super.element]);
+  AuditEventAction._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [AuditEventAction] from JSON.
   factory AuditEventAction.fromJson(
@@ -21,37 +26,37 @@ class AuditEventAction extends PrimitiveType<String> {
         'AuditEventAction cannot be constructed from JSON.',
       );
     }
-    return AuditEventAction._(value, element);
+    return AuditEventAction._(value: value, element: element);
   }
 
   /// C
   static final AuditEventAction C = AuditEventAction._(
-    'C',
+    value: 'C',
   );
 
   /// R
   static final AuditEventAction R = AuditEventAction._(
-    'R',
+    value: 'R',
   );
 
   /// U
   static final AuditEventAction U = AuditEventAction._(
-    'U',
+    value: 'U',
   );
 
   /// D
   static final AuditEventAction D = AuditEventAction._(
-    'D',
+    value: 'D',
   );
 
   /// E
   static final AuditEventAction E = AuditEventAction._(
-    'E',
+    value: 'E',
   );
 
   /// For instances where an Element is present but not value
 
-  static final AuditEventAction elementOnly = AuditEventAction._('');
+  static final AuditEventAction elementOnly = AuditEventAction._(value: '');
 
   /// List of all enum-like values
   static final List<AuditEventAction> values = [
@@ -65,13 +70,13 @@ class AuditEventAction extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   AuditEventAction clone() => AuditEventAction._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   AuditEventAction withElement(Element? newElement) {
-    return AuditEventAction._(value, newElement);
+    return AuditEventAction._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -96,14 +101,13 @@ class AuditEventAction extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return AuditEventAction._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

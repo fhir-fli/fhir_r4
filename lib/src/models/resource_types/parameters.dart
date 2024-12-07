@@ -16,10 +16,6 @@ class Parameters extends Resource {
     super.implicitRules,
     super.language,
     this.parameter,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.Parameters,
         );
@@ -154,10 +150,6 @@ class Parameters extends Resource {
       implicitRules: implicitRules ?? this.implicitRules,
       language: language ?? this.language,
       parameter: parameter ?? this.parameter,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -226,10 +218,6 @@ class ParametersParameter extends BackboneElement {
     this.resource,
     this.part_,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1112,10 +1100,6 @@ class ParametersParameter extends BackboneElement {
       valueMeta: valueMeta ?? this.valueMeta,
       resource: resource ?? this.resource,
       part_: part_ ?? this.part_,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

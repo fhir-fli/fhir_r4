@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Estimate of the potential clinical harm, or seriousness, of a reaction to an identified substance.
 class AllergyIntoleranceCriticality extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  AllergyIntoleranceCriticality._(super.value, [super.element]);
+  AllergyIntoleranceCriticality._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [AllergyIntoleranceCriticality] from JSON.
   factory AllergyIntoleranceCriticality.fromJson(
@@ -21,31 +26,31 @@ class AllergyIntoleranceCriticality extends PrimitiveType<String> {
         'AllergyIntoleranceCriticality cannot be constructed from JSON.',
       );
     }
-    return AllergyIntoleranceCriticality._(value, element);
+    return AllergyIntoleranceCriticality._(value: value, element: element);
   }
 
   /// low
   static final AllergyIntoleranceCriticality low =
       AllergyIntoleranceCriticality._(
-    'low',
+    value: 'low',
   );
 
   /// high
   static final AllergyIntoleranceCriticality high =
       AllergyIntoleranceCriticality._(
-    'high',
+    value: 'high',
   );
 
   /// unable_to_assess
   static final AllergyIntoleranceCriticality unable_to_assess =
       AllergyIntoleranceCriticality._(
-    'unable-to-assess',
+    value: 'unable-to-assess',
   );
 
   /// For instances where an Element is present but not value
 
   static final AllergyIntoleranceCriticality elementOnly =
-      AllergyIntoleranceCriticality._('');
+      AllergyIntoleranceCriticality._(value: '');
 
   /// List of all enum-like values
   static final List<AllergyIntoleranceCriticality> values = [
@@ -57,13 +62,13 @@ class AllergyIntoleranceCriticality extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   AllergyIntoleranceCriticality clone() => AllergyIntoleranceCriticality._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   AllergyIntoleranceCriticality withElement(Element? newElement) {
-    return AllergyIntoleranceCriticality._(value, newElement);
+    return AllergyIntoleranceCriticality._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -88,14 +93,13 @@ class AllergyIntoleranceCriticality extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return AllergyIntoleranceCriticality._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

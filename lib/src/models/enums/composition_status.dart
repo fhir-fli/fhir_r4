@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The workflow/clinical status of the composition.
 class CompositionStatus extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  CompositionStatus._(super.value, [super.element]);
+  CompositionStatus._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [CompositionStatus] from JSON.
   factory CompositionStatus.fromJson(
@@ -21,32 +26,32 @@ class CompositionStatus extends PrimitiveType<String> {
         'CompositionStatus cannot be constructed from JSON.',
       );
     }
-    return CompositionStatus._(value, element);
+    return CompositionStatus._(value: value, element: element);
   }
 
   /// preliminary
   static final CompositionStatus preliminary = CompositionStatus._(
-    'preliminary',
+    value: 'preliminary',
   );
 
   /// final_
   static final CompositionStatus final_ = CompositionStatus._(
-    'final',
+    value: 'final',
   );
 
   /// amended
   static final CompositionStatus amended = CompositionStatus._(
-    'amended',
+    value: 'amended',
   );
 
   /// entered_in_error
   static final CompositionStatus entered_in_error = CompositionStatus._(
-    'entered-in-error',
+    value: 'entered-in-error',
   );
 
   /// For instances where an Element is present but not value
 
-  static final CompositionStatus elementOnly = CompositionStatus._('');
+  static final CompositionStatus elementOnly = CompositionStatus._(value: '');
 
   /// List of all enum-like values
   static final List<CompositionStatus> values = [
@@ -59,13 +64,13 @@ class CompositionStatus extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   CompositionStatus clone() => CompositionStatus._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   CompositionStatus withElement(Element? newElement) {
-    return CompositionStatus._(value, newElement);
+    return CompositionStatus._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -90,14 +95,13 @@ class CompositionStatus extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return CompositionStatus._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

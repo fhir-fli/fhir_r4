@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value set includes sample Exception codes.
 class ExceptionCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ExceptionCodes._(super.value, [super.element]);
+  ExceptionCodes._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [ExceptionCodes] from JSON.
   factory ExceptionCodes.fromJson(
@@ -21,22 +26,22 @@ class ExceptionCodes extends PrimitiveType<String> {
         'ExceptionCodes cannot be constructed from JSON.',
       );
     }
-    return ExceptionCodes._(value, element);
+    return ExceptionCodes._(value: value, element: element);
   }
 
   /// student
   static final ExceptionCodes student = ExceptionCodes._(
-    'student',
+    value: 'student',
   );
 
   /// disabled
   static final ExceptionCodes disabled = ExceptionCodes._(
-    'disabled',
+    value: 'disabled',
   );
 
   /// For instances where an Element is present but not value
 
-  static final ExceptionCodes elementOnly = ExceptionCodes._('');
+  static final ExceptionCodes elementOnly = ExceptionCodes._(value: '');
 
   /// List of all enum-like values
   static final List<ExceptionCodes> values = [
@@ -47,13 +52,13 @@ class ExceptionCodes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ExceptionCodes clone() => ExceptionCodes._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ExceptionCodes withElement(Element? newElement) {
-    return ExceptionCodes._(value, newElement);
+    return ExceptionCodes._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -78,14 +83,13 @@ class ExceptionCodes extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ExceptionCodes._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

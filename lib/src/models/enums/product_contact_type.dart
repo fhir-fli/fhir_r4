@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Contact type for a Medicinal Product.
 class ProductContactType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ProductContactType._(super.value, [super.element]);
+  ProductContactType._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [ProductContactType] from JSON.
   factory ProductContactType.fromJson(
@@ -21,37 +26,37 @@ class ProductContactType extends PrimitiveType<String> {
         'ProductContactType cannot be constructed from JSON.',
       );
     }
-    return ProductContactType._(value, element);
+    return ProductContactType._(value: value, element: element);
   }
 
   /// ProposedMAH
   static final ProductContactType ProposedMAH = ProductContactType._(
-    'ProposedMAH',
+    value: 'ProposedMAH',
   );
 
   /// ProcedureContactDuring
   static final ProductContactType ProcedureContactDuring = ProductContactType._(
-    'ProcedureContactDuring',
+    value: 'ProcedureContactDuring',
   );
 
   /// ProcedureContactAfter
   static final ProductContactType ProcedureContactAfter = ProductContactType._(
-    'ProcedureContactAfter',
+    value: 'ProcedureContactAfter',
   );
 
   /// QPPV
   static final ProductContactType QPPV = ProductContactType._(
-    'QPPV',
+    value: 'QPPV',
   );
 
   /// PVEnquiries
   static final ProductContactType PVEnquiries = ProductContactType._(
-    'PVEnquiries',
+    value: 'PVEnquiries',
   );
 
   /// For instances where an Element is present but not value
 
-  static final ProductContactType elementOnly = ProductContactType._('');
+  static final ProductContactType elementOnly = ProductContactType._(value: '');
 
   /// List of all enum-like values
   static final List<ProductContactType> values = [
@@ -65,13 +70,13 @@ class ProductContactType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ProductContactType clone() => ProductContactType._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ProductContactType withElement(Element? newElement) {
-    return ProductContactType._(value, newElement);
+    return ProductContactType._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -96,14 +101,13 @@ class ProductContactType extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ProductContactType._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

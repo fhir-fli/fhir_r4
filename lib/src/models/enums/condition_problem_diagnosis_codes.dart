@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Example value set for Condition/Problem/Diagnosis codes.
 class ConditionProblemDiagnosisCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ConditionProblemDiagnosisCodes._(super.value, [super.element]);
+  ConditionProblemDiagnosisCodes._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [ConditionProblemDiagnosisCodes] from JSON.
   factory ConditionProblemDiagnosisCodes.fromJson(
@@ -21,19 +26,19 @@ class ConditionProblemDiagnosisCodes extends PrimitiveType<String> {
         'ConditionProblemDiagnosisCodes cannot be constructed from JSON.',
       );
     }
-    return ConditionProblemDiagnosisCodes._(value, element);
+    return ConditionProblemDiagnosisCodes._(value: value, element: element);
   }
 
   /// value160245001
   static final ConditionProblemDiagnosisCodes value160245001 =
       ConditionProblemDiagnosisCodes._(
-    '160245001',
+    value: '160245001',
   );
 
   /// For instances where an Element is present but not value
 
   static final ConditionProblemDiagnosisCodes elementOnly =
-      ConditionProblemDiagnosisCodes._('');
+      ConditionProblemDiagnosisCodes._(value: '');
 
   /// List of all enum-like values
   static final List<ConditionProblemDiagnosisCodes> values = [
@@ -43,13 +48,13 @@ class ConditionProblemDiagnosisCodes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ConditionProblemDiagnosisCodes clone() => ConditionProblemDiagnosisCodes._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ConditionProblemDiagnosisCodes withElement(Element? newElement) {
-    return ConditionProblemDiagnosisCodes._(value, newElement);
+    return ConditionProblemDiagnosisCodes._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -74,14 +79,13 @@ class ConditionProblemDiagnosisCodes extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ConditionProblemDiagnosisCodes._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

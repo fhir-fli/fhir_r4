@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The status of a resource narrative.
 class NarrativeStatus extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  NarrativeStatus._(super.value, [super.element]);
+  NarrativeStatus._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [NarrativeStatus] from JSON.
   factory NarrativeStatus.fromJson(
@@ -21,32 +26,32 @@ class NarrativeStatus extends PrimitiveType<String> {
         'NarrativeStatus cannot be constructed from JSON.',
       );
     }
-    return NarrativeStatus._(value, element);
+    return NarrativeStatus._(value: value, element: element);
   }
 
   /// generated
   static final NarrativeStatus generated = NarrativeStatus._(
-    'generated',
+    value: 'generated',
   );
 
   /// extensions
   static final NarrativeStatus extensions = NarrativeStatus._(
-    'extensions',
+    value: 'extensions',
   );
 
   /// additional
   static final NarrativeStatus additional = NarrativeStatus._(
-    'additional',
+    value: 'additional',
   );
 
   /// empty
   static final NarrativeStatus empty = NarrativeStatus._(
-    'empty',
+    value: 'empty',
   );
 
   /// For instances where an Element is present but not value
 
-  static final NarrativeStatus elementOnly = NarrativeStatus._('');
+  static final NarrativeStatus elementOnly = NarrativeStatus._(value: '');
 
   /// List of all enum-like values
   static final List<NarrativeStatus> values = [
@@ -59,13 +64,13 @@ class NarrativeStatus extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   NarrativeStatus clone() => NarrativeStatus._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   NarrativeStatus withElement(Element? newElement) {
-    return NarrativeStatus._(value, newElement);
+    return NarrativeStatus._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -90,14 +95,13 @@ class NarrativeStatus extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return NarrativeStatus._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

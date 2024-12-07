@@ -6,49 +6,55 @@ import 'package:yaml/yaml.dart';
 /// Extension to convert a [String] to a [FhirXhtml].
 extension FhirXhtmlExtension on String {
   /// Converts a [String] to a [FhirXhtml].
-  FhirXhtml get toFhirXhtml => FhirXhtml(this);
+  FhirXhtml get toFhirXhtml => FhirXhtml(input: this);
 }
 
 /// This class represents the FHIR primitive type `xhtml`.
 class FhirXhtml extends PrimitiveType<String?> {
   /// Constructor that accepts and validates an XHTML string, or allows `null`.
-  FhirXhtml(String? input, [Element? element])
-      : super(input != null ? _validateXhtml(input) : null, element) {
+  FhirXhtml({
+    String? input,
+    super.element,
+    super.id,
+    super.extension_,
+  }) : super(value: input != null ? _validateXhtml(input) : null) {
     if (value == null && element == null) {
       throw ArgumentError('A value or element is required');
     }
   }
 
   /// Constructor that accepts already validated XHTML string, or `null`.
-  FhirXhtml.fromValidatedXhtml(super.validatedInput, [super.element]);
+  FhirXhtml.fromValidatedXhtml({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [FhirXhtml] from JSON.
   factory FhirXhtml.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    return FhirXhtml(value, element);
+    return FhirXhtml(input: value, element: element);
   }
 
   /// Factory constructor to create [FhirXhtml] from YAML.
-  factory FhirXhtml.fromYaml(String yaml) {
-    return FhirXhtml.fromJson(
-      jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, dynamic>,
-    );
-  }
+  factory FhirXhtml.fromYaml(String yaml) => FhirXhtml.fromJson(
+        jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, dynamic>,
+      );
 
   /// Static method to try parsing the input
   static FhirXhtml? tryParse(dynamic input) {
     if (input is String) {
       try {
         final validatedString = _validateXhtml(input);
-        return FhirXhtml(validatedString);
-      } catch (e) {
+        return FhirXhtml(input: validatedString);
+      } catch (_) {
         return null;
       }
-    } else {
-      return null;
     }
+    return null;
   }
 
   static String _validateXhtml(String xhtml) {
@@ -250,8 +256,10 @@ class FhirXhtml extends PrimitiveType<String?> {
 
   /// Clones the object, including its [Element] value.
   @override
-  FhirXhtml clone() =>
-      FhirXhtml.fromValidatedXhtml(value, element?.clone() as Element?);
+  FhirXhtml clone() => FhirXhtml.fromValidatedXhtml(
+        value: value,
+        element: element?.clone() as Element?,
+      );
 
   /// Creates a copy with optional modifications.
   @override
@@ -264,17 +272,18 @@ class FhirXhtml extends PrimitiveType<String?> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     return FhirXhtml.fromValidatedXhtml(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:
             formatCommentsPost ?? this.element?.formatCommentsPost,
         annotations: annotations ?? this.element?.annotations,
       ),
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
     );
   }
 }

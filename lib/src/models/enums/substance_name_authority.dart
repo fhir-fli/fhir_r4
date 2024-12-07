@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// An authority that officates substance names.
 class SubstanceNameAuthority extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  SubstanceNameAuthority._(super.value, [super.element]);
+  SubstanceNameAuthority._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [SubstanceNameAuthority] from JSON.
   factory SubstanceNameAuthority.fromJson(
@@ -21,88 +26,88 @@ class SubstanceNameAuthority extends PrimitiveType<String> {
         'SubstanceNameAuthority cannot be constructed from JSON.',
       );
     }
-    return SubstanceNameAuthority._(value, element);
+    return SubstanceNameAuthority._(value: value, element: element);
   }
 
   /// BAN
   static final SubstanceNameAuthority BAN = SubstanceNameAuthority._(
-    'BAN',
+    value: 'BAN',
   );
 
   /// COSING
   static final SubstanceNameAuthority COSING = SubstanceNameAuthority._(
-    'COSING',
+    value: 'COSING',
   );
 
   /// Ph_Eur_
   static final SubstanceNameAuthority Ph_Eur_ = SubstanceNameAuthority._(
-    'Ph.Eur.',
+    value: 'Ph.Eur.',
   );
 
   /// FCC
   static final SubstanceNameAuthority FCC = SubstanceNameAuthority._(
-    'FCC',
+    value: 'FCC',
   );
 
   /// INCI
   static final SubstanceNameAuthority INCI = SubstanceNameAuthority._(
-    'INCI',
+    value: 'INCI',
   );
 
   /// INN
   static final SubstanceNameAuthority INN = SubstanceNameAuthority._(
-    'INN',
+    value: 'INN',
   );
 
   /// JAN
   static final SubstanceNameAuthority JAN = SubstanceNameAuthority._(
-    'JAN',
+    value: 'JAN',
   );
 
   /// JECFA
   static final SubstanceNameAuthority JECFA = SubstanceNameAuthority._(
-    'JECFA',
+    value: 'JECFA',
   );
 
   /// MARTINDALE
   static final SubstanceNameAuthority MARTINDALE = SubstanceNameAuthority._(
-    'MARTINDALE',
+    value: 'MARTINDALE',
   );
 
   /// USAN
   static final SubstanceNameAuthority USAN = SubstanceNameAuthority._(
-    'USAN',
+    value: 'USAN',
   );
 
   /// USP
   static final SubstanceNameAuthority USP = SubstanceNameAuthority._(
-    'USP',
+    value: 'USP',
   );
 
   /// PHF
   static final SubstanceNameAuthority PHF = SubstanceNameAuthority._(
-    'PHF',
+    value: 'PHF',
   );
 
   /// HAB
   static final SubstanceNameAuthority HAB = SubstanceNameAuthority._(
-    'HAB',
+    value: 'HAB',
   );
 
   /// PhF
   static final SubstanceNameAuthority PhF = SubstanceNameAuthority._(
-    'PhF',
+    value: 'PhF',
   );
 
   /// IUIS
   static final SubstanceNameAuthority IUIS = SubstanceNameAuthority._(
-    'IUIS',
+    value: 'IUIS',
   );
 
   /// For instances where an Element is present but not value
 
   static final SubstanceNameAuthority elementOnly =
-      SubstanceNameAuthority._('');
+      SubstanceNameAuthority._(value: '');
 
   /// List of all enum-like values
   static final List<SubstanceNameAuthority> values = [
@@ -126,13 +131,13 @@ class SubstanceNameAuthority extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   SubstanceNameAuthority clone() => SubstanceNameAuthority._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   SubstanceNameAuthority withElement(Element? newElement) {
-    return SubstanceNameAuthority._(value, newElement);
+    return SubstanceNameAuthority._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -157,14 +162,13 @@ class SubstanceNameAuthority extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return SubstanceNameAuthority._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

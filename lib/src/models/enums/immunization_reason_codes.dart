@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The value set to instantiate this attribute should be drawn from a terminologically robust code system that consists of or contains concepts to support describing the reason why a dose of vaccine was administered. This value set is provided as a suggestive example.
 class ImmunizationReasonCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ImmunizationReasonCodes._(super.value, [super.element]);
+  ImmunizationReasonCodes._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [ImmunizationReasonCodes] from JSON.
   factory ImmunizationReasonCodes.fromJson(
@@ -21,25 +26,25 @@ class ImmunizationReasonCodes extends PrimitiveType<String> {
         'ImmunizationReasonCodes cannot be constructed from JSON.',
       );
     }
-    return ImmunizationReasonCodes._(value, element);
+    return ImmunizationReasonCodes._(value: value, element: element);
   }
 
   /// value429060002
   static final ImmunizationReasonCodes value429060002 =
       ImmunizationReasonCodes._(
-    '429060002',
+    value: '429060002',
   );
 
   /// value281657000
   static final ImmunizationReasonCodes value281657000 =
       ImmunizationReasonCodes._(
-    '281657000',
+    value: '281657000',
   );
 
   /// For instances where an Element is present but not value
 
   static final ImmunizationReasonCodes elementOnly =
-      ImmunizationReasonCodes._('');
+      ImmunizationReasonCodes._(value: '');
 
   /// List of all enum-like values
   static final List<ImmunizationReasonCodes> values = [
@@ -50,13 +55,13 @@ class ImmunizationReasonCodes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ImmunizationReasonCodes clone() => ImmunizationReasonCodes._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ImmunizationReasonCodes withElement(Element? newElement) {
-    return ImmunizationReasonCodes._(value, newElement);
+    return ImmunizationReasonCodes._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -81,14 +86,13 @@ class ImmunizationReasonCodes extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ImmunizationReasonCodes._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

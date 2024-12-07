@@ -38,10 +38,6 @@ class ValueSet extends CanonicalResource {
     this.copyright,
     this.compose,
     this.expansion,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.ValueSet,
         );
@@ -448,10 +444,6 @@ class ValueSet extends CanonicalResource {
       copyright: copyright ?? this.copyright,
       compose: compose ?? this.compose,
       expansion: expansion ?? this.expansion,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -474,10 +466,6 @@ class ValueSetCompose extends BackboneElement {
     required this.include,
     this.exclude,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -664,10 +652,6 @@ class ValueSetCompose extends BackboneElement {
       inactive: inactive ?? this.inactive,
       include: include ?? this.include,
       exclude: exclude ?? this.exclude,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -688,10 +672,6 @@ class ValueSetInclude extends BackboneElement {
     this.filter,
     this.valueSet,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -896,10 +876,6 @@ class ValueSetInclude extends BackboneElement {
       concept: concept ?? this.concept,
       filter: filter ?? this.filter,
       valueSet: valueSet ?? this.valueSet,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -918,10 +894,6 @@ class ValueSetConcept extends BackboneElement {
     this.display,
     this.designation,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1082,10 +1054,6 @@ class ValueSetConcept extends BackboneElement {
       code: code ?? this.code,
       display: display ?? this.display,
       designation: designation ?? this.designation,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1106,10 +1074,6 @@ class ValueSetDesignation extends BackboneElement {
     this.use,
     required this.value,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1262,10 +1226,6 @@ class ValueSetDesignation extends BackboneElement {
       language: language ?? this.language,
       use: use ?? this.use,
       value: value ?? this.value,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1287,10 +1247,6 @@ class ValueSetFilter extends BackboneElement {
     required this.op,
     required this.value,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1443,10 +1399,6 @@ class ValueSetFilter extends BackboneElement {
       property: property ?? this.property,
       op: op ?? this.op,
       value: value ?? this.value,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1470,10 +1422,6 @@ class ValueSetExpansion extends BackboneElement {
     this.parameter,
     this.contains,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1686,10 +1634,6 @@ class ValueSetExpansion extends BackboneElement {
       offset: offset ?? this.offset,
       parameter: parameter ?? this.parameter,
       contains: contains ?? this.contains,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1715,10 +1659,6 @@ class ValueSetParameter extends BackboneElement {
     this.valueCode,
     this.valueDateTime,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -1940,10 +1880,6 @@ class ValueSetParameter extends BackboneElement {
       valueUri: valueUri ?? this.valueUri,
       valueCode: valueCode ?? this.valueCode,
       valueDateTime: valueDateTime ?? this.valueDateTime,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -1967,10 +1903,6 @@ class ValueSetContains extends BackboneElement {
     this.designation,
     this.contains,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -2216,10 +2148,6 @@ class ValueSetContains extends BackboneElement {
       display: display ?? this.display,
       designation: designation ?? this.designation,
       contains: contains ?? this.contains,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

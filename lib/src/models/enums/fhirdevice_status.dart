@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The availability status of the device.
 class FHIRDeviceStatus extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  FHIRDeviceStatus._(super.value, [super.element]);
+  FHIRDeviceStatus._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [FHIRDeviceStatus] from JSON.
   factory FHIRDeviceStatus.fromJson(
@@ -21,32 +26,32 @@ class FHIRDeviceStatus extends PrimitiveType<String> {
         'FHIRDeviceStatus cannot be constructed from JSON.',
       );
     }
-    return FHIRDeviceStatus._(value, element);
+    return FHIRDeviceStatus._(value: value, element: element);
   }
 
   /// active
   static final FHIRDeviceStatus active = FHIRDeviceStatus._(
-    'active',
+    value: 'active',
   );
 
   /// inactive
   static final FHIRDeviceStatus inactive = FHIRDeviceStatus._(
-    'inactive',
+    value: 'inactive',
   );
 
   /// entered_in_error
   static final FHIRDeviceStatus entered_in_error = FHIRDeviceStatus._(
-    'entered-in-error',
+    value: 'entered-in-error',
   );
 
   /// unknown
   static final FHIRDeviceStatus unknown = FHIRDeviceStatus._(
-    'unknown',
+    value: 'unknown',
   );
 
   /// For instances where an Element is present but not value
 
-  static final FHIRDeviceStatus elementOnly = FHIRDeviceStatus._('');
+  static final FHIRDeviceStatus elementOnly = FHIRDeviceStatus._(value: '');
 
   /// List of all enum-like values
   static final List<FHIRDeviceStatus> values = [
@@ -59,13 +64,13 @@ class FHIRDeviceStatus extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   FHIRDeviceStatus clone() => FHIRDeviceStatus._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   FHIRDeviceStatus withElement(Element? newElement) {
-    return FHIRDeviceStatus._(value, newElement);
+    return FHIRDeviceStatus._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -90,14 +95,13 @@ class FHIRDeviceStatus extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return FHIRDeviceStatus._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

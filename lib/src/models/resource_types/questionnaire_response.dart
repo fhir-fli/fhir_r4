@@ -30,10 +30,6 @@ class QuestionnaireResponse extends DomainResource {
     this.author,
     this.source,
     this.item,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.QuestionnaireResponse,
         );
@@ -389,10 +385,6 @@ class QuestionnaireResponse extends DomainResource {
       author: author ?? this.author,
       source: source ?? this.source,
       item: item ?? this.item,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -414,10 +406,6 @@ class QuestionnaireResponseItem extends BackboneElement {
     this.answer,
     this.item,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -609,10 +597,6 @@ class QuestionnaireResponseItem extends BackboneElement {
       text: text ?? this.text,
       answer: answer ?? this.answer,
       item: item ?? this.item,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -641,10 +625,6 @@ class QuestionnaireResponseAnswer extends BackboneElement {
     this.valueReference,
     this.item,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -957,10 +937,6 @@ class QuestionnaireResponseAnswer extends BackboneElement {
       valueQuantity: valueQuantity ?? this.valueQuantity,
       valueReference: valueReference ?? this.valueReference,
       item: item ?? this.item,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

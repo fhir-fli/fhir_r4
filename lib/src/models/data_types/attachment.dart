@@ -20,10 +20,6 @@ class Attachment extends DataType {
     this.title,
     this.creation,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -230,10 +226,6 @@ class Attachment extends DataType {
       hash: hash ?? this.hash,
       title: title ?? this.title,
       creation: creation ?? this.creation,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

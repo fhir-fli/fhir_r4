@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The degree to which the server supports the code search parameter on ValueSet, if it is supported.
 class CodeSearchSupport extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  CodeSearchSupport._(super.value, [super.element]);
+  CodeSearchSupport._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [CodeSearchSupport] from JSON.
   factory CodeSearchSupport.fromJson(
@@ -21,22 +26,22 @@ class CodeSearchSupport extends PrimitiveType<String> {
         'CodeSearchSupport cannot be constructed from JSON.',
       );
     }
-    return CodeSearchSupport._(value, element);
+    return CodeSearchSupport._(value: value, element: element);
   }
 
   /// explicit
   static final CodeSearchSupport explicit = CodeSearchSupport._(
-    'explicit',
+    value: 'explicit',
   );
 
   /// all
   static final CodeSearchSupport all = CodeSearchSupport._(
-    'all',
+    value: 'all',
   );
 
   /// For instances where an Element is present but not value
 
-  static final CodeSearchSupport elementOnly = CodeSearchSupport._('');
+  static final CodeSearchSupport elementOnly = CodeSearchSupport._(value: '');
 
   /// List of all enum-like values
   static final List<CodeSearchSupport> values = [
@@ -47,13 +52,13 @@ class CodeSearchSupport extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   CodeSearchSupport clone() => CodeSearchSupport._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   CodeSearchSupport withElement(Element? newElement) {
-    return CodeSearchSupport._(value, newElement);
+    return CodeSearchSupport._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -78,14 +83,13 @@ class CodeSearchSupport extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return CodeSearchSupport._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

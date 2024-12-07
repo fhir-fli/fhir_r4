@@ -14,10 +14,6 @@ class ContactDetail extends DataType {
     this.name,
     this.telecom,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -148,10 +144,6 @@ class ContactDetail extends DataType {
       extension_: extension_ ?? this.extension_,
       name: name ?? this.name,
       telecom: telecom ?? this.telecom,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }

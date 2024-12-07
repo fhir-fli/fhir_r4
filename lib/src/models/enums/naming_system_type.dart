@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Identifies the purpose of the naming system.
 class NamingSystemType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  NamingSystemType._(super.value, [super.element]);
+  NamingSystemType._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [NamingSystemType] from JSON.
   factory NamingSystemType.fromJson(
@@ -21,27 +26,27 @@ class NamingSystemType extends PrimitiveType<String> {
         'NamingSystemType cannot be constructed from JSON.',
       );
     }
-    return NamingSystemType._(value, element);
+    return NamingSystemType._(value: value, element: element);
   }
 
   /// codesystem
   static final NamingSystemType codesystem = NamingSystemType._(
-    'codesystem',
+    value: 'codesystem',
   );
 
   /// identifier
   static final NamingSystemType identifier = NamingSystemType._(
-    'identifier',
+    value: 'identifier',
   );
 
   /// root
   static final NamingSystemType root = NamingSystemType._(
-    'root',
+    value: 'root',
   );
 
   /// For instances where an Element is present but not value
 
-  static final NamingSystemType elementOnly = NamingSystemType._('');
+  static final NamingSystemType elementOnly = NamingSystemType._(value: '');
 
   /// List of all enum-like values
   static final List<NamingSystemType> values = [
@@ -53,13 +58,13 @@ class NamingSystemType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   NamingSystemType clone() => NamingSystemType._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   NamingSystemType withElement(Element? newElement) {
-    return NamingSystemType._(value, newElement);
+    return NamingSystemType._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -84,14 +89,13 @@ class NamingSystemType extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return NamingSystemType._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

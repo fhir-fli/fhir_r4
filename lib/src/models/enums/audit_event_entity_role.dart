@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Code representing the role the entity played in the audit event.
 class AuditEventEntityRole extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  AuditEventEntityRole._(super.value, [super.element]);
+  AuditEventEntityRole._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [AuditEventEntityRole] from JSON.
   factory AuditEventEntityRole.fromJson(
@@ -21,132 +26,133 @@ class AuditEventEntityRole extends PrimitiveType<String> {
         'AuditEventEntityRole cannot be constructed from JSON.',
       );
     }
-    return AuditEventEntityRole._(value, element);
+    return AuditEventEntityRole._(value: value, element: element);
   }
 
   /// value1
   static final AuditEventEntityRole value1 = AuditEventEntityRole._(
-    '1',
+    value: '1',
   );
 
   /// value2
   static final AuditEventEntityRole value2 = AuditEventEntityRole._(
-    '2',
+    value: '2',
   );
 
   /// value3
   static final AuditEventEntityRole value3 = AuditEventEntityRole._(
-    '3',
+    value: '3',
   );
 
   /// value4
   static final AuditEventEntityRole value4 = AuditEventEntityRole._(
-    '4',
+    value: '4',
   );
 
   /// value5
   static final AuditEventEntityRole value5 = AuditEventEntityRole._(
-    '5',
+    value: '5',
   );
 
   /// value6
   static final AuditEventEntityRole value6 = AuditEventEntityRole._(
-    '6',
+    value: '6',
   );
 
   /// value7
   static final AuditEventEntityRole value7 = AuditEventEntityRole._(
-    '7',
+    value: '7',
   );
 
   /// value8
   static final AuditEventEntityRole value8 = AuditEventEntityRole._(
-    '8',
+    value: '8',
   );
 
   /// value9
   static final AuditEventEntityRole value9 = AuditEventEntityRole._(
-    '9',
+    value: '9',
   );
 
   /// value10
   static final AuditEventEntityRole value10 = AuditEventEntityRole._(
-    '10',
+    value: '10',
   );
 
   /// value11
   static final AuditEventEntityRole value11 = AuditEventEntityRole._(
-    '11',
+    value: '11',
   );
 
   /// value12
   static final AuditEventEntityRole value12 = AuditEventEntityRole._(
-    '12',
+    value: '12',
   );
 
   /// value13
   static final AuditEventEntityRole value13 = AuditEventEntityRole._(
-    '13',
+    value: '13',
   );
 
   /// value14
   static final AuditEventEntityRole value14 = AuditEventEntityRole._(
-    '14',
+    value: '14',
   );
 
   /// value15
   static final AuditEventEntityRole value15 = AuditEventEntityRole._(
-    '15',
+    value: '15',
   );
 
   /// value16
   static final AuditEventEntityRole value16 = AuditEventEntityRole._(
-    '16',
+    value: '16',
   );
 
   /// value17
   static final AuditEventEntityRole value17 = AuditEventEntityRole._(
-    '17',
+    value: '17',
   );
 
   /// value18
   static final AuditEventEntityRole value18 = AuditEventEntityRole._(
-    '18',
+    value: '18',
   );
 
   /// value19
   static final AuditEventEntityRole value19 = AuditEventEntityRole._(
-    '19',
+    value: '19',
   );
 
   /// value20
   static final AuditEventEntityRole value20 = AuditEventEntityRole._(
-    '20',
+    value: '20',
   );
 
   /// value21
   static final AuditEventEntityRole value21 = AuditEventEntityRole._(
-    '21',
+    value: '21',
   );
 
   /// value22
   static final AuditEventEntityRole value22 = AuditEventEntityRole._(
-    '22',
+    value: '22',
   );
 
   /// value23
   static final AuditEventEntityRole value23 = AuditEventEntityRole._(
-    '23',
+    value: '23',
   );
 
   /// value24
   static final AuditEventEntityRole value24 = AuditEventEntityRole._(
-    '24',
+    value: '24',
   );
 
   /// For instances where an Element is present but not value
 
-  static final AuditEventEntityRole elementOnly = AuditEventEntityRole._('');
+  static final AuditEventEntityRole elementOnly =
+      AuditEventEntityRole._(value: '');
 
   /// List of all enum-like values
   static final List<AuditEventEntityRole> values = [
@@ -179,13 +185,13 @@ class AuditEventEntityRole extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   AuditEventEntityRole clone() => AuditEventEntityRole._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   AuditEventEntityRole withElement(Element? newElement) {
-    return AuditEventEntityRole._(value, newElement);
+    return AuditEventEntityRole._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -210,14 +216,13 @@ class AuditEventEntityRole extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return AuditEventEntityRole._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

@@ -6,7 +6,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 class CoverageEligibilityResponseAuthSupportCodes
     extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  CoverageEligibilityResponseAuthSupportCodes._(super.value, [super.element]);
+  CoverageEligibilityResponseAuthSupportCodes._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [CoverageEligibilityResponseAuthSupportCodes] from JSON.
   factory CoverageEligibilityResponseAuthSupportCodes.fromJson(
@@ -23,61 +28,62 @@ class CoverageEligibilityResponseAuthSupportCodes
         'CoverageEligibilityResponseAuthSupportCodes cannot be constructed from JSON.',
       );
     }
-    return CoverageEligibilityResponseAuthSupportCodes._(value, element);
+    return CoverageEligibilityResponseAuthSupportCodes._(
+        value: value, element: element);
   }
 
   /// laborder
   static final CoverageEligibilityResponseAuthSupportCodes laborder =
       CoverageEligibilityResponseAuthSupportCodes._(
-    'laborder',
+    value: 'laborder',
   );
 
   /// labreport
   static final CoverageEligibilityResponseAuthSupportCodes labreport =
       CoverageEligibilityResponseAuthSupportCodes._(
-    'labreport',
+    value: 'labreport',
   );
 
   /// diagnosticimageorder
   static final CoverageEligibilityResponseAuthSupportCodes
       diagnosticimageorder = CoverageEligibilityResponseAuthSupportCodes._(
-    'diagnosticimageorder',
+    value: 'diagnosticimageorder',
   );
 
   /// diagnosticimagereport
   static final CoverageEligibilityResponseAuthSupportCodes
       diagnosticimagereport = CoverageEligibilityResponseAuthSupportCodes._(
-    'diagnosticimagereport',
+    value: 'diagnosticimagereport',
   );
 
   /// professionalreport
   static final CoverageEligibilityResponseAuthSupportCodes professionalreport =
       CoverageEligibilityResponseAuthSupportCodes._(
-    'professionalreport',
+    value: 'professionalreport',
   );
 
   /// accidentreport
   static final CoverageEligibilityResponseAuthSupportCodes accidentreport =
       CoverageEligibilityResponseAuthSupportCodes._(
-    'accidentreport',
+    value: 'accidentreport',
   );
 
   /// model
   static final CoverageEligibilityResponseAuthSupportCodes model =
       CoverageEligibilityResponseAuthSupportCodes._(
-    'model',
+    value: 'model',
   );
 
   /// picture
   static final CoverageEligibilityResponseAuthSupportCodes picture =
       CoverageEligibilityResponseAuthSupportCodes._(
-    'picture',
+    value: 'picture',
   );
 
   /// For instances where an Element is present but not value
 
   static final CoverageEligibilityResponseAuthSupportCodes elementOnly =
-      CoverageEligibilityResponseAuthSupportCodes._('');
+      CoverageEligibilityResponseAuthSupportCodes._(value: '');
 
   /// List of all enum-like values
   static final List<CoverageEligibilityResponseAuthSupportCodes> values = [
@@ -95,13 +101,14 @@ class CoverageEligibilityResponseAuthSupportCodes
   @override
   CoverageEligibilityResponseAuthSupportCodes clone() =>
       CoverageEligibilityResponseAuthSupportCodes._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   CoverageEligibilityResponseAuthSupportCodes withElement(Element? newElement) {
-    return CoverageEligibilityResponseAuthSupportCodes._(value, newElement);
+    return CoverageEligibilityResponseAuthSupportCodes._(
+        value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -126,14 +133,13 @@ class CoverageEligibilityResponseAuthSupportCodes
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return CoverageEligibilityResponseAuthSupportCodes._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

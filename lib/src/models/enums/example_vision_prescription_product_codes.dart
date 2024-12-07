@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value set includes a smattering of Prescription Product codes.
 class ExampleVisionPrescriptionProductCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ExampleVisionPrescriptionProductCodes._(super.value, [super.element]);
+  ExampleVisionPrescriptionProductCodes._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [ExampleVisionPrescriptionProductCodes] from JSON.
   factory ExampleVisionPrescriptionProductCodes.fromJson(
@@ -22,25 +27,26 @@ class ExampleVisionPrescriptionProductCodes extends PrimitiveType<String> {
         'ExampleVisionPrescriptionProductCodes cannot be constructed from JSON.',
       );
     }
-    return ExampleVisionPrescriptionProductCodes._(value, element);
+    return ExampleVisionPrescriptionProductCodes._(
+        value: value, element: element);
   }
 
   /// lens
   static final ExampleVisionPrescriptionProductCodes lens =
       ExampleVisionPrescriptionProductCodes._(
-    'lens',
+    value: 'lens',
   );
 
   /// contact
   static final ExampleVisionPrescriptionProductCodes contact =
       ExampleVisionPrescriptionProductCodes._(
-    'contact',
+    value: 'contact',
   );
 
   /// For instances where an Element is present but not value
 
   static final ExampleVisionPrescriptionProductCodes elementOnly =
-      ExampleVisionPrescriptionProductCodes._('');
+      ExampleVisionPrescriptionProductCodes._(value: '');
 
   /// List of all enum-like values
   static final List<ExampleVisionPrescriptionProductCodes> values = [
@@ -52,13 +58,14 @@ class ExampleVisionPrescriptionProductCodes extends PrimitiveType<String> {
   @override
   ExampleVisionPrescriptionProductCodes clone() =>
       ExampleVisionPrescriptionProductCodes._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ExampleVisionPrescriptionProductCodes withElement(Element? newElement) {
-    return ExampleVisionPrescriptionProductCodes._(value, newElement);
+    return ExampleVisionPrescriptionProductCodes._(
+        value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -83,14 +90,13 @@ class ExampleVisionPrescriptionProductCodes extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ExampleVisionPrescriptionProductCodes._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

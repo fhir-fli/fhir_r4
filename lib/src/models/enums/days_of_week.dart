@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The days of the week.
 class DaysOfWeek extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  DaysOfWeek._(super.value, [super.element]);
+  DaysOfWeek._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [DaysOfWeek] from JSON.
   factory DaysOfWeek.fromJson(
@@ -21,47 +26,47 @@ class DaysOfWeek extends PrimitiveType<String> {
         'DaysOfWeek cannot be constructed from JSON.',
       );
     }
-    return DaysOfWeek._(value, element);
+    return DaysOfWeek._(value: value, element: element);
   }
 
   /// mon
   static final DaysOfWeek mon = DaysOfWeek._(
-    'mon',
+    value: 'mon',
   );
 
   /// tue
   static final DaysOfWeek tue = DaysOfWeek._(
-    'tue',
+    value: 'tue',
   );
 
   /// wed
   static final DaysOfWeek wed = DaysOfWeek._(
-    'wed',
+    value: 'wed',
   );
 
   /// thu
   static final DaysOfWeek thu = DaysOfWeek._(
-    'thu',
+    value: 'thu',
   );
 
   /// fri
   static final DaysOfWeek fri = DaysOfWeek._(
-    'fri',
+    value: 'fri',
   );
 
   /// sat
   static final DaysOfWeek sat = DaysOfWeek._(
-    'sat',
+    value: 'sat',
   );
 
   /// sun
   static final DaysOfWeek sun = DaysOfWeek._(
-    'sun',
+    value: 'sun',
   );
 
   /// For instances where an Element is present but not value
 
-  static final DaysOfWeek elementOnly = DaysOfWeek._('');
+  static final DaysOfWeek elementOnly = DaysOfWeek._(value: '');
 
   /// List of all enum-like values
   static final List<DaysOfWeek> values = [
@@ -77,13 +82,13 @@ class DaysOfWeek extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   DaysOfWeek clone() => DaysOfWeek._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   DaysOfWeek withElement(Element? newElement) {
-    return DaysOfWeek._(value, newElement);
+    return DaysOfWeek._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -108,14 +113,13 @@ class DaysOfWeek extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return DaysOfWeek._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

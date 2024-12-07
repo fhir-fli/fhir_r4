@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Defines behavior for an action or a group for how many times that item may be repeated.
 class ActionCardinalityBehavior extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ActionCardinalityBehavior._(super.value, [super.element]);
+  ActionCardinalityBehavior._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [ActionCardinalityBehavior] from JSON.
   factory ActionCardinalityBehavior.fromJson(
@@ -21,23 +26,23 @@ class ActionCardinalityBehavior extends PrimitiveType<String> {
         'ActionCardinalityBehavior cannot be constructed from JSON.',
       );
     }
-    return ActionCardinalityBehavior._(value, element);
+    return ActionCardinalityBehavior._(value: value, element: element);
   }
 
   /// single
   static final ActionCardinalityBehavior single = ActionCardinalityBehavior._(
-    'single',
+    value: 'single',
   );
 
   /// multiple
   static final ActionCardinalityBehavior multiple = ActionCardinalityBehavior._(
-    'multiple',
+    value: 'multiple',
   );
 
   /// For instances where an Element is present but not value
 
   static final ActionCardinalityBehavior elementOnly =
-      ActionCardinalityBehavior._('');
+      ActionCardinalityBehavior._(value: '');
 
   /// List of all enum-like values
   static final List<ActionCardinalityBehavior> values = [
@@ -48,13 +53,13 @@ class ActionCardinalityBehavior extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ActionCardinalityBehavior clone() => ActionCardinalityBehavior._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ActionCardinalityBehavior withElement(Element? newElement) {
-    return ActionCardinalityBehavior._(value, newElement);
+    return ActionCardinalityBehavior._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -79,14 +84,13 @@ class ActionCardinalityBehavior extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ActionCardinalityBehavior._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

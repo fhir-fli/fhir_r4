@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The Digital Signature Purposes, an indication of the reason an entity signs a document. This is included in the signed information and can be used when determining accountability for various actions concerning the document. Examples include: author, transcriptionist/recorder, and witness.
 class SignatureTypeCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  SignatureTypeCodes._(super.value, [super.element]);
+  SignatureTypeCodes._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [SignatureTypeCodes] from JSON.
   factory SignatureTypeCodes.fromJson(
@@ -21,120 +26,120 @@ class SignatureTypeCodes extends PrimitiveType<String> {
         'SignatureTypeCodes cannot be constructed from JSON.',
       );
     }
-    return SignatureTypeCodes._(value, element);
+    return SignatureTypeCodes._(value: value, element: element);
   }
 
   /// value1_2_840_10065_1_12_1_1
   static final SignatureTypeCodes value1_2_840_10065_1_12_1_1 =
       SignatureTypeCodes._(
-    '1.2.840.10065.1.12.1.1',
+    value: '1.2.840.10065.1.12.1.1',
   );
 
   /// value1_2_840_10065_1_12_1_2
   static final SignatureTypeCodes value1_2_840_10065_1_12_1_2 =
       SignatureTypeCodes._(
-    '1.2.840.10065.1.12.1.2',
+    value: '1.2.840.10065.1.12.1.2',
   );
 
   /// value1_2_840_10065_1_12_1_3
   static final SignatureTypeCodes value1_2_840_10065_1_12_1_3 =
       SignatureTypeCodes._(
-    '1.2.840.10065.1.12.1.3',
+    value: '1.2.840.10065.1.12.1.3',
   );
 
   /// value1_2_840_10065_1_12_1_4
   static final SignatureTypeCodes value1_2_840_10065_1_12_1_4 =
       SignatureTypeCodes._(
-    '1.2.840.10065.1.12.1.4',
+    value: '1.2.840.10065.1.12.1.4',
   );
 
   /// value1_2_840_10065_1_12_1_5
   static final SignatureTypeCodes value1_2_840_10065_1_12_1_5 =
       SignatureTypeCodes._(
-    '1.2.840.10065.1.12.1.5',
+    value: '1.2.840.10065.1.12.1.5',
   );
 
   /// value1_2_840_10065_1_12_1_6
   static final SignatureTypeCodes value1_2_840_10065_1_12_1_6 =
       SignatureTypeCodes._(
-    '1.2.840.10065.1.12.1.6',
+    value: '1.2.840.10065.1.12.1.6',
   );
 
   /// value1_2_840_10065_1_12_1_7
   static final SignatureTypeCodes value1_2_840_10065_1_12_1_7 =
       SignatureTypeCodes._(
-    '1.2.840.10065.1.12.1.7',
+    value: '1.2.840.10065.1.12.1.7',
   );
 
   /// value1_2_840_10065_1_12_1_8
   static final SignatureTypeCodes value1_2_840_10065_1_12_1_8 =
       SignatureTypeCodes._(
-    '1.2.840.10065.1.12.1.8',
+    value: '1.2.840.10065.1.12.1.8',
   );
 
   /// value1_2_840_10065_1_12_1_9
   static final SignatureTypeCodes value1_2_840_10065_1_12_1_9 =
       SignatureTypeCodes._(
-    '1.2.840.10065.1.12.1.9',
+    value: '1.2.840.10065.1.12.1.9',
   );
 
   /// value1_2_840_10065_1_12_1_10
   static final SignatureTypeCodes value1_2_840_10065_1_12_1_10 =
       SignatureTypeCodes._(
-    '1.2.840.10065.1.12.1.10',
+    value: '1.2.840.10065.1.12.1.10',
   );
 
   /// value1_2_840_10065_1_12_1_11
   static final SignatureTypeCodes value1_2_840_10065_1_12_1_11 =
       SignatureTypeCodes._(
-    '1.2.840.10065.1.12.1.11',
+    value: '1.2.840.10065.1.12.1.11',
   );
 
   /// value1_2_840_10065_1_12_1_12
   static final SignatureTypeCodes value1_2_840_10065_1_12_1_12 =
       SignatureTypeCodes._(
-    '1.2.840.10065.1.12.1.12',
+    value: '1.2.840.10065.1.12.1.12',
   );
 
   /// value1_2_840_10065_1_12_1_13
   static final SignatureTypeCodes value1_2_840_10065_1_12_1_13 =
       SignatureTypeCodes._(
-    '1.2.840.10065.1.12.1.13',
+    value: '1.2.840.10065.1.12.1.13',
   );
 
   /// value1_2_840_10065_1_12_1_14
   static final SignatureTypeCodes value1_2_840_10065_1_12_1_14 =
       SignatureTypeCodes._(
-    '1.2.840.10065.1.12.1.14',
+    value: '1.2.840.10065.1.12.1.14',
   );
 
   /// value1_2_840_10065_1_12_1_15
   static final SignatureTypeCodes value1_2_840_10065_1_12_1_15 =
       SignatureTypeCodes._(
-    '1.2.840.10065.1.12.1.15',
+    value: '1.2.840.10065.1.12.1.15',
   );
 
   /// value1_2_840_10065_1_12_1_16
   static final SignatureTypeCodes value1_2_840_10065_1_12_1_16 =
       SignatureTypeCodes._(
-    '1.2.840.10065.1.12.1.16',
+    value: '1.2.840.10065.1.12.1.16',
   );
 
   /// value1_2_840_10065_1_12_1_17
   static final SignatureTypeCodes value1_2_840_10065_1_12_1_17 =
       SignatureTypeCodes._(
-    '1.2.840.10065.1.12.1.17',
+    value: '1.2.840.10065.1.12.1.17',
   );
 
   /// value1_2_840_10065_1_12_1_18
   static final SignatureTypeCodes value1_2_840_10065_1_12_1_18 =
       SignatureTypeCodes._(
-    '1.2.840.10065.1.12.1.18',
+    value: '1.2.840.10065.1.12.1.18',
   );
 
   /// For instances where an Element is present but not value
 
-  static final SignatureTypeCodes elementOnly = SignatureTypeCodes._('');
+  static final SignatureTypeCodes elementOnly = SignatureTypeCodes._(value: '');
 
   /// List of all enum-like values
   static final List<SignatureTypeCodes> values = [
@@ -161,13 +166,13 @@ class SignatureTypeCodes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   SignatureTypeCodes clone() => SignatureTypeCodes._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   SignatureTypeCodes withElement(Element? newElement) {
-    return SignatureTypeCodes._(value, newElement);
+    return SignatureTypeCodes._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -192,14 +197,13 @@ class SignatureTypeCodes extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return SignatureTypeCodes._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

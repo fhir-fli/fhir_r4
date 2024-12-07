@@ -5,7 +5,12 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// How the referenced structure is used in this mapping.
 class StructureMapModelMode extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  StructureMapModelMode._(super.value, [super.element]);
+  StructureMapModelMode._({
+    super.value,
+    super.element,
+    super.id,
+    super.extension_,
+  });
 
   /// Factory constructor to create [StructureMapModelMode] from JSON.
   factory StructureMapModelMode.fromJson(
@@ -21,32 +26,33 @@ class StructureMapModelMode extends PrimitiveType<String> {
         'StructureMapModelMode cannot be constructed from JSON.',
       );
     }
-    return StructureMapModelMode._(value, element);
+    return StructureMapModelMode._(value: value, element: element);
   }
 
   /// source
   static final StructureMapModelMode source = StructureMapModelMode._(
-    'source',
+    value: 'source',
   );
 
   /// queried
   static final StructureMapModelMode queried = StructureMapModelMode._(
-    'queried',
+    value: 'queried',
   );
 
   /// target
   static final StructureMapModelMode target = StructureMapModelMode._(
-    'target',
+    value: 'target',
   );
 
   /// produced
   static final StructureMapModelMode produced = StructureMapModelMode._(
-    'produced',
+    value: 'produced',
   );
 
   /// For instances where an Element is present but not value
 
-  static final StructureMapModelMode elementOnly = StructureMapModelMode._('');
+  static final StructureMapModelMode elementOnly =
+      StructureMapModelMode._(value: '');
 
   /// List of all enum-like values
   static final List<StructureMapModelMode> values = [
@@ -59,13 +65,13 @@ class StructureMapModelMode extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   StructureMapModelMode clone() => StructureMapModelMode._(
-        value,
-        element?.clone() as Element?,
+        value: value,
+        element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   StructureMapModelMode withElement(Element? newElement) {
-    return StructureMapModelMode._(value, newElement);
+    return StructureMapModelMode._(value: value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -90,14 +96,13 @@ class StructureMapModelMode extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
-    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return StructureMapModelMode._(
-      newValue ?? value,
-      (element ?? this.element)?.copyWith(
+      value: newValue ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:

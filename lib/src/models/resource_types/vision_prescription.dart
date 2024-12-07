@@ -26,10 +26,6 @@ class VisionPrescription extends DomainResource {
     required this.dateWritten,
     required this.prescriber,
     required this.lensSpecification,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   }) : super(
           resourceType: R4ResourceType.VisionPrescription,
         );
@@ -316,10 +312,6 @@ class VisionPrescription extends DomainResource {
       dateWritten: dateWritten ?? this.dateWritten,
       prescriber: prescriber ?? this.prescriber,
       lensSpecification: lensSpecification ?? this.lensSpecification,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -350,10 +342,6 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
     this.brand,
     this.note,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -661,10 +649,6 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
       color: color ?? this.color,
       brand: brand ?? this.brand,
       note: note ?? this.note,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
@@ -682,10 +666,6 @@ class VisionPrescriptionPrism extends BackboneElement {
     required this.amount,
     required this.base,
     super.disallowExtensions,
-    super.userData,
-    super.formatCommentsPre,
-    super.formatCommentsPost,
-    super.annotations,
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
@@ -821,10 +801,6 @@ class VisionPrescriptionPrism extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       amount: amount ?? this.amount,
       base: base ?? this.base,
-      userData: userData ?? this.userData,
-      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
-      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
-      annotations: annotations ?? this.annotations,
     );
   }
 }
