@@ -40,7 +40,8 @@ class FhirInteger extends FhirNumber {
                 jsonDecode(jsonEncode(yaml)) as Map<String, dynamic>,
               )
             : throw const FormatException(
-                'Invalid input for FhirInteger: not a valid YAML string or map.',
+                'Invalid input for FhirInteger: '
+                'not a valid YAML string or map.',
               );
   }
 
@@ -118,25 +119,18 @@ class FhirInteger extends FhirNumber {
   FhirInteger clone() =>
       FhirInteger(value as int?, element?.clone() as Element?);
 
-  /// Sets a property on the associated [Element], returning a new instance.
-  @override
-  FhirInteger setElement(String name, dynamic elementValue) {
-    return FhirInteger(
-      value as int?,
-      element?.setProperty(name, elementValue),
-    );
-  }
-
   /// Creates a modified copy with updated properties.
   @override
   FhirInteger copyWith({
     num? newValue,
     Element? element,
+    FhirString? id,
+    List<FhirExtension>? extension_,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
-    Map<String, List<void Function()>>? propertyChanged,
     List<dynamic>? annotations,
+    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');

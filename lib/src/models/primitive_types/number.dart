@@ -250,17 +250,16 @@ abstract class FhirNumber extends PrimitiveType<num?>
   FhirNumber clone() => FhirNumber.fromNum(value, element?.clone() as Element?);
 
   @override
-  FhirNumber setElement(String name, dynamic elementValue) =>
-      FhirNumber.fromNum(value, element?.setProperty(name, elementValue));
-
-  @override
   FhirNumber copyWith({
     num? newValue,
     Element? element,
+    FhirString? id,
+    List<FhirExtension>? extension_,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    Map<String, List<void Function()>>? propertyChanged,
   }) {
     return FhirNumber.fromNum(
       newValue ?? value,

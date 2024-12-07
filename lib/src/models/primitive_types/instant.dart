@@ -165,25 +165,18 @@ class FhirInstant extends FhirDateTimeBase {
   @override
   FhirInstant clone() => FhirInstant.fromJson(toJson());
 
-  /// Sets the [Element] property for the [FhirInstant].
-  @override
-  FhirInstant setElement(String name, dynamic elementValue) {
-    return FhirInstant.fromDateTime(
-      value,
-      element?.setProperty(name, elementValue),
-    );
-  }
-
   /// Creates a copy of the [FhirInstant], allowing modifications to properties.
   @override
   FhirInstant copyWith({
+    DateTime? newValue,
+    Element? element,
+    FhirString? id,
+    List<FhirExtension>? extension_,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
-    Map<String, List<void Function()>>? propertyChanged,
     List<dynamic>? annotations,
-    Element? element,
-    DateTime? newValue,
+    Map<String, List<void Function()>>? propertyChanged,
   }) {
     return FhirInstant.fromBase(
       year: year,

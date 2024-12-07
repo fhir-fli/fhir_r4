@@ -156,22 +156,18 @@ class FhirUuid extends PrimitiveType<UuidValue?> {
     );
   }
 
-  /// Sets the [Element] property.
-  @override
-  FhirUuid setElement(String name, dynamic elementValue) {
-    return FhirUuid.fromUuid(value, element?.setProperty(name, elementValue));
-  }
-
   /// Creates a copy with modified properties.
   @override
   FhirUuid copyWith({
     UuidValue? newValue,
     Element? element,
+    FhirString? id,
+    List<FhirExtension>? extension_,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
-    Map<String, List<void Function()>>? propertyChanged,
     List<dynamic>? annotations,
+    Map<String, List<void Function()>>? propertyChanged,
   }) {
     return FhirUuid.fromUuid(
       newValue ?? value,

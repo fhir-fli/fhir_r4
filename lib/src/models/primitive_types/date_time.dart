@@ -175,29 +175,21 @@ class FhirDateTime extends FhirDateTimeBase {
   @override
   FhirDateTime clone() => FhirDateTime.fromJson(toJson());
 
-  /// Sets a property on the associated [Element], returning a new
-  /// [FhirDateTime] with the updated element.
-  @override
-  FhirDateTime setElement(String name, dynamic elementValue) {
-    return FhirDateTime.fromDateTime(
-      value,
-      element?.setProperty(name, elementValue),
-    );
-  }
-
   /// Copies the current [FhirDateTime], allowing for changes to its properties.
   ///
   /// Supports changing the [value] and associated [element], as well as other
   /// optional metadata.
   @override
   FhirDateTime copyWith({
+    DateTime? newValue,
+    Element? element,
+    FhirString? id,
+    List<FhirExtension>? extension_,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
-    Map<String, List<void Function()>>? propertyChanged,
     List<dynamic>? annotations,
-    Element? element,
-    DateTime? newValue,
+    Map<String, List<void Function()>>? propertyChanged,
   }) {
     return FhirDateTime.fromDateTime(
       value,

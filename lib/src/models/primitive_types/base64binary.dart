@@ -185,22 +185,18 @@ class FhirBase64Binary extends PrimitiveType<String?> {
   FhirBase64Binary clone() =>
       FhirBase64Binary(value, element?.clone() as Element?);
 
-  /// Sets a new element value and returns a modified instance
-  @override
-  FhirBase64Binary setElement(String name, dynamic elementValue) {
-    return FhirBase64Binary(value, element?.setProperty(name, elementValue));
-  }
-
   /// Creates a modified copy of the instance with updated properties
   @override
   FhirBase64Binary copyWith({
     String? newValue,
     Element? element,
+    FhirString? id,
+    List<FhirExtension>? extension_,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
-    Map<String, List<void Function()>>? propertyChanged,
     List<dynamic>? annotations,
+    Map<String, List<void Function()>>? propertyChanged,
   }) {
     return FhirBase64Binary(
       newValue ?? value,

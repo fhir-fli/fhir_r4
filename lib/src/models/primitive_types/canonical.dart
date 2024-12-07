@@ -146,25 +146,18 @@ class FhirCanonical extends PrimitiveType<Uri> {
   FhirCanonical clone() =>
       FhirCanonical.fromUri(value, element?.clone() as Element?);
 
-  /// Sets a property on the associated [Element], returning a new instance
-  @override
-  FhirCanonical setElement(String name, dynamic elementValue) {
-    return FhirCanonical.fromUri(
-      value,
-      element?.setProperty(name, elementValue),
-    );
-  }
-
   /// Creates a modified copy with updated properties
   @override
   FhirCanonical copyWith({
     Uri? newValue,
     Element? element,
+    FhirString? id,
+    List<FhirExtension>? extension_,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
-    Map<String, List<void Function()>>? propertyChanged,
     List<dynamic>? annotations,
+    Map<String, List<void Function()>>? propertyChanged,
   }) {
     return FhirCanonical.fromUri(
       newValue ?? value,

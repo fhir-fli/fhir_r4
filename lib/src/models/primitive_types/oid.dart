@@ -92,22 +92,18 @@ class FhirOid extends PrimitiveType<String> {
   @override
   FhirOid clone() => FhirOid(value, element?.clone() as Element?);
 
-  /// Sets a property on the associated [Element] and returns a new instance.
-  @override
-  FhirOid setElement(String name, dynamic elementValue) {
-    return FhirOid(value, element?.setProperty(name, elementValue));
-  }
-
   /// Creates a modified copy with updated properties.
   @override
   FhirOid copyWith({
     String? newValue,
     Element? element,
+    FhirString? id,
+    List<FhirExtension>? extension_,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
-    Map<String, List<void Function()>>? propertyChanged,
     List<dynamic>? annotations,
+    Map<String, List<void Function()>>? propertyChanged,
   }) {
     return FhirOid(
       newValue ?? value,

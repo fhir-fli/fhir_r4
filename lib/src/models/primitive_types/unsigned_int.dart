@@ -119,25 +119,18 @@ class FhirUnsignedInt extends FhirNumber {
   FhirUnsignedInt clone() =>
       FhirUnsignedInt(value as int?, element?.clone() as Element?);
 
-  /// Sets a property on the associated [Element], returning a new instance.
-  @override
-  FhirUnsignedInt setElement(String name, dynamic elementValue) {
-    return FhirUnsignedInt(
-      value as int?,
-      element?.setProperty(name, elementValue),
-    );
-  }
-
   /// Creates a modified copy with updated properties.
   @override
   FhirUnsignedInt copyWith({
     num? newValue,
     Element? element,
+    FhirString? id,
+    List<FhirExtension>? extension_,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
-    Map<String, List<void Function()>>? propertyChanged,
     List<dynamic>? annotations,
+    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirUnsignedInt: $newValue');

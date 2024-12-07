@@ -117,25 +117,18 @@ class FhirBoolean extends PrimitiveType<bool> {
   @override
   FhirBoolean clone() => FhirBoolean(value, element?.clone() as Element?);
 
-  /// Sets a new element and returns a modified instance
-  @override
-  FhirBoolean setElement(String name, dynamic elementValue) {
-    return FhirBoolean(
-      value,
-      element?.setProperty(name, elementValue),
-    );
-  }
-
   /// Creates a modified copy with updated properties
   @override
   FhirBoolean copyWith({
     bool? newValue,
     Element? element,
+    FhirString? id,
+    List<FhirExtension>? extension_,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
-    Map<String, List<void Function()>>? propertyChanged,
     List<dynamic>? annotations,
+    Map<String, List<void Function()>>? propertyChanged,
   }) {
     return FhirBoolean(
       newValue ?? value,

@@ -253,25 +253,18 @@ class FhirXhtml extends PrimitiveType<String?> {
   FhirXhtml clone() =>
       FhirXhtml.fromValidatedXhtml(value, element?.clone() as Element?);
 
-  /// Sets an element property and returns a new instance.
-  @override
-  FhirXhtml setElement(String name, dynamic elementValue) {
-    return FhirXhtml.fromValidatedXhtml(
-      value,
-      element?.setProperty(name, elementValue),
-    );
-  }
-
   /// Creates a copy with optional modifications.
   @override
   FhirXhtml copyWith({
     String? newValue,
     Element? element,
+    FhirString? id,
+    List<FhirExtension>? extension_,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
-    Map<String, List<void Function()>>? propertyChanged,
     List<dynamic>? annotations,
+    Map<String, List<void Function()>>? propertyChanged,
   }) {
     return FhirXhtml.fromValidatedXhtml(
       newValue ?? value,

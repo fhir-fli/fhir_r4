@@ -119,25 +119,18 @@ class FhirPositiveInt extends FhirNumber {
   FhirPositiveInt clone() =>
       FhirPositiveInt(value as int?, element?.clone() as Element?);
 
-  /// Sets a property on the associated [Element], returning a new instance.
-  @override
-  FhirPositiveInt setElement(String name, dynamic elementValue) {
-    return FhirPositiveInt(
-      value as int?,
-      element?.setProperty(name, elementValue),
-    );
-  }
-
   /// Creates a modified copy with updated properties.
   @override
   FhirPositiveInt copyWith({
     num? newValue,
     Element? element,
+    FhirString? id,
+    List<FhirExtension>? extension_,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
-    Map<String, List<void Function()>>? propertyChanged,
     List<dynamic>? annotations,
+    Map<String, List<void Function()>>? propertyChanged,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirPositiveInt: $newValue');

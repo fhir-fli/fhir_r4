@@ -134,25 +134,18 @@ class FhirDecimal extends FhirNumber {
   @override
   FhirDecimal clone() => FhirDecimal(value, element?.clone() as Element?);
 
-  /// Sets a property on the associated [Element] and returns a new instance.
-  @override
-  FhirDecimal setElement(String name, dynamic elementValue) {
-    return FhirDecimal(
-      value,
-      element?.setProperty(name, elementValue),
-    );
-  }
-
   /// Creates a modified copy with updated properties.
   @override
   FhirDecimal copyWith({
     num? newValue,
     Element? element,
+    FhirString? id,
+    List<FhirExtension>? extension_,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
-    Map<String, List<void Function()>>? propertyChanged,
     List<dynamic>? annotations,
+    Map<String, List<void Function()>>? propertyChanged,
   }) {
     return FhirDecimal(
       newValue ?? value,

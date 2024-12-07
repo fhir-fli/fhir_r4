@@ -1,7 +1,7 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Abstract base class for all FHIR primitive types
-abstract class PrimitiveType<T> extends FhirBase {
+abstract class PrimitiveType<T> extends DataType {
   /// Main constructor for [PrimitiveType<T> ]
   PrimitiveType(this.value, [this.element]);
 
@@ -32,20 +32,6 @@ abstract class PrimitiveType<T> extends FhirBase {
     return json;
   }
 
-  /// Retrieves a property by its name and hash
-  dynamic getProperty(int hash, String name) {
-    if (hash == _computeHash('value')) {
-      return value;
-    }
-    return element?.getPropertyByHash(hash);
-  }
-
-  /// Helper method to compute hash codes
-  int _computeHash(String name) => name.hashCode;
-
-  /// Sets a property value, returning a new instance with the updated element
-  PrimitiveType<T> setElement(String name, dynamic elementValue);
-
   /// Checks equality between two instances (deep comparison)
   @override
   bool equalsDeep(FhirBase? other) {
@@ -56,7 +42,9 @@ abstract class PrimitiveType<T> extends FhirBase {
   }
 
   /// Checks equality between two instances (shallow comparison)
-  bool equalsShallow(PrimitiveType<T> other) => value == other.value;
+  @override
+  bool equalsShallow(FhirBase other) =>
+      other is PrimitiveType && value == other.value;
 
   /// Overrides `==` for equality comparison
   bool equals(Object other) {
@@ -88,9 +76,11 @@ abstract class PrimitiveType<T> extends FhirBase {
   PrimitiveType<T> copyWith({
     T? newValue,
     Element? element,
+    FhirString? id,
+    List<FhirExtension>? extension_,
     Map<String, Object?>? userData,
-    List<dynamic>? annotations,
-    List<String>? formatCommentsPost,
     List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
   });
 }

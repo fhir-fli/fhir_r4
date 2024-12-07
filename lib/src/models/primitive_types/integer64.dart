@@ -266,22 +266,16 @@ class FhirInteger64 extends PrimitiveType<BigInt?>
   FhirInteger64 clone() => FhirInteger64.fromJson(toJson());
 
   @override
-  FhirInteger64 setElement(String name, dynamic elementValue) {
-    return FhirInteger64(
-      value,
-      element?.setProperty(name, elementValue),
-    );
-  }
-
-  @override
   FhirInteger64 copyWith({
     BigInt? newValue,
     Element? element,
+    FhirString? id,
+    List<FhirExtension>? extension_,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
-    Map<String, List<void Function()>>? propertyChanged,
     List<dynamic>? annotations,
+    Map<String, List<void Function()>>? propertyChanged,
   }) {
     return FhirInteger64(
       newValue ?? value,

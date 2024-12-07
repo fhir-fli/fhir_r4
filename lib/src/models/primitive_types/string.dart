@@ -82,22 +82,18 @@ class FhirString extends PrimitiveType<String> {
   @override
   FhirString clone() => FhirString(value, element?.clone() as Element?);
 
-  /// Sets a property on the associated [Element] and returns a new instance.
-  @override
-  FhirString setElement(String name, dynamic elementValue) {
-    return FhirString(value, element?.setProperty(name, elementValue));
-  }
-
   /// Creates a modified copy with updated properties.
   @override
   FhirString copyWith({
     String? newValue,
     Element? element,
+    FhirString? id,
+    List<FhirExtension>? extension_,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
-    Map<String, List<void Function()>>? propertyChanged,
     List<dynamic>? annotations,
+    Map<String, List<void Function()>>? propertyChanged,
   }) {
     return FhirString(
       newValue ?? value,

@@ -145,25 +145,18 @@ class FhirUrl extends PrimitiveType<Uri> {
   @override
   FhirUrl clone() => FhirUrl.fromUri(value, element?.clone() as Element?);
 
-  /// Sets a property on the associated [Element], returning a new instance
-  @override
-  FhirUrl setElement(String name, dynamic elementValue) {
-    return FhirUrl.fromUri(
-      value,
-      element?.setProperty(name, elementValue),
-    );
-  }
-
   /// Creates a modified copy with updated properties
   @override
   FhirUrl copyWith({
     Uri? newValue,
     Element? element,
+    FhirString? id,
+    List<FhirExtension>? extension_,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
-    Map<String, List<void Function()>>? propertyChanged,
     List<dynamic>? annotations,
+    Map<String, List<void Function()>>? propertyChanged,
   }) {
     return FhirUrl.fromUri(
       newValue ?? value,
