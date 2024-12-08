@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Chromosome number for human.
 class ChromosomeHuman extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ChromosomeHuman._({
-    super.value,
+  ChromosomeHuman._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,132 +26,132 @@ class ChromosomeHuman extends PrimitiveType<String> {
         'ChromosomeHuman cannot be constructed from JSON.',
       );
     }
-    return ChromosomeHuman._(value: value, element: element);
+    return ChromosomeHuman._(value, element: element);
   }
 
   /// value1
   static final ChromosomeHuman value1 = ChromosomeHuman._(
-    value: '1',
+    '1',
   );
 
   /// value2
   static final ChromosomeHuman value2 = ChromosomeHuman._(
-    value: '2',
+    '2',
   );
 
   /// value3
   static final ChromosomeHuman value3 = ChromosomeHuman._(
-    value: '3',
+    '3',
   );
 
   /// value4
   static final ChromosomeHuman value4 = ChromosomeHuman._(
-    value: '4',
+    '4',
   );
 
   /// value5
   static final ChromosomeHuman value5 = ChromosomeHuman._(
-    value: '5',
+    '5',
   );
 
   /// value6
   static final ChromosomeHuman value6 = ChromosomeHuman._(
-    value: '6',
+    '6',
   );
 
   /// value7
   static final ChromosomeHuman value7 = ChromosomeHuman._(
-    value: '7',
+    '7',
   );
 
   /// value8
   static final ChromosomeHuman value8 = ChromosomeHuman._(
-    value: '8',
+    '8',
   );
 
   /// value9
   static final ChromosomeHuman value9 = ChromosomeHuman._(
-    value: '9',
+    '9',
   );
 
   /// value10
   static final ChromosomeHuman value10 = ChromosomeHuman._(
-    value: '10',
+    '10',
   );
 
   /// value11
   static final ChromosomeHuman value11 = ChromosomeHuman._(
-    value: '11',
+    '11',
   );
 
   /// value12
   static final ChromosomeHuman value12 = ChromosomeHuman._(
-    value: '12',
+    '12',
   );
 
   /// value13
   static final ChromosomeHuman value13 = ChromosomeHuman._(
-    value: '13',
+    '13',
   );
 
   /// value14
   static final ChromosomeHuman value14 = ChromosomeHuman._(
-    value: '14',
+    '14',
   );
 
   /// value15
   static final ChromosomeHuman value15 = ChromosomeHuman._(
-    value: '15',
+    '15',
   );
 
   /// value16
   static final ChromosomeHuman value16 = ChromosomeHuman._(
-    value: '16',
+    '16',
   );
 
   /// value17
   static final ChromosomeHuman value17 = ChromosomeHuman._(
-    value: '17',
+    '17',
   );
 
   /// value18
   static final ChromosomeHuman value18 = ChromosomeHuman._(
-    value: '18',
+    '18',
   );
 
   /// value19
   static final ChromosomeHuman value19 = ChromosomeHuman._(
-    value: '19',
+    '19',
   );
 
   /// value20
   static final ChromosomeHuman value20 = ChromosomeHuman._(
-    value: '20',
+    '20',
   );
 
   /// value21
   static final ChromosomeHuman value21 = ChromosomeHuman._(
-    value: '21',
+    '21',
   );
 
   /// value22
   static final ChromosomeHuman value22 = ChromosomeHuman._(
-    value: '22',
+    '22',
   );
 
   /// X
   static final ChromosomeHuman X = ChromosomeHuman._(
-    value: 'X',
+    'X',
   );
 
   /// Y
   static final ChromosomeHuman Y = ChromosomeHuman._(
-    value: 'Y',
+    'Y',
   );
 
   /// For instances where an Element is present but not value
 
-  static final ChromosomeHuman elementOnly = ChromosomeHuman._(value: '');
+  static final ChromosomeHuman elementOnly = ChromosomeHuman._('');
 
   /// List of all enum-like values
   static final List<ChromosomeHuman> values = [
@@ -184,13 +184,13 @@ class ChromosomeHuman extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ChromosomeHuman clone() => ChromosomeHuman._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ChromosomeHuman withElement(Element? newElement) {
-    return ChromosomeHuman._(value: value, element: newElement);
+    return ChromosomeHuman._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -220,7 +220,7 @@ class ChromosomeHuman extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ChromosomeHuman._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

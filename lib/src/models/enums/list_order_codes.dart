@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Base values for the order of the items in a list resource.
 class ListOrderCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ListOrderCodes._({
-    super.value,
+  ListOrderCodes._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,52 +26,52 @@ class ListOrderCodes extends PrimitiveType<String> {
         'ListOrderCodes cannot be constructed from JSON.',
       );
     }
-    return ListOrderCodes._(value: value, element: element);
+    return ListOrderCodes._(value, element: element);
   }
 
   /// user
   static final ListOrderCodes user = ListOrderCodes._(
-    value: 'user',
+    'user',
   );
 
   /// system
   static final ListOrderCodes system = ListOrderCodes._(
-    value: 'system',
+    'system',
   );
 
   /// event_date
   static final ListOrderCodes event_date = ListOrderCodes._(
-    value: 'event-date',
+    'event-date',
   );
 
   /// entry_date
   static final ListOrderCodes entry_date = ListOrderCodes._(
-    value: 'entry-date',
+    'entry-date',
   );
 
   /// priority
   static final ListOrderCodes priority = ListOrderCodes._(
-    value: 'priority',
+    'priority',
   );
 
   /// alphabetic
   static final ListOrderCodes alphabetic = ListOrderCodes._(
-    value: 'alphabetic',
+    'alphabetic',
   );
 
   /// category
   static final ListOrderCodes category = ListOrderCodes._(
-    value: 'category',
+    'category',
   );
 
   /// patient
   static final ListOrderCodes patient = ListOrderCodes._(
-    value: 'patient',
+    'patient',
   );
 
   /// For instances where an Element is present but not value
 
-  static final ListOrderCodes elementOnly = ListOrderCodes._(value: '');
+  static final ListOrderCodes elementOnly = ListOrderCodes._('');
 
   /// List of all enum-like values
   static final List<ListOrderCodes> values = [
@@ -88,13 +88,13 @@ class ListOrderCodes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ListOrderCodes clone() => ListOrderCodes._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ListOrderCodes withElement(Element? newElement) {
-    return ListOrderCodes._(value: value, element: newElement);
+    return ListOrderCodes._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -124,7 +124,7 @@ class ListOrderCodes extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ListOrderCodes._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

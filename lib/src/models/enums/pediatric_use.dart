@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Extra measures defined for a Medicinal Product, such as heightened reporting requirements.
 class PediatricUse extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  PediatricUse._({
-    super.value,
+  PediatricUse._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,82 +26,82 @@ class PediatricUse extends PrimitiveType<String> {
         'PediatricUse cannot be constructed from JSON.',
       );
     }
-    return PediatricUse._(value: value, element: element);
+    return PediatricUse._(value, element: element);
   }
 
   /// InUtero
   static final PediatricUse InUtero = PediatricUse._(
-    value: 'InUtero',
+    'InUtero',
   );
 
   /// PretermNewborn
   static final PediatricUse PretermNewborn = PediatricUse._(
-    value: 'PretermNewborn',
+    'PretermNewborn',
   );
 
   /// TermNewborn
   static final PediatricUse TermNewborn = PediatricUse._(
-    value: 'TermNewborn',
+    'TermNewborn',
   );
 
   /// Infants
   static final PediatricUse Infants = PediatricUse._(
-    value: 'Infants',
+    'Infants',
   );
 
   /// Children
   static final PediatricUse Children = PediatricUse._(
-    value: 'Children',
+    'Children',
   );
 
   /// Adolescents
   static final PediatricUse Adolescents = PediatricUse._(
-    value: 'Adolescents',
+    'Adolescents',
   );
 
   /// Adults
   static final PediatricUse Adults = PediatricUse._(
-    value: 'Adults',
+    'Adults',
   );
 
   /// Elderly
   static final PediatricUse Elderly = PediatricUse._(
-    value: 'Elderly',
+    'Elderly',
   );
 
   /// Neonate
   static final PediatricUse Neonate = PediatricUse._(
-    value: 'Neonate',
+    'Neonate',
   );
 
   /// PediatricPopulation
   static final PediatricUse PediatricPopulation = PediatricUse._(
-    value: 'PediatricPopulation',
+    'PediatricPopulation',
   );
 
   /// All
   static final PediatricUse All = PediatricUse._(
-    value: 'All',
+    'All',
   );
 
   /// Prepubertal
   static final PediatricUse Prepubertal = PediatricUse._(
-    value: 'Prepubertal',
+    'Prepubertal',
   );
 
   /// AdultsAndElderly
   static final PediatricUse AdultsAndElderly = PediatricUse._(
-    value: 'AdultsAndElderly',
+    'AdultsAndElderly',
   );
 
   /// PubertalAndPostpubertal
   static final PediatricUse PubertalAndPostpubertal = PediatricUse._(
-    value: 'PubertalAndPostpubertal',
+    'PubertalAndPostpubertal',
   );
 
   /// For instances where an Element is present but not value
 
-  static final PediatricUse elementOnly = PediatricUse._(value: '');
+  static final PediatricUse elementOnly = PediatricUse._('');
 
   /// List of all enum-like values
   static final List<PediatricUse> values = [
@@ -124,13 +124,13 @@ class PediatricUse extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   PediatricUse clone() => PediatricUse._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   PediatricUse withElement(Element? newElement) {
-    return PediatricUse._(value: value, element: newElement);
+    return PediatricUse._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -160,7 +160,7 @@ class PediatricUse extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return PediatricUse._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

@@ -6,8 +6,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 class ImmunizationRecommendationDateCriterionCodes
     extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ImmunizationRecommendationDateCriterionCodes._({
-    super.value,
+  ImmunizationRecommendationDateCriterionCodes._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -28,38 +28,38 @@ class ImmunizationRecommendationDateCriterionCodes
         'ImmunizationRecommendationDateCriterionCodes cannot be constructed from JSON.',
       );
     }
-    return ImmunizationRecommendationDateCriterionCodes._(
-        value: value, element: element);
+    return ImmunizationRecommendationDateCriterionCodes._(value,
+        element: element);
   }
 
   /// value30981_5
   static final ImmunizationRecommendationDateCriterionCodes value30981_5 =
       ImmunizationRecommendationDateCriterionCodes._(
-    value: '30981-5',
+    '30981-5',
   );
 
   /// value30980_7
   static final ImmunizationRecommendationDateCriterionCodes value30980_7 =
       ImmunizationRecommendationDateCriterionCodes._(
-    value: '30980-7',
+    '30980-7',
   );
 
   /// value59777_3
   static final ImmunizationRecommendationDateCriterionCodes value59777_3 =
       ImmunizationRecommendationDateCriterionCodes._(
-    value: '59777-3',
+    '59777-3',
   );
 
   /// value59778_1
   static final ImmunizationRecommendationDateCriterionCodes value59778_1 =
       ImmunizationRecommendationDateCriterionCodes._(
-    value: '59778-1',
+    '59778-1',
   );
 
   /// For instances where an Element is present but not value
 
   static final ImmunizationRecommendationDateCriterionCodes elementOnly =
-      ImmunizationRecommendationDateCriterionCodes._(value: '');
+      ImmunizationRecommendationDateCriterionCodes._('');
 
   /// List of all enum-like values
   static final List<ImmunizationRecommendationDateCriterionCodes> values = [
@@ -73,15 +73,15 @@ class ImmunizationRecommendationDateCriterionCodes
   @override
   ImmunizationRecommendationDateCriterionCodes clone() =>
       ImmunizationRecommendationDateCriterionCodes._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ImmunizationRecommendationDateCriterionCodes withElement(
       Element? newElement) {
-    return ImmunizationRecommendationDateCriterionCodes._(
-        value: value, element: newElement);
+    return ImmunizationRecommendationDateCriterionCodes._(value,
+        element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -111,7 +111,7 @@ class ImmunizationRecommendationDateCriterionCodes
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ImmunizationRecommendationDateCriterionCodes._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

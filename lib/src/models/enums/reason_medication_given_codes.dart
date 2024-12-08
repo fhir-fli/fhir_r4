@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value set is provided as an example. The value set to instantiate this attribute should be drawn from a robust terminology code system that consists of or contains concepts to support the medication process.
 class ReasonMedicationGivenCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ReasonMedicationGivenCodes._({
-    super.value,
+  ReasonMedicationGivenCodes._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,28 +26,28 @@ class ReasonMedicationGivenCodes extends PrimitiveType<String> {
         'ReasonMedicationGivenCodes cannot be constructed from JSON.',
       );
     }
-    return ReasonMedicationGivenCodes._(value: value, element: element);
+    return ReasonMedicationGivenCodes._(value, element: element);
   }
 
   /// a
   static final ReasonMedicationGivenCodes a = ReasonMedicationGivenCodes._(
-    value: 'a',
+    'a',
   );
 
   /// b
   static final ReasonMedicationGivenCodes b = ReasonMedicationGivenCodes._(
-    value: 'b',
+    'b',
   );
 
   /// c
   static final ReasonMedicationGivenCodes c = ReasonMedicationGivenCodes._(
-    value: 'c',
+    'c',
   );
 
   /// For instances where an Element is present but not value
 
   static final ReasonMedicationGivenCodes elementOnly =
-      ReasonMedicationGivenCodes._(value: '');
+      ReasonMedicationGivenCodes._('');
 
   /// List of all enum-like values
   static final List<ReasonMedicationGivenCodes> values = [
@@ -59,13 +59,13 @@ class ReasonMedicationGivenCodes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ReasonMedicationGivenCodes clone() => ReasonMedicationGivenCodes._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ReasonMedicationGivenCodes withElement(Element? newElement) {
-    return ReasonMedicationGivenCodes._(value: value, element: newElement);
+    return ReasonMedicationGivenCodes._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -95,7 +95,7 @@ class ReasonMedicationGivenCodes extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ReasonMedicationGivenCodes._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Codes identifying the lifecycle stage of an event.
 class EventStatus extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  EventStatus._({
-    super.value,
+  EventStatus._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,52 +26,52 @@ class EventStatus extends PrimitiveType<String> {
         'EventStatus cannot be constructed from JSON.',
       );
     }
-    return EventStatus._(value: value, element: element);
+    return EventStatus._(value, element: element);
   }
 
   /// preparation
   static final EventStatus preparation = EventStatus._(
-    value: 'preparation',
+    'preparation',
   );
 
   /// in_progress
   static final EventStatus in_progress = EventStatus._(
-    value: 'in-progress',
+    'in-progress',
   );
 
   /// not_done
   static final EventStatus not_done = EventStatus._(
-    value: 'not-done',
+    'not-done',
   );
 
   /// on_hold
   static final EventStatus on_hold = EventStatus._(
-    value: 'on-hold',
+    'on-hold',
   );
 
   /// stopped
   static final EventStatus stopped = EventStatus._(
-    value: 'stopped',
+    'stopped',
   );
 
   /// completed
   static final EventStatus completed = EventStatus._(
-    value: 'completed',
+    'completed',
   );
 
   /// entered_in_error
   static final EventStatus entered_in_error = EventStatus._(
-    value: 'entered-in-error',
+    'entered-in-error',
   );
 
   /// unknown
   static final EventStatus unknown = EventStatus._(
-    value: 'unknown',
+    'unknown',
   );
 
   /// For instances where an Element is present but not value
 
-  static final EventStatus elementOnly = EventStatus._(value: '');
+  static final EventStatus elementOnly = EventStatus._('');
 
   /// List of all enum-like values
   static final List<EventStatus> values = [
@@ -88,13 +88,13 @@ class EventStatus extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   EventStatus clone() => EventStatus._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   EventStatus withElement(Element? newElement) {
-    return EventStatus._(value: value, element: newElement);
+    return EventStatus._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -124,7 +124,7 @@ class EventStatus extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return EventStatus._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Defines the types of relationships between actions.
 class ActionRelationshipType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ActionRelationshipType._({
-    super.value,
+  ActionRelationshipType._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,60 +26,60 @@ class ActionRelationshipType extends PrimitiveType<String> {
         'ActionRelationshipType cannot be constructed from JSON.',
       );
     }
-    return ActionRelationshipType._(value: value, element: element);
+    return ActionRelationshipType._(value, element: element);
   }
 
   /// before_start
   static final ActionRelationshipType before_start = ActionRelationshipType._(
-    value: 'before-start',
+    'before-start',
   );
 
   /// before
   static final ActionRelationshipType before = ActionRelationshipType._(
-    value: 'before',
+    'before',
   );
 
   /// before_end
   static final ActionRelationshipType before_end = ActionRelationshipType._(
-    value: 'before-end',
+    'before-end',
   );
 
   /// concurrent_with_start
   static final ActionRelationshipType concurrent_with_start =
       ActionRelationshipType._(
-    value: 'concurrent-with-start',
+    'concurrent-with-start',
   );
 
   /// concurrent
   static final ActionRelationshipType concurrent = ActionRelationshipType._(
-    value: 'concurrent',
+    'concurrent',
   );
 
   /// concurrent_with_end
   static final ActionRelationshipType concurrent_with_end =
       ActionRelationshipType._(
-    value: 'concurrent-with-end',
+    'concurrent-with-end',
   );
 
   /// after_start
   static final ActionRelationshipType after_start = ActionRelationshipType._(
-    value: 'after-start',
+    'after-start',
   );
 
   /// after
   static final ActionRelationshipType after = ActionRelationshipType._(
-    value: 'after',
+    'after',
   );
 
   /// after_end
   static final ActionRelationshipType after_end = ActionRelationshipType._(
-    value: 'after-end',
+    'after-end',
   );
 
   /// For instances where an Element is present but not value
 
   static final ActionRelationshipType elementOnly =
-      ActionRelationshipType._(value: '');
+      ActionRelationshipType._('');
 
   /// List of all enum-like values
   static final List<ActionRelationshipType> values = [
@@ -97,13 +97,13 @@ class ActionRelationshipType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ActionRelationshipType clone() => ActionRelationshipType._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ActionRelationshipType withElement(Element? newElement) {
-    return ActionRelationshipType._(value: value, element: newElement);
+    return ActionRelationshipType._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -133,7 +133,7 @@ class ActionRelationshipType extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ActionRelationshipType._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

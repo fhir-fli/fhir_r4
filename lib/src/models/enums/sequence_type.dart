@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Type if a sequence -- DNA, RNA, or amino acid sequence.
 class SequenceType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  SequenceType._({
-    super.value,
+  SequenceType._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,27 +26,27 @@ class SequenceType extends PrimitiveType<String> {
         'SequenceType cannot be constructed from JSON.',
       );
     }
-    return SequenceType._(value: value, element: element);
+    return SequenceType._(value, element: element);
   }
 
   /// aa
   static final SequenceType aa = SequenceType._(
-    value: 'aa',
+    'aa',
   );
 
   /// dna
   static final SequenceType dna = SequenceType._(
-    value: 'dna',
+    'dna',
   );
 
   /// rna
   static final SequenceType rna = SequenceType._(
-    value: 'rna',
+    'rna',
   );
 
   /// For instances where an Element is present but not value
 
-  static final SequenceType elementOnly = SequenceType._(value: '');
+  static final SequenceType elementOnly = SequenceType._('');
 
   /// List of all enum-like values
   static final List<SequenceType> values = [
@@ -58,13 +58,13 @@ class SequenceType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   SequenceType clone() => SequenceType._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   SequenceType withElement(Element? newElement) {
-    return SequenceType._(value: value, element: newElement);
+    return SequenceType._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -94,7 +94,7 @@ class SequenceType extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return SequenceType._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// A unit of time (units from UCUM).
 class UnitsOfTime extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  UnitsOfTime._({
-    super.value,
+  UnitsOfTime._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,47 +26,47 @@ class UnitsOfTime extends PrimitiveType<String> {
         'UnitsOfTime cannot be constructed from JSON.',
       );
     }
-    return UnitsOfTime._(value: value, element: element);
+    return UnitsOfTime._(value, element: element);
   }
 
   /// s
   static final UnitsOfTime s = UnitsOfTime._(
-    value: 's',
+    's',
   );
 
   /// min
   static final UnitsOfTime min = UnitsOfTime._(
-    value: 'min',
+    'min',
   );
 
   /// h
   static final UnitsOfTime h = UnitsOfTime._(
-    value: 'h',
+    'h',
   );
 
   /// d
   static final UnitsOfTime d = UnitsOfTime._(
-    value: 'd',
+    'd',
   );
 
   /// wk
   static final UnitsOfTime wk = UnitsOfTime._(
-    value: 'wk',
+    'wk',
   );
 
   /// mo
   static final UnitsOfTime mo = UnitsOfTime._(
-    value: 'mo',
+    'mo',
   );
 
   /// a
   static final UnitsOfTime a = UnitsOfTime._(
-    value: 'a',
+    'a',
   );
 
   /// For instances where an Element is present but not value
 
-  static final UnitsOfTime elementOnly = UnitsOfTime._(value: '');
+  static final UnitsOfTime elementOnly = UnitsOfTime._('');
 
   /// List of all enum-like values
   static final List<UnitsOfTime> values = [
@@ -82,13 +82,13 @@ class UnitsOfTime extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   UnitsOfTime clone() => UnitsOfTime._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   UnitsOfTime withElement(Element? newElement) {
-    return UnitsOfTime._(value: value, element: newElement);
+    return UnitsOfTime._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -118,7 +118,7 @@ class UnitsOfTime extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return UnitsOfTime._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

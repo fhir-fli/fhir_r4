@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value set includes example Diagnosis Type codes.
 class ExampleDiagnosisTypeCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ExampleDiagnosisTypeCodes._({
-    super.value,
+  ExampleDiagnosisTypeCodes._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,80 +26,80 @@ class ExampleDiagnosisTypeCodes extends PrimitiveType<String> {
         'ExampleDiagnosisTypeCodes cannot be constructed from JSON.',
       );
     }
-    return ExampleDiagnosisTypeCodes._(value: value, element: element);
+    return ExampleDiagnosisTypeCodes._(value, element: element);
   }
 
   /// admitting
   static final ExampleDiagnosisTypeCodes admitting =
       ExampleDiagnosisTypeCodes._(
-    value: 'admitting',
+    'admitting',
   );
 
   /// clinical
   static final ExampleDiagnosisTypeCodes clinical = ExampleDiagnosisTypeCodes._(
-    value: 'clinical',
+    'clinical',
   );
 
   /// differential
   static final ExampleDiagnosisTypeCodes differential =
       ExampleDiagnosisTypeCodes._(
-    value: 'differential',
+    'differential',
   );
 
   /// discharge
   static final ExampleDiagnosisTypeCodes discharge =
       ExampleDiagnosisTypeCodes._(
-    value: 'discharge',
+    'discharge',
   );
 
   /// laboratory
   static final ExampleDiagnosisTypeCodes laboratory =
       ExampleDiagnosisTypeCodes._(
-    value: 'laboratory',
+    'laboratory',
   );
 
   /// nursing
   static final ExampleDiagnosisTypeCodes nursing = ExampleDiagnosisTypeCodes._(
-    value: 'nursing',
+    'nursing',
   );
 
   /// prenatal
   static final ExampleDiagnosisTypeCodes prenatal = ExampleDiagnosisTypeCodes._(
-    value: 'prenatal',
+    'prenatal',
   );
 
   /// principal
   static final ExampleDiagnosisTypeCodes principal =
       ExampleDiagnosisTypeCodes._(
-    value: 'principal',
+    'principal',
   );
 
   /// radiology
   static final ExampleDiagnosisTypeCodes radiology =
       ExampleDiagnosisTypeCodes._(
-    value: 'radiology',
+    'radiology',
   );
 
   /// remote
   static final ExampleDiagnosisTypeCodes remote = ExampleDiagnosisTypeCodes._(
-    value: 'remote',
+    'remote',
   );
 
   /// retrospective
   static final ExampleDiagnosisTypeCodes retrospective =
       ExampleDiagnosisTypeCodes._(
-    value: 'retrospective',
+    'retrospective',
   );
 
   /// self
   static final ExampleDiagnosisTypeCodes self = ExampleDiagnosisTypeCodes._(
-    value: 'self',
+    'self',
   );
 
   /// For instances where an Element is present but not value
 
   static final ExampleDiagnosisTypeCodes elementOnly =
-      ExampleDiagnosisTypeCodes._(value: '');
+      ExampleDiagnosisTypeCodes._('');
 
   /// List of all enum-like values
   static final List<ExampleDiagnosisTypeCodes> values = [
@@ -120,13 +120,13 @@ class ExampleDiagnosisTypeCodes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ExampleDiagnosisTypeCodes clone() => ExampleDiagnosisTypeCodes._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ExampleDiagnosisTypeCodes withElement(Element? newElement) {
-    return ExampleDiagnosisTypeCodes._(value: value, element: newElement);
+    return ExampleDiagnosisTypeCodes._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -156,7 +156,7 @@ class ExampleDiagnosisTypeCodes extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ExampleDiagnosisTypeCodes._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

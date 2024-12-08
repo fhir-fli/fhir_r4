@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value set includes a smattering of Adjudication Value codes which includes codes to indicate the amounts eligible under the plan, the amount of benefit, copays etc.
 class AdjudicationValueCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  AdjudicationValueCodes._({
-    super.value,
+  AdjudicationValueCodes._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,53 +26,53 @@ class AdjudicationValueCodes extends PrimitiveType<String> {
         'AdjudicationValueCodes cannot be constructed from JSON.',
       );
     }
-    return AdjudicationValueCodes._(value: value, element: element);
+    return AdjudicationValueCodes._(value, element: element);
   }
 
   /// submitted
   static final AdjudicationValueCodes submitted = AdjudicationValueCodes._(
-    value: 'submitted',
+    'submitted',
   );
 
   /// copay
   static final AdjudicationValueCodes copay = AdjudicationValueCodes._(
-    value: 'copay',
+    'copay',
   );
 
   /// eligible
   static final AdjudicationValueCodes eligible = AdjudicationValueCodes._(
-    value: 'eligible',
+    'eligible',
   );
 
   /// deductible
   static final AdjudicationValueCodes deductible = AdjudicationValueCodes._(
-    value: 'deductible',
+    'deductible',
   );
 
   /// unallocdeduct
   static final AdjudicationValueCodes unallocdeduct = AdjudicationValueCodes._(
-    value: 'unallocdeduct',
+    'unallocdeduct',
   );
 
   /// eligpercent
   static final AdjudicationValueCodes eligpercent = AdjudicationValueCodes._(
-    value: 'eligpercent',
+    'eligpercent',
   );
 
   /// tax
   static final AdjudicationValueCodes tax = AdjudicationValueCodes._(
-    value: 'tax',
+    'tax',
   );
 
   /// benefit
   static final AdjudicationValueCodes benefit = AdjudicationValueCodes._(
-    value: 'benefit',
+    'benefit',
   );
 
   /// For instances where an Element is present but not value
 
   static final AdjudicationValueCodes elementOnly =
-      AdjudicationValueCodes._(value: '');
+      AdjudicationValueCodes._('');
 
   /// List of all enum-like values
   static final List<AdjudicationValueCodes> values = [
@@ -89,13 +89,13 @@ class AdjudicationValueCodes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   AdjudicationValueCodes clone() => AdjudicationValueCodes._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   AdjudicationValueCodes withElement(Element? newElement) {
-    return AdjudicationValueCodes._(value: value, element: newElement);
+    return AdjudicationValueCodes._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -125,7 +125,7 @@ class AdjudicationValueCodes extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return AdjudicationValueCodes._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// HTTP verbs (in the HTTP command line). See [HTTP rfc](https://tools.ietf.org/html/rfc7231) for details.
 class HTTPVerb extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  HTTPVerb._({
-    super.value,
+  HTTPVerb._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,42 +26,42 @@ class HTTPVerb extends PrimitiveType<String> {
         'HTTPVerb cannot be constructed from JSON.',
       );
     }
-    return HTTPVerb._(value: value, element: element);
+    return HTTPVerb._(value, element: element);
   }
 
   /// GET
   static final HTTPVerb GET = HTTPVerb._(
-    value: 'GET',
+    'GET',
   );
 
   /// HEAD
   static final HTTPVerb HEAD = HTTPVerb._(
-    value: 'HEAD',
+    'HEAD',
   );
 
   /// POST
   static final HTTPVerb POST = HTTPVerb._(
-    value: 'POST',
+    'POST',
   );
 
   /// PUT
   static final HTTPVerb PUT = HTTPVerb._(
-    value: 'PUT',
+    'PUT',
   );
 
   /// DELETE
   static final HTTPVerb DELETE = HTTPVerb._(
-    value: 'DELETE',
+    'DELETE',
   );
 
   /// PATCH
   static final HTTPVerb PATCH = HTTPVerb._(
-    value: 'PATCH',
+    'PATCH',
   );
 
   /// For instances where an Element is present but not value
 
-  static final HTTPVerb elementOnly = HTTPVerb._(value: '');
+  static final HTTPVerb elementOnly = HTTPVerb._('');
 
   /// List of all enum-like values
   static final List<HTTPVerb> values = [
@@ -76,13 +76,13 @@ class HTTPVerb extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   HTTPVerb clone() => HTTPVerb._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   HTTPVerb withElement(Element? newElement) {
-    return HTTPVerb._(value: value, element: newElement);
+    return HTTPVerb._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -112,7 +112,7 @@ class HTTPVerb extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return HTTPVerb._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

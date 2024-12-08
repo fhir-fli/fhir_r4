@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The presentation types of notes.
 class NoteType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  NoteType._({
-    super.value,
+  NoteType._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,27 +26,27 @@ class NoteType extends PrimitiveType<String> {
         'NoteType cannot be constructed from JSON.',
       );
     }
-    return NoteType._(value: value, element: element);
+    return NoteType._(value, element: element);
   }
 
   /// display
   static final NoteType display = NoteType._(
-    value: 'display',
+    'display',
   );
 
   /// print
   static final NoteType print = NoteType._(
-    value: 'print',
+    'print',
   );
 
   /// printoper
   static final NoteType printoper = NoteType._(
-    value: 'printoper',
+    'printoper',
   );
 
   /// For instances where an Element is present but not value
 
-  static final NoteType elementOnly = NoteType._(value: '');
+  static final NoteType elementOnly = NoteType._('');
 
   /// List of all enum-like values
   static final List<NoteType> values = [
@@ -58,13 +58,13 @@ class NoteType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   NoteType clone() => NoteType._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   NoteType withElement(Element? newElement) {
-    return NoteType._(value: value, element: newElement);
+    return NoteType._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -94,7 +94,7 @@ class NoteType extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return NoteType._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

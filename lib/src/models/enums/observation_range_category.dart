@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Codes identifying the category of observation range.
 class ObservationRangeCategory extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ObservationRangeCategory._({
-    super.value,
+  ObservationRangeCategory._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,28 +26,28 @@ class ObservationRangeCategory extends PrimitiveType<String> {
         'ObservationRangeCategory cannot be constructed from JSON.',
       );
     }
-    return ObservationRangeCategory._(value: value, element: element);
+    return ObservationRangeCategory._(value, element: element);
   }
 
   /// reference
   static final ObservationRangeCategory reference = ObservationRangeCategory._(
-    value: 'reference',
+    'reference',
   );
 
   /// critical
   static final ObservationRangeCategory critical = ObservationRangeCategory._(
-    value: 'critical',
+    'critical',
   );
 
   /// absolute
   static final ObservationRangeCategory absolute = ObservationRangeCategory._(
-    value: 'absolute',
+    'absolute',
   );
 
   /// For instances where an Element is present but not value
 
   static final ObservationRangeCategory elementOnly =
-      ObservationRangeCategory._(value: '');
+      ObservationRangeCategory._('');
 
   /// List of all enum-like values
   static final List<ObservationRangeCategory> values = [
@@ -59,13 +59,13 @@ class ObservationRangeCategory extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ObservationRangeCategory clone() => ObservationRangeCategory._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ObservationRangeCategory withElement(Element? newElement) {
-    return ObservationRangeCategory._(value: value, element: newElement);
+    return ObservationRangeCategory._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -95,7 +95,7 @@ class ObservationRangeCategory extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ObservationRangeCategory._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

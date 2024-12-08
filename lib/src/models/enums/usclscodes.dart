@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value set includes a smattering of USCLS codes.
 class USCLSCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  USCLSCodes._({
-    super.value,
+  USCLSCodes._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,112 +26,112 @@ class USCLSCodes extends PrimitiveType<String> {
         'USCLSCodes cannot be constructed from JSON.',
       );
     }
-    return USCLSCodes._(value: value, element: element);
+    return USCLSCodes._(value, element: element);
   }
 
   /// value1101
   static final USCLSCodes value1101 = USCLSCodes._(
-    value: '1101',
+    '1101',
   );
 
   /// value1102
   static final USCLSCodes value1102 = USCLSCodes._(
-    value: '1102',
+    '1102',
   );
 
   /// value1103
   static final USCLSCodes value1103 = USCLSCodes._(
-    value: '1103',
+    '1103',
   );
 
   /// value1201
   static final USCLSCodes value1201 = USCLSCodes._(
-    value: '1201',
+    '1201',
   );
 
   /// value1205
   static final USCLSCodes value1205 = USCLSCodes._(
-    value: '1205',
+    '1205',
   );
 
   /// value2101
   static final USCLSCodes value2101 = USCLSCodes._(
-    value: '2101',
+    '2101',
   );
 
   /// value2102
   static final USCLSCodes value2102 = USCLSCodes._(
-    value: '2102',
+    '2102',
   );
 
   /// value2141
   static final USCLSCodes value2141 = USCLSCodes._(
-    value: '2141',
+    '2141',
   );
 
   /// value2601
   static final USCLSCodes value2601 = USCLSCodes._(
-    value: '2601',
+    '2601',
   );
 
   /// value11101
   static final USCLSCodes value11101 = USCLSCodes._(
-    value: '11101',
+    '11101',
   );
 
   /// value11102
   static final USCLSCodes value11102 = USCLSCodes._(
-    value: '11102',
+    '11102',
   );
 
   /// value11103
   static final USCLSCodes value11103 = USCLSCodes._(
-    value: '11103',
+    '11103',
   );
 
   /// value11104
   static final USCLSCodes value11104 = USCLSCodes._(
-    value: '11104',
+    '11104',
   );
 
   /// value21211
   static final USCLSCodes value21211 = USCLSCodes._(
-    value: '21211',
+    '21211',
   );
 
   /// value21212
   static final USCLSCodes value21212 = USCLSCodes._(
-    value: '21212',
+    '21212',
   );
 
   /// value27211
   static final USCLSCodes value27211 = USCLSCodes._(
-    value: '27211',
+    '27211',
   );
 
   /// value67211
   static final USCLSCodes value67211 = USCLSCodes._(
-    value: '67211',
+    '67211',
   );
 
   /// value99111
   static final USCLSCodes value99111 = USCLSCodes._(
-    value: '99111',
+    '99111',
   );
 
   /// value99333
   static final USCLSCodes value99333 = USCLSCodes._(
-    value: '99333',
+    '99333',
   );
 
   /// value99555
   static final USCLSCodes value99555 = USCLSCodes._(
-    value: '99555',
+    '99555',
   );
 
   /// For instances where an Element is present but not value
 
-  static final USCLSCodes elementOnly = USCLSCodes._(value: '');
+  static final USCLSCodes elementOnly = USCLSCodes._('');
 
   /// List of all enum-like values
   static final List<USCLSCodes> values = [
@@ -160,13 +160,13 @@ class USCLSCodes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   USCLSCodes clone() => USCLSCodes._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   USCLSCodes withElement(Element? newElement) {
-    return USCLSCodes._(value: value, element: newElement);
+    return USCLSCodes._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -196,7 +196,7 @@ class USCLSCodes extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return USCLSCodes._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

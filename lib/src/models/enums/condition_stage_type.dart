@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Example value set for the type of stages of cancer and other conditions
 class ConditionStageType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ConditionStageType._({
-    super.value,
+  ConditionStageType._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,22 +26,22 @@ class ConditionStageType extends PrimitiveType<String> {
         'ConditionStageType cannot be constructed from JSON.',
       );
     }
-    return ConditionStageType._(value: value, element: element);
+    return ConditionStageType._(value, element: element);
   }
 
   /// value261023001
   static final ConditionStageType value261023001 = ConditionStageType._(
-    value: '261023001',
+    '261023001',
   );
 
   /// value260998006
   static final ConditionStageType value260998006 = ConditionStageType._(
-    value: '260998006',
+    '260998006',
   );
 
   /// For instances where an Element is present but not value
 
-  static final ConditionStageType elementOnly = ConditionStageType._(value: '');
+  static final ConditionStageType elementOnly = ConditionStageType._('');
 
   /// List of all enum-like values
   static final List<ConditionStageType> values = [
@@ -52,13 +52,13 @@ class ConditionStageType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ConditionStageType clone() => ConditionStageType._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ConditionStageType withElement(Element? newElement) {
-    return ConditionStageType._(value: value, element: newElement);
+    return ConditionStageType._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -88,7 +88,7 @@ class ConditionStageType extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ConditionStageType._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

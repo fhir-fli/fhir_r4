@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Telecommunications form for contact point.
 class ContactPointSystem extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ContactPointSystem._({
-    super.value,
+  ContactPointSystem._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,47 +26,47 @@ class ContactPointSystem extends PrimitiveType<String> {
         'ContactPointSystem cannot be constructed from JSON.',
       );
     }
-    return ContactPointSystem._(value: value, element: element);
+    return ContactPointSystem._(value, element: element);
   }
 
   /// phone
   static final ContactPointSystem phone = ContactPointSystem._(
-    value: 'phone',
+    'phone',
   );
 
   /// fax
   static final ContactPointSystem fax = ContactPointSystem._(
-    value: 'fax',
+    'fax',
   );
 
   /// email
   static final ContactPointSystem email = ContactPointSystem._(
-    value: 'email',
+    'email',
   );
 
   /// pager
   static final ContactPointSystem pager = ContactPointSystem._(
-    value: 'pager',
+    'pager',
   );
 
   /// url
   static final ContactPointSystem url = ContactPointSystem._(
-    value: 'url',
+    'url',
   );
 
   /// sms
   static final ContactPointSystem sms = ContactPointSystem._(
-    value: 'sms',
+    'sms',
   );
 
   /// other
   static final ContactPointSystem other = ContactPointSystem._(
-    value: 'other',
+    'other',
   );
 
   /// For instances where an Element is present but not value
 
-  static final ContactPointSystem elementOnly = ContactPointSystem._(value: '');
+  static final ContactPointSystem elementOnly = ContactPointSystem._('');
 
   /// List of all enum-like values
   static final List<ContactPointSystem> values = [
@@ -82,13 +82,13 @@ class ContactPointSystem extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ContactPointSystem clone() => ContactPointSystem._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ContactPointSystem withElement(Element? newElement) {
-    return ContactPointSystem._(value: value, element: newElement);
+    return ContactPointSystem._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -118,7 +118,7 @@ class ContactPointSystem extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ContactPointSystem._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

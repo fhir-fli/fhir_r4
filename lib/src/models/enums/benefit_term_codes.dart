@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value set includes a smattering of Benefit Term codes.
 class BenefitTermCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  BenefitTermCodes._({
-    super.value,
+  BenefitTermCodes._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,27 +26,27 @@ class BenefitTermCodes extends PrimitiveType<String> {
         'BenefitTermCodes cannot be constructed from JSON.',
       );
     }
-    return BenefitTermCodes._(value: value, element: element);
+    return BenefitTermCodes._(value, element: element);
   }
 
   /// annual
   static final BenefitTermCodes annual = BenefitTermCodes._(
-    value: 'annual',
+    'annual',
   );
 
   /// day
   static final BenefitTermCodes day = BenefitTermCodes._(
-    value: 'day',
+    'day',
   );
 
   /// lifetime
   static final BenefitTermCodes lifetime = BenefitTermCodes._(
-    value: 'lifetime',
+    'lifetime',
   );
 
   /// For instances where an Element is present but not value
 
-  static final BenefitTermCodes elementOnly = BenefitTermCodes._(value: '');
+  static final BenefitTermCodes elementOnly = BenefitTermCodes._('');
 
   /// List of all enum-like values
   static final List<BenefitTermCodes> values = [
@@ -58,13 +58,13 @@ class BenefitTermCodes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   BenefitTermCodes clone() => BenefitTermCodes._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   BenefitTermCodes withElement(Element? newElement) {
-    return BenefitTermCodes._(value: value, element: newElement);
+    return BenefitTermCodes._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -94,7 +94,7 @@ class BenefitTermCodes extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return BenefitTermCodes._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The methods of referral can be used when referring to a specific HealthCareService resource.
 class ReferralMethod extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ReferralMethod._({
-    super.value,
+  ReferralMethod._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,37 +26,37 @@ class ReferralMethod extends PrimitiveType<String> {
         'ReferralMethod cannot be constructed from JSON.',
       );
     }
-    return ReferralMethod._(value: value, element: element);
+    return ReferralMethod._(value, element: element);
   }
 
   /// fax
   static final ReferralMethod fax = ReferralMethod._(
-    value: 'fax',
+    'fax',
   );
 
   /// phone
   static final ReferralMethod phone = ReferralMethod._(
-    value: 'phone',
+    'phone',
   );
 
   /// elec
   static final ReferralMethod elec = ReferralMethod._(
-    value: 'elec',
+    'elec',
   );
 
   /// semail
   static final ReferralMethod semail = ReferralMethod._(
-    value: 'semail',
+    'semail',
   );
 
   /// mail
   static final ReferralMethod mail = ReferralMethod._(
-    value: 'mail',
+    'mail',
   );
 
   /// For instances where an Element is present but not value
 
-  static final ReferralMethod elementOnly = ReferralMethod._(value: '');
+  static final ReferralMethod elementOnly = ReferralMethod._('');
 
   /// List of all enum-like values
   static final List<ReferralMethod> values = [
@@ -70,13 +70,13 @@ class ReferralMethod extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ReferralMethod clone() => ReferralMethod._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ReferralMethod withElement(Element? newElement) {
-    return ReferralMethod._(value: value, element: newElement);
+    return ReferralMethod._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -106,7 +106,7 @@ class ReferralMethod extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ReferralMethod._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

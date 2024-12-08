@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The possible types of variables for exposures or outcomes (E.g. Dichotomous, Continuous, Descriptive).
 class VariableType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  VariableType._({
-    super.value,
+  VariableType._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,27 +26,27 @@ class VariableType extends PrimitiveType<String> {
         'VariableType cannot be constructed from JSON.',
       );
     }
-    return VariableType._(value: value, element: element);
+    return VariableType._(value, element: element);
   }
 
   /// dichotomous
   static final VariableType dichotomous = VariableType._(
-    value: 'dichotomous',
+    'dichotomous',
   );
 
   /// continuous
   static final VariableType continuous = VariableType._(
-    value: 'continuous',
+    'continuous',
   );
 
   /// descriptive
   static final VariableType descriptive = VariableType._(
-    value: 'descriptive',
+    'descriptive',
   );
 
   /// For instances where an Element is present but not value
 
-  static final VariableType elementOnly = VariableType._(value: '');
+  static final VariableType elementOnly = VariableType._('');
 
   /// List of all enum-like values
   static final List<VariableType> values = [
@@ -58,13 +58,13 @@ class VariableType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   VariableType clone() => VariableType._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   VariableType withElement(Element? newElement) {
-    return VariableType._(value: value, element: newElement);
+    return VariableType._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -94,7 +94,7 @@ class VariableType extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return VariableType._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The type of network access point of this agent in the audit event.
 class AuditEventAgentNetworkType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  AuditEventAgentNetworkType._({
-    super.value,
+  AuditEventAgentNetworkType._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,38 +26,38 @@ class AuditEventAgentNetworkType extends PrimitiveType<String> {
         'AuditEventAgentNetworkType cannot be constructed from JSON.',
       );
     }
-    return AuditEventAgentNetworkType._(value: value, element: element);
+    return AuditEventAgentNetworkType._(value, element: element);
   }
 
   /// value1
   static final AuditEventAgentNetworkType value1 = AuditEventAgentNetworkType._(
-    value: '1',
+    '1',
   );
 
   /// value2
   static final AuditEventAgentNetworkType value2 = AuditEventAgentNetworkType._(
-    value: '2',
+    '2',
   );
 
   /// value3
   static final AuditEventAgentNetworkType value3 = AuditEventAgentNetworkType._(
-    value: '3',
+    '3',
   );
 
   /// value4
   static final AuditEventAgentNetworkType value4 = AuditEventAgentNetworkType._(
-    value: '4',
+    '4',
   );
 
   /// value5
   static final AuditEventAgentNetworkType value5 = AuditEventAgentNetworkType._(
-    value: '5',
+    '5',
   );
 
   /// For instances where an Element is present but not value
 
   static final AuditEventAgentNetworkType elementOnly =
-      AuditEventAgentNetworkType._(value: '');
+      AuditEventAgentNetworkType._('');
 
   /// List of all enum-like values
   static final List<AuditEventAgentNetworkType> values = [
@@ -71,13 +71,13 @@ class AuditEventAgentNetworkType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   AuditEventAgentNetworkType clone() => AuditEventAgentNetworkType._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   AuditEventAgentNetworkType withElement(Element? newElement) {
-    return AuditEventAgentNetworkType._(value: value, element: newElement);
+    return AuditEventAgentNetworkType._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -107,7 +107,7 @@ class AuditEventAgentNetworkType extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return AuditEventAgentNetworkType._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

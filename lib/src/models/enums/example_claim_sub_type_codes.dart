@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value set includes sample Claim SubType codes which are used to distinguish the claim types for example within type institutional there may be subtypes for emergency services, bed stay and transportation.
 class ExampleClaimSubTypeCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ExampleClaimSubTypeCodes._({
-    super.value,
+  ExampleClaimSubTypeCodes._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,23 +26,23 @@ class ExampleClaimSubTypeCodes extends PrimitiveType<String> {
         'ExampleClaimSubTypeCodes cannot be constructed from JSON.',
       );
     }
-    return ExampleClaimSubTypeCodes._(value: value, element: element);
+    return ExampleClaimSubTypeCodes._(value, element: element);
   }
 
   /// ortho
   static final ExampleClaimSubTypeCodes ortho = ExampleClaimSubTypeCodes._(
-    value: 'ortho',
+    'ortho',
   );
 
   /// emergency
   static final ExampleClaimSubTypeCodes emergency = ExampleClaimSubTypeCodes._(
-    value: 'emergency',
+    'emergency',
   );
 
   /// For instances where an Element is present but not value
 
   static final ExampleClaimSubTypeCodes elementOnly =
-      ExampleClaimSubTypeCodes._(value: '');
+      ExampleClaimSubTypeCodes._('');
 
   /// List of all enum-like values
   static final List<ExampleClaimSubTypeCodes> values = [
@@ -53,13 +53,13 @@ class ExampleClaimSubTypeCodes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ExampleClaimSubTypeCodes clone() => ExampleClaimSubTypeCodes._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ExampleClaimSubTypeCodes withElement(Element? newElement) {
-    return ExampleClaimSubTypeCodes._(value: value, element: newElement);
+    return ExampleClaimSubTypeCodes._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -89,7 +89,7 @@ class ExampleClaimSubTypeCodes extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ExampleClaimSubTypeCodes._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

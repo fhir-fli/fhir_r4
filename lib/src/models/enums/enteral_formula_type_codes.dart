@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// EnteralFormulaType : Codes for type of enteral formula to be administered to patient. This value set is composed of SNOMED CT (US Extension) Concepts from SCTID 470581016 (Enteral+supplement feeds hierarchy (product)) and is provided as a suggestive example.
 class EnteralFormulaTypeCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  EnteralFormulaTypeCodes._({
-    super.value,
+  EnteralFormulaTypeCodes._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,229 +26,229 @@ class EnteralFormulaTypeCodes extends PrimitiveType<String> {
         'EnteralFormulaTypeCodes cannot be constructed from JSON.',
       );
     }
-    return EnteralFormulaTypeCodes._(value: value, element: element);
+    return EnteralFormulaTypeCodes._(value, element: element);
   }
 
   /// value443031000124106
   static final EnteralFormulaTypeCodes value443031000124106 =
       EnteralFormulaTypeCodes._(
-    value: '443031000124106',
+    '443031000124106',
   );
 
   /// value443051000124104
   static final EnteralFormulaTypeCodes value443051000124104 =
       EnteralFormulaTypeCodes._(
-    value: '443051000124104',
+    '443051000124104',
   );
 
   /// value442911000124109
   static final EnteralFormulaTypeCodes value442911000124109 =
       EnteralFormulaTypeCodes._(
-    value: '442911000124109',
+    '442911000124109',
   );
 
   /// value443021000124108
   static final EnteralFormulaTypeCodes value443021000124108 =
       EnteralFormulaTypeCodes._(
-    value: '443021000124108',
+    '443021000124108',
   );
 
   /// value442971000124100
   static final EnteralFormulaTypeCodes value442971000124100 =
       EnteralFormulaTypeCodes._(
-    value: '442971000124100',
+    '442971000124100',
   );
 
   /// value442981000124102
   static final EnteralFormulaTypeCodes value442981000124102 =
       EnteralFormulaTypeCodes._(
-    value: '442981000124102',
+    '442981000124102',
   );
 
   /// value442991000124104
   static final EnteralFormulaTypeCodes value442991000124104 =
       EnteralFormulaTypeCodes._(
-    value: '442991000124104',
+    '442991000124104',
   );
 
   /// value443011000124100
   static final EnteralFormulaTypeCodes value443011000124100 =
       EnteralFormulaTypeCodes._(
-    value: '443011000124100',
+    '443011000124100',
   );
 
   /// value442961000124107
   static final EnteralFormulaTypeCodes value442961000124107 =
       EnteralFormulaTypeCodes._(
-    value: '442961000124107',
+    '442961000124107',
   );
 
   /// value442951000124105
   static final EnteralFormulaTypeCodes value442951000124105 =
       EnteralFormulaTypeCodes._(
-    value: '442951000124105',
+    '442951000124105',
   );
 
   /// value442941000124108
   static final EnteralFormulaTypeCodes value442941000124108 =
       EnteralFormulaTypeCodes._(
-    value: '442941000124108',
+    '442941000124108',
   );
 
   /// value442921000124101
   static final EnteralFormulaTypeCodes value442921000124101 =
       EnteralFormulaTypeCodes._(
-    value: '442921000124101',
+    '442921000124101',
   );
 
   /// value442931000124103
   static final EnteralFormulaTypeCodes value442931000124103 =
       EnteralFormulaTypeCodes._(
-    value: '442931000124103',
+    '442931000124103',
   );
 
   /// value443361000124100
   static final EnteralFormulaTypeCodes value443361000124100 =
       EnteralFormulaTypeCodes._(
-    value: '443361000124100',
+    '443361000124100',
   );
 
   /// value443401000124105
   static final EnteralFormulaTypeCodes value443401000124105 =
       EnteralFormulaTypeCodes._(
-    value: '443401000124105',
+    '443401000124105',
   );
 
   /// value443491000124103
   static final EnteralFormulaTypeCodes value443491000124103 =
       EnteralFormulaTypeCodes._(
-    value: '443491000124103',
+    '443491000124103',
   );
 
   /// value443501000124106
   static final EnteralFormulaTypeCodes value443501000124106 =
       EnteralFormulaTypeCodes._(
-    value: '443501000124106',
+    '443501000124106',
   );
 
   /// value443421000124100
   static final EnteralFormulaTypeCodes value443421000124100 =
       EnteralFormulaTypeCodes._(
-    value: '443421000124100',
+    '443421000124100',
   );
 
   /// value443471000124104
   static final EnteralFormulaTypeCodes value443471000124104 =
       EnteralFormulaTypeCodes._(
-    value: '443471000124104',
+    '443471000124104',
   );
 
   /// value444431000124104
   static final EnteralFormulaTypeCodes value444431000124104 =
       EnteralFormulaTypeCodes._(
-    value: '444431000124104',
+    '444431000124104',
   );
 
   /// value443451000124109
   static final EnteralFormulaTypeCodes value443451000124109 =
       EnteralFormulaTypeCodes._(
-    value: '443451000124109',
+    '443451000124109',
   );
 
   /// value441561000124106
   static final EnteralFormulaTypeCodes value441561000124106 =
       EnteralFormulaTypeCodes._(
-    value: '441561000124106',
+    '441561000124106',
   );
 
   /// value443461000124106
   static final EnteralFormulaTypeCodes value443461000124106 =
       EnteralFormulaTypeCodes._(
-    value: '443461000124106',
+    '443461000124106',
   );
 
   /// value441531000124102
   static final EnteralFormulaTypeCodes value441531000124102 =
       EnteralFormulaTypeCodes._(
-    value: '441531000124102',
+    '441531000124102',
   );
 
   /// value443561000124107
   static final EnteralFormulaTypeCodes value443561000124107 =
       EnteralFormulaTypeCodes._(
-    value: '443561000124107',
+    '443561000124107',
   );
 
   /// value443481000124101
   static final EnteralFormulaTypeCodes value443481000124101 =
       EnteralFormulaTypeCodes._(
-    value: '443481000124101',
+    '443481000124101',
   );
 
   /// value441571000124104
   static final EnteralFormulaTypeCodes value441571000124104 =
       EnteralFormulaTypeCodes._(
-    value: '441571000124104',
+    '441571000124104',
   );
 
   /// value441591000124103
   static final EnteralFormulaTypeCodes value441591000124103 =
       EnteralFormulaTypeCodes._(
-    value: '441591000124103',
+    '441591000124103',
   );
 
   /// value441601000124106
   static final EnteralFormulaTypeCodes value441601000124106 =
       EnteralFormulaTypeCodes._(
-    value: '441601000124106',
+    '441601000124106',
   );
 
   /// value443351000124102
   static final EnteralFormulaTypeCodes value443351000124102 =
       EnteralFormulaTypeCodes._(
-    value: '443351000124102',
+    '443351000124102',
   );
 
   /// value443771000124106
   static final EnteralFormulaTypeCodes value443771000124106 =
       EnteralFormulaTypeCodes._(
-    value: '443771000124106',
+    '443771000124106',
   );
 
   /// value441671000124100
   static final EnteralFormulaTypeCodes value441671000124100 =
       EnteralFormulaTypeCodes._(
-    value: '441671000124100',
+    '441671000124100',
   );
 
   /// value443111000124101
   static final EnteralFormulaTypeCodes value443111000124101 =
       EnteralFormulaTypeCodes._(
-    value: '443111000124101',
+    '443111000124101',
   );
 
   /// value443431000124102
   static final EnteralFormulaTypeCodes value443431000124102 =
       EnteralFormulaTypeCodes._(
-    value: '443431000124102',
+    '443431000124102',
   );
 
   /// value443411000124108
   static final EnteralFormulaTypeCodes value443411000124108 =
       EnteralFormulaTypeCodes._(
-    value: '443411000124108',
+    '443411000124108',
   );
 
   /// value442651000124102
   static final EnteralFormulaTypeCodes value442651000124102 =
       EnteralFormulaTypeCodes._(
-    value: '442651000124102',
+    '442651000124102',
   );
 
   /// For instances where an Element is present but not value
 
   static final EnteralFormulaTypeCodes elementOnly =
-      EnteralFormulaTypeCodes._(value: '');
+      EnteralFormulaTypeCodes._('');
 
   /// List of all enum-like values
   static final List<EnteralFormulaTypeCodes> values = [
@@ -293,13 +293,13 @@ class EnteralFormulaTypeCodes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   EnteralFormulaTypeCodes clone() => EnteralFormulaTypeCodes._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   EnteralFormulaTypeCodes withElement(Element? newElement) {
-    return EnteralFormulaTypeCodes._(value: value, element: newElement);
+    return EnteralFormulaTypeCodes._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -329,7 +329,7 @@ class EnteralFormulaTypeCodes extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return EnteralFormulaTypeCodes._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

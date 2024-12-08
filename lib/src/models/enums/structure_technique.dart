@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The method used to elucidate the structure or characterization of the drug substance.
 class StructureTechnique extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  StructureTechnique._({
-    super.value,
+  StructureTechnique._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,37 +26,37 @@ class StructureTechnique extends PrimitiveType<String> {
         'StructureTechnique cannot be constructed from JSON.',
       );
     }
-    return StructureTechnique._(value: value, element: element);
+    return StructureTechnique._(value, element: element);
   }
 
   /// X_Ray
   static final StructureTechnique X_Ray = StructureTechnique._(
-    value: 'X-Ray',
+    'X-Ray',
   );
 
   /// HPLC
   static final StructureTechnique HPLC = StructureTechnique._(
-    value: 'HPLC',
+    'HPLC',
   );
 
   /// NMR
   static final StructureTechnique NMR = StructureTechnique._(
-    value: 'NMR',
+    'NMR',
   );
 
   /// PeptideMapping
   static final StructureTechnique PeptideMapping = StructureTechnique._(
-    value: 'PeptideMapping',
+    'PeptideMapping',
   );
 
   /// LigandBindingAssay
   static final StructureTechnique LigandBindingAssay = StructureTechnique._(
-    value: 'LigandBindingAssay',
+    'LigandBindingAssay',
   );
 
   /// For instances where an Element is present but not value
 
-  static final StructureTechnique elementOnly = StructureTechnique._(value: '');
+  static final StructureTechnique elementOnly = StructureTechnique._('');
 
   /// List of all enum-like values
   static final List<StructureTechnique> values = [
@@ -70,13 +70,13 @@ class StructureTechnique extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   StructureTechnique clone() => StructureTechnique._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   StructureTechnique withElement(Element? newElement) {
-    return StructureTechnique._(value: value, element: newElement);
+    return StructureTechnique._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -106,7 +106,7 @@ class StructureTechnique extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return StructureTechnique._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

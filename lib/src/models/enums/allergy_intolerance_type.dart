@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Identification of the underlying physiological mechanism for a Reaction Risk.
 class AllergyIntoleranceType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  AllergyIntoleranceType._({
-    super.value,
+  AllergyIntoleranceType._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,23 +26,23 @@ class AllergyIntoleranceType extends PrimitiveType<String> {
         'AllergyIntoleranceType cannot be constructed from JSON.',
       );
     }
-    return AllergyIntoleranceType._(value: value, element: element);
+    return AllergyIntoleranceType._(value, element: element);
   }
 
   /// allergy
   static final AllergyIntoleranceType allergy = AllergyIntoleranceType._(
-    value: 'allergy',
+    'allergy',
   );
 
   /// intolerance
   static final AllergyIntoleranceType intolerance = AllergyIntoleranceType._(
-    value: 'intolerance',
+    'intolerance',
   );
 
   /// For instances where an Element is present but not value
 
   static final AllergyIntoleranceType elementOnly =
-      AllergyIntoleranceType._(value: '');
+      AllergyIntoleranceType._('');
 
   /// List of all enum-like values
   static final List<AllergyIntoleranceType> values = [
@@ -53,13 +53,13 @@ class AllergyIntoleranceType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   AllergyIntoleranceType clone() => AllergyIntoleranceType._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   AllergyIntoleranceType withElement(Element? newElement) {
-    return AllergyIntoleranceType._(value: value, element: newElement);
+    return AllergyIntoleranceType._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -89,7 +89,7 @@ class AllergyIntoleranceType extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return AllergyIntoleranceType._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The reason why the supply item was requested.
 class SupplyRequestReason extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  SupplyRequestReason._({
-    super.value,
+  SupplyRequestReason._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,23 +26,22 @@ class SupplyRequestReason extends PrimitiveType<String> {
         'SupplyRequestReason cannot be constructed from JSON.',
       );
     }
-    return SupplyRequestReason._(value: value, element: element);
+    return SupplyRequestReason._(value, element: element);
   }
 
   /// patient_care
   static final SupplyRequestReason patient_care = SupplyRequestReason._(
-    value: 'patient-care',
+    'patient-care',
   );
 
   /// ward_stock
   static final SupplyRequestReason ward_stock = SupplyRequestReason._(
-    value: 'ward-stock',
+    'ward-stock',
   );
 
   /// For instances where an Element is present but not value
 
-  static final SupplyRequestReason elementOnly =
-      SupplyRequestReason._(value: '');
+  static final SupplyRequestReason elementOnly = SupplyRequestReason._('');
 
   /// List of all enum-like values
   static final List<SupplyRequestReason> values = [
@@ -53,13 +52,13 @@ class SupplyRequestReason extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   SupplyRequestReason clone() => SupplyRequestReason._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   SupplyRequestReason withElement(Element? newElement) {
-    return SupplyRequestReason._(value: value, element: newElement);
+    return SupplyRequestReason._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -89,7 +88,7 @@ class SupplyRequestReason extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return SupplyRequestReason._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

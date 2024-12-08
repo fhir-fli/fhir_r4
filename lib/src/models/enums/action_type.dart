@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The type of action to be performed.
 class ActionType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ActionType._({
-    super.value,
+  ActionType._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,32 +26,32 @@ class ActionType extends PrimitiveType<String> {
         'ActionType cannot be constructed from JSON.',
       );
     }
-    return ActionType._(value: value, element: element);
+    return ActionType._(value, element: element);
   }
 
   /// create
   static final ActionType create = ActionType._(
-    value: 'create',
+    'create',
   );
 
   /// update
   static final ActionType update = ActionType._(
-    value: 'update',
+    'update',
   );
 
   /// remove
   static final ActionType remove = ActionType._(
-    value: 'remove',
+    'remove',
   );
 
   /// fire_event
   static final ActionType fire_event = ActionType._(
-    value: 'fire-event',
+    'fire-event',
   );
 
   /// For instances where an Element is present but not value
 
-  static final ActionType elementOnly = ActionType._(value: '');
+  static final ActionType elementOnly = ActionType._('');
 
   /// List of all enum-like values
   static final List<ActionType> values = [
@@ -64,13 +64,13 @@ class ActionType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ActionType clone() => ActionType._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ActionType withElement(Element? newElement) {
-    return ActionType._(value: value, element: newElement);
+    return ActionType._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -100,7 +100,7 @@ class ActionType extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ActionType._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

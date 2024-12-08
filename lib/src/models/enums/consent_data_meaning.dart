@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// How a resource reference is interpreted when testing consent restrictions.
 class ConsentDataMeaning extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ConsentDataMeaning._({
-    super.value,
+  ConsentDataMeaning._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,32 +26,32 @@ class ConsentDataMeaning extends PrimitiveType<String> {
         'ConsentDataMeaning cannot be constructed from JSON.',
       );
     }
-    return ConsentDataMeaning._(value: value, element: element);
+    return ConsentDataMeaning._(value, element: element);
   }
 
   /// instance
   static final ConsentDataMeaning instance = ConsentDataMeaning._(
-    value: 'instance',
+    'instance',
   );
 
   /// related
   static final ConsentDataMeaning related = ConsentDataMeaning._(
-    value: 'related',
+    'related',
   );
 
   /// dependents
   static final ConsentDataMeaning dependents = ConsentDataMeaning._(
-    value: 'dependents',
+    'dependents',
   );
 
   /// authoredby
   static final ConsentDataMeaning authoredby = ConsentDataMeaning._(
-    value: 'authoredby',
+    'authoredby',
   );
 
   /// For instances where an Element is present but not value
 
-  static final ConsentDataMeaning elementOnly = ConsentDataMeaning._(value: '');
+  static final ConsentDataMeaning elementOnly = ConsentDataMeaning._('');
 
   /// List of all enum-like values
   static final List<ConsentDataMeaning> values = [
@@ -64,13 +64,13 @@ class ConsentDataMeaning extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ConsentDataMeaning clone() => ConsentDataMeaning._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ConsentDataMeaning withElement(Element? newElement) {
-    return ConsentDataMeaning._(value: value, element: newElement);
+    return ConsentDataMeaning._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -100,7 +100,7 @@ class ConsentDataMeaning extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ConsentDataMeaning._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

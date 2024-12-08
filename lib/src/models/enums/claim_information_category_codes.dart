@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value set includes sample Information Category codes.
 class ClaimInformationCategoryCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ClaimInformationCategoryCodes._({
-    super.value,
+  ClaimInformationCategoryCodes._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,97 +26,97 @@ class ClaimInformationCategoryCodes extends PrimitiveType<String> {
         'ClaimInformationCategoryCodes cannot be constructed from JSON.',
       );
     }
-    return ClaimInformationCategoryCodes._(value: value, element: element);
+    return ClaimInformationCategoryCodes._(value, element: element);
   }
 
   /// info
   static final ClaimInformationCategoryCodes info =
       ClaimInformationCategoryCodes._(
-    value: 'info',
+    'info',
   );
 
   /// discharge
   static final ClaimInformationCategoryCodes discharge =
       ClaimInformationCategoryCodes._(
-    value: 'discharge',
+    'discharge',
   );
 
   /// onset
   static final ClaimInformationCategoryCodes onset =
       ClaimInformationCategoryCodes._(
-    value: 'onset',
+    'onset',
   );
 
   /// related
   static final ClaimInformationCategoryCodes related =
       ClaimInformationCategoryCodes._(
-    value: 'related',
+    'related',
   );
 
   /// exception
   static final ClaimInformationCategoryCodes exception =
       ClaimInformationCategoryCodes._(
-    value: 'exception',
+    'exception',
   );
 
   /// material
   static final ClaimInformationCategoryCodes material =
       ClaimInformationCategoryCodes._(
-    value: 'material',
+    'material',
   );
 
   /// attachment
   static final ClaimInformationCategoryCodes attachment =
       ClaimInformationCategoryCodes._(
-    value: 'attachment',
+    'attachment',
   );
 
   /// missingtooth
   static final ClaimInformationCategoryCodes missingtooth =
       ClaimInformationCategoryCodes._(
-    value: 'missingtooth',
+    'missingtooth',
   );
 
   /// prosthesis
   static final ClaimInformationCategoryCodes prosthesis =
       ClaimInformationCategoryCodes._(
-    value: 'prosthesis',
+    'prosthesis',
   );
 
   /// other
   static final ClaimInformationCategoryCodes other =
       ClaimInformationCategoryCodes._(
-    value: 'other',
+    'other',
   );
 
   /// hospitalized
   static final ClaimInformationCategoryCodes hospitalized =
       ClaimInformationCategoryCodes._(
-    value: 'hospitalized',
+    'hospitalized',
   );
 
   /// employmentimpacted
   static final ClaimInformationCategoryCodes employmentimpacted =
       ClaimInformationCategoryCodes._(
-    value: 'employmentimpacted',
+    'employmentimpacted',
   );
 
   /// externalcause
   static final ClaimInformationCategoryCodes externalcause =
       ClaimInformationCategoryCodes._(
-    value: 'externalcause',
+    'externalcause',
   );
 
   /// patientreasonforvisit
   static final ClaimInformationCategoryCodes patientreasonforvisit =
       ClaimInformationCategoryCodes._(
-    value: 'patientreasonforvisit',
+    'patientreasonforvisit',
   );
 
   /// For instances where an Element is present but not value
 
   static final ClaimInformationCategoryCodes elementOnly =
-      ClaimInformationCategoryCodes._(value: '');
+      ClaimInformationCategoryCodes._('');
 
   /// List of all enum-like values
   static final List<ClaimInformationCategoryCodes> values = [
@@ -139,13 +139,13 @@ class ClaimInformationCategoryCodes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ClaimInformationCategoryCodes clone() => ClaimInformationCategoryCodes._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ClaimInformationCategoryCodes withElement(Element? newElement) {
-    return ClaimInformationCategoryCodes._(value: value, element: newElement);
+    return ClaimInformationCategoryCodes._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -175,7 +175,7 @@ class ClaimInformationCategoryCodes extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ClaimInformationCategoryCodes._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

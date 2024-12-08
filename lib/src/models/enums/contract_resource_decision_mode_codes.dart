@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value set contract specific codes for decision modes.
 class ContractResourceDecisionModeCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ContractResourceDecisionModeCodes._({
-    super.value,
+  ContractResourceDecisionModeCodes._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,19 +26,19 @@ class ContractResourceDecisionModeCodes extends PrimitiveType<String> {
         'ContractResourceDecisionModeCodes cannot be constructed from JSON.',
       );
     }
-    return ContractResourceDecisionModeCodes._(value: value, element: element);
+    return ContractResourceDecisionModeCodes._(value, element: element);
   }
 
   /// policy
   static final ContractResourceDecisionModeCodes policy =
       ContractResourceDecisionModeCodes._(
-    value: 'policy',
+    'policy',
   );
 
   /// For instances where an Element is present but not value
 
   static final ContractResourceDecisionModeCodes elementOnly =
-      ContractResourceDecisionModeCodes._(value: '');
+      ContractResourceDecisionModeCodes._('');
 
   /// List of all enum-like values
   static final List<ContractResourceDecisionModeCodes> values = [
@@ -49,14 +49,13 @@ class ContractResourceDecisionModeCodes extends PrimitiveType<String> {
   @override
   ContractResourceDecisionModeCodes clone() =>
       ContractResourceDecisionModeCodes._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ContractResourceDecisionModeCodes withElement(Element? newElement) {
-    return ContractResourceDecisionModeCodes._(
-        value: value, element: newElement);
+    return ContractResourceDecisionModeCodes._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -86,7 +85,7 @@ class ContractResourceDecisionModeCodes extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ContractResourceDecisionModeCodes._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

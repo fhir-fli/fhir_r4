@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Codes identifying the lifecycle stage of a product.
 class NutritionProductStatus extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  NutritionProductStatus._({
-    super.value,
+  NutritionProductStatus._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,29 +26,29 @@ class NutritionProductStatus extends PrimitiveType<String> {
         'NutritionProductStatus cannot be constructed from JSON.',
       );
     }
-    return NutritionProductStatus._(value: value, element: element);
+    return NutritionProductStatus._(value, element: element);
   }
 
   /// active
   static final NutritionProductStatus active = NutritionProductStatus._(
-    value: 'active',
+    'active',
   );
 
   /// inactive
   static final NutritionProductStatus inactive = NutritionProductStatus._(
-    value: 'inactive',
+    'inactive',
   );
 
   /// entered_in_error
   static final NutritionProductStatus entered_in_error =
       NutritionProductStatus._(
-    value: 'entered-in-error',
+    'entered-in-error',
   );
 
   /// For instances where an Element is present but not value
 
   static final NutritionProductStatus elementOnly =
-      NutritionProductStatus._(value: '');
+      NutritionProductStatus._('');
 
   /// List of all enum-like values
   static final List<NutritionProductStatus> values = [
@@ -60,13 +60,13 @@ class NutritionProductStatus extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   NutritionProductStatus clone() => NutritionProductStatus._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   NutritionProductStatus withElement(Element? newElement) {
-    return NutritionProductStatus._(value: value, element: newElement);
+    return NutritionProductStatus._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -96,7 +96,7 @@ class NutritionProductStatus extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return NutritionProductStatus._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

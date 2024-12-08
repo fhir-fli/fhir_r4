@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value set includes examples of Benefit Category codes.
 class BenefitCategoryCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  BenefitCategoryCodes._({
-    super.value,
+  BenefitCategoryCodes._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,153 +26,152 @@ class BenefitCategoryCodes extends PrimitiveType<String> {
         'BenefitCategoryCodes cannot be constructed from JSON.',
       );
     }
-    return BenefitCategoryCodes._(value: value, element: element);
+    return BenefitCategoryCodes._(value, element: element);
   }
 
   /// value1
   static final BenefitCategoryCodes value1 = BenefitCategoryCodes._(
-    value: '1',
+    '1',
   );
 
   /// value2
   static final BenefitCategoryCodes value2 = BenefitCategoryCodes._(
-    value: '2',
+    '2',
   );
 
   /// value3
   static final BenefitCategoryCodes value3 = BenefitCategoryCodes._(
-    value: '3',
+    '3',
   );
 
   /// value4
   static final BenefitCategoryCodes value4 = BenefitCategoryCodes._(
-    value: '4',
+    '4',
   );
 
   /// value5
   static final BenefitCategoryCodes value5 = BenefitCategoryCodes._(
-    value: '5',
+    '5',
   );
 
   /// value14
   static final BenefitCategoryCodes value14 = BenefitCategoryCodes._(
-    value: '14',
+    '14',
   );
 
   /// value23
   static final BenefitCategoryCodes value23 = BenefitCategoryCodes._(
-    value: '23',
+    '23',
   );
 
   /// value24
   static final BenefitCategoryCodes value24 = BenefitCategoryCodes._(
-    value: '24',
+    '24',
   );
 
   /// value25
   static final BenefitCategoryCodes value25 = BenefitCategoryCodes._(
-    value: '25',
+    '25',
   );
 
   /// value26
   static final BenefitCategoryCodes value26 = BenefitCategoryCodes._(
-    value: '26',
+    '26',
   );
 
   /// value27
   static final BenefitCategoryCodes value27 = BenefitCategoryCodes._(
-    value: '27',
+    '27',
   );
 
   /// value28
   static final BenefitCategoryCodes value28 = BenefitCategoryCodes._(
-    value: '28',
+    '28',
   );
 
   /// value30
   static final BenefitCategoryCodes value30 = BenefitCategoryCodes._(
-    value: '30',
+    '30',
   );
 
   /// value35
   static final BenefitCategoryCodes value35 = BenefitCategoryCodes._(
-    value: '35',
+    '35',
   );
 
   /// value36
   static final BenefitCategoryCodes value36 = BenefitCategoryCodes._(
-    value: '36',
+    '36',
   );
 
   /// value37
   static final BenefitCategoryCodes value37 = BenefitCategoryCodes._(
-    value: '37',
+    '37',
   );
 
   /// value49
   static final BenefitCategoryCodes value49 = BenefitCategoryCodes._(
-    value: '49',
+    '49',
   );
 
   /// value55
   static final BenefitCategoryCodes value55 = BenefitCategoryCodes._(
-    value: '55',
+    '55',
   );
 
   /// value56
   static final BenefitCategoryCodes value56 = BenefitCategoryCodes._(
-    value: '56',
+    '56',
   );
 
   /// value61
   static final BenefitCategoryCodes value61 = BenefitCategoryCodes._(
-    value: '61',
+    '61',
   );
 
   /// value62
   static final BenefitCategoryCodes value62 = BenefitCategoryCodes._(
-    value: '62',
+    '62',
   );
 
   /// value63
   static final BenefitCategoryCodes value63 = BenefitCategoryCodes._(
-    value: '63',
+    '63',
   );
 
   /// value69
   static final BenefitCategoryCodes value69 = BenefitCategoryCodes._(
-    value: '69',
+    '69',
   );
 
   /// value76
   static final BenefitCategoryCodes value76 = BenefitCategoryCodes._(
-    value: '76',
+    '76',
   );
 
   /// F1
   static final BenefitCategoryCodes F1 = BenefitCategoryCodes._(
-    value: 'F1',
+    'F1',
   );
 
   /// F3
   static final BenefitCategoryCodes F3 = BenefitCategoryCodes._(
-    value: 'F3',
+    'F3',
   );
 
   /// F4
   static final BenefitCategoryCodes F4 = BenefitCategoryCodes._(
-    value: 'F4',
+    'F4',
   );
 
   /// F6
   static final BenefitCategoryCodes F6 = BenefitCategoryCodes._(
-    value: 'F6',
+    'F6',
   );
 
   /// For instances where an Element is present but not value
 
-  static final BenefitCategoryCodes elementOnly =
-      BenefitCategoryCodes._(value: '');
+  static final BenefitCategoryCodes elementOnly = BenefitCategoryCodes._('');
 
   /// List of all enum-like values
   static final List<BenefitCategoryCodes> values = [
@@ -209,13 +208,13 @@ class BenefitCategoryCodes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   BenefitCategoryCodes clone() => BenefitCategoryCodes._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   BenefitCategoryCodes withElement(Element? newElement) {
-    return BenefitCategoryCodes._(value: value, element: newElement);
+    return BenefitCategoryCodes._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -245,7 +244,7 @@ class BenefitCategoryCodes extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return BenefitCategoryCodes._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

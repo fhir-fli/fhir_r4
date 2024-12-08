@@ -6,8 +6,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 class ImmunizationEvaluationDoseStatusReasonCodes
     extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ImmunizationEvaluationDoseStatusReasonCodes._({
-    super.value,
+  ImmunizationEvaluationDoseStatusReasonCodes._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -28,44 +28,44 @@ class ImmunizationEvaluationDoseStatusReasonCodes
         'ImmunizationEvaluationDoseStatusReasonCodes cannot be constructed from JSON.',
       );
     }
-    return ImmunizationEvaluationDoseStatusReasonCodes._(
-        value: value, element: element);
+    return ImmunizationEvaluationDoseStatusReasonCodes._(value,
+        element: element);
   }
 
   /// advstorage
   static final ImmunizationEvaluationDoseStatusReasonCodes advstorage =
       ImmunizationEvaluationDoseStatusReasonCodes._(
-    value: 'advstorage',
+    'advstorage',
   );
 
   /// coldchbrk
   static final ImmunizationEvaluationDoseStatusReasonCodes coldchbrk =
       ImmunizationEvaluationDoseStatusReasonCodes._(
-    value: 'coldchbrk',
+    'coldchbrk',
   );
 
   /// explot
   static final ImmunizationEvaluationDoseStatusReasonCodes explot =
       ImmunizationEvaluationDoseStatusReasonCodes._(
-    value: 'explot',
+    'explot',
   );
 
   /// outsidesched
   static final ImmunizationEvaluationDoseStatusReasonCodes outsidesched =
       ImmunizationEvaluationDoseStatusReasonCodes._(
-    value: 'outsidesched',
+    'outsidesched',
   );
 
   /// prodrecall
   static final ImmunizationEvaluationDoseStatusReasonCodes prodrecall =
       ImmunizationEvaluationDoseStatusReasonCodes._(
-    value: 'prodrecall',
+    'prodrecall',
   );
 
   /// For instances where an Element is present but not value
 
   static final ImmunizationEvaluationDoseStatusReasonCodes elementOnly =
-      ImmunizationEvaluationDoseStatusReasonCodes._(value: '');
+      ImmunizationEvaluationDoseStatusReasonCodes._('');
 
   /// List of all enum-like values
   static final List<ImmunizationEvaluationDoseStatusReasonCodes> values = [
@@ -80,14 +80,14 @@ class ImmunizationEvaluationDoseStatusReasonCodes
   @override
   ImmunizationEvaluationDoseStatusReasonCodes clone() =>
       ImmunizationEvaluationDoseStatusReasonCodes._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ImmunizationEvaluationDoseStatusReasonCodes withElement(Element? newElement) {
-    return ImmunizationEvaluationDoseStatusReasonCodes._(
-        value: value, element: newElement);
+    return ImmunizationEvaluationDoseStatusReasonCodes._(value,
+        element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -117,7 +117,7 @@ class ImmunizationEvaluationDoseStatusReasonCodes
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ImmunizationEvaluationDoseStatusReasonCodes._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

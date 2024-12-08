@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// NutrientModifier : Codes for types of nutrients that are being modified such as carbohydrate or sodium. This value set includes codes from [SNOMED CT](http://snomed.info/sct) where concept is-a 226355009 (Nutrients(substance)), and the concepts for Sodium, Potassium and Fluid. This is provided as a suggestive example.
 class NutrientModifierCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  NutrientModifierCodes._({
-    super.value,
+  NutrientModifierCodes._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,28 +26,27 @@ class NutrientModifierCodes extends PrimitiveType<String> {
         'NutrientModifierCodes cannot be constructed from JSON.',
       );
     }
-    return NutrientModifierCodes._(value: value, element: element);
+    return NutrientModifierCodes._(value, element: element);
   }
 
   /// value33463005
   static final NutrientModifierCodes value33463005 = NutrientModifierCodes._(
-    value: '33463005',
+    '33463005',
   );
 
   /// value39972003
   static final NutrientModifierCodes value39972003 = NutrientModifierCodes._(
-    value: '39972003',
+    '39972003',
   );
 
   /// value88480006
   static final NutrientModifierCodes value88480006 = NutrientModifierCodes._(
-    value: '88480006',
+    '88480006',
   );
 
   /// For instances where an Element is present but not value
 
-  static final NutrientModifierCodes elementOnly =
-      NutrientModifierCodes._(value: '');
+  static final NutrientModifierCodes elementOnly = NutrientModifierCodes._('');
 
   /// List of all enum-like values
   static final List<NutrientModifierCodes> values = [
@@ -59,13 +58,13 @@ class NutrientModifierCodes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   NutrientModifierCodes clone() => NutrientModifierCodes._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   NutrientModifierCodes withElement(Element? newElement) {
-    return NutrientModifierCodes._(value: value, element: newElement);
+    return NutrientModifierCodes._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -95,7 +94,7 @@ class NutrientModifierCodes extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return NutrientModifierCodes._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

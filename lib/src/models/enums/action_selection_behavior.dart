@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Defines selection behavior of a group.
 class ActionSelectionBehavior extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ActionSelectionBehavior._({
-    super.value,
+  ActionSelectionBehavior._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,43 +26,43 @@ class ActionSelectionBehavior extends PrimitiveType<String> {
         'ActionSelectionBehavior cannot be constructed from JSON.',
       );
     }
-    return ActionSelectionBehavior._(value: value, element: element);
+    return ActionSelectionBehavior._(value, element: element);
   }
 
   /// any
   static final ActionSelectionBehavior any = ActionSelectionBehavior._(
-    value: 'any',
+    'any',
   );
 
   /// all
   static final ActionSelectionBehavior all = ActionSelectionBehavior._(
-    value: 'all',
+    'all',
   );
 
   /// all_or_none
   static final ActionSelectionBehavior all_or_none = ActionSelectionBehavior._(
-    value: 'all-or-none',
+    'all-or-none',
   );
 
   /// exactly_one
   static final ActionSelectionBehavior exactly_one = ActionSelectionBehavior._(
-    value: 'exactly-one',
+    'exactly-one',
   );
 
   /// at_most_one
   static final ActionSelectionBehavior at_most_one = ActionSelectionBehavior._(
-    value: 'at-most-one',
+    'at-most-one',
   );
 
   /// one_or_more
   static final ActionSelectionBehavior one_or_more = ActionSelectionBehavior._(
-    value: 'one-or-more',
+    'one-or-more',
   );
 
   /// For instances where an Element is present but not value
 
   static final ActionSelectionBehavior elementOnly =
-      ActionSelectionBehavior._(value: '');
+      ActionSelectionBehavior._('');
 
   /// List of all enum-like values
   static final List<ActionSelectionBehavior> values = [
@@ -77,13 +77,13 @@ class ActionSelectionBehavior extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ActionSelectionBehavior clone() => ActionSelectionBehavior._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ActionSelectionBehavior withElement(Element? newElement) {
-    return ActionSelectionBehavior._(value: value, element: newElement);
+    return ActionSelectionBehavior._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -113,7 +113,7 @@ class ActionSelectionBehavior extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ActionSelectionBehavior._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// A legal or regulatory framework against which an authorization is granted, or other reasons for it.
 class RegulatedAuthorizationBasis extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  RegulatedAuthorizationBasis._({
-    super.value,
+  RegulatedAuthorizationBasis._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,72 +26,72 @@ class RegulatedAuthorizationBasis extends PrimitiveType<String> {
         'RegulatedAuthorizationBasis cannot be constructed from JSON.',
       );
     }
-    return RegulatedAuthorizationBasis._(value: value, element: element);
+    return RegulatedAuthorizationBasis._(value, element: element);
   }
 
   /// Full
   static final RegulatedAuthorizationBasis Full = RegulatedAuthorizationBasis._(
-    value: 'Full',
+    'Full',
   );
 
   /// NewSubstance
   static final RegulatedAuthorizationBasis NewSubstance =
       RegulatedAuthorizationBasis._(
-    value: 'NewSubstance',
+    'NewSubstance',
   );
 
   /// KnownSubstance
   static final RegulatedAuthorizationBasis KnownSubstance =
       RegulatedAuthorizationBasis._(
-    value: 'KnownSubstance',
+    'KnownSubstance',
   );
 
   /// SimilarBiological
   static final RegulatedAuthorizationBasis SimilarBiological =
       RegulatedAuthorizationBasis._(
-    value: 'SimilarBiological',
+    'SimilarBiological',
   );
 
   /// Well_establishedUse
   static final RegulatedAuthorizationBasis Well_establishedUse =
       RegulatedAuthorizationBasis._(
-    value: 'Well-establishedUse',
+    'Well-establishedUse',
   );
 
   /// TraditionalUse
   static final RegulatedAuthorizationBasis TraditionalUse =
       RegulatedAuthorizationBasis._(
-    value: 'TraditionalUse',
+    'TraditionalUse',
   );
 
   /// Bibliographical
   static final RegulatedAuthorizationBasis Bibliographical =
       RegulatedAuthorizationBasis._(
-    value: 'Bibliographical',
+    'Bibliographical',
   );
 
   /// KnownHumanBlood
   static final RegulatedAuthorizationBasis KnownHumanBlood =
       RegulatedAuthorizationBasis._(
-    value: 'KnownHumanBlood',
+    'KnownHumanBlood',
   );
 
   /// TemporaryUse
   static final RegulatedAuthorizationBasis TemporaryUse =
       RegulatedAuthorizationBasis._(
-    value: 'TemporaryUse',
+    'TemporaryUse',
   );
 
   /// ParallelTrade
   static final RegulatedAuthorizationBasis ParallelTrade =
       RegulatedAuthorizationBasis._(
-    value: 'ParallelTrade',
+    'ParallelTrade',
   );
 
   /// For instances where an Element is present but not value
 
   static final RegulatedAuthorizationBasis elementOnly =
-      RegulatedAuthorizationBasis._(value: '');
+      RegulatedAuthorizationBasis._('');
 
   /// List of all enum-like values
   static final List<RegulatedAuthorizationBasis> values = [
@@ -110,13 +110,13 @@ class RegulatedAuthorizationBasis extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   RegulatedAuthorizationBasis clone() => RegulatedAuthorizationBasis._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   RegulatedAuthorizationBasis withElement(Element? newElement) {
-    return RegulatedAuthorizationBasis._(value: value, element: newElement);
+    return RegulatedAuthorizationBasis._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -146,7 +146,7 @@ class RegulatedAuthorizationBasis extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return RegulatedAuthorizationBasis._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value set contract specific codes for asset type.
 class ContractResourceAssetTypeCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ContractResourceAssetTypeCodes._({
-    super.value,
+  ContractResourceAssetTypeCodes._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,19 +26,19 @@ class ContractResourceAssetTypeCodes extends PrimitiveType<String> {
         'ContractResourceAssetTypeCodes cannot be constructed from JSON.',
       );
     }
-    return ContractResourceAssetTypeCodes._(value: value, element: element);
+    return ContractResourceAssetTypeCodes._(value, element: element);
   }
 
   /// participation
   static final ContractResourceAssetTypeCodes participation =
       ContractResourceAssetTypeCodes._(
-    value: 'participation',
+    'participation',
   );
 
   /// For instances where an Element is present but not value
 
   static final ContractResourceAssetTypeCodes elementOnly =
-      ContractResourceAssetTypeCodes._(value: '');
+      ContractResourceAssetTypeCodes._('');
 
   /// List of all enum-like values
   static final List<ContractResourceAssetTypeCodes> values = [
@@ -48,13 +48,13 @@ class ContractResourceAssetTypeCodes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ContractResourceAssetTypeCodes clone() => ContractResourceAssetTypeCodes._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ContractResourceAssetTypeCodes withElement(Element? newElement) {
-    return ContractResourceAssetTypeCodes._(value: value, element: newElement);
+    return ContractResourceAssetTypeCodes._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -84,7 +84,7 @@ class ContractResourceAssetTypeCodes extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ContractResourceAssetTypeCodes._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

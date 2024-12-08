@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The role that the assertion variable plays.
 class EvidenceVariableRole extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  EvidenceVariableRole._({
-    super.value,
+  EvidenceVariableRole._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,43 +26,42 @@ class EvidenceVariableRole extends PrimitiveType<String> {
         'EvidenceVariableRole cannot be constructed from JSON.',
       );
     }
-    return EvidenceVariableRole._(value: value, element: element);
+    return EvidenceVariableRole._(value, element: element);
   }
 
   /// population
   static final EvidenceVariableRole population = EvidenceVariableRole._(
-    value: 'population',
+    'population',
   );
 
   /// subpopulation
   static final EvidenceVariableRole subpopulation = EvidenceVariableRole._(
-    value: 'subpopulation',
+    'subpopulation',
   );
 
   /// exposure
   static final EvidenceVariableRole exposure = EvidenceVariableRole._(
-    value: 'exposure',
+    'exposure',
   );
 
   /// referenceExposure
   static final EvidenceVariableRole referenceExposure = EvidenceVariableRole._(
-    value: 'referenceExposure',
+    'referenceExposure',
   );
 
   /// measuredVariable
   static final EvidenceVariableRole measuredVariable = EvidenceVariableRole._(
-    value: 'measuredVariable',
+    'measuredVariable',
   );
 
   /// confounder
   static final EvidenceVariableRole confounder = EvidenceVariableRole._(
-    value: 'confounder',
+    'confounder',
   );
 
   /// For instances where an Element is present but not value
 
-  static final EvidenceVariableRole elementOnly =
-      EvidenceVariableRole._(value: '');
+  static final EvidenceVariableRole elementOnly = EvidenceVariableRole._('');
 
   /// List of all enum-like values
   static final List<EvidenceVariableRole> values = [
@@ -77,13 +76,13 @@ class EvidenceVariableRole extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   EvidenceVariableRole clone() => EvidenceVariableRole._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   EvidenceVariableRole withElement(Element? newElement) {
-    return EvidenceVariableRole._(value: value, element: newElement);
+    return EvidenceVariableRole._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -113,7 +112,7 @@ class EvidenceVariableRole extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return EvidenceVariableRole._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

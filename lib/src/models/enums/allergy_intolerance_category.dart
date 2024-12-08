@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Category of an identified substance associated with allergies or intolerances.
 class AllergyIntoleranceCategory extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  AllergyIntoleranceCategory._({
-    super.value,
+  AllergyIntoleranceCategory._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,36 +26,36 @@ class AllergyIntoleranceCategory extends PrimitiveType<String> {
         'AllergyIntoleranceCategory cannot be constructed from JSON.',
       );
     }
-    return AllergyIntoleranceCategory._(value: value, element: element);
+    return AllergyIntoleranceCategory._(value, element: element);
   }
 
   /// food
   static final AllergyIntoleranceCategory food = AllergyIntoleranceCategory._(
-    value: 'food',
+    'food',
   );
 
   /// medication
   static final AllergyIntoleranceCategory medication =
       AllergyIntoleranceCategory._(
-    value: 'medication',
+    'medication',
   );
 
   /// environment
   static final AllergyIntoleranceCategory environment =
       AllergyIntoleranceCategory._(
-    value: 'environment',
+    'environment',
   );
 
   /// biologic
   static final AllergyIntoleranceCategory biologic =
       AllergyIntoleranceCategory._(
-    value: 'biologic',
+    'biologic',
   );
 
   /// For instances where an Element is present but not value
 
   static final AllergyIntoleranceCategory elementOnly =
-      AllergyIntoleranceCategory._(value: '');
+      AllergyIntoleranceCategory._('');
 
   /// List of all enum-like values
   static final List<AllergyIntoleranceCategory> values = [
@@ -68,13 +68,13 @@ class AllergyIntoleranceCategory extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   AllergyIntoleranceCategory clone() => AllergyIntoleranceCategory._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   AllergyIntoleranceCategory withElement(Element? newElement) {
-    return AllergyIntoleranceCategory._(value: value, element: newElement);
+    return AllergyIntoleranceCategory._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -104,7 +104,7 @@ class AllergyIntoleranceCategory extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return AllergyIntoleranceCategory._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

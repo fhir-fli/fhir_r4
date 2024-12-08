@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Evidence focus characteristic code.
 class FocusCharacteristicCode extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  FocusCharacteristicCode._({
-    super.value,
+  FocusCharacteristicCode._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,55 +26,55 @@ class FocusCharacteristicCode extends PrimitiveType<String> {
         'FocusCharacteristicCode cannot be constructed from JSON.',
       );
     }
-    return FocusCharacteristicCode._(value: value, element: element);
+    return FocusCharacteristicCode._(value, element: element);
   }
 
   /// citation
   static final FocusCharacteristicCode citation = FocusCharacteristicCode._(
-    value: 'citation',
+    'citation',
   );
 
   /// clinical_outcomes_observed
   static final FocusCharacteristicCode clinical_outcomes_observed =
       FocusCharacteristicCode._(
-    value: 'clinical-outcomes-observed',
+    'clinical-outcomes-observed',
   );
 
   /// population
   static final FocusCharacteristicCode population = FocusCharacteristicCode._(
-    value: 'population',
+    'population',
   );
 
   /// exposure
   static final FocusCharacteristicCode exposure = FocusCharacteristicCode._(
-    value: 'exposure',
+    'exposure',
   );
 
   /// comparator
   static final FocusCharacteristicCode comparator = FocusCharacteristicCode._(
-    value: 'comparator',
+    'comparator',
   );
 
   /// outcome
   static final FocusCharacteristicCode outcome = FocusCharacteristicCode._(
-    value: 'outcome',
+    'outcome',
   );
 
   /// medication_exposures
   static final FocusCharacteristicCode medication_exposures =
       FocusCharacteristicCode._(
-    value: 'medication-exposures',
+    'medication-exposures',
   );
 
   /// study_type
   static final FocusCharacteristicCode study_type = FocusCharacteristicCode._(
-    value: 'study-type',
+    'study-type',
   );
 
   /// For instances where an Element is present but not value
 
   static final FocusCharacteristicCode elementOnly =
-      FocusCharacteristicCode._(value: '');
+      FocusCharacteristicCode._('');
 
   /// List of all enum-like values
   static final List<FocusCharacteristicCode> values = [
@@ -91,13 +91,13 @@ class FocusCharacteristicCode extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   FocusCharacteristicCode clone() => FocusCharacteristicCode._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   FocusCharacteristicCode withElement(Element? newElement) {
-    return FocusCharacteristicCode._(value: value, element: newElement);
+    return FocusCharacteristicCode._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -127,7 +127,7 @@ class FocusCharacteristicCode extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return FocusCharacteristicCode._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

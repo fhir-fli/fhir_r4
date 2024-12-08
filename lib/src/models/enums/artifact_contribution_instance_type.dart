@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Artifact Contribution Instance Type
 class ArtifactContributionInstanceType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ArtifactContributionInstanceType._({
-    super.value,
+  ArtifactContributionInstanceType._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,31 +26,31 @@ class ArtifactContributionInstanceType extends PrimitiveType<String> {
         'ArtifactContributionInstanceType cannot be constructed from JSON.',
       );
     }
-    return ArtifactContributionInstanceType._(value: value, element: element);
+    return ArtifactContributionInstanceType._(value, element: element);
   }
 
   /// reviewed
   static final ArtifactContributionInstanceType reviewed =
       ArtifactContributionInstanceType._(
-    value: 'reviewed',
+    'reviewed',
   );
 
   /// approved
   static final ArtifactContributionInstanceType approved =
       ArtifactContributionInstanceType._(
-    value: 'approved',
+    'approved',
   );
 
   /// edited
   static final ArtifactContributionInstanceType edited =
       ArtifactContributionInstanceType._(
-    value: 'edited',
+    'edited',
   );
 
   /// For instances where an Element is present but not value
 
   static final ArtifactContributionInstanceType elementOnly =
-      ArtifactContributionInstanceType._(value: '');
+      ArtifactContributionInstanceType._('');
 
   /// List of all enum-like values
   static final List<ArtifactContributionInstanceType> values = [
@@ -63,14 +63,13 @@ class ArtifactContributionInstanceType extends PrimitiveType<String> {
   @override
   ArtifactContributionInstanceType clone() =>
       ArtifactContributionInstanceType._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ArtifactContributionInstanceType withElement(Element? newElement) {
-    return ArtifactContributionInstanceType._(
-        value: value, element: newElement);
+    return ArtifactContributionInstanceType._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -100,7 +99,7 @@ class ArtifactContributionInstanceType extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ArtifactContributionInstanceType._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

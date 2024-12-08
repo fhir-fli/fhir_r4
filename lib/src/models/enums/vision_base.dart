@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// A coded concept listing the base codes.
 class VisionBase extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  VisionBase._({
-    super.value,
+  VisionBase._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,32 +26,32 @@ class VisionBase extends PrimitiveType<String> {
         'VisionBase cannot be constructed from JSON.',
       );
     }
-    return VisionBase._(value: value, element: element);
+    return VisionBase._(value, element: element);
   }
 
   /// up
   static final VisionBase up = VisionBase._(
-    value: 'up',
+    'up',
   );
 
   /// down
   static final VisionBase down = VisionBase._(
-    value: 'down',
+    'down',
   );
 
   /// in_
   static final VisionBase in_ = VisionBase._(
-    value: 'in',
+    'in',
   );
 
   /// out
   static final VisionBase out = VisionBase._(
-    value: 'out',
+    'out',
   );
 
   /// For instances where an Element is present but not value
 
-  static final VisionBase elementOnly = VisionBase._(value: '');
+  static final VisionBase elementOnly = VisionBase._('');
 
   /// List of all enum-like values
   static final List<VisionBase> values = [
@@ -64,13 +64,13 @@ class VisionBase extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   VisionBase clone() => VisionBase._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   VisionBase withElement(Element? newElement) {
-    return VisionBase._(value: value, element: newElement);
+    return VisionBase._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -100,7 +100,7 @@ class VisionBase extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return VisionBase._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

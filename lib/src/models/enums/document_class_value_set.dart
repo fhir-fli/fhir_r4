@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This is the code specifying the high-level kind of document (e.g. Prescription, Discharge Summary, Report, etc.). Note: Class code for documents comes from LOINC, and is based upon one of the following:The type of service described by the document. It is described at a very high level in Section 7.3 of the LOINC Manual. The type study performed. It was determined by identifying modalities for study reports. The section of the chart where the document is placed. It was determined from the SETs created for Claims Attachment requests.
 class DocumentClassValueSet extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  DocumentClassValueSet._({
-    super.value,
+  DocumentClassValueSet._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,238 +26,237 @@ class DocumentClassValueSet extends PrimitiveType<String> {
         'DocumentClassValueSet cannot be constructed from JSON.',
       );
     }
-    return DocumentClassValueSet._(value: value, element: element);
+    return DocumentClassValueSet._(value, element: element);
   }
 
   /// value11369_6
   static final DocumentClassValueSet value11369_6 = DocumentClassValueSet._(
-    value: '11369-6',
+    '11369-6',
   );
 
   /// value11485_0
   static final DocumentClassValueSet value11485_0 = DocumentClassValueSet._(
-    value: '11485-0',
+    '11485-0',
   );
 
   /// value11486_8
   static final DocumentClassValueSet value11486_8 = DocumentClassValueSet._(
-    value: '11486-8',
+    '11486-8',
   );
 
   /// value11488_4
   static final DocumentClassValueSet value11488_4 = DocumentClassValueSet._(
-    value: '11488-4',
+    '11488-4',
   );
 
   /// value11506_3
   static final DocumentClassValueSet value11506_3 = DocumentClassValueSet._(
-    value: '11506-3',
+    '11506-3',
   );
 
   /// value11543_6
   static final DocumentClassValueSet value11543_6 = DocumentClassValueSet._(
-    value: '11543-6',
+    '11543-6',
   );
 
   /// value15508_5
   static final DocumentClassValueSet value15508_5 = DocumentClassValueSet._(
-    value: '15508-5',
+    '15508-5',
   );
 
   /// value18726_0
   static final DocumentClassValueSet value18726_0 = DocumentClassValueSet._(
-    value: '18726-0',
+    '18726-0',
   );
 
   /// value18761_7
   static final DocumentClassValueSet value18761_7 = DocumentClassValueSet._(
-    value: '18761-7',
+    '18761-7',
   );
 
   /// value18842_5
   static final DocumentClassValueSet value18842_5 = DocumentClassValueSet._(
-    value: '18842-5',
+    '18842-5',
   );
 
   /// value26436_6
   static final DocumentClassValueSet value26436_6 = DocumentClassValueSet._(
-    value: '26436-6',
+    '26436-6',
   );
 
   /// value26441_6
   static final DocumentClassValueSet value26441_6 = DocumentClassValueSet._(
-    value: '26441-6',
+    '26441-6',
   );
 
   /// value26442_4
   static final DocumentClassValueSet value26442_4 = DocumentClassValueSet._(
-    value: '26442-4',
+    '26442-4',
   );
 
   /// value27895_2
   static final DocumentClassValueSet value27895_2 = DocumentClassValueSet._(
-    value: '27895-2',
+    '27895-2',
   );
 
   /// value27896_0
   static final DocumentClassValueSet value27896_0 = DocumentClassValueSet._(
-    value: '27896-0',
+    '27896-0',
   );
 
   /// value27897_8
   static final DocumentClassValueSet value27897_8 = DocumentClassValueSet._(
-    value: '27897-8',
+    '27897-8',
   );
 
   /// value27898_6
   static final DocumentClassValueSet value27898_6 = DocumentClassValueSet._(
-    value: '27898-6',
+    '27898-6',
   );
 
   /// value28570_0
   static final DocumentClassValueSet value28570_0 = DocumentClassValueSet._(
-    value: '28570-0',
+    '28570-0',
   );
 
   /// value28619_5
   static final DocumentClassValueSet value28619_5 = DocumentClassValueSet._(
-    value: '28619-5',
+    '28619-5',
   );
 
   /// value28634_4
   static final DocumentClassValueSet value28634_4 = DocumentClassValueSet._(
-    value: '28634-4',
+    '28634-4',
   );
 
   /// value29749_9
   static final DocumentClassValueSet value29749_9 = DocumentClassValueSet._(
-    value: '29749-9',
+    '29749-9',
   );
 
   /// value29750_7
   static final DocumentClassValueSet value29750_7 = DocumentClassValueSet._(
-    value: '29750-7',
+    '29750-7',
   );
 
   /// value29751_5
   static final DocumentClassValueSet value29751_5 = DocumentClassValueSet._(
-    value: '29751-5',
+    '29751-5',
   );
 
   /// value29752_3
   static final DocumentClassValueSet value29752_3 = DocumentClassValueSet._(
-    value: '29752-3',
+    '29752-3',
   );
 
   /// value34109_9
   static final DocumentClassValueSet value34109_9 = DocumentClassValueSet._(
-    value: '34109-9',
+    '34109-9',
   );
 
   /// value34117_2
   static final DocumentClassValueSet value34117_2 = DocumentClassValueSet._(
-    value: '34117-2',
+    '34117-2',
   );
 
   /// value34121_4
   static final DocumentClassValueSet value34121_4 = DocumentClassValueSet._(
-    value: '34121-4',
+    '34121-4',
   );
 
   /// value34122_2
   static final DocumentClassValueSet value34122_2 = DocumentClassValueSet._(
-    value: '34122-2',
+    '34122-2',
   );
 
   /// value34133_9
   static final DocumentClassValueSet value34133_9 = DocumentClassValueSet._(
-    value: '34133-9',
+    '34133-9',
   );
 
   /// value34140_4
   static final DocumentClassValueSet value34140_4 = DocumentClassValueSet._(
-    value: '34140-4',
+    '34140-4',
   );
 
   /// value34748_4
   static final DocumentClassValueSet value34748_4 = DocumentClassValueSet._(
-    value: '34748-4',
+    '34748-4',
   );
 
   /// value34775_7
   static final DocumentClassValueSet value34775_7 = DocumentClassValueSet._(
-    value: '34775-7',
+    '34775-7',
   );
 
   /// value47039_3
   static final DocumentClassValueSet value47039_3 = DocumentClassValueSet._(
-    value: '47039-3',
+    '47039-3',
   );
 
   /// value47042_7
   static final DocumentClassValueSet value47042_7 = DocumentClassValueSet._(
-    value: '47042-7',
+    '47042-7',
   );
 
   /// value47045_0
   static final DocumentClassValueSet value47045_0 = DocumentClassValueSet._(
-    value: '47045-0',
+    '47045-0',
   );
 
   /// value47046_8
   static final DocumentClassValueSet value47046_8 = DocumentClassValueSet._(
-    value: '47046-8',
+    '47046-8',
   );
 
   /// value47049_2
   static final DocumentClassValueSet value47049_2 = DocumentClassValueSet._(
-    value: '47049-2',
+    '47049-2',
   );
 
   /// value57017_6
   static final DocumentClassValueSet value57017_6 = DocumentClassValueSet._(
-    value: '57017-6',
+    '57017-6',
   );
 
   /// value57016_8
   static final DocumentClassValueSet value57016_8 = DocumentClassValueSet._(
-    value: '57016-8',
+    '57016-8',
   );
 
   /// value56445_0
   static final DocumentClassValueSet value56445_0 = DocumentClassValueSet._(
-    value: '56445-0',
+    '56445-0',
   );
 
   /// value53576_5
   static final DocumentClassValueSet value53576_5 = DocumentClassValueSet._(
-    value: '53576-5',
+    '53576-5',
   );
 
   /// value56447_6
   static final DocumentClassValueSet value56447_6 = DocumentClassValueSet._(
-    value: '56447-6',
+    '56447-6',
   );
 
   /// value18748_4
   static final DocumentClassValueSet value18748_4 = DocumentClassValueSet._(
-    value: '18748-4',
+    '18748-4',
   );
 
   /// value11504_8
   static final DocumentClassValueSet value11504_8 = DocumentClassValueSet._(
-    value: '11504-8',
+    '11504-8',
   );
 
   /// value57133_1
   static final DocumentClassValueSet value57133_1 = DocumentClassValueSet._(
-    value: '57133-1',
+    '57133-1',
   );
 
   /// For instances where an Element is present but not value
 
-  static final DocumentClassValueSet elementOnly =
-      DocumentClassValueSet._(value: '');
+  static final DocumentClassValueSet elementOnly = DocumentClassValueSet._('');
 
   /// List of all enum-like values
   static final List<DocumentClassValueSet> values = [
@@ -311,13 +310,13 @@ class DocumentClassValueSet extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   DocumentClassValueSet clone() => DocumentClassValueSet._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   DocumentClassValueSet withElement(Element? newElement) {
-    return DocumentClassValueSet._(value: value, element: newElement);
+    return DocumentClassValueSet._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -347,7 +346,7 @@ class DocumentClassValueSet extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return DocumentClassValueSet._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

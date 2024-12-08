@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value set includes Coverage Class codes.
 class CoverageClassCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  CoverageClassCodes._({
-    super.value,
+  CoverageClassCodes._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,67 +26,67 @@ class CoverageClassCodes extends PrimitiveType<String> {
         'CoverageClassCodes cannot be constructed from JSON.',
       );
     }
-    return CoverageClassCodes._(value: value, element: element);
+    return CoverageClassCodes._(value, element: element);
   }
 
   /// group
   static final CoverageClassCodes group = CoverageClassCodes._(
-    value: 'group',
+    'group',
   );
 
   /// subgroup
   static final CoverageClassCodes subgroup = CoverageClassCodes._(
-    value: 'subgroup',
+    'subgroup',
   );
 
   /// plan
   static final CoverageClassCodes plan = CoverageClassCodes._(
-    value: 'plan',
+    'plan',
   );
 
   /// subplan
   static final CoverageClassCodes subplan = CoverageClassCodes._(
-    value: 'subplan',
+    'subplan',
   );
 
   /// class_
   static final CoverageClassCodes class_ = CoverageClassCodes._(
-    value: 'class',
+    'class',
   );
 
   /// subclass
   static final CoverageClassCodes subclass = CoverageClassCodes._(
-    value: 'subclass',
+    'subclass',
   );
 
   /// sequence
   static final CoverageClassCodes sequence = CoverageClassCodes._(
-    value: 'sequence',
+    'sequence',
   );
 
   /// rxbin
   static final CoverageClassCodes rxbin = CoverageClassCodes._(
-    value: 'rxbin',
+    'rxbin',
   );
 
   /// rxpcn
   static final CoverageClassCodes rxpcn = CoverageClassCodes._(
-    value: 'rxpcn',
+    'rxpcn',
   );
 
   /// rxid
   static final CoverageClassCodes rxid = CoverageClassCodes._(
-    value: 'rxid',
+    'rxid',
   );
 
   /// rxgroup
   static final CoverageClassCodes rxgroup = CoverageClassCodes._(
-    value: 'rxgroup',
+    'rxgroup',
   );
 
   /// For instances where an Element is present but not value
 
-  static final CoverageClassCodes elementOnly = CoverageClassCodes._(value: '');
+  static final CoverageClassCodes elementOnly = CoverageClassCodes._('');
 
   /// List of all enum-like values
   static final List<CoverageClassCodes> values = [
@@ -106,13 +106,13 @@ class CoverageClassCodes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   CoverageClassCodes clone() => CoverageClassCodes._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   CoverageClassCodes withElement(Element? newElement) {
-    return CoverageClassCodes._(value: value, element: newElement);
+    return CoverageClassCodes._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -142,7 +142,7 @@ class CoverageClassCodes extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return CoverageClassCodes._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

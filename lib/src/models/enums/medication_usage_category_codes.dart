@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Medication Status Codes
 class MedicationUsageCategoryCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  MedicationUsageCategoryCodes._({
-    super.value,
+  MedicationUsageCategoryCodes._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,37 +26,37 @@ class MedicationUsageCategoryCodes extends PrimitiveType<String> {
         'MedicationUsageCategoryCodes cannot be constructed from JSON.',
       );
     }
-    return MedicationUsageCategoryCodes._(value: value, element: element);
+    return MedicationUsageCategoryCodes._(value, element: element);
   }
 
   /// inpatient
   static final MedicationUsageCategoryCodes inpatient =
       MedicationUsageCategoryCodes._(
-    value: 'inpatient',
+    'inpatient',
   );
 
   /// outpatient
   static final MedicationUsageCategoryCodes outpatient =
       MedicationUsageCategoryCodes._(
-    value: 'outpatient',
+    'outpatient',
   );
 
   /// community
   static final MedicationUsageCategoryCodes community =
       MedicationUsageCategoryCodes._(
-    value: 'community',
+    'community',
   );
 
   /// patientspecified
   static final MedicationUsageCategoryCodes patientspecified =
       MedicationUsageCategoryCodes._(
-    value: 'patientspecified',
+    'patientspecified',
   );
 
   /// For instances where an Element is present but not value
 
   static final MedicationUsageCategoryCodes elementOnly =
-      MedicationUsageCategoryCodes._(value: '');
+      MedicationUsageCategoryCodes._('');
 
   /// List of all enum-like values
   static final List<MedicationUsageCategoryCodes> values = [
@@ -69,13 +69,13 @@ class MedicationUsageCategoryCodes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   MedicationUsageCategoryCodes clone() => MedicationUsageCategoryCodes._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   MedicationUsageCategoryCodes withElement(Element? newElement) {
-    return MedicationUsageCategoryCodes._(value: value, element: newElement);
+    return MedicationUsageCategoryCodes._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -105,7 +105,7 @@ class MedicationUsageCategoryCodes extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return MedicationUsageCategoryCodes._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Cited Artifact Status Type
 class CitedArtifactStatusType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  CitedArtifactStatusType._({
-    super.value,
+  CitedArtifactStatusType._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,91 +26,91 @@ class CitedArtifactStatusType extends PrimitiveType<String> {
         'CitedArtifactStatusType cannot be constructed from JSON.',
       );
     }
-    return CitedArtifactStatusType._(value: value, element: element);
+    return CitedArtifactStatusType._(value, element: element);
   }
 
   /// created
   static final CitedArtifactStatusType created = CitedArtifactStatusType._(
-    value: 'created',
+    'created',
   );
 
   /// submitted
   static final CitedArtifactStatusType submitted = CitedArtifactStatusType._(
-    value: 'submitted',
+    'submitted',
   );
 
   /// withdrawn
   static final CitedArtifactStatusType withdrawn = CitedArtifactStatusType._(
-    value: 'withdrawn',
+    'withdrawn',
   );
 
   /// pre_review
   static final CitedArtifactStatusType pre_review = CitedArtifactStatusType._(
-    value: 'pre-review',
+    'pre-review',
   );
 
   /// under_review
   static final CitedArtifactStatusType under_review = CitedArtifactStatusType._(
-    value: 'under-review',
+    'under-review',
   );
 
   /// post_review_pre_published
   static final CitedArtifactStatusType post_review_pre_published =
       CitedArtifactStatusType._(
-    value: 'post-review-pre-published',
+    'post-review-pre-published',
   );
 
   /// rejected
   static final CitedArtifactStatusType rejected = CitedArtifactStatusType._(
-    value: 'rejected',
+    'rejected',
   );
 
   /// published_early_form
   static final CitedArtifactStatusType published_early_form =
       CitedArtifactStatusType._(
-    value: 'published-early-form',
+    'published-early-form',
   );
 
   /// published_final_form
   static final CitedArtifactStatusType published_final_form =
       CitedArtifactStatusType._(
-    value: 'published-final-form',
+    'published-final-form',
   );
 
   /// accepted
   static final CitedArtifactStatusType accepted = CitedArtifactStatusType._(
-    value: 'accepted',
+    'accepted',
   );
 
   /// archived
   static final CitedArtifactStatusType archived = CitedArtifactStatusType._(
-    value: 'archived',
+    'archived',
   );
 
   /// retracted
   static final CitedArtifactStatusType retracted = CitedArtifactStatusType._(
-    value: 'retracted',
+    'retracted',
   );
 
   /// draft
   static final CitedArtifactStatusType draft = CitedArtifactStatusType._(
-    value: 'draft',
+    'draft',
   );
 
   /// active
   static final CitedArtifactStatusType active = CitedArtifactStatusType._(
-    value: 'active',
+    'active',
   );
 
   /// approved
   static final CitedArtifactStatusType approved = CitedArtifactStatusType._(
-    value: 'approved',
+    'approved',
   );
 
   /// For instances where an Element is present but not value
 
   static final CitedArtifactStatusType elementOnly =
-      CitedArtifactStatusType._(value: '');
+      CitedArtifactStatusType._('');
 
   /// List of all enum-like values
   static final List<CitedArtifactStatusType> values = [
@@ -134,13 +134,13 @@ class CitedArtifactStatusType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   CitedArtifactStatusType clone() => CitedArtifactStatusType._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   CitedArtifactStatusType withElement(Element? newElement) {
-    return CitedArtifactStatusType._(value: value, element: newElement);
+    return CitedArtifactStatusType._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -170,7 +170,7 @@ class CitedArtifactStatusType extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return CitedArtifactStatusType._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

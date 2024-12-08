@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value set includes sample Program Reason Span codes.
 class ExampleProgramReasonCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ExampleProgramReasonCodes._({
-    super.value,
+  ExampleProgramReasonCodes._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,33 +26,33 @@ class ExampleProgramReasonCodes extends PrimitiveType<String> {
         'ExampleProgramReasonCodes cannot be constructed from JSON.',
       );
     }
-    return ExampleProgramReasonCodes._(value: value, element: element);
+    return ExampleProgramReasonCodes._(value, element: element);
   }
 
   /// as_
   static final ExampleProgramReasonCodes as_ = ExampleProgramReasonCodes._(
-    value: 'as',
+    'as',
   );
 
   /// hd
   static final ExampleProgramReasonCodes hd = ExampleProgramReasonCodes._(
-    value: 'hd',
+    'hd',
   );
 
   /// auscr
   static final ExampleProgramReasonCodes auscr = ExampleProgramReasonCodes._(
-    value: 'auscr',
+    'auscr',
   );
 
   /// none
   static final ExampleProgramReasonCodes none = ExampleProgramReasonCodes._(
-    value: 'none',
+    'none',
   );
 
   /// For instances where an Element is present but not value
 
   static final ExampleProgramReasonCodes elementOnly =
-      ExampleProgramReasonCodes._(value: '');
+      ExampleProgramReasonCodes._('');
 
   /// List of all enum-like values
   static final List<ExampleProgramReasonCodes> values = [
@@ -65,13 +65,13 @@ class ExampleProgramReasonCodes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ExampleProgramReasonCodes clone() => ExampleProgramReasonCodes._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ExampleProgramReasonCodes withElement(Element? newElement) {
-    return ExampleProgramReasonCodes._(value: value, element: newElement);
+    return ExampleProgramReasonCodes._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -101,7 +101,7 @@ class ExampleProgramReasonCodes extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ExampleProgramReasonCodes._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

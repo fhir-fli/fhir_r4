@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Indicates the progression of a study subject through a study.
 class ResearchSubjectStatus extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ResearchSubjectStatus._({
-    super.value,
+  ResearchSubjectStatus._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,81 +26,80 @@ class ResearchSubjectStatus extends PrimitiveType<String> {
         'ResearchSubjectStatus cannot be constructed from JSON.',
       );
     }
-    return ResearchSubjectStatus._(value: value, element: element);
+    return ResearchSubjectStatus._(value, element: element);
   }
 
   /// candidate
   static final ResearchSubjectStatus candidate = ResearchSubjectStatus._(
-    value: 'candidate',
+    'candidate',
   );
 
   /// eligible
   static final ResearchSubjectStatus eligible = ResearchSubjectStatus._(
-    value: 'eligible',
+    'eligible',
   );
 
   /// follow_up
   static final ResearchSubjectStatus follow_up = ResearchSubjectStatus._(
-    value: 'follow-up',
+    'follow-up',
   );
 
   /// ineligible
   static final ResearchSubjectStatus ineligible = ResearchSubjectStatus._(
-    value: 'ineligible',
+    'ineligible',
   );
 
   /// not_registered
   static final ResearchSubjectStatus not_registered = ResearchSubjectStatus._(
-    value: 'not-registered',
+    'not-registered',
   );
 
   /// off_study
   static final ResearchSubjectStatus off_study = ResearchSubjectStatus._(
-    value: 'off-study',
+    'off-study',
   );
 
   /// on_study
   static final ResearchSubjectStatus on_study = ResearchSubjectStatus._(
-    value: 'on-study',
+    'on-study',
   );
 
   /// on_study_intervention
   static final ResearchSubjectStatus on_study_intervention =
       ResearchSubjectStatus._(
-    value: 'on-study-intervention',
+    'on-study-intervention',
   );
 
   /// on_study_observation
   static final ResearchSubjectStatus on_study_observation =
       ResearchSubjectStatus._(
-    value: 'on-study-observation',
+    'on-study-observation',
   );
 
   /// pending_on_study
   static final ResearchSubjectStatus pending_on_study = ResearchSubjectStatus._(
-    value: 'pending-on-study',
+    'pending-on-study',
   );
 
   /// potential_candidate
   static final ResearchSubjectStatus potential_candidate =
       ResearchSubjectStatus._(
-    value: 'potential-candidate',
+    'potential-candidate',
   );
 
   /// screening
   static final ResearchSubjectStatus screening = ResearchSubjectStatus._(
-    value: 'screening',
+    'screening',
   );
 
   /// withdrawn
   static final ResearchSubjectStatus withdrawn = ResearchSubjectStatus._(
-    value: 'withdrawn',
+    'withdrawn',
   );
 
   /// For instances where an Element is present but not value
 
-  static final ResearchSubjectStatus elementOnly =
-      ResearchSubjectStatus._(value: '');
+  static final ResearchSubjectStatus elementOnly = ResearchSubjectStatus._('');
 
   /// List of all enum-like values
   static final List<ResearchSubjectStatus> values = [
@@ -122,13 +121,13 @@ class ResearchSubjectStatus extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ResearchSubjectStatus clone() => ResearchSubjectStatus._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ResearchSubjectStatus withElement(Element? newElement) {
-    return ResearchSubjectStatus._(value: value, element: newElement);
+    return ResearchSubjectStatus._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -158,7 +157,7 @@ class ResearchSubjectStatus extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ResearchSubjectStatus._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

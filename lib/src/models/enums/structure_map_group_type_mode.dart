@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// If this is the default rule set to apply for the source type, or this combination of types.
 class StructureMapGroupTypeMode extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  StructureMapGroupTypeMode._({
-    super.value,
+  StructureMapGroupTypeMode._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,29 +26,29 @@ class StructureMapGroupTypeMode extends PrimitiveType<String> {
         'StructureMapGroupTypeMode cannot be constructed from JSON.',
       );
     }
-    return StructureMapGroupTypeMode._(value: value, element: element);
+    return StructureMapGroupTypeMode._(value, element: element);
   }
 
   /// none
   static final StructureMapGroupTypeMode none = StructureMapGroupTypeMode._(
-    value: 'none',
+    'none',
   );
 
   /// types
   static final StructureMapGroupTypeMode types = StructureMapGroupTypeMode._(
-    value: 'types',
+    'types',
   );
 
   /// type_and_types
   static final StructureMapGroupTypeMode type_and_types =
       StructureMapGroupTypeMode._(
-    value: 'type-and-types',
+    'type-and-types',
   );
 
   /// For instances where an Element is present but not value
 
   static final StructureMapGroupTypeMode elementOnly =
-      StructureMapGroupTypeMode._(value: '');
+      StructureMapGroupTypeMode._('');
 
   /// List of all enum-like values
   static final List<StructureMapGroupTypeMode> values = [
@@ -60,13 +60,13 @@ class StructureMapGroupTypeMode extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   StructureMapGroupTypeMode clone() => StructureMapGroupTypeMode._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   StructureMapGroupTypeMode withElement(Element? newElement) {
-    return StructureMapGroupTypeMode._(value: value, element: newElement);
+    return StructureMapGroupTypeMode._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -96,7 +96,7 @@ class StructureMapGroupTypeMode extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return StructureMapGroupTypeMode._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

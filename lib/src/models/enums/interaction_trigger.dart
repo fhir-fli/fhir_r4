@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// FHIR RESTful interaction codes used for SubscriptionTopic trigger.
 class InteractionTrigger extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  InteractionTrigger._({
-    super.value,
+  InteractionTrigger._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,97 +26,97 @@ class InteractionTrigger extends PrimitiveType<String> {
         'InteractionTrigger cannot be constructed from JSON.',
       );
     }
-    return InteractionTrigger._(value: value, element: element);
+    return InteractionTrigger._(value, element: element);
   }
 
   /// read
   static final InteractionTrigger read = InteractionTrigger._(
-    value: 'read',
+    'read',
   );
 
   /// vread
   static final InteractionTrigger vread = InteractionTrigger._(
-    value: 'vread',
+    'vread',
   );
 
   /// update
   static final InteractionTrigger update = InteractionTrigger._(
-    value: 'update',
+    'update',
   );
 
   /// patch
   static final InteractionTrigger patch = InteractionTrigger._(
-    value: 'patch',
+    'patch',
   );
 
   /// delete
   static final InteractionTrigger delete = InteractionTrigger._(
-    value: 'delete',
+    'delete',
   );
 
   /// history
   static final InteractionTrigger history = InteractionTrigger._(
-    value: 'history',
+    'history',
   );
 
   /// history_instance
   static final InteractionTrigger history_instance = InteractionTrigger._(
-    value: 'history-instance',
+    'history-instance',
   );
 
   /// history_type
   static final InteractionTrigger history_type = InteractionTrigger._(
-    value: 'history-type',
+    'history-type',
   );
 
   /// history_system
   static final InteractionTrigger history_system = InteractionTrigger._(
-    value: 'history-system',
+    'history-system',
   );
 
   /// create
   static final InteractionTrigger create = InteractionTrigger._(
-    value: 'create',
+    'create',
   );
 
   /// search
   static final InteractionTrigger search = InteractionTrigger._(
-    value: 'search',
+    'search',
   );
 
   /// search_type
   static final InteractionTrigger search_type = InteractionTrigger._(
-    value: 'search-type',
+    'search-type',
   );
 
   /// search_system
   static final InteractionTrigger search_system = InteractionTrigger._(
-    value: 'search-system',
+    'search-system',
   );
 
   /// capabilities
   static final InteractionTrigger capabilities = InteractionTrigger._(
-    value: 'capabilities',
+    'capabilities',
   );
 
   /// transaction
   static final InteractionTrigger transaction = InteractionTrigger._(
-    value: 'transaction',
+    'transaction',
   );
 
   /// batch
   static final InteractionTrigger batch = InteractionTrigger._(
-    value: 'batch',
+    'batch',
   );
 
   /// operation
   static final InteractionTrigger operation = InteractionTrigger._(
-    value: 'operation',
+    'operation',
   );
 
   /// For instances where an Element is present but not value
 
-  static final InteractionTrigger elementOnly = InteractionTrigger._(value: '');
+  static final InteractionTrigger elementOnly = InteractionTrigger._('');
 
   /// List of all enum-like values
   static final List<InteractionTrigger> values = [
@@ -142,13 +142,13 @@ class InteractionTrigger extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   InteractionTrigger clone() => InteractionTrigger._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   InteractionTrigger withElement(Element? newElement) {
-    return InteractionTrigger._(value: value, element: newElement);
+    return InteractionTrigger._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -178,7 +178,7 @@ class InteractionTrigger extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return InteractionTrigger._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

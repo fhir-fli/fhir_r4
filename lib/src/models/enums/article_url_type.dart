@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Code the reason for different URLs, eg abstract and full-text.
 class ArticleUrlType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ArticleUrlType._({
-    super.value,
+  ArticleUrlType._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,92 +26,92 @@ class ArticleUrlType extends PrimitiveType<String> {
         'ArticleUrlType cannot be constructed from JSON.',
       );
     }
-    return ArticleUrlType._(value: value, element: element);
+    return ArticleUrlType._(value, element: element);
   }
 
   /// abstract_
   static final ArticleUrlType abstract_ = ArticleUrlType._(
-    value: 'abstract',
+    'abstract',
   );
 
   /// abstract_version
   static final ArticleUrlType abstract_version = ArticleUrlType._(
-    value: 'abstract-version',
+    'abstract-version',
   );
 
   /// doi_based
   static final ArticleUrlType doi_based = ArticleUrlType._(
-    value: 'doi-based',
+    'doi-based',
   );
 
   /// full_text
   static final ArticleUrlType full_text = ArticleUrlType._(
-    value: 'full-text',
+    'full-text',
   );
 
   /// full_text_version
   static final ArticleUrlType full_text_version = ArticleUrlType._(
-    value: 'full-text-version',
+    'full-text-version',
   );
 
   /// pdf
   static final ArticleUrlType pdf = ArticleUrlType._(
-    value: 'pdf',
+    'pdf',
   );
 
   /// pdf_version
   static final ArticleUrlType pdf_version = ArticleUrlType._(
-    value: 'pdf-version',
+    'pdf-version',
   );
 
   /// webpage
   static final ArticleUrlType webpage = ArticleUrlType._(
-    value: 'webpage',
+    'webpage',
   );
 
   /// not_specified
   static final ArticleUrlType not_specified = ArticleUrlType._(
-    value: 'not-specified',
+    'not-specified',
   );
 
   /// json
   static final ArticleUrlType json = ArticleUrlType._(
-    value: 'json',
+    'json',
   );
 
   /// json_version
   static final ArticleUrlType json_version = ArticleUrlType._(
-    value: 'json-version',
+    'json-version',
   );
 
   /// xml
   static final ArticleUrlType xml = ArticleUrlType._(
-    value: 'xml',
+    'xml',
   );
 
   /// xml_version
   static final ArticleUrlType xml_version = ArticleUrlType._(
-    value: 'xml-version',
+    'xml-version',
   );
 
   /// supplement
   static final ArticleUrlType supplement = ArticleUrlType._(
-    value: 'supplement',
+    'supplement',
   );
 
   /// supplementary_file_directory
   static final ArticleUrlType supplementary_file_directory = ArticleUrlType._(
-    value: 'supplementary-file-directory',
+    'supplementary-file-directory',
   );
 
   /// compressed_file
   static final ArticleUrlType compressed_file = ArticleUrlType._(
-    value: 'compressed-file',
+    'compressed-file',
   );
 
   /// For instances where an Element is present but not value
 
-  static final ArticleUrlType elementOnly = ArticleUrlType._(value: '');
+  static final ArticleUrlType elementOnly = ArticleUrlType._('');
 
   /// List of all enum-like values
   static final List<ArticleUrlType> values = [
@@ -136,13 +136,13 @@ class ArticleUrlType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ArticleUrlType clone() => ArticleUrlType._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ArticleUrlType withElement(Element? newElement) {
-    return ArticleUrlType._(value: value, element: newElement);
+    return ArticleUrlType._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -172,7 +172,7 @@ class ArticleUrlType extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ArticleUrlType._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

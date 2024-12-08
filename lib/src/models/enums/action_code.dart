@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Provides examples of actions to be performed.
 class ActionCode extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ActionCode._({
-    super.value,
+  ActionCode._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,57 +26,57 @@ class ActionCode extends PrimitiveType<String> {
         'ActionCode cannot be constructed from JSON.',
       );
     }
-    return ActionCode._(value: value, element: element);
+    return ActionCode._(value, element: element);
   }
 
   /// send_message
   static final ActionCode send_message = ActionCode._(
-    value: 'send-message',
+    'send-message',
   );
 
   /// collect_information
   static final ActionCode collect_information = ActionCode._(
-    value: 'collect-information',
+    'collect-information',
   );
 
   /// prescribe_medication
   static final ActionCode prescribe_medication = ActionCode._(
-    value: 'prescribe-medication',
+    'prescribe-medication',
   );
 
   /// recommend_immunization
   static final ActionCode recommend_immunization = ActionCode._(
-    value: 'recommend-immunization',
+    'recommend-immunization',
   );
 
   /// order_service
   static final ActionCode order_service = ActionCode._(
-    value: 'order-service',
+    'order-service',
   );
 
   /// propose_diagnosis
   static final ActionCode propose_diagnosis = ActionCode._(
-    value: 'propose-diagnosis',
+    'propose-diagnosis',
   );
 
   /// record_detected_issue
   static final ActionCode record_detected_issue = ActionCode._(
-    value: 'record-detected-issue',
+    'record-detected-issue',
   );
 
   /// record_inference
   static final ActionCode record_inference = ActionCode._(
-    value: 'record-inference',
+    'record-inference',
   );
 
   /// report_flag
   static final ActionCode report_flag = ActionCode._(
-    value: 'report-flag',
+    'report-flag',
   );
 
   /// For instances where an Element is present but not value
 
-  static final ActionCode elementOnly = ActionCode._(value: '');
+  static final ActionCode elementOnly = ActionCode._('');
 
   /// List of all enum-like values
   static final List<ActionCode> values = [
@@ -94,13 +94,13 @@ class ActionCode extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ActionCode clone() => ActionCode._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ActionCode withElement(Element? newElement) {
-    return ActionCode._(value: value, element: newElement);
+    return ActionCode._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -130,7 +130,7 @@ class ActionCode extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ActionCode._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

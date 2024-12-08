@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The protocol used for message transport.
 class MessageTransport extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  MessageTransport._({
-    super.value,
+  MessageTransport._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,27 +26,27 @@ class MessageTransport extends PrimitiveType<String> {
         'MessageTransport cannot be constructed from JSON.',
       );
     }
-    return MessageTransport._(value: value, element: element);
+    return MessageTransport._(value, element: element);
   }
 
   /// http
   static final MessageTransport http = MessageTransport._(
-    value: 'http',
+    'http',
   );
 
   /// ftp
   static final MessageTransport ftp = MessageTransport._(
-    value: 'ftp',
+    'ftp',
   );
 
   /// mllp
   static final MessageTransport mllp = MessageTransport._(
-    value: 'mllp',
+    'mllp',
   );
 
   /// For instances where an Element is present but not value
 
-  static final MessageTransport elementOnly = MessageTransport._(value: '');
+  static final MessageTransport elementOnly = MessageTransport._('');
 
   /// List of all enum-like values
   static final List<MessageTransport> values = [
@@ -58,13 +58,13 @@ class MessageTransport extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   MessageTransport clone() => MessageTransport._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   MessageTransport withElement(Element? newElement) {
-    return MessageTransport._(value: value, element: newElement);
+    return MessageTransport._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -94,7 +94,7 @@ class MessageTransport extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return MessageTransport._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

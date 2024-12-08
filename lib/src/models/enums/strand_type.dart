@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Type for strand.
 class StrandType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  StrandType._({
-    super.value,
+  StrandType._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,22 +26,22 @@ class StrandType extends PrimitiveType<String> {
         'StrandType cannot be constructed from JSON.',
       );
     }
-    return StrandType._(value: value, element: element);
+    return StrandType._(value, element: element);
   }
 
   /// watson
   static final StrandType watson = StrandType._(
-    value: 'watson',
+    'watson',
   );
 
   /// crick
   static final StrandType crick = StrandType._(
-    value: 'crick',
+    'crick',
   );
 
   /// For instances where an Element is present but not value
 
-  static final StrandType elementOnly = StrandType._(value: '');
+  static final StrandType elementOnly = StrandType._('');
 
   /// List of all enum-like values
   static final List<StrandType> values = [
@@ -52,13 +52,13 @@ class StrandType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   StrandType clone() => StrandType._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   StrandType withElement(Element? newElement) {
-    return StrandType._(value: value, element: newElement);
+    return StrandType._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -88,7 +88,7 @@ class StrandType extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return StrandType._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

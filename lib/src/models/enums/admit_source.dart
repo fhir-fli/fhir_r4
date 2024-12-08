@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value set defines a set of codes that can be used to indicate from where the patient came in.
 class AdmitSource extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  AdmitSource._({
-    super.value,
+  AdmitSource._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,62 +26,62 @@ class AdmitSource extends PrimitiveType<String> {
         'AdmitSource cannot be constructed from JSON.',
       );
     }
-    return AdmitSource._(value: value, element: element);
+    return AdmitSource._(value, element: element);
   }
 
   /// hosp_trans
   static final AdmitSource hosp_trans = AdmitSource._(
-    value: 'hosp-trans',
+    'hosp-trans',
   );
 
   /// emd
   static final AdmitSource emd = AdmitSource._(
-    value: 'emd',
+    'emd',
   );
 
   /// outp
   static final AdmitSource outp = AdmitSource._(
-    value: 'outp',
+    'outp',
   );
 
   /// born
   static final AdmitSource born = AdmitSource._(
-    value: 'born',
+    'born',
   );
 
   /// gp
   static final AdmitSource gp = AdmitSource._(
-    value: 'gp',
+    'gp',
   );
 
   /// mp
   static final AdmitSource mp = AdmitSource._(
-    value: 'mp',
+    'mp',
   );
 
   /// nursing
   static final AdmitSource nursing = AdmitSource._(
-    value: 'nursing',
+    'nursing',
   );
 
   /// psych
   static final AdmitSource psych = AdmitSource._(
-    value: 'psych',
+    'psych',
   );
 
   /// rehab
   static final AdmitSource rehab = AdmitSource._(
-    value: 'rehab',
+    'rehab',
   );
 
   /// other
   static final AdmitSource other = AdmitSource._(
-    value: 'other',
+    'other',
   );
 
   /// For instances where an Element is present but not value
 
-  static final AdmitSource elementOnly = AdmitSource._(value: '');
+  static final AdmitSource elementOnly = AdmitSource._('');
 
   /// List of all enum-like values
   static final List<AdmitSource> values = [
@@ -100,13 +100,13 @@ class AdmitSource extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   AdmitSource clone() => AdmitSource._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   AdmitSource withElement(Element? newElement) {
-    return AdmitSource._(value: value, element: newElement);
+    return AdmitSource._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -136,7 +136,7 @@ class AdmitSource extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return AdmitSource._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The value set to instantiate this attribute should be drawn from a terminologically robust code system that consists of or contains concepts to support describing the disease that the evaluation is against. This value set is provided as a suggestive example and includes the SNOMED CT concepts from the 64572001 (Disease) hierarchy.
 class ImmunizationEvaluationTargetDiseaseCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ImmunizationEvaluationTargetDiseaseCodes._({
-    super.value,
+  ImmunizationEvaluationTargetDiseaseCodes._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -27,68 +27,67 @@ class ImmunizationEvaluationTargetDiseaseCodes extends PrimitiveType<String> {
         'ImmunizationEvaluationTargetDiseaseCodes cannot be constructed from JSON.',
       );
     }
-    return ImmunizationEvaluationTargetDiseaseCodes._(
-        value: value, element: element);
+    return ImmunizationEvaluationTargetDiseaseCodes._(value, element: element);
   }
 
   /// value1857005
   static final ImmunizationEvaluationTargetDiseaseCodes value1857005 =
       ImmunizationEvaluationTargetDiseaseCodes._(
-    value: '1857005',
+    '1857005',
   );
 
   /// value397430003
   static final ImmunizationEvaluationTargetDiseaseCodes value397430003 =
       ImmunizationEvaluationTargetDiseaseCodes._(
-    value: '397430003',
+    '397430003',
   );
 
   /// value14189004
   static final ImmunizationEvaluationTargetDiseaseCodes value14189004 =
       ImmunizationEvaluationTargetDiseaseCodes._(
-    value: '14189004',
+    '14189004',
   );
 
   /// value36989005
   static final ImmunizationEvaluationTargetDiseaseCodes value36989005 =
       ImmunizationEvaluationTargetDiseaseCodes._(
-    value: '36989005',
+    '36989005',
   );
 
   /// value36653000
   static final ImmunizationEvaluationTargetDiseaseCodes value36653000 =
       ImmunizationEvaluationTargetDiseaseCodes._(
-    value: '36653000',
+    '36653000',
   );
 
   /// value76902006
   static final ImmunizationEvaluationTargetDiseaseCodes value76902006 =
       ImmunizationEvaluationTargetDiseaseCodes._(
-    value: '76902006',
+    '76902006',
   );
 
   /// value709410003
   static final ImmunizationEvaluationTargetDiseaseCodes value709410003 =
       ImmunizationEvaluationTargetDiseaseCodes._(
-    value: '709410003',
+    '709410003',
   );
 
   /// value27836007
   static final ImmunizationEvaluationTargetDiseaseCodes value27836007 =
       ImmunizationEvaluationTargetDiseaseCodes._(
-    value: '27836007',
+    '27836007',
   );
 
   /// value398102009
   static final ImmunizationEvaluationTargetDiseaseCodes value398102009 =
       ImmunizationEvaluationTargetDiseaseCodes._(
-    value: '398102009',
+    '398102009',
   );
 
   /// For instances where an Element is present but not value
 
   static final ImmunizationEvaluationTargetDiseaseCodes elementOnly =
-      ImmunizationEvaluationTargetDiseaseCodes._(value: '');
+      ImmunizationEvaluationTargetDiseaseCodes._('');
 
   /// List of all enum-like values
   static final List<ImmunizationEvaluationTargetDiseaseCodes> values = [
@@ -107,14 +106,14 @@ class ImmunizationEvaluationTargetDiseaseCodes extends PrimitiveType<String> {
   @override
   ImmunizationEvaluationTargetDiseaseCodes clone() =>
       ImmunizationEvaluationTargetDiseaseCodes._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ImmunizationEvaluationTargetDiseaseCodes withElement(Element? newElement) {
-    return ImmunizationEvaluationTargetDiseaseCodes._(
-        value: value, element: newElement);
+    return ImmunizationEvaluationTargetDiseaseCodes._(value,
+        element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -144,7 +143,7 @@ class ImmunizationEvaluationTargetDiseaseCodes extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ImmunizationEvaluationTargetDiseaseCodes._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

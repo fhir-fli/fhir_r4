@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Codes that reflect the current state of a clinical impression within its overall lifecycle.
 class ClinicalImpressionStatus extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ClinicalImpressionStatus._({
-    super.value,
+  ClinicalImpressionStatus._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,56 +26,56 @@ class ClinicalImpressionStatus extends PrimitiveType<String> {
         'ClinicalImpressionStatus cannot be constructed from JSON.',
       );
     }
-    return ClinicalImpressionStatus._(value: value, element: element);
+    return ClinicalImpressionStatus._(value, element: element);
   }
 
   /// preparation
   static final ClinicalImpressionStatus preparation =
       ClinicalImpressionStatus._(
-    value: 'preparation',
+    'preparation',
   );
 
   /// in_progress
   static final ClinicalImpressionStatus in_progress =
       ClinicalImpressionStatus._(
-    value: 'in-progress',
+    'in-progress',
   );
 
   /// not_done
   static final ClinicalImpressionStatus not_done = ClinicalImpressionStatus._(
-    value: 'not-done',
+    'not-done',
   );
 
   /// on_hold
   static final ClinicalImpressionStatus on_hold = ClinicalImpressionStatus._(
-    value: 'on-hold',
+    'on-hold',
   );
 
   /// stopped
   static final ClinicalImpressionStatus stopped = ClinicalImpressionStatus._(
-    value: 'stopped',
+    'stopped',
   );
 
   /// completed
   static final ClinicalImpressionStatus completed = ClinicalImpressionStatus._(
-    value: 'completed',
+    'completed',
   );
 
   /// entered_in_error
   static final ClinicalImpressionStatus entered_in_error =
       ClinicalImpressionStatus._(
-    value: 'entered-in-error',
+    'entered-in-error',
   );
 
   /// unknown
   static final ClinicalImpressionStatus unknown = ClinicalImpressionStatus._(
-    value: 'unknown',
+    'unknown',
   );
 
   /// For instances where an Element is present but not value
 
   static final ClinicalImpressionStatus elementOnly =
-      ClinicalImpressionStatus._(value: '');
+      ClinicalImpressionStatus._('');
 
   /// List of all enum-like values
   static final List<ClinicalImpressionStatus> values = [
@@ -92,13 +92,13 @@ class ClinicalImpressionStatus extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ClinicalImpressionStatus clone() => ClinicalImpressionStatus._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ClinicalImpressionStatus withElement(Element? newElement) {
-    return ClinicalImpressionStatus._(value: value, element: newElement);
+    return ClinicalImpressionStatus._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -128,7 +128,7 @@ class ClinicalImpressionStatus extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ClinicalImpressionStatus._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

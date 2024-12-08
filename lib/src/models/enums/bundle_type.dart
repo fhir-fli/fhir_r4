@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Indicates the purpose of a bundle - how it is intended to be used.
 class BundleType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  BundleType._({
-    super.value,
+  BundleType._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,57 +26,57 @@ class BundleType extends PrimitiveType<String> {
         'BundleType cannot be constructed from JSON.',
       );
     }
-    return BundleType._(value: value, element: element);
+    return BundleType._(value, element: element);
   }
 
   /// document
   static final BundleType document = BundleType._(
-    value: 'document',
+    'document',
   );
 
   /// message
   static final BundleType message = BundleType._(
-    value: 'message',
+    'message',
   );
 
   /// transaction
   static final BundleType transaction = BundleType._(
-    value: 'transaction',
+    'transaction',
   );
 
   /// transaction_response
   static final BundleType transaction_response = BundleType._(
-    value: 'transaction-response',
+    'transaction-response',
   );
 
   /// batch
   static final BundleType batch = BundleType._(
-    value: 'batch',
+    'batch',
   );
 
   /// batch_response
   static final BundleType batch_response = BundleType._(
-    value: 'batch-response',
+    'batch-response',
   );
 
   /// history
   static final BundleType history = BundleType._(
-    value: 'history',
+    'history',
   );
 
   /// searchset
   static final BundleType searchset = BundleType._(
-    value: 'searchset',
+    'searchset',
   );
 
   /// collection
   static final BundleType collection = BundleType._(
-    value: 'collection',
+    'collection',
   );
 
   /// For instances where an Element is present but not value
 
-  static final BundleType elementOnly = BundleType._(value: '');
+  static final BundleType elementOnly = BundleType._('');
 
   /// List of all enum-like values
   static final List<BundleType> values = [
@@ -94,13 +94,13 @@ class BundleType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   BundleType clone() => BundleType._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   BundleType withElement(Element? newElement) {
-    return BundleType._(value: value, element: newElement);
+    return BundleType._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -130,7 +130,7 @@ class BundleType extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return BundleType._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

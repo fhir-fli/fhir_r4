@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The type of contributor.
 class ContributorType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ContributorType._({
-    super.value,
+  ContributorType._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,32 +26,32 @@ class ContributorType extends PrimitiveType<String> {
         'ContributorType cannot be constructed from JSON.',
       );
     }
-    return ContributorType._(value: value, element: element);
+    return ContributorType._(value, element: element);
   }
 
   /// author
   static final ContributorType author = ContributorType._(
-    value: 'author',
+    'author',
   );
 
   /// editor
   static final ContributorType editor = ContributorType._(
-    value: 'editor',
+    'editor',
   );
 
   /// reviewer
   static final ContributorType reviewer = ContributorType._(
-    value: 'reviewer',
+    'reviewer',
   );
 
   /// endorser
   static final ContributorType endorser = ContributorType._(
-    value: 'endorser',
+    'endorser',
   );
 
   /// For instances where an Element is present but not value
 
-  static final ContributorType elementOnly = ContributorType._(value: '');
+  static final ContributorType elementOnly = ContributorType._('');
 
   /// List of all enum-like values
   static final List<ContributorType> values = [
@@ -64,13 +64,13 @@ class ContributorType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ContributorType clone() => ContributorType._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ContributorType withElement(Element? newElement) {
-    return ContributorType._(value: value, element: newElement);
+    return ContributorType._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -100,7 +100,7 @@ class ContributorType extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ContributorType._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

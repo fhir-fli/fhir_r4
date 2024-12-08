@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Distinguishes whether the task is a proposal, plan or full order.
 class TaskIntent extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  TaskIntent._({
-    super.value,
+  TaskIntent._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,62 +26,62 @@ class TaskIntent extends PrimitiveType<String> {
         'TaskIntent cannot be constructed from JSON.',
       );
     }
-    return TaskIntent._(value: value, element: element);
+    return TaskIntent._(value, element: element);
   }
 
   /// unknown
   static final TaskIntent unknown = TaskIntent._(
-    value: 'unknown',
+    'unknown',
   );
 
   /// proposal
   static final TaskIntent proposal = TaskIntent._(
-    value: 'proposal',
+    'proposal',
   );
 
   /// plan
   static final TaskIntent plan = TaskIntent._(
-    value: 'plan',
+    'plan',
   );
 
   /// directive
   static final TaskIntent directive = TaskIntent._(
-    value: 'directive',
+    'directive',
   );
 
   /// order
   static final TaskIntent order = TaskIntent._(
-    value: 'order',
+    'order',
   );
 
   /// original_order
   static final TaskIntent original_order = TaskIntent._(
-    value: 'original-order',
+    'original-order',
   );
 
   /// reflex_order
   static final TaskIntent reflex_order = TaskIntent._(
-    value: 'reflex-order',
+    'reflex-order',
   );
 
   /// filler_order
   static final TaskIntent filler_order = TaskIntent._(
-    value: 'filler-order',
+    'filler-order',
   );
 
   /// instance_order
   static final TaskIntent instance_order = TaskIntent._(
-    value: 'instance-order',
+    'instance-order',
   );
 
   /// option
   static final TaskIntent option = TaskIntent._(
-    value: 'option',
+    'option',
   );
 
   /// For instances where an Element is present but not value
 
-  static final TaskIntent elementOnly = TaskIntent._(value: '');
+  static final TaskIntent elementOnly = TaskIntent._('');
 
   /// List of all enum-like values
   static final List<TaskIntent> values = [
@@ -100,13 +100,13 @@ class TaskIntent extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   TaskIntent clone() => TaskIntent._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   TaskIntent withElement(Element? newElement) {
-    return TaskIntent._(value: value, element: newElement);
+    return TaskIntent._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -136,7 +136,7 @@ class TaskIntent extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return TaskIntent._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Preferred value set for Condition Categories.
 class ConditionCategoryCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ConditionCategoryCodes._({
-    super.value,
+  ConditionCategoryCodes._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,25 +26,25 @@ class ConditionCategoryCodes extends PrimitiveType<String> {
         'ConditionCategoryCodes cannot be constructed from JSON.',
       );
     }
-    return ConditionCategoryCodes._(value: value, element: element);
+    return ConditionCategoryCodes._(value, element: element);
   }
 
   /// problem_list_item
   static final ConditionCategoryCodes problem_list_item =
       ConditionCategoryCodes._(
-    value: 'problem-list-item',
+    'problem-list-item',
   );
 
   /// encounter_diagnosis
   static final ConditionCategoryCodes encounter_diagnosis =
       ConditionCategoryCodes._(
-    value: 'encounter-diagnosis',
+    'encounter-diagnosis',
   );
 
   /// For instances where an Element is present but not value
 
   static final ConditionCategoryCodes elementOnly =
-      ConditionCategoryCodes._(value: '');
+      ConditionCategoryCodes._('');
 
   /// List of all enum-like values
   static final List<ConditionCategoryCodes> values = [
@@ -55,13 +55,13 @@ class ConditionCategoryCodes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ConditionCategoryCodes clone() => ConditionCategoryCodes._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ConditionCategoryCodes withElement(Element? newElement) {
-    return ConditionCategoryCodes._(value: value, element: newElement);
+    return ConditionCategoryCodes._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -91,7 +91,7 @@ class ConditionCategoryCodes extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ConditionCategoryCodes._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

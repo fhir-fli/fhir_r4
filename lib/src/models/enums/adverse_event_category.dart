@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Overall categorization of the event, e.g. product-related or situational.
 class AdverseEventCategory extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  AdverseEventCategory._({
-    super.value,
+  AdverseEventCategory._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,88 +26,87 @@ class AdverseEventCategory extends PrimitiveType<String> {
         'AdverseEventCategory cannot be constructed from JSON.',
       );
     }
-    return AdverseEventCategory._(value: value, element: element);
+    return AdverseEventCategory._(value, element: element);
   }
 
   /// product_problem
   static final AdverseEventCategory product_problem = AdverseEventCategory._(
-    value: 'product-problem',
+    'product-problem',
   );
 
   /// product_quality
   static final AdverseEventCategory product_quality = AdverseEventCategory._(
-    value: 'product-quality',
+    'product-quality',
   );
 
   /// product_use_error
   static final AdverseEventCategory product_use_error = AdverseEventCategory._(
-    value: 'product-use-error',
+    'product-use-error',
   );
 
   /// wrong_dose
   static final AdverseEventCategory wrong_dose = AdverseEventCategory._(
-    value: 'wrong-dose',
+    'wrong-dose',
   );
 
   /// incorrect_prescribing_information
   static final AdverseEventCategory incorrect_prescribing_information =
       AdverseEventCategory._(
-    value: 'incorrect-prescribing-information',
+    'incorrect-prescribing-information',
   );
 
   /// wrong_technique
   static final AdverseEventCategory wrong_technique = AdverseEventCategory._(
-    value: 'wrong-technique',
+    'wrong-technique',
   );
 
   /// wrong_route_of_administration
   static final AdverseEventCategory wrong_route_of_administration =
       AdverseEventCategory._(
-    value: 'wrong-route-of-administration',
+    'wrong-route-of-administration',
   );
 
   /// wrong_rate
   static final AdverseEventCategory wrong_rate = AdverseEventCategory._(
-    value: 'wrong-rate',
+    'wrong-rate',
   );
 
   /// wrong_duration
   static final AdverseEventCategory wrong_duration = AdverseEventCategory._(
-    value: 'wrong-duration',
+    'wrong-duration',
   );
 
   /// wrong_time
   static final AdverseEventCategory wrong_time = AdverseEventCategory._(
-    value: 'wrong-time',
+    'wrong-time',
   );
 
   /// expired_drug
   static final AdverseEventCategory expired_drug = AdverseEventCategory._(
-    value: 'expired-drug',
+    'expired-drug',
   );
 
   /// medical_device_use_error
   static final AdverseEventCategory medical_device_use_error =
       AdverseEventCategory._(
-    value: 'medical-device-use-error',
+    'medical-device-use-error',
   );
 
   /// problem_different_manufacturer
   static final AdverseEventCategory problem_different_manufacturer =
       AdverseEventCategory._(
-    value: 'problem-different-manufacturer',
+    'problem-different-manufacturer',
   );
 
   /// unsafe_physical_environment
   static final AdverseEventCategory unsafe_physical_environment =
       AdverseEventCategory._(
-    value: 'unsafe-physical-environment',
+    'unsafe-physical-environment',
   );
 
   /// For instances where an Element is present but not value
 
-  static final AdverseEventCategory elementOnly =
-      AdverseEventCategory._(value: '');
+  static final AdverseEventCategory elementOnly = AdverseEventCategory._('');
 
   /// List of all enum-like values
   static final List<AdverseEventCategory> values = [
@@ -130,13 +129,13 @@ class AdverseEventCategory extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   AdverseEventCategory clone() => AdverseEventCategory._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   AdverseEventCategory withElement(Element? newElement) {
-    return AdverseEventCategory._(value: value, element: newElement);
+    return AdverseEventCategory._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -166,7 +165,7 @@ class AdverseEventCategory extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return AdverseEventCategory._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

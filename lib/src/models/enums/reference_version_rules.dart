@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Whether a reference needs to be version specific or version independent, or whether either can be used.
 class ReferenceVersionRules extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ReferenceVersionRules._({
-    super.value,
+  ReferenceVersionRules._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,28 +26,27 @@ class ReferenceVersionRules extends PrimitiveType<String> {
         'ReferenceVersionRules cannot be constructed from JSON.',
       );
     }
-    return ReferenceVersionRules._(value: value, element: element);
+    return ReferenceVersionRules._(value, element: element);
   }
 
   /// either
   static final ReferenceVersionRules either = ReferenceVersionRules._(
-    value: 'either',
+    'either',
   );
 
   /// independent
   static final ReferenceVersionRules independent = ReferenceVersionRules._(
-    value: 'independent',
+    'independent',
   );
 
   /// specific
   static final ReferenceVersionRules specific = ReferenceVersionRules._(
-    value: 'specific',
+    'specific',
   );
 
   /// For instances where an Element is present but not value
 
-  static final ReferenceVersionRules elementOnly =
-      ReferenceVersionRules._(value: '');
+  static final ReferenceVersionRules elementOnly = ReferenceVersionRules._('');
 
   /// List of all enum-like values
   static final List<ReferenceVersionRules> values = [
@@ -59,13 +58,13 @@ class ReferenceVersionRules extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ReferenceVersionRules clone() => ReferenceVersionRules._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ReferenceVersionRules withElement(Element? newElement) {
-    return ReferenceVersionRules._(value: value, element: newElement);
+    return ReferenceVersionRules._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -95,7 +94,7 @@ class ReferenceVersionRules extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ReferenceVersionRules._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

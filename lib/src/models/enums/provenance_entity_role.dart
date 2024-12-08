@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// How an entity was used in an activity.
 class ProvenanceEntityRole extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ProvenanceEntityRole._({
-    super.value,
+  ProvenanceEntityRole._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,38 +26,37 @@ class ProvenanceEntityRole extends PrimitiveType<String> {
         'ProvenanceEntityRole cannot be constructed from JSON.',
       );
     }
-    return ProvenanceEntityRole._(value: value, element: element);
+    return ProvenanceEntityRole._(value, element: element);
   }
 
   /// derivation
   static final ProvenanceEntityRole derivation = ProvenanceEntityRole._(
-    value: 'derivation',
+    'derivation',
   );
 
   /// revision
   static final ProvenanceEntityRole revision = ProvenanceEntityRole._(
-    value: 'revision',
+    'revision',
   );
 
   /// quotation
   static final ProvenanceEntityRole quotation = ProvenanceEntityRole._(
-    value: 'quotation',
+    'quotation',
   );
 
   /// source
   static final ProvenanceEntityRole source = ProvenanceEntityRole._(
-    value: 'source',
+    'source',
   );
 
   /// removal
   static final ProvenanceEntityRole removal = ProvenanceEntityRole._(
-    value: 'removal',
+    'removal',
   );
 
   /// For instances where an Element is present but not value
 
-  static final ProvenanceEntityRole elementOnly =
-      ProvenanceEntityRole._(value: '');
+  static final ProvenanceEntityRole elementOnly = ProvenanceEntityRole._('');
 
   /// List of all enum-like values
   static final List<ProvenanceEntityRole> values = [
@@ -71,13 +70,13 @@ class ProvenanceEntityRole extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ProvenanceEntityRole clone() => ProvenanceEntityRole._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ProvenanceEntityRole withElement(Element? newElement) {
-    return ProvenanceEntityRole._(value: value, element: newElement);
+    return ProvenanceEntityRole._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -107,7 +106,7 @@ class ProvenanceEntityRole extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ProvenanceEntityRole._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

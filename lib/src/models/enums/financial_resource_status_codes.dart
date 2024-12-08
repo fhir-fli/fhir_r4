@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value set includes Status codes.
 class FinancialResourceStatusCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  FinancialResourceStatusCodes._({
-    super.value,
+  FinancialResourceStatusCodes._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,37 +26,37 @@ class FinancialResourceStatusCodes extends PrimitiveType<String> {
         'FinancialResourceStatusCodes cannot be constructed from JSON.',
       );
     }
-    return FinancialResourceStatusCodes._(value: value, element: element);
+    return FinancialResourceStatusCodes._(value, element: element);
   }
 
   /// active
   static final FinancialResourceStatusCodes active =
       FinancialResourceStatusCodes._(
-    value: 'active',
+    'active',
   );
 
   /// cancelled
   static final FinancialResourceStatusCodes cancelled =
       FinancialResourceStatusCodes._(
-    value: 'cancelled',
+    'cancelled',
   );
 
   /// draft
   static final FinancialResourceStatusCodes draft =
       FinancialResourceStatusCodes._(
-    value: 'draft',
+    'draft',
   );
 
   /// entered_in_error
   static final FinancialResourceStatusCodes entered_in_error =
       FinancialResourceStatusCodes._(
-    value: 'entered-in-error',
+    'entered-in-error',
   );
 
   /// For instances where an Element is present but not value
 
   static final FinancialResourceStatusCodes elementOnly =
-      FinancialResourceStatusCodes._(value: '');
+      FinancialResourceStatusCodes._('');
 
   /// List of all enum-like values
   static final List<FinancialResourceStatusCodes> values = [
@@ -69,13 +69,13 @@ class FinancialResourceStatusCodes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   FinancialResourceStatusCodes clone() => FinancialResourceStatusCodes._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   FinancialResourceStatusCodes withElement(Element? newElement) {
-    return FinancialResourceStatusCodes._(value: value, element: newElement);
+    return FinancialResourceStatusCodes._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -105,7 +105,7 @@ class FinancialResourceStatusCodes extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return FinancialResourceStatusCodes._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

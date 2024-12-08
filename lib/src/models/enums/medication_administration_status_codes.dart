@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// MedicationAdministration Status Codes
 class MedicationAdministrationStatusCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  MedicationAdministrationStatusCodes._({
-    super.value,
+  MedicationAdministrationStatusCodes._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -27,56 +27,55 @@ class MedicationAdministrationStatusCodes extends PrimitiveType<String> {
         'MedicationAdministrationStatusCodes cannot be constructed from JSON.',
       );
     }
-    return MedicationAdministrationStatusCodes._(
-        value: value, element: element);
+    return MedicationAdministrationStatusCodes._(value, element: element);
   }
 
   /// in_progress
   static final MedicationAdministrationStatusCodes in_progress =
       MedicationAdministrationStatusCodes._(
-    value: 'in-progress',
+    'in-progress',
   );
 
   /// not_done
   static final MedicationAdministrationStatusCodes not_done =
       MedicationAdministrationStatusCodes._(
-    value: 'not-done',
+    'not-done',
   );
 
   /// on_hold
   static final MedicationAdministrationStatusCodes on_hold =
       MedicationAdministrationStatusCodes._(
-    value: 'on-hold',
+    'on-hold',
   );
 
   /// completed
   static final MedicationAdministrationStatusCodes completed =
       MedicationAdministrationStatusCodes._(
-    value: 'completed',
+    'completed',
   );
 
   /// entered_in_error
   static final MedicationAdministrationStatusCodes entered_in_error =
       MedicationAdministrationStatusCodes._(
-    value: 'entered-in-error',
+    'entered-in-error',
   );
 
   /// stopped
   static final MedicationAdministrationStatusCodes stopped =
       MedicationAdministrationStatusCodes._(
-    value: 'stopped',
+    'stopped',
   );
 
   /// unknown
   static final MedicationAdministrationStatusCodes unknown =
       MedicationAdministrationStatusCodes._(
-    value: 'unknown',
+    'unknown',
   );
 
   /// For instances where an Element is present but not value
 
   static final MedicationAdministrationStatusCodes elementOnly =
-      MedicationAdministrationStatusCodes._(value: '');
+      MedicationAdministrationStatusCodes._('');
 
   /// List of all enum-like values
   static final List<MedicationAdministrationStatusCodes> values = [
@@ -93,14 +92,13 @@ class MedicationAdministrationStatusCodes extends PrimitiveType<String> {
   @override
   MedicationAdministrationStatusCodes clone() =>
       MedicationAdministrationStatusCodes._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   MedicationAdministrationStatusCodes withElement(Element? newElement) {
-    return MedicationAdministrationStatusCodes._(
-        value: value, element: newElement);
+    return MedicationAdministrationStatusCodes._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -130,7 +128,7 @@ class MedicationAdministrationStatusCodes extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return MedicationAdministrationStatusCodes._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

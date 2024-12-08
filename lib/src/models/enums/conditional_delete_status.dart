@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// A code that indicates how the server supports conditional delete.
 class ConditionalDeleteStatus extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ConditionalDeleteStatus._({
-    super.value,
+  ConditionalDeleteStatus._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,29 +26,29 @@ class ConditionalDeleteStatus extends PrimitiveType<String> {
         'ConditionalDeleteStatus cannot be constructed from JSON.',
       );
     }
-    return ConditionalDeleteStatus._(value: value, element: element);
+    return ConditionalDeleteStatus._(value, element: element);
   }
 
   /// not_supported
   static final ConditionalDeleteStatus not_supported =
       ConditionalDeleteStatus._(
-    value: 'not-supported',
+    'not-supported',
   );
 
   /// single
   static final ConditionalDeleteStatus single = ConditionalDeleteStatus._(
-    value: 'single',
+    'single',
   );
 
   /// multiple
   static final ConditionalDeleteStatus multiple = ConditionalDeleteStatus._(
-    value: 'multiple',
+    'multiple',
   );
 
   /// For instances where an Element is present but not value
 
   static final ConditionalDeleteStatus elementOnly =
-      ConditionalDeleteStatus._(value: '');
+      ConditionalDeleteStatus._('');
 
   /// List of all enum-like values
   static final List<ConditionalDeleteStatus> values = [
@@ -60,13 +60,13 @@ class ConditionalDeleteStatus extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ConditionalDeleteStatus clone() => ConditionalDeleteStatus._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ConditionalDeleteStatus withElement(Element? newElement) {
-    return ConditionalDeleteStatus._(value: value, element: newElement);
+    return ConditionalDeleteStatus._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -96,7 +96,7 @@ class ConditionalDeleteStatus extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ConditionalDeleteStatus._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

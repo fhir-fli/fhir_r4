@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Code for a known / defined timing pattern.
 class TimingAbbreviation extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  TimingAbbreviation._({
-    super.value,
+  TimingAbbreviation._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,92 +26,92 @@ class TimingAbbreviation extends PrimitiveType<String> {
         'TimingAbbreviation cannot be constructed from JSON.',
       );
     }
-    return TimingAbbreviation._(value: value, element: element);
+    return TimingAbbreviation._(value, element: element);
   }
 
   /// BID
   static final TimingAbbreviation BID = TimingAbbreviation._(
-    value: 'BID',
+    'BID',
   );
 
   /// TID
   static final TimingAbbreviation TID = TimingAbbreviation._(
-    value: 'TID',
+    'TID',
   );
 
   /// QID
   static final TimingAbbreviation QID = TimingAbbreviation._(
-    value: 'QID',
+    'QID',
   );
 
   /// AM
   static final TimingAbbreviation AM = TimingAbbreviation._(
-    value: 'AM',
+    'AM',
   );
 
   /// PM
   static final TimingAbbreviation PM = TimingAbbreviation._(
-    value: 'PM',
+    'PM',
   );
 
   /// QD
   static final TimingAbbreviation QD = TimingAbbreviation._(
-    value: 'QD',
+    'QD',
   );
 
   /// QOD
   static final TimingAbbreviation QOD = TimingAbbreviation._(
-    value: 'QOD',
+    'QOD',
   );
 
   /// Q1H
   static final TimingAbbreviation Q1H = TimingAbbreviation._(
-    value: 'Q1H',
+    'Q1H',
   );
 
   /// Q2H
   static final TimingAbbreviation Q2H = TimingAbbreviation._(
-    value: 'Q2H',
+    'Q2H',
   );
 
   /// Q3H
   static final TimingAbbreviation Q3H = TimingAbbreviation._(
-    value: 'Q3H',
+    'Q3H',
   );
 
   /// Q4H
   static final TimingAbbreviation Q4H = TimingAbbreviation._(
-    value: 'Q4H',
+    'Q4H',
   );
 
   /// Q6H
   static final TimingAbbreviation Q6H = TimingAbbreviation._(
-    value: 'Q6H',
+    'Q6H',
   );
 
   /// Q8H
   static final TimingAbbreviation Q8H = TimingAbbreviation._(
-    value: 'Q8H',
+    'Q8H',
   );
 
   /// BED
   static final TimingAbbreviation BED = TimingAbbreviation._(
-    value: 'BED',
+    'BED',
   );
 
   /// WK
   static final TimingAbbreviation WK = TimingAbbreviation._(
-    value: 'WK',
+    'WK',
   );
 
   /// MO
   static final TimingAbbreviation MO = TimingAbbreviation._(
-    value: 'MO',
+    'MO',
   );
 
   /// For instances where an Element is present but not value
 
-  static final TimingAbbreviation elementOnly = TimingAbbreviation._(value: '');
+  static final TimingAbbreviation elementOnly = TimingAbbreviation._('');
 
   /// List of all enum-like values
   static final List<TimingAbbreviation> values = [
@@ -136,13 +136,13 @@ class TimingAbbreviation extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   TimingAbbreviation clone() => TimingAbbreviation._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   TimingAbbreviation withElement(Element? newElement) {
-    return TimingAbbreviation._(value: value, element: newElement);
+    return TimingAbbreviation._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -172,7 +172,7 @@ class TimingAbbreviation extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return TimingAbbreviation._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

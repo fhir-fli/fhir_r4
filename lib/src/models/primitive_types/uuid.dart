@@ -19,7 +19,7 @@ extension FhirUuidValueExtension on UuidValue {
 class FhirUuid extends PrimitiveType<UuidValue?> {
   /// Constructs a [FhirUuid] from a String input, allowing null values.
   FhirUuid(
-    String? input,{
+    String? input, {
     super.element,
     super.id,
     super.extension_,
@@ -31,7 +31,7 @@ class FhirUuid extends PrimitiveType<UuidValue?> {
 
   /// Constructs a [FhirUuid] from a [UuidValue], allowing null values.
   FhirUuid.fromUuid(
-    super.value,{
+    super.value, {
     super.element,
     super.id,
     super.extension_,

@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Criterion for rejection of the specimen by laboratory.
 class RejectionCriterion extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  RejectionCriterion._({
-    super.value,
+  RejectionCriterion._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,37 +26,37 @@ class RejectionCriterion extends PrimitiveType<String> {
         'RejectionCriterion cannot be constructed from JSON.',
       );
     }
-    return RejectionCriterion._(value: value, element: element);
+    return RejectionCriterion._(value, element: element);
   }
 
   /// hemolized
   static final RejectionCriterion hemolized = RejectionCriterion._(
-    value: 'hemolized',
+    'hemolized',
   );
 
   /// insufficient
   static final RejectionCriterion insufficient = RejectionCriterion._(
-    value: 'insufficient',
+    'insufficient',
   );
 
   /// broken
   static final RejectionCriterion broken = RejectionCriterion._(
-    value: 'broken',
+    'broken',
   );
 
   /// clotted
   static final RejectionCriterion clotted = RejectionCriterion._(
-    value: 'clotted',
+    'clotted',
   );
 
   /// wrong_temperature
   static final RejectionCriterion wrong_temperature = RejectionCriterion._(
-    value: 'wrong-temperature',
+    'wrong-temperature',
   );
 
   /// For instances where an Element is present but not value
 
-  static final RejectionCriterion elementOnly = RejectionCriterion._(value: '');
+  static final RejectionCriterion elementOnly = RejectionCriterion._('');
 
   /// List of all enum-like values
   static final List<RejectionCriterion> values = [
@@ -70,13 +70,13 @@ class RejectionCriterion extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   RejectionCriterion clone() => RejectionCriterion._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   RejectionCriterion withElement(Element? newElement) {
-    return RejectionCriterion._(value: value, element: newElement);
+    return RejectionCriterion._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -106,7 +106,7 @@ class RejectionCriterion extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return RejectionCriterion._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

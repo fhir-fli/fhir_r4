@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value set defines a set of codes that are used to indicate the supported operations of a testing engine or tool.
 class TestScriptOperationCode extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  TestScriptOperationCode._({
-    super.value,
+  TestScriptOperationCode._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,245 +26,245 @@ class TestScriptOperationCode extends PrimitiveType<String> {
         'TestScriptOperationCode cannot be constructed from JSON.',
       );
     }
-    return TestScriptOperationCode._(value: value, element: element);
+    return TestScriptOperationCode._(value, element: element);
   }
 
   /// read
   static final TestScriptOperationCode read = TestScriptOperationCode._(
-    value: 'read',
+    'read',
   );
 
   /// vread
   static final TestScriptOperationCode vread = TestScriptOperationCode._(
-    value: 'vread',
+    'vread',
   );
 
   /// update
   static final TestScriptOperationCode update = TestScriptOperationCode._(
-    value: 'update',
+    'update',
   );
 
   /// updateCreate
   static final TestScriptOperationCode updateCreate = TestScriptOperationCode._(
-    value: 'updateCreate',
+    'updateCreate',
   );
 
   /// patch
   static final TestScriptOperationCode patch = TestScriptOperationCode._(
-    value: 'patch',
+    'patch',
   );
 
   /// delete
   static final TestScriptOperationCode delete = TestScriptOperationCode._(
-    value: 'delete',
+    'delete',
   );
 
   /// deleteCondSingle
   static final TestScriptOperationCode deleteCondSingle =
       TestScriptOperationCode._(
-    value: 'deleteCondSingle',
+    'deleteCondSingle',
   );
 
   /// deleteCondMultiple
   static final TestScriptOperationCode deleteCondMultiple =
       TestScriptOperationCode._(
-    value: 'deleteCondMultiple',
+    'deleteCondMultiple',
   );
 
   /// history
   static final TestScriptOperationCode history = TestScriptOperationCode._(
-    value: 'history',
+    'history',
   );
 
   /// create
   static final TestScriptOperationCode create = TestScriptOperationCode._(
-    value: 'create',
+    'create',
   );
 
   /// search
   static final TestScriptOperationCode search = TestScriptOperationCode._(
-    value: 'search',
+    'search',
   );
 
   /// batch
   static final TestScriptOperationCode batch = TestScriptOperationCode._(
-    value: 'batch',
+    'batch',
   );
 
   /// transaction
   static final TestScriptOperationCode transaction = TestScriptOperationCode._(
-    value: 'transaction',
+    'transaction',
   );
 
   /// capabilities
   static final TestScriptOperationCode capabilities = TestScriptOperationCode._(
-    value: 'capabilities',
+    'capabilities',
   );
 
   /// apply
   static final TestScriptOperationCode apply = TestScriptOperationCode._(
-    value: 'apply',
+    'apply',
   );
 
   /// closure
   static final TestScriptOperationCode closure = TestScriptOperationCode._(
-    value: 'closure',
+    'closure',
   );
 
   /// find_matches
   static final TestScriptOperationCode find_matches = TestScriptOperationCode._(
-    value: 'find-matches',
+    'find-matches',
   );
 
   /// conforms
   static final TestScriptOperationCode conforms = TestScriptOperationCode._(
-    value: 'conforms',
+    'conforms',
   );
 
   /// data_requirements
   static final TestScriptOperationCode data_requirements =
       TestScriptOperationCode._(
-    value: 'data-requirements',
+    'data-requirements',
   );
 
   /// document
   static final TestScriptOperationCode document = TestScriptOperationCode._(
-    value: 'document',
+    'document',
   );
 
   /// evaluate
   static final TestScriptOperationCode evaluate = TestScriptOperationCode._(
-    value: 'evaluate',
+    'evaluate',
   );
 
   /// evaluate_measure
   static final TestScriptOperationCode evaluate_measure =
       TestScriptOperationCode._(
-    value: 'evaluate-measure',
+    'evaluate-measure',
   );
 
   /// everything
   static final TestScriptOperationCode everything = TestScriptOperationCode._(
-    value: 'everything',
+    'everything',
   );
 
   /// expand
   static final TestScriptOperationCode expand = TestScriptOperationCode._(
-    value: 'expand',
+    'expand',
   );
 
   /// find
   static final TestScriptOperationCode find = TestScriptOperationCode._(
-    value: 'find',
+    'find',
   );
 
   /// graphql
   static final TestScriptOperationCode graphql = TestScriptOperationCode._(
-    value: 'graphql',
+    'graphql',
   );
 
   /// implements_
   static final TestScriptOperationCode implements_ = TestScriptOperationCode._(
-    value: 'implements',
+    'implements',
   );
 
   /// lastn
   static final TestScriptOperationCode lastn = TestScriptOperationCode._(
-    value: 'lastn',
+    'lastn',
   );
 
   /// lookup
   static final TestScriptOperationCode lookup = TestScriptOperationCode._(
-    value: 'lookup',
+    'lookup',
   );
 
   /// match
   static final TestScriptOperationCode match = TestScriptOperationCode._(
-    value: 'match',
+    'match',
   );
 
   /// meta
   static final TestScriptOperationCode meta = TestScriptOperationCode._(
-    value: 'meta',
+    'meta',
   );
 
   /// meta_add
   static final TestScriptOperationCode meta_add = TestScriptOperationCode._(
-    value: 'meta-add',
+    'meta-add',
   );
 
   /// meta_delete
   static final TestScriptOperationCode meta_delete = TestScriptOperationCode._(
-    value: 'meta-delete',
+    'meta-delete',
   );
 
   /// populate
   static final TestScriptOperationCode populate = TestScriptOperationCode._(
-    value: 'populate',
+    'populate',
   );
 
   /// populatehtml
   static final TestScriptOperationCode populatehtml = TestScriptOperationCode._(
-    value: 'populatehtml',
+    'populatehtml',
   );
 
   /// populatelink
   static final TestScriptOperationCode populatelink = TestScriptOperationCode._(
-    value: 'populatelink',
+    'populatelink',
   );
 
   /// process_message
   static final TestScriptOperationCode process_message =
       TestScriptOperationCode._(
-    value: 'process-message',
+    'process-message',
   );
 
   /// questionnaire
   static final TestScriptOperationCode questionnaire =
       TestScriptOperationCode._(
-    value: 'questionnaire',
+    'questionnaire',
   );
 
   /// stats
   static final TestScriptOperationCode stats = TestScriptOperationCode._(
-    value: 'stats',
+    'stats',
   );
 
   /// subset
   static final TestScriptOperationCode subset = TestScriptOperationCode._(
-    value: 'subset',
+    'subset',
   );
 
   /// subsumes
   static final TestScriptOperationCode subsumes = TestScriptOperationCode._(
-    value: 'subsumes',
+    'subsumes',
   );
 
   /// transform
   static final TestScriptOperationCode transform = TestScriptOperationCode._(
-    value: 'transform',
+    'transform',
   );
 
   /// translate
   static final TestScriptOperationCode translate = TestScriptOperationCode._(
-    value: 'translate',
+    'translate',
   );
 
   /// validate
   static final TestScriptOperationCode validate_ = TestScriptOperationCode._(
-    value: 'validate',
+    'validate',
   );
 
   /// validate_code
   static final TestScriptOperationCode validate_code =
       TestScriptOperationCode._(
-    value: 'validate-code',
+    'validate-code',
   );
 
   /// For instances where an Element is present but not value
 
   static final TestScriptOperationCode elementOnly =
-      TestScriptOperationCode._(value: '');
+      TestScriptOperationCode._('');
 
   /// List of all enum-like values
   static final List<TestScriptOperationCode> values = [
@@ -318,13 +318,13 @@ class TestScriptOperationCode extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   TestScriptOperationCode clone() => TestScriptOperationCode._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   TestScriptOperationCode withElement(Element? newElement) {
-    return TestScriptOperationCode._(value: value, element: newElement);
+    return TestScriptOperationCode._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -354,7 +354,7 @@ class TestScriptOperationCode extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return TestScriptOperationCode._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

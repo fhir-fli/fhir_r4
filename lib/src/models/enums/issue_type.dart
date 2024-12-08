@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// A code that describes the type of issue.
 class IssueType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  IssueType._({
-    super.value,
+  IssueType._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,167 +26,167 @@ class IssueType extends PrimitiveType<String> {
         'IssueType cannot be constructed from JSON.',
       );
     }
-    return IssueType._(value: value, element: element);
+    return IssueType._(value, element: element);
   }
 
   /// invalid
   static final IssueType invalid = IssueType._(
-    value: 'invalid',
+    'invalid',
   );
 
   /// structure
   static final IssueType structure = IssueType._(
-    value: 'structure',
+    'structure',
   );
 
   /// required_
   static final IssueType required_ = IssueType._(
-    value: 'required',
+    'required',
   );
 
   /// value
   static final IssueType value_ = IssueType._(
-    value: 'value',
+    'value',
   );
 
   /// invariant
   static final IssueType invariant = IssueType._(
-    value: 'invariant',
+    'invariant',
   );
 
   /// security
   static final IssueType security = IssueType._(
-    value: 'security',
+    'security',
   );
 
   /// login
   static final IssueType login = IssueType._(
-    value: 'login',
+    'login',
   );
 
   /// unknown
   static final IssueType unknown = IssueType._(
-    value: 'unknown',
+    'unknown',
   );
 
   /// expired
   static final IssueType expired = IssueType._(
-    value: 'expired',
+    'expired',
   );
 
   /// forbidden
   static final IssueType forbidden = IssueType._(
-    value: 'forbidden',
+    'forbidden',
   );
 
   /// suppressed
   static final IssueType suppressed = IssueType._(
-    value: 'suppressed',
+    'suppressed',
   );
 
   /// processing
   static final IssueType processing = IssueType._(
-    value: 'processing',
+    'processing',
   );
 
   /// not_supported
   static final IssueType not_supported = IssueType._(
-    value: 'not-supported',
+    'not-supported',
   );
 
   /// duplicate
   static final IssueType duplicate = IssueType._(
-    value: 'duplicate',
+    'duplicate',
   );
 
   /// multiple_matches
   static final IssueType multiple_matches = IssueType._(
-    value: 'multiple-matches',
+    'multiple-matches',
   );
 
   /// not_found
   static final IssueType not_found = IssueType._(
-    value: 'not-found',
+    'not-found',
   );
 
   /// deleted
   static final IssueType deleted = IssueType._(
-    value: 'deleted',
+    'deleted',
   );
 
   /// too_long
   static final IssueType too_long = IssueType._(
-    value: 'too-long',
+    'too-long',
   );
 
   /// code_invalid
   static final IssueType code_invalid = IssueType._(
-    value: 'code-invalid',
+    'code-invalid',
   );
 
   /// extension_
   static final IssueType extensionValue = IssueType._(
-    value: 'extension',
+    'extension',
   );
 
   /// too_costly
   static final IssueType too_costly = IssueType._(
-    value: 'too-costly',
+    'too-costly',
   );
 
   /// business_rule
   static final IssueType business_rule = IssueType._(
-    value: 'business-rule',
+    'business-rule',
   );
 
   /// conflict
   static final IssueType conflict = IssueType._(
-    value: 'conflict',
+    'conflict',
   );
 
   /// transient
   static final IssueType transient = IssueType._(
-    value: 'transient',
+    'transient',
   );
 
   /// lock_error
   static final IssueType lock_error = IssueType._(
-    value: 'lock-error',
+    'lock-error',
   );
 
   /// no_store
   static final IssueType no_store = IssueType._(
-    value: 'no-store',
+    'no-store',
   );
 
   /// exception
   static final IssueType exception = IssueType._(
-    value: 'exception',
+    'exception',
   );
 
   /// timeout
   static final IssueType timeout = IssueType._(
-    value: 'timeout',
+    'timeout',
   );
 
   /// incomplete
   static final IssueType incomplete = IssueType._(
-    value: 'incomplete',
+    'incomplete',
   );
 
   /// throttled
   static final IssueType throttled = IssueType._(
-    value: 'throttled',
+    'throttled',
   );
 
   /// informational
   static final IssueType informational = IssueType._(
-    value: 'informational',
+    'informational',
   );
 
   /// For instances where an Element is present but not value
 
-  static final IssueType elementOnly = IssueType._(value: '');
+  static final IssueType elementOnly = IssueType._('');
 
   /// List of all enum-like values
   static final List<IssueType> values = [
@@ -226,13 +226,13 @@ class IssueType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   IssueType clone() => IssueType._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   IssueType withElement(Element? newElement) {
-    return IssueType._(value: value, element: newElement);
+    return IssueType._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -262,7 +262,7 @@ class IssueType extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return IssueType._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

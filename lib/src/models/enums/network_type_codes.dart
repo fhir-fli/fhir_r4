@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value set includes a smattering of Network type codes.
 class NetworkTypeCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  NetworkTypeCodes._({
-    super.value,
+  NetworkTypeCodes._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,22 +26,22 @@ class NetworkTypeCodes extends PrimitiveType<String> {
         'NetworkTypeCodes cannot be constructed from JSON.',
       );
     }
-    return NetworkTypeCodes._(value: value, element: element);
+    return NetworkTypeCodes._(value, element: element);
   }
 
   /// in_
   static final NetworkTypeCodes in_ = NetworkTypeCodes._(
-    value: 'in',
+    'in',
   );
 
   /// out
   static final NetworkTypeCodes out = NetworkTypeCodes._(
-    value: 'out',
+    'out',
   );
 
   /// For instances where an Element is present but not value
 
-  static final NetworkTypeCodes elementOnly = NetworkTypeCodes._(value: '');
+  static final NetworkTypeCodes elementOnly = NetworkTypeCodes._('');
 
   /// List of all enum-like values
   static final List<NetworkTypeCodes> values = [
@@ -52,13 +52,13 @@ class NetworkTypeCodes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   NetworkTypeCodes clone() => NetworkTypeCodes._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   NetworkTypeCodes withElement(Element? newElement) {
-    return NetworkTypeCodes._(value: value, element: newElement);
+    return NetworkTypeCodes._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -88,7 +88,7 @@ class NetworkTypeCodes extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return NetworkTypeCodes._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

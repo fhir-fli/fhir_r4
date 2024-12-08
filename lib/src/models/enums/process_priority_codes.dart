@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value set includes the financial processing priority codes.
 class ProcessPriorityCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ProcessPriorityCodes._({
-    super.value,
+  ProcessPriorityCodes._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,28 +26,27 @@ class ProcessPriorityCodes extends PrimitiveType<String> {
         'ProcessPriorityCodes cannot be constructed from JSON.',
       );
     }
-    return ProcessPriorityCodes._(value: value, element: element);
+    return ProcessPriorityCodes._(value, element: element);
   }
 
   /// stat
   static final ProcessPriorityCodes stat = ProcessPriorityCodes._(
-    value: 'stat',
+    'stat',
   );
 
   /// normal
   static final ProcessPriorityCodes normal = ProcessPriorityCodes._(
-    value: 'normal',
+    'normal',
   );
 
   /// deferred_
   static final ProcessPriorityCodes deferred_ = ProcessPriorityCodes._(
-    value: 'deferred',
+    'deferred',
   );
 
   /// For instances where an Element is present but not value
 
-  static final ProcessPriorityCodes elementOnly =
-      ProcessPriorityCodes._(value: '');
+  static final ProcessPriorityCodes elementOnly = ProcessPriorityCodes._('');
 
   /// List of all enum-like values
   static final List<ProcessPriorityCodes> values = [
@@ -59,13 +58,13 @@ class ProcessPriorityCodes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ProcessPriorityCodes clone() => ProcessPriorityCodes._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ProcessPriorityCodes withElement(Element? newElement) {
-    return ProcessPriorityCodes._(value: value, element: newElement);
+    return ProcessPriorityCodes._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -95,7 +94,7 @@ class ProcessPriorityCodes extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ProcessPriorityCodes._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

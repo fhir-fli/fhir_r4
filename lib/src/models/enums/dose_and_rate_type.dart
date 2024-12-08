@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The kind of dose or rate specified.
 class DoseAndRateType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  DoseAndRateType._({
-    super.value,
+  DoseAndRateType._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,22 +26,22 @@ class DoseAndRateType extends PrimitiveType<String> {
         'DoseAndRateType cannot be constructed from JSON.',
       );
     }
-    return DoseAndRateType._(value: value, element: element);
+    return DoseAndRateType._(value, element: element);
   }
 
   /// calculated
   static final DoseAndRateType calculated = DoseAndRateType._(
-    value: 'calculated',
+    'calculated',
   );
 
   /// ordered
   static final DoseAndRateType ordered = DoseAndRateType._(
-    value: 'ordered',
+    'ordered',
   );
 
   /// For instances where an Element is present but not value
 
-  static final DoseAndRateType elementOnly = DoseAndRateType._(value: '');
+  static final DoseAndRateType elementOnly = DoseAndRateType._('');
 
   /// List of all enum-like values
   static final List<DoseAndRateType> values = [
@@ -52,13 +52,13 @@ class DoseAndRateType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   DoseAndRateType clone() => DoseAndRateType._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   DoseAndRateType withElement(Element? newElement) {
-    return DoseAndRateType._(value: value, element: newElement);
+    return DoseAndRateType._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -88,7 +88,7 @@ class DoseAndRateType extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return DoseAndRateType._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

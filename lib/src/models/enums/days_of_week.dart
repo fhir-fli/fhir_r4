@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The days of the week.
 class DaysOfWeek extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  DaysOfWeek._({
-    super.value,
+  DaysOfWeek._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,47 +26,47 @@ class DaysOfWeek extends PrimitiveType<String> {
         'DaysOfWeek cannot be constructed from JSON.',
       );
     }
-    return DaysOfWeek._(value: value, element: element);
+    return DaysOfWeek._(value, element: element);
   }
 
   /// mon
   static final DaysOfWeek mon = DaysOfWeek._(
-    value: 'mon',
+    'mon',
   );
 
   /// tue
   static final DaysOfWeek tue = DaysOfWeek._(
-    value: 'tue',
+    'tue',
   );
 
   /// wed
   static final DaysOfWeek wed = DaysOfWeek._(
-    value: 'wed',
+    'wed',
   );
 
   /// thu
   static final DaysOfWeek thu = DaysOfWeek._(
-    value: 'thu',
+    'thu',
   );
 
   /// fri
   static final DaysOfWeek fri = DaysOfWeek._(
-    value: 'fri',
+    'fri',
   );
 
   /// sat
   static final DaysOfWeek sat = DaysOfWeek._(
-    value: 'sat',
+    'sat',
   );
 
   /// sun
   static final DaysOfWeek sun = DaysOfWeek._(
-    value: 'sun',
+    'sun',
   );
 
   /// For instances where an Element is present but not value
 
-  static final DaysOfWeek elementOnly = DaysOfWeek._(value: '');
+  static final DaysOfWeek elementOnly = DaysOfWeek._('');
 
   /// List of all enum-like values
   static final List<DaysOfWeek> values = [
@@ -82,13 +82,13 @@ class DaysOfWeek extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   DaysOfWeek clone() => DaysOfWeek._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   DaysOfWeek withElement(Element? newElement) {
-    return DaysOfWeek._(value: value, element: newElement);
+    return DaysOfWeek._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -118,7 +118,7 @@ class DaysOfWeek extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return DaysOfWeek._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

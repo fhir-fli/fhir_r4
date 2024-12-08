@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Biologically Derived Product Status.
 class BiologicallyDerivedProductStatus extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  BiologicallyDerivedProductStatus._({
-    super.value,
+  BiologicallyDerivedProductStatus._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,25 +26,25 @@ class BiologicallyDerivedProductStatus extends PrimitiveType<String> {
         'BiologicallyDerivedProductStatus cannot be constructed from JSON.',
       );
     }
-    return BiologicallyDerivedProductStatus._(value: value, element: element);
+    return BiologicallyDerivedProductStatus._(value, element: element);
   }
 
   /// available
   static final BiologicallyDerivedProductStatus available =
       BiologicallyDerivedProductStatus._(
-    value: 'available',
+    'available',
   );
 
   /// unavailable
   static final BiologicallyDerivedProductStatus unavailable =
       BiologicallyDerivedProductStatus._(
-    value: 'unavailable',
+    'unavailable',
   );
 
   /// For instances where an Element is present but not value
 
   static final BiologicallyDerivedProductStatus elementOnly =
-      BiologicallyDerivedProductStatus._(value: '');
+      BiologicallyDerivedProductStatus._('');
 
   /// List of all enum-like values
   static final List<BiologicallyDerivedProductStatus> values = [
@@ -56,14 +56,13 @@ class BiologicallyDerivedProductStatus extends PrimitiveType<String> {
   @override
   BiologicallyDerivedProductStatus clone() =>
       BiologicallyDerivedProductStatus._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   BiologicallyDerivedProductStatus withElement(Element? newElement) {
-    return BiologicallyDerivedProductStatus._(
-        value: value, element: newElement);
+    return BiologicallyDerivedProductStatus._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -93,7 +92,7 @@ class BiologicallyDerivedProductStatus extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return BiologicallyDerivedProductStatus._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

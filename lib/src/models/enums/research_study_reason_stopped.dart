@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Codes for why the study ended prematurely.
 class ResearchStudyReasonStopped extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ResearchStudyReasonStopped._({
-    super.value,
+  ResearchStudyReasonStopped._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,37 +26,37 @@ class ResearchStudyReasonStopped extends PrimitiveType<String> {
         'ResearchStudyReasonStopped cannot be constructed from JSON.',
       );
     }
-    return ResearchStudyReasonStopped._(value: value, element: element);
+    return ResearchStudyReasonStopped._(value, element: element);
   }
 
   /// accrual_goal_met
   static final ResearchStudyReasonStopped accrual_goal_met =
       ResearchStudyReasonStopped._(
-    value: 'accrual-goal-met',
+    'accrual-goal-met',
   );
 
   /// closed_due_to_toxicity
   static final ResearchStudyReasonStopped closed_due_to_toxicity =
       ResearchStudyReasonStopped._(
-    value: 'closed-due-to-toxicity',
+    'closed-due-to-toxicity',
   );
 
   /// closed_due_to_lack_of_study_progress
   static final ResearchStudyReasonStopped closed_due_to_lack_of_study_progress =
       ResearchStudyReasonStopped._(
-    value: 'closed-due-to-lack-of-study-progress',
+    'closed-due-to-lack-of-study-progress',
   );
 
   /// temporarily_closed_per_study_design
   static final ResearchStudyReasonStopped temporarily_closed_per_study_design =
       ResearchStudyReasonStopped._(
-    value: 'temporarily-closed-per-study-design',
+    'temporarily-closed-per-study-design',
   );
 
   /// For instances where an Element is present but not value
 
   static final ResearchStudyReasonStopped elementOnly =
-      ResearchStudyReasonStopped._(value: '');
+      ResearchStudyReasonStopped._('');
 
   /// List of all enum-like values
   static final List<ResearchStudyReasonStopped> values = [
@@ -69,13 +69,13 @@ class ResearchStudyReasonStopped extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ResearchStudyReasonStopped clone() => ResearchStudyReasonStopped._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ResearchStudyReasonStopped withElement(Element? newElement) {
-    return ResearchStudyReasonStopped._(value: value, element: newElement);
+    return ResearchStudyReasonStopped._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -105,7 +105,7 @@ class ResearchStudyReasonStopped extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ResearchStudyReasonStopped._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

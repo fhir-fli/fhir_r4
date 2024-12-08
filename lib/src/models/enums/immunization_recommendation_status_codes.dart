@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The value set to instantiate this attribute should be drawn from a terminologically robust code system that consists of or contains concepts to support describing the status of the patient towards perceived immunity against a vaccine preventable disease. This value set is provided as a suggestive example.
 class ImmunizationRecommendationStatusCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ImmunizationRecommendationStatusCodes._({
-    super.value,
+  ImmunizationRecommendationStatusCodes._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -27,44 +27,43 @@ class ImmunizationRecommendationStatusCodes extends PrimitiveType<String> {
         'ImmunizationRecommendationStatusCodes cannot be constructed from JSON.',
       );
     }
-    return ImmunizationRecommendationStatusCodes._(
-        value: value, element: element);
+    return ImmunizationRecommendationStatusCodes._(value, element: element);
   }
 
   /// due
   static final ImmunizationRecommendationStatusCodes due =
       ImmunizationRecommendationStatusCodes._(
-    value: 'due',
+    'due',
   );
 
   /// overdue
   static final ImmunizationRecommendationStatusCodes overdue =
       ImmunizationRecommendationStatusCodes._(
-    value: 'overdue',
+    'overdue',
   );
 
   /// immune
   static final ImmunizationRecommendationStatusCodes immune =
       ImmunizationRecommendationStatusCodes._(
-    value: 'immune',
+    'immune',
   );
 
   /// contraindicated
   static final ImmunizationRecommendationStatusCodes contraindicated =
       ImmunizationRecommendationStatusCodes._(
-    value: 'contraindicated',
+    'contraindicated',
   );
 
   /// complete
   static final ImmunizationRecommendationStatusCodes complete =
       ImmunizationRecommendationStatusCodes._(
-    value: 'complete',
+    'complete',
   );
 
   /// For instances where an Element is present but not value
 
   static final ImmunizationRecommendationStatusCodes elementOnly =
-      ImmunizationRecommendationStatusCodes._(value: '');
+      ImmunizationRecommendationStatusCodes._('');
 
   /// List of all enum-like values
   static final List<ImmunizationRecommendationStatusCodes> values = [
@@ -79,14 +78,13 @@ class ImmunizationRecommendationStatusCodes extends PrimitiveType<String> {
   @override
   ImmunizationRecommendationStatusCodes clone() =>
       ImmunizationRecommendationStatusCodes._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ImmunizationRecommendationStatusCodes withElement(Element? newElement) {
-    return ImmunizationRecommendationStatusCodes._(
-        value: value, element: newElement);
+    return ImmunizationRecommendationStatusCodes._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -116,7 +114,7 @@ class ImmunizationRecommendationStatusCodes extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ImmunizationRecommendationStatusCodes._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Whether an operation parameter is an input or an output parameter.
 class OperationParameterUse extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  OperationParameterUse._({
-    super.value,
+  OperationParameterUse._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,23 +26,22 @@ class OperationParameterUse extends PrimitiveType<String> {
         'OperationParameterUse cannot be constructed from JSON.',
       );
     }
-    return OperationParameterUse._(value: value, element: element);
+    return OperationParameterUse._(value, element: element);
   }
 
   /// in_
   static final OperationParameterUse in_ = OperationParameterUse._(
-    value: 'in',
+    'in',
   );
 
   /// out
   static final OperationParameterUse out = OperationParameterUse._(
-    value: 'out',
+    'out',
   );
 
   /// For instances where an Element is present but not value
 
-  static final OperationParameterUse elementOnly =
-      OperationParameterUse._(value: '');
+  static final OperationParameterUse elementOnly = OperationParameterUse._('');
 
   /// List of all enum-like values
   static final List<OperationParameterUse> values = [
@@ -53,13 +52,13 @@ class OperationParameterUse extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   OperationParameterUse clone() => OperationParameterUse._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   OperationParameterUse withElement(Element? newElement) {
-    return OperationParameterUse._(value: value, element: newElement);
+    return OperationParameterUse._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -89,7 +88,7 @@ class OperationParameterUse extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return OperationParameterUse._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

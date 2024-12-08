@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// EnteralRouteOfAdministration: Codes specifying the route of administration of enteral formula. This value set is composed of HL7 V3 codes and is provided as a suggestive example.
 class EnteralRouteCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  EnteralRouteCodes._({
-    super.value,
+  EnteralRouteCodes._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,57 +26,57 @@ class EnteralRouteCodes extends PrimitiveType<String> {
         'EnteralRouteCodes cannot be constructed from JSON.',
       );
     }
-    return EnteralRouteCodes._(value: value, element: element);
+    return EnteralRouteCodes._(value, element: element);
   }
 
   /// PO
   static final EnteralRouteCodes PO = EnteralRouteCodes._(
-    value: 'PO',
+    'PO',
   );
 
   /// EFT
   static final EnteralRouteCodes EFT = EnteralRouteCodes._(
-    value: 'EFT',
+    'EFT',
   );
 
   /// ENTINSTL
   static final EnteralRouteCodes ENTINSTL = EnteralRouteCodes._(
-    value: 'ENTINSTL',
+    'ENTINSTL',
   );
 
   /// GT
   static final EnteralRouteCodes GT = EnteralRouteCodes._(
-    value: 'GT',
+    'GT',
   );
 
   /// NGT
   static final EnteralRouteCodes NGT = EnteralRouteCodes._(
-    value: 'NGT',
+    'NGT',
   );
 
   /// OGT
   static final EnteralRouteCodes OGT = EnteralRouteCodes._(
-    value: 'OGT',
+    'OGT',
   );
 
   /// GJT
   static final EnteralRouteCodes GJT = EnteralRouteCodes._(
-    value: 'GJT',
+    'GJT',
   );
 
   /// JJTINSTL
   static final EnteralRouteCodes JJTINSTL = EnteralRouteCodes._(
-    value: 'JJTINSTL',
+    'JJTINSTL',
   );
 
   /// OJJ
   static final EnteralRouteCodes OJJ = EnteralRouteCodes._(
-    value: 'OJJ',
+    'OJJ',
   );
 
   /// For instances where an Element is present but not value
 
-  static final EnteralRouteCodes elementOnly = EnteralRouteCodes._(value: '');
+  static final EnteralRouteCodes elementOnly = EnteralRouteCodes._('');
 
   /// List of all enum-like values
   static final List<EnteralRouteCodes> values = [
@@ -94,13 +94,13 @@ class EnteralRouteCodes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   EnteralRouteCodes clone() => EnteralRouteCodes._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   EnteralRouteCodes withElement(Element? newElement) {
-    return EnteralRouteCodes._(value: value, element: newElement);
+    return EnteralRouteCodes._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -130,7 +130,7 @@ class EnteralRouteCodes extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return EnteralRouteCodes._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

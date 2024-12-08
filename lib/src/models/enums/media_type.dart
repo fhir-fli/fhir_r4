@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Codes for high level media categories.
 class MediaType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  MediaType._({
-    super.value,
+  MediaType._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,27 +26,27 @@ class MediaType extends PrimitiveType<String> {
         'MediaType cannot be constructed from JSON.',
       );
     }
-    return MediaType._(value: value, element: element);
+    return MediaType._(value, element: element);
   }
 
   /// image
   static final MediaType image = MediaType._(
-    value: 'image',
+    'image',
   );
 
   /// video
   static final MediaType video = MediaType._(
-    value: 'video',
+    'video',
   );
 
   /// audio
   static final MediaType audio = MediaType._(
-    value: 'audio',
+    'audio',
   );
 
   /// For instances where an Element is present but not value
 
-  static final MediaType elementOnly = MediaType._(value: '');
+  static final MediaType elementOnly = MediaType._('');
 
   /// List of all enum-like values
   static final List<MediaType> values = [
@@ -58,13 +58,13 @@ class MediaType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   MediaType clone() => MediaType._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   MediaType withElement(Element? newElement) {
-    return MediaType._(value: value, element: newElement);
+    return MediaType._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -94,7 +94,7 @@ class MediaType extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return MediaType._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

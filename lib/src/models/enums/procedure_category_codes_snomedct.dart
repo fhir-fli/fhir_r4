@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Procedure Category code: A selection of relevant SNOMED CT codes.
 class ProcedureCategoryCodesSNOMEDCT extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ProcedureCategoryCodesSNOMEDCT._({
-    super.value,
+  ProcedureCategoryCodesSNOMEDCT._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,55 +26,55 @@ class ProcedureCategoryCodesSNOMEDCT extends PrimitiveType<String> {
         'ProcedureCategoryCodesSNOMEDCT cannot be constructed from JSON.',
       );
     }
-    return ProcedureCategoryCodesSNOMEDCT._(value: value, element: element);
+    return ProcedureCategoryCodesSNOMEDCT._(value, element: element);
   }
 
   /// value24642003
   static final ProcedureCategoryCodesSNOMEDCT value24642003 =
       ProcedureCategoryCodesSNOMEDCT._(
-    value: '24642003',
+    '24642003',
   );
 
   /// value409063005
   static final ProcedureCategoryCodesSNOMEDCT value409063005 =
       ProcedureCategoryCodesSNOMEDCT._(
-    value: '409063005',
+    '409063005',
   );
 
   /// value409073007
   static final ProcedureCategoryCodesSNOMEDCT value409073007 =
       ProcedureCategoryCodesSNOMEDCT._(
-    value: '409073007',
+    '409073007',
   );
 
   /// value387713003
   static final ProcedureCategoryCodesSNOMEDCT value387713003 =
       ProcedureCategoryCodesSNOMEDCT._(
-    value: '387713003',
+    '387713003',
   );
 
   /// value103693007
   static final ProcedureCategoryCodesSNOMEDCT value103693007 =
       ProcedureCategoryCodesSNOMEDCT._(
-    value: '103693007',
+    '103693007',
   );
 
   /// value46947000
   static final ProcedureCategoryCodesSNOMEDCT value46947000 =
       ProcedureCategoryCodesSNOMEDCT._(
-    value: '46947000',
+    '46947000',
   );
 
   /// value410606002
   static final ProcedureCategoryCodesSNOMEDCT value410606002 =
       ProcedureCategoryCodesSNOMEDCT._(
-    value: '410606002',
+    '410606002',
   );
 
   /// For instances where an Element is present but not value
 
   static final ProcedureCategoryCodesSNOMEDCT elementOnly =
-      ProcedureCategoryCodesSNOMEDCT._(value: '');
+      ProcedureCategoryCodesSNOMEDCT._('');
 
   /// List of all enum-like values
   static final List<ProcedureCategoryCodesSNOMEDCT> values = [
@@ -90,13 +90,13 @@ class ProcedureCategoryCodesSNOMEDCT extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ProcedureCategoryCodesSNOMEDCT clone() => ProcedureCategoryCodesSNOMEDCT._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ProcedureCategoryCodesSNOMEDCT withElement(Element? newElement) {
-    return ProcedureCategoryCodesSNOMEDCT._(value: value, element: newElement);
+    return ProcedureCategoryCodesSNOMEDCT._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -126,7 +126,7 @@ class ProcedureCategoryCodesSNOMEDCT extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ProcedureCategoryCodesSNOMEDCT._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

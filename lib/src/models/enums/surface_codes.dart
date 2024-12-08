@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value set includes a smattering of FDI tooth surface codes.
 class SurfaceCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  SurfaceCodes._({
-    super.value,
+  SurfaceCodes._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,67 +26,67 @@ class SurfaceCodes extends PrimitiveType<String> {
         'SurfaceCodes cannot be constructed from JSON.',
       );
     }
-    return SurfaceCodes._(value: value, element: element);
+    return SurfaceCodes._(value, element: element);
   }
 
   /// M
   static final SurfaceCodes M = SurfaceCodes._(
-    value: 'M',
+    'M',
   );
 
   /// O
   static final SurfaceCodes O = SurfaceCodes._(
-    value: 'O',
+    'O',
   );
 
   /// I
   static final SurfaceCodes I = SurfaceCodes._(
-    value: 'I',
+    'I',
   );
 
   /// D
   static final SurfaceCodes D = SurfaceCodes._(
-    value: 'D',
+    'D',
   );
 
   /// B
   static final SurfaceCodes B = SurfaceCodes._(
-    value: 'B',
+    'B',
   );
 
   /// V
   static final SurfaceCodes V = SurfaceCodes._(
-    value: 'V',
+    'V',
   );
 
   /// L
   static final SurfaceCodes L = SurfaceCodes._(
-    value: 'L',
+    'L',
   );
 
   /// MO
   static final SurfaceCodes MO = SurfaceCodes._(
-    value: 'MO',
+    'MO',
   );
 
   /// DO
   static final SurfaceCodes DO = SurfaceCodes._(
-    value: 'DO',
+    'DO',
   );
 
   /// DI
   static final SurfaceCodes DI = SurfaceCodes._(
-    value: 'DI',
+    'DI',
   );
 
   /// MOD
   static final SurfaceCodes MOD = SurfaceCodes._(
-    value: 'MOD',
+    'MOD',
   );
 
   /// For instances where an Element is present but not value
 
-  static final SurfaceCodes elementOnly = SurfaceCodes._(value: '');
+  static final SurfaceCodes elementOnly = SurfaceCodes._('');
 
   /// List of all enum-like values
   static final List<SurfaceCodes> values = [
@@ -106,13 +106,13 @@ class SurfaceCodes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   SurfaceCodes clone() => SurfaceCodes._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   SurfaceCodes withElement(Element? newElement) {
-    return SurfaceCodes._(value: value, element: newElement);
+    return SurfaceCodes._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -142,7 +142,7 @@ class SurfaceCodes extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return SurfaceCodes._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

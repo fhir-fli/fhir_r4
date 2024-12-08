@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The availability status reason of the device.
 class FHIRDeviceStatusReason extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  FHIRDeviceStatusReason._({
-    super.value,
+  FHIRDeviceStatusReason._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,54 +26,54 @@ class FHIRDeviceStatusReason extends PrimitiveType<String> {
         'FHIRDeviceStatusReason cannot be constructed from JSON.',
       );
     }
-    return FHIRDeviceStatusReason._(value: value, element: element);
+    return FHIRDeviceStatusReason._(value, element: element);
   }
 
   /// online
   static final FHIRDeviceStatusReason online = FHIRDeviceStatusReason._(
-    value: 'online',
+    'online',
   );
 
   /// paused
   static final FHIRDeviceStatusReason paused = FHIRDeviceStatusReason._(
-    value: 'paused',
+    'paused',
   );
 
   /// standby
   static final FHIRDeviceStatusReason standby = FHIRDeviceStatusReason._(
-    value: 'standby',
+    'standby',
   );
 
   /// offline
   static final FHIRDeviceStatusReason offline = FHIRDeviceStatusReason._(
-    value: 'offline',
+    'offline',
   );
 
   /// not_ready
   static final FHIRDeviceStatusReason not_ready = FHIRDeviceStatusReason._(
-    value: 'not-ready',
+    'not-ready',
   );
 
   /// transduc_discon
   static final FHIRDeviceStatusReason transduc_discon =
       FHIRDeviceStatusReason._(
-    value: 'transduc-discon',
+    'transduc-discon',
   );
 
   /// hw_discon
   static final FHIRDeviceStatusReason hw_discon = FHIRDeviceStatusReason._(
-    value: 'hw-discon',
+    'hw-discon',
   );
 
   /// off
   static final FHIRDeviceStatusReason off = FHIRDeviceStatusReason._(
-    value: 'off',
+    'off',
   );
 
   /// For instances where an Element is present but not value
 
   static final FHIRDeviceStatusReason elementOnly =
-      FHIRDeviceStatusReason._(value: '');
+      FHIRDeviceStatusReason._('');
 
   /// List of all enum-like values
   static final List<FHIRDeviceStatusReason> values = [
@@ -90,13 +90,13 @@ class FHIRDeviceStatusReason extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   FHIRDeviceStatusReason clone() => FHIRDeviceStatusReason._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   FHIRDeviceStatusReason withElement(Element? newElement) {
-    return FHIRDeviceStatusReason._(value: value, element: newElement);
+    return FHIRDeviceStatusReason._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -126,7 +126,7 @@ class FHIRDeviceStatusReason extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return FHIRDeviceStatusReason._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

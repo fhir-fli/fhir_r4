@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// A categorisation for a clinical use information item.
 class ClinicalUseDefinitionCategory extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ClinicalUseDefinitionCategory._({
-    super.value,
+  ClinicalUseDefinitionCategory._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,31 +26,31 @@ class ClinicalUseDefinitionCategory extends PrimitiveType<String> {
         'ClinicalUseDefinitionCategory cannot be constructed from JSON.',
       );
     }
-    return ClinicalUseDefinitionCategory._(value: value, element: element);
+    return ClinicalUseDefinitionCategory._(value, element: element);
   }
 
   /// Pregnancy
   static final ClinicalUseDefinitionCategory Pregnancy =
       ClinicalUseDefinitionCategory._(
-    value: 'Pregnancy',
+    'Pregnancy',
   );
 
   /// Overdose
   static final ClinicalUseDefinitionCategory Overdose =
       ClinicalUseDefinitionCategory._(
-    value: 'Overdose',
+    'Overdose',
   );
 
   /// DriveAndMachines
   static final ClinicalUseDefinitionCategory DriveAndMachines =
       ClinicalUseDefinitionCategory._(
-    value: 'DriveAndMachines',
+    'DriveAndMachines',
   );
 
   /// For instances where an Element is present but not value
 
   static final ClinicalUseDefinitionCategory elementOnly =
-      ClinicalUseDefinitionCategory._(value: '');
+      ClinicalUseDefinitionCategory._('');
 
   /// List of all enum-like values
   static final List<ClinicalUseDefinitionCategory> values = [
@@ -62,13 +62,13 @@ class ClinicalUseDefinitionCategory extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ClinicalUseDefinitionCategory clone() => ClinicalUseDefinitionCategory._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ClinicalUseDefinitionCategory withElement(Element? newElement) {
-    return ClinicalUseDefinitionCategory._(value: value, element: newElement);
+    return ClinicalUseDefinitionCategory._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -98,7 +98,7 @@ class ClinicalUseDefinitionCategory extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ClinicalUseDefinitionCategory._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

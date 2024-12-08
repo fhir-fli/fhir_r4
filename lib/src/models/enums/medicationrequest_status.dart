@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// MedicationRequest Status Codes
 class MedicationrequestStatus extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  MedicationrequestStatus._({
-    super.value,
+  MedicationrequestStatus._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,54 +26,54 @@ class MedicationrequestStatus extends PrimitiveType<String> {
         'MedicationrequestStatus cannot be constructed from JSON.',
       );
     }
-    return MedicationrequestStatus._(value: value, element: element);
+    return MedicationrequestStatus._(value, element: element);
   }
 
   /// active
   static final MedicationrequestStatus active = MedicationrequestStatus._(
-    value: 'active',
+    'active',
   );
 
   /// on_hold
   static final MedicationrequestStatus on_hold = MedicationrequestStatus._(
-    value: 'on-hold',
+    'on-hold',
   );
 
   /// cancelled
   static final MedicationrequestStatus cancelled = MedicationrequestStatus._(
-    value: 'cancelled',
+    'cancelled',
   );
 
   /// completed
   static final MedicationrequestStatus completed = MedicationrequestStatus._(
-    value: 'completed',
+    'completed',
   );
 
   /// entered_in_error
   static final MedicationrequestStatus entered_in_error =
       MedicationrequestStatus._(
-    value: 'entered-in-error',
+    'entered-in-error',
   );
 
   /// stopped
   static final MedicationrequestStatus stopped = MedicationrequestStatus._(
-    value: 'stopped',
+    'stopped',
   );
 
   /// draft
   static final MedicationrequestStatus draft = MedicationrequestStatus._(
-    value: 'draft',
+    'draft',
   );
 
   /// unknown
   static final MedicationrequestStatus unknown = MedicationrequestStatus._(
-    value: 'unknown',
+    'unknown',
   );
 
   /// For instances where an Element is present but not value
 
   static final MedicationrequestStatus elementOnly =
-      MedicationrequestStatus._(value: '');
+      MedicationrequestStatus._('');
 
   /// List of all enum-like values
   static final List<MedicationrequestStatus> values = [
@@ -90,13 +90,13 @@ class MedicationrequestStatus extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   MedicationrequestStatus clone() => MedicationrequestStatus._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   MedicationrequestStatus withElement(Element? newElement) {
-    return MedicationrequestStatus._(value: value, element: newElement);
+    return MedicationrequestStatus._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -126,7 +126,7 @@ class MedicationrequestStatus extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return MedicationrequestStatus._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

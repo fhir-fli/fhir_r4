@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Whether an operation is a normal operation or a query.
 class OperationKind extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  OperationKind._({
-    super.value,
+  OperationKind._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,22 +26,22 @@ class OperationKind extends PrimitiveType<String> {
         'OperationKind cannot be constructed from JSON.',
       );
     }
-    return OperationKind._(value: value, element: element);
+    return OperationKind._(value, element: element);
   }
 
   /// operation
   static final OperationKind operation = OperationKind._(
-    value: 'operation',
+    'operation',
   );
 
   /// query
   static final OperationKind query = OperationKind._(
-    value: 'query',
+    'query',
   );
 
   /// For instances where an Element is present but not value
 
-  static final OperationKind elementOnly = OperationKind._(value: '');
+  static final OperationKind elementOnly = OperationKind._('');
 
   /// List of all enum-like values
   static final List<OperationKind> values = [
@@ -52,13 +52,13 @@ class OperationKind extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   OperationKind clone() => OperationKind._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   OperationKind withElement(Element? newElement) {
-    return OperationKind._(value: value, element: newElement);
+    return OperationKind._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -88,7 +88,7 @@ class OperationKind extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return OperationKind._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

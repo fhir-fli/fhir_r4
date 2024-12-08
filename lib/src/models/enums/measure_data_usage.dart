@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The intended usage for supplemental data elements in the measure.
 class MeasureDataUsage extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  MeasureDataUsage._({
-    super.value,
+  MeasureDataUsage._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,22 +26,22 @@ class MeasureDataUsage extends PrimitiveType<String> {
         'MeasureDataUsage cannot be constructed from JSON.',
       );
     }
-    return MeasureDataUsage._(value: value, element: element);
+    return MeasureDataUsage._(value, element: element);
   }
 
   /// supplemental_data
   static final MeasureDataUsage supplemental_data = MeasureDataUsage._(
-    value: 'supplemental-data',
+    'supplemental-data',
   );
 
   /// risk_adjustment_factor
   static final MeasureDataUsage risk_adjustment_factor = MeasureDataUsage._(
-    value: 'risk-adjustment-factor',
+    'risk-adjustment-factor',
   );
 
   /// For instances where an Element is present but not value
 
-  static final MeasureDataUsage elementOnly = MeasureDataUsage._(value: '');
+  static final MeasureDataUsage elementOnly = MeasureDataUsage._('');
 
   /// List of all enum-like values
   static final List<MeasureDataUsage> values = [
@@ -52,13 +52,13 @@ class MeasureDataUsage extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   MeasureDataUsage clone() => MeasureDataUsage._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   MeasureDataUsage withElement(Element? newElement) {
-    return MeasureDataUsage._(value: value, element: newElement);
+    return MeasureDataUsage._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -88,7 +88,7 @@ class MeasureDataUsage extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return MeasureDataUsage._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

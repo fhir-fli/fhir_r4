@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This example FHIR value set is comprised of lifecycle event codes. The FHIR Actor value set is based on DICOM Audit Message, ParticipantObjectDataLifeCycle; ISO Standard, TS 21089-2017;
 class ObjectLifecycleEvents extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ObjectLifecycleEvents._({
-    super.value,
+  ObjectLifecycleEvents._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,223 +26,222 @@ class ObjectLifecycleEvents extends PrimitiveType<String> {
         'ObjectLifecycleEvents cannot be constructed from JSON.',
       );
     }
-    return ObjectLifecycleEvents._(value: value, element: element);
+    return ObjectLifecycleEvents._(value, element: element);
   }
 
   /// value1
   static final ObjectLifecycleEvents value1 = ObjectLifecycleEvents._(
-    value: '1',
+    '1',
   );
 
   /// value2
   static final ObjectLifecycleEvents value2 = ObjectLifecycleEvents._(
-    value: '2',
+    '2',
   );
 
   /// value3
   static final ObjectLifecycleEvents value3 = ObjectLifecycleEvents._(
-    value: '3',
+    '3',
   );
 
   /// value4
   static final ObjectLifecycleEvents value4 = ObjectLifecycleEvents._(
-    value: '4',
+    '4',
   );
 
   /// value5
   static final ObjectLifecycleEvents value5 = ObjectLifecycleEvents._(
-    value: '5',
+    '5',
   );
 
   /// value6
   static final ObjectLifecycleEvents value6 = ObjectLifecycleEvents._(
-    value: '6',
+    '6',
   );
 
   /// value7
   static final ObjectLifecycleEvents value7 = ObjectLifecycleEvents._(
-    value: '7',
+    '7',
   );
 
   /// value8
   static final ObjectLifecycleEvents value8 = ObjectLifecycleEvents._(
-    value: '8',
+    '8',
   );
 
   /// value9
   static final ObjectLifecycleEvents value9 = ObjectLifecycleEvents._(
-    value: '9',
+    '9',
   );
 
   /// value10
   static final ObjectLifecycleEvents value10 = ObjectLifecycleEvents._(
-    value: '10',
+    '10',
   );
 
   /// value11
   static final ObjectLifecycleEvents value11 = ObjectLifecycleEvents._(
-    value: '11',
+    '11',
   );
 
   /// value12
   static final ObjectLifecycleEvents value12 = ObjectLifecycleEvents._(
-    value: '12',
+    '12',
   );
 
   /// value13
   static final ObjectLifecycleEvents value13 = ObjectLifecycleEvents._(
-    value: '13',
+    '13',
   );
 
   /// value14
   static final ObjectLifecycleEvents value14 = ObjectLifecycleEvents._(
-    value: '14',
+    '14',
   );
 
   /// value15
   static final ObjectLifecycleEvents value15 = ObjectLifecycleEvents._(
-    value: '15',
+    '15',
   );
 
   /// access
   static final ObjectLifecycleEvents access = ObjectLifecycleEvents._(
-    value: 'access',
+    'access',
   );
 
   /// hold
   static final ObjectLifecycleEvents hold = ObjectLifecycleEvents._(
-    value: 'hold',
+    'hold',
   );
 
   /// amend
   static final ObjectLifecycleEvents amend = ObjectLifecycleEvents._(
-    value: 'amend',
+    'amend',
   );
 
   /// archive
   static final ObjectLifecycleEvents archive = ObjectLifecycleEvents._(
-    value: 'archive',
+    'archive',
   );
 
   /// attest
   static final ObjectLifecycleEvents attest = ObjectLifecycleEvents._(
-    value: 'attest',
+    'attest',
   );
 
   /// decrypt
   static final ObjectLifecycleEvents decrypt = ObjectLifecycleEvents._(
-    value: 'decrypt',
+    'decrypt',
   );
 
   /// deidentify
   static final ObjectLifecycleEvents deidentify = ObjectLifecycleEvents._(
-    value: 'deidentify',
+    'deidentify',
   );
 
   /// deprecate
   static final ObjectLifecycleEvents deprecate = ObjectLifecycleEvents._(
-    value: 'deprecate',
+    'deprecate',
   );
 
   /// destroy
   static final ObjectLifecycleEvents destroy = ObjectLifecycleEvents._(
-    value: 'destroy',
+    'destroy',
   );
 
   /// disclose
   static final ObjectLifecycleEvents disclose = ObjectLifecycleEvents._(
-    value: 'disclose',
+    'disclose',
   );
 
   /// encrypt
   static final ObjectLifecycleEvents encrypt = ObjectLifecycleEvents._(
-    value: 'encrypt',
+    'encrypt',
   );
 
   /// extract
   static final ObjectLifecycleEvents extract = ObjectLifecycleEvents._(
-    value: 'extract',
+    'extract',
   );
 
   /// link
   static final ObjectLifecycleEvents link = ObjectLifecycleEvents._(
-    value: 'link',
+    'link',
   );
 
   /// merge
   static final ObjectLifecycleEvents merge = ObjectLifecycleEvents._(
-    value: 'merge',
+    'merge',
   );
 
   /// originate
   static final ObjectLifecycleEvents originate = ObjectLifecycleEvents._(
-    value: 'originate',
+    'originate',
   );
 
   /// pseudonymize
   static final ObjectLifecycleEvents pseudonymize = ObjectLifecycleEvents._(
-    value: 'pseudonymize',
+    'pseudonymize',
   );
 
   /// reactivate
   static final ObjectLifecycleEvents reactivate = ObjectLifecycleEvents._(
-    value: 'reactivate',
+    'reactivate',
   );
 
   /// receive
   static final ObjectLifecycleEvents receive = ObjectLifecycleEvents._(
-    value: 'receive',
+    'receive',
   );
 
   /// reidentify
   static final ObjectLifecycleEvents reidentify = ObjectLifecycleEvents._(
-    value: 'reidentify',
+    'reidentify',
   );
 
   /// unhold
   static final ObjectLifecycleEvents unhold = ObjectLifecycleEvents._(
-    value: 'unhold',
+    'unhold',
   );
 
   /// report
   static final ObjectLifecycleEvents report = ObjectLifecycleEvents._(
-    value: 'report',
+    'report',
   );
 
   /// restore
   static final ObjectLifecycleEvents restore = ObjectLifecycleEvents._(
-    value: 'restore',
+    'restore',
   );
 
   /// transform
   static final ObjectLifecycleEvents transform = ObjectLifecycleEvents._(
-    value: 'transform',
+    'transform',
   );
 
   /// transmit
   static final ObjectLifecycleEvents transmit = ObjectLifecycleEvents._(
-    value: 'transmit',
+    'transmit',
   );
 
   /// unlink
   static final ObjectLifecycleEvents unlink = ObjectLifecycleEvents._(
-    value: 'unlink',
+    'unlink',
   );
 
   /// unmerge
   static final ObjectLifecycleEvents unmerge = ObjectLifecycleEvents._(
-    value: 'unmerge',
+    'unmerge',
   );
 
   /// verify
   static final ObjectLifecycleEvents verify = ObjectLifecycleEvents._(
-    value: 'verify',
+    'verify',
   );
 
   /// For instances where an Element is present but not value
 
-  static final ObjectLifecycleEvents elementOnly =
-      ObjectLifecycleEvents._(value: '');
+  static final ObjectLifecycleEvents elementOnly = ObjectLifecycleEvents._('');
 
   /// List of all enum-like values
   static final List<ObjectLifecycleEvents> values = [
@@ -293,13 +292,13 @@ class ObjectLifecycleEvents extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ObjectLifecycleEvents clone() => ObjectLifecycleEvents._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ObjectLifecycleEvents withElement(Element? newElement) {
-    return ObjectLifecycleEvents._(value: value, element: newElement);
+    return ObjectLifecycleEvents._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -329,7 +328,7 @@ class ObjectLifecycleEvents extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ObjectLifecycleEvents._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

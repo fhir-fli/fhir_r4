@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Classification of relationship between a therapy and a contraindication or an indication.
 class TherapyRelationshipType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  TherapyRelationshipType._({
-    super.value,
+  TherapyRelationshipType._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,67 +26,67 @@ class TherapyRelationshipType extends PrimitiveType<String> {
         'TherapyRelationshipType cannot be constructed from JSON.',
       );
     }
-    return TherapyRelationshipType._(value: value, element: element);
+    return TherapyRelationshipType._(value, element: element);
   }
 
   /// contraindicated_only_with
   static final TherapyRelationshipType contraindicated_only_with =
       TherapyRelationshipType._(
-    value: 'contraindicated-only-with',
+    'contraindicated-only-with',
   );
 
   /// contraindicated_except_with
   static final TherapyRelationshipType contraindicated_except_with =
       TherapyRelationshipType._(
-    value: 'contraindicated-except-with',
+    'contraindicated-except-with',
   );
 
   /// indicated_only_with
   static final TherapyRelationshipType indicated_only_with =
       TherapyRelationshipType._(
-    value: 'indicated-only-with',
+    'indicated-only-with',
   );
 
   /// indicated_except_with
   static final TherapyRelationshipType indicated_except_with =
       TherapyRelationshipType._(
-    value: 'indicated-except-with',
+    'indicated-except-with',
   );
 
   /// indicated_only_before
   static final TherapyRelationshipType indicated_only_before =
       TherapyRelationshipType._(
-    value: 'indicated-only-before',
+    'indicated-only-before',
   );
 
   /// replace_other_therapy
   static final TherapyRelationshipType replace_other_therapy =
       TherapyRelationshipType._(
-    value: 'replace-other-therapy',
+    'replace-other-therapy',
   );
 
   /// replace_other_therapy_contraindicated
   static final TherapyRelationshipType replace_other_therapy_contraindicated =
       TherapyRelationshipType._(
-    value: 'replace-other-therapy-contraindicated',
+    'replace-other-therapy-contraindicated',
   );
 
   /// replace_other_therapy_not_tolerated
   static final TherapyRelationshipType replace_other_therapy_not_tolerated =
       TherapyRelationshipType._(
-    value: 'replace-other-therapy-not-tolerated',
+    'replace-other-therapy-not-tolerated',
   );
 
   /// replace_other_therapy_not_effective
   static final TherapyRelationshipType replace_other_therapy_not_effective =
       TherapyRelationshipType._(
-    value: 'replace-other-therapy-not-effective',
+    'replace-other-therapy-not-effective',
   );
 
   /// For instances where an Element is present but not value
 
   static final TherapyRelationshipType elementOnly =
-      TherapyRelationshipType._(value: '');
+      TherapyRelationshipType._('');
 
   /// List of all enum-like values
   static final List<TherapyRelationshipType> values = [
@@ -104,13 +104,13 @@ class TherapyRelationshipType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   TherapyRelationshipType clone() => TherapyRelationshipType._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   TherapyRelationshipType withElement(Element? newElement) {
-    return TherapyRelationshipType._(value: value, element: newElement);
+    return TherapyRelationshipType._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -140,7 +140,7 @@ class TherapyRelationshipType extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return TherapyRelationshipType._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

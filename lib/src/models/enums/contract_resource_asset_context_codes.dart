@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value set contract specific codes for asset context.
 class ContractResourceAssetContextCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ContractResourceAssetContextCodes._({
-    super.value,
+  ContractResourceAssetContextCodes._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,19 +26,19 @@ class ContractResourceAssetContextCodes extends PrimitiveType<String> {
         'ContractResourceAssetContextCodes cannot be constructed from JSON.',
       );
     }
-    return ContractResourceAssetContextCodes._(value: value, element: element);
+    return ContractResourceAssetContextCodes._(value, element: element);
   }
 
   /// custodian
   static final ContractResourceAssetContextCodes custodian =
       ContractResourceAssetContextCodes._(
-    value: 'custodian',
+    'custodian',
   );
 
   /// For instances where an Element is present but not value
 
   static final ContractResourceAssetContextCodes elementOnly =
-      ContractResourceAssetContextCodes._(value: '');
+      ContractResourceAssetContextCodes._('');
 
   /// List of all enum-like values
   static final List<ContractResourceAssetContextCodes> values = [
@@ -49,14 +49,13 @@ class ContractResourceAssetContextCodes extends PrimitiveType<String> {
   @override
   ContractResourceAssetContextCodes clone() =>
       ContractResourceAssetContextCodes._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ContractResourceAssetContextCodes withElement(Element? newElement) {
-    return ContractResourceAssetContextCodes._(
-        value: value, element: newElement);
+    return ContractResourceAssetContextCodes._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -86,7 +85,7 @@ class ContractResourceAssetContextCodes extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ContractResourceAssetContextCodes._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

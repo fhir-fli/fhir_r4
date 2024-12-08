@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Used to code the format of the display string.
 class ContributorSummaryStyle extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ContributorSummaryStyle._({
-    super.value,
+  ContributorSummaryStyle._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,101 +26,101 @@ class ContributorSummaryStyle extends PrimitiveType<String> {
         'ContributorSummaryStyle cannot be constructed from JSON.',
       );
     }
-    return ContributorSummaryStyle._(value: value, element: element);
+    return ContributorSummaryStyle._(value, element: element);
   }
 
   /// a1full
   static final ContributorSummaryStyle a1full = ContributorSummaryStyle._(
-    value: 'a1full',
+    'a1full',
   );
 
   /// a1init
   static final ContributorSummaryStyle a1init = ContributorSummaryStyle._(
-    value: 'a1init',
+    'a1init',
   );
 
   /// a3full
   static final ContributorSummaryStyle a3full = ContributorSummaryStyle._(
-    value: 'a3full',
+    'a3full',
   );
 
   /// a3init
   static final ContributorSummaryStyle a3init = ContributorSummaryStyle._(
-    value: 'a3init',
+    'a3init',
   );
 
   /// a6full
   static final ContributorSummaryStyle a6full = ContributorSummaryStyle._(
-    value: 'a6full',
+    'a6full',
   );
 
   /// a6init
   static final ContributorSummaryStyle a6init = ContributorSummaryStyle._(
-    value: 'a6init',
+    'a6init',
   );
 
   /// aallfull
   static final ContributorSummaryStyle aallfull = ContributorSummaryStyle._(
-    value: 'aallfull',
+    'aallfull',
   );
 
   /// aallfullwithand
   static final ContributorSummaryStyle aallfullwithand =
       ContributorSummaryStyle._(
-    value: 'aallfullwithand',
+    'aallfullwithand',
   );
 
   /// aallfullwithampersand
   static final ContributorSummaryStyle aallfullwithampersand =
       ContributorSummaryStyle._(
-    value: 'aallfullwithampersand',
+    'aallfullwithampersand',
   );
 
   /// aallinit
   static final ContributorSummaryStyle aallinit = ContributorSummaryStyle._(
-    value: 'aallinit',
+    'aallinit',
   );
 
   /// aallinitwithand
   static final ContributorSummaryStyle aallinitwithand =
       ContributorSummaryStyle._(
-    value: 'aallinitwithand',
+    'aallinitwithand',
   );
 
   /// aallinitwithampersand
   static final ContributorSummaryStyle aallinitwithampersand =
       ContributorSummaryStyle._(
-    value: 'aallinitwithampersand',
+    'aallinitwithampersand',
   );
 
   /// contr_full_by_person
   static final ContributorSummaryStyle contr_full_by_person =
       ContributorSummaryStyle._(
-    value: 'contr-full-by-person',
+    'contr-full-by-person',
   );
 
   /// contr_init_by_person
   static final ContributorSummaryStyle contr_init_by_person =
       ContributorSummaryStyle._(
-    value: 'contr-init-by-person',
+    'contr-init-by-person',
   );
 
   /// contr_full_by_contr
   static final ContributorSummaryStyle contr_full_by_contr =
       ContributorSummaryStyle._(
-    value: 'contr-full-by-contr',
+    'contr-full-by-contr',
   );
 
   /// contr_init_by_contr
   static final ContributorSummaryStyle contr_init_by_contr =
       ContributorSummaryStyle._(
-    value: 'contr-init-by-contr',
+    'contr-init-by-contr',
   );
 
   /// For instances where an Element is present but not value
 
   static final ContributorSummaryStyle elementOnly =
-      ContributorSummaryStyle._(value: '');
+      ContributorSummaryStyle._('');
 
   /// List of all enum-like values
   static final List<ContributorSummaryStyle> values = [
@@ -145,13 +145,13 @@ class ContributorSummaryStyle extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ContributorSummaryStyle clone() => ContributorSummaryStyle._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ContributorSummaryStyle withElement(Element? newElement) {
-    return ContributorSummaryStyle._(value: value, element: newElement);
+    return ContributorSummaryStyle._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -181,7 +181,7 @@ class ContributorSummaryStyle extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ContributorSummaryStyle._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

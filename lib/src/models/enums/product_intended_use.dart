@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The overall intended use of a product.
 class ProductIntendedUse extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ProductIntendedUse._({
-    super.value,
+  ProductIntendedUse._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,37 +26,37 @@ class ProductIntendedUse extends PrimitiveType<String> {
         'ProductIntendedUse cannot be constructed from JSON.',
       );
     }
-    return ProductIntendedUse._(value: value, element: element);
+    return ProductIntendedUse._(value, element: element);
   }
 
   /// Prevention
   static final ProductIntendedUse Prevention = ProductIntendedUse._(
-    value: 'Prevention',
+    'Prevention',
   );
 
   /// Treatment
   static final ProductIntendedUse Treatment = ProductIntendedUse._(
-    value: 'Treatment',
+    'Treatment',
   );
 
   /// Alleviation
   static final ProductIntendedUse Alleviation = ProductIntendedUse._(
-    value: 'Alleviation',
+    'Alleviation',
   );
 
   /// Diagnosis
   static final ProductIntendedUse Diagnosis = ProductIntendedUse._(
-    value: 'Diagnosis',
+    'Diagnosis',
   );
 
   /// Monitoring
   static final ProductIntendedUse Monitoring = ProductIntendedUse._(
-    value: 'Monitoring',
+    'Monitoring',
   );
 
   /// For instances where an Element is present but not value
 
-  static final ProductIntendedUse elementOnly = ProductIntendedUse._(value: '');
+  static final ProductIntendedUse elementOnly = ProductIntendedUse._('');
 
   /// List of all enum-like values
   static final List<ProductIntendedUse> values = [
@@ -70,13 +70,13 @@ class ProductIntendedUse extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ProductIntendedUse clone() => ProductIntendedUse._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ProductIntendedUse withElement(Element? newElement) {
-    return ProductIntendedUse._(value: value, element: newElement);
+    return ProductIntendedUse._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -106,7 +106,7 @@ class ProductIntendedUse extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ProductIntendedUse._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

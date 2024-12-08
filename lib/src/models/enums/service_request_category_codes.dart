@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// An example value set of SNOMED CT concepts that can classify a requested service
 class ServiceRequestCategoryCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ServiceRequestCategoryCodes._({
-    super.value,
+  ServiceRequestCategoryCodes._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,43 +26,43 @@ class ServiceRequestCategoryCodes extends PrimitiveType<String> {
         'ServiceRequestCategoryCodes cannot be constructed from JSON.',
       );
     }
-    return ServiceRequestCategoryCodes._(value: value, element: element);
+    return ServiceRequestCategoryCodes._(value, element: element);
   }
 
   /// value108252007
   static final ServiceRequestCategoryCodes value108252007 =
       ServiceRequestCategoryCodes._(
-    value: '108252007',
+    '108252007',
   );
 
   /// value363679005
   static final ServiceRequestCategoryCodes value363679005 =
       ServiceRequestCategoryCodes._(
-    value: '363679005',
+    '363679005',
   );
 
   /// value409063005
   static final ServiceRequestCategoryCodes value409063005 =
       ServiceRequestCategoryCodes._(
-    value: '409063005',
+    '409063005',
   );
 
   /// value409073007
   static final ServiceRequestCategoryCodes value409073007 =
       ServiceRequestCategoryCodes._(
-    value: '409073007',
+    '409073007',
   );
 
   /// value387713003
   static final ServiceRequestCategoryCodes value387713003 =
       ServiceRequestCategoryCodes._(
-    value: '387713003',
+    '387713003',
   );
 
   /// For instances where an Element is present but not value
 
   static final ServiceRequestCategoryCodes elementOnly =
-      ServiceRequestCategoryCodes._(value: '');
+      ServiceRequestCategoryCodes._('');
 
   /// List of all enum-like values
   static final List<ServiceRequestCategoryCodes> values = [
@@ -76,13 +76,13 @@ class ServiceRequestCategoryCodes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ServiceRequestCategoryCodes clone() => ServiceRequestCategoryCodes._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ServiceRequestCategoryCodes withElement(Element? newElement) {
-    return ServiceRequestCategoryCodes._(value: value, element: newElement);
+    return ServiceRequestCategoryCodes._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -112,7 +112,7 @@ class ServiceRequestCategoryCodes extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ServiceRequestCategoryCodes._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

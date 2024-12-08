@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// SHALL applications comply with this constraint?
 class ConstraintSeverity extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ConstraintSeverity._({
-    super.value,
+  ConstraintSeverity._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,22 +26,22 @@ class ConstraintSeverity extends PrimitiveType<String> {
         'ConstraintSeverity cannot be constructed from JSON.',
       );
     }
-    return ConstraintSeverity._(value: value, element: element);
+    return ConstraintSeverity._(value, element: element);
   }
 
   /// error
   static final ConstraintSeverity error = ConstraintSeverity._(
-    value: 'error',
+    'error',
   );
 
   /// warning
   static final ConstraintSeverity warning = ConstraintSeverity._(
-    value: 'warning',
+    'warning',
   );
 
   /// For instances where an Element is present but not value
 
-  static final ConstraintSeverity elementOnly = ConstraintSeverity._(value: '');
+  static final ConstraintSeverity elementOnly = ConstraintSeverity._('');
 
   /// List of all enum-like values
   static final List<ConstraintSeverity> values = [
@@ -52,13 +52,13 @@ class ConstraintSeverity extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ConstraintSeverity clone() => ConstraintSeverity._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ConstraintSeverity withElement(Element? newElement) {
-    return ConstraintSeverity._(value: value, element: newElement);
+    return ConstraintSeverity._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -88,7 +88,7 @@ class ConstraintSeverity extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ConstraintSeverity._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

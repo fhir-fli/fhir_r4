@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Citation status type
 class CitationStatusType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  CitationStatusType._({
-    super.value,
+  CitationStatusType._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,166 +26,166 @@ class CitationStatusType extends PrimitiveType<String> {
         'CitationStatusType cannot be constructed from JSON.',
       );
     }
-    return CitationStatusType._(value: value, element: element);
+    return CitationStatusType._(value, element: element);
   }
 
   /// pubmed_pubstatus_received
   static final CitationStatusType pubmed_pubstatus_received =
       CitationStatusType._(
-    value: 'pubmed-pubstatus-received',
+    'pubmed-pubstatus-received',
   );
 
   /// pubmed_pubstatus_accepted
   static final CitationStatusType pubmed_pubstatus_accepted =
       CitationStatusType._(
-    value: 'pubmed-pubstatus-accepted',
+    'pubmed-pubstatus-accepted',
   );
 
   /// pubmed_pubstatus_epublish
   static final CitationStatusType pubmed_pubstatus_epublish =
       CitationStatusType._(
-    value: 'pubmed-pubstatus-epublish',
+    'pubmed-pubstatus-epublish',
   );
 
   /// pubmed_pubstatus_ppublish
   static final CitationStatusType pubmed_pubstatus_ppublish =
       CitationStatusType._(
-    value: 'pubmed-pubstatus-ppublish',
+    'pubmed-pubstatus-ppublish',
   );
 
   /// pubmed_pubstatus_revised
   static final CitationStatusType pubmed_pubstatus_revised =
       CitationStatusType._(
-    value: 'pubmed-pubstatus-revised',
+    'pubmed-pubstatus-revised',
   );
 
   /// pubmed_pubstatus_aheadofprint
   static final CitationStatusType pubmed_pubstatus_aheadofprint =
       CitationStatusType._(
-    value: 'pubmed-pubstatus-aheadofprint',
+    'pubmed-pubstatus-aheadofprint',
   );
 
   /// pubmed_pubstatus_retracted
   static final CitationStatusType pubmed_pubstatus_retracted =
       CitationStatusType._(
-    value: 'pubmed-pubstatus-retracted',
+    'pubmed-pubstatus-retracted',
   );
 
   /// pubmed_pubstatus_ecollection
   static final CitationStatusType pubmed_pubstatus_ecollection =
       CitationStatusType._(
-    value: 'pubmed-pubstatus-ecollection',
+    'pubmed-pubstatus-ecollection',
   );
 
   /// pubmed_pubstatus_pmc
   static final CitationStatusType pubmed_pubstatus_pmc = CitationStatusType._(
-    value: 'pubmed-pubstatus-pmc',
+    'pubmed-pubstatus-pmc',
   );
 
   /// pubmed_pubstatus_pmcr
   static final CitationStatusType pubmed_pubstatus_pmcr = CitationStatusType._(
-    value: 'pubmed-pubstatus-pmcr',
+    'pubmed-pubstatus-pmcr',
   );
 
   /// pubmed_pubstatus_pubmed
   static final CitationStatusType pubmed_pubstatus_pubmed =
       CitationStatusType._(
-    value: 'pubmed-pubstatus-pubmed',
+    'pubmed-pubstatus-pubmed',
   );
 
   /// pubmed_pubstatus_pubmedr
   static final CitationStatusType pubmed_pubstatus_pubmedr =
       CitationStatusType._(
-    value: 'pubmed-pubstatus-pubmedr',
+    'pubmed-pubstatus-pubmedr',
   );
 
   /// pubmed_pubstatus_premedline
   static final CitationStatusType pubmed_pubstatus_premedline =
       CitationStatusType._(
-    value: 'pubmed-pubstatus-premedline',
+    'pubmed-pubstatus-premedline',
   );
 
   /// pubmed_pubstatus_medline
   static final CitationStatusType pubmed_pubstatus_medline =
       CitationStatusType._(
-    value: 'pubmed-pubstatus-medline',
+    'pubmed-pubstatus-medline',
   );
 
   /// pubmed_pubstatus_medliner
   static final CitationStatusType pubmed_pubstatus_medliner =
       CitationStatusType._(
-    value: 'pubmed-pubstatus-medliner',
+    'pubmed-pubstatus-medliner',
   );
 
   /// pubmed_pubstatus_entrez
   static final CitationStatusType pubmed_pubstatus_entrez =
       CitationStatusType._(
-    value: 'pubmed-pubstatus-entrez',
+    'pubmed-pubstatus-entrez',
   );
 
   /// pubmed_pubstatus_pmc_release
   static final CitationStatusType pubmed_pubstatus_pmc_release =
       CitationStatusType._(
-    value: 'pubmed-pubstatus-pmc-release',
+    'pubmed-pubstatus-pmc-release',
   );
 
   /// medline_completed
   static final CitationStatusType medline_completed = CitationStatusType._(
-    value: 'medline-completed',
+    'medline-completed',
   );
 
   /// medline_in_process
   static final CitationStatusType medline_in_process = CitationStatusType._(
-    value: 'medline-in-process',
+    'medline-in-process',
   );
 
   /// medline_pubmed_not_medline
   static final CitationStatusType medline_pubmed_not_medline =
       CitationStatusType._(
-    value: 'medline-pubmed-not-medline',
+    'medline-pubmed-not-medline',
   );
 
   /// medline_in_data_review
   static final CitationStatusType medline_in_data_review = CitationStatusType._(
-    value: 'medline-in-data-review',
+    'medline-in-data-review',
   );
 
   /// medline_publisher
   static final CitationStatusType medline_publisher = CitationStatusType._(
-    value: 'medline-publisher',
+    'medline-publisher',
   );
 
   /// medline_medline
   static final CitationStatusType medline_medline = CitationStatusType._(
-    value: 'medline-medline',
+    'medline-medline',
   );
 
   /// medline_oldmedline
   static final CitationStatusType medline_oldmedline = CitationStatusType._(
-    value: 'medline-oldmedline',
+    'medline-oldmedline',
   );
 
   /// pubmed_publication_status_ppublish
   static final CitationStatusType pubmed_publication_status_ppublish =
       CitationStatusType._(
-    value: 'pubmed-publication-status-ppublish',
+    'pubmed-publication-status-ppublish',
   );
 
   /// pubmed_publication_status_epublish
   static final CitationStatusType pubmed_publication_status_epublish =
       CitationStatusType._(
-    value: 'pubmed-publication-status-epublish',
+    'pubmed-publication-status-epublish',
   );
 
   /// pubmed_publication_status_aheadofprint
   static final CitationStatusType pubmed_publication_status_aheadofprint =
       CitationStatusType._(
-    value: 'pubmed-publication-status-aheadofprint',
+    'pubmed-publication-status-aheadofprint',
   );
 
   /// For instances where an Element is present but not value
 
-  static final CitationStatusType elementOnly = CitationStatusType._(value: '');
+  static final CitationStatusType elementOnly = CitationStatusType._('');
 
   /// List of all enum-like values
   static final List<CitationStatusType> values = [
@@ -221,13 +221,13 @@ class CitationStatusType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   CitationStatusType clone() => CitationStatusType._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   CitationStatusType withElement(Element? newElement) {
-    return CitationStatusType._(value: value, element: newElement);
+    return CitationStatusType._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -257,7 +257,7 @@ class CitationStatusType extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return CitationStatusType._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Identifies the purpose for this identifier, if known .
 class IdentifierUse extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  IdentifierUse._({
-    super.value,
+  IdentifierUse._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,37 +26,37 @@ class IdentifierUse extends PrimitiveType<String> {
         'IdentifierUse cannot be constructed from JSON.',
       );
     }
-    return IdentifierUse._(value: value, element: element);
+    return IdentifierUse._(value, element: element);
   }
 
   /// usual
   static final IdentifierUse usual = IdentifierUse._(
-    value: 'usual',
+    'usual',
   );
 
   /// official
   static final IdentifierUse official = IdentifierUse._(
-    value: 'official',
+    'official',
   );
 
   /// temp
   static final IdentifierUse temp = IdentifierUse._(
-    value: 'temp',
+    'temp',
   );
 
   /// secondary
   static final IdentifierUse secondary = IdentifierUse._(
-    value: 'secondary',
+    'secondary',
   );
 
   /// old
   static final IdentifierUse old = IdentifierUse._(
-    value: 'old',
+    'old',
   );
 
   /// For instances where an Element is present but not value
 
-  static final IdentifierUse elementOnly = IdentifierUse._(value: '');
+  static final IdentifierUse elementOnly = IdentifierUse._('');
 
   /// List of all enum-like values
   static final List<IdentifierUse> values = [
@@ -70,13 +70,13 @@ class IdentifierUse extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   IdentifierUse clone() => IdentifierUse._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   IdentifierUse withElement(Element? newElement) {
-    return IdentifierUse._(value: value, element: newElement);
+    return IdentifierUse._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -106,7 +106,7 @@ class IdentifierUse extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return IdentifierUse._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

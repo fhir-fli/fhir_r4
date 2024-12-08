@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// How an extension context is interpreted.
 class ExtensionContextType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ExtensionContextType._({
-    super.value,
+  ExtensionContextType._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,28 +26,27 @@ class ExtensionContextType extends PrimitiveType<String> {
         'ExtensionContextType cannot be constructed from JSON.',
       );
     }
-    return ExtensionContextType._(value: value, element: element);
+    return ExtensionContextType._(value, element: element);
   }
 
   /// fhirpath
   static final ExtensionContextType fhirpath = ExtensionContextType._(
-    value: 'fhirpath',
+    'fhirpath',
   );
 
   /// element_
   static final ExtensionContextType element_ = ExtensionContextType._(
-    value: 'element',
+    'element',
   );
 
   /// extension_
   static final ExtensionContextType extensionValue = ExtensionContextType._(
-    value: 'extension',
+    'extension',
   );
 
   /// For instances where an Element is present but not value
 
-  static final ExtensionContextType elementOnly =
-      ExtensionContextType._(value: '');
+  static final ExtensionContextType elementOnly = ExtensionContextType._('');
 
   /// List of all enum-like values
   static final List<ExtensionContextType> values = [
@@ -59,13 +58,13 @@ class ExtensionContextType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ExtensionContextType clone() => ExtensionContextType._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ExtensionContextType withElement(Element? newElement) {
-    return ExtensionContextType._(value: value, element: newElement);
+    return ExtensionContextType._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -95,7 +94,7 @@ class ExtensionContextType extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ExtensionContextType._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

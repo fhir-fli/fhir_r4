@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value set includes example Procedure Type codes.
 class ExampleProcedureTypeCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ExampleProcedureTypeCodes._({
-    super.value,
+  ExampleProcedureTypeCodes._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,24 +26,24 @@ class ExampleProcedureTypeCodes extends PrimitiveType<String> {
         'ExampleProcedureTypeCodes cannot be constructed from JSON.',
       );
     }
-    return ExampleProcedureTypeCodes._(value: value, element: element);
+    return ExampleProcedureTypeCodes._(value, element: element);
   }
 
   /// primary
   static final ExampleProcedureTypeCodes primary = ExampleProcedureTypeCodes._(
-    value: 'primary',
+    'primary',
   );
 
   /// secondary
   static final ExampleProcedureTypeCodes secondary =
       ExampleProcedureTypeCodes._(
-    value: 'secondary',
+    'secondary',
   );
 
   /// For instances where an Element is present but not value
 
   static final ExampleProcedureTypeCodes elementOnly =
-      ExampleProcedureTypeCodes._(value: '');
+      ExampleProcedureTypeCodes._('');
 
   /// List of all enum-like values
   static final List<ExampleProcedureTypeCodes> values = [
@@ -54,13 +54,13 @@ class ExampleProcedureTypeCodes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ExampleProcedureTypeCodes clone() => ExampleProcedureTypeCodes._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ExampleProcedureTypeCodes withElement(Element? newElement) {
-    return ExampleProcedureTypeCodes._(value: value, element: newElement);
+    return ExampleProcedureTypeCodes._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -90,7 +90,7 @@ class ExampleProcedureTypeCodes extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ExampleProcedureTypeCodes._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Codes for the stage in the progression of a therapy from initial experimental use in humans in clinical trials to post-market evaluation.
 class ResearchStudyPhase extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ResearchStudyPhase._({
-    super.value,
+  ResearchStudyPhase._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,52 +26,52 @@ class ResearchStudyPhase extends PrimitiveType<String> {
         'ResearchStudyPhase cannot be constructed from JSON.',
       );
     }
-    return ResearchStudyPhase._(value: value, element: element);
+    return ResearchStudyPhase._(value, element: element);
   }
 
   /// n_a
   static final ResearchStudyPhase n_a = ResearchStudyPhase._(
-    value: 'n-a',
+    'n-a',
   );
 
   /// early_phase_1
   static final ResearchStudyPhase early_phase_1 = ResearchStudyPhase._(
-    value: 'early-phase-1',
+    'early-phase-1',
   );
 
   /// phase_1
   static final ResearchStudyPhase phase_1 = ResearchStudyPhase._(
-    value: 'phase-1',
+    'phase-1',
   );
 
   /// phase_1_phase_2
   static final ResearchStudyPhase phase_1_phase_2 = ResearchStudyPhase._(
-    value: 'phase-1-phase-2',
+    'phase-1-phase-2',
   );
 
   /// phase_2
   static final ResearchStudyPhase phase_2 = ResearchStudyPhase._(
-    value: 'phase-2',
+    'phase-2',
   );
 
   /// phase_2_phase_3
   static final ResearchStudyPhase phase_2_phase_3 = ResearchStudyPhase._(
-    value: 'phase-2-phase-3',
+    'phase-2-phase-3',
   );
 
   /// phase_3
   static final ResearchStudyPhase phase_3 = ResearchStudyPhase._(
-    value: 'phase-3',
+    'phase-3',
   );
 
   /// phase_4
   static final ResearchStudyPhase phase_4 = ResearchStudyPhase._(
-    value: 'phase-4',
+    'phase-4',
   );
 
   /// For instances where an Element is present but not value
 
-  static final ResearchStudyPhase elementOnly = ResearchStudyPhase._(value: '');
+  static final ResearchStudyPhase elementOnly = ResearchStudyPhase._('');
 
   /// List of all enum-like values
   static final List<ResearchStudyPhase> values = [
@@ -88,13 +88,13 @@ class ResearchStudyPhase extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ResearchStudyPhase clone() => ResearchStudyPhase._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ResearchStudyPhase withElement(Element? newElement) {
-    return ResearchStudyPhase._(value: value, element: newElement);
+    return ResearchStudyPhase._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -124,7 +124,7 @@ class ResearchStudyPhase extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ResearchStudyPhase._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

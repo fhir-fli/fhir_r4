@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// A code specifying the state of the resource instance.
 class ExplanationOfBenefitStatus extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ExplanationOfBenefitStatus._({
-    super.value,
+  ExplanationOfBenefitStatus._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,35 +26,35 @@ class ExplanationOfBenefitStatus extends PrimitiveType<String> {
         'ExplanationOfBenefitStatus cannot be constructed from JSON.',
       );
     }
-    return ExplanationOfBenefitStatus._(value: value, element: element);
+    return ExplanationOfBenefitStatus._(value, element: element);
   }
 
   /// active
   static final ExplanationOfBenefitStatus active = ExplanationOfBenefitStatus._(
-    value: 'active',
+    'active',
   );
 
   /// cancelled
   static final ExplanationOfBenefitStatus cancelled =
       ExplanationOfBenefitStatus._(
-    value: 'cancelled',
+    'cancelled',
   );
 
   /// draft
   static final ExplanationOfBenefitStatus draft = ExplanationOfBenefitStatus._(
-    value: 'draft',
+    'draft',
   );
 
   /// entered_in_error
   static final ExplanationOfBenefitStatus entered_in_error =
       ExplanationOfBenefitStatus._(
-    value: 'entered-in-error',
+    'entered-in-error',
   );
 
   /// For instances where an Element is present but not value
 
   static final ExplanationOfBenefitStatus elementOnly =
-      ExplanationOfBenefitStatus._(value: '');
+      ExplanationOfBenefitStatus._('');
 
   /// List of all enum-like values
   static final List<ExplanationOfBenefitStatus> values = [
@@ -67,13 +67,13 @@ class ExplanationOfBenefitStatus extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ExplanationOfBenefitStatus clone() => ExplanationOfBenefitStatus._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ExplanationOfBenefitStatus withElement(Element? newElement) {
-    return ExplanationOfBenefitStatus._(value: value, element: newElement);
+    return ExplanationOfBenefitStatus._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -103,7 +103,7 @@ class ExplanationOfBenefitStatus extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ExplanationOfBenefitStatus._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

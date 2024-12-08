@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value set contract specific codes for status.
 class ContractResourceExpirationTypeCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ContractResourceExpirationTypeCodes._({
-    super.value,
+  ContractResourceExpirationTypeCodes._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -27,20 +27,19 @@ class ContractResourceExpirationTypeCodes extends PrimitiveType<String> {
         'ContractResourceExpirationTypeCodes cannot be constructed from JSON.',
       );
     }
-    return ContractResourceExpirationTypeCodes._(
-        value: value, element: element);
+    return ContractResourceExpirationTypeCodes._(value, element: element);
   }
 
   /// breach
   static final ContractResourceExpirationTypeCodes breach =
       ContractResourceExpirationTypeCodes._(
-    value: 'breach',
+    'breach',
   );
 
   /// For instances where an Element is present but not value
 
   static final ContractResourceExpirationTypeCodes elementOnly =
-      ContractResourceExpirationTypeCodes._(value: '');
+      ContractResourceExpirationTypeCodes._('');
 
   /// List of all enum-like values
   static final List<ContractResourceExpirationTypeCodes> values = [
@@ -51,14 +50,13 @@ class ContractResourceExpirationTypeCodes extends PrimitiveType<String> {
   @override
   ContractResourceExpirationTypeCodes clone() =>
       ContractResourceExpirationTypeCodes._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ContractResourceExpirationTypeCodes withElement(Element? newElement) {
-    return ContractResourceExpirationTypeCodes._(
-        value: value, element: newElement);
+    return ContractResourceExpirationTypeCodes._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -88,7 +86,7 @@ class ContractResourceExpirationTypeCodes extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ContractResourceExpirationTypeCodes._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

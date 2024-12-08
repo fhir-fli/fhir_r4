@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The kind of response to a message.
 class ResponseType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ResponseType._({
-    super.value,
+  ResponseType._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,27 +26,27 @@ class ResponseType extends PrimitiveType<String> {
         'ResponseType cannot be constructed from JSON.',
       );
     }
-    return ResponseType._(value: value, element: element);
+    return ResponseType._(value, element: element);
   }
 
   /// ok
   static final ResponseType ok = ResponseType._(
-    value: 'ok',
+    'ok',
   );
 
   /// transient_error
   static final ResponseType transient_error = ResponseType._(
-    value: 'transient-error',
+    'transient-error',
   );
 
   /// fatal_error
   static final ResponseType fatal_error = ResponseType._(
-    value: 'fatal-error',
+    'fatal-error',
   );
 
   /// For instances where an Element is present but not value
 
-  static final ResponseType elementOnly = ResponseType._(value: '');
+  static final ResponseType elementOnly = ResponseType._('');
 
   /// List of all enum-like values
   static final List<ResponseType> values = [
@@ -58,13 +58,13 @@ class ResponseType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ResponseType clone() => ResponseType._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ResponseType withElement(Element? newElement) {
-    return ResponseType._(value: value, element: newElement);
+    return ResponseType._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -94,7 +94,7 @@ class ResponseType extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ResponseType._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

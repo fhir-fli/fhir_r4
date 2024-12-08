@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The type of population.
 class MeasurePopulationType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  MeasurePopulationType._({
-    super.value,
+  MeasurePopulationType._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,65 +26,64 @@ class MeasurePopulationType extends PrimitiveType<String> {
         'MeasurePopulationType cannot be constructed from JSON.',
       );
     }
-    return MeasurePopulationType._(value: value, element: element);
+    return MeasurePopulationType._(value, element: element);
   }
 
   /// initial_population
   static final MeasurePopulationType initial_population =
       MeasurePopulationType._(
-    value: 'initial-population',
+    'initial-population',
   );
 
   /// numerator
   static final MeasurePopulationType numerator = MeasurePopulationType._(
-    value: 'numerator',
+    'numerator',
   );
 
   /// numerator_exclusion
   static final MeasurePopulationType numerator_exclusion =
       MeasurePopulationType._(
-    value: 'numerator-exclusion',
+    'numerator-exclusion',
   );
 
   /// denominator
   static final MeasurePopulationType denominator = MeasurePopulationType._(
-    value: 'denominator',
+    'denominator',
   );
 
   /// denominator_exclusion
   static final MeasurePopulationType denominator_exclusion =
       MeasurePopulationType._(
-    value: 'denominator-exclusion',
+    'denominator-exclusion',
   );
 
   /// denominator_exception
   static final MeasurePopulationType denominator_exception =
       MeasurePopulationType._(
-    value: 'denominator-exception',
+    'denominator-exception',
   );
 
   /// measure_population
   static final MeasurePopulationType measure_population =
       MeasurePopulationType._(
-    value: 'measure-population',
+    'measure-population',
   );
 
   /// measure_population_exclusion
   static final MeasurePopulationType measure_population_exclusion =
       MeasurePopulationType._(
-    value: 'measure-population-exclusion',
+    'measure-population-exclusion',
   );
 
   /// measure_observation
   static final MeasurePopulationType measure_observation =
       MeasurePopulationType._(
-    value: 'measure-observation',
+    'measure-observation',
   );
 
   /// For instances where an Element is present but not value
 
-  static final MeasurePopulationType elementOnly =
-      MeasurePopulationType._(value: '');
+  static final MeasurePopulationType elementOnly = MeasurePopulationType._('');
 
   /// List of all enum-like values
   static final List<MeasurePopulationType> values = [
@@ -102,13 +101,13 @@ class MeasurePopulationType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   MeasurePopulationType clone() => MeasurePopulationType._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   MeasurePopulationType withElement(Element? newElement) {
-    return MeasurePopulationType._(value: value, element: newElement);
+    return MeasurePopulationType._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -138,7 +137,7 @@ class MeasurePopulationType extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return MeasurePopulationType._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

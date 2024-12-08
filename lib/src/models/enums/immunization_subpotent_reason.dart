@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The value set to instantiate this attribute should be drawn from a terminologically robust code system that consists of or contains concepts to support describing the reason why a dose is considered to be subpotent. This value set is provided as a suggestive example.
 class ImmunizationSubpotentReason extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ImmunizationSubpotentReason._({
-    super.value,
+  ImmunizationSubpotentReason._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,31 +26,31 @@ class ImmunizationSubpotentReason extends PrimitiveType<String> {
         'ImmunizationSubpotentReason cannot be constructed from JSON.',
       );
     }
-    return ImmunizationSubpotentReason._(value: value, element: element);
+    return ImmunizationSubpotentReason._(value, element: element);
   }
 
   /// partial
   static final ImmunizationSubpotentReason partial =
       ImmunizationSubpotentReason._(
-    value: 'partial',
+    'partial',
   );
 
   /// coldchainbreak
   static final ImmunizationSubpotentReason coldchainbreak =
       ImmunizationSubpotentReason._(
-    value: 'coldchainbreak',
+    'coldchainbreak',
   );
 
   /// recall
   static final ImmunizationSubpotentReason recall =
       ImmunizationSubpotentReason._(
-    value: 'recall',
+    'recall',
   );
 
   /// For instances where an Element is present but not value
 
   static final ImmunizationSubpotentReason elementOnly =
-      ImmunizationSubpotentReason._(value: '');
+      ImmunizationSubpotentReason._('');
 
   /// List of all enum-like values
   static final List<ImmunizationSubpotentReason> values = [
@@ -62,13 +62,13 @@ class ImmunizationSubpotentReason extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ImmunizationSubpotentReason clone() => ImmunizationSubpotentReason._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ImmunizationSubpotentReason withElement(Element? newElement) {
-    return ImmunizationSubpotentReason._(value: value, element: newElement);
+    return ImmunizationSubpotentReason._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -98,7 +98,7 @@ class ImmunizationSubpotentReason extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ImmunizationSubpotentReason._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

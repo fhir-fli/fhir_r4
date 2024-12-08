@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Overall nature of the adverse event, e.g. real or potential.
 class AdverseEventActuality extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  AdverseEventActuality._({
-    super.value,
+  AdverseEventActuality._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,23 +26,22 @@ class AdverseEventActuality extends PrimitiveType<String> {
         'AdverseEventActuality cannot be constructed from JSON.',
       );
     }
-    return AdverseEventActuality._(value: value, element: element);
+    return AdverseEventActuality._(value, element: element);
   }
 
   /// actual
   static final AdverseEventActuality actual = AdverseEventActuality._(
-    value: 'actual',
+    'actual',
   );
 
   /// potential
   static final AdverseEventActuality potential = AdverseEventActuality._(
-    value: 'potential',
+    'potential',
   );
 
   /// For instances where an Element is present but not value
 
-  static final AdverseEventActuality elementOnly =
-      AdverseEventActuality._(value: '');
+  static final AdverseEventActuality elementOnly = AdverseEventActuality._('');
 
   /// List of all enum-like values
   static final List<AdverseEventActuality> values = [
@@ -53,13 +52,13 @@ class AdverseEventActuality extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   AdverseEventActuality clone() => AdverseEventActuality._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   AdverseEventActuality withElement(Element? newElement) {
-    return AdverseEventActuality._(value: value, element: newElement);
+    return AdverseEventActuality._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -89,7 +88,7 @@ class AdverseEventActuality extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return AdverseEventActuality._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

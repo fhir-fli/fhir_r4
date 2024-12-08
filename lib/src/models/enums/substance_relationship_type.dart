@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The relationship between two substance types.
 class SubstanceRelationshipType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  SubstanceRelationshipType._({
-    super.value,
+  SubstanceRelationshipType._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,41 +26,41 @@ class SubstanceRelationshipType extends PrimitiveType<String> {
         'SubstanceRelationshipType cannot be constructed from JSON.',
       );
     }
-    return SubstanceRelationshipType._(value: value, element: element);
+    return SubstanceRelationshipType._(value, element: element);
   }
 
   /// Salt
   static final SubstanceRelationshipType Salt = SubstanceRelationshipType._(
-    value: 'Salt',
+    'Salt',
   );
 
   /// ActiveMoiety
   static final SubstanceRelationshipType ActiveMoiety =
       SubstanceRelationshipType._(
-    value: 'ActiveMoiety',
+    'ActiveMoiety',
   );
 
   /// StartingMaterial
   static final SubstanceRelationshipType StartingMaterial =
       SubstanceRelationshipType._(
-    value: 'StartingMaterial',
+    'StartingMaterial',
   );
 
   /// Polymorph
   static final SubstanceRelationshipType Polymorph =
       SubstanceRelationshipType._(
-    value: 'Polymorph',
+    'Polymorph',
   );
 
   /// Impurity
   static final SubstanceRelationshipType Impurity = SubstanceRelationshipType._(
-    value: 'Impurity',
+    'Impurity',
   );
 
   /// For instances where an Element is present but not value
 
   static final SubstanceRelationshipType elementOnly =
-      SubstanceRelationshipType._(value: '');
+      SubstanceRelationshipType._('');
 
   /// List of all enum-like values
   static final List<SubstanceRelationshipType> values = [
@@ -74,13 +74,13 @@ class SubstanceRelationshipType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   SubstanceRelationshipType clone() => SubstanceRelationshipType._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   SubstanceRelationshipType withElement(Element? newElement) {
-    return SubstanceRelationshipType._(value: value, element: newElement);
+    return SubstanceRelationshipType._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -110,7 +110,7 @@ class SubstanceRelationshipType extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return SubstanceRelationshipType._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

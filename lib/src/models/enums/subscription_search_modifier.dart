@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// FHIR search modifiers allowed for use in Subscriptions and SubscriptionTopics.
 class SubscriptionSearchModifier extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  SubscriptionSearchModifier._({
-    super.value,
+  SubscriptionSearchModifier._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,84 +26,84 @@ class SubscriptionSearchModifier extends PrimitiveType<String> {
         'SubscriptionSearchModifier cannot be constructed from JSON.',
       );
     }
-    return SubscriptionSearchModifier._(value: value, element: element);
+    return SubscriptionSearchModifier._(value, element: element);
   }
 
   /// eq
   static final SubscriptionSearchModifier eq = SubscriptionSearchModifier._(
-    value: '=',
+    '=',
   );
 
   /// ne
   static final SubscriptionSearchModifier ne = SubscriptionSearchModifier._(
-    value: 'ne',
+    'ne',
   );
 
   /// gt
   static final SubscriptionSearchModifier gt = SubscriptionSearchModifier._(
-    value: 'gt',
+    'gt',
   );
 
   /// lt
   static final SubscriptionSearchModifier lt = SubscriptionSearchModifier._(
-    value: 'lt',
+    'lt',
   );
 
   /// ge
   static final SubscriptionSearchModifier ge = SubscriptionSearchModifier._(
-    value: 'ge',
+    'ge',
   );
 
   /// le
   static final SubscriptionSearchModifier le = SubscriptionSearchModifier._(
-    value: 'le',
+    'le',
   );
 
   /// sa
   static final SubscriptionSearchModifier sa = SubscriptionSearchModifier._(
-    value: 'sa',
+    'sa',
   );
 
   /// eb
   static final SubscriptionSearchModifier eb = SubscriptionSearchModifier._(
-    value: 'eb',
+    'eb',
   );
 
   /// ap
   static final SubscriptionSearchModifier ap = SubscriptionSearchModifier._(
-    value: 'ap',
+    'ap',
   );
 
   /// above
   static final SubscriptionSearchModifier above = SubscriptionSearchModifier._(
-    value: 'above',
+    'above',
   );
 
   /// below
   static final SubscriptionSearchModifier below = SubscriptionSearchModifier._(
-    value: 'below',
+    'below',
   );
 
   /// in_
   static final SubscriptionSearchModifier in_ = SubscriptionSearchModifier._(
-    value: 'in',
+    'in',
   );
 
   /// not_in
   static final SubscriptionSearchModifier not_in = SubscriptionSearchModifier._(
-    value: 'not-in',
+    'not-in',
   );
 
   /// of_type
   static final SubscriptionSearchModifier of_type =
       SubscriptionSearchModifier._(
-    value: 'of-type',
+    'of-type',
   );
 
   /// For instances where an Element is present but not value
 
   static final SubscriptionSearchModifier elementOnly =
-      SubscriptionSearchModifier._(value: '');
+      SubscriptionSearchModifier._('');
 
   /// List of all enum-like values
   static final List<SubscriptionSearchModifier> values = [
@@ -126,13 +126,13 @@ class SubscriptionSearchModifier extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   SubscriptionSearchModifier clone() => SubscriptionSearchModifier._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   SubscriptionSearchModifier withElement(Element? newElement) {
-    return SubscriptionSearchModifier._(value: value, element: newElement);
+    return SubscriptionSearchModifier._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -162,7 +162,7 @@ class SubscriptionSearchModifier extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return SubscriptionSearchModifier._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The type of direction to use for assertion.
 class AssertionDirectionType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  AssertionDirectionType._({
-    super.value,
+  AssertionDirectionType._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,23 +26,23 @@ class AssertionDirectionType extends PrimitiveType<String> {
         'AssertionDirectionType cannot be constructed from JSON.',
       );
     }
-    return AssertionDirectionType._(value: value, element: element);
+    return AssertionDirectionType._(value, element: element);
   }
 
   /// response
   static final AssertionDirectionType response = AssertionDirectionType._(
-    value: 'response',
+    'response',
   );
 
   /// request
   static final AssertionDirectionType request = AssertionDirectionType._(
-    value: 'request',
+    'request',
   );
 
   /// For instances where an Element is present but not value
 
   static final AssertionDirectionType elementOnly =
-      AssertionDirectionType._(value: '');
+      AssertionDirectionType._('');
 
   /// List of all enum-like values
   static final List<AssertionDirectionType> values = [
@@ -53,13 +53,13 @@ class AssertionDirectionType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   AssertionDirectionType clone() => AssertionDirectionType._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   AssertionDirectionType withElement(Element? newElement) {
-    return AssertionDirectionType._(value: value, element: newElement);
+    return AssertionDirectionType._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -89,7 +89,7 @@ class AssertionDirectionType extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return AssertionDirectionType._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

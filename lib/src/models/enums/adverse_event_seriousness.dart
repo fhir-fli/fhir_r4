@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Overall seriousness of this event for the patient.
 class AdverseEventSeriousness extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  AdverseEventSeriousness._({
-    super.value,
+  AdverseEventSeriousness._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,59 +26,59 @@ class AdverseEventSeriousness extends PrimitiveType<String> {
         'AdverseEventSeriousness cannot be constructed from JSON.',
       );
     }
-    return AdverseEventSeriousness._(value: value, element: element);
+    return AdverseEventSeriousness._(value, element: element);
   }
 
   /// Non_serious
   static final AdverseEventSeriousness Non_serious = AdverseEventSeriousness._(
-    value: 'Non-serious',
+    'Non-serious',
   );
 
   /// Serious
   static final AdverseEventSeriousness Serious = AdverseEventSeriousness._(
-    value: 'Serious',
+    'Serious',
   );
 
   /// SeriousResultsInDeath
   static final AdverseEventSeriousness SeriousResultsInDeath =
       AdverseEventSeriousness._(
-    value: 'SeriousResultsInDeath',
+    'SeriousResultsInDeath',
   );
 
   /// SeriousIsLifeThreatening
   static final AdverseEventSeriousness SeriousIsLifeThreatening =
       AdverseEventSeriousness._(
-    value: 'SeriousIsLifeThreatening',
+    'SeriousIsLifeThreatening',
   );
 
   /// SeriousResultsInHospitalization
   static final AdverseEventSeriousness SeriousResultsInHospitalization =
       AdverseEventSeriousness._(
-    value: 'SeriousResultsInHospitalization',
+    'SeriousResultsInHospitalization',
   );
 
   /// SeriousResultsInDisability
   static final AdverseEventSeriousness SeriousResultsInDisability =
       AdverseEventSeriousness._(
-    value: 'SeriousResultsInDisability',
+    'SeriousResultsInDisability',
   );
 
   /// SeriousIsBirthDefect
   static final AdverseEventSeriousness SeriousIsBirthDefect =
       AdverseEventSeriousness._(
-    value: 'SeriousIsBirthDefect',
+    'SeriousIsBirthDefect',
   );
 
   /// SeriousRequiresPreventImpairment
   static final AdverseEventSeriousness SeriousRequiresPreventImpairment =
       AdverseEventSeriousness._(
-    value: 'SeriousRequiresPreventImpairment',
+    'SeriousRequiresPreventImpairment',
   );
 
   /// For instances where an Element is present but not value
 
   static final AdverseEventSeriousness elementOnly =
-      AdverseEventSeriousness._(value: '');
+      AdverseEventSeriousness._('');
 
   /// List of all enum-like values
   static final List<AdverseEventSeriousness> values = [
@@ -95,13 +95,13 @@ class AdverseEventSeriousness extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   AdverseEventSeriousness clone() => AdverseEventSeriousness._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   AdverseEventSeriousness withElement(Element? newElement) {
-    return AdverseEventSeriousness._(value: value, element: newElement);
+    return AdverseEventSeriousness._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -131,7 +131,7 @@ class AdverseEventSeriousness extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return AdverseEventSeriousness._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

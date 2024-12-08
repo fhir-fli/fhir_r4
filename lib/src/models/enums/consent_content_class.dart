@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value set includes the FHIR resource types, along with some other important content class codes
 class ConsentContentClass extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ConsentContentClass._({
-    super.value,
+  ConsentContentClass._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,760 +26,759 @@ class ConsentContentClass extends PrimitiveType<String> {
         'ConsentContentClass cannot be constructed from JSON.',
       );
     }
-    return ConsentContentClass._(value: value, element: element);
+    return ConsentContentClass._(value, element: element);
   }
 
   /// Resource
   static final ConsentContentClass Resource = ConsentContentClass._(
-    value: 'Resource',
+    'Resource',
   );
 
   /// Binary
   static final ConsentContentClass Binary = ConsentContentClass._(
-    value: 'Binary',
+    'Binary',
   );
 
   /// Bundle
   static final ConsentContentClass Bundle = ConsentContentClass._(
-    value: 'Bundle',
+    'Bundle',
   );
 
   /// DomainResource
   static final ConsentContentClass DomainResource = ConsentContentClass._(
-    value: 'DomainResource',
+    'DomainResource',
   );
 
   /// Account
   static final ConsentContentClass Account = ConsentContentClass._(
-    value: 'Account',
+    'Account',
   );
 
   /// ActivityDefinition
   static final ConsentContentClass ActivityDefinition = ConsentContentClass._(
-    value: 'ActivityDefinition',
+    'ActivityDefinition',
   );
 
   /// AdministrableProductDefinition
   static final ConsentContentClass AdministrableProductDefinition =
       ConsentContentClass._(
-    value: 'AdministrableProductDefinition',
+    'AdministrableProductDefinition',
   );
 
   /// AdverseEvent
   static final ConsentContentClass AdverseEvent = ConsentContentClass._(
-    value: 'AdverseEvent',
+    'AdverseEvent',
   );
 
   /// AllergyIntolerance
   static final ConsentContentClass AllergyIntolerance = ConsentContentClass._(
-    value: 'AllergyIntolerance',
+    'AllergyIntolerance',
   );
 
   /// Appointment
   static final ConsentContentClass Appointment = ConsentContentClass._(
-    value: 'Appointment',
+    'Appointment',
   );
 
   /// AppointmentResponse
   static final ConsentContentClass AppointmentResponse = ConsentContentClass._(
-    value: 'AppointmentResponse',
+    'AppointmentResponse',
   );
 
   /// AuditEvent
   static final ConsentContentClass AuditEvent = ConsentContentClass._(
-    value: 'AuditEvent',
+    'AuditEvent',
   );
 
   /// Basic
   static final ConsentContentClass Basic = ConsentContentClass._(
-    value: 'Basic',
+    'Basic',
   );
 
   /// BiologicallyDerivedProduct
   static final ConsentContentClass BiologicallyDerivedProduct =
       ConsentContentClass._(
-    value: 'BiologicallyDerivedProduct',
+    'BiologicallyDerivedProduct',
   );
 
   /// BodyStructure
   static final ConsentContentClass BodyStructure = ConsentContentClass._(
-    value: 'BodyStructure',
+    'BodyStructure',
   );
 
   /// CapabilityStatement
   static final ConsentContentClass CapabilityStatement = ConsentContentClass._(
-    value: 'CapabilityStatement',
+    'CapabilityStatement',
   );
 
   /// CarePlan
   static final ConsentContentClass CarePlan = ConsentContentClass._(
-    value: 'CarePlan',
+    'CarePlan',
   );
 
   /// CareTeam
   static final ConsentContentClass CareTeam = ConsentContentClass._(
-    value: 'CareTeam',
+    'CareTeam',
   );
 
   /// CatalogEntry
   static final ConsentContentClass CatalogEntry = ConsentContentClass._(
-    value: 'CatalogEntry',
+    'CatalogEntry',
   );
 
   /// ChargeItem
   static final ConsentContentClass ChargeItem = ConsentContentClass._(
-    value: 'ChargeItem',
+    'ChargeItem',
   );
 
   /// ChargeItemDefinition
   static final ConsentContentClass ChargeItemDefinition = ConsentContentClass._(
-    value: 'ChargeItemDefinition',
+    'ChargeItemDefinition',
   );
 
   /// Citation
   static final ConsentContentClass Citation = ConsentContentClass._(
-    value: 'Citation',
+    'Citation',
   );
 
   /// Claim
   static final ConsentContentClass Claim = ConsentContentClass._(
-    value: 'Claim',
+    'Claim',
   );
 
   /// ClaimResponse
   static final ConsentContentClass ClaimResponse = ConsentContentClass._(
-    value: 'ClaimResponse',
+    'ClaimResponse',
   );
 
   /// ClinicalImpression
   static final ConsentContentClass ClinicalImpression = ConsentContentClass._(
-    value: 'ClinicalImpression',
+    'ClinicalImpression',
   );
 
   /// ClinicalUseDefinition
   static final ConsentContentClass ClinicalUseDefinition =
       ConsentContentClass._(
-    value: 'ClinicalUseDefinition',
+    'ClinicalUseDefinition',
   );
 
   /// CodeSystem
   static final ConsentContentClass CodeSystem = ConsentContentClass._(
-    value: 'CodeSystem',
+    'CodeSystem',
   );
 
   /// Communication
   static final ConsentContentClass Communication = ConsentContentClass._(
-    value: 'Communication',
+    'Communication',
   );
 
   /// CommunicationRequest
   static final ConsentContentClass CommunicationRequest = ConsentContentClass._(
-    value: 'CommunicationRequest',
+    'CommunicationRequest',
   );
 
   /// CompartmentDefinition
   static final ConsentContentClass CompartmentDefinition =
       ConsentContentClass._(
-    value: 'CompartmentDefinition',
+    'CompartmentDefinition',
   );
 
   /// Composition
   static final ConsentContentClass Composition = ConsentContentClass._(
-    value: 'Composition',
+    'Composition',
   );
 
   /// ConceptMap
   static final ConsentContentClass ConceptMap = ConsentContentClass._(
-    value: 'ConceptMap',
+    'ConceptMap',
   );
 
   /// Condition
   static final ConsentContentClass Condition = ConsentContentClass._(
-    value: 'Condition',
+    'Condition',
   );
 
   /// Consent
   static final ConsentContentClass Consent = ConsentContentClass._(
-    value: 'Consent',
+    'Consent',
   );
 
   /// Contract
   static final ConsentContentClass Contract = ConsentContentClass._(
-    value: 'Contract',
+    'Contract',
   );
 
   /// Coverage
   static final ConsentContentClass Coverage = ConsentContentClass._(
-    value: 'Coverage',
+    'Coverage',
   );
 
   /// CoverageEligibilityRequest
   static final ConsentContentClass CoverageEligibilityRequest =
       ConsentContentClass._(
-    value: 'CoverageEligibilityRequest',
+    'CoverageEligibilityRequest',
   );
 
   /// CoverageEligibilityResponse
   static final ConsentContentClass CoverageEligibilityResponse =
       ConsentContentClass._(
-    value: 'CoverageEligibilityResponse',
+    'CoverageEligibilityResponse',
   );
 
   /// DetectedIssue
   static final ConsentContentClass DetectedIssue = ConsentContentClass._(
-    value: 'DetectedIssue',
+    'DetectedIssue',
   );
 
   /// Device
   static final ConsentContentClass Device = ConsentContentClass._(
-    value: 'Device',
+    'Device',
   );
 
   /// DeviceDefinition
   static final ConsentContentClass DeviceDefinition = ConsentContentClass._(
-    value: 'DeviceDefinition',
+    'DeviceDefinition',
   );
 
   /// DeviceMetric
   static final ConsentContentClass DeviceMetric = ConsentContentClass._(
-    value: 'DeviceMetric',
+    'DeviceMetric',
   );
 
   /// DeviceRequest
   static final ConsentContentClass DeviceRequest = ConsentContentClass._(
-    value: 'DeviceRequest',
+    'DeviceRequest',
   );
 
   /// DeviceUseStatement
   static final ConsentContentClass DeviceUseStatement = ConsentContentClass._(
-    value: 'DeviceUseStatement',
+    'DeviceUseStatement',
   );
 
   /// DiagnosticReport
   static final ConsentContentClass DiagnosticReport = ConsentContentClass._(
-    value: 'DiagnosticReport',
+    'DiagnosticReport',
   );
 
   /// DocumentManifest
   static final ConsentContentClass DocumentManifest = ConsentContentClass._(
-    value: 'DocumentManifest',
+    'DocumentManifest',
   );
 
   /// DocumentReference
   static final ConsentContentClass DocumentReference = ConsentContentClass._(
-    value: 'DocumentReference',
+    'DocumentReference',
   );
 
   /// Encounter
   static final ConsentContentClass Encounter = ConsentContentClass._(
-    value: 'Encounter',
+    'Encounter',
   );
 
   /// Endpoint
   static final ConsentContentClass Endpoint = ConsentContentClass._(
-    value: 'Endpoint',
+    'Endpoint',
   );
 
   /// EnrollmentRequest
   static final ConsentContentClass EnrollmentRequest = ConsentContentClass._(
-    value: 'EnrollmentRequest',
+    'EnrollmentRequest',
   );
 
   /// EnrollmentResponse
   static final ConsentContentClass EnrollmentResponse = ConsentContentClass._(
-    value: 'EnrollmentResponse',
+    'EnrollmentResponse',
   );
 
   /// EpisodeOfCare
   static final ConsentContentClass EpisodeOfCare = ConsentContentClass._(
-    value: 'EpisodeOfCare',
+    'EpisodeOfCare',
   );
 
   /// EventDefinition
   static final ConsentContentClass EventDefinition = ConsentContentClass._(
-    value: 'EventDefinition',
+    'EventDefinition',
   );
 
   /// Evidence
   static final ConsentContentClass Evidence = ConsentContentClass._(
-    value: 'Evidence',
+    'Evidence',
   );
 
   /// EvidenceReport
   static final ConsentContentClass EvidenceReport = ConsentContentClass._(
-    value: 'EvidenceReport',
+    'EvidenceReport',
   );
 
   /// EvidenceVariable
   static final ConsentContentClass EvidenceVariable = ConsentContentClass._(
-    value: 'EvidenceVariable',
+    'EvidenceVariable',
   );
 
   /// ExampleScenario
   static final ConsentContentClass ExampleScenario = ConsentContentClass._(
-    value: 'ExampleScenario',
+    'ExampleScenario',
   );
 
   /// ExplanationOfBenefit
   static final ConsentContentClass ExplanationOfBenefit = ConsentContentClass._(
-    value: 'ExplanationOfBenefit',
+    'ExplanationOfBenefit',
   );
 
   /// FamilyMemberHistory
   static final ConsentContentClass FamilyMemberHistory = ConsentContentClass._(
-    value: 'FamilyMemberHistory',
+    'FamilyMemberHistory',
   );
 
   /// Flag
   static final ConsentContentClass Flag = ConsentContentClass._(
-    value: 'Flag',
+    'Flag',
   );
 
   /// Goal
   static final ConsentContentClass Goal = ConsentContentClass._(
-    value: 'Goal',
+    'Goal',
   );
 
   /// GraphDefinition
   static final ConsentContentClass GraphDefinition = ConsentContentClass._(
-    value: 'GraphDefinition',
+    'GraphDefinition',
   );
 
   /// Group
   static final ConsentContentClass Group = ConsentContentClass._(
-    value: 'Group',
+    'Group',
   );
 
   /// GuidanceResponse
   static final ConsentContentClass GuidanceResponse = ConsentContentClass._(
-    value: 'GuidanceResponse',
+    'GuidanceResponse',
   );
 
   /// HealthcareService
   static final ConsentContentClass HealthcareService = ConsentContentClass._(
-    value: 'HealthcareService',
+    'HealthcareService',
   );
 
   /// ImagingStudy
   static final ConsentContentClass ImagingStudy = ConsentContentClass._(
-    value: 'ImagingStudy',
+    'ImagingStudy',
   );
 
   /// Immunization
   static final ConsentContentClass Immunization = ConsentContentClass._(
-    value: 'Immunization',
+    'Immunization',
   );
 
   /// ImmunizationEvaluation
   static final ConsentContentClass ImmunizationEvaluation =
       ConsentContentClass._(
-    value: 'ImmunizationEvaluation',
+    'ImmunizationEvaluation',
   );
 
   /// ImmunizationRecommendation
   static final ConsentContentClass ImmunizationRecommendation =
       ConsentContentClass._(
-    value: 'ImmunizationRecommendation',
+    'ImmunizationRecommendation',
   );
 
   /// ImplementationGuide
   static final ConsentContentClass ImplementationGuide = ConsentContentClass._(
-    value: 'ImplementationGuide',
+    'ImplementationGuide',
   );
 
   /// Ingredient
   static final ConsentContentClass Ingredient = ConsentContentClass._(
-    value: 'Ingredient',
+    'Ingredient',
   );
 
   /// InsurancePlan
   static final ConsentContentClass InsurancePlan = ConsentContentClass._(
-    value: 'InsurancePlan',
+    'InsurancePlan',
   );
 
   /// Invoice
   static final ConsentContentClass Invoice = ConsentContentClass._(
-    value: 'Invoice',
+    'Invoice',
   );
 
   /// Library
   static final ConsentContentClass Library = ConsentContentClass._(
-    value: 'Library',
+    'Library',
   );
 
   /// Linkage
   static final ConsentContentClass Linkage = ConsentContentClass._(
-    value: 'Linkage',
+    'Linkage',
   );
 
   /// List_
   static final ConsentContentClass List_ = ConsentContentClass._(
-    value: 'List',
+    'List',
   );
 
   /// Location
   static final ConsentContentClass Location = ConsentContentClass._(
-    value: 'Location',
+    'Location',
   );
 
   /// ManufacturedItemDefinition
   static final ConsentContentClass ManufacturedItemDefinition =
       ConsentContentClass._(
-    value: 'ManufacturedItemDefinition',
+    'ManufacturedItemDefinition',
   );
 
   /// Measure
   static final ConsentContentClass Measure = ConsentContentClass._(
-    value: 'Measure',
+    'Measure',
   );
 
   /// MeasureReport
   static final ConsentContentClass MeasureReport = ConsentContentClass._(
-    value: 'MeasureReport',
+    'MeasureReport',
   );
 
   /// Media
   static final ConsentContentClass Media = ConsentContentClass._(
-    value: 'Media',
+    'Media',
   );
 
   /// Medication
   static final ConsentContentClass Medication = ConsentContentClass._(
-    value: 'Medication',
+    'Medication',
   );
 
   /// MedicationAdministration
   static final ConsentContentClass MedicationAdministration =
       ConsentContentClass._(
-    value: 'MedicationAdministration',
+    'MedicationAdministration',
   );
 
   /// MedicationDispense
   static final ConsentContentClass MedicationDispense = ConsentContentClass._(
-    value: 'MedicationDispense',
+    'MedicationDispense',
   );
 
   /// MedicationKnowledge
   static final ConsentContentClass MedicationKnowledge = ConsentContentClass._(
-    value: 'MedicationKnowledge',
+    'MedicationKnowledge',
   );
 
   /// MedicationRequest
   static final ConsentContentClass MedicationRequest = ConsentContentClass._(
-    value: 'MedicationRequest',
+    'MedicationRequest',
   );
 
   /// MedicationStatement
   static final ConsentContentClass MedicationStatement = ConsentContentClass._(
-    value: 'MedicationStatement',
+    'MedicationStatement',
   );
 
   /// MedicinalProductDefinition
   static final ConsentContentClass MedicinalProductDefinition =
       ConsentContentClass._(
-    value: 'MedicinalProductDefinition',
+    'MedicinalProductDefinition',
   );
 
   /// MessageDefinition
   static final ConsentContentClass MessageDefinition = ConsentContentClass._(
-    value: 'MessageDefinition',
+    'MessageDefinition',
   );
 
   /// MessageHeader
   static final ConsentContentClass MessageHeader = ConsentContentClass._(
-    value: 'MessageHeader',
+    'MessageHeader',
   );
 
   /// MolecularSequence
   static final ConsentContentClass MolecularSequence = ConsentContentClass._(
-    value: 'MolecularSequence',
+    'MolecularSequence',
   );
 
   /// NamingSystem
   static final ConsentContentClass NamingSystem = ConsentContentClass._(
-    value: 'NamingSystem',
+    'NamingSystem',
   );
 
   /// NutritionOrder
   static final ConsentContentClass NutritionOrder = ConsentContentClass._(
-    value: 'NutritionOrder',
+    'NutritionOrder',
   );
 
   /// NutritionProduct
   static final ConsentContentClass NutritionProduct = ConsentContentClass._(
-    value: 'NutritionProduct',
+    'NutritionProduct',
   );
 
   /// Observation
   static final ConsentContentClass Observation = ConsentContentClass._(
-    value: 'Observation',
+    'Observation',
   );
 
   /// ObservationDefinition
   static final ConsentContentClass ObservationDefinition =
       ConsentContentClass._(
-    value: 'ObservationDefinition',
+    'ObservationDefinition',
   );
 
   /// OperationDefinition
   static final ConsentContentClass OperationDefinition = ConsentContentClass._(
-    value: 'OperationDefinition',
+    'OperationDefinition',
   );
 
   /// OperationOutcome
   static final ConsentContentClass OperationOutcome = ConsentContentClass._(
-    value: 'OperationOutcome',
+    'OperationOutcome',
   );
 
   /// Organization
   static final ConsentContentClass Organization = ConsentContentClass._(
-    value: 'Organization',
+    'Organization',
   );
 
   /// OrganizationAffiliation
   static final ConsentContentClass OrganizationAffiliation =
       ConsentContentClass._(
-    value: 'OrganizationAffiliation',
+    'OrganizationAffiliation',
   );
 
   /// PackagedProductDefinition
   static final ConsentContentClass PackagedProductDefinition =
       ConsentContentClass._(
-    value: 'PackagedProductDefinition',
+    'PackagedProductDefinition',
   );
 
   /// Patient
   static final ConsentContentClass Patient = ConsentContentClass._(
-    value: 'Patient',
+    'Patient',
   );
 
   /// PaymentNotice
   static final ConsentContentClass PaymentNotice = ConsentContentClass._(
-    value: 'PaymentNotice',
+    'PaymentNotice',
   );
 
   /// PaymentReconciliation
   static final ConsentContentClass PaymentReconciliation =
       ConsentContentClass._(
-    value: 'PaymentReconciliation',
+    'PaymentReconciliation',
   );
 
   /// Person
   static final ConsentContentClass Person = ConsentContentClass._(
-    value: 'Person',
+    'Person',
   );
 
   /// PlanDefinition
   static final ConsentContentClass PlanDefinition = ConsentContentClass._(
-    value: 'PlanDefinition',
+    'PlanDefinition',
   );
 
   /// Practitioner
   static final ConsentContentClass Practitioner = ConsentContentClass._(
-    value: 'Practitioner',
+    'Practitioner',
   );
 
   /// PractitionerRole
   static final ConsentContentClass PractitionerRole = ConsentContentClass._(
-    value: 'PractitionerRole',
+    'PractitionerRole',
   );
 
   /// Procedure
   static final ConsentContentClass Procedure = ConsentContentClass._(
-    value: 'Procedure',
+    'Procedure',
   );
 
   /// Provenance
   static final ConsentContentClass Provenance = ConsentContentClass._(
-    value: 'Provenance',
+    'Provenance',
   );
 
   /// Questionnaire
   static final ConsentContentClass Questionnaire = ConsentContentClass._(
-    value: 'Questionnaire',
+    'Questionnaire',
   );
 
   /// QuestionnaireResponse
   static final ConsentContentClass QuestionnaireResponse =
       ConsentContentClass._(
-    value: 'QuestionnaireResponse',
+    'QuestionnaireResponse',
   );
 
   /// RegulatedAuthorization
   static final ConsentContentClass RegulatedAuthorization =
       ConsentContentClass._(
-    value: 'RegulatedAuthorization',
+    'RegulatedAuthorization',
   );
 
   /// RelatedPerson
   static final ConsentContentClass RelatedPerson = ConsentContentClass._(
-    value: 'RelatedPerson',
+    'RelatedPerson',
   );
 
   /// RequestGroup
   static final ConsentContentClass RequestGroup = ConsentContentClass._(
-    value: 'RequestGroup',
+    'RequestGroup',
   );
 
   /// ResearchDefinition
   static final ConsentContentClass ResearchDefinition = ConsentContentClass._(
-    value: 'ResearchDefinition',
+    'ResearchDefinition',
   );
 
   /// ResearchElementDefinition
   static final ConsentContentClass ResearchElementDefinition =
       ConsentContentClass._(
-    value: 'ResearchElementDefinition',
+    'ResearchElementDefinition',
   );
 
   /// ResearchStudy
   static final ConsentContentClass ResearchStudy = ConsentContentClass._(
-    value: 'ResearchStudy',
+    'ResearchStudy',
   );
 
   /// ResearchSubject
   static final ConsentContentClass ResearchSubject = ConsentContentClass._(
-    value: 'ResearchSubject',
+    'ResearchSubject',
   );
 
   /// RiskAssessment
   static final ConsentContentClass RiskAssessment = ConsentContentClass._(
-    value: 'RiskAssessment',
+    'RiskAssessment',
   );
 
   /// Schedule
   static final ConsentContentClass Schedule = ConsentContentClass._(
-    value: 'Schedule',
+    'Schedule',
   );
 
   /// SearchParameter
   static final ConsentContentClass SearchParameter = ConsentContentClass._(
-    value: 'SearchParameter',
+    'SearchParameter',
   );
 
   /// ServiceRequest
   static final ConsentContentClass ServiceRequest = ConsentContentClass._(
-    value: 'ServiceRequest',
+    'ServiceRequest',
   );
 
   /// Slot
   static final ConsentContentClass Slot = ConsentContentClass._(
-    value: 'Slot',
+    'Slot',
   );
 
   /// Specimen
   static final ConsentContentClass Specimen = ConsentContentClass._(
-    value: 'Specimen',
+    'Specimen',
   );
 
   /// SpecimenDefinition
   static final ConsentContentClass SpecimenDefinition = ConsentContentClass._(
-    value: 'SpecimenDefinition',
+    'SpecimenDefinition',
   );
 
   /// StructureDefinition
   static final ConsentContentClass StructureDefinition = ConsentContentClass._(
-    value: 'StructureDefinition',
+    'StructureDefinition',
   );
 
   /// StructureMap
   static final ConsentContentClass StructureMap = ConsentContentClass._(
-    value: 'StructureMap',
+    'StructureMap',
   );
 
   /// Subscription
   static final ConsentContentClass Subscription = ConsentContentClass._(
-    value: 'Subscription',
+    'Subscription',
   );
 
   /// SubscriptionStatus
   static final ConsentContentClass SubscriptionStatus = ConsentContentClass._(
-    value: 'SubscriptionStatus',
+    'SubscriptionStatus',
   );
 
   /// SubscriptionTopic
   static final ConsentContentClass SubscriptionTopic = ConsentContentClass._(
-    value: 'SubscriptionTopic',
+    'SubscriptionTopic',
   );
 
   /// Substance
   static final ConsentContentClass Substance = ConsentContentClass._(
-    value: 'Substance',
+    'Substance',
   );
 
   /// SubstanceDefinition
   static final ConsentContentClass SubstanceDefinition = ConsentContentClass._(
-    value: 'SubstanceDefinition',
+    'SubstanceDefinition',
   );
 
   /// SupplyDelivery
   static final ConsentContentClass SupplyDelivery = ConsentContentClass._(
-    value: 'SupplyDelivery',
+    'SupplyDelivery',
   );
 
   /// SupplyRequest
   static final ConsentContentClass SupplyRequest = ConsentContentClass._(
-    value: 'SupplyRequest',
+    'SupplyRequest',
   );
 
   /// Task
   static final ConsentContentClass Task = ConsentContentClass._(
-    value: 'Task',
+    'Task',
   );
 
   /// TerminologyCapabilities
   static final ConsentContentClass TerminologyCapabilities =
       ConsentContentClass._(
-    value: 'TerminologyCapabilities',
+    'TerminologyCapabilities',
   );
 
   /// TestReport
   static final ConsentContentClass TestReport = ConsentContentClass._(
-    value: 'TestReport',
+    'TestReport',
   );
 
   /// TestScript
   static final ConsentContentClass TestScript = ConsentContentClass._(
-    value: 'TestScript',
+    'TestScript',
   );
 
   /// ValueSet
   static final ConsentContentClass ValueSet = ConsentContentClass._(
-    value: 'ValueSet',
+    'ValueSet',
   );
 
   /// VerificationResult
   static final ConsentContentClass VerificationResult = ConsentContentClass._(
-    value: 'VerificationResult',
+    'VerificationResult',
   );
 
   /// VisionPrescription
   static final ConsentContentClass VisionPrescription = ConsentContentClass._(
-    value: 'VisionPrescription',
+    'VisionPrescription',
   );
 
   /// Parameters
   static final ConsentContentClass Parameters = ConsentContentClass._(
-    value: 'Parameters',
+    'Parameters',
   );
 
   /// http___hl7_org_fhir_StructureDefinition_lipidprofile
   static final ConsentContentClass
       http___hl7_org_fhir_StructureDefinition_lipidprofile =
       ConsentContentClass._(
-    value: 'http://hl7.org/fhir/StructureDefinition/lipidprofile',
+    'http://hl7.org/fhir/StructureDefinition/lipidprofile',
   );
 
   /// application_hl7_cda_xml
   static final ConsentContentClass application_hl7_cda_xml =
       ConsentContentClass._(
-    value: 'application/hl7-cda+xml',
+    'application/hl7-cda+xml',
   );
 
   /// For instances where an Element is present but not value
 
-  static final ConsentContentClass elementOnly =
-      ConsentContentClass._(value: '');
+  static final ConsentContentClass elementOnly = ConsentContentClass._('');
 
   /// List of all enum-like values
   static final List<ConsentContentClass> values = [
@@ -933,13 +932,13 @@ class ConsentContentClass extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ConsentContentClass clone() => ConsentContentClass._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ConsentContentClass withElement(Element? newElement) {
-    return ConsentContentClass._(value: value, element: newElement);
+    return ConsentContentClass._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -969,7 +968,7 @@ class ConsentContentClass extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ConsentContentClass._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

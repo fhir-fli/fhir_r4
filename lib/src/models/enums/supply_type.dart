@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value sets refers to a Category of supply.
 class SupplyType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  SupplyType._({
-    super.value,
+  SupplyType._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,22 +26,22 @@ class SupplyType extends PrimitiveType<String> {
         'SupplyType cannot be constructed from JSON.',
       );
     }
-    return SupplyType._(value: value, element: element);
+    return SupplyType._(value, element: element);
   }
 
   /// central
   static final SupplyType central = SupplyType._(
-    value: 'central',
+    'central',
   );
 
   /// nonstock
   static final SupplyType nonstock = SupplyType._(
-    value: 'nonstock',
+    'nonstock',
   );
 
   /// For instances where an Element is present but not value
 
-  static final SupplyType elementOnly = SupplyType._(value: '');
+  static final SupplyType elementOnly = SupplyType._('');
 
   /// List of all enum-like values
   static final List<SupplyType> values = [
@@ -52,13 +52,13 @@ class SupplyType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   SupplyType clone() => SupplyType._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   SupplyType withElement(Element? newElement) {
-    return SupplyType._(value: value, element: newElement);
+    return SupplyType._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -88,7 +88,7 @@ class SupplyType extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return SupplyType._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// How to interpret the context.
 class StructureMapContextType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  StructureMapContextType._({
-    super.value,
+  StructureMapContextType._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,23 +26,23 @@ class StructureMapContextType extends PrimitiveType<String> {
         'StructureMapContextType cannot be constructed from JSON.',
       );
     }
-    return StructureMapContextType._(value: value, element: element);
+    return StructureMapContextType._(value, element: element);
   }
 
   /// type
   static final StructureMapContextType type = StructureMapContextType._(
-    value: 'type',
+    'type',
   );
 
   /// variable
   static final StructureMapContextType variable = StructureMapContextType._(
-    value: 'variable',
+    'variable',
   );
 
   /// For instances where an Element is present but not value
 
   static final StructureMapContextType elementOnly =
-      StructureMapContextType._(value: '');
+      StructureMapContextType._('');
 
   /// List of all enum-like values
   static final List<StructureMapContextType> values = [
@@ -53,13 +53,13 @@ class StructureMapContextType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   StructureMapContextType clone() => StructureMapContextType._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   StructureMapContextType withElement(Element? newElement) {
-    return StructureMapContextType._(value: value, element: newElement);
+    return StructureMapContextType._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -89,7 +89,7 @@ class StructureMapContextType extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return StructureMapContextType._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

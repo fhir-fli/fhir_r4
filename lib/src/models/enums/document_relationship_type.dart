@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The type of relationship between documents.
 class DocumentRelationshipType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  DocumentRelationshipType._({
-    super.value,
+  DocumentRelationshipType._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,33 +26,33 @@ class DocumentRelationshipType extends PrimitiveType<String> {
         'DocumentRelationshipType cannot be constructed from JSON.',
       );
     }
-    return DocumentRelationshipType._(value: value, element: element);
+    return DocumentRelationshipType._(value, element: element);
   }
 
   /// replaces
   static final DocumentRelationshipType replaces = DocumentRelationshipType._(
-    value: 'replaces',
+    'replaces',
   );
 
   /// transforms
   static final DocumentRelationshipType transforms = DocumentRelationshipType._(
-    value: 'transforms',
+    'transforms',
   );
 
   /// signs
   static final DocumentRelationshipType signs = DocumentRelationshipType._(
-    value: 'signs',
+    'signs',
   );
 
   /// appends
   static final DocumentRelationshipType appends = DocumentRelationshipType._(
-    value: 'appends',
+    'appends',
   );
 
   /// For instances where an Element is present but not value
 
   static final DocumentRelationshipType elementOnly =
-      DocumentRelationshipType._(value: '');
+      DocumentRelationshipType._('');
 
   /// List of all enum-like values
   static final List<DocumentRelationshipType> values = [
@@ -65,13 +65,13 @@ class DocumentRelationshipType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   DocumentRelationshipType clone() => DocumentRelationshipType._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   DocumentRelationshipType withElement(Element? newElement) {
-    return DocumentRelationshipType._(value: value, element: newElement);
+    return DocumentRelationshipType._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -101,7 +101,7 @@ class DocumentRelationshipType extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return DocumentRelationshipType._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

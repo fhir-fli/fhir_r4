@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Citation classification type
 class CitationClassificationType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  CitationClassificationType._({
-    super.value,
+  CitationClassificationType._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,31 +26,31 @@ class CitationClassificationType extends PrimitiveType<String> {
         'CitationClassificationType cannot be constructed from JSON.',
       );
     }
-    return CitationClassificationType._(value: value, element: element);
+    return CitationClassificationType._(value, element: element);
   }
 
   /// citation_source
   static final CitationClassificationType citation_source =
       CitationClassificationType._(
-    value: 'citation-source',
+    'citation-source',
   );
 
   /// medline_owner
   static final CitationClassificationType medline_owner =
       CitationClassificationType._(
-    value: 'medline-owner',
+    'medline-owner',
   );
 
   /// fevir_platform_use
   static final CitationClassificationType fevir_platform_use =
       CitationClassificationType._(
-    value: 'fevir-platform-use',
+    'fevir-platform-use',
   );
 
   /// For instances where an Element is present but not value
 
   static final CitationClassificationType elementOnly =
-      CitationClassificationType._(value: '');
+      CitationClassificationType._('');
 
   /// List of all enum-like values
   static final List<CitationClassificationType> values = [
@@ -62,13 +62,13 @@ class CitationClassificationType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   CitationClassificationType clone() => CitationClassificationType._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   CitationClassificationType withElement(Element? newElement) {
-    return CitationClassificationType._(value: value, element: newElement);
+    return CitationClassificationType._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -98,7 +98,7 @@ class CitationClassificationType extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return CitationClassificationType._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

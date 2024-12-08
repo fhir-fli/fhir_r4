@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The value set to instantiate this attribute should be drawn from a terminologically robust code system that consists of or contains concepts to support describing the reasons why a given recommendation status is assigned. This value set is provided as a suggestive example and includes SNOMED CT concepts.
 class ImmunizationRecommendationReasonCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ImmunizationRecommendationReasonCodes._({
-    super.value,
+  ImmunizationRecommendationReasonCodes._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -27,26 +27,25 @@ class ImmunizationRecommendationReasonCodes extends PrimitiveType<String> {
         'ImmunizationRecommendationReasonCodes cannot be constructed from JSON.',
       );
     }
-    return ImmunizationRecommendationReasonCodes._(
-        value: value, element: element);
+    return ImmunizationRecommendationReasonCodes._(value, element: element);
   }
 
   /// value77176002
   static final ImmunizationRecommendationReasonCodes value77176002 =
       ImmunizationRecommendationReasonCodes._(
-    value: '77176002',
+    '77176002',
   );
 
   /// value77386006
   static final ImmunizationRecommendationReasonCodes value77386006 =
       ImmunizationRecommendationReasonCodes._(
-    value: '77386006',
+    '77386006',
   );
 
   /// For instances where an Element is present but not value
 
   static final ImmunizationRecommendationReasonCodes elementOnly =
-      ImmunizationRecommendationReasonCodes._(value: '');
+      ImmunizationRecommendationReasonCodes._('');
 
   /// List of all enum-like values
   static final List<ImmunizationRecommendationReasonCodes> values = [
@@ -58,14 +57,13 @@ class ImmunizationRecommendationReasonCodes extends PrimitiveType<String> {
   @override
   ImmunizationRecommendationReasonCodes clone() =>
       ImmunizationRecommendationReasonCodes._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ImmunizationRecommendationReasonCodes withElement(Element? newElement) {
-    return ImmunizationRecommendationReasonCodes._(
-        value: value, element: newElement);
+    return ImmunizationRecommendationReasonCodes._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -95,7 +93,7 @@ class ImmunizationRecommendationReasonCodes extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ImmunizationRecommendationReasonCodes._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

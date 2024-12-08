@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The use of a human name.
 class NameUse extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  NameUse._({
-    super.value,
+  NameUse._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,47 +26,47 @@ class NameUse extends PrimitiveType<String> {
         'NameUse cannot be constructed from JSON.',
       );
     }
-    return NameUse._(value: value, element: element);
+    return NameUse._(value, element: element);
   }
 
   /// usual
   static final NameUse usual = NameUse._(
-    value: 'usual',
+    'usual',
   );
 
   /// official
   static final NameUse official = NameUse._(
-    value: 'official',
+    'official',
   );
 
   /// temp
   static final NameUse temp = NameUse._(
-    value: 'temp',
+    'temp',
   );
 
   /// nickname
   static final NameUse nickname = NameUse._(
-    value: 'nickname',
+    'nickname',
   );
 
   /// anonymous
   static final NameUse anonymous = NameUse._(
-    value: 'anonymous',
+    'anonymous',
   );
 
   /// old
   static final NameUse old = NameUse._(
-    value: 'old',
+    'old',
   );
 
   /// maiden
   static final NameUse maiden = NameUse._(
-    value: 'maiden',
+    'maiden',
   );
 
   /// For instances where an Element is present but not value
 
-  static final NameUse elementOnly = NameUse._(value: '');
+  static final NameUse elementOnly = NameUse._('');
 
   /// List of all enum-like values
   static final List<NameUse> values = [
@@ -82,13 +82,13 @@ class NameUse extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   NameUse clone() => NameUse._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   NameUse withElement(Element? newElement) {
-    return NameUse._(value: value, element: newElement);
+    return NameUse._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -118,7 +118,7 @@ class NameUse extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return NameUse._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

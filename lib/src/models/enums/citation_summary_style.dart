@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The format for display of the citation.
 class CitationSummaryStyle extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  CitationSummaryStyle._({
-    super.value,
+  CitationSummaryStyle._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,83 +26,82 @@ class CitationSummaryStyle extends PrimitiveType<String> {
         'CitationSummaryStyle cannot be constructed from JSON.',
       );
     }
-    return CitationSummaryStyle._(value: value, element: element);
+    return CitationSummaryStyle._(value, element: element);
   }
 
   /// vancouver
   static final CitationSummaryStyle vancouver = CitationSummaryStyle._(
-    value: 'vancouver',
+    'vancouver',
   );
 
   /// ama11
   static final CitationSummaryStyle ama11 = CitationSummaryStyle._(
-    value: 'ama11',
+    'ama11',
   );
 
   /// apa7
   static final CitationSummaryStyle apa7 = CitationSummaryStyle._(
-    value: 'apa7',
+    'apa7',
   );
 
   /// apa6
   static final CitationSummaryStyle apa6 = CitationSummaryStyle._(
-    value: 'apa6',
+    'apa6',
   );
 
   /// asa6
   static final CitationSummaryStyle asa6 = CitationSummaryStyle._(
-    value: 'asa6',
+    'asa6',
   );
 
   /// mla8
   static final CitationSummaryStyle mla8 = CitationSummaryStyle._(
-    value: 'mla8',
+    'mla8',
   );
 
   /// cochrane
   static final CitationSummaryStyle cochrane = CitationSummaryStyle._(
-    value: 'cochrane',
+    'cochrane',
   );
 
   /// elsevier_harvard
   static final CitationSummaryStyle elsevier_harvard = CitationSummaryStyle._(
-    value: 'elsevier-harvard',
+    'elsevier-harvard',
   );
 
   /// nature
   static final CitationSummaryStyle nature = CitationSummaryStyle._(
-    value: 'nature',
+    'nature',
   );
 
   /// acs
   static final CitationSummaryStyle acs = CitationSummaryStyle._(
-    value: 'acs',
+    'acs',
   );
 
   /// chicago_a_17
   static final CitationSummaryStyle chicago_a_17 = CitationSummaryStyle._(
-    value: 'chicago-a-17',
+    'chicago-a-17',
   );
 
   /// chicago_b_17
   static final CitationSummaryStyle chicago_b_17 = CitationSummaryStyle._(
-    value: 'chicago-b-17',
+    'chicago-b-17',
   );
 
   /// ieee
   static final CitationSummaryStyle ieee = CitationSummaryStyle._(
-    value: 'ieee',
+    'ieee',
   );
 
   /// comppub
   static final CitationSummaryStyle comppub = CitationSummaryStyle._(
-    value: 'comppub',
+    'comppub',
   );
 
   /// For instances where an Element is present but not value
 
-  static final CitationSummaryStyle elementOnly =
-      CitationSummaryStyle._(value: '');
+  static final CitationSummaryStyle elementOnly = CitationSummaryStyle._('');
 
   /// List of all enum-like values
   static final List<CitationSummaryStyle> values = [
@@ -125,13 +124,13 @@ class CitationSummaryStyle extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   CitationSummaryStyle clone() => CitationSummaryStyle._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   CitationSummaryStyle withElement(Element? newElement) {
-    return CitationSummaryStyle._(value: value, element: newElement);
+    return CitationSummaryStyle._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -161,7 +160,7 @@ class CitationSummaryStyle extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return CitationSummaryStyle._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

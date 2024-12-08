@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// A categorisation for incidence of occurence of an interaction.
 class InteractionIncidence extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  InteractionIncidence._({
-    super.value,
+  InteractionIncidence._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,23 +26,22 @@ class InteractionIncidence extends PrimitiveType<String> {
         'InteractionIncidence cannot be constructed from JSON.',
       );
     }
-    return InteractionIncidence._(value: value, element: element);
+    return InteractionIncidence._(value, element: element);
   }
 
   /// Theoretical
   static final InteractionIncidence Theoretical = InteractionIncidence._(
-    value: 'Theoretical',
+    'Theoretical',
   );
 
   /// Observed
   static final InteractionIncidence Observed = InteractionIncidence._(
-    value: 'Observed',
+    'Observed',
   );
 
   /// For instances where an Element is present but not value
 
-  static final InteractionIncidence elementOnly =
-      InteractionIncidence._(value: '');
+  static final InteractionIncidence elementOnly = InteractionIncidence._('');
 
   /// List of all enum-like values
   static final List<InteractionIncidence> values = [
@@ -53,13 +52,13 @@ class InteractionIncidence extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   InteractionIncidence clone() => InteractionIncidence._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   InteractionIncidence withElement(Element? newElement) {
-    return InteractionIncidence._(value: value, element: newElement);
+    return InteractionIncidence._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -89,7 +88,7 @@ class InteractionIncidence extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return InteractionIncidence._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

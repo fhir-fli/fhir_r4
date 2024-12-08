@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// An authority that officates substance names.
 class SubstanceNameAuthority extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  SubstanceNameAuthority._({
-    super.value,
+  SubstanceNameAuthority._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,88 +26,88 @@ class SubstanceNameAuthority extends PrimitiveType<String> {
         'SubstanceNameAuthority cannot be constructed from JSON.',
       );
     }
-    return SubstanceNameAuthority._(value: value, element: element);
+    return SubstanceNameAuthority._(value, element: element);
   }
 
   /// BAN
   static final SubstanceNameAuthority BAN = SubstanceNameAuthority._(
-    value: 'BAN',
+    'BAN',
   );
 
   /// COSING
   static final SubstanceNameAuthority COSING = SubstanceNameAuthority._(
-    value: 'COSING',
+    'COSING',
   );
 
   /// Ph_Eur_
   static final SubstanceNameAuthority Ph_Eur_ = SubstanceNameAuthority._(
-    value: 'Ph.Eur.',
+    'Ph.Eur.',
   );
 
   /// FCC
   static final SubstanceNameAuthority FCC = SubstanceNameAuthority._(
-    value: 'FCC',
+    'FCC',
   );
 
   /// INCI
   static final SubstanceNameAuthority INCI = SubstanceNameAuthority._(
-    value: 'INCI',
+    'INCI',
   );
 
   /// INN
   static final SubstanceNameAuthority INN = SubstanceNameAuthority._(
-    value: 'INN',
+    'INN',
   );
 
   /// JAN
   static final SubstanceNameAuthority JAN = SubstanceNameAuthority._(
-    value: 'JAN',
+    'JAN',
   );
 
   /// JECFA
   static final SubstanceNameAuthority JECFA = SubstanceNameAuthority._(
-    value: 'JECFA',
+    'JECFA',
   );
 
   /// MARTINDALE
   static final SubstanceNameAuthority MARTINDALE = SubstanceNameAuthority._(
-    value: 'MARTINDALE',
+    'MARTINDALE',
   );
 
   /// USAN
   static final SubstanceNameAuthority USAN = SubstanceNameAuthority._(
-    value: 'USAN',
+    'USAN',
   );
 
   /// USP
   static final SubstanceNameAuthority USP = SubstanceNameAuthority._(
-    value: 'USP',
+    'USP',
   );
 
   /// PHF
   static final SubstanceNameAuthority PHF = SubstanceNameAuthority._(
-    value: 'PHF',
+    'PHF',
   );
 
   /// HAB
   static final SubstanceNameAuthority HAB = SubstanceNameAuthority._(
-    value: 'HAB',
+    'HAB',
   );
 
   /// PhF
   static final SubstanceNameAuthority PhF = SubstanceNameAuthority._(
-    value: 'PhF',
+    'PhF',
   );
 
   /// IUIS
   static final SubstanceNameAuthority IUIS = SubstanceNameAuthority._(
-    value: 'IUIS',
+    'IUIS',
   );
 
   /// For instances where an Element is present but not value
 
   static final SubstanceNameAuthority elementOnly =
-      SubstanceNameAuthority._(value: '');
+      SubstanceNameAuthority._('');
 
   /// List of all enum-like values
   static final List<SubstanceNameAuthority> values = [
@@ -131,13 +131,13 @@ class SubstanceNameAuthority extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   SubstanceNameAuthority clone() => SubstanceNameAuthority._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   SubstanceNameAuthority withElement(Element? newElement) {
-    return SubstanceNameAuthority._(value: value, element: newElement);
+    return SubstanceNameAuthority._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -167,7 +167,7 @@ class SubstanceNameAuthority extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return SubstanceNameAuthority._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

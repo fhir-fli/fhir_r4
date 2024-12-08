@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Codes that reflect the current state of a care plan activity within its overall life cycle.
 class CarePlanActivityStatus extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  CarePlanActivityStatus._({
-    super.value,
+  CarePlanActivityStatus._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,59 +26,59 @@ class CarePlanActivityStatus extends PrimitiveType<String> {
         'CarePlanActivityStatus cannot be constructed from JSON.',
       );
     }
-    return CarePlanActivityStatus._(value: value, element: element);
+    return CarePlanActivityStatus._(value, element: element);
   }
 
   /// not_started
   static final CarePlanActivityStatus not_started = CarePlanActivityStatus._(
-    value: 'not-started',
+    'not-started',
   );
 
   /// scheduled
   static final CarePlanActivityStatus scheduled = CarePlanActivityStatus._(
-    value: 'scheduled',
+    'scheduled',
   );
 
   /// in_progress
   static final CarePlanActivityStatus in_progress = CarePlanActivityStatus._(
-    value: 'in-progress',
+    'in-progress',
   );
 
   /// on_hold
   static final CarePlanActivityStatus on_hold = CarePlanActivityStatus._(
-    value: 'on-hold',
+    'on-hold',
   );
 
   /// completed
   static final CarePlanActivityStatus completed = CarePlanActivityStatus._(
-    value: 'completed',
+    'completed',
   );
 
   /// cancelled
   static final CarePlanActivityStatus cancelled = CarePlanActivityStatus._(
-    value: 'cancelled',
+    'cancelled',
   );
 
   /// stopped
   static final CarePlanActivityStatus stopped = CarePlanActivityStatus._(
-    value: 'stopped',
+    'stopped',
   );
 
   /// unknown
   static final CarePlanActivityStatus unknown = CarePlanActivityStatus._(
-    value: 'unknown',
+    'unknown',
   );
 
   /// entered_in_error
   static final CarePlanActivityStatus entered_in_error =
       CarePlanActivityStatus._(
-    value: 'entered-in-error',
+    'entered-in-error',
   );
 
   /// For instances where an Element is present but not value
 
   static final CarePlanActivityStatus elementOnly =
-      CarePlanActivityStatus._(value: '');
+      CarePlanActivityStatus._('');
 
   /// List of all enum-like values
   static final List<CarePlanActivityStatus> values = [
@@ -96,13 +96,13 @@ class CarePlanActivityStatus extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   CarePlanActivityStatus clone() => CarePlanActivityStatus._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   CarePlanActivityStatus withElement(Element? newElement) {
-    return CarePlanActivityStatus._(value: value, element: newElement);
+    return CarePlanActivityStatus._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -132,7 +132,7 @@ class CarePlanActivityStatus extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return CarePlanActivityStatus._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The kind of operation to perform as a part of a property based filter.
 class FilterOperator extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  FilterOperator._({
-    super.value,
+  FilterOperator._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,57 +26,57 @@ class FilterOperator extends PrimitiveType<String> {
         'FilterOperator cannot be constructed from JSON.',
       );
     }
-    return FilterOperator._(value: value, element: element);
+    return FilterOperator._(value, element: element);
   }
 
   /// eq
   static final FilterOperator eq = FilterOperator._(
-    value: '=',
+    '=',
   );
 
   /// is_a
   static final FilterOperator is_a = FilterOperator._(
-    value: 'is-a',
+    'is-a',
   );
 
   /// descendent_of
   static final FilterOperator descendent_of = FilterOperator._(
-    value: 'descendent-of',
+    'descendent-of',
   );
 
   /// is_not_a
   static final FilterOperator is_not_a = FilterOperator._(
-    value: 'is-not-a',
+    'is-not-a',
   );
 
   /// regex
   static final FilterOperator regex = FilterOperator._(
-    value: 'regex',
+    'regex',
   );
 
   /// in_
   static final FilterOperator in_ = FilterOperator._(
-    value: 'in',
+    'in',
   );
 
   /// not_in
   static final FilterOperator not_in = FilterOperator._(
-    value: 'not-in',
+    'not-in',
   );
 
   /// generalizes
   static final FilterOperator generalizes = FilterOperator._(
-    value: 'generalizes',
+    'generalizes',
   );
 
   /// exists
   static final FilterOperator exists = FilterOperator._(
-    value: 'exists',
+    'exists',
   );
 
   /// For instances where an Element is present but not value
 
-  static final FilterOperator elementOnly = FilterOperator._(value: '');
+  static final FilterOperator elementOnly = FilterOperator._('');
 
   /// List of all enum-like values
   static final List<FilterOperator> values = [
@@ -94,13 +94,13 @@ class FilterOperator extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   FilterOperator clone() => FilterOperator._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   FilterOperator withElement(Element? newElement) {
-    return FilterOperator._(value: value, element: newElement);
+    return FilterOperator._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -130,7 +130,7 @@ class FilterOperator extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return FilterOperator._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

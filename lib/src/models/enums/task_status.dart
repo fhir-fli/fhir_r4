@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The current status of the task.
 class TaskStatus extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  TaskStatus._({
-    super.value,
+  TaskStatus._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,72 +26,72 @@ class TaskStatus extends PrimitiveType<String> {
         'TaskStatus cannot be constructed from JSON.',
       );
     }
-    return TaskStatus._(value: value, element: element);
+    return TaskStatus._(value, element: element);
   }
 
   /// draft
   static final TaskStatus draft = TaskStatus._(
-    value: 'draft',
+    'draft',
   );
 
   /// requested
   static final TaskStatus requested = TaskStatus._(
-    value: 'requested',
+    'requested',
   );
 
   /// received
   static final TaskStatus received = TaskStatus._(
-    value: 'received',
+    'received',
   );
 
   /// accepted
   static final TaskStatus accepted = TaskStatus._(
-    value: 'accepted',
+    'accepted',
   );
 
   /// rejected
   static final TaskStatus rejected = TaskStatus._(
-    value: 'rejected',
+    'rejected',
   );
 
   /// ready
   static final TaskStatus ready = TaskStatus._(
-    value: 'ready',
+    'ready',
   );
 
   /// cancelled
   static final TaskStatus cancelled = TaskStatus._(
-    value: 'cancelled',
+    'cancelled',
   );
 
   /// in_progress
   static final TaskStatus in_progress = TaskStatus._(
-    value: 'in-progress',
+    'in-progress',
   );
 
   /// on_hold
   static final TaskStatus on_hold = TaskStatus._(
-    value: 'on-hold',
+    'on-hold',
   );
 
   /// failed
   static final TaskStatus failed = TaskStatus._(
-    value: 'failed',
+    'failed',
   );
 
   /// completed
   static final TaskStatus completed = TaskStatus._(
-    value: 'completed',
+    'completed',
   );
 
   /// entered_in_error
   static final TaskStatus entered_in_error = TaskStatus._(
-    value: 'entered-in-error',
+    'entered-in-error',
   );
 
   /// For instances where an Element is present but not value
 
-  static final TaskStatus elementOnly = TaskStatus._(value: '');
+  static final TaskStatus elementOnly = TaskStatus._('');
 
   /// List of all enum-like values
   static final List<TaskStatus> values = [
@@ -112,13 +112,13 @@ class TaskStatus extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   TaskStatus clone() => TaskStatus._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   TaskStatus withElement(Element? newElement) {
-    return TaskStatus._(value: value, element: newElement);
+    return TaskStatus._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -148,7 +148,7 @@ class TaskStatus extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return TaskStatus._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

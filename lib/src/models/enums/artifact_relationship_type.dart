@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Artifact Relationship Type
 class ArtifactRelationshipType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ArtifactRelationshipType._({
-    super.value,
+  ArtifactRelationshipType._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,144 +26,144 @@ class ArtifactRelationshipType extends PrimitiveType<String> {
         'ArtifactRelationshipType cannot be constructed from JSON.',
       );
     }
-    return ArtifactRelationshipType._(value: value, element: element);
+    return ArtifactRelationshipType._(value, element: element);
   }
 
   /// replaces
   static final ArtifactRelationshipType replaces = ArtifactRelationshipType._(
-    value: 'replaces',
+    'replaces',
   );
 
   /// amends
   static final ArtifactRelationshipType amends = ArtifactRelationshipType._(
-    value: 'amends',
+    'amends',
   );
 
   /// appends
   static final ArtifactRelationshipType appends = ArtifactRelationshipType._(
-    value: 'appends',
+    'appends',
   );
 
   /// transforms
   static final ArtifactRelationshipType transforms = ArtifactRelationshipType._(
-    value: 'transforms',
+    'transforms',
   );
 
   /// replaced_with
   static final ArtifactRelationshipType replaced_with =
       ArtifactRelationshipType._(
-    value: 'replaced-with',
+    'replaced-with',
   );
 
   /// amended_with
   static final ArtifactRelationshipType amended_with =
       ArtifactRelationshipType._(
-    value: 'amended-with',
+    'amended-with',
   );
 
   /// appended_with
   static final ArtifactRelationshipType appended_with =
       ArtifactRelationshipType._(
-    value: 'appended-with',
+    'appended-with',
   );
 
   /// transformed_with
   static final ArtifactRelationshipType transformed_with =
       ArtifactRelationshipType._(
-    value: 'transformed-with',
+    'transformed-with',
   );
 
   /// derived_from
   static final ArtifactRelationshipType derived_from =
       ArtifactRelationshipType._(
-    value: 'derived-from',
+    'derived-from',
   );
 
   /// transformed_into
   static final ArtifactRelationshipType transformed_into =
       ArtifactRelationshipType._(
-    value: 'transformed-into',
+    'transformed-into',
   );
 
   /// composed_of
   static final ArtifactRelationshipType composed_of =
       ArtifactRelationshipType._(
-    value: 'composed-of',
+    'composed-of',
   );
 
   /// part_of
   static final ArtifactRelationshipType part_of = ArtifactRelationshipType._(
-    value: 'part-of',
+    'part-of',
   );
 
   /// supports
   static final ArtifactRelationshipType supports = ArtifactRelationshipType._(
-    value: 'supports',
+    'supports',
   );
 
   /// supported_with
   static final ArtifactRelationshipType supported_with =
       ArtifactRelationshipType._(
-    value: 'supported-with',
+    'supported-with',
   );
 
   /// depends_on
   static final ArtifactRelationshipType depends_on = ArtifactRelationshipType._(
-    value: 'depends-on',
+    'depends-on',
   );
 
   /// similar_to
   static final ArtifactRelationshipType similar_to = ArtifactRelationshipType._(
-    value: 'similar-to',
+    'similar-to',
   );
 
   /// cites
   static final ArtifactRelationshipType cites = ArtifactRelationshipType._(
-    value: 'cites',
+    'cites',
   );
 
   /// cited_by
   static final ArtifactRelationshipType cited_by = ArtifactRelationshipType._(
-    value: 'cited-by',
+    'cited-by',
   );
 
   /// retracts
   static final ArtifactRelationshipType retracts = ArtifactRelationshipType._(
-    value: 'retracts',
+    'retracts',
   );
 
   /// retracted_by
   static final ArtifactRelationshipType retracted_by =
       ArtifactRelationshipType._(
-    value: 'retracted-by',
+    'retracted-by',
   );
 
   /// comments_on
   static final ArtifactRelationshipType comments_on =
       ArtifactRelationshipType._(
-    value: 'comments-on',
+    'comments-on',
   );
 
   /// comment_in
   static final ArtifactRelationshipType comment_in = ArtifactRelationshipType._(
-    value: 'comment-in',
+    'comment-in',
   );
 
   /// corrects
   static final ArtifactRelationshipType corrects = ArtifactRelationshipType._(
-    value: 'corrects',
+    'corrects',
   );
 
   /// correction_in
   static final ArtifactRelationshipType correction_in =
       ArtifactRelationshipType._(
-    value: 'correction-in',
+    'correction-in',
   );
 
   /// For instances where an Element is present but not value
 
   static final ArtifactRelationshipType elementOnly =
-      ArtifactRelationshipType._(value: '');
+      ArtifactRelationshipType._('');
 
   /// List of all enum-like values
   static final List<ArtifactRelationshipType> values = [
@@ -196,13 +196,13 @@ class ArtifactRelationshipType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ArtifactRelationshipType clone() => ArtifactRelationshipType._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ArtifactRelationshipType withElement(Element? newElement) {
-    return ArtifactRelationshipType._(value: value, element: newElement);
+    return ArtifactRelationshipType._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -232,7 +232,7 @@ class ArtifactRelationshipType extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ArtifactRelationshipType._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

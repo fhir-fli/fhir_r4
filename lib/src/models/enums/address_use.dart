@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The use of an address.
 class AddressUse extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  AddressUse._({
-    super.value,
+  AddressUse._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,37 +26,37 @@ class AddressUse extends PrimitiveType<String> {
         'AddressUse cannot be constructed from JSON.',
       );
     }
-    return AddressUse._(value: value, element: element);
+    return AddressUse._(value, element: element);
   }
 
   /// home
   static final AddressUse home = AddressUse._(
-    value: 'home',
+    'home',
   );
 
   /// work
   static final AddressUse work = AddressUse._(
-    value: 'work',
+    'work',
   );
 
   /// temp
   static final AddressUse temp = AddressUse._(
-    value: 'temp',
+    'temp',
   );
 
   /// old
   static final AddressUse old = AddressUse._(
-    value: 'old',
+    'old',
   );
 
   /// billing
   static final AddressUse billing = AddressUse._(
-    value: 'billing',
+    'billing',
   );
 
   /// For instances where an Element is present but not value
 
-  static final AddressUse elementOnly = AddressUse._(value: '');
+  static final AddressUse elementOnly = AddressUse._('');
 
   /// List of all enum-like values
   static final List<AddressUse> values = [
@@ -70,13 +70,13 @@ class AddressUse extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   AddressUse clone() => AddressUse._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   AddressUse withElement(Element? newElement) {
-    return AddressUse._(value: value, element: newElement);
+    return AddressUse._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -106,7 +106,7 @@ class AddressUse extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return AddressUse._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

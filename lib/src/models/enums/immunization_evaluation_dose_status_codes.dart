@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The value set to instantiate this attribute should be drawn from a terminologically robust code system that consists of or contains concepts to support describing the validity of a dose relative to a particular recommended schedule. This value set is provided as a suggestive example.
 class ImmunizationEvaluationDoseStatusCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ImmunizationEvaluationDoseStatusCodes._({
-    super.value,
+  ImmunizationEvaluationDoseStatusCodes._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -27,26 +27,25 @@ class ImmunizationEvaluationDoseStatusCodes extends PrimitiveType<String> {
         'ImmunizationEvaluationDoseStatusCodes cannot be constructed from JSON.',
       );
     }
-    return ImmunizationEvaluationDoseStatusCodes._(
-        value: value, element: element);
+    return ImmunizationEvaluationDoseStatusCodes._(value, element: element);
   }
 
   /// valid
   static final ImmunizationEvaluationDoseStatusCodes valid =
       ImmunizationEvaluationDoseStatusCodes._(
-    value: 'valid',
+    'valid',
   );
 
   /// notvalid
   static final ImmunizationEvaluationDoseStatusCodes notvalid =
       ImmunizationEvaluationDoseStatusCodes._(
-    value: 'notvalid',
+    'notvalid',
   );
 
   /// For instances where an Element is present but not value
 
   static final ImmunizationEvaluationDoseStatusCodes elementOnly =
-      ImmunizationEvaluationDoseStatusCodes._(value: '');
+      ImmunizationEvaluationDoseStatusCodes._('');
 
   /// List of all enum-like values
   static final List<ImmunizationEvaluationDoseStatusCodes> values = [
@@ -58,14 +57,13 @@ class ImmunizationEvaluationDoseStatusCodes extends PrimitiveType<String> {
   @override
   ImmunizationEvaluationDoseStatusCodes clone() =>
       ImmunizationEvaluationDoseStatusCodes._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ImmunizationEvaluationDoseStatusCodes withElement(Element? newElement) {
-    return ImmunizationEvaluationDoseStatusCodes._(
-        value: value, element: newElement);
+    return ImmunizationEvaluationDoseStatusCodes._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -95,7 +93,7 @@ class ImmunizationEvaluationDoseStatusCodes extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ImmunizationEvaluationDoseStatusCodes._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Why an entry is in the result set - whether it's included as a match or because of an _include requirement, or to convey information or warning information about the search process.
 class SearchEntryMode extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  SearchEntryMode._({
-    super.value,
+  SearchEntryMode._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,27 +26,27 @@ class SearchEntryMode extends PrimitiveType<String> {
         'SearchEntryMode cannot be constructed from JSON.',
       );
     }
-    return SearchEntryMode._(value: value, element: element);
+    return SearchEntryMode._(value, element: element);
   }
 
   /// match
   static final SearchEntryMode match = SearchEntryMode._(
-    value: 'match',
+    'match',
   );
 
   /// include
   static final SearchEntryMode include = SearchEntryMode._(
-    value: 'include',
+    'include',
   );
 
   /// outcome
   static final SearchEntryMode outcome = SearchEntryMode._(
-    value: 'outcome',
+    'outcome',
   );
 
   /// For instances where an Element is present but not value
 
-  static final SearchEntryMode elementOnly = SearchEntryMode._(value: '');
+  static final SearchEntryMode elementOnly = SearchEntryMode._('');
 
   /// List of all enum-like values
   static final List<SearchEntryMode> values = [
@@ -58,13 +58,13 @@ class SearchEntryMode extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   SearchEntryMode clone() => SearchEntryMode._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   SearchEntryMode withElement(Element? newElement) {
-    return SearchEntryMode._(value: value, element: newElement);
+    return SearchEntryMode._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -94,7 +94,7 @@ class SearchEntryMode extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return SearchEntryMode._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

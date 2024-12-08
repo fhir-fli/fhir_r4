@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// A code that specifies a type of context being specified by a usage context.
 class UsageContextType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  UsageContextType._({
-    super.value,
+  UsageContextType._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,57 +26,57 @@ class UsageContextType extends PrimitiveType<String> {
         'UsageContextType cannot be constructed from JSON.',
       );
     }
-    return UsageContextType._(value: value, element: element);
+    return UsageContextType._(value, element: element);
   }
 
   /// gender
   static final UsageContextType gender = UsageContextType._(
-    value: 'gender',
+    'gender',
   );
 
   /// age
   static final UsageContextType age = UsageContextType._(
-    value: 'age',
+    'age',
   );
 
   /// focus
   static final UsageContextType focus = UsageContextType._(
-    value: 'focus',
+    'focus',
   );
 
   /// user
   static final UsageContextType user = UsageContextType._(
-    value: 'user',
+    'user',
   );
 
   /// workflow
   static final UsageContextType workflow = UsageContextType._(
-    value: 'workflow',
+    'workflow',
   );
 
   /// task
   static final UsageContextType task = UsageContextType._(
-    value: 'task',
+    'task',
   );
 
   /// venue
   static final UsageContextType venue = UsageContextType._(
-    value: 'venue',
+    'venue',
   );
 
   /// species
   static final UsageContextType species = UsageContextType._(
-    value: 'species',
+    'species',
   );
 
   /// program
   static final UsageContextType program = UsageContextType._(
-    value: 'program',
+    'program',
   );
 
   /// For instances where an Element is present but not value
 
-  static final UsageContextType elementOnly = UsageContextType._(value: '');
+  static final UsageContextType elementOnly = UsageContextType._('');
 
   /// List of all enum-like values
   static final List<UsageContextType> values = [
@@ -94,13 +94,13 @@ class UsageContextType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   UsageContextType clone() => UsageContextType._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   UsageContextType withElement(Element? newElement) {
-    return UsageContextType._(value: value, element: newElement);
+    return UsageContextType._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -130,7 +130,7 @@ class UsageContextType extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return UsageContextType._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

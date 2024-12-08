@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The free/busy status of an appointment.
 class AppointmentStatus extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  AppointmentStatus._({
-    super.value,
+  AppointmentStatus._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,62 +26,62 @@ class AppointmentStatus extends PrimitiveType<String> {
         'AppointmentStatus cannot be constructed from JSON.',
       );
     }
-    return AppointmentStatus._(value: value, element: element);
+    return AppointmentStatus._(value, element: element);
   }
 
   /// proposed
   static final AppointmentStatus proposed = AppointmentStatus._(
-    value: 'proposed',
+    'proposed',
   );
 
   /// pending
   static final AppointmentStatus pending = AppointmentStatus._(
-    value: 'pending',
+    'pending',
   );
 
   /// booked
   static final AppointmentStatus booked = AppointmentStatus._(
-    value: 'booked',
+    'booked',
   );
 
   /// arrived
   static final AppointmentStatus arrived = AppointmentStatus._(
-    value: 'arrived',
+    'arrived',
   );
 
   /// fulfilled
   static final AppointmentStatus fulfilled = AppointmentStatus._(
-    value: 'fulfilled',
+    'fulfilled',
   );
 
   /// cancelled
   static final AppointmentStatus cancelled = AppointmentStatus._(
-    value: 'cancelled',
+    'cancelled',
   );
 
   /// noshow
   static final AppointmentStatus noshow = AppointmentStatus._(
-    value: 'noshow',
+    'noshow',
   );
 
   /// entered_in_error
   static final AppointmentStatus entered_in_error = AppointmentStatus._(
-    value: 'entered-in-error',
+    'entered-in-error',
   );
 
   /// checked_in
   static final AppointmentStatus checked_in = AppointmentStatus._(
-    value: 'checked-in',
+    'checked-in',
   );
 
   /// waitlist
   static final AppointmentStatus waitlist = AppointmentStatus._(
-    value: 'waitlist',
+    'waitlist',
   );
 
   /// For instances where an Element is present but not value
 
-  static final AppointmentStatus elementOnly = AppointmentStatus._(value: '');
+  static final AppointmentStatus elementOnly = AppointmentStatus._('');
 
   /// List of all enum-like values
   static final List<AppointmentStatus> values = [
@@ -100,13 +100,13 @@ class AppointmentStatus extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   AppointmentStatus clone() => AppointmentStatus._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   AppointmentStatus withElement(Element? newElement) {
-    return AppointmentStatus._(value: value, element: newElement);
+    return AppointmentStatus._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -136,7 +136,7 @@ class AppointmentStatus extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return AppointmentStatus._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

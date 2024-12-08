@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Citation artifact classifier
 class CitationArtifactClassifier extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  CitationArtifactClassifier._({
-    super.value,
+  CitationArtifactClassifier._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,154 +26,154 @@ class CitationArtifactClassifier extends PrimitiveType<String> {
         'CitationArtifactClassifier cannot be constructed from JSON.',
       );
     }
-    return CitationArtifactClassifier._(value: value, element: element);
+    return CitationArtifactClassifier._(value, element: element);
   }
 
   /// webpage
   static final CitationArtifactClassifier webpage =
       CitationArtifactClassifier._(
-    value: 'webpage',
+    'webpage',
   );
 
   /// D016428
   static final CitationArtifactClassifier D016428 =
       CitationArtifactClassifier._(
-    value: 'D016428',
+    'D016428',
   );
 
   /// D016422
   static final CitationArtifactClassifier D016422 =
       CitationArtifactClassifier._(
-    value: 'D016422',
+    'D016422',
   );
 
   /// D016420
   static final CitationArtifactClassifier D016420 =
       CitationArtifactClassifier._(
-    value: 'D016420',
+    'D016420',
   );
 
   /// D016425
   static final CitationArtifactClassifier D016425 =
       CitationArtifactClassifier._(
-    value: 'D016425',
+    'D016425',
   );
 
   /// executable_app
   static final CitationArtifactClassifier executable_app =
       CitationArtifactClassifier._(
-    value: 'executable-app',
+    'executable-app',
   );
 
   /// D000076942
   static final CitationArtifactClassifier D000076942 =
       CitationArtifactClassifier._(
-    value: 'D000076942',
+    'D000076942',
   );
 
   /// D019991
   static final CitationArtifactClassifier D019991 =
       CitationArtifactClassifier._(
-    value: 'D019991',
+    'D019991',
   );
 
   /// D001877
   static final CitationArtifactClassifier D001877 =
       CitationArtifactClassifier._(
-    value: 'D001877',
+    'D001877',
   );
 
   /// D064886
   static final CitationArtifactClassifier D064886 =
       CitationArtifactClassifier._(
-    value: 'D064886',
+    'D064886',
   );
 
   /// value68059040
   static final CitationArtifactClassifier value68059040 =
       CitationArtifactClassifier._(
-    value: '68059040',
+    '68059040',
   );
 
   /// audio
   static final CitationArtifactClassifier audio = CitationArtifactClassifier._(
-    value: 'audio',
+    'audio',
   );
 
   /// image
   static final CitationArtifactClassifier image = CitationArtifactClassifier._(
-    value: 'image',
+    'image',
   );
 
   /// machine_code
   static final CitationArtifactClassifier machine_code =
       CitationArtifactClassifier._(
-    value: 'machine-code',
+    'machine-code',
   );
 
   /// protocol
   static final CitationArtifactClassifier protocol =
       CitationArtifactClassifier._(
-    value: 'protocol',
+    'protocol',
   );
 
   /// fhir_resource
   static final CitationArtifactClassifier fhir_resource =
       CitationArtifactClassifier._(
-    value: 'fhir-resource',
+    'fhir-resource',
   );
 
   /// Print
   static final CitationArtifactClassifier Print = CitationArtifactClassifier._(
-    value: 'Print',
+    'Print',
   );
 
   /// Print_Electronic
   static final CitationArtifactClassifier Print_Electronic =
       CitationArtifactClassifier._(
-    value: 'Print-Electronic',
+    'Print-Electronic',
   );
 
   /// Electronic
   static final CitationArtifactClassifier Electronic =
       CitationArtifactClassifier._(
-    value: 'Electronic',
+    'Electronic',
   );
 
   /// Electronic_Print
   static final CitationArtifactClassifier Electronic_Print =
       CitationArtifactClassifier._(
-    value: 'Electronic-Print',
+    'Electronic-Print',
   );
 
   /// Electronic_eCollection
   static final CitationArtifactClassifier Electronic_eCollection =
       CitationArtifactClassifier._(
-    value: 'Electronic-eCollection',
+    'Electronic-eCollection',
   );
 
   /// medline_base
   static final CitationArtifactClassifier medline_base =
       CitationArtifactClassifier._(
-    value: 'medline-base',
+    'medline-base',
   );
 
   /// common_share
   static final CitationArtifactClassifier common_share =
       CitationArtifactClassifier._(
-    value: 'common-share',
+    'common-share',
   );
 
   /// project_specific
   static final CitationArtifactClassifier project_specific =
       CitationArtifactClassifier._(
-    value: 'project-specific',
+    'project-specific',
   );
 
   /// For instances where an Element is present but not value
 
   static final CitationArtifactClassifier elementOnly =
-      CitationArtifactClassifier._(value: '');
+      CitationArtifactClassifier._('');
 
   /// List of all enum-like values
   static final List<CitationArtifactClassifier> values = [
@@ -206,13 +206,13 @@ class CitationArtifactClassifier extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   CitationArtifactClassifier clone() => CitationArtifactClassifier._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   CitationArtifactClassifier withElement(Element? newElement) {
-    return CitationArtifactClassifier._(value: value, element: newElement);
+    return CitationArtifactClassifier._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -242,7 +242,7 @@ class CitationArtifactClassifier extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return CitationArtifactClassifier._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// A coded type for an identifier that can be used to determine which identifier to use for a specific purpose.
 class IdentifierTypeCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  IdentifierTypeCodes._({
-    super.value,
+  IdentifierTypeCodes._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,103 +26,102 @@ class IdentifierTypeCodes extends PrimitiveType<String> {
         'IdentifierTypeCodes cannot be constructed from JSON.',
       );
     }
-    return IdentifierTypeCodes._(value: value, element: element);
+    return IdentifierTypeCodes._(value, element: element);
   }
 
   /// DL
   static final IdentifierTypeCodes DL = IdentifierTypeCodes._(
-    value: 'DL',
+    'DL',
   );
 
   /// PPN
   static final IdentifierTypeCodes PPN = IdentifierTypeCodes._(
-    value: 'PPN',
+    'PPN',
   );
 
   /// BRN
   static final IdentifierTypeCodes BRN = IdentifierTypeCodes._(
-    value: 'BRN',
+    'BRN',
   );
 
   /// MR
   static final IdentifierTypeCodes MR = IdentifierTypeCodes._(
-    value: 'MR',
+    'MR',
   );
 
   /// MCN
   static final IdentifierTypeCodes MCN = IdentifierTypeCodes._(
-    value: 'MCN',
+    'MCN',
   );
 
   /// EN
   static final IdentifierTypeCodes EN = IdentifierTypeCodes._(
-    value: 'EN',
+    'EN',
   );
 
   /// TAX
   static final IdentifierTypeCodes TAX = IdentifierTypeCodes._(
-    value: 'TAX',
+    'TAX',
   );
 
   /// NIIP
   static final IdentifierTypeCodes NIIP = IdentifierTypeCodes._(
-    value: 'NIIP',
+    'NIIP',
   );
 
   /// PRN
   static final IdentifierTypeCodes PRN = IdentifierTypeCodes._(
-    value: 'PRN',
+    'PRN',
   );
 
   /// MD
   static final IdentifierTypeCodes MD = IdentifierTypeCodes._(
-    value: 'MD',
+    'MD',
   );
 
   /// DR
   static final IdentifierTypeCodes DR = IdentifierTypeCodes._(
-    value: 'DR',
+    'DR',
   );
 
   /// ACSN
   static final IdentifierTypeCodes ACSN = IdentifierTypeCodes._(
-    value: 'ACSN',
+    'ACSN',
   );
 
   /// UDI
   static final IdentifierTypeCodes UDI = IdentifierTypeCodes._(
-    value: 'UDI',
+    'UDI',
   );
 
   /// SNO
   static final IdentifierTypeCodes SNO = IdentifierTypeCodes._(
-    value: 'SNO',
+    'SNO',
   );
 
   /// SB
   static final IdentifierTypeCodes SB = IdentifierTypeCodes._(
-    value: 'SB',
+    'SB',
   );
 
   /// PLAC
   static final IdentifierTypeCodes PLAC = IdentifierTypeCodes._(
-    value: 'PLAC',
+    'PLAC',
   );
 
   /// FILL
   static final IdentifierTypeCodes FILL = IdentifierTypeCodes._(
-    value: 'FILL',
+    'FILL',
   );
 
   /// JHN
   static final IdentifierTypeCodes JHN = IdentifierTypeCodes._(
-    value: 'JHN',
+    'JHN',
   );
 
   /// For instances where an Element is present but not value
 
-  static final IdentifierTypeCodes elementOnly =
-      IdentifierTypeCodes._(value: '');
+  static final IdentifierTypeCodes elementOnly = IdentifierTypeCodes._('');
 
   /// List of all enum-like values
   static final List<IdentifierTypeCodes> values = [
@@ -149,13 +148,13 @@ class IdentifierTypeCodes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   IdentifierTypeCodes clone() => IdentifierTypeCodes._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   IdentifierTypeCodes withElement(Element? newElement) {
-    return IdentifierTypeCodes._(value: value, element: newElement);
+    return IdentifierTypeCodes._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -185,7 +184,7 @@ class IdentifierTypeCodes extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return IdentifierTypeCodes._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

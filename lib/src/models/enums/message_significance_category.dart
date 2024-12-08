@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The impact of the content of a message.
 class MessageSignificanceCategory extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  MessageSignificanceCategory._({
-    super.value,
+  MessageSignificanceCategory._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,31 +26,31 @@ class MessageSignificanceCategory extends PrimitiveType<String> {
         'MessageSignificanceCategory cannot be constructed from JSON.',
       );
     }
-    return MessageSignificanceCategory._(value: value, element: element);
+    return MessageSignificanceCategory._(value, element: element);
   }
 
   /// consequence
   static final MessageSignificanceCategory consequence =
       MessageSignificanceCategory._(
-    value: 'consequence',
+    'consequence',
   );
 
   /// currency
   static final MessageSignificanceCategory currency =
       MessageSignificanceCategory._(
-    value: 'currency',
+    'currency',
   );
 
   /// notification
   static final MessageSignificanceCategory notification =
       MessageSignificanceCategory._(
-    value: 'notification',
+    'notification',
   );
 
   /// For instances where an Element is present but not value
 
   static final MessageSignificanceCategory elementOnly =
-      MessageSignificanceCategory._(value: '');
+      MessageSignificanceCategory._('');
 
   /// List of all enum-like values
   static final List<MessageSignificanceCategory> values = [
@@ -62,13 +62,13 @@ class MessageSignificanceCategory extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   MessageSignificanceCategory clone() => MessageSignificanceCategory._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   MessageSignificanceCategory withElement(Element? newElement) {
-    return MessageSignificanceCategory._(value: value, element: newElement);
+    return MessageSignificanceCategory._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -98,7 +98,7 @@ class MessageSignificanceCategory extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return MessageSignificanceCategory._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

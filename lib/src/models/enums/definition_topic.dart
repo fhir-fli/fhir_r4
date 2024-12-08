@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// High-level categorization of the definition, used for searching, sorting, and filtering.
 class DefinitionTopic extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  DefinitionTopic._({
-    super.value,
+  DefinitionTopic._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,27 +26,27 @@ class DefinitionTopic extends PrimitiveType<String> {
         'DefinitionTopic cannot be constructed from JSON.',
       );
     }
-    return DefinitionTopic._(value: value, element: element);
+    return DefinitionTopic._(value, element: element);
   }
 
   /// treatment
   static final DefinitionTopic treatment = DefinitionTopic._(
-    value: 'treatment',
+    'treatment',
   );
 
   /// education
   static final DefinitionTopic education = DefinitionTopic._(
-    value: 'education',
+    'education',
   );
 
   /// assessment
   static final DefinitionTopic assessment = DefinitionTopic._(
-    value: 'assessment',
+    'assessment',
   );
 
   /// For instances where an Element is present but not value
 
-  static final DefinitionTopic elementOnly = DefinitionTopic._(value: '');
+  static final DefinitionTopic elementOnly = DefinitionTopic._('');
 
   /// List of all enum-like values
   static final List<DefinitionTopic> values = [
@@ -58,13 +58,13 @@ class DefinitionTopic extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   DefinitionTopic clone() => DefinitionTopic._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   DefinitionTopic withElement(Element? newElement) {
-    return DefinitionTopic._(value: value, element: newElement);
+    return DefinitionTopic._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -94,7 +94,7 @@ class DefinitionTopic extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return DefinitionTopic._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

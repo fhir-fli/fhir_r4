@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The handling of the variable in statistical analysis for exposures or outcomes (E.g. Dichotomous, Continuous, Descriptive).
 class EvidenceVariableHandling extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  EvidenceVariableHandling._({
-    super.value,
+  EvidenceVariableHandling._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,35 +26,35 @@ class EvidenceVariableHandling extends PrimitiveType<String> {
         'EvidenceVariableHandling cannot be constructed from JSON.',
       );
     }
-    return EvidenceVariableHandling._(value: value, element: element);
+    return EvidenceVariableHandling._(value, element: element);
   }
 
   /// continuous
   static final EvidenceVariableHandling continuous = EvidenceVariableHandling._(
-    value: 'continuous',
+    'continuous',
   );
 
   /// dichotomous
   static final EvidenceVariableHandling dichotomous =
       EvidenceVariableHandling._(
-    value: 'dichotomous',
+    'dichotomous',
   );
 
   /// ordinal
   static final EvidenceVariableHandling ordinal = EvidenceVariableHandling._(
-    value: 'ordinal',
+    'ordinal',
   );
 
   /// polychotomous
   static final EvidenceVariableHandling polychotomous =
       EvidenceVariableHandling._(
-    value: 'polychotomous',
+    'polychotomous',
   );
 
   /// For instances where an Element is present but not value
 
   static final EvidenceVariableHandling elementOnly =
-      EvidenceVariableHandling._(value: '');
+      EvidenceVariableHandling._('');
 
   /// List of all enum-like values
   static final List<EvidenceVariableHandling> values = [
@@ -67,13 +67,13 @@ class EvidenceVariableHandling extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   EvidenceVariableHandling clone() => EvidenceVariableHandling._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   EvidenceVariableHandling withElement(Element? newElement) {
-    return EvidenceVariableHandling._(value: value, element: newElement);
+    return EvidenceVariableHandling._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -103,7 +103,7 @@ class EvidenceVariableHandling extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return EvidenceVariableHandling._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

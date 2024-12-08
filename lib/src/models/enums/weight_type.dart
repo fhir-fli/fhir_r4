@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The type of substance weight measurement.
 class WeightType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  WeightType._({
-    super.value,
+  WeightType._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,27 +26,27 @@ class WeightType extends PrimitiveType<String> {
         'WeightType cannot be constructed from JSON.',
       );
     }
-    return WeightType._(value: value, element: element);
+    return WeightType._(value, element: element);
   }
 
   /// Exact
   static final WeightType Exact = WeightType._(
-    value: 'Exact',
+    'Exact',
   );
 
   /// Average
   static final WeightType Average = WeightType._(
-    value: 'Average',
+    'Average',
   );
 
   /// WeightAverage
   static final WeightType WeightAverage = WeightType._(
-    value: 'WeightAverage',
+    'WeightAverage',
   );
 
   /// For instances where an Element is present but not value
 
-  static final WeightType elementOnly = WeightType._(value: '');
+  static final WeightType elementOnly = WeightType._('');
 
   /// List of all enum-like values
   static final List<WeightType> values = [
@@ -58,13 +58,13 @@ class WeightType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   WeightType clone() => WeightType._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   WeightType withElement(Element? newElement) {
-    return WeightType._(value: value, element: newElement);
+    return WeightType._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -94,7 +94,7 @@ class WeightType extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return WeightType._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The optical rotation type of a substance.
 class OpticalActivity extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  OpticalActivity._({
-    super.value,
+  OpticalActivity._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,22 +26,22 @@ class OpticalActivity extends PrimitiveType<String> {
         'OpticalActivity cannot be constructed from JSON.',
       );
     }
-    return OpticalActivity._(value: value, element: element);
+    return OpticalActivity._(value, element: element);
   }
 
   /// plus
   static final OpticalActivity plus = OpticalActivity._(
-    value: '+',
+    '+',
   );
 
   /// minus
   static final OpticalActivity minus = OpticalActivity._(
-    value: '-',
+    '-',
   );
 
   /// For instances where an Element is present but not value
 
-  static final OpticalActivity elementOnly = OpticalActivity._(value: '');
+  static final OpticalActivity elementOnly = OpticalActivity._('');
 
   /// List of all enum-like values
   static final List<OpticalActivity> values = [
@@ -52,13 +52,13 @@ class OpticalActivity extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   OpticalActivity clone() => OpticalActivity._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   OpticalActivity withElement(Element? newElement) {
-    return OpticalActivity._(value: value, element: newElement);
+    return OpticalActivity._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -88,7 +88,7 @@ class OpticalActivity extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return OpticalActivity._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

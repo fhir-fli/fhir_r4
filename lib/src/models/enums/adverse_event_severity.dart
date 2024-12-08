@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The severity of the adverse event itself, in direct relation to the subject.
 class AdverseEventSeverity extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  AdverseEventSeverity._({
-    super.value,
+  AdverseEventSeverity._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,28 +26,27 @@ class AdverseEventSeverity extends PrimitiveType<String> {
         'AdverseEventSeverity cannot be constructed from JSON.',
       );
     }
-    return AdverseEventSeverity._(value: value, element: element);
+    return AdverseEventSeverity._(value, element: element);
   }
 
   /// mild
   static final AdverseEventSeverity mild = AdverseEventSeverity._(
-    value: 'mild',
+    'mild',
   );
 
   /// moderate
   static final AdverseEventSeverity moderate = AdverseEventSeverity._(
-    value: 'moderate',
+    'moderate',
   );
 
   /// severe
   static final AdverseEventSeverity severe = AdverseEventSeverity._(
-    value: 'severe',
+    'severe',
   );
 
   /// For instances where an Element is present but not value
 
-  static final AdverseEventSeverity elementOnly =
-      AdverseEventSeverity._(value: '');
+  static final AdverseEventSeverity elementOnly = AdverseEventSeverity._('');
 
   /// List of all enum-like values
   static final List<AdverseEventSeverity> values = [
@@ -59,13 +58,13 @@ class AdverseEventSeverity extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   AdverseEventSeverity clone() => AdverseEventSeverity._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   AdverseEventSeverity withElement(Element? newElement) {
-    return AdverseEventSeverity._(value: value, element: newElement);
+    return AdverseEventSeverity._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -95,7 +94,7 @@ class AdverseEventSeverity extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return AdverseEventSeverity._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

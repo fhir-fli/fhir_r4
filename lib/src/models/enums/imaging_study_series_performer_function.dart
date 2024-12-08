@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Performer function of an agent in an imaging study series
 class ImagingStudySeriesPerformerFunction extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ImagingStudySeriesPerformerFunction._({
-    super.value,
+  ImagingStudySeriesPerformerFunction._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -27,44 +27,43 @@ class ImagingStudySeriesPerformerFunction extends PrimitiveType<String> {
         'ImagingStudySeriesPerformerFunction cannot be constructed from JSON.',
       );
     }
-    return ImagingStudySeriesPerformerFunction._(
-        value: value, element: element);
+    return ImagingStudySeriesPerformerFunction._(value, element: element);
   }
 
   /// CON
   static final ImagingStudySeriesPerformerFunction CON =
       ImagingStudySeriesPerformerFunction._(
-    value: 'CON',
+    'CON',
   );
 
   /// VRF
   static final ImagingStudySeriesPerformerFunction VRF =
       ImagingStudySeriesPerformerFunction._(
-    value: 'VRF',
+    'VRF',
   );
 
   /// PRF
   static final ImagingStudySeriesPerformerFunction PRF =
       ImagingStudySeriesPerformerFunction._(
-    value: 'PRF',
+    'PRF',
   );
 
   /// SPRF
   static final ImagingStudySeriesPerformerFunction SPRF =
       ImagingStudySeriesPerformerFunction._(
-    value: 'SPRF',
+    'SPRF',
   );
 
   /// REF
   static final ImagingStudySeriesPerformerFunction REF =
       ImagingStudySeriesPerformerFunction._(
-    value: 'REF',
+    'REF',
   );
 
   /// For instances where an Element is present but not value
 
   static final ImagingStudySeriesPerformerFunction elementOnly =
-      ImagingStudySeriesPerformerFunction._(value: '');
+      ImagingStudySeriesPerformerFunction._('');
 
   /// List of all enum-like values
   static final List<ImagingStudySeriesPerformerFunction> values = [
@@ -79,14 +78,13 @@ class ImagingStudySeriesPerformerFunction extends PrimitiveType<String> {
   @override
   ImagingStudySeriesPerformerFunction clone() =>
       ImagingStudySeriesPerformerFunction._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ImagingStudySeriesPerformerFunction withElement(Element? newElement) {
-    return ImagingStudySeriesPerformerFunction._(
-        value: value, element: newElement);
+    return ImagingStudySeriesPerformerFunction._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -116,7 +114,7 @@ class ImagingStudySeriesPerformerFunction extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ImagingStudySeriesPerformerFunction._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

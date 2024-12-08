@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// How slices are interpreted when evaluating an instance.
 class SlicingRules extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  SlicingRules._({
-    super.value,
+  SlicingRules._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,27 +26,27 @@ class SlicingRules extends PrimitiveType<String> {
         'SlicingRules cannot be constructed from JSON.',
       );
     }
-    return SlicingRules._(value: value, element: element);
+    return SlicingRules._(value, element: element);
   }
 
   /// closed
   static final SlicingRules closed = SlicingRules._(
-    value: 'closed',
+    'closed',
   );
 
   /// open
   static final SlicingRules open = SlicingRules._(
-    value: 'open',
+    'open',
   );
 
   /// openAtEnd
   static final SlicingRules openAtEnd = SlicingRules._(
-    value: 'openAtEnd',
+    'openAtEnd',
   );
 
   /// For instances where an Element is present but not value
 
-  static final SlicingRules elementOnly = SlicingRules._(value: '');
+  static final SlicingRules elementOnly = SlicingRules._('');
 
   /// List of all enum-like values
   static final List<SlicingRules> values = [
@@ -58,13 +58,13 @@ class SlicingRules extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   SlicingRules clone() => SlicingRules._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   SlicingRules withElement(Element? newElement) {
-    return SlicingRules._(value: value, element: newElement);
+    return SlicingRules._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -94,7 +94,7 @@ class SlicingRules extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return SlicingRules._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Used to distinguish different roles a resource can play within a set of linked resources.
 class LinkageType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  LinkageType._({
-    super.value,
+  LinkageType._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,27 +26,27 @@ class LinkageType extends PrimitiveType<String> {
         'LinkageType cannot be constructed from JSON.',
       );
     }
-    return LinkageType._(value: value, element: element);
+    return LinkageType._(value, element: element);
   }
 
   /// source
   static final LinkageType source = LinkageType._(
-    value: 'source',
+    'source',
   );
 
   /// alternate
   static final LinkageType alternate = LinkageType._(
-    value: 'alternate',
+    'alternate',
   );
 
   /// historical
   static final LinkageType historical = LinkageType._(
-    value: 'historical',
+    'historical',
   );
 
   /// For instances where an Element is present but not value
 
-  static final LinkageType elementOnly = LinkageType._(value: '');
+  static final LinkageType elementOnly = LinkageType._('');
 
   /// List of all enum-like values
   static final List<LinkageType> values = [
@@ -58,13 +58,13 @@ class LinkageType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   LinkageType clone() => LinkageType._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   LinkageType withElement(Element? newElement) {
-    return LinkageType._(value: value, element: newElement);
+    return LinkageType._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -94,7 +94,7 @@ class LinkageType extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return LinkageType._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

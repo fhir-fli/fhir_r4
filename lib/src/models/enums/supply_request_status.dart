@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Status of the supply request.
 class SupplyRequestStatus extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  SupplyRequestStatus._({
-    super.value,
+  SupplyRequestStatus._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,48 +26,47 @@ class SupplyRequestStatus extends PrimitiveType<String> {
         'SupplyRequestStatus cannot be constructed from JSON.',
       );
     }
-    return SupplyRequestStatus._(value: value, element: element);
+    return SupplyRequestStatus._(value, element: element);
   }
 
   /// draft
   static final SupplyRequestStatus draft = SupplyRequestStatus._(
-    value: 'draft',
+    'draft',
   );
 
   /// active
   static final SupplyRequestStatus active = SupplyRequestStatus._(
-    value: 'active',
+    'active',
   );
 
   /// suspended
   static final SupplyRequestStatus suspended = SupplyRequestStatus._(
-    value: 'suspended',
+    'suspended',
   );
 
   /// cancelled
   static final SupplyRequestStatus cancelled = SupplyRequestStatus._(
-    value: 'cancelled',
+    'cancelled',
   );
 
   /// completed
   static final SupplyRequestStatus completed = SupplyRequestStatus._(
-    value: 'completed',
+    'completed',
   );
 
   /// entered_in_error
   static final SupplyRequestStatus entered_in_error = SupplyRequestStatus._(
-    value: 'entered-in-error',
+    'entered-in-error',
   );
 
   /// unknown
   static final SupplyRequestStatus unknown = SupplyRequestStatus._(
-    value: 'unknown',
+    'unknown',
   );
 
   /// For instances where an Element is present but not value
 
-  static final SupplyRequestStatus elementOnly =
-      SupplyRequestStatus._(value: '');
+  static final SupplyRequestStatus elementOnly = SupplyRequestStatus._('');
 
   /// List of all enum-like values
   static final List<SupplyRequestStatus> values = [
@@ -83,13 +82,13 @@ class SupplyRequestStatus extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   SupplyRequestStatus clone() => SupplyRequestStatus._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   SupplyRequestStatus withElement(Element? newElement) {
-    return SupplyRequestStatus._(value: value, element: newElement);
+    return SupplyRequestStatus._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -119,7 +118,7 @@ class SupplyRequestStatus extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return SupplyRequestStatus._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

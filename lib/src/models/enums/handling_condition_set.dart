@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Set of handling instructions prior testing of the specimen.
 class HandlingConditionSet extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  HandlingConditionSet._({
-    super.value,
+  HandlingConditionSet._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,28 +26,27 @@ class HandlingConditionSet extends PrimitiveType<String> {
         'HandlingConditionSet cannot be constructed from JSON.',
       );
     }
-    return HandlingConditionSet._(value: value, element: element);
+    return HandlingConditionSet._(value, element: element);
   }
 
   /// room
   static final HandlingConditionSet room = HandlingConditionSet._(
-    value: 'room',
+    'room',
   );
 
   /// refrigerated
   static final HandlingConditionSet refrigerated = HandlingConditionSet._(
-    value: 'refrigerated',
+    'refrigerated',
   );
 
   /// frozen
   static final HandlingConditionSet frozen = HandlingConditionSet._(
-    value: 'frozen',
+    'frozen',
   );
 
   /// For instances where an Element is present but not value
 
-  static final HandlingConditionSet elementOnly =
-      HandlingConditionSet._(value: '');
+  static final HandlingConditionSet elementOnly = HandlingConditionSet._('');
 
   /// List of all enum-like values
   static final List<HandlingConditionSet> values = [
@@ -59,13 +58,13 @@ class HandlingConditionSet extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   HandlingConditionSet clone() => HandlingConditionSet._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   HandlingConditionSet withElement(Element? newElement) {
-    return HandlingConditionSet._(value: value, element: newElement);
+    return HandlingConditionSet._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -95,7 +94,7 @@ class HandlingConditionSet extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return HandlingConditionSet._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

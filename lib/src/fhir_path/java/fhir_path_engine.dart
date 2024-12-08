@@ -911,8 +911,8 @@ class FHIRPathEngine {
   ) {
     final result = <FhirBase>[];
     if (next.getInner() != null) {
-      result.add(
-          FhirString(input: next.name + "." + next.getInner().getName()));
+      result
+          .add(FhirString(input: next.name + "." + next.getInner().getName()));
     } else {
       result.add(new StringType(next.getName()));
     }

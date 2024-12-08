@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This example value set defines a set of codes that can be used to express the usage type of an EpisodeOfCare record.
 class EpisodeOfCareType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  EpisodeOfCareType._({
-    super.value,
+  EpisodeOfCareType._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,37 +26,37 @@ class EpisodeOfCareType extends PrimitiveType<String> {
         'EpisodeOfCareType cannot be constructed from JSON.',
       );
     }
-    return EpisodeOfCareType._(value: value, element: element);
+    return EpisodeOfCareType._(value, element: element);
   }
 
   /// hacc
   static final EpisodeOfCareType hacc = EpisodeOfCareType._(
-    value: 'hacc',
+    'hacc',
   );
 
   /// pac
   static final EpisodeOfCareType pac = EpisodeOfCareType._(
-    value: 'pac',
+    'pac',
   );
 
   /// diab
   static final EpisodeOfCareType diab = EpisodeOfCareType._(
-    value: 'diab',
+    'diab',
   );
 
   /// da
   static final EpisodeOfCareType da = EpisodeOfCareType._(
-    value: 'da',
+    'da',
   );
 
   /// cacp
   static final EpisodeOfCareType cacp = EpisodeOfCareType._(
-    value: 'cacp',
+    'cacp',
   );
 
   /// For instances where an Element is present but not value
 
-  static final EpisodeOfCareType elementOnly = EpisodeOfCareType._(value: '');
+  static final EpisodeOfCareType elementOnly = EpisodeOfCareType._('');
 
   /// List of all enum-like values
   static final List<EpisodeOfCareType> values = [
@@ -70,13 +70,13 @@ class EpisodeOfCareType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   EpisodeOfCareType clone() => EpisodeOfCareType._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   EpisodeOfCareType withElement(Element? newElement) {
-    return EpisodeOfCareType._(value: value, element: newElement);
+    return EpisodeOfCareType._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -106,7 +106,7 @@ class EpisodeOfCareType extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return EpisodeOfCareType._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

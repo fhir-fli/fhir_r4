@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Identifies the style of unique identifier used to identify a namespace.
 class NamingSystemIdentifierType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  NamingSystemIdentifierType._({
-    super.value,
+  NamingSystemIdentifierType._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,33 +26,33 @@ class NamingSystemIdentifierType extends PrimitiveType<String> {
         'NamingSystemIdentifierType cannot be constructed from JSON.',
       );
     }
-    return NamingSystemIdentifierType._(value: value, element: element);
+    return NamingSystemIdentifierType._(value, element: element);
   }
 
   /// oid
   static final NamingSystemIdentifierType oid = NamingSystemIdentifierType._(
-    value: 'oid',
+    'oid',
   );
 
   /// uuid
   static final NamingSystemIdentifierType uuid = NamingSystemIdentifierType._(
-    value: 'uuid',
+    'uuid',
   );
 
   /// uri
   static final NamingSystemIdentifierType uri = NamingSystemIdentifierType._(
-    value: 'uri',
+    'uri',
   );
 
   /// other
   static final NamingSystemIdentifierType other = NamingSystemIdentifierType._(
-    value: 'other',
+    'other',
   );
 
   /// For instances where an Element is present but not value
 
   static final NamingSystemIdentifierType elementOnly =
-      NamingSystemIdentifierType._(value: '');
+      NamingSystemIdentifierType._('');
 
   /// List of all enum-like values
   static final List<NamingSystemIdentifierType> values = [
@@ -65,13 +65,13 @@ class NamingSystemIdentifierType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   NamingSystemIdentifierType clone() => NamingSystemIdentifierType._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   NamingSystemIdentifierType withElement(Element? newElement) {
-    return NamingSystemIdentifierType._(value: value, element: newElement);
+    return NamingSystemIdentifierType._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -101,7 +101,7 @@ class NamingSystemIdentifierType extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return NamingSystemIdentifierType._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

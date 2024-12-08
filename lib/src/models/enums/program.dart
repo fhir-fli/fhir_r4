@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value set defines an example set of codes that could be can be used to classify groupings of service-types/specialties.
 class Program extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  Program._({
-    super.value,
+  Program._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,237 +26,237 @@ class Program extends PrimitiveType<String> {
         'Program cannot be constructed from JSON.',
       );
     }
-    return Program._(value: value, element: element);
+    return Program._(value, element: element);
   }
 
   /// value1
   static final Program value1 = Program._(
-    value: '1',
+    '1',
   );
 
   /// value2
   static final Program value2 = Program._(
-    value: '2',
+    '2',
   );
 
   /// value3
   static final Program value3 = Program._(
-    value: '3',
+    '3',
   );
 
   /// value4
   static final Program value4 = Program._(
-    value: '4',
+    '4',
   );
 
   /// value5
   static final Program value5 = Program._(
-    value: '5',
+    '5',
   );
 
   /// value6
   static final Program value6 = Program._(
-    value: '6',
+    '6',
   );
 
   /// value7
   static final Program value7 = Program._(
-    value: '7',
+    '7',
   );
 
   /// value8
   static final Program value8 = Program._(
-    value: '8',
+    '8',
   );
 
   /// value9
   static final Program value9 = Program._(
-    value: '9',
+    '9',
   );
 
   /// value10
   static final Program value10 = Program._(
-    value: '10',
+    '10',
   );
 
   /// value11
   static final Program value11 = Program._(
-    value: '11',
+    '11',
   );
 
   /// value12
   static final Program value12 = Program._(
-    value: '12',
+    '12',
   );
 
   /// value13
   static final Program value13 = Program._(
-    value: '13',
+    '13',
   );
 
   /// value14
   static final Program value14 = Program._(
-    value: '14',
+    '14',
   );
 
   /// value15
   static final Program value15 = Program._(
-    value: '15',
+    '15',
   );
 
   /// value16
   static final Program value16 = Program._(
-    value: '16',
+    '16',
   );
 
   /// value17
   static final Program value17 = Program._(
-    value: '17',
+    '17',
   );
 
   /// value18
   static final Program value18 = Program._(
-    value: '18',
+    '18',
   );
 
   /// value19
   static final Program value19 = Program._(
-    value: '19',
+    '19',
   );
 
   /// value20
   static final Program value20 = Program._(
-    value: '20',
+    '20',
   );
 
   /// value21
   static final Program value21 = Program._(
-    value: '21',
+    '21',
   );
 
   /// value22
   static final Program value22 = Program._(
-    value: '22',
+    '22',
   );
 
   /// value23
   static final Program value23 = Program._(
-    value: '23',
+    '23',
   );
 
   /// value24
   static final Program value24 = Program._(
-    value: '24',
+    '24',
   );
 
   /// value25
   static final Program value25 = Program._(
-    value: '25',
+    '25',
   );
 
   /// value26
   static final Program value26 = Program._(
-    value: '26',
+    '26',
   );
 
   /// value27
   static final Program value27 = Program._(
-    value: '27',
+    '27',
   );
 
   /// value28
   static final Program value28 = Program._(
-    value: '28',
+    '28',
   );
 
   /// value29
   static final Program value29 = Program._(
-    value: '29',
+    '29',
   );
 
   /// value30
   static final Program value30 = Program._(
-    value: '30',
+    '30',
   );
 
   /// value31
   static final Program value31 = Program._(
-    value: '31',
+    '31',
   );
 
   /// value32
   static final Program value32 = Program._(
-    value: '32',
+    '32',
   );
 
   /// value33
   static final Program value33 = Program._(
-    value: '33',
+    '33',
   );
 
   /// value34
   static final Program value34 = Program._(
-    value: '34',
+    '34',
   );
 
   /// value35
   static final Program value35 = Program._(
-    value: '35',
+    '35',
   );
 
   /// value36
   static final Program value36 = Program._(
-    value: '36',
+    '36',
   );
 
   /// value37
   static final Program value37 = Program._(
-    value: '37',
+    '37',
   );
 
   /// value38
   static final Program value38 = Program._(
-    value: '38',
+    '38',
   );
 
   /// value39
   static final Program value39 = Program._(
-    value: '39',
+    '39',
   );
 
   /// value40
   static final Program value40 = Program._(
-    value: '40',
+    '40',
   );
 
   /// value41
   static final Program value41 = Program._(
-    value: '41',
+    '41',
   );
 
   /// value42
   static final Program value42 = Program._(
-    value: '42',
+    '42',
   );
 
   /// value43
   static final Program value43 = Program._(
-    value: '43',
+    '43',
   );
 
   /// value44
   static final Program value44 = Program._(
-    value: '44',
+    '44',
   );
 
   /// value45
   static final Program value45 = Program._(
-    value: '45',
+    '45',
   );
 
   /// For instances where an Element is present but not value
 
-  static final Program elementOnly = Program._(value: '');
+  static final Program elementOnly = Program._('');
 
   /// List of all enum-like values
   static final List<Program> values = [
@@ -310,13 +310,13 @@ class Program extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   Program clone() => Program._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   Program withElement(Element? newElement) {
-    return Program._(value: value, element: newElement);
+    return Program._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -346,7 +346,7 @@ class Program extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return Program._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Codes for the reason why a communication did not happen.
 class CommunicationNotDoneReason extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  CommunicationNotDoneReason._({
-    super.value,
+  CommunicationNotDoneReason._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,49 +26,49 @@ class CommunicationNotDoneReason extends PrimitiveType<String> {
         'CommunicationNotDoneReason cannot be constructed from JSON.',
       );
     }
-    return CommunicationNotDoneReason._(value: value, element: element);
+    return CommunicationNotDoneReason._(value, element: element);
   }
 
   /// unknown
   static final CommunicationNotDoneReason unknown =
       CommunicationNotDoneReason._(
-    value: 'unknown',
+    'unknown',
   );
 
   /// system_error
   static final CommunicationNotDoneReason system_error =
       CommunicationNotDoneReason._(
-    value: 'system-error',
+    'system-error',
   );
 
   /// invalid_phone_number
   static final CommunicationNotDoneReason invalid_phone_number =
       CommunicationNotDoneReason._(
-    value: 'invalid-phone-number',
+    'invalid-phone-number',
   );
 
   /// recipient_unavailable
   static final CommunicationNotDoneReason recipient_unavailable =
       CommunicationNotDoneReason._(
-    value: 'recipient-unavailable',
+    'recipient-unavailable',
   );
 
   /// family_objection
   static final CommunicationNotDoneReason family_objection =
       CommunicationNotDoneReason._(
-    value: 'family-objection',
+    'family-objection',
   );
 
   /// patient_objection
   static final CommunicationNotDoneReason patient_objection =
       CommunicationNotDoneReason._(
-    value: 'patient-objection',
+    'patient-objection',
   );
 
   /// For instances where an Element is present but not value
 
   static final CommunicationNotDoneReason elementOnly =
-      CommunicationNotDoneReason._(value: '');
+      CommunicationNotDoneReason._('');
 
   /// List of all enum-like values
   static final List<CommunicationNotDoneReason> values = [
@@ -83,13 +83,13 @@ class CommunicationNotDoneReason extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   CommunicationNotDoneReason clone() => CommunicationNotDoneReason._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   CommunicationNotDoneReason withElement(Element? newElement) {
-    return CommunicationNotDoneReason._(value: value, element: newElement);
+    return CommunicationNotDoneReason._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -119,7 +119,7 @@ class CommunicationNotDoneReason extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return CommunicationNotDoneReason._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

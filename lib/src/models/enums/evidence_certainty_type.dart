@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The aspect of quality, confidence, or certainty.
 class EvidenceCertaintyType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  EvidenceCertaintyType._({
-    super.value,
+  EvidenceCertaintyType._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,60 +26,59 @@ class EvidenceCertaintyType extends PrimitiveType<String> {
         'EvidenceCertaintyType cannot be constructed from JSON.',
       );
     }
-    return EvidenceCertaintyType._(value: value, element: element);
+    return EvidenceCertaintyType._(value, element: element);
   }
 
   /// Overall
   static final EvidenceCertaintyType Overall = EvidenceCertaintyType._(
-    value: 'Overall',
+    'Overall',
   );
 
   /// RiskOfBias
   static final EvidenceCertaintyType RiskOfBias = EvidenceCertaintyType._(
-    value: 'RiskOfBias',
+    'RiskOfBias',
   );
 
   /// Inconsistency
   static final EvidenceCertaintyType Inconsistency = EvidenceCertaintyType._(
-    value: 'Inconsistency',
+    'Inconsistency',
   );
 
   /// Indirectness
   static final EvidenceCertaintyType Indirectness = EvidenceCertaintyType._(
-    value: 'Indirectness',
+    'Indirectness',
   );
 
   /// Imprecision
   static final EvidenceCertaintyType Imprecision = EvidenceCertaintyType._(
-    value: 'Imprecision',
+    'Imprecision',
   );
 
   /// PublicationBias
   static final EvidenceCertaintyType PublicationBias = EvidenceCertaintyType._(
-    value: 'PublicationBias',
+    'PublicationBias',
   );
 
   /// DoseResponseGradient
   static final EvidenceCertaintyType DoseResponseGradient =
       EvidenceCertaintyType._(
-    value: 'DoseResponseGradient',
+    'DoseResponseGradient',
   );
 
   /// PlausibleConfounding
   static final EvidenceCertaintyType PlausibleConfounding =
       EvidenceCertaintyType._(
-    value: 'PlausibleConfounding',
+    'PlausibleConfounding',
   );
 
   /// LargeEffect
   static final EvidenceCertaintyType LargeEffect = EvidenceCertaintyType._(
-    value: 'LargeEffect',
+    'LargeEffect',
   );
 
   /// For instances where an Element is present but not value
 
-  static final EvidenceCertaintyType elementOnly =
-      EvidenceCertaintyType._(value: '');
+  static final EvidenceCertaintyType elementOnly = EvidenceCertaintyType._('');
 
   /// List of all enum-like values
   static final List<EvidenceCertaintyType> values = [
@@ -97,13 +96,13 @@ class EvidenceCertaintyType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   EvidenceCertaintyType clone() => EvidenceCertaintyType._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   EvidenceCertaintyType withElement(Element? newElement) {
-    return EvidenceCertaintyType._(value: value, element: newElement);
+    return EvidenceCertaintyType._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -133,7 +132,7 @@ class EvidenceCertaintyType extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return EvidenceCertaintyType._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

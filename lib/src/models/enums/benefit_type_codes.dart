@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value set includes a smattering of Benefit type codes.
 class BenefitTypeCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  BenefitTypeCodes._({
-    super.value,
+  BenefitTypeCodes._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,72 +26,72 @@ class BenefitTypeCodes extends PrimitiveType<String> {
         'BenefitTypeCodes cannot be constructed from JSON.',
       );
     }
-    return BenefitTypeCodes._(value: value, element: element);
+    return BenefitTypeCodes._(value, element: element);
   }
 
   /// benefit
   static final BenefitTypeCodes benefit = BenefitTypeCodes._(
-    value: 'benefit',
+    'benefit',
   );
 
   /// deductible
   static final BenefitTypeCodes deductible = BenefitTypeCodes._(
-    value: 'deductible',
+    'deductible',
   );
 
   /// visit
   static final BenefitTypeCodes visit = BenefitTypeCodes._(
-    value: 'visit',
+    'visit',
   );
 
   /// room
   static final BenefitTypeCodes room = BenefitTypeCodes._(
-    value: 'room',
+    'room',
   );
 
   /// copay
   static final BenefitTypeCodes copay = BenefitTypeCodes._(
-    value: 'copay',
+    'copay',
   );
 
   /// copay_percent
   static final BenefitTypeCodes copay_percent = BenefitTypeCodes._(
-    value: 'copay-percent',
+    'copay-percent',
   );
 
   /// copay_maximum
   static final BenefitTypeCodes copay_maximum = BenefitTypeCodes._(
-    value: 'copay-maximum',
+    'copay-maximum',
   );
 
   /// vision_exam
   static final BenefitTypeCodes vision_exam = BenefitTypeCodes._(
-    value: 'vision-exam',
+    'vision-exam',
   );
 
   /// vision_glasses
   static final BenefitTypeCodes vision_glasses = BenefitTypeCodes._(
-    value: 'vision-glasses',
+    'vision-glasses',
   );
 
   /// vision_contacts
   static final BenefitTypeCodes vision_contacts = BenefitTypeCodes._(
-    value: 'vision-contacts',
+    'vision-contacts',
   );
 
   /// medical_primarycare
   static final BenefitTypeCodes medical_primarycare = BenefitTypeCodes._(
-    value: 'medical-primarycare',
+    'medical-primarycare',
   );
 
   /// pharmacy_dispense
   static final BenefitTypeCodes pharmacy_dispense = BenefitTypeCodes._(
-    value: 'pharmacy-dispense',
+    'pharmacy-dispense',
   );
 
   /// For instances where an Element is present but not value
 
-  static final BenefitTypeCodes elementOnly = BenefitTypeCodes._(value: '');
+  static final BenefitTypeCodes elementOnly = BenefitTypeCodes._('');
 
   /// List of all enum-like values
   static final List<BenefitTypeCodes> values = [
@@ -112,13 +112,13 @@ class BenefitTypeCodes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   BenefitTypeCodes clone() => BenefitTypeCodes._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   BenefitTypeCodes withElement(Element? newElement) {
-    return BenefitTypeCodes._(value: value, element: newElement);
+    return BenefitTypeCodes._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -148,7 +148,7 @@ class BenefitTypeCodes extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return BenefitTypeCodes._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

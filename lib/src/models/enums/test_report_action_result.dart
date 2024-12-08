@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The results of executing an action.
 class TestReportActionResult extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  TestReportActionResult._({
-    super.value,
+  TestReportActionResult._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,38 +26,38 @@ class TestReportActionResult extends PrimitiveType<String> {
         'TestReportActionResult cannot be constructed from JSON.',
       );
     }
-    return TestReportActionResult._(value: value, element: element);
+    return TestReportActionResult._(value, element: element);
   }
 
   /// pass
   static final TestReportActionResult pass = TestReportActionResult._(
-    value: 'pass',
+    'pass',
   );
 
   /// skip
   static final TestReportActionResult skip = TestReportActionResult._(
-    value: 'skip',
+    'skip',
   );
 
   /// fail
   static final TestReportActionResult fail = TestReportActionResult._(
-    value: 'fail',
+    'fail',
   );
 
   /// warning
   static final TestReportActionResult warning = TestReportActionResult._(
-    value: 'warning',
+    'warning',
   );
 
   /// error
   static final TestReportActionResult error = TestReportActionResult._(
-    value: 'error',
+    'error',
   );
 
   /// For instances where an Element is present but not value
 
   static final TestReportActionResult elementOnly =
-      TestReportActionResult._(value: '');
+      TestReportActionResult._('');
 
   /// List of all enum-like values
   static final List<TestReportActionResult> values = [
@@ -71,13 +71,13 @@ class TestReportActionResult extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   TestReportActionResult clone() => TestReportActionResult._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   TestReportActionResult withElement(Element? newElement) {
-    return TestReportActionResult._(value: value, element: newElement);
+    return TestReportActionResult._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -107,7 +107,7 @@ class TestReportActionResult extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return TestReportActionResult._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

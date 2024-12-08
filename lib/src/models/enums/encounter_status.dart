@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Current state of the encounter.
 class EncounterStatus extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  EncounterStatus._({
-    super.value,
+  EncounterStatus._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,57 +26,57 @@ class EncounterStatus extends PrimitiveType<String> {
         'EncounterStatus cannot be constructed from JSON.',
       );
     }
-    return EncounterStatus._(value: value, element: element);
+    return EncounterStatus._(value, element: element);
   }
 
   /// planned
   static final EncounterStatus planned = EncounterStatus._(
-    value: 'planned',
+    'planned',
   );
 
   /// arrived
   static final EncounterStatus arrived = EncounterStatus._(
-    value: 'arrived',
+    'arrived',
   );
 
   /// triaged
   static final EncounterStatus triaged = EncounterStatus._(
-    value: 'triaged',
+    'triaged',
   );
 
   /// in_progress
   static final EncounterStatus in_progress = EncounterStatus._(
-    value: 'in-progress',
+    'in-progress',
   );
 
   /// onleave
   static final EncounterStatus onleave = EncounterStatus._(
-    value: 'onleave',
+    'onleave',
   );
 
   /// finished
   static final EncounterStatus finished = EncounterStatus._(
-    value: 'finished',
+    'finished',
   );
 
   /// cancelled
   static final EncounterStatus cancelled = EncounterStatus._(
-    value: 'cancelled',
+    'cancelled',
   );
 
   /// entered_in_error
   static final EncounterStatus entered_in_error = EncounterStatus._(
-    value: 'entered-in-error',
+    'entered-in-error',
   );
 
   /// unknown
   static final EncounterStatus unknown = EncounterStatus._(
-    value: 'unknown',
+    'unknown',
   );
 
   /// For instances where an Element is present but not value
 
-  static final EncounterStatus elementOnly = EncounterStatus._(value: '');
+  static final EncounterStatus elementOnly = EncounterStatus._('');
 
   /// List of all enum-like values
   static final List<EncounterStatus> values = [
@@ -94,13 +94,13 @@ class EncounterStatus extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   EncounterStatus clone() => EncounterStatus._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   EncounterStatus withElement(Element? newElement) {
-    return EncounterStatus._(value: value, element: newElement);
+    return EncounterStatus._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -130,7 +130,7 @@ class EncounterStatus extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return EncounterStatus._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

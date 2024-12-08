@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The status of the document reference.
 class DocumentReferenceStatus extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  DocumentReferenceStatus._({
-    super.value,
+  DocumentReferenceStatus._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,29 +26,29 @@ class DocumentReferenceStatus extends PrimitiveType<String> {
         'DocumentReferenceStatus cannot be constructed from JSON.',
       );
     }
-    return DocumentReferenceStatus._(value: value, element: element);
+    return DocumentReferenceStatus._(value, element: element);
   }
 
   /// current
   static final DocumentReferenceStatus current = DocumentReferenceStatus._(
-    value: 'current',
+    'current',
   );
 
   /// superseded
   static final DocumentReferenceStatus superseded = DocumentReferenceStatus._(
-    value: 'superseded',
+    'superseded',
   );
 
   /// entered_in_error
   static final DocumentReferenceStatus entered_in_error =
       DocumentReferenceStatus._(
-    value: 'entered-in-error',
+    'entered-in-error',
   );
 
   /// For instances where an Element is present but not value
 
   static final DocumentReferenceStatus elementOnly =
-      DocumentReferenceStatus._(value: '');
+      DocumentReferenceStatus._('');
 
   /// List of all enum-like values
   static final List<DocumentReferenceStatus> values = [
@@ -60,13 +60,13 @@ class DocumentReferenceStatus extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   DocumentReferenceStatus clone() => DocumentReferenceStatus._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   DocumentReferenceStatus withElement(Element? newElement) {
-    return DocumentReferenceStatus._(value: value, element: newElement);
+    return DocumentReferenceStatus._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -96,7 +96,7 @@ class DocumentReferenceStatus extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return DocumentReferenceStatus._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

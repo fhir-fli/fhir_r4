@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Overall defining type of this Medicinal Product.
 class MedicinalProductType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  MedicinalProductType._({
-    super.value,
+  MedicinalProductType._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,24 +26,23 @@ class MedicinalProductType extends PrimitiveType<String> {
         'MedicinalProductType cannot be constructed from JSON.',
       );
     }
-    return MedicinalProductType._(value: value, element: element);
+    return MedicinalProductType._(value, element: element);
   }
 
   /// MedicinalProduct
   static final MedicinalProductType MedicinalProduct = MedicinalProductType._(
-    value: 'MedicinalProduct',
+    'MedicinalProduct',
   );
 
   /// InvestigationalProduct
   static final MedicinalProductType InvestigationalProduct =
       MedicinalProductType._(
-    value: 'InvestigationalProduct',
+    'InvestigationalProduct',
   );
 
   /// For instances where an Element is present but not value
 
-  static final MedicinalProductType elementOnly =
-      MedicinalProductType._(value: '');
+  static final MedicinalProductType elementOnly = MedicinalProductType._('');
 
   /// List of all enum-like values
   static final List<MedicinalProductType> values = [
@@ -54,13 +53,13 @@ class MedicinalProductType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   MedicinalProductType clone() => MedicinalProductType._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   MedicinalProductType withElement(Element? newElement) {
-    return MedicinalProductType._(value: value, element: newElement);
+    return MedicinalProductType._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -90,7 +89,7 @@ class MedicinalProductType extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return MedicinalProductType._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

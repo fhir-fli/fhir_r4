@@ -8,7 +8,7 @@ abstract class FhirNumber extends PrimitiveType<num?>
     implements Comparable<FhirNumber> {
   /// Constructor accepting a [num] value and an optional [element].
   FhirNumber(
-    super.value,{
+    super.value, {
     super.element,
     super.id,
     super.extension_,

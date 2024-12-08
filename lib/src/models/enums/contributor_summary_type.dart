@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Used to code author list statement, contributorship statement, and such.
 class ContributorSummaryType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ContributorSummaryType._({
-    super.value,
+  ContributorSummaryType._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,54 +26,54 @@ class ContributorSummaryType extends PrimitiveType<String> {
         'ContributorSummaryType cannot be constructed from JSON.',
       );
     }
-    return ContributorSummaryType._(value: value, element: element);
+    return ContributorSummaryType._(value, element: element);
   }
 
   /// author_string
   static final ContributorSummaryType author_string = ContributorSummaryType._(
-    value: 'author-string',
+    'author-string',
   );
 
   /// contributorship_list
   static final ContributorSummaryType contributorship_list =
       ContributorSummaryType._(
-    value: 'contributorship-list',
+    'contributorship-list',
   );
 
   /// contributorship_statement
   static final ContributorSummaryType contributorship_statement =
       ContributorSummaryType._(
-    value: 'contributorship-statement',
+    'contributorship-statement',
   );
 
   /// acknowledgement_list
   static final ContributorSummaryType acknowledgement_list =
       ContributorSummaryType._(
-    value: 'acknowledgement-list',
+    'acknowledgement-list',
   );
 
   /// acknowledgment_statement
   static final ContributorSummaryType acknowledgment_statement =
       ContributorSummaryType._(
-    value: 'acknowledgment-statement',
+    'acknowledgment-statement',
   );
 
   /// funding_statement
   static final ContributorSummaryType funding_statement =
       ContributorSummaryType._(
-    value: 'funding-statement',
+    'funding-statement',
   );
 
   /// competing_interests_statement
   static final ContributorSummaryType competing_interests_statement =
       ContributorSummaryType._(
-    value: 'competing-interests-statement',
+    'competing-interests-statement',
   );
 
   /// For instances where an Element is present but not value
 
   static final ContributorSummaryType elementOnly =
-      ContributorSummaryType._(value: '');
+      ContributorSummaryType._('');
 
   /// List of all enum-like values
   static final List<ContributorSummaryType> values = [
@@ -89,13 +89,13 @@ class ContributorSummaryType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ContributorSummaryType clone() => ContributorSummaryType._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ContributorSummaryType withElement(Element? newElement) {
-    return ContributorSummaryType._(value: value, element: newElement);
+    return ContributorSummaryType._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -125,7 +125,7 @@ class ContributorSummaryType extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ContributorSummaryType._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

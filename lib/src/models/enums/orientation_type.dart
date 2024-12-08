@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Type for orientation.
 class OrientationType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  OrientationType._({
-    super.value,
+  OrientationType._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,22 +26,22 @@ class OrientationType extends PrimitiveType<String> {
         'OrientationType cannot be constructed from JSON.',
       );
     }
-    return OrientationType._(value: value, element: element);
+    return OrientationType._(value, element: element);
   }
 
   /// sense
   static final OrientationType sense = OrientationType._(
-    value: 'sense',
+    'sense',
   );
 
   /// antisense
   static final OrientationType antisense = OrientationType._(
-    value: 'antisense',
+    'antisense',
   );
 
   /// For instances where an Element is present but not value
 
-  static final OrientationType elementOnly = OrientationType._(value: '');
+  static final OrientationType elementOnly = OrientationType._('');
 
   /// List of all enum-like values
   static final List<OrientationType> values = [
@@ -52,13 +52,13 @@ class OrientationType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   OrientationType clone() => OrientationType._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   OrientationType withElement(Element? newElement) {
-    return OrientationType._(value: value, element: newElement);
+    return OrientationType._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -88,7 +88,7 @@ class OrientationType extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return OrientationType._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

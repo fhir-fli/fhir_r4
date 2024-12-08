@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Common Tag Codes defined by FHIR project
 class CommonTags extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  CommonTags._({
-    super.value,
+  CommonTags._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,17 +26,17 @@ class CommonTags extends PrimitiveType<String> {
         'CommonTags cannot be constructed from JSON.',
       );
     }
-    return CommonTags._(value: value, element: element);
+    return CommonTags._(value, element: element);
   }
 
   /// actionable
   static final CommonTags actionable = CommonTags._(
-    value: 'actionable',
+    'actionable',
   );
 
   /// For instances where an Element is present but not value
 
-  static final CommonTags elementOnly = CommonTags._(value: '');
+  static final CommonTags elementOnly = CommonTags._('');
 
   /// List of all enum-like values
   static final List<CommonTags> values = [
@@ -46,13 +46,13 @@ class CommonTags extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   CommonTags clone() => CommonTags._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   CommonTags withElement(Element? newElement) {
-    return CommonTags._(value: value, element: newElement);
+    return CommonTags._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -82,7 +82,7 @@ class CommonTags extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return CommonTags._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

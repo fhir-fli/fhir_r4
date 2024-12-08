@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The kind of report, such as grouping of classifiers, search results, or human-compiled expression.
 class EvidenceReportType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  EvidenceReportType._({
-    super.value,
+  EvidenceReportType._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,32 +26,32 @@ class EvidenceReportType extends PrimitiveType<String> {
         'EvidenceReportType cannot be constructed from JSON.',
       );
     }
-    return EvidenceReportType._(value: value, element: element);
+    return EvidenceReportType._(value, element: element);
   }
 
   /// classification
   static final EvidenceReportType classification = EvidenceReportType._(
-    value: 'classification',
+    'classification',
   );
 
   /// search_results
   static final EvidenceReportType search_results = EvidenceReportType._(
-    value: 'search-results',
+    'search-results',
   );
 
   /// resources_compiled
   static final EvidenceReportType resources_compiled = EvidenceReportType._(
-    value: 'resources-compiled',
+    'resources-compiled',
   );
 
   /// text_structured
   static final EvidenceReportType text_structured = EvidenceReportType._(
-    value: 'text-structured',
+    'text-structured',
   );
 
   /// For instances where an Element is present but not value
 
-  static final EvidenceReportType elementOnly = EvidenceReportType._(value: '');
+  static final EvidenceReportType elementOnly = EvidenceReportType._('');
 
   /// List of all enum-like values
   static final List<EvidenceReportType> values = [
@@ -64,13 +64,13 @@ class EvidenceReportType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   EvidenceReportType clone() => EvidenceReportType._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   EvidenceReportType withElement(Element? newElement) {
-    return EvidenceReportType._(value: value, element: newElement);
+    return EvidenceReportType._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -100,7 +100,7 @@ class EvidenceReportType extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return EvidenceReportType._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

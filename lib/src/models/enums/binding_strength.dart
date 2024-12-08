@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Indication of the degree of conformance expectations associated with a binding.
 class BindingStrength extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  BindingStrength._({
-    super.value,
+  BindingStrength._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,32 +26,32 @@ class BindingStrength extends PrimitiveType<String> {
         'BindingStrength cannot be constructed from JSON.',
       );
     }
-    return BindingStrength._(value: value, element: element);
+    return BindingStrength._(value, element: element);
   }
 
   /// required_
   static final BindingStrength required_ = BindingStrength._(
-    value: 'required',
+    'required',
   );
 
   /// extensible
   static final BindingStrength extensible = BindingStrength._(
-    value: 'extensible',
+    'extensible',
   );
 
   /// preferred
   static final BindingStrength preferred = BindingStrength._(
-    value: 'preferred',
+    'preferred',
   );
 
   /// example
   static final BindingStrength example = BindingStrength._(
-    value: 'example',
+    'example',
   );
 
   /// For instances where an Element is present but not value
 
-  static final BindingStrength elementOnly = BindingStrength._(value: '');
+  static final BindingStrength elementOnly = BindingStrength._('');
 
   /// List of all enum-like values
   static final List<BindingStrength> values = [
@@ -64,13 +64,13 @@ class BindingStrength extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   BindingStrength clone() => BindingStrength._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   BindingStrength withElement(Element? newElement) {
-    return BindingStrength._(value: value, element: newElement);
+    return BindingStrength._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -100,7 +100,7 @@ class BindingStrength extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return BindingStrength._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

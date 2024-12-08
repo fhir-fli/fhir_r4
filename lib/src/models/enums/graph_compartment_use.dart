@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Defines how a compartment rule is used.
 class GraphCompartmentUse extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  GraphCompartmentUse._({
-    super.value,
+  GraphCompartmentUse._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,23 +26,22 @@ class GraphCompartmentUse extends PrimitiveType<String> {
         'GraphCompartmentUse cannot be constructed from JSON.',
       );
     }
-    return GraphCompartmentUse._(value: value, element: element);
+    return GraphCompartmentUse._(value, element: element);
   }
 
   /// condition
   static final GraphCompartmentUse condition = GraphCompartmentUse._(
-    value: 'condition',
+    'condition',
   );
 
   /// requirement
   static final GraphCompartmentUse requirement = GraphCompartmentUse._(
-    value: 'requirement',
+    'requirement',
   );
 
   /// For instances where an Element is present but not value
 
-  static final GraphCompartmentUse elementOnly =
-      GraphCompartmentUse._(value: '');
+  static final GraphCompartmentUse elementOnly = GraphCompartmentUse._('');
 
   /// List of all enum-like values
   static final List<GraphCompartmentUse> values = [
@@ -53,13 +52,13 @@ class GraphCompartmentUse extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   GraphCompartmentUse clone() => GraphCompartmentUse._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   GraphCompartmentUse withElement(Element? newElement) {
-    return GraphCompartmentUse._(value: value, element: newElement);
+    return GraphCompartmentUse._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -89,7 +88,7 @@ class GraphCompartmentUse extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return GraphCompartmentUse._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

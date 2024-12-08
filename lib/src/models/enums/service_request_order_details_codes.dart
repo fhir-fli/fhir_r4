@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// An example value set of Codified order entry details concepts. These concepts only make sense in the context of what is being ordered. This example is for a patient ventilation order
 class ServiceRequestOrderDetailsCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ServiceRequestOrderDetailsCodes._({
-    super.value,
+  ServiceRequestOrderDetailsCodes._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,43 +26,43 @@ class ServiceRequestOrderDetailsCodes extends PrimitiveType<String> {
         'ServiceRequestOrderDetailsCodes cannot be constructed from JSON.',
       );
     }
-    return ServiceRequestOrderDetailsCodes._(value: value, element: element);
+    return ServiceRequestOrderDetailsCodes._(value, element: element);
   }
 
   /// value47545007
   static final ServiceRequestOrderDetailsCodes value47545007 =
       ServiceRequestOrderDetailsCodes._(
-    value: '47545007',
+    '47545007',
   );
 
   /// value286812008
   static final ServiceRequestOrderDetailsCodes value286812008 =
       ServiceRequestOrderDetailsCodes._(
-    value: '286812008',
+    '286812008',
   );
 
   /// value243144002
   static final ServiceRequestOrderDetailsCodes value243144002 =
       ServiceRequestOrderDetailsCodes._(
-    value: '243144002',
+    '243144002',
   );
 
   /// value243150007
   static final ServiceRequestOrderDetailsCodes value243150007 =
       ServiceRequestOrderDetailsCodes._(
-    value: '243150007',
+    '243150007',
   );
 
   /// value59427005
   static final ServiceRequestOrderDetailsCodes value59427005 =
       ServiceRequestOrderDetailsCodes._(
-    value: '59427005',
+    '59427005',
   );
 
   /// For instances where an Element is present but not value
 
   static final ServiceRequestOrderDetailsCodes elementOnly =
-      ServiceRequestOrderDetailsCodes._(value: '');
+      ServiceRequestOrderDetailsCodes._('');
 
   /// List of all enum-like values
   static final List<ServiceRequestOrderDetailsCodes> values = [
@@ -76,13 +76,13 @@ class ServiceRequestOrderDetailsCodes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ServiceRequestOrderDetailsCodes clone() => ServiceRequestOrderDetailsCodes._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ServiceRequestOrderDetailsCodes withElement(Element? newElement) {
-    return ServiceRequestOrderDetailsCodes._(value: value, element: newElement);
+    return ServiceRequestOrderDetailsCodes._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -112,7 +112,7 @@ class ServiceRequestOrderDetailsCodes extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ServiceRequestOrderDetailsCodes._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

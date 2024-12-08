@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The value set to instantiate this attribute should be drawn from a terminologically robust code system that consists of or contains concepts to support describing the administrative routes used during vaccination. This value set is provided as a suggestive example.
 class ImmunizationRouteCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ImmunizationRouteCodes._({
-    super.value,
+  ImmunizationRouteCodes._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,48 +26,48 @@ class ImmunizationRouteCodes extends PrimitiveType<String> {
         'ImmunizationRouteCodes cannot be constructed from JSON.',
       );
     }
-    return ImmunizationRouteCodes._(value: value, element: element);
+    return ImmunizationRouteCodes._(value, element: element);
   }
 
   /// IDINJ
   static final ImmunizationRouteCodes IDINJ = ImmunizationRouteCodes._(
-    value: 'IDINJ',
+    'IDINJ',
   );
 
   /// IM
   static final ImmunizationRouteCodes IM = ImmunizationRouteCodes._(
-    value: 'IM',
+    'IM',
   );
 
   /// NASINHLC
   static final ImmunizationRouteCodes NASINHLC = ImmunizationRouteCodes._(
-    value: 'NASINHLC',
+    'NASINHLC',
   );
 
   /// IVINJ
   static final ImmunizationRouteCodes IVINJ = ImmunizationRouteCodes._(
-    value: 'IVINJ',
+    'IVINJ',
   );
 
   /// PO
   static final ImmunizationRouteCodes PO = ImmunizationRouteCodes._(
-    value: 'PO',
+    'PO',
   );
 
   /// SQ
   static final ImmunizationRouteCodes SQ = ImmunizationRouteCodes._(
-    value: 'SQ',
+    'SQ',
   );
 
   /// TRNSDERM
   static final ImmunizationRouteCodes TRNSDERM = ImmunizationRouteCodes._(
-    value: 'TRNSDERM',
+    'TRNSDERM',
   );
 
   /// For instances where an Element is present but not value
 
   static final ImmunizationRouteCodes elementOnly =
-      ImmunizationRouteCodes._(value: '');
+      ImmunizationRouteCodes._('');
 
   /// List of all enum-like values
   static final List<ImmunizationRouteCodes> values = [
@@ -83,13 +83,13 @@ class ImmunizationRouteCodes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ImmunizationRouteCodes clone() => ImmunizationRouteCodes._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ImmunizationRouteCodes withElement(Element? newElement) {
-    return ImmunizationRouteCodes._(value: value, element: newElement);
+    return ImmunizationRouteCodes._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -119,7 +119,7 @@ class ImmunizationRouteCodes extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ImmunizationRouteCodes._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

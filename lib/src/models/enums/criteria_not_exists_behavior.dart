@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Behavior a server can exhibit when a criteria state does not exist (e.g., state prior to a create or after a delete).
 class CriteriaNotExistsBehavior extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  CriteriaNotExistsBehavior._({
-    super.value,
+  CriteriaNotExistsBehavior._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,25 +26,25 @@ class CriteriaNotExistsBehavior extends PrimitiveType<String> {
         'CriteriaNotExistsBehavior cannot be constructed from JSON.',
       );
     }
-    return CriteriaNotExistsBehavior._(value: value, element: element);
+    return CriteriaNotExistsBehavior._(value, element: element);
   }
 
   /// test_passes
   static final CriteriaNotExistsBehavior test_passes =
       CriteriaNotExistsBehavior._(
-    value: 'test-passes',
+    'test-passes',
   );
 
   /// test_fails
   static final CriteriaNotExistsBehavior test_fails =
       CriteriaNotExistsBehavior._(
-    value: 'test-fails',
+    'test-fails',
   );
 
   /// For instances where an Element is present but not value
 
   static final CriteriaNotExistsBehavior elementOnly =
-      CriteriaNotExistsBehavior._(value: '');
+      CriteriaNotExistsBehavior._('');
 
   /// List of all enum-like values
   static final List<CriteriaNotExistsBehavior> values = [
@@ -55,13 +55,13 @@ class CriteriaNotExistsBehavior extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   CriteriaNotExistsBehavior clone() => CriteriaNotExistsBehavior._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   CriteriaNotExistsBehavior withElement(Element? newElement) {
-    return CriteriaNotExistsBehavior._(value: value, element: newElement);
+    return CriteriaNotExistsBehavior._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -91,7 +91,7 @@ class CriteriaNotExistsBehavior extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return CriteriaNotExistsBehavior._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

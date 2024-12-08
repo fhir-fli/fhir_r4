@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value set includes sample funds reservation type codes.
 class FundsReservationCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  FundsReservationCodes._({
-    super.value,
+  FundsReservationCodes._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,28 +26,27 @@ class FundsReservationCodes extends PrimitiveType<String> {
         'FundsReservationCodes cannot be constructed from JSON.',
       );
     }
-    return FundsReservationCodes._(value: value, element: element);
+    return FundsReservationCodes._(value, element: element);
   }
 
   /// patient
   static final FundsReservationCodes patient = FundsReservationCodes._(
-    value: 'patient',
+    'patient',
   );
 
   /// provider
   static final FundsReservationCodes provider = FundsReservationCodes._(
-    value: 'provider',
+    'provider',
   );
 
   /// none
   static final FundsReservationCodes none = FundsReservationCodes._(
-    value: 'none',
+    'none',
   );
 
   /// For instances where an Element is present but not value
 
-  static final FundsReservationCodes elementOnly =
-      FundsReservationCodes._(value: '');
+  static final FundsReservationCodes elementOnly = FundsReservationCodes._('');
 
   /// List of all enum-like values
   static final List<FundsReservationCodes> values = [
@@ -59,13 +58,13 @@ class FundsReservationCodes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   FundsReservationCodes clone() => FundsReservationCodes._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   FundsReservationCodes withElement(Element? newElement) {
-    return FundsReservationCodes._(value: value, element: newElement);
+    return FundsReservationCodes._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -95,7 +94,7 @@ class FundsReservationCodes extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return FundsReservationCodes._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

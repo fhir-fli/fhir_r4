@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// How a search parameter relates to the set of elements returned by evaluating its xpath query.
 class XPathUsageType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  XPathUsageType._({
-    super.value,
+  XPathUsageType._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,37 +26,37 @@ class XPathUsageType extends PrimitiveType<String> {
         'XPathUsageType cannot be constructed from JSON.',
       );
     }
-    return XPathUsageType._(value: value, element: element);
+    return XPathUsageType._(value, element: element);
   }
 
   /// normal
   static final XPathUsageType normal = XPathUsageType._(
-    value: 'normal',
+    'normal',
   );
 
   /// phonetic
   static final XPathUsageType phonetic = XPathUsageType._(
-    value: 'phonetic',
+    'phonetic',
   );
 
   /// nearby
   static final XPathUsageType nearby = XPathUsageType._(
-    value: 'nearby',
+    'nearby',
   );
 
   /// distance
   static final XPathUsageType distance = XPathUsageType._(
-    value: 'distance',
+    'distance',
   );
 
   /// other
   static final XPathUsageType other = XPathUsageType._(
-    value: 'other',
+    'other',
   );
 
   /// For instances where an Element is present but not value
 
-  static final XPathUsageType elementOnly = XPathUsageType._(value: '');
+  static final XPathUsageType elementOnly = XPathUsageType._('');
 
   /// List of all enum-like values
   static final List<XPathUsageType> values = [
@@ -70,13 +70,13 @@ class XPathUsageType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   XPathUsageType clone() => XPathUsageType._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   XPathUsageType withElement(Element? newElement) {
-    return XPathUsageType._(value: value, element: newElement);
+    return XPathUsageType._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -106,7 +106,7 @@ class XPathUsageType extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return XPathUsageType._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

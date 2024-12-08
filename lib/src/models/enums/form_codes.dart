@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value set includes a sample set of Forms codes.
 class FormCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  FormCodes._({
-    super.value,
+  FormCodes._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,22 +26,22 @@ class FormCodes extends PrimitiveType<String> {
         'FormCodes cannot be constructed from JSON.',
       );
     }
-    return FormCodes._(value: value, element: element);
+    return FormCodes._(value, element: element);
   }
 
   /// value1
   static final FormCodes value1 = FormCodes._(
-    value: '1',
+    '1',
   );
 
   /// value2
   static final FormCodes value2 = FormCodes._(
-    value: '2',
+    '2',
   );
 
   /// For instances where an Element is present but not value
 
-  static final FormCodes elementOnly = FormCodes._(value: '');
+  static final FormCodes elementOnly = FormCodes._('');
 
   /// List of all enum-like values
   static final List<FormCodes> values = [
@@ -52,13 +52,13 @@ class FormCodes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   FormCodes clone() => FormCodes._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   FormCodes withElement(Element? newElement) {
-    return FormCodes._(value: value, element: newElement);
+    return FormCodes._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -88,7 +88,7 @@ class FormCodes extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return FormCodes._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Indicates the status of the care team.
 class CareTeamStatus extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  CareTeamStatus._({
-    super.value,
+  CareTeamStatus._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,37 +26,37 @@ class CareTeamStatus extends PrimitiveType<String> {
         'CareTeamStatus cannot be constructed from JSON.',
       );
     }
-    return CareTeamStatus._(value: value, element: element);
+    return CareTeamStatus._(value, element: element);
   }
 
   /// proposed
   static final CareTeamStatus proposed = CareTeamStatus._(
-    value: 'proposed',
+    'proposed',
   );
 
   /// active
   static final CareTeamStatus active = CareTeamStatus._(
-    value: 'active',
+    'active',
   );
 
   /// suspended
   static final CareTeamStatus suspended = CareTeamStatus._(
-    value: 'suspended',
+    'suspended',
   );
 
   /// inactive
   static final CareTeamStatus inactive = CareTeamStatus._(
-    value: 'inactive',
+    'inactive',
   );
 
   /// entered_in_error
   static final CareTeamStatus entered_in_error = CareTeamStatus._(
-    value: 'entered-in-error',
+    'entered-in-error',
   );
 
   /// For instances where an Element is present but not value
 
-  static final CareTeamStatus elementOnly = CareTeamStatus._(value: '');
+  static final CareTeamStatus elementOnly = CareTeamStatus._('');
 
   /// List of all enum-like values
   static final List<CareTeamStatus> values = [
@@ -70,13 +70,13 @@ class CareTeamStatus extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   CareTeamStatus clone() => CareTeamStatus._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   CareTeamStatus withElement(Element? newElement) {
-    return CareTeamStatus._(value: value, element: newElement);
+    return CareTeamStatus._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -106,7 +106,7 @@ class CareTeamStatus extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return CareTeamStatus._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The type of an address (physical / postal).
 class AddressType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  AddressType._({
-    super.value,
+  AddressType._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,27 +26,27 @@ class AddressType extends PrimitiveType<String> {
         'AddressType cannot be constructed from JSON.',
       );
     }
-    return AddressType._(value: value, element: element);
+    return AddressType._(value, element: element);
   }
 
   /// postal
   static final AddressType postal = AddressType._(
-    value: 'postal',
+    'postal',
   );
 
   /// physical
   static final AddressType physical = AddressType._(
-    value: 'physical',
+    'physical',
   );
 
   /// both
   static final AddressType both = AddressType._(
-    value: 'both',
+    'both',
   );
 
   /// For instances where an Element is present but not value
 
-  static final AddressType elementOnly = AddressType._(value: '');
+  static final AddressType elementOnly = AddressType._('');
 
   /// List of all enum-like values
   static final List<AddressType> values = [
@@ -58,13 +58,13 @@ class AddressType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   AddressType clone() => AddressType._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   AddressType withElement(Element? newElement) {
-    return AddressType._(value: value, element: newElement);
+    return AddressType._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -94,7 +94,7 @@ class AddressType extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return AddressType._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

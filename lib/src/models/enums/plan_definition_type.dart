@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The type of PlanDefinition.
 class PlanDefinitionType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  PlanDefinitionType._({
-    super.value,
+  PlanDefinitionType._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,32 +26,32 @@ class PlanDefinitionType extends PrimitiveType<String> {
         'PlanDefinitionType cannot be constructed from JSON.',
       );
     }
-    return PlanDefinitionType._(value: value, element: element);
+    return PlanDefinitionType._(value, element: element);
   }
 
   /// order_set
   static final PlanDefinitionType order_set = PlanDefinitionType._(
-    value: 'order-set',
+    'order-set',
   );
 
   /// clinical_protocol
   static final PlanDefinitionType clinical_protocol = PlanDefinitionType._(
-    value: 'clinical-protocol',
+    'clinical-protocol',
   );
 
   /// eca_rule
   static final PlanDefinitionType eca_rule = PlanDefinitionType._(
-    value: 'eca-rule',
+    'eca-rule',
   );
 
   /// workflow_definition
   static final PlanDefinitionType workflow_definition = PlanDefinitionType._(
-    value: 'workflow-definition',
+    'workflow-definition',
   );
 
   /// For instances where an Element is present but not value
 
-  static final PlanDefinitionType elementOnly = PlanDefinitionType._(value: '');
+  static final PlanDefinitionType elementOnly = PlanDefinitionType._('');
 
   /// List of all enum-like values
   static final List<PlanDefinitionType> values = [
@@ -64,13 +64,13 @@ class PlanDefinitionType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   PlanDefinitionType clone() => PlanDefinitionType._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   PlanDefinitionType withElement(Element? newElement) {
-    return PlanDefinitionType._(value: value, element: newElement);
+    return PlanDefinitionType._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -100,7 +100,7 @@ class PlanDefinitionType extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return PlanDefinitionType._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

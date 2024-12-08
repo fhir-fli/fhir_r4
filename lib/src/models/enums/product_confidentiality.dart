@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Confidentiality rating, e.g. commercial sensitivity for a Medicinal Product.
 class ProductConfidentiality extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ProductConfidentiality._({
-    super.value,
+  ProductConfidentiality._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,25 +26,25 @@ class ProductConfidentiality extends PrimitiveType<String> {
         'ProductConfidentiality cannot be constructed from JSON.',
       );
     }
-    return ProductConfidentiality._(value: value, element: element);
+    return ProductConfidentiality._(value, element: element);
   }
 
   /// CommerciallySensitive
   static final ProductConfidentiality CommerciallySensitive =
       ProductConfidentiality._(
-    value: 'CommerciallySensitive',
+    'CommerciallySensitive',
   );
 
   /// NotCommerciallySensitive
   static final ProductConfidentiality NotCommerciallySensitive =
       ProductConfidentiality._(
-    value: 'NotCommerciallySensitive',
+    'NotCommerciallySensitive',
   );
 
   /// For instances where an Element is present but not value
 
   static final ProductConfidentiality elementOnly =
-      ProductConfidentiality._(value: '');
+      ProductConfidentiality._('');
 
   /// List of all enum-like values
   static final List<ProductConfidentiality> values = [
@@ -55,13 +55,13 @@ class ProductConfidentiality extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ProductConfidentiality clone() => ProductConfidentiality._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ProductConfidentiality withElement(Element? newElement) {
-    return ProductConfidentiality._(value: value, element: newElement);
+    return ProductConfidentiality._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -91,7 +91,7 @@ class ProductConfidentiality extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ProductConfidentiality._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

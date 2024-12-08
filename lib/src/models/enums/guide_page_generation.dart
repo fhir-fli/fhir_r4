@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// A code that indicates how the page is generated.
 class GuidePageGeneration extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  GuidePageGeneration._({
-    super.value,
+  GuidePageGeneration._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,33 +26,32 @@ class GuidePageGeneration extends PrimitiveType<String> {
         'GuidePageGeneration cannot be constructed from JSON.',
       );
     }
-    return GuidePageGeneration._(value: value, element: element);
+    return GuidePageGeneration._(value, element: element);
   }
 
   /// html
   static final GuidePageGeneration html = GuidePageGeneration._(
-    value: 'html',
+    'html',
   );
 
   /// markdown
   static final GuidePageGeneration markdown = GuidePageGeneration._(
-    value: 'markdown',
+    'markdown',
   );
 
   /// xml
   static final GuidePageGeneration xml = GuidePageGeneration._(
-    value: 'xml',
+    'xml',
   );
 
   /// generated
   static final GuidePageGeneration generated = GuidePageGeneration._(
-    value: 'generated',
+    'generated',
   );
 
   /// For instances where an Element is present but not value
 
-  static final GuidePageGeneration elementOnly =
-      GuidePageGeneration._(value: '');
+  static final GuidePageGeneration elementOnly = GuidePageGeneration._('');
 
   /// List of all enum-like values
   static final List<GuidePageGeneration> values = [
@@ -65,13 +64,13 @@ class GuidePageGeneration extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   GuidePageGeneration clone() => GuidePageGeneration._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   GuidePageGeneration withElement(Element? newElement) {
-    return GuidePageGeneration._(value: value, element: newElement);
+    return GuidePageGeneration._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -101,7 +100,7 @@ class GuidePageGeneration extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return GuidePageGeneration._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

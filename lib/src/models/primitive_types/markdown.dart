@@ -12,7 +12,7 @@ extension FhirMarkdownExtension on String {
 class FhirMarkdown extends PrimitiveType<String> {
   /// Constructor enforcing input validation.
   FhirMarkdown(
-    String? input,{
+    String? input, {
     super.element,
     super.id,
     super.extension_,

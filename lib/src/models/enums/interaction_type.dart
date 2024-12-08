@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// A categorisation for an interaction between two substances.
 class InteractionType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  InteractionType._({
-    super.value,
+  InteractionType._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,32 +26,32 @@ class InteractionType extends PrimitiveType<String> {
         'InteractionType cannot be constructed from JSON.',
       );
     }
-    return InteractionType._(value: value, element: element);
+    return InteractionType._(value, element: element);
   }
 
   /// drug_drug
   static final InteractionType drug_drug = InteractionType._(
-    value: 'drug-drug',
+    'drug-drug',
   );
 
   /// drug_food
   static final InteractionType drug_food = InteractionType._(
-    value: 'drug-food',
+    'drug-food',
   );
 
   /// drug_test
   static final InteractionType drug_test = InteractionType._(
-    value: 'drug-test',
+    'drug-test',
   );
 
   /// other
   static final InteractionType other = InteractionType._(
-    value: 'other',
+    'other',
   );
 
   /// For instances where an Element is present but not value
 
-  static final InteractionType elementOnly = InteractionType._(value: '');
+  static final InteractionType elementOnly = InteractionType._('');
 
   /// List of all enum-like values
   static final List<InteractionType> values = [
@@ -64,13 +64,13 @@ class InteractionType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   InteractionType clone() => InteractionType._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   InteractionType withElement(Element? newElement) {
-    return InteractionType._(value: value, element: newElement);
+    return InteractionType._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -100,7 +100,7 @@ class InteractionType extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return InteractionType._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

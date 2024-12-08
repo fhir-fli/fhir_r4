@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Indicates the potential degree of impact of the identified issue on the patient.
 class DetectedIssueSeverity extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  DetectedIssueSeverity._({
-    super.value,
+  DetectedIssueSeverity._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,28 +26,27 @@ class DetectedIssueSeverity extends PrimitiveType<String> {
         'DetectedIssueSeverity cannot be constructed from JSON.',
       );
     }
-    return DetectedIssueSeverity._(value: value, element: element);
+    return DetectedIssueSeverity._(value, element: element);
   }
 
   /// high
   static final DetectedIssueSeverity high = DetectedIssueSeverity._(
-    value: 'high',
+    'high',
   );
 
   /// moderate
   static final DetectedIssueSeverity moderate = DetectedIssueSeverity._(
-    value: 'moderate',
+    'moderate',
   );
 
   /// low
   static final DetectedIssueSeverity low = DetectedIssueSeverity._(
-    value: 'low',
+    'low',
   );
 
   /// For instances where an Element is present but not value
 
-  static final DetectedIssueSeverity elementOnly =
-      DetectedIssueSeverity._(value: '');
+  static final DetectedIssueSeverity elementOnly = DetectedIssueSeverity._('');
 
   /// List of all enum-like values
   static final List<DetectedIssueSeverity> values = [
@@ -59,13 +58,13 @@ class DetectedIssueSeverity extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   DetectedIssueSeverity clone() => DetectedIssueSeverity._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   DetectedIssueSeverity withElement(Element? newElement) {
-    return DetectedIssueSeverity._(value: value, element: newElement);
+    return DetectedIssueSeverity._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -95,7 +94,7 @@ class DetectedIssueSeverity extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return DetectedIssueSeverity._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

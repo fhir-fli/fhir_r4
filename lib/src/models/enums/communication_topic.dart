@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Codes describing the purpose or content of the communication.
 class CommunicationTopic extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  CommunicationTopic._({
-    super.value,
+  CommunicationTopic._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,43 +26,43 @@ class CommunicationTopic extends PrimitiveType<String> {
         'CommunicationTopic cannot be constructed from JSON.',
       );
     }
-    return CommunicationTopic._(value: value, element: element);
+    return CommunicationTopic._(value, element: element);
   }
 
   /// prescription_refill_request
   static final CommunicationTopic prescription_refill_request =
       CommunicationTopic._(
-    value: 'prescription-refill-request',
+    'prescription-refill-request',
   );
 
   /// progress_update
   static final CommunicationTopic progress_update = CommunicationTopic._(
-    value: 'progress-update',
+    'progress-update',
   );
 
   /// report_labs
   static final CommunicationTopic report_labs = CommunicationTopic._(
-    value: 'report-labs',
+    'report-labs',
   );
 
   /// appointment_reminder
   static final CommunicationTopic appointment_reminder = CommunicationTopic._(
-    value: 'appointment-reminder',
+    'appointment-reminder',
   );
 
   /// phone_consult
   static final CommunicationTopic phone_consult = CommunicationTopic._(
-    value: 'phone-consult',
+    'phone-consult',
   );
 
   /// summary_report
   static final CommunicationTopic summary_report = CommunicationTopic._(
-    value: 'summary-report',
+    'summary-report',
   );
 
   /// For instances where an Element is present but not value
 
-  static final CommunicationTopic elementOnly = CommunicationTopic._(value: '');
+  static final CommunicationTopic elementOnly = CommunicationTopic._('');
 
   /// List of all enum-like values
   static final List<CommunicationTopic> values = [
@@ -77,13 +77,13 @@ class CommunicationTopic extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   CommunicationTopic clone() => CommunicationTopic._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   CommunicationTopic withElement(Element? newElement) {
-    return CommunicationTopic._(value: value, element: newElement);
+    return CommunicationTopic._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -113,7 +113,7 @@ class CommunicationTopic extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return CommunicationTopic._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

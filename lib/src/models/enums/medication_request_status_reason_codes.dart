@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// MedicationRequest Status Reason Codes
 class MedicationRequestStatusReasonCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  MedicationRequestStatusReasonCodes._({
-    super.value,
+  MedicationRequestStatusReasonCodes._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -27,91 +27,91 @@ class MedicationRequestStatusReasonCodes extends PrimitiveType<String> {
         'MedicationRequestStatusReasonCodes cannot be constructed from JSON.',
       );
     }
-    return MedicationRequestStatusReasonCodes._(value: value, element: element);
+    return MedicationRequestStatusReasonCodes._(value, element: element);
   }
 
   /// altchoice
   static final MedicationRequestStatusReasonCodes altchoice =
       MedicationRequestStatusReasonCodes._(
-    value: 'altchoice',
+    'altchoice',
   );
 
   /// clarif
   static final MedicationRequestStatusReasonCodes clarif =
       MedicationRequestStatusReasonCodes._(
-    value: 'clarif',
+    'clarif',
   );
 
   /// drughigh
   static final MedicationRequestStatusReasonCodes drughigh =
       MedicationRequestStatusReasonCodes._(
-    value: 'drughigh',
+    'drughigh',
   );
 
   /// hospadm
   static final MedicationRequestStatusReasonCodes hospadm =
       MedicationRequestStatusReasonCodes._(
-    value: 'hospadm',
+    'hospadm',
   );
 
   /// labint
   static final MedicationRequestStatusReasonCodes labint =
       MedicationRequestStatusReasonCodes._(
-    value: 'labint',
+    'labint',
   );
 
   /// non_avail
   static final MedicationRequestStatusReasonCodes non_avail =
       MedicationRequestStatusReasonCodes._(
-    value: 'non-avail',
+    'non-avail',
   );
 
   /// preg
   static final MedicationRequestStatusReasonCodes preg =
       MedicationRequestStatusReasonCodes._(
-    value: 'preg',
+    'preg',
   );
 
   /// salg
   static final MedicationRequestStatusReasonCodes salg =
       MedicationRequestStatusReasonCodes._(
-    value: 'salg',
+    'salg',
   );
 
   /// sddi
   static final MedicationRequestStatusReasonCodes sddi =
       MedicationRequestStatusReasonCodes._(
-    value: 'sddi',
+    'sddi',
   );
 
   /// sdupther
   static final MedicationRequestStatusReasonCodes sdupther =
       MedicationRequestStatusReasonCodes._(
-    value: 'sdupther',
+    'sdupther',
   );
 
   /// sintol
   static final MedicationRequestStatusReasonCodes sintol =
       MedicationRequestStatusReasonCodes._(
-    value: 'sintol',
+    'sintol',
   );
 
   /// surg
   static final MedicationRequestStatusReasonCodes surg =
       MedicationRequestStatusReasonCodes._(
-    value: 'surg',
+    'surg',
   );
 
   /// washout
   static final MedicationRequestStatusReasonCodes washout =
       MedicationRequestStatusReasonCodes._(
-    value: 'washout',
+    'washout',
   );
 
   /// For instances where an Element is present but not value
 
   static final MedicationRequestStatusReasonCodes elementOnly =
-      MedicationRequestStatusReasonCodes._(value: '');
+      MedicationRequestStatusReasonCodes._('');
 
   /// List of all enum-like values
   static final List<MedicationRequestStatusReasonCodes> values = [
@@ -134,14 +134,13 @@ class MedicationRequestStatusReasonCodes extends PrimitiveType<String> {
   @override
   MedicationRequestStatusReasonCodes clone() =>
       MedicationRequestStatusReasonCodes._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   MedicationRequestStatusReasonCodes withElement(Element? newElement) {
-    return MedicationRequestStatusReasonCodes._(
-        value: value, element: newElement);
+    return MedicationRequestStatusReasonCodes._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -171,7 +170,7 @@ class MedicationRequestStatusReasonCodes extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return MedicationRequestStatusReasonCodes._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

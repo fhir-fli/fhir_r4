@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The composite scoring method of the measure.
 class CompositeMeasureScoring extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  CompositeMeasureScoring._({
-    super.value,
+  CompositeMeasureScoring._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,34 +26,34 @@ class CompositeMeasureScoring extends PrimitiveType<String> {
         'CompositeMeasureScoring cannot be constructed from JSON.',
       );
     }
-    return CompositeMeasureScoring._(value: value, element: element);
+    return CompositeMeasureScoring._(value, element: element);
   }
 
   /// opportunity
   static final CompositeMeasureScoring opportunity = CompositeMeasureScoring._(
-    value: 'opportunity',
+    'opportunity',
   );
 
   /// all_or_nothing
   static final CompositeMeasureScoring all_or_nothing =
       CompositeMeasureScoring._(
-    value: 'all-or-nothing',
+    'all-or-nothing',
   );
 
   /// linear
   static final CompositeMeasureScoring linear = CompositeMeasureScoring._(
-    value: 'linear',
+    'linear',
   );
 
   /// weighted
   static final CompositeMeasureScoring weighted = CompositeMeasureScoring._(
-    value: 'weighted',
+    'weighted',
   );
 
   /// For instances where an Element is present but not value
 
   static final CompositeMeasureScoring elementOnly =
-      CompositeMeasureScoring._(value: '');
+      CompositeMeasureScoring._('');
 
   /// List of all enum-like values
   static final List<CompositeMeasureScoring> values = [
@@ -66,13 +66,13 @@ class CompositeMeasureScoring extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   CompositeMeasureScoring clone() => CompositeMeasureScoring._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   CompositeMeasureScoring withElement(Element? newElement) {
-    return CompositeMeasureScoring._(value: value, element: newElement);
+    return CompositeMeasureScoring._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -102,7 +102,7 @@ class CompositeMeasureScoring extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return CompositeMeasureScoring._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

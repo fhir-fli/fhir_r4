@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Type for quality report.
 class QualityType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  QualityType._({
-    super.value,
+  QualityType._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,27 +26,27 @@ class QualityType extends PrimitiveType<String> {
         'QualityType cannot be constructed from JSON.',
       );
     }
-    return QualityType._(value: value, element: element);
+    return QualityType._(value, element: element);
   }
 
   /// indel
   static final QualityType indel = QualityType._(
-    value: 'indel',
+    'indel',
   );
 
   /// snp
   static final QualityType snp = QualityType._(
-    value: 'snp',
+    'snp',
   );
 
   /// unknown
   static final QualityType unknown = QualityType._(
-    value: 'unknown',
+    'unknown',
   );
 
   /// For instances where an Element is present but not value
 
-  static final QualityType elementOnly = QualityType._(value: '');
+  static final QualityType elementOnly = QualityType._('');
 
   /// List of all enum-like values
   static final List<QualityType> values = [
@@ -58,13 +58,13 @@ class QualityType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   QualityType clone() => QualityType._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   QualityType withElement(Element? newElement) {
-    return QualityType._(value: value, element: newElement);
+    return QualityType._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -94,7 +94,7 @@ class QualityType extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return QualityType._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

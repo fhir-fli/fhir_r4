@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// If field is a list, how to manage the production.
 class StructureMapTargetListMode extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  StructureMapTargetListMode._({
-    super.value,
+  StructureMapTargetListMode._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,34 +26,34 @@ class StructureMapTargetListMode extends PrimitiveType<String> {
         'StructureMapTargetListMode cannot be constructed from JSON.',
       );
     }
-    return StructureMapTargetListMode._(value: value, element: element);
+    return StructureMapTargetListMode._(value, element: element);
   }
 
   /// first
   static final StructureMapTargetListMode first = StructureMapTargetListMode._(
-    value: 'first',
+    'first',
   );
 
   /// share
   static final StructureMapTargetListMode share = StructureMapTargetListMode._(
-    value: 'share',
+    'share',
   );
 
   /// last
   static final StructureMapTargetListMode last = StructureMapTargetListMode._(
-    value: 'last',
+    'last',
   );
 
   /// collate
   static final StructureMapTargetListMode collate =
       StructureMapTargetListMode._(
-    value: 'collate',
+    'collate',
   );
 
   /// For instances where an Element is present but not value
 
   static final StructureMapTargetListMode elementOnly =
-      StructureMapTargetListMode._(value: '');
+      StructureMapTargetListMode._('');
 
   /// List of all enum-like values
   static final List<StructureMapTargetListMode> values = [
@@ -66,13 +66,13 @@ class StructureMapTargetListMode extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   StructureMapTargetListMode clone() => StructureMapTargetListMode._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   StructureMapTargetListMode withElement(Element? newElement) {
-    return StructureMapTargetListMode._(value: value, element: newElement);
+    return StructureMapTargetListMode._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -102,7 +102,7 @@ class StructureMapTargetListMode extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return StructureMapTargetListMode._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value set includes sample Claim Care Team Role codes.
 class ClaimCareTeamRoleCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ClaimCareTeamRoleCodes._({
-    super.value,
+  ClaimCareTeamRoleCodes._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,33 +26,33 @@ class ClaimCareTeamRoleCodes extends PrimitiveType<String> {
         'ClaimCareTeamRoleCodes cannot be constructed from JSON.',
       );
     }
-    return ClaimCareTeamRoleCodes._(value: value, element: element);
+    return ClaimCareTeamRoleCodes._(value, element: element);
   }
 
   /// primary
   static final ClaimCareTeamRoleCodes primary = ClaimCareTeamRoleCodes._(
-    value: 'primary',
+    'primary',
   );
 
   /// assist
   static final ClaimCareTeamRoleCodes assist = ClaimCareTeamRoleCodes._(
-    value: 'assist',
+    'assist',
   );
 
   /// supervisor
   static final ClaimCareTeamRoleCodes supervisor = ClaimCareTeamRoleCodes._(
-    value: 'supervisor',
+    'supervisor',
   );
 
   /// other
   static final ClaimCareTeamRoleCodes other = ClaimCareTeamRoleCodes._(
-    value: 'other',
+    'other',
   );
 
   /// For instances where an Element is present but not value
 
   static final ClaimCareTeamRoleCodes elementOnly =
-      ClaimCareTeamRoleCodes._(value: '');
+      ClaimCareTeamRoleCodes._('');
 
   /// List of all enum-like values
   static final List<ClaimCareTeamRoleCodes> values = [
@@ -65,13 +65,13 @@ class ClaimCareTeamRoleCodes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ClaimCareTeamRoleCodes clone() => ClaimCareTeamRoleCodes._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ClaimCareTeamRoleCodes withElement(Element? newElement) {
-    return ClaimCareTeamRoleCodes._(value: value, element: newElement);
+    return ClaimCareTeamRoleCodes._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -101,7 +101,7 @@ class ClaimCareTeamRoleCodes extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ClaimCareTeamRoleCodes._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

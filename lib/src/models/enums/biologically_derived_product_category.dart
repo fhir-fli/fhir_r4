@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Biologically Derived Product Category.
 class BiologicallyDerivedProductCategory extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  BiologicallyDerivedProductCategory._({
-    super.value,
+  BiologicallyDerivedProductCategory._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -27,43 +27,43 @@ class BiologicallyDerivedProductCategory extends PrimitiveType<String> {
         'BiologicallyDerivedProductCategory cannot be constructed from JSON.',
       );
     }
-    return BiologicallyDerivedProductCategory._(value: value, element: element);
+    return BiologicallyDerivedProductCategory._(value, element: element);
   }
 
   /// organ
   static final BiologicallyDerivedProductCategory organ =
       BiologicallyDerivedProductCategory._(
-    value: 'organ',
+    'organ',
   );
 
   /// tissue
   static final BiologicallyDerivedProductCategory tissue =
       BiologicallyDerivedProductCategory._(
-    value: 'tissue',
+    'tissue',
   );
 
   /// fluid
   static final BiologicallyDerivedProductCategory fluid =
       BiologicallyDerivedProductCategory._(
-    value: 'fluid',
+    'fluid',
   );
 
   /// cells
   static final BiologicallyDerivedProductCategory cells =
       BiologicallyDerivedProductCategory._(
-    value: 'cells',
+    'cells',
   );
 
   /// biologicalAgent
   static final BiologicallyDerivedProductCategory biologicalAgent =
       BiologicallyDerivedProductCategory._(
-    value: 'biologicalAgent',
+    'biologicalAgent',
   );
 
   /// For instances where an Element is present but not value
 
   static final BiologicallyDerivedProductCategory elementOnly =
-      BiologicallyDerivedProductCategory._(value: '');
+      BiologicallyDerivedProductCategory._('');
 
   /// List of all enum-like values
   static final List<BiologicallyDerivedProductCategory> values = [
@@ -78,14 +78,13 @@ class BiologicallyDerivedProductCategory extends PrimitiveType<String> {
   @override
   BiologicallyDerivedProductCategory clone() =>
       BiologicallyDerivedProductCategory._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   BiologicallyDerivedProductCategory withElement(Element? newElement) {
-    return BiologicallyDerivedProductCategory._(
-        value: value, element: newElement);
+    return BiologicallyDerivedProductCategory._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -115,7 +114,7 @@ class BiologicallyDerivedProductCategory extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return BiologicallyDerivedProductCategory._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Indicates the level of importance associated with reaching or sustaining a goal.
 class GoalPriority extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  GoalPriority._({
-    super.value,
+  GoalPriority._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,27 +26,27 @@ class GoalPriority extends PrimitiveType<String> {
         'GoalPriority cannot be constructed from JSON.',
       );
     }
-    return GoalPriority._(value: value, element: element);
+    return GoalPriority._(value, element: element);
   }
 
   /// high_priority
   static final GoalPriority high_priority = GoalPriority._(
-    value: 'high-priority',
+    'high-priority',
   );
 
   /// medium_priority
   static final GoalPriority medium_priority = GoalPriority._(
-    value: 'medium-priority',
+    'medium-priority',
   );
 
   /// low_priority
   static final GoalPriority low_priority = GoalPriority._(
-    value: 'low-priority',
+    'low-priority',
   );
 
   /// For instances where an Element is present but not value
 
-  static final GoalPriority elementOnly = GoalPriority._(value: '');
+  static final GoalPriority elementOnly = GoalPriority._('');
 
   /// List of all enum-like values
   static final List<GoalPriority> values = [
@@ -58,13 +58,13 @@ class GoalPriority extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   GoalPriority clone() => GoalPriority._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   GoalPriority withElement(Element? newElement) {
-    return GoalPriority._(value: value, element: newElement);
+    return GoalPriority._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -94,7 +94,7 @@ class GoalPriority extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return GoalPriority._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

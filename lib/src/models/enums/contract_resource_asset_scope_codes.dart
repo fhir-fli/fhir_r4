@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value set contract specific codes for asset scope.
 class ContractResourceAssetScopeCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ContractResourceAssetScopeCodes._({
-    super.value,
+  ContractResourceAssetScopeCodes._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,19 +26,19 @@ class ContractResourceAssetScopeCodes extends PrimitiveType<String> {
         'ContractResourceAssetScopeCodes cannot be constructed from JSON.',
       );
     }
-    return ContractResourceAssetScopeCodes._(value: value, element: element);
+    return ContractResourceAssetScopeCodes._(value, element: element);
   }
 
   /// thing
   static final ContractResourceAssetScopeCodes thing =
       ContractResourceAssetScopeCodes._(
-    value: 'thing',
+    'thing',
   );
 
   /// For instances where an Element is present but not value
 
   static final ContractResourceAssetScopeCodes elementOnly =
-      ContractResourceAssetScopeCodes._(value: '');
+      ContractResourceAssetScopeCodes._('');
 
   /// List of all enum-like values
   static final List<ContractResourceAssetScopeCodes> values = [
@@ -48,13 +48,13 @@ class ContractResourceAssetScopeCodes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ContractResourceAssetScopeCodes clone() => ContractResourceAssetScopeCodes._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ContractResourceAssetScopeCodes withElement(Element? newElement) {
-    return ContractResourceAssetScopeCodes._(value: value, element: newElement);
+    return ContractResourceAssetScopeCodes._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -84,7 +84,7 @@ class ContractResourceAssetScopeCodes extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ContractResourceAssetScopeCodes._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

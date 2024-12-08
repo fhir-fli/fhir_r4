@@ -17,7 +17,8 @@ extension FhirUriUriExtension on Uri {
 /// Represents a canonical URL in FHIR as a [PrimitiveType] of [Uri]
 class FhirUri extends PrimitiveType<Uri> {
   /// Constructor with validation and original input storage
-  FhirUri(this.input,{
+  FhirUri(
+    this.input, {
     super.element,
     super.id,
     super.extension_,
@@ -143,8 +144,7 @@ class FhirUri extends PrimitiveType<Uri> {
 
   /// Clones this [FhirUri] instance
   @override
-  FhirUri clone() =>
-      FhirUri(input, element: element?.clone() as Element?);
+  FhirUri clone() => FhirUri(input, element: element?.clone() as Element?);
 
   /// Creates a modified copy with updated properties
   @override

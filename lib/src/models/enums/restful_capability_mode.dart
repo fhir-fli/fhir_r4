@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The mode of a RESTful capability statement.
 class RestfulCapabilityMode extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  RestfulCapabilityMode._({
-    super.value,
+  RestfulCapabilityMode._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,23 +26,22 @@ class RestfulCapabilityMode extends PrimitiveType<String> {
         'RestfulCapabilityMode cannot be constructed from JSON.',
       );
     }
-    return RestfulCapabilityMode._(value: value, element: element);
+    return RestfulCapabilityMode._(value, element: element);
   }
 
   /// client
   static final RestfulCapabilityMode client = RestfulCapabilityMode._(
-    value: 'client',
+    'client',
   );
 
   /// server
   static final RestfulCapabilityMode server = RestfulCapabilityMode._(
-    value: 'server',
+    'server',
   );
 
   /// For instances where an Element is present but not value
 
-  static final RestfulCapabilityMode elementOnly =
-      RestfulCapabilityMode._(value: '');
+  static final RestfulCapabilityMode elementOnly = RestfulCapabilityMode._('');
 
   /// List of all enum-like values
   static final List<RestfulCapabilityMode> values = [
@@ -53,13 +52,13 @@ class RestfulCapabilityMode extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   RestfulCapabilityMode clone() => RestfulCapabilityMode._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   RestfulCapabilityMode withElement(Element? newElement) {
-    return RestfulCapabilityMode._(value: value, element: newElement);
+    return RestfulCapabilityMode._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -89,7 +88,7 @@ class RestfulCapabilityMode extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return RestfulCapabilityMode._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

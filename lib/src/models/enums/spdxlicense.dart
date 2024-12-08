@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The license that applies to an Implementation Guide (using an SPDX license Identifiers, or 'not-open-source'). The binding is required but new SPDX license Identifiers are allowed to be used (https://spdx.org/licenses/).
 class SPDXLicense extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  SPDXLicense._({
-    super.value,
+  SPDXLicense._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,1742 +26,1742 @@ class SPDXLicense extends PrimitiveType<String> {
         'SPDXLicense cannot be constructed from JSON.',
       );
     }
-    return SPDXLicense._(value: value, element: element);
+    return SPDXLicense._(value, element: element);
   }
 
   /// not_open_source
   static final SPDXLicense not_open_source = SPDXLicense._(
-    value: 'not-open-source',
+    'not-open-source',
   );
 
   /// value0BSD
   static final SPDXLicense value0BSD = SPDXLicense._(
-    value: '0BSD',
+    '0BSD',
   );
 
   /// AAL
   static final SPDXLicense AAL = SPDXLicense._(
-    value: 'AAL',
+    'AAL',
   );
 
   /// Abstyles
   static final SPDXLicense Abstyles = SPDXLicense._(
-    value: 'Abstyles',
+    'Abstyles',
   );
 
   /// Adobe_2006
   static final SPDXLicense Adobe_2006 = SPDXLicense._(
-    value: 'Adobe-2006',
+    'Adobe-2006',
   );
 
   /// Adobe_Glyph
   static final SPDXLicense Adobe_Glyph = SPDXLicense._(
-    value: 'Adobe-Glyph',
+    'Adobe-Glyph',
   );
 
   /// ADSL
   static final SPDXLicense ADSL = SPDXLicense._(
-    value: 'ADSL',
+    'ADSL',
   );
 
   /// AFL_1_1
   static final SPDXLicense AFL_1_1 = SPDXLicense._(
-    value: 'AFL-1.1',
+    'AFL-1.1',
   );
 
   /// AFL_1_2
   static final SPDXLicense AFL_1_2 = SPDXLicense._(
-    value: 'AFL-1.2',
+    'AFL-1.2',
   );
 
   /// AFL_2_0
   static final SPDXLicense AFL_2_0 = SPDXLicense._(
-    value: 'AFL-2.0',
+    'AFL-2.0',
   );
 
   /// AFL_2_1
   static final SPDXLicense AFL_2_1 = SPDXLicense._(
-    value: 'AFL-2.1',
+    'AFL-2.1',
   );
 
   /// AFL_3_0
   static final SPDXLicense AFL_3_0 = SPDXLicense._(
-    value: 'AFL-3.0',
+    'AFL-3.0',
   );
 
   /// Afmparse
   static final SPDXLicense Afmparse = SPDXLicense._(
-    value: 'Afmparse',
+    'Afmparse',
   );
 
   /// AGPL_1_0_only
   static final SPDXLicense AGPL_1_0_only = SPDXLicense._(
-    value: 'AGPL-1.0-only',
+    'AGPL-1.0-only',
   );
 
   /// AGPL_1_0_or_later
   static final SPDXLicense AGPL_1_0_or_later = SPDXLicense._(
-    value: 'AGPL-1.0-or-later',
+    'AGPL-1.0-or-later',
   );
 
   /// AGPL_3_0_only
   static final SPDXLicense AGPL_3_0_only = SPDXLicense._(
-    value: 'AGPL-3.0-only',
+    'AGPL-3.0-only',
   );
 
   /// AGPL_3_0_or_later
   static final SPDXLicense AGPL_3_0_or_later = SPDXLicense._(
-    value: 'AGPL-3.0-or-later',
+    'AGPL-3.0-or-later',
   );
 
   /// Aladdin
   static final SPDXLicense Aladdin = SPDXLicense._(
-    value: 'Aladdin',
+    'Aladdin',
   );
 
   /// AMDPLPA
   static final SPDXLicense AMDPLPA = SPDXLicense._(
-    value: 'AMDPLPA',
+    'AMDPLPA',
   );
 
   /// AML
   static final SPDXLicense AML = SPDXLicense._(
-    value: 'AML',
+    'AML',
   );
 
   /// AMPAS
   static final SPDXLicense AMPAS = SPDXLicense._(
-    value: 'AMPAS',
+    'AMPAS',
   );
 
   /// ANTLR_PD
   static final SPDXLicense ANTLR_PD = SPDXLicense._(
-    value: 'ANTLR-PD',
+    'ANTLR-PD',
   );
 
   /// Apache_1_0
   static final SPDXLicense Apache_1_0 = SPDXLicense._(
-    value: 'Apache-1.0',
+    'Apache-1.0',
   );
 
   /// Apache_1_1
   static final SPDXLicense Apache_1_1 = SPDXLicense._(
-    value: 'Apache-1.1',
+    'Apache-1.1',
   );
 
   /// Apache_2_0
   static final SPDXLicense Apache_2_0 = SPDXLicense._(
-    value: 'Apache-2.0',
+    'Apache-2.0',
   );
 
   /// APAFML
   static final SPDXLicense APAFML = SPDXLicense._(
-    value: 'APAFML',
+    'APAFML',
   );
 
   /// APL_1_0
   static final SPDXLicense APL_1_0 = SPDXLicense._(
-    value: 'APL-1.0',
+    'APL-1.0',
   );
 
   /// APSL_1_0
   static final SPDXLicense APSL_1_0 = SPDXLicense._(
-    value: 'APSL-1.0',
+    'APSL-1.0',
   );
 
   /// APSL_1_1
   static final SPDXLicense APSL_1_1 = SPDXLicense._(
-    value: 'APSL-1.1',
+    'APSL-1.1',
   );
 
   /// APSL_1_2
   static final SPDXLicense APSL_1_2 = SPDXLicense._(
-    value: 'APSL-1.2',
+    'APSL-1.2',
   );
 
   /// APSL_2_0
   static final SPDXLicense APSL_2_0 = SPDXLicense._(
-    value: 'APSL-2.0',
+    'APSL-2.0',
   );
 
   /// Artistic_1_0_cl8
   static final SPDXLicense Artistic_1_0_cl8 = SPDXLicense._(
-    value: 'Artistic-1.0-cl8',
+    'Artistic-1.0-cl8',
   );
 
   /// Artistic_1_0_Perl
   static final SPDXLicense Artistic_1_0_Perl = SPDXLicense._(
-    value: 'Artistic-1.0-Perl',
+    'Artistic-1.0-Perl',
   );
 
   /// Artistic_1_0
   static final SPDXLicense Artistic_1_0 = SPDXLicense._(
-    value: 'Artistic-1.0',
+    'Artistic-1.0',
   );
 
   /// Artistic_2_0
   static final SPDXLicense Artistic_2_0 = SPDXLicense._(
-    value: 'Artistic-2.0',
+    'Artistic-2.0',
   );
 
   /// Bahyph
   static final SPDXLicense Bahyph = SPDXLicense._(
-    value: 'Bahyph',
+    'Bahyph',
   );
 
   /// Barr
   static final SPDXLicense Barr = SPDXLicense._(
-    value: 'Barr',
+    'Barr',
   );
 
   /// Beerware
   static final SPDXLicense Beerware = SPDXLicense._(
-    value: 'Beerware',
+    'Beerware',
   );
 
   /// BitTorrent_1_0
   static final SPDXLicense BitTorrent_1_0 = SPDXLicense._(
-    value: 'BitTorrent-1.0',
+    'BitTorrent-1.0',
   );
 
   /// BitTorrent_1_1
   static final SPDXLicense BitTorrent_1_1 = SPDXLicense._(
-    value: 'BitTorrent-1.1',
+    'BitTorrent-1.1',
   );
 
   /// Borceux
   static final SPDXLicense Borceux = SPDXLicense._(
-    value: 'Borceux',
+    'Borceux',
   );
 
   /// BSD_1_Clause
   static final SPDXLicense BSD_1_Clause = SPDXLicense._(
-    value: 'BSD-1-Clause',
+    'BSD-1-Clause',
   );
 
   /// BSD_2_Clause_FreeBSD
   static final SPDXLicense BSD_2_Clause_FreeBSD = SPDXLicense._(
-    value: 'BSD-2-Clause-FreeBSD',
+    'BSD-2-Clause-FreeBSD',
   );
 
   /// BSD_2_Clause_NetBSD
   static final SPDXLicense BSD_2_Clause_NetBSD = SPDXLicense._(
-    value: 'BSD-2-Clause-NetBSD',
+    'BSD-2-Clause-NetBSD',
   );
 
   /// BSD_2_Clause_Patent
   static final SPDXLicense BSD_2_Clause_Patent = SPDXLicense._(
-    value: 'BSD-2-Clause-Patent',
+    'BSD-2-Clause-Patent',
   );
 
   /// BSD_2_Clause
   static final SPDXLicense BSD_2_Clause = SPDXLicense._(
-    value: 'BSD-2-Clause',
+    'BSD-2-Clause',
   );
 
   /// BSD_3_Clause_Attribution
   static final SPDXLicense BSD_3_Clause_Attribution = SPDXLicense._(
-    value: 'BSD-3-Clause-Attribution',
+    'BSD-3-Clause-Attribution',
   );
 
   /// BSD_3_Clause_Clear
   static final SPDXLicense BSD_3_Clause_Clear = SPDXLicense._(
-    value: 'BSD-3-Clause-Clear',
+    'BSD-3-Clause-Clear',
   );
 
   /// BSD_3_Clause_LBNL
   static final SPDXLicense BSD_3_Clause_LBNL = SPDXLicense._(
-    value: 'BSD-3-Clause-LBNL',
+    'BSD-3-Clause-LBNL',
   );
 
   /// BSD_3_Clause_No_Nuclear_License_2014
   static final SPDXLicense BSD_3_Clause_No_Nuclear_License_2014 = SPDXLicense._(
-    value: 'BSD-3-Clause-No-Nuclear-License-2014',
+    'BSD-3-Clause-No-Nuclear-License-2014',
   );
 
   /// BSD_3_Clause_No_Nuclear_License
   static final SPDXLicense BSD_3_Clause_No_Nuclear_License = SPDXLicense._(
-    value: 'BSD-3-Clause-No-Nuclear-License',
+    'BSD-3-Clause-No-Nuclear-License',
   );
 
   /// BSD_3_Clause_No_Nuclear_Warranty
   static final SPDXLicense BSD_3_Clause_No_Nuclear_Warranty = SPDXLicense._(
-    value: 'BSD-3-Clause-No-Nuclear-Warranty',
+    'BSD-3-Clause-No-Nuclear-Warranty',
   );
 
   /// BSD_3_Clause
   static final SPDXLicense BSD_3_Clause = SPDXLicense._(
-    value: 'BSD-3-Clause',
+    'BSD-3-Clause',
   );
 
   /// BSD_4_Clause_UC
   static final SPDXLicense BSD_4_Clause_UC = SPDXLicense._(
-    value: 'BSD-4-Clause-UC',
+    'BSD-4-Clause-UC',
   );
 
   /// BSD_4_Clause
   static final SPDXLicense BSD_4_Clause = SPDXLicense._(
-    value: 'BSD-4-Clause',
+    'BSD-4-Clause',
   );
 
   /// BSD_Protection
   static final SPDXLicense BSD_Protection = SPDXLicense._(
-    value: 'BSD-Protection',
+    'BSD-Protection',
   );
 
   /// BSD_Source_Code
   static final SPDXLicense BSD_Source_Code = SPDXLicense._(
-    value: 'BSD-Source-Code',
+    'BSD-Source-Code',
   );
 
   /// BSL_1_0
   static final SPDXLicense BSL_1_0 = SPDXLicense._(
-    value: 'BSL-1.0',
+    'BSL-1.0',
   );
 
   /// bzip2_1_0_5
   static final SPDXLicense bzip2_1_0_5 = SPDXLicense._(
-    value: 'bzip2-1.0.5',
+    'bzip2-1.0.5',
   );
 
   /// bzip2_1_0_6
   static final SPDXLicense bzip2_1_0_6 = SPDXLicense._(
-    value: 'bzip2-1.0.6',
+    'bzip2-1.0.6',
   );
 
   /// Caldera
   static final SPDXLicense Caldera = SPDXLicense._(
-    value: 'Caldera',
+    'Caldera',
   );
 
   /// CATOSL_1_1
   static final SPDXLicense CATOSL_1_1 = SPDXLicense._(
-    value: 'CATOSL-1.1',
+    'CATOSL-1.1',
   );
 
   /// CC_BY_1_0
   static final SPDXLicense CC_BY_1_0 = SPDXLicense._(
-    value: 'CC-BY-1.0',
+    'CC-BY-1.0',
   );
 
   /// CC_BY_2_0
   static final SPDXLicense CC_BY_2_0 = SPDXLicense._(
-    value: 'CC-BY-2.0',
+    'CC-BY-2.0',
   );
 
   /// CC_BY_2_5
   static final SPDXLicense CC_BY_2_5 = SPDXLicense._(
-    value: 'CC-BY-2.5',
+    'CC-BY-2.5',
   );
 
   /// CC_BY_3_0
   static final SPDXLicense CC_BY_3_0 = SPDXLicense._(
-    value: 'CC-BY-3.0',
+    'CC-BY-3.0',
   );
 
   /// CC_BY_4_0
   static final SPDXLicense CC_BY_4_0 = SPDXLicense._(
-    value: 'CC-BY-4.0',
+    'CC-BY-4.0',
   );
 
   /// CC_BY_NC_1_0
   static final SPDXLicense CC_BY_NC_1_0 = SPDXLicense._(
-    value: 'CC-BY-NC-1.0',
+    'CC-BY-NC-1.0',
   );
 
   /// CC_BY_NC_2_0
   static final SPDXLicense CC_BY_NC_2_0 = SPDXLicense._(
-    value: 'CC-BY-NC-2.0',
+    'CC-BY-NC-2.0',
   );
 
   /// CC_BY_NC_2_5
   static final SPDXLicense CC_BY_NC_2_5 = SPDXLicense._(
-    value: 'CC-BY-NC-2.5',
+    'CC-BY-NC-2.5',
   );
 
   /// CC_BY_NC_3_0
   static final SPDXLicense CC_BY_NC_3_0 = SPDXLicense._(
-    value: 'CC-BY-NC-3.0',
+    'CC-BY-NC-3.0',
   );
 
   /// CC_BY_NC_4_0
   static final SPDXLicense CC_BY_NC_4_0 = SPDXLicense._(
-    value: 'CC-BY-NC-4.0',
+    'CC-BY-NC-4.0',
   );
 
   /// CC_BY_NC_ND_1_0
   static final SPDXLicense CC_BY_NC_ND_1_0 = SPDXLicense._(
-    value: 'CC-BY-NC-ND-1.0',
+    'CC-BY-NC-ND-1.0',
   );
 
   /// CC_BY_NC_ND_2_0
   static final SPDXLicense CC_BY_NC_ND_2_0 = SPDXLicense._(
-    value: 'CC-BY-NC-ND-2.0',
+    'CC-BY-NC-ND-2.0',
   );
 
   /// CC_BY_NC_ND_2_5
   static final SPDXLicense CC_BY_NC_ND_2_5 = SPDXLicense._(
-    value: 'CC-BY-NC-ND-2.5',
+    'CC-BY-NC-ND-2.5',
   );
 
   /// CC_BY_NC_ND_3_0
   static final SPDXLicense CC_BY_NC_ND_3_0 = SPDXLicense._(
-    value: 'CC-BY-NC-ND-3.0',
+    'CC-BY-NC-ND-3.0',
   );
 
   /// CC_BY_NC_ND_4_0
   static final SPDXLicense CC_BY_NC_ND_4_0 = SPDXLicense._(
-    value: 'CC-BY-NC-ND-4.0',
+    'CC-BY-NC-ND-4.0',
   );
 
   /// CC_BY_NC_SA_1_0
   static final SPDXLicense CC_BY_NC_SA_1_0 = SPDXLicense._(
-    value: 'CC-BY-NC-SA-1.0',
+    'CC-BY-NC-SA-1.0',
   );
 
   /// CC_BY_NC_SA_2_0
   static final SPDXLicense CC_BY_NC_SA_2_0 = SPDXLicense._(
-    value: 'CC-BY-NC-SA-2.0',
+    'CC-BY-NC-SA-2.0',
   );
 
   /// CC_BY_NC_SA_2_5
   static final SPDXLicense CC_BY_NC_SA_2_5 = SPDXLicense._(
-    value: 'CC-BY-NC-SA-2.5',
+    'CC-BY-NC-SA-2.5',
   );
 
   /// CC_BY_NC_SA_3_0
   static final SPDXLicense CC_BY_NC_SA_3_0 = SPDXLicense._(
-    value: 'CC-BY-NC-SA-3.0',
+    'CC-BY-NC-SA-3.0',
   );
 
   /// CC_BY_NC_SA_4_0
   static final SPDXLicense CC_BY_NC_SA_4_0 = SPDXLicense._(
-    value: 'CC-BY-NC-SA-4.0',
+    'CC-BY-NC-SA-4.0',
   );
 
   /// CC_BY_ND_1_0
   static final SPDXLicense CC_BY_ND_1_0 = SPDXLicense._(
-    value: 'CC-BY-ND-1.0',
+    'CC-BY-ND-1.0',
   );
 
   /// CC_BY_ND_2_0
   static final SPDXLicense CC_BY_ND_2_0 = SPDXLicense._(
-    value: 'CC-BY-ND-2.0',
+    'CC-BY-ND-2.0',
   );
 
   /// CC_BY_ND_2_5
   static final SPDXLicense CC_BY_ND_2_5 = SPDXLicense._(
-    value: 'CC-BY-ND-2.5',
+    'CC-BY-ND-2.5',
   );
 
   /// CC_BY_ND_3_0
   static final SPDXLicense CC_BY_ND_3_0 = SPDXLicense._(
-    value: 'CC-BY-ND-3.0',
+    'CC-BY-ND-3.0',
   );
 
   /// CC_BY_ND_4_0
   static final SPDXLicense CC_BY_ND_4_0 = SPDXLicense._(
-    value: 'CC-BY-ND-4.0',
+    'CC-BY-ND-4.0',
   );
 
   /// CC_BY_SA_1_0
   static final SPDXLicense CC_BY_SA_1_0 = SPDXLicense._(
-    value: 'CC-BY-SA-1.0',
+    'CC-BY-SA-1.0',
   );
 
   /// CC_BY_SA_2_0
   static final SPDXLicense CC_BY_SA_2_0 = SPDXLicense._(
-    value: 'CC-BY-SA-2.0',
+    'CC-BY-SA-2.0',
   );
 
   /// CC_BY_SA_2_5
   static final SPDXLicense CC_BY_SA_2_5 = SPDXLicense._(
-    value: 'CC-BY-SA-2.5',
+    'CC-BY-SA-2.5',
   );
 
   /// CC_BY_SA_3_0
   static final SPDXLicense CC_BY_SA_3_0 = SPDXLicense._(
-    value: 'CC-BY-SA-3.0',
+    'CC-BY-SA-3.0',
   );
 
   /// CC_BY_SA_4_0
   static final SPDXLicense CC_BY_SA_4_0 = SPDXLicense._(
-    value: 'CC-BY-SA-4.0',
+    'CC-BY-SA-4.0',
   );
 
   /// CC0_1_0
   static final SPDXLicense CC0_1_0 = SPDXLicense._(
-    value: 'CC0-1.0',
+    'CC0-1.0',
   );
 
   /// CDDL_1_0
   static final SPDXLicense CDDL_1_0 = SPDXLicense._(
-    value: 'CDDL-1.0',
+    'CDDL-1.0',
   );
 
   /// CDDL_1_1
   static final SPDXLicense CDDL_1_1 = SPDXLicense._(
-    value: 'CDDL-1.1',
+    'CDDL-1.1',
   );
 
   /// CDLA_Permissive_1_0
   static final SPDXLicense CDLA_Permissive_1_0 = SPDXLicense._(
-    value: 'CDLA-Permissive-1.0',
+    'CDLA-Permissive-1.0',
   );
 
   /// CDLA_Sharing_1_0
   static final SPDXLicense CDLA_Sharing_1_0 = SPDXLicense._(
-    value: 'CDLA-Sharing-1.0',
+    'CDLA-Sharing-1.0',
   );
 
   /// CECILL_1_0
   static final SPDXLicense CECILL_1_0 = SPDXLicense._(
-    value: 'CECILL-1.0',
+    'CECILL-1.0',
   );
 
   /// CECILL_1_1
   static final SPDXLicense CECILL_1_1 = SPDXLicense._(
-    value: 'CECILL-1.1',
+    'CECILL-1.1',
   );
 
   /// CECILL_2_0
   static final SPDXLicense CECILL_2_0 = SPDXLicense._(
-    value: 'CECILL-2.0',
+    'CECILL-2.0',
   );
 
   /// CECILL_2_1
   static final SPDXLicense CECILL_2_1 = SPDXLicense._(
-    value: 'CECILL-2.1',
+    'CECILL-2.1',
   );
 
   /// CECILL_B
   static final SPDXLicense CECILL_B = SPDXLicense._(
-    value: 'CECILL-B',
+    'CECILL-B',
   );
 
   /// CECILL_C
   static final SPDXLicense CECILL_C = SPDXLicense._(
-    value: 'CECILL-C',
+    'CECILL-C',
   );
 
   /// ClArtistic
   static final SPDXLicense ClArtistic = SPDXLicense._(
-    value: 'ClArtistic',
+    'ClArtistic',
   );
 
   /// CNRI_Jython
   static final SPDXLicense CNRI_Jython = SPDXLicense._(
-    value: 'CNRI-Jython',
+    'CNRI-Jython',
   );
 
   /// CNRI_Python_GPL_Compatible
   static final SPDXLicense CNRI_Python_GPL_Compatible = SPDXLicense._(
-    value: 'CNRI-Python-GPL-Compatible',
+    'CNRI-Python-GPL-Compatible',
   );
 
   /// CNRI_Python
   static final SPDXLicense CNRI_Python = SPDXLicense._(
-    value: 'CNRI-Python',
+    'CNRI-Python',
   );
 
   /// Condor_1_1
   static final SPDXLicense Condor_1_1 = SPDXLicense._(
-    value: 'Condor-1.1',
+    'Condor-1.1',
   );
 
   /// CPAL_1_0
   static final SPDXLicense CPAL_1_0 = SPDXLicense._(
-    value: 'CPAL-1.0',
+    'CPAL-1.0',
   );
 
   /// CPL_1_0
   static final SPDXLicense CPL_1_0 = SPDXLicense._(
-    value: 'CPL-1.0',
+    'CPL-1.0',
   );
 
   /// CPOL_1_02
   static final SPDXLicense CPOL_1_02 = SPDXLicense._(
-    value: 'CPOL-1.02',
+    'CPOL-1.02',
   );
 
   /// Crossword
   static final SPDXLicense Crossword = SPDXLicense._(
-    value: 'Crossword',
+    'Crossword',
   );
 
   /// CrystalStacker
   static final SPDXLicense CrystalStacker = SPDXLicense._(
-    value: 'CrystalStacker',
+    'CrystalStacker',
   );
 
   /// CUA_OPL_1_0
   static final SPDXLicense CUA_OPL_1_0 = SPDXLicense._(
-    value: 'CUA-OPL-1.0',
+    'CUA-OPL-1.0',
   );
 
   /// Cube
   static final SPDXLicense Cube = SPDXLicense._(
-    value: 'Cube',
+    'Cube',
   );
 
   /// curl
   static final SPDXLicense curl = SPDXLicense._(
-    value: 'curl',
+    'curl',
   );
 
   /// D_FSL_1_0
   static final SPDXLicense D_FSL_1_0 = SPDXLicense._(
-    value: 'D-FSL-1.0',
+    'D-FSL-1.0',
   );
 
   /// diffmark
   static final SPDXLicense diffmark = SPDXLicense._(
-    value: 'diffmark',
+    'diffmark',
   );
 
   /// DOC
   static final SPDXLicense DOC = SPDXLicense._(
-    value: 'DOC',
+    'DOC',
   );
 
   /// Dotseqn
   static final SPDXLicense Dotseqn = SPDXLicense._(
-    value: 'Dotseqn',
+    'Dotseqn',
   );
 
   /// DSDP
   static final SPDXLicense DSDP = SPDXLicense._(
-    value: 'DSDP',
+    'DSDP',
   );
 
   /// dvipdfm
   static final SPDXLicense dvipdfm = SPDXLicense._(
-    value: 'dvipdfm',
+    'dvipdfm',
   );
 
   /// ECL_1_0
   static final SPDXLicense ECL_1_0 = SPDXLicense._(
-    value: 'ECL-1.0',
+    'ECL-1.0',
   );
 
   /// ECL_2_0
   static final SPDXLicense ECL_2_0 = SPDXLicense._(
-    value: 'ECL-2.0',
+    'ECL-2.0',
   );
 
   /// EFL_1_0
   static final SPDXLicense EFL_1_0 = SPDXLicense._(
-    value: 'EFL-1.0',
+    'EFL-1.0',
   );
 
   /// EFL_2_0
   static final SPDXLicense EFL_2_0 = SPDXLicense._(
-    value: 'EFL-2.0',
+    'EFL-2.0',
   );
 
   /// eGenix
   static final SPDXLicense eGenix = SPDXLicense._(
-    value: 'eGenix',
+    'eGenix',
   );
 
   /// Entessa
   static final SPDXLicense Entessa = SPDXLicense._(
-    value: 'Entessa',
+    'Entessa',
   );
 
   /// EPL_1_0
   static final SPDXLicense EPL_1_0 = SPDXLicense._(
-    value: 'EPL-1.0',
+    'EPL-1.0',
   );
 
   /// EPL_2_0
   static final SPDXLicense EPL_2_0 = SPDXLicense._(
-    value: 'EPL-2.0',
+    'EPL-2.0',
   );
 
   /// ErlPL_1_1
   static final SPDXLicense ErlPL_1_1 = SPDXLicense._(
-    value: 'ErlPL-1.1',
+    'ErlPL-1.1',
   );
 
   /// EUDatagrid
   static final SPDXLicense EUDatagrid = SPDXLicense._(
-    value: 'EUDatagrid',
+    'EUDatagrid',
   );
 
   /// EUPL_1_0
   static final SPDXLicense EUPL_1_0 = SPDXLicense._(
-    value: 'EUPL-1.0',
+    'EUPL-1.0',
   );
 
   /// EUPL_1_1
   static final SPDXLicense EUPL_1_1 = SPDXLicense._(
-    value: 'EUPL-1.1',
+    'EUPL-1.1',
   );
 
   /// EUPL_1_2
   static final SPDXLicense EUPL_1_2 = SPDXLicense._(
-    value: 'EUPL-1.2',
+    'EUPL-1.2',
   );
 
   /// Eurosym
   static final SPDXLicense Eurosym = SPDXLicense._(
-    value: 'Eurosym',
+    'Eurosym',
   );
 
   /// Fair
   static final SPDXLicense Fair = SPDXLicense._(
-    value: 'Fair',
+    'Fair',
   );
 
   /// Frameworx_1_0
   static final SPDXLicense Frameworx_1_0 = SPDXLicense._(
-    value: 'Frameworx-1.0',
+    'Frameworx-1.0',
   );
 
   /// FreeImage
   static final SPDXLicense FreeImage = SPDXLicense._(
-    value: 'FreeImage',
+    'FreeImage',
   );
 
   /// FSFAP
   static final SPDXLicense FSFAP = SPDXLicense._(
-    value: 'FSFAP',
+    'FSFAP',
   );
 
   /// FSFUL
   static final SPDXLicense FSFUL = SPDXLicense._(
-    value: 'FSFUL',
+    'FSFUL',
   );
 
   /// FSFULLR
   static final SPDXLicense FSFULLR = SPDXLicense._(
-    value: 'FSFULLR',
+    'FSFULLR',
   );
 
   /// FTL
   static final SPDXLicense FTL = SPDXLicense._(
-    value: 'FTL',
+    'FTL',
   );
 
   /// GFDL_1_1_only
   static final SPDXLicense GFDL_1_1_only = SPDXLicense._(
-    value: 'GFDL-1.1-only',
+    'GFDL-1.1-only',
   );
 
   /// GFDL_1_1_or_later
   static final SPDXLicense GFDL_1_1_or_later = SPDXLicense._(
-    value: 'GFDL-1.1-or-later',
+    'GFDL-1.1-or-later',
   );
 
   /// GFDL_1_2_only
   static final SPDXLicense GFDL_1_2_only = SPDXLicense._(
-    value: 'GFDL-1.2-only',
+    'GFDL-1.2-only',
   );
 
   /// GFDL_1_2_or_later
   static final SPDXLicense GFDL_1_2_or_later = SPDXLicense._(
-    value: 'GFDL-1.2-or-later',
+    'GFDL-1.2-or-later',
   );
 
   /// GFDL_1_3_only
   static final SPDXLicense GFDL_1_3_only = SPDXLicense._(
-    value: 'GFDL-1.3-only',
+    'GFDL-1.3-only',
   );
 
   /// GFDL_1_3_or_later
   static final SPDXLicense GFDL_1_3_or_later = SPDXLicense._(
-    value: 'GFDL-1.3-or-later',
+    'GFDL-1.3-or-later',
   );
 
   /// Giftware
   static final SPDXLicense Giftware = SPDXLicense._(
-    value: 'Giftware',
+    'Giftware',
   );
 
   /// GL2PS
   static final SPDXLicense GL2PS = SPDXLicense._(
-    value: 'GL2PS',
+    'GL2PS',
   );
 
   /// Glide
   static final SPDXLicense Glide = SPDXLicense._(
-    value: 'Glide',
+    'Glide',
   );
 
   /// Glulxe
   static final SPDXLicense Glulxe = SPDXLicense._(
-    value: 'Glulxe',
+    'Glulxe',
   );
 
   /// gnuplot
   static final SPDXLicense gnuplot = SPDXLicense._(
-    value: 'gnuplot',
+    'gnuplot',
   );
 
   /// GPL_1_0_only
   static final SPDXLicense GPL_1_0_only = SPDXLicense._(
-    value: 'GPL-1.0-only',
+    'GPL-1.0-only',
   );
 
   /// GPL_1_0_or_later
   static final SPDXLicense GPL_1_0_or_later = SPDXLicense._(
-    value: 'GPL-1.0-or-later',
+    'GPL-1.0-or-later',
   );
 
   /// GPL_2_0_only
   static final SPDXLicense GPL_2_0_only = SPDXLicense._(
-    value: 'GPL-2.0-only',
+    'GPL-2.0-only',
   );
 
   /// GPL_2_0_or_later
   static final SPDXLicense GPL_2_0_or_later = SPDXLicense._(
-    value: 'GPL-2.0-or-later',
+    'GPL-2.0-or-later',
   );
 
   /// GPL_3_0_only
   static final SPDXLicense GPL_3_0_only = SPDXLicense._(
-    value: 'GPL-3.0-only',
+    'GPL-3.0-only',
   );
 
   /// GPL_3_0_or_later
   static final SPDXLicense GPL_3_0_or_later = SPDXLicense._(
-    value: 'GPL-3.0-or-later',
+    'GPL-3.0-or-later',
   );
 
   /// gSOAP_1_3b
   static final SPDXLicense gSOAP_1_3b = SPDXLicense._(
-    value: 'gSOAP-1.3b',
+    'gSOAP-1.3b',
   );
 
   /// HaskellReport
   static final SPDXLicense HaskellReport = SPDXLicense._(
-    value: 'HaskellReport',
+    'HaskellReport',
   );
 
   /// HPND
   static final SPDXLicense HPND = SPDXLicense._(
-    value: 'HPND',
+    'HPND',
   );
 
   /// IBM_pibs
   static final SPDXLicense IBM_pibs = SPDXLicense._(
-    value: 'IBM-pibs',
+    'IBM-pibs',
   );
 
   /// ICU
   static final SPDXLicense ICU = SPDXLicense._(
-    value: 'ICU',
+    'ICU',
   );
 
   /// IJG
   static final SPDXLicense IJG = SPDXLicense._(
-    value: 'IJG',
+    'IJG',
   );
 
   /// ImageMagick
   static final SPDXLicense ImageMagick = SPDXLicense._(
-    value: 'ImageMagick',
+    'ImageMagick',
   );
 
   /// iMatix
   static final SPDXLicense iMatix = SPDXLicense._(
-    value: 'iMatix',
+    'iMatix',
   );
 
   /// Imlib2
   static final SPDXLicense Imlib2 = SPDXLicense._(
-    value: 'Imlib2',
+    'Imlib2',
   );
 
   /// Info_ZIP
   static final SPDXLicense Info_ZIP = SPDXLicense._(
-    value: 'Info-ZIP',
+    'Info-ZIP',
   );
 
   /// Intel_ACPI
   static final SPDXLicense Intel_ACPI = SPDXLicense._(
-    value: 'Intel-ACPI',
+    'Intel-ACPI',
   );
 
   /// Intel
   static final SPDXLicense Intel = SPDXLicense._(
-    value: 'Intel',
+    'Intel',
   );
 
   /// Interbase_1_0
   static final SPDXLicense Interbase_1_0 = SPDXLicense._(
-    value: 'Interbase-1.0',
+    'Interbase-1.0',
   );
 
   /// IPA
   static final SPDXLicense IPA = SPDXLicense._(
-    value: 'IPA',
+    'IPA',
   );
 
   /// IPL_1_0
   static final SPDXLicense IPL_1_0 = SPDXLicense._(
-    value: 'IPL-1.0',
+    'IPL-1.0',
   );
 
   /// ISC
   static final SPDXLicense ISC = SPDXLicense._(
-    value: 'ISC',
+    'ISC',
   );
 
   /// JasPer_2_0
   static final SPDXLicense JasPer_2_0 = SPDXLicense._(
-    value: 'JasPer-2.0',
+    'JasPer-2.0',
   );
 
   /// JSON
   static final SPDXLicense JSON = SPDXLicense._(
-    value: 'JSON',
+    'JSON',
   );
 
   /// LAL_1_2
   static final SPDXLicense LAL_1_2 = SPDXLicense._(
-    value: 'LAL-1.2',
+    'LAL-1.2',
   );
 
   /// LAL_1_3
   static final SPDXLicense LAL_1_3 = SPDXLicense._(
-    value: 'LAL-1.3',
+    'LAL-1.3',
   );
 
   /// Latex2e
   static final SPDXLicense Latex2e = SPDXLicense._(
-    value: 'Latex2e',
+    'Latex2e',
   );
 
   /// Leptonica
   static final SPDXLicense Leptonica = SPDXLicense._(
-    value: 'Leptonica',
+    'Leptonica',
   );
 
   /// LGPL_2_0_only
   static final SPDXLicense LGPL_2_0_only = SPDXLicense._(
-    value: 'LGPL-2.0-only',
+    'LGPL-2.0-only',
   );
 
   /// LGPL_2_0_or_later
   static final SPDXLicense LGPL_2_0_or_later = SPDXLicense._(
-    value: 'LGPL-2.0-or-later',
+    'LGPL-2.0-or-later',
   );
 
   /// LGPL_2_1_only
   static final SPDXLicense LGPL_2_1_only = SPDXLicense._(
-    value: 'LGPL-2.1-only',
+    'LGPL-2.1-only',
   );
 
   /// LGPL_2_1_or_later
   static final SPDXLicense LGPL_2_1_or_later = SPDXLicense._(
-    value: 'LGPL-2.1-or-later',
+    'LGPL-2.1-or-later',
   );
 
   /// LGPL_3_0_only
   static final SPDXLicense LGPL_3_0_only = SPDXLicense._(
-    value: 'LGPL-3.0-only',
+    'LGPL-3.0-only',
   );
 
   /// LGPL_3_0_or_later
   static final SPDXLicense LGPL_3_0_or_later = SPDXLicense._(
-    value: 'LGPL-3.0-or-later',
+    'LGPL-3.0-or-later',
   );
 
   /// LGPLLR
   static final SPDXLicense LGPLLR = SPDXLicense._(
-    value: 'LGPLLR',
+    'LGPLLR',
   );
 
   /// Libpng
   static final SPDXLicense Libpng = SPDXLicense._(
-    value: 'Libpng',
+    'Libpng',
   );
 
   /// libtiff
   static final SPDXLicense libtiff = SPDXLicense._(
-    value: 'libtiff',
+    'libtiff',
   );
 
   /// LiLiQ_P_1_1
   static final SPDXLicense LiLiQ_P_1_1 = SPDXLicense._(
-    value: 'LiLiQ-P-1.1',
+    'LiLiQ-P-1.1',
   );
 
   /// LiLiQ_R_1_1
   static final SPDXLicense LiLiQ_R_1_1 = SPDXLicense._(
-    value: 'LiLiQ-R-1.1',
+    'LiLiQ-R-1.1',
   );
 
   /// LiLiQ_Rplus_1_1
   static final SPDXLicense LiLiQ_Rplus_1_1 = SPDXLicense._(
-    value: 'LiLiQ-Rplus-1.1',
+    'LiLiQ-Rplus-1.1',
   );
 
   /// Linux_OpenIB
   static final SPDXLicense Linux_OpenIB = SPDXLicense._(
-    value: 'Linux-OpenIB',
+    'Linux-OpenIB',
   );
 
   /// LPL_1_0
   static final SPDXLicense LPL_1_0 = SPDXLicense._(
-    value: 'LPL-1.0',
+    'LPL-1.0',
   );
 
   /// LPL_1_02
   static final SPDXLicense LPL_1_02 = SPDXLicense._(
-    value: 'LPL-1.02',
+    'LPL-1.02',
   );
 
   /// LPPL_1_0
   static final SPDXLicense LPPL_1_0 = SPDXLicense._(
-    value: 'LPPL-1.0',
+    'LPPL-1.0',
   );
 
   /// LPPL_1_1
   static final SPDXLicense LPPL_1_1 = SPDXLicense._(
-    value: 'LPPL-1.1',
+    'LPPL-1.1',
   );
 
   /// LPPL_1_2
   static final SPDXLicense LPPL_1_2 = SPDXLicense._(
-    value: 'LPPL-1.2',
+    'LPPL-1.2',
   );
 
   /// LPPL_1_3a
   static final SPDXLicense LPPL_1_3a = SPDXLicense._(
-    value: 'LPPL-1.3a',
+    'LPPL-1.3a',
   );
 
   /// LPPL_1_3c
   static final SPDXLicense LPPL_1_3c = SPDXLicense._(
-    value: 'LPPL-1.3c',
+    'LPPL-1.3c',
   );
 
   /// MakeIndex
   static final SPDXLicense MakeIndex = SPDXLicense._(
-    value: 'MakeIndex',
+    'MakeIndex',
   );
 
   /// MirOS
   static final SPDXLicense MirOS = SPDXLicense._(
-    value: 'MirOS',
+    'MirOS',
   );
 
   /// MIT_0
   static final SPDXLicense MIT_0 = SPDXLicense._(
-    value: 'MIT-0',
+    'MIT-0',
   );
 
   /// MIT_advertising
   static final SPDXLicense MIT_advertising = SPDXLicense._(
-    value: 'MIT-advertising',
+    'MIT-advertising',
   );
 
   /// MIT_CMU
   static final SPDXLicense MIT_CMU = SPDXLicense._(
-    value: 'MIT-CMU',
+    'MIT-CMU',
   );
 
   /// MIT_enna
   static final SPDXLicense MIT_enna = SPDXLicense._(
-    value: 'MIT-enna',
+    'MIT-enna',
   );
 
   /// MIT_feh
   static final SPDXLicense MIT_feh = SPDXLicense._(
-    value: 'MIT-feh',
+    'MIT-feh',
   );
 
   /// MIT
   static final SPDXLicense MIT = SPDXLicense._(
-    value: 'MIT',
+    'MIT',
   );
 
   /// MITNFA
   static final SPDXLicense MITNFA = SPDXLicense._(
-    value: 'MITNFA',
+    'MITNFA',
   );
 
   /// Motosoto
   static final SPDXLicense Motosoto = SPDXLicense._(
-    value: 'Motosoto',
+    'Motosoto',
   );
 
   /// mpich2
   static final SPDXLicense mpich2 = SPDXLicense._(
-    value: 'mpich2',
+    'mpich2',
   );
 
   /// MPL_1_0
   static final SPDXLicense MPL_1_0 = SPDXLicense._(
-    value: 'MPL-1.0',
+    'MPL-1.0',
   );
 
   /// MPL_1_1
   static final SPDXLicense MPL_1_1 = SPDXLicense._(
-    value: 'MPL-1.1',
+    'MPL-1.1',
   );
 
   /// MPL_2_0_no_copyleft_exception
   static final SPDXLicense MPL_2_0_no_copyleft_exception = SPDXLicense._(
-    value: 'MPL-2.0-no-copyleft-exception',
+    'MPL-2.0-no-copyleft-exception',
   );
 
   /// MPL_2_0
   static final SPDXLicense MPL_2_0 = SPDXLicense._(
-    value: 'MPL-2.0',
+    'MPL-2.0',
   );
 
   /// MS_PL
   static final SPDXLicense MS_PL = SPDXLicense._(
-    value: 'MS-PL',
+    'MS-PL',
   );
 
   /// MS_RL
   static final SPDXLicense MS_RL = SPDXLicense._(
-    value: 'MS-RL',
+    'MS-RL',
   );
 
   /// MTLL
   static final SPDXLicense MTLL = SPDXLicense._(
-    value: 'MTLL',
+    'MTLL',
   );
 
   /// Multics
   static final SPDXLicense Multics = SPDXLicense._(
-    value: 'Multics',
+    'Multics',
   );
 
   /// Mup
   static final SPDXLicense Mup = SPDXLicense._(
-    value: 'Mup',
+    'Mup',
   );
 
   /// NASA_1_3
   static final SPDXLicense NASA_1_3 = SPDXLicense._(
-    value: 'NASA-1.3',
+    'NASA-1.3',
   );
 
   /// Naumen
   static final SPDXLicense Naumen = SPDXLicense._(
-    value: 'Naumen',
+    'Naumen',
   );
 
   /// NBPL_1_0
   static final SPDXLicense NBPL_1_0 = SPDXLicense._(
-    value: 'NBPL-1.0',
+    'NBPL-1.0',
   );
 
   /// NCSA
   static final SPDXLicense NCSA = SPDXLicense._(
-    value: 'NCSA',
+    'NCSA',
   );
 
   /// Net_SNMP
   static final SPDXLicense Net_SNMP = SPDXLicense._(
-    value: 'Net-SNMP',
+    'Net-SNMP',
   );
 
   /// NetCDF
   static final SPDXLicense NetCDF = SPDXLicense._(
-    value: 'NetCDF',
+    'NetCDF',
   );
 
   /// Newsletr
   static final SPDXLicense Newsletr = SPDXLicense._(
-    value: 'Newsletr',
+    'Newsletr',
   );
 
   /// NGPL
   static final SPDXLicense NGPL = SPDXLicense._(
-    value: 'NGPL',
+    'NGPL',
   );
 
   /// NLOD_1_0
   static final SPDXLicense NLOD_1_0 = SPDXLicense._(
-    value: 'NLOD-1.0',
+    'NLOD-1.0',
   );
 
   /// NLPL
   static final SPDXLicense NLPL = SPDXLicense._(
-    value: 'NLPL',
+    'NLPL',
   );
 
   /// Nokia
   static final SPDXLicense Nokia = SPDXLicense._(
-    value: 'Nokia',
+    'Nokia',
   );
 
   /// NOSL
   static final SPDXLicense NOSL = SPDXLicense._(
-    value: 'NOSL',
+    'NOSL',
   );
 
   /// Noweb
   static final SPDXLicense Noweb = SPDXLicense._(
-    value: 'Noweb',
+    'Noweb',
   );
 
   /// NPL_1_0
   static final SPDXLicense NPL_1_0 = SPDXLicense._(
-    value: 'NPL-1.0',
+    'NPL-1.0',
   );
 
   /// NPL_1_1
   static final SPDXLicense NPL_1_1 = SPDXLicense._(
-    value: 'NPL-1.1',
+    'NPL-1.1',
   );
 
   /// NPOSL_3_0
   static final SPDXLicense NPOSL_3_0 = SPDXLicense._(
-    value: 'NPOSL-3.0',
+    'NPOSL-3.0',
   );
 
   /// NRL
   static final SPDXLicense NRL = SPDXLicense._(
-    value: 'NRL',
+    'NRL',
   );
 
   /// NTP
   static final SPDXLicense NTP = SPDXLicense._(
-    value: 'NTP',
+    'NTP',
   );
 
   /// OCCT_PL
   static final SPDXLicense OCCT_PL = SPDXLicense._(
-    value: 'OCCT-PL',
+    'OCCT-PL',
   );
 
   /// OCLC_2_0
   static final SPDXLicense OCLC_2_0 = SPDXLicense._(
-    value: 'OCLC-2.0',
+    'OCLC-2.0',
   );
 
   /// ODbL_1_0
   static final SPDXLicense ODbL_1_0 = SPDXLicense._(
-    value: 'ODbL-1.0',
+    'ODbL-1.0',
   );
 
   /// OFL_1_0
   static final SPDXLicense OFL_1_0 = SPDXLicense._(
-    value: 'OFL-1.0',
+    'OFL-1.0',
   );
 
   /// OFL_1_1
   static final SPDXLicense OFL_1_1 = SPDXLicense._(
-    value: 'OFL-1.1',
+    'OFL-1.1',
   );
 
   /// OGTSL
   static final SPDXLicense OGTSL = SPDXLicense._(
-    value: 'OGTSL',
+    'OGTSL',
   );
 
   /// OLDAP_1_1
   static final SPDXLicense OLDAP_1_1 = SPDXLicense._(
-    value: 'OLDAP-1.1',
+    'OLDAP-1.1',
   );
 
   /// OLDAP_1_2
   static final SPDXLicense OLDAP_1_2 = SPDXLicense._(
-    value: 'OLDAP-1.2',
+    'OLDAP-1.2',
   );
 
   /// OLDAP_1_3
   static final SPDXLicense OLDAP_1_3 = SPDXLicense._(
-    value: 'OLDAP-1.3',
+    'OLDAP-1.3',
   );
 
   /// OLDAP_1_4
   static final SPDXLicense OLDAP_1_4 = SPDXLicense._(
-    value: 'OLDAP-1.4',
+    'OLDAP-1.4',
   );
 
   /// OLDAP_2_0_1
   static final SPDXLicense OLDAP_2_0_1 = SPDXLicense._(
-    value: 'OLDAP-2.0.1',
+    'OLDAP-2.0.1',
   );
 
   /// OLDAP_2_0
   static final SPDXLicense OLDAP_2_0 = SPDXLicense._(
-    value: 'OLDAP-2.0',
+    'OLDAP-2.0',
   );
 
   /// OLDAP_2_1
   static final SPDXLicense OLDAP_2_1 = SPDXLicense._(
-    value: 'OLDAP-2.1',
+    'OLDAP-2.1',
   );
 
   /// OLDAP_2_2_1
   static final SPDXLicense OLDAP_2_2_1 = SPDXLicense._(
-    value: 'OLDAP-2.2.1',
+    'OLDAP-2.2.1',
   );
 
   /// OLDAP_2_2_2
   static final SPDXLicense OLDAP_2_2_2 = SPDXLicense._(
-    value: 'OLDAP-2.2.2',
+    'OLDAP-2.2.2',
   );
 
   /// OLDAP_2_2
   static final SPDXLicense OLDAP_2_2 = SPDXLicense._(
-    value: 'OLDAP-2.2',
+    'OLDAP-2.2',
   );
 
   /// OLDAP_2_3
   static final SPDXLicense OLDAP_2_3 = SPDXLicense._(
-    value: 'OLDAP-2.3',
+    'OLDAP-2.3',
   );
 
   /// OLDAP_2_4
   static final SPDXLicense OLDAP_2_4 = SPDXLicense._(
-    value: 'OLDAP-2.4',
+    'OLDAP-2.4',
   );
 
   /// OLDAP_2_5
   static final SPDXLicense OLDAP_2_5 = SPDXLicense._(
-    value: 'OLDAP-2.5',
+    'OLDAP-2.5',
   );
 
   /// OLDAP_2_6
   static final SPDXLicense OLDAP_2_6 = SPDXLicense._(
-    value: 'OLDAP-2.6',
+    'OLDAP-2.6',
   );
 
   /// OLDAP_2_7
   static final SPDXLicense OLDAP_2_7 = SPDXLicense._(
-    value: 'OLDAP-2.7',
+    'OLDAP-2.7',
   );
 
   /// OLDAP_2_8
   static final SPDXLicense OLDAP_2_8 = SPDXLicense._(
-    value: 'OLDAP-2.8',
+    'OLDAP-2.8',
   );
 
   /// OML
   static final SPDXLicense OML = SPDXLicense._(
-    value: 'OML',
+    'OML',
   );
 
   /// OpenSSL
   static final SPDXLicense OpenSSL = SPDXLicense._(
-    value: 'OpenSSL',
+    'OpenSSL',
   );
 
   /// OPL_1_0
   static final SPDXLicense OPL_1_0 = SPDXLicense._(
-    value: 'OPL-1.0',
+    'OPL-1.0',
   );
 
   /// OSET_PL_2_1
   static final SPDXLicense OSET_PL_2_1 = SPDXLicense._(
-    value: 'OSET-PL-2.1',
+    'OSET-PL-2.1',
   );
 
   /// OSL_1_0
   static final SPDXLicense OSL_1_0 = SPDXLicense._(
-    value: 'OSL-1.0',
+    'OSL-1.0',
   );
 
   /// OSL_1_1
   static final SPDXLicense OSL_1_1 = SPDXLicense._(
-    value: 'OSL-1.1',
+    'OSL-1.1',
   );
 
   /// OSL_2_0
   static final SPDXLicense OSL_2_0 = SPDXLicense._(
-    value: 'OSL-2.0',
+    'OSL-2.0',
   );
 
   /// OSL_2_1
   static final SPDXLicense OSL_2_1 = SPDXLicense._(
-    value: 'OSL-2.1',
+    'OSL-2.1',
   );
 
   /// OSL_3_0
   static final SPDXLicense OSL_3_0 = SPDXLicense._(
-    value: 'OSL-3.0',
+    'OSL-3.0',
   );
 
   /// PDDL_1_0
   static final SPDXLicense PDDL_1_0 = SPDXLicense._(
-    value: 'PDDL-1.0',
+    'PDDL-1.0',
   );
 
   /// PHP_3_0
   static final SPDXLicense PHP_3_0 = SPDXLicense._(
-    value: 'PHP-3.0',
+    'PHP-3.0',
   );
 
   /// PHP_3_01
   static final SPDXLicense PHP_3_01 = SPDXLicense._(
-    value: 'PHP-3.01',
+    'PHP-3.01',
   );
 
   /// Plexus
   static final SPDXLicense Plexus = SPDXLicense._(
-    value: 'Plexus',
+    'Plexus',
   );
 
   /// PostgreSQL
   static final SPDXLicense PostgreSQL = SPDXLicense._(
-    value: 'PostgreSQL',
+    'PostgreSQL',
   );
 
   /// psfrag
   static final SPDXLicense psfrag = SPDXLicense._(
-    value: 'psfrag',
+    'psfrag',
   );
 
   /// psutils
   static final SPDXLicense psutils = SPDXLicense._(
-    value: 'psutils',
+    'psutils',
   );
 
   /// Python_2_0
   static final SPDXLicense Python_2_0 = SPDXLicense._(
-    value: 'Python-2.0',
+    'Python-2.0',
   );
 
   /// Qhull
   static final SPDXLicense Qhull = SPDXLicense._(
-    value: 'Qhull',
+    'Qhull',
   );
 
   /// QPL_1_0
   static final SPDXLicense QPL_1_0 = SPDXLicense._(
-    value: 'QPL-1.0',
+    'QPL-1.0',
   );
 
   /// Rdisc
   static final SPDXLicense Rdisc = SPDXLicense._(
-    value: 'Rdisc',
+    'Rdisc',
   );
 
   /// RHeCos_1_1
   static final SPDXLicense RHeCos_1_1 = SPDXLicense._(
-    value: 'RHeCos-1.1',
+    'RHeCos-1.1',
   );
 
   /// RPL_1_1
   static final SPDXLicense RPL_1_1 = SPDXLicense._(
-    value: 'RPL-1.1',
+    'RPL-1.1',
   );
 
   /// RPL_1_5
   static final SPDXLicense RPL_1_5 = SPDXLicense._(
-    value: 'RPL-1.5',
+    'RPL-1.5',
   );
 
   /// RPSL_1_0
   static final SPDXLicense RPSL_1_0 = SPDXLicense._(
-    value: 'RPSL-1.0',
+    'RPSL-1.0',
   );
 
   /// RSA_MD
   static final SPDXLicense RSA_MD = SPDXLicense._(
-    value: 'RSA-MD',
+    'RSA-MD',
   );
 
   /// RSCPL
   static final SPDXLicense RSCPL = SPDXLicense._(
-    value: 'RSCPL',
+    'RSCPL',
   );
 
   /// Ruby
   static final SPDXLicense Ruby = SPDXLicense._(
-    value: 'Ruby',
+    'Ruby',
   );
 
   /// SAX_PD
   static final SPDXLicense SAX_PD = SPDXLicense._(
-    value: 'SAX-PD',
+    'SAX-PD',
   );
 
   /// Saxpath
   static final SPDXLicense Saxpath = SPDXLicense._(
-    value: 'Saxpath',
+    'Saxpath',
   );
 
   /// SCEA
   static final SPDXLicense SCEA = SPDXLicense._(
-    value: 'SCEA',
+    'SCEA',
   );
 
   /// Sendmail
   static final SPDXLicense Sendmail = SPDXLicense._(
-    value: 'Sendmail',
+    'Sendmail',
   );
 
   /// SGI_B_1_0
   static final SPDXLicense SGI_B_1_0 = SPDXLicense._(
-    value: 'SGI-B-1.0',
+    'SGI-B-1.0',
   );
 
   /// SGI_B_1_1
   static final SPDXLicense SGI_B_1_1 = SPDXLicense._(
-    value: 'SGI-B-1.1',
+    'SGI-B-1.1',
   );
 
   /// SGI_B_2_0
   static final SPDXLicense SGI_B_2_0 = SPDXLicense._(
-    value: 'SGI-B-2.0',
+    'SGI-B-2.0',
   );
 
   /// SimPL_2_0
   static final SPDXLicense SimPL_2_0 = SPDXLicense._(
-    value: 'SimPL-2.0',
+    'SimPL-2.0',
   );
 
   /// SISSL_1_2
   static final SPDXLicense SISSL_1_2 = SPDXLicense._(
-    value: 'SISSL-1.2',
+    'SISSL-1.2',
   );
 
   /// SISSL
   static final SPDXLicense SISSL = SPDXLicense._(
-    value: 'SISSL',
+    'SISSL',
   );
 
   /// Sleepycat
   static final SPDXLicense Sleepycat = SPDXLicense._(
-    value: 'Sleepycat',
+    'Sleepycat',
   );
 
   /// SMLNJ
   static final SPDXLicense SMLNJ = SPDXLicense._(
-    value: 'SMLNJ',
+    'SMLNJ',
   );
 
   /// SMPPL
   static final SPDXLicense SMPPL = SPDXLicense._(
-    value: 'SMPPL',
+    'SMPPL',
   );
 
   /// SNIA
   static final SPDXLicense SNIA = SPDXLicense._(
-    value: 'SNIA',
+    'SNIA',
   );
 
   /// Spencer_86
   static final SPDXLicense Spencer_86 = SPDXLicense._(
-    value: 'Spencer-86',
+    'Spencer-86',
   );
 
   /// Spencer_94
   static final SPDXLicense Spencer_94 = SPDXLicense._(
-    value: 'Spencer-94',
+    'Spencer-94',
   );
 
   /// Spencer_99
   static final SPDXLicense Spencer_99 = SPDXLicense._(
-    value: 'Spencer-99',
+    'Spencer-99',
   );
 
   /// SPL_1_0
   static final SPDXLicense SPL_1_0 = SPDXLicense._(
-    value: 'SPL-1.0',
+    'SPL-1.0',
   );
 
   /// SugarCRM_1_1_3
   static final SPDXLicense SugarCRM_1_1_3 = SPDXLicense._(
-    value: 'SugarCRM-1.1.3',
+    'SugarCRM-1.1.3',
   );
 
   /// SWL
   static final SPDXLicense SWL = SPDXLicense._(
-    value: 'SWL',
+    'SWL',
   );
 
   /// TCL
   static final SPDXLicense TCL = SPDXLicense._(
-    value: 'TCL',
+    'TCL',
   );
 
   /// TCP_wrappers
   static final SPDXLicense TCP_wrappers = SPDXLicense._(
-    value: 'TCP-wrappers',
+    'TCP-wrappers',
   );
 
   /// TMate
   static final SPDXLicense TMate = SPDXLicense._(
-    value: 'TMate',
+    'TMate',
   );
 
   /// TORQUE_1_1
   static final SPDXLicense TORQUE_1_1 = SPDXLicense._(
-    value: 'TORQUE-1.1',
+    'TORQUE-1.1',
   );
 
   /// TOSL
   static final SPDXLicense TOSL = SPDXLicense._(
-    value: 'TOSL',
+    'TOSL',
   );
 
   /// Unicode_DFS_2015
   static final SPDXLicense Unicode_DFS_2015 = SPDXLicense._(
-    value: 'Unicode-DFS-2015',
+    'Unicode-DFS-2015',
   );
 
   /// Unicode_DFS_2016
   static final SPDXLicense Unicode_DFS_2016 = SPDXLicense._(
-    value: 'Unicode-DFS-2016',
+    'Unicode-DFS-2016',
   );
 
   /// Unicode_TOU
   static final SPDXLicense Unicode_TOU = SPDXLicense._(
-    value: 'Unicode-TOU',
+    'Unicode-TOU',
   );
 
   /// Unlicense
   static final SPDXLicense Unlicense = SPDXLicense._(
-    value: 'Unlicense',
+    'Unlicense',
   );
 
   /// UPL_1_0
   static final SPDXLicense UPL_1_0 = SPDXLicense._(
-    value: 'UPL-1.0',
+    'UPL-1.0',
   );
 
   /// Vim
   static final SPDXLicense Vim = SPDXLicense._(
-    value: 'Vim',
+    'Vim',
   );
 
   /// VOSTROM
   static final SPDXLicense VOSTROM = SPDXLicense._(
-    value: 'VOSTROM',
+    'VOSTROM',
   );
 
   /// VSL_1_0
   static final SPDXLicense VSL_1_0 = SPDXLicense._(
-    value: 'VSL-1.0',
+    'VSL-1.0',
   );
 
   /// W3C_19980720
   static final SPDXLicense W3C_19980720 = SPDXLicense._(
-    value: 'W3C-19980720',
+    'W3C-19980720',
   );
 
   /// W3C_20150513
   static final SPDXLicense W3C_20150513 = SPDXLicense._(
-    value: 'W3C-20150513',
+    'W3C-20150513',
   );
 
   /// W3C
   static final SPDXLicense W3C = SPDXLicense._(
-    value: 'W3C',
+    'W3C',
   );
 
   /// Watcom_1_0
   static final SPDXLicense Watcom_1_0 = SPDXLicense._(
-    value: 'Watcom-1.0',
+    'Watcom-1.0',
   );
 
   /// Wsuipa
   static final SPDXLicense Wsuipa = SPDXLicense._(
-    value: 'Wsuipa',
+    'Wsuipa',
   );
 
   /// WTFPL
   static final SPDXLicense WTFPL = SPDXLicense._(
-    value: 'WTFPL',
+    'WTFPL',
   );
 
   /// X11
   static final SPDXLicense X11 = SPDXLicense._(
-    value: 'X11',
+    'X11',
   );
 
   /// Xerox
   static final SPDXLicense Xerox = SPDXLicense._(
-    value: 'Xerox',
+    'Xerox',
   );
 
   /// XFree86_1_1
   static final SPDXLicense XFree86_1_1 = SPDXLicense._(
-    value: 'XFree86-1.1',
+    'XFree86-1.1',
   );
 
   /// xinetd
   static final SPDXLicense xinetd = SPDXLicense._(
-    value: 'xinetd',
+    'xinetd',
   );
 
   /// Xnet
   static final SPDXLicense Xnet = SPDXLicense._(
-    value: 'Xnet',
+    'Xnet',
   );
 
   /// xpp
   static final SPDXLicense xpp = SPDXLicense._(
-    value: 'xpp',
+    'xpp',
   );
 
   /// XSkat
   static final SPDXLicense XSkat = SPDXLicense._(
-    value: 'XSkat',
+    'XSkat',
   );
 
   /// YPL_1_0
   static final SPDXLicense YPL_1_0 = SPDXLicense._(
-    value: 'YPL-1.0',
+    'YPL-1.0',
   );
 
   /// YPL_1_1
   static final SPDXLicense YPL_1_1 = SPDXLicense._(
-    value: 'YPL-1.1',
+    'YPL-1.1',
   );
 
   /// Zed
   static final SPDXLicense Zed = SPDXLicense._(
-    value: 'Zed',
+    'Zed',
   );
 
   /// Zend_2_0
   static final SPDXLicense Zend_2_0 = SPDXLicense._(
-    value: 'Zend-2.0',
+    'Zend-2.0',
   );
 
   /// Zimbra_1_3
   static final SPDXLicense Zimbra_1_3 = SPDXLicense._(
-    value: 'Zimbra-1.3',
+    'Zimbra-1.3',
   );
 
   /// Zimbra_1_4
   static final SPDXLicense Zimbra_1_4 = SPDXLicense._(
-    value: 'Zimbra-1.4',
+    'Zimbra-1.4',
   );
 
   /// zlib_acknowledgement
   static final SPDXLicense zlib_acknowledgement = SPDXLicense._(
-    value: 'zlib-acknowledgement',
+    'zlib-acknowledgement',
   );
 
   /// Zlib
   static final SPDXLicense Zlib = SPDXLicense._(
-    value: 'Zlib',
+    'Zlib',
   );
 
   /// ZPL_1_1
   static final SPDXLicense ZPL_1_1 = SPDXLicense._(
-    value: 'ZPL-1.1',
+    'ZPL-1.1',
   );
 
   /// ZPL_2_0
   static final SPDXLicense ZPL_2_0 = SPDXLicense._(
-    value: 'ZPL-2.0',
+    'ZPL-2.0',
   );
 
   /// ZPL_2_1
   static final SPDXLicense ZPL_2_1 = SPDXLicense._(
-    value: 'ZPL-2.1',
+    'ZPL-2.1',
   );
 
   /// For instances where an Element is present but not value
 
-  static final SPDXLicense elementOnly = SPDXLicense._(value: '');
+  static final SPDXLicense elementOnly = SPDXLicense._('');
 
   /// List of all enum-like values
   static final List<SPDXLicense> values = [
@@ -2116,13 +2116,13 @@ class SPDXLicense extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   SPDXLicense clone() => SPDXLicense._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   SPDXLicense withElement(Element? newElement) {
-    return SPDXLicense._(value: value, element: newElement);
+    return SPDXLicense._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -2152,7 +2152,7 @@ class SPDXLicense extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return SPDXLicense._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

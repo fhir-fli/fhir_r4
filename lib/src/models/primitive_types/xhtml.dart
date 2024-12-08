@@ -13,7 +13,7 @@ extension FhirXhtmlExtension on String {
 class FhirXhtml extends PrimitiveType<String?> {
   /// Constructor that accepts and validates an XHTML string, or allows `null`.
   FhirXhtml(
-    String? input,{
+    String? input, {
     super.element,
     super.id,
     super.extension_,
@@ -25,7 +25,7 @@ class FhirXhtml extends PrimitiveType<String?> {
 
   /// Constructor that accepts already validated XHTML string, or `null`.
   FhirXhtml.fromValidatedXhtml(
-    super.value,{
+    super.value, {
     super.element,
     super.id,
     super.extension_,

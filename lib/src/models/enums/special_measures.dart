@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Extra measures defined for a Medicinal Product, such as a requirement to conduct post-authorisation studies.
 class SpecialMeasures extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  SpecialMeasures._({
-    super.value,
+  SpecialMeasures._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,17 +26,17 @@ class SpecialMeasures extends PrimitiveType<String> {
         'SpecialMeasures cannot be constructed from JSON.',
       );
     }
-    return SpecialMeasures._(value: value, element: element);
+    return SpecialMeasures._(value, element: element);
   }
 
   /// Post_authorisationStudies
   static final SpecialMeasures Post_authorisationStudies = SpecialMeasures._(
-    value: 'Post-authorisationStudies',
+    'Post-authorisationStudies',
   );
 
   /// For instances where an Element is present but not value
 
-  static final SpecialMeasures elementOnly = SpecialMeasures._(value: '');
+  static final SpecialMeasures elementOnly = SpecialMeasures._('');
 
   /// List of all enum-like values
   static final List<SpecialMeasures> values = [
@@ -46,13 +46,13 @@ class SpecialMeasures extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   SpecialMeasures clone() => SpecialMeasures._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   SpecialMeasures withElement(Element? newElement) {
-    return SpecialMeasures._(value: value, element: newElement);
+    return SpecialMeasures._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -82,7 +82,7 @@ class SpecialMeasures extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return SpecialMeasures._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

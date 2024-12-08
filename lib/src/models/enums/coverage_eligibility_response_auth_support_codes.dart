@@ -6,8 +6,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 class CoverageEligibilityResponseAuthSupportCodes
     extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  CoverageEligibilityResponseAuthSupportCodes._({
-    super.value,
+  CoverageEligibilityResponseAuthSupportCodes._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -28,62 +28,62 @@ class CoverageEligibilityResponseAuthSupportCodes
         'CoverageEligibilityResponseAuthSupportCodes cannot be constructed from JSON.',
       );
     }
-    return CoverageEligibilityResponseAuthSupportCodes._(
-        value: value, element: element);
+    return CoverageEligibilityResponseAuthSupportCodes._(value,
+        element: element);
   }
 
   /// laborder
   static final CoverageEligibilityResponseAuthSupportCodes laborder =
       CoverageEligibilityResponseAuthSupportCodes._(
-    value: 'laborder',
+    'laborder',
   );
 
   /// labreport
   static final CoverageEligibilityResponseAuthSupportCodes labreport =
       CoverageEligibilityResponseAuthSupportCodes._(
-    value: 'labreport',
+    'labreport',
   );
 
   /// diagnosticimageorder
   static final CoverageEligibilityResponseAuthSupportCodes
       diagnosticimageorder = CoverageEligibilityResponseAuthSupportCodes._(
-    value: 'diagnosticimageorder',
+    'diagnosticimageorder',
   );
 
   /// diagnosticimagereport
   static final CoverageEligibilityResponseAuthSupportCodes
       diagnosticimagereport = CoverageEligibilityResponseAuthSupportCodes._(
-    value: 'diagnosticimagereport',
+    'diagnosticimagereport',
   );
 
   /// professionalreport
   static final CoverageEligibilityResponseAuthSupportCodes professionalreport =
       CoverageEligibilityResponseAuthSupportCodes._(
-    value: 'professionalreport',
+    'professionalreport',
   );
 
   /// accidentreport
   static final CoverageEligibilityResponseAuthSupportCodes accidentreport =
       CoverageEligibilityResponseAuthSupportCodes._(
-    value: 'accidentreport',
+    'accidentreport',
   );
 
   /// model
   static final CoverageEligibilityResponseAuthSupportCodes model =
       CoverageEligibilityResponseAuthSupportCodes._(
-    value: 'model',
+    'model',
   );
 
   /// picture
   static final CoverageEligibilityResponseAuthSupportCodes picture =
       CoverageEligibilityResponseAuthSupportCodes._(
-    value: 'picture',
+    'picture',
   );
 
   /// For instances where an Element is present but not value
 
   static final CoverageEligibilityResponseAuthSupportCodes elementOnly =
-      CoverageEligibilityResponseAuthSupportCodes._(value: '');
+      CoverageEligibilityResponseAuthSupportCodes._('');
 
   /// List of all enum-like values
   static final List<CoverageEligibilityResponseAuthSupportCodes> values = [
@@ -101,14 +101,14 @@ class CoverageEligibilityResponseAuthSupportCodes
   @override
   CoverageEligibilityResponseAuthSupportCodes clone() =>
       CoverageEligibilityResponseAuthSupportCodes._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   CoverageEligibilityResponseAuthSupportCodes withElement(Element? newElement) {
-    return CoverageEligibilityResponseAuthSupportCodes._(
-        value: value, element: newElement);
+    return CoverageEligibilityResponseAuthSupportCodes._(value,
+        element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -138,7 +138,7 @@ class CoverageEligibilityResponseAuthSupportCodes
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return CoverageEligibilityResponseAuthSupportCodes._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Example Item Flags for the List Resource. In this case, these are the kind of flags that would be used on a medication list at the end of a consultation.
 class PatientMedicineChangeTypes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  PatientMedicineChangeTypes._({
-    super.value,
+  PatientMedicineChangeTypes._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,49 +26,49 @@ class PatientMedicineChangeTypes extends PrimitiveType<String> {
         'PatientMedicineChangeTypes cannot be constructed from JSON.',
       );
     }
-    return PatientMedicineChangeTypes._(value: value, element: element);
+    return PatientMedicineChangeTypes._(value, element: element);
   }
 
   /// value01
   static final PatientMedicineChangeTypes value01 =
       PatientMedicineChangeTypes._(
-    value: '01',
+    '01',
   );
 
   /// value02
   static final PatientMedicineChangeTypes value02 =
       PatientMedicineChangeTypes._(
-    value: '02',
+    '02',
   );
 
   /// value03
   static final PatientMedicineChangeTypes value03 =
       PatientMedicineChangeTypes._(
-    value: '03',
+    '03',
   );
 
   /// value04
   static final PatientMedicineChangeTypes value04 =
       PatientMedicineChangeTypes._(
-    value: '04',
+    '04',
   );
 
   /// value05
   static final PatientMedicineChangeTypes value05 =
       PatientMedicineChangeTypes._(
-    value: '05',
+    '05',
   );
 
   /// value06
   static final PatientMedicineChangeTypes value06 =
       PatientMedicineChangeTypes._(
-    value: '06',
+    '06',
   );
 
   /// For instances where an Element is present but not value
 
   static final PatientMedicineChangeTypes elementOnly =
-      PatientMedicineChangeTypes._(value: '');
+      PatientMedicineChangeTypes._('');
 
   /// List of all enum-like values
   static final List<PatientMedicineChangeTypes> values = [
@@ -83,13 +83,13 @@ class PatientMedicineChangeTypes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   PatientMedicineChangeTypes clone() => PatientMedicineChangeTypes._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   PatientMedicineChangeTypes withElement(Element? newElement) {
-    return PatientMedicineChangeTypes._(value: value, element: newElement);
+    return PatientMedicineChangeTypes._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -119,7 +119,7 @@ class PatientMedicineChangeTypes extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return PatientMedicineChangeTypes._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

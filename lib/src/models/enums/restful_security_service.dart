@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Types of security services used with FHIR.
 class RestfulSecurityService extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  RestfulSecurityService._({
-    super.value,
+  RestfulSecurityService._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,43 +26,43 @@ class RestfulSecurityService extends PrimitiveType<String> {
         'RestfulSecurityService cannot be constructed from JSON.',
       );
     }
-    return RestfulSecurityService._(value: value, element: element);
+    return RestfulSecurityService._(value, element: element);
   }
 
   /// OAuth
   static final RestfulSecurityService OAuth = RestfulSecurityService._(
-    value: 'OAuth',
+    'OAuth',
   );
 
   /// SMART_on_FHIR
   static final RestfulSecurityService SMART_on_FHIR = RestfulSecurityService._(
-    value: 'SMART-on-FHIR',
+    'SMART-on-FHIR',
   );
 
   /// NTLM
   static final RestfulSecurityService NTLM = RestfulSecurityService._(
-    value: 'NTLM',
+    'NTLM',
   );
 
   /// Basic
   static final RestfulSecurityService Basic = RestfulSecurityService._(
-    value: 'Basic',
+    'Basic',
   );
 
   /// Kerberos
   static final RestfulSecurityService Kerberos = RestfulSecurityService._(
-    value: 'Kerberos',
+    'Kerberos',
   );
 
   /// Certificates
   static final RestfulSecurityService Certificates = RestfulSecurityService._(
-    value: 'Certificates',
+    'Certificates',
   );
 
   /// For instances where an Element is present but not value
 
   static final RestfulSecurityService elementOnly =
-      RestfulSecurityService._(value: '');
+      RestfulSecurityService._('');
 
   /// List of all enum-like values
   static final List<RestfulSecurityService> values = [
@@ -77,13 +77,13 @@ class RestfulSecurityService extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   RestfulSecurityService clone() => RestfulSecurityService._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   RestfulSecurityService withElement(Element? newElement) {
-    return RestfulSecurityService._(value: value, element: newElement);
+    return RestfulSecurityService._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -113,7 +113,7 @@ class RestfulSecurityService extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return RestfulSecurityService._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

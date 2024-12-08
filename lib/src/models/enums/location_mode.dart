@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Indicates whether a resource instance represents a specific location or a class of locations.
 class LocationMode extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  LocationMode._({
-    super.value,
+  LocationMode._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,22 +26,22 @@ class LocationMode extends PrimitiveType<String> {
         'LocationMode cannot be constructed from JSON.',
       );
     }
-    return LocationMode._(value: value, element: element);
+    return LocationMode._(value, element: element);
   }
 
   /// instance
   static final LocationMode instance = LocationMode._(
-    value: 'instance',
+    'instance',
   );
 
   /// kind
   static final LocationMode kind = LocationMode._(
-    value: 'kind',
+    'kind',
   );
 
   /// For instances where an Element is present but not value
 
-  static final LocationMode elementOnly = LocationMode._(value: '');
+  static final LocationMode elementOnly = LocationMode._('');
 
   /// List of all enum-like values
   static final List<LocationMode> values = [
@@ -52,13 +52,13 @@ class LocationMode extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   LocationMode clone() => LocationMode._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   LocationMode withElement(Element? newElement) {
-    return LocationMode._(value: value, element: newElement);
+    return LocationMode._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -88,7 +88,7 @@ class LocationMode extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return LocationMode._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

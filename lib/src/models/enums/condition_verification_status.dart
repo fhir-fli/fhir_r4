@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The verification status to support or decline the clinical status of the condition or diagnosis.
 class ConditionVerificationStatus extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ConditionVerificationStatus._({
-    super.value,
+  ConditionVerificationStatus._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,49 +26,49 @@ class ConditionVerificationStatus extends PrimitiveType<String> {
         'ConditionVerificationStatus cannot be constructed from JSON.',
       );
     }
-    return ConditionVerificationStatus._(value: value, element: element);
+    return ConditionVerificationStatus._(value, element: element);
   }
 
   /// unconfirmed
   static final ConditionVerificationStatus unconfirmed =
       ConditionVerificationStatus._(
-    value: 'unconfirmed',
+    'unconfirmed',
   );
 
   /// provisional
   static final ConditionVerificationStatus provisional =
       ConditionVerificationStatus._(
-    value: 'provisional',
+    'provisional',
   );
 
   /// differential
   static final ConditionVerificationStatus differential =
       ConditionVerificationStatus._(
-    value: 'differential',
+    'differential',
   );
 
   /// confirmed
   static final ConditionVerificationStatus confirmed =
       ConditionVerificationStatus._(
-    value: 'confirmed',
+    'confirmed',
   );
 
   /// refuted
   static final ConditionVerificationStatus refuted =
       ConditionVerificationStatus._(
-    value: 'refuted',
+    'refuted',
   );
 
   /// entered_in_error
   static final ConditionVerificationStatus entered_in_error =
       ConditionVerificationStatus._(
-    value: 'entered-in-error',
+    'entered-in-error',
   );
 
   /// For instances where an Element is present but not value
 
   static final ConditionVerificationStatus elementOnly =
-      ConditionVerificationStatus._(value: '');
+      ConditionVerificationStatus._('');
 
   /// List of all enum-like values
   static final List<ConditionVerificationStatus> values = [
@@ -83,13 +83,13 @@ class ConditionVerificationStatus extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ConditionVerificationStatus clone() => ConditionVerificationStatus._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ConditionVerificationStatus withElement(Element? newElement) {
-    return ConditionVerificationStatus._(value: value, element: newElement);
+    return ConditionVerificationStatus._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -119,7 +119,7 @@ class ConditionVerificationStatus extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ConditionVerificationStatus._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

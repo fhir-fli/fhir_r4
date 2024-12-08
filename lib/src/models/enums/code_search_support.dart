@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The degree to which the server supports the code search parameter on ValueSet, if it is supported.
 class CodeSearchSupport extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  CodeSearchSupport._({
-    super.value,
+  CodeSearchSupport._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,22 +26,22 @@ class CodeSearchSupport extends PrimitiveType<String> {
         'CodeSearchSupport cannot be constructed from JSON.',
       );
     }
-    return CodeSearchSupport._(value: value, element: element);
+    return CodeSearchSupport._(value, element: element);
   }
 
   /// explicit
   static final CodeSearchSupport explicit = CodeSearchSupport._(
-    value: 'explicit',
+    'explicit',
   );
 
   /// all
   static final CodeSearchSupport all = CodeSearchSupport._(
-    value: 'all',
+    'all',
   );
 
   /// For instances where an Element is present but not value
 
-  static final CodeSearchSupport elementOnly = CodeSearchSupport._(value: '');
+  static final CodeSearchSupport elementOnly = CodeSearchSupport._('');
 
   /// List of all enum-like values
   static final List<CodeSearchSupport> values = [
@@ -52,13 +52,13 @@ class CodeSearchSupport extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   CodeSearchSupport clone() => CodeSearchSupport._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   CodeSearchSupport withElement(Element? newElement) {
-    return CodeSearchSupport._(value: value, element: newElement);
+    return CodeSearchSupport._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -88,7 +88,7 @@ class CodeSearchSupport extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return CodeSearchSupport._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

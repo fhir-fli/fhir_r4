@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Which type a compartment definition describes.
 class CompartmentType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  CompartmentType._({
-    super.value,
+  CompartmentType._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,37 +26,37 @@ class CompartmentType extends PrimitiveType<String> {
         'CompartmentType cannot be constructed from JSON.',
       );
     }
-    return CompartmentType._(value: value, element: element);
+    return CompartmentType._(value, element: element);
   }
 
   /// Patient
   static final CompartmentType Patient = CompartmentType._(
-    value: 'Patient',
+    'Patient',
   );
 
   /// Encounter
   static final CompartmentType Encounter = CompartmentType._(
-    value: 'Encounter',
+    'Encounter',
   );
 
   /// RelatedPerson
   static final CompartmentType RelatedPerson = CompartmentType._(
-    value: 'RelatedPerson',
+    'RelatedPerson',
   );
 
   /// Practitioner
   static final CompartmentType Practitioner = CompartmentType._(
-    value: 'Practitioner',
+    'Practitioner',
   );
 
   /// Device
   static final CompartmentType Device = CompartmentType._(
-    value: 'Device',
+    'Device',
   );
 
   /// For instances where an Element is present but not value
 
-  static final CompartmentType elementOnly = CompartmentType._(value: '');
+  static final CompartmentType elementOnly = CompartmentType._('');
 
   /// List of all enum-like values
   static final List<CompartmentType> values = [
@@ -70,13 +70,13 @@ class CompartmentType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   CompartmentType clone() => CompartmentType._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   CompartmentType withElement(Element? newElement) {
-    return CompartmentType._(value: value, element: newElement);
+    return CompartmentType._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -106,7 +106,7 @@ class CompartmentType extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return CompartmentType._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

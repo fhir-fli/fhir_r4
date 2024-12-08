@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Procedure follow up codes: A selection of SNOMED CT codes relevant to procedure follow up.
 class ProcedureFollowUpCodesSNOMEDCT extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ProcedureFollowUpCodesSNOMEDCT._({
-    super.value,
+  ProcedureFollowUpCodesSNOMEDCT._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,73 +26,73 @@ class ProcedureFollowUpCodesSNOMEDCT extends PrimitiveType<String> {
         'ProcedureFollowUpCodesSNOMEDCT cannot be constructed from JSON.',
       );
     }
-    return ProcedureFollowUpCodesSNOMEDCT._(value: value, element: element);
+    return ProcedureFollowUpCodesSNOMEDCT._(value, element: element);
   }
 
   /// value18949003
   static final ProcedureFollowUpCodesSNOMEDCT value18949003 =
       ProcedureFollowUpCodesSNOMEDCT._(
-    value: '18949003',
+    '18949003',
   );
 
   /// value30549001
   static final ProcedureFollowUpCodesSNOMEDCT value30549001 =
       ProcedureFollowUpCodesSNOMEDCT._(
-    value: '30549001',
+    '30549001',
   );
 
   /// value241031001
   static final ProcedureFollowUpCodesSNOMEDCT value241031001 =
       ProcedureFollowUpCodesSNOMEDCT._(
-    value: '241031001',
+    '241031001',
   );
 
   /// value35963001
   static final ProcedureFollowUpCodesSNOMEDCT value35963001 =
       ProcedureFollowUpCodesSNOMEDCT._(
-    value: '35963001',
+    '35963001',
   );
 
   /// value225164002
   static final ProcedureFollowUpCodesSNOMEDCT value225164002 =
       ProcedureFollowUpCodesSNOMEDCT._(
-    value: '225164002',
+    '225164002',
   );
 
   /// value447346005
   static final ProcedureFollowUpCodesSNOMEDCT value447346005 =
       ProcedureFollowUpCodesSNOMEDCT._(
-    value: '447346005',
+    '447346005',
   );
 
   /// value229506003
   static final ProcedureFollowUpCodesSNOMEDCT value229506003 =
       ProcedureFollowUpCodesSNOMEDCT._(
-    value: '229506003',
+    '229506003',
   );
 
   /// value274441001
   static final ProcedureFollowUpCodesSNOMEDCT value274441001 =
       ProcedureFollowUpCodesSNOMEDCT._(
-    value: '274441001',
+    '274441001',
   );
 
   /// value394725008
   static final ProcedureFollowUpCodesSNOMEDCT value394725008 =
       ProcedureFollowUpCodesSNOMEDCT._(
-    value: '394725008',
+    '394725008',
   );
 
   /// value359825008
   static final ProcedureFollowUpCodesSNOMEDCT value359825008 =
       ProcedureFollowUpCodesSNOMEDCT._(
-    value: '359825008',
+    '359825008',
   );
 
   /// For instances where an Element is present but not value
 
   static final ProcedureFollowUpCodesSNOMEDCT elementOnly =
-      ProcedureFollowUpCodesSNOMEDCT._(value: '');
+      ProcedureFollowUpCodesSNOMEDCT._('');
 
   /// List of all enum-like values
   static final List<ProcedureFollowUpCodesSNOMEDCT> values = [
@@ -111,13 +111,13 @@ class ProcedureFollowUpCodesSNOMEDCT extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ProcedureFollowUpCodesSNOMEDCT clone() => ProcedureFollowUpCodesSNOMEDCT._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ProcedureFollowUpCodesSNOMEDCT withElement(Element? newElement) {
-    return ProcedureFollowUpCodesSNOMEDCT._(value: value, element: newElement);
+    return ProcedureFollowUpCodesSNOMEDCT._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -147,7 +147,7 @@ class ProcedureFollowUpCodesSNOMEDCT extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ProcedureFollowUpCodesSNOMEDCT._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

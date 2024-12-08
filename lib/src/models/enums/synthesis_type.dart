@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Types of combining results from a body of evidence (eg. summary data meta-analysis).
 class SynthesisType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  SynthesisType._({
-    super.value,
+  SynthesisType._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,47 +26,47 @@ class SynthesisType extends PrimitiveType<String> {
         'SynthesisType cannot be constructed from JSON.',
       );
     }
-    return SynthesisType._(value: value, element: element);
+    return SynthesisType._(value, element: element);
   }
 
   /// std_MA
   static final SynthesisType std_MA = SynthesisType._(
-    value: 'std-MA',
+    'std-MA',
   );
 
   /// IPD_MA
   static final SynthesisType IPD_MA = SynthesisType._(
-    value: 'IPD-MA',
+    'IPD-MA',
   );
 
   /// indirect_NMA
   static final SynthesisType indirect_NMA = SynthesisType._(
-    value: 'indirect-NMA',
+    'indirect-NMA',
   );
 
   /// combined_NMA
   static final SynthesisType combined_NMA = SynthesisType._(
-    value: 'combined-NMA',
+    'combined-NMA',
   );
 
   /// range
   static final SynthesisType range = SynthesisType._(
-    value: 'range',
+    'range',
   );
 
   /// classification
   static final SynthesisType classification = SynthesisType._(
-    value: 'classification',
+    'classification',
   );
 
   /// NotApplicable
   static final SynthesisType NotApplicable = SynthesisType._(
-    value: 'NotApplicable',
+    'NotApplicable',
   );
 
   /// For instances where an Element is present but not value
 
-  static final SynthesisType elementOnly = SynthesisType._(value: '');
+  static final SynthesisType elementOnly = SynthesisType._('');
 
   /// List of all enum-like values
   static final List<SynthesisType> values = [
@@ -82,13 +82,13 @@ class SynthesisType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   SynthesisType clone() => SynthesisType._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   SynthesisType withElement(Element? newElement) {
-    return SynthesisType._(value: value, element: newElement);
+    return SynthesisType._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -118,7 +118,7 @@ class SynthesisType extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return SynthesisType._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

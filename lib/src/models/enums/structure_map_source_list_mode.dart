@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// If field is a list, how to manage the source.
 class StructureMapSourceListMode extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  StructureMapSourceListMode._({
-    super.value,
+  StructureMapSourceListMode._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,41 +26,41 @@ class StructureMapSourceListMode extends PrimitiveType<String> {
         'StructureMapSourceListMode cannot be constructed from JSON.',
       );
     }
-    return StructureMapSourceListMode._(value: value, element: element);
+    return StructureMapSourceListMode._(value, element: element);
   }
 
   /// first
   static final StructureMapSourceListMode first = StructureMapSourceListMode._(
-    value: 'first',
+    'first',
   );
 
   /// not_first
   static final StructureMapSourceListMode not_first =
       StructureMapSourceListMode._(
-    value: 'not_first',
+    'not_first',
   );
 
   /// last
   static final StructureMapSourceListMode last = StructureMapSourceListMode._(
-    value: 'last',
+    'last',
   );
 
   /// not_last
   static final StructureMapSourceListMode not_last =
       StructureMapSourceListMode._(
-    value: 'not_last',
+    'not_last',
   );
 
   /// only_one
   static final StructureMapSourceListMode only_one =
       StructureMapSourceListMode._(
-    value: 'only_one',
+    'only_one',
   );
 
   /// For instances where an Element is present but not value
 
   static final StructureMapSourceListMode elementOnly =
-      StructureMapSourceListMode._(value: '');
+      StructureMapSourceListMode._('');
 
   /// List of all enum-like values
   static final List<StructureMapSourceListMode> values = [
@@ -74,13 +74,13 @@ class StructureMapSourceListMode extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   StructureMapSourceListMode clone() => StructureMapSourceListMode._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   StructureMapSourceListMode withElement(Element? newElement) {
-    return StructureMapSourceListMode._(value: value, element: newElement);
+    return StructureMapSourceListMode._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -110,7 +110,7 @@ class StructureMapSourceListMode extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return StructureMapSourceListMode._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value set contract specific codes for status.
 class ContractResourceLegalStateCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ContractResourceLegalStateCodes._({
-    super.value,
+  ContractResourceLegalStateCodes._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,103 +26,103 @@ class ContractResourceLegalStateCodes extends PrimitiveType<String> {
         'ContractResourceLegalStateCodes cannot be constructed from JSON.',
       );
     }
-    return ContractResourceLegalStateCodes._(value: value, element: element);
+    return ContractResourceLegalStateCodes._(value, element: element);
   }
 
   /// amended
   static final ContractResourceLegalStateCodes amended =
       ContractResourceLegalStateCodes._(
-    value: 'amended',
+    'amended',
   );
 
   /// appended
   static final ContractResourceLegalStateCodes appended =
       ContractResourceLegalStateCodes._(
-    value: 'appended',
+    'appended',
   );
 
   /// cancelled
   static final ContractResourceLegalStateCodes cancelled =
       ContractResourceLegalStateCodes._(
-    value: 'cancelled',
+    'cancelled',
   );
 
   /// disputed
   static final ContractResourceLegalStateCodes disputed =
       ContractResourceLegalStateCodes._(
-    value: 'disputed',
+    'disputed',
   );
 
   /// entered_in_error
   static final ContractResourceLegalStateCodes entered_in_error =
       ContractResourceLegalStateCodes._(
-    value: 'entered-in-error',
+    'entered-in-error',
   );
 
   /// executable
   static final ContractResourceLegalStateCodes executable =
       ContractResourceLegalStateCodes._(
-    value: 'executable',
+    'executable',
   );
 
   /// executed
   static final ContractResourceLegalStateCodes executed =
       ContractResourceLegalStateCodes._(
-    value: 'executed',
+    'executed',
   );
 
   /// negotiable
   static final ContractResourceLegalStateCodes negotiable =
       ContractResourceLegalStateCodes._(
-    value: 'negotiable',
+    'negotiable',
   );
 
   /// offered
   static final ContractResourceLegalStateCodes offered =
       ContractResourceLegalStateCodes._(
-    value: 'offered',
+    'offered',
   );
 
   /// policy
   static final ContractResourceLegalStateCodes policy =
       ContractResourceLegalStateCodes._(
-    value: 'policy',
+    'policy',
   );
 
   /// rejected
   static final ContractResourceLegalStateCodes rejected =
       ContractResourceLegalStateCodes._(
-    value: 'rejected',
+    'rejected',
   );
 
   /// renewed
   static final ContractResourceLegalStateCodes renewed =
       ContractResourceLegalStateCodes._(
-    value: 'renewed',
+    'renewed',
   );
 
   /// revoked
   static final ContractResourceLegalStateCodes revoked =
       ContractResourceLegalStateCodes._(
-    value: 'revoked',
+    'revoked',
   );
 
   /// resolved
   static final ContractResourceLegalStateCodes resolved =
       ContractResourceLegalStateCodes._(
-    value: 'resolved',
+    'resolved',
   );
 
   /// terminated
   static final ContractResourceLegalStateCodes terminated =
       ContractResourceLegalStateCodes._(
-    value: 'terminated',
+    'terminated',
   );
 
   /// For instances where an Element is present but not value
 
   static final ContractResourceLegalStateCodes elementOnly =
-      ContractResourceLegalStateCodes._(value: '');
+      ContractResourceLegalStateCodes._('');
 
   /// List of all enum-like values
   static final List<ContractResourceLegalStateCodes> values = [
@@ -146,13 +146,13 @@ class ContractResourceLegalStateCodes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ContractResourceLegalStateCodes clone() => ContractResourceLegalStateCodes._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ContractResourceLegalStateCodes withElement(Element? newElement) {
-    return ContractResourceLegalStateCodes._(value: value, element: newElement);
+    return ContractResourceLegalStateCodes._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -182,7 +182,7 @@ class ContractResourceLegalStateCodes extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ContractResourceLegalStateCodes._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value set includes sample Missing Tooth Reason codes.
 class MissingToothReasonCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  MissingToothReasonCodes._({
-    super.value,
+  MissingToothReasonCodes._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,33 +26,33 @@ class MissingToothReasonCodes extends PrimitiveType<String> {
         'MissingToothReasonCodes cannot be constructed from JSON.',
       );
     }
-    return MissingToothReasonCodes._(value: value, element: element);
+    return MissingToothReasonCodes._(value, element: element);
   }
 
   /// e
   static final MissingToothReasonCodes e = MissingToothReasonCodes._(
-    value: 'e',
+    'e',
   );
 
   /// c
   static final MissingToothReasonCodes c = MissingToothReasonCodes._(
-    value: 'c',
+    'c',
   );
 
   /// u
   static final MissingToothReasonCodes u = MissingToothReasonCodes._(
-    value: 'u',
+    'u',
   );
 
   /// o
   static final MissingToothReasonCodes o = MissingToothReasonCodes._(
-    value: 'o',
+    'o',
   );
 
   /// For instances where an Element is present but not value
 
   static final MissingToothReasonCodes elementOnly =
-      MissingToothReasonCodes._(value: '');
+      MissingToothReasonCodes._('');
 
   /// List of all enum-like values
   static final List<MissingToothReasonCodes> values = [
@@ -65,13 +65,13 @@ class MissingToothReasonCodes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   MissingToothReasonCodes clone() => MissingToothReasonCodes._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   MissingToothReasonCodes withElement(Element? newElement) {
-    return MissingToothReasonCodes._(value: value, element: newElement);
+    return MissingToothReasonCodes._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -101,7 +101,7 @@ class MissingToothReasonCodes extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return MissingToothReasonCodes._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

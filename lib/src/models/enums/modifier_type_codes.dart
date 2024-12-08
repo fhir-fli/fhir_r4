@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value set includes sample Modifier type codes.
 class ModifierTypeCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ModifierTypeCodes._({
-    super.value,
+  ModifierTypeCodes._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,42 +26,42 @@ class ModifierTypeCodes extends PrimitiveType<String> {
         'ModifierTypeCodes cannot be constructed from JSON.',
       );
     }
-    return ModifierTypeCodes._(value: value, element: element);
+    return ModifierTypeCodes._(value, element: element);
   }
 
   /// a
   static final ModifierTypeCodes a = ModifierTypeCodes._(
-    value: 'a',
+    'a',
   );
 
   /// b
   static final ModifierTypeCodes b = ModifierTypeCodes._(
-    value: 'b',
+    'b',
   );
 
   /// c
   static final ModifierTypeCodes c = ModifierTypeCodes._(
-    value: 'c',
+    'c',
   );
 
   /// e
   static final ModifierTypeCodes e = ModifierTypeCodes._(
-    value: 'e',
+    'e',
   );
 
   /// rooh
   static final ModifierTypeCodes rooh = ModifierTypeCodes._(
-    value: 'rooh',
+    'rooh',
   );
 
   /// x
   static final ModifierTypeCodes x = ModifierTypeCodes._(
-    value: 'x',
+    'x',
   );
 
   /// For instances where an Element is present but not value
 
-  static final ModifierTypeCodes elementOnly = ModifierTypeCodes._(value: '');
+  static final ModifierTypeCodes elementOnly = ModifierTypeCodes._('');
 
   /// List of all enum-like values
   static final List<ModifierTypeCodes> values = [
@@ -76,13 +76,13 @@ class ModifierTypeCodes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ModifierTypeCodes clone() => ModifierTypeCodes._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ModifierTypeCodes withElement(Element? newElement) {
-    return ModifierTypeCodes._(value: value, element: newElement);
+    return ModifierTypeCodes._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -112,7 +112,7 @@ class ModifierTypeCodes extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ModifierTypeCodes._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

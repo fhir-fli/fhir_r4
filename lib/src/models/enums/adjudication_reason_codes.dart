@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value set includes smattering of Adjudication Reason codes.
 class AdjudicationReasonCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  AdjudicationReasonCodes._({
-    super.value,
+  AdjudicationReasonCodes._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,23 +26,23 @@ class AdjudicationReasonCodes extends PrimitiveType<String> {
         'AdjudicationReasonCodes cannot be constructed from JSON.',
       );
     }
-    return AdjudicationReasonCodes._(value: value, element: element);
+    return AdjudicationReasonCodes._(value, element: element);
   }
 
   /// ar001
   static final AdjudicationReasonCodes ar001 = AdjudicationReasonCodes._(
-    value: 'ar001',
+    'ar001',
   );
 
   /// ar002
   static final AdjudicationReasonCodes ar002 = AdjudicationReasonCodes._(
-    value: 'ar002',
+    'ar002',
   );
 
   /// For instances where an Element is present but not value
 
   static final AdjudicationReasonCodes elementOnly =
-      AdjudicationReasonCodes._(value: '');
+      AdjudicationReasonCodes._('');
 
   /// List of all enum-like values
   static final List<AdjudicationReasonCodes> values = [
@@ -53,13 +53,13 @@ class AdjudicationReasonCodes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   AdjudicationReasonCodes clone() => AdjudicationReasonCodes._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   AdjudicationReasonCodes withElement(Element? newElement) {
-    return AdjudicationReasonCodes._(value: value, element: newElement);
+    return AdjudicationReasonCodes._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -89,7 +89,7 @@ class AdjudicationReasonCodes extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return AdjudicationReasonCodes._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

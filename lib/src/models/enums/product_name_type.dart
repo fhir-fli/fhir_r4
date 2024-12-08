@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Type of a name for a Medicinal Product.
 class ProductNameType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ProductNameType._({
-    super.value,
+  ProductNameType._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,37 +26,37 @@ class ProductNameType extends PrimitiveType<String> {
         'ProductNameType cannot be constructed from JSON.',
       );
     }
-    return ProductNameType._(value: value, element: element);
+    return ProductNameType._(value, element: element);
   }
 
   /// BAN
   static final ProductNameType BAN = ProductNameType._(
-    value: 'BAN',
+    'BAN',
   );
 
   /// INN
   static final ProductNameType INN = ProductNameType._(
-    value: 'INN',
+    'INN',
   );
 
   /// INNM
   static final ProductNameType INNM = ProductNameType._(
-    value: 'INNM',
+    'INNM',
   );
 
   /// pINN
   static final ProductNameType pINN = ProductNameType._(
-    value: 'pINN',
+    'pINN',
   );
 
   /// rINN
   static final ProductNameType rINN = ProductNameType._(
-    value: 'rINN',
+    'rINN',
   );
 
   /// For instances where an Element is present but not value
 
-  static final ProductNameType elementOnly = ProductNameType._(value: '');
+  static final ProductNameType elementOnly = ProductNameType._('');
 
   /// List of all enum-like values
   static final List<ProductNameType> values = [
@@ -70,13 +70,13 @@ class ProductNameType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ProductNameType clone() => ProductNameType._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ProductNameType withElement(Element? newElement) {
-    return ProductNameType._(value: value, element: newElement);
+    return ProductNameType._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -106,7 +106,7 @@ class ProductNameType extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ProductNameType._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

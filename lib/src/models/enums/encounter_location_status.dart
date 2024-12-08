@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The status of the location.
 class EncounterLocationStatus extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  EncounterLocationStatus._({
-    super.value,
+  EncounterLocationStatus._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,33 +26,33 @@ class EncounterLocationStatus extends PrimitiveType<String> {
         'EncounterLocationStatus cannot be constructed from JSON.',
       );
     }
-    return EncounterLocationStatus._(value: value, element: element);
+    return EncounterLocationStatus._(value, element: element);
   }
 
   /// planned
   static final EncounterLocationStatus planned = EncounterLocationStatus._(
-    value: 'planned',
+    'planned',
   );
 
   /// active
   static final EncounterLocationStatus active = EncounterLocationStatus._(
-    value: 'active',
+    'active',
   );
 
   /// reserved
   static final EncounterLocationStatus reserved = EncounterLocationStatus._(
-    value: 'reserved',
+    'reserved',
   );
 
   /// completed
   static final EncounterLocationStatus completed = EncounterLocationStatus._(
-    value: 'completed',
+    'completed',
   );
 
   /// For instances where an Element is present but not value
 
   static final EncounterLocationStatus elementOnly =
-      EncounterLocationStatus._(value: '');
+      EncounterLocationStatus._('');
 
   /// List of all enum-like values
   static final List<EncounterLocationStatus> values = [
@@ -65,13 +65,13 @@ class EncounterLocationStatus extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   EncounterLocationStatus clone() => EncounterLocationStatus._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   EncounterLocationStatus withElement(Element? newElement) {
-    return EncounterLocationStatus._(value: value, element: newElement);
+    return EncounterLocationStatus._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -101,7 +101,7 @@ class EncounterLocationStatus extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return EncounterLocationStatus._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

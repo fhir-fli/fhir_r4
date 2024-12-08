@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Indicates whether the event succeeded or failed.
 class AuditEventOutcome extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  AuditEventOutcome._({
-    super.value,
+  AuditEventOutcome._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,32 +26,32 @@ class AuditEventOutcome extends PrimitiveType<String> {
         'AuditEventOutcome cannot be constructed from JSON.',
       );
     }
-    return AuditEventOutcome._(value: value, element: element);
+    return AuditEventOutcome._(value, element: element);
   }
 
   /// value0
   static final AuditEventOutcome value0 = AuditEventOutcome._(
-    value: '0',
+    '0',
   );
 
   /// value4
   static final AuditEventOutcome value4 = AuditEventOutcome._(
-    value: '4',
+    '4',
   );
 
   /// value8
   static final AuditEventOutcome value8 = AuditEventOutcome._(
-    value: '8',
+    '8',
   );
 
   /// value12
   static final AuditEventOutcome value12 = AuditEventOutcome._(
-    value: '12',
+    '12',
   );
 
   /// For instances where an Element is present but not value
 
-  static final AuditEventOutcome elementOnly = AuditEventOutcome._(value: '');
+  static final AuditEventOutcome elementOnly = AuditEventOutcome._('');
 
   /// List of all enum-like values
   static final List<AuditEventOutcome> values = [
@@ -64,13 +64,13 @@ class AuditEventOutcome extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   AuditEventOutcome clone() => AuditEventOutcome._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   AuditEventOutcome withElement(Element? newElement) {
-    return AuditEventOutcome._(value: value, element: newElement);
+    return AuditEventOutcome._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -100,7 +100,7 @@ class AuditEventOutcome extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return AuditEventOutcome._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

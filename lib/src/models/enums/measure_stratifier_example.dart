@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Identifier subgroups in a population for measuring purposes.
 class MeasureStratifierExample extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  MeasureStratifierExample._({
-    super.value,
+  MeasureStratifierExample._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,28 +26,28 @@ class MeasureStratifierExample extends PrimitiveType<String> {
         'MeasureStratifierExample cannot be constructed from JSON.',
       );
     }
-    return MeasureStratifierExample._(value: value, element: element);
+    return MeasureStratifierExample._(value, element: element);
   }
 
   /// age
   static final MeasureStratifierExample age = MeasureStratifierExample._(
-    value: 'age',
+    'age',
   );
 
   /// gender
   static final MeasureStratifierExample gender = MeasureStratifierExample._(
-    value: 'gender',
+    'gender',
   );
 
   /// region
   static final MeasureStratifierExample region = MeasureStratifierExample._(
-    value: 'region',
+    'region',
   );
 
   /// For instances where an Element is present but not value
 
   static final MeasureStratifierExample elementOnly =
-      MeasureStratifierExample._(value: '');
+      MeasureStratifierExample._('');
 
   /// List of all enum-like values
   static final List<MeasureStratifierExample> values = [
@@ -59,13 +59,13 @@ class MeasureStratifierExample extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   MeasureStratifierExample clone() => MeasureStratifierExample._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   MeasureStratifierExample withElement(Element? newElement) {
-    return MeasureStratifierExample._(value: value, element: newElement);
+    return MeasureStratifierExample._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -95,7 +95,7 @@ class MeasureStratifierExample extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return MeasureStratifierExample._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

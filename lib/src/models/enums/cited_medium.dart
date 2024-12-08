@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// NLM codes Internet or Print.
 class CitedMedium extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  CitedMedium._({
-    super.value,
+  CitedMedium._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,43 +26,43 @@ class CitedMedium extends PrimitiveType<String> {
         'CitedMedium cannot be constructed from JSON.',
       );
     }
-    return CitedMedium._(value: value, element: element);
+    return CitedMedium._(value, element: element);
   }
 
   /// internet
   static final CitedMedium internet = CitedMedium._(
-    value: 'internet',
+    'internet',
   );
 
   /// print
   static final CitedMedium print = CitedMedium._(
-    value: 'print',
+    'print',
   );
 
   /// offline_digital_storage
   static final CitedMedium offline_digital_storage = CitedMedium._(
-    value: 'offline-digital-storage',
+    'offline-digital-storage',
   );
 
   /// internet_without_issue
   static final CitedMedium internet_without_issue = CitedMedium._(
-    value: 'internet-without-issue',
+    'internet-without-issue',
   );
 
   /// print_without_issue
   static final CitedMedium print_without_issue = CitedMedium._(
-    value: 'print-without-issue',
+    'print-without-issue',
   );
 
   /// offline_digital_storage_without_issue
   static final CitedMedium offline_digital_storage_without_issue =
       CitedMedium._(
-    value: 'offline-digital-storage-without-issue',
+    'offline-digital-storage-without-issue',
   );
 
   /// For instances where an Element is present but not value
 
-  static final CitedMedium elementOnly = CitedMedium._(value: '');
+  static final CitedMedium elementOnly = CitedMedium._('');
 
   /// List of all enum-like values
   static final List<CitedMedium> values = [
@@ -77,13 +77,13 @@ class CitedMedium extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   CitedMedium clone() => CitedMedium._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   CitedMedium withElement(Element? newElement) {
-    return CitedMedium._(value: value, element: newElement);
+    return CitedMedium._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -113,7 +113,7 @@ class CitedMedium extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return CitedMedium._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

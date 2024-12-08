@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value set includes sample Exception codes.
 class ExceptionCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ExceptionCodes._({
-    super.value,
+  ExceptionCodes._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,22 +26,22 @@ class ExceptionCodes extends PrimitiveType<String> {
         'ExceptionCodes cannot be constructed from JSON.',
       );
     }
-    return ExceptionCodes._(value: value, element: element);
+    return ExceptionCodes._(value, element: element);
   }
 
   /// student
   static final ExceptionCodes student = ExceptionCodes._(
-    value: 'student',
+    'student',
   );
 
   /// disabled
   static final ExceptionCodes disabled = ExceptionCodes._(
-    value: 'disabled',
+    'disabled',
   );
 
   /// For instances where an Element is present but not value
 
-  static final ExceptionCodes elementOnly = ExceptionCodes._(value: '');
+  static final ExceptionCodes elementOnly = ExceptionCodes._('');
 
   /// List of all enum-like values
   static final List<ExceptionCodes> values = [
@@ -52,13 +52,13 @@ class ExceptionCodes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ExceptionCodes clone() => ExceptionCodes._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ExceptionCodes withElement(Element? newElement) {
-    return ExceptionCodes._(value: value, element: newElement);
+    return ExceptionCodes._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -88,7 +88,7 @@ class ExceptionCodes extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ExceptionCodes._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

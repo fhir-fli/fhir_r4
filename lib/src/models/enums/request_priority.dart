@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Identifies the level of importance to be assigned to actioning the request.
 class RequestPriority extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  RequestPriority._({
-    super.value,
+  RequestPriority._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,32 +26,32 @@ class RequestPriority extends PrimitiveType<String> {
         'RequestPriority cannot be constructed from JSON.',
       );
     }
-    return RequestPriority._(value: value, element: element);
+    return RequestPriority._(value, element: element);
   }
 
   /// routine
   static final RequestPriority routine = RequestPriority._(
-    value: 'routine',
+    'routine',
   );
 
   /// urgent
   static final RequestPriority urgent = RequestPriority._(
-    value: 'urgent',
+    'urgent',
   );
 
   /// asap
   static final RequestPriority asap = RequestPriority._(
-    value: 'asap',
+    'asap',
   );
 
   /// stat
   static final RequestPriority stat = RequestPriority._(
-    value: 'stat',
+    'stat',
   );
 
   /// For instances where an Element is present but not value
 
-  static final RequestPriority elementOnly = RequestPriority._(value: '');
+  static final RequestPriority elementOnly = RequestPriority._('');
 
   /// List of all enum-like values
   static final List<RequestPriority> values = [
@@ -64,13 +64,13 @@ class RequestPriority extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   RequestPriority clone() => RequestPriority._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   RequestPriority withElement(Element? newElement) {
-    return RequestPriority._(value: value, element: newElement);
+    return RequestPriority._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -100,7 +100,7 @@ class RequestPriority extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return RequestPriority._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

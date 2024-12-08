@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value set defines codes for resources not yet supported by (or which will never be supported by) FHIR. Many of the codes listed here will eventually be turned into official resources. However, there is no guarantee that any particular resource will be created nor that the scope will be exactly as defined by the codes presented here. Codes in this set will be deprecated if/when formal resources are defined that encompass these concepts.
 class BasicResourceTypes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  BasicResourceTypes._({
-    super.value,
+  BasicResourceTypes._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,92 +26,92 @@ class BasicResourceTypes extends PrimitiveType<String> {
         'BasicResourceTypes cannot be constructed from JSON.',
       );
     }
-    return BasicResourceTypes._(value: value, element: element);
+    return BasicResourceTypes._(value, element: element);
   }
 
   /// consent
   static final BasicResourceTypes consent = BasicResourceTypes._(
-    value: 'consent',
+    'consent',
   );
 
   /// referral
   static final BasicResourceTypes referral = BasicResourceTypes._(
-    value: 'referral',
+    'referral',
   );
 
   /// advevent
   static final BasicResourceTypes advevent = BasicResourceTypes._(
-    value: 'advevent',
+    'advevent',
   );
 
   /// aptmtreq
   static final BasicResourceTypes aptmtreq = BasicResourceTypes._(
-    value: 'aptmtreq',
+    'aptmtreq',
   );
 
   /// transfer
   static final BasicResourceTypes transfer = BasicResourceTypes._(
-    value: 'transfer',
+    'transfer',
   );
 
   /// diet
   static final BasicResourceTypes diet = BasicResourceTypes._(
-    value: 'diet',
+    'diet',
   );
 
   /// adminact
   static final BasicResourceTypes adminact = BasicResourceTypes._(
-    value: 'adminact',
+    'adminact',
   );
 
   /// exposure
   static final BasicResourceTypes exposure = BasicResourceTypes._(
-    value: 'exposure',
+    'exposure',
   );
 
   /// investigation
   static final BasicResourceTypes investigation = BasicResourceTypes._(
-    value: 'investigation',
+    'investigation',
   );
 
   /// account
   static final BasicResourceTypes account = BasicResourceTypes._(
-    value: 'account',
+    'account',
   );
 
   /// invoice
   static final BasicResourceTypes invoice = BasicResourceTypes._(
-    value: 'invoice',
+    'invoice',
   );
 
   /// adjudicat
   static final BasicResourceTypes adjudicat = BasicResourceTypes._(
-    value: 'adjudicat',
+    'adjudicat',
   );
 
   /// predetreq
   static final BasicResourceTypes predetreq = BasicResourceTypes._(
-    value: 'predetreq',
+    'predetreq',
   );
 
   /// predetermine
   static final BasicResourceTypes predetermine = BasicResourceTypes._(
-    value: 'predetermine',
+    'predetermine',
   );
 
   /// study
   static final BasicResourceTypes study = BasicResourceTypes._(
-    value: 'study',
+    'study',
   );
 
   /// protocol
   static final BasicResourceTypes protocol = BasicResourceTypes._(
-    value: 'protocol',
+    'protocol',
   );
 
   /// For instances where an Element is present but not value
 
-  static final BasicResourceTypes elementOnly = BasicResourceTypes._(value: '');
+  static final BasicResourceTypes elementOnly = BasicResourceTypes._('');
 
   /// List of all enum-like values
   static final List<BasicResourceTypes> values = [
@@ -136,13 +136,13 @@ class BasicResourceTypes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   BasicResourceTypes clone() => BasicResourceTypes._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   BasicResourceTypes withElement(Element? newElement) {
-    return BasicResourceTypes._(value: value, element: newElement);
+    return BasicResourceTypes._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -172,7 +172,7 @@ class BasicResourceTypes extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return BasicResourceTypes._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

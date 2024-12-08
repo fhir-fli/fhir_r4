@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The free/busy status of the slot.
 class SlotStatus extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  SlotStatus._({
-    super.value,
+  SlotStatus._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,37 +26,37 @@ class SlotStatus extends PrimitiveType<String> {
         'SlotStatus cannot be constructed from JSON.',
       );
     }
-    return SlotStatus._(value: value, element: element);
+    return SlotStatus._(value, element: element);
   }
 
   /// busy
   static final SlotStatus busy = SlotStatus._(
-    value: 'busy',
+    'busy',
   );
 
   /// free
   static final SlotStatus free = SlotStatus._(
-    value: 'free',
+    'free',
   );
 
   /// busy_unavailable
   static final SlotStatus busy_unavailable = SlotStatus._(
-    value: 'busy-unavailable',
+    'busy-unavailable',
   );
 
   /// busy_tentative
   static final SlotStatus busy_tentative = SlotStatus._(
-    value: 'busy-tentative',
+    'busy-tentative',
   );
 
   /// entered_in_error
   static final SlotStatus entered_in_error = SlotStatus._(
-    value: 'entered-in-error',
+    'entered-in-error',
   );
 
   /// For instances where an Element is present but not value
 
-  static final SlotStatus elementOnly = SlotStatus._(value: '');
+  static final SlotStatus elementOnly = SlotStatus._('');
 
   /// List of all enum-like values
   static final List<SlotStatus> values = [
@@ -70,13 +70,13 @@ class SlotStatus extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   SlotStatus clone() => SlotStatus._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   SlotStatus withElement(Element? newElement) {
-    return SlotStatus._(value: value, element: newElement);
+    return SlotStatus._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -106,7 +106,7 @@ class SlotStatus extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return SlotStatus._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

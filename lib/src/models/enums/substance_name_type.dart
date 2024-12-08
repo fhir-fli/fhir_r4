@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The type of a name given to a substance.
 class SubstanceNameType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  SubstanceNameType._({
-    super.value,
+  SubstanceNameType._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,27 +26,27 @@ class SubstanceNameType extends PrimitiveType<String> {
         'SubstanceNameType cannot be constructed from JSON.',
       );
     }
-    return SubstanceNameType._(value: value, element: element);
+    return SubstanceNameType._(value, element: element);
   }
 
   /// Systematic
   static final SubstanceNameType Systematic = SubstanceNameType._(
-    value: 'Systematic',
+    'Systematic',
   );
 
   /// Scientific
   static final SubstanceNameType Scientific = SubstanceNameType._(
-    value: 'Scientific',
+    'Scientific',
   );
 
   /// Brand
   static final SubstanceNameType Brand = SubstanceNameType._(
-    value: 'Brand',
+    'Brand',
   );
 
   /// For instances where an Element is present but not value
 
-  static final SubstanceNameType elementOnly = SubstanceNameType._(value: '');
+  static final SubstanceNameType elementOnly = SubstanceNameType._('');
 
   /// List of all enum-like values
   static final List<SubstanceNameType> values = [
@@ -58,13 +58,13 @@ class SubstanceNameType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   SubstanceNameType clone() => SubstanceNameType._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   SubstanceNameType withElement(Element? newElement) {
-    return SubstanceNameType._(value: value, element: newElement);
+    return SubstanceNameType._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -94,7 +94,7 @@ class SubstanceNameType extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return SubstanceNameType._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

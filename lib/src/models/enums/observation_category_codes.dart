@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Observation Category codes.
 class ObservationCategoryCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ObservationCategoryCodes._({
-    super.value,
+  ObservationCategoryCodes._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,60 +26,60 @@ class ObservationCategoryCodes extends PrimitiveType<String> {
         'ObservationCategoryCodes cannot be constructed from JSON.',
       );
     }
-    return ObservationCategoryCodes._(value: value, element: element);
+    return ObservationCategoryCodes._(value, element: element);
   }
 
   /// social_history
   static final ObservationCategoryCodes social_history =
       ObservationCategoryCodes._(
-    value: 'social-history',
+    'social-history',
   );
 
   /// vital_signs
   static final ObservationCategoryCodes vital_signs =
       ObservationCategoryCodes._(
-    value: 'vital-signs',
+    'vital-signs',
   );
 
   /// imaging
   static final ObservationCategoryCodes imaging = ObservationCategoryCodes._(
-    value: 'imaging',
+    'imaging',
   );
 
   /// laboratory
   static final ObservationCategoryCodes laboratory = ObservationCategoryCodes._(
-    value: 'laboratory',
+    'laboratory',
   );
 
   /// procedure
   static final ObservationCategoryCodes procedure = ObservationCategoryCodes._(
-    value: 'procedure',
+    'procedure',
   );
 
   /// survey
   static final ObservationCategoryCodes survey = ObservationCategoryCodes._(
-    value: 'survey',
+    'survey',
   );
 
   /// exam
   static final ObservationCategoryCodes exam = ObservationCategoryCodes._(
-    value: 'exam',
+    'exam',
   );
 
   /// therapy
   static final ObservationCategoryCodes therapy = ObservationCategoryCodes._(
-    value: 'therapy',
+    'therapy',
   );
 
   /// activity
   static final ObservationCategoryCodes activity = ObservationCategoryCodes._(
-    value: 'activity',
+    'activity',
   );
 
   /// For instances where an Element is present but not value
 
   static final ObservationCategoryCodes elementOnly =
-      ObservationCategoryCodes._(value: '');
+      ObservationCategoryCodes._('');
 
   /// List of all enum-like values
   static final List<ObservationCategoryCodes> values = [
@@ -97,13 +97,13 @@ class ObservationCategoryCodes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ObservationCategoryCodes clone() => ObservationCategoryCodes._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ObservationCategoryCodes withElement(Element? newElement) {
-    return ObservationCategoryCodes._(value: value, element: newElement);
+    return ObservationCategoryCodes._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -133,7 +133,7 @@ class ObservationCategoryCodes extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ObservationCategoryCodes._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

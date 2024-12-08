@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Codes identifying the lifecycle stage of a ChargeItem.
 class ChargeItemStatus extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ChargeItemStatus._({
-    super.value,
+  ChargeItemStatus._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,47 +26,47 @@ class ChargeItemStatus extends PrimitiveType<String> {
         'ChargeItemStatus cannot be constructed from JSON.',
       );
     }
-    return ChargeItemStatus._(value: value, element: element);
+    return ChargeItemStatus._(value, element: element);
   }
 
   /// planned
   static final ChargeItemStatus planned = ChargeItemStatus._(
-    value: 'planned',
+    'planned',
   );
 
   /// billable
   static final ChargeItemStatus billable = ChargeItemStatus._(
-    value: 'billable',
+    'billable',
   );
 
   /// not_billable
   static final ChargeItemStatus not_billable = ChargeItemStatus._(
-    value: 'not-billable',
+    'not-billable',
   );
 
   /// aborted
   static final ChargeItemStatus aborted = ChargeItemStatus._(
-    value: 'aborted',
+    'aborted',
   );
 
   /// billed
   static final ChargeItemStatus billed = ChargeItemStatus._(
-    value: 'billed',
+    'billed',
   );
 
   /// entered_in_error
   static final ChargeItemStatus entered_in_error = ChargeItemStatus._(
-    value: 'entered-in-error',
+    'entered-in-error',
   );
 
   /// unknown
   static final ChargeItemStatus unknown = ChargeItemStatus._(
-    value: 'unknown',
+    'unknown',
   );
 
   /// For instances where an Element is present but not value
 
-  static final ChargeItemStatus elementOnly = ChargeItemStatus._(value: '');
+  static final ChargeItemStatus elementOnly = ChargeItemStatus._('');
 
   /// List of all enum-like values
   static final List<ChargeItemStatus> values = [
@@ -82,13 +82,13 @@ class ChargeItemStatus extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ChargeItemStatus clone() => ChargeItemStatus._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ChargeItemStatus withElement(Element? newElement) {
-    return ChargeItemStatus._(value: value, element: newElement);
+    return ChargeItemStatus._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -118,7 +118,7 @@ class ChargeItemStatus extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ChargeItemStatus._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

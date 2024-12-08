@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The allowable request method or HTTP operation codes.
 class TestScriptRequestMethodCode extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  TestScriptRequestMethodCode._({
-    super.value,
+  TestScriptRequestMethodCode._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,51 +26,51 @@ class TestScriptRequestMethodCode extends PrimitiveType<String> {
         'TestScriptRequestMethodCode cannot be constructed from JSON.',
       );
     }
-    return TestScriptRequestMethodCode._(value: value, element: element);
+    return TestScriptRequestMethodCode._(value, element: element);
   }
 
   /// delete
   static final TestScriptRequestMethodCode delete =
       TestScriptRequestMethodCode._(
-    value: 'delete',
+    'delete',
   );
 
   /// get_
   static final TestScriptRequestMethodCode get_ = TestScriptRequestMethodCode._(
-    value: 'get',
+    'get',
   );
 
   /// options
   static final TestScriptRequestMethodCode options =
       TestScriptRequestMethodCode._(
-    value: 'options',
+    'options',
   );
 
   /// patch
   static final TestScriptRequestMethodCode patch =
       TestScriptRequestMethodCode._(
-    value: 'patch',
+    'patch',
   );
 
   /// post
   static final TestScriptRequestMethodCode post = TestScriptRequestMethodCode._(
-    value: 'post',
+    'post',
   );
 
   /// put
   static final TestScriptRequestMethodCode put = TestScriptRequestMethodCode._(
-    value: 'put',
+    'put',
   );
 
   /// head
   static final TestScriptRequestMethodCode head = TestScriptRequestMethodCode._(
-    value: 'head',
+    'head',
   );
 
   /// For instances where an Element is present but not value
 
   static final TestScriptRequestMethodCode elementOnly =
-      TestScriptRequestMethodCode._(value: '');
+      TestScriptRequestMethodCode._('');
 
   /// List of all enum-like values
   static final List<TestScriptRequestMethodCode> values = [
@@ -86,13 +86,13 @@ class TestScriptRequestMethodCode extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   TestScriptRequestMethodCode clone() => TestScriptRequestMethodCode._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   TestScriptRequestMethodCode withElement(Element? newElement) {
-    return TestScriptRequestMethodCode._(value: value, element: newElement);
+    return TestScriptRequestMethodCode._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -122,7 +122,7 @@ class TestScriptRequestMethodCode extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return TestScriptRequestMethodCode._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// How a compartment must be linked.
 class GraphCompartmentRule extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  GraphCompartmentRule._({
-    super.value,
+  GraphCompartmentRule._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,33 +26,32 @@ class GraphCompartmentRule extends PrimitiveType<String> {
         'GraphCompartmentRule cannot be constructed from JSON.',
       );
     }
-    return GraphCompartmentRule._(value: value, element: element);
+    return GraphCompartmentRule._(value, element: element);
   }
 
   /// identical
   static final GraphCompartmentRule identical = GraphCompartmentRule._(
-    value: 'identical',
+    'identical',
   );
 
   /// matching
   static final GraphCompartmentRule matching = GraphCompartmentRule._(
-    value: 'matching',
+    'matching',
   );
 
   /// different
   static final GraphCompartmentRule different = GraphCompartmentRule._(
-    value: 'different',
+    'different',
   );
 
   /// custom
   static final GraphCompartmentRule custom = GraphCompartmentRule._(
-    value: 'custom',
+    'custom',
   );
 
   /// For instances where an Element is present but not value
 
-  static final GraphCompartmentRule elementOnly =
-      GraphCompartmentRule._(value: '');
+  static final GraphCompartmentRule elementOnly = GraphCompartmentRule._('');
 
   /// List of all enum-like values
   static final List<GraphCompartmentRule> values = [
@@ -65,13 +64,13 @@ class GraphCompartmentRule extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   GraphCompartmentRule clone() => GraphCompartmentRule._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   GraphCompartmentRule withElement(Element? newElement) {
-    return GraphCompartmentRule._(value: value, element: newElement);
+    return GraphCompartmentRule._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -101,7 +100,7 @@ class GraphCompartmentRule extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return GraphCompartmentRule._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

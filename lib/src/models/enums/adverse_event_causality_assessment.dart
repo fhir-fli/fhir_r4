@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Codes for the assessment of whether the entity caused the event.
 class AdverseEventCausalityAssessment extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  AdverseEventCausalityAssessment._({
-    super.value,
+  AdverseEventCausalityAssessment._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,49 +26,49 @@ class AdverseEventCausalityAssessment extends PrimitiveType<String> {
         'AdverseEventCausalityAssessment cannot be constructed from JSON.',
       );
     }
-    return AdverseEventCausalityAssessment._(value: value, element: element);
+    return AdverseEventCausalityAssessment._(value, element: element);
   }
 
   /// Certain
   static final AdverseEventCausalityAssessment Certain =
       AdverseEventCausalityAssessment._(
-    value: 'Certain',
+    'Certain',
   );
 
   /// Probably_Likely
   static final AdverseEventCausalityAssessment Probably_Likely =
       AdverseEventCausalityAssessment._(
-    value: 'Probably-Likely',
+    'Probably-Likely',
   );
 
   /// Possible
   static final AdverseEventCausalityAssessment Possible =
       AdverseEventCausalityAssessment._(
-    value: 'Possible',
+    'Possible',
   );
 
   /// Unlikely
   static final AdverseEventCausalityAssessment Unlikely =
       AdverseEventCausalityAssessment._(
-    value: 'Unlikely',
+    'Unlikely',
   );
 
   /// Conditional_Classified
   static final AdverseEventCausalityAssessment Conditional_Classified =
       AdverseEventCausalityAssessment._(
-    value: 'Conditional-Classified',
+    'Conditional-Classified',
   );
 
   /// Unassessable_Unclassifiable
   static final AdverseEventCausalityAssessment Unassessable_Unclassifiable =
       AdverseEventCausalityAssessment._(
-    value: 'Unassessable-Unclassifiable',
+    'Unassessable-Unclassifiable',
   );
 
   /// For instances where an Element is present but not value
 
   static final AdverseEventCausalityAssessment elementOnly =
-      AdverseEventCausalityAssessment._(value: '');
+      AdverseEventCausalityAssessment._('');
 
   /// List of all enum-like values
   static final List<AdverseEventCausalityAssessment> values = [
@@ -83,13 +83,13 @@ class AdverseEventCausalityAssessment extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   AdverseEventCausalityAssessment clone() => AdverseEventCausalityAssessment._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   AdverseEventCausalityAssessment withElement(Element? newElement) {
-    return AdverseEventCausalityAssessment._(value: value, element: newElement);
+    return AdverseEventCausalityAssessment._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -119,7 +119,7 @@ class AdverseEventCausalityAssessment extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return AdverseEventCausalityAssessment._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

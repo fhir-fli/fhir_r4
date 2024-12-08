@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// How data is copied/created.
 class StructureMapTransform extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  StructureMapTransform._({
-    super.value,
+  StructureMapTransform._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,98 +26,97 @@ class StructureMapTransform extends PrimitiveType<String> {
         'StructureMapTransform cannot be constructed from JSON.',
       );
     }
-    return StructureMapTransform._(value: value, element: element);
+    return StructureMapTransform._(value, element: element);
   }
 
   /// create
   static final StructureMapTransform create = StructureMapTransform._(
-    value: 'create',
+    'create',
   );
 
   /// copy
   static final StructureMapTransform copy_ = StructureMapTransform._(
-    value: 'copy',
+    'copy',
   );
 
   /// truncate
   static final StructureMapTransform truncate = StructureMapTransform._(
-    value: 'truncate',
+    'truncate',
   );
 
   /// escape
   static final StructureMapTransform escape = StructureMapTransform._(
-    value: 'escape',
+    'escape',
   );
 
   /// cast
   static final StructureMapTransform cast = StructureMapTransform._(
-    value: 'cast',
+    'cast',
   );
 
   /// append
   static final StructureMapTransform append = StructureMapTransform._(
-    value: 'append',
+    'append',
   );
 
   /// translate
   static final StructureMapTransform translate = StructureMapTransform._(
-    value: 'translate',
+    'translate',
   );
 
   /// reference
   static final StructureMapTransform reference = StructureMapTransform._(
-    value: 'reference',
+    'reference',
   );
 
   /// dateOp
   static final StructureMapTransform dateOp = StructureMapTransform._(
-    value: 'dateOp',
+    'dateOp',
   );
 
   /// uuid
   static final StructureMapTransform uuid = StructureMapTransform._(
-    value: 'uuid',
+    'uuid',
   );
 
   /// pointer
   static final StructureMapTransform pointer = StructureMapTransform._(
-    value: 'pointer',
+    'pointer',
   );
 
   /// evaluate
   static final StructureMapTransform evaluate = StructureMapTransform._(
-    value: 'evaluate',
+    'evaluate',
   );
 
   /// cc
   static final StructureMapTransform cc = StructureMapTransform._(
-    value: 'cc',
+    'cc',
   );
 
   /// c
   static final StructureMapTransform c = StructureMapTransform._(
-    value: 'c',
+    'c',
   );
 
   /// qty
   static final StructureMapTransform qty = StructureMapTransform._(
-    value: 'qty',
+    'qty',
   );
 
   /// id
   static final StructureMapTransform id_ = StructureMapTransform._(
-    value: 'id',
+    'id',
   );
 
   /// cp
   static final StructureMapTransform cp = StructureMapTransform._(
-    value: 'cp',
+    'cp',
   );
 
   /// For instances where an Element is present but not value
 
-  static final StructureMapTransform elementOnly =
-      StructureMapTransform._(value: '');
+  static final StructureMapTransform elementOnly = StructureMapTransform._('');
 
   /// List of all enum-like values
   static final List<StructureMapTransform> values = [
@@ -143,13 +142,13 @@ class StructureMapTransform extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   StructureMapTransform clone() => StructureMapTransform._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   StructureMapTransform withElement(Element? newElement) {
-    return StructureMapTransform._(value: value, element: newElement);
+    return StructureMapTransform._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -179,7 +178,7 @@ class StructureMapTransform extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return StructureMapTransform._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The method used to determine the characteristic(s) of the variable.
 class CharacteristicMethod extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  CharacteristicMethod._({
-    super.value,
+  CharacteristicMethod._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,18 +26,17 @@ class CharacteristicMethod extends PrimitiveType<String> {
         'CharacteristicMethod cannot be constructed from JSON.',
       );
     }
-    return CharacteristicMethod._(value: value, element: element);
+    return CharacteristicMethod._(value, element: element);
   }
 
   /// Default
   static final CharacteristicMethod Default = CharacteristicMethod._(
-    value: 'Default',
+    'Default',
   );
 
   /// For instances where an Element is present but not value
 
-  static final CharacteristicMethod elementOnly =
-      CharacteristicMethod._(value: '');
+  static final CharacteristicMethod elementOnly = CharacteristicMethod._('');
 
   /// List of all enum-like values
   static final List<CharacteristicMethod> values = [
@@ -47,13 +46,13 @@ class CharacteristicMethod extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   CharacteristicMethod clone() => CharacteristicMethod._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   CharacteristicMethod withElement(Element? newElement) {
-    return CharacteristicMethod._(value: value, element: newElement);
+    return CharacteristicMethod._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -83,7 +82,7 @@ class CharacteristicMethod extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return CharacteristicMethod._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

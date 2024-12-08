@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value set defines a set of codes that can be used to where the patient left the hospital.
 class DischargeDisposition extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  DischargeDisposition._({
-    super.value,
+  DischargeDisposition._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,68 +26,67 @@ class DischargeDisposition extends PrimitiveType<String> {
         'DischargeDisposition cannot be constructed from JSON.',
       );
     }
-    return DischargeDisposition._(value: value, element: element);
+    return DischargeDisposition._(value, element: element);
   }
 
   /// home
   static final DischargeDisposition home = DischargeDisposition._(
-    value: 'home',
+    'home',
   );
 
   /// alt_home
   static final DischargeDisposition alt_home = DischargeDisposition._(
-    value: 'alt-home',
+    'alt-home',
   );
 
   /// other_hcf
   static final DischargeDisposition other_hcf = DischargeDisposition._(
-    value: 'other-hcf',
+    'other-hcf',
   );
 
   /// hosp
   static final DischargeDisposition hosp = DischargeDisposition._(
-    value: 'hosp',
+    'hosp',
   );
 
   /// long
   static final DischargeDisposition long = DischargeDisposition._(
-    value: 'long',
+    'long',
   );
 
   /// aadvice
   static final DischargeDisposition aadvice = DischargeDisposition._(
-    value: 'aadvice',
+    'aadvice',
   );
 
   /// exp
   static final DischargeDisposition exp = DischargeDisposition._(
-    value: 'exp',
+    'exp',
   );
 
   /// psy
   static final DischargeDisposition psy = DischargeDisposition._(
-    value: 'psy',
+    'psy',
   );
 
   /// rehab
   static final DischargeDisposition rehab = DischargeDisposition._(
-    value: 'rehab',
+    'rehab',
   );
 
   /// snf
   static final DischargeDisposition snf = DischargeDisposition._(
-    value: 'snf',
+    'snf',
   );
 
   /// oth
   static final DischargeDisposition oth = DischargeDisposition._(
-    value: 'oth',
+    'oth',
   );
 
   /// For instances where an Element is present but not value
 
-  static final DischargeDisposition elementOnly =
-      DischargeDisposition._(value: '');
+  static final DischargeDisposition elementOnly = DischargeDisposition._('');
 
   /// List of all enum-like values
   static final List<DischargeDisposition> values = [
@@ -107,13 +106,13 @@ class DischargeDisposition extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   DischargeDisposition clone() => DischargeDisposition._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   DischargeDisposition withElement(Element? newElement) {
-    return DischargeDisposition._(value: value, element: newElement);
+    return DischargeDisposition._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -143,7 +142,7 @@ class DischargeDisposition extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return DischargeDisposition._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

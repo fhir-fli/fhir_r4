@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The type of link between this patient resource and another patient resource.
 class LinkType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  LinkType._({
-    super.value,
+  LinkType._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,32 +26,32 @@ class LinkType extends PrimitiveType<String> {
         'LinkType cannot be constructed from JSON.',
       );
     }
-    return LinkType._(value: value, element: element);
+    return LinkType._(value, element: element);
   }
 
   /// replaced_by
   static final LinkType replaced_by = LinkType._(
-    value: 'replaced-by',
+    'replaced-by',
   );
 
   /// replaces
   static final LinkType replaces = LinkType._(
-    value: 'replaces',
+    'replaces',
   );
 
   /// refer
   static final LinkType refer = LinkType._(
-    value: 'refer',
+    'refer',
   );
 
   /// seealso
   static final LinkType seealso = LinkType._(
-    value: 'seealso',
+    'seealso',
   );
 
   /// For instances where an Element is present but not value
 
-  static final LinkType elementOnly = LinkType._(value: '');
+  static final LinkType elementOnly = LinkType._('');
 
   /// List of all enum-like values
   static final List<LinkType> values = [
@@ -64,13 +64,13 @@ class LinkType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   LinkType clone() => LinkType._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   LinkType withElement(Element? newElement) {
-    return LinkType._(value: value, element: newElement);
+    return LinkType._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -100,7 +100,7 @@ class LinkType extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return LinkType._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

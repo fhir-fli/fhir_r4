@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The type of a case involved in an application.
 class RegulatedAuthorizationCaseType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  RegulatedAuthorizationCaseType._({
-    super.value,
+  RegulatedAuthorizationCaseType._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,145 +26,145 @@ class RegulatedAuthorizationCaseType extends PrimitiveType<String> {
         'RegulatedAuthorizationCaseType cannot be constructed from JSON.',
       );
     }
-    return RegulatedAuthorizationCaseType._(value: value, element: element);
+    return RegulatedAuthorizationCaseType._(value, element: element);
   }
 
   /// InitialMAA
   static final RegulatedAuthorizationCaseType InitialMAA =
       RegulatedAuthorizationCaseType._(
-    value: 'InitialMAA',
+    'InitialMAA',
   );
 
   /// Variation
   static final RegulatedAuthorizationCaseType Variation =
       RegulatedAuthorizationCaseType._(
-    value: 'Variation',
+    'Variation',
   );
 
   /// LineExtension
   static final RegulatedAuthorizationCaseType LineExtension =
       RegulatedAuthorizationCaseType._(
-    value: 'LineExtension',
+    'LineExtension',
   );
 
   /// PSUR
   static final RegulatedAuthorizationCaseType PSUR =
       RegulatedAuthorizationCaseType._(
-    value: 'PSUR',
+    'PSUR',
   );
 
   /// Renewal
   static final RegulatedAuthorizationCaseType Renewal =
       RegulatedAuthorizationCaseType._(
-    value: 'Renewal',
+    'Renewal',
   );
 
   /// Follow_up
   static final RegulatedAuthorizationCaseType Follow_up =
       RegulatedAuthorizationCaseType._(
-    value: 'Follow-up',
+    'Follow-up',
   );
 
   /// value100000155699
   static final RegulatedAuthorizationCaseType value100000155699 =
       RegulatedAuthorizationCaseType._(
-    value: '100000155699',
+    '100000155699',
   );
 
   /// AnnualReassessment
   static final RegulatedAuthorizationCaseType AnnualReassessment =
       RegulatedAuthorizationCaseType._(
-    value: 'AnnualReassessment',
+    'AnnualReassessment',
   );
 
   /// UrgentSafetyRestriction
   static final RegulatedAuthorizationCaseType UrgentSafetyRestriction =
       RegulatedAuthorizationCaseType._(
-    value: 'UrgentSafetyRestriction',
+    'UrgentSafetyRestriction',
   );
 
   /// PaediatricSubmission
   static final RegulatedAuthorizationCaseType PaediatricSubmission =
       RegulatedAuthorizationCaseType._(
-    value: 'PaediatricSubmission',
+    'PaediatricSubmission',
   );
 
   /// TransferMA
   static final RegulatedAuthorizationCaseType TransferMA =
       RegulatedAuthorizationCaseType._(
-    value: 'TransferMA',
+    'TransferMA',
   );
 
   /// LiftingSuspension
   static final RegulatedAuthorizationCaseType LiftingSuspension =
       RegulatedAuthorizationCaseType._(
-    value: 'LiftingSuspension',
+    'LiftingSuspension',
   );
 
   /// Withdrawal
   static final RegulatedAuthorizationCaseType Withdrawal =
       RegulatedAuthorizationCaseType._(
-    value: 'Withdrawal',
+    'Withdrawal',
   );
 
   /// Reformatting
   static final RegulatedAuthorizationCaseType Reformatting =
       RegulatedAuthorizationCaseType._(
-    value: 'Reformatting',
+    'Reformatting',
   );
 
   /// RMP
   static final RegulatedAuthorizationCaseType RMP =
       RegulatedAuthorizationCaseType._(
-    value: 'RMP',
+    'RMP',
   );
 
   /// ReviewSuspension
   static final RegulatedAuthorizationCaseType ReviewSuspension =
       RegulatedAuthorizationCaseType._(
-    value: 'ReviewSuspension',
+    'ReviewSuspension',
   );
 
   /// SupplementalInformation
   static final RegulatedAuthorizationCaseType SupplementalInformation =
       RegulatedAuthorizationCaseType._(
-    value: 'SupplementalInformation',
+    'SupplementalInformation',
   );
 
   /// RepeatUse
   static final RegulatedAuthorizationCaseType RepeatUse =
       RegulatedAuthorizationCaseType._(
-    value: 'RepeatUse',
+    'RepeatUse',
   );
 
   /// SignalDetection
   static final RegulatedAuthorizationCaseType SignalDetection =
       RegulatedAuthorizationCaseType._(
-    value: 'SignalDetection',
+    'SignalDetection',
   );
 
   /// FLU
   static final RegulatedAuthorizationCaseType FLU =
       RegulatedAuthorizationCaseType._(
-    value: 'FLU',
+    'FLU',
   );
 
   /// PANDEMIC
   static final RegulatedAuthorizationCaseType PANDEMIC =
       RegulatedAuthorizationCaseType._(
-    value: 'PANDEMIC',
+    'PANDEMIC',
   );
 
   /// Orphan
   static final RegulatedAuthorizationCaseType Orphan =
       RegulatedAuthorizationCaseType._(
-    value: 'Orphan',
+    'Orphan',
   );
 
   /// For instances where an Element is present but not value
 
   static final RegulatedAuthorizationCaseType elementOnly =
-      RegulatedAuthorizationCaseType._(value: '');
+      RegulatedAuthorizationCaseType._('');
 
   /// List of all enum-like values
   static final List<RegulatedAuthorizationCaseType> values = [
@@ -195,13 +195,13 @@ class RegulatedAuthorizationCaseType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   RegulatedAuthorizationCaseType clone() => RegulatedAuthorizationCaseType._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   RegulatedAuthorizationCaseType withElement(Element? newElement) {
-    return RegulatedAuthorizationCaseType._(value: value, element: newElement);
+    return RegulatedAuthorizationCaseType._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -231,7 +231,7 @@ class RegulatedAuthorizationCaseType extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return RegulatedAuthorizationCaseType._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

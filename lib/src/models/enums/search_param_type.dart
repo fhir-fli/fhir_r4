@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Data types allowed to be used for search parameters.
 class SearchParamType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  SearchParamType._({
-    super.value,
+  SearchParamType._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,57 +26,57 @@ class SearchParamType extends PrimitiveType<String> {
         'SearchParamType cannot be constructed from JSON.',
       );
     }
-    return SearchParamType._(value: value, element: element);
+    return SearchParamType._(value, element: element);
   }
 
   /// number
   static final SearchParamType number = SearchParamType._(
-    value: 'number',
+    'number',
   );
 
   /// date
   static final SearchParamType date = SearchParamType._(
-    value: 'date',
+    'date',
   );
 
   /// string
   static final SearchParamType string = SearchParamType._(
-    value: 'string',
+    'string',
   );
 
   /// token
   static final SearchParamType token = SearchParamType._(
-    value: 'token',
+    'token',
   );
 
   /// reference
   static final SearchParamType reference = SearchParamType._(
-    value: 'reference',
+    'reference',
   );
 
   /// composite
   static final SearchParamType composite = SearchParamType._(
-    value: 'composite',
+    'composite',
   );
 
   /// quantity
   static final SearchParamType quantity = SearchParamType._(
-    value: 'quantity',
+    'quantity',
   );
 
   /// uri
   static final SearchParamType uri = SearchParamType._(
-    value: 'uri',
+    'uri',
   );
 
   /// special
   static final SearchParamType special = SearchParamType._(
-    value: 'special',
+    'special',
   );
 
   /// For instances where an Element is present but not value
 
-  static final SearchParamType elementOnly = SearchParamType._(value: '');
+  static final SearchParamType elementOnly = SearchParamType._('');
 
   /// List of all enum-like values
   static final List<SearchParamType> values = [
@@ -94,13 +94,13 @@ class SearchParamType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   SearchParamType clone() => SearchParamType._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   SearchParamType withElement(Element? newElement) {
-    return SearchParamType._(value: value, element: newElement);
+    return SearchParamType._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -130,7 +130,7 @@ class SearchParamType extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return SearchParamType._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

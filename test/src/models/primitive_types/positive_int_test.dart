@@ -119,8 +119,7 @@ void main() {
     });
 
     test('FhirPositiveInt with Element', () {
-      final fhirInteger =
-          FhirPositiveInt(validInteger, element: element);
+      final fhirInteger = FhirPositiveInt(validInteger, element: element);
       expect(fhirInteger.element?.id, equals('testElement'.toFhirString));
     });
 

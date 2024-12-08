@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value sets refers to a specific supply item.
 class SupplyItemType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  SupplyItemType._({
-    super.value,
+  SupplyItemType._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,22 +26,22 @@ class SupplyItemType extends PrimitiveType<String> {
         'SupplyItemType cannot be constructed from JSON.',
       );
     }
-    return SupplyItemType._(value: value, element: element);
+    return SupplyItemType._(value, element: element);
   }
 
   /// medication
   static final SupplyItemType medication = SupplyItemType._(
-    value: 'medication',
+    'medication',
   );
 
   /// device
   static final SupplyItemType device = SupplyItemType._(
-    value: 'device',
+    'device',
   );
 
   /// For instances where an Element is present but not value
 
-  static final SupplyItemType elementOnly = SupplyItemType._(value: '');
+  static final SupplyItemType elementOnly = SupplyItemType._('');
 
   /// List of all enum-like values
   static final List<SupplyItemType> values = [
@@ -52,13 +52,13 @@ class SupplyItemType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   SupplyItemType clone() => SupplyItemType._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   SupplyItemType withElement(Element? newElement) {
-    return SupplyItemType._(value: value, element: newElement);
+    return SupplyItemType._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -88,7 +88,7 @@ class SupplyItemType extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return SupplyItemType._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

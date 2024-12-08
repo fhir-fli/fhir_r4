@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Observation values that indicate what change in a measurement value or score is indicative of an improvement in the measured item or scored issue.
 class MeasureImprovementNotation extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  MeasureImprovementNotation._({
-    super.value,
+  MeasureImprovementNotation._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,25 +26,25 @@ class MeasureImprovementNotation extends PrimitiveType<String> {
         'MeasureImprovementNotation cannot be constructed from JSON.',
       );
     }
-    return MeasureImprovementNotation._(value: value, element: element);
+    return MeasureImprovementNotation._(value, element: element);
   }
 
   /// increase
   static final MeasureImprovementNotation increase =
       MeasureImprovementNotation._(
-    value: 'increase',
+    'increase',
   );
 
   /// decrease
   static final MeasureImprovementNotation decrease =
       MeasureImprovementNotation._(
-    value: 'decrease',
+    'decrease',
   );
 
   /// For instances where an Element is present but not value
 
   static final MeasureImprovementNotation elementOnly =
-      MeasureImprovementNotation._(value: '');
+      MeasureImprovementNotation._('');
 
   /// List of all enum-like values
   static final List<MeasureImprovementNotation> values = [
@@ -55,13 +55,13 @@ class MeasureImprovementNotation extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   MeasureImprovementNotation clone() => MeasureImprovementNotation._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   MeasureImprovementNotation withElement(Element? newElement) {
-    return MeasureImprovementNotation._(value: value, element: newElement);
+    return MeasureImprovementNotation._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -91,7 +91,7 @@ class MeasureImprovementNotation extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return MeasureImprovementNotation._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

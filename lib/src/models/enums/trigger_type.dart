@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The type of trigger.
 class TriggerType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  TriggerType._({
-    super.value,
+  TriggerType._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,52 +26,52 @@ class TriggerType extends PrimitiveType<String> {
         'TriggerType cannot be constructed from JSON.',
       );
     }
-    return TriggerType._(value: value, element: element);
+    return TriggerType._(value, element: element);
   }
 
   /// named_event
   static final TriggerType named_event = TriggerType._(
-    value: 'named-event',
+    'named-event',
   );
 
   /// periodic
   static final TriggerType periodic = TriggerType._(
-    value: 'periodic',
+    'periodic',
   );
 
   /// data_changed
   static final TriggerType data_changed = TriggerType._(
-    value: 'data-changed',
+    'data-changed',
   );
 
   /// data_added
   static final TriggerType data_added = TriggerType._(
-    value: 'data-added',
+    'data-added',
   );
 
   /// data_modified
   static final TriggerType data_modified = TriggerType._(
-    value: 'data-modified',
+    'data-modified',
   );
 
   /// data_removed
   static final TriggerType data_removed = TriggerType._(
-    value: 'data-removed',
+    'data-removed',
   );
 
   /// data_accessed
   static final TriggerType data_accessed = TriggerType._(
-    value: 'data-accessed',
+    'data-accessed',
   );
 
   /// data_access_ended
   static final TriggerType data_access_ended = TriggerType._(
-    value: 'data-access-ended',
+    'data-access-ended',
   );
 
   /// For instances where an Element is present but not value
 
-  static final TriggerType elementOnly = TriggerType._(value: '');
+  static final TriggerType elementOnly = TriggerType._('');
 
   /// List of all enum-like values
   static final List<TriggerType> values = [
@@ -88,13 +88,13 @@ class TriggerType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   TriggerType clone() => TriggerType._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   TriggerType withElement(Element? newElement) {
-    return TriggerType._(value: value, element: newElement);
+    return TriggerType._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -124,7 +124,7 @@ class TriggerType extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return TriggerType._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

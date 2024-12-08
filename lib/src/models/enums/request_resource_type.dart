@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// A list of all the request resource types defined in this version of the FHIR specification.
 class RequestResourceType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  RequestResourceType._({
-    super.value,
+  RequestResourceType._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,89 +26,88 @@ class RequestResourceType extends PrimitiveType<String> {
         'RequestResourceType cannot be constructed from JSON.',
       );
     }
-    return RequestResourceType._(value: value, element: element);
+    return RequestResourceType._(value, element: element);
   }
 
   /// Appointment
   static final RequestResourceType Appointment = RequestResourceType._(
-    value: 'Appointment',
+    'Appointment',
   );
 
   /// AppointmentResponse
   static final RequestResourceType AppointmentResponse = RequestResourceType._(
-    value: 'AppointmentResponse',
+    'AppointmentResponse',
   );
 
   /// CarePlan
   static final RequestResourceType CarePlan = RequestResourceType._(
-    value: 'CarePlan',
+    'CarePlan',
   );
 
   /// Claim
   static final RequestResourceType Claim = RequestResourceType._(
-    value: 'Claim',
+    'Claim',
   );
 
   /// CommunicationRequest
   static final RequestResourceType CommunicationRequest = RequestResourceType._(
-    value: 'CommunicationRequest',
+    'CommunicationRequest',
   );
 
   /// Contract
   static final RequestResourceType Contract = RequestResourceType._(
-    value: 'Contract',
+    'Contract',
   );
 
   /// DeviceRequest
   static final RequestResourceType DeviceRequest = RequestResourceType._(
-    value: 'DeviceRequest',
+    'DeviceRequest',
   );
 
   /// EnrollmentRequest
   static final RequestResourceType EnrollmentRequest = RequestResourceType._(
-    value: 'EnrollmentRequest',
+    'EnrollmentRequest',
   );
 
   /// ImmunizationRecommendation
   static final RequestResourceType ImmunizationRecommendation =
       RequestResourceType._(
-    value: 'ImmunizationRecommendation',
+    'ImmunizationRecommendation',
   );
 
   /// MedicationRequest
   static final RequestResourceType MedicationRequest = RequestResourceType._(
-    value: 'MedicationRequest',
+    'MedicationRequest',
   );
 
   /// NutritionOrder
   static final RequestResourceType NutritionOrder = RequestResourceType._(
-    value: 'NutritionOrder',
+    'NutritionOrder',
   );
 
   /// ServiceRequest
   static final RequestResourceType ServiceRequest = RequestResourceType._(
-    value: 'ServiceRequest',
+    'ServiceRequest',
   );
 
   /// SupplyRequest
   static final RequestResourceType SupplyRequest = RequestResourceType._(
-    value: 'SupplyRequest',
+    'SupplyRequest',
   );
 
   /// Task
   static final RequestResourceType Task = RequestResourceType._(
-    value: 'Task',
+    'Task',
   );
 
   /// VisionPrescription
   static final RequestResourceType VisionPrescription = RequestResourceType._(
-    value: 'VisionPrescription',
+    'VisionPrescription',
   );
 
   /// For instances where an Element is present but not value
 
-  static final RequestResourceType elementOnly =
-      RequestResourceType._(value: '');
+  static final RequestResourceType elementOnly = RequestResourceType._('');
 
   /// List of all enum-like values
   static final List<RequestResourceType> values = [
@@ -132,13 +131,13 @@ class RequestResourceType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   RequestResourceType clone() => RequestResourceType._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   RequestResourceType withElement(Element? newElement) {
-    return RequestResourceType._(value: value, element: newElement);
+    return RequestResourceType._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -168,7 +167,7 @@ class RequestResourceType extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return RequestResourceType._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

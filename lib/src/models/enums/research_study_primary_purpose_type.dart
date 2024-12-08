@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Codes for the main intent of the study.
 class ResearchStudyPrimaryPurposeType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ResearchStudyPrimaryPurposeType._({
-    super.value,
+  ResearchStudyPrimaryPurposeType._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,61 +26,61 @@ class ResearchStudyPrimaryPurposeType extends PrimitiveType<String> {
         'ResearchStudyPrimaryPurposeType cannot be constructed from JSON.',
       );
     }
-    return ResearchStudyPrimaryPurposeType._(value: value, element: element);
+    return ResearchStudyPrimaryPurposeType._(value, element: element);
   }
 
   /// treatment
   static final ResearchStudyPrimaryPurposeType treatment =
       ResearchStudyPrimaryPurposeType._(
-    value: 'treatment',
+    'treatment',
   );
 
   /// prevention
   static final ResearchStudyPrimaryPurposeType prevention =
       ResearchStudyPrimaryPurposeType._(
-    value: 'prevention',
+    'prevention',
   );
 
   /// diagnostic
   static final ResearchStudyPrimaryPurposeType diagnostic =
       ResearchStudyPrimaryPurposeType._(
-    value: 'diagnostic',
+    'diagnostic',
   );
 
   /// supportive_care
   static final ResearchStudyPrimaryPurposeType supportive_care =
       ResearchStudyPrimaryPurposeType._(
-    value: 'supportive-care',
+    'supportive-care',
   );
 
   /// screening
   static final ResearchStudyPrimaryPurposeType screening =
       ResearchStudyPrimaryPurposeType._(
-    value: 'screening',
+    'screening',
   );
 
   /// health_services_research
   static final ResearchStudyPrimaryPurposeType health_services_research =
       ResearchStudyPrimaryPurposeType._(
-    value: 'health-services-research',
+    'health-services-research',
   );
 
   /// basic_science
   static final ResearchStudyPrimaryPurposeType basic_science =
       ResearchStudyPrimaryPurposeType._(
-    value: 'basic-science',
+    'basic-science',
   );
 
   /// device_feasibility
   static final ResearchStudyPrimaryPurposeType device_feasibility =
       ResearchStudyPrimaryPurposeType._(
-    value: 'device-feasibility',
+    'device-feasibility',
   );
 
   /// For instances where an Element is present but not value
 
   static final ResearchStudyPrimaryPurposeType elementOnly =
-      ResearchStudyPrimaryPurposeType._(value: '');
+      ResearchStudyPrimaryPurposeType._('');
 
   /// List of all enum-like values
   static final List<ResearchStudyPrimaryPurposeType> values = [
@@ -97,13 +97,13 @@ class ResearchStudyPrimaryPurposeType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ResearchStudyPrimaryPurposeType clone() => ResearchStudyPrimaryPurposeType._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ResearchStudyPrimaryPurposeType withElement(Element? newElement) {
-    return ResearchStudyPrimaryPurposeType._(value: value, element: newElement);
+    return ResearchStudyPrimaryPurposeType._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -133,7 +133,7 @@ class ResearchStudyPrimaryPurposeType extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ResearchStudyPrimaryPurposeType._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The level of confidence that this link represents the same actual person, based on NIST Authentication Levels.
 class IdentityAssuranceLevel extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  IdentityAssuranceLevel._({
-    super.value,
+  IdentityAssuranceLevel._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,33 +26,33 @@ class IdentityAssuranceLevel extends PrimitiveType<String> {
         'IdentityAssuranceLevel cannot be constructed from JSON.',
       );
     }
-    return IdentityAssuranceLevel._(value: value, element: element);
+    return IdentityAssuranceLevel._(value, element: element);
   }
 
   /// level1
   static final IdentityAssuranceLevel level1 = IdentityAssuranceLevel._(
-    value: 'level1',
+    'level1',
   );
 
   /// level2
   static final IdentityAssuranceLevel level2 = IdentityAssuranceLevel._(
-    value: 'level2',
+    'level2',
   );
 
   /// level3
   static final IdentityAssuranceLevel level3 = IdentityAssuranceLevel._(
-    value: 'level3',
+    'level3',
   );
 
   /// level4
   static final IdentityAssuranceLevel level4 = IdentityAssuranceLevel._(
-    value: 'level4',
+    'level4',
   );
 
   /// For instances where an Element is present but not value
 
   static final IdentityAssuranceLevel elementOnly =
-      IdentityAssuranceLevel._(value: '');
+      IdentityAssuranceLevel._('');
 
   /// List of all enum-like values
   static final List<IdentityAssuranceLevel> values = [
@@ -65,13 +65,13 @@ class IdentityAssuranceLevel extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   IdentityAssuranceLevel clone() => IdentityAssuranceLevel._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   IdentityAssuranceLevel withElement(Element? newElement) {
-    return IdentityAssuranceLevel._(value: value, element: newElement);
+    return IdentityAssuranceLevel._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -101,7 +101,7 @@ class IdentityAssuranceLevel extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return IdentityAssuranceLevel._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

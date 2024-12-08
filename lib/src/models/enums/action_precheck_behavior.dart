@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Defines selection frequency behavior for an action or group.
 class ActionPrecheckBehavior extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ActionPrecheckBehavior._({
-    super.value,
+  ActionPrecheckBehavior._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,23 +26,23 @@ class ActionPrecheckBehavior extends PrimitiveType<String> {
         'ActionPrecheckBehavior cannot be constructed from JSON.',
       );
     }
-    return ActionPrecheckBehavior._(value: value, element: element);
+    return ActionPrecheckBehavior._(value, element: element);
   }
 
   /// yes
   static final ActionPrecheckBehavior yes = ActionPrecheckBehavior._(
-    value: 'yes',
+    'yes',
   );
 
   /// no
   static final ActionPrecheckBehavior no = ActionPrecheckBehavior._(
-    value: 'no',
+    'no',
   );
 
   /// For instances where an Element is present but not value
 
   static final ActionPrecheckBehavior elementOnly =
-      ActionPrecheckBehavior._(value: '');
+      ActionPrecheckBehavior._('');
 
   /// List of all enum-like values
   static final List<ActionPrecheckBehavior> values = [
@@ -53,13 +53,13 @@ class ActionPrecheckBehavior extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ActionPrecheckBehavior clone() => ActionPrecheckBehavior._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ActionPrecheckBehavior withElement(Element? newElement) {
-    return ActionPrecheckBehavior._(value: value, element: newElement);
+    return ActionPrecheckBehavior._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -89,7 +89,7 @@ class ActionPrecheckBehavior extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ActionPrecheckBehavior._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

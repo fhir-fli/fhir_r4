@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value set defines a set of codes that are used to indicate the profile type of a test system when acting as the destination within a TestScript.
 class TestScriptProfileDestinationType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  TestScriptProfileDestinationType._({
-    super.value,
+  TestScriptProfileDestinationType._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,37 +26,37 @@ class TestScriptProfileDestinationType extends PrimitiveType<String> {
         'TestScriptProfileDestinationType cannot be constructed from JSON.',
       );
     }
-    return TestScriptProfileDestinationType._(value: value, element: element);
+    return TestScriptProfileDestinationType._(value, element: element);
   }
 
   /// FHIR_Server
   static final TestScriptProfileDestinationType FHIR_Server =
       TestScriptProfileDestinationType._(
-    value: 'FHIR-Server',
+    'FHIR-Server',
   );
 
   /// FHIR_SDC_FormManager
   static final TestScriptProfileDestinationType FHIR_SDC_FormManager =
       TestScriptProfileDestinationType._(
-    value: 'FHIR-SDC-FormManager',
+    'FHIR-SDC-FormManager',
   );
 
   /// FHIR_SDC_FormProcessor
   static final TestScriptProfileDestinationType FHIR_SDC_FormProcessor =
       TestScriptProfileDestinationType._(
-    value: 'FHIR-SDC-FormProcessor',
+    'FHIR-SDC-FormProcessor',
   );
 
   /// FHIR_SDC_FormReceiver
   static final TestScriptProfileDestinationType FHIR_SDC_FormReceiver =
       TestScriptProfileDestinationType._(
-    value: 'FHIR-SDC-FormReceiver',
+    'FHIR-SDC-FormReceiver',
   );
 
   /// For instances where an Element is present but not value
 
   static final TestScriptProfileDestinationType elementOnly =
-      TestScriptProfileDestinationType._(value: '');
+      TestScriptProfileDestinationType._('');
 
   /// List of all enum-like values
   static final List<TestScriptProfileDestinationType> values = [
@@ -70,14 +70,13 @@ class TestScriptProfileDestinationType extends PrimitiveType<String> {
   @override
   TestScriptProfileDestinationType clone() =>
       TestScriptProfileDestinationType._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   TestScriptProfileDestinationType withElement(Element? newElement) {
-    return TestScriptProfileDestinationType._(
-        value: value, element: newElement);
+    return TestScriptProfileDestinationType._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -107,7 +106,7 @@ class TestScriptProfileDestinationType extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return TestScriptProfileDestinationType._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

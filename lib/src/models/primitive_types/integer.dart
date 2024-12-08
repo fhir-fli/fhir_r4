@@ -20,7 +20,7 @@ class FhirInteger extends FhirNumber {
     super.element,
     super.id,
     super.extension_,
-  })  {
+  }) {
     if (value == null && element == null) {
       throw ArgumentError('A value or element is required');
     }

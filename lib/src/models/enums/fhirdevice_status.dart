@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The availability status of the device.
 class FHIRDeviceStatus extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  FHIRDeviceStatus._({
-    super.value,
+  FHIRDeviceStatus._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,32 +26,32 @@ class FHIRDeviceStatus extends PrimitiveType<String> {
         'FHIRDeviceStatus cannot be constructed from JSON.',
       );
     }
-    return FHIRDeviceStatus._(value: value, element: element);
+    return FHIRDeviceStatus._(value, element: element);
   }
 
   /// active
   static final FHIRDeviceStatus active = FHIRDeviceStatus._(
-    value: 'active',
+    'active',
   );
 
   /// inactive
   static final FHIRDeviceStatus inactive = FHIRDeviceStatus._(
-    value: 'inactive',
+    'inactive',
   );
 
   /// entered_in_error
   static final FHIRDeviceStatus entered_in_error = FHIRDeviceStatus._(
-    value: 'entered-in-error',
+    'entered-in-error',
   );
 
   /// unknown
   static final FHIRDeviceStatus unknown = FHIRDeviceStatus._(
-    value: 'unknown',
+    'unknown',
   );
 
   /// For instances where an Element is present but not value
 
-  static final FHIRDeviceStatus elementOnly = FHIRDeviceStatus._(value: '');
+  static final FHIRDeviceStatus elementOnly = FHIRDeviceStatus._('');
 
   /// List of all enum-like values
   static final List<FHIRDeviceStatus> values = [
@@ -64,13 +64,13 @@ class FHIRDeviceStatus extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   FHIRDeviceStatus clone() => FHIRDeviceStatus._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   FHIRDeviceStatus withElement(Element? newElement) {
-    return FHIRDeviceStatus._(value: value, element: newElement);
+    return FHIRDeviceStatus._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -100,7 +100,7 @@ class FHIRDeviceStatus extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return FHIRDeviceStatus._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

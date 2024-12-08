@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Codes indicating the degree of authority/intentionality associated with a request.
 class RequestIntent extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  RequestIntent._({
-    super.value,
+  RequestIntent._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,57 +26,57 @@ class RequestIntent extends PrimitiveType<String> {
         'RequestIntent cannot be constructed from JSON.',
       );
     }
-    return RequestIntent._(value: value, element: element);
+    return RequestIntent._(value, element: element);
   }
 
   /// proposal
   static final RequestIntent proposal = RequestIntent._(
-    value: 'proposal',
+    'proposal',
   );
 
   /// plan
   static final RequestIntent plan = RequestIntent._(
-    value: 'plan',
+    'plan',
   );
 
   /// directive
   static final RequestIntent directive = RequestIntent._(
-    value: 'directive',
+    'directive',
   );
 
   /// order
   static final RequestIntent order = RequestIntent._(
-    value: 'order',
+    'order',
   );
 
   /// original_order
   static final RequestIntent original_order = RequestIntent._(
-    value: 'original-order',
+    'original-order',
   );
 
   /// reflex_order
   static final RequestIntent reflex_order = RequestIntent._(
-    value: 'reflex-order',
+    'reflex-order',
   );
 
   /// filler_order
   static final RequestIntent filler_order = RequestIntent._(
-    value: 'filler-order',
+    'filler-order',
   );
 
   /// instance_order
   static final RequestIntent instance_order = RequestIntent._(
-    value: 'instance-order',
+    'instance-order',
   );
 
   /// option
   static final RequestIntent option = RequestIntent._(
-    value: 'option',
+    'option',
   );
 
   /// For instances where an Element is present but not value
 
-  static final RequestIntent elementOnly = RequestIntent._(value: '');
+  static final RequestIntent elementOnly = RequestIntent._('');
 
   /// List of all enum-like values
   static final List<RequestIntent> values = [
@@ -94,13 +94,13 @@ class RequestIntent extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   RequestIntent clone() => RequestIntent._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   RequestIntent withElement(Element? newElement) {
-    return RequestIntent._(value: value, element: newElement);
+    return RequestIntent._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -130,7 +130,7 @@ class RequestIntent extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return RequestIntent._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

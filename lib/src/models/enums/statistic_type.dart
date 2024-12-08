@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The type of a statistic, e.g. relative risk or mean
 class StatisticType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  StatisticType._({
-    super.value,
+  StatisticType._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,122 +26,122 @@ class StatisticType extends PrimitiveType<String> {
         'StatisticType cannot be constructed from JSON.',
       );
     }
-    return StatisticType._(value: value, element: element);
+    return StatisticType._(value, element: element);
   }
 
   /// absolute_MedianDiff
   static final StatisticType absolute_MedianDiff = StatisticType._(
-    value: 'absolute-MedianDiff',
+    'absolute-MedianDiff',
   );
 
   /// C25463
   static final StatisticType C25463 = StatisticType._(
-    value: 'C25463',
+    'C25463',
   );
 
   /// value0000301
   static final StatisticType value0000301 = StatisticType._(
-    value: '0000301',
+    '0000301',
   );
 
   /// predictedRisk
   static final StatisticType predictedRisk = StatisticType._(
-    value: 'predictedRisk',
+    'predictedRisk',
   );
 
   /// descriptive
   static final StatisticType descriptive = StatisticType._(
-    value: 'descriptive',
+    'descriptive',
   );
 
   /// C93150
   static final StatisticType C93150 = StatisticType._(
-    value: 'C93150',
+    'C93150',
   );
 
   /// C16726
   static final StatisticType C16726 = StatisticType._(
-    value: 'C16726',
+    'C16726',
   );
 
   /// rate_ratio
   static final StatisticType rate_ratio = StatisticType._(
-    value: 'rate-ratio',
+    'rate-ratio',
   );
 
   /// C25564
   static final StatisticType C25564 = StatisticType._(
-    value: 'C25564',
+    'C25564',
   );
 
   /// C53319
   static final StatisticType C53319 = StatisticType._(
-    value: 'C53319',
+    'C53319',
   );
 
   /// value0000457
   static final StatisticType value0000457 = StatisticType._(
-    value: '0000457',
+    '0000457',
   );
 
   /// C28007
   static final StatisticType C28007 = StatisticType._(
-    value: 'C28007',
+    'C28007',
   );
 
   /// C25570
   static final StatisticType C25570 = StatisticType._(
-    value: 'C25570',
+    'C25570',
   );
 
   /// C16932
   static final StatisticType C16932 = StatisticType._(
-    value: 'C16932',
+    'C16932',
   );
 
   /// C65172
   static final StatisticType C65172 = StatisticType._(
-    value: 'C65172',
+    'C65172',
   );
 
   /// C17010
   static final StatisticType C17010 = StatisticType._(
-    value: 'C17010',
+    'C17010',
   );
 
   /// C44256
   static final StatisticType C44256 = StatisticType._(
-    value: 'C44256',
+    'C44256',
   );
 
   /// value0000565
   static final StatisticType value0000565 = StatisticType._(
-    value: '0000565',
+    '0000565',
   );
 
   /// C93152
   static final StatisticType C93152 = StatisticType._(
-    value: 'C93152',
+    'C93152',
   );
 
   /// value0000424
   static final StatisticType value0000424 = StatisticType._(
-    value: '0000424',
+    '0000424',
   );
 
   /// C65171
   static final StatisticType C65171 = StatisticType._(
-    value: 'C65171',
+    'C65171',
   );
 
   /// value0000100
   static final StatisticType value0000100 = StatisticType._(
-    value: '0000100',
+    '0000100',
   );
 
   /// For instances where an Element is present but not value
 
-  static final StatisticType elementOnly = StatisticType._(value: '');
+  static final StatisticType elementOnly = StatisticType._('');
 
   /// List of all enum-like values
   static final List<StatisticType> values = [
@@ -172,13 +172,13 @@ class StatisticType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   StatisticType clone() => StatisticType._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   StatisticType withElement(Element? newElement) {
-    return StatisticType._(value: value, element: newElement);
+    return StatisticType._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -208,7 +208,7 @@ class StatisticType extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return StatisticType._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

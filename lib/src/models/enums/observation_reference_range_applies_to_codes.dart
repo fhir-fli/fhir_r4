@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value set defines a set of codes that can be used to indicate the particular target population the reference range applies to.
 class ObservationReferenceRangeAppliesToCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ObservationReferenceRangeAppliesToCodes._({
-    super.value,
+  ObservationReferenceRangeAppliesToCodes._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -27,32 +27,31 @@ class ObservationReferenceRangeAppliesToCodes extends PrimitiveType<String> {
         'ObservationReferenceRangeAppliesToCodes cannot be constructed from JSON.',
       );
     }
-    return ObservationReferenceRangeAppliesToCodes._(
-        value: value, element: element);
+    return ObservationReferenceRangeAppliesToCodes._(value, element: element);
   }
 
   /// value248153007
   static final ObservationReferenceRangeAppliesToCodes value248153007 =
       ObservationReferenceRangeAppliesToCodes._(
-    value: '248153007',
+    '248153007',
   );
 
   /// value248152002
   static final ObservationReferenceRangeAppliesToCodes value248152002 =
       ObservationReferenceRangeAppliesToCodes._(
-    value: '248152002',
+    '248152002',
   );
 
   /// value77386006
   static final ObservationReferenceRangeAppliesToCodes value77386006 =
       ObservationReferenceRangeAppliesToCodes._(
-    value: '77386006',
+    '77386006',
   );
 
   /// For instances where an Element is present but not value
 
   static final ObservationReferenceRangeAppliesToCodes elementOnly =
-      ObservationReferenceRangeAppliesToCodes._(value: '');
+      ObservationReferenceRangeAppliesToCodes._('');
 
   /// List of all enum-like values
   static final List<ObservationReferenceRangeAppliesToCodes> values = [
@@ -65,14 +64,14 @@ class ObservationReferenceRangeAppliesToCodes extends PrimitiveType<String> {
   @override
   ObservationReferenceRangeAppliesToCodes clone() =>
       ObservationReferenceRangeAppliesToCodes._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ObservationReferenceRangeAppliesToCodes withElement(Element? newElement) {
-    return ObservationReferenceRangeAppliesToCodes._(
-        value: value, element: newElement);
+    return ObservationReferenceRangeAppliesToCodes._(value,
+        element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -102,7 +101,7 @@ class ObservationReferenceRangeAppliesToCodes extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ObservationReferenceRangeAppliesToCodes._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

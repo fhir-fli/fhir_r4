@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Types of medicinal product packs
 class MedicinalProductPackageType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  MedicinalProductPackageType._({
-    super.value,
+  MedicinalProductPackageType._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,85 +26,85 @@ class MedicinalProductPackageType extends PrimitiveType<String> {
         'MedicinalProductPackageType cannot be constructed from JSON.',
       );
     }
-    return MedicinalProductPackageType._(value: value, element: element);
+    return MedicinalProductPackageType._(value, element: element);
   }
 
   /// value100000073490
   static final MedicinalProductPackageType value100000073490 =
       MedicinalProductPackageType._(
-    value: '100000073490',
+    '100000073490',
   );
 
   /// value100000073491
   static final MedicinalProductPackageType value100000073491 =
       MedicinalProductPackageType._(
-    value: '100000073491',
+    '100000073491',
   );
 
   /// value100000073492
   static final MedicinalProductPackageType value100000073492 =
       MedicinalProductPackageType._(
-    value: '100000073492',
+    '100000073492',
   );
 
   /// value100000073493
   static final MedicinalProductPackageType value100000073493 =
       MedicinalProductPackageType._(
-    value: '100000073493',
+    '100000073493',
   );
 
   /// value100000073494
   static final MedicinalProductPackageType value100000073494 =
       MedicinalProductPackageType._(
-    value: '100000073494',
+    '100000073494',
   );
 
   /// value100000073495
   static final MedicinalProductPackageType value100000073495 =
       MedicinalProductPackageType._(
-    value: '100000073495',
+    '100000073495',
   );
 
   /// value100000073496
   static final MedicinalProductPackageType value100000073496 =
       MedicinalProductPackageType._(
-    value: '100000073496',
+    '100000073496',
   );
 
   /// value100000073497
   static final MedicinalProductPackageType value100000073497 =
       MedicinalProductPackageType._(
-    value: '100000073497',
+    '100000073497',
   );
 
   /// value100000073498
   static final MedicinalProductPackageType value100000073498 =
       MedicinalProductPackageType._(
-    value: '100000073498',
+    '100000073498',
   );
 
   /// value100000073547
   static final MedicinalProductPackageType value100000073547 =
       MedicinalProductPackageType._(
-    value: '100000073547',
+    '100000073547',
   );
 
   /// value100000073563
   static final MedicinalProductPackageType value100000073563 =
       MedicinalProductPackageType._(
-    value: '100000073563',
+    '100000073563',
   );
 
   /// value100000143555
   static final MedicinalProductPackageType value100000143555 =
       MedicinalProductPackageType._(
-    value: '100000143555',
+    '100000143555',
   );
 
   /// For instances where an Element is present but not value
 
   static final MedicinalProductPackageType elementOnly =
-      MedicinalProductPackageType._(value: '');
+      MedicinalProductPackageType._('');
 
   /// List of all enum-like values
   static final List<MedicinalProductPackageType> values = [
@@ -125,13 +125,13 @@ class MedicinalProductPackageType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   MedicinalProductPackageType clone() => MedicinalProductPackageType._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   MedicinalProductPackageType withElement(Element? newElement) {
-    return MedicinalProductPackageType._(value: value, element: newElement);
+    return MedicinalProductPackageType._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -161,7 +161,7 @@ class MedicinalProductPackageType extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return MedicinalProductPackageType._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

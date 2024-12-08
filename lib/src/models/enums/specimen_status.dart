@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Codes providing the status/availability of a specimen.
 class SpecimenStatus extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  SpecimenStatus._({
-    super.value,
+  SpecimenStatus._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,32 +26,32 @@ class SpecimenStatus extends PrimitiveType<String> {
         'SpecimenStatus cannot be constructed from JSON.',
       );
     }
-    return SpecimenStatus._(value: value, element: element);
+    return SpecimenStatus._(value, element: element);
   }
 
   /// available
   static final SpecimenStatus available = SpecimenStatus._(
-    value: 'available',
+    'available',
   );
 
   /// unavailable
   static final SpecimenStatus unavailable = SpecimenStatus._(
-    value: 'unavailable',
+    'unavailable',
   );
 
   /// unsatisfactory
   static final SpecimenStatus unsatisfactory = SpecimenStatus._(
-    value: 'unsatisfactory',
+    'unsatisfactory',
   );
 
   /// entered_in_error
   static final SpecimenStatus entered_in_error = SpecimenStatus._(
-    value: 'entered-in-error',
+    'entered-in-error',
   );
 
   /// For instances where an Element is present but not value
 
-  static final SpecimenStatus elementOnly = SpecimenStatus._(value: '');
+  static final SpecimenStatus elementOnly = SpecimenStatus._('');
 
   /// List of all enum-like values
   static final List<SpecimenStatus> values = [
@@ -64,13 +64,13 @@ class SpecimenStatus extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   SpecimenStatus clone() => SpecimenStatus._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   SpecimenStatus withElement(Element? newElement) {
-    return SpecimenStatus._(value: value, element: newElement);
+    return SpecimenStatus._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -100,7 +100,7 @@ class SpecimenStatus extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return SpecimenStatus._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

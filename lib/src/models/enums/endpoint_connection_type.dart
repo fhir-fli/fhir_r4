@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This is an example value set defined by the FHIR project, that could be used to represent possible connection type profile values.
 class EndpointConnectionType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  EndpointConnectionType._({
-    super.value,
+  EndpointConnectionType._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,83 +26,83 @@ class EndpointConnectionType extends PrimitiveType<String> {
         'EndpointConnectionType cannot be constructed from JSON.',
       );
     }
-    return EndpointConnectionType._(value: value, element: element);
+    return EndpointConnectionType._(value, element: element);
   }
 
   /// ihe_xcpd
   static final EndpointConnectionType ihe_xcpd = EndpointConnectionType._(
-    value: 'ihe-xcpd',
+    'ihe-xcpd',
   );
 
   /// ihe_xca
   static final EndpointConnectionType ihe_xca = EndpointConnectionType._(
-    value: 'ihe-xca',
+    'ihe-xca',
   );
 
   /// ihe_xdr
   static final EndpointConnectionType ihe_xdr = EndpointConnectionType._(
-    value: 'ihe-xdr',
+    'ihe-xdr',
   );
 
   /// ihe_xds
   static final EndpointConnectionType ihe_xds = EndpointConnectionType._(
-    value: 'ihe-xds',
+    'ihe-xds',
   );
 
   /// ihe_iid
   static final EndpointConnectionType ihe_iid = EndpointConnectionType._(
-    value: 'ihe-iid',
+    'ihe-iid',
   );
 
   /// dicom_wado_rs
   static final EndpointConnectionType dicom_wado_rs = EndpointConnectionType._(
-    value: 'dicom-wado-rs',
+    'dicom-wado-rs',
   );
 
   /// dicom_qido_rs
   static final EndpointConnectionType dicom_qido_rs = EndpointConnectionType._(
-    value: 'dicom-qido-rs',
+    'dicom-qido-rs',
   );
 
   /// dicom_stow_rs
   static final EndpointConnectionType dicom_stow_rs = EndpointConnectionType._(
-    value: 'dicom-stow-rs',
+    'dicom-stow-rs',
   );
 
   /// dicom_wado_uri
   static final EndpointConnectionType dicom_wado_uri = EndpointConnectionType._(
-    value: 'dicom-wado-uri',
+    'dicom-wado-uri',
   );
 
   /// hl7_fhir_rest
   static final EndpointConnectionType hl7_fhir_rest = EndpointConnectionType._(
-    value: 'hl7-fhir-rest',
+    'hl7-fhir-rest',
   );
 
   /// hl7_fhir_msg
   static final EndpointConnectionType hl7_fhir_msg = EndpointConnectionType._(
-    value: 'hl7-fhir-msg',
+    'hl7-fhir-msg',
   );
 
   /// hl7v2_mllp
   static final EndpointConnectionType hl7v2_mllp = EndpointConnectionType._(
-    value: 'hl7v2-mllp',
+    'hl7v2-mllp',
   );
 
   /// secure_email
   static final EndpointConnectionType secure_email = EndpointConnectionType._(
-    value: 'secure-email',
+    'secure-email',
   );
 
   /// direct_project
   static final EndpointConnectionType direct_project = EndpointConnectionType._(
-    value: 'direct-project',
+    'direct-project',
   );
 
   /// For instances where an Element is present but not value
 
   static final EndpointConnectionType elementOnly =
-      EndpointConnectionType._(value: '');
+      EndpointConnectionType._('');
 
   /// List of all enum-like values
   static final List<EndpointConnectionType> values = [
@@ -125,13 +125,13 @@ class EndpointConnectionType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   EndpointConnectionType clone() => EndpointConnectionType._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   EndpointConnectionType withElement(Element? newElement) {
-    return EndpointConnectionType._(value: value, element: newElement);
+    return EndpointConnectionType._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -161,7 +161,7 @@ class EndpointConnectionType extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return EndpointConnectionType._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

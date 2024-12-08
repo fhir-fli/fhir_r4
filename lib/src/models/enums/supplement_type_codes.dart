@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// SupplementType : Codes for nutritional supplements to be provided to the patient. This value set is composed of SNOMED CT (US Extension) Concepts from SCTID 470581016 (Enteral+supplement feeds hierarchy (product)) and is provided as a suggestive example.
 class SupplementTypeCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  SupplementTypeCodes._({
-    super.value,
+  SupplementTypeCodes._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,238 +26,237 @@ class SupplementTypeCodes extends PrimitiveType<String> {
         'SupplementTypeCodes cannot be constructed from JSON.',
       );
     }
-    return SupplementTypeCodes._(value: value, element: element);
+    return SupplementTypeCodes._(value, element: element);
   }
 
   /// value442901000124106
   static final SupplementTypeCodes value442901000124106 = SupplementTypeCodes._(
-    value: '442901000124106',
+    '442901000124106',
   );
 
   /// value443031000124106
   static final SupplementTypeCodes value443031000124106 = SupplementTypeCodes._(
-    value: '443031000124106',
+    '443031000124106',
   );
 
   /// value443051000124104
   static final SupplementTypeCodes value443051000124104 = SupplementTypeCodes._(
-    value: '443051000124104',
+    '443051000124104',
   );
 
   /// value442911000124109
   static final SupplementTypeCodes value442911000124109 = SupplementTypeCodes._(
-    value: '442911000124109',
+    '442911000124109',
   );
 
   /// value443021000124108
   static final SupplementTypeCodes value443021000124108 = SupplementTypeCodes._(
-    value: '443021000124108',
+    '443021000124108',
   );
 
   /// value442971000124100
   static final SupplementTypeCodes value442971000124100 = SupplementTypeCodes._(
-    value: '442971000124100',
+    '442971000124100',
   );
 
   /// value442981000124102
   static final SupplementTypeCodes value442981000124102 = SupplementTypeCodes._(
-    value: '442981000124102',
+    '442981000124102',
   );
 
   /// value442991000124104
   static final SupplementTypeCodes value442991000124104 = SupplementTypeCodes._(
-    value: '442991000124104',
+    '442991000124104',
   );
 
   /// value443011000124100
   static final SupplementTypeCodes value443011000124100 = SupplementTypeCodes._(
-    value: '443011000124100',
+    '443011000124100',
   );
 
   /// value442961000124107
   static final SupplementTypeCodes value442961000124107 = SupplementTypeCodes._(
-    value: '442961000124107',
+    '442961000124107',
   );
 
   /// value442951000124105
   static final SupplementTypeCodes value442951000124105 = SupplementTypeCodes._(
-    value: '442951000124105',
+    '442951000124105',
   );
 
   /// value442941000124108
   static final SupplementTypeCodes value442941000124108 = SupplementTypeCodes._(
-    value: '442941000124108',
+    '442941000124108',
   );
 
   /// value442921000124101
   static final SupplementTypeCodes value442921000124101 = SupplementTypeCodes._(
-    value: '442921000124101',
+    '442921000124101',
   );
 
   /// value442931000124103
   static final SupplementTypeCodes value442931000124103 = SupplementTypeCodes._(
-    value: '442931000124103',
+    '442931000124103',
   );
 
   /// value444331000124106
   static final SupplementTypeCodes value444331000124106 = SupplementTypeCodes._(
-    value: '444331000124106',
+    '444331000124106',
   );
 
   /// value443361000124100
   static final SupplementTypeCodes value443361000124100 = SupplementTypeCodes._(
-    value: '443361000124100',
+    '443361000124100',
   );
 
   /// value443391000124108
   static final SupplementTypeCodes value443391000124108 = SupplementTypeCodes._(
-    value: '443391000124108',
+    '443391000124108',
   );
 
   /// value443401000124105
   static final SupplementTypeCodes value443401000124105 = SupplementTypeCodes._(
-    value: '443401000124105',
+    '443401000124105',
   );
 
   /// value443491000124103
   static final SupplementTypeCodes value443491000124103 = SupplementTypeCodes._(
-    value: '443491000124103',
+    '443491000124103',
   );
 
   /// value443501000124106
   static final SupplementTypeCodes value443501000124106 = SupplementTypeCodes._(
-    value: '443501000124106',
+    '443501000124106',
   );
 
   /// value443421000124100
   static final SupplementTypeCodes value443421000124100 = SupplementTypeCodes._(
-    value: '443421000124100',
+    '443421000124100',
   );
 
   /// value443471000124104
   static final SupplementTypeCodes value443471000124104 = SupplementTypeCodes._(
-    value: '443471000124104',
+    '443471000124104',
   );
 
   /// value444431000124104
   static final SupplementTypeCodes value444431000124104 = SupplementTypeCodes._(
-    value: '444431000124104',
+    '444431000124104',
   );
 
   /// value443451000124109
   static final SupplementTypeCodes value443451000124109 = SupplementTypeCodes._(
-    value: '443451000124109',
+    '443451000124109',
   );
 
   /// value444321000124108
   static final SupplementTypeCodes value444321000124108 = SupplementTypeCodes._(
-    value: '444321000124108',
+    '444321000124108',
   );
 
   /// value441561000124106
   static final SupplementTypeCodes value441561000124106 = SupplementTypeCodes._(
-    value: '441561000124106',
+    '441561000124106',
   );
 
   /// value443461000124106
   static final SupplementTypeCodes value443461000124106 = SupplementTypeCodes._(
-    value: '443461000124106',
+    '443461000124106',
   );
 
   /// value441531000124102
   static final SupplementTypeCodes value441531000124102 = SupplementTypeCodes._(
-    value: '441531000124102',
+    '441531000124102',
   );
 
   /// value443561000124107
   static final SupplementTypeCodes value443561000124107 = SupplementTypeCodes._(
-    value: '443561000124107',
+    '443561000124107',
   );
 
   /// value443481000124101
   static final SupplementTypeCodes value443481000124101 = SupplementTypeCodes._(
-    value: '443481000124101',
+    '443481000124101',
   );
 
   /// value441571000124104
   static final SupplementTypeCodes value441571000124104 = SupplementTypeCodes._(
-    value: '441571000124104',
+    '441571000124104',
   );
 
   /// value441591000124103
   static final SupplementTypeCodes value441591000124103 = SupplementTypeCodes._(
-    value: '441591000124103',
+    '441591000124103',
   );
 
   /// value441601000124106
   static final SupplementTypeCodes value441601000124106 = SupplementTypeCodes._(
-    value: '441601000124106',
+    '441601000124106',
   );
 
   /// value443351000124102
   static final SupplementTypeCodes value443351000124102 = SupplementTypeCodes._(
-    value: '443351000124102',
+    '443351000124102',
   );
 
   /// value443771000124106
   static final SupplementTypeCodes value443771000124106 = SupplementTypeCodes._(
-    value: '443771000124106',
+    '443771000124106',
   );
 
   /// value441671000124100
   static final SupplementTypeCodes value441671000124100 = SupplementTypeCodes._(
-    value: '441671000124100',
+    '441671000124100',
   );
 
   /// value443111000124101
   static final SupplementTypeCodes value443111000124101 = SupplementTypeCodes._(
-    value: '443111000124101',
+    '443111000124101',
   );
 
   /// value443431000124102
   static final SupplementTypeCodes value443431000124102 = SupplementTypeCodes._(
-    value: '443431000124102',
+    '443431000124102',
   );
 
   /// value443411000124108
   static final SupplementTypeCodes value443411000124108 = SupplementTypeCodes._(
-    value: '443411000124108',
+    '443411000124108',
   );
 
   /// value444361000124102
   static final SupplementTypeCodes value444361000124102 = SupplementTypeCodes._(
-    value: '444361000124102',
+    '444361000124102',
   );
 
   /// value444401000124107
   static final SupplementTypeCodes value444401000124107 = SupplementTypeCodes._(
-    value: '444401000124107',
+    '444401000124107',
   );
 
   /// value444381000124107
   static final SupplementTypeCodes value444381000124107 = SupplementTypeCodes._(
-    value: '444381000124107',
+    '444381000124107',
   );
 
   /// value444371000124109
   static final SupplementTypeCodes value444371000124109 = SupplementTypeCodes._(
-    value: '444371000124109',
+    '444371000124109',
   );
 
   /// value443441000124107
   static final SupplementTypeCodes value443441000124107 = SupplementTypeCodes._(
-    value: '443441000124107',
+    '443441000124107',
   );
 
   /// value442651000124102
   static final SupplementTypeCodes value442651000124102 = SupplementTypeCodes._(
-    value: '442651000124102',
+    '442651000124102',
   );
 
   /// For instances where an Element is present but not value
 
-  static final SupplementTypeCodes elementOnly =
-      SupplementTypeCodes._(value: '');
+  static final SupplementTypeCodes elementOnly = SupplementTypeCodes._('');
 
   /// List of all enum-like values
   static final List<SupplementTypeCodes> values = [
@@ -311,13 +310,13 @@ class SupplementTypeCodes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   SupplementTypeCodes clone() => SupplementTypeCodes._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   SupplementTypeCodes withElement(Element? newElement) {
-    return SupplementTypeCodes._(value: value, element: newElement);
+    return SupplementTypeCodes._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -347,7 +346,7 @@ class SupplementTypeCodes extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return SupplementTypeCodes._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This example value set defines a set of codes that can be used to indicate the purpose for which you would contact a contact party.
 class ContactEntityType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ContactEntityType._({
-    super.value,
+  ContactEntityType._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,42 +26,42 @@ class ContactEntityType extends PrimitiveType<String> {
         'ContactEntityType cannot be constructed from JSON.',
       );
     }
-    return ContactEntityType._(value: value, element: element);
+    return ContactEntityType._(value, element: element);
   }
 
   /// BILL
   static final ContactEntityType BILL = ContactEntityType._(
-    value: 'BILL',
+    'BILL',
   );
 
   /// ADMIN
   static final ContactEntityType ADMIN = ContactEntityType._(
-    value: 'ADMIN',
+    'ADMIN',
   );
 
   /// HR
   static final ContactEntityType HR = ContactEntityType._(
-    value: 'HR',
+    'HR',
   );
 
   /// PAYOR
   static final ContactEntityType PAYOR = ContactEntityType._(
-    value: 'PAYOR',
+    'PAYOR',
   );
 
   /// PATINF
   static final ContactEntityType PATINF = ContactEntityType._(
-    value: 'PATINF',
+    'PATINF',
   );
 
   /// PRESS
   static final ContactEntityType PRESS = ContactEntityType._(
-    value: 'PRESS',
+    'PRESS',
   );
 
   /// For instances where an Element is present but not value
 
-  static final ContactEntityType elementOnly = ContactEntityType._(value: '');
+  static final ContactEntityType elementOnly = ContactEntityType._('');
 
   /// List of all enum-like values
   static final List<ContactEntityType> values = [
@@ -76,13 +76,13 @@ class ContactEntityType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ContactEntityType clone() => ContactEntityType._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ContactEntityType withElement(Element? newElement) {
-    return ContactEntityType._(value: value, element: newElement);
+    return ContactEntityType._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -112,7 +112,7 @@ class ContactEntityType extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ContactEntityType._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

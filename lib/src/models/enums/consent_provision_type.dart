@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// How a rule statement is applied, such as adding additional consent or removing consent.
 class ConsentProvisionType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ConsentProvisionType._({
-    super.value,
+  ConsentProvisionType._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,23 +26,22 @@ class ConsentProvisionType extends PrimitiveType<String> {
         'ConsentProvisionType cannot be constructed from JSON.',
       );
     }
-    return ConsentProvisionType._(value: value, element: element);
+    return ConsentProvisionType._(value, element: element);
   }
 
   /// deny
   static final ConsentProvisionType deny = ConsentProvisionType._(
-    value: 'deny',
+    'deny',
   );
 
   /// permit
   static final ConsentProvisionType permit = ConsentProvisionType._(
-    value: 'permit',
+    'permit',
   );
 
   /// For instances where an Element is present but not value
 
-  static final ConsentProvisionType elementOnly =
-      ConsentProvisionType._(value: '');
+  static final ConsentProvisionType elementOnly = ConsentProvisionType._('');
 
   /// List of all enum-like values
   static final List<ConsentProvisionType> values = [
@@ -53,13 +52,13 @@ class ConsentProvisionType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ConsentProvisionType clone() => ConsentProvisionType._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ConsentProvisionType withElement(Element? newElement) {
-    return ConsentProvisionType._(value: value, element: newElement);
+    return ConsentProvisionType._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -89,7 +88,7 @@ class ConsentProvisionType extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ConsentProvisionType._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

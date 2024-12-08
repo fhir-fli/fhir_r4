@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value set contract specific codes for security category.
 class ContractResourceScopeCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ContractResourceScopeCodes._({
-    super.value,
+  ContractResourceScopeCodes._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,18 +26,18 @@ class ContractResourceScopeCodes extends PrimitiveType<String> {
         'ContractResourceScopeCodes cannot be constructed from JSON.',
       );
     }
-    return ContractResourceScopeCodes._(value: value, element: element);
+    return ContractResourceScopeCodes._(value, element: element);
   }
 
   /// policy
   static final ContractResourceScopeCodes policy = ContractResourceScopeCodes._(
-    value: 'policy',
+    'policy',
   );
 
   /// For instances where an Element is present but not value
 
   static final ContractResourceScopeCodes elementOnly =
-      ContractResourceScopeCodes._(value: '');
+      ContractResourceScopeCodes._('');
 
   /// List of all enum-like values
   static final List<ContractResourceScopeCodes> values = [
@@ -47,13 +47,13 @@ class ContractResourceScopeCodes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ContractResourceScopeCodes clone() => ContractResourceScopeCodes._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ContractResourceScopeCodes withElement(Element? newElement) {
-    return ContractResourceScopeCodes._(value: value, element: newElement);
+    return ContractResourceScopeCodes._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -83,7 +83,7 @@ class ContractResourceScopeCodes extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ContractResourceScopeCodes._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

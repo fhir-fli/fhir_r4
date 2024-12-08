@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The outcome of the processing.
 class RemittanceOutcome extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  RemittanceOutcome._({
-    super.value,
+  RemittanceOutcome._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,32 +26,32 @@ class RemittanceOutcome extends PrimitiveType<String> {
         'RemittanceOutcome cannot be constructed from JSON.',
       );
     }
-    return RemittanceOutcome._(value: value, element: element);
+    return RemittanceOutcome._(value, element: element);
   }
 
   /// queued
   static final RemittanceOutcome queued = RemittanceOutcome._(
-    value: 'queued',
+    'queued',
   );
 
   /// complete
   static final RemittanceOutcome complete = RemittanceOutcome._(
-    value: 'complete',
+    'complete',
   );
 
   /// error
   static final RemittanceOutcome error = RemittanceOutcome._(
-    value: 'error',
+    'error',
   );
 
   /// partial
   static final RemittanceOutcome partial = RemittanceOutcome._(
-    value: 'partial',
+    'partial',
   );
 
   /// For instances where an Element is present but not value
 
-  static final RemittanceOutcome elementOnly = RemittanceOutcome._(value: '');
+  static final RemittanceOutcome elementOnly = RemittanceOutcome._('');
 
   /// List of all enum-like values
   static final List<RemittanceOutcome> values = [
@@ -64,13 +64,13 @@ class RemittanceOutcome extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   RemittanceOutcome clone() => RemittanceOutcome._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   RemittanceOutcome withElement(Element? newElement) {
-    return RemittanceOutcome._(value: value, element: newElement);
+    return RemittanceOutcome._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -100,7 +100,7 @@ class RemittanceOutcome extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return RemittanceOutcome._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

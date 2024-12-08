@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Defines expectations around whether an action or action group is required.
 class ActionRequiredBehavior extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ActionRequiredBehavior._({
-    super.value,
+  ActionRequiredBehavior._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,29 +26,29 @@ class ActionRequiredBehavior extends PrimitiveType<String> {
         'ActionRequiredBehavior cannot be constructed from JSON.',
       );
     }
-    return ActionRequiredBehavior._(value: value, element: element);
+    return ActionRequiredBehavior._(value, element: element);
   }
 
   /// must
   static final ActionRequiredBehavior must = ActionRequiredBehavior._(
-    value: 'must',
+    'must',
   );
 
   /// could
   static final ActionRequiredBehavior could = ActionRequiredBehavior._(
-    value: 'could',
+    'could',
   );
 
   /// must_unless_documented
   static final ActionRequiredBehavior must_unless_documented =
       ActionRequiredBehavior._(
-    value: 'must-unless-documented',
+    'must-unless-documented',
   );
 
   /// For instances where an Element is present but not value
 
   static final ActionRequiredBehavior elementOnly =
-      ActionRequiredBehavior._(value: '');
+      ActionRequiredBehavior._('');
 
   /// List of all enum-like values
   static final List<ActionRequiredBehavior> values = [
@@ -60,13 +60,13 @@ class ActionRequiredBehavior extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ActionRequiredBehavior clone() => ActionRequiredBehavior._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ActionRequiredBehavior withElement(Element? newElement) {
-    return ActionRequiredBehavior._(value: value, element: newElement);
+    return ActionRequiredBehavior._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -96,7 +96,7 @@ class ActionRequiredBehavior extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ActionRequiredBehavior._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

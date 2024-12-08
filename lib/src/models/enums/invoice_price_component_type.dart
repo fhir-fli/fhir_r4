@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Codes indicating the kind of the price component.
 class InvoicePriceComponentType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  InvoicePriceComponentType._({
-    super.value,
+  InvoicePriceComponentType._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,46 +26,46 @@ class InvoicePriceComponentType extends PrimitiveType<String> {
         'InvoicePriceComponentType cannot be constructed from JSON.',
       );
     }
-    return InvoicePriceComponentType._(value: value, element: element);
+    return InvoicePriceComponentType._(value, element: element);
   }
 
   /// base
   static final InvoicePriceComponentType base = InvoicePriceComponentType._(
-    value: 'base',
+    'base',
   );
 
   /// surcharge
   static final InvoicePriceComponentType surcharge =
       InvoicePriceComponentType._(
-    value: 'surcharge',
+    'surcharge',
   );
 
   /// deduction
   static final InvoicePriceComponentType deduction =
       InvoicePriceComponentType._(
-    value: 'deduction',
+    'deduction',
   );
 
   /// discount
   static final InvoicePriceComponentType discount = InvoicePriceComponentType._(
-    value: 'discount',
+    'discount',
   );
 
   /// tax
   static final InvoicePriceComponentType tax = InvoicePriceComponentType._(
-    value: 'tax',
+    'tax',
   );
 
   /// informational
   static final InvoicePriceComponentType informational =
       InvoicePriceComponentType._(
-    value: 'informational',
+    'informational',
   );
 
   /// For instances where an Element is present but not value
 
   static final InvoicePriceComponentType elementOnly =
-      InvoicePriceComponentType._(value: '');
+      InvoicePriceComponentType._('');
 
   /// List of all enum-like values
   static final List<InvoicePriceComponentType> values = [
@@ -80,13 +80,13 @@ class InvoicePriceComponentType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   InvoicePriceComponentType clone() => InvoicePriceComponentType._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   InvoicePriceComponentType withElement(Element? newElement) {
-    return InvoicePriceComponentType._(value: value, element: newElement);
+    return InvoicePriceComponentType._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -116,7 +116,7 @@ class InvoicePriceComponentType extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return InvoicePriceComponentType._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

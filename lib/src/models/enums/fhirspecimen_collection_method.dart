@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This example value set defines a set of codes that can be used to indicate the method by which a specimen was collected.
 class FHIRSpecimenCollectionMethod extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  FHIRSpecimenCollectionMethod._({
-    super.value,
+  FHIRSpecimenCollectionMethod._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,73 +26,73 @@ class FHIRSpecimenCollectionMethod extends PrimitiveType<String> {
         'FHIRSpecimenCollectionMethod cannot be constructed from JSON.',
       );
     }
-    return FHIRSpecimenCollectionMethod._(value: value, element: element);
+    return FHIRSpecimenCollectionMethod._(value, element: element);
   }
 
   /// value129316008
   static final FHIRSpecimenCollectionMethod value129316008 =
       FHIRSpecimenCollectionMethod._(
-    value: '129316008',
+    '129316008',
   );
 
   /// value129314006
   static final FHIRSpecimenCollectionMethod value129314006 =
       FHIRSpecimenCollectionMethod._(
-    value: '129314006',
+    '129314006',
   );
 
   /// value129300006
   static final FHIRSpecimenCollectionMethod value129300006 =
       FHIRSpecimenCollectionMethod._(
-    value: '129300006',
+    '129300006',
   );
 
   /// value129304002
   static final FHIRSpecimenCollectionMethod value129304002 =
       FHIRSpecimenCollectionMethod._(
-    value: '129304002',
+    '129304002',
   );
 
   /// value129323009
   static final FHIRSpecimenCollectionMethod value129323009 =
       FHIRSpecimenCollectionMethod._(
-    value: '129323009',
+    '129323009',
   );
 
   /// value73416001
   static final FHIRSpecimenCollectionMethod value73416001 =
       FHIRSpecimenCollectionMethod._(
-    value: '73416001',
+    '73416001',
   );
 
   /// value225113003
   static final FHIRSpecimenCollectionMethod value225113003 =
       FHIRSpecimenCollectionMethod._(
-    value: '225113003',
+    '225113003',
   );
 
   /// value70777001
   static final FHIRSpecimenCollectionMethod value70777001 =
       FHIRSpecimenCollectionMethod._(
-    value: '70777001',
+    '70777001',
   );
 
   /// value386089008
   static final FHIRSpecimenCollectionMethod value386089008 =
       FHIRSpecimenCollectionMethod._(
-    value: '386089008',
+    '386089008',
   );
 
   /// value278450005
   static final FHIRSpecimenCollectionMethod value278450005 =
       FHIRSpecimenCollectionMethod._(
-    value: '278450005',
+    '278450005',
   );
 
   /// For instances where an Element is present but not value
 
   static final FHIRSpecimenCollectionMethod elementOnly =
-      FHIRSpecimenCollectionMethod._(value: '');
+      FHIRSpecimenCollectionMethod._('');
 
   /// List of all enum-like values
   static final List<FHIRSpecimenCollectionMethod> values = [
@@ -111,13 +111,13 @@ class FHIRSpecimenCollectionMethod extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   FHIRSpecimenCollectionMethod clone() => FHIRSpecimenCollectionMethod._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   FHIRSpecimenCollectionMethod withElement(Element? newElement) {
-    return FHIRSpecimenCollectionMethod._(value: value, element: newElement);
+    return FHIRSpecimenCollectionMethod._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -147,7 +147,7 @@ class FHIRSpecimenCollectionMethod extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return FHIRSpecimenCollectionMethod._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

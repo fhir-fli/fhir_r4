@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Indicator for type of action performed during the event that generated the event.
 class AuditEventAction extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  AuditEventAction._({
-    super.value,
+  AuditEventAction._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,37 +26,37 @@ class AuditEventAction extends PrimitiveType<String> {
         'AuditEventAction cannot be constructed from JSON.',
       );
     }
-    return AuditEventAction._(value: value, element: element);
+    return AuditEventAction._(value, element: element);
   }
 
   /// C
   static final AuditEventAction C = AuditEventAction._(
-    value: 'C',
+    'C',
   );
 
   /// R
   static final AuditEventAction R = AuditEventAction._(
-    value: 'R',
+    'R',
   );
 
   /// U
   static final AuditEventAction U = AuditEventAction._(
-    value: 'U',
+    'U',
   );
 
   /// D
   static final AuditEventAction D = AuditEventAction._(
-    value: 'D',
+    'D',
   );
 
   /// E
   static final AuditEventAction E = AuditEventAction._(
-    value: 'E',
+    'E',
   );
 
   /// For instances where an Element is present but not value
 
-  static final AuditEventAction elementOnly = AuditEventAction._(value: '');
+  static final AuditEventAction elementOnly = AuditEventAction._('');
 
   /// List of all enum-like values
   static final List<AuditEventAction> values = [
@@ -70,13 +70,13 @@ class AuditEventAction extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   AuditEventAction clone() => AuditEventAction._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   AuditEventAction withElement(Element? newElement) {
-    return AuditEventAction._(value: value, element: newElement);
+    return AuditEventAction._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -106,7 +106,7 @@ class AuditEventAction extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return AuditEventAction._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

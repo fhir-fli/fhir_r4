@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Operations supported by REST at the system level.
 class SystemRestfulInteraction extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  SystemRestfulInteraction._({
-    super.value,
+  SystemRestfulInteraction._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,105 +26,105 @@ class SystemRestfulInteraction extends PrimitiveType<String> {
         'SystemRestfulInteraction cannot be constructed from JSON.',
       );
     }
-    return SystemRestfulInteraction._(value: value, element: element);
+    return SystemRestfulInteraction._(value, element: element);
   }
 
   /// read
   static final SystemRestfulInteraction read = SystemRestfulInteraction._(
-    value: 'read',
+    'read',
   );
 
   /// vread
   static final SystemRestfulInteraction vread = SystemRestfulInteraction._(
-    value: 'vread',
+    'vread',
   );
 
   /// update
   static final SystemRestfulInteraction update = SystemRestfulInteraction._(
-    value: 'update',
+    'update',
   );
 
   /// patch
   static final SystemRestfulInteraction patch = SystemRestfulInteraction._(
-    value: 'patch',
+    'patch',
   );
 
   /// delete
   static final SystemRestfulInteraction delete = SystemRestfulInteraction._(
-    value: 'delete',
+    'delete',
   );
 
   /// history
   static final SystemRestfulInteraction history = SystemRestfulInteraction._(
-    value: 'history',
+    'history',
   );
 
   /// history_instance
   static final SystemRestfulInteraction history_instance =
       SystemRestfulInteraction._(
-    value: 'history-instance',
+    'history-instance',
   );
 
   /// history_type
   static final SystemRestfulInteraction history_type =
       SystemRestfulInteraction._(
-    value: 'history-type',
+    'history-type',
   );
 
   /// history_system
   static final SystemRestfulInteraction history_system =
       SystemRestfulInteraction._(
-    value: 'history-system',
+    'history-system',
   );
 
   /// create
   static final SystemRestfulInteraction create = SystemRestfulInteraction._(
-    value: 'create',
+    'create',
   );
 
   /// search
   static final SystemRestfulInteraction search = SystemRestfulInteraction._(
-    value: 'search',
+    'search',
   );
 
   /// search_type
   static final SystemRestfulInteraction search_type =
       SystemRestfulInteraction._(
-    value: 'search-type',
+    'search-type',
   );
 
   /// search_system
   static final SystemRestfulInteraction search_system =
       SystemRestfulInteraction._(
-    value: 'search-system',
+    'search-system',
   );
 
   /// capabilities
   static final SystemRestfulInteraction capabilities =
       SystemRestfulInteraction._(
-    value: 'capabilities',
+    'capabilities',
   );
 
   /// transaction
   static final SystemRestfulInteraction transaction =
       SystemRestfulInteraction._(
-    value: 'transaction',
+    'transaction',
   );
 
   /// batch
   static final SystemRestfulInteraction batch = SystemRestfulInteraction._(
-    value: 'batch',
+    'batch',
   );
 
   /// operation
   static final SystemRestfulInteraction operation = SystemRestfulInteraction._(
-    value: 'operation',
+    'operation',
   );
 
   /// For instances where an Element is present but not value
 
   static final SystemRestfulInteraction elementOnly =
-      SystemRestfulInteraction._(value: '');
+      SystemRestfulInteraction._('');
 
   /// List of all enum-like values
   static final List<SystemRestfulInteraction> values = [
@@ -150,13 +150,13 @@ class SystemRestfulInteraction extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   SystemRestfulInteraction clone() => SystemRestfulInteraction._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   SystemRestfulInteraction withElement(Element? newElement) {
-    return SystemRestfulInteraction._(value: value, element: newElement);
+    return SystemRestfulInteraction._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -186,7 +186,7 @@ class SystemRestfulInteraction extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return SystemRestfulInteraction._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

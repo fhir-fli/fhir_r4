@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// TextureModifier: Codes for food consistency types or texture modifications to apply to foods. This value set is composed of SNOMED CT (US Extension and Core) Concepts from SCTID 229961002 Food consistency types (substance) hierarchy and is provided as a suggestive example.
 class TextureModifierCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  TextureModifierCodes._({
-    super.value,
+  TextureModifierCodes._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,89 +26,88 @@ class TextureModifierCodes extends PrimitiveType<String> {
         'TextureModifierCodes cannot be constructed from JSON.',
       );
     }
-    return TextureModifierCodes._(value: value, element: element);
+    return TextureModifierCodes._(value, element: element);
   }
 
   /// value228053002
   static final TextureModifierCodes value228053002 = TextureModifierCodes._(
-    value: '228053002',
+    '228053002',
   );
 
   /// value439091000124107
   static final TextureModifierCodes value439091000124107 =
       TextureModifierCodes._(
-    value: '439091000124107',
+    '439091000124107',
   );
 
   /// value228049004
   static final TextureModifierCodes value228049004 = TextureModifierCodes._(
-    value: '228049004',
+    '228049004',
   );
 
   /// value441881000124103
   static final TextureModifierCodes value441881000124103 =
       TextureModifierCodes._(
-    value: '441881000124103',
+    '441881000124103',
   );
 
   /// value441761000124103
   static final TextureModifierCodes value441761000124103 =
       TextureModifierCodes._(
-    value: '441761000124103',
+    '441761000124103',
   );
 
   /// value441751000124100
   static final TextureModifierCodes value441751000124100 =
       TextureModifierCodes._(
-    value: '441751000124100',
+    '441751000124100',
   );
 
   /// value228059003
   static final TextureModifierCodes value228059003 = TextureModifierCodes._(
-    value: '228059003',
+    '228059003',
   );
 
   /// value441791000124106
   static final TextureModifierCodes value441791000124106 =
       TextureModifierCodes._(
-    value: '441791000124106',
+    '441791000124106',
   );
 
   /// value228055009
   static final TextureModifierCodes value228055009 = TextureModifierCodes._(
-    value: '228055009',
+    '228055009',
   );
 
   /// value228056005
   static final TextureModifierCodes value228056005 = TextureModifierCodes._(
-    value: '228056005',
+    '228056005',
   );
 
   /// value441771000124105
   static final TextureModifierCodes value441771000124105 =
       TextureModifierCodes._(
-    value: '441771000124105',
+    '441771000124105',
   );
 
   /// value228057001
   static final TextureModifierCodes value228057001 = TextureModifierCodes._(
-    value: '228057001',
+    '228057001',
   );
 
   /// value228058006
   static final TextureModifierCodes value228058006 = TextureModifierCodes._(
-    value: '228058006',
+    '228058006',
   );
 
   /// value228060008
   static final TextureModifierCodes value228060008 = TextureModifierCodes._(
-    value: '228060008',
+    '228060008',
   );
 
   /// For instances where an Element is present but not value
 
-  static final TextureModifierCodes elementOnly =
-      TextureModifierCodes._(value: '');
+  static final TextureModifierCodes elementOnly = TextureModifierCodes._('');
 
   /// List of all enum-like values
   static final List<TextureModifierCodes> values = [
@@ -131,13 +130,13 @@ class TextureModifierCodes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   TextureModifierCodes clone() => TextureModifierCodes._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   TextureModifierCodes withElement(Element? newElement) {
-    return TextureModifierCodes._(value: value, element: newElement);
+    return TextureModifierCodes._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -167,7 +166,7 @@ class TextureModifierCodes extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return TextureModifierCodes._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

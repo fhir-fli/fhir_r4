@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Cited Artifact Classification Type
 class CitedArtifactClassificationType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  CitedArtifactClassificationType._({
-    super.value,
+  CitedArtifactClassificationType._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,79 +26,79 @@ class CitedArtifactClassificationType extends PrimitiveType<String> {
         'CitedArtifactClassificationType cannot be constructed from JSON.',
       );
     }
-    return CitedArtifactClassificationType._(value: value, element: element);
+    return CitedArtifactClassificationType._(value, element: element);
   }
 
   /// publication_type
   static final CitedArtifactClassificationType publication_type =
       CitedArtifactClassificationType._(
-    value: 'publication-type',
+    'publication-type',
   );
 
   /// mesh_heading
   static final CitedArtifactClassificationType mesh_heading =
       CitedArtifactClassificationType._(
-    value: 'mesh-heading',
+    'mesh-heading',
   );
 
   /// supplemental_mesh_protocol
   static final CitedArtifactClassificationType supplemental_mesh_protocol =
       CitedArtifactClassificationType._(
-    value: 'supplemental-mesh-protocol',
+    'supplemental-mesh-protocol',
   );
 
   /// supplemental_mesh_disease
   static final CitedArtifactClassificationType supplemental_mesh_disease =
       CitedArtifactClassificationType._(
-    value: 'supplemental-mesh-disease',
+    'supplemental-mesh-disease',
   );
 
   /// supplemental_mesh_organism
   static final CitedArtifactClassificationType supplemental_mesh_organism =
       CitedArtifactClassificationType._(
-    value: 'supplemental-mesh-organism',
+    'supplemental-mesh-organism',
   );
 
   /// keyword
   static final CitedArtifactClassificationType keyword =
       CitedArtifactClassificationType._(
-    value: 'keyword',
+    'keyword',
   );
 
   /// citation_subset
   static final CitedArtifactClassificationType citation_subset =
       CitedArtifactClassificationType._(
-    value: 'citation-subset',
+    'citation-subset',
   );
 
   /// chemical
   static final CitedArtifactClassificationType chemical =
       CitedArtifactClassificationType._(
-    value: 'chemical',
+    'chemical',
   );
 
   /// publishing_model
   static final CitedArtifactClassificationType publishing_model =
       CitedArtifactClassificationType._(
-    value: 'publishing-model',
+    'publishing-model',
   );
 
   /// knowledge_artifact_type
   static final CitedArtifactClassificationType knowledge_artifact_type =
       CitedArtifactClassificationType._(
-    value: 'knowledge-artifact-type',
+    'knowledge-artifact-type',
   );
 
   /// coverage
   static final CitedArtifactClassificationType coverage =
       CitedArtifactClassificationType._(
-    value: 'coverage',
+    'coverage',
   );
 
   /// For instances where an Element is present but not value
 
   static final CitedArtifactClassificationType elementOnly =
-      CitedArtifactClassificationType._(value: '');
+      CitedArtifactClassificationType._('');
 
   /// List of all enum-like values
   static final List<CitedArtifactClassificationType> values = [
@@ -118,13 +118,13 @@ class CitedArtifactClassificationType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   CitedArtifactClassificationType clone() => CitedArtifactClassificationType._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   CitedArtifactClassificationType withElement(Element? newElement) {
-    return CitedArtifactClassificationType._(value: value, element: newElement);
+    return CitedArtifactClassificationType._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -154,7 +154,7 @@ class CitedArtifactClassificationType extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return CitedArtifactClassificationType._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Mode for this instance of data.
 class StructureMapInputMode extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  StructureMapInputMode._({
-    super.value,
+  StructureMapInputMode._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,23 +26,22 @@ class StructureMapInputMode extends PrimitiveType<String> {
         'StructureMapInputMode cannot be constructed from JSON.',
       );
     }
-    return StructureMapInputMode._(value: value, element: element);
+    return StructureMapInputMode._(value, element: element);
   }
 
   /// source
   static final StructureMapInputMode source = StructureMapInputMode._(
-    value: 'source',
+    'source',
   );
 
   /// target
   static final StructureMapInputMode target = StructureMapInputMode._(
-    value: 'target',
+    'target',
   );
 
   /// For instances where an Element is present but not value
 
-  static final StructureMapInputMode elementOnly =
-      StructureMapInputMode._(value: '');
+  static final StructureMapInputMode elementOnly = StructureMapInputMode._('');
 
   /// List of all enum-like values
   static final List<StructureMapInputMode> values = [
@@ -53,13 +52,13 @@ class StructureMapInputMode extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   StructureMapInputMode clone() => StructureMapInputMode._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   StructureMapInputMode withElement(Element? newElement) {
-    return StructureMapInputMode._(value: value, element: newElement);
+    return StructureMapInputMode._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -89,7 +88,7 @@ class StructureMapInputMode extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return StructureMapInputMode._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

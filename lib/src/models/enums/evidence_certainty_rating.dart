@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The assessment of quality, confidence, or certainty.
 class EvidenceCertaintyRating extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  EvidenceCertaintyRating._({
-    super.value,
+  EvidenceCertaintyRating._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,96 +26,96 @@ class EvidenceCertaintyRating extends PrimitiveType<String> {
         'EvidenceCertaintyRating cannot be constructed from JSON.',
       );
     }
-    return EvidenceCertaintyRating._(value: value, element: element);
+    return EvidenceCertaintyRating._(value, element: element);
   }
 
   /// high
   static final EvidenceCertaintyRating high = EvidenceCertaintyRating._(
-    value: 'high',
+    'high',
   );
 
   /// moderate
   static final EvidenceCertaintyRating moderate = EvidenceCertaintyRating._(
-    value: 'moderate',
+    'moderate',
   );
 
   /// low
   static final EvidenceCertaintyRating low = EvidenceCertaintyRating._(
-    value: 'low',
+    'low',
   );
 
   /// very_low
   static final EvidenceCertaintyRating very_low = EvidenceCertaintyRating._(
-    value: 'very-low',
+    'very-low',
   );
 
   /// no_concern
   static final EvidenceCertaintyRating no_concern = EvidenceCertaintyRating._(
-    value: 'no-concern',
+    'no-concern',
   );
 
   /// serious_concern
   static final EvidenceCertaintyRating serious_concern =
       EvidenceCertaintyRating._(
-    value: 'serious-concern',
+    'serious-concern',
   );
 
   /// very_serious_concern
   static final EvidenceCertaintyRating very_serious_concern =
       EvidenceCertaintyRating._(
-    value: 'very-serious-concern',
+    'very-serious-concern',
   );
 
   /// extremely_serious_concern
   static final EvidenceCertaintyRating extremely_serious_concern =
       EvidenceCertaintyRating._(
-    value: 'extremely-serious-concern',
+    'extremely-serious-concern',
   );
 
   /// present
   static final EvidenceCertaintyRating present = EvidenceCertaintyRating._(
-    value: 'present',
+    'present',
   );
 
   /// absent
   static final EvidenceCertaintyRating absent = EvidenceCertaintyRating._(
-    value: 'absent',
+    'absent',
   );
 
   /// no_change
   static final EvidenceCertaintyRating no_change = EvidenceCertaintyRating._(
-    value: 'no-change',
+    'no-change',
   );
 
   /// downcode1
   static final EvidenceCertaintyRating downcode1 = EvidenceCertaintyRating._(
-    value: 'downcode1',
+    'downcode1',
   );
 
   /// downcode2
   static final EvidenceCertaintyRating downcode2 = EvidenceCertaintyRating._(
-    value: 'downcode2',
+    'downcode2',
   );
 
   /// downcode3
   static final EvidenceCertaintyRating downcode3 = EvidenceCertaintyRating._(
-    value: 'downcode3',
+    'downcode3',
   );
 
   /// upcode1
   static final EvidenceCertaintyRating upcode1 = EvidenceCertaintyRating._(
-    value: 'upcode1',
+    'upcode1',
   );
 
   /// upcode2
   static final EvidenceCertaintyRating upcode2 = EvidenceCertaintyRating._(
-    value: 'upcode2',
+    'upcode2',
   );
 
   /// For instances where an Element is present but not value
 
   static final EvidenceCertaintyRating elementOnly =
-      EvidenceCertaintyRating._(value: '');
+      EvidenceCertaintyRating._('');
 
   /// List of all enum-like values
   static final List<EvidenceCertaintyRating> values = [
@@ -140,13 +140,13 @@ class EvidenceCertaintyRating extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   EvidenceCertaintyRating clone() => EvidenceCertaintyRating._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   EvidenceCertaintyRating withElement(Element? newElement) {
-    return EvidenceCertaintyRating._(value: value, element: newElement);
+    return EvidenceCertaintyRating._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -176,7 +176,7 @@ class EvidenceCertaintyRating extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return EvidenceCertaintyRating._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

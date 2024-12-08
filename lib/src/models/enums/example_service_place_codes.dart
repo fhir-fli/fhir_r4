@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value set includes a smattering of Service Place codes.
 class ExampleServicePlaceCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ExampleServicePlaceCodes._({
-    super.value,
+  ExampleServicePlaceCodes._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,98 +26,98 @@ class ExampleServicePlaceCodes extends PrimitiveType<String> {
         'ExampleServicePlaceCodes cannot be constructed from JSON.',
       );
     }
-    return ExampleServicePlaceCodes._(value: value, element: element);
+    return ExampleServicePlaceCodes._(value, element: element);
   }
 
   /// value01
   static final ExampleServicePlaceCodes value01 = ExampleServicePlaceCodes._(
-    value: '01',
+    '01',
   );
 
   /// value03
   static final ExampleServicePlaceCodes value03 = ExampleServicePlaceCodes._(
-    value: '03',
+    '03',
   );
 
   /// value04
   static final ExampleServicePlaceCodes value04 = ExampleServicePlaceCodes._(
-    value: '04',
+    '04',
   );
 
   /// value05
   static final ExampleServicePlaceCodes value05 = ExampleServicePlaceCodes._(
-    value: '05',
+    '05',
   );
 
   /// value06
   static final ExampleServicePlaceCodes value06 = ExampleServicePlaceCodes._(
-    value: '06',
+    '06',
   );
 
   /// value07
   static final ExampleServicePlaceCodes value07 = ExampleServicePlaceCodes._(
-    value: '07',
+    '07',
   );
 
   /// value08
   static final ExampleServicePlaceCodes value08 = ExampleServicePlaceCodes._(
-    value: '08',
+    '08',
   );
 
   /// value09
   static final ExampleServicePlaceCodes value09 = ExampleServicePlaceCodes._(
-    value: '09',
+    '09',
   );
 
   /// value11
   static final ExampleServicePlaceCodes value11 = ExampleServicePlaceCodes._(
-    value: '11',
+    '11',
   );
 
   /// value12
   static final ExampleServicePlaceCodes value12 = ExampleServicePlaceCodes._(
-    value: '12',
+    '12',
   );
 
   /// value13
   static final ExampleServicePlaceCodes value13 = ExampleServicePlaceCodes._(
-    value: '13',
+    '13',
   );
 
   /// value14
   static final ExampleServicePlaceCodes value14 = ExampleServicePlaceCodes._(
-    value: '14',
+    '14',
   );
 
   /// value15
   static final ExampleServicePlaceCodes value15 = ExampleServicePlaceCodes._(
-    value: '15',
+    '15',
   );
 
   /// value19
   static final ExampleServicePlaceCodes value19 = ExampleServicePlaceCodes._(
-    value: '19',
+    '19',
   );
 
   /// value20
   static final ExampleServicePlaceCodes value20 = ExampleServicePlaceCodes._(
-    value: '20',
+    '20',
   );
 
   /// value21
   static final ExampleServicePlaceCodes value21 = ExampleServicePlaceCodes._(
-    value: '21',
+    '21',
   );
 
   /// value41
   static final ExampleServicePlaceCodes value41 = ExampleServicePlaceCodes._(
-    value: '41',
+    '41',
   );
 
   /// For instances where an Element is present but not value
 
   static final ExampleServicePlaceCodes elementOnly =
-      ExampleServicePlaceCodes._(value: '');
+      ExampleServicePlaceCodes._('');
 
   /// List of all enum-like values
   static final List<ExampleServicePlaceCodes> values = [
@@ -143,13 +143,13 @@ class ExampleServicePlaceCodes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ExampleServicePlaceCodes clone() => ExampleServicePlaceCodes._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ExampleServicePlaceCodes withElement(Element? newElement) {
-    return ExampleServicePlaceCodes._(value: value, element: newElement);
+    return ExampleServicePlaceCodes._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -179,7 +179,7 @@ class ExampleServicePlaceCodes extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ExampleServicePlaceCodes._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

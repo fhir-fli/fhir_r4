@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The quality standard, established benchmark, to which a substance complies.
 class SubstanceGrade extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  SubstanceGrade._({
-    super.value,
+  SubstanceGrade._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,37 +26,37 @@ class SubstanceGrade extends PrimitiveType<String> {
         'SubstanceGrade cannot be constructed from JSON.',
       );
     }
-    return SubstanceGrade._(value: value, element: element);
+    return SubstanceGrade._(value, element: element);
   }
 
   /// USP_NF
   static final SubstanceGrade USP_NF = SubstanceGrade._(
-    value: 'USP-NF',
+    'USP-NF',
   );
 
   /// Ph_Eur
   static final SubstanceGrade Ph_Eur = SubstanceGrade._(
-    value: 'Ph.Eur',
+    'Ph.Eur',
   );
 
   /// JP
   static final SubstanceGrade JP = SubstanceGrade._(
-    value: 'JP',
+    'JP',
   );
 
   /// BP
   static final SubstanceGrade BP = SubstanceGrade._(
-    value: 'BP',
+    'BP',
   );
 
   /// CompanyStandard
   static final SubstanceGrade CompanyStandard = SubstanceGrade._(
-    value: 'CompanyStandard',
+    'CompanyStandard',
   );
 
   /// For instances where an Element is present but not value
 
-  static final SubstanceGrade elementOnly = SubstanceGrade._(value: '');
+  static final SubstanceGrade elementOnly = SubstanceGrade._('');
 
   /// List of all enum-like values
   static final List<SubstanceGrade> values = [
@@ -70,13 +70,13 @@ class SubstanceGrade extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   SubstanceGrade clone() => SubstanceGrade._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   SubstanceGrade withElement(Element? newElement) {
-    return SubstanceGrade._(value: value, element: newElement);
+    return SubstanceGrade._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -106,7 +106,7 @@ class SubstanceGrade extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return SubstanceGrade._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

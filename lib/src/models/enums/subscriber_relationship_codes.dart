@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value set includes codes for the relationship between the Subscriber and the Beneficiary (insured/covered party/patient).
 class SubscriberRelationshipCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  SubscriberRelationshipCodes._({
-    super.value,
+  SubscriberRelationshipCodes._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,54 +26,54 @@ class SubscriberRelationshipCodes extends PrimitiveType<String> {
         'SubscriberRelationshipCodes cannot be constructed from JSON.',
       );
     }
-    return SubscriberRelationshipCodes._(value: value, element: element);
+    return SubscriberRelationshipCodes._(value, element: element);
   }
 
   /// child
   static final SubscriberRelationshipCodes child =
       SubscriberRelationshipCodes._(
-    value: 'child',
+    'child',
   );
 
   /// parent
   static final SubscriberRelationshipCodes parent =
       SubscriberRelationshipCodes._(
-    value: 'parent',
+    'parent',
   );
 
   /// spouse
   static final SubscriberRelationshipCodes spouse =
       SubscriberRelationshipCodes._(
-    value: 'spouse',
+    'spouse',
   );
 
   /// common
   static final SubscriberRelationshipCodes common =
       SubscriberRelationshipCodes._(
-    value: 'common',
+    'common',
   );
 
   /// other
   static final SubscriberRelationshipCodes other =
       SubscriberRelationshipCodes._(
-    value: 'other',
+    'other',
   );
 
   /// self
   static final SubscriberRelationshipCodes self = SubscriberRelationshipCodes._(
-    value: 'self',
+    'self',
   );
 
   /// injured
   static final SubscriberRelationshipCodes injured =
       SubscriberRelationshipCodes._(
-    value: 'injured',
+    'injured',
   );
 
   /// For instances where an Element is present but not value
 
   static final SubscriberRelationshipCodes elementOnly =
-      SubscriberRelationshipCodes._(value: '');
+      SubscriberRelationshipCodes._('');
 
   /// List of all enum-like values
   static final List<SubscriberRelationshipCodes> values = [
@@ -89,13 +89,13 @@ class SubscriberRelationshipCodes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   SubscriberRelationshipCodes clone() => SubscriberRelationshipCodes._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   SubscriberRelationshipCodes withElement(Element? newElement) {
-    return SubscriberRelationshipCodes._(value: value, element: newElement);
+    return SubscriberRelationshipCodes._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -125,7 +125,7 @@ class SubscriberRelationshipCodes extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return SubscriberRelationshipCodes._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

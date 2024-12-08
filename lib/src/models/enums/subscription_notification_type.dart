@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The type of notification represented by the status message.
 class SubscriptionNotificationType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  SubscriptionNotificationType._({
-    super.value,
+  SubscriptionNotificationType._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,43 +26,43 @@ class SubscriptionNotificationType extends PrimitiveType<String> {
         'SubscriptionNotificationType cannot be constructed from JSON.',
       );
     }
-    return SubscriptionNotificationType._(value: value, element: element);
+    return SubscriptionNotificationType._(value, element: element);
   }
 
   /// handshake
   static final SubscriptionNotificationType handshake =
       SubscriptionNotificationType._(
-    value: 'handshake',
+    'handshake',
   );
 
   /// heartbeat
   static final SubscriptionNotificationType heartbeat =
       SubscriptionNotificationType._(
-    value: 'heartbeat',
+    'heartbeat',
   );
 
   /// event_notification
   static final SubscriptionNotificationType event_notification =
       SubscriptionNotificationType._(
-    value: 'event-notification',
+    'event-notification',
   );
 
   /// query_status
   static final SubscriptionNotificationType query_status =
       SubscriptionNotificationType._(
-    value: 'query-status',
+    'query-status',
   );
 
   /// query_event
   static final SubscriptionNotificationType query_event =
       SubscriptionNotificationType._(
-    value: 'query-event',
+    'query-event',
   );
 
   /// For instances where an Element is present but not value
 
   static final SubscriptionNotificationType elementOnly =
-      SubscriptionNotificationType._(value: '');
+      SubscriptionNotificationType._('');
 
   /// List of all enum-like values
   static final List<SubscriptionNotificationType> values = [
@@ -76,13 +76,13 @@ class SubscriptionNotificationType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   SubscriptionNotificationType clone() => SubscriptionNotificationType._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   SubscriptionNotificationType withElement(Element? newElement) {
-    return SubscriptionNotificationType._(value: value, element: newElement);
+    return SubscriptionNotificationType._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -112,7 +112,7 @@ class SubscriptionNotificationType extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return SubscriptionNotificationType._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

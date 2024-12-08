@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Defines the type of structure that a definition is describing.
 class StructureDefinitionKind extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  StructureDefinitionKind._({
-    super.value,
+  StructureDefinitionKind._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,34 +26,34 @@ class StructureDefinitionKind extends PrimitiveType<String> {
         'StructureDefinitionKind cannot be constructed from JSON.',
       );
     }
-    return StructureDefinitionKind._(value: value, element: element);
+    return StructureDefinitionKind._(value, element: element);
   }
 
   /// primitive_type
   static final StructureDefinitionKind primitive_type =
       StructureDefinitionKind._(
-    value: 'primitive-type',
+    'primitive-type',
   );
 
   /// complex_type
   static final StructureDefinitionKind complex_type = StructureDefinitionKind._(
-    value: 'complex-type',
+    'complex-type',
   );
 
   /// resource
   static final StructureDefinitionKind resource = StructureDefinitionKind._(
-    value: 'resource',
+    'resource',
   );
 
   /// logical
   static final StructureDefinitionKind logical = StructureDefinitionKind._(
-    value: 'logical',
+    'logical',
   );
 
   /// For instances where an Element is present but not value
 
   static final StructureDefinitionKind elementOnly =
-      StructureDefinitionKind._(value: '');
+      StructureDefinitionKind._('');
 
   /// List of all enum-like values
   static final List<StructureDefinitionKind> values = [
@@ -66,13 +66,13 @@ class StructureDefinitionKind extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   StructureDefinitionKind clone() => StructureDefinitionKind._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   StructureDefinitionKind withElement(Element? newElement) {
-    return StructureDefinitionKind._(value: value, element: newElement);
+    return StructureDefinitionKind._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -102,7 +102,7 @@ class StructureDefinitionKind extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return StructureDefinitionKind._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Codes that convey the current status of the research study.
 class ResearchStudyStatus extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ResearchStudyStatus._({
-    super.value,
+  ResearchStudyStatus._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,72 +26,71 @@ class ResearchStudyStatus extends PrimitiveType<String> {
         'ResearchStudyStatus cannot be constructed from JSON.',
       );
     }
-    return ResearchStudyStatus._(value: value, element: element);
+    return ResearchStudyStatus._(value, element: element);
   }
 
   /// active
   static final ResearchStudyStatus active = ResearchStudyStatus._(
-    value: 'active',
+    'active',
   );
 
   /// administratively_completed
   static final ResearchStudyStatus administratively_completed =
       ResearchStudyStatus._(
-    value: 'administratively-completed',
+    'administratively-completed',
   );
 
   /// approved
   static final ResearchStudyStatus approved = ResearchStudyStatus._(
-    value: 'approved',
+    'approved',
   );
 
   /// closed_to_accrual
   static final ResearchStudyStatus closed_to_accrual = ResearchStudyStatus._(
-    value: 'closed-to-accrual',
+    'closed-to-accrual',
   );
 
   /// closed_to_accrual_and_intervention
   static final ResearchStudyStatus closed_to_accrual_and_intervention =
       ResearchStudyStatus._(
-    value: 'closed-to-accrual-and-intervention',
+    'closed-to-accrual-and-intervention',
   );
 
   /// completed
   static final ResearchStudyStatus completed = ResearchStudyStatus._(
-    value: 'completed',
+    'completed',
   );
 
   /// disapproved
   static final ResearchStudyStatus disapproved = ResearchStudyStatus._(
-    value: 'disapproved',
+    'disapproved',
   );
 
   /// in_review
   static final ResearchStudyStatus in_review = ResearchStudyStatus._(
-    value: 'in-review',
+    'in-review',
   );
 
   /// temporarily_closed_to_accrual
   static final ResearchStudyStatus temporarily_closed_to_accrual =
       ResearchStudyStatus._(
-    value: 'temporarily-closed-to-accrual',
+    'temporarily-closed-to-accrual',
   );
 
   /// temporarily_closed_to_accrual_and_intervention
   static final ResearchStudyStatus
       temporarily_closed_to_accrual_and_intervention = ResearchStudyStatus._(
-    value: 'temporarily-closed-to-accrual-and-intervention',
+    'temporarily-closed-to-accrual-and-intervention',
   );
 
   /// withdrawn
   static final ResearchStudyStatus withdrawn = ResearchStudyStatus._(
-    value: 'withdrawn',
+    'withdrawn',
   );
 
   /// For instances where an Element is present but not value
 
-  static final ResearchStudyStatus elementOnly =
-      ResearchStudyStatus._(value: '');
+  static final ResearchStudyStatus elementOnly = ResearchStudyStatus._('');
 
   /// List of all enum-like values
   static final List<ResearchStudyStatus> values = [
@@ -111,13 +110,13 @@ class ResearchStudyStatus extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ResearchStudyStatus clone() => ResearchStudyStatus._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ResearchStudyStatus withElement(Element? newElement) {
-    return ResearchStudyStatus._(value: value, element: newElement);
+    return ResearchStudyStatus._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -147,7 +146,7 @@ class ResearchStudyStatus extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ResearchStudyStatus._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

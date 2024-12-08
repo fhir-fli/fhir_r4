@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// TODO.
 class AdverseEventCausalityMethod extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  AdverseEventCausalityMethod._({
-    super.value,
+  AdverseEventCausalityMethod._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,31 +26,31 @@ class AdverseEventCausalityMethod extends PrimitiveType<String> {
         'AdverseEventCausalityMethod cannot be constructed from JSON.',
       );
     }
-    return AdverseEventCausalityMethod._(value: value, element: element);
+    return AdverseEventCausalityMethod._(value, element: element);
   }
 
   /// ProbabilityScale
   static final AdverseEventCausalityMethod ProbabilityScale =
       AdverseEventCausalityMethod._(
-    value: 'ProbabilityScale',
+    'ProbabilityScale',
   );
 
   /// Bayesian
   static final AdverseEventCausalityMethod Bayesian =
       AdverseEventCausalityMethod._(
-    value: 'Bayesian',
+    'Bayesian',
   );
 
   /// Checklist
   static final AdverseEventCausalityMethod Checklist =
       AdverseEventCausalityMethod._(
-    value: 'Checklist',
+    'Checklist',
   );
 
   /// For instances where an Element is present but not value
 
   static final AdverseEventCausalityMethod elementOnly =
-      AdverseEventCausalityMethod._(value: '');
+      AdverseEventCausalityMethod._('');
 
   /// List of all enum-like values
   static final List<AdverseEventCausalityMethod> values = [
@@ -62,13 +62,13 @@ class AdverseEventCausalityMethod extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   AdverseEventCausalityMethod clone() => AdverseEventCausalityMethod._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   AdverseEventCausalityMethod withElement(Element? newElement) {
-    return AdverseEventCausalityMethod._(value: value, element: newElement);
+    return AdverseEventCausalityMethod._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -98,7 +98,7 @@ class AdverseEventCausalityMethod extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return AdverseEventCausalityMethod._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

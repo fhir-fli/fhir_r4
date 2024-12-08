@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The relationship between two substance types.
 class SubstanceAmountType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  SubstanceAmountType._({
-    super.value,
+  SubstanceAmountType._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,33 +26,32 @@ class SubstanceAmountType extends PrimitiveType<String> {
         'SubstanceAmountType cannot be constructed from JSON.',
       );
     }
-    return SubstanceAmountType._(value: value, element: element);
+    return SubstanceAmountType._(value, element: element);
   }
 
   /// Average
   static final SubstanceAmountType Average = SubstanceAmountType._(
-    value: 'Average',
+    'Average',
   );
 
   /// Approximately
   static final SubstanceAmountType Approximately = SubstanceAmountType._(
-    value: 'Approximately',
+    'Approximately',
   );
 
   /// LessThan
   static final SubstanceAmountType LessThan = SubstanceAmountType._(
-    value: 'LessThan',
+    'LessThan',
   );
 
   /// MoreThan
   static final SubstanceAmountType MoreThan = SubstanceAmountType._(
-    value: 'MoreThan',
+    'MoreThan',
   );
 
   /// For instances where an Element is present but not value
 
-  static final SubstanceAmountType elementOnly =
-      SubstanceAmountType._(value: '');
+  static final SubstanceAmountType elementOnly = SubstanceAmountType._('');
 
   /// List of all enum-like values
   static final List<SubstanceAmountType> values = [
@@ -65,13 +64,13 @@ class SubstanceAmountType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   SubstanceAmountType clone() => SubstanceAmountType._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   SubstanceAmountType withElement(Element? newElement) {
-    return SubstanceAmountType._(value: value, element: newElement);
+    return SubstanceAmountType._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -101,7 +100,7 @@ class SubstanceAmountType extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return SubstanceAmountType._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

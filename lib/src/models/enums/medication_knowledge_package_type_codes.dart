@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// MedicationKnowledge Package Type Codes
 class MedicationKnowledgePackageTypeCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  MedicationKnowledgePackageTypeCodes._({
-    super.value,
+  MedicationKnowledgePackageTypeCodes._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -27,146 +27,145 @@ class MedicationKnowledgePackageTypeCodes extends PrimitiveType<String> {
         'MedicationKnowledgePackageTypeCodes cannot be constructed from JSON.',
       );
     }
-    return MedicationKnowledgePackageTypeCodes._(
-        value: value, element: element);
+    return MedicationKnowledgePackageTypeCodes._(value, element: element);
   }
 
   /// amp
   static final MedicationKnowledgePackageTypeCodes amp =
       MedicationKnowledgePackageTypeCodes._(
-    value: 'amp',
+    'amp',
   );
 
   /// bag
   static final MedicationKnowledgePackageTypeCodes bag =
       MedicationKnowledgePackageTypeCodes._(
-    value: 'bag',
+    'bag',
   );
 
   /// blstrpk
   static final MedicationKnowledgePackageTypeCodes blstrpk =
       MedicationKnowledgePackageTypeCodes._(
-    value: 'blstrpk',
+    'blstrpk',
   );
 
   /// bot
   static final MedicationKnowledgePackageTypeCodes bot =
       MedicationKnowledgePackageTypeCodes._(
-    value: 'bot',
+    'bot',
   );
 
   /// box
   static final MedicationKnowledgePackageTypeCodes box =
       MedicationKnowledgePackageTypeCodes._(
-    value: 'box',
+    'box',
   );
 
   /// can
   static final MedicationKnowledgePackageTypeCodes can =
       MedicationKnowledgePackageTypeCodes._(
-    value: 'can',
+    'can',
   );
 
   /// cart
   static final MedicationKnowledgePackageTypeCodes cart =
       MedicationKnowledgePackageTypeCodes._(
-    value: 'cart',
+    'cart',
   );
 
   /// disk
   static final MedicationKnowledgePackageTypeCodes disk =
       MedicationKnowledgePackageTypeCodes._(
-    value: 'disk',
+    'disk',
   );
 
   /// doset
   static final MedicationKnowledgePackageTypeCodes doset =
       MedicationKnowledgePackageTypeCodes._(
-    value: 'doset',
+    'doset',
   );
 
   /// jar
   static final MedicationKnowledgePackageTypeCodes jar =
       MedicationKnowledgePackageTypeCodes._(
-    value: 'jar',
+    'jar',
   );
 
   /// jug
   static final MedicationKnowledgePackageTypeCodes jug =
       MedicationKnowledgePackageTypeCodes._(
-    value: 'jug',
+    'jug',
   );
 
   /// minim
   static final MedicationKnowledgePackageTypeCodes minim =
       MedicationKnowledgePackageTypeCodes._(
-    value: 'minim',
+    'minim',
   );
 
   /// nebamp
   static final MedicationKnowledgePackageTypeCodes nebamp =
       MedicationKnowledgePackageTypeCodes._(
-    value: 'nebamp',
+    'nebamp',
   );
 
   /// ovul
   static final MedicationKnowledgePackageTypeCodes ovul =
       MedicationKnowledgePackageTypeCodes._(
-    value: 'ovul',
+    'ovul',
   );
 
   /// pch
   static final MedicationKnowledgePackageTypeCodes pch =
       MedicationKnowledgePackageTypeCodes._(
-    value: 'pch',
+    'pch',
   );
 
   /// pkt
   static final MedicationKnowledgePackageTypeCodes pkt =
       MedicationKnowledgePackageTypeCodes._(
-    value: 'pkt',
+    'pkt',
   );
 
   /// sash
   static final MedicationKnowledgePackageTypeCodes sash =
       MedicationKnowledgePackageTypeCodes._(
-    value: 'sash',
+    'sash',
   );
 
   /// strip
   static final MedicationKnowledgePackageTypeCodes strip =
       MedicationKnowledgePackageTypeCodes._(
-    value: 'strip',
+    'strip',
   );
 
   /// tin
   static final MedicationKnowledgePackageTypeCodes tin =
       MedicationKnowledgePackageTypeCodes._(
-    value: 'tin',
+    'tin',
   );
 
   /// tub
   static final MedicationKnowledgePackageTypeCodes tub =
       MedicationKnowledgePackageTypeCodes._(
-    value: 'tub',
+    'tub',
   );
 
   /// tube
   static final MedicationKnowledgePackageTypeCodes tube =
       MedicationKnowledgePackageTypeCodes._(
-    value: 'tube',
+    'tube',
   );
 
   /// vial
   static final MedicationKnowledgePackageTypeCodes vial =
       MedicationKnowledgePackageTypeCodes._(
-    value: 'vial',
+    'vial',
   );
 
   /// For instances where an Element is present but not value
 
   static final MedicationKnowledgePackageTypeCodes elementOnly =
-      MedicationKnowledgePackageTypeCodes._(value: '');
+      MedicationKnowledgePackageTypeCodes._('');
 
   /// List of all enum-like values
   static final List<MedicationKnowledgePackageTypeCodes> values = [
@@ -198,14 +197,13 @@ class MedicationKnowledgePackageTypeCodes extends PrimitiveType<String> {
   @override
   MedicationKnowledgePackageTypeCodes clone() =>
       MedicationKnowledgePackageTypeCodes._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   MedicationKnowledgePackageTypeCodes withElement(Element? newElement) {
-    return MedicationKnowledgePackageTypeCodes._(
-        value: value, element: newElement);
+    return MedicationKnowledgePackageTypeCodes._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -235,7 +233,7 @@ class MedicationKnowledgePackageTypeCodes extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return MedicationKnowledgePackageTypeCodes._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

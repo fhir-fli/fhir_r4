@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value set contains representative Activity Type codes, which includes codes from the HL7 DocumentCompletion, ActStatus, and DataOperations code system, W3C PROV-DM and PROV-N concepts and display names, several HL7 Lifecycle Event codes for which there are agreed upon definitions, and non-duplicated codes from the HL7 Security and Privacy Ontology Operations codes.
 class ProvenanceActivityType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ProvenanceActivityType._({
-    super.value,
+  ProvenanceActivityType._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,68 +26,68 @@ class ProvenanceActivityType extends PrimitiveType<String> {
         'ProvenanceActivityType cannot be constructed from JSON.',
       );
     }
-    return ProvenanceActivityType._(value: value, element: element);
+    return ProvenanceActivityType._(value, element: element);
   }
 
   /// LA
   static final ProvenanceActivityType LA = ProvenanceActivityType._(
-    value: 'LA',
+    'LA',
   );
 
   /// ANONY
   static final ProvenanceActivityType ANONY = ProvenanceActivityType._(
-    value: 'ANONY',
+    'ANONY',
   );
 
   /// DEID
   static final ProvenanceActivityType DEID = ProvenanceActivityType._(
-    value: 'DEID',
+    'DEID',
   );
 
   /// MASK
   static final ProvenanceActivityType MASK = ProvenanceActivityType._(
-    value: 'MASK',
+    'MASK',
   );
 
   /// LABEL
   static final ProvenanceActivityType LABEL = ProvenanceActivityType._(
-    value: 'LABEL',
+    'LABEL',
   );
 
   /// PSEUD
   static final ProvenanceActivityType PSEUD = ProvenanceActivityType._(
-    value: 'PSEUD',
+    'PSEUD',
   );
 
   /// CREATE
   static final ProvenanceActivityType CREATE = ProvenanceActivityType._(
-    value: 'CREATE',
+    'CREATE',
   );
 
   /// DELETE
   static final ProvenanceActivityType DELETE = ProvenanceActivityType._(
-    value: 'DELETE',
+    'DELETE',
   );
 
   /// UPDATE
   static final ProvenanceActivityType UPDATE = ProvenanceActivityType._(
-    value: 'UPDATE',
+    'UPDATE',
   );
 
   /// APPEND
   static final ProvenanceActivityType APPEND = ProvenanceActivityType._(
-    value: 'APPEND',
+    'APPEND',
   );
 
   /// NULLIFY
   static final ProvenanceActivityType NULLIFY = ProvenanceActivityType._(
-    value: 'NULLIFY',
+    'NULLIFY',
   );
 
   /// For instances where an Element is present but not value
 
   static final ProvenanceActivityType elementOnly =
-      ProvenanceActivityType._(value: '');
+      ProvenanceActivityType._('');
 
   /// List of all enum-like values
   static final List<ProvenanceActivityType> values = [
@@ -107,13 +107,13 @@ class ProvenanceActivityType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ProvenanceActivityType clone() => ProvenanceActivityType._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ProvenanceActivityType withElement(Element? newElement) {
-    return ProvenanceActivityType._(value: value, element: newElement);
+    return ProvenanceActivityType._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -143,7 +143,7 @@ class ProvenanceActivityType extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ProvenanceActivityType._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

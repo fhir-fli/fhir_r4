@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The processing mode that applies to this list.
 class ListMode extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ListMode._({
-    super.value,
+  ListMode._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,27 +26,27 @@ class ListMode extends PrimitiveType<String> {
         'ListMode cannot be constructed from JSON.',
       );
     }
-    return ListMode._(value: value, element: element);
+    return ListMode._(value, element: element);
   }
 
   /// working
   static final ListMode working = ListMode._(
-    value: 'working',
+    'working',
   );
 
   /// snapshot
   static final ListMode snapshot = ListMode._(
-    value: 'snapshot',
+    'snapshot',
   );
 
   /// changes
   static final ListMode changes = ListMode._(
-    value: 'changes',
+    'changes',
   );
 
   /// For instances where an Element is present but not value
 
-  static final ListMode elementOnly = ListMode._(value: '');
+  static final ListMode elementOnly = ListMode._('');
 
   /// List of all enum-like values
   static final List<ListMode> values = [
@@ -58,13 +58,13 @@ class ListMode extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ListMode clone() => ListMode._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ListMode withElement(Element? newElement) {
-    return ListMode._(value: value, element: newElement);
+    return ListMode._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -94,7 +94,7 @@ class ListMode extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ListMode._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

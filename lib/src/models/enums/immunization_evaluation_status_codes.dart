@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The value set to instantiate this attribute should be drawn from a terminologically robust code system that consists of or contains concepts to support describing the current status of the evaluation for vaccine administration event.
 class ImmunizationEvaluationStatusCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ImmunizationEvaluationStatusCodes._({
-    super.value,
+  ImmunizationEvaluationStatusCodes._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,55 +26,55 @@ class ImmunizationEvaluationStatusCodes extends PrimitiveType<String> {
         'ImmunizationEvaluationStatusCodes cannot be constructed from JSON.',
       );
     }
-    return ImmunizationEvaluationStatusCodes._(value: value, element: element);
+    return ImmunizationEvaluationStatusCodes._(value, element: element);
   }
 
   /// in_progress
   static final ImmunizationEvaluationStatusCodes in_progress =
       ImmunizationEvaluationStatusCodes._(
-    value: 'in-progress',
+    'in-progress',
   );
 
   /// not_done
   static final ImmunizationEvaluationStatusCodes not_done =
       ImmunizationEvaluationStatusCodes._(
-    value: 'not-done',
+    'not-done',
   );
 
   /// on_hold
   static final ImmunizationEvaluationStatusCodes on_hold =
       ImmunizationEvaluationStatusCodes._(
-    value: 'on-hold',
+    'on-hold',
   );
 
   /// completed
   static final ImmunizationEvaluationStatusCodes completed =
       ImmunizationEvaluationStatusCodes._(
-    value: 'completed',
+    'completed',
   );
 
   /// entered_in_error
   static final ImmunizationEvaluationStatusCodes entered_in_error =
       ImmunizationEvaluationStatusCodes._(
-    value: 'entered-in-error',
+    'entered-in-error',
   );
 
   /// stopped
   static final ImmunizationEvaluationStatusCodes stopped =
       ImmunizationEvaluationStatusCodes._(
-    value: 'stopped',
+    'stopped',
   );
 
   /// unknown
   static final ImmunizationEvaluationStatusCodes unknown =
       ImmunizationEvaluationStatusCodes._(
-    value: 'unknown',
+    'unknown',
   );
 
   /// For instances where an Element is present but not value
 
   static final ImmunizationEvaluationStatusCodes elementOnly =
-      ImmunizationEvaluationStatusCodes._(value: '');
+      ImmunizationEvaluationStatusCodes._('');
 
   /// List of all enum-like values
   static final List<ImmunizationEvaluationStatusCodes> values = [
@@ -91,14 +91,13 @@ class ImmunizationEvaluationStatusCodes extends PrimitiveType<String> {
   @override
   ImmunizationEvaluationStatusCodes clone() =>
       ImmunizationEvaluationStatusCodes._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ImmunizationEvaluationStatusCodes withElement(Element? newElement) {
-    return ImmunizationEvaluationStatusCodes._(
-        value: value, element: newElement);
+    return ImmunizationEvaluationStatusCodes._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -128,7 +127,7 @@ class ImmunizationEvaluationStatusCodes extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ImmunizationEvaluationStatusCodes._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

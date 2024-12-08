@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value set includes example Diagnosis on Admission codes.
 class ExampleDiagnosisOnAdmissionCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ExampleDiagnosisOnAdmissionCodes._({
-    super.value,
+  ExampleDiagnosisOnAdmissionCodes._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,37 +26,37 @@ class ExampleDiagnosisOnAdmissionCodes extends PrimitiveType<String> {
         'ExampleDiagnosisOnAdmissionCodes cannot be constructed from JSON.',
       );
     }
-    return ExampleDiagnosisOnAdmissionCodes._(value: value, element: element);
+    return ExampleDiagnosisOnAdmissionCodes._(value, element: element);
   }
 
   /// y
   static final ExampleDiagnosisOnAdmissionCodes y =
       ExampleDiagnosisOnAdmissionCodes._(
-    value: 'y',
+    'y',
   );
 
   /// n
   static final ExampleDiagnosisOnAdmissionCodes n =
       ExampleDiagnosisOnAdmissionCodes._(
-    value: 'n',
+    'n',
   );
 
   /// u
   static final ExampleDiagnosisOnAdmissionCodes u =
       ExampleDiagnosisOnAdmissionCodes._(
-    value: 'u',
+    'u',
   );
 
   /// w
   static final ExampleDiagnosisOnAdmissionCodes w =
       ExampleDiagnosisOnAdmissionCodes._(
-    value: 'w',
+    'w',
   );
 
   /// For instances where an Element is present but not value
 
   static final ExampleDiagnosisOnAdmissionCodes elementOnly =
-      ExampleDiagnosisOnAdmissionCodes._(value: '');
+      ExampleDiagnosisOnAdmissionCodes._('');
 
   /// List of all enum-like values
   static final List<ExampleDiagnosisOnAdmissionCodes> values = [
@@ -70,14 +70,13 @@ class ExampleDiagnosisOnAdmissionCodes extends PrimitiveType<String> {
   @override
   ExampleDiagnosisOnAdmissionCodes clone() =>
       ExampleDiagnosisOnAdmissionCodes._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ExampleDiagnosisOnAdmissionCodes withElement(Element? newElement) {
-    return ExampleDiagnosisOnAdmissionCodes._(
-        value: value, element: newElement);
+    return ExampleDiagnosisOnAdmissionCodes._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -107,7 +106,7 @@ class ExampleDiagnosisOnAdmissionCodes extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ExampleDiagnosisOnAdmissionCodes._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

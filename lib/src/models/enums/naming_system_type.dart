@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Identifies the purpose of the naming system.
 class NamingSystemType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  NamingSystemType._({
-    super.value,
+  NamingSystemType._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,27 +26,27 @@ class NamingSystemType extends PrimitiveType<String> {
         'NamingSystemType cannot be constructed from JSON.',
       );
     }
-    return NamingSystemType._(value: value, element: element);
+    return NamingSystemType._(value, element: element);
   }
 
   /// codesystem
   static final NamingSystemType codesystem = NamingSystemType._(
-    value: 'codesystem',
+    'codesystem',
   );
 
   /// identifier
   static final NamingSystemType identifier = NamingSystemType._(
-    value: 'identifier',
+    'identifier',
   );
 
   /// root
   static final NamingSystemType root = NamingSystemType._(
-    value: 'root',
+    'root',
   );
 
   /// For instances where an Element is present but not value
 
-  static final NamingSystemType elementOnly = NamingSystemType._(value: '');
+  static final NamingSystemType elementOnly = NamingSystemType._('');
 
   /// List of all enum-like values
   static final List<NamingSystemType> values = [
@@ -58,13 +58,13 @@ class NamingSystemType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   NamingSystemType clone() => NamingSystemType._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   NamingSystemType withElement(Element? newElement) {
-    return NamingSystemType._(value: value, element: newElement);
+    return NamingSystemType._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -94,7 +94,7 @@ class NamingSystemType extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return NamingSystemType._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

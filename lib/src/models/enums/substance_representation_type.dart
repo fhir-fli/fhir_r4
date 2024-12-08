@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The type of a name given to a substance.
 class SubstanceRepresentationType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  SubstanceRepresentationType._({
-    super.value,
+  SubstanceRepresentationType._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,31 +26,31 @@ class SubstanceRepresentationType extends PrimitiveType<String> {
         'SubstanceRepresentationType cannot be constructed from JSON.',
       );
     }
-    return SubstanceRepresentationType._(value: value, element: element);
+    return SubstanceRepresentationType._(value, element: element);
   }
 
   /// Systematic
   static final SubstanceRepresentationType Systematic =
       SubstanceRepresentationType._(
-    value: 'Systematic',
+    'Systematic',
   );
 
   /// Scientific
   static final SubstanceRepresentationType Scientific =
       SubstanceRepresentationType._(
-    value: 'Scientific',
+    'Scientific',
   );
 
   /// Brand
   static final SubstanceRepresentationType Brand =
       SubstanceRepresentationType._(
-    value: 'Brand',
+    'Brand',
   );
 
   /// For instances where an Element is present but not value
 
   static final SubstanceRepresentationType elementOnly =
-      SubstanceRepresentationType._(value: '');
+      SubstanceRepresentationType._('');
 
   /// List of all enum-like values
   static final List<SubstanceRepresentationType> values = [
@@ -62,13 +62,13 @@ class SubstanceRepresentationType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   SubstanceRepresentationType clone() => SubstanceRepresentationType._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   SubstanceRepresentationType withElement(Element? newElement) {
-    return SubstanceRepresentationType._(value: value, element: newElement);
+    return SubstanceRepresentationType._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -98,7 +98,7 @@ class SubstanceRepresentationType extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return SubstanceRepresentationType._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

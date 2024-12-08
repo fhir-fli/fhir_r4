@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The purpose of the Claim: predetermination, preauthorization, claim.
 class Use extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  Use._({
-    super.value,
+  Use._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,27 +26,27 @@ class Use extends PrimitiveType<String> {
         'Use cannot be constructed from JSON.',
       );
     }
-    return Use._(value: value, element: element);
+    return Use._(value, element: element);
   }
 
   /// claim
   static final Use claim = Use._(
-    value: 'claim',
+    'claim',
   );
 
   /// preauthorization
   static final Use preauthorization = Use._(
-    value: 'preauthorization',
+    'preauthorization',
   );
 
   /// predetermination
   static final Use predetermination = Use._(
-    value: 'predetermination',
+    'predetermination',
   );
 
   /// For instances where an Element is present but not value
 
-  static final Use elementOnly = Use._(value: '');
+  static final Use elementOnly = Use._('');
 
   /// List of all enum-like values
   static final List<Use> values = [
@@ -58,13 +58,13 @@ class Use extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   Use clone() => Use._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   Use withElement(Element? newElement) {
-    return Use._(value: value, element: newElement);
+    return Use._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -94,7 +94,7 @@ class Use extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return Use._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

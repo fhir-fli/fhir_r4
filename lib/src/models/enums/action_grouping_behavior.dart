@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Defines organization behavior of a group.
 class ActionGroupingBehavior extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ActionGroupingBehavior._({
-    super.value,
+  ActionGroupingBehavior._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,28 +26,28 @@ class ActionGroupingBehavior extends PrimitiveType<String> {
         'ActionGroupingBehavior cannot be constructed from JSON.',
       );
     }
-    return ActionGroupingBehavior._(value: value, element: element);
+    return ActionGroupingBehavior._(value, element: element);
   }
 
   /// visual_group
   static final ActionGroupingBehavior visual_group = ActionGroupingBehavior._(
-    value: 'visual-group',
+    'visual-group',
   );
 
   /// logical_group
   static final ActionGroupingBehavior logical_group = ActionGroupingBehavior._(
-    value: 'logical-group',
+    'logical-group',
   );
 
   /// sentence_group
   static final ActionGroupingBehavior sentence_group = ActionGroupingBehavior._(
-    value: 'sentence-group',
+    'sentence-group',
   );
 
   /// For instances where an Element is present but not value
 
   static final ActionGroupingBehavior elementOnly =
-      ActionGroupingBehavior._(value: '');
+      ActionGroupingBehavior._('');
 
   /// List of all enum-like values
   static final List<ActionGroupingBehavior> values = [
@@ -59,13 +59,13 @@ class ActionGroupingBehavior extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ActionGroupingBehavior clone() => ActionGroupingBehavior._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ActionGroupingBehavior withElement(Element? newElement) {
-    return ActionGroupingBehavior._(value: value, element: newElement);
+    return ActionGroupingBehavior._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -95,7 +95,7 @@ class ActionGroupingBehavior extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ActionGroupingBehavior._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

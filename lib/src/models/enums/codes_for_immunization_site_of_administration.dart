@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The value set to instantiate this attribute should be drawn from a terminologically robust code system that consists of or contains concepts to support describing the body site where the vaccination occurred. This value set is provided as a suggestive example.
 class CodesForImmunizationSiteOfAdministration extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  CodesForImmunizationSiteOfAdministration._({
-    super.value,
+  CodesForImmunizationSiteOfAdministration._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -27,26 +27,25 @@ class CodesForImmunizationSiteOfAdministration extends PrimitiveType<String> {
         'CodesForImmunizationSiteOfAdministration cannot be constructed from JSON.',
       );
     }
-    return CodesForImmunizationSiteOfAdministration._(
-        value: value, element: element);
+    return CodesForImmunizationSiteOfAdministration._(value, element: element);
   }
 
   /// LA
   static final CodesForImmunizationSiteOfAdministration LA =
       CodesForImmunizationSiteOfAdministration._(
-    value: 'LA',
+    'LA',
   );
 
   /// RA
   static final CodesForImmunizationSiteOfAdministration RA =
       CodesForImmunizationSiteOfAdministration._(
-    value: 'RA',
+    'RA',
   );
 
   /// For instances where an Element is present but not value
 
   static final CodesForImmunizationSiteOfAdministration elementOnly =
-      CodesForImmunizationSiteOfAdministration._(value: '');
+      CodesForImmunizationSiteOfAdministration._('');
 
   /// List of all enum-like values
   static final List<CodesForImmunizationSiteOfAdministration> values = [
@@ -58,14 +57,14 @@ class CodesForImmunizationSiteOfAdministration extends PrimitiveType<String> {
   @override
   CodesForImmunizationSiteOfAdministration clone() =>
       CodesForImmunizationSiteOfAdministration._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   CodesForImmunizationSiteOfAdministration withElement(Element? newElement) {
-    return CodesForImmunizationSiteOfAdministration._(
-        value: value, element: newElement);
+    return CodesForImmunizationSiteOfAdministration._(value,
+        element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -95,7 +94,7 @@ class CodesForImmunizationSiteOfAdministration extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return CodesForImmunizationSiteOfAdministration._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

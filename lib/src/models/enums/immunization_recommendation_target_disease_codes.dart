@@ -6,8 +6,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 class ImmunizationRecommendationTargetDiseaseCodes
     extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ImmunizationRecommendationTargetDiseaseCodes._({
-    super.value,
+  ImmunizationRecommendationTargetDiseaseCodes._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -28,68 +28,68 @@ class ImmunizationRecommendationTargetDiseaseCodes
         'ImmunizationRecommendationTargetDiseaseCodes cannot be constructed from JSON.',
       );
     }
-    return ImmunizationRecommendationTargetDiseaseCodes._(
-        value: value, element: element);
+    return ImmunizationRecommendationTargetDiseaseCodes._(value,
+        element: element);
   }
 
   /// value1857005
   static final ImmunizationRecommendationTargetDiseaseCodes value1857005 =
       ImmunizationRecommendationTargetDiseaseCodes._(
-    value: '1857005',
+    '1857005',
   );
 
   /// value397430003
   static final ImmunizationRecommendationTargetDiseaseCodes value397430003 =
       ImmunizationRecommendationTargetDiseaseCodes._(
-    value: '397430003',
+    '397430003',
   );
 
   /// value14189004
   static final ImmunizationRecommendationTargetDiseaseCodes value14189004 =
       ImmunizationRecommendationTargetDiseaseCodes._(
-    value: '14189004',
+    '14189004',
   );
 
   /// value36989005
   static final ImmunizationRecommendationTargetDiseaseCodes value36989005 =
       ImmunizationRecommendationTargetDiseaseCodes._(
-    value: '36989005',
+    '36989005',
   );
 
   /// value36653000
   static final ImmunizationRecommendationTargetDiseaseCodes value36653000 =
       ImmunizationRecommendationTargetDiseaseCodes._(
-    value: '36653000',
+    '36653000',
   );
 
   /// value76902006
   static final ImmunizationRecommendationTargetDiseaseCodes value76902006 =
       ImmunizationRecommendationTargetDiseaseCodes._(
-    value: '76902006',
+    '76902006',
   );
 
   /// value709410003
   static final ImmunizationRecommendationTargetDiseaseCodes value709410003 =
       ImmunizationRecommendationTargetDiseaseCodes._(
-    value: '709410003',
+    '709410003',
   );
 
   /// value27836007
   static final ImmunizationRecommendationTargetDiseaseCodes value27836007 =
       ImmunizationRecommendationTargetDiseaseCodes._(
-    value: '27836007',
+    '27836007',
   );
 
   /// value398102009
   static final ImmunizationRecommendationTargetDiseaseCodes value398102009 =
       ImmunizationRecommendationTargetDiseaseCodes._(
-    value: '398102009',
+    '398102009',
   );
 
   /// For instances where an Element is present but not value
 
   static final ImmunizationRecommendationTargetDiseaseCodes elementOnly =
-      ImmunizationRecommendationTargetDiseaseCodes._(value: '');
+      ImmunizationRecommendationTargetDiseaseCodes._('');
 
   /// List of all enum-like values
   static final List<ImmunizationRecommendationTargetDiseaseCodes> values = [
@@ -108,15 +108,15 @@ class ImmunizationRecommendationTargetDiseaseCodes
   @override
   ImmunizationRecommendationTargetDiseaseCodes clone() =>
       ImmunizationRecommendationTargetDiseaseCodes._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ImmunizationRecommendationTargetDiseaseCodes withElement(
       Element? newElement) {
-    return ImmunizationRecommendationTargetDiseaseCodes._(
-        value: value, element: newElement);
+    return ImmunizationRecommendationTargetDiseaseCodes._(value,
+        element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -146,7 +146,7 @@ class ImmunizationRecommendationTargetDiseaseCodes
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ImmunizationRecommendationTargetDiseaseCodes._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

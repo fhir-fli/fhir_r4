@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// MedicationDispense Status Codes
 class MedicationDispenseStatusCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  MedicationDispenseStatusCodes._({
-    super.value,
+  MedicationDispenseStatusCodes._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,67 +26,67 @@ class MedicationDispenseStatusCodes extends PrimitiveType<String> {
         'MedicationDispenseStatusCodes cannot be constructed from JSON.',
       );
     }
-    return MedicationDispenseStatusCodes._(value: value, element: element);
+    return MedicationDispenseStatusCodes._(value, element: element);
   }
 
   /// preparation
   static final MedicationDispenseStatusCodes preparation =
       MedicationDispenseStatusCodes._(
-    value: 'preparation',
+    'preparation',
   );
 
   /// in_progress
   static final MedicationDispenseStatusCodes in_progress =
       MedicationDispenseStatusCodes._(
-    value: 'in-progress',
+    'in-progress',
   );
 
   /// cancelled
   static final MedicationDispenseStatusCodes cancelled =
       MedicationDispenseStatusCodes._(
-    value: 'cancelled',
+    'cancelled',
   );
 
   /// on_hold
   static final MedicationDispenseStatusCodes on_hold =
       MedicationDispenseStatusCodes._(
-    value: 'on-hold',
+    'on-hold',
   );
 
   /// completed
   static final MedicationDispenseStatusCodes completed =
       MedicationDispenseStatusCodes._(
-    value: 'completed',
+    'completed',
   );
 
   /// entered_in_error
   static final MedicationDispenseStatusCodes entered_in_error =
       MedicationDispenseStatusCodes._(
-    value: 'entered-in-error',
+    'entered-in-error',
   );
 
   /// stopped
   static final MedicationDispenseStatusCodes stopped =
       MedicationDispenseStatusCodes._(
-    value: 'stopped',
+    'stopped',
   );
 
   /// declined
   static final MedicationDispenseStatusCodes declined =
       MedicationDispenseStatusCodes._(
-    value: 'declined',
+    'declined',
   );
 
   /// unknown
   static final MedicationDispenseStatusCodes unknown =
       MedicationDispenseStatusCodes._(
-    value: 'unknown',
+    'unknown',
   );
 
   /// For instances where an Element is present but not value
 
   static final MedicationDispenseStatusCodes elementOnly =
-      MedicationDispenseStatusCodes._(value: '');
+      MedicationDispenseStatusCodes._('');
 
   /// List of all enum-like values
   static final List<MedicationDispenseStatusCodes> values = [
@@ -104,13 +104,13 @@ class MedicationDispenseStatusCodes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   MedicationDispenseStatusCodes clone() => MedicationDispenseStatusCodes._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   MedicationDispenseStatusCodes withElement(Element? newElement) {
-    return MedicationDispenseStatusCodes._(value: value, element: newElement);
+    return MedicationDispenseStatusCodes._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -140,7 +140,7 @@ class MedicationDispenseStatusCodes extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return MedicationDispenseStatusCodes._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

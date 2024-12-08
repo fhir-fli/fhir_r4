@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The possible types of research elements (E.g. Population, Exposure, Outcome).
 class ResearchElementType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ResearchElementType._({
-    super.value,
+  ResearchElementType._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,28 +26,27 @@ class ResearchElementType extends PrimitiveType<String> {
         'ResearchElementType cannot be constructed from JSON.',
       );
     }
-    return ResearchElementType._(value: value, element: element);
+    return ResearchElementType._(value, element: element);
   }
 
   /// population
   static final ResearchElementType population = ResearchElementType._(
-    value: 'population',
+    'population',
   );
 
   /// exposure
   static final ResearchElementType exposure = ResearchElementType._(
-    value: 'exposure',
+    'exposure',
   );
 
   /// outcome
   static final ResearchElementType outcome = ResearchElementType._(
-    value: 'outcome',
+    'outcome',
   );
 
   /// For instances where an Element is present but not value
 
-  static final ResearchElementType elementOnly =
-      ResearchElementType._(value: '');
+  static final ResearchElementType elementOnly = ResearchElementType._('');
 
   /// List of all enum-like values
   static final List<ResearchElementType> values = [
@@ -59,13 +58,13 @@ class ResearchElementType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ResearchElementType clone() => ResearchElementType._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ResearchElementType withElement(Element? newElement) {
-    return ResearchElementType._(value: value, element: newElement);
+    return ResearchElementType._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -95,7 +94,7 @@ class ResearchElementType extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ResearchElementType._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

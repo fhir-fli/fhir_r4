@@ -12,11 +12,11 @@ extension FhirStringExtension on String {
 class FhirString extends PrimitiveType<String> {
   /// Constructs a [FhirString] with validation.
   FhirString(
-    super.input,{
+    super.input, {
     super.element,
     super.id,
     super.extension_,
-  })  {
+  }) {
     if (value == null && element == null) {
       throw ArgumentError('A value or element is required');
     }

@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The type of actor - system or human.
 class ExampleScenarioActorType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ExampleScenarioActorType._({
-    super.value,
+  ExampleScenarioActorType._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,23 +26,23 @@ class ExampleScenarioActorType extends PrimitiveType<String> {
         'ExampleScenarioActorType cannot be constructed from JSON.',
       );
     }
-    return ExampleScenarioActorType._(value: value, element: element);
+    return ExampleScenarioActorType._(value, element: element);
   }
 
   /// person
   static final ExampleScenarioActorType person = ExampleScenarioActorType._(
-    value: 'person',
+    'person',
   );
 
   /// entity
   static final ExampleScenarioActorType entity = ExampleScenarioActorType._(
-    value: 'entity',
+    'entity',
   );
 
   /// For instances where an Element is present but not value
 
   static final ExampleScenarioActorType elementOnly =
-      ExampleScenarioActorType._(value: '');
+      ExampleScenarioActorType._('');
 
   /// List of all enum-like values
   static final List<ExampleScenarioActorType> values = [
@@ -53,13 +53,13 @@ class ExampleScenarioActorType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ExampleScenarioActorType clone() => ExampleScenarioActorType._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ExampleScenarioActorType withElement(Element? newElement) {
-    return ExampleScenarioActorType._(value: value, element: newElement);
+    return ExampleScenarioActorType._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -89,7 +89,7 @@ class ExampleScenarioActorType extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ExampleScenarioActorType._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

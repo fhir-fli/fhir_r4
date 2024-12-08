@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// How a type relates to its baseDefinition.
 class TypeDerivationRule extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  TypeDerivationRule._({
-    super.value,
+  TypeDerivationRule._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,22 +26,22 @@ class TypeDerivationRule extends PrimitiveType<String> {
         'TypeDerivationRule cannot be constructed from JSON.',
       );
     }
-    return TypeDerivationRule._(value: value, element: element);
+    return TypeDerivationRule._(value, element: element);
   }
 
   /// specialization
   static final TypeDerivationRule specialization = TypeDerivationRule._(
-    value: 'specialization',
+    'specialization',
   );
 
   /// constraint
   static final TypeDerivationRule constraint = TypeDerivationRule._(
-    value: 'constraint',
+    'constraint',
   );
 
   /// For instances where an Element is present but not value
 
-  static final TypeDerivationRule elementOnly = TypeDerivationRule._(value: '');
+  static final TypeDerivationRule elementOnly = TypeDerivationRule._('');
 
   /// List of all enum-like values
   static final List<TypeDerivationRule> values = [
@@ -52,13 +52,13 @@ class TypeDerivationRule extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   TypeDerivationRule clone() => TypeDerivationRule._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   TypeDerivationRule withElement(Element? newElement) {
-    return TypeDerivationRule._(value: value, element: newElement);
+    return TypeDerivationRule._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -88,7 +88,7 @@ class TypeDerivationRule extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return TypeDerivationRule._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

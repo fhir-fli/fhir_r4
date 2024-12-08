@@ -14,7 +14,7 @@ class FhirTime extends PrimitiveType<String> implements Comparable<FhirTime> {
   /// Constructor that accepts a valid [String] input representing a time and
   /// validates the input. Optionally takes an [Element].
   FhirTime(
-    String? input,{
+    String? input, {
     super.element,
     super.id,
     super.extension_,
@@ -346,6 +346,5 @@ class FhirTime extends PrimitiveType<String> implements Comparable<FhirTime> {
 
   /// Creates a clone of the current [FhirTime].
   @override
-  FhirTime clone() =>
-      FhirTime(value, element: element?.clone() as Element?);
+  FhirTime clone() => FhirTime(value, element: element?.clone() as Element?);
 }

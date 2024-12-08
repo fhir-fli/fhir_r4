@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value set defines a set of codes that can be used to indicate how an individual participates in an encounter.
 class ParticipantType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ParticipantType._({
-    super.value,
+  ParticipantType._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,37 +26,37 @@ class ParticipantType extends PrimitiveType<String> {
         'ParticipantType cannot be constructed from JSON.',
       );
     }
-    return ParticipantType._(value: value, element: element);
+    return ParticipantType._(value, element: element);
   }
 
   /// SPRF
   static final ParticipantType SPRF = ParticipantType._(
-    value: 'SPRF',
+    'SPRF',
   );
 
   /// PPRF
   static final ParticipantType PPRF = ParticipantType._(
-    value: 'PPRF',
+    'PPRF',
   );
 
   /// PART
   static final ParticipantType PART = ParticipantType._(
-    value: 'PART',
+    'PART',
   );
 
   /// translator
   static final ParticipantType translator = ParticipantType._(
-    value: 'translator',
+    'translator',
   );
 
   /// emergency
   static final ParticipantType emergency = ParticipantType._(
-    value: 'emergency',
+    'emergency',
   );
 
   /// For instances where an Element is present but not value
 
-  static final ParticipantType elementOnly = ParticipantType._(value: '');
+  static final ParticipantType elementOnly = ParticipantType._('');
 
   /// List of all enum-like values
   static final List<ParticipantType> values = [
@@ -70,13 +70,13 @@ class ParticipantType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ParticipantType clone() => ParticipantType._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ParticipantType withElement(Element? newElement) {
-    return ParticipantType._(value: value, element: newElement);
+    return ParticipantType._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -106,7 +106,7 @@ class ParticipantType extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ParticipantType._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

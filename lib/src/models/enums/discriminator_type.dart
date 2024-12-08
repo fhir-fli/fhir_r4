@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// How an element value is interpreted when discrimination is evaluated.
 class DiscriminatorType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  DiscriminatorType._({
-    super.value,
+  DiscriminatorType._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,37 +26,37 @@ class DiscriminatorType extends PrimitiveType<String> {
         'DiscriminatorType cannot be constructed from JSON.',
       );
     }
-    return DiscriminatorType._(value: value, element: element);
+    return DiscriminatorType._(value, element: element);
   }
 
   /// value
   static final DiscriminatorType value_ = DiscriminatorType._(
-    value: 'value',
+    'value',
   );
 
   /// exists
   static final DiscriminatorType exists = DiscriminatorType._(
-    value: 'exists',
+    'exists',
   );
 
   /// pattern
   static final DiscriminatorType pattern = DiscriminatorType._(
-    value: 'pattern',
+    'pattern',
   );
 
   /// type
   static final DiscriminatorType type = DiscriminatorType._(
-    value: 'type',
+    'type',
   );
 
   /// profile
   static final DiscriminatorType profile = DiscriminatorType._(
-    value: 'profile',
+    'profile',
   );
 
   /// For instances where an Element is present but not value
 
-  static final DiscriminatorType elementOnly = DiscriminatorType._(value: '');
+  static final DiscriminatorType elementOnly = DiscriminatorType._('');
 
   /// List of all enum-like values
   static final List<DiscriminatorType> values = [
@@ -70,13 +70,13 @@ class DiscriminatorType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   DiscriminatorType clone() => DiscriminatorType._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   DiscriminatorType withElement(Element? newElement) {
-    return DiscriminatorType._(value: value, element: newElement);
+    return DiscriminatorType._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -106,7 +106,7 @@ class DiscriminatorType extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return DiscriminatorType._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

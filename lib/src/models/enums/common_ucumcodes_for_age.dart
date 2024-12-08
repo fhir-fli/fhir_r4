@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Unified Code for Units of Measure (UCUM). This value set includes all UCUM codes
 class CommonUCUMCodesForAge extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  CommonUCUMCodesForAge._({
-    super.value,
+  CommonUCUMCodesForAge._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,43 +26,42 @@ class CommonUCUMCodesForAge extends PrimitiveType<String> {
         'CommonUCUMCodesForAge cannot be constructed from JSON.',
       );
     }
-    return CommonUCUMCodesForAge._(value: value, element: element);
+    return CommonUCUMCodesForAge._(value, element: element);
   }
 
   /// min
   static final CommonUCUMCodesForAge min = CommonUCUMCodesForAge._(
-    value: 'min',
+    'min',
   );
 
   /// h
   static final CommonUCUMCodesForAge h = CommonUCUMCodesForAge._(
-    value: 'h',
+    'h',
   );
 
   /// d
   static final CommonUCUMCodesForAge d = CommonUCUMCodesForAge._(
-    value: 'd',
+    'd',
   );
 
   /// wk
   static final CommonUCUMCodesForAge wk = CommonUCUMCodesForAge._(
-    value: 'wk',
+    'wk',
   );
 
   /// mo
   static final CommonUCUMCodesForAge mo = CommonUCUMCodesForAge._(
-    value: 'mo',
+    'mo',
   );
 
   /// a
   static final CommonUCUMCodesForAge a = CommonUCUMCodesForAge._(
-    value: 'a',
+    'a',
   );
 
   /// For instances where an Element is present but not value
 
-  static final CommonUCUMCodesForAge elementOnly =
-      CommonUCUMCodesForAge._(value: '');
+  static final CommonUCUMCodesForAge elementOnly = CommonUCUMCodesForAge._('');
 
   /// List of all enum-like values
   static final List<CommonUCUMCodesForAge> values = [
@@ -77,13 +76,13 @@ class CommonUCUMCodesForAge extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   CommonUCUMCodesForAge clone() => CommonUCUMCodesForAge._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   CommonUCUMCodesForAge withElement(Element? newElement) {
-    return CommonUCUMCodesForAge._(value: value, element: newElement);
+    return CommonUCUMCodesForAge._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -113,7 +112,7 @@ class CommonUCUMCodesForAge extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return CommonUCUMCodesForAge._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

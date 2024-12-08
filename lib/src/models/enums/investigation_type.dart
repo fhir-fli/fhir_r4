@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Example value set for investigation type.
 class InvestigationType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  InvestigationType._({
-    super.value,
+  InvestigationType._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,22 +26,22 @@ class InvestigationType extends PrimitiveType<String> {
         'InvestigationType cannot be constructed from JSON.',
       );
     }
-    return InvestigationType._(value: value, element: element);
+    return InvestigationType._(value, element: element);
   }
 
   /// value271336007
   static final InvestigationType value271336007 = InvestigationType._(
-    value: '271336007',
+    '271336007',
   );
 
   /// value160237006
   static final InvestigationType value160237006 = InvestigationType._(
-    value: '160237006',
+    '160237006',
   );
 
   /// For instances where an Element is present but not value
 
-  static final InvestigationType elementOnly = InvestigationType._(value: '');
+  static final InvestigationType elementOnly = InvestigationType._('');
 
   /// List of all enum-like values
   static final List<InvestigationType> values = [
@@ -52,13 +52,13 @@ class InvestigationType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   InvestigationType clone() => InvestigationType._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   InvestigationType withElement(Element? newElement) {
-    return InvestigationType._(value: value, element: newElement);
+    return InvestigationType._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -88,7 +88,7 @@ class InvestigationType extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return InvestigationType._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// An anatomical origin of the source material within an organism.
 class SourceMaterialPart extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  SourceMaterialPart._({
-    super.value,
+  SourceMaterialPart._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,27 +26,27 @@ class SourceMaterialPart extends PrimitiveType<String> {
         'SourceMaterialPart cannot be constructed from JSON.',
       );
     }
-    return SourceMaterialPart._(value: value, element: element);
+    return SourceMaterialPart._(value, element: element);
   }
 
   /// Animal
   static final SourceMaterialPart Animal = SourceMaterialPart._(
-    value: 'Animal',
+    'Animal',
   );
 
   /// Plant
   static final SourceMaterialPart Plant = SourceMaterialPart._(
-    value: 'Plant',
+    'Plant',
   );
 
   /// Mineral
   static final SourceMaterialPart Mineral = SourceMaterialPart._(
-    value: 'Mineral',
+    'Mineral',
   );
 
   /// For instances where an Element is present but not value
 
-  static final SourceMaterialPart elementOnly = SourceMaterialPart._(value: '');
+  static final SourceMaterialPart elementOnly = SourceMaterialPart._('');
 
   /// List of all enum-like values
   static final List<SourceMaterialPart> values = [
@@ -58,13 +58,13 @@ class SourceMaterialPart extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   SourceMaterialPart clone() => SourceMaterialPart._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   SourceMaterialPart withElement(Element? newElement) {
-    return SourceMaterialPart._(value: value, element: newElement);
+    return SourceMaterialPart._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -94,7 +94,7 @@ class SourceMaterialPart extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return SourceMaterialPart._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

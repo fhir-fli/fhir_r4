@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Laterality: SNOMED-CT concepts for 'left', 'right', and 'bilateral'
 class Laterality extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  Laterality._({
-    super.value,
+  Laterality._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,27 +26,27 @@ class Laterality extends PrimitiveType<String> {
         'Laterality cannot be constructed from JSON.',
       );
     }
-    return Laterality._(value: value, element: element);
+    return Laterality._(value, element: element);
   }
 
   /// value419161000
   static final Laterality value419161000 = Laterality._(
-    value: '419161000',
+    '419161000',
   );
 
   /// value419465000
   static final Laterality value419465000 = Laterality._(
-    value: '419465000',
+    '419465000',
   );
 
   /// value51440002
   static final Laterality value51440002 = Laterality._(
-    value: '51440002',
+    '51440002',
   );
 
   /// For instances where an Element is present but not value
 
-  static final Laterality elementOnly = Laterality._(value: '');
+  static final Laterality elementOnly = Laterality._('');
 
   /// List of all enum-like values
   static final List<Laterality> values = [
@@ -58,13 +58,13 @@ class Laterality extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   Laterality clone() => Laterality._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   Laterality withElement(Element? newElement) {
-    return Laterality._(value: value, element: newElement);
+    return Laterality._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -94,7 +94,7 @@ class Laterality extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return Laterality._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

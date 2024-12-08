@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value set contract specific codes for status.
 class ContractResourceDefinitionTypeCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ContractResourceDefinitionTypeCodes._({
-    super.value,
+  ContractResourceDefinitionTypeCodes._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -27,20 +27,19 @@ class ContractResourceDefinitionTypeCodes extends PrimitiveType<String> {
         'ContractResourceDefinitionTypeCodes cannot be constructed from JSON.',
       );
     }
-    return ContractResourceDefinitionTypeCodes._(
-        value: value, element: element);
+    return ContractResourceDefinitionTypeCodes._(value, element: element);
   }
 
   /// temp
   static final ContractResourceDefinitionTypeCodes temp =
       ContractResourceDefinitionTypeCodes._(
-    value: 'temp',
+    'temp',
   );
 
   /// For instances where an Element is present but not value
 
   static final ContractResourceDefinitionTypeCodes elementOnly =
-      ContractResourceDefinitionTypeCodes._(value: '');
+      ContractResourceDefinitionTypeCodes._('');
 
   /// List of all enum-like values
   static final List<ContractResourceDefinitionTypeCodes> values = [
@@ -51,14 +50,13 @@ class ContractResourceDefinitionTypeCodes extends PrimitiveType<String> {
   @override
   ContractResourceDefinitionTypeCodes clone() =>
       ContractResourceDefinitionTypeCodes._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ContractResourceDefinitionTypeCodes withElement(Element? newElement) {
-    return ContractResourceDefinitionTypeCodes._(
-        value: value, element: newElement);
+    return ContractResourceDefinitionTypeCodes._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -88,7 +86,7 @@ class ContractResourceDefinitionTypeCodes extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ContractResourceDefinitionTypeCodes._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The status of a resource narrative.
 class NarrativeStatus extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  NarrativeStatus._({
-    super.value,
+  NarrativeStatus._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,32 +26,32 @@ class NarrativeStatus extends PrimitiveType<String> {
         'NarrativeStatus cannot be constructed from JSON.',
       );
     }
-    return NarrativeStatus._(value: value, element: element);
+    return NarrativeStatus._(value, element: element);
   }
 
   /// generated
   static final NarrativeStatus generated = NarrativeStatus._(
-    value: 'generated',
+    'generated',
   );
 
   /// extensions
   static final NarrativeStatus extensions = NarrativeStatus._(
-    value: 'extensions',
+    'extensions',
   );
 
   /// additional
   static final NarrativeStatus additional = NarrativeStatus._(
-    value: 'additional',
+    'additional',
   );
 
   /// empty
   static final NarrativeStatus empty = NarrativeStatus._(
-    value: 'empty',
+    'empty',
   );
 
   /// For instances where an Element is present but not value
 
-  static final NarrativeStatus elementOnly = NarrativeStatus._(value: '');
+  static final NarrativeStatus elementOnly = NarrativeStatus._('');
 
   /// List of all enum-like values
   static final List<NarrativeStatus> values = [
@@ -64,13 +64,13 @@ class NarrativeStatus extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   NarrativeStatus clone() => NarrativeStatus._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   NarrativeStatus withElement(Element? newElement) {
-    return NarrativeStatus._(value: value, element: newElement);
+    return NarrativeStatus._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -100,7 +100,7 @@ class NarrativeStatus extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return NarrativeStatus._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Used to specify why the normally expected content of the data element is missing.
 class DataAbsentReason extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  DataAbsentReason._({
-    super.value,
+  DataAbsentReason._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,87 +26,87 @@ class DataAbsentReason extends PrimitiveType<String> {
         'DataAbsentReason cannot be constructed from JSON.',
       );
     }
-    return DataAbsentReason._(value: value, element: element);
+    return DataAbsentReason._(value, element: element);
   }
 
   /// unknown
   static final DataAbsentReason unknown = DataAbsentReason._(
-    value: 'unknown',
+    'unknown',
   );
 
   /// asked_unknown
   static final DataAbsentReason asked_unknown = DataAbsentReason._(
-    value: 'asked-unknown',
+    'asked-unknown',
   );
 
   /// temp_unknown
   static final DataAbsentReason temp_unknown = DataAbsentReason._(
-    value: 'temp-unknown',
+    'temp-unknown',
   );
 
   /// not_asked
   static final DataAbsentReason not_asked = DataAbsentReason._(
-    value: 'not-asked',
+    'not-asked',
   );
 
   /// asked_declined
   static final DataAbsentReason asked_declined = DataAbsentReason._(
-    value: 'asked-declined',
+    'asked-declined',
   );
 
   /// masked
   static final DataAbsentReason masked = DataAbsentReason._(
-    value: 'masked',
+    'masked',
   );
 
   /// not_applicable
   static final DataAbsentReason not_applicable = DataAbsentReason._(
-    value: 'not-applicable',
+    'not-applicable',
   );
 
   /// unsupported
   static final DataAbsentReason unsupported = DataAbsentReason._(
-    value: 'unsupported',
+    'unsupported',
   );
 
   /// as_text
   static final DataAbsentReason as_text = DataAbsentReason._(
-    value: 'as-text',
+    'as-text',
   );
 
   /// error
   static final DataAbsentReason error = DataAbsentReason._(
-    value: 'error',
+    'error',
   );
 
   /// not_a_number
   static final DataAbsentReason not_a_number = DataAbsentReason._(
-    value: 'not-a-number',
+    'not-a-number',
   );
 
   /// negative_infinity
   static final DataAbsentReason negative_infinity = DataAbsentReason._(
-    value: 'negative-infinity',
+    'negative-infinity',
   );
 
   /// positive_infinity
   static final DataAbsentReason positive_infinity = DataAbsentReason._(
-    value: 'positive-infinity',
+    'positive-infinity',
   );
 
   /// not_performed
   static final DataAbsentReason not_performed = DataAbsentReason._(
-    value: 'not-performed',
+    'not-performed',
   );
 
   /// not_permitted
   static final DataAbsentReason not_permitted = DataAbsentReason._(
-    value: 'not-permitted',
+    'not-permitted',
   );
 
   /// For instances where an Element is present but not value
 
-  static final DataAbsentReason elementOnly = DataAbsentReason._(value: '');
+  static final DataAbsentReason elementOnly = DataAbsentReason._('');
 
   /// List of all enum-like values
   static final List<DataAbsentReason> values = [
@@ -130,13 +130,13 @@ class DataAbsentReason extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   DataAbsentReason clone() => DataAbsentReason._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   DataAbsentReason withElement(Element? newElement) {
-    return DataAbsentReason._(value: value, element: newElement);
+    return DataAbsentReason._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -166,7 +166,7 @@ class DataAbsentReason extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return DataAbsentReason._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

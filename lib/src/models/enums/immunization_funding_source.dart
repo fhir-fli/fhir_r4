@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The value set to instantiate this attribute should be drawn from a terminologically robust code system that consists of or contains concepts to support describing the source of the vaccine administered. This value set is provided as a suggestive example.
 class ImmunizationFundingSource extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ImmunizationFundingSource._({
-    super.value,
+  ImmunizationFundingSource._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,23 +26,23 @@ class ImmunizationFundingSource extends PrimitiveType<String> {
         'ImmunizationFundingSource cannot be constructed from JSON.',
       );
     }
-    return ImmunizationFundingSource._(value: value, element: element);
+    return ImmunizationFundingSource._(value, element: element);
   }
 
   /// private
   static final ImmunizationFundingSource private = ImmunizationFundingSource._(
-    value: 'private',
+    'private',
   );
 
   /// public
   static final ImmunizationFundingSource public = ImmunizationFundingSource._(
-    value: 'public',
+    'public',
   );
 
   /// For instances where an Element is present but not value
 
   static final ImmunizationFundingSource elementOnly =
-      ImmunizationFundingSource._(value: '');
+      ImmunizationFundingSource._('');
 
   /// List of all enum-like values
   static final List<ImmunizationFundingSource> values = [
@@ -53,13 +53,13 @@ class ImmunizationFundingSource extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ImmunizationFundingSource clone() => ImmunizationFundingSource._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ImmunizationFundingSource withElement(Element? newElement) {
-    return ImmunizationFundingSource._(value: value, element: newElement);
+    return ImmunizationFundingSource._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -89,7 +89,7 @@ class ImmunizationFundingSource extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ImmunizationFundingSource._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

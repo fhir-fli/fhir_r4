@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value set contract specific codes for action status.
 class ContractResourceActionStatusCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ContractResourceActionStatusCodes._({
-    super.value,
+  ContractResourceActionStatusCodes._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,19 +26,19 @@ class ContractResourceActionStatusCodes extends PrimitiveType<String> {
         'ContractResourceActionStatusCodes cannot be constructed from JSON.',
       );
     }
-    return ContractResourceActionStatusCodes._(value: value, element: element);
+    return ContractResourceActionStatusCodes._(value, element: element);
   }
 
   /// complete
   static final ContractResourceActionStatusCodes complete =
       ContractResourceActionStatusCodes._(
-    value: 'complete',
+    'complete',
   );
 
   /// For instances where an Element is present but not value
 
   static final ContractResourceActionStatusCodes elementOnly =
-      ContractResourceActionStatusCodes._(value: '');
+      ContractResourceActionStatusCodes._('');
 
   /// List of all enum-like values
   static final List<ContractResourceActionStatusCodes> values = [
@@ -49,14 +49,13 @@ class ContractResourceActionStatusCodes extends PrimitiveType<String> {
   @override
   ContractResourceActionStatusCodes clone() =>
       ContractResourceActionStatusCodes._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ContractResourceActionStatusCodes withElement(Element? newElement) {
-    return ContractResourceActionStatusCodes._(
-        value: value, element: newElement);
+    return ContractResourceActionStatusCodes._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -86,7 +85,7 @@ class ContractResourceActionStatusCodes extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ContractResourceActionStatusCodes._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

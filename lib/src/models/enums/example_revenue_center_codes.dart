@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value set includes sample Revenue Center codes.
 class ExampleRevenueCenterCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ExampleRevenueCenterCodes._({
-    super.value,
+  ExampleRevenueCenterCodes._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,67 +26,67 @@ class ExampleRevenueCenterCodes extends PrimitiveType<String> {
         'ExampleRevenueCenterCodes cannot be constructed from JSON.',
       );
     }
-    return ExampleRevenueCenterCodes._(value: value, element: element);
+    return ExampleRevenueCenterCodes._(value, element: element);
   }
 
   /// value0370
   static final ExampleRevenueCenterCodes value0370 =
       ExampleRevenueCenterCodes._(
-    value: '0370',
+    '0370',
   );
 
   /// value0420
   static final ExampleRevenueCenterCodes value0420 =
       ExampleRevenueCenterCodes._(
-    value: '0420',
+    '0420',
   );
 
   /// value0421
   static final ExampleRevenueCenterCodes value0421 =
       ExampleRevenueCenterCodes._(
-    value: '0421',
+    '0421',
   );
 
   /// value0440
   static final ExampleRevenueCenterCodes value0440 =
       ExampleRevenueCenterCodes._(
-    value: '0440',
+    '0440',
   );
 
   /// value0441
   static final ExampleRevenueCenterCodes value0441 =
       ExampleRevenueCenterCodes._(
-    value: '0441',
+    '0441',
   );
 
   /// value0450
   static final ExampleRevenueCenterCodes value0450 =
       ExampleRevenueCenterCodes._(
-    value: '0450',
+    '0450',
   );
 
   /// value0451
   static final ExampleRevenueCenterCodes value0451 =
       ExampleRevenueCenterCodes._(
-    value: '0451',
+    '0451',
   );
 
   /// value0452
   static final ExampleRevenueCenterCodes value0452 =
       ExampleRevenueCenterCodes._(
-    value: '0452',
+    '0452',
   );
 
   /// value0010
   static final ExampleRevenueCenterCodes value0010 =
       ExampleRevenueCenterCodes._(
-    value: '0010',
+    '0010',
   );
 
   /// For instances where an Element is present but not value
 
   static final ExampleRevenueCenterCodes elementOnly =
-      ExampleRevenueCenterCodes._(value: '');
+      ExampleRevenueCenterCodes._('');
 
   /// List of all enum-like values
   static final List<ExampleRevenueCenterCodes> values = [
@@ -104,13 +104,13 @@ class ExampleRevenueCenterCodes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ExampleRevenueCenterCodes clone() => ExampleRevenueCenterCodes._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ExampleRevenueCenterCodes withElement(Element? newElement) {
-    return ExampleRevenueCenterCodes._(value: value, element: newElement);
+    return ExampleRevenueCenterCodes._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -140,7 +140,7 @@ class ExampleRevenueCenterCodes extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ExampleRevenueCenterCodes._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// FluidConsistencyType : Codes used to represent the consistency of fluids and liquids provided to the patient. This value set includes concepts from [SNOMED CT](http://snomed.info/sct)(US Extension) where concept is a 435681000124103 (Dietary liquid consistency diet (regime/therapy)). It is provided as a suggestive example.
 class FluidConsistencyTypeCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  FluidConsistencyTypeCodes._({
-    super.value,
+  FluidConsistencyTypeCodes._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,37 +26,37 @@ class FluidConsistencyTypeCodes extends PrimitiveType<String> {
         'FluidConsistencyTypeCodes cannot be constructed from JSON.',
       );
     }
-    return FluidConsistencyTypeCodes._(value: value, element: element);
+    return FluidConsistencyTypeCodes._(value, element: element);
   }
 
   /// value439031000124108
   static final FluidConsistencyTypeCodes value439031000124108 =
       FluidConsistencyTypeCodes._(
-    value: '439031000124108',
+    '439031000124108',
   );
 
   /// value439021000124105
   static final FluidConsistencyTypeCodes value439021000124105 =
       FluidConsistencyTypeCodes._(
-    value: '439021000124105',
+    '439021000124105',
   );
 
   /// value439041000124103
   static final FluidConsistencyTypeCodes value439041000124103 =
       FluidConsistencyTypeCodes._(
-    value: '439041000124103',
+    '439041000124103',
   );
 
   /// value439081000124109
   static final FluidConsistencyTypeCodes value439081000124109 =
       FluidConsistencyTypeCodes._(
-    value: '439081000124109',
+    '439081000124109',
   );
 
   /// For instances where an Element is present but not value
 
   static final FluidConsistencyTypeCodes elementOnly =
-      FluidConsistencyTypeCodes._(value: '');
+      FluidConsistencyTypeCodes._('');
 
   /// List of all enum-like values
   static final List<FluidConsistencyTypeCodes> values = [
@@ -69,13 +69,13 @@ class FluidConsistencyTypeCodes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   FluidConsistencyTypeCodes clone() => FluidConsistencyTypeCodes._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   FluidConsistencyTypeCodes withElement(Element? newElement) {
-    return FluidConsistencyTypeCodes._(value: value, element: newElement);
+    return FluidConsistencyTypeCodes._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -105,7 +105,7 @@ class FluidConsistencyTypeCodes extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return FluidConsistencyTypeCodes._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

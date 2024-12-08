@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// TextureModifiedFoodType: Codes for types of foods that are texture-modified. This value set is composed SNOMED CT Concepts from SCTID 255620007 Foods (substance) and is provided as a suggestive example.
 class TextureModifiedFoodTypeCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  TextureModifiedFoodTypeCodes._({
-    super.value,
+  TextureModifiedFoodTypeCodes._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,97 +26,97 @@ class TextureModifiedFoodTypeCodes extends PrimitiveType<String> {
         'TextureModifiedFoodTypeCodes cannot be constructed from JSON.',
       );
     }
-    return TextureModifiedFoodTypeCodes._(value: value, element: element);
+    return TextureModifiedFoodTypeCodes._(value, element: element);
   }
 
   /// value255620007
   static final TextureModifiedFoodTypeCodes value255620007 =
       TextureModifiedFoodTypeCodes._(
-    value: '255620007',
+    '255620007',
   );
 
   /// value28647000
   static final TextureModifiedFoodTypeCodes value28647000 =
       TextureModifiedFoodTypeCodes._(
-    value: '28647000',
+    '28647000',
   );
 
   /// value22836000
   static final TextureModifiedFoodTypeCodes value22836000 =
       TextureModifiedFoodTypeCodes._(
-    value: '22836000',
+    '22836000',
   );
 
   /// value72511004
   static final TextureModifiedFoodTypeCodes value72511004 =
       TextureModifiedFoodTypeCodes._(
-    value: '72511004',
+    '72511004',
   );
 
   /// value226760005
   static final TextureModifiedFoodTypeCodes value226760005 =
       TextureModifiedFoodTypeCodes._(
-    value: '226760005',
+    '226760005',
   );
 
   /// value226887002
   static final TextureModifiedFoodTypeCodes value226887002 =
       TextureModifiedFoodTypeCodes._(
-    value: '226887002',
+    '226887002',
   );
 
   /// value102263004
   static final TextureModifiedFoodTypeCodes value102263004 =
       TextureModifiedFoodTypeCodes._(
-    value: '102263004',
+    '102263004',
   );
 
   /// value74242007
   static final TextureModifiedFoodTypeCodes value74242007 =
       TextureModifiedFoodTypeCodes._(
-    value: '74242007',
+    '74242007',
   );
 
   /// value227415002
   static final TextureModifiedFoodTypeCodes value227415002 =
       TextureModifiedFoodTypeCodes._(
-    value: '227415002',
+    '227415002',
   );
 
   /// value264331002
   static final TextureModifiedFoodTypeCodes value264331002 =
       TextureModifiedFoodTypeCodes._(
-    value: '264331002',
+    '264331002',
   );
 
   /// value227518002
   static final TextureModifiedFoodTypeCodes value227518002 =
       TextureModifiedFoodTypeCodes._(
-    value: '227518002',
+    '227518002',
   );
 
   /// value44027008
   static final TextureModifiedFoodTypeCodes value44027008 =
       TextureModifiedFoodTypeCodes._(
-    value: '44027008',
+    '44027008',
   );
 
   /// value226529007
   static final TextureModifiedFoodTypeCodes value226529007 =
       TextureModifiedFoodTypeCodes._(
-    value: '226529007',
+    '226529007',
   );
 
   /// value227210005
   static final TextureModifiedFoodTypeCodes value227210005 =
       TextureModifiedFoodTypeCodes._(
-    value: '227210005',
+    '227210005',
   );
 
   /// For instances where an Element is present but not value
 
   static final TextureModifiedFoodTypeCodes elementOnly =
-      TextureModifiedFoodTypeCodes._(value: '');
+      TextureModifiedFoodTypeCodes._('');
 
   /// List of all enum-like values
   static final List<TextureModifiedFoodTypeCodes> values = [
@@ -139,13 +139,13 @@ class TextureModifiedFoodTypeCodes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   TextureModifiedFoodTypeCodes clone() => TextureModifiedFoodTypeCodes._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   TextureModifiedFoodTypeCodes withElement(Element? newElement) {
-    return TextureModifiedFoodTypeCodes._(value: value, element: newElement);
+    return TextureModifiedFoodTypeCodes._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -175,7 +175,7 @@ class TextureModifiedFoodTypeCodes extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return TextureModifiedFoodTypeCodes._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

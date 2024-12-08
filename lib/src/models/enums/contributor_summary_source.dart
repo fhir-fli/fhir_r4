@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Used to code the producer or rule for creating the display string.
 class ContributorSummarySource extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ContributorSummarySource._({
-    super.value,
+  ContributorSummarySource._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,36 +26,36 @@ class ContributorSummarySource extends PrimitiveType<String> {
         'ContributorSummarySource cannot be constructed from JSON.',
       );
     }
-    return ContributorSummarySource._(value: value, element: element);
+    return ContributorSummarySource._(value, element: element);
   }
 
   /// publisher_data
   static final ContributorSummarySource publisher_data =
       ContributorSummarySource._(
-    value: 'publisher-data',
+    'publisher-data',
   );
 
   /// article_copy
   static final ContributorSummarySource article_copy =
       ContributorSummarySource._(
-    value: 'article-copy',
+    'article-copy',
   );
 
   /// citation_manager
   static final ContributorSummarySource citation_manager =
       ContributorSummarySource._(
-    value: 'citation-manager',
+    'citation-manager',
   );
 
   /// custom
   static final ContributorSummarySource custom = ContributorSummarySource._(
-    value: 'custom',
+    'custom',
   );
 
   /// For instances where an Element is present but not value
 
   static final ContributorSummarySource elementOnly =
-      ContributorSummarySource._(value: '');
+      ContributorSummarySource._('');
 
   /// List of all enum-like values
   static final List<ContributorSummarySource> values = [
@@ -68,13 +68,13 @@ class ContributorSummarySource extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ContributorSummarySource clone() => ContributorSummarySource._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ContributorSummarySource withElement(Element? newElement) {
-    return ContributorSummarySource._(value: value, element: newElement);
+    return ContributorSummarySource._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -104,7 +104,7 @@ class ContributorSummarySource extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ContributorSummarySource._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

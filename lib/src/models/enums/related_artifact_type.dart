@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The type of relationship to the related artifact.
 class RelatedArtifactType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  RelatedArtifactType._({
-    super.value,
+  RelatedArtifactType._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,53 +26,52 @@ class RelatedArtifactType extends PrimitiveType<String> {
         'RelatedArtifactType cannot be constructed from JSON.',
       );
     }
-    return RelatedArtifactType._(value: value, element: element);
+    return RelatedArtifactType._(value, element: element);
   }
 
   /// documentation
   static final RelatedArtifactType documentation = RelatedArtifactType._(
-    value: 'documentation',
+    'documentation',
   );
 
   /// justification
   static final RelatedArtifactType justification = RelatedArtifactType._(
-    value: 'justification',
+    'justification',
   );
 
   /// citation
   static final RelatedArtifactType citation = RelatedArtifactType._(
-    value: 'citation',
+    'citation',
   );
 
   /// predecessor
   static final RelatedArtifactType predecessor = RelatedArtifactType._(
-    value: 'predecessor',
+    'predecessor',
   );
 
   /// successor
   static final RelatedArtifactType successor = RelatedArtifactType._(
-    value: 'successor',
+    'successor',
   );
 
   /// derived_from
   static final RelatedArtifactType derived_from = RelatedArtifactType._(
-    value: 'derived-from',
+    'derived-from',
   );
 
   /// depends_on
   static final RelatedArtifactType depends_on = RelatedArtifactType._(
-    value: 'depends-on',
+    'depends-on',
   );
 
   /// composed_of
   static final RelatedArtifactType composed_of = RelatedArtifactType._(
-    value: 'composed-of',
+    'composed-of',
   );
 
   /// For instances where an Element is present but not value
 
-  static final RelatedArtifactType elementOnly =
-      RelatedArtifactType._(value: '');
+  static final RelatedArtifactType elementOnly = RelatedArtifactType._('');
 
   /// List of all enum-like values
   static final List<RelatedArtifactType> values = [
@@ -89,13 +88,13 @@ class RelatedArtifactType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   RelatedArtifactType clone() => RelatedArtifactType._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   RelatedArtifactType withElement(Element? newElement) {
-    return RelatedArtifactType._(value: value, element: newElement);
+    return RelatedArtifactType._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -125,7 +124,7 @@ class RelatedArtifactType extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return RelatedArtifactType._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Overall type of this authorization.
 class RegulatedAuthorizationType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  RegulatedAuthorizationType._({
-    super.value,
+  RegulatedAuthorizationType._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,30 +26,30 @@ class RegulatedAuthorizationType extends PrimitiveType<String> {
         'RegulatedAuthorizationType cannot be constructed from JSON.',
       );
     }
-    return RegulatedAuthorizationType._(value: value, element: element);
+    return RegulatedAuthorizationType._(value, element: element);
   }
 
   /// MarketingAuth
   static final RegulatedAuthorizationType MarketingAuth =
       RegulatedAuthorizationType._(
-    value: 'MarketingAuth',
+    'MarketingAuth',
   );
 
   /// Orphan
   static final RegulatedAuthorizationType Orphan = RegulatedAuthorizationType._(
-    value: 'Orphan',
+    'Orphan',
   );
 
   /// Pediatric
   static final RegulatedAuthorizationType Pediatric =
       RegulatedAuthorizationType._(
-    value: 'Pediatric',
+    'Pediatric',
   );
 
   /// For instances where an Element is present but not value
 
   static final RegulatedAuthorizationType elementOnly =
-      RegulatedAuthorizationType._(value: '');
+      RegulatedAuthorizationType._('');
 
   /// List of all enum-like values
   static final List<RegulatedAuthorizationType> values = [
@@ -61,13 +61,13 @@ class RegulatedAuthorizationType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   RegulatedAuthorizationType clone() => RegulatedAuthorizationType._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   RegulatedAuthorizationType withElement(Element? newElement) {
-    return RegulatedAuthorizationType._(value: value, element: newElement);
+    return RegulatedAuthorizationType._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -97,7 +97,7 @@ class RegulatedAuthorizationType extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return RegulatedAuthorizationType._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

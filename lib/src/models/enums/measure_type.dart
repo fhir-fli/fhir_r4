@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The type of measure (includes codes from 2.16.840.1.113883.1.11.20368).
 class MeasureType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  MeasureType._({
-    super.value,
+  MeasureType._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,37 +26,37 @@ class MeasureType extends PrimitiveType<String> {
         'MeasureType cannot be constructed from JSON.',
       );
     }
-    return MeasureType._(value: value, element: element);
+    return MeasureType._(value, element: element);
   }
 
   /// process
   static final MeasureType process = MeasureType._(
-    value: 'process',
+    'process',
   );
 
   /// outcome
   static final MeasureType outcome = MeasureType._(
-    value: 'outcome',
+    'outcome',
   );
 
   /// structure
   static final MeasureType structure = MeasureType._(
-    value: 'structure',
+    'structure',
   );
 
   /// patient_reported_outcome
   static final MeasureType patient_reported_outcome = MeasureType._(
-    value: 'patient-reported-outcome',
+    'patient-reported-outcome',
   );
 
   /// composite
   static final MeasureType composite = MeasureType._(
-    value: 'composite',
+    'composite',
   );
 
   /// For instances where an Element is present but not value
 
-  static final MeasureType elementOnly = MeasureType._(value: '');
+  static final MeasureType elementOnly = MeasureType._('');
 
   /// List of all enum-like values
   static final List<MeasureType> values = [
@@ -70,13 +70,13 @@ class MeasureType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   MeasureType clone() => MeasureType._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   MeasureType withElement(Element? newElement) {
-    return MeasureType._(value: value, element: newElement);
+    return MeasureType._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -106,7 +106,7 @@ class MeasureType extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return MeasureType._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

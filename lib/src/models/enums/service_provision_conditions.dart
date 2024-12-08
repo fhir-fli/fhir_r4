@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The code(s) that detail the conditions under which the healthcare service is available/offered.
 class ServiceProvisionConditions extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ServiceProvisionConditions._({
-    super.value,
+  ServiceProvisionConditions._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,28 +26,28 @@ class ServiceProvisionConditions extends PrimitiveType<String> {
         'ServiceProvisionConditions cannot be constructed from JSON.',
       );
     }
-    return ServiceProvisionConditions._(value: value, element: element);
+    return ServiceProvisionConditions._(value, element: element);
   }
 
   /// free
   static final ServiceProvisionConditions free = ServiceProvisionConditions._(
-    value: 'free',
+    'free',
   );
 
   /// disc
   static final ServiceProvisionConditions disc = ServiceProvisionConditions._(
-    value: 'disc',
+    'disc',
   );
 
   /// cost
   static final ServiceProvisionConditions cost = ServiceProvisionConditions._(
-    value: 'cost',
+    'cost',
   );
 
   /// For instances where an Element is present but not value
 
   static final ServiceProvisionConditions elementOnly =
-      ServiceProvisionConditions._(value: '');
+      ServiceProvisionConditions._('');
 
   /// List of all enum-like values
   static final List<ServiceProvisionConditions> values = [
@@ -59,13 +59,13 @@ class ServiceProvisionConditions extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ServiceProvisionConditions clone() => ServiceProvisionConditions._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ServiceProvisionConditions withElement(Element? newElement) {
-    return ServiceProvisionConditions._(value: value, element: newElement);
+    return ServiceProvisionConditions._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -95,7 +95,7 @@ class ServiceProvisionConditions extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ServiceProvisionConditions._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

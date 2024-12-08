@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The mode of a message capability statement.
 class EventCapabilityMode extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  EventCapabilityMode._({
-    super.value,
+  EventCapabilityMode._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,23 +26,22 @@ class EventCapabilityMode extends PrimitiveType<String> {
         'EventCapabilityMode cannot be constructed from JSON.',
       );
     }
-    return EventCapabilityMode._(value: value, element: element);
+    return EventCapabilityMode._(value, element: element);
   }
 
   /// sender
   static final EventCapabilityMode sender = EventCapabilityMode._(
-    value: 'sender',
+    'sender',
   );
 
   /// receiver
   static final EventCapabilityMode receiver = EventCapabilityMode._(
-    value: 'receiver',
+    'receiver',
   );
 
   /// For instances where an Element is present but not value
 
-  static final EventCapabilityMode elementOnly =
-      EventCapabilityMode._(value: '');
+  static final EventCapabilityMode elementOnly = EventCapabilityMode._('');
 
   /// List of all enum-like values
   static final List<EventCapabilityMode> values = [
@@ -53,13 +52,13 @@ class EventCapabilityMode extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   EventCapabilityMode clone() => EventCapabilityMode._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   EventCapabilityMode withElement(Element? newElement) {
-    return EventCapabilityMode._(value: value, element: newElement);
+    return EventCapabilityMode._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -89,7 +88,7 @@ class EventCapabilityMode extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return EventCapabilityMode._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

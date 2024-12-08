@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value set contract specific codes for offer party participation.
 class ContractResourcePartyRoleCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ContractResourcePartyRoleCodes._({
-    super.value,
+  ContractResourcePartyRoleCodes._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,19 +26,19 @@ class ContractResourcePartyRoleCodes extends PrimitiveType<String> {
         'ContractResourcePartyRoleCodes cannot be constructed from JSON.',
       );
     }
-    return ContractResourcePartyRoleCodes._(value: value, element: element);
+    return ContractResourcePartyRoleCodes._(value, element: element);
   }
 
   /// flunky
   static final ContractResourcePartyRoleCodes flunky =
       ContractResourcePartyRoleCodes._(
-    value: 'flunky',
+    'flunky',
   );
 
   /// For instances where an Element is present but not value
 
   static final ContractResourcePartyRoleCodes elementOnly =
-      ContractResourcePartyRoleCodes._(value: '');
+      ContractResourcePartyRoleCodes._('');
 
   /// List of all enum-like values
   static final List<ContractResourcePartyRoleCodes> values = [
@@ -48,13 +48,13 @@ class ContractResourcePartyRoleCodes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ContractResourcePartyRoleCodes clone() => ContractResourcePartyRoleCodes._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ContractResourcePartyRoleCodes withElement(Element? newElement) {
-    return ContractResourcePartyRoleCodes._(value: value, element: newElement);
+    return ContractResourcePartyRoleCodes._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -84,7 +84,7 @@ class ContractResourcePartyRoleCodes extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ContractResourcePartyRoleCodes._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

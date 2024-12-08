@@ -119,8 +119,7 @@ void main() {
     });
 
     test('FhirUnsignedInt with Element', () {
-      final fhirInteger =
-          FhirUnsignedInt(validInteger, element: element);
+      final fhirInteger = FhirUnsignedInt(validInteger, element: element);
       expect(fhirInteger.element?.id, equals('testElement'.toFhirString));
     });
 

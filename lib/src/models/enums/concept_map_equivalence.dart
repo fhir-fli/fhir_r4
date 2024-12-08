@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The degree of equivalence between concepts.
 class ConceptMapEquivalence extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ConceptMapEquivalence._({
-    super.value,
+  ConceptMapEquivalence._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,63 +26,62 @@ class ConceptMapEquivalence extends PrimitiveType<String> {
         'ConceptMapEquivalence cannot be constructed from JSON.',
       );
     }
-    return ConceptMapEquivalence._(value: value, element: element);
+    return ConceptMapEquivalence._(value, element: element);
   }
 
   /// relatedto
   static final ConceptMapEquivalence relatedto = ConceptMapEquivalence._(
-    value: 'relatedto',
+    'relatedto',
   );
 
   /// equivalent
   static final ConceptMapEquivalence equivalent = ConceptMapEquivalence._(
-    value: 'equivalent',
+    'equivalent',
   );
 
   /// equal
   static final ConceptMapEquivalence equal = ConceptMapEquivalence._(
-    value: 'equal',
+    'equal',
   );
 
   /// wider
   static final ConceptMapEquivalence wider = ConceptMapEquivalence._(
-    value: 'wider',
+    'wider',
   );
 
   /// subsumes
   static final ConceptMapEquivalence subsumes = ConceptMapEquivalence._(
-    value: 'subsumes',
+    'subsumes',
   );
 
   /// narrower
   static final ConceptMapEquivalence narrower = ConceptMapEquivalence._(
-    value: 'narrower',
+    'narrower',
   );
 
   /// specializes
   static final ConceptMapEquivalence specializes = ConceptMapEquivalence._(
-    value: 'specializes',
+    'specializes',
   );
 
   /// inexact
   static final ConceptMapEquivalence inexact = ConceptMapEquivalence._(
-    value: 'inexact',
+    'inexact',
   );
 
   /// unmatched
   static final ConceptMapEquivalence unmatched = ConceptMapEquivalence._(
-    value: 'unmatched',
+    'unmatched',
   );
 
   /// disjoint
   static final ConceptMapEquivalence disjoint = ConceptMapEquivalence._(
-    value: 'disjoint',
+    'disjoint',
   );
 
   /// For instances where an Element is present but not value
 
-  static final ConceptMapEquivalence elementOnly =
-      ConceptMapEquivalence._(value: '');
+  static final ConceptMapEquivalence elementOnly = ConceptMapEquivalence._('');
 
   /// List of all enum-like values
   static final List<ConceptMapEquivalence> values = [
@@ -101,13 +100,13 @@ class ConceptMapEquivalence extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ConceptMapEquivalence clone() => ConceptMapEquivalence._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ConceptMapEquivalence withElement(Element? newElement) {
-    return ConceptMapEquivalence._(value: value, element: newElement);
+    return ConceptMapEquivalence._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -137,7 +136,7 @@ class ConceptMapEquivalence extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ConceptMapEquivalence._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

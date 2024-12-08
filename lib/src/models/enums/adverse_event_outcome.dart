@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// TODO (and should this be required?).
 class AdverseEventOutcome extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  AdverseEventOutcome._({
-    super.value,
+  AdverseEventOutcome._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,43 +26,42 @@ class AdverseEventOutcome extends PrimitiveType<String> {
         'AdverseEventOutcome cannot be constructed from JSON.',
       );
     }
-    return AdverseEventOutcome._(value: value, element: element);
+    return AdverseEventOutcome._(value, element: element);
   }
 
   /// resolved
   static final AdverseEventOutcome resolved = AdverseEventOutcome._(
-    value: 'resolved',
+    'resolved',
   );
 
   /// recovering
   static final AdverseEventOutcome recovering = AdverseEventOutcome._(
-    value: 'recovering',
+    'recovering',
   );
 
   /// ongoing
   static final AdverseEventOutcome ongoing = AdverseEventOutcome._(
-    value: 'ongoing',
+    'ongoing',
   );
 
   /// resolvedWithSequelae
   static final AdverseEventOutcome resolvedWithSequelae = AdverseEventOutcome._(
-    value: 'resolvedWithSequelae',
+    'resolvedWithSequelae',
   );
 
   /// fatal
   static final AdverseEventOutcome fatal = AdverseEventOutcome._(
-    value: 'fatal',
+    'fatal',
   );
 
   /// unknown
   static final AdverseEventOutcome unknown = AdverseEventOutcome._(
-    value: 'unknown',
+    'unknown',
   );
 
   /// For instances where an Element is present but not value
 
-  static final AdverseEventOutcome elementOnly =
-      AdverseEventOutcome._(value: '');
+  static final AdverseEventOutcome elementOnly = AdverseEventOutcome._('');
 
   /// List of all enum-like values
   static final List<AdverseEventOutcome> values = [
@@ -77,13 +76,13 @@ class AdverseEventOutcome extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   AdverseEventOutcome clone() => AdverseEventOutcome._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   AdverseEventOutcome withElement(Element? newElement) {
-    return AdverseEventOutcome._(value: value, element: newElement);
+    return AdverseEventOutcome._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -113,7 +112,7 @@ class AdverseEventOutcome extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return AdverseEventOutcome._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

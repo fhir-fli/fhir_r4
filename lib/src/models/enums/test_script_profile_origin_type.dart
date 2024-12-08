@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value set defines a set of codes that are used to indicate the profile type of a test system when acting as the origin within a TestScript.
 class TestScriptProfileOriginType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  TestScriptProfileOriginType._({
-    super.value,
+  TestScriptProfileOriginType._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,25 +26,25 @@ class TestScriptProfileOriginType extends PrimitiveType<String> {
         'TestScriptProfileOriginType cannot be constructed from JSON.',
       );
     }
-    return TestScriptProfileOriginType._(value: value, element: element);
+    return TestScriptProfileOriginType._(value, element: element);
   }
 
   /// FHIR_Client
   static final TestScriptProfileOriginType FHIR_Client =
       TestScriptProfileOriginType._(
-    value: 'FHIR-Client',
+    'FHIR-Client',
   );
 
   /// FHIR_SDC_FormFiller
   static final TestScriptProfileOriginType FHIR_SDC_FormFiller =
       TestScriptProfileOriginType._(
-    value: 'FHIR-SDC-FormFiller',
+    'FHIR-SDC-FormFiller',
   );
 
   /// For instances where an Element is present but not value
 
   static final TestScriptProfileOriginType elementOnly =
-      TestScriptProfileOriginType._(value: '');
+      TestScriptProfileOriginType._('');
 
   /// List of all enum-like values
   static final List<TestScriptProfileOriginType> values = [
@@ -55,13 +55,13 @@ class TestScriptProfileOriginType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   TestScriptProfileOriginType clone() => TestScriptProfileOriginType._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   TestScriptProfileOriginType withElement(Element? newElement) {
-    return TestScriptProfileOriginType._(value: value, element: newElement);
+    return TestScriptProfileOriginType._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -91,7 +91,7 @@ class TestScriptProfileOriginType extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return TestScriptProfileOriginType._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

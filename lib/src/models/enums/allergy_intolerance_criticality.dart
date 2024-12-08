@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Estimate of the potential clinical harm, or seriousness, of a reaction to an identified substance.
 class AllergyIntoleranceCriticality extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  AllergyIntoleranceCriticality._({
-    super.value,
+  AllergyIntoleranceCriticality._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,31 +26,31 @@ class AllergyIntoleranceCriticality extends PrimitiveType<String> {
         'AllergyIntoleranceCriticality cannot be constructed from JSON.',
       );
     }
-    return AllergyIntoleranceCriticality._(value: value, element: element);
+    return AllergyIntoleranceCriticality._(value, element: element);
   }
 
   /// low
   static final AllergyIntoleranceCriticality low =
       AllergyIntoleranceCriticality._(
-    value: 'low',
+    'low',
   );
 
   /// high
   static final AllergyIntoleranceCriticality high =
       AllergyIntoleranceCriticality._(
-    value: 'high',
+    'high',
   );
 
   /// unable_to_assess
   static final AllergyIntoleranceCriticality unable_to_assess =
       AllergyIntoleranceCriticality._(
-    value: 'unable-to-assess',
+    'unable-to-assess',
   );
 
   /// For instances where an Element is present but not value
 
   static final AllergyIntoleranceCriticality elementOnly =
-      AllergyIntoleranceCriticality._(value: '');
+      AllergyIntoleranceCriticality._('');
 
   /// List of all enum-like values
   static final List<AllergyIntoleranceCriticality> values = [
@@ -62,13 +62,13 @@ class AllergyIntoleranceCriticality extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   AllergyIntoleranceCriticality clone() => AllergyIntoleranceCriticality._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   AllergyIntoleranceCriticality withElement(Element? newElement) {
-    return AllergyIntoleranceCriticality._(value: value, element: newElement);
+    return AllergyIntoleranceCriticality._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -98,7 +98,7 @@ class AllergyIntoleranceCriticality extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return AllergyIntoleranceCriticality._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

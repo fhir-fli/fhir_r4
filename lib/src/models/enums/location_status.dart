@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Indicates whether the location is still in use.
 class LocationStatus extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  LocationStatus._({
-    super.value,
+  LocationStatus._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,27 +26,27 @@ class LocationStatus extends PrimitiveType<String> {
         'LocationStatus cannot be constructed from JSON.',
       );
     }
-    return LocationStatus._(value: value, element: element);
+    return LocationStatus._(value, element: element);
   }
 
   /// active
   static final LocationStatus active = LocationStatus._(
-    value: 'active',
+    'active',
   );
 
   /// suspended
   static final LocationStatus suspended = LocationStatus._(
-    value: 'suspended',
+    'suspended',
   );
 
   /// inactive
   static final LocationStatus inactive = LocationStatus._(
-    value: 'inactive',
+    'inactive',
   );
 
   /// For instances where an Element is present but not value
 
-  static final LocationStatus elementOnly = LocationStatus._(value: '');
+  static final LocationStatus elementOnly = LocationStatus._('');
 
   /// List of all enum-like values
   static final List<LocationStatus> values = [
@@ -58,13 +58,13 @@ class LocationStatus extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   LocationStatus clone() => LocationStatus._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   LocationStatus withElement(Element? newElement) {
-    return LocationStatus._(value: value, element: newElement);
+    return LocationStatus._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -94,7 +94,7 @@ class LocationStatus extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return LocationStatus._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

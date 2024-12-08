@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Classification of warning type.
 class WarningType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  WarningType._({
-    super.value,
+  WarningType._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,62 +26,62 @@ class WarningType extends PrimitiveType<String> {
         'WarningType cannot be constructed from JSON.',
       );
     }
-    return WarningType._(value: value, element: element);
+    return WarningType._(value, element: element);
   }
 
   /// P313
   static final WarningType P313 = WarningType._(
-    value: 'P313',
+    'P313',
   );
 
   /// P314
   static final WarningType P314 = WarningType._(
-    value: 'P314',
+    'P314',
   );
 
   /// P315
   static final WarningType P315 = WarningType._(
-    value: 'P315',
+    'P315',
   );
 
   /// P320
   static final WarningType P320 = WarningType._(
-    value: 'P320',
+    'P320',
   );
 
   /// P321
   static final WarningType P321 = WarningType._(
-    value: 'P321',
+    'P321',
   );
 
   /// P322
   static final WarningType P322 = WarningType._(
-    value: 'P322',
+    'P322',
   );
 
   /// P330
   static final WarningType P330 = WarningType._(
-    value: 'P330',
+    'P330',
   );
 
   /// P331
   static final WarningType P331 = WarningType._(
-    value: 'P331',
+    'P331',
   );
 
   /// P361
   static final WarningType P361 = WarningType._(
-    value: 'P361',
+    'P361',
   );
 
   /// P363
   static final WarningType P363 = WarningType._(
-    value: 'P363',
+    'P363',
   );
 
   /// For instances where an Element is present but not value
 
-  static final WarningType elementOnly = WarningType._(value: '');
+  static final WarningType elementOnly = WarningType._('');
 
   /// List of all enum-like values
   static final List<WarningType> values = [
@@ -100,13 +100,13 @@ class WarningType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   WarningType clone() => WarningType._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   WarningType withElement(Element? newElement) {
-    return WarningType._(value: value, element: newElement);
+    return WarningType._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -136,7 +136,7 @@ class WarningType extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return WarningType._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Indicates whether this flag is active and needs to be displayed to a user, or whether it is no longer needed or was entered in error.
 class FlagStatus extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  FlagStatus._({
-    super.value,
+  FlagStatus._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,27 +26,27 @@ class FlagStatus extends PrimitiveType<String> {
         'FlagStatus cannot be constructed from JSON.',
       );
     }
-    return FlagStatus._(value: value, element: element);
+    return FlagStatus._(value, element: element);
   }
 
   /// active
   static final FlagStatus active = FlagStatus._(
-    value: 'active',
+    'active',
   );
 
   /// inactive
   static final FlagStatus inactive = FlagStatus._(
-    value: 'inactive',
+    'inactive',
   );
 
   /// entered_in_error
   static final FlagStatus entered_in_error = FlagStatus._(
-    value: 'entered-in-error',
+    'entered-in-error',
   );
 
   /// For instances where an Element is present but not value
 
-  static final FlagStatus elementOnly = FlagStatus._(value: '');
+  static final FlagStatus elementOnly = FlagStatus._('');
 
   /// List of all enum-like values
   static final List<FlagStatus> values = [
@@ -58,13 +58,13 @@ class FlagStatus extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   FlagStatus clone() => FlagStatus._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   FlagStatus withElement(Element? newElement) {
-    return FlagStatus._(value: value, element: newElement);
+    return FlagStatus._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -94,7 +94,7 @@ class FlagStatus extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return FlagStatus._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

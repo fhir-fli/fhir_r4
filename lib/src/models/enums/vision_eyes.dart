@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// A coded concept listing the eye codes.
 class VisionEyes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  VisionEyes._({
-    super.value,
+  VisionEyes._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,22 +26,22 @@ class VisionEyes extends PrimitiveType<String> {
         'VisionEyes cannot be constructed from JSON.',
       );
     }
-    return VisionEyes._(value: value, element: element);
+    return VisionEyes._(value, element: element);
   }
 
   /// right
   static final VisionEyes right = VisionEyes._(
-    value: 'right',
+    'right',
   );
 
   /// left
   static final VisionEyes left = VisionEyes._(
-    value: 'left',
+    'left',
   );
 
   /// For instances where an Element is present but not value
 
-  static final VisionEyes elementOnly = VisionEyes._(value: '');
+  static final VisionEyes elementOnly = VisionEyes._('');
 
   /// List of all enum-like values
   static final List<VisionEyes> values = [
@@ -52,13 +52,13 @@ class VisionEyes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   VisionEyes clone() => VisionEyes._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   VisionEyes withElement(Element? newElement) {
-    return VisionEyes._(value: value, element: newElement);
+    return VisionEyes._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -88,7 +88,7 @@ class VisionEyes extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return VisionEyes._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

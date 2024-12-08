@@ -16,11 +16,11 @@ extension FhirPositiveIntExtension on num {
 class FhirPositiveInt extends FhirNumber {
   /// Constructor that ensures valid input.
   FhirPositiveInt(
-    super.input,{
+    super.input, {
     super.element,
     super.id,
     super.extension_,
-  })  {
+  }) {
     if (value == null && element == null) {
       throw ArgumentError('A value or element is required');
     }

@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value set defines a set of codes that can be used to indicate special courtesies provided to the patient.
 class SpecialCourtesy extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  SpecialCourtesy._({
-    super.value,
+  SpecialCourtesy._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,42 +26,42 @@ class SpecialCourtesy extends PrimitiveType<String> {
         'SpecialCourtesy cannot be constructed from JSON.',
       );
     }
-    return SpecialCourtesy._(value: value, element: element);
+    return SpecialCourtesy._(value, element: element);
   }
 
   /// EXT
   static final SpecialCourtesy EXT = SpecialCourtesy._(
-    value: 'EXT',
+    'EXT',
   );
 
   /// NRM
   static final SpecialCourtesy NRM = SpecialCourtesy._(
-    value: 'NRM',
+    'NRM',
   );
 
   /// PRF
   static final SpecialCourtesy PRF = SpecialCourtesy._(
-    value: 'PRF',
+    'PRF',
   );
 
   /// STF
   static final SpecialCourtesy STF = SpecialCourtesy._(
-    value: 'STF',
+    'STF',
   );
 
   /// VIP
   static final SpecialCourtesy VIP = SpecialCourtesy._(
-    value: 'VIP',
+    'VIP',
   );
 
   /// UNK
   static final SpecialCourtesy UNK = SpecialCourtesy._(
-    value: 'UNK',
+    'UNK',
   );
 
   /// For instances where an Element is present but not value
 
-  static final SpecialCourtesy elementOnly = SpecialCourtesy._(value: '');
+  static final SpecialCourtesy elementOnly = SpecialCourtesy._('');
 
   /// List of all enum-like values
   static final List<SpecialCourtesy> values = [
@@ -76,13 +76,13 @@ class SpecialCourtesy extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   SpecialCourtesy clone() => SpecialCourtesy._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   SpecialCourtesy withElement(Element? newElement) {
-    return SpecialCourtesy._(value: value, element: newElement);
+    return SpecialCourtesy._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -112,7 +112,7 @@ class SpecialCourtesy extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return SpecialCourtesy._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

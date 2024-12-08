@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value set includes sample Coverage Copayment Type codes.
 class CoverageCopayTypeCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  CoverageCopayTypeCodes._({
-    super.value,
+  CoverageCopayTypeCodes._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,63 +26,63 @@ class CoverageCopayTypeCodes extends PrimitiveType<String> {
         'CoverageCopayTypeCodes cannot be constructed from JSON.',
       );
     }
-    return CoverageCopayTypeCodes._(value: value, element: element);
+    return CoverageCopayTypeCodes._(value, element: element);
   }
 
   /// gpvisit
   static final CoverageCopayTypeCodes gpvisit = CoverageCopayTypeCodes._(
-    value: 'gpvisit',
+    'gpvisit',
   );
 
   /// spvisit
   static final CoverageCopayTypeCodes spvisit = CoverageCopayTypeCodes._(
-    value: 'spvisit',
+    'spvisit',
   );
 
   /// emergency
   static final CoverageCopayTypeCodes emergency = CoverageCopayTypeCodes._(
-    value: 'emergency',
+    'emergency',
   );
 
   /// inpthosp
   static final CoverageCopayTypeCodes inpthosp = CoverageCopayTypeCodes._(
-    value: 'inpthosp',
+    'inpthosp',
   );
 
   /// televisit
   static final CoverageCopayTypeCodes televisit = CoverageCopayTypeCodes._(
-    value: 'televisit',
+    'televisit',
   );
 
   /// urgentcare
   static final CoverageCopayTypeCodes urgentcare = CoverageCopayTypeCodes._(
-    value: 'urgentcare',
+    'urgentcare',
   );
 
   /// copaypct
   static final CoverageCopayTypeCodes copaypct = CoverageCopayTypeCodes._(
-    value: 'copaypct',
+    'copaypct',
   );
 
   /// copay
   static final CoverageCopayTypeCodes copay = CoverageCopayTypeCodes._(
-    value: 'copay',
+    'copay',
   );
 
   /// deductible
   static final CoverageCopayTypeCodes deductible = CoverageCopayTypeCodes._(
-    value: 'deductible',
+    'deductible',
   );
 
   /// maxoutofpocket
   static final CoverageCopayTypeCodes maxoutofpocket = CoverageCopayTypeCodes._(
-    value: 'maxoutofpocket',
+    'maxoutofpocket',
   );
 
   /// For instances where an Element is present but not value
 
   static final CoverageCopayTypeCodes elementOnly =
-      CoverageCopayTypeCodes._(value: '');
+      CoverageCopayTypeCodes._('');
 
   /// List of all enum-like values
   static final List<CoverageCopayTypeCodes> values = [
@@ -101,13 +101,13 @@ class CoverageCopayTypeCodes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   CoverageCopayTypeCodes clone() => CoverageCopayTypeCodes._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   CoverageCopayTypeCodes withElement(Element? newElement) {
-    return CoverageCopayTypeCodes._(value: value, element: newElement);
+    return CoverageCopayTypeCodes._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -137,7 +137,7 @@ class CoverageCopayTypeCodes extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return CoverageCopayTypeCodes._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

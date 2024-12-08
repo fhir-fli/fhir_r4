@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Identifies types of events that might trigger the start of a goal.
 class GoalStartEvent extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  GoalStartEvent._({
-    super.value,
+  GoalStartEvent._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,32 +26,32 @@ class GoalStartEvent extends PrimitiveType<String> {
         'GoalStartEvent cannot be constructed from JSON.',
       );
     }
-    return GoalStartEvent._(value: value, element: element);
+    return GoalStartEvent._(value, element: element);
   }
 
   /// value32485007
   static final GoalStartEvent value32485007 = GoalStartEvent._(
-    value: '32485007',
+    '32485007',
   );
 
   /// value308283009
   static final GoalStartEvent value308283009 = GoalStartEvent._(
-    value: '308283009',
+    '308283009',
   );
 
   /// value442137000
   static final GoalStartEvent value442137000 = GoalStartEvent._(
-    value: '442137000',
+    '442137000',
   );
 
   /// value386216000
   static final GoalStartEvent value386216000 = GoalStartEvent._(
-    value: '386216000',
+    '386216000',
   );
 
   /// For instances where an Element is present but not value
 
-  static final GoalStartEvent elementOnly = GoalStartEvent._(value: '');
+  static final GoalStartEvent elementOnly = GoalStartEvent._('');
 
   /// List of all enum-like values
   static final List<GoalStartEvent> values = [
@@ -64,13 +64,13 @@ class GoalStartEvent extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   GoalStartEvent clone() => GoalStartEvent._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   GoalStartEvent withElement(Element? newElement) {
-    return GoalStartEvent._(value: value, element: newElement);
+    return GoalStartEvent._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -100,7 +100,7 @@ class GoalStartEvent extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return GoalStartEvent._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

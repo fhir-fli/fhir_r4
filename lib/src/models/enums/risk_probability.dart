@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Codes representing the likelihood of a particular outcome in a risk assessment.
 class RiskProbability extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  RiskProbability._({
-    super.value,
+  RiskProbability._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,37 +26,37 @@ class RiskProbability extends PrimitiveType<String> {
         'RiskProbability cannot be constructed from JSON.',
       );
     }
-    return RiskProbability._(value: value, element: element);
+    return RiskProbability._(value, element: element);
   }
 
   /// negligible
   static final RiskProbability negligible = RiskProbability._(
-    value: 'negligible',
+    'negligible',
   );
 
   /// low
   static final RiskProbability low = RiskProbability._(
-    value: 'low',
+    'low',
   );
 
   /// moderate
   static final RiskProbability moderate = RiskProbability._(
-    value: 'moderate',
+    'moderate',
   );
 
   /// high
   static final RiskProbability high = RiskProbability._(
-    value: 'high',
+    'high',
   );
 
   /// certain
   static final RiskProbability certain = RiskProbability._(
-    value: 'certain',
+    'certain',
   );
 
   /// For instances where an Element is present but not value
 
-  static final RiskProbability elementOnly = RiskProbability._(value: '');
+  static final RiskProbability elementOnly = RiskProbability._('');
 
   /// List of all enum-like values
   static final List<RiskProbability> values = [
@@ -70,13 +70,13 @@ class RiskProbability extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   RiskProbability clone() => RiskProbability._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   RiskProbability withElement(Element? newElement) {
-    return RiskProbability._(value: value, element: newElement);
+    return RiskProbability._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -106,7 +106,7 @@ class RiskProbability extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return RiskProbability._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

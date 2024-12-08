@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value set includes example Payment Type codes.
 class ExamplePaymentTypeCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ExamplePaymentTypeCodes._({
-    super.value,
+  ExamplePaymentTypeCodes._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,23 +26,23 @@ class ExamplePaymentTypeCodes extends PrimitiveType<String> {
         'ExamplePaymentTypeCodes cannot be constructed from JSON.',
       );
     }
-    return ExamplePaymentTypeCodes._(value: value, element: element);
+    return ExamplePaymentTypeCodes._(value, element: element);
   }
 
   /// complete
   static final ExamplePaymentTypeCodes complete = ExamplePaymentTypeCodes._(
-    value: 'complete',
+    'complete',
   );
 
   /// partial
   static final ExamplePaymentTypeCodes partial = ExamplePaymentTypeCodes._(
-    value: 'partial',
+    'partial',
   );
 
   /// For instances where an Element is present but not value
 
   static final ExamplePaymentTypeCodes elementOnly =
-      ExamplePaymentTypeCodes._(value: '');
+      ExamplePaymentTypeCodes._('');
 
   /// List of all enum-like values
   static final List<ExamplePaymentTypeCodes> values = [
@@ -53,13 +53,13 @@ class ExamplePaymentTypeCodes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ExamplePaymentTypeCodes clone() => ExamplePaymentTypeCodes._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ExamplePaymentTypeCodes withElement(Element? newElement) {
-    return ExamplePaymentTypeCodes._(value: value, element: newElement);
+    return ExamplePaymentTypeCodes._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -89,7 +89,7 @@ class ExamplePaymentTypeCodes extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ExamplePaymentTypeCodes._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

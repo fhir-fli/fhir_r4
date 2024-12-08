@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Distinguishes groups from questions and display text and indicates data type for questions.
 class QuestionnaireItemType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  QuestionnaireItemType._({
-    super.value,
+  QuestionnaireItemType._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,98 +26,97 @@ class QuestionnaireItemType extends PrimitiveType<String> {
         'QuestionnaireItemType cannot be constructed from JSON.',
       );
     }
-    return QuestionnaireItemType._(value: value, element: element);
+    return QuestionnaireItemType._(value, element: element);
   }
 
   /// group
   static final QuestionnaireItemType group = QuestionnaireItemType._(
-    value: 'group',
+    'group',
   );
 
   /// display
   static final QuestionnaireItemType display = QuestionnaireItemType._(
-    value: 'display',
+    'display',
   );
 
   /// question
   static final QuestionnaireItemType question = QuestionnaireItemType._(
-    value: 'question',
+    'question',
   );
 
   /// boolean
   static final QuestionnaireItemType boolean = QuestionnaireItemType._(
-    value: 'boolean',
+    'boolean',
   );
 
   /// decimal
   static final QuestionnaireItemType decimal = QuestionnaireItemType._(
-    value: 'decimal',
+    'decimal',
   );
 
   /// integer
   static final QuestionnaireItemType integer = QuestionnaireItemType._(
-    value: 'integer',
+    'integer',
   );
 
   /// date
   static final QuestionnaireItemType date = QuestionnaireItemType._(
-    value: 'date',
+    'date',
   );
 
   /// dateTime
   static final QuestionnaireItemType dateTime = QuestionnaireItemType._(
-    value: 'dateTime',
+    'dateTime',
   );
 
   /// time
   static final QuestionnaireItemType time = QuestionnaireItemType._(
-    value: 'time',
+    'time',
   );
 
   /// string
   static final QuestionnaireItemType string = QuestionnaireItemType._(
-    value: 'string',
+    'string',
   );
 
   /// text
   static final QuestionnaireItemType text = QuestionnaireItemType._(
-    value: 'text',
+    'text',
   );
 
   /// url
   static final QuestionnaireItemType url = QuestionnaireItemType._(
-    value: 'url',
+    'url',
   );
 
   /// choice
   static final QuestionnaireItemType choice = QuestionnaireItemType._(
-    value: 'choice',
+    'choice',
   );
 
   /// open_choice
   static final QuestionnaireItemType open_choice = QuestionnaireItemType._(
-    value: 'open-choice',
+    'open-choice',
   );
 
   /// attachment
   static final QuestionnaireItemType attachment = QuestionnaireItemType._(
-    value: 'attachment',
+    'attachment',
   );
 
   /// reference
   static final QuestionnaireItemType reference = QuestionnaireItemType._(
-    value: 'reference',
+    'reference',
   );
 
   /// quantity
   static final QuestionnaireItemType quantity = QuestionnaireItemType._(
-    value: 'quantity',
+    'quantity',
   );
 
   /// For instances where an Element is present but not value
 
-  static final QuestionnaireItemType elementOnly =
-      QuestionnaireItemType._(value: '');
+  static final QuestionnaireItemType elementOnly = QuestionnaireItemType._('');
 
   /// List of all enum-like values
   static final List<QuestionnaireItemType> values = [
@@ -143,13 +142,13 @@ class QuestionnaireItemType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   QuestionnaireItemType clone() => QuestionnaireItemType._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   QuestionnaireItemType withElement(Element? newElement) {
-    return QuestionnaireItemType._(value: value, element: newElement);
+    return QuestionnaireItemType._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -179,7 +178,7 @@ class QuestionnaireItemType extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return QuestionnaireItemType._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

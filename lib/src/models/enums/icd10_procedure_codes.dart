@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value set includes sample ICD-10 Procedure codes.
 class ICD10ProcedureCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ICD10ProcedureCodes._({
-    super.value,
+  ICD10ProcedureCodes._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,28 +26,27 @@ class ICD10ProcedureCodes extends PrimitiveType<String> {
         'ICD10ProcedureCodes cannot be constructed from JSON.',
       );
     }
-    return ICD10ProcedureCodes._(value: value, element: element);
+    return ICD10ProcedureCodes._(value, element: element);
   }
 
   /// value123001
   static final ICD10ProcedureCodes value123001 = ICD10ProcedureCodes._(
-    value: '123001',
+    '123001',
   );
 
   /// value123002
   static final ICD10ProcedureCodes value123002 = ICD10ProcedureCodes._(
-    value: '123002',
+    '123002',
   );
 
   /// value123003
   static final ICD10ProcedureCodes value123003 = ICD10ProcedureCodes._(
-    value: '123003',
+    '123003',
   );
 
   /// For instances where an Element is present but not value
 
-  static final ICD10ProcedureCodes elementOnly =
-      ICD10ProcedureCodes._(value: '');
+  static final ICD10ProcedureCodes elementOnly = ICD10ProcedureCodes._('');
 
   /// List of all enum-like values
   static final List<ICD10ProcedureCodes> values = [
@@ -59,13 +58,13 @@ class ICD10ProcedureCodes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ICD10ProcedureCodes clone() => ICD10ProcedureCodes._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ICD10ProcedureCodes withElement(Element? newElement) {
-    return ICD10ProcedureCodes._(value: value, element: newElement);
+    return ICD10ProcedureCodes._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -95,7 +94,7 @@ class ICD10ProcedureCodes extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ICD10ProcedureCodes._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

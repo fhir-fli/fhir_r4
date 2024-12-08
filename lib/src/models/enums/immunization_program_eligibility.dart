@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The value set to instantiate this attribute should be drawn from a terminologically robust code system that consists of or contains concepts to support describing the patient's eligibility for a vaccination program. This value set is provided as a suggestive example.
 class ImmunizationProgramEligibility extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ImmunizationProgramEligibility._({
-    super.value,
+  ImmunizationProgramEligibility._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,25 +26,25 @@ class ImmunizationProgramEligibility extends PrimitiveType<String> {
         'ImmunizationProgramEligibility cannot be constructed from JSON.',
       );
     }
-    return ImmunizationProgramEligibility._(value: value, element: element);
+    return ImmunizationProgramEligibility._(value, element: element);
   }
 
   /// ineligible
   static final ImmunizationProgramEligibility ineligible =
       ImmunizationProgramEligibility._(
-    value: 'ineligible',
+    'ineligible',
   );
 
   /// uninsured
   static final ImmunizationProgramEligibility uninsured =
       ImmunizationProgramEligibility._(
-    value: 'uninsured',
+    'uninsured',
   );
 
   /// For instances where an Element is present but not value
 
   static final ImmunizationProgramEligibility elementOnly =
-      ImmunizationProgramEligibility._(value: '');
+      ImmunizationProgramEligibility._('');
 
   /// List of all enum-like values
   static final List<ImmunizationProgramEligibility> values = [
@@ -55,13 +55,13 @@ class ImmunizationProgramEligibility extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ImmunizationProgramEligibility clone() => ImmunizationProgramEligibility._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ImmunizationProgramEligibility withElement(Element? newElement) {
-    return ImmunizationProgramEligibility._(value: value, element: newElement);
+    return ImmunizationProgramEligibility._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -91,7 +91,7 @@ class ImmunizationProgramEligibility extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ImmunizationProgramEligibility._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

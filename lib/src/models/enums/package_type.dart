@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// A high level categorisation of a package.
 class PackageType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  PackageType._({
-    super.value,
+  PackageType._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,27 +26,27 @@ class PackageType extends PrimitiveType<String> {
         'PackageType cannot be constructed from JSON.',
       );
     }
-    return PackageType._(value: value, element: element);
+    return PackageType._(value, element: element);
   }
 
   /// MedicinalProductPack
   static final PackageType MedicinalProductPack = PackageType._(
-    value: 'MedicinalProductPack',
+    'MedicinalProductPack',
   );
 
   /// RawMaterialPackage
   static final PackageType RawMaterialPackage = PackageType._(
-    value: 'RawMaterialPackage',
+    'RawMaterialPackage',
   );
 
   /// Shipping_TransportContainer
   static final PackageType Shipping_TransportContainer = PackageType._(
-    value: 'Shipping-TransportContainer',
+    'Shipping-TransportContainer',
   );
 
   /// For instances where an Element is present but not value
 
-  static final PackageType elementOnly = PackageType._(value: '');
+  static final PackageType elementOnly = PackageType._('');
 
   /// List of all enum-like values
   static final List<PackageType> values = [
@@ -58,13 +58,13 @@ class PackageType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   PackageType clone() => PackageType._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   PackageType withElement(Element? newElement) {
-    return PackageType._(value: value, element: newElement);
+    return PackageType._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -94,7 +94,7 @@ class PackageType extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return PackageType._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

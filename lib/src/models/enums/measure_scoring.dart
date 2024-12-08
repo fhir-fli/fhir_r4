@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The scoring type of the measure.
 class MeasureScoring extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  MeasureScoring._({
-    super.value,
+  MeasureScoring._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,32 +26,32 @@ class MeasureScoring extends PrimitiveType<String> {
         'MeasureScoring cannot be constructed from JSON.',
       );
     }
-    return MeasureScoring._(value: value, element: element);
+    return MeasureScoring._(value, element: element);
   }
 
   /// proportion
   static final MeasureScoring proportion = MeasureScoring._(
-    value: 'proportion',
+    'proportion',
   );
 
   /// ratio
   static final MeasureScoring ratio = MeasureScoring._(
-    value: 'ratio',
+    'ratio',
   );
 
   /// continuous_variable
   static final MeasureScoring continuous_variable = MeasureScoring._(
-    value: 'continuous-variable',
+    'continuous-variable',
   );
 
   /// cohort
   static final MeasureScoring cohort = MeasureScoring._(
-    value: 'cohort',
+    'cohort',
   );
 
   /// For instances where an Element is present but not value
 
-  static final MeasureScoring elementOnly = MeasureScoring._(value: '');
+  static final MeasureScoring elementOnly = MeasureScoring._('');
 
   /// List of all enum-like values
   static final List<MeasureScoring> values = [
@@ -64,13 +64,13 @@ class MeasureScoring extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   MeasureScoring clone() => MeasureScoring._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   MeasureScoring withElement(Element? newElement) {
-    return MeasureScoring._(value: value, element: newElement);
+    return MeasureScoring._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -100,7 +100,7 @@ class MeasureScoring extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return MeasureScoring._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

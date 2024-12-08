@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Status of the supply delivery.
 class SupplyDeliveryStatus extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  SupplyDeliveryStatus._({
-    super.value,
+  SupplyDeliveryStatus._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,33 +26,32 @@ class SupplyDeliveryStatus extends PrimitiveType<String> {
         'SupplyDeliveryStatus cannot be constructed from JSON.',
       );
     }
-    return SupplyDeliveryStatus._(value: value, element: element);
+    return SupplyDeliveryStatus._(value, element: element);
   }
 
   /// in_progress
   static final SupplyDeliveryStatus in_progress = SupplyDeliveryStatus._(
-    value: 'in-progress',
+    'in-progress',
   );
 
   /// completed
   static final SupplyDeliveryStatus completed = SupplyDeliveryStatus._(
-    value: 'completed',
+    'completed',
   );
 
   /// abandoned
   static final SupplyDeliveryStatus abandoned = SupplyDeliveryStatus._(
-    value: 'abandoned',
+    'abandoned',
   );
 
   /// entered_in_error
   static final SupplyDeliveryStatus entered_in_error = SupplyDeliveryStatus._(
-    value: 'entered-in-error',
+    'entered-in-error',
   );
 
   /// For instances where an Element is present but not value
 
-  static final SupplyDeliveryStatus elementOnly =
-      SupplyDeliveryStatus._(value: '');
+  static final SupplyDeliveryStatus elementOnly = SupplyDeliveryStatus._('');
 
   /// List of all enum-like values
   static final List<SupplyDeliveryStatus> values = [
@@ -65,13 +64,13 @@ class SupplyDeliveryStatus extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   SupplyDeliveryStatus clone() => SupplyDeliveryStatus._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   SupplyDeliveryStatus withElement(Element? newElement) {
-    return SupplyDeliveryStatus._(value: value, element: newElement);
+    return SupplyDeliveryStatus._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -101,7 +100,7 @@ class SupplyDeliveryStatus extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return SupplyDeliveryStatus._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

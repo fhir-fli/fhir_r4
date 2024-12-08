@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Relationship to another Medicinal Product.
 class ProductCrossReferenceType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ProductCrossReferenceType._({
-    super.value,
+  ProductCrossReferenceType._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,48 +26,48 @@ class ProductCrossReferenceType extends PrimitiveType<String> {
         'ProductCrossReferenceType cannot be constructed from JSON.',
       );
     }
-    return ProductCrossReferenceType._(value: value, element: element);
+    return ProductCrossReferenceType._(value, element: element);
   }
 
   /// InvestigationalProduct
   static final ProductCrossReferenceType InvestigationalProduct =
       ProductCrossReferenceType._(
-    value: 'InvestigationalProduct',
+    'InvestigationalProduct',
   );
 
   /// VirtualProduct
   static final ProductCrossReferenceType VirtualProduct =
       ProductCrossReferenceType._(
-    value: 'VirtualProduct',
+    'VirtualProduct',
   );
 
   /// ActualProduct
   static final ProductCrossReferenceType ActualProduct =
       ProductCrossReferenceType._(
-    value: 'ActualProduct',
+    'ActualProduct',
   );
 
   /// BrandedProduct
   static final ProductCrossReferenceType BrandedProduct =
       ProductCrossReferenceType._(
-    value: 'BrandedProduct',
+    'BrandedProduct',
   );
 
   /// GenericProduct
   static final ProductCrossReferenceType GenericProduct =
       ProductCrossReferenceType._(
-    value: 'GenericProduct',
+    'GenericProduct',
   );
 
   /// Parallel
   static final ProductCrossReferenceType Parallel = ProductCrossReferenceType._(
-    value: 'Parallel',
+    'Parallel',
   );
 
   /// For instances where an Element is present but not value
 
   static final ProductCrossReferenceType elementOnly =
-      ProductCrossReferenceType._(value: '');
+      ProductCrossReferenceType._('');
 
   /// List of all enum-like values
   static final List<ProductCrossReferenceType> values = [
@@ -82,13 +82,13 @@ class ProductCrossReferenceType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ProductCrossReferenceType clone() => ProductCrossReferenceType._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ProductCrossReferenceType withElement(Element? newElement) {
-    return ProductCrossReferenceType._(value: value, element: newElement);
+    return ProductCrossReferenceType._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -118,7 +118,7 @@ class ProductCrossReferenceType extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ProductCrossReferenceType._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

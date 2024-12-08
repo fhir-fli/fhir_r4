@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The quality of how direct the match is.
 class EvidenceDirectness extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  EvidenceDirectness._({
-    super.value,
+  EvidenceDirectness._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,32 +26,32 @@ class EvidenceDirectness extends PrimitiveType<String> {
         'EvidenceDirectness cannot be constructed from JSON.',
       );
     }
-    return EvidenceDirectness._(value: value, element: element);
+    return EvidenceDirectness._(value, element: element);
   }
 
   /// low
   static final EvidenceDirectness low = EvidenceDirectness._(
-    value: 'low',
+    'low',
   );
 
   /// moderate
   static final EvidenceDirectness moderate = EvidenceDirectness._(
-    value: 'moderate',
+    'moderate',
   );
 
   /// high
   static final EvidenceDirectness high = EvidenceDirectness._(
-    value: 'high',
+    'high',
   );
 
   /// exact
   static final EvidenceDirectness exact = EvidenceDirectness._(
-    value: 'exact',
+    'exact',
   );
 
   /// For instances where an Element is present but not value
 
-  static final EvidenceDirectness elementOnly = EvidenceDirectness._(value: '');
+  static final EvidenceDirectness elementOnly = EvidenceDirectness._('');
 
   /// List of all enum-like values
   static final List<EvidenceDirectness> values = [
@@ -64,13 +64,13 @@ class EvidenceDirectness extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   EvidenceDirectness clone() => EvidenceDirectness._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   EvidenceDirectness withElement(Element? newElement) {
-    return EvidenceDirectness._(value: value, element: newElement);
+    return EvidenceDirectness._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -100,7 +100,7 @@ class EvidenceDirectness extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return EvidenceDirectness._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

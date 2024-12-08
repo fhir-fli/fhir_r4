@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// A categorisation for a frequency of occurence of an undesirable effect.
 class UndesirablEffectFrequency extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  UndesirablEffectFrequency._({
-    super.value,
+  UndesirablEffectFrequency._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,28 +26,28 @@ class UndesirablEffectFrequency extends PrimitiveType<String> {
         'UndesirablEffectFrequency cannot be constructed from JSON.',
       );
     }
-    return UndesirablEffectFrequency._(value: value, element: element);
+    return UndesirablEffectFrequency._(value, element: element);
   }
 
   /// Common
   static final UndesirablEffectFrequency Common = UndesirablEffectFrequency._(
-    value: 'Common',
+    'Common',
   );
 
   /// Uncommon
   static final UndesirablEffectFrequency Uncommon = UndesirablEffectFrequency._(
-    value: 'Uncommon',
+    'Uncommon',
   );
 
   /// Rare
   static final UndesirablEffectFrequency Rare = UndesirablEffectFrequency._(
-    value: 'Rare',
+    'Rare',
   );
 
   /// For instances where an Element is present but not value
 
   static final UndesirablEffectFrequency elementOnly =
-      UndesirablEffectFrequency._(value: '');
+      UndesirablEffectFrequency._('');
 
   /// List of all enum-like values
   static final List<UndesirablEffectFrequency> values = [
@@ -59,13 +59,13 @@ class UndesirablEffectFrequency extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   UndesirablEffectFrequency clone() => UndesirablEffectFrequency._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   UndesirablEffectFrequency withElement(Element? newElement) {
-    return UndesirablEffectFrequency._(value: value, element: newElement);
+    return UndesirablEffectFrequency._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -95,7 +95,7 @@ class UndesirablEffectFrequency extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return UndesirablEffectFrequency._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The type of response code to use for assertion.
 class AssertionResponseTypes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  AssertionResponseTypes._({
-    super.value,
+  AssertionResponseTypes._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,75 +26,75 @@ class AssertionResponseTypes extends PrimitiveType<String> {
         'AssertionResponseTypes cannot be constructed from JSON.',
       );
     }
-    return AssertionResponseTypes._(value: value, element: element);
+    return AssertionResponseTypes._(value, element: element);
   }
 
   /// okay
   static final AssertionResponseTypes okay = AssertionResponseTypes._(
-    value: 'okay',
+    'okay',
   );
 
   /// created
   static final AssertionResponseTypes created = AssertionResponseTypes._(
-    value: 'created',
+    'created',
   );
 
   /// noContent
   static final AssertionResponseTypes noContent = AssertionResponseTypes._(
-    value: 'noContent',
+    'noContent',
   );
 
   /// notModified
   static final AssertionResponseTypes notModified = AssertionResponseTypes._(
-    value: 'notModified',
+    'notModified',
   );
 
   /// bad
   static final AssertionResponseTypes bad = AssertionResponseTypes._(
-    value: 'bad',
+    'bad',
   );
 
   /// forbidden
   static final AssertionResponseTypes forbidden = AssertionResponseTypes._(
-    value: 'forbidden',
+    'forbidden',
   );
 
   /// notFound
   static final AssertionResponseTypes notFound = AssertionResponseTypes._(
-    value: 'notFound',
+    'notFound',
   );
 
   /// methodNotAllowed
   static final AssertionResponseTypes methodNotAllowed =
       AssertionResponseTypes._(
-    value: 'methodNotAllowed',
+    'methodNotAllowed',
   );
 
   /// conflict
   static final AssertionResponseTypes conflict = AssertionResponseTypes._(
-    value: 'conflict',
+    'conflict',
   );
 
   /// gone
   static final AssertionResponseTypes gone = AssertionResponseTypes._(
-    value: 'gone',
+    'gone',
   );
 
   /// preconditionFailed
   static final AssertionResponseTypes preconditionFailed =
       AssertionResponseTypes._(
-    value: 'preconditionFailed',
+    'preconditionFailed',
   );
 
   /// unprocessable
   static final AssertionResponseTypes unprocessable = AssertionResponseTypes._(
-    value: 'unprocessable',
+    'unprocessable',
   );
 
   /// For instances where an Element is present but not value
 
   static final AssertionResponseTypes elementOnly =
-      AssertionResponseTypes._(value: '');
+      AssertionResponseTypes._('');
 
   /// List of all enum-like values
   static final List<AssertionResponseTypes> values = [
@@ -115,13 +115,13 @@ class AssertionResponseTypes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   AssertionResponseTypes clone() => AssertionResponseTypes._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   AssertionResponseTypes withElement(Element? newElement) {
-    return AssertionResponseTypes._(value: value, element: newElement);
+    return AssertionResponseTypes._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -151,7 +151,7 @@ class AssertionResponseTypes extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return AssertionResponseTypes._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

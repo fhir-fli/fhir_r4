@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Defines the kinds of conditions that can appear on actions.
 class ActionConditionKind extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ActionConditionKind._({
-    super.value,
+  ActionConditionKind._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,28 +26,27 @@ class ActionConditionKind extends PrimitiveType<String> {
         'ActionConditionKind cannot be constructed from JSON.',
       );
     }
-    return ActionConditionKind._(value: value, element: element);
+    return ActionConditionKind._(value, element: element);
   }
 
   /// applicability
   static final ActionConditionKind applicability = ActionConditionKind._(
-    value: 'applicability',
+    'applicability',
   );
 
   /// start
   static final ActionConditionKind start = ActionConditionKind._(
-    value: 'start',
+    'start',
   );
 
   /// stop
   static final ActionConditionKind stop = ActionConditionKind._(
-    value: 'stop',
+    'stop',
   );
 
   /// For instances where an Element is present but not value
 
-  static final ActionConditionKind elementOnly =
-      ActionConditionKind._(value: '');
+  static final ActionConditionKind elementOnly = ActionConditionKind._('');
 
   /// List of all enum-like values
   static final List<ActionConditionKind> values = [
@@ -59,13 +58,13 @@ class ActionConditionKind extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ActionConditionKind clone() => ActionConditionKind._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ActionConditionKind withElement(Element? newElement) {
-    return ActionConditionKind._(value: value, element: newElement);
+    return ActionConditionKind._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -95,7 +94,7 @@ class ActionConditionKind extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ActionConditionKind._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

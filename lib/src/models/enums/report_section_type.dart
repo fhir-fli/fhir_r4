@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Evidence Report Section Type.
 class ReportSectionType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ReportSectionType._({
-    super.value,
+  ReportSectionType._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,161 +26,161 @@ class ReportSectionType extends PrimitiveType<String> {
         'ReportSectionType cannot be constructed from JSON.',
       );
     }
-    return ReportSectionType._(value: value, element: element);
+    return ReportSectionType._(value, element: element);
   }
 
   /// Evidence
   static final ReportSectionType Evidence = ReportSectionType._(
-    value: 'Evidence',
+    'Evidence',
   );
 
   /// Intervention_group_alone_Evidence
   static final ReportSectionType Intervention_group_alone_Evidence =
       ReportSectionType._(
-    value: 'Intervention-group-alone-Evidence',
+    'Intervention-group-alone-Evidence',
   );
 
   /// Intervention_vs_Control_Evidence
   static final ReportSectionType Intervention_vs_Control_Evidence =
       ReportSectionType._(
-    value: 'Intervention-vs-Control-Evidence',
+    'Intervention-vs-Control-Evidence',
   );
 
   /// Control_group_alone_Evidence
   static final ReportSectionType Control_group_alone_Evidence =
       ReportSectionType._(
-    value: 'Control-group-alone-Evidence',
+    'Control-group-alone-Evidence',
   );
 
   /// EvidenceVariable
   static final ReportSectionType EvidenceVariable = ReportSectionType._(
-    value: 'EvidenceVariable',
+    'EvidenceVariable',
   );
 
   /// EvidenceVariable_observed
   static final ReportSectionType EvidenceVariable_observed =
       ReportSectionType._(
-    value: 'EvidenceVariable-observed',
+    'EvidenceVariable-observed',
   );
 
   /// EvidenceVariable_intended
   static final ReportSectionType EvidenceVariable_intended =
       ReportSectionType._(
-    value: 'EvidenceVariable-intended',
+    'EvidenceVariable-intended',
   );
 
   /// EvidenceVariable_population
   static final ReportSectionType EvidenceVariable_population =
       ReportSectionType._(
-    value: 'EvidenceVariable-population',
+    'EvidenceVariable-population',
   );
 
   /// EvidenceVariable_exposure
   static final ReportSectionType EvidenceVariable_exposure =
       ReportSectionType._(
-    value: 'EvidenceVariable-exposure',
+    'EvidenceVariable-exposure',
   );
 
   /// EvidenceVariable_outcome
   static final ReportSectionType EvidenceVariable_outcome = ReportSectionType._(
-    value: 'EvidenceVariable-outcome',
+    'EvidenceVariable-outcome',
   );
 
   /// Efficacy_outcomes
   static final ReportSectionType Efficacy_outcomes = ReportSectionType._(
-    value: 'Efficacy-outcomes',
+    'Efficacy-outcomes',
   );
 
   /// Harms_outcomes
   static final ReportSectionType Harms_outcomes = ReportSectionType._(
-    value: 'Harms-outcomes',
+    'Harms-outcomes',
   );
 
   /// SampleSize
   static final ReportSectionType SampleSize = ReportSectionType._(
-    value: 'SampleSize',
+    'SampleSize',
   );
 
   /// References
   static final ReportSectionType References = ReportSectionType._(
-    value: 'References',
+    'References',
   );
 
   /// Assertion
   static final ReportSectionType Assertion = ReportSectionType._(
-    value: 'Assertion',
+    'Assertion',
   );
 
   /// Reasons
   static final ReportSectionType Reasons = ReportSectionType._(
-    value: 'Reasons',
+    'Reasons',
   );
 
   /// Certainty_of_Evidence
   static final ReportSectionType Certainty_of_Evidence = ReportSectionType._(
-    value: 'Certainty-of-Evidence',
+    'Certainty-of-Evidence',
   );
 
   /// Evidence_Classifier
   static final ReportSectionType Evidence_Classifier = ReportSectionType._(
-    value: 'Evidence-Classifier',
+    'Evidence-Classifier',
   );
 
   /// Warnings
   static final ReportSectionType Warnings = ReportSectionType._(
-    value: 'Warnings',
+    'Warnings',
   );
 
   /// Text_Summary
   static final ReportSectionType Text_Summary = ReportSectionType._(
-    value: 'Text-Summary',
+    'Text-Summary',
   );
 
   /// SummaryOfBodyOfEvidenceFindings
   static final ReportSectionType SummaryOfBodyOfEvidenceFindings =
       ReportSectionType._(
-    value: 'SummaryOfBodyOfEvidenceFindings',
+    'SummaryOfBodyOfEvidenceFindings',
   );
 
   /// SummaryOfIndividualStudyFindings
   static final ReportSectionType SummaryOfIndividualStudyFindings =
       ReportSectionType._(
-    value: 'SummaryOfIndividualStudyFindings',
+    'SummaryOfIndividualStudyFindings',
   );
 
   /// Header
   static final ReportSectionType Header = ReportSectionType._(
-    value: 'Header',
+    'Header',
   );
 
   /// Tables
   static final ReportSectionType Tables = ReportSectionType._(
-    value: 'Tables',
+    'Tables',
   );
 
   /// Table
   static final ReportSectionType Table = ReportSectionType._(
-    value: 'Table',
+    'Table',
   );
 
   /// Row_Headers
   static final ReportSectionType Row_Headers = ReportSectionType._(
-    value: 'Row-Headers',
+    'Row-Headers',
   );
 
   /// Column_Header
   static final ReportSectionType Column_Header = ReportSectionType._(
-    value: 'Column-Header',
+    'Column-Header',
   );
 
   /// Column_Headers
   static final ReportSectionType Column_Headers = ReportSectionType._(
-    value: 'Column-Headers',
+    'Column-Headers',
   );
 
   /// For instances where an Element is present but not value
 
-  static final ReportSectionType elementOnly = ReportSectionType._(value: '');
+  static final ReportSectionType elementOnly = ReportSectionType._('');
 
   /// List of all enum-like values
   static final List<ReportSectionType> values = [
@@ -217,13 +217,13 @@ class ReportSectionType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ReportSectionType clone() => ReportSectionType._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ReportSectionType withElement(Element? newElement) {
-    return ReportSectionType._(value: value, element: newElement);
+    return ReportSectionType._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -253,7 +253,7 @@ class ReportSectionType extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ReportSectionType._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

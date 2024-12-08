@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Lifecycle status of the questionnaire response.
 class QuestionnaireResponseStatus extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  QuestionnaireResponseStatus._({
-    super.value,
+  QuestionnaireResponseStatus._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,43 +26,43 @@ class QuestionnaireResponseStatus extends PrimitiveType<String> {
         'QuestionnaireResponseStatus cannot be constructed from JSON.',
       );
     }
-    return QuestionnaireResponseStatus._(value: value, element: element);
+    return QuestionnaireResponseStatus._(value, element: element);
   }
 
   /// in_progress
   static final QuestionnaireResponseStatus in_progress =
       QuestionnaireResponseStatus._(
-    value: 'in-progress',
+    'in-progress',
   );
 
   /// completed
   static final QuestionnaireResponseStatus completed =
       QuestionnaireResponseStatus._(
-    value: 'completed',
+    'completed',
   );
 
   /// amended
   static final QuestionnaireResponseStatus amended =
       QuestionnaireResponseStatus._(
-    value: 'amended',
+    'amended',
   );
 
   /// entered_in_error
   static final QuestionnaireResponseStatus entered_in_error =
       QuestionnaireResponseStatus._(
-    value: 'entered-in-error',
+    'entered-in-error',
   );
 
   /// stopped
   static final QuestionnaireResponseStatus stopped =
       QuestionnaireResponseStatus._(
-    value: 'stopped',
+    'stopped',
   );
 
   /// For instances where an Element is present but not value
 
   static final QuestionnaireResponseStatus elementOnly =
-      QuestionnaireResponseStatus._(value: '');
+      QuestionnaireResponseStatus._('');
 
   /// List of all enum-like values
   static final List<QuestionnaireResponseStatus> values = [
@@ -76,13 +76,13 @@ class QuestionnaireResponseStatus extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   QuestionnaireResponseStatus clone() => QuestionnaireResponseStatus._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   QuestionnaireResponseStatus withElement(Element? newElement) {
-    return QuestionnaireResponseStatus._(value: value, element: newElement);
+    return QuestionnaireResponseStatus._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -112,7 +112,7 @@ class QuestionnaireResponseStatus extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return QuestionnaireResponseStatus._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

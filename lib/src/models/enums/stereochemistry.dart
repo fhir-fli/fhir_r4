@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The optical rotation type of a substance.
 class Stereochemistry extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  Stereochemistry._({
-    super.value,
+  Stereochemistry._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,27 +26,27 @@ class Stereochemistry extends PrimitiveType<String> {
         'Stereochemistry cannot be constructed from JSON.',
       );
     }
-    return Stereochemistry._(value: value, element: element);
+    return Stereochemistry._(value, element: element);
   }
 
   /// ConstitutionalIsomer
   static final Stereochemistry ConstitutionalIsomer = Stereochemistry._(
-    value: 'ConstitutionalIsomer',
+    'ConstitutionalIsomer',
   );
 
   /// Stereoisomer
   static final Stereochemistry Stereoisomer = Stereochemistry._(
-    value: 'Stereoisomer',
+    'Stereoisomer',
   );
 
   /// Enantiomer
   static final Stereochemistry Enantiomer = Stereochemistry._(
-    value: 'Enantiomer',
+    'Enantiomer',
   );
 
   /// For instances where an Element is present but not value
 
-  static final Stereochemistry elementOnly = Stereochemistry._(value: '');
+  static final Stereochemistry elementOnly = Stereochemistry._('');
 
   /// List of all enum-like values
   static final List<Stereochemistry> values = [
@@ -58,13 +58,13 @@ class Stereochemistry extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   Stereochemistry clone() => Stereochemistry._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   Stereochemistry withElement(Element? newElement) {
-    return Stereochemistry._(value: value, element: newElement);
+    return Stereochemistry._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -94,7 +94,7 @@ class Stereochemistry extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return Stereochemistry._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

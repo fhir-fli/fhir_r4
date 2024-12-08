@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value set includes sample Payee Type codes.
 class ClaimPayeeTypeCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ClaimPayeeTypeCodes._({
-    super.value,
+  ClaimPayeeTypeCodes._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,28 +26,27 @@ class ClaimPayeeTypeCodes extends PrimitiveType<String> {
         'ClaimPayeeTypeCodes cannot be constructed from JSON.',
       );
     }
-    return ClaimPayeeTypeCodes._(value: value, element: element);
+    return ClaimPayeeTypeCodes._(value, element: element);
   }
 
   /// subscriber
   static final ClaimPayeeTypeCodes subscriber = ClaimPayeeTypeCodes._(
-    value: 'subscriber',
+    'subscriber',
   );
 
   /// provider
   static final ClaimPayeeTypeCodes provider = ClaimPayeeTypeCodes._(
-    value: 'provider',
+    'provider',
   );
 
   /// other
   static final ClaimPayeeTypeCodes other = ClaimPayeeTypeCodes._(
-    value: 'other',
+    'other',
   );
 
   /// For instances where an Element is present but not value
 
-  static final ClaimPayeeTypeCodes elementOnly =
-      ClaimPayeeTypeCodes._(value: '');
+  static final ClaimPayeeTypeCodes elementOnly = ClaimPayeeTypeCodes._('');
 
   /// List of all enum-like values
   static final List<ClaimPayeeTypeCodes> values = [
@@ -59,13 +58,13 @@ class ClaimPayeeTypeCodes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ClaimPayeeTypeCodes clone() => ClaimPayeeTypeCodes._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ClaimPayeeTypeCodes withElement(Element? newElement) {
-    return ClaimPayeeTypeCodes._(value: value, element: newElement);
+    return ClaimPayeeTypeCodes._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -95,7 +94,7 @@ class ClaimPayeeTypeCodes extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ClaimPayeeTypeCodes._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

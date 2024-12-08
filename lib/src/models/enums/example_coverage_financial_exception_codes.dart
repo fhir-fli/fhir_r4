@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value set includes Example Coverage Financial Exception Codes.
 class ExampleCoverageFinancialExceptionCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ExampleCoverageFinancialExceptionCodes._({
-    super.value,
+  ExampleCoverageFinancialExceptionCodes._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -27,26 +27,25 @@ class ExampleCoverageFinancialExceptionCodes extends PrimitiveType<String> {
         'ExampleCoverageFinancialExceptionCodes cannot be constructed from JSON.',
       );
     }
-    return ExampleCoverageFinancialExceptionCodes._(
-        value: value, element: element);
+    return ExampleCoverageFinancialExceptionCodes._(value, element: element);
   }
 
   /// retired
   static final ExampleCoverageFinancialExceptionCodes retired =
       ExampleCoverageFinancialExceptionCodes._(
-    value: 'retired',
+    'retired',
   );
 
   /// foster
   static final ExampleCoverageFinancialExceptionCodes foster =
       ExampleCoverageFinancialExceptionCodes._(
-    value: 'foster',
+    'foster',
   );
 
   /// For instances where an Element is present but not value
 
   static final ExampleCoverageFinancialExceptionCodes elementOnly =
-      ExampleCoverageFinancialExceptionCodes._(value: '');
+      ExampleCoverageFinancialExceptionCodes._('');
 
   /// List of all enum-like values
   static final List<ExampleCoverageFinancialExceptionCodes> values = [
@@ -58,14 +57,13 @@ class ExampleCoverageFinancialExceptionCodes extends PrimitiveType<String> {
   @override
   ExampleCoverageFinancialExceptionCodes clone() =>
       ExampleCoverageFinancialExceptionCodes._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ExampleCoverageFinancialExceptionCodes withElement(Element? newElement) {
-    return ExampleCoverageFinancialExceptionCodes._(
-        value: value, element: newElement);
+    return ExampleCoverageFinancialExceptionCodes._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -95,7 +93,7 @@ class ExampleCoverageFinancialExceptionCodes extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ExampleCoverageFinancialExceptionCodes._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

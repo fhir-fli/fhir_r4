@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The status of the diagnostic report.
 class DiagnosticReportStatus extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  DiagnosticReportStatus._({
-    super.value,
+  DiagnosticReportStatus._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,64 +26,64 @@ class DiagnosticReportStatus extends PrimitiveType<String> {
         'DiagnosticReportStatus cannot be constructed from JSON.',
       );
     }
-    return DiagnosticReportStatus._(value: value, element: element);
+    return DiagnosticReportStatus._(value, element: element);
   }
 
   /// registered
   static final DiagnosticReportStatus registered = DiagnosticReportStatus._(
-    value: 'registered',
+    'registered',
   );
 
   /// partial
   static final DiagnosticReportStatus partial = DiagnosticReportStatus._(
-    value: 'partial',
+    'partial',
   );
 
   /// preliminary
   static final DiagnosticReportStatus preliminary = DiagnosticReportStatus._(
-    value: 'preliminary',
+    'preliminary',
   );
 
   /// final_
   static final DiagnosticReportStatus final_ = DiagnosticReportStatus._(
-    value: 'final',
+    'final',
   );
 
   /// amended
   static final DiagnosticReportStatus amended = DiagnosticReportStatus._(
-    value: 'amended',
+    'amended',
   );
 
   /// corrected
   static final DiagnosticReportStatus corrected = DiagnosticReportStatus._(
-    value: 'corrected',
+    'corrected',
   );
 
   /// appended
   static final DiagnosticReportStatus appended = DiagnosticReportStatus._(
-    value: 'appended',
+    'appended',
   );
 
   /// cancelled
   static final DiagnosticReportStatus cancelled = DiagnosticReportStatus._(
-    value: 'cancelled',
+    'cancelled',
   );
 
   /// entered_in_error
   static final DiagnosticReportStatus entered_in_error =
       DiagnosticReportStatus._(
-    value: 'entered-in-error',
+    'entered-in-error',
   );
 
   /// unknown
   static final DiagnosticReportStatus unknown = DiagnosticReportStatus._(
-    value: 'unknown',
+    'unknown',
   );
 
   /// For instances where an Element is present but not value
 
   static final DiagnosticReportStatus elementOnly =
-      DiagnosticReportStatus._(value: '');
+      DiagnosticReportStatus._('');
 
   /// List of all enum-like values
   static final List<DiagnosticReportStatus> values = [
@@ -102,13 +102,13 @@ class DiagnosticReportStatus extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   DiagnosticReportStatus clone() => DiagnosticReportStatus._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   DiagnosticReportStatus withElement(Element? newElement) {
-    return DiagnosticReportStatus._(value: value, element: newElement);
+    return DiagnosticReportStatus._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -138,7 +138,7 @@ class DiagnosticReportStatus extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return DiagnosticReportStatus._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

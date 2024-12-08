@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The way in which a person authenticated a composition.
 class CompositionAttestationMode extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  CompositionAttestationMode._({
-    super.value,
+  CompositionAttestationMode._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,36 +26,36 @@ class CompositionAttestationMode extends PrimitiveType<String> {
         'CompositionAttestationMode cannot be constructed from JSON.',
       );
     }
-    return CompositionAttestationMode._(value: value, element: element);
+    return CompositionAttestationMode._(value, element: element);
   }
 
   /// personal
   static final CompositionAttestationMode personal =
       CompositionAttestationMode._(
-    value: 'personal',
+    'personal',
   );
 
   /// professional
   static final CompositionAttestationMode professional =
       CompositionAttestationMode._(
-    value: 'professional',
+    'professional',
   );
 
   /// legal
   static final CompositionAttestationMode legal = CompositionAttestationMode._(
-    value: 'legal',
+    'legal',
   );
 
   /// official
   static final CompositionAttestationMode official =
       CompositionAttestationMode._(
-    value: 'official',
+    'official',
   );
 
   /// For instances where an Element is present but not value
 
   static final CompositionAttestationMode elementOnly =
-      CompositionAttestationMode._(value: '');
+      CompositionAttestationMode._('');
 
   /// List of all enum-like values
   static final List<CompositionAttestationMode> values = [
@@ -68,13 +68,13 @@ class CompositionAttestationMode extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   CompositionAttestationMode clone() => CompositionAttestationMode._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   CompositionAttestationMode withElement(Element? newElement) {
-    return CompositionAttestationMode._(value: value, element: newElement);
+    return CompositionAttestationMode._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -104,7 +104,7 @@ class CompositionAttestationMode extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return CompositionAttestationMode._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

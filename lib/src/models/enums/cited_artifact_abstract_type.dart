@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Used to express the reason and specific aspect for the variant abstract, such as language and specific language.
 class CitedArtifactAbstractType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  CitedArtifactAbstractType._({
-    super.value,
+  CitedArtifactAbstractType._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,78 +26,78 @@ class CitedArtifactAbstractType extends PrimitiveType<String> {
         'CitedArtifactAbstractType cannot be constructed from JSON.',
       );
     }
-    return CitedArtifactAbstractType._(value: value, element: element);
+    return CitedArtifactAbstractType._(value, element: element);
   }
 
   /// primary_human_use
   static final CitedArtifactAbstractType primary_human_use =
       CitedArtifactAbstractType._(
-    value: 'primary-human-use',
+    'primary-human-use',
   );
 
   /// primary_machine_use
   static final CitedArtifactAbstractType primary_machine_use =
       CitedArtifactAbstractType._(
-    value: 'primary-machine-use',
+    'primary-machine-use',
   );
 
   /// truncated
   static final CitedArtifactAbstractType truncated =
       CitedArtifactAbstractType._(
-    value: 'truncated',
+    'truncated',
   );
 
   /// short_abstract
   static final CitedArtifactAbstractType short_abstract =
       CitedArtifactAbstractType._(
-    value: 'short-abstract',
+    'short-abstract',
   );
 
   /// long_abstract
   static final CitedArtifactAbstractType long_abstract =
       CitedArtifactAbstractType._(
-    value: 'long-abstract',
+    'long-abstract',
   );
 
   /// plain_language
   static final CitedArtifactAbstractType plain_language =
       CitedArtifactAbstractType._(
-    value: 'plain-language',
+    'plain-language',
   );
 
   /// different_publisher
   static final CitedArtifactAbstractType different_publisher =
       CitedArtifactAbstractType._(
-    value: 'different-publisher',
+    'different-publisher',
   );
 
   /// language
   static final CitedArtifactAbstractType language = CitedArtifactAbstractType._(
-    value: 'language',
+    'language',
   );
 
   /// autotranslated
   static final CitedArtifactAbstractType autotranslated =
       CitedArtifactAbstractType._(
-    value: 'autotranslated',
+    'autotranslated',
   );
 
   /// duplicate_pmid
   static final CitedArtifactAbstractType duplicate_pmid =
       CitedArtifactAbstractType._(
-    value: 'duplicate-pmid',
+    'duplicate-pmid',
   );
 
   /// earlier_abstract
   static final CitedArtifactAbstractType earlier_abstract =
       CitedArtifactAbstractType._(
-    value: 'earlier-abstract',
+    'earlier-abstract',
   );
 
   /// For instances where an Element is present but not value
 
   static final CitedArtifactAbstractType elementOnly =
-      CitedArtifactAbstractType._(value: '');
+      CitedArtifactAbstractType._('');
 
   /// List of all enum-like values
   static final List<CitedArtifactAbstractType> values = [
@@ -117,13 +117,13 @@ class CitedArtifactAbstractType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   CitedArtifactAbstractType clone() => CitedArtifactAbstractType._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   CitedArtifactAbstractType withElement(Element? newElement) {
-    return CitedArtifactAbstractType._(value: value, element: newElement);
+    return CitedArtifactAbstractType._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -153,7 +153,7 @@ class CitedArtifactAbstractType extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return CitedArtifactAbstractType._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

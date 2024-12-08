@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Codes that reflect the current state of a goal and whether the goal is still being targeted.
 class GoalLifecycleStatus extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  GoalLifecycleStatus._({
-    super.value,
+  GoalLifecycleStatus._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,58 +26,57 @@ class GoalLifecycleStatus extends PrimitiveType<String> {
         'GoalLifecycleStatus cannot be constructed from JSON.',
       );
     }
-    return GoalLifecycleStatus._(value: value, element: element);
+    return GoalLifecycleStatus._(value, element: element);
   }
 
   /// proposed
   static final GoalLifecycleStatus proposed = GoalLifecycleStatus._(
-    value: 'proposed',
+    'proposed',
   );
 
   /// planned
   static final GoalLifecycleStatus planned = GoalLifecycleStatus._(
-    value: 'planned',
+    'planned',
   );
 
   /// accepted
   static final GoalLifecycleStatus accepted = GoalLifecycleStatus._(
-    value: 'accepted',
+    'accepted',
   );
 
   /// active
   static final GoalLifecycleStatus active = GoalLifecycleStatus._(
-    value: 'active',
+    'active',
   );
 
   /// on_hold
   static final GoalLifecycleStatus on_hold = GoalLifecycleStatus._(
-    value: 'on-hold',
+    'on-hold',
   );
 
   /// completed
   static final GoalLifecycleStatus completed = GoalLifecycleStatus._(
-    value: 'completed',
+    'completed',
   );
 
   /// cancelled
   static final GoalLifecycleStatus cancelled = GoalLifecycleStatus._(
-    value: 'cancelled',
+    'cancelled',
   );
 
   /// entered_in_error
   static final GoalLifecycleStatus entered_in_error = GoalLifecycleStatus._(
-    value: 'entered-in-error',
+    'entered-in-error',
   );
 
   /// rejected
   static final GoalLifecycleStatus rejected = GoalLifecycleStatus._(
-    value: 'rejected',
+    'rejected',
   );
 
   /// For instances where an Element is present but not value
 
-  static final GoalLifecycleStatus elementOnly =
-      GoalLifecycleStatus._(value: '');
+  static final GoalLifecycleStatus elementOnly = GoalLifecycleStatus._('');
 
   /// List of all enum-like values
   static final List<GoalLifecycleStatus> values = [
@@ -95,13 +94,13 @@ class GoalLifecycleStatus extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   GoalLifecycleStatus clone() => GoalLifecycleStatus._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   GoalLifecycleStatus withElement(Element? newElement) {
-    return GoalLifecycleStatus._(value: value, element: newElement);
+    return GoalLifecycleStatus._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -131,7 +130,7 @@ class GoalLifecycleStatus extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return GoalLifecycleStatus._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

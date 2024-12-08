@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// MedicationKnowledge Characteristic Codes
 class MedicationKnowledgeCharacteristicCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  MedicationKnowledgeCharacteristicCodes._({
-    super.value,
+  MedicationKnowledgeCharacteristicCodes._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -27,56 +27,55 @@ class MedicationKnowledgeCharacteristicCodes extends PrimitiveType<String> {
         'MedicationKnowledgeCharacteristicCodes cannot be constructed from JSON.',
       );
     }
-    return MedicationKnowledgeCharacteristicCodes._(
-        value: value, element: element);
+    return MedicationKnowledgeCharacteristicCodes._(value, element: element);
   }
 
   /// imprintcd
   static final MedicationKnowledgeCharacteristicCodes imprintcd =
       MedicationKnowledgeCharacteristicCodes._(
-    value: 'imprintcd',
+    'imprintcd',
   );
 
   /// size
   static final MedicationKnowledgeCharacteristicCodes size =
       MedicationKnowledgeCharacteristicCodes._(
-    value: 'size',
+    'size',
   );
 
   /// shape
   static final MedicationKnowledgeCharacteristicCodes shape =
       MedicationKnowledgeCharacteristicCodes._(
-    value: 'shape',
+    'shape',
   );
 
   /// color
   static final MedicationKnowledgeCharacteristicCodes color =
       MedicationKnowledgeCharacteristicCodes._(
-    value: 'color',
+    'color',
   );
 
   /// coating
   static final MedicationKnowledgeCharacteristicCodes coating =
       MedicationKnowledgeCharacteristicCodes._(
-    value: 'coating',
+    'coating',
   );
 
   /// scoring
   static final MedicationKnowledgeCharacteristicCodes scoring =
       MedicationKnowledgeCharacteristicCodes._(
-    value: 'scoring',
+    'scoring',
   );
 
   /// logo
   static final MedicationKnowledgeCharacteristicCodes logo =
       MedicationKnowledgeCharacteristicCodes._(
-    value: 'logo',
+    'logo',
   );
 
   /// For instances where an Element is present but not value
 
   static final MedicationKnowledgeCharacteristicCodes elementOnly =
-      MedicationKnowledgeCharacteristicCodes._(value: '');
+      MedicationKnowledgeCharacteristicCodes._('');
 
   /// List of all enum-like values
   static final List<MedicationKnowledgeCharacteristicCodes> values = [
@@ -93,14 +92,13 @@ class MedicationKnowledgeCharacteristicCodes extends PrimitiveType<String> {
   @override
   MedicationKnowledgeCharacteristicCodes clone() =>
       MedicationKnowledgeCharacteristicCodes._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   MedicationKnowledgeCharacteristicCodes withElement(Element? newElement) {
-    return MedicationKnowledgeCharacteristicCodes._(
-        value: value, element: newElement);
+    return MedicationKnowledgeCharacteristicCodes._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -130,7 +128,7 @@ class MedicationKnowledgeCharacteristicCodes extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return MedicationKnowledgeCharacteristicCodes._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

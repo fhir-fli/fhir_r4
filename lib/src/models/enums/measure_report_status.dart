@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The status of the measure report.
 class MeasureReportStatus extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  MeasureReportStatus._({
-    super.value,
+  MeasureReportStatus._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,28 +26,27 @@ class MeasureReportStatus extends PrimitiveType<String> {
         'MeasureReportStatus cannot be constructed from JSON.',
       );
     }
-    return MeasureReportStatus._(value: value, element: element);
+    return MeasureReportStatus._(value, element: element);
   }
 
   /// complete
   static final MeasureReportStatus complete = MeasureReportStatus._(
-    value: 'complete',
+    'complete',
   );
 
   /// pending
   static final MeasureReportStatus pending = MeasureReportStatus._(
-    value: 'pending',
+    'pending',
   );
 
   /// error
   static final MeasureReportStatus error = MeasureReportStatus._(
-    value: 'error',
+    'error',
   );
 
   /// For instances where an Element is present but not value
 
-  static final MeasureReportStatus elementOnly =
-      MeasureReportStatus._(value: '');
+  static final MeasureReportStatus elementOnly = MeasureReportStatus._('');
 
   /// List of all enum-like values
   static final List<MeasureReportStatus> values = [
@@ -59,13 +58,13 @@ class MeasureReportStatus extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   MeasureReportStatus clone() => MeasureReportStatus._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   MeasureReportStatus withElement(Element? newElement) {
-    return MeasureReportStatus._(value: value, element: newElement);
+    return MeasureReportStatus._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -95,7 +94,7 @@ class MeasureReportStatus extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return MeasureReportStatus._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This example value set defines a set of codes that can be used to indicate a type of organization.
 class OrganizationType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  OrganizationType._({
-    super.value,
+  OrganizationType._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,72 +26,72 @@ class OrganizationType extends PrimitiveType<String> {
         'OrganizationType cannot be constructed from JSON.',
       );
     }
-    return OrganizationType._(value: value, element: element);
+    return OrganizationType._(value, element: element);
   }
 
   /// prov
   static final OrganizationType prov = OrganizationType._(
-    value: 'prov',
+    'prov',
   );
 
   /// dept
   static final OrganizationType dept = OrganizationType._(
-    value: 'dept',
+    'dept',
   );
 
   /// team
   static final OrganizationType team = OrganizationType._(
-    value: 'team',
+    'team',
   );
 
   /// govt
   static final OrganizationType govt = OrganizationType._(
-    value: 'govt',
+    'govt',
   );
 
   /// ins
   static final OrganizationType ins = OrganizationType._(
-    value: 'ins',
+    'ins',
   );
 
   /// pay
   static final OrganizationType pay = OrganizationType._(
-    value: 'pay',
+    'pay',
   );
 
   /// edu
   static final OrganizationType edu = OrganizationType._(
-    value: 'edu',
+    'edu',
   );
 
   /// reli
   static final OrganizationType reli = OrganizationType._(
-    value: 'reli',
+    'reli',
   );
 
   /// crs
   static final OrganizationType crs = OrganizationType._(
-    value: 'crs',
+    'crs',
   );
 
   /// cg
   static final OrganizationType cg = OrganizationType._(
-    value: 'cg',
+    'cg',
   );
 
   /// bus
   static final OrganizationType bus = OrganizationType._(
-    value: 'bus',
+    'bus',
   );
 
   /// other
   static final OrganizationType other = OrganizationType._(
-    value: 'other',
+    'other',
   );
 
   /// For instances where an Element is present but not value
 
-  static final OrganizationType elementOnly = OrganizationType._(value: '');
+  static final OrganizationType elementOnly = OrganizationType._('');
 
   /// List of all enum-like values
   static final List<OrganizationType> values = [
@@ -112,13 +112,13 @@ class OrganizationType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   OrganizationType clone() => OrganizationType._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   OrganizationType withElement(Element? newElement) {
-    return OrganizationType._(value: value, element: newElement);
+    return OrganizationType._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -148,7 +148,7 @@ class OrganizationType extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return OrganizationType._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

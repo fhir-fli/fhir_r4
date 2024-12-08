@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Extra monitoring defined for a Medicinal Product.
 class AdditionalMonitoring extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  AdditionalMonitoring._({
-    super.value,
+  AdditionalMonitoring._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,19 +26,18 @@ class AdditionalMonitoring extends PrimitiveType<String> {
         'AdditionalMonitoring cannot be constructed from JSON.',
       );
     }
-    return AdditionalMonitoring._(value: value, element: element);
+    return AdditionalMonitoring._(value, element: element);
   }
 
   /// BlackTriangleMonitoring
   static final AdditionalMonitoring BlackTriangleMonitoring =
       AdditionalMonitoring._(
-    value: 'BlackTriangleMonitoring',
+    'BlackTriangleMonitoring',
   );
 
   /// For instances where an Element is present but not value
 
-  static final AdditionalMonitoring elementOnly =
-      AdditionalMonitoring._(value: '');
+  static final AdditionalMonitoring elementOnly = AdditionalMonitoring._('');
 
   /// List of all enum-like values
   static final List<AdditionalMonitoring> values = [
@@ -48,13 +47,13 @@ class AdditionalMonitoring extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   AdditionalMonitoring clone() => AdditionalMonitoring._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   AdditionalMonitoring withElement(Element? newElement) {
-    return AdditionalMonitoring._(value: value, element: newElement);
+    return AdditionalMonitoring._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -84,7 +83,7 @@ class AdditionalMonitoring extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return AdditionalMonitoring._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

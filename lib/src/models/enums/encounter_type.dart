@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This example value set defines a set of codes that can be used to indicate the type of encounter: a specific code indicating type of service provided.
 class EncounterType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  EncounterType._({
-    super.value,
+  EncounterType._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,32 +26,32 @@ class EncounterType extends PrimitiveType<String> {
         'EncounterType cannot be constructed from JSON.',
       );
     }
-    return EncounterType._(value: value, element: element);
+    return EncounterType._(value, element: element);
   }
 
   /// ADMS
   static final EncounterType ADMS = EncounterType._(
-    value: 'ADMS',
+    'ADMS',
   );
 
   /// BD_BM_clin
   static final EncounterType BD_BM_clin = EncounterType._(
-    value: 'BD/BM-clin',
+    'BD/BM-clin',
   );
 
   /// CCS60
   static final EncounterType CCS60 = EncounterType._(
-    value: 'CCS60',
+    'CCS60',
   );
 
   /// OKI
   static final EncounterType OKI = EncounterType._(
-    value: 'OKI',
+    'OKI',
   );
 
   /// For instances where an Element is present but not value
 
-  static final EncounterType elementOnly = EncounterType._(value: '');
+  static final EncounterType elementOnly = EncounterType._('');
 
   /// List of all enum-like values
   static final List<EncounterType> values = [
@@ -64,13 +64,13 @@ class EncounterType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   EncounterType clone() => EncounterType._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   EncounterType withElement(Element? newElement) {
-    return EncounterType._(value: value, element: newElement);
+    return EncounterType._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -100,7 +100,7 @@ class EncounterType extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return EncounterType._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

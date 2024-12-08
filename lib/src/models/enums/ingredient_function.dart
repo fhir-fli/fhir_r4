@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// A classification of the ingredient identifying its precise purpose(s) in the drug product (beyond e.g. active/inactive).
 class IngredientFunction extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  IngredientFunction._({
-    super.value,
+  IngredientFunction._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,22 +26,22 @@ class IngredientFunction extends PrimitiveType<String> {
         'IngredientFunction cannot be constructed from JSON.',
       );
     }
-    return IngredientFunction._(value: value, element: element);
+    return IngredientFunction._(value, element: element);
   }
 
   /// Antioxidant
   static final IngredientFunction Antioxidant = IngredientFunction._(
-    value: 'Antioxidant',
+    'Antioxidant',
   );
 
   /// AlkalizingAgent
   static final IngredientFunction AlkalizingAgent = IngredientFunction._(
-    value: 'AlkalizingAgent',
+    'AlkalizingAgent',
   );
 
   /// For instances where an Element is present but not value
 
-  static final IngredientFunction elementOnly = IngredientFunction._(value: '');
+  static final IngredientFunction elementOnly = IngredientFunction._('');
 
   /// List of all enum-like values
   static final List<IngredientFunction> values = [
@@ -52,13 +52,13 @@ class IngredientFunction extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   IngredientFunction clone() => IngredientFunction._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   IngredientFunction withElement(Element? newElement) {
-    return IngredientFunction._(value: value, element: newElement);
+    return IngredientFunction._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -88,7 +88,7 @@ class IngredientFunction extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return IngredientFunction._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

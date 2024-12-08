@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value set includes sample Consent Action codes.
 class ConsentActionCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ConsentActionCodes._({
-    super.value,
+  ConsentActionCodes._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,37 +26,37 @@ class ConsentActionCodes extends PrimitiveType<String> {
         'ConsentActionCodes cannot be constructed from JSON.',
       );
     }
-    return ConsentActionCodes._(value: value, element: element);
+    return ConsentActionCodes._(value, element: element);
   }
 
   /// collect
   static final ConsentActionCodes collect = ConsentActionCodes._(
-    value: 'collect',
+    'collect',
   );
 
   /// access
   static final ConsentActionCodes access = ConsentActionCodes._(
-    value: 'access',
+    'access',
   );
 
   /// use
   static final ConsentActionCodes use = ConsentActionCodes._(
-    value: 'use',
+    'use',
   );
 
   /// disclose
   static final ConsentActionCodes disclose = ConsentActionCodes._(
-    value: 'disclose',
+    'disclose',
   );
 
   /// correct
   static final ConsentActionCodes correct = ConsentActionCodes._(
-    value: 'correct',
+    'correct',
   );
 
   /// For instances where an Element is present but not value
 
-  static final ConsentActionCodes elementOnly = ConsentActionCodes._(value: '');
+  static final ConsentActionCodes elementOnly = ConsentActionCodes._('');
 
   /// List of all enum-like values
   static final List<ConsentActionCodes> values = [
@@ -70,13 +70,13 @@ class ConsentActionCodes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ConsentActionCodes clone() => ConsentActionCodes._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ConsentActionCodes withElement(Element? newElement) {
-    return ConsentActionCodes._(value: value, element: newElement);
+    return ConsentActionCodes._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -106,7 +106,7 @@ class ConsentActionCodes extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ConsentActionCodes._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

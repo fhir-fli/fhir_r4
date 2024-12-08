@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// How resource references can be aggregated.
 class AggregationMode extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  AggregationMode._({
-    super.value,
+  AggregationMode._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,27 +26,27 @@ class AggregationMode extends PrimitiveType<String> {
         'AggregationMode cannot be constructed from JSON.',
       );
     }
-    return AggregationMode._(value: value, element: element);
+    return AggregationMode._(value, element: element);
   }
 
   /// contained
   static final AggregationMode contained = AggregationMode._(
-    value: 'contained',
+    'contained',
   );
 
   /// referenced
   static final AggregationMode referenced = AggregationMode._(
-    value: 'referenced',
+    'referenced',
   );
 
   /// bundled
   static final AggregationMode bundled = AggregationMode._(
-    value: 'bundled',
+    'bundled',
   );
 
   /// For instances where an Element is present but not value
 
-  static final AggregationMode elementOnly = AggregationMode._(value: '');
+  static final AggregationMode elementOnly = AggregationMode._('');
 
   /// List of all enum-like values
   static final List<AggregationMode> values = [
@@ -58,13 +58,13 @@ class AggregationMode extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   AggregationMode clone() => AggregationMode._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   AggregationMode withElement(Element? newElement) {
-    return AggregationMode._(value: value, element: newElement);
+    return AggregationMode._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -94,7 +94,7 @@ class AggregationMode extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return AggregationMode._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

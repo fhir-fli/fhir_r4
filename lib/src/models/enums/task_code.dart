@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Codes indicating the type of action that is expected to be performed
 class TaskCode extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  TaskCode._({
-    super.value,
+  TaskCode._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,47 +26,47 @@ class TaskCode extends PrimitiveType<String> {
         'TaskCode cannot be constructed from JSON.',
       );
     }
-    return TaskCode._(value: value, element: element);
+    return TaskCode._(value, element: element);
   }
 
   /// approve
   static final TaskCode approve = TaskCode._(
-    value: 'approve',
+    'approve',
   );
 
   /// fulfill
   static final TaskCode fulfill = TaskCode._(
-    value: 'fulfill',
+    'fulfill',
   );
 
   /// abort
   static final TaskCode abort = TaskCode._(
-    value: 'abort',
+    'abort',
   );
 
   /// replace
   static final TaskCode replace = TaskCode._(
-    value: 'replace',
+    'replace',
   );
 
   /// change
   static final TaskCode change = TaskCode._(
-    value: 'change',
+    'change',
   );
 
   /// suspend
   static final TaskCode suspend = TaskCode._(
-    value: 'suspend',
+    'suspend',
   );
 
   /// resume
   static final TaskCode resume = TaskCode._(
-    value: 'resume',
+    'resume',
   );
 
   /// For instances where an Element is present but not value
 
-  static final TaskCode elementOnly = TaskCode._(value: '');
+  static final TaskCode elementOnly = TaskCode._('');
 
   /// List of all enum-like values
   static final List<TaskCode> values = [
@@ -82,13 +82,13 @@ class TaskCode extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   TaskCode clone() => TaskCode._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   TaskCode withElement(Element? newElement) {
-    return TaskCode._(value: value, element: newElement);
+    return TaskCode._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -118,7 +118,7 @@ class TaskCode extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return TaskCode._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

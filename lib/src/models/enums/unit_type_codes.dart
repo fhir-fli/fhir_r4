@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// This value set includes a smattering of Unit type codes.
 class UnitTypeCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  UnitTypeCodes._({
-    super.value,
+  UnitTypeCodes._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,22 +26,22 @@ class UnitTypeCodes extends PrimitiveType<String> {
         'UnitTypeCodes cannot be constructed from JSON.',
       );
     }
-    return UnitTypeCodes._(value: value, element: element);
+    return UnitTypeCodes._(value, element: element);
   }
 
   /// individual
   static final UnitTypeCodes individual = UnitTypeCodes._(
-    value: 'individual',
+    'individual',
   );
 
   /// family
   static final UnitTypeCodes family = UnitTypeCodes._(
-    value: 'family',
+    'family',
   );
 
   /// For instances where an Element is present but not value
 
-  static final UnitTypeCodes elementOnly = UnitTypeCodes._(value: '');
+  static final UnitTypeCodes elementOnly = UnitTypeCodes._('');
 
   /// List of all enum-like values
   static final List<UnitTypeCodes> values = [
@@ -52,13 +52,13 @@ class UnitTypeCodes extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   UnitTypeCodes clone() => UnitTypeCodes._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   UnitTypeCodes withElement(Element? newElement) {
-    return UnitTypeCodes._(value: value, element: newElement);
+    return UnitTypeCodes._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -88,7 +88,7 @@ class UnitTypeCodes extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return UnitTypeCodes._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

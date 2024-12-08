@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// MedicationDispense Status Codes
 class MedicationDispenseStatusReasonCodes extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  MedicationDispenseStatusReasonCodes._({
-    super.value,
+  MedicationDispenseStatusReasonCodes._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -27,140 +27,139 @@ class MedicationDispenseStatusReasonCodes extends PrimitiveType<String> {
         'MedicationDispenseStatusReasonCodes cannot be constructed from JSON.',
       );
     }
-    return MedicationDispenseStatusReasonCodes._(
-        value: value, element: element);
+    return MedicationDispenseStatusReasonCodes._(value, element: element);
   }
 
   /// frr01
   static final MedicationDispenseStatusReasonCodes frr01 =
       MedicationDispenseStatusReasonCodes._(
-    value: 'frr01',
+    'frr01',
   );
 
   /// frr02
   static final MedicationDispenseStatusReasonCodes frr02 =
       MedicationDispenseStatusReasonCodes._(
-    value: 'frr02',
+    'frr02',
   );
 
   /// frr03
   static final MedicationDispenseStatusReasonCodes frr03 =
       MedicationDispenseStatusReasonCodes._(
-    value: 'frr03',
+    'frr03',
   );
 
   /// frr04
   static final MedicationDispenseStatusReasonCodes frr04 =
       MedicationDispenseStatusReasonCodes._(
-    value: 'frr04',
+    'frr04',
   );
 
   /// frr05
   static final MedicationDispenseStatusReasonCodes frr05 =
       MedicationDispenseStatusReasonCodes._(
-    value: 'frr05',
+    'frr05',
   );
 
   /// frr06
   static final MedicationDispenseStatusReasonCodes frr06 =
       MedicationDispenseStatusReasonCodes._(
-    value: 'frr06',
+    'frr06',
   );
 
   /// altchoice
   static final MedicationDispenseStatusReasonCodes altchoice =
       MedicationDispenseStatusReasonCodes._(
-    value: 'altchoice',
+    'altchoice',
   );
 
   /// clarif
   static final MedicationDispenseStatusReasonCodes clarif =
       MedicationDispenseStatusReasonCodes._(
-    value: 'clarif',
+    'clarif',
   );
 
   /// drughigh
   static final MedicationDispenseStatusReasonCodes drughigh =
       MedicationDispenseStatusReasonCodes._(
-    value: 'drughigh',
+    'drughigh',
   );
 
   /// hospadm
   static final MedicationDispenseStatusReasonCodes hospadm =
       MedicationDispenseStatusReasonCodes._(
-    value: 'hospadm',
+    'hospadm',
   );
 
   /// labint
   static final MedicationDispenseStatusReasonCodes labint =
       MedicationDispenseStatusReasonCodes._(
-    value: 'labint',
+    'labint',
   );
 
   /// non_avail
   static final MedicationDispenseStatusReasonCodes non_avail =
       MedicationDispenseStatusReasonCodes._(
-    value: 'non-avail',
+    'non-avail',
   );
 
   /// preg
   static final MedicationDispenseStatusReasonCodes preg =
       MedicationDispenseStatusReasonCodes._(
-    value: 'preg',
+    'preg',
   );
 
   /// saig
   static final MedicationDispenseStatusReasonCodes saig =
       MedicationDispenseStatusReasonCodes._(
-    value: 'saig',
+    'saig',
   );
 
   /// sddi
   static final MedicationDispenseStatusReasonCodes sddi =
       MedicationDispenseStatusReasonCodes._(
-    value: 'sddi',
+    'sddi',
   );
 
   /// sdupther
   static final MedicationDispenseStatusReasonCodes sdupther =
       MedicationDispenseStatusReasonCodes._(
-    value: 'sdupther',
+    'sdupther',
   );
 
   /// sintol
   static final MedicationDispenseStatusReasonCodes sintol =
       MedicationDispenseStatusReasonCodes._(
-    value: 'sintol',
+    'sintol',
   );
 
   /// surg
   static final MedicationDispenseStatusReasonCodes surg =
       MedicationDispenseStatusReasonCodes._(
-    value: 'surg',
+    'surg',
   );
 
   /// washout
   static final MedicationDispenseStatusReasonCodes washout =
       MedicationDispenseStatusReasonCodes._(
-    value: 'washout',
+    'washout',
   );
 
   /// outofstock
   static final MedicationDispenseStatusReasonCodes outofstock =
       MedicationDispenseStatusReasonCodes._(
-    value: 'outofstock',
+    'outofstock',
   );
 
   /// offmarket
   static final MedicationDispenseStatusReasonCodes offmarket =
       MedicationDispenseStatusReasonCodes._(
-    value: 'offmarket',
+    'offmarket',
   );
 
   /// For instances where an Element is present but not value
 
   static final MedicationDispenseStatusReasonCodes elementOnly =
-      MedicationDispenseStatusReasonCodes._(value: '');
+      MedicationDispenseStatusReasonCodes._('');
 
   /// List of all enum-like values
   static final List<MedicationDispenseStatusReasonCodes> values = [
@@ -191,14 +190,13 @@ class MedicationDispenseStatusReasonCodes extends PrimitiveType<String> {
   @override
   MedicationDispenseStatusReasonCodes clone() =>
       MedicationDispenseStatusReasonCodes._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   MedicationDispenseStatusReasonCodes withElement(Element? newElement) {
-    return MedicationDispenseStatusReasonCodes._(
-        value: value, element: newElement);
+    return MedicationDispenseStatusReasonCodes._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -228,7 +226,7 @@ class MedicationDispenseStatusReasonCodes extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return MedicationDispenseStatusReasonCodes._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

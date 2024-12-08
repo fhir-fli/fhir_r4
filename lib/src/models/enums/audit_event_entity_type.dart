@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Code for the entity type involved in the audit event.
 class AuditEventEntityType extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  AuditEventEntityType._({
-    super.value,
+  AuditEventEntityType._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,779 +26,778 @@ class AuditEventEntityType extends PrimitiveType<String> {
         'AuditEventEntityType cannot be constructed from JSON.',
       );
     }
-    return AuditEventEntityType._(value: value, element: element);
+    return AuditEventEntityType._(value, element: element);
   }
 
   /// value1
   static final AuditEventEntityType value1 = AuditEventEntityType._(
-    value: '1',
+    '1',
   );
 
   /// value2
   static final AuditEventEntityType value2 = AuditEventEntityType._(
-    value: '2',
+    '2',
   );
 
   /// value3
   static final AuditEventEntityType value3 = AuditEventEntityType._(
-    value: '3',
+    '3',
   );
 
   /// value4
   static final AuditEventEntityType value4 = AuditEventEntityType._(
-    value: '4',
+    '4',
   );
 
   /// Resource
   static final AuditEventEntityType Resource = AuditEventEntityType._(
-    value: 'Resource',
+    'Resource',
   );
 
   /// Binary
   static final AuditEventEntityType Binary = AuditEventEntityType._(
-    value: 'Binary',
+    'Binary',
   );
 
   /// Bundle
   static final AuditEventEntityType Bundle = AuditEventEntityType._(
-    value: 'Bundle',
+    'Bundle',
   );
 
   /// DomainResource
   static final AuditEventEntityType DomainResource = AuditEventEntityType._(
-    value: 'DomainResource',
+    'DomainResource',
   );
 
   /// Account
   static final AuditEventEntityType Account = AuditEventEntityType._(
-    value: 'Account',
+    'Account',
   );
 
   /// ActivityDefinition
   static final AuditEventEntityType ActivityDefinition = AuditEventEntityType._(
-    value: 'ActivityDefinition',
+    'ActivityDefinition',
   );
 
   /// AdministrableProductDefinition
   static final AuditEventEntityType AdministrableProductDefinition =
       AuditEventEntityType._(
-    value: 'AdministrableProductDefinition',
+    'AdministrableProductDefinition',
   );
 
   /// AdverseEvent
   static final AuditEventEntityType AdverseEvent = AuditEventEntityType._(
-    value: 'AdverseEvent',
+    'AdverseEvent',
   );
 
   /// AllergyIntolerance
   static final AuditEventEntityType AllergyIntolerance = AuditEventEntityType._(
-    value: 'AllergyIntolerance',
+    'AllergyIntolerance',
   );
 
   /// Appointment
   static final AuditEventEntityType Appointment = AuditEventEntityType._(
-    value: 'Appointment',
+    'Appointment',
   );
 
   /// AppointmentResponse
   static final AuditEventEntityType AppointmentResponse =
       AuditEventEntityType._(
-    value: 'AppointmentResponse',
+    'AppointmentResponse',
   );
 
   /// AuditEvent
   static final AuditEventEntityType AuditEvent = AuditEventEntityType._(
-    value: 'AuditEvent',
+    'AuditEvent',
   );
 
   /// Basic
   static final AuditEventEntityType Basic = AuditEventEntityType._(
-    value: 'Basic',
+    'Basic',
   );
 
   /// BiologicallyDerivedProduct
   static final AuditEventEntityType BiologicallyDerivedProduct =
       AuditEventEntityType._(
-    value: 'BiologicallyDerivedProduct',
+    'BiologicallyDerivedProduct',
   );
 
   /// BodyStructure
   static final AuditEventEntityType BodyStructure = AuditEventEntityType._(
-    value: 'BodyStructure',
+    'BodyStructure',
   );
 
   /// CapabilityStatement
   static final AuditEventEntityType CapabilityStatement =
       AuditEventEntityType._(
-    value: 'CapabilityStatement',
+    'CapabilityStatement',
   );
 
   /// CarePlan
   static final AuditEventEntityType CarePlan = AuditEventEntityType._(
-    value: 'CarePlan',
+    'CarePlan',
   );
 
   /// CareTeam
   static final AuditEventEntityType CareTeam = AuditEventEntityType._(
-    value: 'CareTeam',
+    'CareTeam',
   );
 
   /// CatalogEntry
   static final AuditEventEntityType CatalogEntry = AuditEventEntityType._(
-    value: 'CatalogEntry',
+    'CatalogEntry',
   );
 
   /// ChargeItem
   static final AuditEventEntityType ChargeItem = AuditEventEntityType._(
-    value: 'ChargeItem',
+    'ChargeItem',
   );
 
   /// ChargeItemDefinition
   static final AuditEventEntityType ChargeItemDefinition =
       AuditEventEntityType._(
-    value: 'ChargeItemDefinition',
+    'ChargeItemDefinition',
   );
 
   /// Citation
   static final AuditEventEntityType Citation = AuditEventEntityType._(
-    value: 'Citation',
+    'Citation',
   );
 
   /// Claim
   static final AuditEventEntityType Claim = AuditEventEntityType._(
-    value: 'Claim',
+    'Claim',
   );
 
   /// ClaimResponse
   static final AuditEventEntityType ClaimResponse = AuditEventEntityType._(
-    value: 'ClaimResponse',
+    'ClaimResponse',
   );
 
   /// ClinicalImpression
   static final AuditEventEntityType ClinicalImpression = AuditEventEntityType._(
-    value: 'ClinicalImpression',
+    'ClinicalImpression',
   );
 
   /// ClinicalUseDefinition
   static final AuditEventEntityType ClinicalUseDefinition =
       AuditEventEntityType._(
-    value: 'ClinicalUseDefinition',
+    'ClinicalUseDefinition',
   );
 
   /// CodeSystem
   static final AuditEventEntityType CodeSystem = AuditEventEntityType._(
-    value: 'CodeSystem',
+    'CodeSystem',
   );
 
   /// Communication
   static final AuditEventEntityType Communication = AuditEventEntityType._(
-    value: 'Communication',
+    'Communication',
   );
 
   /// CommunicationRequest
   static final AuditEventEntityType CommunicationRequest =
       AuditEventEntityType._(
-    value: 'CommunicationRequest',
+    'CommunicationRequest',
   );
 
   /// CompartmentDefinition
   static final AuditEventEntityType CompartmentDefinition =
       AuditEventEntityType._(
-    value: 'CompartmentDefinition',
+    'CompartmentDefinition',
   );
 
   /// Composition
   static final AuditEventEntityType Composition = AuditEventEntityType._(
-    value: 'Composition',
+    'Composition',
   );
 
   /// ConceptMap
   static final AuditEventEntityType ConceptMap = AuditEventEntityType._(
-    value: 'ConceptMap',
+    'ConceptMap',
   );
 
   /// Condition
   static final AuditEventEntityType Condition = AuditEventEntityType._(
-    value: 'Condition',
+    'Condition',
   );
 
   /// Consent
   static final AuditEventEntityType Consent = AuditEventEntityType._(
-    value: 'Consent',
+    'Consent',
   );
 
   /// Contract
   static final AuditEventEntityType Contract = AuditEventEntityType._(
-    value: 'Contract',
+    'Contract',
   );
 
   /// Coverage
   static final AuditEventEntityType Coverage = AuditEventEntityType._(
-    value: 'Coverage',
+    'Coverage',
   );
 
   /// CoverageEligibilityRequest
   static final AuditEventEntityType CoverageEligibilityRequest =
       AuditEventEntityType._(
-    value: 'CoverageEligibilityRequest',
+    'CoverageEligibilityRequest',
   );
 
   /// CoverageEligibilityResponse
   static final AuditEventEntityType CoverageEligibilityResponse =
       AuditEventEntityType._(
-    value: 'CoverageEligibilityResponse',
+    'CoverageEligibilityResponse',
   );
 
   /// DetectedIssue
   static final AuditEventEntityType DetectedIssue = AuditEventEntityType._(
-    value: 'DetectedIssue',
+    'DetectedIssue',
   );
 
   /// Device
   static final AuditEventEntityType Device = AuditEventEntityType._(
-    value: 'Device',
+    'Device',
   );
 
   /// DeviceDefinition
   static final AuditEventEntityType DeviceDefinition = AuditEventEntityType._(
-    value: 'DeviceDefinition',
+    'DeviceDefinition',
   );
 
   /// DeviceMetric
   static final AuditEventEntityType DeviceMetric = AuditEventEntityType._(
-    value: 'DeviceMetric',
+    'DeviceMetric',
   );
 
   /// DeviceRequest
   static final AuditEventEntityType DeviceRequest = AuditEventEntityType._(
-    value: 'DeviceRequest',
+    'DeviceRequest',
   );
 
   /// DeviceUseStatement
   static final AuditEventEntityType DeviceUseStatement = AuditEventEntityType._(
-    value: 'DeviceUseStatement',
+    'DeviceUseStatement',
   );
 
   /// DiagnosticReport
   static final AuditEventEntityType DiagnosticReport = AuditEventEntityType._(
-    value: 'DiagnosticReport',
+    'DiagnosticReport',
   );
 
   /// DocumentManifest
   static final AuditEventEntityType DocumentManifest = AuditEventEntityType._(
-    value: 'DocumentManifest',
+    'DocumentManifest',
   );
 
   /// DocumentReference
   static final AuditEventEntityType DocumentReference = AuditEventEntityType._(
-    value: 'DocumentReference',
+    'DocumentReference',
   );
 
   /// Encounter
   static final AuditEventEntityType Encounter = AuditEventEntityType._(
-    value: 'Encounter',
+    'Encounter',
   );
 
   /// Endpoint
   static final AuditEventEntityType Endpoint = AuditEventEntityType._(
-    value: 'Endpoint',
+    'Endpoint',
   );
 
   /// EnrollmentRequest
   static final AuditEventEntityType EnrollmentRequest = AuditEventEntityType._(
-    value: 'EnrollmentRequest',
+    'EnrollmentRequest',
   );
 
   /// EnrollmentResponse
   static final AuditEventEntityType EnrollmentResponse = AuditEventEntityType._(
-    value: 'EnrollmentResponse',
+    'EnrollmentResponse',
   );
 
   /// EpisodeOfCare
   static final AuditEventEntityType EpisodeOfCare = AuditEventEntityType._(
-    value: 'EpisodeOfCare',
+    'EpisodeOfCare',
   );
 
   /// EventDefinition
   static final AuditEventEntityType EventDefinition = AuditEventEntityType._(
-    value: 'EventDefinition',
+    'EventDefinition',
   );
 
   /// Evidence
   static final AuditEventEntityType Evidence = AuditEventEntityType._(
-    value: 'Evidence',
+    'Evidence',
   );
 
   /// EvidenceReport
   static final AuditEventEntityType EvidenceReport = AuditEventEntityType._(
-    value: 'EvidenceReport',
+    'EvidenceReport',
   );
 
   /// EvidenceVariable
   static final AuditEventEntityType EvidenceVariable = AuditEventEntityType._(
-    value: 'EvidenceVariable',
+    'EvidenceVariable',
   );
 
   /// ExampleScenario
   static final AuditEventEntityType ExampleScenario = AuditEventEntityType._(
-    value: 'ExampleScenario',
+    'ExampleScenario',
   );
 
   /// ExplanationOfBenefit
   static final AuditEventEntityType ExplanationOfBenefit =
       AuditEventEntityType._(
-    value: 'ExplanationOfBenefit',
+    'ExplanationOfBenefit',
   );
 
   /// FamilyMemberHistory
   static final AuditEventEntityType FamilyMemberHistory =
       AuditEventEntityType._(
-    value: 'FamilyMemberHistory',
+    'FamilyMemberHistory',
   );
 
   /// Flag
   static final AuditEventEntityType Flag = AuditEventEntityType._(
-    value: 'Flag',
+    'Flag',
   );
 
   /// Goal
   static final AuditEventEntityType Goal = AuditEventEntityType._(
-    value: 'Goal',
+    'Goal',
   );
 
   /// GraphDefinition
   static final AuditEventEntityType GraphDefinition = AuditEventEntityType._(
-    value: 'GraphDefinition',
+    'GraphDefinition',
   );
 
   /// Group
   static final AuditEventEntityType Group = AuditEventEntityType._(
-    value: 'Group',
+    'Group',
   );
 
   /// GuidanceResponse
   static final AuditEventEntityType GuidanceResponse = AuditEventEntityType._(
-    value: 'GuidanceResponse',
+    'GuidanceResponse',
   );
 
   /// HealthcareService
   static final AuditEventEntityType HealthcareService = AuditEventEntityType._(
-    value: 'HealthcareService',
+    'HealthcareService',
   );
 
   /// ImagingStudy
   static final AuditEventEntityType ImagingStudy = AuditEventEntityType._(
-    value: 'ImagingStudy',
+    'ImagingStudy',
   );
 
   /// Immunization
   static final AuditEventEntityType Immunization = AuditEventEntityType._(
-    value: 'Immunization',
+    'Immunization',
   );
 
   /// ImmunizationEvaluation
   static final AuditEventEntityType ImmunizationEvaluation =
       AuditEventEntityType._(
-    value: 'ImmunizationEvaluation',
+    'ImmunizationEvaluation',
   );
 
   /// ImmunizationRecommendation
   static final AuditEventEntityType ImmunizationRecommendation =
       AuditEventEntityType._(
-    value: 'ImmunizationRecommendation',
+    'ImmunizationRecommendation',
   );
 
   /// ImplementationGuide
   static final AuditEventEntityType ImplementationGuide =
       AuditEventEntityType._(
-    value: 'ImplementationGuide',
+    'ImplementationGuide',
   );
 
   /// Ingredient
   static final AuditEventEntityType Ingredient = AuditEventEntityType._(
-    value: 'Ingredient',
+    'Ingredient',
   );
 
   /// InsurancePlan
   static final AuditEventEntityType InsurancePlan = AuditEventEntityType._(
-    value: 'InsurancePlan',
+    'InsurancePlan',
   );
 
   /// Invoice
   static final AuditEventEntityType Invoice = AuditEventEntityType._(
-    value: 'Invoice',
+    'Invoice',
   );
 
   /// Library
   static final AuditEventEntityType Library = AuditEventEntityType._(
-    value: 'Library',
+    'Library',
   );
 
   /// Linkage
   static final AuditEventEntityType Linkage = AuditEventEntityType._(
-    value: 'Linkage',
+    'Linkage',
   );
 
   /// List_
   static final AuditEventEntityType List_ = AuditEventEntityType._(
-    value: 'List',
+    'List',
   );
 
   /// Location
   static final AuditEventEntityType Location = AuditEventEntityType._(
-    value: 'Location',
+    'Location',
   );
 
   /// ManufacturedItemDefinition
   static final AuditEventEntityType ManufacturedItemDefinition =
       AuditEventEntityType._(
-    value: 'ManufacturedItemDefinition',
+    'ManufacturedItemDefinition',
   );
 
   /// Measure
   static final AuditEventEntityType Measure = AuditEventEntityType._(
-    value: 'Measure',
+    'Measure',
   );
 
   /// MeasureReport
   static final AuditEventEntityType MeasureReport = AuditEventEntityType._(
-    value: 'MeasureReport',
+    'MeasureReport',
   );
 
   /// Media
   static final AuditEventEntityType Media = AuditEventEntityType._(
-    value: 'Media',
+    'Media',
   );
 
   /// Medication
   static final AuditEventEntityType Medication = AuditEventEntityType._(
-    value: 'Medication',
+    'Medication',
   );
 
   /// MedicationAdministration
   static final AuditEventEntityType MedicationAdministration =
       AuditEventEntityType._(
-    value: 'MedicationAdministration',
+    'MedicationAdministration',
   );
 
   /// MedicationDispense
   static final AuditEventEntityType MedicationDispense = AuditEventEntityType._(
-    value: 'MedicationDispense',
+    'MedicationDispense',
   );
 
   /// MedicationKnowledge
   static final AuditEventEntityType MedicationKnowledge =
       AuditEventEntityType._(
-    value: 'MedicationKnowledge',
+    'MedicationKnowledge',
   );
 
   /// MedicationRequest
   static final AuditEventEntityType MedicationRequest = AuditEventEntityType._(
-    value: 'MedicationRequest',
+    'MedicationRequest',
   );
 
   /// MedicationStatement
   static final AuditEventEntityType MedicationStatement =
       AuditEventEntityType._(
-    value: 'MedicationStatement',
+    'MedicationStatement',
   );
 
   /// MedicinalProductDefinition
   static final AuditEventEntityType MedicinalProductDefinition =
       AuditEventEntityType._(
-    value: 'MedicinalProductDefinition',
+    'MedicinalProductDefinition',
   );
 
   /// MessageDefinition
   static final AuditEventEntityType MessageDefinition = AuditEventEntityType._(
-    value: 'MessageDefinition',
+    'MessageDefinition',
   );
 
   /// MessageHeader
   static final AuditEventEntityType MessageHeader = AuditEventEntityType._(
-    value: 'MessageHeader',
+    'MessageHeader',
   );
 
   /// MolecularSequence
   static final AuditEventEntityType MolecularSequence = AuditEventEntityType._(
-    value: 'MolecularSequence',
+    'MolecularSequence',
   );
 
   /// NamingSystem
   static final AuditEventEntityType NamingSystem = AuditEventEntityType._(
-    value: 'NamingSystem',
+    'NamingSystem',
   );
 
   /// NutritionOrder
   static final AuditEventEntityType NutritionOrder = AuditEventEntityType._(
-    value: 'NutritionOrder',
+    'NutritionOrder',
   );
 
   /// NutritionProduct
   static final AuditEventEntityType NutritionProduct = AuditEventEntityType._(
-    value: 'NutritionProduct',
+    'NutritionProduct',
   );
 
   /// Observation
   static final AuditEventEntityType Observation = AuditEventEntityType._(
-    value: 'Observation',
+    'Observation',
   );
 
   /// ObservationDefinition
   static final AuditEventEntityType ObservationDefinition =
       AuditEventEntityType._(
-    value: 'ObservationDefinition',
+    'ObservationDefinition',
   );
 
   /// OperationDefinition
   static final AuditEventEntityType OperationDefinition =
       AuditEventEntityType._(
-    value: 'OperationDefinition',
+    'OperationDefinition',
   );
 
   /// OperationOutcome
   static final AuditEventEntityType OperationOutcome = AuditEventEntityType._(
-    value: 'OperationOutcome',
+    'OperationOutcome',
   );
 
   /// Organization
   static final AuditEventEntityType Organization = AuditEventEntityType._(
-    value: 'Organization',
+    'Organization',
   );
 
   /// OrganizationAffiliation
   static final AuditEventEntityType OrganizationAffiliation =
       AuditEventEntityType._(
-    value: 'OrganizationAffiliation',
+    'OrganizationAffiliation',
   );
 
   /// PackagedProductDefinition
   static final AuditEventEntityType PackagedProductDefinition =
       AuditEventEntityType._(
-    value: 'PackagedProductDefinition',
+    'PackagedProductDefinition',
   );
 
   /// Patient
   static final AuditEventEntityType Patient = AuditEventEntityType._(
-    value: 'Patient',
+    'Patient',
   );
 
   /// PaymentNotice
   static final AuditEventEntityType PaymentNotice = AuditEventEntityType._(
-    value: 'PaymentNotice',
+    'PaymentNotice',
   );
 
   /// PaymentReconciliation
   static final AuditEventEntityType PaymentReconciliation =
       AuditEventEntityType._(
-    value: 'PaymentReconciliation',
+    'PaymentReconciliation',
   );
 
   /// Person
   static final AuditEventEntityType Person = AuditEventEntityType._(
-    value: 'Person',
+    'Person',
   );
 
   /// PlanDefinition
   static final AuditEventEntityType PlanDefinition = AuditEventEntityType._(
-    value: 'PlanDefinition',
+    'PlanDefinition',
   );
 
   /// Practitioner
   static final AuditEventEntityType Practitioner = AuditEventEntityType._(
-    value: 'Practitioner',
+    'Practitioner',
   );
 
   /// PractitionerRole
   static final AuditEventEntityType PractitionerRole = AuditEventEntityType._(
-    value: 'PractitionerRole',
+    'PractitionerRole',
   );
 
   /// Procedure
   static final AuditEventEntityType Procedure = AuditEventEntityType._(
-    value: 'Procedure',
+    'Procedure',
   );
 
   /// Provenance
   static final AuditEventEntityType Provenance = AuditEventEntityType._(
-    value: 'Provenance',
+    'Provenance',
   );
 
   /// Questionnaire
   static final AuditEventEntityType Questionnaire = AuditEventEntityType._(
-    value: 'Questionnaire',
+    'Questionnaire',
   );
 
   /// QuestionnaireResponse
   static final AuditEventEntityType QuestionnaireResponse =
       AuditEventEntityType._(
-    value: 'QuestionnaireResponse',
+    'QuestionnaireResponse',
   );
 
   /// RegulatedAuthorization
   static final AuditEventEntityType RegulatedAuthorization =
       AuditEventEntityType._(
-    value: 'RegulatedAuthorization',
+    'RegulatedAuthorization',
   );
 
   /// RelatedPerson
   static final AuditEventEntityType RelatedPerson = AuditEventEntityType._(
-    value: 'RelatedPerson',
+    'RelatedPerson',
   );
 
   /// RequestGroup
   static final AuditEventEntityType RequestGroup = AuditEventEntityType._(
-    value: 'RequestGroup',
+    'RequestGroup',
   );
 
   /// ResearchDefinition
   static final AuditEventEntityType ResearchDefinition = AuditEventEntityType._(
-    value: 'ResearchDefinition',
+    'ResearchDefinition',
   );
 
   /// ResearchElementDefinition
   static final AuditEventEntityType ResearchElementDefinition =
       AuditEventEntityType._(
-    value: 'ResearchElementDefinition',
+    'ResearchElementDefinition',
   );
 
   /// ResearchStudy
   static final AuditEventEntityType ResearchStudy = AuditEventEntityType._(
-    value: 'ResearchStudy',
+    'ResearchStudy',
   );
 
   /// ResearchSubject
   static final AuditEventEntityType ResearchSubject = AuditEventEntityType._(
-    value: 'ResearchSubject',
+    'ResearchSubject',
   );
 
   /// RiskAssessment
   static final AuditEventEntityType RiskAssessment = AuditEventEntityType._(
-    value: 'RiskAssessment',
+    'RiskAssessment',
   );
 
   /// Schedule
   static final AuditEventEntityType Schedule = AuditEventEntityType._(
-    value: 'Schedule',
+    'Schedule',
   );
 
   /// SearchParameter
   static final AuditEventEntityType SearchParameter = AuditEventEntityType._(
-    value: 'SearchParameter',
+    'SearchParameter',
   );
 
   /// ServiceRequest
   static final AuditEventEntityType ServiceRequest = AuditEventEntityType._(
-    value: 'ServiceRequest',
+    'ServiceRequest',
   );
 
   /// Slot
   static final AuditEventEntityType Slot = AuditEventEntityType._(
-    value: 'Slot',
+    'Slot',
   );
 
   /// Specimen
   static final AuditEventEntityType Specimen = AuditEventEntityType._(
-    value: 'Specimen',
+    'Specimen',
   );
 
   /// SpecimenDefinition
   static final AuditEventEntityType SpecimenDefinition = AuditEventEntityType._(
-    value: 'SpecimenDefinition',
+    'SpecimenDefinition',
   );
 
   /// StructureDefinition
   static final AuditEventEntityType StructureDefinition =
       AuditEventEntityType._(
-    value: 'StructureDefinition',
+    'StructureDefinition',
   );
 
   /// StructureMap
   static final AuditEventEntityType StructureMap = AuditEventEntityType._(
-    value: 'StructureMap',
+    'StructureMap',
   );
 
   /// Subscription
   static final AuditEventEntityType Subscription = AuditEventEntityType._(
-    value: 'Subscription',
+    'Subscription',
   );
 
   /// SubscriptionStatus
   static final AuditEventEntityType SubscriptionStatus = AuditEventEntityType._(
-    value: 'SubscriptionStatus',
+    'SubscriptionStatus',
   );
 
   /// SubscriptionTopic
   static final AuditEventEntityType SubscriptionTopic = AuditEventEntityType._(
-    value: 'SubscriptionTopic',
+    'SubscriptionTopic',
   );
 
   /// Substance
   static final AuditEventEntityType Substance = AuditEventEntityType._(
-    value: 'Substance',
+    'Substance',
   );
 
   /// SubstanceDefinition
   static final AuditEventEntityType SubstanceDefinition =
       AuditEventEntityType._(
-    value: 'SubstanceDefinition',
+    'SubstanceDefinition',
   );
 
   /// SupplyDelivery
   static final AuditEventEntityType SupplyDelivery = AuditEventEntityType._(
-    value: 'SupplyDelivery',
+    'SupplyDelivery',
   );
 
   /// SupplyRequest
   static final AuditEventEntityType SupplyRequest = AuditEventEntityType._(
-    value: 'SupplyRequest',
+    'SupplyRequest',
   );
 
   /// Task
   static final AuditEventEntityType Task = AuditEventEntityType._(
-    value: 'Task',
+    'Task',
   );
 
   /// TerminologyCapabilities
   static final AuditEventEntityType TerminologyCapabilities =
       AuditEventEntityType._(
-    value: 'TerminologyCapabilities',
+    'TerminologyCapabilities',
   );
 
   /// TestReport
   static final AuditEventEntityType TestReport = AuditEventEntityType._(
-    value: 'TestReport',
+    'TestReport',
   );
 
   /// TestScript
   static final AuditEventEntityType TestScript = AuditEventEntityType._(
-    value: 'TestScript',
+    'TestScript',
   );
 
   /// ValueSet
   static final AuditEventEntityType ValueSet = AuditEventEntityType._(
-    value: 'ValueSet',
+    'ValueSet',
   );
 
   /// VerificationResult
   static final AuditEventEntityType VerificationResult = AuditEventEntityType._(
-    value: 'VerificationResult',
+    'VerificationResult',
   );
 
   /// VisionPrescription
   static final AuditEventEntityType VisionPrescription = AuditEventEntityType._(
-    value: 'VisionPrescription',
+    'VisionPrescription',
   );
 
   /// Parameters
   static final AuditEventEntityType Parameters = AuditEventEntityType._(
-    value: 'Parameters',
+    'Parameters',
   );
 
   /// For instances where an Element is present but not value
 
-  static final AuditEventEntityType elementOnly =
-      AuditEventEntityType._(value: '');
+  static final AuditEventEntityType elementOnly = AuditEventEntityType._('');
 
   /// List of all enum-like values
   static final List<AuditEventEntityType> values = [
@@ -954,13 +953,13 @@ class AuditEventEntityType extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   AuditEventEntityType clone() => AuditEventEntityType._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   AuditEventEntityType withElement(Element? newElement) {
-    return AuditEventEntityType._(value: value, element: newElement);
+    return AuditEventEntityType._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -990,7 +989,7 @@ class AuditEventEntityType extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return AuditEventEntityType._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

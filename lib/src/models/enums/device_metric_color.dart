@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Describes the typical color of representation.
 class DeviceMetricColor extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  DeviceMetricColor._({
-    super.value,
+  DeviceMetricColor._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,52 +26,52 @@ class DeviceMetricColor extends PrimitiveType<String> {
         'DeviceMetricColor cannot be constructed from JSON.',
       );
     }
-    return DeviceMetricColor._(value: value, element: element);
+    return DeviceMetricColor._(value, element: element);
   }
 
   /// black
   static final DeviceMetricColor black = DeviceMetricColor._(
-    value: 'black',
+    'black',
   );
 
   /// red
   static final DeviceMetricColor red = DeviceMetricColor._(
-    value: 'red',
+    'red',
   );
 
   /// green
   static final DeviceMetricColor green = DeviceMetricColor._(
-    value: 'green',
+    'green',
   );
 
   /// yellow
   static final DeviceMetricColor yellow = DeviceMetricColor._(
-    value: 'yellow',
+    'yellow',
   );
 
   /// blue
   static final DeviceMetricColor blue = DeviceMetricColor._(
-    value: 'blue',
+    'blue',
   );
 
   /// magenta
   static final DeviceMetricColor magenta = DeviceMetricColor._(
-    value: 'magenta',
+    'magenta',
   );
 
   /// cyan
   static final DeviceMetricColor cyan = DeviceMetricColor._(
-    value: 'cyan',
+    'cyan',
   );
 
   /// white
   static final DeviceMetricColor white = DeviceMetricColor._(
-    value: 'white',
+    'white',
   );
 
   /// For instances where an Element is present but not value
 
-  static final DeviceMetricColor elementOnly = DeviceMetricColor._(value: '');
+  static final DeviceMetricColor elementOnly = DeviceMetricColor._('');
 
   /// List of all enum-like values
   static final List<DeviceMetricColor> values = [
@@ -88,13 +88,13 @@ class DeviceMetricColor extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   DeviceMetricColor clone() => DeviceMetricColor._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   DeviceMetricColor withElement(Element? newElement) {
-    return DeviceMetricColor._(value: value, element: newElement);
+    return DeviceMetricColor._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -124,7 +124,7 @@ class DeviceMetricColor extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return DeviceMetricColor._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// The Participation status of an appointment.
 class ParticipationStatus extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ParticipationStatus._({
-    super.value,
+  ParticipationStatus._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,33 +26,32 @@ class ParticipationStatus extends PrimitiveType<String> {
         'ParticipationStatus cannot be constructed from JSON.',
       );
     }
-    return ParticipationStatus._(value: value, element: element);
+    return ParticipationStatus._(value, element: element);
   }
 
   /// accepted
   static final ParticipationStatus accepted = ParticipationStatus._(
-    value: 'accepted',
+    'accepted',
   );
 
   /// declined
   static final ParticipationStatus declined = ParticipationStatus._(
-    value: 'declined',
+    'declined',
   );
 
   /// tentative
   static final ParticipationStatus tentative = ParticipationStatus._(
-    value: 'tentative',
+    'tentative',
   );
 
   /// needs_action
   static final ParticipationStatus needs_action = ParticipationStatus._(
-    value: 'needs-action',
+    'needs-action',
   );
 
   /// For instances where an Element is present but not value
 
-  static final ParticipationStatus elementOnly =
-      ParticipationStatus._(value: '');
+  static final ParticipationStatus elementOnly = ParticipationStatus._('');
 
   /// List of all enum-like values
   static final List<ParticipationStatus> values = [
@@ -65,13 +64,13 @@ class ParticipationStatus extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ParticipationStatus clone() => ParticipationStatus._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ParticipationStatus withElement(Element? newElement) {
-    return ParticipationStatus._(value: value, element: newElement);
+    return ParticipationStatus._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -101,7 +100,7 @@ class ParticipationStatus extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ParticipationStatus._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

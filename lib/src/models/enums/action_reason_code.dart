@@ -5,8 +5,8 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Provides examples of reasons for actions to be performed.
 class ActionReasonCode extends PrimitiveType<String> {
   // Private constructor for internal use (like enum)
-  ActionReasonCode._({
-    super.value,
+  ActionReasonCode._(
+    super.value, {
     super.element,
     super.id,
     super.extension_,
@@ -26,37 +26,37 @@ class ActionReasonCode extends PrimitiveType<String> {
         'ActionReasonCode cannot be constructed from JSON.',
       );
     }
-    return ActionReasonCode._(value: value, element: element);
+    return ActionReasonCode._(value, element: element);
   }
 
   /// off_pathway
   static final ActionReasonCode off_pathway = ActionReasonCode._(
-    value: 'off-pathway',
+    'off-pathway',
   );
 
   /// risk_assessment
   static final ActionReasonCode risk_assessment = ActionReasonCode._(
-    value: 'risk-assessment',
+    'risk-assessment',
   );
 
   /// care_gap
   static final ActionReasonCode care_gap = ActionReasonCode._(
-    value: 'care-gap',
+    'care-gap',
   );
 
   /// drug_drug_interaction
   static final ActionReasonCode drug_drug_interaction = ActionReasonCode._(
-    value: 'drug-drug-interaction',
+    'drug-drug-interaction',
   );
 
   /// quality_measure
   static final ActionReasonCode quality_measure = ActionReasonCode._(
-    value: 'quality-measure',
+    'quality-measure',
   );
 
   /// For instances where an Element is present but not value
 
-  static final ActionReasonCode elementOnly = ActionReasonCode._(value: '');
+  static final ActionReasonCode elementOnly = ActionReasonCode._('');
 
   /// List of all enum-like values
   static final List<ActionReasonCode> values = [
@@ -70,13 +70,13 @@ class ActionReasonCode extends PrimitiveType<String> {
   /// Clones the current instance
   @override
   ActionReasonCode clone() => ActionReasonCode._(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
   /// Returns the enum value with an element attached
   ActionReasonCode withElement(Element? newElement) {
-    return ActionReasonCode._(value: value, element: newElement);
+    return ActionReasonCode._(value, element: newElement);
   }
 
   /// Serializes the instance to JSON with standardized keys
@@ -106,7 +106,7 @@ class ActionReasonCode extends PrimitiveType<String> {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return ActionReasonCode._(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
