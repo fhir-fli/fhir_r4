@@ -40,6 +40,10 @@ extension FhirPathStringExtension on String {
     return false;
   }
 
+  bool existsInList(Set<String?> list) {
+    return list.contains(this);
+  }
+
   bool isToken() {
     if (isEmpty) return false;
     if (!this[0].isAlphabetic()) return false;
@@ -457,7 +461,7 @@ class ExecutionContext {
     index++;
   }
 
-  FhirInteger getIndex() => FhirInteger(input: index);
+  FhirInteger getIndex() => FhirInteger(index);
 
   bool hasDefinedVariable(String name) {
     return definedVariables != null && definedVariables!.containsKey(name);
@@ -470,9 +474,9 @@ class ExecutionContext {
   }
 
   void setDefinedVariable(
-    IWorkerContext worker,
     String name,
     List<FhirBase> value,
+    IWorkerContext worker,
   ) {
     if (isSystemVariable(name)) {
       throw PathEngineException(

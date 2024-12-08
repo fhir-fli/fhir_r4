@@ -890,6 +890,93 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
       (hoursPrecision && other.hoursPrecision) ||
       (minutesPrecision && other.minutesPrecision) ||
       (secondsPrecision && other.secondsPrecision);
+
+  /// Adjusts the precision of the date-time to the passed-in precision.
+  FhirDateTimeBase adjustToPrecision(TemporalPrecisionEnum precision) {
+    /// Helper to validate and provide default values for missing precision 
+    /// parts.
+    int defaultOrError(String fieldName, int? value, int defaultValue) {
+      if (value == null) {
+        return defaultValue; // Fill missing precision with a default value.
+      }
+      return value;
+    }
+
+    // Handle different subclasses of FhirDateTimeBase.
+    if (this is FhirDate) {
+      if (precision == TemporalPrecisionEnum.year) {
+        return FhirDate.fromUnits(
+          year: year!,
+          isUtc: isUtc,
+          element: element,
+        );
+      } else if (precision == TemporalPrecisionEnum.month) {
+        return FhirDate.fromUnits(
+          year: year!,
+          month: defaultOrError('month', month, 1),
+          isUtc: isUtc,
+          element: element,
+        );
+      } else if (precision == TemporalPrecisionEnum.day) {
+        return FhirDate.fromUnits(
+          year: year!,
+          month: defaultOrError('month', month, 1),
+          day: defaultOrError('day', day, 1),
+          isUtc: isUtc,
+          element: element,
+        );
+      }
+      throw ArgumentError('FhirDate cannot support precision beyond day.');
+    }
+
+    if (this is FhirDateTime) {
+      return FhirDateTime.fromUnits(
+        year: year!,
+        month: precision.index >= TemporalPrecisionEnum.month.index
+            ? defaultOrError('month', month, 1)
+            : null,
+        day: precision.index >= TemporalPrecisionEnum.day.index
+            ? defaultOrError('day', day, 1)
+            : null,
+        hour: precision.index >= TemporalPrecisionEnum.hour.index
+            ? defaultOrError('hour', hour, 0)
+            : null,
+        minute: precision.index >= TemporalPrecisionEnum.minute.index
+            ? defaultOrError('minute', minute, 0)
+            : null,
+        second: precision.index >= TemporalPrecisionEnum.second.index
+            ? defaultOrError('second', second, 0)
+            : null,
+        millisecond: precision == TemporalPrecisionEnum.millisecond
+            ? defaultOrError('millisecond', millisecond, 0)
+            : null,
+        isUtc: isUtc,
+        element: element,
+      );
+    }
+
+    if (this is FhirInstant) {
+      if (precision.index < TemporalPrecisionEnum.second.index) {
+        throw ArgumentError('FhirInstant requires at least second precision.');
+      }
+      return FhirInstant.fromUnits(
+        year: year!,
+        month: defaultOrError('month', month, 1),
+        day: defaultOrError('day', day, 1),
+        hour: defaultOrError('hour', hour, 0),
+        minute: defaultOrError('minute', minute, 0),
+        second: defaultOrError('second', second, 0),
+        millisecond: precision == TemporalPrecisionEnum.millisecond
+            ? defaultOrError('millisecond', millisecond, 0)
+            : null,
+        isUtc: isUtc,
+        element: element,
+        timeZoneOffset: timeZoneOffset ?? 0,
+      );
+    }
+
+    throw UnsupportedError('Unknown FhirDateTimeBase subclass.');
+  }
 }
 
 /// [Date](https://www.hl7.org/fhir/datatypes.html#date)
@@ -929,4 +1016,130 @@ extension TimeZoneOffsetString on String {
 
     return positive ? totalOffset : -totalOffset;
   }
+}
+
+/// [Date](https://www.hl7.org/fhir/datatypes.html#date)
+enum TemporalPrecisionEnum {
+  /// Year
+  year(CalendarField.year),
+
+  /// Month
+  month(CalendarField.month),
+
+  /// Day
+  day(CalendarField.day),
+
+  /// Hour
+  hour(CalendarField.hour),
+
+  /// Minute
+  minute(CalendarField.minute),
+
+  /// Second
+  second(CalendarField.second),
+
+  /// Millisecond
+  millisecond(CalendarField.millisecond);
+
+  const TemporalPrecisionEnum(this.calendarConstant);
+
+  /// Calendar constant
+  final CalendarField calendarConstant;
+
+  /// Add a specific amount of time based on the precision
+  DateTime add(DateTime input, int amount) {
+    switch (this) {
+      case TemporalPrecisionEnum.year:
+        return DateTime(
+          input.year + amount,
+          input.month,
+          input.day,
+          input.hour,
+          input.minute,
+          input.second,
+          input.millisecond,
+        );
+      case TemporalPrecisionEnum.month:
+        return DateTime(
+          input.year,
+          input.month + amount,
+          input.day,
+          input.hour,
+          input.minute,
+          input.second,
+          input.millisecond,
+        );
+      case TemporalPrecisionEnum.day:
+        return DateTime(
+          input.year,
+          input.month,
+          input.day + amount,
+          input.hour,
+          input.minute,
+          input.second,
+          input.millisecond,
+        );
+      case TemporalPrecisionEnum.hour:
+        return input.add(Duration(hours: amount));
+      case TemporalPrecisionEnum.minute:
+        return input.add(Duration(minutes: amount));
+      case TemporalPrecisionEnum.second:
+        return input.add(Duration(seconds: amount));
+      case TemporalPrecisionEnum.millisecond:
+        return input.add(Duration(milliseconds: amount));
+    }
+  }
+
+  /// Subtract a specific amount of time based on the precision
+  int getCalendarConstant() => calendarConstant.value;
+
+  /// Given the standard string representation - YYYY-MM-DDTHH:NN:SS.SSS -
+  /// how long is the string for the stated precision?
+  int stringLength() {
+    switch (this) {
+      case TemporalPrecisionEnum.year:
+        return 4;
+      case TemporalPrecisionEnum.month:
+        return 7;
+      case TemporalPrecisionEnum.day:
+        return 10;
+      case TemporalPrecisionEnum.hour:
+        return 13;
+      case TemporalPrecisionEnum.minute:
+        return 16;
+      case TemporalPrecisionEnum.second:
+        return 19;
+      case TemporalPrecisionEnum.millisecond:
+        return 23;
+    }
+  }
+}
+
+/// [Date](https://www.hl7.org/fhir/datatypes.html#date)
+enum CalendarField {
+  /// Year
+  year(0),
+
+  /// Month
+  month(1),
+
+  /// Day
+  day(2),
+
+  /// Hour
+  hour(3),
+
+  /// Minute
+  minute(4),
+
+  /// Second
+  second(5),
+
+  /// Millisecond
+  millisecond(6);
+
+  const CalendarField(this.value);
+
+  /// Value
+  final int value;
 }

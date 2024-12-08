@@ -15,6 +15,13 @@ class TypeDetails {
     }
   }
 
+  TypeDetails.profiledTypes(
+    this.collectionStatus,
+    List<ProfiledType> profiledTypes,
+  ) {
+    types.addAll(profiledTypes);
+  }
+
   TypeDetails.empty() {
     collectionStatus = CollectionStatus.singleton;
   }
@@ -42,18 +49,18 @@ class TypeDetails {
   String addType(String n) {
     final pt = ProfiledType(n);
     final res = pt.uri;
-    _addType(pt);
+    addProfiledType(pt);
     return res;
   }
 
   String addTypeWithProfile(String n, String p) {
     final pt = ProfiledType(n)..addProfile(p);
     final res = pt.uri;
-    _addType(pt);
+    addProfiledType(pt);
     return res;
   }
 
-  void _addType(ProfiledType pt) {
+  void addProfiledType(ProfiledType pt) {
     for (final et in types) {
       if (et.uri == pt.uri) {
         et.profiles ??= [];
@@ -76,13 +83,37 @@ class TypeDetails {
 
   void addTypes(List<String> names) {
     for (final n in names) {
-      _addType(ProfiledType(n));
+      addProfiledType(ProfiledType(n));
     }
   }
 
   bool hasType(String n) {
     final t = ProfiledType.ns(n);
     return types.any((pt) => pt.uri == t);
+  }
+
+  bool hasTypes(List<String> tn) {
+    for (final n in tn) {
+      var t = ProfiledType.ns(n);
+      if (typesContains(t)) {
+        return true;
+      }
+      if (n.existsInList({
+        'boolean',
+        'string',
+        'integer',
+        'decimal',
+        'Quantity',
+        'dateTime',
+        'time',
+        'ClassInfo',
+        'SimpleTypeInfo',
+      })) {
+        t = '$FP_NS${n.capitalize()}';
+        if (typesContains(t)) return true;
+      }
+    }
+    return false;
   }
 
   bool typesContains(String t) {
@@ -123,7 +154,7 @@ class TypeDetails {
         tail = tail.substring(tail.indexOf('.'));
       }
       final t = ProfiledType.ns(n);
-      StructureDefinition? sd = context.fetchResource<StructureDefinition>(t);
+      var sd = context.fetchResource<StructureDefinition>(t);
       while (sd?.url != null) {
         if (tail == null && typesContains(sd!.url!.toString())) {
           return true;
@@ -172,8 +203,8 @@ class TypeDetails {
           ? CollectionStatus.unordered
           : CollectionStatus.ordered,
     );
-    types.forEach(result._addType);
-    right.types.forEach(result._addType);
+    types.forEach(result.addProfiledType);
+    right.types.forEach(result.addProfiledType);
     return result;
   }
 
@@ -186,7 +217,7 @@ class TypeDetails {
     );
     for (final pt in types) {
       if (right.types.any((r) => r.uri == pt.uri)) {
-        result._addType(pt);
+        result.addProfiledType(pt);
       }
     }
     return result;
@@ -220,7 +251,7 @@ class TypeDetails {
 
   void update(TypeDetails source) {
     for (final pt in source.types) {
-      _addType(pt);
+      addProfiledType(pt);
     }
     collectionStatus ??= source.collectionStatus;
     if (source.collectionStatus == CollectionStatus.unordered) {
@@ -383,6 +414,13 @@ class ProfiledType {
       return 'FHIR.${uri.substring('http://hl7.org/fhir/StructureDefinition/'.length)}';
     }
     return uri;
+  }
+
+  void addProfiles(List<FhirCanonical> list) {
+    profiles ??= <String>[];
+    for (final u in list) {
+      profiles!.add(u.toString());
+    }
   }
 
   bool isSystemType() {

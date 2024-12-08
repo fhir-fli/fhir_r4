@@ -8,6 +8,10 @@ import 'java.dart';
 abstract class IWorkerContext {
   List<StructureDefinition> getStructures();
 
+  List<StructureDefinition> allStructures();
+
+  List<String> getResourceNames();
+
   String getVersion();
 
   StructureDefinition? fetchTypeDefinition(String typeName);
@@ -82,13 +86,13 @@ class ValidationResult {
   Coding? asCoding() {
     if (isOk() && definition != null && definition?.code.value != null) {
       return Coding(
-        system: system == null ? null : FhirUri(input: system),
+        system: system == null ? null : FhirUri(system),
         code: definition?.code.value == null
             ? null
-            : FhirCode(input: definition!.code.value),
+            : FhirCode(definition!.code.value),
         display: definition?.display?.value == null
             ? null
-            : FhirString(input: definition!.display!.value),
+            : FhirString(definition!.display!.value),
       );
     } else {
       return null;

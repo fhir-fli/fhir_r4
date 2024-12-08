@@ -347,4 +347,64 @@ class FhirTime extends PrimitiveType<String> implements Comparable<FhirTime> {
   /// Creates a clone of the current [FhirTime].
   @override
   FhirTime clone() => FhirTime(value, element: element?.clone() as Element?);
+
+  /// Updates the precision of the [FhirTime] to the specified [precision].
+  ///
+  /// If the current [FhirTime] has a higher precision than requested,
+  /// the excess precision is truncated. If the current [FhirTime] has a lower
+  /// precision than requested, missing parts are filled with `0`.
+  ///
+  /// Throws an [ArgumentError] if the requested precision is not a valid
+  /// time precision.
+  FhirTime adjustToPrecision(TemporalPrecisionEnum precision) {
+    if (!precision.isValidTimePrecision) {
+      throw ArgumentError(
+        'Precision must be one of: hour, minute, second, millisecond.',
+      );
+    }
+
+    final currentHour = hour ?? 0;
+    final currentMinute = minute ?? 0;
+    final currentSecond = second ?? 0;
+    final currentMillisecond = millisecond ?? 0;
+
+    // Adjust the time based on the requested precision.
+    switch (precision) {
+      case TemporalPrecisionEnum.hour:
+        return FhirTime.fromUnits(hour: currentHour);
+      case TemporalPrecisionEnum.minute:
+        return FhirTime.fromUnits(
+          hour: currentHour,
+          minute: currentMinute,
+        );
+      case TemporalPrecisionEnum.second:
+        return FhirTime.fromUnits(
+          hour: currentHour,
+          minute: currentMinute,
+          second: currentSecond,
+        );
+      case TemporalPrecisionEnum.millisecond:
+        return FhirTime.fromUnits(
+          hour: currentHour,
+          minute: currentMinute,
+          second: currentSecond,
+          millisecond: currentMillisecond,
+        );
+      case TemporalPrecisionEnum.year:
+      case TemporalPrecisionEnum.month:
+      case TemporalPrecisionEnum.day:
+        throw ArgumentError('Unhandled precision: $precision');
+    }
+  }
+}
+
+/// Extension on [TemporalPrecisionEnum] to check if it is a valid time 
+/// precision.
+extension TimePrecisionCheck on TemporalPrecisionEnum {
+  /// Checks if the [TemporalPrecisionEnum] is a valid time precision.
+  bool get isValidTimePrecision =>
+      this == TemporalPrecisionEnum.hour ||
+      this == TemporalPrecisionEnum.minute ||
+      this == TemporalPrecisionEnum.second ||
+      this == TemporalPrecisionEnum.millisecond;
 }
