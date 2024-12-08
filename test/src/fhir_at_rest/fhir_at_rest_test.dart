@@ -799,7 +799,7 @@ void main() {
 
       expect(
         request.buildUri().toString(),
-        r'http://hapi.fhir.org/baseR4/$everything?_format=json&start=2020-01-01&end=2020-08-01',
+        r'http://hapi.fhir.org/baseR4/$everything?start=2020-01-01&end=2020-08-01&_format=json',
       );
 
       expect(
@@ -828,7 +828,7 @@ void main() {
 
       expect(
         request.buildUri().toString(),
-        r'http://hapi.fhir.org/baseR4/Patient/744742/$everything?_format=json&start=2020-01-01&end=2020-08-01',
+        r'http://hapi.fhir.org/baseR4/Patient/744742/$everything?start=2020-01-01&end=2020-08-01&_format=json',
       );
 
       expect(
@@ -948,7 +948,7 @@ void main() {
 
       expect(
         request.buildUri().toString(),
-        'http://hapi.fhir.org/baseR4/Patient?_family=Smith&_given=John&_gender=male&_format=json',
+        'http://hapi.fhir.org/baseR4/Patient?family=Smith&given=John&gender=male&_format=json',
       );
 
       expect(
@@ -961,6 +961,675 @@ void main() {
       );
 
       expect(request.buildBody(), isNull);
+    });
+  });
+
+  group('FhirRequest - BATCH:', () {
+    test('batch with multiple requests', () {
+      final bundle = {
+        'resourceType': 'Bundle',
+        'type': 'batch',
+        'entry': [
+          {
+            'request': {
+              'method': 'POST',
+              'url': 'Patient',
+            },
+            'resource': {
+              'resourceType': 'Patient',
+              'id': '123',
+              'name': [
+                {
+                  'family': 'Doe',
+                  'given': ['John'],
+                },
+              ],
+            },
+          },
+          {
+            'request': {
+              'method': 'GET',
+              'url': 'Patient?_id=123',
+            },
+          },
+        ],
+      };
+
+      final request = FhirBatchRequest(
+        base: Uri.parse('http://hapi.fhir.org/baseR4'),
+        bundle: bundle,
+        headers: {'test': 'headers'},
+      );
+
+      expect(
+        request.buildUri().toString(),
+        'http://hapi.fhir.org/baseR4?_format=json',
+      );
+
+      expect(
+        request.buildHeaders(),
+        {
+          'Content-Type': 'application/fhir+json',
+          'Accept': 'application/fhir+json',
+          'test': 'headers',
+        },
+      );
+
+      expect(jsonDecode(request.buildBody()), bundle);
+    });
+
+    test('batch with error in request structure', () {
+      final invalidBundle = {
+        'resourceType': 'Bundle',
+        'type': 'batch',
+        'entry': [
+          {
+            'request': {
+              'method': 'POST',
+            },
+          },
+        ],
+      };
+
+      try {
+        FhirBatchRequest(
+          base: Uri.parse('http://hapi.fhir.org/baseR4'),
+          bundle: invalidBundle,
+          headers: {'test': 'headers'},
+        ).buildBody();
+        fail('Expected exception not thrown');
+      } catch (e) {
+        expect(e, isA<FormatException>());
+        expect(
+          e.toString(),
+          const FormatException(
+            'Each request in a bundle entry must include a "url".',
+          ).toString(),
+        );
+      }
+    });
+
+    test('batch with parameters', () {
+      final bundle = {
+        'resourceType': 'Bundle',
+        'type': 'batch',
+        'entry': [
+          {
+            'request': {
+              'method': 'GET',
+              'url': 'Patient?_id=123',
+            },
+          },
+        ],
+      };
+
+      final request = FhirBatchRequest(
+        base: Uri.parse('http://hapi.fhir.org/baseR4'),
+        bundle: bundle,
+        parameters: RestfulParameters().add('_summary', 'true'),
+        headers: {'test': 'headers'},
+      );
+
+      expect(
+        request.buildUri().toString(),
+        'http://hapi.fhir.org/baseR4?_summary=true&_format=json',
+      );
+
+      expect(
+        request.buildHeaders(),
+        {
+          'Content-Type': 'application/fhir+json',
+          'Accept': 'application/fhir+json',
+          'test': 'headers',
+        },
+      );
+
+      expect(jsonDecode(request.buildBody()), bundle);
+    });
+  });
+  group('FhirRequest - SEARCH:', () {
+    test('search patient by id', () {
+      final request = FhirSearchRequest(
+        base: Uri.parse('http://hapi.fhir.org/baseR4'),
+        resourceType: 'Patient',
+        search: SearchResource()
+          ..parameters.addAll({
+            '_id': '12345',
+          }),
+        headers: {'test': 'headers'},
+      );
+
+      expect(
+        request.buildUri().toString(),
+        'http://hapi.fhir.org/baseR4/Patient?_id=12345&_format=json',
+      );
+
+      expect(
+        request.buildHeaders(),
+        {
+          'Content-Type': 'application/fhir+json',
+          'Accept': 'application/fhir+json',
+          'test': 'headers',
+        },
+      );
+
+      expect(request.buildBody(), isNull);
+    });
+
+    test('search patient by name and gender', () {
+      final request = FhirSearchRequest(
+        base: Uri.parse('http://hapi.fhir.org/baseR4'),
+        resourceType: 'Patient',
+        search: SearchResource()
+          ..parameters.addAll({
+            'name': 'John',
+            'gender': 'male',
+          }),
+        headers: {'test': 'headers'},
+      );
+
+      expect(
+        request.buildUri().toString(),
+        'http://hapi.fhir.org/baseR4/Patient?name=John&gender=male&_format=json',
+      );
+
+      expect(
+        request.buildHeaders(),
+        {
+          'Content-Type': 'application/fhir+json',
+          'Accept': 'application/fhir+json',
+          'test': 'headers',
+        },
+      );
+
+      expect(request.buildBody(), isNull);
+    });
+
+    test('search patient using POST with a complex query', () {
+      final request = FhirSearchRequest(
+        base: Uri.parse('http://hapi.fhir.org/baseR4'),
+        resourceType: 'Patient',
+        search: SearchResource()
+          ..parameters.addAll({
+            'birthdate': 'ge2010-01-01',
+            '_count': '10',
+          }),
+        usePost: true,
+        headers: {'test': 'headers'},
+      );
+
+      expect(
+        request.buildUri().toString(),
+        'http://hapi.fhir.org/baseR4/Patient/_search?_format=json',
+      );
+
+      expect(
+        request.buildHeaders(),
+        {
+          'Content-Type': 'application/fhir+json',
+          'Accept': 'application/fhir+json',
+          'test': 'headers',
+        },
+      );
+
+      expect(
+        request.buildBody(),
+        '{"birthdate":"ge2010-01-01","_count":"10"}',
+      );
+    });
+
+    test('search patient with missing gender', () {
+      final request = FhirSearchRequest(
+        base: Uri.parse('http://hapi.fhir.org/baseR4'),
+        resourceType: 'Patient',
+        search: SearchResource()
+          ..parameters.addAll({
+            'gender:missing': 'true',
+          }),
+        headers: {'test': 'headers'},
+      );
+
+      expect(
+        request.buildUri().toString(),
+        'http://hapi.fhir.org/baseR4/Patient?gender:missing=true&_format=json',
+      );
+
+      expect(
+        request.buildHeaders(),
+        {
+          'Content-Type': 'application/fhir+json',
+          'Accept': 'application/fhir+json',
+          'test': 'headers',
+        },
+      );
+
+      expect(request.buildBody(), isNull);
+    });
+
+    test('search all resources for a specific type', () {
+      final request = FhirSearchRequest(
+        base: Uri.parse('http://hapi.fhir.org/baseR4'),
+        resourceType: 'All',
+        search: SearchResource()
+          ..parameters.addAll({
+            '_type': 'Patient',
+            'name': 'John',
+          }),
+        headers: {'test': 'headers'},
+      );
+
+      expect(
+        request.buildUri().toString(),
+        'http://hapi.fhir.org/baseR4?_type=Patient&name=John&_format=json',
+      );
+
+      expect(
+        request.buildHeaders(),
+        {
+          'Content-Type': 'application/fhir+json',
+          'Accept': 'application/fhir+json',
+          'test': 'headers',
+        },
+      );
+
+      expect(request.buildBody(), isNull);
+    });
+  });
+
+  group('FhirRequest - TRANSACTION:', () {
+    test('transaction request with valid bundle', () {
+      final bundle = {
+        'resourceType': 'Bundle',
+        'type': 'transaction',
+        'entry': [
+          {
+            'request': {
+              'method': 'POST',
+              'url': 'Patient',
+            },
+            'resource': {
+              'resourceType': 'Patient',
+              'id': '12345',
+              'name': [
+                {
+                  'use': 'official',
+                  'family': 'Doe',
+                  'given': ['John'],
+                },
+              ],
+            },
+          },
+        ],
+      };
+
+      final request = FhirTransactionRequest(
+        base: Uri.parse('http://hapi.fhir.org/baseR4'),
+        bundle: bundle,
+        headers: {'test': 'headers'},
+      );
+
+      expect(
+        request.buildUri().toString(),
+        'http://hapi.fhir.org/baseR4?_format=json',
+      );
+
+      expect(
+        request.buildHeaders(),
+        {
+          'Content-Type': 'application/fhir+json',
+          'Accept': 'application/fhir+json',
+          'test': 'headers',
+        },
+      );
+
+      expect(
+        jsonDecode(request.buildBody()),
+        bundle,
+      );
+    });
+
+    test('transaction request with invalid bundle', () {
+      final invalidBundle = {
+        'resourceType': 'Bundle',
+        'type': 'invalid-type', // Invalid bundle type
+        'entry': <dynamic>[],
+      };
+
+      final request = FhirTransactionRequest(
+        base: Uri.parse('http://hapi.fhir.org/baseR4'),
+        bundle: invalidBundle,
+        headers: {'test': 'headers'},
+      );
+
+      expect(
+        request.buildBody,
+        throwsA(
+          isA<FormatException>().having(
+            (e) => e.message,
+            'message',
+            'Bundle type must be one of transaction, batch.',
+          ),
+        ),
+      );
+    });
+
+    test('transaction request with missing fields', () {
+      final bundleWithMissingFields = {
+        'resourceType': 'Bundle',
+        'type': 'transaction',
+        'entry': [
+          {
+            // Missing 'request' field
+            'resource': {
+              'resourceType': 'Patient',
+              'id': '12345',
+              'name': [
+                {
+                  'use': 'official',
+                  'family': 'Doe',
+                  'given': ['John'],
+                },
+              ],
+            },
+          },
+        ],
+      };
+
+      final request = FhirTransactionRequest(
+        base: Uri.parse('http://hapi.fhir.org/baseR4'),
+        bundle: bundleWithMissingFields,
+        headers: {'test': 'headers'},
+      );
+
+      expect(
+        request.buildBody,
+        throwsA(
+          isA<FormatException>().having(
+            (e) => e.message,
+            'message',
+            'Each bundle entry must include a "request".',
+          ),
+        ),
+      );
+    });
+  });
+
+  group('FhirRequest - BATCH:', () {
+    test('batch request with valid bundle', () {
+      final bundle = {
+        'resourceType': 'Bundle',
+        'type': 'batch',
+        'entry': [
+          {
+            'request': {
+              'method': 'GET',
+              'url': 'Patient/12345',
+            },
+          },
+          {
+            'request': {
+              'method': 'POST',
+              'url': 'Observation',
+            },
+            'resource': {
+              'resourceType': 'Observation',
+              'status': 'final',
+              'code': {
+                'coding': [
+                  {'system': 'http://loinc.org', 'code': '12345-6'},
+                ],
+              },
+            },
+          },
+        ],
+      };
+
+      final request = FhirBatchRequest(
+        base: Uri.parse('http://hapi.fhir.org/baseR4'),
+        bundle: bundle,
+        headers: {'test': 'headers'},
+      );
+
+      expect(
+        request.buildUri().toString(),
+        'http://hapi.fhir.org/baseR4?_format=json',
+      );
+
+      expect(
+        request.buildHeaders(),
+        {
+          'Content-Type': 'application/fhir+json',
+          'Accept': 'application/fhir+json',
+          'test': 'headers',
+        },
+      );
+
+      expect(
+        jsonDecode(request.buildBody()),
+        bundle,
+      );
+    });
+
+    test('batch request with invalid bundle type', () {
+      final invalidBundle = {
+        'resourceType': 'Bundle',
+        'type': 'invalid-type',
+        'entry': [
+          {
+            'request': {
+              'method': 'GET',
+              'url': 'Patient/12345',
+            },
+          },
+        ],
+      };
+
+      final request = FhirBatchRequest(
+        base: Uri.parse('http://hapi.fhir.org/baseR4'),
+        bundle: invalidBundle,
+        headers: {'test': 'headers'},
+      );
+
+      expect(
+        request.buildBody,
+        throwsA(
+          isA<FormatException>().having(
+            (e) => e.message,
+            'message',
+            'Bundle type must be one of transaction, batch.',
+          ),
+        ),
+      );
+    });
+
+    test('batch request with missing request fields', () {
+      final bundleWithMissingFields = {
+        'resourceType': 'Bundle',
+        'type': 'batch',
+        'entry': [
+          {
+            // Missing 'method' in request
+            'request': {'url': 'Patient/12345'},
+          },
+        ],
+      };
+
+      final request = FhirBatchRequest(
+        base: Uri.parse('http://hapi.fhir.org/baseR4'),
+        bundle: bundleWithMissingFields,
+        headers: {'test': 'headers'},
+      );
+
+      expect(
+        request.buildBody,
+        throwsA(
+          isA<FormatException>().having(
+            (e) => e.message,
+            'message',
+            'Each request in a bundle entry must include a "method".',
+          ),
+        ),
+      );
+    });
+
+    test('batch request with missing entries', () {
+      final emptyBundle = {
+        'resourceType': 'Bundle',
+        'type': 'batch',
+        'entry': <dynamic>[],
+      };
+
+      final request = FhirBatchRequest(
+        base: Uri.parse('http://hapi.fhir.org/baseR4'),
+        bundle: emptyBundle,
+        headers: {'test': 'headers'},
+      );
+
+      expect(
+        request.buildBody,
+        throwsA(
+          isA<FormatException>().having(
+            (e) => e.message,
+            'message',
+            'Bundle must contain an "entry" array with items.',
+          ),
+        ),
+      );
+    });
+  });
+
+  group('FhirRequest - OPERATION:', () {
+    test('operation without parameters', () {
+      final request = FhirOperationRequest(
+        base: Uri.parse('http://hapi.fhir.org/baseR4'),
+        operation: 'everything',
+        headers: {'test': 'headers'},
+      );
+
+      expect(
+        request.buildUri().toString(),
+        r'http://hapi.fhir.org/baseR4/$everything?_format=json',
+      );
+
+      expect(
+        request.buildHeaders(),
+        {
+          'Content-Type': 'application/fhir+json',
+          'Accept': 'application/fhir+json',
+          'test': 'headers',
+        },
+      );
+
+      expect(request.buildBody(), isNull);
+    });
+
+    test('operation for a specific resource type', () {
+      final request = FhirOperationRequest(
+        base: Uri.parse('http://hapi.fhir.org/baseR4'),
+        resourceType: 'Patient',
+        operation: 'everything',
+        headers: {'test': 'headers'},
+      );
+
+      expect(
+        request.buildUri().toString(),
+        r'http://hapi.fhir.org/baseR4/Patient/$everything?_format=json',
+      );
+
+      expect(
+        request.buildHeaders(),
+        {
+          'Content-Type': 'application/fhir+json',
+          'Accept': 'application/fhir+json',
+          'test': 'headers',
+        },
+      );
+
+      expect(request.buildBody(), isNull);
+    });
+
+    test('operation for a specific resource instance', () {
+      final request = FhirOperationRequest(
+        base: Uri.parse('http://hapi.fhir.org/baseR4'),
+        resourceType: 'Patient',
+        id: '12345',
+        operation: 'everything',
+        headers: {'test': 'headers'},
+      );
+
+      expect(
+        request.buildUri().toString(),
+        r'http://hapi.fhir.org/baseR4/Patient/12345/$everything?_format=json',
+      );
+
+      expect(
+        request.buildHeaders(),
+        {
+          'Content-Type': 'application/fhir+json',
+          'Accept': 'application/fhir+json',
+          'test': 'headers',
+        },
+      );
+
+      expect(request.buildBody(), isNull);
+    });
+
+    test('operation with parameters (GET)', () {
+      final request = FhirOperationRequest(
+        base: Uri.parse('http://hapi.fhir.org/baseR4'),
+        operation: 'everything',
+        parameters: RestfulParameters()
+          ..add('start', '2020-01-01')
+          ..add('end', '2020-08-01'),
+        headers: {'test': 'headers'},
+      );
+
+      expect(
+        request.buildUri().toString(),
+        r'http://hapi.fhir.org/baseR4/$everything?start=2020-01-01&end=2020-08-01&_format=json',
+      );
+
+      expect(
+        request.buildHeaders(),
+        {
+          'Content-Type': 'application/fhir+json',
+          'Accept': 'application/fhir+json',
+          'test': 'headers',
+        },
+      );
+
+      expect(request.buildBody(), isNull);
+    });
+
+    test('operation with parameters (POST)', () {
+      final request = FhirOperationRequest(
+        base: Uri.parse('http://hapi.fhir.org/baseR4'),
+        operation: 'everything',
+        usePost: true,
+        parameters: RestfulParameters()
+          ..add('start', '2020-01-01')
+          ..add('end', '2020-08-01'),
+        headers: {'test': 'headers'},
+      );
+
+      expect(
+        request.buildUri().toString(),
+        r'http://hapi.fhir.org/baseR4/$everything?start=2020-01-01&end=2020-08-01&_format=json',
+      );
+
+      expect(
+        request.buildHeaders(),
+        {
+          'Content-Type': 'application/fhir+json',
+          'Accept': 'application/fhir+json',
+          'test': 'headers',
+        },
+      );
+
+      expect(
+        request.buildBody(),
+        '{"start":"2020-01-01","end":"2020-08-01"}',
+      );
     });
   });
 }

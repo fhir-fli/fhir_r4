@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_dynamic_calls
+
 import 'dart:convert';
 
 import 'package:fhir_r4/fhir_r4.dart';
@@ -300,7 +302,10 @@ class FhirSearchRequest extends FhirRequest {
 
   @override
   Uri buildUri() {
-    final baseUri = Uri.parse('$base/$resourceType');
+    final baseUri = resourceType == 'All'
+        ? Uri.parse('$base${usePost ? '/_search' : ''}')
+        : Uri.parse('$base/$resourceType${usePost ? '/_search' : ''}');
+
     if (usePost) {
       return buildUriWithParams(baseUri, parameters?.buildQuery());
     } else {
@@ -449,7 +454,51 @@ class FhirTransactionRequest extends FhirRequest {
   }
 
   @override
-  String buildBody() => jsonEncode(bundle);
+  String buildBody() {
+    // Ensure bundle is a map with required fields
+    if (bundle['resourceType'] != 'Bundle') {
+      throw const FormatException(
+        'Bundle must have "resourceType" set to "Bundle".',
+      );
+    }
+
+    // Ensure bundle type is valid
+    final validTypes = ['transaction', 'batch'];
+    if (!validTypes.contains(bundle['type'])) {
+      throw FormatException(
+        'Bundle type must be one of ${validTypes.join(', ')}.',
+      );
+    }
+
+    // Validate entries
+    final entries = bundle['entry'] as List<dynamic>?;
+    if (entries == null || entries.isEmpty) {
+      throw const FormatException(
+        'Bundle must contain an "entry" array with items.',
+      );
+    }
+
+    for (final entry in entries) {
+      final request = entry['request'] as Map<String, dynamic>?;
+      if (request == null) {
+        throw const FormatException(
+          'Each bundle entry must include a "request".',
+        );
+      }
+      if (!request.containsKey('method')) {
+        throw const FormatException(
+          'Each request in a bundle entry must include a "method".',
+        );
+      }
+      if (!request.containsKey('url')) {
+        throw const FormatException(
+          'Each request in a bundle entry must include a "url".',
+        );
+      }
+    }
+
+    return jsonEncode(bundle);
+  }
 
   @override
   Future<http.Response> sendRequest() {
@@ -478,7 +527,51 @@ class FhirBatchRequest extends FhirRequest {
   }
 
   @override
-  String buildBody() => jsonEncode(bundle);
+  String buildBody() {
+    // Ensure bundle is a map with required fields
+    if (bundle['resourceType'] != 'Bundle') {
+      throw const FormatException(
+        'Bundle must have "resourceType" set to "Bundle".',
+      );
+    }
+
+    // Ensure bundle type is valid
+    final validTypes = ['transaction', 'batch'];
+    if (!validTypes.contains(bundle['type'])) {
+      throw FormatException(
+        'Bundle type must be one of ${validTypes.join(', ')}.',
+      );
+    }
+
+    // Validate entries
+    final entries = bundle['entry'] as List<dynamic>?;
+    if (entries == null || entries.isEmpty) {
+      throw const FormatException(
+        'Bundle must contain an "entry" array with items.',
+      );
+    }
+
+    for (final entry in entries) {
+      final request = entry['request'] as Map<String, dynamic>?;
+      if (request == null) {
+        throw const FormatException(
+          'Each bundle entry must include a "request".',
+        );
+      }
+      if (!request.containsKey('method')) {
+        throw const FormatException(
+          'Each request in a bundle entry must include a "method".',
+        );
+      }
+      if (!request.containsKey('url')) {
+        throw const FormatException(
+          'Each request in a bundle entry must include a "url".',
+        );
+      }
+    }
+
+    return jsonEncode(bundle);
+  }
 
   @override
   Future<http.Response> sendRequest() {
@@ -514,10 +607,10 @@ class FhirOperationRequest extends FhirRequest {
 
   @override
   Uri buildUri() {
-    final operationPath =
-        resourceType != null ? '/$resourceType/$operation' : '/$operation';
-    final idPath = id != null ? '/$id' : '';
-    final baseUri = Uri.parse('$base$idPath$operationPath');
+    final baseUri = Uri.parse('$base'
+        "${resourceType != null ? '/$resourceType' : ''}"
+        "${id != null ? '/$id' : ''}"
+        '/\$$operation');
     return buildUriWithParams(baseUri, parameters?.buildQuery());
   }
 
