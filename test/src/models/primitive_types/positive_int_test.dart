@@ -9,7 +9,7 @@ void main() {
 
     // Basic FhirPositiveInt creation and validation
     test('FhirPositiveInt from int value', () {
-      final fhirInteger = FhirPositiveInt(input: validInteger);
+      final fhirInteger = FhirPositiveInt(validInteger);
       expect(fhirInteger.value, equals(validInteger));
       expect(fhirInteger.toString(), equals(validInteger.toString()));
       expect(fhirInteger.toJson()['value'], equals(validInteger));
@@ -37,74 +37,74 @@ void main() {
 
     // Arithmetic operations
     test('FhirPositiveInt addition', () {
-      final fhirInteger1 = FhirPositiveInt(input: validInteger);
-      final fhirInteger2 = FhirPositiveInt(input: otherInteger);
+      final fhirInteger1 = FhirPositiveInt(validInteger);
+      final fhirInteger2 = FhirPositiveInt(otherInteger);
       final result = (fhirInteger1 + fhirInteger2)! as FhirInteger;
       expect(result.value, equals(validInteger + otherInteger));
     });
 
     test('FhirPositiveInt subtraction', () {
-      final fhirInteger1 = FhirPositiveInt(input: validInteger);
-      final fhirInteger2 = FhirPositiveInt(input: otherInteger);
+      final fhirInteger1 = FhirPositiveInt(validInteger);
+      final fhirInteger2 = FhirPositiveInt(otherInteger);
       final result = (fhirInteger1 - fhirInteger2)! as FhirInteger;
       expect(result.value, equals(validInteger - otherInteger));
     });
 
     test('FhirPositiveInt multiplication', () {
-      final fhirInteger1 = FhirPositiveInt(input: validInteger);
-      final fhirInteger2 = FhirPositiveInt(input: otherInteger);
+      final fhirInteger1 = FhirPositiveInt(validInteger);
+      final fhirInteger2 = FhirPositiveInt(otherInteger);
       final result = (fhirInteger1 * fhirInteger2)! as FhirInteger;
       expect(result.value, equals(validInteger * otherInteger));
     });
 
     test('FhirPositiveInt division', () {
-      final fhirInteger1 = FhirPositiveInt(input: validInteger);
-      final fhirInteger2 = FhirPositiveInt(input: otherInteger);
+      final fhirInteger1 = FhirPositiveInt(validInteger);
+      final fhirInteger2 = FhirPositiveInt(otherInteger);
       final result = (fhirInteger1 ~/ fhirInteger2)! as FhirInteger;
       expect(result.value, equals(validInteger ~/ otherInteger));
     });
 
     test('FhirPositiveInt modulus', () {
-      final fhirInteger1 = FhirPositiveInt(input: validInteger);
-      final fhirInteger2 = FhirPositiveInt(input: otherInteger);
+      final fhirInteger1 = FhirPositiveInt(validInteger);
+      final fhirInteger2 = FhirPositiveInt(otherInteger);
       final result = (fhirInteger1 % fhirInteger2)! as FhirInteger;
       expect(result.value, equals(validInteger % otherInteger));
     });
 
     // Numeric methods inherited from FhirNumber
     test('FhirPositiveInt absolute value', () {
-      final fhirInteger = FhirPositiveInt(input: -validInteger);
+      final fhirInteger = FhirPositiveInt(-validInteger);
       expect(fhirInteger.abs(), equals(validInteger));
     });
 
     test('FhirPositiveInt rounding', () {
-      final fhirInteger = FhirPositiveInt(input: validInteger);
+      final fhirInteger = FhirPositiveInt(validInteger);
       expect(fhirInteger.round(), equals(validInteger));
     });
 
     // Comparison operations
     test('FhirPositiveInt comparison', () {
-      final fhirInteger1 = FhirPositiveInt(input: validInteger);
-      final fhirInteger2 = FhirPositiveInt(input: otherInteger);
+      final fhirInteger1 = FhirPositiveInt(validInteger);
+      final fhirInteger2 = FhirPositiveInt(otherInteger);
       expect(fhirInteger1 > fhirInteger2, isTrue);
       expect(fhirInteger2 < fhirInteger1, isTrue);
     });
 
     test('FhirPositiveInt equality with another FhirPositiveInt', () {
-      final fhirInteger1 = FhirPositiveInt(input: validInteger);
-      final fhirInteger2 = FhirPositiveInt(input: validInteger);
+      final fhirInteger1 = FhirPositiveInt(validInteger);
+      final fhirInteger2 = FhirPositiveInt(validInteger);
       expect(fhirInteger1 == fhirInteger2, isTrue);
       expect(fhirInteger1.equals(fhirInteger2), isTrue);
     });
 
     test('FhirPositiveInt inequality with a different integer', () {
-      final fhirInteger = FhirPositiveInt(input: validInteger);
+      final fhirInteger = FhirPositiveInt(validInteger);
       // ignore: unrelated_type_equality_checks
       expect(fhirInteger == 999, isFalse);
     });
 
     test('FhirPositiveInt clone', () {
-      final originalInteger = FhirPositiveInt(input: validInteger);
+      final originalInteger = FhirPositiveInt(validInteger);
       final clonedInteger = originalInteger.clone();
       expect(clonedInteger.value, equals(validInteger));
       expect(clonedInteger == originalInteger, isTrue);
@@ -112,7 +112,7 @@ void main() {
     });
 
     test('FhirPositiveInt copyWith new value', () {
-      final originalInteger = FhirPositiveInt(input: validInteger);
+      final originalInteger = FhirPositiveInt(validInteger);
       final copiedInteger = originalInteger.copyWith(newValue: 678);
       expect(copiedInteger.value, equals(678));
       expect(originalInteger.value, equals(validInteger));
@@ -120,12 +120,12 @@ void main() {
 
     test('FhirPositiveInt with Element', () {
       final fhirInteger =
-          FhirPositiveInt(input: validInteger, element: element);
+          FhirPositiveInt(validInteger, element: element);
       expect(fhirInteger.element?.id, equals('testElement'.toFhirString));
     });
 
     test('FhirPositiveInt toJsonString', () {
-      final fhirInteger = FhirPositiveInt(input: validInteger);
+      final fhirInteger = FhirPositiveInt(validInteger);
       expect(fhirInteger.toJsonString(), equals('{"value":$validInteger}'));
     });
   });

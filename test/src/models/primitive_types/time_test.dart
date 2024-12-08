@@ -6,7 +6,7 @@ import 'package:test/test.dart';
 void main() {
   group('FhirTime Tests', () {
     test('Valid FhirTime String', () {
-      final fhirTime = FhirTime(input: '08:30:00.123');
+      final fhirTime = FhirTime('08:30:00.123');
 
       expect(fhirTime.value, '08:30:00.123');
       expect(fhirTime.hour, 8);
@@ -17,15 +17,15 @@ void main() {
 
     test('Invalid FhirTime String', () {
       expect(
-        () => FhirTime(input: 'invalid_time'),
+        () => FhirTime('invalid_time'),
         throwsA(isA<FormatException>()),
       );
     });
 
     test('FhirTime Comparison', () {
-      final fhirTime1 = FhirTime(input: '12:30:00');
-      final fhirTime2 = FhirTime(input: '10:45:00');
-      final fhirTime3 = FhirTime(input: '12:30:00');
+      final fhirTime1 = FhirTime('12:30:00');
+      final fhirTime2 = FhirTime('10:45:00');
+      final fhirTime3 = FhirTime('12:30:00');
 
       expect(fhirTime1 == fhirTime2, isFalse);
       expect(fhirTime1 == fhirTime3, isTrue);

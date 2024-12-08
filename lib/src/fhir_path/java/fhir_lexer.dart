@@ -4,14 +4,14 @@ import 'java.dart';
 
 class FHIRLexer {
   FHIRLexer(String source, String? name)
-      : source = FhirPathUtilities.stripBOM(source)!,
+      : source = source.stripBOM(),
         name = name ?? '??' {
     currentLocation = SourceLocation(1, 1);
     next();
   }
 
   FHIRLexer.withCursor(String source, int i)
-      : source = FhirPathUtilities.stripBOM(source)!,
+      : source = source.stripBOM(),
         cursor = i,
         name = '??' {
     currentLocation = SourceLocation(1, 1);
@@ -22,7 +22,7 @@ class FHIRLexer {
     String source,
     this.cursor,
     this.allowDoubleQuotes,
-  )   : source = FhirPathUtilities.stripBOM(source)!,
+  )   : source = source.stripBOM(),
         name = '??' {
     currentLocation = SourceLocation(1, 1);
     next();
@@ -33,7 +33,7 @@ class FHIRLexer {
     String? name,
     this.metadataFormat,
     this.allowDoubleQuotes,
-  )   : source = FhirPathUtilities.stripBOM(source)!,
+  )   : source = source.stripBOM(),
         name = name ?? '??' {
     currentLocation = SourceLocation(1, 1);
     next();
@@ -72,7 +72,7 @@ class FHIRLexer {
 
   int takeInt() {
     final s = current!;
-    if (!FhirPathUtilities.isInteger(s)) {
+    if (!s.isInteger()) {
       throw error(r'Found $current expecting an integer');
     }
     next();
@@ -80,7 +80,7 @@ class FHIRLexer {
   }
 
   bool isToken() {
-    if (FhirPathUtilities.noString(current)) return false;
+    if (current?.noString() ?? true) return false;
 
     if (current!.startsWith(r'$')) return true;
 
@@ -187,7 +187,7 @@ class FHIRLexer {
           cursor++;
         }
         comments.add(source.substring(start, cursor).trim());
-      } else if (FhirPathUtilities.isWhitespace(source[cursor])) {
+      } else if (source[cursor].isWhiteSpace()) {
         last13 = currentLocation.checkChar(source[cursor], last13);
         cursor++;
       } else {

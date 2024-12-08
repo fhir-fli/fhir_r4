@@ -101,7 +101,7 @@ class Element extends FhirBase {
   /// Getter for the first extension
   FhirExtension getExtensionFirstRep() {
     return (extension_?.isEmpty ?? false)
-        ? FhirExtension(url: FhirString(input: 'fhirfli.dev'))
+        ? FhirExtension(url: FhirString('fhirfli.dev'))
         : extension_!.first;
   }
 

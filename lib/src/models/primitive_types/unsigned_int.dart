@@ -6,21 +6,21 @@ import 'package:yaml/yaml.dart';
 extension FhirUnsignedIntExtension on num {
   /// Converts a [num] to a [FhirUnsignedInt].
   FhirUnsignedInt get toFhirUnsignedInt => this is int
-      ? FhirUnsignedInt(input: this as int)
+      ? FhirUnsignedInt(this as int)
       : int.tryParse(toString()) != null
-          ? FhirUnsignedInt(input: int.parse(toString()))
+          ? FhirUnsignedInt(int.parse(toString()))
           : throw FormatException('Invalid input for FhirUnsignedInt: $this');
 }
 
 /// Represents the FHIR primitive type `integer`.
 class FhirUnsignedInt extends FhirNumber {
   /// Constructor that ensures valid input.
-  FhirUnsignedInt({
-    required int? input,
+  FhirUnsignedInt(
+    super.input, {
     super.element,
     super.id,
     super.extension_,
-  }) : super(value: input) {
+  }) {
     if (value == null && element == null) {
       throw ArgumentError('A value or element is required');
     }
@@ -31,7 +31,7 @@ class FhirUnsignedInt extends FhirNumber {
     final value = json['value'] as num?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    return FhirUnsignedInt(input: value?.toInt(), element: element);
+    return FhirUnsignedInt(value?.toInt(), element: element);
   }
 
   /// Factory constructor to create [FhirUnsignedInt] from YAML input.
@@ -55,7 +55,7 @@ class FhirUnsignedInt extends FhirNumber {
   static FhirUnsignedInt? tryParse(dynamic input) {
     if (input is int) {
       try {
-        return FhirUnsignedInt(input: input);
+        return FhirUnsignedInt(input);
       } catch (_) {
         return null;
       }
@@ -90,7 +90,7 @@ class FhirUnsignedInt extends FhirNumber {
       final element = elements?[i] != null
           ? Element.fromJson(elements![i] as Map<String, dynamic>)
           : null;
-      return FhirUnsignedInt(input: value?.toInt(), element: element);
+      return FhirUnsignedInt(value?.toInt(), element: element);
     });
   }
 
@@ -122,7 +122,7 @@ class FhirUnsignedInt extends FhirNumber {
   /// Clones the current instance.
   @override
   FhirUnsignedInt clone() => FhirUnsignedInt(
-        input: value as int?,
+        value as int?,
         element: element?.clone() as Element?,
       );
 
@@ -142,7 +142,7 @@ class FhirUnsignedInt extends FhirNumber {
       throw ArgumentError('Invalid input for FhirUnsignedInt: $newValue');
     }
     return FhirUnsignedInt(
-      input: (newValue ?? value) as int?,
+      (newValue ?? value) as int?,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

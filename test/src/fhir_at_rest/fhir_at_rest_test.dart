@@ -278,12 +278,12 @@ void main() {
     test('transaction with bundle', () {
       final bundle = Bundle(
         type: BundleType.transaction,
-        id: FhirString(input: '12345'),
+        id: FhirString('12345'),
         entry: [
           BundleEntry(
             request: BundleRequest(
               method: HTTPVerb.DELETE,
-              url: FhirUri(input: 'Patient/123'),
+              url: FhirUri('Patient/123'),
             ),
           ),
         ],
@@ -846,7 +846,7 @@ void main() {
 
   group('FhirRequest - SEARCH:', () {
     test('search for patient by id', () {
-      final searchParams = SearchPatient().id(FhirString(input: '12345'));
+      final searchParams = SearchPatient().id(FhirString('12345'));
       final request = FhirSearchRequest(
         base: Uri.parse('http://hapi.fhir.org/baseR4'),
         resourceType: 'Patient',
@@ -873,7 +873,7 @@ void main() {
 
     test('search patient by address with modifier', () {
       final searchParams = SearchPatient().address(
-        FhirString(input: '123 Main St'),
+        FhirString('123 Main St'),
         modifier: SearchModifier.eq,
       );
       final request = FhirSearchRequest(
@@ -936,9 +936,9 @@ void main() {
 
     test('search patient by multiple parameters', () {
       final searchParams = SearchPatient()
-          .family(FhirString(input: 'Smith'))
-          .given(FhirString(input: 'John'))
-          .gender(FhirString(input: 'male'));
+          .family(FhirString('Smith'))
+          .given(FhirString('John'))
+          .gender(FhirString('male'));
       final request = FhirSearchRequest(
         base: Uri.parse('http://hapi.fhir.org/baseR4'),
         resourceType: 'Patient',

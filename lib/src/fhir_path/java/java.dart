@@ -1,6 +1,6 @@
 export 'expression_node.dart';
 export 'fhir_lexer.dart';
-export 'fhir_path_constant.dart';
+export 'fhir_constants.dart';
 export 'fhir_path_engine.dart';
 export 'fhir_path_utilities.dart';
 export 'fhir_publication.dart';

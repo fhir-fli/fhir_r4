@@ -5,7 +5,7 @@ import 'package:yaml/yaml.dart';
 /// Extension to convert a [String] to a [FhirCanonical]
 extension FhirCanonicalExtension on String {
   /// Converts a [String] to a [FhirCanonical]
-  FhirCanonical get toFhirCanonical => FhirCanonical(input: this);
+  FhirCanonical get toFhirCanonical => FhirCanonical(this);
 }
 
 /// Extension to convert a [Uri] to a [FhirCanonical]
@@ -17,12 +17,12 @@ extension FhirCanonicalUriExtension on Uri {
 /// Represents a canonical URL in FHIR as a [PrimitiveType] of [Uri]
 class FhirCanonical extends PrimitiveType<Uri> {
   /// Constructor with validation and original input storage
-  FhirCanonical({
-    required this.input,
+  FhirCanonical(
+    this.input, {
     super.element,
     super.id,
     super.extension_,
-  }) : super(value: input != null ? _validateCanonical(input) : null) {
+  }) : super(input != null ? _validateCanonical(input) : null) {
     if (value == null && element == null) {
       throw ArgumentError('A value or element is required');
     }
@@ -33,7 +33,7 @@ class FhirCanonical extends PrimitiveType<Uri> {
     Uri input, [
     Element? element,
   ]) : this(
-          input: input.toString(),
+          input.toString(),
           element: element,
         );
 
@@ -42,7 +42,7 @@ class FhirCanonical extends PrimitiveType<Uri> {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    return FhirCanonical(input: value, element: element);
+    return FhirCanonical(value, element: element);
   }
 
   /// Factory constructor to create [FhirCanonical] from YAML
@@ -63,7 +63,7 @@ class FhirCanonical extends PrimitiveType<Uri> {
   static FhirCanonical? tryParse(dynamic input) {
     if (input is String) {
       try {
-        return FhirCanonical(input: input);
+        return FhirCanonical(input);
       } catch (_) {
         return null;
       }
@@ -114,7 +114,7 @@ class FhirCanonical extends PrimitiveType<Uri> {
       final element = elements?[i] != null
           ? Element.fromJson(elements![i] as Map<String, dynamic>)
           : null;
-      return FhirCanonical(input: value, element: element);
+      return FhirCanonical(value, element: element);
     });
   }
 
@@ -145,7 +145,7 @@ class FhirCanonical extends PrimitiveType<Uri> {
   /// Clones this [FhirCanonical] instance
   @override
   FhirCanonical clone() =>
-      FhirCanonical(input: input, element: element?.clone() as Element?);
+      FhirCanonical(input, element: element?.clone() as Element?);
 
   /// Creates a modified copy with updated properties
   @override
@@ -160,7 +160,7 @@ class FhirCanonical extends PrimitiveType<Uri> {
     List<dynamic>? annotations,
   }) {
     return FhirCanonical(
-      input: newValue?.toString() ?? input,
+      newValue?.toString() ?? input,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

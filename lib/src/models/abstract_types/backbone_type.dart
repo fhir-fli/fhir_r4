@@ -35,7 +35,7 @@ abstract class BackboneType extends DataType {
   /// Gets the first repetition of modifier extensions
   FhirExtension getModifierExtensionFirstRep() {
     return modifierExtension?.isEmpty ?? true
-        ? FhirExtension(url: FhirString(input: 'fhirfli.dev'))
+        ? FhirExtension(url: FhirString('fhirfli.dev'))
         : modifierExtension!.first;
   }
 

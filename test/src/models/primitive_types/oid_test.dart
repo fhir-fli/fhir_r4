@@ -9,44 +9,44 @@ void main() {
     const yamlOid = 'urn:oid:0.9.2345.678';
 
     test('OID', () {
-      expect(FhirOid(input: 'urn:oid:1.2.3.4').toString(), 'urn:oid:1.2.3.4');
+      expect(FhirOid('urn:oid:1.2.3.4').toString(), 'urn:oid:1.2.3.4');
       expect(
-        FhirOid(input: 'urn:oid:1.2.3.4').toJson()['value'],
+        FhirOid('urn:oid:1.2.3.4').toJson()['value'],
         'urn:oid:1.2.3.4',
       );
-      expect(FhirOid(input: 'urn:oid:1.2.3.4').value, 'urn:oid:1.2.3.4');
+      expect(FhirOid('urn:oid:1.2.3.4').value, 'urn:oid:1.2.3.4');
       expect(
-        FhirOid(input: 'urn:oid:2.999.9999').toString(),
+        FhirOid('urn:oid:2.999.9999').toString(),
         'urn:oid:2.999.9999',
       );
       expect(
-        FhirOid(input: 'urn:oid:2.999.9999').toJson()['value'],
+        FhirOid('urn:oid:2.999.9999').toJson()['value'],
         'urn:oid:2.999.9999',
       );
       expect(
-        FhirOid(input: 'urn:oid:2.999.9999').value,
+        FhirOid('urn:oid:2.999.9999').value,
         'urn:oid:2.999.9999',
       );
-      expect(FhirOid(input: 'urn:oid:0.1').toString(), 'urn:oid:0.1');
-      expect(FhirOid(input: 'urn:oid:0.1').toJson()['value'], 'urn:oid:0.1');
+      expect(FhirOid('urn:oid:0.1').toString(), 'urn:oid:0.1');
+      expect(FhirOid('urn:oid:0.1').toJson()['value'], 'urn:oid:0.1');
     });
 
     test('Invalid FhirOid - cannot be empty', () {
       expect(
-        () => FhirOid(input: ''),
+        () => FhirOid(''),
         throwsA(isA<FormatException>()),
       );
     });
 
     test('Valid FhirOid from String', () {
-      final fhirOid = FhirOid(input: validOid);
+      final fhirOid = FhirOid(validOid);
       expect(fhirOid.value, equals(validOid));
       expect(fhirOid.toString(), equals(validOid));
       expect(fhirOid.toJson()['value'], equals(validOid));
     });
 
     test('Invalid FhirOid throws FormatException', () {
-      expect(() => FhirOid(input: invalidOid), throwsA(isA<FormatException>()));
+      expect(() => FhirOid(invalidOid), throwsA(isA<FormatException>()));
     });
 
     test('FhirOid tryParse with valid String', () {
@@ -83,26 +83,26 @@ void main() {
     });
 
     test('FhirOid equality with another FhirOid', () {
-      final fhirOid1 = FhirOid(input: validOid);
-      final fhirOid2 = FhirOid(input: validOid);
+      final fhirOid1 = FhirOid(validOid);
+      final fhirOid2 = FhirOid(validOid);
       expect(fhirOid1 == fhirOid2, isTrue);
       expect(fhirOid1.equals(fhirOid2), isTrue);
     });
 
     test('FhirOid equality with a String', () {
-      final fhirOid = FhirOid(input: validOid);
+      final fhirOid = FhirOid(validOid);
       // ignore: unrelated_type_equality_checks
       expect(fhirOid == validOid, isTrue);
     });
 
     test('FhirOid inequality with a different String', () {
-      final fhirOid = FhirOid(input: validOid);
+      final fhirOid = FhirOid(validOid);
       // ignore: unrelated_type_equality_checks
       expect(fhirOid == 'urn:oid:1.1.1.1', isFalse);
     });
 
     test('FhirOid clone', () {
-      final originalOid = FhirOid(input: validOid);
+      final originalOid = FhirOid(validOid);
       final clonedOid = originalOid.clone();
       expect(clonedOid.value, equals(validOid));
       expect(clonedOid == originalOid, isTrue);
@@ -111,13 +111,13 @@ void main() {
 
     test('Invalid FhirOid throws FormatException for starting with 3', () {
       expect(
-        () => FhirOid(input: 'urn:oid:3.1.1.1'),
+        () => FhirOid('urn:oid:3.1.1.1'),
         throwsA(isA<FormatException>()),
       );
     });
 
     test('FhirOid toJsonString', () {
-      final fhirOid = FhirOid(input: validOid);
+      final fhirOid = FhirOid(validOid);
       expect(fhirOid.toJsonString(), equals('{"value":"$validOid"}'));
     });
   });

@@ -19,7 +19,7 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
     super.element,
     super.id,
     super.extension_,
-  });
+  }) : super(null);
 
   /// Year
   final int? year;

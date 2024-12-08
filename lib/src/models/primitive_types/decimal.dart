@@ -5,19 +5,19 @@ import 'package:yaml/yaml.dart';
 /// Extension to convert a Dart number to a [FhirDecimal].
 extension FhirDecimalExtension on num {
   /// Converts a Dart number to a [FhirDecimal].
-  FhirDecimal get toFhirDecimal => FhirDecimal(input: this);
+  FhirDecimal get toFhirDecimal => FhirDecimal(this);
 }
 
 /// This class represents the FHIR primitive type `decimal`.
 class FhirDecimal extends FhirNumber {
   /// Public constructor with validation and storage of the original input.
-  FhirDecimal({
-    required this.input,
+  FhirDecimal(
+    this.input, {
     super.element,
     super.id,
     super.extension_,
   })  : isInt = input is int,
-        super(value: input?.toDouble()) {
+        super(input?.toDouble()) {
     if (value == null && element == null) {
       throw ArgumentError('A value or element is required');
     }
@@ -31,7 +31,7 @@ class FhirDecimal extends FhirNumber {
     List<FhirExtension>? extension_,
   }) {
     return FhirDecimal(
-      input: integer.value,
+      integer.value,
       element: element,
       id: id,
       extension_: extension_,
@@ -43,7 +43,7 @@ class FhirDecimal extends FhirNumber {
     final value = json['value'] as num?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    return FhirDecimal(input: value, element: element);
+    return FhirDecimal(value, element: element);
   }
 
   /// Factory constructor to create a [FhirDecimal] from YAML input.
@@ -66,7 +66,7 @@ class FhirDecimal extends FhirNumber {
   static FhirDecimal? tryParse(dynamic input) {
     if (input is num) {
       try {
-        return FhirDecimal(input: input);
+        return FhirDecimal(input);
       } catch (_) {
         return null;
       }
@@ -115,7 +115,7 @@ class FhirDecimal extends FhirNumber {
       final element = elements?[i] != null
           ? Element.fromJson(elements![i] as Map<String, dynamic>)
           : null;
-      return FhirDecimal(input: value, element: element);
+      return FhirDecimal(value, element: element);
     });
   }
 
@@ -151,7 +151,7 @@ class FhirDecimal extends FhirNumber {
   /// Clones the current instance of [FhirDecimal].
   @override
   FhirDecimal clone() =>
-      FhirDecimal(input: input, element: element?.clone() as Element?);
+      FhirDecimal(input, element: element?.clone() as Element?);
 
   /// Creates a modified copy with updated properties.
   @override
@@ -166,7 +166,7 @@ class FhirDecimal extends FhirNumber {
     List<dynamic>? annotations,
   }) {
     return FhirDecimal(
-      input: newValue ?? input,
+      newValue ?? input,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

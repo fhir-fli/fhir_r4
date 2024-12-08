@@ -5,7 +5,7 @@ void main() {
   group('FhirCanonical Tests', () {
     test('Valid Canonical URI', () {
       const validCanonicalString = 'http://example.com/Patient/123';
-      final canonical = FhirCanonical(input: validCanonicalString);
+      final canonical = FhirCanonical(validCanonicalString);
       expect(canonical.value, equals(Uri.parse(validCanonicalString)));
       expect(canonical.toJson(), equals({'value': validCanonicalString}));
       expect(canonical.toYaml(), equals('value: "$validCanonicalString"'));
@@ -14,7 +14,7 @@ void main() {
 
     test('Valid Relative Canonical URI', () {
       const relativeCanonicalString = 'Patient/123';
-      final canonical = FhirCanonical(input: relativeCanonicalString);
+      final canonical = FhirCanonical(relativeCanonicalString);
       expect(canonical.value, equals(Uri.parse(relativeCanonicalString)));
       expect(canonical.toJson(), equals({'value': relativeCanonicalString}));
       expect(canonical.toYaml(), equals('value: $relativeCanonicalString'));
@@ -58,21 +58,21 @@ void main() {
 
     test('Equality - FhirCanonical', () {
       const validCanonicalString = 'http://example.com/Patient/123';
-      final canonical1 = FhirCanonical(input: validCanonicalString);
-      final canonical2 = FhirCanonical(input: validCanonicalString);
+      final canonical1 = FhirCanonical(validCanonicalString);
+      final canonical2 = FhirCanonical(validCanonicalString);
       expect(canonical1, equals(canonical2));
     });
 
     test('Equality - Uri', () {
       const validCanonicalString = 'http://example.com/Patient/123';
-      final canonical = FhirCanonical(input: validCanonicalString);
+      final canonical = FhirCanonical(validCanonicalString);
       // ignore: unrelated_type_equality_checks
       expect(canonical == Uri.parse(validCanonicalString), isTrue);
     });
 
     test('Equality - String', () {
       const validCanonicalString = 'http://example.com/Patient/123';
-      final canonical = FhirCanonical(input: validCanonicalString);
+      final canonical = FhirCanonical(validCanonicalString);
       // ignore: unrelated_type_equality_checks
       expect(canonical == validCanonicalString, isTrue);
     });
@@ -80,14 +80,14 @@ void main() {
     test('Inequality - FhirCanonical', () {
       const validCanonicalString1 = 'http://example.com/Patient/123';
       const validCanonicalString2 = 'http://example.com/Patient/456';
-      final canonical1 = FhirCanonical(input: validCanonicalString1);
-      final canonical2 = FhirCanonical(input: validCanonicalString2);
+      final canonical1 = FhirCanonical(validCanonicalString1);
+      final canonical2 = FhirCanonical(validCanonicalString2);
       expect(canonical1, isNot(equals(canonical2)));
     });
 
     test('Clone', () {
       const validCanonicalString = 'http://example.com/Patient/123';
-      final canonical = FhirCanonical(input: validCanonicalString);
+      final canonical = FhirCanonical(validCanonicalString);
       final clonedCanonical = canonical.clone();
       expect(clonedCanonical, equals(canonical));
       expect(clonedCanonical.value, equals(Uri.parse(validCanonicalString)));
@@ -95,7 +95,7 @@ void main() {
 
     test('CopyWith - No New Value', () {
       const validCanonicalString = 'http://example.com/Patient/123';
-      final canonical = FhirCanonical(input: validCanonicalString);
+      final canonical = FhirCanonical(validCanonicalString);
       final copiedCanonical = canonical.copyWith();
       expect(copiedCanonical.value, equals(canonical.value));
     });
@@ -103,7 +103,7 @@ void main() {
     test('CopyWith - New Value', () {
       const validCanonicalString = 'http://example.com/Patient/123';
       const newCanonicalString = 'http://example.com/Patient/456';
-      final canonical = FhirCanonical(input: validCanonicalString);
+      final canonical = FhirCanonical(validCanonicalString);
       final copiedCanonical = canonical.copyWith(
         newValue: Uri.parse(newCanonicalString),
       );
@@ -112,43 +112,43 @@ void main() {
 
     test('Path Segments', () {
       const validCanonicalString = 'http://example.com/Patient/123';
-      final canonical = FhirCanonical(input: validCanonicalString);
+      final canonical = FhirCanonical(validCanonicalString);
       expect(canonical.pathSegments, equals(<String>['Patient', '123']));
     });
 
     test('File Path', () {
       const validCanonicalString = 'file:///home/user/file.txt';
-      final canonical = FhirCanonical(input: validCanonicalString);
+      final canonical = FhirCanonical(validCanonicalString);
       expect(canonical.toFilePath(), equals('/home/user/file.txt'));
     });
 
     test('Host', () {
       const validCanonicalString = 'http://example.com/Patient/123';
-      final canonical = FhirCanonical(input: validCanonicalString);
+      final canonical = FhirCanonical(validCanonicalString);
       expect(canonical.host, equals('example.com'));
     });
 
     test('User Info', () {
       const validCanonicalString = 'http://user:pass@example.com/Patient/123';
-      final canonical = FhirCanonical(input: validCanonicalString);
+      final canonical = FhirCanonical(validCanonicalString);
       expect(canonical.userInfo, equals('user:pass'));
     });
 
     test('Port', () {
       const validCanonicalString = 'http://example.com:8080/Patient/123';
-      final canonical = FhirCanonical(input: validCanonicalString);
+      final canonical = FhirCanonical(validCanonicalString);
       expect(canonical.port, equals(8080));
     });
 
     test('Authority', () {
       const validCanonicalString = 'http://example.com:8080/Patient/123';
-      final canonical = FhirCanonical(input: validCanonicalString);
+      final canonical = FhirCanonical(validCanonicalString);
       expect(canonical.authority, equals('example.com:8080'));
     });
 
     test('Query', () {
       const validCanonicalString = 'http://example.com/Patient/123?name=John';
-      final canonical = FhirCanonical(input: validCanonicalString);
+      final canonical = FhirCanonical(validCanonicalString);
       expect(canonical.query, equals('name=John'));
     });
 
@@ -178,25 +178,25 @@ void main() {
 
     test('ToJson', () {
       const validCanonicalString = 'http://example.com/Patient/123';
-      final canonical = FhirCanonical(input: validCanonicalString);
+      final canonical = FhirCanonical(validCanonicalString);
       expect(canonical.toJson(), equals({'value': validCanonicalString}));
     });
 
     test('ToYaml', () {
       const validCanonicalString = 'http://example.com/Patient/123';
-      final canonical = FhirCanonical(input: validCanonicalString);
+      final canonical = FhirCanonical(validCanonicalString);
       expect(canonical.toYaml(), equals('value: "$validCanonicalString"'));
     });
 
     test('ToString', () {
       const validCanonicalString = 'http://example.com/Patient/123';
-      final canonical = FhirCanonical(input: validCanonicalString);
+      final canonical = FhirCanonical(validCanonicalString);
       expect(canonical.toString(), equals(validCanonicalString));
     });
 
     test('ToJsonString', () {
       const validCanonicalString = 'http://example.com/Patient/123';
-      final canonical = FhirCanonical(input: validCanonicalString);
+      final canonical = FhirCanonical(validCanonicalString);
       expect(
         canonical.toJsonString(),
         equals('{"value":"$validCanonicalString"}'),

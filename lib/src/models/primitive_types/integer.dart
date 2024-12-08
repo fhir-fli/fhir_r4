@@ -6,21 +6,21 @@ import 'package:yaml/yaml.dart';
 extension FhirIntegerExtension on num {
   /// Converts a [num] to a [FhirInteger].
   FhirInteger get toFhirInteger => this is int
-      ? FhirInteger(input: this as int)
+      ? FhirInteger(this as int)
       : int.tryParse(toString()) != null
-          ? FhirInteger(input: int.parse(toString()))
+          ? FhirInteger(int.parse(toString()))
           : throw FormatException('Invalid input for FhirInteger: $this');
 }
 
 /// Represents the FHIR primitive type `integer`.
 class FhirInteger extends FhirNumber {
   /// Constructor that ensures valid input.
-  FhirInteger({
-    required int? input,
+  FhirInteger(
+    super.input, {
     super.element,
     super.id,
     super.extension_,
-  }) : super(value: input) {
+  })  {
     if (value == null && element == null) {
       throw ArgumentError('A value or element is required');
     }
@@ -31,7 +31,7 @@ class FhirInteger extends FhirNumber {
     final value = json['value'] as num?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    return FhirInteger(input: value?.toInt(), element: element);
+    return FhirInteger(value?.toInt(), element: element);
   }
 
   /// Factory constructor to create [FhirInteger] from YAML input.
@@ -55,7 +55,7 @@ class FhirInteger extends FhirNumber {
   static FhirInteger? tryParse(dynamic input) {
     if (input is int) {
       try {
-        return FhirInteger(input: input);
+        return FhirInteger(input);
       } catch (_) {
         return null;
       }
@@ -90,7 +90,7 @@ class FhirInteger extends FhirNumber {
       final element = elements?[i] != null
           ? Element.fromJson(elements![i] as Map<String, dynamic>)
           : null;
-      return FhirInteger(input: value?.toInt(), element: element);
+      return FhirInteger(value?.toInt(), element: element);
     });
   }
 
@@ -122,7 +122,7 @@ class FhirInteger extends FhirNumber {
   /// Clones the current instance.
   @override
   FhirInteger clone() => FhirInteger(
-        input: value as int?,
+        value as int?,
         element: element?.clone() as Element?,
       );
 
@@ -142,7 +142,7 @@ class FhirInteger extends FhirNumber {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
     }
     return FhirInteger(
-      input: (newValue ?? value) as int?,
+      (newValue ?? value) as int?,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

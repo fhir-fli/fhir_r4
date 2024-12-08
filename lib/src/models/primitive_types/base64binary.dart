@@ -6,18 +6,18 @@ import 'package:yaml/yaml.dart';
 /// Extension to convert a [String] to [FhirBase64Binary]
 extension FhirBase64BinaryExtension on String {
   /// Converts a [String] to [FhirBase64Binary]
-  FhirBase64Binary get toFhirBase64Binary => FhirBase64Binary(input: this);
+  FhirBase64Binary get toFhirBase64Binary => FhirBase64Binary(this);
 }
 
 /// FHIR primitive type `Base64Binary`
 class FhirBase64Binary extends PrimitiveType<String?> {
   /// Constructor with validation and original input storage
-  FhirBase64Binary({
-    required this.input,
+  FhirBase64Binary(
+    this.input, {
     super.element,
     super.id,
     super.extension_,
-  }) : super(value: input != null ? _validateBase64(input) : null) {
+  }) : super(input != null ? _validateBase64(input) : null) {
     if (value == null && element == null) {
       throw ArgumentError('A value or element is required');
     }
@@ -28,7 +28,7 @@ class FhirBase64Binary extends PrimitiveType<String?> {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    return FhirBase64Binary(input: value, element: element);
+    return FhirBase64Binary(value, element: element);
   }
 
   /// Factory constructor to create from YAML
@@ -51,7 +51,7 @@ class FhirBase64Binary extends PrimitiveType<String?> {
   static FhirBase64Binary? tryParse(dynamic input) {
     if (input is String) {
       try {
-        return FhirBase64Binary(input: input);
+        return FhirBase64Binary(input);
       } catch (e) {
         return null;
       }
@@ -134,7 +134,7 @@ class FhirBase64Binary extends PrimitiveType<String?> {
       final element = elements?[i] != null
           ? Element.fromJson(elements![i] as Map<String, dynamic>)
           : null;
-      return FhirBase64Binary(input: value, element: element);
+      return FhirBase64Binary(value, element: element);
     });
   }
 
@@ -165,7 +165,7 @@ class FhirBase64Binary extends PrimitiveType<String?> {
   /// Clones the instance
   @override
   FhirBase64Binary clone() =>
-      FhirBase64Binary(input: input, element: element?.clone() as Element?);
+      FhirBase64Binary(input, element: element?.clone() as Element?);
 
   /// Creates a modified copy of the instance
   @override
@@ -180,7 +180,7 @@ class FhirBase64Binary extends PrimitiveType<String?> {
     List<dynamic>? annotations,
   }) {
     return FhirBase64Binary(
-      input: newValue ?? input,
+      newValue ?? input,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

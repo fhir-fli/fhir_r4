@@ -1,7 +1,5 @@
 // ignore_for_file: public_member_api_docs, avoid_positional_boolean_parameters
 
-import 'dart:collection';
-
 import 'package:fhir_r4/fhir_r4.dart';
 
 import 'java.dart';
@@ -103,16 +101,16 @@ class FHIRPathEngine {
     final result = ExpressionNode('term');
     if (lexer.isConstant()) {
       result
-        ..kind = Kind.Constant
+        ..kind = ExpressionNodeKind.constant
         ..constant = _parseConstant(lexer);
     } else if (lexer.isToken()) {
       result
-        ..kind = Kind.Name
+        ..kind = ExpressionNodeKind.name
         ..name = lexer.take();
     } else if (lexer.getCurrent() == '(') {
       lexer.next();
       result
-        ..kind = Kind.Group
+        ..kind = ExpressionNodeKind.group
         ..group = _parseExpression(lexer, allowExtensions);
       if (lexer.getCurrent() != ')') {
         throw lexer.error('Expected ")"');
@@ -127,7 +125,7 @@ class FHIRPathEngine {
   FhirBase _parseConstant(FHIRLexer lexer) {
     final constant = lexer.take();
     if (FHIRPathConstant.isFHIRPathStringConstant(constant)) {
-      return FhirString(input: FhirPathUtilities.unescapeJson(constant));
+      return FhirString(input: constant.unescapeJson());
     } else if (FHIRPathConstant.isFHIRPathConstant(constant)) {
       if (constant == 'true' || constant == 'false') {
         return FhirBoolean(input: constant == 'true');
@@ -152,7 +150,7 @@ class FHIRPathEngine {
 
   TypeDetails check(
     Object appContext,
-    String? resourceType,
+    String resourceType,
     String? context,
     ExpressionNode expr,
   ) {
@@ -169,9 +167,8 @@ class FHIRPathEngine {
       types = TypeDetails(CollectionStatus.singleton, [sd.url!.toString()]);
     } else {
       var ctxt = context.substring(0, context.indexOf('.'));
-      if (FhirPathUtilities.isAbsoluteUrl(resourceType)) {
-        ctxt =
-            '${resourceType!.substring(0, resourceType.lastIndexOf('/') + 1)}'
+      if (resourceType.isAbsoluteUrl()) {
+        ctxt = '${resourceType.substring(0, resourceType.lastIndexOf('/') + 1)}'
             '$ctxt';
       }
       final sd = worker.fetchResource<StructureDefinition>(ctxt);
@@ -197,8 +194,8 @@ class FHIRPathEngine {
       }
     }
 
-    return executeType(
-      ExecutionTypeContext(appContext, resourceType, types, types),
+    return executeTypeContext(
+      ExecutionTypeContext(appContext, resourceType, types, types!),
       types,
       expr,
       true,
@@ -206,7 +203,7 @@ class FHIRPathEngine {
   }
 
   TypeDetails checkWithStructureDefinition(
-    dynamic appContext,
+    Object appContext,
     StructureDefinition sd,
     String? context,
     ExpressionNode expr,
@@ -216,10 +213,9 @@ class FHIRPathEngine {
     if (!context!.contains('.') && sd.url != null) {
       types = TypeDetails(CollectionStatus.singleton, [sd.url.toString()]);
     } else {
-      final  ed =
-          getElementDefinition(sd, context, true, expr);
+      final ed = getElementDefinition(sd, context, true, expr);
       if (ed == null) {
-        throw makeException(expr, 'Unknown context element: ',[context]);
+        throw makeException(expr, 'Unknown context element: ', [context]);
       }
 
       if (ed.fixedType != null) {
@@ -235,8 +231,8 @@ class FHIRPathEngine {
       }
     }
 
-    return executeType(
-      ExecutionTypeContext(appContext, sd.url?.toString(), types, types),
+    return executeTypeContext(
+      ExecutionTypeContext(appContext, sd.url!.toString(), types, types),
       types,
       expr,
       true,
@@ -244,13 +240,13 @@ class FHIRPathEngine {
   }
 
   TypeDetails checkWithExpression(
-    dynamic appContext,
-    StructureDefinition? sd,
+    Object appContext,
+    StructureDefinition sd,
     ExpressionNode expr,
   ) {
     final types = TypeDetails(CollectionStatus.singleton);
-    return executeType(
-      ExecutionTypeContext(appContext, sd?.url?.toString(), null, types),
+    return executeTypeContext(
+      ExecutionTypeContext(appContext, sd.url!.toString(), null, types),
       types,
       expr,
       true,
@@ -259,7 +255,7 @@ class FHIRPathEngine {
 
   TypeDetails checkWithStringExpression(
     Object appContext,
-    String? resourceType,
+    String resourceType,
     String? context,
     String expr,
   ) {
@@ -304,7 +300,8 @@ class FHIRPathEngine {
 
       if ((ed.path.value?.endsWith('[x]') ?? false) &&
           path.startsWith(
-              ed.path.value!.substring(0, ed.path.value!.length - 3),) &&
+            ed.path.value!.substring(0, ed.path.value!.length - 3),
+          ) &&
           path.length == ed.path.value!.length - 3) {
         return ElementDefinitionMatch(ed, null);
       }
@@ -312,10 +309,11 @@ class FHIRPathEngine {
       if (allowTypedName &&
           (ed.path.value?.endsWith('[x]') ?? false) &&
           path.startsWith(
-              ed.path.value!.substring(0, ed.path.value!.length - 3),) &&
+            ed.path.value!.substring(0, ed.path.value!.length - 3),
+          ) &&
           path.length > ed.path.value!.length - 3) {
         final suffix = path.substring(ed.path.value!.length - 3);
-        final s = FhirPathUtilities.uncapitalize(suffix);
+        final s = suffix.uncapitalize();
 
         if (primitiveTypes.contains(s)) {
           return ElementDefinitionMatch(ed, s);
@@ -334,16 +332,19 @@ class FHIRPathEngine {
         }
 
         final nsd = worker.fetchResource<StructureDefinition>(
-          profileUtilities.sdNs(
-              ed.type![0].code.value!, worker.getOverrideVersionNs(),),
+          ed.type![0].code.toString().sdNs(
+                worker.getOverrideVersionNs(),
+              ),
         );
 
         if (nsd == null) {
           throw makeException(
             expr,
             'FHIRPATH_NO_TYPE',
-            [ed.type![0].code.value?.toString() ?? '',
-            'getElementDefinition',],
+            [
+              ed.type![0].code.value?.toString() ?? '',
+              'getElementDefinition',
+            ],
           );
         }
 
@@ -356,10 +357,15 @@ class FHIRPathEngine {
       }
 
       if (ed.hasContentReference() && path.startsWith('${ed.path.value}.')) {
-        final match = getElementDefinitionById(sd, ed.contentReference?.toString(),);
+        final match = getElementDefinitionById(
+          sd,
+          ed.contentReference?.toString(),
+        );
         return getElementDefinition(
           sd,
-          '${match?.definition?.path.value}${path.substring(ed.path.value!.length,)}',
+          '${match?.definition?.path.value}${path.substring(
+            ed.path.value!.length,
+          )}',
           allowTypedName,
           expr,
         );
@@ -379,119 +385,158 @@ class FHIRPathEngine {
         ].contains(list.first.code.toString());
   }
 
-  TypeDetails executeType(
-  ExecutionContext inContext,
-  TypeDetails? focus,
-  ExpressionNode exp,
-  bool atEntry,
-) {
-  var context = contextForParameter(inContext);
-  var result = TypeDetails.empty();
+  TypeDetails executeTypeContext(
+    ExecutionTypeContext inContext,
+    TypeDetails? focus,
+    ExpressionNode exp,
+    bool atEntry,
+  ) {
+    var context = contextForParameter(inContext);
+    var result = TypeDetails.empty();
 
-  switch (exp.kind) {
-    case Kind.Name:
-      if (atEntry && exp.name == r'$this') {
-        // TODO(Dokotela): implement this
-        // result.update(context.getThisItem());
-      } else if (atEntry && exp.name == r'$total') {
-        result.update(anything(CollectionStatus.unordered));
-      } else if (atEntry && exp.name == r"$index") {
+    switch (exp.kind) {
+      case ExpressionNodeKind.name:
+        if (atEntry && exp.name == r'$this') {
+          result.update(context.thisItem);
+        } else if (atEntry && exp.name == r'$total') {
+          result.update(anything(CollectionStatus.unordered));
+        } else if (atEntry && exp.name == r'$index') {
+          result.addType(TypeDetails.FP_Integer);
+        } else if (atEntry && focus == null) {
+          result.update(executeContextType(context, exp.name!, exp, false));
+        } else {
+          for (final s in focus?.getTypes() ?? <String>[]) {
+            result.update(executeTypeString(s, exp, atEntry));
+          }
+          if (result.hasNoTypes()) {
+            throw makeException(exp, 'FHIRPATH_UNKNOWN_NAME', [
+              exp.name ?? '',
+              focus?.describe() ?? '',
+            ]);
+          }
+        }
+
+      case ExpressionNodeKind.function:
+        result.update(evaluateFunctionType(context, focus, exp));
+
+      case ExpressionNodeKind.unary:
         result.addType(TypeDetails.FP_Integer);
-      } else if (atEntry && focus.isEmpty()) {
-        result.update(executeContextType(context, exp.name!, exp, false));
-      } else {
-        for (final s in focus.getTypes()) {
-          result.update(executeTypeForString(s, exp, atEntry));
-        }
-        if (result.hasNoTypes()) {
-          throw makeException(
-            exp,
-            'FHIRPATH_UNKNOWN_NAME',
-            exp.name,
-            focus.describe(),
-          );
-        }
-      }
-      break;
+        result.addType(TypeDetails.FP_Decimal);
+        result.addType(TypeDetails.FP_Quantity);
 
-    case ExpressionNodeKind.function:
-      result.update(evaluateFunctionType(context, focus, exp));
-      break;
+      case ExpressionNodeKind.constant:
+        result.update(resolveConstantType(context, exp.constant, exp, true));
 
-    case ExpressionNodeKind.unary:
-      result.addType(TypeDetails.FP_Integer);
-      result.addType(TypeDetails.FP_Decimal);
-      result.addType(TypeDetails.FP_Quantity);
-      break;
-
-    case ExpressionNodeKind.constant:
-      result.update(resolveConstantType(context, exp.constant, exp, true));
-      break;
-
-    case ExpressionNodeKind.group:
-      result.update(executeType(context, focus, exp.group!, atEntry));
-      break;
-  }
-
-  exp.setTypes(result);
-
-  if (exp.inner != null) {
-    result = executeType(context, result, exp.inner!, false);
-  }
-
-  if (exp.isProximal && exp.operation != null) {
-    var next = exp.opNext;
-    var last = exp;
-    while (next != null) {
-      context = contextForParameter(inContext);
-      TypeDetails work;
-      if (last.operation == Operation.is || last.operation == Operation.as_) {
-        work = executeTypeName(context, focus, next, atEntry);
-      } else {
-        work = executeType(context, focus, next, atEntry);
-      }
-      result = operateTypes(result, last.operation!, work, last);
-      last = next;
-      next = next.opNext;
+      case ExpressionNodeKind.group:
+        result.update(executeTypeContext(context, focus, exp.group!, atEntry));
+      case null:
+      // TODO: Handle this case.
     }
-    exp.setOpTypes(result);
-  }
 
-  return result;
-}
+    exp.types = result;
 
-List<FhirBase> resolveConstant(
-  ExecutionTypeContext context,
-  FhirBase? constant,
-  bool beforeContext,
-  ExpressionNode expr,
-  bool explicitConstant,
-) {
-  if (constant == null) {
-    return <FhirBase>[];
-  }
-
-  if (constant is! FHIRConstant) {
-    return [constant];
-  }
-
-  final c = constant as FHIRConstant;
-  if (c.value.startsWith('%')) {
-    final varName = c.value.substring(1);
-    if (context.hasDefinedVariable(varName)) {
-      return context.getDefinedVariable(varName);
+    if (exp.inner != null) {
+      result = executeTypeContext(context, result, exp.inner!, false);
     }
-    return resolveConstant(context, c.value, beforeContext, expr, explicitConstant);
-  } else if (c.value.startsWith('@')) {
-    return [
-      processDateConstant(context.appInfo, c.value.substring(1), expr)
-    ];
-  } else {
-    throw makeException(expr, 'FHIRPATH_UNKNOWN_CONSTANT', c.value);
-  }
-}
 
-  ElementDefinitionMatch? getElementDefinitionById(StructureDefinition sd, String? ref) {
+    if (exp.proximal && exp.operation != null) {
+      var next = exp.opNext;
+      var last = exp;
+      while (next != null) {
+        context = contextForParameter(inContext);
+        TypeDetails work;
+        if (last.operation == FpOperation.Is ||
+            last.operation == FpOperation.As) {
+          work = executeTypeName(context, focus, next, atEntry);
+        } else {
+          work = executeTypeContext(context, focus, next, atEntry);
+        }
+        result = operateTypes(result, last.operation!, work, last);
+        last = next;
+        next = next.opNext;
+      }
+      exp.opTypes = result;
+    }
+
+    return result;
+  }
+
+  TypeDetails executeTypeString(String type, ExpressionNode exp, bool atEntry) {
+    if (atEntry &&
+        (exp.name?[0].isUpperCase() ?? false) &&
+        type.hashTail() == exp.name) {
+      // special
+      // case for
+      // start up
+      return TypeDetails(CollectionStatus.singleton, [type]);
+    }
+    final result = TypeDetails(null);
+    getChildTypesByName(type, exp.name, result, exp);
+    return result;
+  }
+
+  List<FhirBase> resolveConstant(
+    ExecutionContext context,
+    FhirBase? constant,
+    bool beforeContext,
+    ExpressionNode expr,
+    bool explicitConstant,
+  ) {
+    if (constant == null) {
+      return <FhirBase>[];
+    }
+
+    if (constant is! FhirConstant) {
+      return [constant];
+    }
+
+    final c = constant as FHIRConstant;
+    if (c.value.startsWith('%')) {
+      final varName = c.value.substring(1);
+      if (context.hasDefinedVariable(varName)) {
+        return context.getDefinedVariable(varName);
+      }
+      return resolveConstant(
+          context, c.value, beforeContext, expr, explicitConstant);
+    } else if (c.value.startsWith('@')) {
+      return [processDateConstant(context.appInfo, c.value.substring(1), expr)];
+    } else {
+      throw makeException(expr, 'FHIRPATH_UNKNOWN_CONSTANT', c.value);
+    }
+  }
+
+  List<FhirBase> resolveConstant(
+    ExecutionTypeContext context,
+    FhirBase? constant,
+    bool beforeContext,
+    ExpressionNode expr,
+    bool explicitConstant,
+  ) {
+    if (constant == null) {
+      return <FhirBase>[];
+    }
+
+    if (constant is! FHIRConstant) {
+      return [constant];
+    }
+
+    final c = constant as FHIRConstant;
+    if (c.value.startsWith('%')) {
+      final varName = c.value.substring(1);
+      if (context.hasDefinedVariable(varName)) {
+        return context.getDefinedVariable(varName);
+      }
+      return resolveConstant(
+          context, c.value, beforeContext, expr, explicitConstant);
+    } else if (c.value.startsWith('@')) {
+      return [processDateConstant(context.appInfo, c.value.substring(1), expr)];
+    } else {
+      throw makeException(expr, 'FHIRPATH_UNKNOWN_CONSTANT', c.value);
+    }
+  }
+
+  ElementDefinitionMatch? getElementDefinitionById(
+      StructureDefinition sd, String? ref) {
     if (ref == null) {
       return null;
     }
@@ -503,14 +548,14 @@ List<FhirBase> resolveConstant(
     return null;
   }
 
-    ExecutionContext contextForParameter(ExecutionContext context) {
-    ExecutionContext newContext = new ExecutionContext(context.appInfo, context.focusResource, context.rootResource, context.context, context.thisItem);
-    newContext.total = context.total;
-    newContext.index = context.index;
+  ExecutionTypeContext contextForParameter(ExecutionTypeContext context) {
+    ExecutionTypeContext newContext = ExecutionTypeContext(
+        context.appInfo, context.resource, context.context, context.thisItem);
     // append all of the defined variables from the context into the new context
     if (context.definedVariables != null) {
-      for (final s in context.definedVariables?.keys.toSet().toList() ?? <String>[]) {
-        newContext.setDefinedVariable(s, context.definedVariables.get(s));
+      for (final s
+          in context.definedVariables?.keys.toSet().toList() ?? <String>[]) {
+        newContext.setDefinedVariable(s, context.definedVariables![s]!);
       }
     }
     return newContext;
@@ -520,5 +565,357 @@ List<FhirBase> resolveConstant(
     return TypeDetails(status, allTypes.keys.toSet().toList());
   }
 
-}
+  TypeDetails executeContextType(ExecutionTypeContext context, String name,
+      ExpressionNode expr, boolean explicitConstant) {
+    if (hostServices == null) {
+      throw makeException(
+          expr, 'FHIRPATH_HO_HOST_SERVICES', ['Context Reference']);
+    }
+    return hostServices!
+        .resolveConstantType(this, context.appInfo, name, explicitConstant);
+  }
 
+  TypeDetails evaluateFunctionType(
+      ExecutionTypeContext context, TypeDetails? focus, ExpressionNode exp) {
+    final paramTypes = <TypeDetails>[];
+
+    if (exp.function == FpFunction.Is ||
+        exp.function == FpFunction.As ||
+        exp.function == FpFunction.OfType) {
+      paramTypes.add(
+          TypeDetails(CollectionStatus.singleton, [TypeDetails.FP_String]));
+    } else {
+      for (var i = 0; i < exp.parameters.length; i++) {
+        final expr = exp.parameters[i];
+        if (_isExpressionParameter(exp, i)) {
+          paramTypes
+              .add(executeType(_changeThis(context, focus), focus, expr, true));
+        } else {
+          paramTypes.add(executeType(context, context.thisItem, expr, true));
+        }
+      }
+    }
+
+    switch (exp.function) {
+      case FpFunction.Empty:
+        return TypeDetails(CollectionStatus.singleton, [TypeDetails.fpBoolean]);
+      case FpFunction.Not:
+        return TypeDetails(CollectionStatus.singleton, [TypeDetails.fpBoolean]);
+      case FpFunction.Exists:
+        _checkParamTypes(exp, exp.function.toCode(), paramTypes, [
+          TypeDetails(CollectionStatus.singleton, [TypeDetails.fpBoolean])
+        ]);
+        return TypeDetails(CollectionStatus.singleton, [TypeDetails.fpBoolean]);
+      case FpFunction.SubsetOf:
+      case FpFunction.SupersetOf:
+        _checkParamTypes(exp, exp.function.toCode(), paramTypes, [focus]);
+        return TypeDetails(CollectionStatus.singleton, [TypeDetails.fpBoolean]);
+      case FpFunction.IsDistinct:
+        return TypeDetails(CollectionStatus.singleton, [TypeDetails.fpBoolean]);
+      case FpFunction.Distinct:
+        return focus;
+      case FpFunction.Count:
+        return TypeDetails(CollectionStatus.singleton, [TypeDetails.fpInteger]);
+      case FpFunction.Where:
+      case FpFunction.Select:
+      case FpFunction.Repeat:
+      case FpFunction.Aggregate:
+        return focus;
+      case FpFunction.All:
+        return TypeDetails(CollectionStatus.singleton, [TypeDetails.fpBoolean]);
+      case FpFunction.As_:
+      case FpFunction.OfType:
+        _checkParamTypes(exp, exp.function.toCode(), paramTypes, [
+          TypeDetails(CollectionStatus.singleton, [TypeDetails.fpString])
+        ]);
+        return TypeDetails(
+            CollectionStatus.singleton, [exp.parameters.first.name]);
+      case FpFunction.Type_:
+        final isSystemType = focus.profiledTypes.any((pt) => pt.isSystemType);
+        final isCustomType = focus.profiledTypes.any((pt) => !pt.isSystemType);
+        if (isSystemType && isCustomType) {
+          return TypeDetails(CollectionStatus.singleton,
+              [TypeDetails.fpSimpleTypeInfo, TypeDetails.fpClassInfo]);
+        } else if (isSystemType) {
+          return TypeDetails(
+              CollectionStatus.singleton, [TypeDetails.fpSimpleTypeInfo]);
+        } else {
+          return TypeDetails(
+              CollectionStatus.singleton, [TypeDetails.fpClassInfo]);
+        }
+      case FpFunction.Is_:
+        _checkParamTypes(exp, exp.function.toCode(), paramTypes, [
+          TypeDetails(CollectionStatus.singleton, [TypeDetails.fpString])
+        ]);
+        return TypeDetails(CollectionStatus.singleton, [TypeDetails.fpBoolean]);
+      case FpFunction.Union:
+        return focus.union(paramTypes.first);
+      case FpFunction.Combine:
+        return focus.union(paramTypes.first);
+      case FpFunction.Intersect:
+        return focus.intersect(paramTypes.first);
+      case FpFunction.Exclude:
+        return focus;
+      case FpFunction.Iif:
+        final resultTypes = TypeDetails();
+        _checkSingleton(focus, 'iif', exp);
+        _checkParamTypes(exp, exp.function.toCode(), paramTypes, [
+          TypeDetails(CollectionStatus.singleton, [TypeDetails.fpBoolean])
+        ]);
+        resultTypes.update(paramTypes[1]);
+        if (paramTypes.length > 2) {
+          resultTypes.update(paramTypes[2]);
+        }
+        return resultTypes;
+      case FpFunction.ToString_:
+        _checkContextPrimitive(focus, 'toString', true, exp);
+        return TypeDetails(CollectionStatus.singleton, [TypeDetails.fpString]);
+      // Additional cases as per the original logic
+      default:
+        throw UnsupportedError('Function ${exp.function} not implemented yet');
+    }
+  }
+
+  bool _isExpressionParameter(ExpressionNode exp, int i) {
+    switch (i) {
+      case 0:
+        return exp.function == FpFunction.Where ||
+            exp.function == FpFunction.Exists ||
+            exp.function == FpFunction.All ||
+            exp.function == FpFunction.Select ||
+            exp.function == FpFunction.Repeat ||
+            exp.function == FpFunction.Aggregate;
+      case 1:
+        return exp.function == FpFunction.Trace ||
+            exp.function == FpFunction.DefineVariable;
+      default:
+        return false;
+    }
+  }
+
+  void _checkParamTypes(ExpressionNode expr, String funcName,
+      List<TypeDetails> paramTypes, List<TypeDetails> typeSet) {
+    for (var i = 0; i < typeSet.length; i++) {
+      if (i >= paramTypes.length) return;
+      final actual = paramTypes[i];
+      for (final a in actual.types) {
+        if (!typeSet[i].hasType(a)) {
+          throw PathEngineException(
+              '$funcName parameter $i has incorrect type $a, expected ${typeSet[i]}');
+        }
+      }
+    }
+  }
+
+  void getChildTypesByName(
+      String? type, String name, TypeDetails result, ExpressionNode expr) {
+    if (type == null || type.isEmpty) {
+      throw makeException(expr, 'FHIRPATH_NO_TYPE', ['getChildTypesByName']);
+    }
+
+    if (type == 'http://hl7.org/fhir/StructureDefinition/xhtml' ||
+        type.startsWith(NS_SYSTEM_TYPE)) {
+      return;
+    }
+
+    if (type == TypeDetails.FP_SimpleTypeInfo) {
+      getSimpleTypeChildTypesByName(name, result);
+    } else if (type == TypeDetails.FP_ClassInfo) {
+      getClassInfoChildTypesByName(name, result);
+    } else {
+      String? url =
+          type.contains("#") ? type.substring(0, type.indexOf("#")) : type;
+      String tail = "";
+
+      StructureDefinition? sd = worker.fetchResource(StructureDefinition, url);
+      if (sd == null) {
+        throw makeException(
+            expr, I18nConstants.FHIRPATH_NO_TYPE, url!, "getChildTypesByName");
+      }
+
+      List<StructureDefinition> sdl = [];
+      ElementDefinitionMatch? m;
+
+      if (type.contains("#")) {
+        m = getElementDefinition(
+            sd, type.substring(type.indexOf("#") + 1), false, expr);
+      }
+
+      if (m != null && hasDataType(m.definition)) {
+        if (m.fixedType != null) {
+          StructureDefinition? dt = worker.fetchResource(
+              StructureDefinition,
+              ProfileUtilities.sdNs(
+                  m.fixedType!, worker.getOverrideVersionNs()));
+          if (dt == null) {
+            throw makeException(
+                expr,
+                I18nConstants.FHIRPATH_NO_TYPE,
+                ProfileUtilities.sdNs(
+                    m.fixedType!, worker.getOverrideVersionNs()),
+                "getChildTypesByName");
+          }
+          sdl.add(dt);
+        } else {
+          for (var t in m.definition.type) {
+            StructureDefinition? dt = worker.fetchResource(StructureDefinition,
+                ProfileUtilities.sdNs(t.code, worker.getOverrideVersionNs()));
+            if (dt == null) {
+              throw makeException(
+                  expr,
+                  I18nConstants.FHIRPATH_NO_TYPE,
+                  ProfileUtilities.sdNs(t.code, worker.getOverrideVersionNs()),
+                  "getChildTypesByName");
+            }
+            addTypeAndDescendents(sdl, dt, worker.allStructures());
+          }
+        }
+      } else {
+        addTypeAndDescendents(sdl, sd, worker.allStructures());
+        if (type.contains("#")) {
+          tail = type.substring(type.indexOf("#") + 1);
+          tail = tail.substring(tail.indexOf("."));
+        }
+      }
+
+      for (var sdi in sdl) {
+        String path = "${sdi.snapshot.element[0].path}$tail.";
+
+        if (name == "**") {
+          assert(result.collectionStatus == CollectionStatus.UNORDERED);
+          for (var ed in sdi.snapshot.element) {
+            if (ed.path.startsWith(path)) {
+              for (var t in ed.type) {
+                String? tn;
+                if (t.code == "Element" || t.code == "BackboneElement") {
+                  tn = "${sdi.type}#${ed.path}";
+                } else if (t.code == "Resource") {
+                  for (var rn in worker.getResourceNames()) {
+                    if (!result.hasType(worker, rn)) {
+                      getChildTypesByName(
+                          result.addType(rn), "**", result, expr);
+                    }
+                  }
+                } else if (!result.hasType(worker, tn!)) {
+                  getChildTypesByName(result.addType(tn), "**", result, expr);
+                }
+              }
+            }
+          }
+        } else if (name == "*") {
+          assert(result.collectionStatus == CollectionStatus.UNORDERED);
+          for (var ed in sdi.snapshot.element) {
+            if (ed.path.startsWith(path) &&
+                !ed.path.substring(path.length).contains(".")) {
+              for (var t in ed.type) {
+                if (t.code == null || t.code!.isEmpty) {
+                  result.addType("System.string");
+                } else if (t.code == "Element" || t.code == "BackboneElement") {
+                  result.addType("${sdi.type}#${ed.path}");
+                } else if (t.code == "Resource") {
+                  result.addTypes(worker.getResourceNames());
+                } else {
+                  result.addType(t.code!);
+                }
+              }
+            }
+          }
+        } else {
+          path = "${sdi.snapshot.element[0].path}$tail.$name";
+          var ed =
+              getElementDefinition(sdi, path, isAllowPolymorphicNames(), expr);
+          if (ed != null) {
+            if (ed.fixedType != null) {
+              result.addType(ed.fixedType!);
+            } else {
+              for (var t in ed.definition.type) {
+                if (t.code == null || t.code!.isEmpty) {
+                  if (["Element.id", "Extension.url"]
+                          .contains(ed.definition.id) ||
+                      ["Resource.id", "Element.id", "Extension.url"]
+                          .contains(ed.definition.base.path)) {
+                    result.addType(TypeDetails.FP_NS, "string");
+                  }
+                  break;
+                }
+                ProfiledType? pt;
+                if (t.code == "Element" || t.code == "BackboneElement") {
+                  pt = ProfiledType("${sdi.url}#$path");
+                } else if (t.code == "Resource") {
+                  result.addTypes(worker.getResourceNames());
+                } else {
+                  pt = ProfiledType(t.code!);
+                }
+                if (pt != null) {
+                  if (t.profile != null) {
+                    pt.addProfiles(t.profile!);
+                  }
+                  if (ed.definition.binding != null) {
+                    pt.addBinding(ed.definition.binding!);
+                  }
+                  result.addType(pt);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  TypeDetails resolveConstantType(
+    ExecutionTypeContext context,
+    FhirBase? constant,
+    ExpressionNode expr,
+    bool explicitConstant,
+  ) {
+    if (constant is FhirBoolean) {
+      return TypeDetails(CollectionStatus.singleton, [TypeDetails.FP_Boolean]);
+    } else if (constant is FhirInteger) {
+      return TypeDetails(CollectionStatus.singleton, [TypeDetails.FP_Integer]);
+    } else if (constant is FhirDecimal) {
+      return TypeDetails(CollectionStatus.singleton, [TypeDetails.FP_Decimal]);
+    } else if (constant is Quantity) {
+      return TypeDetails(CollectionStatus.singleton, [TypeDetails.FP_Quantity]);
+    } else if (constant is FHIRConstant) {
+      return resolveConstantType(
+        context,
+        FhirString(input: constant.value),
+        expr,
+        explicitConstant,
+      );
+    } else if (constant == null) {
+      return TypeDetails(CollectionStatus.singleton);
+    } else {
+      return TypeDetails(CollectionStatus.singleton, [TypeDetails.FP_String]);
+    }
+  }
+
+  TypeDetails executeTypeNameType(
+    ExecutionTypeContext context,
+    TypeDetails focus,
+    ExpressionNode exp,
+    bool atEntry,
+  ) {
+    return TypeDetails(
+      CollectionStatus.singleton,
+      exp.name == null ? <String>[] : [exp.name!],
+    );
+  }
+
+  List<FhirBase> executeTypeNameBase(
+    ExecutionContext context,
+    List<FhirBase> focus,
+    ExpressionNode next,
+    bool atEntry,
+  ) {
+    final result = <FhirBase>[];
+    if (next.getInner() != null) {
+      result.add(
+          FhirString(input: next.name + "." + next.getInner().getName()));
+    } else {
+      result.add(new StringType(next.getName()));
+    }
+    return result;
+  }
+}

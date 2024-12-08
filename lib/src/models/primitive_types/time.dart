@@ -5,7 +5,7 @@ import 'package:yaml/yaml.dart';
 /// Extension on String to convert a String to [FhirTime].
 extension FhirTimeExtension on String {
   /// Converts a String to a [FhirTime] object.
-  FhirTime get toFhirTime => FhirTime(input: this);
+  FhirTime get toFhirTime => FhirTime(this);
 }
 
 /// Class to handle FHIR time values.
@@ -13,12 +13,12 @@ extension FhirTimeExtension on String {
 class FhirTime extends PrimitiveType<String> implements Comparable<FhirTime> {
   /// Constructor that accepts a valid [String] input representing a time and
   /// validates the input. Optionally takes an [Element].
-  FhirTime({
-    String? input,
+  FhirTime(
+    String? input,{
     super.element,
     super.id,
     super.extension_,
-  }) : super(value: _validateTime(input)) {
+  }) : super(_validateTime(input)) {
     if (value == null && element == null) {
       throw ArgumentError('A value or element is required');
     }
@@ -42,7 +42,7 @@ class FhirTime extends PrimitiveType<String> implements Comparable<FhirTime> {
         }
       }
     }
-    return FhirTime(input: timeString);
+    return FhirTime(timeString);
   }
 
   /// Factory constructor to create [FhirTime] from JSON.
@@ -50,7 +50,7 @@ class FhirTime extends PrimitiveType<String> implements Comparable<FhirTime> {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    return FhirTime(input: value, element: element);
+    return FhirTime(value, element: element);
   }
 
   /// Factory constructor to create [FhirTime] from YAML.
@@ -71,7 +71,7 @@ class FhirTime extends PrimitiveType<String> implements Comparable<FhirTime> {
   static FhirTime? tryParse(dynamic input) {
     if (input is String) {
       try {
-        return FhirTime(input: input);
+        return FhirTime(input);
       } catch (_) {
         return null;
       }
@@ -193,7 +193,7 @@ class FhirTime extends PrimitiveType<String> implements Comparable<FhirTime> {
     final rhs = other is FhirTime
         ? other
         : other is String
-            ? FhirTime(input: other)
+            ? FhirTime(other)
             : null;
 
     if (rhs == null) {
@@ -331,7 +331,7 @@ class FhirTime extends PrimitiveType<String> implements Comparable<FhirTime> {
     List<dynamic>? annotations,
   }) {
     return FhirTime(
-      input: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
@@ -347,5 +347,5 @@ class FhirTime extends PrimitiveType<String> implements Comparable<FhirTime> {
   /// Creates a clone of the current [FhirTime].
   @override
   FhirTime clone() =>
-      FhirTime(input: value, element: element?.clone() as Element?);
+      FhirTime(value, element: element?.clone() as Element?);
 }

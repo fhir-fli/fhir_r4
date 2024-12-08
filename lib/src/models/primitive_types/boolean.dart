@@ -5,18 +5,19 @@ import 'package:yaml/yaml.dart';
 /// Extension to convert a [bool] to [FhirBoolean]
 extension FhirBooleanExtension on bool {
   /// Converts a [bool] to [FhirBoolean]
-  FhirBoolean get toFhirBoolean => FhirBoolean(input: this);
+  FhirBoolean get toFhirBoolean => FhirBoolean(this);
 }
 
 /// [FhirBoolean] class representing the FHIR primitive type `boolean`
 class FhirBoolean extends PrimitiveType<bool> {
   /// Constructor with original input
-  FhirBoolean({
-    required this.input,
+  FhirBoolean(
+    // ignore: avoid_positional_boolean_parameters
+    this.input, {
     super.element,
     super.id,
     super.extension_,
-  }) : super(value: input) {
+  }) : super(input) {
     if (value == null && element == null) {
       throw ArgumentError('A value or element is required');
     }
@@ -27,7 +28,7 @@ class FhirBoolean extends PrimitiveType<bool> {
     final value = json['value'] as bool?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    return FhirBoolean(input: value, element: element);
+    return FhirBoolean(value, element: element);
   }
 
   /// Factory constructor to create a [FhirBoolean] from YAML
@@ -46,11 +47,11 @@ class FhirBoolean extends PrimitiveType<bool> {
   /// Static method to try parsing a dynamic input into [FhirBoolean]
   static FhirBoolean? tryParse(dynamic input) {
     if (input is bool) {
-      return FhirBoolean(input: input);
+      return FhirBoolean(input);
     } else if (input is String) {
       final lowerValue = input.toLowerCase();
       if (lowerValue == 'true' || lowerValue == 'false') {
-        return FhirBoolean(input: lowerValue == 'true');
+        return FhirBoolean(lowerValue == 'true');
       }
     }
     return null;
@@ -90,7 +91,7 @@ class FhirBoolean extends PrimitiveType<bool> {
       final element = elements?[i] != null
           ? Element.fromJson(elements![i] as Map<String, dynamic>)
           : null;
-      return FhirBoolean(input: value, element: element);
+      return FhirBoolean(value, element: element);
     });
   }
 
@@ -120,7 +121,7 @@ class FhirBoolean extends PrimitiveType<bool> {
   /// Creates a deep copy of the instance
   @override
   FhirBoolean clone() =>
-      FhirBoolean(input: input, element: element?.clone() as Element?);
+      FhirBoolean(input, element: element?.clone() as Element?);
 
   /// Creates a modified copy with updated properties
   @override
@@ -135,7 +136,7 @@ class FhirBoolean extends PrimitiveType<bool> {
     List<dynamic>? annotations,
   }) {
     return FhirBoolean(
-      input: newValue ?? input,
+      newValue ?? input,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

@@ -5,7 +5,7 @@ import 'package:yaml/yaml.dart';
 /// Extension to convert a [String] to a [FhirUri]
 extension FhirUriExtension on String {
   /// Converts a [String] to a [FhirUri]
-  FhirUri get toFhirUri => FhirUri(input: this);
+  FhirUri get toFhirUri => FhirUri(this);
 }
 
 /// Extension to convert a [Uri] to a [FhirUri]
@@ -17,12 +17,11 @@ extension FhirUriUriExtension on Uri {
 /// Represents a canonical URL in FHIR as a [PrimitiveType] of [Uri]
 class FhirUri extends PrimitiveType<Uri> {
   /// Constructor with validation and original input storage
-  FhirUri({
-    required this.input,
+  FhirUri(this.input,{
     super.element,
     super.id,
     super.extension_,
-  }) : super(value: input != null ? _validateCanonical(input) : null) {
+  }) : super(input != null ? _validateCanonical(input) : null) {
     if (value == null && element == null) {
       throw ArgumentError('A value or element is required');
     }
@@ -33,7 +32,7 @@ class FhirUri extends PrimitiveType<Uri> {
     Uri input, [
     Element? element,
   ]) : this(
-          input: input.toString(),
+          input.toString(),
           element: element,
         );
 
@@ -42,7 +41,7 @@ class FhirUri extends PrimitiveType<Uri> {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    return FhirUri(input: value, element: element);
+    return FhirUri(value, element: element);
   }
 
   /// Factory constructor to create [FhirUri] from YAML
@@ -63,7 +62,7 @@ class FhirUri extends PrimitiveType<Uri> {
   static FhirUri? tryParse(dynamic input) {
     if (input is String) {
       try {
-        return FhirUri(input: input);
+        return FhirUri(input);
       } catch (_) {
         return null;
       }
@@ -114,7 +113,7 @@ class FhirUri extends PrimitiveType<Uri> {
       final element = elements?[i] != null
           ? Element.fromJson(elements![i] as Map<String, dynamic>)
           : null;
-      return FhirUri(input: value, element: element);
+      return FhirUri(value, element: element);
     });
   }
 
@@ -145,7 +144,7 @@ class FhirUri extends PrimitiveType<Uri> {
   /// Clones this [FhirUri] instance
   @override
   FhirUri clone() =>
-      FhirUri(input: input, element: element?.clone() as Element?);
+      FhirUri(input, element: element?.clone() as Element?);
 
   /// Creates a modified copy with updated properties
   @override
@@ -160,7 +159,7 @@ class FhirUri extends PrimitiveType<Uri> {
     List<dynamic>? annotations,
   }) {
     return FhirUri(
-      input: newValue?.toString() ?? input,
+      newValue?.toString() ?? input,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

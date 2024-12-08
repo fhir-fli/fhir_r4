@@ -194,13 +194,13 @@ abstract class BulkRequest {
             severity: IssueSeverity.error,
             code: IssueType.invalid,
             details: CodeableConcept(
-              text: FhirString(input: 'Failed to make restful request'),
+              text: FhirString('Failed to make restful request'),
             ),
             diagnostics: FhirString(
-              input: '\nStatus Code: $statusCode -'
-                  ' ${_errorCodes[statusCode]}'
-                  '\nResult headers: ${result.headers}'
-                  '\nResult body: ${result.body}',
+              '\nStatus Code: $statusCode -'
+              ' ${_errorCodes[statusCode]}'
+              '\nResult headers: ${result.headers}'
+              '\nResult body: ${result.body}',
             ),
           ),
         ],

@@ -5,18 +5,18 @@ import 'package:yaml/yaml.dart';
 /// Extension to convert a [String] to [FhirString].
 extension FhirStringExtension on String {
   /// Returns a [FhirString] object from a [String].
-  FhirString get toFhirString => FhirString(input: this);
+  FhirString get toFhirString => FhirString(this);
 }
 
 /// [FhirString] represents a string used in FHIR resources.
 class FhirString extends PrimitiveType<String> {
   /// Constructs a [FhirString] with validation.
-  FhirString({
-    String? input,
+  FhirString(
+    super.input,{
     super.element,
     super.id,
     super.extension_,
-  }) : super(value: input) {
+  })  {
     if (value == null && element == null) {
       throw ArgumentError('A value or element is required');
     }
@@ -27,7 +27,7 @@ class FhirString extends PrimitiveType<String> {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    return FhirString(input: value, element: element);
+    return FhirString(value, element: element);
   }
 
   /// Factory constructor to create [FhirString] from YAML.
@@ -47,7 +47,7 @@ class FhirString extends PrimitiveType<String> {
   static FhirString? tryParse(dynamic input) {
     if (input is String) {
       try {
-        return FhirString(input: input);
+        return FhirString(input);
       } catch (_) {
         return null;
       }
@@ -86,7 +86,7 @@ class FhirString extends PrimitiveType<String> {
   /// Clones the current [FhirString] instance.
   @override
   FhirString clone() =>
-      FhirString(input: value, element: element?.clone() as Element?);
+      FhirString(value, element: element?.clone() as Element?);
 
   /// Creates a modified copy with updated properties.
   @override
@@ -101,7 +101,7 @@ class FhirString extends PrimitiveType<String> {
     List<dynamic>? annotations,
   }) {
     return FhirString(
-      input: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
@@ -148,7 +148,7 @@ class FhirString extends PrimitiveType<String> {
       final element = elements?[i] != null
           ? Element.fromJson(elements![i] as Map<String, dynamic>)
           : null;
-      return FhirString(input: value, element: element);
+      return FhirString(value, element: element);
     });
   }
 

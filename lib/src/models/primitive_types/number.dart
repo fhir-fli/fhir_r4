@@ -7,8 +7,8 @@ import 'package:yaml/yaml.dart';
 abstract class FhirNumber extends PrimitiveType<num?>
     implements Comparable<FhirNumber> {
   /// Constructor accepting a [num] value and an optional [element].
-  FhirNumber({
-    super.value,
+  FhirNumber(
+    super.value,{
     super.element,
     super.id,
     super.extension_,
@@ -27,13 +27,13 @@ abstract class FhirNumber extends PrimitiveType<num?>
   }) {
     return value is int
         ? FhirInteger(
-            input: value,
+            value,
             element: element,
             id: id,
             extension_: extension_,
           )
         : FhirDecimal(
-            input: value,
+            value,
             element: element,
             id: id,
             extension_: extension_,
@@ -49,13 +49,13 @@ abstract class FhirNumber extends PrimitiveType<num?>
   }) {
     return value is int
         ? FhirPositiveInt(
-            input: value,
+            value,
             element: element,
             id: id,
             extension_: extension_,
           )
         : FhirDecimal(
-            input: value,
+            value,
             element: element,
             id: id,
             extension_: extension_,
@@ -71,13 +71,13 @@ abstract class FhirNumber extends PrimitiveType<num?>
   }) {
     return value is int
         ? FhirUnsignedInt(
-            input: value,
+            value,
             element: element,
             id: id,
             extension_: extension_,
           )
         : FhirDecimal(
-            input: value,
+            value,
             element: element,
             id: id,
             extension_: extension_,

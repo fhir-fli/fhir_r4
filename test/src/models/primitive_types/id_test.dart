@@ -10,51 +10,51 @@ void main() {
 
     test('FhirId validation', () {
       // Valid FHIR IDs
-      expect(FhirId(input: 'Patient123').toString(), 'Patient123');
-      expect(FhirId(input: 'Patient123').toJson()['value'], 'Patient123');
-      expect(FhirId(input: 'Patient123').value, 'Patient123');
+      expect(FhirId('Patient123').toString(), 'Patient123');
+      expect(FhirId('Patient123').toJson()['value'], 'Patient123');
+      expect(FhirId('Patient123').value, 'Patient123');
 
-      expect(FhirId(input: 'Patient_123').toString(), 'Patient_123');
-      expect(FhirId(input: 'Patient_123').toJson()['value'], 'Patient_123');
-      expect(FhirId(input: 'Patient_123').value, 'Patient_123');
+      expect(FhirId('Patient_123').toString(), 'Patient_123');
+      expect(FhirId('Patient_123').toJson()['value'], 'Patient_123');
+      expect(FhirId('Patient_123').value, 'Patient_123');
 
       // Invalid FHIR IDs
       expect(
-        () => FhirId(input: 'http://example.com/Patient123'),
+        () => FhirId('http://example.com/Patient123'),
         throwsA(
           isA<FormatException>(),
         ),
       );
 
       expect(
-        () => FhirId(input: '___'),
+        () => FhirId('___'),
         throwsA(
           isA<FormatException>(),
         ),
       ); // Underscores as the first characters are invalid
       expect(
-        () => FhirId(input: '_Patient123'),
+        () => FhirId('_Patient123'),
         throwsA(isA<FormatException>()),
       ); // Underscore as the first character
       expect(
-        () => FhirId(input: 'Patient!123'),
+        () => FhirId('Patient!123'),
         throwsA(isA<FormatException>()),
       ); // Invalid character ('!')
       expect(
-        () => FhirId(input: ''),
+        () => FhirId(''),
         throwsA(isA<FormatException>()),
       ); // Empty string should also throw an error
     });
 
     test('Valid FhirId from String', () {
-      final fhirId = FhirId(input: validCode);
+      final fhirId = FhirId(validCode);
       expect(fhirId.value, equals(validCode));
       expect(fhirId.toString(), equals(validCode));
       expect(fhirId.toJson()['value'], equals(validCode));
     });
 
     test('Invalid FhirId throws FormatException', () {
-      expect(() => FhirId(input: invalidCode), throwsFormatException);
+      expect(() => FhirId(invalidCode), throwsFormatException);
     });
 
     test('FhirId tryParse with valid String', () {
@@ -86,26 +86,26 @@ void main() {
     });
 
     test('FhirId equality with another FhirId', () {
-      final fhirId1 = FhirId(input: validCode);
-      final fhirId2 = FhirId(input: validCode);
+      final fhirId1 = FhirId(validCode);
+      final fhirId2 = FhirId(validCode);
       expect(fhirId1 == fhirId2, isTrue);
       expect(fhirId1.equals(fhirId2), isTrue);
     });
 
     test('FhirId equality with a String', () {
-      final fhirId = FhirId(input: validCode);
+      final fhirId = FhirId(validCode);
       // ignore: unrelated_type_equality_checks
       expect(fhirId == validCode, isTrue);
     });
 
     test('FhirId inequality with a different String', () {
-      final fhirId = FhirId(input: validCode);
+      final fhirId = FhirId(validCode);
       // ignore: unrelated_type_equality_checks
       expect(fhirId == 'DIFFERENT', isFalse);
     });
 
     test('FhirId clone', () {
-      final originalCode = FhirId(input: validCode);
+      final originalCode = FhirId(validCode);
       final clonedCode = originalCode.clone();
       expect(clonedCode.value, equals(validCode));
       expect(clonedCode == originalCode, isTrue);
@@ -113,7 +113,7 @@ void main() {
     });
 
     test('FhirId copyWith new value', () {
-      final originalCode = FhirId(input: validCode);
+      final originalCode = FhirId(validCode);
       final copiedCode = originalCode.copyWith(newValue: 'NEW_CODE');
       expect(copiedCode.value, equals('NEW_CODE'));
       expect(
@@ -123,7 +123,7 @@ void main() {
     });
 
     test('FhirId toJsonString', () {
-      final fhirId = FhirId(input: validCode);
+      final fhirId = FhirId(validCode);
       expect(fhirId.toJsonString(), equals('{"value":"$validCode"}'));
     });
   });

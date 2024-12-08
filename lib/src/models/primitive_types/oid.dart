@@ -5,18 +5,18 @@ import 'package:yaml/yaml.dart';
 /// Extension to convert a [String] to [FhirOid].
 extension FhirOidExtension on String {
   /// Converts a [String] to a [FhirOid].
-  FhirOid get toFhirOid => FhirOid(input: this);
+  FhirOid get toFhirOid => FhirOid(this);
 }
 
 /// [FhirOid] represents a validated OID value in the FHIR standard.
 class FhirOid extends PrimitiveType<String> {
   /// Constructs a [FhirOid] from a String input with validation.
-  FhirOid({
-    String? input,
+  FhirOid(
+    String? input, {
     super.element,
     super.id,
     super.extension_,
-  }) : super(value: _validateOid(input)) {
+  }) : super(_validateOid(input)) {
     if (value == null && element == null) {
       throw ArgumentError('A value or element is required');
     }
@@ -27,7 +27,7 @@ class FhirOid extends PrimitiveType<String> {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    return FhirOid(input: value, element: element);
+    return FhirOid(value, element: element);
   }
 
   /// Factory constructor to create [FhirOid] from YAML.
@@ -46,7 +46,7 @@ class FhirOid extends PrimitiveType<String> {
   /// Attempts to parse the input as a [FhirOid], returns `null` if it fails.
   static FhirOid? tryParse(dynamic input) {
     try {
-      return input is String ? FhirOid(input: input) : null;
+      return input is String ? FhirOid(input) : null;
     } catch (_) {
       return null;
     }
@@ -98,8 +98,7 @@ class FhirOid extends PrimitiveType<String> {
 
   /// Clones the current [FhirOid] instance.
   @override
-  FhirOid clone() =>
-      FhirOid(input: value, element: element?.clone() as Element?);
+  FhirOid clone() => FhirOid(value, element: element?.clone() as Element?);
 
   /// Creates a modified copy with updated properties.
   @override
@@ -114,7 +113,7 @@ class FhirOid extends PrimitiveType<String> {
     List<dynamic>? annotations,
   }) {
     return FhirOid(
-      input: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
@@ -143,7 +142,7 @@ class FhirOid extends PrimitiveType<String> {
       final element = elements?[i] != null
           ? Element.fromJson(elements![i] as Map<String, dynamic>)
           : null;
-      return FhirOid(input: value, element: element);
+      return FhirOid(value, element: element);
     });
   }
 

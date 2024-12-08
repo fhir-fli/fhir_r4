@@ -9,7 +9,7 @@ class ExpressionNode {
   ExpressionNode(this.uniqueId);
 
   String uniqueId;
-  Kind? kind;
+  ExpressionNodeKind? kind;
   String? name;
   FhirBase? constant;
   FpFunction? function;
@@ -30,9 +30,9 @@ class ExpressionNode {
   String toString() {
     final b = StringBuffer();
     switch (kind) {
-      case Kind.Name:
+      case ExpressionNodeKind.name:
         b.write(name);
-      case Kind.Function:
+      case ExpressionNodeKind.function:
         if (function == FpFunction.Item) {
           b.write('[');
         } else {
@@ -51,36 +51,38 @@ class ExpressionNode {
         } else {
           b.write(')');
         }
-      case Kind.Constant:
+      case ExpressionNodeKind.constant:
         if (constant == null) {
           b.write('{}');
         } else if (constant is FhirString) {
           b.write(
-            "'${FhirPathUtilities.escapeJson((constant! as FhirString).value)}'",
+            "'${(constant! as FhirString).value!.escapeJson()}'",
           );
         } else if (constant is Quantity) {
           final q = constant! as Quantity;
-          b.write('${FhirPathUtilities.escapeJson(q.value.toString())} '
-              "'${FhirPathUtilities.escapeJson(q.unit?.value)}'");
+          b.write('${q.value.toString().escapeJson()} '
+              "'${q.unit?.value?.escapeJson()}'");
         } else if (constant is PrimitiveType &&
             (constant! as PrimitiveType).value != null) {
           b.write(
-            FhirPathUtilities.escapeJson(
-              (constant! as PrimitiveType).toJson()['value'].toString(),
-            ),
+            (constant! as PrimitiveType)
+                .toJson()['value']
+                .toString()
+                .escapeJson(),
           );
         } else {
-          b.write(FhirPathUtilities.escapeJson(constant.toString()));
+          b.write(constant.toString().escapeJson());
         }
-      case Kind.Group:
+      case ExpressionNodeKind.group:
         b.write('(');
         b.write(group.toString());
         b.write(')');
       case null:
-      case Kind.Unary:
+      case ExpressionNodeKind.unary:
     }
     if (inner != null) {
-      if (!(kind == Kind.Function && function == FpFunction.Item)) {
+      if (!(kind == ExpressionNodeKind.function &&
+          function == FpFunction.Item)) {
         b.write('.');
       }
       b.write(inner.toString());
@@ -93,15 +95,15 @@ class ExpressionNode {
 
   String summary() {
     switch (kind) {
-      case Kind.Name:
+      case ExpressionNodeKind.name:
         return '$uniqueId: $name';
-      case Kind.Function:
+      case ExpressionNodeKind.function:
         return '$uniqueId: $function()';
-      case Kind.Constant:
+      case ExpressionNodeKind.constant:
         return '$uniqueId: $constant';
-      case Kind.Group:
+      case ExpressionNodeKind.group:
         return '$uniqueId: (Group)';
-      case Kind.Unary:
+      case ExpressionNodeKind.unary:
       case null:
         return '?exp-kind?';
     }
@@ -109,11 +111,11 @@ class ExpressionNode {
 
   void write(StringBuffer b) {
     switch (kind) {
-      case Kind.Name:
+      case ExpressionNodeKind.name:
         b.write(name);
-      case Kind.Constant:
+      case ExpressionNodeKind.constant:
         b.write(constant);
-      case Kind.Function:
+      case ExpressionNodeKind.function:
         b.write(function?.toCode());
         b.write('(');
         var first = true;
@@ -125,12 +127,12 @@ class ExpressionNode {
           n.write(b);
         });
         b.write(')');
-      case Kind.Group:
+      case ExpressionNodeKind.group:
         b.write('(');
         group?.write(b);
         b.write(')');
       case null:
-      case Kind.Unary:
+      case ExpressionNodeKind.unary:
     }
     if (inner != null) {
       b.write('.');
@@ -147,11 +149,11 @@ class ExpressionNode {
       return 'Error in expression - node has no kind';
     }
     switch (kind) {
-      case Kind.Name:
-        if (FhirPathUtilities.noString(name)) {
+      case ExpressionNodeKind.name:
+        if (name?.noString() ?? true) {
           return 'No Name provided @ ${location()}';
         }
-      case Kind.Function:
+      case ExpressionNodeKind.function:
         if (function == null) {
           return 'No Function id provided @ ${location()}';
         }
@@ -161,11 +163,11 @@ class ExpressionNode {
             return msg;
           }
         }
-      case Kind.Constant:
+      case ExpressionNodeKind.constant:
         if (constant == null) {
           return 'No Constant provided @ ${location()}';
         }
-      case Kind.Group:
+      case ExpressionNodeKind.group:
         if (group == null) {
           return 'No Group provided @ ${location()}';
         } else {
@@ -174,7 +176,7 @@ class ExpressionNode {
             return msg;
           }
         }
-      case Kind.Unary:
+      case ExpressionNodeKind.unary:
       case null:
     }
     if (inner != null) {
@@ -212,7 +214,7 @@ class ExpressionNode {
   }
 }
 
-enum Kind { Name, Function, Constant, Group, Unary }
+enum ExpressionNodeKind { name, function, constant, group, unary }
 
 enum FpFunction {
   Item,

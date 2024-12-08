@@ -78,8 +78,7 @@ class TimeOfDayParser extends FhirPathParser {
   List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) =>
       <dynamic>[
         FhirTime(
-          input:
-              DateTime.now().toIso8601String().split('T').last.substring(0, 12),
+          DateTime.now().toIso8601String().split('T').last.substring(0, 12),
         ),
       ];
 

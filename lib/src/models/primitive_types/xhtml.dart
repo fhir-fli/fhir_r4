@@ -6,26 +6,26 @@ import 'package:yaml/yaml.dart';
 /// Extension to convert a [String] to a [FhirXhtml].
 extension FhirXhtmlExtension on String {
   /// Converts a [String] to a [FhirXhtml].
-  FhirXhtml get toFhirXhtml => FhirXhtml(input: this);
+  FhirXhtml get toFhirXhtml => FhirXhtml(this);
 }
 
 /// This class represents the FHIR primitive type `xhtml`.
 class FhirXhtml extends PrimitiveType<String?> {
   /// Constructor that accepts and validates an XHTML string, or allows `null`.
-  FhirXhtml({
-    String? input,
+  FhirXhtml(
+    String? input,{
     super.element,
     super.id,
     super.extension_,
-  }) : super(value: input != null ? _validateXhtml(input) : null) {
+  }) : super(input != null ? _validateXhtml(input) : null) {
     if (value == null && element == null) {
       throw ArgumentError('A value or element is required');
     }
   }
 
   /// Constructor that accepts already validated XHTML string, or `null`.
-  FhirXhtml.fromValidatedXhtml({
-    super.value,
+  FhirXhtml.fromValidatedXhtml(
+    super.value,{
     super.element,
     super.id,
     super.extension_,
@@ -36,7 +36,7 @@ class FhirXhtml extends PrimitiveType<String?> {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    return FhirXhtml(input: value, element: element);
+    return FhirXhtml(value, element: element);
   }
 
   /// Factory constructor to create [FhirXhtml] from YAML.
@@ -49,7 +49,7 @@ class FhirXhtml extends PrimitiveType<String?> {
     if (input is String) {
       try {
         final validatedString = _validateXhtml(input);
-        return FhirXhtml(input: validatedString);
+        return FhirXhtml(validatedString);
       } catch (_) {
         return null;
       }
@@ -257,7 +257,7 @@ class FhirXhtml extends PrimitiveType<String?> {
   /// Clones the object, including its [Element] value.
   @override
   FhirXhtml clone() => FhirXhtml.fromValidatedXhtml(
-        value: value,
+        value,
         element: element?.clone() as Element?,
       );
 
@@ -274,7 +274,7 @@ class FhirXhtml extends PrimitiveType<String?> {
     List<dynamic>? annotations,
   }) {
     return FhirXhtml.fromValidatedXhtml(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

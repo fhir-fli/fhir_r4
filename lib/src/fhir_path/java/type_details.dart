@@ -109,7 +109,7 @@ class TypeDetails {
         'ClassInfo',
         'SimpleTypeInfo',
       ].contains(n)) {
-        t = '$FP_NS${FhirPathUtilities.capitalize(n)}';
+        t = '$FP_NS${n.capitalize()}';
         if (typesContains(t)) {
           return true;
         }

@@ -6,21 +6,21 @@ import 'package:yaml/yaml.dart';
 extension FhirPositiveIntExtension on num {
   /// Converts a [num] to a [FhirPositiveInt].
   FhirPositiveInt get toFhirPositiveInt => this is int
-      ? FhirPositiveInt(input: this as int)
+      ? FhirPositiveInt(this as int)
       : int.tryParse(toString()) != null
-          ? FhirPositiveInt(input: int.parse(toString()))
+          ? FhirPositiveInt(int.parse(toString()))
           : throw FormatException('Invalid input for FhirPositiveInt: $this');
 }
 
 /// Represents the FHIR primitive type `integer`.
 class FhirPositiveInt extends FhirNumber {
   /// Constructor that ensures valid input.
-  FhirPositiveInt({
-    required int? input,
+  FhirPositiveInt(
+    super.input,{
     super.element,
     super.id,
     super.extension_,
-  }) : super(value: input) {
+  })  {
     if (value == null && element == null) {
       throw ArgumentError('A value or element is required');
     }
@@ -31,7 +31,7 @@ class FhirPositiveInt extends FhirNumber {
     final value = json['value'] as num?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    return FhirPositiveInt(input: value?.toInt(), element: element);
+    return FhirPositiveInt(value?.toInt(), element: element);
   }
 
   /// Factory constructor to create [FhirPositiveInt] from YAML input.
@@ -55,7 +55,7 @@ class FhirPositiveInt extends FhirNumber {
   static FhirPositiveInt? tryParse(dynamic input) {
     if (input is int) {
       try {
-        return FhirPositiveInt(input: input);
+        return FhirPositiveInt(input);
       } catch (_) {
         return null;
       }
@@ -90,7 +90,7 @@ class FhirPositiveInt extends FhirNumber {
       final element = elements?[i] != null
           ? Element.fromJson(elements![i] as Map<String, dynamic>)
           : null;
-      return FhirPositiveInt(input: value?.toInt(), element: element);
+      return FhirPositiveInt(value?.toInt(), element: element);
     });
   }
 
@@ -122,7 +122,7 @@ class FhirPositiveInt extends FhirNumber {
   /// Clones the current instance.
   @override
   FhirPositiveInt clone() => FhirPositiveInt(
-        input: value as int?,
+        value as int?,
         element: element?.clone() as Element?,
       );
 
@@ -142,7 +142,7 @@ class FhirPositiveInt extends FhirNumber {
       throw ArgumentError('Invalid input for FhirPositiveInt: $newValue');
     }
     return FhirPositiveInt(
-      input: (newValue ?? value) as int?,
+      (newValue ?? value) as int?,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

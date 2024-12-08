@@ -6,32 +6,32 @@ import 'package:yaml/yaml.dart';
 /// Extension to convert a String to a [FhirUuid].
 extension FhirUuidExtension on String {
   /// Converts a String to a [FhirUuid].
-  FhirUuid get toFhirUuid => FhirUuid(input: this);
+  FhirUuid get toFhirUuid => FhirUuid(this);
 }
 
 /// Extension to convert a UuidValue to a [FhirUuid].
 extension FhirUuidValueExtension on UuidValue {
   /// Converts a UuidValue to a [FhirUuid].
-  FhirUuid get toFhirUuid => FhirUuid.fromUuid(value: this);
+  FhirUuid get toFhirUuid => FhirUuid.fromUuid(this);
 }
 
 /// [FhirUuid] represents a validated UUID value in the FHIR standard.
 class FhirUuid extends PrimitiveType<UuidValue?> {
   /// Constructs a [FhirUuid] from a String input, allowing null values.
-  FhirUuid({
-    String? input,
+  FhirUuid(
+    String? input,{
     super.element,
     super.id,
     super.extension_,
-  }) : super(value: input != null ? _validateUuid(input) : null) {
+  }) : super(input != null ? _validateUuid(input) : null) {
     if (value == null && element == null) {
       throw ArgumentError('A value or element is required');
     }
   }
 
   /// Constructs a [FhirUuid] from a [UuidValue], allowing null values.
-  FhirUuid.fromUuid({
-    super.value,
+  FhirUuid.fromUuid(
+    super.value,{
     super.element,
     super.id,
     super.extension_,
@@ -42,7 +42,7 @@ class FhirUuid extends PrimitiveType<UuidValue?> {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    return FhirUuid(input: value, element: element);
+    return FhirUuid(value, element: element);
   }
 
   /// Factory constructor to create [FhirUuid] from YAML input.
@@ -53,13 +53,13 @@ class FhirUuid extends PrimitiveType<UuidValue?> {
   /// Factory constructor to generate a UUID using version 1.
   factory FhirUuid.v1([Element? element]) {
     const uuid = Uuid();
-    return FhirUuid(input: uuid.v1(), element: element);
+    return FhirUuid(uuid.v1(), element: element);
   }
 
   /// Factory constructor to generate a UUID using version 4.
   factory FhirUuid.v4([Element? element]) {
     const uuid = Uuid();
-    return FhirUuid(input: uuid.v4(), element: element);
+    return FhirUuid(uuid.v4(), element: element);
   }
 
   /// Factory constructor to generate a UUID using version 5.
@@ -69,14 +69,14 @@ class FhirUuid extends PrimitiveType<UuidValue?> {
     Element? element,
   }) {
     const uuid = Uuid();
-    return FhirUuid(input: uuid.v5(namespace, name), element: element);
+    return FhirUuid(uuid.v5(namespace, name), element: element);
   }
 
   /// Tries to parse a String input into a [FhirUuid].
   static FhirUuid? tryParse(dynamic input) {
     if (input is String) {
       try {
-        return FhirUuid(input: input);
+        return FhirUuid(input);
       } catch (e) {
         return null;
       }
@@ -132,7 +132,7 @@ class FhirUuid extends PrimitiveType<UuidValue?> {
     );
 
     // Return a new FhirUuid created from the resulting bytes
-    return FhirUuid(input: Uuid.unparse(resultBytes));
+    return FhirUuid(Uuid.unparse(resultBytes));
   }
 
   /// Bitwise OR operator
@@ -159,7 +159,7 @@ class FhirUuid extends PrimitiveType<UuidValue?> {
     );
 
     // Return a new FhirUuid created from the resulting bytes
-    return FhirUuid(input: Uuid.unparse(resultBytes));
+    return FhirUuid(Uuid.unparse(resultBytes));
   }
 
   /// Bitwise XOR operator
@@ -186,7 +186,7 @@ class FhirUuid extends PrimitiveType<UuidValue?> {
     );
 
     // Return a new FhirUuid created from the resulting bytes
-    return FhirUuid(input: Uuid.unparse(resultBytes));
+    return FhirUuid(Uuid.unparse(resultBytes));
   }
 
   /// Helper method to parse `other` into UUID bytes.
@@ -252,7 +252,7 @@ class FhirUuid extends PrimitiveType<UuidValue?> {
   /// Clones the [FhirUuid], including its [Element] value.
   @override
   FhirUuid clone() =>
-      FhirUuid.fromUuid(value: value, element: element?.clone() as Element?);
+      FhirUuid.fromUuid(value, element: element?.clone() as Element?);
 
   /// Creates a copy with modified properties.
   @override
@@ -267,7 +267,7 @@ class FhirUuid extends PrimitiveType<UuidValue?> {
     List<dynamic>? annotations,
   }) {
     return FhirUuid.fromUuid(
-      value: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

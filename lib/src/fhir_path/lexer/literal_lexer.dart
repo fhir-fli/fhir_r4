@@ -97,9 +97,7 @@ final Parser<DateTimeParser> DATETIME = (char('@') &
 final Parser<TimeParser> TIME =
     (char('@') & char('T') & TIMEFORMAT).flatten().map(
           (String value) => TimeParser(
-            FhirTime(
-              input: value.replaceFirst('@T', ''),
-            ),
+            FhirTime(value.replaceFirst('@T', '')),
           ),
         );
 

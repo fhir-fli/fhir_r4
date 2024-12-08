@@ -5,18 +5,18 @@ import 'package:yaml/yaml.dart';
 /// Extension to convert a [String] to [FhirMarkdown].
 extension FhirMarkdownExtension on String {
   /// Converts a [String] to a [FhirMarkdown].
-  FhirMarkdown get toFhirMarkdown => FhirMarkdown(input: this);
+  FhirMarkdown get toFhirMarkdown => FhirMarkdown(this);
 }
 
 /// This class represents the FHIR primitive type `markdown`.
 class FhirMarkdown extends PrimitiveType<String> {
   /// Constructor enforcing input validation.
-  FhirMarkdown({
-    String? input,
+  FhirMarkdown(
+    String? input,{
     super.element,
     super.id,
     super.extension_,
-  }) : super(value: _validateMarkdown(input)) {
+  }) : super(_validateMarkdown(input)) {
     if (value == null && element == null) {
       throw ArgumentError('A value or element is required');
     }
@@ -27,7 +27,7 @@ class FhirMarkdown extends PrimitiveType<String> {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    return FhirMarkdown(input: value, element: element);
+    return FhirMarkdown(value, element: element);
   }
 
   /// Factory constructor to create a [FhirMarkdown] from YAML input.
@@ -49,7 +49,7 @@ class FhirMarkdown extends PrimitiveType<String> {
   /// fails.
   static FhirMarkdown? tryParse(dynamic input) {
     try {
-      return input is String ? FhirMarkdown(input: input) : null;
+      return input is String ? FhirMarkdown(input) : null;
     } catch (_) {
       return null;
     }
@@ -101,7 +101,7 @@ class FhirMarkdown extends PrimitiveType<String> {
   /// Clones the current [FhirMarkdown] instance.
   @override
   FhirMarkdown clone() =>
-      FhirMarkdown(input: value, element: element?.clone() as Element?);
+      FhirMarkdown(value, element: element?.clone() as Element?);
 
   /// Creates a modified copy with updated properties.
   @override
@@ -116,7 +116,7 @@ class FhirMarkdown extends PrimitiveType<String> {
     List<dynamic>? annotations,
   }) {
     return FhirMarkdown(
-      input: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
@@ -145,7 +145,7 @@ class FhirMarkdown extends PrimitiveType<String> {
       final element = elements?[i] != null
           ? Element.fromJson(elements![i] as Map<String, dynamic>)
           : null;
-      return FhirMarkdown(input: value, element: element);
+      return FhirMarkdown(value, element: element);
     });
   }
 

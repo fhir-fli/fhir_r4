@@ -5,18 +5,18 @@ import 'package:yaml/yaml.dart';
 /// Extension to add `toFhirCode` method on all [String] instances
 extension FhirCodeExtension on String {
   /// Converts a [String] to a [FhirCode]
-  FhirCode get toFhirCode => FhirCode(input: this);
+  FhirCode get toFhirCode => FhirCode(this);
 }
 
 /// FHIR primitive type `code`
 class FhirCode extends PrimitiveType<String> {
   /// Constructor with input validation and storage
-  FhirCode({
-    required this.input,
+  FhirCode(
+    this.input, {
     super.element,
     super.id,
     super.extension_,
-  }) : super(value: input != null ? _validateCode(input) : null) {
+  }) : super(input != null ? _validateCode(input) : null) {
     if (value == null && element == null) {
       throw ArgumentError('A value or element is required');
     }
@@ -27,7 +27,7 @@ class FhirCode extends PrimitiveType<String> {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    return FhirCode(input: value, element: element);
+    return FhirCode(value, element: element);
   }
 
   /// Factory constructor to create a [FhirCode] from YAML
@@ -48,7 +48,7 @@ class FhirCode extends PrimitiveType<String> {
   static FhirCode? tryParse(dynamic input) {
     if (input is String) {
       try {
-        return FhirCode(input: input);
+        return FhirCode(input);
       } catch (_) {
         return null;
       }
@@ -99,7 +99,7 @@ class FhirCode extends PrimitiveType<String> {
       final element = elements?[i] != null
           ? Element.fromJson(elements![i] as Map<String, dynamic>)
           : null;
-      return FhirCode(input: value, element: element);
+      return FhirCode(value, element: element);
     });
   }
 
@@ -132,8 +132,7 @@ class FhirCode extends PrimitiveType<String> {
 
   /// Creates a deep copy of the instance
   @override
-  FhirCode clone() =>
-      FhirCode(input: input, element: element?.clone() as Element?);
+  FhirCode clone() => FhirCode(input, element: element?.clone() as Element?);
 
   /// Creates a modified copy with updated properties
   @override
@@ -148,7 +147,7 @@ class FhirCode extends PrimitiveType<String> {
     List<dynamic>? annotations,
   }) {
     return FhirCode(
-      input: newValue ?? input,
+      newValue ?? input,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,

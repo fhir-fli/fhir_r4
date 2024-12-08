@@ -1,30 +1,123 @@
 // ignore_for_file: public_member_api_docs, avoid_positional_boolean_parameters
 
-import 'dart:collection';
-
 import 'package:fhir_r4/fhir_r4.dart';
 
 import 'java.dart';
 
-class FhirPathUtilities {
-  static bool isWhitespace(dynamic value) {
-    if (value is String) {
-      return isWhitespaceString(value);
-    } else if (value is int) {
-      return isWhitespaceInt(value);
+extension FhirPathStringExtension on String {
+  String hashTail() {
+    return contains('#') ? '' : substring(lastIndexOf('/') + 1);
+  }
+
+  bool isUpperCase() {
+    return length == 1 && contains(RegExp(r'^[A-Z]$'));
+  }
+
+  bool isAbsoluteUrl() {
+    if (!contains(':')) return false;
+
+    final scheme = substring(0, indexOf(':'));
+    final details = substring(indexOf(':') + 1);
+
+    return (['http', 'https', 'urn', 'file'].contains(scheme) ||
+            (scheme.isToken() && scheme == scheme.toLowerCase()) ||
+            startsWithInList([
+              'urn:iso:',
+              'urn:iso-iec:',
+              'urn:iso-cie:',
+              'urn:iso-astm:',
+              'urn:iso-ieee:',
+              'urn:iec:',
+            ])) &&
+        details.isNotEmpty &&
+        !details.contains(' '); // rfc5141
+  }
+
+  bool startsWithInList(List<String?> list) {
+    for (final l in list) {
+      if (l != null && startsWith(l)) return true;
+    }
+    return false;
+  }
+
+  bool isToken() {
+    if (isEmpty) return false;
+    if (!this[0].isAlphabetic()) return false;
+
+    for (var i = 1; i < length; i++) {
+      final char = this[i];
+      if (!(char.isAlphabetic() ||
+          char.isDigit() ||
+          char == '_' ||
+          char == '[' ||
+          char == ']')) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  bool isAlphabetic() {
+    final code = codeUnitAt(0);
+    return (code >= 65 && code <= 90) ||
+        (code >= 97 && code <= 122); // A-Z, a-z
+  }
+
+  bool isDigit() {
+    final code = codeUnitAt(0);
+    return code >= 48 && code <= 57; // 0-9
+  }
+
+  String uncapitalize() {
+    if (isEmpty) return this;
+    if (length == 1) return toLowerCase();
+
+    return substring(0, 1).toLowerCase() + substring(1);
+  }
+
+  String sdNs(String? overrideVersionNs) {
+    if (isAbsoluteUrl()) {
+      return this;
+    } else if (overrideVersionNs != null) {
+      return [overrideVersionNs, this].pathURL();
     } else {
-      return false;
+      return 'http://hl7.org/fhir/StructureDefinition/$this';
     }
   }
 
-  static bool isWhitespaceInt(int codeUnit) {
-    return codeUnit == 0x20 ||
-        codeUnit == 0x09 ||
-        codeUnit == 0x0A ||
-        codeUnit == 0x0D;
+  String escapeJson([
+    bool escapeUnicodeWhitespace = true,
+  ]) {
+    final b = StringBuffer();
+    for (final c in runes) {
+      switch (c) {
+        case 0x0D:
+          b.write(r'\r');
+        case 0x0A:
+          b.write(r'\n');
+        case 0x09:
+          b.write(r'\t');
+        case 0x22:
+          b.write(r'\"');
+        case 0x5C:
+          b.write(r'\\');
+        case 0x20:
+          b.write(' ');
+        default:
+          if ((c == 0x0D || c == 0x0A) ||
+              (c.isWhitespace() && escapeUnicodeWhitespace)) {
+            b.write('\\u${c.toRadixString(16).padLeft(4, '0')}');
+          } else if (c < 32) {
+            b.write('\\u${c.toRadixString(16).padLeft(4, '0')}');
+          } else {
+            b.write(String.fromCharCode(c));
+          }
+      }
+    }
+    return b.toString();
   }
 
-  static bool isWhitespaceString(String ch) {
+  bool isWhiteSpace() {
     return [
       '\u0009',
       '\n',
@@ -51,15 +144,15 @@ class FhirPathUtilities {
       '\u202F',
       '\u205F',
       '\u3000',
-    ].contains(ch);
+    ].contains(this);
   }
 
-  static bool isInteger(String string) {
-    if (string.trim().isEmpty) {
+  bool isInteger() {
+    if (trim().isEmpty) {
       return false;
     }
 
-    final value = string.startsWith('-') ? string.substring(1) : string;
+    final value = startsWith('-') ? substring(1) : this;
     if (value.isEmpty) {
       return false;
     }
@@ -75,7 +168,7 @@ class FhirPathUtilities {
       return false;
     }
 
-    if (string.startsWith('-')) {
+    if (startsWith('-')) {
       if (value.length == 10 && value.compareTo('2147483648') > 0) {
         return false;
       }
@@ -88,32 +181,28 @@ class FhirPathUtilities {
     return true;
   }
 
-  static String? stripBOM(String? string) {
-    return string?.replaceAll('\uFEFF', '');
+  String stripBOM() {
+    return replaceAll('\uFEFF', '');
   }
 
-  static bool noString(String? v) {
-    return v == null || v.isEmpty;
+  bool noString() {
+    return isEmpty;
   }
 
-  static String? capitalize(String? s) {
-    if (s == null) return null;
-    if (s.isEmpty) return s;
-    if (s.length == 1) return s.toUpperCase();
+  String? capitalize() {
+    if (isEmpty) return this;
+    if (length == 1) return toUpperCase();
 
-    return s.substring(0, 1).toUpperCase() + s.substring(1);
+    return substring(0, 1).toUpperCase() + substring(1);
   }
 
-  static String? unescapeJson(String? json) {
-    if (json == null) {
-      return null;
-    }
+  String? unescapeJson() {
     final b = StringBuffer();
     var i = 0;
-    while (i < json.length) {
-      if (json[i] == r'\') {
+    while (i < length) {
+      if (this[i] == r'\') {
         i++;
-        final ch = json[i];
+        final ch = this[i];
         switch (ch) {
           case '"':
             b.write('"');
@@ -132,119 +221,52 @@ class FhirPathUtilities {
           case 't':
             b.write('\t');
           case 'u':
-            final hex = json.substring(i + 1, i + 5);
+            final hex = substring(i + 1, i + 5);
             b.write(String.fromCharCode(int.parse(hex, radix: 16)));
             i += 4;
           default:
             throw Exception('Unknown JSON escape \\$ch');
         }
       } else {
-        b.write(json[i]);
+        b.write(this[i]);
       }
       i++;
     }
     return b.toString();
   }
+}
 
-  static String escapeJson(
-    String? value, [
-    bool escapeUnicodeWhitespace = true,
-  ]) {
-    if (value == null) {
-      return '';
-    }
+extension FhirPathIntExtension on int {
+  bool isWhitespace() {
+    return this == 0x20 || this == 0x09 || this == 0x0A || this == 0x0D;
+  }
+}
 
-    final b = StringBuffer();
-    for (final c in value.runes) {
-      switch (c) {
-        case 0x0D:
-          b.write(r'\r');
-        case 0x0A:
-          b.write(r'\n');
-        case 0x09:
-          b.write(r'\t');
-        case 0x22:
-          b.write(r'\"');
-        case 0x5C:
-          b.write(r'\\');
-        case 0x20:
-          b.write(' ');
-        default:
-          if ((c == 0x0D || c == 0x0A) ||
-              (isWhitespace(c) && escapeUnicodeWhitespace)) {
-            b.write('\\u${c.toRadixString(16).padLeft(4, '0')}');
-          } else if (c < 32) {
-            b.write('\\u${c.toRadixString(16).padLeft(4, '0')}');
-          } else {
-            b.write(String.fromCharCode(c));
-          }
+extension FhirPathStringsExtension on List<String?> {
+  String pathURL() {
+    final s = StringBuffer();
+    var d = false;
+    for (final arg in this) {
+      if (arg != null) {
+        if (!d) {
+          d = !arg.noString();
+        } else if (!s.toString().endsWith('/') && !arg.startsWith('/')) {
+          s.write('/');
+        }
+        s.write(arg);
       }
     }
-    return b.toString();
+    return s.toString();
   }
+}
 
-  static bool isAbsoluteUrl(String? ref) {
-    if (ref == null || !ref.contains(':')) return false;
-
-    final scheme = ref.substring(0, ref.indexOf(':'));
-    final details = ref.substring(ref.indexOf(':') + 1);
-
-    return (['http', 'https', 'urn', 'file'].contains(scheme) ||
-            (isToken(scheme) && scheme == scheme.toLowerCase()) ||
-            startsWithInList(ref, [
-              'urn:iso:',
-              'urn:iso-iec:',
-              'urn:iso-cie:',
-              'urn:iso-astm:',
-              'urn:iso-ieee:',
-              'urn:iec:',
-            ])) &&
-        details.isNotEmpty &&
-        !details.contains(' '); // rfc5141
-  }
-
-  static bool startsWithInList(String? s, List<String?> list) {
-    if (s == null) return false;
-    for (final l in list) {
-      if (l != null && s.startsWith(l)) return true;
-    }
+bool isWhitespace(dynamic value) {
+  if (value is String) {
+    return value.isWhiteSpace();
+  } else if (value is int) {
+    return value.isWhitespace();
+  } else {
     return false;
-  }
-
-  static bool isToken(String? tail) {
-    if (tail == null || tail.isEmpty) return false;
-    if (!isAlphabetic(tail[0])) return false;
-
-    for (var i = 1; i < tail.length; i++) {
-      final char = tail[i];
-      if (!(isAlphabetic(char) ||
-          isDigit(char) ||
-          char == '_' ||
-          char == '[' ||
-          char == ']')) {
-        return false;
-      }
-    }
-    return true;
-  }
-
-  static bool isAlphabetic(String c) {
-    final code = c.codeUnitAt(0);
-    return (code >= 65 && code <= 90) ||
-        (code >= 97 && code <= 122); // A-Z, a-z
-  }
-
-  static bool isDigit(String c) {
-    final code = c.codeUnitAt(0);
-    return code >= 48 && code <= 57; // 0-9
-  }
-
-  static String? uncapitalize(String? s) {
-    if (s == null) return null;
-    if (s.isEmpty) return s;
-    if (s.length == 1) return s.toLowerCase();
-
-    return s.substring(0, 1).toLowerCase() + s.substring(1);
   }
 }
 
@@ -481,14 +503,10 @@ class ExecutionTypeContext {
 
   final Object appInfo;
   final String resource;
-  final TypeDetails context;
+  final TypeDetails? context;
   final TypeDetails thisItem;
   TypeDetails? total;
   Map<String, TypeDetails>? definedVariables;
-
-  String getResource() => resource;
-
-  TypeDetails getThisItem() => thisItem;
 
   bool hasDefinedVariable(String name) {
     return definedVariables != null && definedVariables!.containsKey(name);

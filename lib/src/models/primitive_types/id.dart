@@ -5,20 +5,18 @@ import 'package:yaml/yaml.dart';
 /// Extension to convert a [String] to a [FhirId].
 extension FhirIdExtension on String {
   /// Converts a [String] to a [FhirId].
-  FhirId get toFhirId => FhirId(input: this);
+  FhirId get toFhirId => FhirId(this);
 }
 
 /// Represents the FHIR primitive type `id`.
 class FhirId extends PrimitiveType<String> {
   /// Public constructor with input validation.
-  FhirId({
-    String? input,
+  FhirId(
+    String? input, {
     super.element,
     super.id,
     super.extension_,
-  }) : super(
-          value: input != null ? _validateId(input) : null,
-        ) {
+  }) : super(input != null ? _validateId(input) : null) {
     if (value == null && element == null) {
       throw ArgumentError('A value or element is required');
     }
@@ -29,7 +27,7 @@ class FhirId extends PrimitiveType<String> {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    return FhirId(input: value, element: element);
+    return FhirId(value, element: element);
   }
 
   /// Factory constructor to create [FhirId] from YAML input.
@@ -52,7 +50,7 @@ class FhirId extends PrimitiveType<String> {
   static FhirId? tryParse(dynamic input) {
     if (input is String) {
       try {
-        return FhirId(input: input);
+        return FhirId(input);
       } catch (_) {
         return null;
       }
@@ -105,7 +103,7 @@ class FhirId extends PrimitiveType<String> {
       final element = elements?[i] != null
           ? Element.fromJson(elements![i] as Map<String, dynamic>)
           : null;
-      return FhirId(input: value, element: element);
+      return FhirId(value, element: element);
     });
   }
 
@@ -137,7 +135,7 @@ class FhirId extends PrimitiveType<String> {
   /// Creates a deep copy of the instance.
   @override
   FhirId clone() => FhirId(
-        input: value,
+        value,
         element: element?.clone() as Element?,
       );
 
@@ -154,7 +152,7 @@ class FhirId extends PrimitiveType<String> {
     List<dynamic>? annotations,
   }) {
     return FhirId(
-      input: newValue ?? value,
+      newValue ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
