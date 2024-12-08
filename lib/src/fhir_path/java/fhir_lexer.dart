@@ -1,10 +1,6 @@
 // ignore_for_file: public_member_api_docs, avoid_positional_boolean_parameters
 
-import 'package:fhir_r4/src/fhir_path/java/expression_node.dart';
-import 'package:fhir_r4/src/fhir_path/java/fhir_path_constant.dart';
-import 'package:fhir_r4/src/fhir_path/java/fhir_path_utilities.dart';
-import 'package:fhir_r4/src/fhir_path/java/source_location.dart';
-import 'package:fhir_r4/src/fhir_path/java/type_details.dart';
+import 'java.dart';
 
 class FHIRLexer {
   FHIRLexer(String source, String? name)

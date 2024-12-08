@@ -1,9 +1,7 @@
 // ignore_for_file: public_member_api_docs, constant_identifier_names, lines_longer_than_80_chars
 
 import 'package:fhir_r4/fhir_r4.dart';
-import 'package:fhir_r4/src/fhir_path/java/fhir_path_utilities.dart';
-import 'package:fhir_r4/src/fhir_path/java/source_location.dart';
-import 'package:fhir_r4/src/fhir_path/java/type_details.dart';
+import 'java.dart';
 
 // Converted from Java to Dart
 
@@ -859,9 +857,11 @@ enum FpOperation {
   }
 }
 
-enum CollectionStatus { SINGLETON, ORDERED, UNORDERED }
+enum CollectionStatus {
+  singleton,
+  ordered,
+  unordered;
 
-extension CollectionStatusExtension on CollectionStatus {
   bool isList() =>
-      this == CollectionStatus.ORDERED || this == CollectionStatus.UNORDERED;
+      this == CollectionStatus.ordered || this == CollectionStatus.unordered;
 }

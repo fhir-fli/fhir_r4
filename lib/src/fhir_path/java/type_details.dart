@@ -2,7 +2,9 @@
 
 import 'dart:collection';
 
-import 'package:fhir_r4/src/fhir_path/java/source_location.dart';
+import 'package:fhir_r4/fhir_r4.dart';
+
+import 'java.dart';
 
 class TypeDetails {
   TypeDetails(this.collectionStatus, [List<String>? names]) {
@@ -81,6 +83,76 @@ class TypeDetails {
   bool hasType(String n) {
     final t = ProfiledType.ns(n);
     return types.any((pt) => pt.uri == t);
+  }
+
+  bool typesContains(String t) {
+    for (final pt in types) {
+      if (pt.uri == t) return true;
+    }
+    return false;
+  }
+
+  bool hasTypeFromWorker(IWorkerContext context, List<String> tn) {
+    for (final n in tn) {
+      var t = ProfiledType.ns(n);
+      if (typesContains(t)) {
+        return true;
+      }
+      if ([
+        'boolean',
+        'string',
+        'integer',
+        'decimal',
+        'Quantity',
+        'dateTime',
+        'time',
+        'ClassInfo',
+        'SimpleTypeInfo',
+      ].contains(n)) {
+        t = '$FP_NS${FhirPathUtilities.capitalize(n)}';
+        if (typesContains(t)) {
+          return true;
+        }
+      }
+    }
+
+    for (final n in tn) {
+      String? tail;
+      if (n.contains('#')) {
+        tail = n.substring(n.indexOf('#') + 1);
+        tail = tail.substring(tail.indexOf('.'));
+      }
+      final t = ProfiledType.ns(n);
+      StructureDefinition? sd = context.fetchResource<StructureDefinition>(t);
+      while (sd?.url != null) {
+        if (tail == null && typesContains(sd!.url!.toString())) {
+          return true;
+        }
+        if (tail == null &&
+            getSystemType(sd!.url!.toString()) != null &&
+            typesContains(getSystemType(sd.url!.toString())!)) {
+          return true;
+        }
+        if (tail != null && typesContains('${sd!.url}#${sd.type}$tail')) {
+          return true;
+        }
+        if (sd!.baseDefinition != null) {
+          if (sd.type.toString() == 'uri') {
+            sd = context.fetchResource<StructureDefinition>(
+              'http://hl7.org/fhir/StructureDefinition/string',
+            );
+          } else {
+            sd = context.fetchResource<StructureDefinition>(
+              sd.baseDefinition!.toString(),
+            );
+          }
+        } else {
+          sd = null;
+        }
+      }
+    }
+
+    return false;
   }
 
   bool hasTypeInSet(Set<String> tn) {
@@ -261,7 +333,7 @@ class TypeDetails {
     return true;
   }
 
-  String getSystemType(String url) {
+  String? getSystemType(String url) {
     if (url.startsWith('http://hl7.org/fhir/StructureDefinition/')) {
       final code = url.substring(40);
       if ([
@@ -276,7 +348,7 @@ class TypeDetails {
         return '${TypeDetails.FP_NS}${code[0].toUpperCase()}${code.substring(1)}';
       }
     }
-    return '';
+    return null;
   }
 }
 
@@ -317,8 +389,6 @@ class ProfiledType {
     return uri.startsWith(TypeDetails.FP_NS);
   }
 }
-
-enum CollectionStatus { singleton, ordered, unordered }
 
 class FHIRLexerException implements Exception {
   FHIRLexerException(this.message, this.location);
