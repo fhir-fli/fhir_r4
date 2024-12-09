@@ -20,6 +20,7 @@ class FhirInteger extends FhirNumber {
     super.element,
     super.id,
     super.extension_,
+    super.disallowExtensions,
   }) {
     if (value == null && element == null) {
       throw ArgumentError('A value or element is required');
@@ -126,6 +127,9 @@ class FhirInteger extends FhirNumber {
         element: element?.clone() as Element?,
       );
 
+    /// Sets disallowExtensions to true
+  FhirInteger noExtensions() => copyWith(disallowExtensions: true);
+
   /// Creates a modified copy with updated properties.
   @override
   FhirInteger copyWith({
@@ -137,6 +141,7 @@ class FhirInteger extends FhirNumber {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    bool? disallowExtensions,
   }) {
     if ((newValue ?? value) is! int) {
       throw ArgumentError('Invalid input for FhirInteger: $newValue');
@@ -152,6 +157,7 @@ class FhirInteger extends FhirNumber {
       ),
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
+      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
     );
   }
 }

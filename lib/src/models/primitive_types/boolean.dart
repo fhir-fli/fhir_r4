@@ -17,6 +17,7 @@ class FhirBoolean extends PrimitiveType<bool> {
     super.element,
     super.id,
     super.extension_,
+    super.disallowExtensions,
   }) : super(input) {
     if (value == null && element == null) {
       throw ArgumentError('A value or element is required');
@@ -123,6 +124,9 @@ class FhirBoolean extends PrimitiveType<bool> {
   FhirBoolean clone() =>
       FhirBoolean(input, element: element?.clone() as Element?);
 
+  /// Sets disallowExtensions to true
+  FhirBoolean noExtensions() => copyWith(disallowExtensions: true);
+
   /// Creates a modified copy with updated properties
   @override
   FhirBoolean copyWith({
@@ -134,6 +138,7 @@ class FhirBoolean extends PrimitiveType<bool> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    bool? disallowExtensions,
   }) {
     return FhirBoolean(
       newValue ?? input,
@@ -146,6 +151,7 @@ class FhirBoolean extends PrimitiveType<bool> {
       ),
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
+      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
     );
   }
 }

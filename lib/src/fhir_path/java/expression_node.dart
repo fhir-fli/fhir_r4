@@ -29,38 +29,33 @@ class ExpressionNode {
   @override
   String toString() {
     final b = StringBuffer();
+
     switch (kind) {
       case ExpressionNodeKind.name:
-        b.write(name);
+        b.write(name ?? 'null'); // Safeguard against null names
       case ExpressionNodeKind.function:
         if (function == FpFunction.Item) {
           b.write('[');
         } else {
           b.write('$name(');
-        }
-        var first = true;
-        parameters?.forEach((n) {
-          if (!first) {
-            b.write(', ');
-          }
-          first = false;
-          b.write(n.toString());
-        });
-        if (function == FpFunction.Item) {
-          b.write(']');
-        } else {
+          var first = true;
+          parameters?.forEach((n) {
+            if (!first) {
+              b.write(', ');
+            }
+            first = false;
+            b.write(n.toString());
+          });
           b.write(')');
         }
       case ExpressionNodeKind.constant:
         if (constant == null) {
           b.write('{}');
         } else if (constant is FhirString) {
-          b.write(
-            "'${(constant! as FhirString).value!.escapeJson()}'",
-          );
+          b.write("'${(constant! as FhirString).value!.escapeJson()}'");
         } else if (constant is Quantity) {
           final q = constant! as Quantity;
-          b.write('${q.value.toString().escapeJson()} '
+          b.write('${q.value?.toString().escapeJson()} '
               "'${q.unit?.value?.escapeJson()}'");
         } else if (constant is PrimitiveType &&
             (constant! as PrimitiveType).value != null) {
@@ -75,11 +70,13 @@ class ExpressionNode {
         }
       case ExpressionNodeKind.group:
         b.write('(');
-        b.write(group.toString());
+        b.write(group?.toString() ?? 'null');
         b.write(')');
       case null:
       case ExpressionNodeKind.unary:
+        b.write('<unary>');
     }
+
     if (inner != null) {
       if (!(kind == ExpressionNodeKind.function &&
           function == FpFunction.Item)) {
@@ -87,9 +84,11 @@ class ExpressionNode {
       }
       b.write(inner.toString());
     }
+
     if (operation != null) {
       b.write(' ${operation!.toCode()} $opNext');
     }
+
     return b.toString();
   }
 
@@ -212,6 +211,14 @@ class ExpressionNode {
     write(b);
     return b.toString();
   }
+
+  bool checkName() {
+    if (!(name?.startsWith(r'$') ?? true)) {
+      return true;
+    } else {
+      return [r'$this', r'$total', r'$index'].contains(name);
+    }
+  }
 }
 
 enum ExpressionNodeKind { name, function, constant, group, unary }
@@ -317,6 +324,7 @@ enum FpFunction {
   HasTemplateIdOf;
 
   static FpFunction? fromCode(String name) {
+    print('name: $name');
     switch (name) {
       case 'empty':
         return FpFunction.Empty;
@@ -746,7 +754,7 @@ enum FpOperation {
   Contains,
   MemberOf;
 
-  static FpOperation? fromCode(String name) {
+  static FpOperation? fromCode(String? name) {
     switch (name) {
       case '=':
         return FpOperation.Equals;

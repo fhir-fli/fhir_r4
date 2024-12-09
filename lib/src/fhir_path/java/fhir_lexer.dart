@@ -1,46 +1,26 @@
 // ignore_for_file: public_member_api_docs, avoid_positional_boolean_parameters
+// ignore_for_file: avoid_print
+
+import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/src/extensions/extensions.dart';
 
 import 'java.dart';
 
 class FHIRLexer {
-  FHIRLexer(String source, String? name)
-      : source = source.stripBOM(),
-        name = name ?? '??' {
-    currentLocation = SourceLocation(1, 1);
-    next();
-  }
-
-  FHIRLexer.withCursor(String source, int i)
-      : source = source.stripBOM(),
-        cursor = i,
-        name = '??' {
-    currentLocation = SourceLocation(1, 1);
-    next();
-  }
-
-  FHIRLexer.withCursorAndQuotes(
-    String source,
-    this.cursor,
-    this.allowDoubleQuotes,
-  )   : source = source.stripBOM(),
-        name = '??' {
-    currentLocation = SourceLocation(1, 1);
-    next();
-  }
-
-  FHIRLexer.full(
-    String source,
+  FHIRLexer({
+    String? source,
     String? name,
-    this.metadataFormat,
-    this.allowDoubleQuotes,
-  )   : source = source.stripBOM(),
+    this.cursor = 0,
+    this.metadataFormat = false,
+    this.allowDoubleQuotes = false,
+  })  : source = source == null ? '' : source.stripBOM(),
         name = name ?? '??' {
     currentLocation = SourceLocation(1, 1);
     next();
   }
 
   String source;
-  int cursor = 0;
+  int cursor;
   int currentStart = 0;
   String? current;
   List<String> comments = [];
@@ -50,11 +30,8 @@ class FHIRLexer {
   String name;
   bool liquidMode = false;
   SourceLocation? commentLocation;
-  bool metadataFormat = false;
-  bool allowDoubleQuotes = false;
-
-  String? getCurrent() => current;
-  SourceLocation getCurrentLocation() => currentLocation;
+  bool metadataFormat;
+  bool allowDoubleQuotes;
 
   bool isConstant() => FHIRPathConstant.isFHIRPathConstant(current!);
 
@@ -65,6 +42,9 @@ class FHIRLexer {
       );
 
   String take() {
+    if (current == null) {
+      throw error('No current token');
+    }
     final s = current!;
     next();
     return s;
@@ -72,7 +52,7 @@ class FHIRLexer {
 
   int takeInt() {
     final s = current!;
-    if (!s.isInteger()) {
+    if (!s.isInteger) {
       throw error(r'Found $current expecting an integer');
     }
     next();
@@ -109,23 +89,27 @@ class FHIRLexer {
     SourceLocation? loc,
   ]) {
     return FHIRLexerException(
-      'Error @${location ?? currentLocation.toString()}: $msg',
-      loc ?? currentLocation,
+      message: 'Error @${location ?? currentLocation.toString()}: $msg',
+      location: loc ?? currentLocation,
     );
   }
 
   void next() {
+    print('Lexer advanced to index $cursor');
+
     skipWhitespaceAndComments();
     current = null;
     currentStart = cursor;
     currentStartLocation = currentLocation;
+
     if (cursor < source.length) {
       final ch = source[cursor];
+
       if (['!', '>', '<', ':', '-', '='].contains(ch)) {
         cursor++;
         if (cursor < source.length &&
-                ['=', '~', '-'].contains(source[cursor]) ||
-            (ch == '-' && source[cursor] == '>')) {
+            (['=', '~', '-'].contains(source[cursor]) ||
+                (ch == '-' && source[cursor] == '>'))) {
           cursor++;
         }
         current = source.substring(currentStart, cursor);
@@ -141,7 +125,7 @@ class FHIRLexer {
         var dotted = false;
         while (cursor < source.length &&
             ((source[cursor].codeUnitAt(0) >= 48 &&
-                    source[cursor].codeUnitAt(0) <= 57) ||
+                    source[cursor].codeUnitAt(0) <= 57) || // '0'-'9'
                 (source[cursor] == '.' && !dotted))) {
           if (source[cursor] == '.') dotted = true;
           cursor++;
@@ -154,17 +138,102 @@ class FHIRLexer {
         // 'A'-'Z'
         while (cursor < source.length &&
             ((source[cursor].codeUnitAt(0) >= 65 &&
-                    source[cursor].codeUnitAt(0) <= 90) ||
+                    source[cursor].codeUnitAt(0) <= 90) || // 'A'-'Z'
                 (source[cursor].codeUnitAt(0) >= 97 &&
-                    source[cursor].codeUnitAt(0) <= 122) ||
+                    source[cursor].codeUnitAt(0) <= 122) || // 'a'-'z'
                 (source[cursor].codeUnitAt(0) >= 48 &&
-                    source[cursor].codeUnitAt(0) <= 57) ||
+                    source[cursor].codeUnitAt(0) <= 57) || // '0'-'9'
                 source[cursor] == '_')) {
           cursor++;
         }
         current = source.substring(currentStart, cursor);
+      } else if (ch == '%') {
+        cursor++;
+        if (cursor < source.length && source[cursor] == '`') {
+          cursor++;
+          while (cursor < source.length && source[cursor] != '`') {
+            cursor++;
+          }
+          cursor++;
+        } else {
+          while (cursor < source.length &&
+              ((source[cursor].codeUnitAt(0) >= 65 &&
+                      source[cursor].codeUnitAt(0) <= 90) || // 'A'-'Z'
+                  (source[cursor].codeUnitAt(0) >= 97 &&
+                      source[cursor].codeUnitAt(0) <= 122) || // 'a'-'z'
+                  (source[cursor].codeUnitAt(0) >= 48 &&
+                      source[cursor].codeUnitAt(0) <= 57) || // '0'-'9'
+                  [':', '-', '_'].contains(source[cursor]))) {
+            cursor++;
+          }
+        }
+        current = source.substring(currentStart, cursor);
+      } else if (ch == '/') {
+        cursor++;
+        if (cursor < source.length && source[cursor] == '/') {
+          cursor += 2; // Handle metadata-like pattern
+        }
+        current = source.substring(currentStart, cursor);
+      } else if (ch == r'$') {
+        cursor++;
+        while (cursor < source.length &&
+            (source[cursor].codeUnitAt(0) >= 97 &&
+                source[cursor].codeUnitAt(0) <= 122)) {
+          // 'a'-'z'
+          cursor++;
+        }
+        current = source.substring(currentStart, cursor);
+      } else if (ch == '{') {
+        cursor++;
+        if (cursor < source.length && source[cursor] == '}') {
+          cursor++;
+        }
+        current = source.substring(currentStart, cursor);
+      } else if (ch == '"' && allowDoubleQuotes) {
+        cursor++;
+        var escape = false;
+        while (cursor < source.length && (escape || source[cursor] != '"')) {
+          escape = source[cursor] == r'\' && !escape;
+          cursor++;
+        }
+        if (cursor == source.length) {
+          throw error('Unterminated string');
+        }
+        cursor++;
+        current = '"${source.substring(currentStart + 1, cursor - 1)}"';
+      } else if (ch == '`') {
+        cursor++;
+        var escape = false;
+        while (cursor < source.length && (escape || source[cursor] != '`')) {
+          escape = source[cursor] == r'\' && !escape;
+          cursor++;
+        }
+        if (cursor == source.length) {
+          throw error('Unterminated string');
+        }
+        cursor++;
+        current = '`${source.substring(currentStart + 1, cursor - 1)}`';
+      } else if (ch == "'") {
+        cursor++;
+        var escape = false;
+        while (cursor < source.length && (escape || source[cursor] != "'")) {
+          escape = source[cursor] == r'\' && !escape;
+          cursor++;
+        }
+        if (cursor == source.length) {
+          throw error('Unterminated string');
+        }
+        cursor++;
+        current = source.substring(currentStart, cursor);
+        current = "'${current!.substring(1, current!.length - 1)}'";
+      } else if (ch == '@') {
+        final start = cursor;
+        cursor++;
+        while (cursor < source.length && isDateChar(source[cursor], start)) {
+          cursor++;
+        }
+        current = source.substring(currentStart, cursor);
       } else {
-        // Handle other character cases here similar to the Java code.
         cursor++;
         current = source.substring(currentStart, cursor);
       }
@@ -176,10 +245,12 @@ class FHIRLexer {
     commentLocation = null;
     var last13 = false;
     var done = false;
+
     while (cursor < source.length && !done) {
       if (cursor < source.length - 1 &&
           source.substring(cursor, cursor + 2) == '//' &&
           !isMetadataStart()) {
+        // Single-line comment
         commentLocation ??= currentLocation.copy();
         final start = cursor + 2;
         while (cursor < source.length &&
@@ -187,7 +258,24 @@ class FHIRLexer {
           cursor++;
         }
         comments.add(source.substring(start, cursor).trim());
-      } else if (source[cursor].isWhiteSpace()) {
+      } else if (cursor < source.length - 1 &&
+          source.substring(cursor, cursor + 2) == '/*') {
+        // Multi-line comment
+        commentLocation ??= currentLocation.copy();
+        final start = cursor + 2;
+        while (cursor < source.length - 1 &&
+            source.substring(cursor, cursor + 2) != '*/') {
+          last13 = currentLocation.checkChar(source[cursor], last13);
+          cursor++;
+        }
+        if (cursor >= source.length - 1) {
+          throw error('Unfinished comment');
+        } else {
+          comments.add(source.substring(start, cursor).trim());
+          cursor += 2;
+        }
+      } else if (isWhitespace(source[cursor])) {
+        // Whitespace handling
         last13 = currentLocation.checkChar(source[cursor], last13);
         cursor++;
       } else {
@@ -199,24 +287,37 @@ class FHIRLexer {
   bool isMetadataStart() {
     return metadataFormat &&
         cursor < source.length - 2 &&
-        source.substring(cursor, cursor + 3) == '///';
+        '///' == source.substring(cursor, cursor + 3);
+  }
+
+  bool isDateChar(String ch, int start) {
+    final eot = source[start + 1] == 'T' ? 10 : 20;
+
+    return ch == '-' ||
+        ch == ':' ||
+        ch == 'T' ||
+        ch == '+' ||
+        ch == 'Z' ||
+        ch.isDigit ||
+        (cursor - start == eot &&
+            ch == '.' &&
+            cursor < source.length - 1 &&
+            source[cursor + 1].isDigit);
   }
 
   bool isOp() {
-    return FpOperation.fromCode(current!) != null;
+    return FpOperation.fromCode(current) != null;
   }
 
   bool done() {
-    return currentStart >= source.length;
+    final isDone = currentStart >= source.length;
+    print('Lexer done? $isDone');
+    return isDone;
   }
 
   int nextId() => ++id;
 
-  SourceLocation getCurrentStartLocation() => currentStartLocation;
-
   bool hasComments() => comments.isNotEmpty;
-
-  List<String> getComments() => comments;
 
   String getAllComments() {
     final b = StringBuffer();
@@ -300,14 +401,14 @@ class FHIRLexer {
             i += 4;
           default:
             throw FHIRLexerException(
-              'Unknown FHIRPath character escape \\${s[i]}',
-              currentLocation,
+              message: 'Unknown FHIRPath character escape \\${s[i]}',
+              location: currentLocation,
             );
         }
       } else {
         b.write(ch);
+        i++;
       }
-      i++;
     }
     return b.toString();
   }
@@ -343,25 +444,25 @@ class FHIRLexer {
             i += 4;
           default:
             throw FHIRLexerException(
-              'Unknown FHIRPath character escape \\${s[i]}',
-              currentLocation,
+              message: 'Unknown FHIRPath character escape \\${s[i]}',
+              location: currentLocation,
             );
         }
       } else {
         b.write(ch);
+        i++;
       }
-      i++;
     }
     return b.toString();
   }
 
   void skipToken(String token) {
-    if (getCurrent() == token) next();
+    if (current == token) next();
   }
 
   String takeDottedToken() {
     final b = StringBuffer()..write(take());
-    while (!done() && getCurrent() == '.') {
+    while (!done() && current == '.') {
       b
         ..write(take())
         ..write(take());
@@ -369,28 +470,16 @@ class FHIRLexer {
     return b.toString();
   }
 
-  int getCurrentStart() => currentStart;
-
-  String getSource() => source;
-
-  bool isLiquidMode() => liquidMode;
-
-  SourceLocation? getCommentLocation() => commentLocation;
-
-  bool isMetadataFormat() => metadataFormat;
-
   List<String> cloneComments() {
-    return List.from(getComments());
+    return List.from(comments);
   }
 
   String? tokenWithTrailingComment(String token) {
-    final line = getCurrentLocation().line;
+    final line = currentLocation.line;
     this.token(token);
-    if (getComments().isNotEmpty && getCommentLocation()!.line == line) {
+    if (comments.isNotEmpty && commentLocation!.line == line) {
       return getFirstComment();
     }
     return null;
   }
-
-  bool isAllowDoubleQuotes() => allowDoubleQuotes;
 }

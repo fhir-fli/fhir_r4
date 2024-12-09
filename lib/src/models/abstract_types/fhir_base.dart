@@ -106,7 +106,7 @@ abstract class FhirBase {
       (formatCommentsPost?.isNotEmpty ?? false);
 
   /// Lists all children as properties.
-  List<Property> listChildren() {
+  List<Property> listChildren([List<Property>? children]) {
     // Subclasses should override this to return their specific children.
     return <Property>[];
   }
@@ -114,6 +114,34 @@ abstract class FhirBase {
   /// Retrieves a property by name.
   Property? getChildByName(String name) {
     return listChildren().firstWhereOrNull((property) => property.name == name);
+  }
+
+  /// Retrieves a property by name.
+  List<FhirBase> listChildrenByName(String name) {
+    final result = <FhirBase>[];
+    for (final b in listChildrenByNameValid(name, true)) {
+      if (b != null) {
+        result.add(b);
+      }
+    }
+    return result;
+  }
+
+  /// Retrieves a property by name.
+  // ignore: avoid_positional_boolean_parameters
+  List<FhirBase?> listChildrenByNameValid(String name, bool checkValid) {
+    if (name == '*') {
+      // Collect all child values for wildcard name
+      final children = <Property>[];
+      listChildren(children); // Populate the list of children
+      final result = <FhirBase?>[];
+      for (final c in children) {
+        result.addAll(c.getValues()); // Add all values from each property
+      }
+      return result;
+    } else {
+      throw ArgumentError('Invalid name: $name');
+    }
   }
 
   /// Deep equality check.

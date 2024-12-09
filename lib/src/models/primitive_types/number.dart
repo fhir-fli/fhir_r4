@@ -12,6 +12,7 @@ abstract class FhirNumber extends PrimitiveType<num?>
     super.element,
     super.id,
     super.extension_,
+    super.disallowExtensions,
   }) {
     if (value == null && element == null) {
       throw ArgumentError('A value or element is required');

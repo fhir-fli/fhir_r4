@@ -8,6 +8,7 @@ abstract class PrimitiveType<T> extends DataType {
     this.element,
     super.id,
     super.extension_,
+    super.disallowExtensions,
   });
 
   @override

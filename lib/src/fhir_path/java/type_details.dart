@@ -427,13 +427,3 @@ class ProfiledType {
     return uri.startsWith(TypeDetails.FP_NS);
   }
 }
-
-class FHIRLexerException implements Exception {
-  FHIRLexerException(this.message, this.location);
-
-  final String message;
-  final SourceLocation location;
-
-  @override
-  String toString() => 'FHIRLexerException: $message';
-}

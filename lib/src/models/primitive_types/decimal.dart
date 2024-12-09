@@ -16,6 +16,7 @@ class FhirDecimal extends FhirNumber {
     super.element,
     super.id,
     super.extension_,
+    super.disallowExtensions,
   })  : isInt = input is int,
         super(input?.toDouble()) {
     if (value == null && element == null) {
@@ -153,6 +154,9 @@ class FhirDecimal extends FhirNumber {
   FhirDecimal clone() =>
       FhirDecimal(input, element: element?.clone() as Element?);
 
+        /// Sets disallowExtensions to true
+  FhirDecimal noExtensions() => copyWith(disallowExtensions: true);
+
   /// Creates a modified copy with updated properties.
   @override
   FhirDecimal copyWith({
@@ -164,6 +168,7 @@ class FhirDecimal extends FhirNumber {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    bool? disallowExtensions,
   }) {
     return FhirDecimal(
       newValue ?? input,
@@ -176,6 +181,7 @@ class FhirDecimal extends FhirNumber {
       ),
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
+      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
     );
   }
 }

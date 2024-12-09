@@ -16,6 +16,7 @@ class FhirString extends PrimitiveType<String> {
     super.element,
     super.id,
     super.extension_,
+    super.disallowExtensions,
   }) {
     if (value == null && element == null) {
       throw ArgumentError('A value or element is required');
@@ -88,6 +89,9 @@ class FhirString extends PrimitiveType<String> {
   FhirString clone() =>
       FhirString(value, element: element?.clone() as Element?);
 
+  /// Sets disallowExtensions to true
+  FhirString noExtensions() => copyWith(disallowExtensions: true);
+
   /// Creates a modified copy with updated properties.
   @override
   FhirString copyWith({
@@ -99,6 +103,7 @@ class FhirString extends PrimitiveType<String> {
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
+    bool? disallowExtensions,
   }) {
     return FhirString(
       newValue ?? value,
@@ -111,6 +116,7 @@ class FhirString extends PrimitiveType<String> {
       ),
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
+      disallowExtensions: disallowExtensions ?? this.disallowExtensions,
     );
   }
 
