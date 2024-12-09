@@ -323,7 +323,7 @@ class FHIRPathEngine {
       // Handle the second function's logic
       var context = typeContextForParameter(contextOrType);
       final focus = focusOrExp;
-      var result = TypeDetails(null);
+      TypeDetails? result = TypeDetails(null);
 
       switch (exp.kind) {
         case ExpressionNodeKind.name:
@@ -391,11 +391,17 @@ class FHIRPathEngine {
           } else {
             work = executeType(context, focus, next, atEntry);
           }
+          if (result == null) {
+            throw ArgumentError('result is null');
+          }
           result = operateTypes(result, last.operation!, work, last);
           last = next;
           next = next.opNext;
         }
         exp.opTypes = result;
+      }
+      if (result == null) {
+        throw ArgumentError('result is null');
       }
       return result;
     } else {
@@ -596,7 +602,7 @@ class FHIRPathEngine {
     }
   }
 
-  TypeDetails anything(CollectionStatus status) {
+  TypeDetails anything(CollectionStatus? status) {
     return TypeDetails(status, allTypes.keys.toList());
   }
 
@@ -885,8 +891,7 @@ class FHIRPathEngine {
           ..function = f;
         lexer.next();
         while (lexer.current != ')') {
-          result.parameters ??= [];
-          result.parameters!.add(_parseExpression(lexer, true));
+          result.parameters.add(_parseExpression(lexer, true));
           if (lexer.current == ',') {
             lexer.next();
           } else if (lexer.current != ')') {
@@ -909,8 +914,7 @@ class FHIRPathEngine {
       final item = ExpressionNode(lexer.nextId().toString())
         ..kind = ExpressionNodeKind.function
         ..function = FpFunction.Item
-        ..parameters ??= []
-        ..parameters!.add(_parseExpression(lexer, true));
+        ..parameters.add(_parseExpression(lexer, true));
       if (lexer.current != ']') {
         throw lexer.error(
           'The token ${lexer.current} is not expected here - a "]" expected',
@@ -926,16 +930,45 @@ class FHIRPathEngine {
     }
     result.proximal = proximal;
     if (proximal) {
+      print('is proximal');
       while (lexer.isOp()) {
+        print('Before attaching operation');
+        print('focus');
+        focus.printExpressionTree();
+        print('result');
+        result.printExpressionTree();
+
         focus
           ..operation = FpOperation.fromCode(lexer.current)
           ..opStart = lexer.currentStartLocation
           ..opEnd = lexer.currentLocation;
+
+        print('After attaching operation');
+        print('focus');
+        focus.printExpressionTree();
+        print('result');
+        result.printExpressionTree();
         lexer.next();
         focus.opNext = _parseExpression(lexer, false);
         focus = focus.opNext!;
+        print('Next attaching operation');
+        print('focus');
+        focus.printExpressionTree();
+        print('result');
+        result.printExpressionTree();
       }
+
+      print('Before Organise Precedence');
+      print('focus');
+      focus.printExpressionTree();
+      print('result');
+      result.printExpressionTree();
       result = organisePrecedence(lexer, result);
+      print('After Organise Precedence');
+      print('focus');
+      focus.printExpressionTree();
+      print('result');
+      result.printExpressionTree();
     }
     if (wrapper != null) {
       wrapper.opNext = result;
@@ -946,6 +979,7 @@ class FHIRPathEngine {
   }
 
   ExpressionNode organisePrecedence(FHIRLexer lexer, ExpressionNode oldNode) {
+    print('oldNode: $oldNode');
     var node = oldNode;
     node = gatherPrecedence(lexer, node, {
       FpOperation.Times,
@@ -974,7 +1008,7 @@ class FHIRPathEngine {
     });
     node = gatherPrecedence(lexer, node, {FpOperation.And});
     node = gatherPrecedence(lexer, node, {FpOperation.Xor, FpOperation.Or});
-    // Last: implies
+    print('node: $node');
     return node;
   }
 
@@ -1349,7 +1383,7 @@ class FHIRPathEngine {
     ExpressionNode exp,
     int count,
   ) {
-    if (exp.parameters?.length != count) {
+    if (exp.parameters.length != count) {
       throw lexer
           .error('The function "${exp.name}" requires $count parameters');
     }
@@ -1366,8 +1400,7 @@ class FHIRPathEngine {
     if (countMin == null || countMax == null) {
       throw ArgumentError('countMin and countMax cannot be null');
     }
-    if ((exp.parameters?.length ?? 0) < countMin ||
-        (exp.parameters?.length ?? 0) > countMax) {
+    if (exp.parameters.length < countMin || exp.parameters.length > countMax) {
       throw lexer
           .error('The function "${exp.name}" requires between $countMin and'
               ' $countMax parameters');
@@ -1413,10 +1446,16 @@ class FHIRPathEngine {
       );
     } else {
       var i = 0;
-      for (final expr in exp.parameters ?? <ExpressionNode>[]) {
+      for (final expr in exp.parameters) {
         if (isExpressionParameter(exp, i)) {
-          paramTypes
-              .add(executeType(changeThis(context, focus), focus, expr, true));
+          paramTypes.add(
+            executeType(
+              changeThisTypeContext(context, focus),
+              focus,
+              expr,
+              true,
+            ),
+          );
         } else {
           paramTypes.add(executeType(context, context.thisItem, expr, true));
         }
@@ -1438,18 +1477,24 @@ class FHIRPathEngine {
           exp,
           exp.function.toString(),
           paramTypes,
-          focus,
+          [focus],
         );
         return TypeDetails(
-            CollectionStatus.singleton, [TypeDetails.FP_Boolean]);
+          CollectionStatus.singleton,
+          [TypeDetails.FP_Boolean],
+        );
       case FpFunction.IsDistinct:
         return TypeDetails(
-            CollectionStatus.singleton, [TypeDetails.FP_Boolean]);
+          CollectionStatus.singleton,
+          [TypeDetails.FP_Boolean],
+        );
       case FpFunction.Distinct:
         return focus;
       case FpFunction.Count:
         return TypeDetails(
-            CollectionStatus.singleton, [TypeDetails.FP_Integer]);
+          CollectionStatus.singleton,
+          [TypeDetails.FP_Integer],
+        );
       case FpFunction.Where:
       case FpFunction.Select:
       case FpFunction.Repeat:
@@ -1457,52 +1502,72 @@ class FHIRPathEngine {
         return anything(focus.collectionStatus);
       case FpFunction.All:
         return TypeDetails(
-            CollectionStatus.singleton, [TypeDetails.FP_Boolean]);
+          CollectionStatus.singleton,
+          [TypeDetails.FP_Boolean],
+        );
       case FpFunction.Item:
-        checkOrdered(focus, "item", exp);
+        checkOrdered(focus, 'item', exp);
         checkParamTypes(
           exp,
           exp.function.toString(),
           paramTypes,
-          TypeDetails(CollectionStatus.singleton, [TypeDetails.FP_Integer]),
+          [
+            TypeDetails(CollectionStatus.singleton, [TypeDetails.FP_Integer]),
+          ],
         );
         return focus;
-      case FpFunction.As_:
+      case FpFunction.As:
       case FpFunction.OfType:
         checkParamTypes(
           exp,
           exp.function.toString(),
           paramTypes,
-          TypeDetails(CollectionStatus.singleton, [TypeDetails.FP_String]),
+          [
+            TypeDetails(CollectionStatus.singleton, [TypeDetails.FP_String]),
+          ],
         );
         return TypeDetails(
-            CollectionStatus.singleton, [exp.parameters.first.name]);
+          CollectionStatus.singleton,
+          exp.parameters.isEmpty || exp.parameters.first.name == null
+              ? []
+              : [exp.parameters.first.name!],
+        );
       case FpFunction.Type:
-        bool hasSystemType = false;
-        bool hasCustomType = false;
-        for (final pt in focus.profiledTypes) {
-          hasSystemType = hasSystemType || pt.isSystemType;
-          hasCustomType = hasCustomType || !pt.isSystemType;
+        var hasSystemType = false;
+        var hasCustomType = false;
+        for (final pt in focus.types) {
+          hasSystemType = hasSystemType || pt.isSystemType();
+          hasCustomType = hasCustomType || !pt.isSystemType();
         }
         if (hasSystemType && hasCustomType) {
-          return TypeDetails(CollectionStatus.singleton,
-              [TypeDetails.FP_SimpleTypeInfo, TypeDetails.FP_ClassInfo]);
+          return TypeDetails(
+            CollectionStatus.singleton,
+            [TypeDetails.FP_SimpleTypeInfo, TypeDetails.FP_ClassInfo],
+          );
         } else if (hasSystemType) {
           return TypeDetails(
-              CollectionStatus.singleton, [TypeDetails.FP_SimpleTypeInfo]);
+            CollectionStatus.singleton,
+            [TypeDetails.FP_SimpleTypeInfo],
+          );
         } else {
           return TypeDetails(
-              CollectionStatus.singleton, [TypeDetails.FP_ClassInfo]);
+            CollectionStatus.singleton,
+            [TypeDetails.FP_ClassInfo],
+          );
         }
       case FpFunction.Is:
         checkParamTypes(
           exp,
           exp.function.toString(),
           paramTypes,
-          TypeDetails(CollectionStatus.singleton, [TypeDetails.FP_String]),
+          [
+            TypeDetails(CollectionStatus.singleton, [TypeDetails.FP_String]),
+          ],
         );
         return TypeDetails(
-            CollectionStatus.singleton, [TypeDetails.FP_Boolean]);
+          CollectionStatus.singleton,
+          [TypeDetails.FP_Boolean],
+        );
       case FpFunction.Single:
         return focus.toSingleton();
       case FpFunction.First:
@@ -1517,7 +1582,9 @@ class FHIRPathEngine {
           exp,
           exp.function.toString(),
           paramTypes,
-          TypeDetails(CollectionStatus.singleton, [TypeDetails.FP_Integer]),
+          [
+            TypeDetails(CollectionStatus.singleton, [TypeDetails.FP_Integer]),
+          ],
         );
         return focus;
       case FpFunction.Union:
@@ -1529,12 +1596,14 @@ class FHIRPathEngine {
         return focus;
       case FpFunction.Iif:
         final types = TypeDetails(null);
-        checkSingleton(focus, "iif", exp);
+        checkSingleton(focus, 'iif', exp);
         checkParamTypes(
           exp,
           exp.function.toString(),
           paramTypes,
-          TypeDetails(CollectionStatus.singleton, [TypeDetails.FP_Boolean]),
+          [
+            TypeDetails(CollectionStatus.singleton, [TypeDetails.FP_Boolean]),
+          ],
         );
         types.update(paramTypes[1]);
         if (paramTypes.length > 2) {
@@ -1560,27 +1629,37 @@ class FHIRPathEngine {
           exp,
           exp.function.toString(),
           paramTypes,
-          TypeDetails(CollectionStatus.singleton, [TypeDetails.FP_String]),
+          [
+            TypeDetails(CollectionStatus.singleton, [TypeDetails.FP_String]),
+          ],
         );
         return TypeDetails(
-            CollectionStatus.singleton, [TypeDetails.FP_Boolean]);
+          CollectionStatus.singleton,
+          [TypeDetails.FP_Boolean],
+        );
       case FpFunction.Length:
-        checkContextPrimitive(focus, "length", false, exp);
+        checkContextPrimitive(focus, 'length', false, exp);
         return TypeDetails(
-            CollectionStatus.singleton, [TypeDetails.FP_Integer]);
+          CollectionStatus.singleton,
+          [TypeDetails.FP_Integer],
+        );
       case FpFunction.Children:
       case FpFunction.Descendants:
         return childTypes(focus, exp.function.toString(), exp);
       case FpFunction.MemberOf:
-        checkContextCoded(focus, "memberOf", exp);
+        checkContextCoded(focus, 'memberOf', exp);
         checkParamTypes(
           exp,
           exp.function.toString(),
           paramTypes,
-          TypeDetails(CollectionStatus.singleton, [TypeDetails.FP_String]),
+          [
+            TypeDetails(CollectionStatus.singleton, [TypeDetails.FP_String]),
+          ],
         );
         return TypeDetails(
-            CollectionStatus.singleton, [TypeDetails.FP_Boolean]);
+          CollectionStatus.singleton,
+          [TypeDetails.FP_Boolean],
+        );
       case FpFunction.Trace:
       case FpFunction.DefineVariable:
       case FpFunction.Check:
@@ -1588,24 +1667,30 @@ class FHIRPathEngine {
           exp,
           exp.function.toString(),
           paramTypes,
-          TypeDetails(CollectionStatus.unordered, [TypeDetails.FP_String]),
+          [
+            TypeDetails(CollectionStatus.unordered, [TypeDetails.FP_String]),
+          ],
         );
         return focus;
       case FpFunction.Today:
       case FpFunction.Now:
         return TypeDetails(
-            CollectionStatus.singleton, [TypeDetails.FP_DateTime]);
+          CollectionStatus.singleton,
+          [TypeDetails.FP_DateTime],
+        );
       case FpFunction.Resolve:
-        checkContextReference(focus, "resolve", exp);
-        return TypeDetails(CollectionStatus.singleton, ["DomainResource"]);
+        checkContextReference(focus, 'resolve', exp);
+        return TypeDetails(CollectionStatus.singleton, ['DomainResource']);
       case FpFunction.Extension:
         checkParamTypes(
           exp,
           exp.function.toString(),
           paramTypes,
-          TypeDetails(CollectionStatus.singleton, [TypeDetails.FP_String]),
+          [
+            TypeDetails(CollectionStatus.singleton, [TypeDetails.FP_String]),
+          ],
         );
-        return TypeDetails(CollectionStatus.singleton, ["Extension"]);
+        return TypeDetails(CollectionStatus.singleton, ['Extension']);
       case FpFunction.ToInteger:
       case FpFunction.ToDecimal:
       case FpFunction.ToString:
@@ -1617,10 +1702,64 @@ class FHIRPathEngine {
       case FpFunction.ToTime:
         checkContextPrimitive(focus, exp.function.toString(), false, exp);
         return TypeDetails(
-            CollectionStatus.singleton, [TypeDetails.FP_DateTime]);
+          CollectionStatus.singleton,
+          [TypeDetails.FP_DateTime],
+        );
       case FpFunction.Custom:
-        return hostServices.checkFunction(
-            this, context.appInfo, exp.name ?? 'custom', focus, paramTypes);
+        if (hostServices == null) {
+          throw makeException(
+            exp,
+            'FHIRPATH_NO_HOST_SERVICES',
+            ['Custom Function'],
+          );
+        }
+        return hostServices!.checkFunction(
+          this,
+          context.appInfo,
+          exp.name ?? 'custom',
+          focus,
+          paramTypes,
+        );
+      case null:
+      case FpFunction.AllFalse:
+      case FpFunction.AnyFalse:
+      case FpFunction.AllTrue:
+      case FpFunction.AnyTrue:
+      case FpFunction.HasValue:
+      case FpFunction.ConvertsToBoolean:
+      case FpFunction.ConvertsToInteger:
+      case FpFunction.ConvertsToString:
+      case FpFunction.ConvertsToDecimal:
+      case FpFunction.ConvertsToQuantity:
+      case FpFunction.ConvertsToDateTime:
+      case FpFunction.ConvertsToDate:
+      case FpFunction.ConvertsToTime:
+      case FpFunction.ConformsTo:
+      case FpFunction.Round:
+      case FpFunction.Sqrt:
+      case FpFunction.Abs:
+      case FpFunction.Ceiling:
+      case FpFunction.Exp:
+      case FpFunction.Floor:
+      case FpFunction.Ln:
+      case FpFunction.Log:
+      case FpFunction.Power:
+      case FpFunction.Truncate:
+      case FpFunction.Encode:
+      case FpFunction.Decode:
+      case FpFunction.Escape:
+      case FpFunction.Unescape:
+      case FpFunction.Trim:
+      case FpFunction.Split:
+      case FpFunction.Join:
+      case FpFunction.LowBoundary:
+      case FpFunction.HighBoundary:
+      case FpFunction.Precision:
+      case FpFunction.HtmlChecks1:
+      case FpFunction.HtmlChecks2:
+      case FpFunction.Comparable:
+      case FpFunction.HasTemplateIdOf:
+        throw UnimplementedError();
     }
   }
 
@@ -1657,24 +1796,32 @@ class FHIRPathEngine {
     ExpressionNode expr,
     bool explicitConstant,
   ) {
-    if (constant is BooleanType) {
-      return TypeDetails(CollectionStatus.singleton, [TypeDetails.fpBoolean]);
-    } else if (constant is IntegerType) {
-      return TypeDetails(CollectionStatus.singleton, [TypeDetails.fpInteger]);
-    } else if (constant is DecimalType) {
-      return TypeDetails(CollectionStatus.singleton, [TypeDetails.fpDecimal]);
+    if (constant is FhirBoolean) {
+      return TypeDetails(CollectionStatus.singleton, [TypeDetails.FP_Boolean]);
+    } else if (constant is FhirInteger) {
+      return TypeDetails(CollectionStatus.singleton, [TypeDetails.FP_Integer]);
+    } else if (constant is FhirDecimal) {
+      return TypeDetails(CollectionStatus.singleton, [TypeDetails.FP_Decimal]);
     } else if (constant is Quantity) {
-      return TypeDetails(CollectionStatus.singleton, [TypeDetails.fpQuantity]);
+      return TypeDetails(CollectionStatus.singleton, [TypeDetails.FP_Quantity]);
     } else if (constant is FHIRConstant) {
       return resolveConstantType(
-          context, constant.value, expr, explicitConstant);
+        context,
+        constant.value,
+        expr,
+        explicitConstant,
+      );
     } else if (constant == null) {
       return TypeDetails(CollectionStatus.singleton);
     } else if (constant is String) {
       return resolveStringConstantType(
-          context, constant, expr, explicitConstant);
+        context,
+        constant,
+        expr,
+        explicitConstant,
+      );
     } else {
-      return TypeDetails(CollectionStatus.singleton, [TypeDetails.fpString]);
+      return TypeDetails(CollectionStatus.singleton, [TypeDetails.FP_String]);
     }
   }
 
@@ -1684,35 +1831,52 @@ class FHIRPathEngine {
     ExpressionNode expr,
     bool explicitConstant,
   ) {
-    if (s.startsWith("@")) {
-      if (s.startsWith("@T")) {
-        return TypeDetails(CollectionStatus.singleton, [TypeDetails.fpTime]);
+    if (s.startsWith('@')) {
+      if (s.startsWith('@T')) {
+        return TypeDetails(CollectionStatus.singleton, [TypeDetails.FP_Time]);
       } else {
         return TypeDetails(
-            CollectionStatus.singleton, [TypeDetails.fpDateTime]);
+          CollectionStatus.singleton,
+          [TypeDetails.FP_DateTime],
+        );
       }
-    } else if (s == "%sct" ||
-        s == "%loinc" ||
-        s == "%ucum" ||
-        s == "%map-codes" ||
-        s == "%us-zip" ||
-        s.startsWith("%`vs-") ||
-        s.startsWith("%`cs-") ||
-        s.startsWith("%`ext-")) {
-      return TypeDetails(CollectionStatus.singleton, [TypeDetails.fpString]);
-    } else if (s == "%resource") {
+    } else if (s == '%sct' ||
+        s == '%loinc' ||
+        s == '%ucum' ||
+        s == '%map-codes' ||
+        s == '%us-zip' ||
+        s.startsWith('%`vs-') ||
+        s.startsWith('%`cs-') ||
+        s.startsWith('%`ext-')) {
+      return TypeDetails(CollectionStatus.singleton, [TypeDetails.FP_String]);
+    } else if (s == '%resource') {
       if (context.resource == null) {
-        throw makeException(expr, I18nConstants.fhirpathCannotUse, "%resource",
-            "no focus resource");
+        throw makeException(
+          expr,
+          'FHIRPATH_CANNOT_USE',
+          ['%resource', 'no focus resource'],
+        );
       }
-      return TypeDetails(CollectionStatus.singleton, [context.resource]);
-    } else if (s == "%rootResource") {
+      return TypeDetails(
+        CollectionStatus.singleton,
+        context.resource == null ? <String>[] : [context.resource!],
+      );
+    } else if (s == '%rootResource') {
       if (context.resource == null) {
-        throw makeException(expr, I18nConstants.fhirpathCannotUse,
-            "%rootResource", "no focus resource");
+        throw makeException(
+          expr,
+          'FHIRPATH_CANNOT_USE',
+          [
+            '%rootResource',
+            'no focus resource',
+          ],
+        );
       }
-      return TypeDetails(CollectionStatus.singleton, [context.resource]);
-    } else if (s == "%context") {
+      return TypeDetails(
+        CollectionStatus.singleton,
+        context.resource == null ? <String>[] : [context.resource!],
+      );
+    } else if (s == '%context') {
       return context.context!;
     } else {
       return resolveVariableOrHostService(context, s, expr, explicitConstant);
@@ -1736,7 +1900,7 @@ class FHIRPathEngine {
     }
   }
 
-  TypeDetails operateTypes(
+  TypeDetails? operateTypes(
     TypeDetails left,
     FpOperation operation,
     TypeDetails right,
@@ -1772,64 +1936,71 @@ class FHIRPathEngine {
         return left.union(right);
       case FpOperation.Times:
         final result = TypeDetails(CollectionStatus.singleton);
-        if (left.hasType(worker, ['integer']) &&
-            right.hasType(worker, ['integer'])) {
-          result.addType(TypeDetails.fpInteger);
-        } else if (left.hasType(worker, ['integer', 'decimal']) &&
-            right.hasType(worker, ['integer', 'decimal'])) {
-          result.addType(TypeDetails.fpDecimal);
+        if (left.hasTypeFromWorker(worker, ['integer']) &&
+            right.hasTypeFromWorker(worker, ['integer'])) {
+          result.addType(TypeDetails.FP_Integer);
+        } else if (left.hasTypeFromWorker(worker, ['integer', 'decimal']) &&
+            right.hasTypeFromWorker(worker, ['integer', 'decimal'])) {
+          result.addType(TypeDetails.FP_Decimal);
         }
         return result;
       case FpOperation.DivideBy:
         final result = TypeDetails(CollectionStatus.singleton);
-        if (left.hasType(worker, ['integer']) &&
-            right.hasType(worker, ['integer'])) {
-          result.addType(TypeDetails.fpDecimal);
-        } else if (left.hasType(worker, ['integer', 'decimal']) &&
-            right.hasType(worker, ['integer', 'decimal'])) {
-          result.addType(TypeDetails.fpDecimal);
+        if (left.hasTypeFromWorker(worker, ['integer']) &&
+            right.hasTypeFromWorker(worker, ['integer'])) {
+          result.addType(TypeDetails.FP_Decimal);
+        } else if (left.hasTypeFromWorker(worker, ['integer', 'decimal']) &&
+            right.hasTypeFromWorker(worker, ['integer', 'decimal'])) {
+          result.addType(TypeDetails.FP_Decimal);
         }
         return result;
       case FpOperation.Concatenate:
-        return TypeDetails(CollectionStatus.singleton, [TypeDetails.fpString]);
+        return TypeDetails(CollectionStatus.singleton, [TypeDetails.FP_String]);
       case FpOperation.Plus:
         final result = TypeDetails(CollectionStatus.singleton);
-        if (left.hasType(worker, ['integer']) &&
-            right.hasType(worker, ['integer'])) {
-          result.addType(TypeDetails.fpInteger);
-        } else if (left.hasType(worker, ['integer', 'decimal']) &&
-            right.hasType(worker, ['integer', 'decimal'])) {
-          result.addType(TypeDetails.fpDecimal);
-        } else if (left.hasType(worker, ['string', 'id', 'code', 'uri']) &&
-            right.hasType(worker, ['string', 'id', 'code', 'uri'])) {
-          result.addType(TypeDetails.fpString);
-        } else if (left.hasType(worker, ['date', 'dateTime', 'instant'])) {
-          if (right.hasType(worker, ['Quantity'])) {
+        if (left.hasTypeFromWorker(worker, ['integer']) &&
+            right.hasTypeFromWorker(worker, ['integer'])) {
+          result.addType(TypeDetails.FP_Integer);
+        } else if (left.hasTypeFromWorker(worker, ['integer', 'decimal']) &&
+            right.hasTypeFromWorker(worker, ['integer', 'decimal'])) {
+          result.addType(TypeDetails.FP_Decimal);
+        } else if (left.hasTypeFromWorker(
+              worker,
+              ['string', 'id', 'code', 'uri'],
+            ) &&
+            right.hasTypeFromWorker(worker, ['string', 'id', 'code', 'uri'])) {
+          result.addType(TypeDetails.FP_String);
+        } else if (left
+            .hasTypeFromWorker(worker, ['date', 'dateTime', 'instant'])) {
+          if (right.hasTypeFromWorker(worker, ['Quantity'])) {
             result.addType(left.getType());
           } else {
             throw PathEngineException(
-              'Error in date arithmetic: Unable to add type ${right.getType()} to ${left.getType()}',
+              'Error in date arithmetic: Unable to add type '
+              '${right.getType()} to ${left.getType()}',
             );
           }
         }
         return result;
       case FpOperation.Minus:
         final result = TypeDetails(CollectionStatus.singleton);
-        if (left.hasType(worker, ['integer']) &&
-            right.hasType(worker, ['integer'])) {
-          result.addType(TypeDetails.fpInteger);
-        } else if (left.hasType(worker, ['integer', 'decimal']) &&
-            right.hasType(worker, ['integer', 'decimal'])) {
-          result.addType(TypeDetails.fpDecimal);
-        } else if (left.hasType(worker, ['Quantity']) &&
-            right.hasType(worker, ['Quantity'])) {
-          result.addType(TypeDetails.fpQuantity);
-        } else if (left.hasType(worker, ['date', 'dateTime', 'instant'])) {
-          if (right.hasType(worker, ['Quantity'])) {
+        if (left.hasTypeFromWorker(worker, ['integer']) &&
+            right.hasTypeFromWorker(worker, ['integer'])) {
+          result.addType(TypeDetails.FP_Integer);
+        } else if (left.hasTypeFromWorker(worker, ['integer', 'decimal']) &&
+            right.hasTypeFromWorker(worker, ['integer', 'decimal'])) {
+          result.addType(TypeDetails.FP_Decimal);
+        } else if (left.hasTypeFromWorker(worker, ['Quantity']) &&
+            right.hasTypeFromWorker(worker, ['Quantity'])) {
+          result.addType(TypeDetails.FP_Quantity);
+        } else if (left
+            .hasTypeFromWorker(worker, ['date', 'dateTime', 'instant'])) {
+          if (right.hasTypeFromWorker(worker, ['Quantity'])) {
             result.addType(left.getType());
           } else {
             throw PathEngineException(
-              'Error in date arithmetic: Unable to subtract type ${right.getType()} from ${left.getType()}',
+              'Error in date arithmetic: Unable to subtract type '
+              '${right.getType()} from ${left.getType()}',
             );
           }
         }
@@ -1837,16 +2008,14 @@ class FHIRPathEngine {
       case FpOperation.Div:
       case FpOperation.Mod:
         final result = TypeDetails(CollectionStatus.singleton);
-        if (left.hasType(worker, ['integer']) &&
-            right.hasType(worker, ['integer'])) {
-          result.addType(TypeDetails.fpInteger);
-        } else if (left.hasType(worker, ['integer', 'decimal']) &&
-            right.hasType(worker, ['integer', 'decimal'])) {
-          result.addType(TypeDetails.fpDecimal);
+        if (left.hasTypeFromWorker(worker, ['integer']) &&
+            right.hasTypeFromWorker(worker, ['integer'])) {
+          result.addType(TypeDetails.FP_Integer);
+        } else if (left.hasTypeFromWorker(worker, ['integer', 'decimal']) &&
+            right.hasTypeFromWorker(worker, ['integer', 'decimal'])) {
+          result.addType(TypeDetails.FP_Decimal);
         }
         return result;
-      default:
-        return null;
     }
   }
 
@@ -1903,6 +2072,175 @@ class FHIRPathEngine {
             exp.function == FpFunction.DefineVariable;
       default:
         return false;
+    }
+  }
+
+  void checkParamTypes(
+    ExpressionNode expr,
+    String funcName,
+    List<TypeDetails> paramTypes,
+    List<TypeDetails> typeSet,
+  ) {
+    var i = 0;
+    for (final pt in typeSet) {
+      if (i == paramTypes.length) {
+        return;
+      }
+      final actual = paramTypes[i];
+      i++;
+      for (final a in actual.getTypes()) {
+        if (!pt.hasTypeFromWorker(worker, [a])) {
+          throw makeException(
+            expr,
+            'FHIRPATH_WRONG_PARAM_TYPE',
+            [funcName, i, a, pt.toString()],
+          );
+        }
+      }
+    }
+  }
+
+  ExecutionContext changeThisContext(
+    ExecutionContext context,
+    FhirBase newThis,
+  ) {
+    final newContext = ExecutionContext(
+      context.appInfo,
+      context.focusResource,
+      context.rootResource,
+      context.context,
+      newThis,
+    );
+    // append all of the defined variables from the context into the new context
+    if (context.definedVariables != null) {
+      for (final s in context.definedVariables!.keys) {
+        newContext.setDefinedVariable(s, context.definedVariables![s]!, worker);
+      }
+    }
+    return newContext;
+  }
+
+  ExecutionTypeContext changeThisTypeContext(
+    ExecutionTypeContext context,
+    TypeDetails newThis,
+  ) {
+    final newContext = ExecutionTypeContext(
+      context.appInfo,
+      context.resource,
+      context.context,
+      newThis,
+    );
+    // append all of the defined variables from the context into the new context
+    if (context.definedVariables != null) {
+      for (final s in context.definedVariables!.keys) {
+        newContext.setDefinedVariable(s, context.definedVariables![s]!);
+      }
+    }
+    return newContext;
+  }
+
+  void checkOrdered(TypeDetails focus, String name, ExpressionNode expr) {
+    if (focus.collectionStatus == CollectionStatus.unordered) {
+      throw makeException(expr, 'FHIRPATH_ORDERED_ONLY', [name]);
+    }
+  }
+
+  void checkSingleton(TypeDetails focus, String name, ExpressionNode expr) {
+    if (focus.collectionStatus != CollectionStatus.singleton) {
+      // typeWarnings.add(new IssueMessage(worker.formatMessage(I18nConstants.FHIRPATH_COLLECTION_STATUS_CONTEXT, name, expr.toString()), I18nConstants.FHIRPATH_COLLECTION_STATUS_CONTEXT));
+    }
+  }
+
+  void checkContextString(
+    TypeDetails focus,
+    String name,
+    ExpressionNode expr,
+    bool sing,
+  ) {
+    if (!focus.hasNoTypes() &&
+        !focus.hasTypeFromWorker(worker, ['string']) &&
+        !focus.hasTypeFromWorker(worker, ['code']) &&
+        !focus.hasTypeFromWorker(worker, ['uri']) &&
+        !focus.hasTypeFromWorker(worker, ['canonical']) &&
+        !focus.hasTypeFromWorker(worker, ['id'])) {
+      throw makeException(
+        expr,
+        sing ? 'FHIRPATH_STRING_SING_ONLY' : 'FHIRPATH_STRING_ORD_ONLY',
+        [name, focus.describe()],
+      );
+    }
+  }
+
+  void checkContextPrimitive(
+    TypeDetails focus,
+    String name,
+    bool canQty,
+    ExpressionNode expr,
+  ) {
+    if (!focus.hasNoTypes()) {
+      if (canQty) {
+        if (!focus.hasTypes(primitiveTypes.toList()) &&
+            !focus.hasType('Quantity')) {
+          throw makeException(
+            expr,
+            'FHIRPATH_PRIMITIVE_ONLY',
+            [
+              name,
+              focus.describe(),
+              'Quantity, $primitiveTypes',
+            ],
+          );
+        }
+      } else if (!focus.hasTypes(primitiveTypes.toList())) {
+        throw makeException(
+          expr,
+          'FHIRPATH_PRIMITIVE_ONLY',
+          [name, focus.describe(), primitiveTypes.toString()],
+        );
+      }
+    }
+  }
+
+  TypeDetails childTypes(
+    TypeDetails focus,
+    String mask,
+    ExpressionNode expr,
+  ) {
+    final result = TypeDetails(CollectionStatus.unordered);
+    for (final f in focus.getTypes()) {
+      getChildTypesByName(f, mask, result, expr);
+    }
+    return result;
+  }
+
+  void checkContextCoded(TypeDetails focus, String name, ExpressionNode expr) {
+    if (!focus.hasTypeFromWorker(worker, ['string']) &&
+        !focus.hasTypeFromWorker(worker, ['code']) &&
+        !focus.hasTypeFromWorker(worker, ['uri']) &&
+        !focus.hasTypeFromWorker(worker, ['Coding']) &&
+        !focus.hasTypeFromWorker(worker, ['CodeableConcept'])) {
+      throw makeException(
+        expr,
+        'FHIRPATH_CODED_ONLY',
+        [name, focus.describe()],
+      );
+    }
+  }
+
+  void checkContextReference(
+    TypeDetails focus,
+    String name,
+    ExpressionNode expr,
+  ) {
+    if (!focus.hasTypeFromWorker(worker, ['string']) &&
+        !focus.hasTypeFromWorker(worker, ['uri']) &&
+        !focus.hasTypeFromWorker(worker, ['Reference']) &&
+        !focus.hasTypeFromWorker(worker, ['canonical'])) {
+      throw makeException(
+        expr,
+        'FHIRPATH_REFERENCE_ONLY',
+        [name, focus.describe()],
+      );
     }
   }
 }

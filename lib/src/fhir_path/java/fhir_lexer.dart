@@ -95,7 +95,6 @@ class FHIRLexer {
   }
 
   void next() {
-    print('Lexer advanced to index $cursor');
 
     skipWhitespaceAndComments();
     current = null;
@@ -306,7 +305,8 @@ class FHIRLexer {
   }
 
   bool isOp() {
-    return FpOperation.fromCode(current) != null;
+    final isOperation =  FpOperation.fromCode(current) != null;
+    return isOperation;
   }
 
   bool done() {

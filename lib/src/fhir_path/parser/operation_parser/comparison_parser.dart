@@ -266,19 +266,19 @@ List<dynamic> executeComparisons(
         return (rhs is FhirDateTimeBase)
             ? makeComparison(
                 comparator,
-                FhirDateTime.fromDateTime(input: lhs),
+                FhirDateTime.fromDateTime(lhs),
                 rhs,
               )
             : rhs is DateTime
                 ? makeComparison(
                     comparator,
-                    FhirDateTime.fromDateTime(input: lhs),
-                    FhirDateTime.fromDateTime(input: rhs),
+                    FhirDateTime.fromDateTime(lhs),
+                    FhirDateTime.fromDateTime(rhs),
                   )
                 : rhs is String && FhirDateTime.tryParse(rhs) != null
                     ? makeComparison(
                         comparator,
-                        FhirDateTime.fromDateTime(input: lhs),
+                        FhirDateTime.fromDateTime(lhs),
                         FhirDateTime.fromString(rhs),
                       )
                     : throw cannotCompareException(lhs, rhs);
@@ -327,7 +327,7 @@ List<dynamic> executeComparisons(
             } else if (lhs is DateTime) {
               return makeComparison(
                 comparator,
-                FhirDateTime.fromDateTime(input: lhs),
+                FhirDateTime.fromDateTime(lhs),
                 rhs,
               );
             } else if (lhs is FhirDateTimeBase) {

@@ -670,7 +670,7 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
           : ((num.tryParse(microsecond!) ?? 0) / 1000).toInt(),
     );
     final dateTimeBase = other is DateTime
-        ? FhirDateTime.fromDateTime(input: other)
+        ? FhirDateTime.fromDateTime(other)
         : other as FhirDateTimeBase;
 
     if (dateTimeBase.year == null) {

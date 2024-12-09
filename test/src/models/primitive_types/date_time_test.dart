@@ -353,16 +353,16 @@ void main() {
     });
     test('fdtdatetime', () {
       expect(
-        FhirDateTime.fromDateTime(input: DateTime(2000)).toString(),
+        FhirDateTime.fromDateTime(DateTime(2000)).toString(),
         '2000-01-01T00:00:00.000$offset',
       );
 
       final zuluTime =
-          FhirDateTime.fromDateTime(input: DateTime.utc(1973)).toString();
+          FhirDateTime.fromDateTime(DateTime.utc(1973)).toString();
       expect(zuluTime.contains('Z'), true);
       final localDateTime = DateTime.parse('2015-02-07T13:28:17');
       final localDateTimeString =
-          FhirDateTime.fromDateTime(input: localDateTime).toString();
+          FhirDateTime.fromDateTime(localDateTime).toString();
 
       /// If there's no timzeone in the input, we shouldn't have any in the
       /// output
@@ -372,7 +372,7 @@ void main() {
       );
     });
 
-    final issued = FhirDateTime.fromDateTime(input: DateTime.now());
+    final issued = FhirDateTime.fromDateTime(DateTime.now());
     test('Check DateTime type with the regex', () {
       final pattern = RegExp(
         r'([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1])(T([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\.[0-9]+)?(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00)))?)?)?',
@@ -422,7 +422,7 @@ void main() {
     group('FhirDateTime tests', () {
       test('FhirDateTime fromDateTime should construct valid datetimes', () {
         final validDateTime =
-            FhirDateTime.fromDateTime(input: DateTime(2023, 7, 15, 13, 45, 30));
+            FhirDateTime.fromDateTime(DateTime(2023, 7, 15, 13, 45, 30));
 
         final offset =
             validDateTime.timeZoneOffset?.toDouble().timeZoneOffsetToString;
@@ -435,7 +435,7 @@ void main() {
 
       test('FhirDateTime getters should retrieve correct date components', () {
         final dateTime =
-            FhirDateTime.fromDateTime(input: DateTime(2023, 7, 15, 13, 45, 30));
+            FhirDateTime.fromDateTime(DateTime(2023, 7, 15, 13, 45, 30));
         expect(dateTime.hour, equals(13));
         expect(dateTime.minute, equals(45));
         expect(dateTime.second, equals(30));
@@ -443,12 +443,12 @@ void main() {
             dateTime.timeZoneOffset?.toDouble().timeZoneOffsetToString;
         expect(dateTime.toString(), '2023-07-15T13:45:30.000$offset');
         final dateTime2 =
-            FhirDateTime.fromDateTime(input: DateTime(2023, 7, 15, 13, 45, 30));
+            FhirDateTime.fromDateTime(DateTime(2023, 7, 15, 13, 45, 30));
 
         expect(dateTime2.toString(), '2023-07-15T13:45:30.000$offset');
 
         // Test getters for edge cases, null values, and invalid instances
-        final nullDateTime = FhirDateTime.fromDateTime(input: DateTime(2000));
+        final nullDateTime = FhirDateTime.fromDateTime(DateTime(2000));
         expect(nullDateTime.hour, equals(0));
         expect(nullDateTime.minute, equals(0));
         expect(nullDateTime.second, equals(0));

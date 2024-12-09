@@ -92,7 +92,7 @@ Future<void> main() async {
         id: 'obs1'.toFhirString,
         code: CodeableConcept(text: 'Observation #1'.toFhirString),
         effectiveDateTime:
-            FhirDateTime.fromDateTime(input: DateTime(1981, 09, 18)),
+            FhirDateTime.fromDateTime(DateTime(1981, 09, 18)),
       );
       final saved = await fhirDb.save(resource: observation1, pw: password1);
 
@@ -113,7 +113,7 @@ Future<void> main() async {
         (saved as Observation).code.text?.value,
         'Observation #1 - Updated',
       );
-      expect(saved.meta?.versionId, FhirId(input: '2'));
+      expect(saved.meta?.versionId, FhirId('2'));
     });
 
     test('Save Observation2', () async {
@@ -122,7 +122,7 @@ Future<void> main() async {
         id: 'obs2'.toFhirString,
         code: CodeableConcept(text: 'Observation #2'.toFhirString),
         effectiveDateTime:
-            FhirDateTime.fromDateTime(input: DateTime(1981, 09, 18)),
+            FhirDateTime.fromDateTime(DateTime(1981, 09, 18)),
       );
       final saved = await fhirDb.save(resource: observation2, pw: password1);
 
@@ -136,7 +136,7 @@ Future<void> main() async {
         id: 'obs3'.toFhirString,
         code: CodeableConcept(text: 'Observation #3'.toFhirString),
         effectiveDateTime:
-            FhirDateTime.fromDateTime(input: DateTime(1981, 09, 18)),
+            FhirDateTime.fromDateTime(DateTime(1981, 09, 18)),
       );
       final saved = await fhirDb.save(resource: observation3, pw: password1);
 
@@ -301,7 +301,7 @@ Future<void> main() async {
         id: 'obs1'.toFhirString,
         code: CodeableConcept(text: 'Observation #1'.toFhirString),
         effectiveDateTime:
-            FhirDateTime.fromDateTime(input: DateTime(1981, 09, 18)),
+            FhirDateTime.fromDateTime(DateTime(1981, 09, 18)),
       );
       final saved = await fhirDb.save(resource: observation1, pw: password2);
 
@@ -322,7 +322,7 @@ Future<void> main() async {
         (saved as Observation).code.text?.value,
         'Observation #1 - Updated',
       );
-      expect(saved.meta?.versionId, FhirId(input: '2'));
+      expect(saved.meta?.versionId, FhirId('2'));
     });
 
     test('Save Observation2', () async {
@@ -331,7 +331,7 @@ Future<void> main() async {
         id: 'obs2'.toFhirString,
         code: CodeableConcept(text: 'Observation #2'.toFhirString),
         effectiveDateTime:
-            FhirDateTime.fromDateTime(input: DateTime(1981, 09, 18)),
+            FhirDateTime.fromDateTime(DateTime(1981, 09, 18)),
       );
       final saved = await fhirDb.save(resource: observation2, pw: password2);
 
@@ -345,7 +345,7 @@ Future<void> main() async {
         id: 'obs3'.toFhirString,
         code: CodeableConcept(text: 'Observation #3'.toFhirString),
         effectiveDateTime:
-            FhirDateTime.fromDateTime(input: DateTime(1981, 09, 18)),
+            FhirDateTime.fromDateTime(DateTime(1981, 09, 18)),
       );
       final saved = await fhirDb.save(resource: observation3, pw: password2);
 

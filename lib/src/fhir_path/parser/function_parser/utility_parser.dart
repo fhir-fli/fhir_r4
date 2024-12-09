@@ -47,7 +47,7 @@ class NowParser extends FhirPathParser {
   /// expression one object at a time
   @override
   List<dynamic> execute(List<dynamic> results, Map<String, dynamic> passed) =>
-      <dynamic>[FhirDateTime.fromDateTime(input: DateTime.now())];
+      <dynamic>[FhirDateTime.fromDateTime(DateTime.now())];
 
   /// To print the entire parsed FHIRPath expression, this includes ALL
   /// of the Parsers that are used in this package by the names used in

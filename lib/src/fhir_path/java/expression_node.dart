@@ -13,7 +13,7 @@ class ExpressionNode {
   String? name;
   FhirBase? constant;
   FpFunction? function;
-  List<ExpressionNode>? parameters;
+  List<ExpressionNode> parameters = <ExpressionNode>[];
   ExpressionNode? inner;
   ExpressionNode? group;
   FpOperation? operation;
@@ -25,6 +25,40 @@ class ExpressionNode {
   SourceLocation? opEnd;
   TypeDetails? types;
   TypeDetails? opTypes;
+
+  void printExpressionTree([int depth = 0]) {
+    final indent = '  ' * depth;
+
+    // Print details about the current node
+    print('${indent}Node: ${name ?? '<anonymous>'} (Kind: ${kind})');
+    if (constant != null) {
+      print('$indent  Constant: ${constant}');
+    }
+    if (function != null) {
+      print('$indent  Function: ${function}');
+    }
+    if (operation != null) {
+      print('$indent  Operation: ${operation}');
+    }
+
+    // Recursively print parameters
+    if (parameters.isNotEmpty) {
+      print('$indent  Parameters:');
+      for (final param in parameters) {
+        param.printExpressionTree(depth + 2);
+      }
+    }
+
+    // Recursively print inner and next nodes
+    if (inner != null) {
+      print('$indent  Inner:');
+      inner!.printExpressionTree(depth + 1);
+    }
+    if (opNext != null) {
+      print('$indent  Next:');
+      opNext!.printExpressionTree(depth + 1);
+    }
+  }
 
   @override
   String toString() {
@@ -39,14 +73,13 @@ class ExpressionNode {
         } else {
           b.write('$name(');
           var first = true;
-          parameters?.forEach((n) {
+          for (final n in parameters) {
             if (!first) {
               b.write(', ');
             }
             first = false;
             b.write(n.toString());
-          });
-          b.write(')');
+          }
         }
       case ExpressionNodeKind.constant:
         if (constant == null) {
@@ -118,13 +151,13 @@ class ExpressionNode {
         b.write(function?.toCode());
         b.write('(');
         var first = true;
-        parameters?.forEach((n) {
+        for (final n in parameters) {
           if (!first) {
             b.write(', ');
           }
           first = false;
           n.write(b);
-        });
+        }
         b.write(')');
       case ExpressionNodeKind.group:
         b.write('(');
@@ -156,7 +189,7 @@ class ExpressionNode {
         if (function == null) {
           return 'No Function id provided @ ${location()}';
         }
-        for (final n in parameters ?? <ExpressionNode>[]) {
+        for (final n in parameters) {
           final msg = n.check();
           if (msg != null) {
             return msg;
@@ -203,7 +236,7 @@ class ExpressionNode {
   }
 
   int parameterCount() {
-    return parameters?.length ?? 0;
+    return parameters.length;
   }
 
   String canonical() {

@@ -5,7 +5,7 @@ import 'package:yaml/yaml.dart';
 /// Extension on [DateTime] to convert it to a [FhirDateTime].
 extension FhirDateTimeExtension on DateTime {
   /// Converts a [DateTime] to a [FhirDateTime].
-  FhirDateTime get toFhirDateTime => FhirDateTime.fromDateTime(input: this);
+  FhirDateTime get toFhirDateTime => FhirDateTime.fromDateTime(this);
 }
 
 /// Extension on [String] to convert it to a [FhirDateTime].
@@ -63,17 +63,8 @@ class FhirDateTime extends FhirDateTimeBase {
   });
 
   /// Factory constructor to create a [FhirDateTime] from a [String].
-  factory FhirDateTime.fromString(String? input, [Element? element]) =>
-      input == null && element == null
-          ? throw ArgumentError('A value or element is required')
-          : FhirDateTimeBase.constructor<FhirDateTime>(
-              input: input,
-              element: element,
-            ) as FhirDateTime;
-
-  /// Factory constructor to create a [FhirDateTime] from a [DateTime].
-  factory FhirDateTime.fromDateTime({
-    DateTime? input,
+  factory FhirDateTime.fromString(
+    String input, {
     Element? element,
     FhirString? id,
     List<FhirExtension>? extension_,
@@ -82,7 +73,7 @@ class FhirDateTime extends FhirDateTimeBase {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) =>
-      input == null && element == null
+      element == null
           ? throw ArgumentError('A value or element is required')
           : FhirDateTimeBase.constructor<FhirDateTime>(
               input: input,
@@ -95,6 +86,28 @@ class FhirDateTime extends FhirDateTimeBase {
               annotations: annotations,
             ) as FhirDateTime;
 
+  /// Factory constructor to create a [FhirDateTime] from a [DateTime].
+  factory FhirDateTime.fromDateTime(
+    DateTime input, {
+    Element? element,
+    FhirString? id,
+    List<FhirExtension>? extension_,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+  }) =>
+      FhirDateTimeBase.constructor<FhirDateTime>(
+        input: input,
+        element: element,
+        id: id,
+        extension_: extension_,
+        userData: userData,
+        formatCommentsPre: formatCommentsPre,
+        formatCommentsPost: formatCommentsPost,
+        annotations: annotations,
+      ) as FhirDateTime;
+
   /// Factory constructor to create a [FhirDateTime] from JSON input.
   factory FhirDateTime.fromJson(Map<String, dynamic> json) {
     final value = json['value'];
@@ -103,11 +116,13 @@ class FhirDateTime extends FhirDateTimeBase {
         : null;
 
     if (value is String) {
-      return FhirDateTime.fromString(value, element);
+      return FhirDateTime.fromString(value, element: element);
     } else if (value is DateTime) {
-      return FhirDateTime.fromDateTime(input: value, element: element);
+      return FhirDateTime.fromDateTime(value, element: element);
     } else if (value == null) {
-      return FhirDateTime.fromString(null, element);
+      return FhirDateTimeBase.constructor<FhirDateTime>(
+        element: element,
+      ) as FhirDateTime;
     } else {
       throw const FormatException(
         'Invalid input for FhirDateTime: Input must be a String or DateTime',
@@ -133,7 +148,7 @@ class FhirDateTime extends FhirDateTimeBase {
   static FhirDateTime? tryParse(dynamic value) {
     try {
       if (value is DateTime) {
-        return FhirDateTime.fromDateTime(input: value);
+        return FhirDateTime.fromDateTime(value);
       } else if (value is String) {
         return FhirDateTime.fromString(value);
       }
@@ -202,8 +217,8 @@ class FhirDateTime extends FhirDateTimeBase {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
-    return FhirDateTime.fromDateTime(
-      input: value,
+    return FhirDateTimeBase.constructor<FhirDateTime>(
+      input: value ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
@@ -217,6 +232,6 @@ class FhirDateTime extends FhirDateTimeBase {
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
       annotations: annotations ?? this.annotations,
-    );
+    ) as FhirDateTime;
   }
 }
