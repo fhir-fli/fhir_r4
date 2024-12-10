@@ -930,45 +930,17 @@ class FHIRPathEngine {
     }
     result.proximal = proximal;
     if (proximal) {
-      print('is proximal');
       while (lexer.isOp()) {
-        print('Before attaching operation');
-        print('focus');
-        focus.printExpressionTree();
-        print('result');
-        result.printExpressionTree();
-
         focus
           ..operation = FpOperation.fromCode(lexer.current)
           ..opStart = lexer.currentStartLocation
           ..opEnd = lexer.currentLocation;
 
-        print('After attaching operation');
-        print('focus');
-        focus.printExpressionTree();
-        print('result');
-        result.printExpressionTree();
         lexer.next();
         focus.opNext = _parseExpression(lexer, false);
         focus = focus.opNext!;
-        print('Next attaching operation');
-        print('focus');
-        focus.printExpressionTree();
-        print('result');
-        result.printExpressionTree();
       }
-
-      print('Before Organise Precedence');
-      print('focus');
-      focus.printExpressionTree();
-      print('result');
-      result.printExpressionTree();
       result = organisePrecedence(lexer, result);
-      print('After Organise Precedence');
-      print('focus');
-      focus.printExpressionTree();
-      print('result');
-      result.printExpressionTree();
     }
     if (wrapper != null) {
       wrapper.opNext = result;
@@ -979,7 +951,6 @@ class FHIRPathEngine {
   }
 
   ExpressionNode organisePrecedence(FHIRLexer lexer, ExpressionNode oldNode) {
-    print('oldNode: $oldNode');
     var node = oldNode;
     node = gatherPrecedence(lexer, node, {
       FpOperation.Times,
@@ -987,11 +958,11 @@ class FHIRPathEngine {
       FpOperation.Div,
       FpOperation.Mod,
     });
-    node = gatherPrecedence(lexer, node, {
-      FpOperation.Plus,
-      FpOperation.Minus,
-      FpOperation.Concatenate,
-    });
+    node = gatherPrecedence(
+      lexer,
+      node,
+      {FpOperation.Plus, FpOperation.Minus, FpOperation.Concatenate},
+    );
     node = gatherPrecedence(lexer, node, {FpOperation.Union});
     node = gatherPrecedence(lexer, node, {
       FpOperation.LessThan,
@@ -1000,15 +971,19 @@ class FHIRPathEngine {
       FpOperation.GreaterOrEqual,
     });
     node = gatherPrecedence(lexer, node, {FpOperation.Is});
+    print('before gather precedence');
+    node.printExpressionTree();
     node = gatherPrecedence(lexer, node, {
       FpOperation.Equals,
       FpOperation.Equivalent,
       FpOperation.NotEquals,
       FpOperation.NotEquivalent,
     });
+    print('after gather precedence');
+    node.printExpressionTree();
     node = gatherPrecedence(lexer, node, {FpOperation.And});
     node = gatherPrecedence(lexer, node, {FpOperation.Xor, FpOperation.Or});
-    print('node: $node');
+    // last: implies
     return node;
   }
 
@@ -1017,48 +992,71 @@ class FHIRPathEngine {
     ExpressionNode oldStart,
     Set<FpOperation> ops,
   ) {
-    assert(oldStart.proximal, 'Precedence can only be gathered on proximal');
+    print('\n--- Entering gatherPrecedence ---');
+    print('Start node: $oldStart');
+    print('Operations to process: $ops');
+
     var start = oldStart;
 
-    // Check if there is any work to do
+    assert(start.proximal, 'start.proximal must be true');
+
+    // Check if there's work to do
     var work = false;
     var focus = start.opNext;
 
+    print('Initial focus: $focus');
     if (ops.contains(start.operation)) {
-      while (focus != null && focus.operation != null) {
-        work = work || !ops.contains(focus.operation);
+      print('Start node operation (${start.operation}) is in ops');
+      work = true;
+      while (focus != null) {
+        print('Checking focus operation: ${focus.operation}');
+        if (focus.operation != null) {
+          work = work || !ops.contains(focus.operation);
+        }
         focus = focus.opNext;
       }
     } else {
+      print('Start node operation (${start.operation}) is NOT in ops');
       while (focus != null && focus.operation != null) {
+        print('Checking focus operation: ${focus.operation}');
         work = work || ops.contains(focus.operation);
         focus = focus.opNext;
       }
     }
+
     if (!work) {
+      print('No work needed in gatherPrecedence. Exiting...');
       return start;
     }
 
-    // Entry point
+    print('Work needed. Proceeding to reorganize tree...');
+
+    // Entry point for restructuring
     ExpressionNode group;
     if (ops.contains(start.operation)) {
       group = newGroup(lexer, start)..proximal = true;
       focus = start;
       start = group;
+      print('New group created at start with operation: ${start.operation}');
     } else {
-      var node = start;
-      focus = node.opNext;
+      ExpressionNode? node = start;
 
+      focus = node.opNext;
       while (focus != null && !ops.contains(focus.operation)) {
         node = focus;
         focus = focus.opNext;
       }
       group = newGroup(lexer, focus!);
-      node.opNext = group;
+      node?.opNext = group;
+      print('New group created in sequence with operation: ${group.operation}');
     }
+
+    print('Group before organizing sequence:');
+    group.printExpressionTree();
 
     // Organize the group
     do {
+      // Run until the end of the sequence
       while (focus != null && ops.contains(focus.operation)) {
         focus = focus.opNext;
       }
@@ -1066,20 +1064,22 @@ class FHIRPathEngine {
         group
           ..operation = focus!.operation
           ..opNext = focus.opNext;
+        print('Setting group operation: ${group.operation}');
+
         focus
           ..operation = null
           ..opNext = null;
 
-        // Start a new sequence
+        // Look for the next sequence
         var node = group;
         focus = group.opNext;
-
         if (focus != null) {
           while (focus != null && !ops.contains(focus.operation)) {
             node = focus;
             focus = focus.opNext;
           }
           if (focus != null) {
+            print('Found another sequence. Creating new group.');
             group = newGroup(lexer, focus);
             node.opNext = group;
           }
@@ -1087,15 +1087,32 @@ class FHIRPathEngine {
       }
     } while (focus != null && focus.operation != null);
 
+    print('Exiting gatherPrecedence with result:');
+    start.printExpressionTree();
     return start;
   }
 
   ExpressionNode newGroup(FHIRLexer lexer, ExpressionNode next) {
-    final result = ExpressionNode(lexer.nextId().toString())
+    print('Creating a new group for node: $next');
+
+    // Create the new group node
+    final group = ExpressionNode(lexer.nextId().toString())
       ..kind = ExpressionNodeKind.group
-      ..group = next
-      ..group!.proximal = true;
-    return result;
+      ..operation = next.operation
+      ..proximal = true;
+
+    // Attach the entire left-hand side (next) as the group's Inner
+    group.group = next;
+    group.group!.operation = null; // Clear the operation from the original node
+
+    // Attach the right-hand side (next.opNext) as the group's Next
+    group.opNext = next.opNext;
+    next.opNext = null; // Detach Next from the original node
+
+    print('New group created:');
+    group.printExpressionTree();
+
+    return group;
   }
 
   FhirBase? processConstant(FHIRLexer lexer) {

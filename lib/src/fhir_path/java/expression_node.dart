@@ -41,6 +41,12 @@ class ExpressionNode {
       print('$indent  Operation: ${operation}');
     }
 
+    // Print the group node if it exists
+    if (group != null) {
+      print('$indent  Group:');
+      group!.printExpressionTree(depth + 1);
+    }
+
     // Recursively print parameters
     if (parameters.isNotEmpty) {
       print('$indent  Parameters:');
