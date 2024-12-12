@@ -341,6 +341,7 @@ final testObservation1 = Observation.fromJson({
 final testObservation2 = Observation.fromJson({
   "resourceType": "Observation",
   "id": "717897cb-fbc3-5cc2-be49-5cd15c91cda0",
+  "effectiveDateTime": "2176-10-06T02:37:00-04:00",
   "meta": {
     "versionId": "1",
     "lastUpdated": "2022-05-24T17:21:29.881-04:00",

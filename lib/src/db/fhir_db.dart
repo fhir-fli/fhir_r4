@@ -4,7 +4,6 @@ import 'dart:developer';
 
 import 'package:collection/collection.dart';
 import 'package:fhir_r4/fhir_r4.dart';
-import 'package:fhir_r4/src/db/cipher_from_key.dart';
 import 'package:hive_ce/hive.dart';
 import 'package:rxdart/rxdart.dart';
 

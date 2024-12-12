@@ -61,14 +61,27 @@ class FhirInstant extends FhirDateTimeBase {
     super.extension_,
   });
 
-  /// Factory constructor restricted to String or DateTime inputs.
-  factory FhirInstant.fromString(String? input, [Element? element]) =>
-      input == null && element == null
-          ? throw ArgumentError('A value or element is required')
-          : FhirDateTimeBase.constructor<FhirInstant>(
-              input: input,
-              element: element,
-            ) as FhirInstant;
+  /// Factory constructor to create a [FhirInstant] from a [String].
+  factory FhirInstant.fromString(
+    String input, {
+    Element? element,
+    FhirString? id,
+    List<FhirExtension>? extension_,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+  }) =>
+      FhirDateTimeBase.constructor<FhirInstant>(
+        input: input,
+        element: element,
+        id: id,
+        extension_: extension_,
+        userData: userData,
+        formatCommentsPre: formatCommentsPre,
+        formatCommentsPost: formatCommentsPost,
+        annotations: annotations,
+      ) as FhirInstant;
 
   /// Factory constructor to create a [FhirInstant] from a [DateTime].
   factory FhirInstant.fromDateTime(DateTime? input, [Element? element]) =>
@@ -87,11 +100,13 @@ class FhirInstant extends FhirDateTimeBase {
         : null;
 
     if (value is String) {
-      return FhirInstant.fromString(value, element);
+      return FhirInstant.fromString(value, element: element);
     } else if (value is DateTime) {
       return FhirInstant.fromDateTime(value, element);
     } else if (value == null) {
-      return FhirInstant.fromString(null, element);
+      return FhirDateTimeBase.constructor<FhirInstant>(
+        element: element,
+      ) as FhirInstant;
     } else {
       throw const FormatException(
         'Invalid input for FhirInstant: Input must be a String or DateTime.',

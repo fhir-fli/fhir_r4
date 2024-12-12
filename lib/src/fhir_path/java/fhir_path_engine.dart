@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs, avoid_positional_boolean_parameters
+// ignore_for_file: public_member_api_docs, avoid_positional_boolean_parameters, avoid_print
 
 import 'package:fhir_r4/fhir_r4.dart';
 
@@ -997,10 +997,8 @@ class FHIRPathEngine {
     print('Operations to process: $ops');
 
     var start = oldStart;
-
     assert(start.proximal, 'start.proximal must be true');
 
-    // Check if there's work to do
     var work = false;
     var focus = start.opNext;
 
@@ -1008,20 +1006,11 @@ class FHIRPathEngine {
     if (ops.contains(start.operation)) {
       print('Start node operation (${start.operation}) is in ops');
       work = true;
-      while (focus != null) {
-        print('Checking focus operation: ${focus.operation}');
-        if (focus.operation != null) {
-          work = work || !ops.contains(focus.operation);
-        }
-        focus = focus.opNext;
-      }
-    } else {
-      print('Start node operation (${start.operation}) is NOT in ops');
-      while (focus != null && focus.operation != null) {
-        print('Checking focus operation: ${focus.operation}');
-        work = work || ops.contains(focus.operation);
-        focus = focus.opNext;
-      }
+    }
+    while (focus != null && focus.operation != null) {
+      print('Checking focus operation: ${focus.operation}');
+      work = work || ops.contains(focus.operation);
+      focus = focus.opNext;
     }
 
     if (!work) {
@@ -1030,33 +1019,30 @@ class FHIRPathEngine {
     }
 
     print('Work needed. Proceeding to reorganize tree...');
-
-    // Entry point for restructuring
     ExpressionNode group;
     if (ops.contains(start.operation)) {
       group = newGroup(lexer, start)..proximal = true;
-      focus = start;
       start = group;
       print('New group created at start with operation: ${start.operation}');
     } else {
-      ExpressionNode? node = start;
-
-      focus = node.opNext;
+      var node = start;
+      focus = start.opNext;
       while (focus != null && !ops.contains(focus.operation)) {
         node = focus;
         focus = focus.opNext;
       }
       group = newGroup(lexer, focus!);
-      node?.opNext = group;
+      node.opNext = group;
+
+      // Elevate logical operations (like And) to root if necessary
+      if (ops.contains(group.operation)) {
+        print('Elevating ${group.operation} to root of expression.');
+        start = group;
+      }
       print('New group created in sequence with operation: ${group.operation}');
     }
 
-    print('Group before organizing sequence:');
-    group.printExpressionTree();
-
-    // Organize the group
     do {
-      // Run until the end of the sequence
       while (focus != null && ops.contains(focus.operation)) {
         focus = focus.opNext;
       }
@@ -1064,25 +1050,21 @@ class FHIRPathEngine {
         group
           ..operation = focus!.operation
           ..opNext = focus.opNext;
-        print('Setting group operation: ${group.operation}');
 
         focus
           ..operation = null
           ..opNext = null;
 
-        // Look for the next sequence
         var node = group;
         focus = group.opNext;
+        while (focus != null && !ops.contains(focus.operation)) {
+          node = focus;
+          focus = focus.opNext;
+        }
         if (focus != null) {
-          while (focus != null && !ops.contains(focus.operation)) {
-            node = focus;
-            focus = focus.opNext;
-          }
-          if (focus != null) {
-            print('Found another sequence. Creating new group.');
-            group = newGroup(lexer, focus);
-            node.opNext = group;
-          }
+          print('Found another sequence. Creating new group.');
+          group = newGroup(lexer, focus);
+          node.opNext = group;
         }
       }
     } while (focus != null && focus.operation != null);

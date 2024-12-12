@@ -47,15 +47,26 @@ class FhirDate extends FhirDateTimeBase {
   });
 
   /// Factory constructor to create a [FhirDate] from a [String].
-  ///
-  /// The input must be a valid date string.
-  factory FhirDate.fromString(String? input, [Element? element]) =>
-      input == null && element == null
-          ? throw ArgumentError('A value or element is required')
-          : FhirDateTimeBase.constructor<FhirDate>(
-              input: input,
-              element: element,
-            ) as FhirDate;
+  factory FhirDate.fromString(
+    String input, {
+    Element? element,
+    FhirString? id,
+    List<FhirExtension>? extension_,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+  }) =>
+      FhirDateTimeBase.constructor<FhirDate>(
+        input: input,
+        element: element,
+        id: id,
+        extension_: extension_,
+        userData: userData,
+        formatCommentsPre: formatCommentsPre,
+        formatCommentsPost: formatCommentsPost,
+        annotations: annotations,
+      ) as FhirDate;
 
   /// Factory constructor to create a [FhirDate] from a [DateTime].
   factory FhirDate.fromDateTime(DateTime? input, [Element? element]) =>
@@ -66,7 +77,7 @@ class FhirDate extends FhirDateTimeBase {
               element: element,
             ) as FhirDate;
 
-  /// Factory constructor to create a [FhirDateTime] from a JSON input.
+  /// Factory constructor to create a [FhirDate] from a JSON input.
   ///
   /// The input must be a [String], otherwise throws a [FormatException].
   factory FhirDate.fromJson(Map<String, dynamic> json) {
@@ -76,14 +87,16 @@ class FhirDate extends FhirDateTimeBase {
         : null;
 
     if (value is String) {
-      return FhirDate.fromString(value, element);
+      return FhirDate.fromString(value, element: element);
     } else if (value is DateTime) {
       return FhirDate.fromDateTime(value, element);
     } else if (value == null) {
-      return FhirDate.fromString(null, element);
+      return FhirDateTimeBase.constructor<FhirDate>(
+        element: element,
+      ) as FhirDate;
     } else {
       throw const FormatException(
-        'Invalid input for FhirInstant: Input must be a String?',
+        'Invalid input for FhirDate: Input must be a String?',
       );
     }
   }

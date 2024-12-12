@@ -73,18 +73,16 @@ class FhirDateTime extends FhirDateTimeBase {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) =>
-      element == null
-          ? throw ArgumentError('A value or element is required')
-          : FhirDateTimeBase.constructor<FhirDateTime>(
-              input: input,
-              element: element,
-              id: id,
-              extension_: extension_,
-              userData: userData,
-              formatCommentsPre: formatCommentsPre,
-              formatCommentsPost: formatCommentsPost,
-              annotations: annotations,
-            ) as FhirDateTime;
+      FhirDateTimeBase.constructor<FhirDateTime>(
+        input: input,
+        element: element,
+        id: id,
+        extension_: extension_,
+        userData: userData,
+        formatCommentsPre: formatCommentsPre,
+        formatCommentsPost: formatCommentsPost,
+        annotations: annotations,
+      ) as FhirDateTime;
 
   /// Factory constructor to create a [FhirDateTime] from a [DateTime].
   factory FhirDateTime.fromDateTime(
