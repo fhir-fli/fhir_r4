@@ -39,6 +39,24 @@ void main() {
       expect(rightOperand?.group?.constant?.toString(), equals('3'));
       expect(rightOperand?.opNext?.constant?.toString(), equals('2'));
     });
+
+    test('Parse simple arithmetic expression', () {
+      final node = engine.parse('5 + 3 * 2');
+      node.printExpressionTree();
+
+      // Check root operation
+      expect(node.operation, equals(FpOperation.Plus));
+
+      // Check left operand (5)
+      expect(node.group?.constant?.toString(), equals('5'));
+
+      // Check right operand (3 * 2 group)
+      final rightOperand = node.opNext;
+      expect(rightOperand?.operation, equals(FpOperation.Times));
+      expect(rightOperand?.group?.constant?.toString(), equals('3'));
+      expect(rightOperand?.opNext?.constant?.toString(), equals('2'));
+    });
+
     test('Parse comparison expression', () {
       final node = engine.parse('Patient.age >= 18');
       node.printExpressionTree();

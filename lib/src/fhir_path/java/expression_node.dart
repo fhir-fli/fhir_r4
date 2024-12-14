@@ -26,44 +26,48 @@ class ExpressionNode {
   TypeDetails? types;
   TypeDetails? opTypes;
 
-  void printExpressionTree([int depth = 0]) {
+  void printExpressionTree([int depth = 0, Set<ExpressionNode>? visitedNodes]) {
+    visitedNodes ??= <ExpressionNode>{};
+
+    if (visitedNodes.contains(this)) {
+      print('${'  ' * depth}Circular reference detected at node ID: $uniqueId');
+      return;
+    }
+
+    visitedNodes.add(this);
+
     final indent = '  ' * depth;
 
-    // Print details about the current node
-    print('${indent}Node: ${name ?? '<anonymous>'} (Kind: ${kind})');
-    if (constant != null) {
-      print('$indent  Constant: ${constant}');
-    }
-    if (function != null) {
-      print('$indent  Function: ${function}');
-    }
-    if (operation != null) {
-      print('$indent  Operation: ${operation}');
-    }
+    print('${indent}Node ID: $uniqueId (Kind: ${kind ?? 'null'})');
+    if (name != null) print('$indent  Name: $name');
+    if (constant != null) print('$indent  Constant: $constant');
+    if (operation != null) print('$indent  Operation: ${operation!.toCode()}');
+    if (start != null)
+      print('$indent  Location: ${start!.line}:${start!.column}');
 
-    // Print the group node if it exists
     if (group != null) {
       print('$indent  Group:');
-      group!.printExpressionTree(depth + 1);
+      group!.printExpressionTree(depth + 1, visitedNodes);
     }
 
-    // Recursively print parameters
     if (parameters.isNotEmpty) {
       print('$indent  Parameters:');
       for (final param in parameters) {
-        param.printExpressionTree(depth + 2);
+        param.printExpressionTree(depth + 2, visitedNodes);
       }
     }
 
-    // Recursively print inner and next nodes
     if (inner != null) {
       print('$indent  Inner:');
-      inner!.printExpressionTree(depth + 1);
+      inner!.printExpressionTree(depth + 1, visitedNodes);
     }
+
     if (opNext != null) {
       print('$indent  Next:');
-      opNext!.printExpressionTree(depth + 1);
+      opNext!.printExpressionTree(depth + 1, visitedNodes);
     }
+
+    visitedNodes.remove(this);
   }
 
   @override
