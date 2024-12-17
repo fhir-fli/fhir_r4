@@ -154,7 +154,7 @@ class FhirDecimal extends FhirNumber {
   FhirDecimal clone() =>
       FhirDecimal(input, element: element?.clone() as Element?);
 
-        /// Sets disallowExtensions to true
+  /// Sets disallowExtensions to true
   FhirDecimal noExtensions() => copyWith(disallowExtensions: true);
 
   /// Creates a modified copy with updated properties.

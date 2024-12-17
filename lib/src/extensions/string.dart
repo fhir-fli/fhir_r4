@@ -403,7 +403,7 @@ enum DecimalStatus {
   /// range
   range,
 
-  /// ok 
+  /// ok
   ok,
 }
 

@@ -893,7 +893,7 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
 
   /// Adjusts the precision of the date-time to the passed-in precision.
   FhirDateTimeBase adjustToPrecision(TemporalPrecisionEnum precision) {
-    /// Helper to validate and provide default values for missing precision 
+    /// Helper to validate and provide default values for missing precision
     /// parts.
     int defaultOrError(String fieldName, int? value, int defaultValue) {
       if (value == null) {

@@ -95,7 +95,6 @@ class FHIRLexer {
   }
 
   void next() {
-
     skipWhitespaceAndComments();
     current = null;
     currentStart = cursor;
@@ -305,7 +304,7 @@ class FHIRLexer {
   }
 
   bool isOp() {
-    final isOperation =  FpOperation.fromCode(current) != null;
+    final isOperation = FpOperation.fromCode(current) != null;
     return isOperation;
   }
 

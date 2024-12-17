@@ -398,7 +398,7 @@ class FhirTime extends PrimitiveType<String> implements Comparable<FhirTime> {
   }
 }
 
-/// Extension on [TemporalPrecisionEnum] to check if it is a valid time 
+/// Extension on [TemporalPrecisionEnum] to check if it is a valid time
 /// precision.
 extension TimePrecisionCheck on TemporalPrecisionEnum {
   /// Checks if the [TemporalPrecisionEnum] is a valid time precision.

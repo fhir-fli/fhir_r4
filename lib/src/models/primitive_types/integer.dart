@@ -127,7 +127,7 @@ class FhirInteger extends FhirNumber {
         element: element?.clone() as Element?,
       );
 
-    /// Sets disallowExtensions to true
+  /// Sets disallowExtensions to true
   FhirInteger noExtensions() => copyWith(disallowExtensions: true);
 
   /// Creates a modified copy with updated properties.

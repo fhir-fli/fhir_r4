@@ -357,8 +357,7 @@ void main() {
         '2000-01-01T00:00:00.000$offset',
       );
 
-      final zuluTime =
-          FhirDateTime.fromDateTime(DateTime.utc(1973)).toString();
+      final zuluTime = FhirDateTime.fromDateTime(DateTime.utc(1973)).toString();
       expect(zuluTime.contains('Z'), true);
       final localDateTime = DateTime.parse('2015-02-07T13:28:17');
       final localDateTimeString =
