@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'code_system.g.dart';
+
 /// [CodeSystem]
 /// The CodeSystem resource is used to declare the existence of and
 /// describe a code system or code system supplement and its key
@@ -1380,13 +1382,7 @@ class CodeSystemProperty1 extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.code,
-    this.valueCode,
-    this.valueCoding,
-    this.valueString,
-    this.valueInteger,
-    this.valueBoolean,
-    this.valueDateTime,
-    this.valueDecimal,
+    required this.valueXCodeSystemProperty,
     super.disallowExtensions,
   });
 
@@ -1420,51 +1416,10 @@ class CodeSystemProperty1 extends BackboneElement {
         'value': json['code'],
         '_value': json['_code'],
       }),
-      valueCode: (json['valueCode'] != null || json['_valueCode'] != null)
-          ? FhirCode.fromJson({
-              'value': json['valueCode'],
-              '_value': json['_valueCode'],
-            })
-          : null,
-      valueCoding: json['valueCoding'] != null
-          ? Coding.fromJson(
-              json['valueCoding'] as Map<String, dynamic>,
-            )
-          : null,
-      valueString: (json['valueString'] != null || json['_valueString'] != null)
-          ? FhirString.fromJson({
-              'value': json['valueString'],
-              '_value': json['_valueString'],
-            })
-          : null,
-      valueInteger:
-          (json['valueInteger'] != null || json['_valueInteger'] != null)
-              ? FhirInteger.fromJson({
-                  'value': json['valueInteger'],
-                  '_value': json['_valueInteger'],
-                })
-              : null,
-      valueBoolean:
-          (json['valueBoolean'] != null || json['_valueBoolean'] != null)
-              ? FhirBoolean.fromJson({
-                  'value': json['valueBoolean'],
-                  '_value': json['_valueBoolean'],
-                })
-              : null,
-      valueDateTime:
-          (json['valueDateTime'] != null || json['_valueDateTime'] != null)
-              ? FhirDateTime.fromJson({
-                  'value': json['valueDateTime'],
-                  '_value': json['_valueDateTime'],
-                })
-              : null,
-      valueDecimal:
-          (json['valueDecimal'] != null || json['_valueDecimal'] != null)
-              ? FhirDecimal.fromJson({
-                  'value': json['valueDecimal'],
-                  '_value': json['_valueDecimal'],
-                })
-              : null,
+      valueXCodeSystemProperty: FhirCode.fromJson({
+        'value': json['valueXCodeSystemProperty'],
+        '_value': json['_valueXCodeSystemProperty'],
+      }),
     );
   }
 
@@ -1514,33 +1469,9 @@ class CodeSystemProperty1 extends BackboneElement {
   /// A code that is a reference to CodeSystem.property.code.
   final FhirCode code;
 
-  /// [valueCode]
+  /// [valueXCodeSystemProperty]
   /// The value of this property.
-  final FhirCode? valueCode;
-
-  /// [valueCoding]
-  /// The value of this property.
-  final Coding? valueCoding;
-
-  /// [valueString]
-  /// The value of this property.
-  final FhirString? valueString;
-
-  /// [valueInteger]
-  /// The value of this property.
-  final FhirInteger? valueInteger;
-
-  /// [valueBoolean]
-  /// The value of this property.
-  final FhirBoolean? valueBoolean;
-
-  /// [valueDateTime]
-  /// The value of this property.
-  final FhirDateTime? valueDateTime;
-
-  /// [valueDecimal]
-  /// The value of this property.
-  final FhirDecimal? valueDecimal;
+  final FhirCode valueXCodeSystemProperty;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1564,16 +1495,7 @@ class CodeSystemProperty1 extends BackboneElement {
     }
 
     addField('code', code);
-    addField('valueCode', valueCode);
-    if (valueCoding != null) {
-      json['valueCoding'] = valueCoding!.toJson();
-    }
-
-    addField('valueString', valueString);
-    addField('valueInteger', valueInteger);
-    addField('valueBoolean', valueBoolean);
-    addField('valueDateTime', valueDateTime);
-    addField('valueDecimal', valueDecimal);
+    addField('valueXCodeSystemProperty', valueXCodeSystemProperty);
     return json;
   }
 
@@ -1585,13 +1507,7 @@ class CodeSystemProperty1 extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirCode? code,
-    FhirCode? valueCode,
-    Coding? valueCoding,
-    FhirString? valueString,
-    FhirInteger? valueInteger,
-    FhirBoolean? valueBoolean,
-    FhirDateTime? valueDateTime,
-    FhirDecimal? valueDecimal,
+    FhirCode? valueXCodeSystemProperty,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1602,13 +1518,8 @@ class CodeSystemProperty1 extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       code: code ?? this.code,
-      valueCode: valueCode ?? this.valueCode,
-      valueCoding: valueCoding ?? this.valueCoding,
-      valueString: valueString ?? this.valueString,
-      valueInteger: valueInteger ?? this.valueInteger,
-      valueBoolean: valueBoolean ?? this.valueBoolean,
-      valueDateTime: valueDateTime ?? this.valueDateTime,
-      valueDecimal: valueDecimal ?? this.valueDecimal,
+      valueXCodeSystemProperty:
+          valueXCodeSystemProperty ?? this.valueXCodeSystemProperty,
     );
   }
 }

@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'questionnaire_response.g.dart';
+
 /// [QuestionnaireResponse]
 /// A structured set of questions and their answers. The questions are
 /// ordered and grouped into coherent subsets, corresponding to the
@@ -611,18 +613,7 @@ class QuestionnaireResponseAnswer extends BackboneElement {
     super.id,
     super.extension_,
     super.modifierExtension,
-    this.valueBoolean,
-    this.valueDecimal,
-    this.valueInteger,
-    this.valueDate,
-    this.valueDateTime,
-    this.valueTime,
-    this.valueString,
-    this.valueUri,
-    this.valueAttachment,
-    this.valueCoding,
-    this.valueQuantity,
-    this.valueReference,
+    this.valueXQuestionnaireResponseAnswer,
     this.item,
     super.disallowExtensions,
   });
@@ -653,78 +644,14 @@ class QuestionnaireResponseAnswer extends BackboneElement {
               )
               .toList()
           : null,
-      valueBoolean:
-          (json['valueBoolean'] != null || json['_valueBoolean'] != null)
+      valueXQuestionnaireResponseAnswer:
+          (json['valueXQuestionnaireResponseAnswer'] != null ||
+                  json['_valueXQuestionnaireResponseAnswer'] != null)
               ? FhirBoolean.fromJson({
-                  'value': json['valueBoolean'],
-                  '_value': json['_valueBoolean'],
+                  'value': json['valueXQuestionnaireResponseAnswer'],
+                  '_value': json['_valueXQuestionnaireResponseAnswer'],
                 })
               : null,
-      valueDecimal:
-          (json['valueDecimal'] != null || json['_valueDecimal'] != null)
-              ? FhirDecimal.fromJson({
-                  'value': json['valueDecimal'],
-                  '_value': json['_valueDecimal'],
-                })
-              : null,
-      valueInteger:
-          (json['valueInteger'] != null || json['_valueInteger'] != null)
-              ? FhirInteger.fromJson({
-                  'value': json['valueInteger'],
-                  '_value': json['_valueInteger'],
-                })
-              : null,
-      valueDate: (json['valueDate'] != null || json['_valueDate'] != null)
-          ? FhirDate.fromJson({
-              'value': json['valueDate'],
-              '_value': json['_valueDate'],
-            })
-          : null,
-      valueDateTime:
-          (json['valueDateTime'] != null || json['_valueDateTime'] != null)
-              ? FhirDateTime.fromJson({
-                  'value': json['valueDateTime'],
-                  '_value': json['_valueDateTime'],
-                })
-              : null,
-      valueTime: (json['valueTime'] != null || json['_valueTime'] != null)
-          ? FhirTime.fromJson({
-              'value': json['valueTime'],
-              '_value': json['_valueTime'],
-            })
-          : null,
-      valueString: (json['valueString'] != null || json['_valueString'] != null)
-          ? FhirString.fromJson({
-              'value': json['valueString'],
-              '_value': json['_valueString'],
-            })
-          : null,
-      valueUri: (json['valueUri'] != null || json['_valueUri'] != null)
-          ? FhirUri.fromJson({
-              'value': json['valueUri'],
-              '_value': json['_valueUri'],
-            })
-          : null,
-      valueAttachment: json['valueAttachment'] != null
-          ? Attachment.fromJson(
-              json['valueAttachment'] as Map<String, dynamic>,
-            )
-          : null,
-      valueCoding: json['valueCoding'] != null
-          ? Coding.fromJson(
-              json['valueCoding'] as Map<String, dynamic>,
-            )
-          : null,
-      valueQuantity: json['valueQuantity'] != null
-          ? Quantity.fromJson(
-              json['valueQuantity'] as Map<String, dynamic>,
-            )
-          : null,
-      valueReference: json['valueReference'] != null
-          ? Reference.fromJson(
-              json['valueReference'] as Map<String, dynamic>,
-            )
-          : null,
       item: json['item'] != null
           ? (json['item'] as List<dynamic>)
               .map<QuestionnaireResponseItem>(
@@ -779,65 +706,10 @@ class QuestionnaireResponseAnswer extends BackboneElement {
   @override
   String get fhirType => 'QuestionnaireResponseAnswer';
 
-  /// [valueBoolean]
+  /// [valueXQuestionnaireResponseAnswer]
   /// The answer (or one of the answers) provided by the respondent to the
   /// question.
-  final FhirBoolean? valueBoolean;
-
-  /// [valueDecimal]
-  /// The answer (or one of the answers) provided by the respondent to the
-  /// question.
-  final FhirDecimal? valueDecimal;
-
-  /// [valueInteger]
-  /// The answer (or one of the answers) provided by the respondent to the
-  /// question.
-  final FhirInteger? valueInteger;
-
-  /// [valueDate]
-  /// The answer (or one of the answers) provided by the respondent to the
-  /// question.
-  final FhirDate? valueDate;
-
-  /// [valueDateTime]
-  /// The answer (or one of the answers) provided by the respondent to the
-  /// question.
-  final FhirDateTime? valueDateTime;
-
-  /// [valueTime]
-  /// The answer (or one of the answers) provided by the respondent to the
-  /// question.
-  final FhirTime? valueTime;
-
-  /// [valueString]
-  /// The answer (or one of the answers) provided by the respondent to the
-  /// question.
-  final FhirString? valueString;
-
-  /// [valueUri]
-  /// The answer (or one of the answers) provided by the respondent to the
-  /// question.
-  final FhirUri? valueUri;
-
-  /// [valueAttachment]
-  /// The answer (or one of the answers) provided by the respondent to the
-  /// question.
-  final Attachment? valueAttachment;
-
-  /// [valueCoding]
-  /// The answer (or one of the answers) provided by the respondent to the
-  /// question.
-  final Coding? valueCoding;
-
-  /// [valueQuantity]
-  /// The answer (or one of the answers) provided by the respondent to the
-  /// question.
-  final Quantity? valueQuantity;
-
-  /// [valueReference]
-  /// The answer (or one of the answers) provided by the respondent to the
-  /// question.
-  final Reference? valueReference;
+  final FhirBoolean? valueXQuestionnaireResponseAnswer;
 
   /// [item]
   /// Nested groups and/or questions found within this particular answer.
@@ -864,30 +736,8 @@ class QuestionnaireResponseAnswer extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('valueBoolean', valueBoolean);
-    addField('valueDecimal', valueDecimal);
-    addField('valueInteger', valueInteger);
-    addField('valueDate', valueDate);
-    addField('valueDateTime', valueDateTime);
-    addField('valueTime', valueTime);
-    addField('valueString', valueString);
-    addField('valueUri', valueUri);
-    if (valueAttachment != null) {
-      json['valueAttachment'] = valueAttachment!.toJson();
-    }
-
-    if (valueCoding != null) {
-      json['valueCoding'] = valueCoding!.toJson();
-    }
-
-    if (valueQuantity != null) {
-      json['valueQuantity'] = valueQuantity!.toJson();
-    }
-
-    if (valueReference != null) {
-      json['valueReference'] = valueReference!.toJson();
-    }
-
+    addField(
+        'valueXQuestionnaireResponseAnswer', valueXQuestionnaireResponseAnswer);
     if (item != null && item!.isNotEmpty) {
       json['item'] = item!.map((e) => e.toJson()).toList();
     }
@@ -902,18 +752,7 @@ class QuestionnaireResponseAnswer extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    FhirBoolean? valueBoolean,
-    FhirDecimal? valueDecimal,
-    FhirInteger? valueInteger,
-    FhirDate? valueDate,
-    FhirDateTime? valueDateTime,
-    FhirTime? valueTime,
-    FhirString? valueString,
-    FhirUri? valueUri,
-    Attachment? valueAttachment,
-    Coding? valueCoding,
-    Quantity? valueQuantity,
-    Reference? valueReference,
+    FhirBoolean? valueXQuestionnaireResponseAnswer,
     List<QuestionnaireResponseItem>? item,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -924,18 +763,8 @@ class QuestionnaireResponseAnswer extends BackboneElement {
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
-      valueBoolean: valueBoolean ?? this.valueBoolean,
-      valueDecimal: valueDecimal ?? this.valueDecimal,
-      valueInteger: valueInteger ?? this.valueInteger,
-      valueDate: valueDate ?? this.valueDate,
-      valueDateTime: valueDateTime ?? this.valueDateTime,
-      valueTime: valueTime ?? this.valueTime,
-      valueString: valueString ?? this.valueString,
-      valueUri: valueUri ?? this.valueUri,
-      valueAttachment: valueAttachment ?? this.valueAttachment,
-      valueCoding: valueCoding ?? this.valueCoding,
-      valueQuantity: valueQuantity ?? this.valueQuantity,
-      valueReference: valueReference ?? this.valueReference,
+      valueXQuestionnaireResponseAnswer: valueXQuestionnaireResponseAnswer ??
+          this.valueXQuestionnaireResponseAnswer,
       item: item ?? this.item,
     );
   }

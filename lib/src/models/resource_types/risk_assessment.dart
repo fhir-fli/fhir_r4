@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'risk_assessment.g.dart';
+
 /// [RiskAssessment]
 /// An assessment of the likely outcome(s) for a patient or other subject
 /// as well as the likelihood of each outcome.
@@ -26,8 +28,7 @@ class RiskAssessment extends DomainResource {
     this.code,
     required this.subject,
     this.encounter,
-    this.occurrenceDateTime,
-    this.occurrencePeriod,
+    this.occurrenceXRiskAssessmentRiskAssessment,
     this.condition,
     this.performer,
     this.reasonCode,
@@ -139,18 +140,14 @@ class RiskAssessment extends DomainResource {
               json['encounter'] as Map<String, dynamic>,
             )
           : null,
-      occurrenceDateTime: (json['occurrenceDateTime'] != null ||
-              json['_occurrenceDateTime'] != null)
-          ? FhirDateTime.fromJson({
-              'value': json['occurrenceDateTime'],
-              '_value': json['_occurrenceDateTime'],
-            })
-          : null,
-      occurrencePeriod: json['occurrencePeriod'] != null
-          ? Period.fromJson(
-              json['occurrencePeriod'] as Map<String, dynamic>,
-            )
-          : null,
+      occurrenceXRiskAssessmentRiskAssessment:
+          (json['occurrenceXRiskAssessmentRiskAssessment'] != null ||
+                  json['_occurrenceXRiskAssessmentRiskAssessment'] != null)
+              ? FhirDateTime.fromJson({
+                  'value': json['occurrenceXRiskAssessmentRiskAssessment'],
+                  '_value': json['_occurrenceXRiskAssessmentRiskAssessment'],
+                })
+              : null,
       condition: json['condition'] != null
           ? Reference.fromJson(
               json['condition'] as Map<String, dynamic>,
@@ -291,13 +288,9 @@ class RiskAssessment extends DomainResource {
   /// The encounter where the assessment was performed.
   final Reference? encounter;
 
-  /// [occurrenceDateTime]
+  /// [occurrenceXRiskAssessmentRiskAssessment]
   /// The date (and possibly time) the risk assessment was performed.
-  final FhirDateTime? occurrenceDateTime;
-
-  /// [occurrencePeriod]
-  /// The date (and possibly time) the risk assessment was performed.
-  final Period? occurrencePeriod;
+  final FhirDateTime? occurrenceXRiskAssessmentRiskAssessment;
 
   /// [condition]
   /// For assessments or prognosis specific to a particular condition,
@@ -397,11 +390,8 @@ class RiskAssessment extends DomainResource {
       json['encounter'] = encounter!.toJson();
     }
 
-    addField('occurrenceDateTime', occurrenceDateTime);
-    if (occurrencePeriod != null) {
-      json['occurrencePeriod'] = occurrencePeriod!.toJson();
-    }
-
+    addField('occurrenceXRiskAssessmentRiskAssessment',
+        occurrenceXRiskAssessmentRiskAssessment);
     if (condition != null) {
       json['condition'] = condition!.toJson();
     }
@@ -455,8 +445,7 @@ class RiskAssessment extends DomainResource {
     CodeableConcept? code,
     Reference? subject,
     Reference? encounter,
-    FhirDateTime? occurrenceDateTime,
-    Period? occurrencePeriod,
+    FhirDateTime? occurrenceXRiskAssessmentRiskAssessment,
     Reference? condition,
     Reference? performer,
     List<CodeableConcept>? reasonCode,
@@ -487,8 +476,9 @@ class RiskAssessment extends DomainResource {
       code: code ?? this.code,
       subject: subject ?? this.subject,
       encounter: encounter ?? this.encounter,
-      occurrenceDateTime: occurrenceDateTime ?? this.occurrenceDateTime,
-      occurrencePeriod: occurrencePeriod ?? this.occurrencePeriod,
+      occurrenceXRiskAssessmentRiskAssessment:
+          occurrenceXRiskAssessmentRiskAssessment ??
+              this.occurrenceXRiskAssessmentRiskAssessment,
       condition: condition ?? this.condition,
       performer: performer ?? this.performer,
       reasonCode: reasonCode ?? this.reasonCode,
@@ -512,12 +502,10 @@ class RiskAssessmentPrediction extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.outcome,
-    this.probabilityDecimal,
-    this.probabilityRange,
+    this.probabilityXRiskAssessmentPrediction,
     this.qualitativeRisk,
     this.relativeRisk,
-    this.whenPeriod,
-    this.whenRange,
+    this.whenXRiskAssessmentPrediction,
     this.rationale,
     super.disallowExtensions,
   });
@@ -553,18 +541,14 @@ class RiskAssessmentPrediction extends BackboneElement {
               json['outcome'] as Map<String, dynamic>,
             )
           : null,
-      probabilityDecimal: (json['probabilityDecimal'] != null ||
-              json['_probabilityDecimal'] != null)
-          ? FhirDecimal.fromJson({
-              'value': json['probabilityDecimal'],
-              '_value': json['_probabilityDecimal'],
-            })
-          : null,
-      probabilityRange: json['probabilityRange'] != null
-          ? Range.fromJson(
-              json['probabilityRange'] as Map<String, dynamic>,
-            )
-          : null,
+      probabilityXRiskAssessmentPrediction:
+          (json['probabilityXRiskAssessmentPrediction'] != null ||
+                  json['_probabilityXRiskAssessmentPrediction'] != null)
+              ? FhirDecimal.fromJson({
+                  'value': json['probabilityXRiskAssessmentPrediction'],
+                  '_value': json['_probabilityXRiskAssessmentPrediction'],
+                })
+              : null,
       qualitativeRisk: json['qualitativeRisk'] != null
           ? CodeableConcept.fromJson(
               json['qualitativeRisk'] as Map<String, dynamic>,
@@ -577,16 +561,12 @@ class RiskAssessmentPrediction extends BackboneElement {
                   '_value': json['_relativeRisk'],
                 })
               : null,
-      whenPeriod: json['whenPeriod'] != null
-          ? Period.fromJson(
-              json['whenPeriod'] as Map<String, dynamic>,
-            )
-          : null,
-      whenRange: json['whenRange'] != null
-          ? Range.fromJson(
-              json['whenRange'] as Map<String, dynamic>,
-            )
-          : null,
+      whenXRiskAssessmentPrediction:
+          json['whenXRiskAssessmentPrediction'] != null
+              ? Period.fromJson(
+                  json['whenXRiskAssessmentPrediction'] as Map<String, dynamic>,
+                )
+              : null,
       rationale: (json['rationale'] != null || json['_rationale'] != null)
           ? FhirString.fromJson({
               'value': json['rationale'],
@@ -643,13 +623,9 @@ class RiskAssessmentPrediction extends BackboneElement {
   /// particular condition).
   final CodeableConcept? outcome;
 
-  /// [probabilityDecimal]
+  /// [probabilityXRiskAssessmentPrediction]
   /// Indicates how likely the outcome is (in the specified timeframe).
-  final FhirDecimal? probabilityDecimal;
-
-  /// [probabilityRange]
-  /// Indicates how likely the outcome is (in the specified timeframe).
-  final Range? probabilityRange;
+  final FhirDecimal? probabilityXRiskAssessmentPrediction;
 
   /// [qualitativeRisk]
   /// Indicates how likely the outcome is (in the specified timeframe),
@@ -663,15 +639,10 @@ class RiskAssessmentPrediction extends BackboneElement {
   /// than 1 = lower risk.).
   final FhirDecimal? relativeRisk;
 
-  /// [whenPeriod]
+  /// [whenXRiskAssessmentPrediction]
   /// Indicates the period of time or age range of the subject to which the
   /// specified probability applies.
-  final Period? whenPeriod;
-
-  /// [whenRange]
-  /// Indicates the period of time or age range of the subject to which the
-  /// specified probability applies.
-  final Range? whenRange;
+  final Period? whenXRiskAssessmentPrediction;
 
   /// [rationale]
   /// Additional information explaining the basis for the prediction.
@@ -702,22 +673,16 @@ class RiskAssessmentPrediction extends BackboneElement {
       json['outcome'] = outcome!.toJson();
     }
 
-    addField('probabilityDecimal', probabilityDecimal);
-    if (probabilityRange != null) {
-      json['probabilityRange'] = probabilityRange!.toJson();
-    }
-
+    addField('probabilityXRiskAssessmentPrediction',
+        probabilityXRiskAssessmentPrediction);
     if (qualitativeRisk != null) {
       json['qualitativeRisk'] = qualitativeRisk!.toJson();
     }
 
     addField('relativeRisk', relativeRisk);
-    if (whenPeriod != null) {
-      json['whenPeriod'] = whenPeriod!.toJson();
-    }
-
-    if (whenRange != null) {
-      json['whenRange'] = whenRange!.toJson();
+    if (whenXRiskAssessmentPrediction != null) {
+      json['whenXRiskAssessmentPrediction'] =
+          whenXRiskAssessmentPrediction!.toJson();
     }
 
     addField('rationale', rationale);
@@ -732,12 +697,10 @@ class RiskAssessmentPrediction extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     CodeableConcept? outcome,
-    FhirDecimal? probabilityDecimal,
-    Range? probabilityRange,
+    FhirDecimal? probabilityXRiskAssessmentPrediction,
     CodeableConcept? qualitativeRisk,
     FhirDecimal? relativeRisk,
-    Period? whenPeriod,
-    Range? whenRange,
+    Period? whenXRiskAssessmentPrediction,
     FhirString? rationale,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -749,12 +712,13 @@ class RiskAssessmentPrediction extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       outcome: outcome ?? this.outcome,
-      probabilityDecimal: probabilityDecimal ?? this.probabilityDecimal,
-      probabilityRange: probabilityRange ?? this.probabilityRange,
+      probabilityXRiskAssessmentPrediction:
+          probabilityXRiskAssessmentPrediction ??
+              this.probabilityXRiskAssessmentPrediction,
       qualitativeRisk: qualitativeRisk ?? this.qualitativeRisk,
       relativeRisk: relativeRisk ?? this.relativeRisk,
-      whenPeriod: whenPeriod ?? this.whenPeriod,
-      whenRange: whenRange ?? this.whenRange,
+      whenXRiskAssessmentPrediction:
+          whenXRiskAssessmentPrediction ?? this.whenXRiskAssessmentPrediction,
       rationale: rationale ?? this.rationale,
     );
   }

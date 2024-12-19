@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'clinical_use_definition.g.dart';
+
 /// [ClinicalUseDefinition]
 /// A single issue - either an indication, contraindication, interaction or
 /// an undesirable effect for a medicinal product, medication, device or
@@ -783,8 +785,7 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
     this.diseaseStatus,
     this.comorbidity,
     this.intendedEffect,
-    this.durationRange,
-    this.durationString,
+    this.durationXClinicalUseDefinitionIndication,
     this.undesirableEffect,
     this.otherTherapy,
     super.disallowExtensions,
@@ -840,17 +841,12 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
               json['intendedEffect'] as Map<String, dynamic>,
             )
           : null,
-      durationRange: json['durationRange'] != null
-          ? Range.fromJson(
-              json['durationRange'] as Map<String, dynamic>,
-            )
-          : null,
-      durationString:
-          (json['durationString'] != null || json['_durationString'] != null)
-              ? FhirString.fromJson({
-                  'value': json['durationString'],
-                  '_value': json['_durationString'],
-                })
+      durationXClinicalUseDefinitionIndication:
+          json['durationXClinicalUseDefinitionIndication'] != null
+              ? Range.fromJson(
+                  json['durationXClinicalUseDefinitionIndication']
+                      as Map<String, dynamic>,
+                )
               : null,
       undesirableEffect: json['undesirableEffect'] != null
           ? (json['undesirableEffect'] as List<dynamic>)
@@ -933,19 +929,12 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
   /// The intended effect, aim or strategy to be achieved.
   final CodeableReference? intendedEffect;
 
-  /// [durationRange]
+  /// [durationXClinicalUseDefinitionIndication]
   /// Timing or duration information, that may be associated with use with
   /// the indicated condition e.g. Adult patients suffering from myocardial
   /// infarction (from a few days until less than 35 days), ischaemic stroke
   /// (from 7 days until less than 6 months).
-  final Range? durationRange;
-
-  /// [durationString]
-  /// Timing or duration information, that may be associated with use with
-  /// the indicated condition e.g. Adult patients suffering from myocardial
-  /// infarction (from a few days until less than 35 days), ischaemic stroke
-  /// (from 7 days until less than 6 months).
-  final FhirString? durationString;
+  final Range? durationXClinicalUseDefinitionIndication;
 
   /// [undesirableEffect]
   /// An unwanted side effect or negative outcome that may happen if you use
@@ -994,11 +983,11 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
       json['intendedEffect'] = intendedEffect!.toJson();
     }
 
-    if (durationRange != null) {
-      json['durationRange'] = durationRange!.toJson();
+    if (durationXClinicalUseDefinitionIndication != null) {
+      json['durationXClinicalUseDefinitionIndication'] =
+          durationXClinicalUseDefinitionIndication!.toJson();
     }
 
-    addField('durationString', durationString);
     if (undesirableEffect != null && undesirableEffect!.isNotEmpty) {
       json['undesirableEffect'] =
           undesirableEffect!.map((e) => e.toJson()).toList();
@@ -1022,8 +1011,7 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
     CodeableReference? diseaseStatus,
     List<CodeableReference>? comorbidity,
     CodeableReference? intendedEffect,
-    Range? durationRange,
-    FhirString? durationString,
+    Range? durationXClinicalUseDefinitionIndication,
     List<Reference>? undesirableEffect,
     List<ClinicalUseDefinitionOtherTherapy>? otherTherapy,
     Map<String, Object?>? userData,
@@ -1040,8 +1028,9 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
       diseaseStatus: diseaseStatus ?? this.diseaseStatus,
       comorbidity: comorbidity ?? this.comorbidity,
       intendedEffect: intendedEffect ?? this.intendedEffect,
-      durationRange: durationRange ?? this.durationRange,
-      durationString: durationString ?? this.durationString,
+      durationXClinicalUseDefinitionIndication:
+          durationXClinicalUseDefinitionIndication ??
+              this.durationXClinicalUseDefinitionIndication,
       undesirableEffect: undesirableEffect ?? this.undesirableEffect,
       otherTherapy: otherTherapy ?? this.otherTherapy,
     );
@@ -1278,8 +1267,7 @@ class ClinicalUseDefinitionInteractant extends BackboneElement {
     super.id,
     super.extension_,
     super.modifierExtension,
-    this.itemReference,
-    this.itemCodeableConcept,
+    required this.itemXClinicalUseDefinitionInteractant,
     super.disallowExtensions,
   });
 
@@ -1309,16 +1297,9 @@ class ClinicalUseDefinitionInteractant extends BackboneElement {
               )
               .toList()
           : null,
-      itemReference: json['itemReference'] != null
-          ? Reference.fromJson(
-              json['itemReference'] as Map<String, dynamic>,
-            )
-          : null,
-      itemCodeableConcept: json['itemCodeableConcept'] != null
-          ? CodeableConcept.fromJson(
-              json['itemCodeableConcept'] as Map<String, dynamic>,
-            )
-          : null,
+      itemXClinicalUseDefinitionInteractant: Reference.fromJson(
+        json['itemXClinicalUseDefinitionInteractant'] as Map<String, dynamic>,
+      ),
     );
   }
 
@@ -1364,13 +1345,9 @@ class ClinicalUseDefinitionInteractant extends BackboneElement {
   @override
   String get fhirType => 'ClinicalUseDefinitionInteractant';
 
-  /// [itemReference]
+  /// [itemXClinicalUseDefinitionInteractant]
   /// The specific medication, food or laboratory test that interacts.
-  final Reference? itemReference;
-
-  /// [itemCodeableConcept]
-  /// The specific medication, food or laboratory test that interacts.
-  final CodeableConcept? itemCodeableConcept;
+  final Reference itemXClinicalUseDefinitionInteractant;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1393,13 +1370,8 @@ class ClinicalUseDefinitionInteractant extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    if (itemReference != null) {
-      json['itemReference'] = itemReference!.toJson();
-    }
-
-    if (itemCodeableConcept != null) {
-      json['itemCodeableConcept'] = itemCodeableConcept!.toJson();
-    }
+    json['itemXClinicalUseDefinitionInteractant'] =
+        itemXClinicalUseDefinitionInteractant.toJson();
 
     return json;
   }
@@ -1411,8 +1383,7 @@ class ClinicalUseDefinitionInteractant extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    Reference? itemReference,
-    CodeableConcept? itemCodeableConcept,
+    Reference? itemXClinicalUseDefinitionInteractant,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1422,8 +1393,9 @@ class ClinicalUseDefinitionInteractant extends BackboneElement {
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
-      itemReference: itemReference ?? this.itemReference,
-      itemCodeableConcept: itemCodeableConcept ?? this.itemCodeableConcept,
+      itemXClinicalUseDefinitionInteractant:
+          itemXClinicalUseDefinitionInteractant ??
+              this.itemXClinicalUseDefinitionInteractant,
     );
   }
 }

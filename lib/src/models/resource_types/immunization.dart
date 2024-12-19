@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'immunization.g.dart';
+
 /// [Immunization]
 /// Describes the event of a patient being administered a vaccine or a
 /// record of an immunization as reported by a patient, a clinician or
@@ -25,8 +27,7 @@ class Immunization extends DomainResource {
     required this.vaccineCode,
     required this.patient,
     this.encounter,
-    this.occurrenceDateTime,
-    this.occurrenceString,
+    required this.occurrenceXImmunizationImmunization,
     this.recorded,
     this.primarySource,
     this.reportOrigin,
@@ -139,20 +140,10 @@ class Immunization extends DomainResource {
               json['encounter'] as Map<String, dynamic>,
             )
           : null,
-      occurrenceDateTime: (json['occurrenceDateTime'] != null ||
-              json['_occurrenceDateTime'] != null)
-          ? FhirDateTime.fromJson({
-              'value': json['occurrenceDateTime'],
-              '_value': json['_occurrenceDateTime'],
-            })
-          : null,
-      occurrenceString: (json['occurrenceString'] != null ||
-              json['_occurrenceString'] != null)
-          ? FhirString.fromJson({
-              'value': json['occurrenceString'],
-              '_value': json['_occurrenceString'],
-            })
-          : null,
+      occurrenceXImmunizationImmunization: FhirDateTime.fromJson({
+        'value': json['occurrenceXImmunizationImmunization'],
+        '_value': json['_occurrenceXImmunizationImmunization'],
+      }),
       recorded: (json['recorded'] != null || json['_recorded'] != null)
           ? FhirDateTime.fromJson({
               'value': json['recorded'],
@@ -371,13 +362,9 @@ class Immunization extends DomainResource {
   /// provider the immunization was performed as part of.
   final Reference? encounter;
 
-  /// [occurrenceDateTime]
+  /// [occurrenceXImmunizationImmunization]
   /// Date vaccine administered or was to be administered.
-  final FhirDateTime? occurrenceDateTime;
-
-  /// [occurrenceString]
-  /// Date vaccine administered or was to be administered.
-  final FhirString? occurrenceString;
+  final FhirDateTime occurrenceXImmunizationImmunization;
 
   /// [recorded]
   /// The date the occurrence of the immunization was first captured in the
@@ -531,8 +518,8 @@ class Immunization extends DomainResource {
       json['encounter'] = encounter!.toJson();
     }
 
-    addField('occurrenceDateTime', occurrenceDateTime);
-    addField('occurrenceString', occurrenceString);
+    addField('occurrenceXImmunizationImmunization',
+        occurrenceXImmunizationImmunization);
     addField('recorded', recorded);
     addField('primarySource', primarySource);
     if (reportOrigin != null) {
@@ -627,8 +614,7 @@ class Immunization extends DomainResource {
     CodeableConcept? vaccineCode,
     Reference? patient,
     Reference? encounter,
-    FhirDateTime? occurrenceDateTime,
-    FhirString? occurrenceString,
+    FhirDateTime? occurrenceXImmunizationImmunization,
     FhirDateTime? recorded,
     FhirBoolean? primarySource,
     CodeableConcept? reportOrigin,
@@ -670,8 +656,9 @@ class Immunization extends DomainResource {
       vaccineCode: vaccineCode ?? this.vaccineCode,
       patient: patient ?? this.patient,
       encounter: encounter ?? this.encounter,
-      occurrenceDateTime: occurrenceDateTime ?? this.occurrenceDateTime,
-      occurrenceString: occurrenceString ?? this.occurrenceString,
+      occurrenceXImmunizationImmunization:
+          occurrenceXImmunizationImmunization ??
+              this.occurrenceXImmunizationImmunization,
       recorded: recorded ?? this.recorded,
       primarySource: primarySource ?? this.primarySource,
       reportOrigin: reportOrigin ?? this.reportOrigin,
@@ -1230,10 +1217,8 @@ class ImmunizationProtocolApplied extends BackboneElement {
     this.series,
     this.authority,
     this.targetDisease,
-    this.doseNumberPositiveInt,
-    this.doseNumberString,
-    this.seriesDosesPositiveInt,
-    this.seriesDosesString,
+    required this.doseNumberXImmunizationProtocolApplied,
+    this.seriesDosesXImmunizationProtocolApplied,
     super.disallowExtensions,
   });
 
@@ -1283,34 +1268,18 @@ class ImmunizationProtocolApplied extends BackboneElement {
               )
               .toList()
           : null,
-      doseNumberPositiveInt: (json['doseNumberPositiveInt'] != null ||
-              json['_doseNumberPositiveInt'] != null)
-          ? FhirPositiveInt.fromJson({
-              'value': json['doseNumberPositiveInt'],
-              '_value': json['_doseNumberPositiveInt'],
-            })
-          : null,
-      doseNumberString: (json['doseNumberString'] != null ||
-              json['_doseNumberString'] != null)
-          ? FhirString.fromJson({
-              'value': json['doseNumberString'],
-              '_value': json['_doseNumberString'],
-            })
-          : null,
-      seriesDosesPositiveInt: (json['seriesDosesPositiveInt'] != null ||
-              json['_seriesDosesPositiveInt'] != null)
-          ? FhirPositiveInt.fromJson({
-              'value': json['seriesDosesPositiveInt'],
-              '_value': json['_seriesDosesPositiveInt'],
-            })
-          : null,
-      seriesDosesString: (json['seriesDosesString'] != null ||
-              json['_seriesDosesString'] != null)
-          ? FhirString.fromJson({
-              'value': json['seriesDosesString'],
-              '_value': json['_seriesDosesString'],
-            })
-          : null,
+      doseNumberXImmunizationProtocolApplied: FhirPositiveInt.fromJson({
+        'value': json['doseNumberXImmunizationProtocolApplied'],
+        '_value': json['_doseNumberXImmunizationProtocolApplied'],
+      }),
+      seriesDosesXImmunizationProtocolApplied:
+          (json['seriesDosesXImmunizationProtocolApplied'] != null ||
+                  json['_seriesDosesXImmunizationProtocolApplied'] != null)
+              ? FhirPositiveInt.fromJson({
+                  'value': json['seriesDosesXImmunizationProtocolApplied'],
+                  '_value': json['_seriesDosesXImmunizationProtocolApplied'],
+                })
+              : null,
     );
   }
 
@@ -1370,21 +1339,13 @@ class ImmunizationProtocolApplied extends BackboneElement {
   /// The vaccine preventable disease the dose is being administered against.
   final List<CodeableConcept>? targetDisease;
 
-  /// [doseNumberPositiveInt]
+  /// [doseNumberXImmunizationProtocolApplied]
   /// Nominal position in a series.
-  final FhirPositiveInt? doseNumberPositiveInt;
+  final FhirPositiveInt doseNumberXImmunizationProtocolApplied;
 
-  /// [doseNumberString]
-  /// Nominal position in a series.
-  final FhirString? doseNumberString;
-
-  /// [seriesDosesPositiveInt]
+  /// [seriesDosesXImmunizationProtocolApplied]
   /// The recommended number of doses to achieve immunity.
-  final FhirPositiveInt? seriesDosesPositiveInt;
-
-  /// [seriesDosesString]
-  /// The recommended number of doses to achieve immunity.
-  final FhirString? seriesDosesString;
+  final FhirPositiveInt? seriesDosesXImmunizationProtocolApplied;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1416,10 +1377,10 @@ class ImmunizationProtocolApplied extends BackboneElement {
       json['targetDisease'] = targetDisease!.map((e) => e.toJson()).toList();
     }
 
-    addField('doseNumberPositiveInt', doseNumberPositiveInt);
-    addField('doseNumberString', doseNumberString);
-    addField('seriesDosesPositiveInt', seriesDosesPositiveInt);
-    addField('seriesDosesString', seriesDosesString);
+    addField('doseNumberXImmunizationProtocolApplied',
+        doseNumberXImmunizationProtocolApplied);
+    addField('seriesDosesXImmunizationProtocolApplied',
+        seriesDosesXImmunizationProtocolApplied);
     return json;
   }
 
@@ -1433,10 +1394,8 @@ class ImmunizationProtocolApplied extends BackboneElement {
     FhirString? series,
     Reference? authority,
     List<CodeableConcept>? targetDisease,
-    FhirPositiveInt? doseNumberPositiveInt,
-    FhirString? doseNumberString,
-    FhirPositiveInt? seriesDosesPositiveInt,
-    FhirString? seriesDosesString,
+    FhirPositiveInt? doseNumberXImmunizationProtocolApplied,
+    FhirPositiveInt? seriesDosesXImmunizationProtocolApplied,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1449,12 +1408,12 @@ class ImmunizationProtocolApplied extends BackboneElement {
       series: series ?? this.series,
       authority: authority ?? this.authority,
       targetDisease: targetDisease ?? this.targetDisease,
-      doseNumberPositiveInt:
-          doseNumberPositiveInt ?? this.doseNumberPositiveInt,
-      doseNumberString: doseNumberString ?? this.doseNumberString,
-      seriesDosesPositiveInt:
-          seriesDosesPositiveInt ?? this.seriesDosesPositiveInt,
-      seriesDosesString: seriesDosesString ?? this.seriesDosesString,
+      doseNumberXImmunizationProtocolApplied:
+          doseNumberXImmunizationProtocolApplied ??
+              this.doseNumberXImmunizationProtocolApplied,
+      seriesDosesXImmunizationProtocolApplied:
+          seriesDosesXImmunizationProtocolApplied ??
+              this.seriesDosesXImmunizationProtocolApplied,
     );
   }
 }

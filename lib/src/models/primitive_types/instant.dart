@@ -84,13 +84,26 @@ class FhirInstant extends FhirDateTimeBase {
       ) as FhirInstant;
 
   /// Factory constructor to create a [FhirInstant] from a [DateTime].
-  factory FhirInstant.fromDateTime(DateTime? input, [Element? element]) =>
-      input == null && element == null
-          ? throw ArgumentError('A value or element is required')
-          : FhirDateTimeBase.constructor<FhirInstant>(
-              input: input,
-              element: element,
-            ) as FhirInstant;
+  factory FhirInstant.fromDateTime(
+    DateTime input, {
+    Element? element,
+    FhirString? id,
+    List<FhirExtension>? extension_,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+  }) =>
+      FhirDateTimeBase.constructor<FhirInstant>(
+        input: input,
+        element: element,
+        id: id,
+        extension_: extension_,
+        userData: userData,
+        formatCommentsPre: formatCommentsPre,
+        formatCommentsPost: formatCommentsPost,
+        annotations: annotations,
+      ) as FhirInstant;
 
   /// Factory constructor to create a [FhirInstant] from JSON input.
   factory FhirInstant.fromJson(Map<String, dynamic> json) {
@@ -102,7 +115,7 @@ class FhirInstant extends FhirDateTimeBase {
     if (value is String) {
       return FhirInstant.fromString(value, element: element);
     } else if (value is DateTime) {
-      return FhirInstant.fromDateTime(value, element);
+      return FhirInstant.fromDateTime(value, element: element);
     } else if (value == null) {
       return FhirDateTimeBase.constructor<FhirInstant>(
         element: element,
@@ -196,17 +209,8 @@ class FhirInstant extends FhirDateTimeBase {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
-    return FhirInstant.fromBase(
-      year: year,
-      month: month,
-      day: day,
-      hour: hour,
-      minute: minute,
-      second: second,
-      millisecond: millisecond,
-      microsecond: microsecond,
-      timeZoneOffset: timeZoneOffset,
-      isUtc: isUtc,
+    return FhirDateTimeBase.constructor<FhirInstant>(
+      input: value ?? value,
       element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
@@ -216,6 +220,10 @@ class FhirInstant extends FhirDateTimeBase {
       ),
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
-    );
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+    ) as FhirInstant;
   }
 }

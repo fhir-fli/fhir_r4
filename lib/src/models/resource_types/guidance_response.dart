@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'guidance_response.g.dart';
+
 /// [GuidanceResponse]
 /// A guidance response is the formal response to a guidance request,
 /// including any output parameters returned by the evaluation, as well as
@@ -21,9 +23,7 @@ class GuidanceResponse extends DomainResource {
     super.modifierExtension,
     this.requestIdentifier,
     this.identifier,
-    this.moduleUri,
-    this.moduleCanonical,
-    this.moduleCodeableConcept,
+    required this.moduleXGuidanceResponseGuidanceResponse,
     required this.status,
     this.subject,
     this.encounter,
@@ -112,24 +112,10 @@ class GuidanceResponse extends DomainResource {
               )
               .toList()
           : null,
-      moduleUri: (json['moduleUri'] != null || json['_moduleUri'] != null)
-          ? FhirUri.fromJson({
-              'value': json['moduleUri'],
-              '_value': json['_moduleUri'],
-            })
-          : null,
-      moduleCanonical:
-          (json['moduleCanonical'] != null || json['_moduleCanonical'] != null)
-              ? FhirCanonical.fromJson({
-                  'value': json['moduleCanonical'],
-                  '_value': json['_moduleCanonical'],
-                })
-              : null,
-      moduleCodeableConcept: json['moduleCodeableConcept'] != null
-          ? CodeableConcept.fromJson(
-              json['moduleCodeableConcept'] as Map<String, dynamic>,
-            )
-          : null,
+      moduleXGuidanceResponseGuidanceResponse: FhirUri.fromJson({
+        'value': json['moduleXGuidanceResponseGuidanceResponse'],
+        '_value': json['_moduleXGuidanceResponseGuidanceResponse'],
+      }),
       status: GuidanceResponseStatus.fromJson({
         'value': json['status'],
         '_value': json['_status'],
@@ -268,20 +254,10 @@ class GuidanceResponse extends DomainResource {
   /// response.
   final List<Identifier>? identifier;
 
-  /// [moduleUri]
+  /// [moduleXGuidanceResponseGuidanceResponse]
   /// An identifier, CodeableConcept or canonical reference to the guidance
   /// that was requested.
-  final FhirUri? moduleUri;
-
-  /// [moduleCanonical]
-  /// An identifier, CodeableConcept or canonical reference to the guidance
-  /// that was requested.
-  final FhirCanonical? moduleCanonical;
-
-  /// [moduleCodeableConcept]
-  /// An identifier, CodeableConcept or canonical reference to the guidance
-  /// that was requested.
-  final CodeableConcept? moduleCodeableConcept;
+  final FhirUri moduleXGuidanceResponseGuidanceResponse;
 
   /// [status]
   /// The status of the response. If the evaluation is completed
@@ -400,12 +376,8 @@ class GuidanceResponse extends DomainResource {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
 
-    addField('moduleUri', moduleUri);
-    addField('moduleCanonical', moduleCanonical);
-    if (moduleCodeableConcept != null) {
-      json['moduleCodeableConcept'] = moduleCodeableConcept!.toJson();
-    }
-
+    addField('moduleXGuidanceResponseGuidanceResponse',
+        moduleXGuidanceResponseGuidanceResponse);
     addField('status', status);
     if (subject != null) {
       json['subject'] = subject!.toJson();
@@ -468,9 +440,7 @@ class GuidanceResponse extends DomainResource {
     List<FhirExtension>? modifierExtension,
     Identifier? requestIdentifier,
     List<Identifier>? identifier,
-    FhirUri? moduleUri,
-    FhirCanonical? moduleCanonical,
-    CodeableConcept? moduleCodeableConcept,
+    FhirUri? moduleXGuidanceResponseGuidanceResponse,
     GuidanceResponseStatus? status,
     Reference? subject,
     Reference? encounter,
@@ -499,10 +469,9 @@ class GuidanceResponse extends DomainResource {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       requestIdentifier: requestIdentifier ?? this.requestIdentifier,
       identifier: identifier ?? this.identifier,
-      moduleUri: moduleUri ?? this.moduleUri,
-      moduleCanonical: moduleCanonical ?? this.moduleCanonical,
-      moduleCodeableConcept:
-          moduleCodeableConcept ?? this.moduleCodeableConcept,
+      moduleXGuidanceResponseGuidanceResponse:
+          moduleXGuidanceResponseGuidanceResponse ??
+              this.moduleXGuidanceResponseGuidanceResponse,
       status: status ?? this.status,
       subject: subject ?? this.subject,
       encounter: encounter ?? this.encounter,

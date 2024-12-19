@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'event_definition.g.dart';
+
 /// [EventDefinition]
 /// The EventDefinition resource provides a reusable description of when a
 /// particular event can occur.
@@ -26,8 +28,7 @@ class EventDefinition extends CanonicalResource {
     this.subtitle,
     required super.status,
     super.experimental,
-    this.subjectCodeableConcept,
-    this.subjectReference,
+    this.subjectXEventDefinitionEventDefinition,
     super.date,
     super.publisher,
     super.contact,
@@ -159,16 +160,13 @@ class EventDefinition extends CanonicalResource {
                   '_value': json['_experimental'],
                 })
               : null,
-      subjectCodeableConcept: json['subjectCodeableConcept'] != null
-          ? CodeableConcept.fromJson(
-              json['subjectCodeableConcept'] as Map<String, dynamic>,
-            )
-          : null,
-      subjectReference: json['subjectReference'] != null
-          ? Reference.fromJson(
-              json['subjectReference'] as Map<String, dynamic>,
-            )
-          : null,
+      subjectXEventDefinitionEventDefinition:
+          json['subjectXEventDefinitionEventDefinition'] != null
+              ? CodeableConcept.fromJson(
+                  json['subjectXEventDefinitionEventDefinition']
+                      as Map<String, dynamic>,
+                )
+              : null,
       date: (json['date'] != null || json['_date'] != null)
           ? FhirDateTime.fromJson({
               'value': json['date'],
@@ -380,15 +378,10 @@ class EventDefinition extends CanonicalResource {
   /// additional information about its content.
   final FhirString? subtitle;
 
-  /// [subjectCodeableConcept]
+  /// [subjectXEventDefinitionEventDefinition]
   /// A code or group definition that describes the intended subject of the
   /// event definition.
-  final CodeableConcept? subjectCodeableConcept;
-
-  /// [subjectReference]
-  /// A code or group definition that describes the intended subject of the
-  /// event definition.
-  final Reference? subjectReference;
+  final CodeableConcept? subjectXEventDefinitionEventDefinition;
 
   /// [purpose]
   /// Explanation of why this event definition is needed and why it has been
@@ -507,12 +500,9 @@ class EventDefinition extends CanonicalResource {
     addField('subtitle', subtitle);
     addField('status', status);
     addField('experimental', experimental);
-    if (subjectCodeableConcept != null) {
-      json['subjectCodeableConcept'] = subjectCodeableConcept!.toJson();
-    }
-
-    if (subjectReference != null) {
-      json['subjectReference'] = subjectReference!.toJson();
+    if (subjectXEventDefinitionEventDefinition != null) {
+      json['subjectXEventDefinitionEventDefinition'] =
+          subjectXEventDefinitionEventDefinition!.toJson();
     }
 
     addField('date', date);
@@ -591,8 +581,7 @@ class EventDefinition extends CanonicalResource {
     FhirString? subtitle,
     PublicationStatus? status,
     FhirBoolean? experimental,
-    CodeableConcept? subjectCodeableConcept,
-    Reference? subjectReference,
+    CodeableConcept? subjectXEventDefinitionEventDefinition,
     FhirDateTime? date,
     FhirString? publisher,
     List<ContactDetail>? contact,
@@ -634,9 +623,9 @@ class EventDefinition extends CanonicalResource {
       subtitle: subtitle ?? this.subtitle,
       status: status ?? this.status,
       experimental: experimental ?? this.experimental,
-      subjectCodeableConcept:
-          subjectCodeableConcept ?? this.subjectCodeableConcept,
-      subjectReference: subjectReference ?? this.subjectReference,
+      subjectXEventDefinitionEventDefinition:
+          subjectXEventDefinitionEventDefinition ??
+              this.subjectXEventDefinitionEventDefinition,
       date: date ?? this.date,
       publisher: publisher ?? this.publisher,
       contact: contact ?? this.contact,

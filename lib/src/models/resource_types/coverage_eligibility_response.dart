@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'coverage_eligibility_response.g.dart';
+
 /// [CoverageEligibilityResponse]
 /// This resource provides eligibility and plan details from the processing
 /// of an CoverageEligibilityRequest resource.
@@ -22,8 +24,7 @@ class CoverageEligibilityResponse extends DomainResource {
     required this.status,
     required this.purpose,
     required this.patient,
-    this.servicedDate,
-    this.servicedPeriod,
+    this.servicedXCoverageEligibilityResponseCoverageEligibilityResponse,
     required this.created,
     this.requestor,
     required this.request,
@@ -119,18 +120,18 @@ class CoverageEligibilityResponse extends DomainResource {
       patient: Reference.fromJson(
         json['patient'] as Map<String, dynamic>,
       ),
-      servicedDate:
-          (json['servicedDate'] != null || json['_servicedDate'] != null)
+      servicedXCoverageEligibilityResponseCoverageEligibilityResponse:
+          (json['servicedXCoverageEligibilityResponseCoverageEligibilityResponse'] !=
+                      null ||
+                  json['_servicedXCoverageEligibilityResponseCoverageEligibilityResponse'] !=
+                      null)
               ? FhirDate.fromJson({
-                  'value': json['servicedDate'],
-                  '_value': json['_servicedDate'],
+                  'value': json[
+                      'servicedXCoverageEligibilityResponseCoverageEligibilityResponse'],
+                  '_value': json[
+                      '_servicedXCoverageEligibilityResponseCoverageEligibilityResponse'],
                 })
               : null,
-      servicedPeriod: json['servicedPeriod'] != null
-          ? Period.fromJson(
-              json['servicedPeriod'] as Map<String, dynamic>,
-            )
-          : null,
       created: FhirDateTime.fromJson({
         'value': json['created'],
         '_value': json['_created'],
@@ -251,15 +252,11 @@ class CoverageEligibilityResponse extends DomainResource {
   /// eligibility is sought.
   final Reference patient;
 
-  /// [servicedDate]
+  /// [servicedXCoverageEligibilityResponseCoverageEligibilityResponse]
   /// The date or dates when the enclosed suite of services were performed or
   /// completed.
-  final FhirDate? servicedDate;
-
-  /// [servicedPeriod]
-  /// The date or dates when the enclosed suite of services were performed or
-  /// completed.
-  final Period? servicedPeriod;
+  final FhirDate?
+      servicedXCoverageEligibilityResponseCoverageEligibilityResponse;
 
   /// [created]
   /// The date this resource was created.
@@ -355,11 +352,8 @@ class CoverageEligibilityResponse extends DomainResource {
 
     json['patient'] = patient.toJson();
 
-    addField('servicedDate', servicedDate);
-    if (servicedPeriod != null) {
-      json['servicedPeriod'] = servicedPeriod!.toJson();
-    }
-
+    addField('servicedXCoverageEligibilityResponseCoverageEligibilityResponse',
+        servicedXCoverageEligibilityResponseCoverageEligibilityResponse);
     addField('created', created);
     if (requestor != null) {
       json['requestor'] = requestor!.toJson();
@@ -403,8 +397,7 @@ class CoverageEligibilityResponse extends DomainResource {
     FinancialResourceStatusCodes? status,
     List<EligibilityResponsePurpose>? purpose,
     Reference? patient,
-    FhirDate? servicedDate,
-    Period? servicedPeriod,
+    FhirDate? servicedXCoverageEligibilityResponseCoverageEligibilityResponse,
     FhirDateTime? created,
     Reference? requestor,
     Reference? request,
@@ -433,8 +426,9 @@ class CoverageEligibilityResponse extends DomainResource {
       status: status ?? this.status,
       purpose: purpose ?? this.purpose,
       patient: patient ?? this.patient,
-      servicedDate: servicedDate ?? this.servicedDate,
-      servicedPeriod: servicedPeriod ?? this.servicedPeriod,
+      servicedXCoverageEligibilityResponseCoverageEligibilityResponse:
+          servicedXCoverageEligibilityResponseCoverageEligibilityResponse ??
+              this.servicedXCoverageEligibilityResponseCoverageEligibilityResponse,
       created: created ?? this.created,
       requestor: requestor ?? this.requestor,
       request: request ?? this.request,
@@ -1029,12 +1023,8 @@ class CoverageEligibilityResponseBenefit extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.type,
-    this.allowedUnsignedInt,
-    this.allowedString,
-    this.allowedMoney,
-    this.usedUnsignedInt,
-    this.usedString,
-    this.usedMoney,
+    this.allowedXCoverageEligibilityResponseBenefit,
+    this.usedXCoverageEligibilityResponseBenefit,
     super.disallowExtensions,
   });
 
@@ -1067,43 +1057,22 @@ class CoverageEligibilityResponseBenefit extends BackboneElement {
       type: CodeableConcept.fromJson(
         json['type'] as Map<String, dynamic>,
       ),
-      allowedUnsignedInt: (json['allowedUnsignedInt'] != null ||
-              json['_allowedUnsignedInt'] != null)
-          ? FhirUnsignedInt.fromJson({
-              'value': json['allowedUnsignedInt'],
-              '_value': json['_allowedUnsignedInt'],
-            })
-          : null,
-      allowedString:
-          (json['allowedString'] != null || json['_allowedString'] != null)
-              ? FhirString.fromJson({
-                  'value': json['allowedString'],
-                  '_value': json['_allowedString'],
-                })
-              : null,
-      allowedMoney: json['allowedMoney'] != null
-          ? Money.fromJson(
-              json['allowedMoney'] as Map<String, dynamic>,
-            )
-          : null,
-      usedUnsignedInt:
-          (json['usedUnsignedInt'] != null || json['_usedUnsignedInt'] != null)
+      allowedXCoverageEligibilityResponseBenefit:
+          (json['allowedXCoverageEligibilityResponseBenefit'] != null ||
+                  json['_allowedXCoverageEligibilityResponseBenefit'] != null)
               ? FhirUnsignedInt.fromJson({
-                  'value': json['usedUnsignedInt'],
-                  '_value': json['_usedUnsignedInt'],
+                  'value': json['allowedXCoverageEligibilityResponseBenefit'],
+                  '_value': json['_allowedXCoverageEligibilityResponseBenefit'],
                 })
               : null,
-      usedString: (json['usedString'] != null || json['_usedString'] != null)
-          ? FhirString.fromJson({
-              'value': json['usedString'],
-              '_value': json['_usedString'],
-            })
-          : null,
-      usedMoney: json['usedMoney'] != null
-          ? Money.fromJson(
-              json['usedMoney'] as Map<String, dynamic>,
-            )
-          : null,
+      usedXCoverageEligibilityResponseBenefit:
+          (json['usedXCoverageEligibilityResponseBenefit'] != null ||
+                  json['_usedXCoverageEligibilityResponseBenefit'] != null)
+              ? FhirUnsignedInt.fromJson({
+                  'value': json['usedXCoverageEligibilityResponseBenefit'],
+                  '_value': json['_usedXCoverageEligibilityResponseBenefit'],
+                })
+              : null,
     );
   }
 
@@ -1153,29 +1122,13 @@ class CoverageEligibilityResponseBenefit extends BackboneElement {
   /// Classification of benefit being provided.
   final CodeableConcept type;
 
-  /// [allowedUnsignedInt]
+  /// [allowedXCoverageEligibilityResponseBenefit]
   /// The quantity of the benefit which is permitted under the coverage.
-  final FhirUnsignedInt? allowedUnsignedInt;
+  final FhirUnsignedInt? allowedXCoverageEligibilityResponseBenefit;
 
-  /// [allowedString]
-  /// The quantity of the benefit which is permitted under the coverage.
-  final FhirString? allowedString;
-
-  /// [allowedMoney]
-  /// The quantity of the benefit which is permitted under the coverage.
-  final Money? allowedMoney;
-
-  /// [usedUnsignedInt]
+  /// [usedXCoverageEligibilityResponseBenefit]
   /// The quantity of the benefit which have been consumed to date.
-  final FhirUnsignedInt? usedUnsignedInt;
-
-  /// [usedString]
-  /// The quantity of the benefit which have been consumed to date.
-  final FhirString? usedString;
-
-  /// [usedMoney]
-  /// The quantity of the benefit which have been consumed to date.
-  final Money? usedMoney;
+  final FhirUnsignedInt? usedXCoverageEligibilityResponseBenefit;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1200,18 +1153,10 @@ class CoverageEligibilityResponseBenefit extends BackboneElement {
 
     json['type'] = type.toJson();
 
-    addField('allowedUnsignedInt', allowedUnsignedInt);
-    addField('allowedString', allowedString);
-    if (allowedMoney != null) {
-      json['allowedMoney'] = allowedMoney!.toJson();
-    }
-
-    addField('usedUnsignedInt', usedUnsignedInt);
-    addField('usedString', usedString);
-    if (usedMoney != null) {
-      json['usedMoney'] = usedMoney!.toJson();
-    }
-
+    addField('allowedXCoverageEligibilityResponseBenefit',
+        allowedXCoverageEligibilityResponseBenefit);
+    addField('usedXCoverageEligibilityResponseBenefit',
+        usedXCoverageEligibilityResponseBenefit);
     return json;
   }
 
@@ -1223,12 +1168,8 @@ class CoverageEligibilityResponseBenefit extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     CodeableConcept? type,
-    FhirUnsignedInt? allowedUnsignedInt,
-    FhirString? allowedString,
-    Money? allowedMoney,
-    FhirUnsignedInt? usedUnsignedInt,
-    FhirString? usedString,
-    Money? usedMoney,
+    FhirUnsignedInt? allowedXCoverageEligibilityResponseBenefit,
+    FhirUnsignedInt? usedXCoverageEligibilityResponseBenefit,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1239,12 +1180,12 @@ class CoverageEligibilityResponseBenefit extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
-      allowedUnsignedInt: allowedUnsignedInt ?? this.allowedUnsignedInt,
-      allowedString: allowedString ?? this.allowedString,
-      allowedMoney: allowedMoney ?? this.allowedMoney,
-      usedUnsignedInt: usedUnsignedInt ?? this.usedUnsignedInt,
-      usedString: usedString ?? this.usedString,
-      usedMoney: usedMoney ?? this.usedMoney,
+      allowedXCoverageEligibilityResponseBenefit:
+          allowedXCoverageEligibilityResponseBenefit ??
+              this.allowedXCoverageEligibilityResponseBenefit,
+      usedXCoverageEligibilityResponseBenefit:
+          usedXCoverageEligibilityResponseBenefit ??
+              this.usedXCoverageEligibilityResponseBenefit,
     );
   }
 }

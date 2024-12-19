@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'group.g.dart';
+
 /// [FhirGroup]
 /// Represents a defined collection of entities that may be discussed or
 /// acted upon collectively but which are not expected to act collectively,
@@ -373,11 +375,7 @@ class GroupCharacteristic extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.code,
-    this.valueCodeableConcept,
-    this.valueBoolean,
-    this.valueQuantity,
-    this.valueRange,
-    this.valueReference,
+    required this.valueXGroupCharacteristic,
     required this.exclude,
     this.period,
     super.disallowExtensions,
@@ -412,33 +410,9 @@ class GroupCharacteristic extends BackboneElement {
       code: CodeableConcept.fromJson(
         json['code'] as Map<String, dynamic>,
       ),
-      valueCodeableConcept: json['valueCodeableConcept'] != null
-          ? CodeableConcept.fromJson(
-              json['valueCodeableConcept'] as Map<String, dynamic>,
-            )
-          : null,
-      valueBoolean:
-          (json['valueBoolean'] != null || json['_valueBoolean'] != null)
-              ? FhirBoolean.fromJson({
-                  'value': json['valueBoolean'],
-                  '_value': json['_valueBoolean'],
-                })
-              : null,
-      valueQuantity: json['valueQuantity'] != null
-          ? Quantity.fromJson(
-              json['valueQuantity'] as Map<String, dynamic>,
-            )
-          : null,
-      valueRange: json['valueRange'] != null
-          ? Range.fromJson(
-              json['valueRange'] as Map<String, dynamic>,
-            )
-          : null,
-      valueReference: json['valueReference'] != null
-          ? Reference.fromJson(
-              json['valueReference'] as Map<String, dynamic>,
-            )
-          : null,
+      valueXGroupCharacteristic: CodeableConcept.fromJson(
+        json['valueXGroupCharacteristic'] as Map<String, dynamic>,
+      ),
       exclude: FhirBoolean.fromJson({
         'value': json['exclude'],
         '_value': json['_exclude'],
@@ -497,30 +471,10 @@ class GroupCharacteristic extends BackboneElement {
   /// A code that identifies the kind of trait being asserted.
   final CodeableConcept code;
 
-  /// [valueCodeableConcept]
+  /// [valueXGroupCharacteristic]
   /// The value of the trait that holds (or does not hold - see 'exclude')
   /// for members of the group.
-  final CodeableConcept? valueCodeableConcept;
-
-  /// [valueBoolean]
-  /// The value of the trait that holds (or does not hold - see 'exclude')
-  /// for members of the group.
-  final FhirBoolean? valueBoolean;
-
-  /// [valueQuantity]
-  /// The value of the trait that holds (or does not hold - see 'exclude')
-  /// for members of the group.
-  final Quantity? valueQuantity;
-
-  /// [valueRange]
-  /// The value of the trait that holds (or does not hold - see 'exclude')
-  /// for members of the group.
-  final Range? valueRange;
-
-  /// [valueReference]
-  /// The value of the trait that holds (or does not hold - see 'exclude')
-  /// for members of the group.
-  final Reference? valueReference;
+  final CodeableConcept valueXGroupCharacteristic;
 
   /// [exclude]
   /// If true, indicates the characteristic is one that is NOT held by
@@ -555,22 +509,7 @@ class GroupCharacteristic extends BackboneElement {
 
     json['code'] = code.toJson();
 
-    if (valueCodeableConcept != null) {
-      json['valueCodeableConcept'] = valueCodeableConcept!.toJson();
-    }
-
-    addField('valueBoolean', valueBoolean);
-    if (valueQuantity != null) {
-      json['valueQuantity'] = valueQuantity!.toJson();
-    }
-
-    if (valueRange != null) {
-      json['valueRange'] = valueRange!.toJson();
-    }
-
-    if (valueReference != null) {
-      json['valueReference'] = valueReference!.toJson();
-    }
+    json['valueXGroupCharacteristic'] = valueXGroupCharacteristic.toJson();
 
     addField('exclude', exclude);
     if (period != null) {
@@ -588,11 +527,7 @@ class GroupCharacteristic extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     CodeableConcept? code,
-    CodeableConcept? valueCodeableConcept,
-    FhirBoolean? valueBoolean,
-    Quantity? valueQuantity,
-    Range? valueRange,
-    Reference? valueReference,
+    CodeableConcept? valueXGroupCharacteristic,
     FhirBoolean? exclude,
     Period? period,
     Map<String, Object?>? userData,
@@ -605,11 +540,8 @@ class GroupCharacteristic extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       code: code ?? this.code,
-      valueCodeableConcept: valueCodeableConcept ?? this.valueCodeableConcept,
-      valueBoolean: valueBoolean ?? this.valueBoolean,
-      valueQuantity: valueQuantity ?? this.valueQuantity,
-      valueRange: valueRange ?? this.valueRange,
-      valueReference: valueReference ?? this.valueReference,
+      valueXGroupCharacteristic:
+          valueXGroupCharacteristic ?? this.valueXGroupCharacteristic,
       exclude: exclude ?? this.exclude,
       period: period ?? this.period,
     );

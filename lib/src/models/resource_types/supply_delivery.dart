@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'supply_delivery.g.dart';
+
 /// [SupplyDelivery]
 /// Record of delivery of what is supplied.
 class SupplyDelivery extends DomainResource {
@@ -24,9 +26,7 @@ class SupplyDelivery extends DomainResource {
     this.patient,
     this.type,
     this.suppliedItem,
-    this.occurrenceDateTime,
-    this.occurrencePeriod,
-    this.occurrenceTiming,
+    this.occurrenceXSupplyDeliverySupplyDelivery,
     this.supplier,
     this.destination,
     this.receiver,
@@ -140,23 +140,14 @@ class SupplyDelivery extends DomainResource {
               json['suppliedItem'] as Map<String, dynamic>,
             )
           : null,
-      occurrenceDateTime: (json['occurrenceDateTime'] != null ||
-              json['_occurrenceDateTime'] != null)
-          ? FhirDateTime.fromJson({
-              'value': json['occurrenceDateTime'],
-              '_value': json['_occurrenceDateTime'],
-            })
-          : null,
-      occurrencePeriod: json['occurrencePeriod'] != null
-          ? Period.fromJson(
-              json['occurrencePeriod'] as Map<String, dynamic>,
-            )
-          : null,
-      occurrenceTiming: json['occurrenceTiming'] != null
-          ? Timing.fromJson(
-              json['occurrenceTiming'] as Map<String, dynamic>,
-            )
-          : null,
+      occurrenceXSupplyDeliverySupplyDelivery:
+          (json['occurrenceXSupplyDeliverySupplyDelivery'] != null ||
+                  json['_occurrenceXSupplyDeliverySupplyDelivery'] != null)
+              ? FhirDateTime.fromJson({
+                  'value': json['occurrenceXSupplyDeliverySupplyDelivery'],
+                  '_value': json['_occurrenceXSupplyDeliverySupplyDelivery'],
+                })
+              : null,
       supplier: json['supplier'] != null
           ? Reference.fromJson(
               json['supplier'] as Map<String, dynamic>,
@@ -254,17 +245,9 @@ class SupplyDelivery extends DomainResource {
   /// The item that is being delivered or has been supplied.
   final SupplyDeliverySuppliedItem? suppliedItem;
 
-  /// [occurrenceDateTime]
+  /// [occurrenceXSupplyDeliverySupplyDelivery]
   /// The date or time(s) the activity occurred.
-  final FhirDateTime? occurrenceDateTime;
-
-  /// [occurrencePeriod]
-  /// The date or time(s) the activity occurred.
-  final Period? occurrencePeriod;
-
-  /// [occurrenceTiming]
-  /// The date or time(s) the activity occurred.
-  final Timing? occurrenceTiming;
+  final FhirDateTime? occurrenceXSupplyDeliverySupplyDelivery;
 
   /// [supplier]
   /// The individual responsible for dispensing the medication, supplier or
@@ -341,15 +324,8 @@ class SupplyDelivery extends DomainResource {
       json['suppliedItem'] = suppliedItem!.toJson();
     }
 
-    addField('occurrenceDateTime', occurrenceDateTime);
-    if (occurrencePeriod != null) {
-      json['occurrencePeriod'] = occurrencePeriod!.toJson();
-    }
-
-    if (occurrenceTiming != null) {
-      json['occurrenceTiming'] = occurrenceTiming!.toJson();
-    }
-
+    addField('occurrenceXSupplyDeliverySupplyDelivery',
+        occurrenceXSupplyDeliverySupplyDelivery);
     if (supplier != null) {
       json['supplier'] = supplier!.toJson();
     }
@@ -384,9 +360,7 @@ class SupplyDelivery extends DomainResource {
     Reference? patient,
     CodeableConcept? type,
     SupplyDeliverySuppliedItem? suppliedItem,
-    FhirDateTime? occurrenceDateTime,
-    Period? occurrencePeriod,
-    Timing? occurrenceTiming,
+    FhirDateTime? occurrenceXSupplyDeliverySupplyDelivery,
     Reference? supplier,
     Reference? destination,
     List<Reference>? receiver,
@@ -411,9 +385,9 @@ class SupplyDelivery extends DomainResource {
       patient: patient ?? this.patient,
       type: type ?? this.type,
       suppliedItem: suppliedItem ?? this.suppliedItem,
-      occurrenceDateTime: occurrenceDateTime ?? this.occurrenceDateTime,
-      occurrencePeriod: occurrencePeriod ?? this.occurrencePeriod,
-      occurrenceTiming: occurrenceTiming ?? this.occurrenceTiming,
+      occurrenceXSupplyDeliverySupplyDelivery:
+          occurrenceXSupplyDeliverySupplyDelivery ??
+              this.occurrenceXSupplyDeliverySupplyDelivery,
       supplier: supplier ?? this.supplier,
       destination: destination ?? this.destination,
       receiver: receiver ?? this.receiver,
@@ -432,8 +406,7 @@ class SupplyDeliverySuppliedItem extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.quantity,
-    this.itemCodeableConcept,
-    this.itemReference,
+    this.itemXSupplyDeliverySuppliedItem,
     super.disallowExtensions,
   });
 
@@ -468,16 +441,13 @@ class SupplyDeliverySuppliedItem extends BackboneElement {
               json['quantity'] as Map<String, dynamic>,
             )
           : null,
-      itemCodeableConcept: json['itemCodeableConcept'] != null
-          ? CodeableConcept.fromJson(
-              json['itemCodeableConcept'] as Map<String, dynamic>,
-            )
-          : null,
-      itemReference: json['itemReference'] != null
-          ? Reference.fromJson(
-              json['itemReference'] as Map<String, dynamic>,
-            )
-          : null,
+      itemXSupplyDeliverySuppliedItem:
+          json['itemXSupplyDeliverySuppliedItem'] != null
+              ? CodeableConcept.fromJson(
+                  json['itemXSupplyDeliverySuppliedItem']
+                      as Map<String, dynamic>,
+                )
+              : null,
     );
   }
 
@@ -527,17 +497,11 @@ class SupplyDeliverySuppliedItem extends BackboneElement {
   /// The amount of supply that has been dispensed. Includes unit of measure.
   final Quantity? quantity;
 
-  /// [itemCodeableConcept]
+  /// [itemXSupplyDeliverySuppliedItem]
   /// Identifies the medication, substance or device being dispensed. This is
   /// either a link to a resource representing the details of the item or a
   /// code that identifies the item from a known list.
-  final CodeableConcept? itemCodeableConcept;
-
-  /// [itemReference]
-  /// Identifies the medication, substance or device being dispensed. This is
-  /// either a link to a resource representing the details of the item or a
-  /// code that identifies the item from a known list.
-  final Reference? itemReference;
+  final CodeableConcept? itemXSupplyDeliverySuppliedItem;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -564,12 +528,9 @@ class SupplyDeliverySuppliedItem extends BackboneElement {
       json['quantity'] = quantity!.toJson();
     }
 
-    if (itemCodeableConcept != null) {
-      json['itemCodeableConcept'] = itemCodeableConcept!.toJson();
-    }
-
-    if (itemReference != null) {
-      json['itemReference'] = itemReference!.toJson();
+    if (itemXSupplyDeliverySuppliedItem != null) {
+      json['itemXSupplyDeliverySuppliedItem'] =
+          itemXSupplyDeliverySuppliedItem!.toJson();
     }
 
     return json;
@@ -583,8 +544,7 @@ class SupplyDeliverySuppliedItem extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     Quantity? quantity,
-    CodeableConcept? itemCodeableConcept,
-    Reference? itemReference,
+    CodeableConcept? itemXSupplyDeliverySuppliedItem,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -595,8 +555,8 @@ class SupplyDeliverySuppliedItem extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       quantity: quantity ?? this.quantity,
-      itemCodeableConcept: itemCodeableConcept ?? this.itemCodeableConcept,
-      itemReference: itemReference ?? this.itemReference,
+      itemXSupplyDeliverySuppliedItem: itemXSupplyDeliverySuppliedItem ??
+          this.itemXSupplyDeliverySuppliedItem,
     );
   }
 }

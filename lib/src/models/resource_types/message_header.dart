@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'message_header.g.dart';
+
 /// [MessageHeader]
 /// The header for a message exchange that is either requesting or
 /// responding to an action. The reference(s) that are the subject of the
@@ -21,8 +23,7 @@ class MessageHeader extends DomainResource {
     super.contained,
     super.extension_,
     super.modifierExtension,
-    this.eventCoding,
-    this.eventUri,
+    required this.eventXMessageHeaderMessageHeader,
     this.destination,
     this.sender,
     this.enterer,
@@ -95,17 +96,9 @@ class MessageHeader extends DomainResource {
               )
               .toList()
           : null,
-      eventCoding: json['eventCoding'] != null
-          ? Coding.fromJson(
-              json['eventCoding'] as Map<String, dynamic>,
-            )
-          : null,
-      eventUri: (json['eventUri'] != null || json['_eventUri'] != null)
-          ? FhirUri.fromJson({
-              'value': json['eventUri'],
-              '_value': json['_eventUri'],
-            })
-          : null,
+      eventXMessageHeaderMessageHeader: Coding.fromJson(
+        json['eventXMessageHeaderMessageHeader'] as Map<String, dynamic>,
+      ),
       destination: json['destination'] != null
           ? (json['destination'] as List<dynamic>)
               .map<MessageHeaderDestination>(
@@ -208,21 +201,13 @@ class MessageHeader extends DomainResource {
   @override
   String get fhirType => 'MessageHeader';
 
-  /// [eventCoding]
+  /// [eventXMessageHeaderMessageHeader]
   /// Code that identifies the event this message represents and connects it
   /// with its definition. Events defined as part of the FHIR specification
   /// have the system value
   /// "http://terminology.hl7.org/CodeSystem/message-events". Alternatively
   /// uri to the EventDefinition.
-  final Coding? eventCoding;
-
-  /// [eventUri]
-  /// Code that identifies the event this message represents and connects it
-  /// with its definition. Events defined as part of the FHIR specification
-  /// have the system value
-  /// "http://terminology.hl7.org/CodeSystem/message-events". Alternatively
-  /// uri to the EventDefinition.
-  final FhirUri? eventUri;
+  final Coding eventXMessageHeaderMessageHeader;
 
   /// [destination]
   /// The destination application which the message is intended for.
@@ -310,11 +295,9 @@ class MessageHeader extends DomainResource {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    if (eventCoding != null) {
-      json['eventCoding'] = eventCoding!.toJson();
-    }
+    json['eventXMessageHeaderMessageHeader'] =
+        eventXMessageHeaderMessageHeader.toJson();
 
-    addField('eventUri', eventUri);
     if (destination != null && destination!.isNotEmpty) {
       json['destination'] = destination!.map((e) => e.toJson()).toList();
     }
@@ -365,8 +348,7 @@ class MessageHeader extends DomainResource {
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    Coding? eventCoding,
-    FhirUri? eventUri,
+    Coding? eventXMessageHeaderMessageHeader,
     List<MessageHeaderDestination>? destination,
     Reference? sender,
     Reference? enterer,
@@ -391,8 +373,8 @@ class MessageHeader extends DomainResource {
       contained: contained ?? this.contained,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
-      eventCoding: eventCoding ?? this.eventCoding,
-      eventUri: eventUri ?? this.eventUri,
+      eventXMessageHeaderMessageHeader: eventXMessageHeaderMessageHeader ??
+          this.eventXMessageHeaderMessageHeader,
       destination: destination ?? this.destination,
       sender: sender ?? this.sender,
       enterer: enterer ?? this.enterer,

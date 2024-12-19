@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'care_plan.g.dart';
+
 /// [CarePlan]
 /// Describes the intention of how one or more practitioners intend to
 /// deliver care for a particular patient, group or community for a period
@@ -885,13 +887,10 @@ class CarePlanDetail extends BackboneElement {
     required this.status,
     this.statusReason,
     this.doNotPerform,
-    this.scheduledTiming,
-    this.scheduledPeriod,
-    this.scheduledString,
+    this.scheduledXCarePlanDetail,
     this.location,
     this.performer,
-    this.productCodeableConcept,
-    this.productReference,
+    this.productXCarePlanDetail,
     this.dailyAmount,
     this.quantity,
     this.description,
@@ -988,23 +987,11 @@ class CarePlanDetail extends BackboneElement {
                   '_value': json['_doNotPerform'],
                 })
               : null,
-      scheduledTiming: json['scheduledTiming'] != null
+      scheduledXCarePlanDetail: json['scheduledXCarePlanDetail'] != null
           ? Timing.fromJson(
-              json['scheduledTiming'] as Map<String, dynamic>,
+              json['scheduledXCarePlanDetail'] as Map<String, dynamic>,
             )
           : null,
-      scheduledPeriod: json['scheduledPeriod'] != null
-          ? Period.fromJson(
-              json['scheduledPeriod'] as Map<String, dynamic>,
-            )
-          : null,
-      scheduledString:
-          (json['scheduledString'] != null || json['_scheduledString'] != null)
-              ? FhirString.fromJson({
-                  'value': json['scheduledString'],
-                  '_value': json['_scheduledString'],
-                })
-              : null,
       location: json['location'] != null
           ? Reference.fromJson(
               json['location'] as Map<String, dynamic>,
@@ -1019,14 +1006,9 @@ class CarePlanDetail extends BackboneElement {
               )
               .toList()
           : null,
-      productCodeableConcept: json['productCodeableConcept'] != null
+      productXCarePlanDetail: json['productXCarePlanDetail'] != null
           ? CodeableConcept.fromJson(
-              json['productCodeableConcept'] as Map<String, dynamic>,
-            )
-          : null,
-      productReference: json['productReference'] != null
-          ? Reference.fromJson(
-              json['productReference'] as Map<String, dynamic>,
+              json['productXCarePlanDetail'] as Map<String, dynamic>,
             )
           : null,
       dailyAmount: json['dailyAmount'] != null
@@ -1148,20 +1130,10 @@ class CarePlanDetail extends BackboneElement {
   /// following the plan.
   final FhirBoolean? doNotPerform;
 
-  /// [scheduledTiming]
+  /// [scheduledXCarePlanDetail]
   /// The period, timing or frequency upon which the described activity is to
   /// occur.
-  final Timing? scheduledTiming;
-
-  /// [scheduledPeriod]
-  /// The period, timing or frequency upon which the described activity is to
-  /// occur.
-  final Period? scheduledPeriod;
-
-  /// [scheduledString]
-  /// The period, timing or frequency upon which the described activity is to
-  /// occur.
-  final FhirString? scheduledString;
+  final Timing? scheduledXCarePlanDetail;
 
   /// [location]
   /// Identifies the facility where the activity will occur; e.g. home,
@@ -1172,15 +1144,10 @@ class CarePlanDetail extends BackboneElement {
   /// Identifies who's expected to be involved in the activity.
   final List<Reference>? performer;
 
-  /// [productCodeableConcept]
+  /// [productXCarePlanDetail]
   /// Identifies the food, drug or other product to be consumed or supplied
   /// in the activity.
-  final CodeableConcept? productCodeableConcept;
-
-  /// [productReference]
-  /// Identifies the food, drug or other product to be consumed or supplied
-  /// in the activity.
-  final Reference? productReference;
+  final CodeableConcept? productXCarePlanDetail;
 
   /// [dailyAmount]
   /// Identifies the quantity expected to be consumed in a given day.
@@ -1262,15 +1229,10 @@ class CarePlanDetail extends BackboneElement {
     }
 
     addField('doNotPerform', doNotPerform);
-    if (scheduledTiming != null) {
-      json['scheduledTiming'] = scheduledTiming!.toJson();
+    if (scheduledXCarePlanDetail != null) {
+      json['scheduledXCarePlanDetail'] = scheduledXCarePlanDetail!.toJson();
     }
 
-    if (scheduledPeriod != null) {
-      json['scheduledPeriod'] = scheduledPeriod!.toJson();
-    }
-
-    addField('scheduledString', scheduledString);
     if (location != null) {
       json['location'] = location!.toJson();
     }
@@ -1279,12 +1241,8 @@ class CarePlanDetail extends BackboneElement {
       json['performer'] = performer!.map((e) => e.toJson()).toList();
     }
 
-    if (productCodeableConcept != null) {
-      json['productCodeableConcept'] = productCodeableConcept!.toJson();
-    }
-
-    if (productReference != null) {
-      json['productReference'] = productReference!.toJson();
+    if (productXCarePlanDetail != null) {
+      json['productXCarePlanDetail'] = productXCarePlanDetail!.toJson();
     }
 
     if (dailyAmount != null) {
@@ -1316,13 +1274,10 @@ class CarePlanDetail extends BackboneElement {
     CarePlanActivityStatus? status,
     CodeableConcept? statusReason,
     FhirBoolean? doNotPerform,
-    Timing? scheduledTiming,
-    Period? scheduledPeriod,
-    FhirString? scheduledString,
+    Timing? scheduledXCarePlanDetail,
     Reference? location,
     List<Reference>? performer,
-    CodeableConcept? productCodeableConcept,
-    Reference? productReference,
+    CodeableConcept? productXCarePlanDetail,
     Quantity? dailyAmount,
     Quantity? quantity,
     FhirString? description,
@@ -1346,14 +1301,12 @@ class CarePlanDetail extends BackboneElement {
       status: status ?? this.status,
       statusReason: statusReason ?? this.statusReason,
       doNotPerform: doNotPerform ?? this.doNotPerform,
-      scheduledTiming: scheduledTiming ?? this.scheduledTiming,
-      scheduledPeriod: scheduledPeriod ?? this.scheduledPeriod,
-      scheduledString: scheduledString ?? this.scheduledString,
+      scheduledXCarePlanDetail:
+          scheduledXCarePlanDetail ?? this.scheduledXCarePlanDetail,
       location: location ?? this.location,
       performer: performer ?? this.performer,
-      productCodeableConcept:
-          productCodeableConcept ?? this.productCodeableConcept,
-      productReference: productReference ?? this.productReference,
+      productXCarePlanDetail:
+          productXCarePlanDetail ?? this.productXCarePlanDetail,
       dailyAmount: dailyAmount ?? this.dailyAmount,
       quantity: quantity ?? this.quantity,
       description: description ?? this.description,

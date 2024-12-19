@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'supply_request.g.dart';
+
 /// [SupplyRequest]
 /// A record of a request for a medication, substance or device used in the
 /// healthcare setting.
@@ -22,13 +24,10 @@ class SupplyRequest extends DomainResource {
     this.status,
     this.category,
     this.priority,
-    this.itemCodeableConcept,
-    this.itemReference,
+    required this.itemXSupplyRequestSupplyRequest,
     required this.quantity,
     this.parameter,
-    this.occurrenceDateTime,
-    this.occurrencePeriod,
-    this.occurrenceTiming,
+    this.occurrenceXSupplyRequestSupplyRequest,
     this.authoredOn,
     this.requester,
     this.supplier,
@@ -124,16 +123,9 @@ class SupplyRequest extends DomainResource {
               '_value': json['_priority'],
             })
           : null,
-      itemCodeableConcept: json['itemCodeableConcept'] != null
-          ? CodeableConcept.fromJson(
-              json['itemCodeableConcept'] as Map<String, dynamic>,
-            )
-          : null,
-      itemReference: json['itemReference'] != null
-          ? Reference.fromJson(
-              json['itemReference'] as Map<String, dynamic>,
-            )
-          : null,
+      itemXSupplyRequestSupplyRequest: CodeableConcept.fromJson(
+        json['itemXSupplyRequestSupplyRequest'] as Map<String, dynamic>,
+      ),
       quantity: Quantity.fromJson(
         json['quantity'] as Map<String, dynamic>,
       ),
@@ -146,23 +138,14 @@ class SupplyRequest extends DomainResource {
               )
               .toList()
           : null,
-      occurrenceDateTime: (json['occurrenceDateTime'] != null ||
-              json['_occurrenceDateTime'] != null)
-          ? FhirDateTime.fromJson({
-              'value': json['occurrenceDateTime'],
-              '_value': json['_occurrenceDateTime'],
-            })
-          : null,
-      occurrencePeriod: json['occurrencePeriod'] != null
-          ? Period.fromJson(
-              json['occurrencePeriod'] as Map<String, dynamic>,
-            )
-          : null,
-      occurrenceTiming: json['occurrenceTiming'] != null
-          ? Timing.fromJson(
-              json['occurrenceTiming'] as Map<String, dynamic>,
-            )
-          : null,
+      occurrenceXSupplyRequestSupplyRequest:
+          (json['occurrenceXSupplyRequestSupplyRequest'] != null ||
+                  json['_occurrenceXSupplyRequestSupplyRequest'] != null)
+              ? FhirDateTime.fromJson({
+                  'value': json['occurrenceXSupplyRequestSupplyRequest'],
+                  '_value': json['_occurrenceXSupplyRequestSupplyRequest'],
+                })
+              : null,
       authoredOn: (json['authoredOn'] != null || json['_authoredOn'] != null)
           ? FhirDateTime.fromJson({
               'value': json['authoredOn'],
@@ -276,17 +259,11 @@ class SupplyRequest extends DomainResource {
   /// respect to other requests.
   final RequestPriority? priority;
 
-  /// [itemCodeableConcept]
+  /// [itemXSupplyRequestSupplyRequest]
   /// The item that is requested to be supplied. This is either a link to a
   /// resource representing the details of the item or a code that identifies
   /// the item from a known list.
-  final CodeableConcept? itemCodeableConcept;
-
-  /// [itemReference]
-  /// The item that is requested to be supplied. This is either a link to a
-  /// resource representing the details of the item or a code that identifies
-  /// the item from a known list.
-  final Reference? itemReference;
+  final CodeableConcept itemXSupplyRequestSupplyRequest;
 
   /// [quantity]
   /// The amount that is being ordered of the indicated item.
@@ -297,17 +274,9 @@ class SupplyRequest extends DomainResource {
   /// indicated item.
   final List<SupplyRequestParameter>? parameter;
 
-  /// [occurrenceDateTime]
+  /// [occurrenceXSupplyRequestSupplyRequest]
   /// When the request should be fulfilled.
-  final FhirDateTime? occurrenceDateTime;
-
-  /// [occurrencePeriod]
-  /// When the request should be fulfilled.
-  final Period? occurrencePeriod;
-
-  /// [occurrenceTiming]
-  /// When the request should be fulfilled.
-  final Timing? occurrenceTiming;
+  final FhirDateTime? occurrenceXSupplyRequestSupplyRequest;
 
   /// [authoredOn]
   /// When the request was made.
@@ -383,13 +352,8 @@ class SupplyRequest extends DomainResource {
     }
 
     addField('priority', priority);
-    if (itemCodeableConcept != null) {
-      json['itemCodeableConcept'] = itemCodeableConcept!.toJson();
-    }
-
-    if (itemReference != null) {
-      json['itemReference'] = itemReference!.toJson();
-    }
+    json['itemXSupplyRequestSupplyRequest'] =
+        itemXSupplyRequestSupplyRequest.toJson();
 
     json['quantity'] = quantity.toJson();
 
@@ -397,15 +361,8 @@ class SupplyRequest extends DomainResource {
       json['parameter'] = parameter!.map((e) => e.toJson()).toList();
     }
 
-    addField('occurrenceDateTime', occurrenceDateTime);
-    if (occurrencePeriod != null) {
-      json['occurrencePeriod'] = occurrencePeriod!.toJson();
-    }
-
-    if (occurrenceTiming != null) {
-      json['occurrenceTiming'] = occurrenceTiming!.toJson();
-    }
-
+    addField('occurrenceXSupplyRequestSupplyRequest',
+        occurrenceXSupplyRequestSupplyRequest);
     addField('authoredOn', authoredOn);
     if (requester != null) {
       json['requester'] = requester!.toJson();
@@ -451,13 +408,10 @@ class SupplyRequest extends DomainResource {
     SupplyRequestStatus? status,
     CodeableConcept? category,
     RequestPriority? priority,
-    CodeableConcept? itemCodeableConcept,
-    Reference? itemReference,
+    CodeableConcept? itemXSupplyRequestSupplyRequest,
     Quantity? quantity,
     List<SupplyRequestParameter>? parameter,
-    FhirDateTime? occurrenceDateTime,
-    Period? occurrencePeriod,
-    Timing? occurrenceTiming,
+    FhirDateTime? occurrenceXSupplyRequestSupplyRequest,
     FhirDateTime? authoredOn,
     Reference? requester,
     List<Reference>? supplier,
@@ -483,13 +437,13 @@ class SupplyRequest extends DomainResource {
       status: status ?? this.status,
       category: category ?? this.category,
       priority: priority ?? this.priority,
-      itemCodeableConcept: itemCodeableConcept ?? this.itemCodeableConcept,
-      itemReference: itemReference ?? this.itemReference,
+      itemXSupplyRequestSupplyRequest: itemXSupplyRequestSupplyRequest ??
+          this.itemXSupplyRequestSupplyRequest,
       quantity: quantity ?? this.quantity,
       parameter: parameter ?? this.parameter,
-      occurrenceDateTime: occurrenceDateTime ?? this.occurrenceDateTime,
-      occurrencePeriod: occurrencePeriod ?? this.occurrencePeriod,
-      occurrenceTiming: occurrenceTiming ?? this.occurrenceTiming,
+      occurrenceXSupplyRequestSupplyRequest:
+          occurrenceXSupplyRequestSupplyRequest ??
+              this.occurrenceXSupplyRequestSupplyRequest,
       authoredOn: authoredOn ?? this.authoredOn,
       requester: requester ?? this.requester,
       supplier: supplier ?? this.supplier,
@@ -513,10 +467,7 @@ class SupplyRequestParameter extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.code,
-    this.valueCodeableConcept,
-    this.valueQuantity,
-    this.valueRange,
-    this.valueBoolean,
+    this.valueXSupplyRequestParameter,
     super.disallowExtensions,
   });
 
@@ -551,28 +502,11 @@ class SupplyRequestParameter extends BackboneElement {
               json['code'] as Map<String, dynamic>,
             )
           : null,
-      valueCodeableConcept: json['valueCodeableConcept'] != null
+      valueXSupplyRequestParameter: json['valueXSupplyRequestParameter'] != null
           ? CodeableConcept.fromJson(
-              json['valueCodeableConcept'] as Map<String, dynamic>,
+              json['valueXSupplyRequestParameter'] as Map<String, dynamic>,
             )
           : null,
-      valueQuantity: json['valueQuantity'] != null
-          ? Quantity.fromJson(
-              json['valueQuantity'] as Map<String, dynamic>,
-            )
-          : null,
-      valueRange: json['valueRange'] != null
-          ? Range.fromJson(
-              json['valueRange'] as Map<String, dynamic>,
-            )
-          : null,
-      valueBoolean:
-          (json['valueBoolean'] != null || json['_valueBoolean'] != null)
-              ? FhirBoolean.fromJson({
-                  'value': json['valueBoolean'],
-                  '_value': json['_valueBoolean'],
-                })
-              : null,
     );
   }
 
@@ -622,21 +556,9 @@ class SupplyRequestParameter extends BackboneElement {
   /// A code or string that identifies the device detail being asserted.
   final CodeableConcept? code;
 
-  /// [valueCodeableConcept]
+  /// [valueXSupplyRequestParameter]
   /// The value of the device detail.
-  final CodeableConcept? valueCodeableConcept;
-
-  /// [valueQuantity]
-  /// The value of the device detail.
-  final Quantity? valueQuantity;
-
-  /// [valueRange]
-  /// The value of the device detail.
-  final Range? valueRange;
-
-  /// [valueBoolean]
-  /// The value of the device detail.
-  final FhirBoolean? valueBoolean;
+  final CodeableConcept? valueXSupplyRequestParameter;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -663,19 +585,11 @@ class SupplyRequestParameter extends BackboneElement {
       json['code'] = code!.toJson();
     }
 
-    if (valueCodeableConcept != null) {
-      json['valueCodeableConcept'] = valueCodeableConcept!.toJson();
+    if (valueXSupplyRequestParameter != null) {
+      json['valueXSupplyRequestParameter'] =
+          valueXSupplyRequestParameter!.toJson();
     }
 
-    if (valueQuantity != null) {
-      json['valueQuantity'] = valueQuantity!.toJson();
-    }
-
-    if (valueRange != null) {
-      json['valueRange'] = valueRange!.toJson();
-    }
-
-    addField('valueBoolean', valueBoolean);
     return json;
   }
 
@@ -687,10 +601,7 @@ class SupplyRequestParameter extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     CodeableConcept? code,
-    CodeableConcept? valueCodeableConcept,
-    Quantity? valueQuantity,
-    Range? valueRange,
-    FhirBoolean? valueBoolean,
+    CodeableConcept? valueXSupplyRequestParameter,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -701,10 +612,8 @@ class SupplyRequestParameter extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       code: code ?? this.code,
-      valueCodeableConcept: valueCodeableConcept ?? this.valueCodeableConcept,
-      valueQuantity: valueQuantity ?? this.valueQuantity,
-      valueRange: valueRange ?? this.valueRange,
-      valueBoolean: valueBoolean ?? this.valueBoolean,
+      valueXSupplyRequestParameter:
+          valueXSupplyRequestParameter ?? this.valueXSupplyRequestParameter,
     );
   }
 }

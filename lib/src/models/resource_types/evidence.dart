@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'evidence.g.dart';
+
 /// [Evidence]
 /// The Evidence Resource provides a machine-interpretable expression of an
 /// evidence concept including the evidence variables (eg population,
@@ -25,8 +27,7 @@ class Evidence extends DomainResource {
     this.identifier,
     this.version,
     this.title,
-    this.citeAsReference,
-    this.citeAsMarkdown,
+    this.citeAsXEvidenceEvidence,
     required this.status,
     this.date,
     this.useContext,
@@ -136,18 +137,11 @@ class Evidence extends DomainResource {
               '_value': json['_title'],
             })
           : null,
-      citeAsReference: json['citeAsReference'] != null
+      citeAsXEvidenceEvidence: json['citeAsXEvidenceEvidence'] != null
           ? Reference.fromJson(
-              json['citeAsReference'] as Map<String, dynamic>,
+              json['citeAsXEvidenceEvidence'] as Map<String, dynamic>,
             )
           : null,
-      citeAsMarkdown:
-          (json['citeAsMarkdown'] != null || json['_citeAsMarkdown'] != null)
-              ? FhirMarkdown.fromJson({
-                  'value': json['citeAsMarkdown'],
-                  '_value': json['_citeAsMarkdown'],
-                })
-              : null,
       status: PublicationStatus.fromJson({
         'value': json['status'],
         '_value': json['_status'],
@@ -373,13 +367,9 @@ class Evidence extends DomainResource {
   /// A short, descriptive, user-friendly title for the summary.
   final FhirString? title;
 
-  /// [citeAsReference]
+  /// [citeAsXEvidenceEvidence]
   /// Citation Resource or display of suggested citation for this evidence.
-  final Reference? citeAsReference;
-
-  /// [citeAsMarkdown]
-  /// Citation Resource or display of suggested citation for this evidence.
-  final FhirMarkdown? citeAsMarkdown;
+  final Reference? citeAsXEvidenceEvidence;
 
   /// [status]
   /// The status of this summary. Enables tracking the life-cycle of the
@@ -523,11 +513,10 @@ class Evidence extends DomainResource {
 
     addField('version', version);
     addField('title', title);
-    if (citeAsReference != null) {
-      json['citeAsReference'] = citeAsReference!.toJson();
+    if (citeAsXEvidenceEvidence != null) {
+      json['citeAsXEvidenceEvidence'] = citeAsXEvidenceEvidence!.toJson();
     }
 
-    addField('citeAsMarkdown', citeAsMarkdown);
     addField('status', status);
     addField('date', date);
     if (useContext != null && useContext!.isNotEmpty) {
@@ -608,8 +597,7 @@ class Evidence extends DomainResource {
     List<Identifier>? identifier,
     FhirString? version,
     FhirString? title,
-    Reference? citeAsReference,
-    FhirMarkdown? citeAsMarkdown,
+    Reference? citeAsXEvidenceEvidence,
     PublicationStatus? status,
     FhirDateTime? date,
     List<UsageContext>? useContext,
@@ -648,8 +636,8 @@ class Evidence extends DomainResource {
       identifier: identifier ?? this.identifier,
       version: version ?? this.version,
       title: title ?? this.title,
-      citeAsReference: citeAsReference ?? this.citeAsReference,
-      citeAsMarkdown: citeAsMarkdown ?? this.citeAsMarkdown,
+      citeAsXEvidenceEvidence:
+          citeAsXEvidenceEvidence ?? this.citeAsXEvidenceEvidence,
       status: status ?? this.status,
       date: date ?? this.date,
       useContext: useContext ?? this.useContext,

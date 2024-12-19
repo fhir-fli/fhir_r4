@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'coverage.g.dart';
+
 /// [Coverage]
 /// Financial instrument which may be used to reimburse or pay for health
 /// care products and services. Includes both insurance and self-payment.
@@ -669,8 +671,7 @@ class CoverageCostToBeneficiary extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.type,
-    this.valueQuantity,
-    this.valueMoney,
+    required this.valueXCoverageCostToBeneficiary,
     this.exception,
     super.disallowExtensions,
   });
@@ -706,16 +707,9 @@ class CoverageCostToBeneficiary extends BackboneElement {
               json['type'] as Map<String, dynamic>,
             )
           : null,
-      valueQuantity: json['valueQuantity'] != null
-          ? Quantity.fromJson(
-              json['valueQuantity'] as Map<String, dynamic>,
-            )
-          : null,
-      valueMoney: json['valueMoney'] != null
-          ? Money.fromJson(
-              json['valueMoney'] as Map<String, dynamic>,
-            )
-          : null,
+      valueXCoverageCostToBeneficiary: Quantity.fromJson(
+        json['valueXCoverageCostToBeneficiary'] as Map<String, dynamic>,
+      ),
       exception: json['exception'] != null
           ? (json['exception'] as List<dynamic>)
               .map<CoverageException>(
@@ -774,13 +768,9 @@ class CoverageCostToBeneficiary extends BackboneElement {
   /// The category of patient centric costs associated with treatment.
   final CodeableConcept? type;
 
-  /// [valueQuantity]
+  /// [valueXCoverageCostToBeneficiary]
   /// The amount due from the patient for the cost category.
-  final Quantity? valueQuantity;
-
-  /// [valueMoney]
-  /// The amount due from the patient for the cost category.
-  final Money? valueMoney;
+  final Quantity valueXCoverageCostToBeneficiary;
 
   /// [exception]
   /// A suite of codes indicating exceptions or reductions to patient costs
@@ -812,13 +802,8 @@ class CoverageCostToBeneficiary extends BackboneElement {
       json['type'] = type!.toJson();
     }
 
-    if (valueQuantity != null) {
-      json['valueQuantity'] = valueQuantity!.toJson();
-    }
-
-    if (valueMoney != null) {
-      json['valueMoney'] = valueMoney!.toJson();
-    }
+    json['valueXCoverageCostToBeneficiary'] =
+        valueXCoverageCostToBeneficiary.toJson();
 
     if (exception != null && exception!.isNotEmpty) {
       json['exception'] = exception!.map((e) => e.toJson()).toList();
@@ -835,8 +820,7 @@ class CoverageCostToBeneficiary extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     CodeableConcept? type,
-    Quantity? valueQuantity,
-    Money? valueMoney,
+    Quantity? valueXCoverageCostToBeneficiary,
     List<CoverageException>? exception,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -848,8 +832,8 @@ class CoverageCostToBeneficiary extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
-      valueQuantity: valueQuantity ?? this.valueQuantity,
-      valueMoney: valueMoney ?? this.valueMoney,
+      valueXCoverageCostToBeneficiary: valueXCoverageCostToBeneficiary ??
+          this.valueXCoverageCostToBeneficiary,
       exception: exception ?? this.exception,
     );
   }

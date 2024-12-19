@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'trigger_definition.g.dart';
+
 /// [TriggerDefinition]
 /// A description of a triggering event. Triggering events can be named
 /// events, data events, or periodic, as determined by the type element.
@@ -14,10 +16,7 @@ class TriggerDefinition extends DataType {
     super.extension_,
     required this.type,
     this.name,
-    this.timingTiming,
-    this.timingReference,
-    this.timingDate,
-    this.timingDateTime,
+    this.timingXTriggerDefinitionTriggerDefinition,
     this.data,
     this.condition,
     super.disallowExtensions,
@@ -50,28 +49,12 @@ class TriggerDefinition extends DataType {
               '_value': json['_name'],
             })
           : null,
-      timingTiming: json['timingTiming'] != null
-          ? Timing.fromJson(
-              json['timingTiming'] as Map<String, dynamic>,
-            )
-          : null,
-      timingReference: json['timingReference'] != null
-          ? Reference.fromJson(
-              json['timingReference'] as Map<String, dynamic>,
-            )
-          : null,
-      timingDate: (json['timingDate'] != null || json['_timingDate'] != null)
-          ? FhirDate.fromJson({
-              'value': json['timingDate'],
-              '_value': json['_timingDate'],
-            })
-          : null,
-      timingDateTime:
-          (json['timingDateTime'] != null || json['_timingDateTime'] != null)
-              ? FhirDateTime.fromJson({
-                  'value': json['timingDateTime'],
-                  '_value': json['_timingDateTime'],
-                })
+      timingXTriggerDefinitionTriggerDefinition:
+          json['timingXTriggerDefinitionTriggerDefinition'] != null
+              ? Timing.fromJson(
+                  json['timingXTriggerDefinitionTriggerDefinition']
+                      as Map<String, dynamic>,
+                )
               : null,
       data: json['data'] != null
           ? (json['data'] as List<dynamic>)
@@ -142,21 +125,9 @@ class TriggerDefinition extends DataType {
   /// simple relative URI that identifies the event in a local context.
   final FhirString? name;
 
-  /// [timingTiming]
+  /// [timingXTriggerDefinitionTriggerDefinition]
   /// The timing of the event (if this is a periodic trigger).
-  final Timing? timingTiming;
-
-  /// [timingReference]
-  /// The timing of the event (if this is a periodic trigger).
-  final Reference? timingReference;
-
-  /// [timingDate]
-  /// The timing of the event (if this is a periodic trigger).
-  final FhirDate? timingDate;
-
-  /// [timingDateTime]
-  /// The timing of the event (if this is a periodic trigger).
-  final FhirDateTime? timingDateTime;
+  final Timing? timingXTriggerDefinitionTriggerDefinition;
 
   /// [data]
   /// The triggering data of the event (if this is a data trigger). If more
@@ -188,16 +159,11 @@ class TriggerDefinition extends DataType {
 
     addField('type', type);
     addField('name', name);
-    if (timingTiming != null) {
-      json['timingTiming'] = timingTiming!.toJson();
+    if (timingXTriggerDefinitionTriggerDefinition != null) {
+      json['timingXTriggerDefinitionTriggerDefinition'] =
+          timingXTriggerDefinitionTriggerDefinition!.toJson();
     }
 
-    if (timingReference != null) {
-      json['timingReference'] = timingReference!.toJson();
-    }
-
-    addField('timingDate', timingDate);
-    addField('timingDateTime', timingDateTime);
     if (data != null && data!.isNotEmpty) {
       json['data'] = data!.map((e) => e.toJson()).toList();
     }
@@ -217,10 +183,7 @@ class TriggerDefinition extends DataType {
     List<FhirExtension>? extension_,
     TriggerType? type,
     FhirString? name,
-    Timing? timingTiming,
-    Reference? timingReference,
-    FhirDate? timingDate,
-    FhirDateTime? timingDateTime,
+    Timing? timingXTriggerDefinitionTriggerDefinition,
     List<DataRequirement>? data,
     FhirExpression? condition,
     Map<String, Object?>? userData,
@@ -233,10 +196,9 @@ class TriggerDefinition extends DataType {
       extension_: extension_ ?? this.extension_,
       type: type ?? this.type,
       name: name ?? this.name,
-      timingTiming: timingTiming ?? this.timingTiming,
-      timingReference: timingReference ?? this.timingReference,
-      timingDate: timingDate ?? this.timingDate,
-      timingDateTime: timingDateTime ?? this.timingDateTime,
+      timingXTriggerDefinitionTriggerDefinition:
+          timingXTriggerDefinitionTriggerDefinition ??
+              this.timingXTriggerDefinitionTriggerDefinition,
       data: data ?? this.data,
       condition: condition ?? this.condition,
     );

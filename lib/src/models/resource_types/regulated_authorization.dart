@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'regulated_authorization.g.dart';
+
 /// [RegulatedAuthorization]
 /// Regulatory approval, clearance or licencing related to a regulated
 /// product, treatment, facility or activity that is cited in a guidance,
@@ -468,8 +470,7 @@ class RegulatedAuthorizationCase extends BackboneElement {
     this.identifier,
     this.type,
     this.status,
-    this.datePeriod,
-    this.dateDateTime,
+    this.dateXRegulatedAuthorizationCase,
     this.application,
     super.disallowExtensions,
   });
@@ -515,17 +516,12 @@ class RegulatedAuthorizationCase extends BackboneElement {
               json['status'] as Map<String, dynamic>,
             )
           : null,
-      datePeriod: json['datePeriod'] != null
-          ? Period.fromJson(
-              json['datePeriod'] as Map<String, dynamic>,
-            )
-          : null,
-      dateDateTime:
-          (json['dateDateTime'] != null || json['_dateDateTime'] != null)
-              ? FhirDateTime.fromJson({
-                  'value': json['dateDateTime'],
-                  '_value': json['_dateDateTime'],
-                })
+      dateXRegulatedAuthorizationCase:
+          json['dateXRegulatedAuthorizationCase'] != null
+              ? Period.fromJson(
+                  json['dateXRegulatedAuthorizationCase']
+                      as Map<String, dynamic>,
+                )
               : null,
       application: json['application'] != null
           ? (json['application'] as List<dynamic>)
@@ -593,13 +589,9 @@ class RegulatedAuthorizationCase extends BackboneElement {
   /// The status associated with the case.
   final CodeableConcept? status;
 
-  /// [datePeriod]
+  /// [dateXRegulatedAuthorizationCase]
   /// Relevant date for this case.
-  final Period? datePeriod;
-
-  /// [dateDateTime]
-  /// Relevant date for this case.
-  final FhirDateTime? dateDateTime;
+  final Period? dateXRegulatedAuthorizationCase;
 
   /// [application]
   /// A regulatory submission from an organization to a regulator, as part of
@@ -642,11 +634,11 @@ class RegulatedAuthorizationCase extends BackboneElement {
       json['status'] = status!.toJson();
     }
 
-    if (datePeriod != null) {
-      json['datePeriod'] = datePeriod!.toJson();
+    if (dateXRegulatedAuthorizationCase != null) {
+      json['dateXRegulatedAuthorizationCase'] =
+          dateXRegulatedAuthorizationCase!.toJson();
     }
 
-    addField('dateDateTime', dateDateTime);
     if (application != null && application!.isNotEmpty) {
       json['application'] = application!.map((e) => e.toJson()).toList();
     }
@@ -664,8 +656,7 @@ class RegulatedAuthorizationCase extends BackboneElement {
     Identifier? identifier,
     CodeableConcept? type,
     CodeableConcept? status,
-    Period? datePeriod,
-    FhirDateTime? dateDateTime,
+    Period? dateXRegulatedAuthorizationCase,
     List<RegulatedAuthorizationCase>? application,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -679,8 +670,8 @@ class RegulatedAuthorizationCase extends BackboneElement {
       identifier: identifier ?? this.identifier,
       type: type ?? this.type,
       status: status ?? this.status,
-      datePeriod: datePeriod ?? this.datePeriod,
-      dateDateTime: dateDateTime ?? this.dateDateTime,
+      dateXRegulatedAuthorizationCase: dateXRegulatedAuthorizationCase ??
+          this.dateXRegulatedAuthorizationCase,
       application: application ?? this.application,
     );
   }

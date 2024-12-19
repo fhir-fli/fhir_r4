@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'claim_response.g.dart';
+
 /// [ClaimResponse]
 /// This resource provides the adjudication details from the processing of
 /// a Claim resource.
@@ -1451,11 +1453,8 @@ class ClaimResponseAddItem extends BackboneElement {
     required this.productOrService,
     this.modifier,
     this.programCode,
-    this.servicedDate,
-    this.servicedPeriod,
-    this.locationCodeableConcept,
-    this.locationAddress,
-    this.locationReference,
+    this.servicedXClaimResponseAddItem,
+    this.locationXClaimResponseAddItem,
     this.quantity,
     this.unitPrice,
     this.factor,
@@ -1539,33 +1538,20 @@ class ClaimResponseAddItem extends BackboneElement {
               )
               .toList()
           : null,
-      servicedDate:
-          (json['servicedDate'] != null || json['_servicedDate'] != null)
+      servicedXClaimResponseAddItem:
+          (json['servicedXClaimResponseAddItem'] != null ||
+                  json['_servicedXClaimResponseAddItem'] != null)
               ? FhirDate.fromJson({
-                  'value': json['servicedDate'],
-                  '_value': json['_servicedDate'],
+                  'value': json['servicedXClaimResponseAddItem'],
+                  '_value': json['_servicedXClaimResponseAddItem'],
                 })
               : null,
-      servicedPeriod: json['servicedPeriod'] != null
-          ? Period.fromJson(
-              json['servicedPeriod'] as Map<String, dynamic>,
-            )
-          : null,
-      locationCodeableConcept: json['locationCodeableConcept'] != null
-          ? CodeableConcept.fromJson(
-              json['locationCodeableConcept'] as Map<String, dynamic>,
-            )
-          : null,
-      locationAddress: json['locationAddress'] != null
-          ? Address.fromJson(
-              json['locationAddress'] as Map<String, dynamic>,
-            )
-          : null,
-      locationReference: json['locationReference'] != null
-          ? Reference.fromJson(
-              json['locationReference'] as Map<String, dynamic>,
-            )
-          : null,
+      locationXClaimResponseAddItem:
+          json['locationXClaimResponseAddItem'] != null
+              ? CodeableConcept.fromJson(
+                  json['locationXClaimResponseAddItem'] as Map<String, dynamic>,
+                )
+              : null,
       quantity: json['quantity'] != null
           ? Quantity.fromJson(
               json['quantity'] as Map<String, dynamic>,
@@ -1703,27 +1689,14 @@ class ClaimResponseAddItem extends BackboneElement {
   /// Identifies the program under which this may be recovered.
   final List<CodeableConcept>? programCode;
 
-  /// [servicedDate]
+  /// [servicedXClaimResponseAddItem]
   /// The date or dates when the service or product was supplied, performed
   /// or completed.
-  final FhirDate? servicedDate;
+  final FhirDate? servicedXClaimResponseAddItem;
 
-  /// [servicedPeriod]
-  /// The date or dates when the service or product was supplied, performed
-  /// or completed.
-  final Period? servicedPeriod;
-
-  /// [locationCodeableConcept]
+  /// [locationXClaimResponseAddItem]
   /// Where the product or service was provided.
-  final CodeableConcept? locationCodeableConcept;
-
-  /// [locationAddress]
-  /// Where the product or service was provided.
-  final Address? locationAddress;
-
-  /// [locationReference]
-  /// Where the product or service was provided.
-  final Reference? locationReference;
+  final CodeableConcept? locationXClaimResponseAddItem;
 
   /// [quantity]
   /// The number of repetitions of a service or product.
@@ -1829,21 +1802,10 @@ class ClaimResponseAddItem extends BackboneElement {
       json['programCode'] = programCode!.map((e) => e.toJson()).toList();
     }
 
-    addField('servicedDate', servicedDate);
-    if (servicedPeriod != null) {
-      json['servicedPeriod'] = servicedPeriod!.toJson();
-    }
-
-    if (locationCodeableConcept != null) {
-      json['locationCodeableConcept'] = locationCodeableConcept!.toJson();
-    }
-
-    if (locationAddress != null) {
-      json['locationAddress'] = locationAddress!.toJson();
-    }
-
-    if (locationReference != null) {
-      json['locationReference'] = locationReference!.toJson();
+    addField('servicedXClaimResponseAddItem', servicedXClaimResponseAddItem);
+    if (locationXClaimResponseAddItem != null) {
+      json['locationXClaimResponseAddItem'] =
+          locationXClaimResponseAddItem!.toJson();
     }
 
     if (quantity != null) {
@@ -1900,11 +1862,8 @@ class ClaimResponseAddItem extends BackboneElement {
     CodeableConcept? productOrService,
     List<CodeableConcept>? modifier,
     List<CodeableConcept>? programCode,
-    FhirDate? servicedDate,
-    Period? servicedPeriod,
-    CodeableConcept? locationCodeableConcept,
-    Address? locationAddress,
-    Reference? locationReference,
+    FhirDate? servicedXClaimResponseAddItem,
+    CodeableConcept? locationXClaimResponseAddItem,
     Quantity? quantity,
     Money? unitPrice,
     FhirDecimal? factor,
@@ -1930,12 +1889,10 @@ class ClaimResponseAddItem extends BackboneElement {
       productOrService: productOrService ?? this.productOrService,
       modifier: modifier ?? this.modifier,
       programCode: programCode ?? this.programCode,
-      servicedDate: servicedDate ?? this.servicedDate,
-      servicedPeriod: servicedPeriod ?? this.servicedPeriod,
-      locationCodeableConcept:
-          locationCodeableConcept ?? this.locationCodeableConcept,
-      locationAddress: locationAddress ?? this.locationAddress,
-      locationReference: locationReference ?? this.locationReference,
+      servicedXClaimResponseAddItem:
+          servicedXClaimResponseAddItem ?? this.servicedXClaimResponseAddItem,
+      locationXClaimResponseAddItem:
+          locationXClaimResponseAddItem ?? this.locationXClaimResponseAddItem,
       quantity: quantity ?? this.quantity,
       unitPrice: unitPrice ?? this.unitPrice,
       factor: factor ?? this.factor,

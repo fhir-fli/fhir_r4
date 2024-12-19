@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'communication.g.dart';
+
 /// [Communication]
 /// An occurrence of information being transmitted; e.g. an alert that was
 /// sent to a responsible provider, a public health agency that was
@@ -646,9 +648,7 @@ class CommunicationPayload extends BackboneElement {
     super.id,
     super.extension_,
     super.modifierExtension,
-    this.contentString,
-    this.contentAttachment,
-    this.contentReference,
+    required this.contentXCommunicationPayload,
     super.disallowExtensions,
   });
 
@@ -678,23 +678,10 @@ class CommunicationPayload extends BackboneElement {
               )
               .toList()
           : null,
-      contentString:
-          (json['contentString'] != null || json['_contentString'] != null)
-              ? FhirString.fromJson({
-                  'value': json['contentString'],
-                  '_value': json['_contentString'],
-                })
-              : null,
-      contentAttachment: json['contentAttachment'] != null
-          ? Attachment.fromJson(
-              json['contentAttachment'] as Map<String, dynamic>,
-            )
-          : null,
-      contentReference: json['contentReference'] != null
-          ? Reference.fromJson(
-              json['contentReference'] as Map<String, dynamic>,
-            )
-          : null,
+      contentXCommunicationPayload: FhirString.fromJson({
+        'value': json['contentXCommunicationPayload'],
+        '_value': json['_contentXCommunicationPayload'],
+      }),
     );
   }
 
@@ -740,20 +727,10 @@ class CommunicationPayload extends BackboneElement {
   @override
   String get fhirType => 'CommunicationPayload';
 
-  /// [contentString]
+  /// [contentXCommunicationPayload]
   /// A communicated content (or for multi-part communications, one portion
   /// of the communication).
-  final FhirString? contentString;
-
-  /// [contentAttachment]
-  /// A communicated content (or for multi-part communications, one portion
-  /// of the communication).
-  final Attachment? contentAttachment;
-
-  /// [contentReference]
-  /// A communicated content (or for multi-part communications, one portion
-  /// of the communication).
-  final Reference? contentReference;
+  final FhirString contentXCommunicationPayload;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -776,15 +753,7 @@ class CommunicationPayload extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('contentString', contentString);
-    if (contentAttachment != null) {
-      json['contentAttachment'] = contentAttachment!.toJson();
-    }
-
-    if (contentReference != null) {
-      json['contentReference'] = contentReference!.toJson();
-    }
-
+    addField('contentXCommunicationPayload', contentXCommunicationPayload);
     return json;
   }
 
@@ -795,9 +764,7 @@ class CommunicationPayload extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    FhirString? contentString,
-    Attachment? contentAttachment,
-    Reference? contentReference,
+    FhirString? contentXCommunicationPayload,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -807,9 +774,8 @@ class CommunicationPayload extends BackboneElement {
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
-      contentString: contentString ?? this.contentString,
-      contentAttachment: contentAttachment ?? this.contentAttachment,
-      contentReference: contentReference ?? this.contentReference,
+      contentXCommunicationPayload:
+          contentXCommunicationPayload ?? this.contentXCommunicationPayload,
     );
   }
 }

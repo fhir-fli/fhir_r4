@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'usage_context.g.dart';
+
 /// [UsageContext]
 /// Specifies clinical/business/etc. metadata that can be used to retrieve,
 /// index and/or categorize an artifact. This metadata can either be
@@ -15,10 +17,7 @@ class UsageContext extends DataType {
     super.id,
     super.extension_,
     required this.code,
-    this.valueCodeableConcept,
-    this.valueQuantity,
-    this.valueRange,
-    this.valueReference,
+    required this.valueXUsageContextUsageContext,
     super.disallowExtensions,
   });
 
@@ -42,26 +41,9 @@ class UsageContext extends DataType {
       code: Coding.fromJson(
         json['code'] as Map<String, dynamic>,
       ),
-      valueCodeableConcept: json['valueCodeableConcept'] != null
-          ? CodeableConcept.fromJson(
-              json['valueCodeableConcept'] as Map<String, dynamic>,
-            )
-          : null,
-      valueQuantity: json['valueQuantity'] != null
-          ? Quantity.fromJson(
-              json['valueQuantity'] as Map<String, dynamic>,
-            )
-          : null,
-      valueRange: json['valueRange'] != null
-          ? Range.fromJson(
-              json['valueRange'] as Map<String, dynamic>,
-            )
-          : null,
-      valueReference: json['valueReference'] != null
-          ? Reference.fromJson(
-              json['valueReference'] as Map<String, dynamic>,
-            )
-          : null,
+      valueXUsageContextUsageContext: CodeableConcept.fromJson(
+        json['valueXUsageContextUsageContext'] as Map<String, dynamic>,
+      ),
     );
   }
 
@@ -112,25 +94,10 @@ class UsageContext extends DataType {
   /// usage context.
   final Coding code;
 
-  /// [valueCodeableConcept]
+  /// [valueXUsageContextUsageContext]
   /// A value that defines the context specified in this context of use. The
   /// interpretation of the value is defined by the code.
-  final CodeableConcept? valueCodeableConcept;
-
-  /// [valueQuantity]
-  /// A value that defines the context specified in this context of use. The
-  /// interpretation of the value is defined by the code.
-  final Quantity? valueQuantity;
-
-  /// [valueRange]
-  /// A value that defines the context specified in this context of use. The
-  /// interpretation of the value is defined by the code.
-  final Range? valueRange;
-
-  /// [valueReference]
-  /// A value that defines the context specified in this context of use. The
-  /// interpretation of the value is defined by the code.
-  final Reference? valueReference;
+  final CodeableConcept valueXUsageContextUsageContext;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -150,21 +117,8 @@ class UsageContext extends DataType {
 
     json['code'] = code.toJson();
 
-    if (valueCodeableConcept != null) {
-      json['valueCodeableConcept'] = valueCodeableConcept!.toJson();
-    }
-
-    if (valueQuantity != null) {
-      json['valueQuantity'] = valueQuantity!.toJson();
-    }
-
-    if (valueRange != null) {
-      json['valueRange'] = valueRange!.toJson();
-    }
-
-    if (valueReference != null) {
-      json['valueReference'] = valueReference!.toJson();
-    }
+    json['valueXUsageContextUsageContext'] =
+        valueXUsageContextUsageContext.toJson();
 
     return json;
   }
@@ -176,10 +130,7 @@ class UsageContext extends DataType {
     FhirString? id,
     List<FhirExtension>? extension_,
     Coding? code,
-    CodeableConcept? valueCodeableConcept,
-    Quantity? valueQuantity,
-    Range? valueRange,
-    Reference? valueReference,
+    CodeableConcept? valueXUsageContextUsageContext,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -189,10 +140,8 @@ class UsageContext extends DataType {
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       code: code ?? this.code,
-      valueCodeableConcept: valueCodeableConcept ?? this.valueCodeableConcept,
-      valueQuantity: valueQuantity ?? this.valueQuantity,
-      valueRange: valueRange ?? this.valueRange,
-      valueReference: valueReference ?? this.valueReference,
+      valueXUsageContextUsageContext:
+          valueXUsageContextUsageContext ?? this.valueXUsageContextUsageContext,
     );
   }
 }

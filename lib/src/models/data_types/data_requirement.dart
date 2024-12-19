@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'data_requirement.g.dart';
+
 /// [DataRequirement]
 /// Describes a required data item for evaluation in terms of the type of
 /// data, and optional code or date-based filters of the data.
@@ -14,8 +16,7 @@ class DataRequirement extends DataType {
     super.extension_,
     required this.type,
     this.profile,
-    this.subjectCodeableConcept,
-    this.subjectReference,
+    this.subjectXDataRequirementDataRequirement,
     this.mustSupport,
     this.codeFilter,
     this.dateFilter,
@@ -50,16 +51,13 @@ class DataRequirement extends DataType {
         json['_profile'] as List<dynamic>?,
         fromJson: FhirCanonical.fromJson,
       ),
-      subjectCodeableConcept: json['subjectCodeableConcept'] != null
-          ? CodeableConcept.fromJson(
-              json['subjectCodeableConcept'] as Map<String, dynamic>,
-            )
-          : null,
-      subjectReference: json['subjectReference'] != null
-          ? Reference.fromJson(
-              json['subjectReference'] as Map<String, dynamic>,
-            )
-          : null,
+      subjectXDataRequirementDataRequirement:
+          json['subjectXDataRequirementDataRequirement'] != null
+              ? CodeableConcept.fromJson(
+                  json['subjectXDataRequirementDataRequirement']
+                      as Map<String, dynamic>,
+                )
+              : null,
       mustSupport: parsePrimitiveList<FhirString>(
         json['mustSupport'] as List<dynamic>?,
         json['_mustSupport'] as List<dynamic>?,
@@ -154,15 +152,10 @@ class DataRequirement extends DataType {
   /// definition.
   final List<FhirCanonical>? profile;
 
-  /// [subjectCodeableConcept]
+  /// [subjectXDataRequirementDataRequirement]
   /// The intended subjects of the data requirement. If this element is not
   /// provided, a Patient subject is assumed.
-  final CodeableConcept? subjectCodeableConcept;
-
-  /// [subjectReference]
-  /// The intended subjects of the data requirement. If this element is not
-  /// provided, a Patient subject is assumed.
-  final Reference? subjectReference;
+  final CodeableConcept? subjectXDataRequirementDataRequirement;
 
   /// [mustSupport]
   /// Indicates that specific elements of the type are referenced by the
@@ -226,12 +219,9 @@ class DataRequirement extends DataType {
       }
     }
 
-    if (subjectCodeableConcept != null) {
-      json['subjectCodeableConcept'] = subjectCodeableConcept!.toJson();
-    }
-
-    if (subjectReference != null) {
-      json['subjectReference'] = subjectReference!.toJson();
+    if (subjectXDataRequirementDataRequirement != null) {
+      json['subjectXDataRequirementDataRequirement'] =
+          subjectXDataRequirementDataRequirement!.toJson();
     }
 
     if (mustSupport != null && mustSupport!.isNotEmpty) {
@@ -266,8 +256,7 @@ class DataRequirement extends DataType {
     List<FhirExtension>? extension_,
     FHIRAllTypes? type,
     List<FhirCanonical>? profile,
-    CodeableConcept? subjectCodeableConcept,
-    Reference? subjectReference,
+    CodeableConcept? subjectXDataRequirementDataRequirement,
     List<FhirString>? mustSupport,
     List<DataRequirementCodeFilter>? codeFilter,
     List<DataRequirementDateFilter>? dateFilter,
@@ -283,9 +272,9 @@ class DataRequirement extends DataType {
       extension_: extension_ ?? this.extension_,
       type: type ?? this.type,
       profile: profile ?? this.profile,
-      subjectCodeableConcept:
-          subjectCodeableConcept ?? this.subjectCodeableConcept,
-      subjectReference: subjectReference ?? this.subjectReference,
+      subjectXDataRequirementDataRequirement:
+          subjectXDataRequirementDataRequirement ??
+              this.subjectXDataRequirementDataRequirement,
       mustSupport: mustSupport ?? this.mustSupport,
       codeFilter: codeFilter ?? this.codeFilter,
       dateFilter: dateFilter ?? this.dateFilter,
@@ -501,9 +490,7 @@ class DataRequirementDateFilter extends Element {
     super.extension_,
     this.path,
     this.searchParam,
-    this.valueDateTime,
-    this.valuePeriod,
-    this.valueDuration,
+    this.valueXDataRequirementDateFilter,
     super.disallowExtensions,
   });
 
@@ -536,23 +523,14 @@ class DataRequirementDateFilter extends Element {
               '_value': json['_searchParam'],
             })
           : null,
-      valueDateTime:
-          (json['valueDateTime'] != null || json['_valueDateTime'] != null)
+      valueXDataRequirementDateFilter:
+          (json['valueXDataRequirementDateFilter'] != null ||
+                  json['_valueXDataRequirementDateFilter'] != null)
               ? FhirDateTime.fromJson({
-                  'value': json['valueDateTime'],
-                  '_value': json['_valueDateTime'],
+                  'value': json['valueXDataRequirementDateFilter'],
+                  '_value': json['_valueXDataRequirementDateFilter'],
                 })
               : null,
-      valuePeriod: json['valuePeriod'] != null
-          ? Period.fromJson(
-              json['valuePeriod'] as Map<String, dynamic>,
-            )
-          : null,
-      valueDuration: json['valueDuration'] != null
-          ? FhirDuration.fromJson(
-              json['valueDuration'] as Map<String, dynamic>,
-            )
-          : null,
     );
   }
 
@@ -616,32 +594,14 @@ class DataRequirementDateFilter extends Element {
   /// of type date, dateTime, Period, Schedule, or Timing.
   final FhirString? searchParam;
 
-  /// [valueDateTime]
+  /// [valueXDataRequirementDateFilter]
   /// The value of the filter. If period is specified, the filter will return
   /// only those data items that fall within the bounds determined by the
   /// Period, inclusive of the period boundaries. If dateTime is specified,
   /// the filter will return only those data items that are equal to the
   /// specified dateTime. If a Duration is specified, the filter will return
   /// only those data items that fall within Duration before now.
-  final FhirDateTime? valueDateTime;
-
-  /// [valuePeriod]
-  /// The value of the filter. If period is specified, the filter will return
-  /// only those data items that fall within the bounds determined by the
-  /// Period, inclusive of the period boundaries. If dateTime is specified,
-  /// the filter will return only those data items that are equal to the
-  /// specified dateTime. If a Duration is specified, the filter will return
-  /// only those data items that fall within Duration before now.
-  final Period? valuePeriod;
-
-  /// [valueDuration]
-  /// The value of the filter. If period is specified, the filter will return
-  /// only those data items that fall within the bounds determined by the
-  /// Period, inclusive of the period boundaries. If dateTime is specified,
-  /// the filter will return only those data items that are equal to the
-  /// specified dateTime. If a Duration is specified, the filter will return
-  /// only those data items that fall within Duration before now.
-  final FhirDuration? valueDuration;
+  final FhirDateTime? valueXDataRequirementDateFilter;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -661,15 +621,8 @@ class DataRequirementDateFilter extends Element {
 
     addField('path', path);
     addField('searchParam', searchParam);
-    addField('valueDateTime', valueDateTime);
-    if (valuePeriod != null) {
-      json['valuePeriod'] = valuePeriod!.toJson();
-    }
-
-    if (valueDuration != null) {
-      json['valueDuration'] = valueDuration!.toJson();
-    }
-
+    addField(
+        'valueXDataRequirementDateFilter', valueXDataRequirementDateFilter);
     return json;
   }
 
@@ -681,9 +634,7 @@ class DataRequirementDateFilter extends Element {
     List<FhirExtension>? extension_,
     FhirString? path,
     FhirString? searchParam,
-    FhirDateTime? valueDateTime,
-    Period? valuePeriod,
-    FhirDuration? valueDuration,
+    FhirDateTime? valueXDataRequirementDateFilter,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -694,9 +645,8 @@ class DataRequirementDateFilter extends Element {
       extension_: extension_ ?? this.extension_,
       path: path ?? this.path,
       searchParam: searchParam ?? this.searchParam,
-      valueDateTime: valueDateTime ?? this.valueDateTime,
-      valuePeriod: valuePeriod ?? this.valuePeriod,
-      valueDuration: valueDuration ?? this.valueDuration,
+      valueXDataRequirementDateFilter: valueXDataRequirementDateFilter ??
+          this.valueXDataRequirementDateFilter,
     );
   }
 }

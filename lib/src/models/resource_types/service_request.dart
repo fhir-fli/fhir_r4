@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'service_request.g.dart';
+
 /// [ServiceRequest]
 /// A record of a request for service such as diagnostic investigations,
 /// treatments, or operations to be performed.
@@ -31,16 +33,11 @@ class ServiceRequest extends DomainResource {
     this.doNotPerform,
     this.code,
     this.orderDetail,
-    this.quantityQuantity,
-    this.quantityRatio,
-    this.quantityRange,
+    this.quantityXServiceRequestServiceRequest,
     required this.subject,
     this.encounter,
-    this.occurrenceDateTime,
-    this.occurrencePeriod,
-    this.occurrenceTiming,
-    this.asNeededBoolean,
-    this.asNeededCodeableConcept,
+    this.occurrenceXServiceRequestServiceRequest,
+    this.asNeededXServiceRequestServiceRequest,
     this.authoredOn,
     this.requester,
     this.performerType,
@@ -204,21 +201,13 @@ class ServiceRequest extends DomainResource {
               )
               .toList()
           : null,
-      quantityQuantity: json['quantityQuantity'] != null
-          ? Quantity.fromJson(
-              json['quantityQuantity'] as Map<String, dynamic>,
-            )
-          : null,
-      quantityRatio: json['quantityRatio'] != null
-          ? Ratio.fromJson(
-              json['quantityRatio'] as Map<String, dynamic>,
-            )
-          : null,
-      quantityRange: json['quantityRange'] != null
-          ? Range.fromJson(
-              json['quantityRange'] as Map<String, dynamic>,
-            )
-          : null,
+      quantityXServiceRequestServiceRequest:
+          json['quantityXServiceRequestServiceRequest'] != null
+              ? Quantity.fromJson(
+                  json['quantityXServiceRequestServiceRequest']
+                      as Map<String, dynamic>,
+                )
+              : null,
       subject: Reference.fromJson(
         json['subject'] as Map<String, dynamic>,
       ),
@@ -227,35 +216,22 @@ class ServiceRequest extends DomainResource {
               json['encounter'] as Map<String, dynamic>,
             )
           : null,
-      occurrenceDateTime: (json['occurrenceDateTime'] != null ||
-              json['_occurrenceDateTime'] != null)
-          ? FhirDateTime.fromJson({
-              'value': json['occurrenceDateTime'],
-              '_value': json['_occurrenceDateTime'],
-            })
-          : null,
-      occurrencePeriod: json['occurrencePeriod'] != null
-          ? Period.fromJson(
-              json['occurrencePeriod'] as Map<String, dynamic>,
-            )
-          : null,
-      occurrenceTiming: json['occurrenceTiming'] != null
-          ? Timing.fromJson(
-              json['occurrenceTiming'] as Map<String, dynamic>,
-            )
-          : null,
-      asNeededBoolean:
-          (json['asNeededBoolean'] != null || json['_asNeededBoolean'] != null)
-              ? FhirBoolean.fromJson({
-                  'value': json['asNeededBoolean'],
-                  '_value': json['_asNeededBoolean'],
+      occurrenceXServiceRequestServiceRequest:
+          (json['occurrenceXServiceRequestServiceRequest'] != null ||
+                  json['_occurrenceXServiceRequestServiceRequest'] != null)
+              ? FhirDateTime.fromJson({
+                  'value': json['occurrenceXServiceRequestServiceRequest'],
+                  '_value': json['_occurrenceXServiceRequestServiceRequest'],
                 })
               : null,
-      asNeededCodeableConcept: json['asNeededCodeableConcept'] != null
-          ? CodeableConcept.fromJson(
-              json['asNeededCodeableConcept'] as Map<String, dynamic>,
-            )
-          : null,
+      asNeededXServiceRequestServiceRequest:
+          (json['asNeededXServiceRequestServiceRequest'] != null ||
+                  json['_asNeededXServiceRequestServiceRequest'] != null)
+              ? FhirBoolean.fromJson({
+                  'value': json['asNeededXServiceRequestServiceRequest'],
+                  '_value': json['_asNeededXServiceRequestServiceRequest'],
+                })
+              : null,
       authoredOn: (json['authoredOn'] != null || json['_authoredOn'] != null)
           ? FhirDateTime.fromJson({
               'value': json['authoredOn'],
@@ -493,23 +469,11 @@ class ServiceRequest extends DomainResource {
   /// should be applied.
   final List<CodeableConcept>? orderDetail;
 
-  /// [quantityQuantity]
+  /// [quantityXServiceRequestServiceRequest]
   /// An amount of service being requested which can be a quantity ( for
   /// example $1,500 home modification), a ratio ( for example, 20 half day
   /// visits per month), or a range (2.0 to 1.8 Gy per fraction).
-  final Quantity? quantityQuantity;
-
-  /// [quantityRatio]
-  /// An amount of service being requested which can be a quantity ( for
-  /// example $1,500 home modification), a ratio ( for example, 20 half day
-  /// visits per month), or a range (2.0 to 1.8 Gy per fraction).
-  final Ratio? quantityRatio;
-
-  /// [quantityRange]
-  /// An amount of service being requested which can be a quantity ( for
-  /// example $1,500 home modification), a ratio ( for example, 20 half day
-  /// visits per month), or a range (2.0 to 1.8 Gy per fraction).
-  final Range? quantityRange;
+  final Quantity? quantityXServiceRequestServiceRequest;
 
   /// [subject]
   /// On whom or what the service is to be performed. This is usually a human
@@ -523,27 +487,14 @@ class ServiceRequest extends DomainResource {
   /// context in which this request is made.
   final Reference? encounter;
 
-  /// [occurrenceDateTime]
+  /// [occurrenceXServiceRequestServiceRequest]
   /// The date/time at which the requested service should occur.
-  final FhirDateTime? occurrenceDateTime;
+  final FhirDateTime? occurrenceXServiceRequestServiceRequest;
 
-  /// [occurrencePeriod]
-  /// The date/time at which the requested service should occur.
-  final Period? occurrencePeriod;
-
-  /// [occurrenceTiming]
-  /// The date/time at which the requested service should occur.
-  final Timing? occurrenceTiming;
-
-  /// [asNeededBoolean]
+  /// [asNeededXServiceRequestServiceRequest]
   /// If a CodeableConcept is present, it indicates the pre-condition for
   /// performing the service. For example "pain", "on flare-up", etc.
-  final FhirBoolean? asNeededBoolean;
-
-  /// [asNeededCodeableConcept]
-  /// If a CodeableConcept is present, it indicates the pre-condition for
-  /// performing the service. For example "pain", "on flare-up", etc.
-  final CodeableConcept? asNeededCodeableConcept;
+  final FhirBoolean? asNeededXServiceRequestServiceRequest;
 
   /// [authoredOn]
   /// When the request transitioned to being actionable.
@@ -710,16 +661,9 @@ class ServiceRequest extends DomainResource {
       json['orderDetail'] = orderDetail!.map((e) => e.toJson()).toList();
     }
 
-    if (quantityQuantity != null) {
-      json['quantityQuantity'] = quantityQuantity!.toJson();
-    }
-
-    if (quantityRatio != null) {
-      json['quantityRatio'] = quantityRatio!.toJson();
-    }
-
-    if (quantityRange != null) {
-      json['quantityRange'] = quantityRange!.toJson();
+    if (quantityXServiceRequestServiceRequest != null) {
+      json['quantityXServiceRequestServiceRequest'] =
+          quantityXServiceRequestServiceRequest!.toJson();
     }
 
     json['subject'] = subject.toJson();
@@ -728,20 +672,10 @@ class ServiceRequest extends DomainResource {
       json['encounter'] = encounter!.toJson();
     }
 
-    addField('occurrenceDateTime', occurrenceDateTime);
-    if (occurrencePeriod != null) {
-      json['occurrencePeriod'] = occurrencePeriod!.toJson();
-    }
-
-    if (occurrenceTiming != null) {
-      json['occurrenceTiming'] = occurrenceTiming!.toJson();
-    }
-
-    addField('asNeededBoolean', asNeededBoolean);
-    if (asNeededCodeableConcept != null) {
-      json['asNeededCodeableConcept'] = asNeededCodeableConcept!.toJson();
-    }
-
+    addField('occurrenceXServiceRequestServiceRequest',
+        occurrenceXServiceRequestServiceRequest);
+    addField('asNeededXServiceRequestServiceRequest',
+        asNeededXServiceRequestServiceRequest);
     addField('authoredOn', authoredOn);
     if (requester != null) {
       json['requester'] = requester!.toJson();
@@ -827,16 +761,11 @@ class ServiceRequest extends DomainResource {
     FhirBoolean? doNotPerform,
     CodeableConcept? code,
     List<CodeableConcept>? orderDetail,
-    Quantity? quantityQuantity,
-    Ratio? quantityRatio,
-    Range? quantityRange,
+    Quantity? quantityXServiceRequestServiceRequest,
     Reference? subject,
     Reference? encounter,
-    FhirDateTime? occurrenceDateTime,
-    Period? occurrencePeriod,
-    Timing? occurrenceTiming,
-    FhirBoolean? asNeededBoolean,
-    CodeableConcept? asNeededCodeableConcept,
+    FhirDateTime? occurrenceXServiceRequestServiceRequest,
+    FhirBoolean? asNeededXServiceRequestServiceRequest,
     FhirDateTime? authoredOn,
     Reference? requester,
     CodeableConcept? performerType,
@@ -880,17 +809,17 @@ class ServiceRequest extends DomainResource {
       doNotPerform: doNotPerform ?? this.doNotPerform,
       code: code ?? this.code,
       orderDetail: orderDetail ?? this.orderDetail,
-      quantityQuantity: quantityQuantity ?? this.quantityQuantity,
-      quantityRatio: quantityRatio ?? this.quantityRatio,
-      quantityRange: quantityRange ?? this.quantityRange,
+      quantityXServiceRequestServiceRequest:
+          quantityXServiceRequestServiceRequest ??
+              this.quantityXServiceRequestServiceRequest,
       subject: subject ?? this.subject,
       encounter: encounter ?? this.encounter,
-      occurrenceDateTime: occurrenceDateTime ?? this.occurrenceDateTime,
-      occurrencePeriod: occurrencePeriod ?? this.occurrencePeriod,
-      occurrenceTiming: occurrenceTiming ?? this.occurrenceTiming,
-      asNeededBoolean: asNeededBoolean ?? this.asNeededBoolean,
-      asNeededCodeableConcept:
-          asNeededCodeableConcept ?? this.asNeededCodeableConcept,
+      occurrenceXServiceRequestServiceRequest:
+          occurrenceXServiceRequestServiceRequest ??
+              this.occurrenceXServiceRequestServiceRequest,
+      asNeededXServiceRequestServiceRequest:
+          asNeededXServiceRequestServiceRequest ??
+              this.asNeededXServiceRequestServiceRequest,
       authoredOn: authoredOn ?? this.authoredOn,
       requester: requester ?? this.requester,
       performerType: performerType ?? this.performerType,

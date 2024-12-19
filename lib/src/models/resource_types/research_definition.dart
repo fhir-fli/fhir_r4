@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'research_definition.g.dart';
+
 /// [ResearchDefinition]
 /// The ResearchDefinition resource describes the conditional state
 /// (population and any exposures being compared within the population) and
@@ -29,8 +31,7 @@ class ResearchDefinition extends DomainResource {
     this.subtitle,
     required this.status,
     this.experimental,
-    this.subjectCodeableConcept,
-    this.subjectReference,
+    this.subjectXResearchDefinitionResearchDefinition,
     this.date,
     this.publisher,
     this.contact,
@@ -173,16 +174,13 @@ class ResearchDefinition extends DomainResource {
                   '_value': json['_experimental'],
                 })
               : null,
-      subjectCodeableConcept: json['subjectCodeableConcept'] != null
-          ? CodeableConcept.fromJson(
-              json['subjectCodeableConcept'] as Map<String, dynamic>,
-            )
-          : null,
-      subjectReference: json['subjectReference'] != null
-          ? Reference.fromJson(
-              json['subjectReference'] as Map<String, dynamic>,
-            )
-          : null,
+      subjectXResearchDefinitionResearchDefinition:
+          json['subjectXResearchDefinitionResearchDefinition'] != null
+              ? CodeableConcept.fromJson(
+                  json['subjectXResearchDefinitionResearchDefinition']
+                      as Map<String, dynamic>,
+                )
+              : null,
       date: (json['date'] != null || json['_date'] != null)
           ? FhirDateTime.fromJson({
               'value': json['date'],
@@ -453,17 +451,11 @@ class ResearchDefinition extends DomainResource {
   /// intended to be used for genuine usage.
   final FhirBoolean? experimental;
 
-  /// [subjectCodeableConcept]
+  /// [subjectXResearchDefinitionResearchDefinition]
   /// The intended subjects for the ResearchDefinition. If this element is
   /// not provided, a Patient subject is assumed, but the subject of the
   /// ResearchDefinition can be anything.
-  final CodeableConcept? subjectCodeableConcept;
-
-  /// [subjectReference]
-  /// The intended subjects for the ResearchDefinition. If this element is
-  /// not provided, a Patient subject is assumed, but the subject of the
-  /// ResearchDefinition can be anything.
-  final Reference? subjectReference;
+  final CodeableConcept? subjectXResearchDefinitionResearchDefinition;
 
   /// [date]
   /// The date (and optionally time) when the research definition was
@@ -642,12 +634,9 @@ class ResearchDefinition extends DomainResource {
     addField('subtitle', subtitle);
     addField('status', status);
     addField('experimental', experimental);
-    if (subjectCodeableConcept != null) {
-      json['subjectCodeableConcept'] = subjectCodeableConcept!.toJson();
-    }
-
-    if (subjectReference != null) {
-      json['subjectReference'] = subjectReference!.toJson();
+    if (subjectXResearchDefinitionResearchDefinition != null) {
+      json['subjectXResearchDefinitionResearchDefinition'] =
+          subjectXResearchDefinitionResearchDefinition!.toJson();
     }
 
     addField('date', date);
@@ -753,8 +742,7 @@ class ResearchDefinition extends DomainResource {
     FhirString? subtitle,
     PublicationStatus? status,
     FhirBoolean? experimental,
-    CodeableConcept? subjectCodeableConcept,
-    Reference? subjectReference,
+    CodeableConcept? subjectXResearchDefinitionResearchDefinition,
     FhirDateTime? date,
     FhirString? publisher,
     List<ContactDetail>? contact,
@@ -802,9 +790,9 @@ class ResearchDefinition extends DomainResource {
       subtitle: subtitle ?? this.subtitle,
       status: status ?? this.status,
       experimental: experimental ?? this.experimental,
-      subjectCodeableConcept:
-          subjectCodeableConcept ?? this.subjectCodeableConcept,
-      subjectReference: subjectReference ?? this.subjectReference,
+      subjectXResearchDefinitionResearchDefinition:
+          subjectXResearchDefinitionResearchDefinition ??
+              this.subjectXResearchDefinitionResearchDefinition,
       date: date ?? this.date,
       publisher: publisher ?? this.publisher,
       contact: contact ?? this.contact,

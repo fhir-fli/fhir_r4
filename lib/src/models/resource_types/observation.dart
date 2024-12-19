@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'observation.g.dart';
+
 /// [Observation]
 /// Measurements and simple assertions made about a patient, device or
 /// other subject.
@@ -27,23 +29,10 @@ class Observation extends DomainResource {
     this.subject,
     this.focus,
     this.encounter,
-    this.effectiveDateTime,
-    this.effectivePeriod,
-    this.effectiveTiming,
-    this.effectiveInstant,
+    this.effectiveXObservationObservation,
     this.issued,
     this.performer,
-    this.valueQuantity,
-    this.valueCodeableConcept,
-    this.valueString,
-    this.valueBoolean,
-    this.valueInteger,
-    this.valueRange,
-    this.valueRatio,
-    this.valueSampledData,
-    this.valueTime,
-    this.valueDateTime,
-    this.valuePeriod,
+    this.valueXObservationObservation,
     this.dataAbsentReason,
     this.interpretation,
     this.note,
@@ -179,30 +168,14 @@ class Observation extends DomainResource {
               json['encounter'] as Map<String, dynamic>,
             )
           : null,
-      effectiveDateTime: (json['effectiveDateTime'] != null ||
-              json['_effectiveDateTime'] != null)
-          ? FhirDateTime.fromJson({
-              'value': json['effectiveDateTime'],
-              '_value': json['_effectiveDateTime'],
-            })
-          : null,
-      effectivePeriod: json['effectivePeriod'] != null
-          ? Period.fromJson(
-              json['effectivePeriod'] as Map<String, dynamic>,
-            )
-          : null,
-      effectiveTiming: json['effectiveTiming'] != null
-          ? Timing.fromJson(
-              json['effectiveTiming'] as Map<String, dynamic>,
-            )
-          : null,
-      effectiveInstant: (json['effectiveInstant'] != null ||
-              json['_effectiveInstant'] != null)
-          ? FhirInstant.fromJson({
-              'value': json['effectiveInstant'],
-              '_value': json['_effectiveInstant'],
-            })
-          : null,
+      effectiveXObservationObservation:
+          (json['effectiveXObservationObservation'] != null ||
+                  json['_effectiveXObservationObservation'] != null)
+              ? FhirDateTime.fromJson({
+                  'value': json['effectiveXObservationObservation'],
+                  '_value': json['_effectiveXObservationObservation'],
+                })
+              : null,
       issued: (json['issued'] != null || json['_issued'] != null)
           ? FhirInstant.fromJson({
               'value': json['issued'],
@@ -218,67 +191,9 @@ class Observation extends DomainResource {
               )
               .toList()
           : null,
-      valueQuantity: json['valueQuantity'] != null
+      valueXObservationObservation: json['valueXObservationObservation'] != null
           ? Quantity.fromJson(
-              json['valueQuantity'] as Map<String, dynamic>,
-            )
-          : null,
-      valueCodeableConcept: json['valueCodeableConcept'] != null
-          ? CodeableConcept.fromJson(
-              json['valueCodeableConcept'] as Map<String, dynamic>,
-            )
-          : null,
-      valueString: (json['valueString'] != null || json['_valueString'] != null)
-          ? FhirString.fromJson({
-              'value': json['valueString'],
-              '_value': json['_valueString'],
-            })
-          : null,
-      valueBoolean:
-          (json['valueBoolean'] != null || json['_valueBoolean'] != null)
-              ? FhirBoolean.fromJson({
-                  'value': json['valueBoolean'],
-                  '_value': json['_valueBoolean'],
-                })
-              : null,
-      valueInteger:
-          (json['valueInteger'] != null || json['_valueInteger'] != null)
-              ? FhirInteger.fromJson({
-                  'value': json['valueInteger'],
-                  '_value': json['_valueInteger'],
-                })
-              : null,
-      valueRange: json['valueRange'] != null
-          ? Range.fromJson(
-              json['valueRange'] as Map<String, dynamic>,
-            )
-          : null,
-      valueRatio: json['valueRatio'] != null
-          ? Ratio.fromJson(
-              json['valueRatio'] as Map<String, dynamic>,
-            )
-          : null,
-      valueSampledData: json['valueSampledData'] != null
-          ? SampledData.fromJson(
-              json['valueSampledData'] as Map<String, dynamic>,
-            )
-          : null,
-      valueTime: (json['valueTime'] != null || json['_valueTime'] != null)
-          ? FhirTime.fromJson({
-              'value': json['valueTime'],
-              '_value': json['_valueTime'],
-            })
-          : null,
-      valueDateTime:
-          (json['valueDateTime'] != null || json['_valueDateTime'] != null)
-              ? FhirDateTime.fromJson({
-                  'value': json['valueDateTime'],
-                  '_value': json['_valueDateTime'],
-                })
-              : null,
-      valuePeriod: json['valuePeriod'] != null
-          ? Period.fromJson(
-              json['valuePeriod'] as Map<String, dynamic>,
+              json['valueXObservationObservation'] as Map<String, dynamic>,
             )
           : null,
       dataAbsentReason: json['dataAbsentReason'] != null
@@ -459,37 +374,13 @@ class Observation extends DomainResource {
   /// interaction) during which this observation is made.
   final Reference? encounter;
 
-  /// [effectiveDateTime]
+  /// [effectiveXObservationObservation]
   /// The time or time-period the observed value is asserted as being true.
   /// For biological subjects - e.g. human patients - this is usually called
   /// the "physiologically relevant time". This is usually either the time of
   /// the procedure or of specimen collection, but very often the source of
   /// the date/time is not known, only the date/time itself.
-  final FhirDateTime? effectiveDateTime;
-
-  /// [effectivePeriod]
-  /// The time or time-period the observed value is asserted as being true.
-  /// For biological subjects - e.g. human patients - this is usually called
-  /// the "physiologically relevant time". This is usually either the time of
-  /// the procedure or of specimen collection, but very often the source of
-  /// the date/time is not known, only the date/time itself.
-  final Period? effectivePeriod;
-
-  /// [effectiveTiming]
-  /// The time or time-period the observed value is asserted as being true.
-  /// For biological subjects - e.g. human patients - this is usually called
-  /// the "physiologically relevant time". This is usually either the time of
-  /// the procedure or of specimen collection, but very often the source of
-  /// the date/time is not known, only the date/time itself.
-  final Timing? effectiveTiming;
-
-  /// [effectiveInstant]
-  /// The time or time-period the observed value is asserted as being true.
-  /// For biological subjects - e.g. human patients - this is usually called
-  /// the "physiologically relevant time". This is usually either the time of
-  /// the procedure or of specimen collection, but very often the source of
-  /// the date/time is not known, only the date/time itself.
-  final FhirInstant? effectiveInstant;
+  final FhirDateTime? effectiveXObservationObservation;
 
   /// [issued]
   /// The date and time this version of the observation was made available to
@@ -500,60 +391,10 @@ class Observation extends DomainResource {
   /// Who was responsible for asserting the observed value as "true".
   final List<Reference>? performer;
 
-  /// [valueQuantity]
+  /// [valueXObservationObservation]
   /// The information determined as a result of making the observation, if
   /// the information has a simple value.
-  final Quantity? valueQuantity;
-
-  /// [valueCodeableConcept]
-  /// The information determined as a result of making the observation, if
-  /// the information has a simple value.
-  final CodeableConcept? valueCodeableConcept;
-
-  /// [valueString]
-  /// The information determined as a result of making the observation, if
-  /// the information has a simple value.
-  final FhirString? valueString;
-
-  /// [valueBoolean]
-  /// The information determined as a result of making the observation, if
-  /// the information has a simple value.
-  final FhirBoolean? valueBoolean;
-
-  /// [valueInteger]
-  /// The information determined as a result of making the observation, if
-  /// the information has a simple value.
-  final FhirInteger? valueInteger;
-
-  /// [valueRange]
-  /// The information determined as a result of making the observation, if
-  /// the information has a simple value.
-  final Range? valueRange;
-
-  /// [valueRatio]
-  /// The information determined as a result of making the observation, if
-  /// the information has a simple value.
-  final Ratio? valueRatio;
-
-  /// [valueSampledData]
-  /// The information determined as a result of making the observation, if
-  /// the information has a simple value.
-  final SampledData? valueSampledData;
-
-  /// [valueTime]
-  /// The information determined as a result of making the observation, if
-  /// the information has a simple value.
-  final FhirTime? valueTime;
-
-  /// [valueDateTime]
-  /// The information determined as a result of making the observation, if
-  /// the information has a simple value.
-  final FhirDateTime? valueDateTime;
-
-  /// [valuePeriod]
-  /// The information determined as a result of making the observation, if
-  /// the information has a simple value.
-  final Period? valuePeriod;
+  final Quantity? valueXObservationObservation;
 
   /// [dataAbsentReason]
   /// Provides a reason why the expected value in the element
@@ -680,48 +521,16 @@ class Observation extends DomainResource {
       json['encounter'] = encounter!.toJson();
     }
 
-    addField('effectiveDateTime', effectiveDateTime);
-    if (effectivePeriod != null) {
-      json['effectivePeriod'] = effectivePeriod!.toJson();
-    }
-
-    if (effectiveTiming != null) {
-      json['effectiveTiming'] = effectiveTiming!.toJson();
-    }
-
-    addField('effectiveInstant', effectiveInstant);
+    addField(
+        'effectiveXObservationObservation', effectiveXObservationObservation);
     addField('issued', issued);
     if (performer != null && performer!.isNotEmpty) {
       json['performer'] = performer!.map((e) => e.toJson()).toList();
     }
 
-    if (valueQuantity != null) {
-      json['valueQuantity'] = valueQuantity!.toJson();
-    }
-
-    if (valueCodeableConcept != null) {
-      json['valueCodeableConcept'] = valueCodeableConcept!.toJson();
-    }
-
-    addField('valueString', valueString);
-    addField('valueBoolean', valueBoolean);
-    addField('valueInteger', valueInteger);
-    if (valueRange != null) {
-      json['valueRange'] = valueRange!.toJson();
-    }
-
-    if (valueRatio != null) {
-      json['valueRatio'] = valueRatio!.toJson();
-    }
-
-    if (valueSampledData != null) {
-      json['valueSampledData'] = valueSampledData!.toJson();
-    }
-
-    addField('valueTime', valueTime);
-    addField('valueDateTime', valueDateTime);
-    if (valuePeriod != null) {
-      json['valuePeriod'] = valuePeriod!.toJson();
+    if (valueXObservationObservation != null) {
+      json['valueXObservationObservation'] =
+          valueXObservationObservation!.toJson();
     }
 
     if (dataAbsentReason != null) {
@@ -792,23 +601,10 @@ class Observation extends DomainResource {
     Reference? subject,
     List<Reference>? focus,
     Reference? encounter,
-    FhirDateTime? effectiveDateTime,
-    Period? effectivePeriod,
-    Timing? effectiveTiming,
-    FhirInstant? effectiveInstant,
+    FhirDateTime? effectiveXObservationObservation,
     FhirInstant? issued,
     List<Reference>? performer,
-    Quantity? valueQuantity,
-    CodeableConcept? valueCodeableConcept,
-    FhirString? valueString,
-    FhirBoolean? valueBoolean,
-    FhirInteger? valueInteger,
-    Range? valueRange,
-    Ratio? valueRatio,
-    SampledData? valueSampledData,
-    FhirTime? valueTime,
-    FhirDateTime? valueDateTime,
-    Period? valuePeriod,
+    Quantity? valueXObservationObservation,
     CodeableConcept? dataAbsentReason,
     List<CodeableConcept>? interpretation,
     List<Annotation>? note,
@@ -843,23 +639,12 @@ class Observation extends DomainResource {
       subject: subject ?? this.subject,
       focus: focus ?? this.focus,
       encounter: encounter ?? this.encounter,
-      effectiveDateTime: effectiveDateTime ?? this.effectiveDateTime,
-      effectivePeriod: effectivePeriod ?? this.effectivePeriod,
-      effectiveTiming: effectiveTiming ?? this.effectiveTiming,
-      effectiveInstant: effectiveInstant ?? this.effectiveInstant,
+      effectiveXObservationObservation: effectiveXObservationObservation ??
+          this.effectiveXObservationObservation,
       issued: issued ?? this.issued,
       performer: performer ?? this.performer,
-      valueQuantity: valueQuantity ?? this.valueQuantity,
-      valueCodeableConcept: valueCodeableConcept ?? this.valueCodeableConcept,
-      valueString: valueString ?? this.valueString,
-      valueBoolean: valueBoolean ?? this.valueBoolean,
-      valueInteger: valueInteger ?? this.valueInteger,
-      valueRange: valueRange ?? this.valueRange,
-      valueRatio: valueRatio ?? this.valueRatio,
-      valueSampledData: valueSampledData ?? this.valueSampledData,
-      valueTime: valueTime ?? this.valueTime,
-      valueDateTime: valueDateTime ?? this.valueDateTime,
-      valuePeriod: valuePeriod ?? this.valuePeriod,
+      valueXObservationObservation:
+          valueXObservationObservation ?? this.valueXObservationObservation,
       dataAbsentReason: dataAbsentReason ?? this.dataAbsentReason,
       interpretation: interpretation ?? this.interpretation,
       note: note ?? this.note,
@@ -1135,17 +920,7 @@ class ObservationComponent extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.code,
-    this.valueQuantity,
-    this.valueCodeableConcept,
-    this.valueString,
-    this.valueBoolean,
-    this.valueInteger,
-    this.valueRange,
-    this.valueRatio,
-    this.valueSampledData,
-    this.valueTime,
-    this.valueDateTime,
-    this.valuePeriod,
+    this.valueXObservationComponent,
     this.dataAbsentReason,
     this.interpretation,
     this.referenceRange,
@@ -1181,67 +956,9 @@ class ObservationComponent extends BackboneElement {
       code: CodeableConcept.fromJson(
         json['code'] as Map<String, dynamic>,
       ),
-      valueQuantity: json['valueQuantity'] != null
+      valueXObservationComponent: json['valueXObservationComponent'] != null
           ? Quantity.fromJson(
-              json['valueQuantity'] as Map<String, dynamic>,
-            )
-          : null,
-      valueCodeableConcept: json['valueCodeableConcept'] != null
-          ? CodeableConcept.fromJson(
-              json['valueCodeableConcept'] as Map<String, dynamic>,
-            )
-          : null,
-      valueString: (json['valueString'] != null || json['_valueString'] != null)
-          ? FhirString.fromJson({
-              'value': json['valueString'],
-              '_value': json['_valueString'],
-            })
-          : null,
-      valueBoolean:
-          (json['valueBoolean'] != null || json['_valueBoolean'] != null)
-              ? FhirBoolean.fromJson({
-                  'value': json['valueBoolean'],
-                  '_value': json['_valueBoolean'],
-                })
-              : null,
-      valueInteger:
-          (json['valueInteger'] != null || json['_valueInteger'] != null)
-              ? FhirInteger.fromJson({
-                  'value': json['valueInteger'],
-                  '_value': json['_valueInteger'],
-                })
-              : null,
-      valueRange: json['valueRange'] != null
-          ? Range.fromJson(
-              json['valueRange'] as Map<String, dynamic>,
-            )
-          : null,
-      valueRatio: json['valueRatio'] != null
-          ? Ratio.fromJson(
-              json['valueRatio'] as Map<String, dynamic>,
-            )
-          : null,
-      valueSampledData: json['valueSampledData'] != null
-          ? SampledData.fromJson(
-              json['valueSampledData'] as Map<String, dynamic>,
-            )
-          : null,
-      valueTime: (json['valueTime'] != null || json['_valueTime'] != null)
-          ? FhirTime.fromJson({
-              'value': json['valueTime'],
-              '_value': json['_valueTime'],
-            })
-          : null,
-      valueDateTime:
-          (json['valueDateTime'] != null || json['_valueDateTime'] != null)
-              ? FhirDateTime.fromJson({
-                  'value': json['valueDateTime'],
-                  '_value': json['_valueDateTime'],
-                })
-              : null,
-      valuePeriod: json['valuePeriod'] != null
-          ? Period.fromJson(
-              json['valuePeriod'] as Map<String, dynamic>,
+              json['valueXObservationComponent'] as Map<String, dynamic>,
             )
           : null,
       dataAbsentReason: json['dataAbsentReason'] != null
@@ -1317,60 +1034,10 @@ class ObservationComponent extends BackboneElement {
   /// "code".
   final CodeableConcept code;
 
-  /// [valueQuantity]
+  /// [valueXObservationComponent]
   /// The information determined as a result of making the observation, if
   /// the information has a simple value.
-  final Quantity? valueQuantity;
-
-  /// [valueCodeableConcept]
-  /// The information determined as a result of making the observation, if
-  /// the information has a simple value.
-  final CodeableConcept? valueCodeableConcept;
-
-  /// [valueString]
-  /// The information determined as a result of making the observation, if
-  /// the information has a simple value.
-  final FhirString? valueString;
-
-  /// [valueBoolean]
-  /// The information determined as a result of making the observation, if
-  /// the information has a simple value.
-  final FhirBoolean? valueBoolean;
-
-  /// [valueInteger]
-  /// The information determined as a result of making the observation, if
-  /// the information has a simple value.
-  final FhirInteger? valueInteger;
-
-  /// [valueRange]
-  /// The information determined as a result of making the observation, if
-  /// the information has a simple value.
-  final Range? valueRange;
-
-  /// [valueRatio]
-  /// The information determined as a result of making the observation, if
-  /// the information has a simple value.
-  final Ratio? valueRatio;
-
-  /// [valueSampledData]
-  /// The information determined as a result of making the observation, if
-  /// the information has a simple value.
-  final SampledData? valueSampledData;
-
-  /// [valueTime]
-  /// The information determined as a result of making the observation, if
-  /// the information has a simple value.
-  final FhirTime? valueTime;
-
-  /// [valueDateTime]
-  /// The information determined as a result of making the observation, if
-  /// the information has a simple value.
-  final FhirDateTime? valueDateTime;
-
-  /// [valuePeriod]
-  /// The information determined as a result of making the observation, if
-  /// the information has a simple value.
-  final Period? valuePeriod;
+  final Quantity? valueXObservationComponent;
 
   /// [dataAbsentReason]
   /// Provides a reason why the expected value in the element
@@ -1410,33 +1077,8 @@ class ObservationComponent extends BackboneElement {
 
     json['code'] = code.toJson();
 
-    if (valueQuantity != null) {
-      json['valueQuantity'] = valueQuantity!.toJson();
-    }
-
-    if (valueCodeableConcept != null) {
-      json['valueCodeableConcept'] = valueCodeableConcept!.toJson();
-    }
-
-    addField('valueString', valueString);
-    addField('valueBoolean', valueBoolean);
-    addField('valueInteger', valueInteger);
-    if (valueRange != null) {
-      json['valueRange'] = valueRange!.toJson();
-    }
-
-    if (valueRatio != null) {
-      json['valueRatio'] = valueRatio!.toJson();
-    }
-
-    if (valueSampledData != null) {
-      json['valueSampledData'] = valueSampledData!.toJson();
-    }
-
-    addField('valueTime', valueTime);
-    addField('valueDateTime', valueDateTime);
-    if (valuePeriod != null) {
-      json['valuePeriod'] = valuePeriod!.toJson();
+    if (valueXObservationComponent != null) {
+      json['valueXObservationComponent'] = valueXObservationComponent!.toJson();
     }
 
     if (dataAbsentReason != null) {
@@ -1462,17 +1104,7 @@ class ObservationComponent extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     CodeableConcept? code,
-    Quantity? valueQuantity,
-    CodeableConcept? valueCodeableConcept,
-    FhirString? valueString,
-    FhirBoolean? valueBoolean,
-    FhirInteger? valueInteger,
-    Range? valueRange,
-    Ratio? valueRatio,
-    SampledData? valueSampledData,
-    FhirTime? valueTime,
-    FhirDateTime? valueDateTime,
-    Period? valuePeriod,
+    Quantity? valueXObservationComponent,
     CodeableConcept? dataAbsentReason,
     List<CodeableConcept>? interpretation,
     List<ObservationReferenceRange>? referenceRange,
@@ -1486,17 +1118,8 @@ class ObservationComponent extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       code: code ?? this.code,
-      valueQuantity: valueQuantity ?? this.valueQuantity,
-      valueCodeableConcept: valueCodeableConcept ?? this.valueCodeableConcept,
-      valueString: valueString ?? this.valueString,
-      valueBoolean: valueBoolean ?? this.valueBoolean,
-      valueInteger: valueInteger ?? this.valueInteger,
-      valueRange: valueRange ?? this.valueRange,
-      valueRatio: valueRatio ?? this.valueRatio,
-      valueSampledData: valueSampledData ?? this.valueSampledData,
-      valueTime: valueTime ?? this.valueTime,
-      valueDateTime: valueDateTime ?? this.valueDateTime,
-      valuePeriod: valuePeriod ?? this.valuePeriod,
+      valueXObservationComponent:
+          valueXObservationComponent ?? this.valueXObservationComponent,
       dataAbsentReason: dataAbsentReason ?? this.dataAbsentReason,
       interpretation: interpretation ?? this.interpretation,
       referenceRange: referenceRange ?? this.referenceRange,

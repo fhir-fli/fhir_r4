@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'timing.g.dart';
+
 /// [Timing]
 /// Specifies an event that may occur multiple times. Timing schedules are
 /// used to record when things are planned, expected or requested to occur.
@@ -202,9 +204,7 @@ class TimingRepeat extends Element {
   const TimingRepeat({
     super.id,
     super.extension_,
-    this.boundsDuration,
-    this.boundsRange,
-    this.boundsPeriod,
+    this.boundsXTimingRepeat,
     this.count,
     this.countMax,
     this.duration,
@@ -239,19 +239,9 @@ class TimingRepeat extends Element {
               )
               .toList()
           : null,
-      boundsDuration: json['boundsDuration'] != null
+      boundsXTimingRepeat: json['boundsXTimingRepeat'] != null
           ? FhirDuration.fromJson(
-              json['boundsDuration'] as Map<String, dynamic>,
-            )
-          : null,
-      boundsRange: json['boundsRange'] != null
-          ? Range.fromJson(
-              json['boundsRange'] as Map<String, dynamic>,
-            )
-          : null,
-      boundsPeriod: json['boundsPeriod'] != null
-          ? Period.fromJson(
-              json['boundsPeriod'] as Map<String, dynamic>,
+              json['boundsXTimingRepeat'] as Map<String, dynamic>,
             )
           : null,
       count: (json['count'] != null || json['_count'] != null)
@@ -382,23 +372,11 @@ class TimingRepeat extends Element {
   @override
   String get fhirType => 'TimingRepeat';
 
-  /// [boundsDuration]
+  /// [boundsXTimingRepeat]
   /// Either a duration for the length of the timing schedule, a range of
   /// possible length, or outer bounds for start and/or end limits of the
   /// timing schedule.
-  final FhirDuration? boundsDuration;
-
-  /// [boundsRange]
-  /// Either a duration for the length of the timing schedule, a range of
-  /// possible length, or outer bounds for start and/or end limits of the
-  /// timing schedule.
-  final Range? boundsRange;
-
-  /// [boundsPeriod]
-  /// Either a duration for the length of the timing schedule, a range of
-  /// possible length, or outer bounds for start and/or end limits of the
-  /// timing schedule.
-  final Period? boundsPeriod;
+  final FhirDuration? boundsXTimingRepeat;
 
   /// [count]
   /// A total count of the desired number of repetitions across the duration
@@ -491,16 +469,8 @@ class TimingRepeat extends Element {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
 
-    if (boundsDuration != null) {
-      json['boundsDuration'] = boundsDuration!.toJson();
-    }
-
-    if (boundsRange != null) {
-      json['boundsRange'] = boundsRange!.toJson();
-    }
-
-    if (boundsPeriod != null) {
-      json['boundsPeriod'] = boundsPeriod!.toJson();
+    if (boundsXTimingRepeat != null) {
+      json['boundsXTimingRepeat'] = boundsXTimingRepeat!.toJson();
     }
 
     addField('count', count);
@@ -547,9 +517,7 @@ class TimingRepeat extends Element {
   TimingRepeat copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
-    FhirDuration? boundsDuration,
-    Range? boundsRange,
-    Period? boundsPeriod,
+    FhirDuration? boundsXTimingRepeat,
     FhirPositiveInt? count,
     FhirPositiveInt? countMax,
     FhirDecimal? duration,
@@ -572,9 +540,7 @@ class TimingRepeat extends Element {
     return TimingRepeat(
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
-      boundsDuration: boundsDuration ?? this.boundsDuration,
-      boundsRange: boundsRange ?? this.boundsRange,
-      boundsPeriod: boundsPeriod ?? this.boundsPeriod,
+      boundsXTimingRepeat: boundsXTimingRepeat ?? this.boundsXTimingRepeat,
       count: count ?? this.count,
       countMax: countMax ?? this.countMax,
       duration: duration ?? this.duration,

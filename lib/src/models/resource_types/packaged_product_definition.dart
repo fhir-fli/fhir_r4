@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'packaged_product_definition.g.dart';
+
 /// [PackagedProductDefinition]
 /// A medically related item or items, in a container or package.
 class PackagedProductDefinition extends DomainResource {
@@ -973,8 +975,7 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.type,
-    this.periodDuration,
-    this.periodString,
+    this.periodXPackagedProductDefinitionShelfLifeStorage,
     this.specialPrecautionsForStorage,
     super.disallowExtensions,
   });
@@ -1010,17 +1011,12 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
               json['type'] as Map<String, dynamic>,
             )
           : null,
-      periodDuration: json['periodDuration'] != null
-          ? FhirDuration.fromJson(
-              json['periodDuration'] as Map<String, dynamic>,
-            )
-          : null,
-      periodString:
-          (json['periodString'] != null || json['_periodString'] != null)
-              ? FhirString.fromJson({
-                  'value': json['periodString'],
-                  '_value': json['_periodString'],
-                })
+      periodXPackagedProductDefinitionShelfLifeStorage:
+          json['periodXPackagedProductDefinitionShelfLifeStorage'] != null
+              ? FhirDuration.fromJson(
+                  json['periodXPackagedProductDefinitionShelfLifeStorage']
+                      as Map<String, dynamic>,
+                )
               : null,
       specialPrecautionsForStorage: json['specialPrecautionsForStorage'] != null
           ? (json['specialPrecautionsForStorage'] as List<dynamic>)
@@ -1085,21 +1081,13 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
   /// controlled term identifier shall be specified.
   final CodeableConcept? type;
 
-  /// [periodDuration]
+  /// [periodXPackagedProductDefinitionShelfLifeStorage]
   /// The shelf life time period can be specified using a numerical value for
   /// the period of time and its unit of time measurement The unit of
   /// measurement shall be specified in accordance with ISO 11240 and the
   /// resulting terminology The symbol and the symbol identifier shall be
   /// used.
-  final FhirDuration? periodDuration;
-
-  /// [periodString]
-  /// The shelf life time period can be specified using a numerical value for
-  /// the period of time and its unit of time measurement The unit of
-  /// measurement shall be specified in accordance with ISO 11240 and the
-  /// resulting terminology The symbol and the symbol identifier shall be
-  /// used.
-  final FhirString? periodString;
+  final FhirDuration? periodXPackagedProductDefinitionShelfLifeStorage;
 
   /// [specialPrecautionsForStorage]
   /// Special precautions for storage, if any, can be specified using an
@@ -1132,11 +1120,11 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
       json['type'] = type!.toJson();
     }
 
-    if (periodDuration != null) {
-      json['periodDuration'] = periodDuration!.toJson();
+    if (periodXPackagedProductDefinitionShelfLifeStorage != null) {
+      json['periodXPackagedProductDefinitionShelfLifeStorage'] =
+          periodXPackagedProductDefinitionShelfLifeStorage!.toJson();
     }
 
-    addField('periodString', periodString);
     if (specialPrecautionsForStorage != null &&
         specialPrecautionsForStorage!.isNotEmpty) {
       json['specialPrecautionsForStorage'] =
@@ -1155,8 +1143,7 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     CodeableConcept? type,
-    FhirDuration? periodDuration,
-    FhirString? periodString,
+    FhirDuration? periodXPackagedProductDefinitionShelfLifeStorage,
     List<CodeableConcept>? specialPrecautionsForStorage,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -1168,8 +1155,9 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
-      periodDuration: periodDuration ?? this.periodDuration,
-      periodString: periodString ?? this.periodString,
+      periodXPackagedProductDefinitionShelfLifeStorage:
+          periodXPackagedProductDefinitionShelfLifeStorage ??
+              this.periodXPackagedProductDefinitionShelfLifeStorage,
       specialPrecautionsForStorage:
           specialPrecautionsForStorage ?? this.specialPrecautionsForStorage,
     );
@@ -1187,11 +1175,7 @@ class PackagedProductDefinitionProperty extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.type,
-    this.valueCodeableConcept,
-    this.valueQuantity,
-    this.valueDate,
-    this.valueBoolean,
-    this.valueAttachment,
+    this.valueXPackagedProductDefinitionProperty,
     super.disallowExtensions,
   });
 
@@ -1224,34 +1208,13 @@ class PackagedProductDefinitionProperty extends BackboneElement {
       type: CodeableConcept.fromJson(
         json['type'] as Map<String, dynamic>,
       ),
-      valueCodeableConcept: json['valueCodeableConcept'] != null
-          ? CodeableConcept.fromJson(
-              json['valueCodeableConcept'] as Map<String, dynamic>,
-            )
-          : null,
-      valueQuantity: json['valueQuantity'] != null
-          ? Quantity.fromJson(
-              json['valueQuantity'] as Map<String, dynamic>,
-            )
-          : null,
-      valueDate: (json['valueDate'] != null || json['_valueDate'] != null)
-          ? FhirDate.fromJson({
-              'value': json['valueDate'],
-              '_value': json['_valueDate'],
-            })
-          : null,
-      valueBoolean:
-          (json['valueBoolean'] != null || json['_valueBoolean'] != null)
-              ? FhirBoolean.fromJson({
-                  'value': json['valueBoolean'],
-                  '_value': json['_valueBoolean'],
-                })
+      valueXPackagedProductDefinitionProperty:
+          json['valueXPackagedProductDefinitionProperty'] != null
+              ? CodeableConcept.fromJson(
+                  json['valueXPackagedProductDefinitionProperty']
+                      as Map<String, dynamic>,
+                )
               : null,
-      valueAttachment: json['valueAttachment'] != null
-          ? Attachment.fromJson(
-              json['valueAttachment'] as Map<String, dynamic>,
-            )
-          : null,
     );
   }
 
@@ -1301,25 +1264,9 @@ class PackagedProductDefinitionProperty extends BackboneElement {
   /// A code expressing the type of characteristic.
   final CodeableConcept type;
 
-  /// [valueCodeableConcept]
+  /// [valueXPackagedProductDefinitionProperty]
   /// A value for the characteristic.
-  final CodeableConcept? valueCodeableConcept;
-
-  /// [valueQuantity]
-  /// A value for the characteristic.
-  final Quantity? valueQuantity;
-
-  /// [valueDate]
-  /// A value for the characteristic.
-  final FhirDate? valueDate;
-
-  /// [valueBoolean]
-  /// A value for the characteristic.
-  final FhirBoolean? valueBoolean;
-
-  /// [valueAttachment]
-  /// A value for the characteristic.
-  final Attachment? valueAttachment;
+  final CodeableConcept? valueXPackagedProductDefinitionProperty;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1344,18 +1291,9 @@ class PackagedProductDefinitionProperty extends BackboneElement {
 
     json['type'] = type.toJson();
 
-    if (valueCodeableConcept != null) {
-      json['valueCodeableConcept'] = valueCodeableConcept!.toJson();
-    }
-
-    if (valueQuantity != null) {
-      json['valueQuantity'] = valueQuantity!.toJson();
-    }
-
-    addField('valueDate', valueDate);
-    addField('valueBoolean', valueBoolean);
-    if (valueAttachment != null) {
-      json['valueAttachment'] = valueAttachment!.toJson();
+    if (valueXPackagedProductDefinitionProperty != null) {
+      json['valueXPackagedProductDefinitionProperty'] =
+          valueXPackagedProductDefinitionProperty!.toJson();
     }
 
     return json;
@@ -1369,11 +1307,7 @@ class PackagedProductDefinitionProperty extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     CodeableConcept? type,
-    CodeableConcept? valueCodeableConcept,
-    Quantity? valueQuantity,
-    FhirDate? valueDate,
-    FhirBoolean? valueBoolean,
-    Attachment? valueAttachment,
+    CodeableConcept? valueXPackagedProductDefinitionProperty,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1384,11 +1318,9 @@ class PackagedProductDefinitionProperty extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
-      valueCodeableConcept: valueCodeableConcept ?? this.valueCodeableConcept,
-      valueQuantity: valueQuantity ?? this.valueQuantity,
-      valueDate: valueDate ?? this.valueDate,
-      valueBoolean: valueBoolean ?? this.valueBoolean,
-      valueAttachment: valueAttachment ?? this.valueAttachment,
+      valueXPackagedProductDefinitionProperty:
+          valueXPackagedProductDefinitionProperty ??
+              this.valueXPackagedProductDefinitionProperty,
     );
   }
 }

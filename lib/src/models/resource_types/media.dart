@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'media.g.dart';
+
 /// [Media]
 /// A photo, video, or audio recording acquired or used in healthcare. The
 /// actual content may be inline or provided by direct reference.
@@ -27,8 +29,7 @@ class Media extends DomainResource {
     this.view,
     this.subject,
     this.encounter,
-    this.createdDateTime,
-    this.createdPeriod,
+    this.createdXMediaMedia,
     this.issued,
     this.operator_,
     this.reasonCode,
@@ -159,17 +160,12 @@ class Media extends DomainResource {
               json['encounter'] as Map<String, dynamic>,
             )
           : null,
-      createdDateTime:
-          (json['createdDateTime'] != null || json['_createdDateTime'] != null)
-              ? FhirDateTime.fromJson({
-                  'value': json['createdDateTime'],
-                  '_value': json['_createdDateTime'],
-                })
-              : null,
-      createdPeriod: json['createdPeriod'] != null
-          ? Period.fromJson(
-              json['createdPeriod'] as Map<String, dynamic>,
-            )
+      createdXMediaMedia: (json['createdXMediaMedia'] != null ||
+              json['_createdXMediaMedia'] != null)
+          ? FhirDateTime.fromJson({
+              'value': json['createdXMediaMedia'],
+              '_value': json['_createdXMediaMedia'],
+            })
           : null,
       issued: (json['issued'] != null || json['_issued'] != null)
           ? FhirInstant.fromJson({
@@ -331,13 +327,9 @@ class Media extends DomainResource {
   /// The encounter that establishes the context for this media.
   final Reference? encounter;
 
-  /// [createdDateTime]
+  /// [createdXMediaMedia]
   /// The date and time(s) at which the media was collected.
-  final FhirDateTime? createdDateTime;
-
-  /// [createdPeriod]
-  /// The date and time(s) at which the media was collected.
-  final Period? createdPeriod;
+  final FhirDateTime? createdXMediaMedia;
 
   /// [issued]
   /// The date and time this version of the media was made available to
@@ -465,11 +457,7 @@ class Media extends DomainResource {
       json['encounter'] = encounter!.toJson();
     }
 
-    addField('createdDateTime', createdDateTime);
-    if (createdPeriod != null) {
-      json['createdPeriod'] = createdPeriod!.toJson();
-    }
-
+    addField('createdXMediaMedia', createdXMediaMedia);
     addField('issued', issued);
     if (operator_ != null) {
       json['operator'] = operator_!.toJson();
@@ -522,8 +510,7 @@ class Media extends DomainResource {
     CodeableConcept? view,
     Reference? subject,
     Reference? encounter,
-    FhirDateTime? createdDateTime,
-    Period? createdPeriod,
+    FhirDateTime? createdXMediaMedia,
     FhirInstant? issued,
     Reference? operator_,
     List<CodeableConcept>? reasonCode,
@@ -559,8 +546,7 @@ class Media extends DomainResource {
       view: view ?? this.view,
       subject: subject ?? this.subject,
       encounter: encounter ?? this.encounter,
-      createdDateTime: createdDateTime ?? this.createdDateTime,
-      createdPeriod: createdPeriod ?? this.createdPeriod,
+      createdXMediaMedia: createdXMediaMedia ?? this.createdXMediaMedia,
       issued: issued ?? this.issued,
       operator_: operator_ ?? this.operator_,
       reasonCode: reasonCode ?? this.reasonCode,

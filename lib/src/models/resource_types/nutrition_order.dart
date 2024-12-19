@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'nutrition_order.g.dart';
+
 /// [NutritionOrder]
 /// A request to supply a diet, formula feeding (enteral) or oral
 /// nutritional supplement to a patient/resident.
@@ -1617,8 +1619,7 @@ class NutritionOrderAdministration extends BackboneElement {
     super.modifierExtension,
     this.schedule,
     this.quantity,
-    this.rateQuantity,
-    this.rateRatio,
+    this.rateXNutritionOrderAdministration,
     super.disallowExtensions,
   });
 
@@ -1658,16 +1659,13 @@ class NutritionOrderAdministration extends BackboneElement {
               json['quantity'] as Map<String, dynamic>,
             )
           : null,
-      rateQuantity: json['rateQuantity'] != null
-          ? Quantity.fromJson(
-              json['rateQuantity'] as Map<String, dynamic>,
-            )
-          : null,
-      rateRatio: json['rateRatio'] != null
-          ? Ratio.fromJson(
-              json['rateRatio'] as Map<String, dynamic>,
-            )
-          : null,
+      rateXNutritionOrderAdministration:
+          json['rateXNutritionOrderAdministration'] != null
+              ? Quantity.fromJson(
+                  json['rateXNutritionOrderAdministration']
+                      as Map<String, dynamic>,
+                )
+              : null,
     );
   }
 
@@ -1723,15 +1721,10 @@ class NutritionOrderAdministration extends BackboneElement {
   /// administration schedule.
   final Quantity? quantity;
 
-  /// [rateQuantity]
+  /// [rateXNutritionOrderAdministration]
   /// The rate of administration of formula via a feeding pump, e.g. 60 mL
   /// per hour, according to the specified schedule.
-  final Quantity? rateQuantity;
-
-  /// [rateRatio]
-  /// The rate of administration of formula via a feeding pump, e.g. 60 mL
-  /// per hour, according to the specified schedule.
-  final Ratio? rateRatio;
+  final Quantity? rateXNutritionOrderAdministration;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1762,12 +1755,9 @@ class NutritionOrderAdministration extends BackboneElement {
       json['quantity'] = quantity!.toJson();
     }
 
-    if (rateQuantity != null) {
-      json['rateQuantity'] = rateQuantity!.toJson();
-    }
-
-    if (rateRatio != null) {
-      json['rateRatio'] = rateRatio!.toJson();
+    if (rateXNutritionOrderAdministration != null) {
+      json['rateXNutritionOrderAdministration'] =
+          rateXNutritionOrderAdministration!.toJson();
     }
 
     return json;
@@ -1782,8 +1772,7 @@ class NutritionOrderAdministration extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     Timing? schedule,
     Quantity? quantity,
-    Quantity? rateQuantity,
-    Ratio? rateRatio,
+    Quantity? rateXNutritionOrderAdministration,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1795,8 +1784,8 @@ class NutritionOrderAdministration extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       schedule: schedule ?? this.schedule,
       quantity: quantity ?? this.quantity,
-      rateQuantity: rateQuantity ?? this.rateQuantity,
-      rateRatio: rateRatio ?? this.rateRatio,
+      rateXNutritionOrderAdministration: rateXNutritionOrderAdministration ??
+          this.rateXNutritionOrderAdministration,
     );
   }
 }

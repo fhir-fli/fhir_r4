@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'device_use_statement.g.dart';
+
 /// [DeviceUseStatement]
 /// A record of a device being used by a patient where the record is the
 /// result of a report from the patient or another clinician.
@@ -23,9 +25,7 @@ class DeviceUseStatement extends DomainResource {
     required this.status,
     required this.subject,
     this.derivedFrom,
-    this.timingTiming,
-    this.timingPeriod,
-    this.timingDateTime,
+    this.timingXDeviceUseStatementDeviceUseStatement,
     this.recordedOn,
     this.source,
     required this.device,
@@ -129,22 +129,12 @@ class DeviceUseStatement extends DomainResource {
               )
               .toList()
           : null,
-      timingTiming: json['timingTiming'] != null
-          ? Timing.fromJson(
-              json['timingTiming'] as Map<String, dynamic>,
-            )
-          : null,
-      timingPeriod: json['timingPeriod'] != null
-          ? Period.fromJson(
-              json['timingPeriod'] as Map<String, dynamic>,
-            )
-          : null,
-      timingDateTime:
-          (json['timingDateTime'] != null || json['_timingDateTime'] != null)
-              ? FhirDateTime.fromJson({
-                  'value': json['timingDateTime'],
-                  '_value': json['_timingDateTime'],
-                })
+      timingXDeviceUseStatementDeviceUseStatement:
+          json['timingXDeviceUseStatementDeviceUseStatement'] != null
+              ? Timing.fromJson(
+                  json['timingXDeviceUseStatementDeviceUseStatement']
+                      as Map<String, dynamic>,
+                )
               : null,
       recordedOn: (json['recordedOn'] != null || json['_recordedOn'] != null)
           ? FhirDateTime.fromJson({
@@ -262,17 +252,9 @@ class DeviceUseStatement extends DomainResource {
   /// DeviceUseStatement.
   final List<Reference>? derivedFrom;
 
-  /// [timingTiming]
+  /// [timingXDeviceUseStatementDeviceUseStatement]
   /// How often the device was used.
-  final Timing? timingTiming;
-
-  /// [timingPeriod]
-  /// How often the device was used.
-  final Period? timingPeriod;
-
-  /// [timingDateTime]
-  /// How often the device was used.
-  final FhirDateTime? timingDateTime;
+  final Timing? timingXDeviceUseStatementDeviceUseStatement;
 
   /// [recordedOn]
   /// The time at which the statement was made/recorded.
@@ -358,15 +340,11 @@ class DeviceUseStatement extends DomainResource {
       json['derivedFrom'] = derivedFrom!.map((e) => e.toJson()).toList();
     }
 
-    if (timingTiming != null) {
-      json['timingTiming'] = timingTiming!.toJson();
+    if (timingXDeviceUseStatementDeviceUseStatement != null) {
+      json['timingXDeviceUseStatementDeviceUseStatement'] =
+          timingXDeviceUseStatementDeviceUseStatement!.toJson();
     }
 
-    if (timingPeriod != null) {
-      json['timingPeriod'] = timingPeriod!.toJson();
-    }
-
-    addField('timingDateTime', timingDateTime);
     addField('recordedOn', recordedOn);
     if (source != null) {
       json['source'] = source!.toJson();
@@ -411,9 +389,7 @@ class DeviceUseStatement extends DomainResource {
     DeviceUseStatementStatus? status,
     Reference? subject,
     List<Reference>? derivedFrom,
-    Timing? timingTiming,
-    Period? timingPeriod,
-    FhirDateTime? timingDateTime,
+    Timing? timingXDeviceUseStatementDeviceUseStatement,
     FhirDateTime? recordedOn,
     Reference? source,
     Reference? device,
@@ -440,9 +416,9 @@ class DeviceUseStatement extends DomainResource {
       status: status ?? this.status,
       subject: subject ?? this.subject,
       derivedFrom: derivedFrom ?? this.derivedFrom,
-      timingTiming: timingTiming ?? this.timingTiming,
-      timingPeriod: timingPeriod ?? this.timingPeriod,
-      timingDateTime: timingDateTime ?? this.timingDateTime,
+      timingXDeviceUseStatementDeviceUseStatement:
+          timingXDeviceUseStatementDeviceUseStatement ??
+              this.timingXDeviceUseStatementDeviceUseStatement,
       recordedOn: recordedOn ?? this.recordedOn,
       source: source ?? this.source,
       device: device ?? this.device,

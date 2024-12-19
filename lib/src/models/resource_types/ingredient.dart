@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'ingredient.g.dart';
+
 /// [Ingredient]
 /// An ingredient of a manufactured item or pharmaceutical product.
 class Ingredient extends DomainResource {
@@ -674,11 +676,9 @@ class IngredientStrength extends BackboneElement {
     super.id,
     super.extension_,
     super.modifierExtension,
-    this.presentationRatio,
-    this.presentationRatioRange,
+    this.presentationXIngredientStrength,
     this.textPresentation,
-    this.concentrationRatio,
-    this.concentrationRatioRange,
+    this.concentrationXIngredientStrength,
     this.textConcentration,
     this.measurementPoint,
     this.country,
@@ -712,16 +712,13 @@ class IngredientStrength extends BackboneElement {
               )
               .toList()
           : null,
-      presentationRatio: json['presentationRatio'] != null
-          ? Ratio.fromJson(
-              json['presentationRatio'] as Map<String, dynamic>,
-            )
-          : null,
-      presentationRatioRange: json['presentationRatioRange'] != null
-          ? RatioRange.fromJson(
-              json['presentationRatioRange'] as Map<String, dynamic>,
-            )
-          : null,
+      presentationXIngredientStrength:
+          json['presentationXIngredientStrength'] != null
+              ? Ratio.fromJson(
+                  json['presentationXIngredientStrength']
+                      as Map<String, dynamic>,
+                )
+              : null,
       textPresentation: (json['textPresentation'] != null ||
               json['_textPresentation'] != null)
           ? FhirString.fromJson({
@@ -729,16 +726,13 @@ class IngredientStrength extends BackboneElement {
               '_value': json['_textPresentation'],
             })
           : null,
-      concentrationRatio: json['concentrationRatio'] != null
-          ? Ratio.fromJson(
-              json['concentrationRatio'] as Map<String, dynamic>,
-            )
-          : null,
-      concentrationRatioRange: json['concentrationRatioRange'] != null
-          ? RatioRange.fromJson(
-              json['concentrationRatioRange'] as Map<String, dynamic>,
-            )
-          : null,
+      concentrationXIngredientStrength:
+          json['concentrationXIngredientStrength'] != null
+              ? Ratio.fromJson(
+                  json['concentrationXIngredientStrength']
+                      as Map<String, dynamic>,
+                )
+              : null,
       textConcentration: (json['textConcentration'] != null ||
               json['_textConcentration'] != null)
           ? FhirString.fromJson({
@@ -816,23 +810,14 @@ class IngredientStrength extends BackboneElement {
   @override
   String get fhirType => 'IngredientStrength';
 
-  /// [presentationRatio]
+  /// [presentationXIngredientStrength]
   /// The quantity of substance in the unit of presentation, or in the volume
   /// (or mass) of the single pharmaceutical product or manufactured item.
   /// Unit of presentation refers to the quantity that the item occurs in
   /// e.g. a strength per tablet size, perhaps 'per 20mg' (the size of the
   /// tablet). It is not generally normalized as a unitary unit, which would
   /// be 'per mg').
-  final Ratio? presentationRatio;
-
-  /// [presentationRatioRange]
-  /// The quantity of substance in the unit of presentation, or in the volume
-  /// (or mass) of the single pharmaceutical product or manufactured item.
-  /// Unit of presentation refers to the quantity that the item occurs in
-  /// e.g. a strength per tablet size, perhaps 'per 20mg' (the size of the
-  /// tablet). It is not generally normalized as a unitary unit, which would
-  /// be 'per mg').
-  final RatioRange? presentationRatioRange;
+  final Ratio? presentationXIngredientStrength;
 
   /// [textPresentation]
   /// A textual represention of either the whole of the presentation strength
@@ -840,13 +825,9 @@ class IngredientStrength extends BackboneElement {
   /// ratio.
   final FhirString? textPresentation;
 
-  /// [concentrationRatio]
+  /// [concentrationXIngredientStrength]
   /// The strength per unitary volume (or mass).
-  final Ratio? concentrationRatio;
-
-  /// [concentrationRatioRange]
-  /// The strength per unitary volume (or mass).
-  final RatioRange? concentrationRatioRange;
+  final Ratio? concentrationXIngredientStrength;
 
   /// [textConcentration]
   /// A textual represention of either the whole of the concentration
@@ -896,21 +877,15 @@ class IngredientStrength extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    if (presentationRatio != null) {
-      json['presentationRatio'] = presentationRatio!.toJson();
-    }
-
-    if (presentationRatioRange != null) {
-      json['presentationRatioRange'] = presentationRatioRange!.toJson();
+    if (presentationXIngredientStrength != null) {
+      json['presentationXIngredientStrength'] =
+          presentationXIngredientStrength!.toJson();
     }
 
     addField('textPresentation', textPresentation);
-    if (concentrationRatio != null) {
-      json['concentrationRatio'] = concentrationRatio!.toJson();
-    }
-
-    if (concentrationRatioRange != null) {
-      json['concentrationRatioRange'] = concentrationRatioRange!.toJson();
+    if (concentrationXIngredientStrength != null) {
+      json['concentrationXIngredientStrength'] =
+          concentrationXIngredientStrength!.toJson();
     }
 
     addField('textConcentration', textConcentration);
@@ -934,11 +909,9 @@ class IngredientStrength extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    Ratio? presentationRatio,
-    RatioRange? presentationRatioRange,
+    Ratio? presentationXIngredientStrength,
     FhirString? textPresentation,
-    Ratio? concentrationRatio,
-    RatioRange? concentrationRatioRange,
+    Ratio? concentrationXIngredientStrength,
     FhirString? textConcentration,
     FhirString? measurementPoint,
     List<CodeableConcept>? country,
@@ -952,13 +925,11 @@ class IngredientStrength extends BackboneElement {
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
-      presentationRatio: presentationRatio ?? this.presentationRatio,
-      presentationRatioRange:
-          presentationRatioRange ?? this.presentationRatioRange,
+      presentationXIngredientStrength: presentationXIngredientStrength ??
+          this.presentationXIngredientStrength,
       textPresentation: textPresentation ?? this.textPresentation,
-      concentrationRatio: concentrationRatio ?? this.concentrationRatio,
-      concentrationRatioRange:
-          concentrationRatioRange ?? this.concentrationRatioRange,
+      concentrationXIngredientStrength: concentrationXIngredientStrength ??
+          this.concentrationXIngredientStrength,
       textConcentration: textConcentration ?? this.textConcentration,
       measurementPoint: measurementPoint ?? this.measurementPoint,
       country: country ?? this.country,
@@ -984,8 +955,7 @@ class IngredientReferenceStrength extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.substance,
-    this.strengthRatio,
-    this.strengthRatioRange,
+    required this.strengthXIngredientReferenceStrength,
     this.measurementPoint,
     this.country,
     super.disallowExtensions,
@@ -1022,16 +992,9 @@ class IngredientReferenceStrength extends BackboneElement {
               json['substance'] as Map<String, dynamic>,
             )
           : null,
-      strengthRatio: json['strengthRatio'] != null
-          ? Ratio.fromJson(
-              json['strengthRatio'] as Map<String, dynamic>,
-            )
-          : null,
-      strengthRatioRange: json['strengthRatioRange'] != null
-          ? RatioRange.fromJson(
-              json['strengthRatioRange'] as Map<String, dynamic>,
-            )
-          : null,
+      strengthXIngredientReferenceStrength: Ratio.fromJson(
+        json['strengthXIngredientReferenceStrength'] as Map<String, dynamic>,
+      ),
       measurementPoint: (json['measurementPoint'] != null ||
               json['_measurementPoint'] != null)
           ? FhirString.fromJson({
@@ -1097,13 +1060,9 @@ class IngredientReferenceStrength extends BackboneElement {
   /// Relevant reference substance.
   final CodeableReference? substance;
 
-  /// [strengthRatio]
+  /// [strengthXIngredientReferenceStrength]
   /// Strength expressed in terms of a reference substance.
-  final Ratio? strengthRatio;
-
-  /// [strengthRatioRange]
-  /// Strength expressed in terms of a reference substance.
-  final RatioRange? strengthRatioRange;
+  final Ratio strengthXIngredientReferenceStrength;
 
   /// [measurementPoint]
   /// For when strength is measured at a particular point or distance.
@@ -1138,13 +1097,8 @@ class IngredientReferenceStrength extends BackboneElement {
       json['substance'] = substance!.toJson();
     }
 
-    if (strengthRatio != null) {
-      json['strengthRatio'] = strengthRatio!.toJson();
-    }
-
-    if (strengthRatioRange != null) {
-      json['strengthRatioRange'] = strengthRatioRange!.toJson();
-    }
+    json['strengthXIngredientReferenceStrength'] =
+        strengthXIngredientReferenceStrength.toJson();
 
     addField('measurementPoint', measurementPoint);
     if (country != null && country!.isNotEmpty) {
@@ -1162,8 +1116,7 @@ class IngredientReferenceStrength extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     CodeableReference? substance,
-    Ratio? strengthRatio,
-    RatioRange? strengthRatioRange,
+    Ratio? strengthXIngredientReferenceStrength,
     FhirString? measurementPoint,
     List<CodeableConcept>? country,
     Map<String, Object?>? userData,
@@ -1176,8 +1129,9 @@ class IngredientReferenceStrength extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       substance: substance ?? this.substance,
-      strengthRatio: strengthRatio ?? this.strengthRatio,
-      strengthRatioRange: strengthRatioRange ?? this.strengthRatioRange,
+      strengthXIngredientReferenceStrength:
+          strengthXIngredientReferenceStrength ??
+              this.strengthXIngredientReferenceStrength,
       measurementPoint: measurementPoint ?? this.measurementPoint,
       country: country ?? this.country,
     );

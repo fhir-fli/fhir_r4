@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'structure_map.g.dart';
+
 /// [StructureMap]
 /// A Map of relationships between 2 structures that can be used to
 /// transform data.
@@ -1292,56 +1294,7 @@ class StructureMapSource extends BackboneElement {
     this.min,
     this.max,
     this.type,
-    this.defaultValueBase64Binary,
-    this.defaultValueBoolean,
-    this.defaultValueCanonical,
-    this.defaultValueCode,
-    this.defaultValueDate,
-    this.defaultValueDateTime,
-    this.defaultValueDecimal,
-    this.defaultValueId,
-    this.defaultValueInstant,
-    this.defaultValueInteger,
-    this.defaultValueMarkdown,
-    this.defaultValueOid,
-    this.defaultValuePositiveInt,
-    this.defaultValueString,
-    this.defaultValueTime,
-    this.defaultValueUnsignedInt,
-    this.defaultValueUri,
-    this.defaultValueUrl,
-    this.defaultValueUuid,
-    this.defaultValueAddress,
-    this.defaultValueAge,
-    this.defaultValueAnnotation,
-    this.defaultValueAttachment,
-    this.defaultValueCodeableConcept,
-    this.defaultValueCoding,
-    this.defaultValueContactPoint,
-    this.defaultValueCount,
-    this.defaultValueDistance,
-    this.defaultValueDuration,
-    this.defaultValueHumanName,
-    this.defaultValueIdentifier,
-    this.defaultValueMoney,
-    this.defaultValuePeriod,
-    this.defaultValueQuantity,
-    this.defaultValueRange,
-    this.defaultValueRatio,
-    this.defaultValueReference,
-    this.defaultValueSampledData,
-    this.defaultValueSignature,
-    this.defaultValueTiming,
-    this.defaultValueContactDetail,
-    this.defaultValueContributor,
-    this.defaultValueDataRequirement,
-    this.defaultValueExpression,
-    this.defaultValueParameterDefinition,
-    this.defaultValueRelatedArtifact,
-    this.defaultValueTriggerDefinition,
-    this.defaultValueUsageContext,
-    this.defaultValueDosage,
-    this.defaultValueMeta,
+    this.defaultValueXStructureMapSource,
     this.element,
     this.listMode,
     this.variable,
@@ -1399,297 +1352,14 @@ class StructureMapSource extends BackboneElement {
               '_value': json['_type'],
             })
           : null,
-      defaultValueBase64Binary: (json['defaultValueBase64Binary'] != null ||
-              json['_defaultValueBase64Binary'] != null)
-          ? FhirBase64Binary.fromJson({
-              'value': json['defaultValueBase64Binary'],
-              '_value': json['_defaultValueBase64Binary'],
-            })
-          : null,
-      defaultValueBoolean: (json['defaultValueBoolean'] != null ||
-              json['_defaultValueBoolean'] != null)
-          ? FhirBoolean.fromJson({
-              'value': json['defaultValueBoolean'],
-              '_value': json['_defaultValueBoolean'],
-            })
-          : null,
-      defaultValueCanonical: (json['defaultValueCanonical'] != null ||
-              json['_defaultValueCanonical'] != null)
-          ? FhirCanonical.fromJson({
-              'value': json['defaultValueCanonical'],
-              '_value': json['_defaultValueCanonical'],
-            })
-          : null,
-      defaultValueCode: (json['defaultValueCode'] != null ||
-              json['_defaultValueCode'] != null)
-          ? FhirCode.fromJson({
-              'value': json['defaultValueCode'],
-              '_value': json['_defaultValueCode'],
-            })
-          : null,
-      defaultValueDate: (json['defaultValueDate'] != null ||
-              json['_defaultValueDate'] != null)
-          ? FhirDate.fromJson({
-              'value': json['defaultValueDate'],
-              '_value': json['_defaultValueDate'],
-            })
-          : null,
-      defaultValueDateTime: (json['defaultValueDateTime'] != null ||
-              json['_defaultValueDateTime'] != null)
-          ? FhirDateTime.fromJson({
-              'value': json['defaultValueDateTime'],
-              '_value': json['_defaultValueDateTime'],
-            })
-          : null,
-      defaultValueDecimal: (json['defaultValueDecimal'] != null ||
-              json['_defaultValueDecimal'] != null)
-          ? FhirDecimal.fromJson({
-              'value': json['defaultValueDecimal'],
-              '_value': json['_defaultValueDecimal'],
-            })
-          : null,
-      defaultValueId:
-          (json['defaultValueId'] != null || json['_defaultValueId'] != null)
-              ? FhirId.fromJson({
-                  'value': json['defaultValueId'],
-                  '_value': json['_defaultValueId'],
+      defaultValueXStructureMapSource:
+          (json['defaultValueXStructureMapSource'] != null ||
+                  json['_defaultValueXStructureMapSource'] != null)
+              ? FhirBase64Binary.fromJson({
+                  'value': json['defaultValueXStructureMapSource'],
+                  '_value': json['_defaultValueXStructureMapSource'],
                 })
               : null,
-      defaultValueInstant: (json['defaultValueInstant'] != null ||
-              json['_defaultValueInstant'] != null)
-          ? FhirInstant.fromJson({
-              'value': json['defaultValueInstant'],
-              '_value': json['_defaultValueInstant'],
-            })
-          : null,
-      defaultValueInteger: (json['defaultValueInteger'] != null ||
-              json['_defaultValueInteger'] != null)
-          ? FhirInteger.fromJson({
-              'value': json['defaultValueInteger'],
-              '_value': json['_defaultValueInteger'],
-            })
-          : null,
-      defaultValueMarkdown: (json['defaultValueMarkdown'] != null ||
-              json['_defaultValueMarkdown'] != null)
-          ? FhirMarkdown.fromJson({
-              'value': json['defaultValueMarkdown'],
-              '_value': json['_defaultValueMarkdown'],
-            })
-          : null,
-      defaultValueOid:
-          (json['defaultValueOid'] != null || json['_defaultValueOid'] != null)
-              ? FhirOid.fromJson({
-                  'value': json['defaultValueOid'],
-                  '_value': json['_defaultValueOid'],
-                })
-              : null,
-      defaultValuePositiveInt: (json['defaultValuePositiveInt'] != null ||
-              json['_defaultValuePositiveInt'] != null)
-          ? FhirPositiveInt.fromJson({
-              'value': json['defaultValuePositiveInt'],
-              '_value': json['_defaultValuePositiveInt'],
-            })
-          : null,
-      defaultValueString: (json['defaultValueString'] != null ||
-              json['_defaultValueString'] != null)
-          ? FhirString.fromJson({
-              'value': json['defaultValueString'],
-              '_value': json['_defaultValueString'],
-            })
-          : null,
-      defaultValueTime: (json['defaultValueTime'] != null ||
-              json['_defaultValueTime'] != null)
-          ? FhirTime.fromJson({
-              'value': json['defaultValueTime'],
-              '_value': json['_defaultValueTime'],
-            })
-          : null,
-      defaultValueUnsignedInt: (json['defaultValueUnsignedInt'] != null ||
-              json['_defaultValueUnsignedInt'] != null)
-          ? FhirUnsignedInt.fromJson({
-              'value': json['defaultValueUnsignedInt'],
-              '_value': json['_defaultValueUnsignedInt'],
-            })
-          : null,
-      defaultValueUri:
-          (json['defaultValueUri'] != null || json['_defaultValueUri'] != null)
-              ? FhirUri.fromJson({
-                  'value': json['defaultValueUri'],
-                  '_value': json['_defaultValueUri'],
-                })
-              : null,
-      defaultValueUrl:
-          (json['defaultValueUrl'] != null || json['_defaultValueUrl'] != null)
-              ? FhirUrl.fromJson({
-                  'value': json['defaultValueUrl'],
-                  '_value': json['_defaultValueUrl'],
-                })
-              : null,
-      defaultValueUuid: (json['defaultValueUuid'] != null ||
-              json['_defaultValueUuid'] != null)
-          ? FhirUuid.fromJson({
-              'value': json['defaultValueUuid'],
-              '_value': json['_defaultValueUuid'],
-            })
-          : null,
-      defaultValueAddress: json['defaultValueAddress'] != null
-          ? Address.fromJson(
-              json['defaultValueAddress'] as Map<String, dynamic>,
-            )
-          : null,
-      defaultValueAge: json['defaultValueAge'] != null
-          ? Age.fromJson(
-              json['defaultValueAge'] as Map<String, dynamic>,
-            )
-          : null,
-      defaultValueAnnotation: json['defaultValueAnnotation'] != null
-          ? Annotation.fromJson(
-              json['defaultValueAnnotation'] as Map<String, dynamic>,
-            )
-          : null,
-      defaultValueAttachment: json['defaultValueAttachment'] != null
-          ? Attachment.fromJson(
-              json['defaultValueAttachment'] as Map<String, dynamic>,
-            )
-          : null,
-      defaultValueCodeableConcept: json['defaultValueCodeableConcept'] != null
-          ? CodeableConcept.fromJson(
-              json['defaultValueCodeableConcept'] as Map<String, dynamic>,
-            )
-          : null,
-      defaultValueCoding: json['defaultValueCoding'] != null
-          ? Coding.fromJson(
-              json['defaultValueCoding'] as Map<String, dynamic>,
-            )
-          : null,
-      defaultValueContactPoint: json['defaultValueContactPoint'] != null
-          ? ContactPoint.fromJson(
-              json['defaultValueContactPoint'] as Map<String, dynamic>,
-            )
-          : null,
-      defaultValueCount: json['defaultValueCount'] != null
-          ? Count.fromJson(
-              json['defaultValueCount'] as Map<String, dynamic>,
-            )
-          : null,
-      defaultValueDistance: json['defaultValueDistance'] != null
-          ? Distance.fromJson(
-              json['defaultValueDistance'] as Map<String, dynamic>,
-            )
-          : null,
-      defaultValueDuration: json['defaultValueDuration'] != null
-          ? FhirDuration.fromJson(
-              json['defaultValueDuration'] as Map<String, dynamic>,
-            )
-          : null,
-      defaultValueHumanName: json['defaultValueHumanName'] != null
-          ? HumanName.fromJson(
-              json['defaultValueHumanName'] as Map<String, dynamic>,
-            )
-          : null,
-      defaultValueIdentifier: json['defaultValueIdentifier'] != null
-          ? Identifier.fromJson(
-              json['defaultValueIdentifier'] as Map<String, dynamic>,
-            )
-          : null,
-      defaultValueMoney: json['defaultValueMoney'] != null
-          ? Money.fromJson(
-              json['defaultValueMoney'] as Map<String, dynamic>,
-            )
-          : null,
-      defaultValuePeriod: json['defaultValuePeriod'] != null
-          ? Period.fromJson(
-              json['defaultValuePeriod'] as Map<String, dynamic>,
-            )
-          : null,
-      defaultValueQuantity: json['defaultValueQuantity'] != null
-          ? Quantity.fromJson(
-              json['defaultValueQuantity'] as Map<String, dynamic>,
-            )
-          : null,
-      defaultValueRange: json['defaultValueRange'] != null
-          ? Range.fromJson(
-              json['defaultValueRange'] as Map<String, dynamic>,
-            )
-          : null,
-      defaultValueRatio: json['defaultValueRatio'] != null
-          ? Ratio.fromJson(
-              json['defaultValueRatio'] as Map<String, dynamic>,
-            )
-          : null,
-      defaultValueReference: json['defaultValueReference'] != null
-          ? Reference.fromJson(
-              json['defaultValueReference'] as Map<String, dynamic>,
-            )
-          : null,
-      defaultValueSampledData: json['defaultValueSampledData'] != null
-          ? SampledData.fromJson(
-              json['defaultValueSampledData'] as Map<String, dynamic>,
-            )
-          : null,
-      defaultValueSignature: json['defaultValueSignature'] != null
-          ? Signature.fromJson(
-              json['defaultValueSignature'] as Map<String, dynamic>,
-            )
-          : null,
-      defaultValueTiming: json['defaultValueTiming'] != null
-          ? Timing.fromJson(
-              json['defaultValueTiming'] as Map<String, dynamic>,
-            )
-          : null,
-      defaultValueContactDetail: json['defaultValueContactDetail'] != null
-          ? ContactDetail.fromJson(
-              json['defaultValueContactDetail'] as Map<String, dynamic>,
-            )
-          : null,
-      defaultValueContributor: json['defaultValueContributor'] != null
-          ? Contributor.fromJson(
-              json['defaultValueContributor'] as Map<String, dynamic>,
-            )
-          : null,
-      defaultValueDataRequirement: json['defaultValueDataRequirement'] != null
-          ? DataRequirement.fromJson(
-              json['defaultValueDataRequirement'] as Map<String, dynamic>,
-            )
-          : null,
-      defaultValueExpression: json['defaultValueExpression'] != null
-          ? FhirExpression.fromJson(
-              json['defaultValueExpression'] as Map<String, dynamic>,
-            )
-          : null,
-      defaultValueParameterDefinition:
-          json['defaultValueParameterDefinition'] != null
-              ? ParameterDefinition.fromJson(
-                  json['defaultValueParameterDefinition']
-                      as Map<String, dynamic>,
-                )
-              : null,
-      defaultValueRelatedArtifact: json['defaultValueRelatedArtifact'] != null
-          ? RelatedArtifact.fromJson(
-              json['defaultValueRelatedArtifact'] as Map<String, dynamic>,
-            )
-          : null,
-      defaultValueTriggerDefinition:
-          json['defaultValueTriggerDefinition'] != null
-              ? TriggerDefinition.fromJson(
-                  json['defaultValueTriggerDefinition'] as Map<String, dynamic>,
-                )
-              : null,
-      defaultValueUsageContext: json['defaultValueUsageContext'] != null
-          ? UsageContext.fromJson(
-              json['defaultValueUsageContext'] as Map<String, dynamic>,
-            )
-          : null,
-      defaultValueDosage: json['defaultValueDosage'] != null
-          ? Dosage.fromJson(
-              json['defaultValueDosage'] as Map<String, dynamic>,
-            )
-          : null,
-      defaultValueMeta: json['defaultValueMeta'] != null
-          ? FhirMeta.fromJson(
-              json['defaultValueMeta'] as Map<String, dynamic>,
-            )
-          : null,
       element: (json['element'] != null || json['_element'] != null)
           ? FhirString.fromJson({
               'value': json['element'],
@@ -1791,205 +1461,9 @@ class StructureMapSource extends BackboneElement {
   /// mapping - use for polymorphic elements.
   final FhirString? type;
 
-  /// [defaultValueBase64Binary]
+  /// [defaultValueXStructureMapSource]
   /// A value to use if there is no existing value in the source object.
-  final FhirBase64Binary? defaultValueBase64Binary;
-
-  /// [defaultValueBoolean]
-  /// A value to use if there is no existing value in the source object.
-  final FhirBoolean? defaultValueBoolean;
-
-  /// [defaultValueCanonical]
-  /// A value to use if there is no existing value in the source object.
-  final FhirCanonical? defaultValueCanonical;
-
-  /// [defaultValueCode]
-  /// A value to use if there is no existing value in the source object.
-  final FhirCode? defaultValueCode;
-
-  /// [defaultValueDate]
-  /// A value to use if there is no existing value in the source object.
-  final FhirDate? defaultValueDate;
-
-  /// [defaultValueDateTime]
-  /// A value to use if there is no existing value in the source object.
-  final FhirDateTime? defaultValueDateTime;
-
-  /// [defaultValueDecimal]
-  /// A value to use if there is no existing value in the source object.
-  final FhirDecimal? defaultValueDecimal;
-
-  /// [defaultValueId]
-  /// A value to use if there is no existing value in the source object.
-  final FhirId? defaultValueId;
-
-  /// [defaultValueInstant]
-  /// A value to use if there is no existing value in the source object.
-  final FhirInstant? defaultValueInstant;
-
-  /// [defaultValueInteger]
-  /// A value to use if there is no existing value in the source object.
-  final FhirInteger? defaultValueInteger;
-
-  /// [defaultValueMarkdown]
-  /// A value to use if there is no existing value in the source object.
-  final FhirMarkdown? defaultValueMarkdown;
-
-  /// [defaultValueOid]
-  /// A value to use if there is no existing value in the source object.
-  final FhirOid? defaultValueOid;
-
-  /// [defaultValuePositiveInt]
-  /// A value to use if there is no existing value in the source object.
-  final FhirPositiveInt? defaultValuePositiveInt;
-
-  /// [defaultValueString]
-  /// A value to use if there is no existing value in the source object.
-  final FhirString? defaultValueString;
-
-  /// [defaultValueTime]
-  /// A value to use if there is no existing value in the source object.
-  final FhirTime? defaultValueTime;
-
-  /// [defaultValueUnsignedInt]
-  /// A value to use if there is no existing value in the source object.
-  final FhirUnsignedInt? defaultValueUnsignedInt;
-
-  /// [defaultValueUri]
-  /// A value to use if there is no existing value in the source object.
-  final FhirUri? defaultValueUri;
-
-  /// [defaultValueUrl]
-  /// A value to use if there is no existing value in the source object.
-  final FhirUrl? defaultValueUrl;
-
-  /// [defaultValueUuid]
-  /// A value to use if there is no existing value in the source object.
-  final FhirUuid? defaultValueUuid;
-
-  /// [defaultValueAddress]
-  /// A value to use if there is no existing value in the source object.
-  final Address? defaultValueAddress;
-
-  /// [defaultValueAge]
-  /// A value to use if there is no existing value in the source object.
-  final Age? defaultValueAge;
-
-  /// [defaultValueAnnotation]
-  /// A value to use if there is no existing value in the source object.
-  final Annotation? defaultValueAnnotation;
-
-  /// [defaultValueAttachment]
-  /// A value to use if there is no existing value in the source object.
-  final Attachment? defaultValueAttachment;
-
-  /// [defaultValueCodeableConcept]
-  /// A value to use if there is no existing value in the source object.
-  final CodeableConcept? defaultValueCodeableConcept;
-
-  /// [defaultValueCoding]
-  /// A value to use if there is no existing value in the source object.
-  final Coding? defaultValueCoding;
-
-  /// [defaultValueContactPoint]
-  /// A value to use if there is no existing value in the source object.
-  final ContactPoint? defaultValueContactPoint;
-
-  /// [defaultValueCount]
-  /// A value to use if there is no existing value in the source object.
-  final Count? defaultValueCount;
-
-  /// [defaultValueDistance]
-  /// A value to use if there is no existing value in the source object.
-  final Distance? defaultValueDistance;
-
-  /// [defaultValueDuration]
-  /// A value to use if there is no existing value in the source object.
-  final FhirDuration? defaultValueDuration;
-
-  /// [defaultValueHumanName]
-  /// A value to use if there is no existing value in the source object.
-  final HumanName? defaultValueHumanName;
-
-  /// [defaultValueIdentifier]
-  /// A value to use if there is no existing value in the source object.
-  final Identifier? defaultValueIdentifier;
-
-  /// [defaultValueMoney]
-  /// A value to use if there is no existing value in the source object.
-  final Money? defaultValueMoney;
-
-  /// [defaultValuePeriod]
-  /// A value to use if there is no existing value in the source object.
-  final Period? defaultValuePeriod;
-
-  /// [defaultValueQuantity]
-  /// A value to use if there is no existing value in the source object.
-  final Quantity? defaultValueQuantity;
-
-  /// [defaultValueRange]
-  /// A value to use if there is no existing value in the source object.
-  final Range? defaultValueRange;
-
-  /// [defaultValueRatio]
-  /// A value to use if there is no existing value in the source object.
-  final Ratio? defaultValueRatio;
-
-  /// [defaultValueReference]
-  /// A value to use if there is no existing value in the source object.
-  final Reference? defaultValueReference;
-
-  /// [defaultValueSampledData]
-  /// A value to use if there is no existing value in the source object.
-  final SampledData? defaultValueSampledData;
-
-  /// [defaultValueSignature]
-  /// A value to use if there is no existing value in the source object.
-  final Signature? defaultValueSignature;
-
-  /// [defaultValueTiming]
-  /// A value to use if there is no existing value in the source object.
-  final Timing? defaultValueTiming;
-
-  /// [defaultValueContactDetail]
-  /// A value to use if there is no existing value in the source object.
-  final ContactDetail? defaultValueContactDetail;
-
-  /// [defaultValueContributor]
-  /// A value to use if there is no existing value in the source object.
-  final Contributor? defaultValueContributor;
-
-  /// [defaultValueDataRequirement]
-  /// A value to use if there is no existing value in the source object.
-  final DataRequirement? defaultValueDataRequirement;
-
-  /// [defaultValueExpression]
-  /// A value to use if there is no existing value in the source object.
-  final FhirExpression? defaultValueExpression;
-
-  /// [defaultValueParameterDefinition]
-  /// A value to use if there is no existing value in the source object.
-  final ParameterDefinition? defaultValueParameterDefinition;
-
-  /// [defaultValueRelatedArtifact]
-  /// A value to use if there is no existing value in the source object.
-  final RelatedArtifact? defaultValueRelatedArtifact;
-
-  /// [defaultValueTriggerDefinition]
-  /// A value to use if there is no existing value in the source object.
-  final TriggerDefinition? defaultValueTriggerDefinition;
-
-  /// [defaultValueUsageContext]
-  /// A value to use if there is no existing value in the source object.
-  final UsageContext? defaultValueUsageContext;
-
-  /// [defaultValueDosage]
-  /// A value to use if there is no existing value in the source object.
-  final Dosage? defaultValueDosage;
-
-  /// [defaultValueMeta]
-  /// A value to use if there is no existing value in the source object.
-  final FhirMeta? defaultValueMeta;
+  final FhirBase64Binary? defaultValueXStructureMapSource;
 
   /// [element]
   /// Optional field for this source.
@@ -2042,154 +1516,8 @@ class StructureMapSource extends BackboneElement {
     addField('min', min);
     addField('max', max);
     addField('type', type);
-    addField('defaultValueBase64Binary', defaultValueBase64Binary);
-    addField('defaultValueBoolean', defaultValueBoolean);
-    addField('defaultValueCanonical', defaultValueCanonical);
-    addField('defaultValueCode', defaultValueCode);
-    addField('defaultValueDate', defaultValueDate);
-    addField('defaultValueDateTime', defaultValueDateTime);
-    addField('defaultValueDecimal', defaultValueDecimal);
-    addField('defaultValueId', defaultValueId);
-    addField('defaultValueInstant', defaultValueInstant);
-    addField('defaultValueInteger', defaultValueInteger);
-    addField('defaultValueMarkdown', defaultValueMarkdown);
-    addField('defaultValueOid', defaultValueOid);
-    addField('defaultValuePositiveInt', defaultValuePositiveInt);
-    addField('defaultValueString', defaultValueString);
-    addField('defaultValueTime', defaultValueTime);
-    addField('defaultValueUnsignedInt', defaultValueUnsignedInt);
-    addField('defaultValueUri', defaultValueUri);
-    addField('defaultValueUrl', defaultValueUrl);
-    addField('defaultValueUuid', defaultValueUuid);
-    if (defaultValueAddress != null) {
-      json['defaultValueAddress'] = defaultValueAddress!.toJson();
-    }
-
-    if (defaultValueAge != null) {
-      json['defaultValueAge'] = defaultValueAge!.toJson();
-    }
-
-    if (defaultValueAnnotation != null) {
-      json['defaultValueAnnotation'] = defaultValueAnnotation!.toJson();
-    }
-
-    if (defaultValueAttachment != null) {
-      json['defaultValueAttachment'] = defaultValueAttachment!.toJson();
-    }
-
-    if (defaultValueCodeableConcept != null) {
-      json['defaultValueCodeableConcept'] =
-          defaultValueCodeableConcept!.toJson();
-    }
-
-    if (defaultValueCoding != null) {
-      json['defaultValueCoding'] = defaultValueCoding!.toJson();
-    }
-
-    if (defaultValueContactPoint != null) {
-      json['defaultValueContactPoint'] = defaultValueContactPoint!.toJson();
-    }
-
-    if (defaultValueCount != null) {
-      json['defaultValueCount'] = defaultValueCount!.toJson();
-    }
-
-    if (defaultValueDistance != null) {
-      json['defaultValueDistance'] = defaultValueDistance!.toJson();
-    }
-
-    if (defaultValueDuration != null) {
-      json['defaultValueDuration'] = defaultValueDuration!.toJson();
-    }
-
-    if (defaultValueHumanName != null) {
-      json['defaultValueHumanName'] = defaultValueHumanName!.toJson();
-    }
-
-    if (defaultValueIdentifier != null) {
-      json['defaultValueIdentifier'] = defaultValueIdentifier!.toJson();
-    }
-
-    if (defaultValueMoney != null) {
-      json['defaultValueMoney'] = defaultValueMoney!.toJson();
-    }
-
-    if (defaultValuePeriod != null) {
-      json['defaultValuePeriod'] = defaultValuePeriod!.toJson();
-    }
-
-    if (defaultValueQuantity != null) {
-      json['defaultValueQuantity'] = defaultValueQuantity!.toJson();
-    }
-
-    if (defaultValueRange != null) {
-      json['defaultValueRange'] = defaultValueRange!.toJson();
-    }
-
-    if (defaultValueRatio != null) {
-      json['defaultValueRatio'] = defaultValueRatio!.toJson();
-    }
-
-    if (defaultValueReference != null) {
-      json['defaultValueReference'] = defaultValueReference!.toJson();
-    }
-
-    if (defaultValueSampledData != null) {
-      json['defaultValueSampledData'] = defaultValueSampledData!.toJson();
-    }
-
-    if (defaultValueSignature != null) {
-      json['defaultValueSignature'] = defaultValueSignature!.toJson();
-    }
-
-    if (defaultValueTiming != null) {
-      json['defaultValueTiming'] = defaultValueTiming!.toJson();
-    }
-
-    if (defaultValueContactDetail != null) {
-      json['defaultValueContactDetail'] = defaultValueContactDetail!.toJson();
-    }
-
-    if (defaultValueContributor != null) {
-      json['defaultValueContributor'] = defaultValueContributor!.toJson();
-    }
-
-    if (defaultValueDataRequirement != null) {
-      json['defaultValueDataRequirement'] =
-          defaultValueDataRequirement!.toJson();
-    }
-
-    if (defaultValueExpression != null) {
-      json['defaultValueExpression'] = defaultValueExpression!.toJson();
-    }
-
-    if (defaultValueParameterDefinition != null) {
-      json['defaultValueParameterDefinition'] =
-          defaultValueParameterDefinition!.toJson();
-    }
-
-    if (defaultValueRelatedArtifact != null) {
-      json['defaultValueRelatedArtifact'] =
-          defaultValueRelatedArtifact!.toJson();
-    }
-
-    if (defaultValueTriggerDefinition != null) {
-      json['defaultValueTriggerDefinition'] =
-          defaultValueTriggerDefinition!.toJson();
-    }
-
-    if (defaultValueUsageContext != null) {
-      json['defaultValueUsageContext'] = defaultValueUsageContext!.toJson();
-    }
-
-    if (defaultValueDosage != null) {
-      json['defaultValueDosage'] = defaultValueDosage!.toJson();
-    }
-
-    if (defaultValueMeta != null) {
-      json['defaultValueMeta'] = defaultValueMeta!.toJson();
-    }
-
+    addField(
+        'defaultValueXStructureMapSource', defaultValueXStructureMapSource);
     addField('element', element);
     addField('listMode', listMode);
     addField('variable', variable);
@@ -2210,56 +1538,7 @@ class StructureMapSource extends BackboneElement {
     FhirInteger? min,
     FhirString? max,
     FhirString? type,
-    FhirBase64Binary? defaultValueBase64Binary,
-    FhirBoolean? defaultValueBoolean,
-    FhirCanonical? defaultValueCanonical,
-    FhirCode? defaultValueCode,
-    FhirDate? defaultValueDate,
-    FhirDateTime? defaultValueDateTime,
-    FhirDecimal? defaultValueDecimal,
-    FhirId? defaultValueId,
-    FhirInstant? defaultValueInstant,
-    FhirInteger? defaultValueInteger,
-    FhirMarkdown? defaultValueMarkdown,
-    FhirOid? defaultValueOid,
-    FhirPositiveInt? defaultValuePositiveInt,
-    FhirString? defaultValueString,
-    FhirTime? defaultValueTime,
-    FhirUnsignedInt? defaultValueUnsignedInt,
-    FhirUri? defaultValueUri,
-    FhirUrl? defaultValueUrl,
-    FhirUuid? defaultValueUuid,
-    Address? defaultValueAddress,
-    Age? defaultValueAge,
-    Annotation? defaultValueAnnotation,
-    Attachment? defaultValueAttachment,
-    CodeableConcept? defaultValueCodeableConcept,
-    Coding? defaultValueCoding,
-    ContactPoint? defaultValueContactPoint,
-    Count? defaultValueCount,
-    Distance? defaultValueDistance,
-    FhirDuration? defaultValueDuration,
-    HumanName? defaultValueHumanName,
-    Identifier? defaultValueIdentifier,
-    Money? defaultValueMoney,
-    Period? defaultValuePeriod,
-    Quantity? defaultValueQuantity,
-    Range? defaultValueRange,
-    Ratio? defaultValueRatio,
-    Reference? defaultValueReference,
-    SampledData? defaultValueSampledData,
-    Signature? defaultValueSignature,
-    Timing? defaultValueTiming,
-    ContactDetail? defaultValueContactDetail,
-    Contributor? defaultValueContributor,
-    DataRequirement? defaultValueDataRequirement,
-    FhirExpression? defaultValueExpression,
-    ParameterDefinition? defaultValueParameterDefinition,
-    RelatedArtifact? defaultValueRelatedArtifact,
-    TriggerDefinition? defaultValueTriggerDefinition,
-    UsageContext? defaultValueUsageContext,
-    Dosage? defaultValueDosage,
-    FhirMeta? defaultValueMeta,
+    FhirBase64Binary? defaultValueXStructureMapSource,
     FhirString? element,
     StructureMapSourceListMode? listMode,
     FhirId? variable,
@@ -2279,77 +1558,8 @@ class StructureMapSource extends BackboneElement {
       min: min ?? this.min,
       max: max ?? this.max,
       type: type ?? this.type,
-      defaultValueBase64Binary:
-          defaultValueBase64Binary ?? this.defaultValueBase64Binary,
-      defaultValueBoolean: defaultValueBoolean ?? this.defaultValueBoolean,
-      defaultValueCanonical:
-          defaultValueCanonical ?? this.defaultValueCanonical,
-      defaultValueCode: defaultValueCode ?? this.defaultValueCode,
-      defaultValueDate: defaultValueDate ?? this.defaultValueDate,
-      defaultValueDateTime: defaultValueDateTime ?? this.defaultValueDateTime,
-      defaultValueDecimal: defaultValueDecimal ?? this.defaultValueDecimal,
-      defaultValueId: defaultValueId ?? this.defaultValueId,
-      defaultValueInstant: defaultValueInstant ?? this.defaultValueInstant,
-      defaultValueInteger: defaultValueInteger ?? this.defaultValueInteger,
-      defaultValueMarkdown: defaultValueMarkdown ?? this.defaultValueMarkdown,
-      defaultValueOid: defaultValueOid ?? this.defaultValueOid,
-      defaultValuePositiveInt:
-          defaultValuePositiveInt ?? this.defaultValuePositiveInt,
-      defaultValueString: defaultValueString ?? this.defaultValueString,
-      defaultValueTime: defaultValueTime ?? this.defaultValueTime,
-      defaultValueUnsignedInt:
-          defaultValueUnsignedInt ?? this.defaultValueUnsignedInt,
-      defaultValueUri: defaultValueUri ?? this.defaultValueUri,
-      defaultValueUrl: defaultValueUrl ?? this.defaultValueUrl,
-      defaultValueUuid: defaultValueUuid ?? this.defaultValueUuid,
-      defaultValueAddress: defaultValueAddress ?? this.defaultValueAddress,
-      defaultValueAge: defaultValueAge ?? this.defaultValueAge,
-      defaultValueAnnotation:
-          defaultValueAnnotation ?? this.defaultValueAnnotation,
-      defaultValueAttachment:
-          defaultValueAttachment ?? this.defaultValueAttachment,
-      defaultValueCodeableConcept:
-          defaultValueCodeableConcept ?? this.defaultValueCodeableConcept,
-      defaultValueCoding: defaultValueCoding ?? this.defaultValueCoding,
-      defaultValueContactPoint:
-          defaultValueContactPoint ?? this.defaultValueContactPoint,
-      defaultValueCount: defaultValueCount ?? this.defaultValueCount,
-      defaultValueDistance: defaultValueDistance ?? this.defaultValueDistance,
-      defaultValueDuration: defaultValueDuration ?? this.defaultValueDuration,
-      defaultValueHumanName:
-          defaultValueHumanName ?? this.defaultValueHumanName,
-      defaultValueIdentifier:
-          defaultValueIdentifier ?? this.defaultValueIdentifier,
-      defaultValueMoney: defaultValueMoney ?? this.defaultValueMoney,
-      defaultValuePeriod: defaultValuePeriod ?? this.defaultValuePeriod,
-      defaultValueQuantity: defaultValueQuantity ?? this.defaultValueQuantity,
-      defaultValueRange: defaultValueRange ?? this.defaultValueRange,
-      defaultValueRatio: defaultValueRatio ?? this.defaultValueRatio,
-      defaultValueReference:
-          defaultValueReference ?? this.defaultValueReference,
-      defaultValueSampledData:
-          defaultValueSampledData ?? this.defaultValueSampledData,
-      defaultValueSignature:
-          defaultValueSignature ?? this.defaultValueSignature,
-      defaultValueTiming: defaultValueTiming ?? this.defaultValueTiming,
-      defaultValueContactDetail:
-          defaultValueContactDetail ?? this.defaultValueContactDetail,
-      defaultValueContributor:
-          defaultValueContributor ?? this.defaultValueContributor,
-      defaultValueDataRequirement:
-          defaultValueDataRequirement ?? this.defaultValueDataRequirement,
-      defaultValueExpression:
-          defaultValueExpression ?? this.defaultValueExpression,
-      defaultValueParameterDefinition: defaultValueParameterDefinition ??
-          this.defaultValueParameterDefinition,
-      defaultValueRelatedArtifact:
-          defaultValueRelatedArtifact ?? this.defaultValueRelatedArtifact,
-      defaultValueTriggerDefinition:
-          defaultValueTriggerDefinition ?? this.defaultValueTriggerDefinition,
-      defaultValueUsageContext:
-          defaultValueUsageContext ?? this.defaultValueUsageContext,
-      defaultValueDosage: defaultValueDosage ?? this.defaultValueDosage,
-      defaultValueMeta: defaultValueMeta ?? this.defaultValueMeta,
+      defaultValueXStructureMapSource: defaultValueXStructureMapSource ??
+          this.defaultValueXStructureMapSource,
       element: element ?? this.element,
       listMode: listMode ?? this.listMode,
       variable: variable ?? this.variable,
@@ -2622,11 +1832,7 @@ class StructureMapParameter extends BackboneElement {
     super.id,
     super.extension_,
     super.modifierExtension,
-    this.valueId,
-    this.valueString,
-    this.valueBoolean,
-    this.valueInteger,
-    this.valueDecimal,
+    required this.valueXStructureMapParameter,
     super.disallowExtensions,
   });
 
@@ -2656,39 +1862,10 @@ class StructureMapParameter extends BackboneElement {
               )
               .toList()
           : null,
-      valueId: (json['valueId'] != null || json['_valueId'] != null)
-          ? FhirId.fromJson({
-              'value': json['valueId'],
-              '_value': json['_valueId'],
-            })
-          : null,
-      valueString: (json['valueString'] != null || json['_valueString'] != null)
-          ? FhirString.fromJson({
-              'value': json['valueString'],
-              '_value': json['_valueString'],
-            })
-          : null,
-      valueBoolean:
-          (json['valueBoolean'] != null || json['_valueBoolean'] != null)
-              ? FhirBoolean.fromJson({
-                  'value': json['valueBoolean'],
-                  '_value': json['_valueBoolean'],
-                })
-              : null,
-      valueInteger:
-          (json['valueInteger'] != null || json['_valueInteger'] != null)
-              ? FhirInteger.fromJson({
-                  'value': json['valueInteger'],
-                  '_value': json['_valueInteger'],
-                })
-              : null,
-      valueDecimal:
-          (json['valueDecimal'] != null || json['_valueDecimal'] != null)
-              ? FhirDecimal.fromJson({
-                  'value': json['valueDecimal'],
-                  '_value': json['_valueDecimal'],
-                })
-              : null,
+      valueXStructureMapParameter: FhirId.fromJson({
+        'value': json['valueXStructureMapParameter'],
+        '_value': json['_valueXStructureMapParameter'],
+      }),
     );
   }
 
@@ -2734,25 +1911,9 @@ class StructureMapParameter extends BackboneElement {
   @override
   String get fhirType => 'StructureMapParameter';
 
-  /// [valueId]
+  /// [valueXStructureMapParameter]
   /// Parameter value - variable or literal.
-  final FhirId? valueId;
-
-  /// [valueString]
-  /// Parameter value - variable or literal.
-  final FhirString? valueString;
-
-  /// [valueBoolean]
-  /// Parameter value - variable or literal.
-  final FhirBoolean? valueBoolean;
-
-  /// [valueInteger]
-  /// Parameter value - variable or literal.
-  final FhirInteger? valueInteger;
-
-  /// [valueDecimal]
-  /// Parameter value - variable or literal.
-  final FhirDecimal? valueDecimal;
+  final FhirId valueXStructureMapParameter;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2775,11 +1936,7 @@ class StructureMapParameter extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('valueId', valueId);
-    addField('valueString', valueString);
-    addField('valueBoolean', valueBoolean);
-    addField('valueInteger', valueInteger);
-    addField('valueDecimal', valueDecimal);
+    addField('valueXStructureMapParameter', valueXStructureMapParameter);
     return json;
   }
 
@@ -2790,11 +1947,7 @@ class StructureMapParameter extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    FhirId? valueId,
-    FhirString? valueString,
-    FhirBoolean? valueBoolean,
-    FhirInteger? valueInteger,
-    FhirDecimal? valueDecimal,
+    FhirId? valueXStructureMapParameter,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2804,11 +1957,8 @@ class StructureMapParameter extends BackboneElement {
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
-      valueId: valueId ?? this.valueId,
-      valueString: valueString ?? this.valueString,
-      valueBoolean: valueBoolean ?? this.valueBoolean,
-      valueInteger: valueInteger ?? this.valueInteger,
-      valueDecimal: valueDecimal ?? this.valueDecimal,
+      valueXStructureMapParameter:
+          valueXStructureMapParameter ?? this.valueXStructureMapParameter,
     );
   }
 }

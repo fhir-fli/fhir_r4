@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'clinical_impression.g.dart';
+
 /// [ClinicalImpression]
 /// A record of a clinical assessment performed to determine what
 /// problem(s) may affect the patient and before planning the treatments or
@@ -31,8 +33,7 @@ class ClinicalImpression extends DomainResource {
     this.description,
     required this.subject,
     this.encounter,
-    this.effectiveDateTime,
-    this.effectivePeriod,
+    this.effectiveXClinicalImpressionClinicalImpression,
     this.date,
     this.assessor,
     this.previous,
@@ -144,18 +145,17 @@ class ClinicalImpression extends DomainResource {
               json['encounter'] as Map<String, dynamic>,
             )
           : null,
-      effectiveDateTime: (json['effectiveDateTime'] != null ||
-              json['_effectiveDateTime'] != null)
-          ? FhirDateTime.fromJson({
-              'value': json['effectiveDateTime'],
-              '_value': json['_effectiveDateTime'],
-            })
-          : null,
-      effectivePeriod: json['effectivePeriod'] != null
-          ? Period.fromJson(
-              json['effectivePeriod'] as Map<String, dynamic>,
-            )
-          : null,
+      effectiveXClinicalImpressionClinicalImpression:
+          (json['effectiveXClinicalImpressionClinicalImpression'] != null ||
+                  json['_effectiveXClinicalImpressionClinicalImpression'] !=
+                      null)
+              ? FhirDateTime.fromJson({
+                  'value':
+                      json['effectiveXClinicalImpressionClinicalImpression'],
+                  '_value':
+                      json['_effectiveXClinicalImpressionClinicalImpression'],
+                })
+              : null,
       date: (json['date'] != null || json['_date'] != null)
           ? FhirDateTime.fromJson({
               'value': json['date'],
@@ -323,13 +323,9 @@ class ClinicalImpression extends DomainResource {
   /// which the creation of this record is tightly associated.
   final Reference? encounter;
 
-  /// [effectiveDateTime]
+  /// [effectiveXClinicalImpressionClinicalImpression]
   /// The point in time or period over which the subject was assessed.
-  final FhirDateTime? effectiveDateTime;
-
-  /// [effectivePeriod]
-  /// The point in time or period over which the subject was assessed.
-  final Period? effectivePeriod;
+  final FhirDateTime? effectiveXClinicalImpressionClinicalImpression;
 
   /// [date]
   /// Indicates when the documentation of the assessment was complete.
@@ -447,11 +443,8 @@ class ClinicalImpression extends DomainResource {
       json['encounter'] = encounter!.toJson();
     }
 
-    addField('effectiveDateTime', effectiveDateTime);
-    if (effectivePeriod != null) {
-      json['effectivePeriod'] = effectivePeriod!.toJson();
-    }
-
+    addField('effectiveXClinicalImpressionClinicalImpression',
+        effectiveXClinicalImpressionClinicalImpression);
     addField('date', date);
     if (assessor != null) {
       json['assessor'] = assessor!.toJson();
@@ -523,8 +516,7 @@ class ClinicalImpression extends DomainResource {
     FhirString? description,
     Reference? subject,
     Reference? encounter,
-    FhirDateTime? effectiveDateTime,
-    Period? effectivePeriod,
+    FhirDateTime? effectiveXClinicalImpressionClinicalImpression,
     FhirDateTime? date,
     Reference? assessor,
     Reference? previous,
@@ -558,8 +550,9 @@ class ClinicalImpression extends DomainResource {
       description: description ?? this.description,
       subject: subject ?? this.subject,
       encounter: encounter ?? this.encounter,
-      effectiveDateTime: effectiveDateTime ?? this.effectiveDateTime,
-      effectivePeriod: effectivePeriod ?? this.effectivePeriod,
+      effectiveXClinicalImpressionClinicalImpression:
+          effectiveXClinicalImpressionClinicalImpression ??
+              this.effectiveXClinicalImpressionClinicalImpression,
       date: date ?? this.date,
       assessor: assessor ?? this.assessor,
       previous: previous ?? this.previous,

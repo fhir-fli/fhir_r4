@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'communication_request.g.dart';
+
 /// [CommunicationRequest]
 /// A request to convey information; e.g. the CDS system proposes that an
 /// alert be sent to a responsible provider, the CDS system proposes that
@@ -33,8 +35,7 @@ class CommunicationRequest extends DomainResource {
     this.about,
     this.encounter,
     this.payload,
-    this.occurrenceDateTime,
-    this.occurrencePeriod,
+    this.occurrenceXCommunicationRequestCommunicationRequest,
     this.authoredOn,
     this.requester,
     this.recipient,
@@ -204,17 +205,17 @@ class CommunicationRequest extends DomainResource {
               )
               .toList()
           : null,
-      occurrenceDateTime: (json['occurrenceDateTime'] != null ||
-              json['_occurrenceDateTime'] != null)
+      occurrenceXCommunicationRequestCommunicationRequest: (json[
+                      'occurrenceXCommunicationRequestCommunicationRequest'] !=
+                  null ||
+              json['_occurrenceXCommunicationRequestCommunicationRequest'] !=
+                  null)
           ? FhirDateTime.fromJson({
-              'value': json['occurrenceDateTime'],
-              '_value': json['_occurrenceDateTime'],
+              'value':
+                  json['occurrenceXCommunicationRequestCommunicationRequest'],
+              '_value':
+                  json['_occurrenceXCommunicationRequestCommunicationRequest'],
             })
-          : null,
-      occurrencePeriod: json['occurrencePeriod'] != null
-          ? Period.fromJson(
-              json['occurrencePeriod'] as Map<String, dynamic>,
-            )
           : null,
       authoredOn: (json['authoredOn'] != null || json['_authoredOn'] != null)
           ? FhirDateTime.fromJson({
@@ -381,13 +382,9 @@ class CommunicationRequest extends DomainResource {
   /// recipient.
   final List<CommunicationRequestPayload>? payload;
 
-  /// [occurrenceDateTime]
+  /// [occurrenceXCommunicationRequestCommunicationRequest]
   /// The time when this communication is to occur.
-  final FhirDateTime? occurrenceDateTime;
-
-  /// [occurrencePeriod]
-  /// The time when this communication is to occur.
-  final Period? occurrencePeriod;
+  final FhirDateTime? occurrenceXCommunicationRequestCommunicationRequest;
 
   /// [authoredOn]
   /// For draft requests, indicates the date of initial creation. For
@@ -506,11 +503,8 @@ class CommunicationRequest extends DomainResource {
       json['payload'] = payload!.map((e) => e.toJson()).toList();
     }
 
-    addField('occurrenceDateTime', occurrenceDateTime);
-    if (occurrencePeriod != null) {
-      json['occurrencePeriod'] = occurrencePeriod!.toJson();
-    }
-
+    addField('occurrenceXCommunicationRequestCommunicationRequest',
+        occurrenceXCommunicationRequestCommunicationRequest);
     addField('authoredOn', authoredOn);
     if (requester != null) {
       json['requester'] = requester!.toJson();
@@ -566,8 +560,7 @@ class CommunicationRequest extends DomainResource {
     List<Reference>? about,
     Reference? encounter,
     List<CommunicationRequestPayload>? payload,
-    FhirDateTime? occurrenceDateTime,
-    Period? occurrencePeriod,
+    FhirDateTime? occurrenceXCommunicationRequestCommunicationRequest,
     FhirDateTime? authoredOn,
     Reference? requester,
     List<Reference>? recipient,
@@ -603,8 +596,9 @@ class CommunicationRequest extends DomainResource {
       about: about ?? this.about,
       encounter: encounter ?? this.encounter,
       payload: payload ?? this.payload,
-      occurrenceDateTime: occurrenceDateTime ?? this.occurrenceDateTime,
-      occurrencePeriod: occurrencePeriod ?? this.occurrencePeriod,
+      occurrenceXCommunicationRequestCommunicationRequest:
+          occurrenceXCommunicationRequestCommunicationRequest ??
+              this.occurrenceXCommunicationRequestCommunicationRequest,
       authoredOn: authoredOn ?? this.authoredOn,
       requester: requester ?? this.requester,
       recipient: recipient ?? this.recipient,
@@ -627,9 +621,7 @@ class CommunicationRequestPayload extends BackboneElement {
     super.id,
     super.extension_,
     super.modifierExtension,
-    this.contentString,
-    this.contentAttachment,
-    this.contentReference,
+    required this.contentXCommunicationRequestPayload,
     super.disallowExtensions,
   });
 
@@ -659,23 +651,10 @@ class CommunicationRequestPayload extends BackboneElement {
               )
               .toList()
           : null,
-      contentString:
-          (json['contentString'] != null || json['_contentString'] != null)
-              ? FhirString.fromJson({
-                  'value': json['contentString'],
-                  '_value': json['_contentString'],
-                })
-              : null,
-      contentAttachment: json['contentAttachment'] != null
-          ? Attachment.fromJson(
-              json['contentAttachment'] as Map<String, dynamic>,
-            )
-          : null,
-      contentReference: json['contentReference'] != null
-          ? Reference.fromJson(
-              json['contentReference'] as Map<String, dynamic>,
-            )
-          : null,
+      contentXCommunicationRequestPayload: FhirString.fromJson({
+        'value': json['contentXCommunicationRequestPayload'],
+        '_value': json['_contentXCommunicationRequestPayload'],
+      }),
     );
   }
 
@@ -721,20 +700,10 @@ class CommunicationRequestPayload extends BackboneElement {
   @override
   String get fhirType => 'CommunicationRequestPayload';
 
-  /// [contentString]
+  /// [contentXCommunicationRequestPayload]
   /// The communicated content (or for multi-part communications, one portion
   /// of the communication).
-  final FhirString? contentString;
-
-  /// [contentAttachment]
-  /// The communicated content (or for multi-part communications, one portion
-  /// of the communication).
-  final Attachment? contentAttachment;
-
-  /// [contentReference]
-  /// The communicated content (or for multi-part communications, one portion
-  /// of the communication).
-  final Reference? contentReference;
+  final FhirString contentXCommunicationRequestPayload;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -757,15 +726,8 @@ class CommunicationRequestPayload extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('contentString', contentString);
-    if (contentAttachment != null) {
-      json['contentAttachment'] = contentAttachment!.toJson();
-    }
-
-    if (contentReference != null) {
-      json['contentReference'] = contentReference!.toJson();
-    }
-
+    addField('contentXCommunicationRequestPayload',
+        contentXCommunicationRequestPayload);
     return json;
   }
 
@@ -776,9 +738,7 @@ class CommunicationRequestPayload extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    FhirString? contentString,
-    Attachment? contentAttachment,
-    Reference? contentReference,
+    FhirString? contentXCommunicationRequestPayload,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -788,9 +748,9 @@ class CommunicationRequestPayload extends BackboneElement {
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
-      contentString: contentString ?? this.contentString,
-      contentAttachment: contentAttachment ?? this.contentAttachment,
-      contentReference: contentReference ?? this.contentReference,
+      contentXCommunicationRequestPayload:
+          contentXCommunicationRequestPayload ??
+              this.contentXCommunicationRequestPayload,
     );
   }
 }

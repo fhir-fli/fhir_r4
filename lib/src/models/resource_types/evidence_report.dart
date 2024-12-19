@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'evidence_report.g.dart';
+
 /// [EvidenceReport]
 /// The EvidenceReport Resource is a specialized container for a collection
 /// of resources and codable concepts, adapted to support compositions of
@@ -25,8 +27,7 @@ class EvidenceReport extends DomainResource {
     this.useContext,
     this.identifier,
     this.relatedIdentifier,
-    this.citeAsReference,
-    this.citeAsMarkdown,
+    this.citeAsXEvidenceReportEvidenceReport,
     this.type,
     this.note,
     this.relatedArtifact,
@@ -138,17 +139,12 @@ class EvidenceReport extends DomainResource {
               )
               .toList()
           : null,
-      citeAsReference: json['citeAsReference'] != null
-          ? Reference.fromJson(
-              json['citeAsReference'] as Map<String, dynamic>,
-            )
-          : null,
-      citeAsMarkdown:
-          (json['citeAsMarkdown'] != null || json['_citeAsMarkdown'] != null)
-              ? FhirMarkdown.fromJson({
-                  'value': json['citeAsMarkdown'],
-                  '_value': json['_citeAsMarkdown'],
-                })
+      citeAsXEvidenceReportEvidenceReport:
+          json['citeAsXEvidenceReportEvidenceReport'] != null
+              ? Reference.fromJson(
+                  json['citeAsXEvidenceReportEvidenceReport']
+                      as Map<String, dynamic>,
+                )
               : null,
       type: json['type'] != null
           ? CodeableConcept.fromJson(
@@ -324,13 +320,9 @@ class EvidenceReport extends DomainResource {
   /// this EvidenceReport.
   final List<Identifier>? relatedIdentifier;
 
-  /// [citeAsReference]
+  /// [citeAsXEvidenceReportEvidenceReport]
   /// Citation Resource or display of suggested citation for this report.
-  final Reference? citeAsReference;
-
-  /// [citeAsMarkdown]
-  /// Citation Resource or display of suggested citation for this report.
-  final FhirMarkdown? citeAsMarkdown;
+  final Reference? citeAsXEvidenceReportEvidenceReport;
 
   /// [type]
   /// Specifies the kind of report, such as grouping of classifiers, search
@@ -440,11 +432,11 @@ class EvidenceReport extends DomainResource {
           relatedIdentifier!.map((e) => e.toJson()).toList();
     }
 
-    if (citeAsReference != null) {
-      json['citeAsReference'] = citeAsReference!.toJson();
+    if (citeAsXEvidenceReportEvidenceReport != null) {
+      json['citeAsXEvidenceReportEvidenceReport'] =
+          citeAsXEvidenceReportEvidenceReport!.toJson();
     }
 
-    addField('citeAsMarkdown', citeAsMarkdown);
     if (type != null) {
       json['type'] = type!.toJson();
     }
@@ -509,8 +501,7 @@ class EvidenceReport extends DomainResource {
     List<UsageContext>? useContext,
     List<Identifier>? identifier,
     List<Identifier>? relatedIdentifier,
-    Reference? citeAsReference,
-    FhirMarkdown? citeAsMarkdown,
+    Reference? citeAsXEvidenceReportEvidenceReport,
     CodeableConcept? type,
     List<Annotation>? note,
     List<RelatedArtifact>? relatedArtifact,
@@ -542,8 +533,9 @@ class EvidenceReport extends DomainResource {
       useContext: useContext ?? this.useContext,
       identifier: identifier ?? this.identifier,
       relatedIdentifier: relatedIdentifier ?? this.relatedIdentifier,
-      citeAsReference: citeAsReference ?? this.citeAsReference,
-      citeAsMarkdown: citeAsMarkdown ?? this.citeAsMarkdown,
+      citeAsXEvidenceReportEvidenceReport:
+          citeAsXEvidenceReportEvidenceReport ??
+              this.citeAsXEvidenceReportEvidenceReport,
       type: type ?? this.type,
       note: note ?? this.note,
       relatedArtifact: relatedArtifact ?? this.relatedArtifact,
@@ -740,11 +732,7 @@ class EvidenceReportCharacteristic extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.code,
-    this.valueReference,
-    this.valueCodeableConcept,
-    this.valueBoolean,
-    this.valueQuantity,
-    this.valueRange,
+    required this.valueXEvidenceReportCharacteristic,
     this.exclude,
     this.period,
     super.disallowExtensions,
@@ -779,33 +767,9 @@ class EvidenceReportCharacteristic extends BackboneElement {
       code: CodeableConcept.fromJson(
         json['code'] as Map<String, dynamic>,
       ),
-      valueReference: json['valueReference'] != null
-          ? Reference.fromJson(
-              json['valueReference'] as Map<String, dynamic>,
-            )
-          : null,
-      valueCodeableConcept: json['valueCodeableConcept'] != null
-          ? CodeableConcept.fromJson(
-              json['valueCodeableConcept'] as Map<String, dynamic>,
-            )
-          : null,
-      valueBoolean:
-          (json['valueBoolean'] != null || json['_valueBoolean'] != null)
-              ? FhirBoolean.fromJson({
-                  'value': json['valueBoolean'],
-                  '_value': json['_valueBoolean'],
-                })
-              : null,
-      valueQuantity: json['valueQuantity'] != null
-          ? Quantity.fromJson(
-              json['valueQuantity'] as Map<String, dynamic>,
-            )
-          : null,
-      valueRange: json['valueRange'] != null
-          ? Range.fromJson(
-              json['valueRange'] as Map<String, dynamic>,
-            )
-          : null,
+      valueXEvidenceReportCharacteristic: Reference.fromJson(
+        json['valueXEvidenceReportCharacteristic'] as Map<String, dynamic>,
+      ),
       exclude: (json['exclude'] != null || json['_exclude'] != null)
           ? FhirBoolean.fromJson({
               'value': json['exclude'],
@@ -866,25 +830,9 @@ class EvidenceReportCharacteristic extends BackboneElement {
   /// Characteristic code.
   final CodeableConcept code;
 
-  /// [valueReference]
+  /// [valueXEvidenceReportCharacteristic]
   /// Characteristic value.
-  final Reference? valueReference;
-
-  /// [valueCodeableConcept]
-  /// Characteristic value.
-  final CodeableConcept? valueCodeableConcept;
-
-  /// [valueBoolean]
-  /// Characteristic value.
-  final FhirBoolean? valueBoolean;
-
-  /// [valueQuantity]
-  /// Characteristic value.
-  final Quantity? valueQuantity;
-
-  /// [valueRange]
-  /// Characteristic value.
-  final Range? valueRange;
+  final Reference valueXEvidenceReportCharacteristic;
 
   /// [exclude]
   /// Is used to express not the characteristic.
@@ -917,22 +865,8 @@ class EvidenceReportCharacteristic extends BackboneElement {
 
     json['code'] = code.toJson();
 
-    if (valueReference != null) {
-      json['valueReference'] = valueReference!.toJson();
-    }
-
-    if (valueCodeableConcept != null) {
-      json['valueCodeableConcept'] = valueCodeableConcept!.toJson();
-    }
-
-    addField('valueBoolean', valueBoolean);
-    if (valueQuantity != null) {
-      json['valueQuantity'] = valueQuantity!.toJson();
-    }
-
-    if (valueRange != null) {
-      json['valueRange'] = valueRange!.toJson();
-    }
+    json['valueXEvidenceReportCharacteristic'] =
+        valueXEvidenceReportCharacteristic.toJson();
 
     addField('exclude', exclude);
     if (period != null) {
@@ -950,11 +884,7 @@ class EvidenceReportCharacteristic extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     CodeableConcept? code,
-    Reference? valueReference,
-    CodeableConcept? valueCodeableConcept,
-    FhirBoolean? valueBoolean,
-    Quantity? valueQuantity,
-    Range? valueRange,
+    Reference? valueXEvidenceReportCharacteristic,
     FhirBoolean? exclude,
     Period? period,
     Map<String, Object?>? userData,
@@ -967,11 +897,8 @@ class EvidenceReportCharacteristic extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       code: code ?? this.code,
-      valueReference: valueReference ?? this.valueReference,
-      valueCodeableConcept: valueCodeableConcept ?? this.valueCodeableConcept,
-      valueBoolean: valueBoolean ?? this.valueBoolean,
-      valueQuantity: valueQuantity ?? this.valueQuantity,
-      valueRange: valueRange ?? this.valueRange,
+      valueXEvidenceReportCharacteristic: valueXEvidenceReportCharacteristic ??
+          this.valueXEvidenceReportCharacteristic,
       exclude: exclude ?? this.exclude,
       period: period ?? this.period,
     );
@@ -990,8 +917,7 @@ class EvidenceReportRelatesTo extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.code,
-    this.targetIdentifier,
-    this.targetReference,
+    required this.targetXEvidenceReportRelatesTo,
     super.disallowExtensions,
   });
 
@@ -1025,16 +951,9 @@ class EvidenceReportRelatesTo extends BackboneElement {
         'value': json['code'],
         '_value': json['_code'],
       }),
-      targetIdentifier: json['targetIdentifier'] != null
-          ? Identifier.fromJson(
-              json['targetIdentifier'] as Map<String, dynamic>,
-            )
-          : null,
-      targetReference: json['targetReference'] != null
-          ? Reference.fromJson(
-              json['targetReference'] as Map<String, dynamic>,
-            )
-          : null,
+      targetXEvidenceReportRelatesTo: Identifier.fromJson(
+        json['targetXEvidenceReportRelatesTo'] as Map<String, dynamic>,
+      ),
     );
   }
 
@@ -1085,13 +1004,9 @@ class EvidenceReportRelatesTo extends BackboneElement {
   /// composition or document.
   final ReportRelationshipType code;
 
-  /// [targetIdentifier]
+  /// [targetXEvidenceReportRelatesTo]
   /// The target composition/document of this relationship.
-  final Identifier? targetIdentifier;
-
-  /// [targetReference]
-  /// The target composition/document of this relationship.
-  final Reference? targetReference;
+  final Identifier targetXEvidenceReportRelatesTo;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1115,13 +1030,8 @@ class EvidenceReportRelatesTo extends BackboneElement {
     }
 
     addField('code', code);
-    if (targetIdentifier != null) {
-      json['targetIdentifier'] = targetIdentifier!.toJson();
-    }
-
-    if (targetReference != null) {
-      json['targetReference'] = targetReference!.toJson();
-    }
+    json['targetXEvidenceReportRelatesTo'] =
+        targetXEvidenceReportRelatesTo.toJson();
 
     return json;
   }
@@ -1134,8 +1044,7 @@ class EvidenceReportRelatesTo extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     ReportRelationshipType? code,
-    Identifier? targetIdentifier,
-    Reference? targetReference,
+    Identifier? targetXEvidenceReportRelatesTo,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1146,8 +1055,8 @@ class EvidenceReportRelatesTo extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       code: code ?? this.code,
-      targetIdentifier: targetIdentifier ?? this.targetIdentifier,
-      targetReference: targetReference ?? this.targetReference,
+      targetXEvidenceReportRelatesTo:
+          targetXEvidenceReportRelatesTo ?? this.targetXEvidenceReportRelatesTo,
     );
   }
 }

@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'composition.g.dart';
+
 /// [Composition]
 /// A set of healthcare-related information that is assembled together into
 /// a single logical package that provides a single coherent statement of
@@ -648,8 +650,7 @@ class CompositionRelatesTo extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.code,
-    this.targetIdentifier,
-    this.targetReference,
+    required this.targetXCompositionRelatesTo,
     super.disallowExtensions,
   });
 
@@ -683,16 +684,9 @@ class CompositionRelatesTo extends BackboneElement {
         'value': json['code'],
         '_value': json['_code'],
       }),
-      targetIdentifier: json['targetIdentifier'] != null
-          ? Identifier.fromJson(
-              json['targetIdentifier'] as Map<String, dynamic>,
-            )
-          : null,
-      targetReference: json['targetReference'] != null
-          ? Reference.fromJson(
-              json['targetReference'] as Map<String, dynamic>,
-            )
-          : null,
+      targetXCompositionRelatesTo: Identifier.fromJson(
+        json['targetXCompositionRelatesTo'] as Map<String, dynamic>,
+      ),
     );
   }
 
@@ -743,13 +737,9 @@ class CompositionRelatesTo extends BackboneElement {
   /// composition or document.
   final DocumentRelationshipType code;
 
-  /// [targetIdentifier]
+  /// [targetXCompositionRelatesTo]
   /// The target composition/document of this relationship.
-  final Identifier? targetIdentifier;
-
-  /// [targetReference]
-  /// The target composition/document of this relationship.
-  final Reference? targetReference;
+  final Identifier targetXCompositionRelatesTo;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -773,13 +763,7 @@ class CompositionRelatesTo extends BackboneElement {
     }
 
     addField('code', code);
-    if (targetIdentifier != null) {
-      json['targetIdentifier'] = targetIdentifier!.toJson();
-    }
-
-    if (targetReference != null) {
-      json['targetReference'] = targetReference!.toJson();
-    }
+    json['targetXCompositionRelatesTo'] = targetXCompositionRelatesTo.toJson();
 
     return json;
   }
@@ -792,8 +776,7 @@ class CompositionRelatesTo extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     DocumentRelationshipType? code,
-    Identifier? targetIdentifier,
-    Reference? targetReference,
+    Identifier? targetXCompositionRelatesTo,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -804,8 +787,8 @@ class CompositionRelatesTo extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       code: code ?? this.code,
-      targetIdentifier: targetIdentifier ?? this.targetIdentifier,
-      targetReference: targetReference ?? this.targetReference,
+      targetXCompositionRelatesTo:
+          targetXCompositionRelatesTo ?? this.targetXCompositionRelatesTo,
     );
   }
 }

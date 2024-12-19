@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'medication.g.dart';
+
 /// [Medication]
 /// This resource is primarily used for the identification and definition
 /// of a medication for the purposes of prescribing, dispensing, and
@@ -350,8 +352,7 @@ class MedicationIngredient extends BackboneElement {
     super.id,
     super.extension_,
     super.modifierExtension,
-    this.itemCodeableConcept,
-    this.itemReference,
+    required this.itemXMedicationIngredient,
     this.isActive,
     this.strength,
     super.disallowExtensions,
@@ -383,16 +384,9 @@ class MedicationIngredient extends BackboneElement {
               )
               .toList()
           : null,
-      itemCodeableConcept: json['itemCodeableConcept'] != null
-          ? CodeableConcept.fromJson(
-              json['itemCodeableConcept'] as Map<String, dynamic>,
-            )
-          : null,
-      itemReference: json['itemReference'] != null
-          ? Reference.fromJson(
-              json['itemReference'] as Map<String, dynamic>,
-            )
-          : null,
+      itemXMedicationIngredient: CodeableConcept.fromJson(
+        json['itemXMedicationIngredient'] as Map<String, dynamic>,
+      ),
       isActive: (json['isActive'] != null || json['_isActive'] != null)
           ? FhirBoolean.fromJson({
               'value': json['isActive'],
@@ -449,15 +443,10 @@ class MedicationIngredient extends BackboneElement {
   @override
   String get fhirType => 'MedicationIngredient';
 
-  /// [itemCodeableConcept]
+  /// [itemXMedicationIngredient]
   /// The actual ingredient - either a substance (simple ingredient) or
   /// another medication of a medication.
-  final CodeableConcept? itemCodeableConcept;
-
-  /// [itemReference]
-  /// The actual ingredient - either a substance (simple ingredient) or
-  /// another medication of a medication.
-  final Reference? itemReference;
+  final CodeableConcept itemXMedicationIngredient;
 
   /// [isActive]
   /// Indication of whether this ingredient affects the therapeutic action of
@@ -491,13 +480,7 @@ class MedicationIngredient extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    if (itemCodeableConcept != null) {
-      json['itemCodeableConcept'] = itemCodeableConcept!.toJson();
-    }
-
-    if (itemReference != null) {
-      json['itemReference'] = itemReference!.toJson();
-    }
+    json['itemXMedicationIngredient'] = itemXMedicationIngredient.toJson();
 
     addField('isActive', isActive);
     if (strength != null) {
@@ -514,8 +497,7 @@ class MedicationIngredient extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    CodeableConcept? itemCodeableConcept,
-    Reference? itemReference,
+    CodeableConcept? itemXMedicationIngredient,
     FhirBoolean? isActive,
     Ratio? strength,
     Map<String, Object?>? userData,
@@ -527,8 +509,8 @@ class MedicationIngredient extends BackboneElement {
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
-      itemCodeableConcept: itemCodeableConcept ?? this.itemCodeableConcept,
-      itemReference: itemReference ?? this.itemReference,
+      itemXMedicationIngredient:
+          itemXMedicationIngredient ?? this.itemXMedicationIngredient,
       isActive: isActive ?? this.isActive,
       strength: strength ?? this.strength,
     );

@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'medication_administration.g.dart';
+
 /// [MedicationAdministration]
 /// Describes the event of a patient consuming or otherwise being
 /// administered a medication. This may be as simple as swallowing a tablet
@@ -27,13 +29,11 @@ class MedicationAdministration extends DomainResource {
     required this.status,
     this.statusReason,
     this.category,
-    this.medicationCodeableConcept,
-    this.medicationReference,
+    required this.medicationXMedicationAdministrationMedicationAdministration,
     required this.subject,
     this.context,
     this.supportingInformation,
-    this.effectiveDateTime,
-    this.effectivePeriod,
+    required this.effectiveXMedicationAdministrationMedicationAdministration,
     this.performer,
     this.reasonCode,
     this.reasonReference,
@@ -145,16 +145,11 @@ class MedicationAdministration extends DomainResource {
               json['category'] as Map<String, dynamic>,
             )
           : null,
-      medicationCodeableConcept: json['medicationCodeableConcept'] != null
-          ? CodeableConcept.fromJson(
-              json['medicationCodeableConcept'] as Map<String, dynamic>,
-            )
-          : null,
-      medicationReference: json['medicationReference'] != null
-          ? Reference.fromJson(
-              json['medicationReference'] as Map<String, dynamic>,
-            )
-          : null,
+      medicationXMedicationAdministrationMedicationAdministration:
+          CodeableConcept.fromJson(
+        json['medicationXMedicationAdministrationMedicationAdministration']
+            as Map<String, dynamic>,
+      ),
       subject: Reference.fromJson(
         json['subject'] as Map<String, dynamic>,
       ),
@@ -172,18 +167,13 @@ class MedicationAdministration extends DomainResource {
               )
               .toList()
           : null,
-      effectiveDateTime: (json['effectiveDateTime'] != null ||
-              json['_effectiveDateTime'] != null)
-          ? FhirDateTime.fromJson({
-              'value': json['effectiveDateTime'],
-              '_value': json['_effectiveDateTime'],
-            })
-          : null,
-      effectivePeriod: json['effectivePeriod'] != null
-          ? Period.fromJson(
-              json['effectivePeriod'] as Map<String, dynamic>,
-            )
-          : null,
+      effectiveXMedicationAdministrationMedicationAdministration:
+          FhirDateTime.fromJson({
+        'value':
+            json['effectiveXMedicationAdministrationMedicationAdministration'],
+        '_value':
+            json['_effectiveXMedicationAdministrationMedicationAdministration'],
+      }),
       performer: json['performer'] != null
           ? (json['performer'] as List<dynamic>)
               .map<MedicationAdministrationPerformer>(
@@ -327,19 +317,13 @@ class MedicationAdministration extends DomainResource {
   /// administered.
   final CodeableConcept? category;
 
-  /// [medicationCodeableConcept]
+  /// [medicationXMedicationAdministrationMedicationAdministration]
   /// Identifies the medication that was administered. This is either a link
   /// to a resource representing the details of the medication or a simple
   /// attribute carrying a code that identifies the medication from a known
   /// list of medications.
-  final CodeableConcept? medicationCodeableConcept;
-
-  /// [medicationReference]
-  /// Identifies the medication that was administered. This is either a link
-  /// to a resource representing the details of the medication or a simple
-  /// attribute carrying a code that identifies the medication from a known
-  /// list of medications.
-  final Reference? medicationReference;
+  final CodeableConcept
+      medicationXMedicationAdministrationMedicationAdministration;
 
   /// [subject]
   /// The person or animal or group receiving the medication.
@@ -355,19 +339,12 @@ class MedicationAdministration extends DomainResource {
   /// supports the administration of the medication.
   final List<Reference>? supportingInformation;
 
-  /// [effectiveDateTime]
+  /// [effectiveXMedicationAdministrationMedicationAdministration]
   /// A specific date/time or interval of time during which the
   /// administration took place (or did not take place, when the 'notGiven'
   /// attribute is true). For many administrations, such as swallowing a
   /// tablet the use of dateTime is more appropriate.
-  final FhirDateTime? effectiveDateTime;
-
-  /// [effectivePeriod]
-  /// A specific date/time or interval of time during which the
-  /// administration took place (or did not take place, when the 'notGiven'
-  /// attribute is true). For many administrations, such as swallowing a
-  /// tablet the use of dateTime is more appropriate.
-  final Period? effectivePeriod;
+  final FhirDateTime effectiveXMedicationAdministrationMedicationAdministration;
 
   /// [performer]
   /// Indicates who or what performed the medication administration and how
@@ -469,13 +446,8 @@ class MedicationAdministration extends DomainResource {
       json['category'] = category!.toJson();
     }
 
-    if (medicationCodeableConcept != null) {
-      json['medicationCodeableConcept'] = medicationCodeableConcept!.toJson();
-    }
-
-    if (medicationReference != null) {
-      json['medicationReference'] = medicationReference!.toJson();
-    }
+    json['medicationXMedicationAdministrationMedicationAdministration'] =
+        medicationXMedicationAdministrationMedicationAdministration.toJson();
 
     json['subject'] = subject.toJson();
 
@@ -488,11 +460,8 @@ class MedicationAdministration extends DomainResource {
           supportingInformation!.map((e) => e.toJson()).toList();
     }
 
-    addField('effectiveDateTime', effectiveDateTime);
-    if (effectivePeriod != null) {
-      json['effectivePeriod'] = effectivePeriod!.toJson();
-    }
-
+    addField('effectiveXMedicationAdministrationMedicationAdministration',
+        effectiveXMedicationAdministrationMedicationAdministration);
     if (performer != null && performer!.isNotEmpty) {
       json['performer'] = performer!.map((e) => e.toJson()).toList();
     }
@@ -547,13 +516,12 @@ class MedicationAdministration extends DomainResource {
     MedicationAdministrationStatusCodes? status,
     List<CodeableConcept>? statusReason,
     CodeableConcept? category,
-    CodeableConcept? medicationCodeableConcept,
-    Reference? medicationReference,
+    CodeableConcept?
+        medicationXMedicationAdministrationMedicationAdministration,
     Reference? subject,
     Reference? context,
     List<Reference>? supportingInformation,
-    FhirDateTime? effectiveDateTime,
-    Period? effectivePeriod,
+    FhirDateTime? effectiveXMedicationAdministrationMedicationAdministration,
     List<MedicationAdministrationPerformer>? performer,
     List<CodeableConcept>? reasonCode,
     List<Reference>? reasonReference,
@@ -582,15 +550,16 @@ class MedicationAdministration extends DomainResource {
       status: status ?? this.status,
       statusReason: statusReason ?? this.statusReason,
       category: category ?? this.category,
-      medicationCodeableConcept:
-          medicationCodeableConcept ?? this.medicationCodeableConcept,
-      medicationReference: medicationReference ?? this.medicationReference,
+      medicationXMedicationAdministrationMedicationAdministration:
+          medicationXMedicationAdministrationMedicationAdministration ??
+              this.medicationXMedicationAdministrationMedicationAdministration,
       subject: subject ?? this.subject,
       context: context ?? this.context,
       supportingInformation:
           supportingInformation ?? this.supportingInformation,
-      effectiveDateTime: effectiveDateTime ?? this.effectiveDateTime,
-      effectivePeriod: effectivePeriod ?? this.effectivePeriod,
+      effectiveXMedicationAdministrationMedicationAdministration:
+          effectiveXMedicationAdministrationMedicationAdministration ??
+              this.effectiveXMedicationAdministrationMedicationAdministration,
       performer: performer ?? this.performer,
       reasonCode: reasonCode ?? this.reasonCode,
       reasonReference: reasonReference ?? this.reasonReference,
@@ -777,8 +746,7 @@ class MedicationAdministrationDosage extends BackboneElement {
     this.route,
     this.method,
     this.dose,
-    this.rateRatio,
-    this.rateQuantity,
+    this.rateXMedicationAdministrationDosage,
     super.disallowExtensions,
   });
 
@@ -834,16 +802,13 @@ class MedicationAdministrationDosage extends BackboneElement {
               json['dose'] as Map<String, dynamic>,
             )
           : null,
-      rateRatio: json['rateRatio'] != null
-          ? Ratio.fromJson(
-              json['rateRatio'] as Map<String, dynamic>,
-            )
-          : null,
-      rateQuantity: json['rateQuantity'] != null
-          ? Quantity.fromJson(
-              json['rateQuantity'] as Map<String, dynamic>,
-            )
-          : null,
+      rateXMedicationAdministrationDosage:
+          json['rateXMedicationAdministrationDosage'] != null
+              ? Ratio.fromJson(
+                  json['rateXMedicationAdministrationDosage']
+                      as Map<String, dynamic>,
+                )
+              : null,
     );
   }
 
@@ -920,21 +885,13 @@ class MedicationAdministrationDosage extends BackboneElement {
   /// event such as a swallowing a tablet or giving an injection.
   final Quantity? dose;
 
-  /// [rateRatio]
+  /// [rateXMedicationAdministrationDosage]
   /// Identifies the speed with which the medication was or will be
   /// introduced into the patient. Typically, the rate for an infusion e.g.
   /// 100 ml per 1 hour or 100 ml/hr. May also be expressed as a rate per
   /// unit of time, e.g. 500 ml per 2 hours. Other examples: 200 mcg/min or
   /// 200 mcg/1 minute; 1 liter/8 hours.
-  final Ratio? rateRatio;
-
-  /// [rateQuantity]
-  /// Identifies the speed with which the medication was or will be
-  /// introduced into the patient. Typically, the rate for an infusion e.g.
-  /// 100 ml per 1 hour or 100 ml/hr. May also be expressed as a rate per
-  /// unit of time, e.g. 500 ml per 2 hours. Other examples: 200 mcg/min or
-  /// 200 mcg/1 minute; 1 liter/8 hours.
-  final Quantity? rateQuantity;
+  final Ratio? rateXMedicationAdministrationDosage;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -974,12 +931,9 @@ class MedicationAdministrationDosage extends BackboneElement {
       json['dose'] = dose!.toJson();
     }
 
-    if (rateRatio != null) {
-      json['rateRatio'] = rateRatio!.toJson();
-    }
-
-    if (rateQuantity != null) {
-      json['rateQuantity'] = rateQuantity!.toJson();
+    if (rateXMedicationAdministrationDosage != null) {
+      json['rateXMedicationAdministrationDosage'] =
+          rateXMedicationAdministrationDosage!.toJson();
     }
 
     return json;
@@ -997,8 +951,7 @@ class MedicationAdministrationDosage extends BackboneElement {
     CodeableConcept? route,
     CodeableConcept? method,
     Quantity? dose,
-    Ratio? rateRatio,
-    Quantity? rateQuantity,
+    Ratio? rateXMedicationAdministrationDosage,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1013,8 +966,9 @@ class MedicationAdministrationDosage extends BackboneElement {
       route: route ?? this.route,
       method: method ?? this.method,
       dose: dose ?? this.dose,
-      rateRatio: rateRatio ?? this.rateRatio,
-      rateQuantity: rateQuantity ?? this.rateQuantity,
+      rateXMedicationAdministrationDosage:
+          rateXMedicationAdministrationDosage ??
+              this.rateXMedicationAdministrationDosage,
     );
   }
 }

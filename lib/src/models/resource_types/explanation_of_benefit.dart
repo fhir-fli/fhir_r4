@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'explanation_of_benefit.g.dart';
+
 /// [ExplanationOfBenefit]
 /// This resource provides: the claim details; adjudication details from
 /// the processing of a Claim; and optionally account balance information,
@@ -1496,13 +1498,8 @@ class ExplanationOfBenefitSupportingInfo extends BackboneElement {
     required this.sequence,
     required this.category,
     this.code,
-    this.timingDate,
-    this.timingPeriod,
-    this.valueBoolean,
-    this.valueString,
-    this.valueQuantity,
-    this.valueAttachment,
-    this.valueReference,
+    this.timingXExplanationOfBenefitSupportingInfo,
+    this.valueXExplanationOfBenefitSupportingInfo,
     this.reason,
     super.disallowExtensions,
   });
@@ -1545,45 +1542,22 @@ class ExplanationOfBenefitSupportingInfo extends BackboneElement {
               json['code'] as Map<String, dynamic>,
             )
           : null,
-      timingDate: (json['timingDate'] != null || json['_timingDate'] != null)
-          ? FhirDate.fromJson({
-              'value': json['timingDate'],
-              '_value': json['_timingDate'],
-            })
-          : null,
-      timingPeriod: json['timingPeriod'] != null
-          ? Period.fromJson(
-              json['timingPeriod'] as Map<String, dynamic>,
-            )
-          : null,
-      valueBoolean:
-          (json['valueBoolean'] != null || json['_valueBoolean'] != null)
-              ? FhirBoolean.fromJson({
-                  'value': json['valueBoolean'],
-                  '_value': json['_valueBoolean'],
+      timingXExplanationOfBenefitSupportingInfo:
+          (json['timingXExplanationOfBenefitSupportingInfo'] != null ||
+                  json['_timingXExplanationOfBenefitSupportingInfo'] != null)
+              ? FhirDate.fromJson({
+                  'value': json['timingXExplanationOfBenefitSupportingInfo'],
+                  '_value': json['_timingXExplanationOfBenefitSupportingInfo'],
                 })
               : null,
-      valueString: (json['valueString'] != null || json['_valueString'] != null)
-          ? FhirString.fromJson({
-              'value': json['valueString'],
-              '_value': json['_valueString'],
-            })
-          : null,
-      valueQuantity: json['valueQuantity'] != null
-          ? Quantity.fromJson(
-              json['valueQuantity'] as Map<String, dynamic>,
-            )
-          : null,
-      valueAttachment: json['valueAttachment'] != null
-          ? Attachment.fromJson(
-              json['valueAttachment'] as Map<String, dynamic>,
-            )
-          : null,
-      valueReference: json['valueReference'] != null
-          ? Reference.fromJson(
-              json['valueReference'] as Map<String, dynamic>,
-            )
-          : null,
+      valueXExplanationOfBenefitSupportingInfo:
+          (json['valueXExplanationOfBenefitSupportingInfo'] != null ||
+                  json['_valueXExplanationOfBenefitSupportingInfo'] != null)
+              ? FhirBoolean.fromJson({
+                  'value': json['valueXExplanationOfBenefitSupportingInfo'],
+                  '_value': json['_valueXExplanationOfBenefitSupportingInfo'],
+                })
+              : null,
       reason: json['reason'] != null
           ? Coding.fromJson(
               json['reason'] as Map<String, dynamic>,
@@ -1649,43 +1623,15 @@ class ExplanationOfBenefitSupportingInfo extends BackboneElement {
   /// which care is sought.
   final CodeableConcept? code;
 
-  /// [timingDate]
+  /// [timingXExplanationOfBenefitSupportingInfo]
   /// The date when or period to which this information refers.
-  final FhirDate? timingDate;
+  final FhirDate? timingXExplanationOfBenefitSupportingInfo;
 
-  /// [timingPeriod]
-  /// The date when or period to which this information refers.
-  final Period? timingPeriod;
-
-  /// [valueBoolean]
+  /// [valueXExplanationOfBenefitSupportingInfo]
   /// Additional data or information such as resources, documents, images
   /// etc. including references to the data or the actual inclusion of the
   /// data.
-  final FhirBoolean? valueBoolean;
-
-  /// [valueString]
-  /// Additional data or information such as resources, documents, images
-  /// etc. including references to the data or the actual inclusion of the
-  /// data.
-  final FhirString? valueString;
-
-  /// [valueQuantity]
-  /// Additional data or information such as resources, documents, images
-  /// etc. including references to the data or the actual inclusion of the
-  /// data.
-  final Quantity? valueQuantity;
-
-  /// [valueAttachment]
-  /// Additional data or information such as resources, documents, images
-  /// etc. including references to the data or the actual inclusion of the
-  /// data.
-  final Attachment? valueAttachment;
-
-  /// [valueReference]
-  /// Additional data or information such as resources, documents, images
-  /// etc. including references to the data or the actual inclusion of the
-  /// data.
-  final Reference? valueReference;
+  final FhirBoolean? valueXExplanationOfBenefitSupportingInfo;
 
   /// [reason]
   /// Provides the reason in the situation where a reason code is required in
@@ -1720,25 +1666,10 @@ class ExplanationOfBenefitSupportingInfo extends BackboneElement {
       json['code'] = code!.toJson();
     }
 
-    addField('timingDate', timingDate);
-    if (timingPeriod != null) {
-      json['timingPeriod'] = timingPeriod!.toJson();
-    }
-
-    addField('valueBoolean', valueBoolean);
-    addField('valueString', valueString);
-    if (valueQuantity != null) {
-      json['valueQuantity'] = valueQuantity!.toJson();
-    }
-
-    if (valueAttachment != null) {
-      json['valueAttachment'] = valueAttachment!.toJson();
-    }
-
-    if (valueReference != null) {
-      json['valueReference'] = valueReference!.toJson();
-    }
-
+    addField('timingXExplanationOfBenefitSupportingInfo',
+        timingXExplanationOfBenefitSupportingInfo);
+    addField('valueXExplanationOfBenefitSupportingInfo',
+        valueXExplanationOfBenefitSupportingInfo);
     if (reason != null) {
       json['reason'] = reason!.toJson();
     }
@@ -1756,13 +1687,8 @@ class ExplanationOfBenefitSupportingInfo extends BackboneElement {
     FhirPositiveInt? sequence,
     CodeableConcept? category,
     CodeableConcept? code,
-    FhirDate? timingDate,
-    Period? timingPeriod,
-    FhirBoolean? valueBoolean,
-    FhirString? valueString,
-    Quantity? valueQuantity,
-    Attachment? valueAttachment,
-    Reference? valueReference,
+    FhirDate? timingXExplanationOfBenefitSupportingInfo,
+    FhirBoolean? valueXExplanationOfBenefitSupportingInfo,
     Coding? reason,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -1776,13 +1702,12 @@ class ExplanationOfBenefitSupportingInfo extends BackboneElement {
       sequence: sequence ?? this.sequence,
       category: category ?? this.category,
       code: code ?? this.code,
-      timingDate: timingDate ?? this.timingDate,
-      timingPeriod: timingPeriod ?? this.timingPeriod,
-      valueBoolean: valueBoolean ?? this.valueBoolean,
-      valueString: valueString ?? this.valueString,
-      valueQuantity: valueQuantity ?? this.valueQuantity,
-      valueAttachment: valueAttachment ?? this.valueAttachment,
-      valueReference: valueReference ?? this.valueReference,
+      timingXExplanationOfBenefitSupportingInfo:
+          timingXExplanationOfBenefitSupportingInfo ??
+              this.timingXExplanationOfBenefitSupportingInfo,
+      valueXExplanationOfBenefitSupportingInfo:
+          valueXExplanationOfBenefitSupportingInfo ??
+              this.valueXExplanationOfBenefitSupportingInfo,
       reason: reason ?? this.reason,
     );
   }
@@ -1799,8 +1724,7 @@ class ExplanationOfBenefitDiagnosis extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.sequence,
-    this.diagnosisCodeableConcept,
-    this.diagnosisReference,
+    required this.diagnosisXExplanationOfBenefitDiagnosis,
     this.type,
     this.onAdmission,
     this.packageCode,
@@ -1837,16 +1761,9 @@ class ExplanationOfBenefitDiagnosis extends BackboneElement {
         'value': json['sequence'],
         '_value': json['_sequence'],
       }),
-      diagnosisCodeableConcept: json['diagnosisCodeableConcept'] != null
-          ? CodeableConcept.fromJson(
-              json['diagnosisCodeableConcept'] as Map<String, dynamic>,
-            )
-          : null,
-      diagnosisReference: json['diagnosisReference'] != null
-          ? Reference.fromJson(
-              json['diagnosisReference'] as Map<String, dynamic>,
-            )
-          : null,
+      diagnosisXExplanationOfBenefitDiagnosis: CodeableConcept.fromJson(
+        json['diagnosisXExplanationOfBenefitDiagnosis'] as Map<String, dynamic>,
+      ),
       type: json['type'] != null
           ? (json['type'] as List<dynamic>)
               .map<CodeableConcept>(
@@ -1915,15 +1832,10 @@ class ExplanationOfBenefitDiagnosis extends BackboneElement {
   /// A number to uniquely identify diagnosis entries.
   final FhirPositiveInt sequence;
 
-  /// [diagnosisCodeableConcept]
+  /// [diagnosisXExplanationOfBenefitDiagnosis]
   /// The nature of illness or problem in a coded form or as a reference to
   /// an external defined Condition.
-  final CodeableConcept? diagnosisCodeableConcept;
-
-  /// [diagnosisReference]
-  /// The nature of illness or problem in a coded form or as a reference to
-  /// an external defined Condition.
-  final Reference? diagnosisReference;
+  final CodeableConcept diagnosisXExplanationOfBenefitDiagnosis;
 
   /// [type]
   /// When the condition was observed or the relative ranking.
@@ -1962,13 +1874,8 @@ class ExplanationOfBenefitDiagnosis extends BackboneElement {
     }
 
     addField('sequence', sequence);
-    if (diagnosisCodeableConcept != null) {
-      json['diagnosisCodeableConcept'] = diagnosisCodeableConcept!.toJson();
-    }
-
-    if (diagnosisReference != null) {
-      json['diagnosisReference'] = diagnosisReference!.toJson();
-    }
+    json['diagnosisXExplanationOfBenefitDiagnosis'] =
+        diagnosisXExplanationOfBenefitDiagnosis.toJson();
 
     if (type != null && type!.isNotEmpty) {
       json['type'] = type!.map((e) => e.toJson()).toList();
@@ -1993,8 +1900,7 @@ class ExplanationOfBenefitDiagnosis extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirPositiveInt? sequence,
-    CodeableConcept? diagnosisCodeableConcept,
-    Reference? diagnosisReference,
+    CodeableConcept? diagnosisXExplanationOfBenefitDiagnosis,
     List<CodeableConcept>? type,
     CodeableConcept? onAdmission,
     CodeableConcept? packageCode,
@@ -2008,9 +1914,9 @@ class ExplanationOfBenefitDiagnosis extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       sequence: sequence ?? this.sequence,
-      diagnosisCodeableConcept:
-          diagnosisCodeableConcept ?? this.diagnosisCodeableConcept,
-      diagnosisReference: diagnosisReference ?? this.diagnosisReference,
+      diagnosisXExplanationOfBenefitDiagnosis:
+          diagnosisXExplanationOfBenefitDiagnosis ??
+              this.diagnosisXExplanationOfBenefitDiagnosis,
       type: type ?? this.type,
       onAdmission: onAdmission ?? this.onAdmission,
       packageCode: packageCode ?? this.packageCode,
@@ -2032,8 +1938,7 @@ class ExplanationOfBenefitProcedure extends BackboneElement {
     required this.sequence,
     this.type,
     this.date,
-    this.procedureCodeableConcept,
-    this.procedureReference,
+    required this.procedureXExplanationOfBenefitProcedure,
     this.udi,
     super.disallowExtensions,
   });
@@ -2083,16 +1988,9 @@ class ExplanationOfBenefitProcedure extends BackboneElement {
               '_value': json['_date'],
             })
           : null,
-      procedureCodeableConcept: json['procedureCodeableConcept'] != null
-          ? CodeableConcept.fromJson(
-              json['procedureCodeableConcept'] as Map<String, dynamic>,
-            )
-          : null,
-      procedureReference: json['procedureReference'] != null
-          ? Reference.fromJson(
-              json['procedureReference'] as Map<String, dynamic>,
-            )
-          : null,
+      procedureXExplanationOfBenefitProcedure: CodeableConcept.fromJson(
+        json['procedureXExplanationOfBenefitProcedure'] as Map<String, dynamic>,
+      ),
       udi: json['udi'] != null
           ? (json['udi'] as List<dynamic>)
               .map<Reference>(
@@ -2159,15 +2057,10 @@ class ExplanationOfBenefitProcedure extends BackboneElement {
   /// Date and optionally time the procedure was performed.
   final FhirDateTime? date;
 
-  /// [procedureCodeableConcept]
+  /// [procedureXExplanationOfBenefitProcedure]
   /// The code or reference to a Procedure resource which identifies the
   /// clinical intervention performed.
-  final CodeableConcept? procedureCodeableConcept;
-
-  /// [procedureReference]
-  /// The code or reference to a Procedure resource which identifies the
-  /// clinical intervention performed.
-  final Reference? procedureReference;
+  final CodeableConcept procedureXExplanationOfBenefitProcedure;
 
   /// [udi]
   /// Unique Device Identifiers associated with this line item.
@@ -2200,13 +2093,8 @@ class ExplanationOfBenefitProcedure extends BackboneElement {
     }
 
     addField('date', date);
-    if (procedureCodeableConcept != null) {
-      json['procedureCodeableConcept'] = procedureCodeableConcept!.toJson();
-    }
-
-    if (procedureReference != null) {
-      json['procedureReference'] = procedureReference!.toJson();
-    }
+    json['procedureXExplanationOfBenefitProcedure'] =
+        procedureXExplanationOfBenefitProcedure.toJson();
 
     if (udi != null && udi!.isNotEmpty) {
       json['udi'] = udi!.map((e) => e.toJson()).toList();
@@ -2225,8 +2113,7 @@ class ExplanationOfBenefitProcedure extends BackboneElement {
     FhirPositiveInt? sequence,
     List<CodeableConcept>? type,
     FhirDateTime? date,
-    CodeableConcept? procedureCodeableConcept,
-    Reference? procedureReference,
+    CodeableConcept? procedureXExplanationOfBenefitProcedure,
     List<Reference>? udi,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -2240,9 +2127,9 @@ class ExplanationOfBenefitProcedure extends BackboneElement {
       sequence: sequence ?? this.sequence,
       type: type ?? this.type,
       date: date ?? this.date,
-      procedureCodeableConcept:
-          procedureCodeableConcept ?? this.procedureCodeableConcept,
-      procedureReference: procedureReference ?? this.procedureReference,
+      procedureXExplanationOfBenefitProcedure:
+          procedureXExplanationOfBenefitProcedure ??
+              this.procedureXExplanationOfBenefitProcedure,
       udi: udi ?? this.udi,
     );
   }
@@ -2440,8 +2327,7 @@ class ExplanationOfBenefitAccident extends BackboneElement {
     super.modifierExtension,
     this.date,
     this.type,
-    this.locationAddress,
-    this.locationReference,
+    this.locationXExplanationOfBenefitAccident,
     super.disallowExtensions,
   });
 
@@ -2482,16 +2368,13 @@ class ExplanationOfBenefitAccident extends BackboneElement {
               json['type'] as Map<String, dynamic>,
             )
           : null,
-      locationAddress: json['locationAddress'] != null
-          ? Address.fromJson(
-              json['locationAddress'] as Map<String, dynamic>,
-            )
-          : null,
-      locationReference: json['locationReference'] != null
-          ? Reference.fromJson(
-              json['locationReference'] as Map<String, dynamic>,
-            )
-          : null,
+      locationXExplanationOfBenefitAccident:
+          json['locationXExplanationOfBenefitAccident'] != null
+              ? Address.fromJson(
+                  json['locationXExplanationOfBenefitAccident']
+                      as Map<String, dynamic>,
+                )
+              : null,
     );
   }
 
@@ -2548,13 +2431,9 @@ class ExplanationOfBenefitAccident extends BackboneElement {
   /// between insurers.
   final CodeableConcept? type;
 
-  /// [locationAddress]
+  /// [locationXExplanationOfBenefitAccident]
   /// The physical location of the accident event.
-  final Address? locationAddress;
-
-  /// [locationReference]
-  /// The physical location of the accident event.
-  final Reference? locationReference;
+  final Address? locationXExplanationOfBenefitAccident;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2582,12 +2461,9 @@ class ExplanationOfBenefitAccident extends BackboneElement {
       json['type'] = type!.toJson();
     }
 
-    if (locationAddress != null) {
-      json['locationAddress'] = locationAddress!.toJson();
-    }
-
-    if (locationReference != null) {
-      json['locationReference'] = locationReference!.toJson();
+    if (locationXExplanationOfBenefitAccident != null) {
+      json['locationXExplanationOfBenefitAccident'] =
+          locationXExplanationOfBenefitAccident!.toJson();
     }
 
     return json;
@@ -2602,8 +2478,7 @@ class ExplanationOfBenefitAccident extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     FhirDate? date,
     CodeableConcept? type,
-    Address? locationAddress,
-    Reference? locationReference,
+    Address? locationXExplanationOfBenefitAccident,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2615,8 +2490,9 @@ class ExplanationOfBenefitAccident extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       date: date ?? this.date,
       type: type ?? this.type,
-      locationAddress: locationAddress ?? this.locationAddress,
-      locationReference: locationReference ?? this.locationReference,
+      locationXExplanationOfBenefitAccident:
+          locationXExplanationOfBenefitAccident ??
+              this.locationXExplanationOfBenefitAccident,
     );
   }
 }
@@ -2642,11 +2518,8 @@ class ExplanationOfBenefitItem extends BackboneElement {
     required this.productOrService,
     this.modifier,
     this.programCode,
-    this.servicedDate,
-    this.servicedPeriod,
-    this.locationCodeableConcept,
-    this.locationAddress,
-    this.locationReference,
+    this.servicedXExplanationOfBenefitItem,
+    this.locationXExplanationOfBenefitItem,
     this.quantity,
     this.unitPrice,
     this.factor,
@@ -2742,33 +2615,21 @@ class ExplanationOfBenefitItem extends BackboneElement {
               )
               .toList()
           : null,
-      servicedDate:
-          (json['servicedDate'] != null || json['_servicedDate'] != null)
+      servicedXExplanationOfBenefitItem:
+          (json['servicedXExplanationOfBenefitItem'] != null ||
+                  json['_servicedXExplanationOfBenefitItem'] != null)
               ? FhirDate.fromJson({
-                  'value': json['servicedDate'],
-                  '_value': json['_servicedDate'],
+                  'value': json['servicedXExplanationOfBenefitItem'],
+                  '_value': json['_servicedXExplanationOfBenefitItem'],
                 })
               : null,
-      servicedPeriod: json['servicedPeriod'] != null
-          ? Period.fromJson(
-              json['servicedPeriod'] as Map<String, dynamic>,
-            )
-          : null,
-      locationCodeableConcept: json['locationCodeableConcept'] != null
-          ? CodeableConcept.fromJson(
-              json['locationCodeableConcept'] as Map<String, dynamic>,
-            )
-          : null,
-      locationAddress: json['locationAddress'] != null
-          ? Address.fromJson(
-              json['locationAddress'] as Map<String, dynamic>,
-            )
-          : null,
-      locationReference: json['locationReference'] != null
-          ? Reference.fromJson(
-              json['locationReference'] as Map<String, dynamic>,
-            )
-          : null,
+      locationXExplanationOfBenefitItem:
+          json['locationXExplanationOfBenefitItem'] != null
+              ? CodeableConcept.fromJson(
+                  json['locationXExplanationOfBenefitItem']
+                      as Map<String, dynamic>,
+                )
+              : null,
       quantity: json['quantity'] != null
           ? Quantity.fromJson(
               json['quantity'] as Map<String, dynamic>,
@@ -2936,27 +2797,14 @@ class ExplanationOfBenefitItem extends BackboneElement {
   /// Identifies the program under which this may be recovered.
   final List<CodeableConcept>? programCode;
 
-  /// [servicedDate]
+  /// [servicedXExplanationOfBenefitItem]
   /// The date or dates when the service or product was supplied, performed
   /// or completed.
-  final FhirDate? servicedDate;
+  final FhirDate? servicedXExplanationOfBenefitItem;
 
-  /// [servicedPeriod]
-  /// The date or dates when the service or product was supplied, performed
-  /// or completed.
-  final Period? servicedPeriod;
-
-  /// [locationCodeableConcept]
+  /// [locationXExplanationOfBenefitItem]
   /// Where the product or service was provided.
-  final CodeableConcept? locationCodeableConcept;
-
-  /// [locationAddress]
-  /// Where the product or service was provided.
-  final Address? locationAddress;
-
-  /// [locationReference]
-  /// Where the product or service was provided.
-  final Reference? locationReference;
+  final CodeableConcept? locationXExplanationOfBenefitItem;
 
   /// [quantity]
   /// The number of repetitions of a service or product.
@@ -3088,21 +2936,11 @@ class ExplanationOfBenefitItem extends BackboneElement {
       json['programCode'] = programCode!.map((e) => e.toJson()).toList();
     }
 
-    addField('servicedDate', servicedDate);
-    if (servicedPeriod != null) {
-      json['servicedPeriod'] = servicedPeriod!.toJson();
-    }
-
-    if (locationCodeableConcept != null) {
-      json['locationCodeableConcept'] = locationCodeableConcept!.toJson();
-    }
-
-    if (locationAddress != null) {
-      json['locationAddress'] = locationAddress!.toJson();
-    }
-
-    if (locationReference != null) {
-      json['locationReference'] = locationReference!.toJson();
+    addField(
+        'servicedXExplanationOfBenefitItem', servicedXExplanationOfBenefitItem);
+    if (locationXExplanationOfBenefitItem != null) {
+      json['locationXExplanationOfBenefitItem'] =
+          locationXExplanationOfBenefitItem!.toJson();
     }
 
     if (quantity != null) {
@@ -3170,11 +3008,8 @@ class ExplanationOfBenefitItem extends BackboneElement {
     CodeableConcept? productOrService,
     List<CodeableConcept>? modifier,
     List<CodeableConcept>? programCode,
-    FhirDate? servicedDate,
-    Period? servicedPeriod,
-    CodeableConcept? locationCodeableConcept,
-    Address? locationAddress,
-    Reference? locationReference,
+    FhirDate? servicedXExplanationOfBenefitItem,
+    CodeableConcept? locationXExplanationOfBenefitItem,
     Quantity? quantity,
     Money? unitPrice,
     FhirDecimal? factor,
@@ -3205,12 +3040,10 @@ class ExplanationOfBenefitItem extends BackboneElement {
       productOrService: productOrService ?? this.productOrService,
       modifier: modifier ?? this.modifier,
       programCode: programCode ?? this.programCode,
-      servicedDate: servicedDate ?? this.servicedDate,
-      servicedPeriod: servicedPeriod ?? this.servicedPeriod,
-      locationCodeableConcept:
-          locationCodeableConcept ?? this.locationCodeableConcept,
-      locationAddress: locationAddress ?? this.locationAddress,
-      locationReference: locationReference ?? this.locationReference,
+      servicedXExplanationOfBenefitItem: servicedXExplanationOfBenefitItem ??
+          this.servicedXExplanationOfBenefitItem,
+      locationXExplanationOfBenefitItem: locationXExplanationOfBenefitItem ??
+          this.locationXExplanationOfBenefitItem,
       quantity: quantity ?? this.quantity,
       unitPrice: unitPrice ?? this.unitPrice,
       factor: factor ?? this.factor,
@@ -4176,11 +4009,8 @@ class ExplanationOfBenefitAddItem extends BackboneElement {
     required this.productOrService,
     this.modifier,
     this.programCode,
-    this.servicedDate,
-    this.servicedPeriod,
-    this.locationCodeableConcept,
-    this.locationAddress,
-    this.locationReference,
+    this.servicedXExplanationOfBenefitAddItem,
+    this.locationXExplanationOfBenefitAddItem,
     this.quantity,
     this.unitPrice,
     this.factor,
@@ -4264,33 +4094,21 @@ class ExplanationOfBenefitAddItem extends BackboneElement {
               )
               .toList()
           : null,
-      servicedDate:
-          (json['servicedDate'] != null || json['_servicedDate'] != null)
+      servicedXExplanationOfBenefitAddItem:
+          (json['servicedXExplanationOfBenefitAddItem'] != null ||
+                  json['_servicedXExplanationOfBenefitAddItem'] != null)
               ? FhirDate.fromJson({
-                  'value': json['servicedDate'],
-                  '_value': json['_servicedDate'],
+                  'value': json['servicedXExplanationOfBenefitAddItem'],
+                  '_value': json['_servicedXExplanationOfBenefitAddItem'],
                 })
               : null,
-      servicedPeriod: json['servicedPeriod'] != null
-          ? Period.fromJson(
-              json['servicedPeriod'] as Map<String, dynamic>,
-            )
-          : null,
-      locationCodeableConcept: json['locationCodeableConcept'] != null
-          ? CodeableConcept.fromJson(
-              json['locationCodeableConcept'] as Map<String, dynamic>,
-            )
-          : null,
-      locationAddress: json['locationAddress'] != null
-          ? Address.fromJson(
-              json['locationAddress'] as Map<String, dynamic>,
-            )
-          : null,
-      locationReference: json['locationReference'] != null
-          ? Reference.fromJson(
-              json['locationReference'] as Map<String, dynamic>,
-            )
-          : null,
+      locationXExplanationOfBenefitAddItem:
+          json['locationXExplanationOfBenefitAddItem'] != null
+              ? CodeableConcept.fromJson(
+                  json['locationXExplanationOfBenefitAddItem']
+                      as Map<String, dynamic>,
+                )
+              : null,
       quantity: json['quantity'] != null
           ? Quantity.fromJson(
               json['quantity'] as Map<String, dynamic>,
@@ -4428,27 +4246,14 @@ class ExplanationOfBenefitAddItem extends BackboneElement {
   /// Identifies the program under which this may be recovered.
   final List<CodeableConcept>? programCode;
 
-  /// [servicedDate]
+  /// [servicedXExplanationOfBenefitAddItem]
   /// The date or dates when the service or product was supplied, performed
   /// or completed.
-  final FhirDate? servicedDate;
+  final FhirDate? servicedXExplanationOfBenefitAddItem;
 
-  /// [servicedPeriod]
-  /// The date or dates when the service or product was supplied, performed
-  /// or completed.
-  final Period? servicedPeriod;
-
-  /// [locationCodeableConcept]
+  /// [locationXExplanationOfBenefitAddItem]
   /// Where the product or service was provided.
-  final CodeableConcept? locationCodeableConcept;
-
-  /// [locationAddress]
-  /// Where the product or service was provided.
-  final Address? locationAddress;
-
-  /// [locationReference]
-  /// Where the product or service was provided.
-  final Reference? locationReference;
+  final CodeableConcept? locationXExplanationOfBenefitAddItem;
 
   /// [quantity]
   /// The number of repetitions of a service or product.
@@ -4554,21 +4359,11 @@ class ExplanationOfBenefitAddItem extends BackboneElement {
       json['programCode'] = programCode!.map((e) => e.toJson()).toList();
     }
 
-    addField('servicedDate', servicedDate);
-    if (servicedPeriod != null) {
-      json['servicedPeriod'] = servicedPeriod!.toJson();
-    }
-
-    if (locationCodeableConcept != null) {
-      json['locationCodeableConcept'] = locationCodeableConcept!.toJson();
-    }
-
-    if (locationAddress != null) {
-      json['locationAddress'] = locationAddress!.toJson();
-    }
-
-    if (locationReference != null) {
-      json['locationReference'] = locationReference!.toJson();
+    addField('servicedXExplanationOfBenefitAddItem',
+        servicedXExplanationOfBenefitAddItem);
+    if (locationXExplanationOfBenefitAddItem != null) {
+      json['locationXExplanationOfBenefitAddItem'] =
+          locationXExplanationOfBenefitAddItem!.toJson();
     }
 
     if (quantity != null) {
@@ -4625,11 +4420,8 @@ class ExplanationOfBenefitAddItem extends BackboneElement {
     CodeableConcept? productOrService,
     List<CodeableConcept>? modifier,
     List<CodeableConcept>? programCode,
-    FhirDate? servicedDate,
-    Period? servicedPeriod,
-    CodeableConcept? locationCodeableConcept,
-    Address? locationAddress,
-    Reference? locationReference,
+    FhirDate? servicedXExplanationOfBenefitAddItem,
+    CodeableConcept? locationXExplanationOfBenefitAddItem,
     Quantity? quantity,
     Money? unitPrice,
     FhirDecimal? factor,
@@ -4655,12 +4447,12 @@ class ExplanationOfBenefitAddItem extends BackboneElement {
       productOrService: productOrService ?? this.productOrService,
       modifier: modifier ?? this.modifier,
       programCode: programCode ?? this.programCode,
-      servicedDate: servicedDate ?? this.servicedDate,
-      servicedPeriod: servicedPeriod ?? this.servicedPeriod,
-      locationCodeableConcept:
-          locationCodeableConcept ?? this.locationCodeableConcept,
-      locationAddress: locationAddress ?? this.locationAddress,
-      locationReference: locationReference ?? this.locationReference,
+      servicedXExplanationOfBenefitAddItem:
+          servicedXExplanationOfBenefitAddItem ??
+              this.servicedXExplanationOfBenefitAddItem,
+      locationXExplanationOfBenefitAddItem:
+          locationXExplanationOfBenefitAddItem ??
+              this.locationXExplanationOfBenefitAddItem,
       quantity: quantity ?? this.quantity,
       unitPrice: unitPrice ?? this.unitPrice,
       factor: factor ?? this.factor,
@@ -6072,11 +5864,8 @@ class ExplanationOfBenefitFinancial extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.type,
-    this.allowedUnsignedInt,
-    this.allowedString,
-    this.allowedMoney,
-    this.usedUnsignedInt,
-    this.usedMoney,
+    this.allowedXExplanationOfBenefitFinancial,
+    this.usedXExplanationOfBenefitFinancial,
     super.disallowExtensions,
   });
 
@@ -6109,37 +5898,22 @@ class ExplanationOfBenefitFinancial extends BackboneElement {
       type: CodeableConcept.fromJson(
         json['type'] as Map<String, dynamic>,
       ),
-      allowedUnsignedInt: (json['allowedUnsignedInt'] != null ||
-              json['_allowedUnsignedInt'] != null)
-          ? FhirUnsignedInt.fromJson({
-              'value': json['allowedUnsignedInt'],
-              '_value': json['_allowedUnsignedInt'],
-            })
-          : null,
-      allowedString:
-          (json['allowedString'] != null || json['_allowedString'] != null)
-              ? FhirString.fromJson({
-                  'value': json['allowedString'],
-                  '_value': json['_allowedString'],
-                })
-              : null,
-      allowedMoney: json['allowedMoney'] != null
-          ? Money.fromJson(
-              json['allowedMoney'] as Map<String, dynamic>,
-            )
-          : null,
-      usedUnsignedInt:
-          (json['usedUnsignedInt'] != null || json['_usedUnsignedInt'] != null)
+      allowedXExplanationOfBenefitFinancial:
+          (json['allowedXExplanationOfBenefitFinancial'] != null ||
+                  json['_allowedXExplanationOfBenefitFinancial'] != null)
               ? FhirUnsignedInt.fromJson({
-                  'value': json['usedUnsignedInt'],
-                  '_value': json['_usedUnsignedInt'],
+                  'value': json['allowedXExplanationOfBenefitFinancial'],
+                  '_value': json['_allowedXExplanationOfBenefitFinancial'],
                 })
               : null,
-      usedMoney: json['usedMoney'] != null
-          ? Money.fromJson(
-              json['usedMoney'] as Map<String, dynamic>,
-            )
-          : null,
+      usedXExplanationOfBenefitFinancial:
+          (json['usedXExplanationOfBenefitFinancial'] != null ||
+                  json['_usedXExplanationOfBenefitFinancial'] != null)
+              ? FhirUnsignedInt.fromJson({
+                  'value': json['usedXExplanationOfBenefitFinancial'],
+                  '_value': json['_usedXExplanationOfBenefitFinancial'],
+                })
+              : null,
     );
   }
 
@@ -6189,25 +5963,13 @@ class ExplanationOfBenefitFinancial extends BackboneElement {
   /// Classification of benefit being provided.
   final CodeableConcept type;
 
-  /// [allowedUnsignedInt]
+  /// [allowedXExplanationOfBenefitFinancial]
   /// The quantity of the benefit which is permitted under the coverage.
-  final FhirUnsignedInt? allowedUnsignedInt;
+  final FhirUnsignedInt? allowedXExplanationOfBenefitFinancial;
 
-  /// [allowedString]
-  /// The quantity of the benefit which is permitted under the coverage.
-  final FhirString? allowedString;
-
-  /// [allowedMoney]
-  /// The quantity of the benefit which is permitted under the coverage.
-  final Money? allowedMoney;
-
-  /// [usedUnsignedInt]
+  /// [usedXExplanationOfBenefitFinancial]
   /// The quantity of the benefit which have been consumed to date.
-  final FhirUnsignedInt? usedUnsignedInt;
-
-  /// [usedMoney]
-  /// The quantity of the benefit which have been consumed to date.
-  final Money? usedMoney;
+  final FhirUnsignedInt? usedXExplanationOfBenefitFinancial;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -6232,17 +5994,10 @@ class ExplanationOfBenefitFinancial extends BackboneElement {
 
     json['type'] = type.toJson();
 
-    addField('allowedUnsignedInt', allowedUnsignedInt);
-    addField('allowedString', allowedString);
-    if (allowedMoney != null) {
-      json['allowedMoney'] = allowedMoney!.toJson();
-    }
-
-    addField('usedUnsignedInt', usedUnsignedInt);
-    if (usedMoney != null) {
-      json['usedMoney'] = usedMoney!.toJson();
-    }
-
+    addField('allowedXExplanationOfBenefitFinancial',
+        allowedXExplanationOfBenefitFinancial);
+    addField('usedXExplanationOfBenefitFinancial',
+        usedXExplanationOfBenefitFinancial);
     return json;
   }
 
@@ -6254,11 +6009,8 @@ class ExplanationOfBenefitFinancial extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     CodeableConcept? type,
-    FhirUnsignedInt? allowedUnsignedInt,
-    FhirString? allowedString,
-    Money? allowedMoney,
-    FhirUnsignedInt? usedUnsignedInt,
-    Money? usedMoney,
+    FhirUnsignedInt? allowedXExplanationOfBenefitFinancial,
+    FhirUnsignedInt? usedXExplanationOfBenefitFinancial,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -6269,11 +6021,11 @@ class ExplanationOfBenefitFinancial extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
-      allowedUnsignedInt: allowedUnsignedInt ?? this.allowedUnsignedInt,
-      allowedString: allowedString ?? this.allowedString,
-      allowedMoney: allowedMoney ?? this.allowedMoney,
-      usedUnsignedInt: usedUnsignedInt ?? this.usedUnsignedInt,
-      usedMoney: usedMoney ?? this.usedMoney,
+      allowedXExplanationOfBenefitFinancial:
+          allowedXExplanationOfBenefitFinancial ??
+              this.allowedXExplanationOfBenefitFinancial,
+      usedXExplanationOfBenefitFinancial: usedXExplanationOfBenefitFinancial ??
+          this.usedXExplanationOfBenefitFinancial,
     );
   }
 }

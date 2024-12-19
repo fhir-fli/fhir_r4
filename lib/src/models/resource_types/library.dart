@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'library.g.dart';
+
 /// [Library]
 /// The Library resource is a general-purpose container for knowledge asset
 /// definitions. It can be used to describe and expose existing knowledge
@@ -29,8 +31,7 @@ class Library extends CanonicalResource {
     required super.status,
     super.experimental,
     required this.type,
-    this.subjectCodeableConcept,
-    this.subjectReference,
+    this.subjectXLibraryLibrary,
     super.date,
     super.publisher,
     super.contact,
@@ -167,14 +168,9 @@ class Library extends CanonicalResource {
       type: CodeableConcept.fromJson(
         json['type'] as Map<String, dynamic>,
       ),
-      subjectCodeableConcept: json['subjectCodeableConcept'] != null
+      subjectXLibraryLibrary: json['subjectXLibraryLibrary'] != null
           ? CodeableConcept.fromJson(
-              json['subjectCodeableConcept'] as Map<String, dynamic>,
-            )
-          : null,
-      subjectReference: json['subjectReference'] != null
-          ? Reference.fromJson(
-              json['subjectReference'] as Map<String, dynamic>,
+              json['subjectXLibraryLibrary'] as Map<String, dynamic>,
             )
           : null,
       date: (json['date'] != null || json['_date'] != null)
@@ -413,15 +409,10 @@ class Library extends CanonicalResource {
   /// Definition, Asset Collection, or Module Definition.
   final CodeableConcept type;
 
-  /// [subjectCodeableConcept]
+  /// [subjectXLibraryLibrary]
   /// A code or group definition that describes the intended subject of the
   /// contents of the library.
-  final CodeableConcept? subjectCodeableConcept;
-
-  /// [subjectReference]
-  /// A code or group definition that describes the intended subject of the
-  /// contents of the library.
-  final Reference? subjectReference;
+  final CodeableConcept? subjectXLibraryLibrary;
 
   /// [purpose]
   /// Explanation of why this library is needed and why it has been designed
@@ -552,12 +543,8 @@ class Library extends CanonicalResource {
     addField('experimental', experimental);
     json['type'] = type.toJson();
 
-    if (subjectCodeableConcept != null) {
-      json['subjectCodeableConcept'] = subjectCodeableConcept!.toJson();
-    }
-
-    if (subjectReference != null) {
-      json['subjectReference'] = subjectReference!.toJson();
+    if (subjectXLibraryLibrary != null) {
+      json['subjectXLibraryLibrary'] = subjectXLibraryLibrary!.toJson();
     }
 
     addField('date', date);
@@ -646,8 +633,7 @@ class Library extends CanonicalResource {
     PublicationStatus? status,
     FhirBoolean? experimental,
     CodeableConcept? type,
-    CodeableConcept? subjectCodeableConcept,
-    Reference? subjectReference,
+    CodeableConcept? subjectXLibraryLibrary,
     FhirDateTime? date,
     FhirString? publisher,
     List<ContactDetail>? contact,
@@ -692,9 +678,8 @@ class Library extends CanonicalResource {
       status: status ?? this.status,
       experimental: experimental ?? this.experimental,
       type: type ?? this.type,
-      subjectCodeableConcept:
-          subjectCodeableConcept ?? this.subjectCodeableConcept,
-      subjectReference: subjectReference ?? this.subjectReference,
+      subjectXLibraryLibrary:
+          subjectXLibraryLibrary ?? this.subjectXLibraryLibrary,
       date: date ?? this.date,
       publisher: publisher ?? this.publisher,
       contact: contact ?? this.contact,

@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'medication_dispense.g.dart';
+
 /// [MedicationDispense]
 /// Indicates that a medication product is to be or has been dispensed for
 /// a named person/patient. This includes a description of the medication
@@ -24,11 +26,9 @@ class MedicationDispense extends DomainResource {
     this.identifier,
     this.partOf,
     required this.status,
-    this.statusReasonCodeableConcept,
-    this.statusReasonReference,
+    this.statusReasonXMedicationDispenseMedicationDispense,
     this.category,
-    this.medicationCodeableConcept,
-    this.medicationReference,
+    required this.medicationXMedicationDispenseMedicationDispense,
     this.subject,
     this.context,
     this.supportingInformation,
@@ -131,31 +131,22 @@ class MedicationDispense extends DomainResource {
         'value': json['status'],
         '_value': json['_status'],
       }),
-      statusReasonCodeableConcept: json['statusReasonCodeableConcept'] != null
-          ? CodeableConcept.fromJson(
-              json['statusReasonCodeableConcept'] as Map<String, dynamic>,
-            )
-          : null,
-      statusReasonReference: json['statusReasonReference'] != null
-          ? Reference.fromJson(
-              json['statusReasonReference'] as Map<String, dynamic>,
-            )
-          : null,
+      statusReasonXMedicationDispenseMedicationDispense:
+          json['statusReasonXMedicationDispenseMedicationDispense'] != null
+              ? CodeableConcept.fromJson(
+                  json['statusReasonXMedicationDispenseMedicationDispense']
+                      as Map<String, dynamic>,
+                )
+              : null,
       category: json['category'] != null
           ? CodeableConcept.fromJson(
               json['category'] as Map<String, dynamic>,
             )
           : null,
-      medicationCodeableConcept: json['medicationCodeableConcept'] != null
-          ? CodeableConcept.fromJson(
-              json['medicationCodeableConcept'] as Map<String, dynamic>,
-            )
-          : null,
-      medicationReference: json['medicationReference'] != null
-          ? Reference.fromJson(
-              json['medicationReference'] as Map<String, dynamic>,
-            )
-          : null,
+      medicationXMedicationDispenseMedicationDispense: CodeableConcept.fromJson(
+        json['medicationXMedicationDispenseMedicationDispense']
+            as Map<String, dynamic>,
+      ),
       subject: json['subject'] != null
           ? Reference.fromJson(
               json['subject'] as Map<String, dynamic>,
@@ -344,13 +335,9 @@ class MedicationDispense extends DomainResource {
   /// A code specifying the state of the set of dispense events.
   final MedicationDispenseStatusCodes status;
 
-  /// [statusReasonCodeableConcept]
+  /// [statusReasonXMedicationDispenseMedicationDispense]
   /// Indicates the reason why a dispense was not performed.
-  final CodeableConcept? statusReasonCodeableConcept;
-
-  /// [statusReasonReference]
-  /// Indicates the reason why a dispense was not performed.
-  final Reference? statusReasonReference;
+  final CodeableConcept? statusReasonXMedicationDispenseMedicationDispense;
 
   /// [category]
   /// Indicates the type of medication dispense (for example, where the
@@ -358,19 +345,12 @@ class MedicationDispense extends DomainResource {
   /// or outpatient)).
   final CodeableConcept? category;
 
-  /// [medicationCodeableConcept]
+  /// [medicationXMedicationDispenseMedicationDispense]
   /// Identifies the medication being administered. This is either a link to
   /// a resource representing the details of the medication or a simple
   /// attribute carrying a code that identifies the medication from a known
   /// list of medications.
-  final CodeableConcept? medicationCodeableConcept;
-
-  /// [medicationReference]
-  /// Identifies the medication being administered. This is either a link to
-  /// a resource representing the details of the medication or a simple
-  /// attribute carrying a code that identifies the medication from a known
-  /// list of medications.
-  final Reference? medicationReference;
+  final CodeableConcept medicationXMedicationDispenseMedicationDispense;
 
   /// [subject]
   /// A link to a resource representing the person or the group to whom the
@@ -506,26 +486,17 @@ class MedicationDispense extends DomainResource {
     }
 
     addField('status', status);
-    if (statusReasonCodeableConcept != null) {
-      json['statusReasonCodeableConcept'] =
-          statusReasonCodeableConcept!.toJson();
-    }
-
-    if (statusReasonReference != null) {
-      json['statusReasonReference'] = statusReasonReference!.toJson();
+    if (statusReasonXMedicationDispenseMedicationDispense != null) {
+      json['statusReasonXMedicationDispenseMedicationDispense'] =
+          statusReasonXMedicationDispenseMedicationDispense!.toJson();
     }
 
     if (category != null) {
       json['category'] = category!.toJson();
     }
 
-    if (medicationCodeableConcept != null) {
-      json['medicationCodeableConcept'] = medicationCodeableConcept!.toJson();
-    }
-
-    if (medicationReference != null) {
-      json['medicationReference'] = medicationReference!.toJson();
-    }
+    json['medicationXMedicationDispenseMedicationDispense'] =
+        medicationXMedicationDispenseMedicationDispense.toJson();
 
     if (subject != null) {
       json['subject'] = subject!.toJson();
@@ -615,11 +586,9 @@ class MedicationDispense extends DomainResource {
     List<Identifier>? identifier,
     List<Reference>? partOf,
     MedicationDispenseStatusCodes? status,
-    CodeableConcept? statusReasonCodeableConcept,
-    Reference? statusReasonReference,
+    CodeableConcept? statusReasonXMedicationDispenseMedicationDispense,
     CodeableConcept? category,
-    CodeableConcept? medicationCodeableConcept,
-    Reference? medicationReference,
+    CodeableConcept? medicationXMedicationDispenseMedicationDispense,
     Reference? subject,
     Reference? context,
     List<Reference>? supportingInformation,
@@ -655,14 +624,13 @@ class MedicationDispense extends DomainResource {
       identifier: identifier ?? this.identifier,
       partOf: partOf ?? this.partOf,
       status: status ?? this.status,
-      statusReasonCodeableConcept:
-          statusReasonCodeableConcept ?? this.statusReasonCodeableConcept,
-      statusReasonReference:
-          statusReasonReference ?? this.statusReasonReference,
+      statusReasonXMedicationDispenseMedicationDispense:
+          statusReasonXMedicationDispenseMedicationDispense ??
+              this.statusReasonXMedicationDispenseMedicationDispense,
       category: category ?? this.category,
-      medicationCodeableConcept:
-          medicationCodeableConcept ?? this.medicationCodeableConcept,
-      medicationReference: medicationReference ?? this.medicationReference,
+      medicationXMedicationDispenseMedicationDispense:
+          medicationXMedicationDispenseMedicationDispense ??
+              this.medicationXMedicationDispenseMedicationDispense,
       subject: subject ?? this.subject,
       context: context ?? this.context,
       supportingInformation:

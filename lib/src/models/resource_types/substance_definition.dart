@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'substance_definition.g.dart';
+
 /// [SubstanceDefinition]
 /// The detailed description of a substance, typically at a level beyond
 /// what is used for prescribing.
@@ -573,8 +575,7 @@ class SubstanceDefinitionMoiety extends BackboneElement {
     this.stereochemistry,
     this.opticalActivity,
     this.molecularFormula,
-    this.amountQuantity,
-    this.amountString,
+    this.amountXSubstanceDefinitionMoiety,
     this.measurementType,
     super.disallowExtensions,
   });
@@ -638,17 +639,12 @@ class SubstanceDefinitionMoiety extends BackboneElement {
               '_value': json['_molecularFormula'],
             })
           : null,
-      amountQuantity: json['amountQuantity'] != null
-          ? Quantity.fromJson(
-              json['amountQuantity'] as Map<String, dynamic>,
-            )
-          : null,
-      amountString:
-          (json['amountString'] != null || json['_amountString'] != null)
-              ? FhirString.fromJson({
-                  'value': json['amountString'],
-                  '_value': json['_amountString'],
-                })
+      amountXSubstanceDefinitionMoiety:
+          json['amountXSubstanceDefinitionMoiety'] != null
+              ? Quantity.fromJson(
+                  json['amountXSubstanceDefinitionMoiety']
+                      as Map<String, dynamic>,
+                )
               : null,
       measurementType: json['measurementType'] != null
           ? CodeableConcept.fromJson(
@@ -725,13 +721,9 @@ class SubstanceDefinitionMoiety extends BackboneElement {
   /// the Hill system.
   final FhirString? molecularFormula;
 
-  /// [amountQuantity]
+  /// [amountXSubstanceDefinitionMoiety]
   /// Quantitative value for this moiety.
-  final Quantity? amountQuantity;
-
-  /// [amountString]
-  /// Quantitative value for this moiety.
-  final FhirString? amountString;
+  final Quantity? amountXSubstanceDefinitionMoiety;
 
   /// [measurementType]
   /// The measurement type of the quantitative value. In capturing the actual
@@ -779,11 +771,11 @@ class SubstanceDefinitionMoiety extends BackboneElement {
     }
 
     addField('molecularFormula', molecularFormula);
-    if (amountQuantity != null) {
-      json['amountQuantity'] = amountQuantity!.toJson();
+    if (amountXSubstanceDefinitionMoiety != null) {
+      json['amountXSubstanceDefinitionMoiety'] =
+          amountXSubstanceDefinitionMoiety!.toJson();
     }
 
-    addField('amountString', amountString);
     if (measurementType != null) {
       json['measurementType'] = measurementType!.toJson();
     }
@@ -804,8 +796,7 @@ class SubstanceDefinitionMoiety extends BackboneElement {
     CodeableConcept? stereochemistry,
     CodeableConcept? opticalActivity,
     FhirString? molecularFormula,
-    Quantity? amountQuantity,
-    FhirString? amountString,
+    Quantity? amountXSubstanceDefinitionMoiety,
     CodeableConcept? measurementType,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -822,8 +813,8 @@ class SubstanceDefinitionMoiety extends BackboneElement {
       stereochemistry: stereochemistry ?? this.stereochemistry,
       opticalActivity: opticalActivity ?? this.opticalActivity,
       molecularFormula: molecularFormula ?? this.molecularFormula,
-      amountQuantity: amountQuantity ?? this.amountQuantity,
-      amountString: amountString ?? this.amountString,
+      amountXSubstanceDefinitionMoiety: amountXSubstanceDefinitionMoiety ??
+          this.amountXSubstanceDefinitionMoiety,
       measurementType: measurementType ?? this.measurementType,
     );
   }
@@ -840,11 +831,7 @@ class SubstanceDefinitionProperty extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.type,
-    this.valueCodeableConcept,
-    this.valueQuantity,
-    this.valueDate,
-    this.valueBoolean,
-    this.valueAttachment,
+    this.valueXSubstanceDefinitionProperty,
     super.disallowExtensions,
   });
 
@@ -877,34 +864,13 @@ class SubstanceDefinitionProperty extends BackboneElement {
       type: CodeableConcept.fromJson(
         json['type'] as Map<String, dynamic>,
       ),
-      valueCodeableConcept: json['valueCodeableConcept'] != null
-          ? CodeableConcept.fromJson(
-              json['valueCodeableConcept'] as Map<String, dynamic>,
-            )
-          : null,
-      valueQuantity: json['valueQuantity'] != null
-          ? Quantity.fromJson(
-              json['valueQuantity'] as Map<String, dynamic>,
-            )
-          : null,
-      valueDate: (json['valueDate'] != null || json['_valueDate'] != null)
-          ? FhirDate.fromJson({
-              'value': json['valueDate'],
-              '_value': json['_valueDate'],
-            })
-          : null,
-      valueBoolean:
-          (json['valueBoolean'] != null || json['_valueBoolean'] != null)
-              ? FhirBoolean.fromJson({
-                  'value': json['valueBoolean'],
-                  '_value': json['_valueBoolean'],
-                })
+      valueXSubstanceDefinitionProperty:
+          json['valueXSubstanceDefinitionProperty'] != null
+              ? CodeableConcept.fromJson(
+                  json['valueXSubstanceDefinitionProperty']
+                      as Map<String, dynamic>,
+                )
               : null,
-      valueAttachment: json['valueAttachment'] != null
-          ? Attachment.fromJson(
-              json['valueAttachment'] as Map<String, dynamic>,
-            )
-          : null,
     );
   }
 
@@ -954,25 +920,9 @@ class SubstanceDefinitionProperty extends BackboneElement {
   /// A code expressing the type of property.
   final CodeableConcept type;
 
-  /// [valueCodeableConcept]
+  /// [valueXSubstanceDefinitionProperty]
   /// A value for the property.
-  final CodeableConcept? valueCodeableConcept;
-
-  /// [valueQuantity]
-  /// A value for the property.
-  final Quantity? valueQuantity;
-
-  /// [valueDate]
-  /// A value for the property.
-  final FhirDate? valueDate;
-
-  /// [valueBoolean]
-  /// A value for the property.
-  final FhirBoolean? valueBoolean;
-
-  /// [valueAttachment]
-  /// A value for the property.
-  final Attachment? valueAttachment;
+  final CodeableConcept? valueXSubstanceDefinitionProperty;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -997,18 +947,9 @@ class SubstanceDefinitionProperty extends BackboneElement {
 
     json['type'] = type.toJson();
 
-    if (valueCodeableConcept != null) {
-      json['valueCodeableConcept'] = valueCodeableConcept!.toJson();
-    }
-
-    if (valueQuantity != null) {
-      json['valueQuantity'] = valueQuantity!.toJson();
-    }
-
-    addField('valueDate', valueDate);
-    addField('valueBoolean', valueBoolean);
-    if (valueAttachment != null) {
-      json['valueAttachment'] = valueAttachment!.toJson();
+    if (valueXSubstanceDefinitionProperty != null) {
+      json['valueXSubstanceDefinitionProperty'] =
+          valueXSubstanceDefinitionProperty!.toJson();
     }
 
     return json;
@@ -1022,11 +963,7 @@ class SubstanceDefinitionProperty extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     CodeableConcept? type,
-    CodeableConcept? valueCodeableConcept,
-    Quantity? valueQuantity,
-    FhirDate? valueDate,
-    FhirBoolean? valueBoolean,
-    Attachment? valueAttachment,
+    CodeableConcept? valueXSubstanceDefinitionProperty,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1037,11 +974,8 @@ class SubstanceDefinitionProperty extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
-      valueCodeableConcept: valueCodeableConcept ?? this.valueCodeableConcept,
-      valueQuantity: valueQuantity ?? this.valueQuantity,
-      valueDate: valueDate ?? this.valueDate,
-      valueBoolean: valueBoolean ?? this.valueBoolean,
-      valueAttachment: valueAttachment ?? this.valueAttachment,
+      valueXSubstanceDefinitionProperty: valueXSubstanceDefinitionProperty ??
+          this.valueXSubstanceDefinitionProperty,
     );
   }
 }
@@ -2419,13 +2353,10 @@ class SubstanceDefinitionRelationship extends BackboneElement {
     super.id,
     super.extension_,
     super.modifierExtension,
-    this.substanceDefinitionReference,
-    this.substanceDefinitionCodeableConcept,
+    this.substanceDefinitionXSubstanceDefinitionRelationship,
     required this.type,
     this.isDefining,
-    this.amountQuantity,
-    this.amountRatio,
-    this.amountString,
+    this.amountXSubstanceDefinitionRelationship,
     this.ratioHighLimitAmount,
     this.comparator,
     this.source,
@@ -2458,15 +2389,10 @@ class SubstanceDefinitionRelationship extends BackboneElement {
               )
               .toList()
           : null,
-      substanceDefinitionReference: json['substanceDefinitionReference'] != null
-          ? Reference.fromJson(
-              json['substanceDefinitionReference'] as Map<String, dynamic>,
-            )
-          : null,
-      substanceDefinitionCodeableConcept:
-          json['substanceDefinitionCodeableConcept'] != null
-              ? CodeableConcept.fromJson(
-                  json['substanceDefinitionCodeableConcept']
+      substanceDefinitionXSubstanceDefinitionRelationship:
+          json['substanceDefinitionXSubstanceDefinitionRelationship'] != null
+              ? Reference.fromJson(
+                  json['substanceDefinitionXSubstanceDefinitionRelationship']
                       as Map<String, dynamic>,
                 )
               : null,
@@ -2479,22 +2405,12 @@ class SubstanceDefinitionRelationship extends BackboneElement {
               '_value': json['_isDefining'],
             })
           : null,
-      amountQuantity: json['amountQuantity'] != null
-          ? Quantity.fromJson(
-              json['amountQuantity'] as Map<String, dynamic>,
-            )
-          : null,
-      amountRatio: json['amountRatio'] != null
-          ? Ratio.fromJson(
-              json['amountRatio'] as Map<String, dynamic>,
-            )
-          : null,
-      amountString:
-          (json['amountString'] != null || json['_amountString'] != null)
-              ? FhirString.fromJson({
-                  'value': json['amountString'],
-                  '_value': json['_amountString'],
-                })
+      amountXSubstanceDefinitionRelationship:
+          json['amountXSubstanceDefinitionRelationship'] != null
+              ? Quantity.fromJson(
+                  json['amountXSubstanceDefinitionRelationship']
+                      as Map<String, dynamic>,
+                )
               : null,
       ratioHighLimitAmount: json['ratioHighLimitAmount'] != null
           ? Ratio.fromJson(
@@ -2560,15 +2476,10 @@ class SubstanceDefinitionRelationship extends BackboneElement {
   @override
   String get fhirType => 'SubstanceDefinitionRelationship';
 
-  /// [substanceDefinitionReference]
+  /// [substanceDefinitionXSubstanceDefinitionRelationship]
   /// A pointer to another substance, as a resource or just a
   /// representational code.
-  final Reference? substanceDefinitionReference;
-
-  /// [substanceDefinitionCodeableConcept]
-  /// A pointer to another substance, as a resource or just a
-  /// representational code.
-  final CodeableConcept? substanceDefinitionCodeableConcept;
+  final Reference? substanceDefinitionXSubstanceDefinitionRelationship;
 
   /// [type]
   /// For example "salt to parent", "active moiety", "starting material",
@@ -2581,23 +2492,11 @@ class SubstanceDefinitionRelationship extends BackboneElement {
   /// possible substance relationships.
   final FhirBoolean? isDefining;
 
-  /// [amountQuantity]
+  /// [amountXSubstanceDefinitionRelationship]
   /// A numeric factor for the relationship, for instance to express that the
   /// salt of a substance has some percentage of the active substance in
   /// relation to some other.
-  final Quantity? amountQuantity;
-
-  /// [amountRatio]
-  /// A numeric factor for the relationship, for instance to express that the
-  /// salt of a substance has some percentage of the active substance in
-  /// relation to some other.
-  final Ratio? amountRatio;
-
-  /// [amountString]
-  /// A numeric factor for the relationship, for instance to express that the
-  /// salt of a substance has some percentage of the active substance in
-  /// relation to some other.
-  final FhirString? amountString;
+  final Quantity? amountXSubstanceDefinitionRelationship;
 
   /// [ratioHighLimitAmount]
   /// For use when the numeric has an uncertain range.
@@ -2633,28 +2532,19 @@ class SubstanceDefinitionRelationship extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    if (substanceDefinitionReference != null) {
-      json['substanceDefinitionReference'] =
-          substanceDefinitionReference!.toJson();
-    }
-
-    if (substanceDefinitionCodeableConcept != null) {
-      json['substanceDefinitionCodeableConcept'] =
-          substanceDefinitionCodeableConcept!.toJson();
+    if (substanceDefinitionXSubstanceDefinitionRelationship != null) {
+      json['substanceDefinitionXSubstanceDefinitionRelationship'] =
+          substanceDefinitionXSubstanceDefinitionRelationship!.toJson();
     }
 
     json['type'] = type.toJson();
 
     addField('isDefining', isDefining);
-    if (amountQuantity != null) {
-      json['amountQuantity'] = amountQuantity!.toJson();
+    if (amountXSubstanceDefinitionRelationship != null) {
+      json['amountXSubstanceDefinitionRelationship'] =
+          amountXSubstanceDefinitionRelationship!.toJson();
     }
 
-    if (amountRatio != null) {
-      json['amountRatio'] = amountRatio!.toJson();
-    }
-
-    addField('amountString', amountString);
     if (ratioHighLimitAmount != null) {
       json['ratioHighLimitAmount'] = ratioHighLimitAmount!.toJson();
     }
@@ -2677,13 +2567,10 @@ class SubstanceDefinitionRelationship extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    Reference? substanceDefinitionReference,
-    CodeableConcept? substanceDefinitionCodeableConcept,
+    Reference? substanceDefinitionXSubstanceDefinitionRelationship,
     CodeableConcept? type,
     FhirBoolean? isDefining,
-    Quantity? amountQuantity,
-    Ratio? amountRatio,
-    FhirString? amountString,
+    Quantity? amountXSubstanceDefinitionRelationship,
     Ratio? ratioHighLimitAmount,
     CodeableConcept? comparator,
     List<Reference>? source,
@@ -2696,15 +2583,14 @@ class SubstanceDefinitionRelationship extends BackboneElement {
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
-      substanceDefinitionReference:
-          substanceDefinitionReference ?? this.substanceDefinitionReference,
-      substanceDefinitionCodeableConcept: substanceDefinitionCodeableConcept ??
-          this.substanceDefinitionCodeableConcept,
+      substanceDefinitionXSubstanceDefinitionRelationship:
+          substanceDefinitionXSubstanceDefinitionRelationship ??
+              this.substanceDefinitionXSubstanceDefinitionRelationship,
       type: type ?? this.type,
       isDefining: isDefining ?? this.isDefining,
-      amountQuantity: amountQuantity ?? this.amountQuantity,
-      amountRatio: amountRatio ?? this.amountRatio,
-      amountString: amountString ?? this.amountString,
+      amountXSubstanceDefinitionRelationship:
+          amountXSubstanceDefinitionRelationship ??
+              this.amountXSubstanceDefinitionRelationship,
       ratioHighLimitAmount: ratioHighLimitAmount ?? this.ratioHighLimitAmount,
       comparator: comparator ?? this.comparator,
       source: source ?? this.source,

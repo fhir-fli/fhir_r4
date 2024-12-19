@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'condition.g.dart';
+
 /// [Condition]
 /// A clinical condition, problem, diagnosis, or other event, situation,
 /// issue, or clinical concept that has risen to a level of concern.
@@ -27,16 +29,8 @@ class Condition extends DomainResource {
     this.bodySite,
     required this.subject,
     this.encounter,
-    this.onsetDateTime,
-    this.onsetAge,
-    this.onsetPeriod,
-    this.onsetRange,
-    this.onsetString,
-    this.abatementDateTime,
-    this.abatementAge,
-    this.abatementPeriod,
-    this.abatementRange,
-    this.abatementString,
+    this.onsetXConditionCondition,
+    this.abatementXConditionCondition,
     this.recordedDate,
     this.recorder,
     this.asserter,
@@ -160,61 +154,19 @@ class Condition extends DomainResource {
               json['encounter'] as Map<String, dynamic>,
             )
           : null,
-      onsetDateTime:
-          (json['onsetDateTime'] != null || json['_onsetDateTime'] != null)
-              ? FhirDateTime.fromJson({
-                  'value': json['onsetDateTime'],
-                  '_value': json['_onsetDateTime'],
-                })
-              : null,
-      onsetAge: json['onsetAge'] != null
-          ? Age.fromJson(
-              json['onsetAge'] as Map<String, dynamic>,
-            )
-          : null,
-      onsetPeriod: json['onsetPeriod'] != null
-          ? Period.fromJson(
-              json['onsetPeriod'] as Map<String, dynamic>,
-            )
-          : null,
-      onsetRange: json['onsetRange'] != null
-          ? Range.fromJson(
-              json['onsetRange'] as Map<String, dynamic>,
-            )
-          : null,
-      onsetString: (json['onsetString'] != null || json['_onsetString'] != null)
-          ? FhirString.fromJson({
-              'value': json['onsetString'],
-              '_value': json['_onsetString'],
-            })
-          : null,
-      abatementDateTime: (json['abatementDateTime'] != null ||
-              json['_abatementDateTime'] != null)
+      onsetXConditionCondition: (json['onsetXConditionCondition'] != null ||
+              json['_onsetXConditionCondition'] != null)
           ? FhirDateTime.fromJson({
-              'value': json['abatementDateTime'],
-              '_value': json['_abatementDateTime'],
+              'value': json['onsetXConditionCondition'],
+              '_value': json['_onsetXConditionCondition'],
             })
           : null,
-      abatementAge: json['abatementAge'] != null
-          ? Age.fromJson(
-              json['abatementAge'] as Map<String, dynamic>,
-            )
-          : null,
-      abatementPeriod: json['abatementPeriod'] != null
-          ? Period.fromJson(
-              json['abatementPeriod'] as Map<String, dynamic>,
-            )
-          : null,
-      abatementRange: json['abatementRange'] != null
-          ? Range.fromJson(
-              json['abatementRange'] as Map<String, dynamic>,
-            )
-          : null,
-      abatementString:
-          (json['abatementString'] != null || json['_abatementString'] != null)
-              ? FhirString.fromJson({
-                  'value': json['abatementString'],
-                  '_value': json['_abatementString'],
+      abatementXConditionCondition:
+          (json['abatementXConditionCondition'] != null ||
+                  json['_abatementXConditionCondition'] != null)
+              ? FhirDateTime.fromJson({
+                  'value': json['abatementXConditionCondition'],
+                  '_value': json['_abatementXConditionCondition'],
                 })
               : null,
       recordedDate:
@@ -348,65 +300,17 @@ class Condition extends DomainResource {
   /// creation of this record is tightly associated.
   final Reference? encounter;
 
-  /// [onsetDateTime]
+  /// [onsetXConditionCondition]
   /// Estimated or actual date or date-time the condition began, in the
   /// opinion of the clinician.
-  final FhirDateTime? onsetDateTime;
+  final FhirDateTime? onsetXConditionCondition;
 
-  /// [onsetAge]
-  /// Estimated or actual date or date-time the condition began, in the
-  /// opinion of the clinician.
-  final Age? onsetAge;
-
-  /// [onsetPeriod]
-  /// Estimated or actual date or date-time the condition began, in the
-  /// opinion of the clinician.
-  final Period? onsetPeriod;
-
-  /// [onsetRange]
-  /// Estimated or actual date or date-time the condition began, in the
-  /// opinion of the clinician.
-  final Range? onsetRange;
-
-  /// [onsetString]
-  /// Estimated or actual date or date-time the condition began, in the
-  /// opinion of the clinician.
-  final FhirString? onsetString;
-
-  /// [abatementDateTime]
+  /// [abatementXConditionCondition]
   /// The date or estimated date that the condition resolved or went into
   /// remission. This is called "abatement" because of the many overloaded
   /// connotations associated with "remission" or "resolution" - Conditions
   /// are never really resolved, but they can abate.
-  final FhirDateTime? abatementDateTime;
-
-  /// [abatementAge]
-  /// The date or estimated date that the condition resolved or went into
-  /// remission. This is called "abatement" because of the many overloaded
-  /// connotations associated with "remission" or "resolution" - Conditions
-  /// are never really resolved, but they can abate.
-  final Age? abatementAge;
-
-  /// [abatementPeriod]
-  /// The date or estimated date that the condition resolved or went into
-  /// remission. This is called "abatement" because of the many overloaded
-  /// connotations associated with "remission" or "resolution" - Conditions
-  /// are never really resolved, but they can abate.
-  final Period? abatementPeriod;
-
-  /// [abatementRange]
-  /// The date or estimated date that the condition resolved or went into
-  /// remission. This is called "abatement" because of the many overloaded
-  /// connotations associated with "remission" or "resolution" - Conditions
-  /// are never really resolved, but they can abate.
-  final Range? abatementRange;
-
-  /// [abatementString]
-  /// The date or estimated date that the condition resolved or went into
-  /// remission. This is called "abatement" because of the many overloaded
-  /// connotations associated with "remission" or "resolution" - Conditions
-  /// are never really resolved, but they can abate.
-  final FhirString? abatementString;
+  final FhirDateTime? abatementXConditionCondition;
 
   /// [recordedDate]
   /// The recordedDate represents when this particular Condition record was
@@ -509,34 +413,8 @@ class Condition extends DomainResource {
       json['encounter'] = encounter!.toJson();
     }
 
-    addField('onsetDateTime', onsetDateTime);
-    if (onsetAge != null) {
-      json['onsetAge'] = onsetAge!.toJson();
-    }
-
-    if (onsetPeriod != null) {
-      json['onsetPeriod'] = onsetPeriod!.toJson();
-    }
-
-    if (onsetRange != null) {
-      json['onsetRange'] = onsetRange!.toJson();
-    }
-
-    addField('onsetString', onsetString);
-    addField('abatementDateTime', abatementDateTime);
-    if (abatementAge != null) {
-      json['abatementAge'] = abatementAge!.toJson();
-    }
-
-    if (abatementPeriod != null) {
-      json['abatementPeriod'] = abatementPeriod!.toJson();
-    }
-
-    if (abatementRange != null) {
-      json['abatementRange'] = abatementRange!.toJson();
-    }
-
-    addField('abatementString', abatementString);
+    addField('onsetXConditionCondition', onsetXConditionCondition);
+    addField('abatementXConditionCondition', abatementXConditionCondition);
     addField('recordedDate', recordedDate);
     if (recorder != null) {
       json['recorder'] = recorder!.toJson();
@@ -582,16 +460,8 @@ class Condition extends DomainResource {
     List<CodeableConcept>? bodySite,
     Reference? subject,
     Reference? encounter,
-    FhirDateTime? onsetDateTime,
-    Age? onsetAge,
-    Period? onsetPeriod,
-    Range? onsetRange,
-    FhirString? onsetString,
-    FhirDateTime? abatementDateTime,
-    Age? abatementAge,
-    Period? abatementPeriod,
-    Range? abatementRange,
-    FhirString? abatementString,
+    FhirDateTime? onsetXConditionCondition,
+    FhirDateTime? abatementXConditionCondition,
     FhirDateTime? recordedDate,
     Reference? recorder,
     Reference? asserter,
@@ -621,16 +491,10 @@ class Condition extends DomainResource {
       bodySite: bodySite ?? this.bodySite,
       subject: subject ?? this.subject,
       encounter: encounter ?? this.encounter,
-      onsetDateTime: onsetDateTime ?? this.onsetDateTime,
-      onsetAge: onsetAge ?? this.onsetAge,
-      onsetPeriod: onsetPeriod ?? this.onsetPeriod,
-      onsetRange: onsetRange ?? this.onsetRange,
-      onsetString: onsetString ?? this.onsetString,
-      abatementDateTime: abatementDateTime ?? this.abatementDateTime,
-      abatementAge: abatementAge ?? this.abatementAge,
-      abatementPeriod: abatementPeriod ?? this.abatementPeriod,
-      abatementRange: abatementRange ?? this.abatementRange,
-      abatementString: abatementString ?? this.abatementString,
+      onsetXConditionCondition:
+          onsetXConditionCondition ?? this.onsetXConditionCondition,
+      abatementXConditionCondition:
+          abatementXConditionCondition ?? this.abatementXConditionCondition,
       recordedDate: recordedDate ?? this.recordedDate,
       recorder: recorder ?? this.recorder,
       asserter: asserter ?? this.asserter,

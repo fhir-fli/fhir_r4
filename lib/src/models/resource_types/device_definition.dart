@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'device_definition.g.dart';
+
 /// [DeviceDefinition]
 /// The characteristics, operational status and capabilities of a
 /// medical-related component of a medical device.
@@ -20,8 +22,7 @@ class DeviceDefinition extends DomainResource {
     super.modifierExtension,
     this.identifier,
     this.udiDeviceIdentifier,
-    this.manufacturerString,
-    this.manufacturerReference,
+    this.manufacturerXDeviceDefinitionDeviceDefinition,
     this.deviceName,
     this.modelNumber,
     this.type,
@@ -121,18 +122,17 @@ class DeviceDefinition extends DomainResource {
               )
               .toList()
           : null,
-      manufacturerString: (json['manufacturerString'] != null ||
-              json['_manufacturerString'] != null)
-          ? FhirString.fromJson({
-              'value': json['manufacturerString'],
-              '_value': json['_manufacturerString'],
-            })
-          : null,
-      manufacturerReference: json['manufacturerReference'] != null
-          ? Reference.fromJson(
-              json['manufacturerReference'] as Map<String, dynamic>,
-            )
-          : null,
+      manufacturerXDeviceDefinitionDeviceDefinition:
+          (json['manufacturerXDeviceDefinitionDeviceDefinition'] != null ||
+                  json['_manufacturerXDeviceDefinitionDeviceDefinition'] !=
+                      null)
+              ? FhirString.fromJson({
+                  'value':
+                      json['manufacturerXDeviceDefinitionDeviceDefinition'],
+                  '_value':
+                      json['_manufacturerXDeviceDefinitionDeviceDefinition'],
+                })
+              : null,
       deviceName: json['deviceName'] != null
           ? (json['deviceName'] as List<dynamic>)
               .map<DeviceDefinitionDeviceName>(
@@ -329,13 +329,9 @@ class DeviceDefinition extends DomainResource {
   /// multiple jurisdictions it could have been sold.
   final List<DeviceDefinitionUdiDeviceIdentifier>? udiDeviceIdentifier;
 
-  /// [manufacturerString]
+  /// [manufacturerXDeviceDefinitionDeviceDefinition]
   /// A name of the manufacturer.
-  final FhirString? manufacturerString;
-
-  /// [manufacturerReference]
-  /// A name of the manufacturer.
-  final Reference? manufacturerReference;
+  final FhirString? manufacturerXDeviceDefinitionDeviceDefinition;
 
   /// [deviceName]
   /// A name given to the device to identify it.
@@ -467,11 +463,8 @@ class DeviceDefinition extends DomainResource {
           udiDeviceIdentifier!.map((e) => e.toJson()).toList();
     }
 
-    addField('manufacturerString', manufacturerString);
-    if (manufacturerReference != null) {
-      json['manufacturerReference'] = manufacturerReference!.toJson();
-    }
-
+    addField('manufacturerXDeviceDefinitionDeviceDefinition',
+        manufacturerXDeviceDefinitionDeviceDefinition);
     if (deviceName != null && deviceName!.isNotEmpty) {
       json['deviceName'] = deviceName!.map((e) => e.toJson()).toList();
     }
@@ -561,8 +554,7 @@ class DeviceDefinition extends DomainResource {
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
     List<DeviceDefinitionUdiDeviceIdentifier>? udiDeviceIdentifier,
-    FhirString? manufacturerString,
-    Reference? manufacturerReference,
+    FhirString? manufacturerXDeviceDefinitionDeviceDefinition,
     List<DeviceDefinitionDeviceName>? deviceName,
     FhirString? modelNumber,
     CodeableConcept? type,
@@ -598,9 +590,9 @@ class DeviceDefinition extends DomainResource {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       identifier: identifier ?? this.identifier,
       udiDeviceIdentifier: udiDeviceIdentifier ?? this.udiDeviceIdentifier,
-      manufacturerString: manufacturerString ?? this.manufacturerString,
-      manufacturerReference:
-          manufacturerReference ?? this.manufacturerReference,
+      manufacturerXDeviceDefinitionDeviceDefinition:
+          manufacturerXDeviceDefinitionDeviceDefinition ??
+              this.manufacturerXDeviceDefinitionDeviceDefinition,
       deviceName: deviceName ?? this.deviceName,
       modelNumber: modelNumber ?? this.modelNumber,
       type: type ?? this.type,

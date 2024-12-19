@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'measure.g.dart';
+
 /// [Measure]
 /// The Measure resource provides the definition of a quality measure.
 class Measure extends CanonicalResource {
@@ -25,8 +27,7 @@ class Measure extends CanonicalResource {
     this.subtitle,
     required super.status,
     super.experimental,
-    this.subjectCodeableConcept,
-    this.subjectReference,
+    this.subjectXMeasureMeasure,
     super.date,
     super.publisher,
     super.contact,
@@ -171,14 +172,9 @@ class Measure extends CanonicalResource {
                   '_value': json['_experimental'],
                 })
               : null,
-      subjectCodeableConcept: json['subjectCodeableConcept'] != null
+      subjectXMeasureMeasure: json['subjectXMeasureMeasure'] != null
           ? CodeableConcept.fromJson(
-              json['subjectCodeableConcept'] as Map<String, dynamic>,
-            )
-          : null,
-      subjectReference: json['subjectReference'] != null
-          ? Reference.fromJson(
-              json['subjectReference'] as Map<String, dynamic>,
+              json['subjectXMeasureMeasure'] as Map<String, dynamic>,
             )
           : null,
       date: (json['date'] != null || json['_date'] != null)
@@ -475,17 +471,11 @@ class Measure extends CanonicalResource {
   /// information about its content.
   final FhirString? subtitle;
 
-  /// [subjectCodeableConcept]
+  /// [subjectXMeasureMeasure]
   /// The intended subjects for the measure. If this element is not provided,
   /// a Patient subject is assumed, but the subject of the measure can be
   /// anything.
-  final CodeableConcept? subjectCodeableConcept;
-
-  /// [subjectReference]
-  /// The intended subjects for the measure. If this element is not provided,
-  /// a Patient subject is assumed, but the subject of the measure can be
-  /// anything.
-  final Reference? subjectReference;
+  final CodeableConcept? subjectXMeasureMeasure;
 
   /// [purpose]
   /// Explanation of why this measure is needed and why it has been designed
@@ -673,12 +663,8 @@ class Measure extends CanonicalResource {
     addField('subtitle', subtitle);
     addField('status', status);
     addField('experimental', experimental);
-    if (subjectCodeableConcept != null) {
-      json['subjectCodeableConcept'] = subjectCodeableConcept!.toJson();
-    }
-
-    if (subjectReference != null) {
-      json['subjectReference'] = subjectReference!.toJson();
+    if (subjectXMeasureMeasure != null) {
+      json['subjectXMeasureMeasure'] = subjectXMeasureMeasure!.toJson();
     }
 
     addField('date', date);
@@ -801,8 +787,7 @@ class Measure extends CanonicalResource {
     FhirString? subtitle,
     PublicationStatus? status,
     FhirBoolean? experimental,
-    CodeableConcept? subjectCodeableConcept,
-    Reference? subjectReference,
+    CodeableConcept? subjectXMeasureMeasure,
     FhirDateTime? date,
     FhirString? publisher,
     List<ContactDetail>? contact,
@@ -857,9 +842,8 @@ class Measure extends CanonicalResource {
       subtitle: subtitle ?? this.subtitle,
       status: status ?? this.status,
       experimental: experimental ?? this.experimental,
-      subjectCodeableConcept:
-          subjectCodeableConcept ?? this.subjectCodeableConcept,
-      subjectReference: subjectReference ?? this.subjectReference,
+      subjectXMeasureMeasure:
+          subjectXMeasureMeasure ?? this.subjectXMeasureMeasure,
       date: date ?? this.date,
       publisher: publisher ?? this.publisher,
       contact: contact ?? this.contact,

@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'population.g.dart';
+
 /// [Population]
 /// A populatioof people with some set of grouping criteria.
 class Population extends BackboneType {
@@ -12,8 +14,7 @@ class Population extends BackboneType {
     super.id,
     super.extension_,
     super.modifierExtension,
-    this.ageRange,
-    this.ageCodeableConcept,
+    this.ageXPopulationPopulation,
     this.gender,
     this.race,
     this.physiologicalCondition,
@@ -46,14 +47,9 @@ class Population extends BackboneType {
               )
               .toList()
           : null,
-      ageRange: json['ageRange'] != null
+      ageXPopulationPopulation: json['ageXPopulationPopulation'] != null
           ? Range.fromJson(
-              json['ageRange'] as Map<String, dynamic>,
-            )
-          : null,
-      ageCodeableConcept: json['ageCodeableConcept'] != null
-          ? CodeableConcept.fromJson(
-              json['ageCodeableConcept'] as Map<String, dynamic>,
+              json['ageXPopulationPopulation'] as Map<String, dynamic>,
             )
           : null,
       gender: json['gender'] != null
@@ -116,13 +112,9 @@ class Population extends BackboneType {
   @override
   String get fhirType => 'Population';
 
-  /// [ageRange]
+  /// [ageXPopulationPopulation]
   /// The age of the specific population.
-  final Range? ageRange;
-
-  /// [ageCodeableConcept]
-  /// The age of the specific population.
-  final CodeableConcept? ageCodeableConcept;
+  final Range? ageXPopulationPopulation;
 
   /// [gender]
   /// The gender of the specific population.
@@ -158,12 +150,8 @@ class Population extends BackboneType {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    if (ageRange != null) {
-      json['ageRange'] = ageRange!.toJson();
-    }
-
-    if (ageCodeableConcept != null) {
-      json['ageCodeableConcept'] = ageCodeableConcept!.toJson();
+    if (ageXPopulationPopulation != null) {
+      json['ageXPopulationPopulation'] = ageXPopulationPopulation!.toJson();
     }
 
     if (gender != null) {
@@ -188,8 +176,7 @@ class Population extends BackboneType {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    Range? ageRange,
-    CodeableConcept? ageCodeableConcept,
+    Range? ageXPopulationPopulation,
     CodeableConcept? gender,
     CodeableConcept? race,
     CodeableConcept? physiologicalCondition,
@@ -202,8 +189,8 @@ class Population extends BackboneType {
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
-      ageRange: ageRange ?? this.ageRange,
-      ageCodeableConcept: ageCodeableConcept ?? this.ageCodeableConcept,
+      ageXPopulationPopulation:
+          ageXPopulationPopulation ?? this.ageXPopulationPopulation,
       gender: gender ?? this.gender,
       race: race ?? this.race,
       physiologicalCondition:

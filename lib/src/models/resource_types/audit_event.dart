@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'audit_event.g.dart';
+
 /// [AuditEvent]
 /// A record of an event made for purposes of maintaining a security log.
 /// Typical uses include detection of intrusion attempts and monitoring for
@@ -1318,8 +1320,7 @@ class AuditEventDetail extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.type,
-    this.valueString,
-    this.valueBase64Binary,
+    required this.valueXAuditEventDetail,
     super.disallowExtensions,
   });
 
@@ -1353,19 +1354,10 @@ class AuditEventDetail extends BackboneElement {
         'value': json['type'],
         '_value': json['_type'],
       }),
-      valueString: (json['valueString'] != null || json['_valueString'] != null)
-          ? FhirString.fromJson({
-              'value': json['valueString'],
-              '_value': json['_valueString'],
-            })
-          : null,
-      valueBase64Binary: (json['valueBase64Binary'] != null ||
-              json['_valueBase64Binary'] != null)
-          ? FhirBase64Binary.fromJson({
-              'value': json['valueBase64Binary'],
-              '_value': json['_valueBase64Binary'],
-            })
-          : null,
+      valueXAuditEventDetail: FhirString.fromJson({
+        'value': json['valueXAuditEventDetail'],
+        '_value': json['_valueXAuditEventDetail'],
+      }),
     );
   }
 
@@ -1415,13 +1407,9 @@ class AuditEventDetail extends BackboneElement {
   /// The type of extra detail provided in the value.
   final FhirString type;
 
-  /// [valueString]
+  /// [valueXAuditEventDetail]
   /// The value of the extra detail.
-  final FhirString? valueString;
-
-  /// [valueBase64Binary]
-  /// The value of the extra detail.
-  final FhirBase64Binary? valueBase64Binary;
+  final FhirString valueXAuditEventDetail;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1445,8 +1433,7 @@ class AuditEventDetail extends BackboneElement {
     }
 
     addField('type', type);
-    addField('valueString', valueString);
-    addField('valueBase64Binary', valueBase64Binary);
+    addField('valueXAuditEventDetail', valueXAuditEventDetail);
     return json;
   }
 
@@ -1458,8 +1445,7 @@ class AuditEventDetail extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirString? type,
-    FhirString? valueString,
-    FhirBase64Binary? valueBase64Binary,
+    FhirString? valueXAuditEventDetail,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1470,8 +1456,8 @@ class AuditEventDetail extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
-      valueString: valueString ?? this.valueString,
-      valueBase64Binary: valueBase64Binary ?? this.valueBase64Binary,
+      valueXAuditEventDetail:
+          valueXAuditEventDetail ?? this.valueXAuditEventDetail,
     );
   }
 }

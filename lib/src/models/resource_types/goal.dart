@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'goal.g.dart';
+
 /// [Goal]
 /// Describes the intended objective(s) for a patient, group or
 /// organization care, for example, weight loss, restoring an activity of
@@ -27,8 +29,7 @@ class Goal extends DomainResource {
     this.priority,
     required this.description,
     required this.subject,
-    this.startDate,
-    this.startCodeableConcept,
+    this.startXGoalGoal,
     this.target,
     this.statusDate,
     this.statusReason,
@@ -137,17 +138,13 @@ class Goal extends DomainResource {
       subject: Reference.fromJson(
         json['subject'] as Map<String, dynamic>,
       ),
-      startDate: (json['startDate'] != null || json['_startDate'] != null)
-          ? GoalStartEvent.fromJson({
-              'value': json['startDate'],
-              '_value': json['_startDate'],
-            })
-          : null,
-      startCodeableConcept: json['startCodeableConcept'] != null
-          ? CodeableConcept.fromJson(
-              json['startCodeableConcept'] as Map<String, dynamic>,
-            )
-          : null,
+      startXGoalGoal:
+          (json['startXGoalGoal'] != null || json['_startXGoalGoal'] != null)
+              ? GoalStartEvent.fromJson({
+                  'value': json['startXGoalGoal'],
+                  '_value': json['_startXGoalGoal'],
+                })
+              : null,
       target: json['target'] != null
           ? (json['target'] as List<dynamic>)
               .map<GoalTarget>(
@@ -291,13 +288,9 @@ class Goal extends DomainResource {
   /// being established.
   final Reference subject;
 
-  /// [startDate]
+  /// [startXGoalGoal]
   /// The date or event after which the goal should begin being pursued.
-  final GoalStartEvent? startDate;
-
-  /// [startCodeableConcept]
-  /// The date or event after which the goal should begin being pursued.
-  final CodeableConcept? startCodeableConcept;
+  final GoalStartEvent? startXGoalGoal;
 
   /// [target]
   /// Indicates what should be done by when.
@@ -391,11 +384,7 @@ class Goal extends DomainResource {
 
     json['subject'] = subject.toJson();
 
-    addField('startDate', startDate);
-    if (startCodeableConcept != null) {
-      json['startCodeableConcept'] = startCodeableConcept!.toJson();
-    }
-
+    addField('startXGoalGoal', startXGoalGoal);
     if (target != null && target!.isNotEmpty) {
       json['target'] = target!.map((e) => e.toJson()).toList();
     }
@@ -445,8 +434,7 @@ class Goal extends DomainResource {
     CodeableConcept? priority,
     CodeableConcept? description,
     Reference? subject,
-    GoalStartEvent? startDate,
-    CodeableConcept? startCodeableConcept,
+    GoalStartEvent? startXGoalGoal,
     List<GoalTarget>? target,
     FhirDate? statusDate,
     FhirString? statusReason,
@@ -476,8 +464,7 @@ class Goal extends DomainResource {
       priority: priority ?? this.priority,
       description: description ?? this.description,
       subject: subject ?? this.subject,
-      startDate: startDate ?? this.startDate,
-      startCodeableConcept: startCodeableConcept ?? this.startCodeableConcept,
+      startXGoalGoal: startXGoalGoal ?? this.startXGoalGoal,
       target: target ?? this.target,
       statusDate: statusDate ?? this.statusDate,
       statusReason: statusReason ?? this.statusReason,
@@ -501,15 +488,8 @@ class GoalTarget extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.measure,
-    this.detailQuantity,
-    this.detailRange,
-    this.detailCodeableConcept,
-    this.detailString,
-    this.detailBoolean,
-    this.detailInteger,
-    this.detailRatio,
-    this.dueDate,
-    this.dueDuration,
+    this.detailXGoalTarget,
+    this.dueXGoalTarget,
     super.disallowExtensions,
   });
 
@@ -544,58 +524,18 @@ class GoalTarget extends BackboneElement {
               json['measure'] as Map<String, dynamic>,
             )
           : null,
-      detailQuantity: json['detailQuantity'] != null
+      detailXGoalTarget: json['detailXGoalTarget'] != null
           ? Quantity.fromJson(
-              json['detailQuantity'] as Map<String, dynamic>,
+              json['detailXGoalTarget'] as Map<String, dynamic>,
             )
           : null,
-      detailRange: json['detailRange'] != null
-          ? Range.fromJson(
-              json['detailRange'] as Map<String, dynamic>,
-            )
-          : null,
-      detailCodeableConcept: json['detailCodeableConcept'] != null
-          ? CodeableConcept.fromJson(
-              json['detailCodeableConcept'] as Map<String, dynamic>,
-            )
-          : null,
-      detailString:
-          (json['detailString'] != null || json['_detailString'] != null)
-              ? FhirString.fromJson({
-                  'value': json['detailString'],
-                  '_value': json['_detailString'],
+      dueXGoalTarget:
+          (json['dueXGoalTarget'] != null || json['_dueXGoalTarget'] != null)
+              ? FhirDate.fromJson({
+                  'value': json['dueXGoalTarget'],
+                  '_value': json['_dueXGoalTarget'],
                 })
               : null,
-      detailBoolean:
-          (json['detailBoolean'] != null || json['_detailBoolean'] != null)
-              ? FhirBoolean.fromJson({
-                  'value': json['detailBoolean'],
-                  '_value': json['_detailBoolean'],
-                })
-              : null,
-      detailInteger:
-          (json['detailInteger'] != null || json['_detailInteger'] != null)
-              ? FhirInteger.fromJson({
-                  'value': json['detailInteger'],
-                  '_value': json['_detailInteger'],
-                })
-              : null,
-      detailRatio: json['detailRatio'] != null
-          ? Ratio.fromJson(
-              json['detailRatio'] as Map<String, dynamic>,
-            )
-          : null,
-      dueDate: (json['dueDate'] != null || json['_dueDate'] != null)
-          ? FhirDate.fromJson({
-              'value': json['dueDate'],
-              '_value': json['_dueDate'],
-            })
-          : null,
-      dueDuration: json['dueDuration'] != null
-          ? FhirDuration.fromJson(
-              json['dueDuration'] as Map<String, dynamic>,
-            )
-          : null,
     );
   }
 
@@ -646,78 +586,19 @@ class GoalTarget extends BackboneElement {
   /// pressure, or hemoglobin A1c level.
   final CodeableConcept? measure;
 
-  /// [detailQuantity]
+  /// [detailXGoalTarget]
   /// The target value of the focus to be achieved to signify the fulfillment
   /// of the goal, e.g. 150 pounds, 7.0%. Either the high or low or both
   /// values of the range can be specified. When a low value is missing, it
   /// indicates that the goal is achieved at any focus value at or below the
   /// high value. Similarly, if the high value is missing, it indicates that
   /// the goal is achieved at any focus value at or above the low value.
-  final Quantity? detailQuantity;
+  final Quantity? detailXGoalTarget;
 
-  /// [detailRange]
-  /// The target value of the focus to be achieved to signify the fulfillment
-  /// of the goal, e.g. 150 pounds, 7.0%. Either the high or low or both
-  /// values of the range can be specified. When a low value is missing, it
-  /// indicates that the goal is achieved at any focus value at or below the
-  /// high value. Similarly, if the high value is missing, it indicates that
-  /// the goal is achieved at any focus value at or above the low value.
-  final Range? detailRange;
-
-  /// [detailCodeableConcept]
-  /// The target value of the focus to be achieved to signify the fulfillment
-  /// of the goal, e.g. 150 pounds, 7.0%. Either the high or low or both
-  /// values of the range can be specified. When a low value is missing, it
-  /// indicates that the goal is achieved at any focus value at or below the
-  /// high value. Similarly, if the high value is missing, it indicates that
-  /// the goal is achieved at any focus value at or above the low value.
-  final CodeableConcept? detailCodeableConcept;
-
-  /// [detailString]
-  /// The target value of the focus to be achieved to signify the fulfillment
-  /// of the goal, e.g. 150 pounds, 7.0%. Either the high or low or both
-  /// values of the range can be specified. When a low value is missing, it
-  /// indicates that the goal is achieved at any focus value at or below the
-  /// high value. Similarly, if the high value is missing, it indicates that
-  /// the goal is achieved at any focus value at or above the low value.
-  final FhirString? detailString;
-
-  /// [detailBoolean]
-  /// The target value of the focus to be achieved to signify the fulfillment
-  /// of the goal, e.g. 150 pounds, 7.0%. Either the high or low or both
-  /// values of the range can be specified. When a low value is missing, it
-  /// indicates that the goal is achieved at any focus value at or below the
-  /// high value. Similarly, if the high value is missing, it indicates that
-  /// the goal is achieved at any focus value at or above the low value.
-  final FhirBoolean? detailBoolean;
-
-  /// [detailInteger]
-  /// The target value of the focus to be achieved to signify the fulfillment
-  /// of the goal, e.g. 150 pounds, 7.0%. Either the high or low or both
-  /// values of the range can be specified. When a low value is missing, it
-  /// indicates that the goal is achieved at any focus value at or below the
-  /// high value. Similarly, if the high value is missing, it indicates that
-  /// the goal is achieved at any focus value at or above the low value.
-  final FhirInteger? detailInteger;
-
-  /// [detailRatio]
-  /// The target value of the focus to be achieved to signify the fulfillment
-  /// of the goal, e.g. 150 pounds, 7.0%. Either the high or low or both
-  /// values of the range can be specified. When a low value is missing, it
-  /// indicates that the goal is achieved at any focus value at or below the
-  /// high value. Similarly, if the high value is missing, it indicates that
-  /// the goal is achieved at any focus value at or above the low value.
-  final Ratio? detailRatio;
-
-  /// [dueDate]
+  /// [dueXGoalTarget]
   /// Indicates either the date or the duration after start by which the goal
   /// should be met.
-  final FhirDate? dueDate;
-
-  /// [dueDuration]
-  /// Indicates either the date or the duration after start by which the goal
-  /// should be met.
-  final FhirDuration? dueDuration;
+  final FhirDate? dueXGoalTarget;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -744,30 +625,11 @@ class GoalTarget extends BackboneElement {
       json['measure'] = measure!.toJson();
     }
 
-    if (detailQuantity != null) {
-      json['detailQuantity'] = detailQuantity!.toJson();
+    if (detailXGoalTarget != null) {
+      json['detailXGoalTarget'] = detailXGoalTarget!.toJson();
     }
 
-    if (detailRange != null) {
-      json['detailRange'] = detailRange!.toJson();
-    }
-
-    if (detailCodeableConcept != null) {
-      json['detailCodeableConcept'] = detailCodeableConcept!.toJson();
-    }
-
-    addField('detailString', detailString);
-    addField('detailBoolean', detailBoolean);
-    addField('detailInteger', detailInteger);
-    if (detailRatio != null) {
-      json['detailRatio'] = detailRatio!.toJson();
-    }
-
-    addField('dueDate', dueDate);
-    if (dueDuration != null) {
-      json['dueDuration'] = dueDuration!.toJson();
-    }
-
+    addField('dueXGoalTarget', dueXGoalTarget);
     return json;
   }
 
@@ -779,15 +641,8 @@ class GoalTarget extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     CodeableConcept? measure,
-    Quantity? detailQuantity,
-    Range? detailRange,
-    CodeableConcept? detailCodeableConcept,
-    FhirString? detailString,
-    FhirBoolean? detailBoolean,
-    FhirInteger? detailInteger,
-    Ratio? detailRatio,
-    FhirDate? dueDate,
-    FhirDuration? dueDuration,
+    Quantity? detailXGoalTarget,
+    FhirDate? dueXGoalTarget,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -798,16 +653,8 @@ class GoalTarget extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       measure: measure ?? this.measure,
-      detailQuantity: detailQuantity ?? this.detailQuantity,
-      detailRange: detailRange ?? this.detailRange,
-      detailCodeableConcept:
-          detailCodeableConcept ?? this.detailCodeableConcept,
-      detailString: detailString ?? this.detailString,
-      detailBoolean: detailBoolean ?? this.detailBoolean,
-      detailInteger: detailInteger ?? this.detailInteger,
-      detailRatio: detailRatio ?? this.detailRatio,
-      dueDate: dueDate ?? this.dueDate,
-      dueDuration: dueDuration ?? this.dueDuration,
+      detailXGoalTarget: detailXGoalTarget ?? this.detailXGoalTarget,
+      dueXGoalTarget: dueXGoalTarget ?? this.dueXGoalTarget,
     );
   }
 }

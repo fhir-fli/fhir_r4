@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'detected_issue.g.dart';
+
 /// [DetectedIssue]
 /// Indicates an actual or potential clinical issue with or between one or
 /// more active or proposed clinical actions for a patient; e.g. Drug-drug
@@ -25,8 +27,7 @@ class DetectedIssue extends DomainResource {
     this.code,
     this.severity,
     this.patient,
-    this.identifiedDateTime,
-    this.identifiedPeriod,
+    this.identifiedXDetectedIssueDetectedIssue,
     this.author,
     this.implicated,
     this.evidence,
@@ -124,18 +125,14 @@ class DetectedIssue extends DomainResource {
               json['patient'] as Map<String, dynamic>,
             )
           : null,
-      identifiedDateTime: (json['identifiedDateTime'] != null ||
-              json['_identifiedDateTime'] != null)
-          ? FhirDateTime.fromJson({
-              'value': json['identifiedDateTime'],
-              '_value': json['_identifiedDateTime'],
-            })
-          : null,
-      identifiedPeriod: json['identifiedPeriod'] != null
-          ? Period.fromJson(
-              json['identifiedPeriod'] as Map<String, dynamic>,
-            )
-          : null,
+      identifiedXDetectedIssueDetectedIssue:
+          (json['identifiedXDetectedIssueDetectedIssue'] != null ||
+                  json['_identifiedXDetectedIssueDetectedIssue'] != null)
+              ? FhirDateTime.fromJson({
+                  'value': json['identifiedXDetectedIssueDetectedIssue'],
+                  '_value': json['_identifiedXDetectedIssueDetectedIssue'],
+                })
+              : null,
       author: json['author'] != null
           ? Reference.fromJson(
               json['author'] as Map<String, dynamic>,
@@ -247,13 +244,9 @@ class DetectedIssue extends DomainResource {
   /// with.
   final Reference? patient;
 
-  /// [identifiedDateTime]
+  /// [identifiedXDetectedIssueDetectedIssue]
   /// The date or period when the detected issue was initially identified.
-  final FhirDateTime? identifiedDateTime;
-
-  /// [identifiedPeriod]
-  /// The date or period when the detected issue was initially identified.
-  final Period? identifiedPeriod;
+  final FhirDateTime? identifiedXDetectedIssueDetectedIssue;
 
   /// [author]
   /// Individual or device responsible for the issue being raised. For
@@ -338,11 +331,8 @@ class DetectedIssue extends DomainResource {
       json['patient'] = patient!.toJson();
     }
 
-    addField('identifiedDateTime', identifiedDateTime);
-    if (identifiedPeriod != null) {
-      json['identifiedPeriod'] = identifiedPeriod!.toJson();
-    }
-
+    addField('identifiedXDetectedIssueDetectedIssue',
+        identifiedXDetectedIssueDetectedIssue);
     if (author != null) {
       json['author'] = author!.toJson();
     }
@@ -381,8 +371,7 @@ class DetectedIssue extends DomainResource {
     CodeableConcept? code,
     DetectedIssueSeverity? severity,
     Reference? patient,
-    FhirDateTime? identifiedDateTime,
-    Period? identifiedPeriod,
+    FhirDateTime? identifiedXDetectedIssueDetectedIssue,
     Reference? author,
     List<Reference>? implicated,
     List<DetectedIssueEvidence>? evidence,
@@ -408,8 +397,9 @@ class DetectedIssue extends DomainResource {
       code: code ?? this.code,
       severity: severity ?? this.severity,
       patient: patient ?? this.patient,
-      identifiedDateTime: identifiedDateTime ?? this.identifiedDateTime,
-      identifiedPeriod: identifiedPeriod ?? this.identifiedPeriod,
+      identifiedXDetectedIssueDetectedIssue:
+          identifiedXDetectedIssueDetectedIssue ??
+              this.identifiedXDetectedIssueDetectedIssue,
       author: author ?? this.author,
       implicated: implicated ?? this.implicated,
       evidence: evidence ?? this.evidence,

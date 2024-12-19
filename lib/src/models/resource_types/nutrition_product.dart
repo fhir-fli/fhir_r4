@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'nutrition_product.g.dart';
+
 /// [NutritionProduct]
 /// A food or fluid product that is consumed by patients.
 class NutritionProduct extends DomainResource {
@@ -720,12 +722,7 @@ class NutritionProductProductCharacteristic extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.type,
-    this.valueCodeableConcept,
-    this.valueString,
-    this.valueQuantity,
-    this.valueBase64Binary,
-    this.valueAttachment,
-    this.valueBoolean,
+    required this.valueXNutritionProductProductCharacteristic,
     super.disallowExtensions,
   });
 
@@ -758,41 +755,10 @@ class NutritionProductProductCharacteristic extends BackboneElement {
       type: CodeableConcept.fromJson(
         json['type'] as Map<String, dynamic>,
       ),
-      valueCodeableConcept: json['valueCodeableConcept'] != null
-          ? CodeableConcept.fromJson(
-              json['valueCodeableConcept'] as Map<String, dynamic>,
-            )
-          : null,
-      valueString: (json['valueString'] != null || json['_valueString'] != null)
-          ? FhirString.fromJson({
-              'value': json['valueString'],
-              '_value': json['_valueString'],
-            })
-          : null,
-      valueQuantity: json['valueQuantity'] != null
-          ? Quantity.fromJson(
-              json['valueQuantity'] as Map<String, dynamic>,
-            )
-          : null,
-      valueBase64Binary: (json['valueBase64Binary'] != null ||
-              json['_valueBase64Binary'] != null)
-          ? FhirBase64Binary.fromJson({
-              'value': json['valueBase64Binary'],
-              '_value': json['_valueBase64Binary'],
-            })
-          : null,
-      valueAttachment: json['valueAttachment'] != null
-          ? Attachment.fromJson(
-              json['valueAttachment'] as Map<String, dynamic>,
-            )
-          : null,
-      valueBoolean:
-          (json['valueBoolean'] != null || json['_valueBoolean'] != null)
-              ? FhirBoolean.fromJson({
-                  'value': json['valueBoolean'],
-                  '_value': json['_valueBoolean'],
-                })
-              : null,
+      valueXNutritionProductProductCharacteristic: CodeableConcept.fromJson(
+        json['valueXNutritionProductProductCharacteristic']
+            as Map<String, dynamic>,
+      ),
     );
   }
 
@@ -843,29 +809,9 @@ class NutritionProductProductCharacteristic extends BackboneElement {
   /// described (for example, colour, shape).
   final CodeableConcept type;
 
-  /// [valueCodeableConcept]
+  /// [valueXNutritionProductProductCharacteristic]
   /// The actual characteristic value corresponding to the type.
-  final CodeableConcept? valueCodeableConcept;
-
-  /// [valueString]
-  /// The actual characteristic value corresponding to the type.
-  final FhirString? valueString;
-
-  /// [valueQuantity]
-  /// The actual characteristic value corresponding to the type.
-  final Quantity? valueQuantity;
-
-  /// [valueBase64Binary]
-  /// The actual characteristic value corresponding to the type.
-  final FhirBase64Binary? valueBase64Binary;
-
-  /// [valueAttachment]
-  /// The actual characteristic value corresponding to the type.
-  final Attachment? valueAttachment;
-
-  /// [valueBoolean]
-  /// The actual characteristic value corresponding to the type.
-  final FhirBoolean? valueBoolean;
+  final CodeableConcept valueXNutritionProductProductCharacteristic;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -890,21 +836,9 @@ class NutritionProductProductCharacteristic extends BackboneElement {
 
     json['type'] = type.toJson();
 
-    if (valueCodeableConcept != null) {
-      json['valueCodeableConcept'] = valueCodeableConcept!.toJson();
-    }
+    json['valueXNutritionProductProductCharacteristic'] =
+        valueXNutritionProductProductCharacteristic.toJson();
 
-    addField('valueString', valueString);
-    if (valueQuantity != null) {
-      json['valueQuantity'] = valueQuantity!.toJson();
-    }
-
-    addField('valueBase64Binary', valueBase64Binary);
-    if (valueAttachment != null) {
-      json['valueAttachment'] = valueAttachment!.toJson();
-    }
-
-    addField('valueBoolean', valueBoolean);
     return json;
   }
 
@@ -916,12 +850,7 @@ class NutritionProductProductCharacteristic extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     CodeableConcept? type,
-    CodeableConcept? valueCodeableConcept,
-    FhirString? valueString,
-    Quantity? valueQuantity,
-    FhirBase64Binary? valueBase64Binary,
-    Attachment? valueAttachment,
-    FhirBoolean? valueBoolean,
+    CodeableConcept? valueXNutritionProductProductCharacteristic,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -932,12 +861,9 @@ class NutritionProductProductCharacteristic extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
-      valueCodeableConcept: valueCodeableConcept ?? this.valueCodeableConcept,
-      valueString: valueString ?? this.valueString,
-      valueQuantity: valueQuantity ?? this.valueQuantity,
-      valueBase64Binary: valueBase64Binary ?? this.valueBase64Binary,
-      valueAttachment: valueAttachment ?? this.valueAttachment,
-      valueBoolean: valueBoolean ?? this.valueBoolean,
+      valueXNutritionProductProductCharacteristic:
+          valueXNutritionProductProductCharacteristic ??
+              this.valueXNutritionProductProductCharacteristic,
     );
   }
 }

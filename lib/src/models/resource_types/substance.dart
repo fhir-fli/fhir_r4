@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'substance.g.dart';
+
 /// [Substance]
 /// A homogeneous material with a definite composition.
 class Substance extends DomainResource {
@@ -504,8 +506,7 @@ class SubstanceIngredient extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.quantity,
-    this.substanceCodeableConcept,
-    this.substanceReference,
+    required this.substanceXSubstanceIngredient,
     super.disallowExtensions,
   });
 
@@ -540,16 +541,9 @@ class SubstanceIngredient extends BackboneElement {
               json['quantity'] as Map<String, dynamic>,
             )
           : null,
-      substanceCodeableConcept: json['substanceCodeableConcept'] != null
-          ? CodeableConcept.fromJson(
-              json['substanceCodeableConcept'] as Map<String, dynamic>,
-            )
-          : null,
-      substanceReference: json['substanceReference'] != null
-          ? Reference.fromJson(
-              json['substanceReference'] as Map<String, dynamic>,
-            )
-          : null,
+      substanceXSubstanceIngredient: CodeableConcept.fromJson(
+        json['substanceXSubstanceIngredient'] as Map<String, dynamic>,
+      ),
     );
   }
 
@@ -599,13 +593,9 @@ class SubstanceIngredient extends BackboneElement {
   /// The amount of the ingredient in the substance - a concentration ratio.
   final Ratio? quantity;
 
-  /// [substanceCodeableConcept]
+  /// [substanceXSubstanceIngredient]
   /// Another substance that is a component of this substance.
-  final CodeableConcept? substanceCodeableConcept;
-
-  /// [substanceReference]
-  /// Another substance that is a component of this substance.
-  final Reference? substanceReference;
+  final CodeableConcept substanceXSubstanceIngredient;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -632,13 +622,8 @@ class SubstanceIngredient extends BackboneElement {
       json['quantity'] = quantity!.toJson();
     }
 
-    if (substanceCodeableConcept != null) {
-      json['substanceCodeableConcept'] = substanceCodeableConcept!.toJson();
-    }
-
-    if (substanceReference != null) {
-      json['substanceReference'] = substanceReference!.toJson();
-    }
+    json['substanceXSubstanceIngredient'] =
+        substanceXSubstanceIngredient.toJson();
 
     return json;
   }
@@ -651,8 +636,7 @@ class SubstanceIngredient extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     Ratio? quantity,
-    CodeableConcept? substanceCodeableConcept,
-    Reference? substanceReference,
+    CodeableConcept? substanceXSubstanceIngredient,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -663,9 +647,8 @@ class SubstanceIngredient extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       quantity: quantity ?? this.quantity,
-      substanceCodeableConcept:
-          substanceCodeableConcept ?? this.substanceCodeableConcept,
-      substanceReference: substanceReference ?? this.substanceReference,
+      substanceXSubstanceIngredient:
+          substanceXSubstanceIngredient ?? this.substanceXSubstanceIngredient,
     );
   }
 }

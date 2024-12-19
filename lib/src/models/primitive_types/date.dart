@@ -69,13 +69,26 @@ class FhirDate extends FhirDateTimeBase {
       ) as FhirDate;
 
   /// Factory constructor to create a [FhirDate] from a [DateTime].
-  factory FhirDate.fromDateTime(DateTime? input, [Element? element]) =>
-      input == null && element == null
-          ? throw ArgumentError('A value or element is required')
-          : FhirDateTimeBase.constructor<FhirDate>(
-              input: input,
-              element: element,
-            ) as FhirDate;
+  factory FhirDate.fromDateTime(
+    DateTime input, {
+    Element? element,
+    FhirString? id,
+    List<FhirExtension>? extension_,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+  }) =>
+      FhirDateTimeBase.constructor<FhirDate>(
+        input: input,
+        element: element,
+        id: id,
+        extension_: extension_,
+        userData: userData,
+        formatCommentsPre: formatCommentsPre,
+        formatCommentsPost: formatCommentsPost,
+        annotations: annotations,
+      ) as FhirDate;
 
   /// Factory constructor to create a [FhirDate] from a JSON input.
   ///
@@ -89,7 +102,7 @@ class FhirDate extends FhirDateTimeBase {
     if (value is String) {
       return FhirDate.fromString(value, element: element);
     } else if (value is DateTime) {
-      return FhirDate.fromDateTime(value, element);
+      return FhirDate.fromDateTime(value, element: element);
     } else if (value == null) {
       return FhirDateTimeBase.constructor<FhirDate>(
         element: element,
@@ -185,15 +198,21 @@ class FhirDate extends FhirDateTimeBase {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   }) {
-    return FhirDate.fromDateTime(
-      value,
-      (element ?? this.element)?.copyWith(
+    return FhirDateTimeBase.constructor<FhirDate>(
+      input: value ?? value,
+      element: (element ?? this.element)?.copyWith(
         userData: userData ?? this.element?.userData,
         formatCommentsPre: formatCommentsPre ?? this.element?.formatCommentsPre,
         formatCommentsPost:
             formatCommentsPost ?? this.element?.formatCommentsPost,
         annotations: annotations ?? this.element?.annotations,
       ),
-    );
+      id: id ?? this.id,
+      extension_: extension_ ?? this.extension_,
+      userData: userData ?? this.userData,
+      formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
+      formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
+      annotations: annotations ?? this.annotations,
+    ) as FhirDate;
   }
 }

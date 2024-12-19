@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'specimen_definition.g.dart';
+
 /// [SpecimenDefinition]
 /// A kind of specimen with associated set of requirements.
 class SpecimenDefinition extends DomainResource {
@@ -578,8 +580,7 @@ class SpecimenDefinitionContainer extends BackboneElement {
     this.cap,
     this.description,
     this.capacity,
-    this.minimumVolumeQuantity,
-    this.minimumVolumeString,
+    this.minimumVolumeXSpecimenDefinitionContainer,
     this.additive,
     this.preparation,
     super.disallowExtensions,
@@ -637,18 +638,13 @@ class SpecimenDefinitionContainer extends BackboneElement {
               json['capacity'] as Map<String, dynamic>,
             )
           : null,
-      minimumVolumeQuantity: json['minimumVolumeQuantity'] != null
-          ? Quantity.fromJson(
-              json['minimumVolumeQuantity'] as Map<String, dynamic>,
-            )
-          : null,
-      minimumVolumeString: (json['minimumVolumeString'] != null ||
-              json['_minimumVolumeString'] != null)
-          ? FhirString.fromJson({
-              'value': json['minimumVolumeString'],
-              '_value': json['_minimumVolumeString'],
-            })
-          : null,
+      minimumVolumeXSpecimenDefinitionContainer:
+          json['minimumVolumeXSpecimenDefinitionContainer'] != null
+              ? Quantity.fromJson(
+                  json['minimumVolumeXSpecimenDefinitionContainer']
+                      as Map<String, dynamic>,
+                )
+              : null,
       additive: json['additive'] != null
           ? (json['additive'] as List<dynamic>)
               .map<SpecimenDefinitionAdditive>(
@@ -729,13 +725,9 @@ class SpecimenDefinitionContainer extends BackboneElement {
   /// The capacity (volume or other measure) of this kind of container.
   final Quantity? capacity;
 
-  /// [minimumVolumeQuantity]
+  /// [minimumVolumeXSpecimenDefinitionContainer]
   /// The minimum volume to be conditioned in the container.
-  final Quantity? minimumVolumeQuantity;
-
-  /// [minimumVolumeString]
-  /// The minimum volume to be conditioned in the container.
-  final FhirString? minimumVolumeString;
+  final Quantity? minimumVolumeXSpecimenDefinitionContainer;
 
   /// [additive]
   /// Substance introduced in the kind of container to preserve, maintain or
@@ -785,11 +777,11 @@ class SpecimenDefinitionContainer extends BackboneElement {
       json['capacity'] = capacity!.toJson();
     }
 
-    if (minimumVolumeQuantity != null) {
-      json['minimumVolumeQuantity'] = minimumVolumeQuantity!.toJson();
+    if (minimumVolumeXSpecimenDefinitionContainer != null) {
+      json['minimumVolumeXSpecimenDefinitionContainer'] =
+          minimumVolumeXSpecimenDefinitionContainer!.toJson();
     }
 
-    addField('minimumVolumeString', minimumVolumeString);
     if (additive != null && additive!.isNotEmpty) {
       json['additive'] = additive!.map((e) => e.toJson()).toList();
     }
@@ -810,8 +802,7 @@ class SpecimenDefinitionContainer extends BackboneElement {
     CodeableConcept? cap,
     FhirString? description,
     Quantity? capacity,
-    Quantity? minimumVolumeQuantity,
-    FhirString? minimumVolumeString,
+    Quantity? minimumVolumeXSpecimenDefinitionContainer,
     List<SpecimenDefinitionAdditive>? additive,
     FhirString? preparation,
     Map<String, Object?>? userData,
@@ -828,9 +819,9 @@ class SpecimenDefinitionContainer extends BackboneElement {
       cap: cap ?? this.cap,
       description: description ?? this.description,
       capacity: capacity ?? this.capacity,
-      minimumVolumeQuantity:
-          minimumVolumeQuantity ?? this.minimumVolumeQuantity,
-      minimumVolumeString: minimumVolumeString ?? this.minimumVolumeString,
+      minimumVolumeXSpecimenDefinitionContainer:
+          minimumVolumeXSpecimenDefinitionContainer ??
+              this.minimumVolumeXSpecimenDefinitionContainer,
       additive: additive ?? this.additive,
       preparation: preparation ?? this.preparation,
     );
@@ -848,8 +839,7 @@ class SpecimenDefinitionAdditive extends BackboneElement {
     super.id,
     super.extension_,
     super.modifierExtension,
-    this.additiveCodeableConcept,
-    this.additiveReference,
+    required this.additiveXSpecimenDefinitionAdditive,
     super.disallowExtensions,
   });
 
@@ -879,16 +869,9 @@ class SpecimenDefinitionAdditive extends BackboneElement {
               )
               .toList()
           : null,
-      additiveCodeableConcept: json['additiveCodeableConcept'] != null
-          ? CodeableConcept.fromJson(
-              json['additiveCodeableConcept'] as Map<String, dynamic>,
-            )
-          : null,
-      additiveReference: json['additiveReference'] != null
-          ? Reference.fromJson(
-              json['additiveReference'] as Map<String, dynamic>,
-            )
-          : null,
+      additiveXSpecimenDefinitionAdditive: CodeableConcept.fromJson(
+        json['additiveXSpecimenDefinitionAdditive'] as Map<String, dynamic>,
+      ),
     );
   }
 
@@ -934,15 +917,10 @@ class SpecimenDefinitionAdditive extends BackboneElement {
   @override
   String get fhirType => 'SpecimenDefinitionAdditive';
 
-  /// [additiveCodeableConcept]
+  /// [additiveXSpecimenDefinitionAdditive]
   /// Substance introduced in the kind of container to preserve, maintain or
   /// enhance the specimen. Examples: Formalin, Citrate, EDTA.
-  final CodeableConcept? additiveCodeableConcept;
-
-  /// [additiveReference]
-  /// Substance introduced in the kind of container to preserve, maintain or
-  /// enhance the specimen. Examples: Formalin, Citrate, EDTA.
-  final Reference? additiveReference;
+  final CodeableConcept additiveXSpecimenDefinitionAdditive;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -965,13 +943,8 @@ class SpecimenDefinitionAdditive extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    if (additiveCodeableConcept != null) {
-      json['additiveCodeableConcept'] = additiveCodeableConcept!.toJson();
-    }
-
-    if (additiveReference != null) {
-      json['additiveReference'] = additiveReference!.toJson();
-    }
+    json['additiveXSpecimenDefinitionAdditive'] =
+        additiveXSpecimenDefinitionAdditive.toJson();
 
     return json;
   }
@@ -983,8 +956,7 @@ class SpecimenDefinitionAdditive extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    CodeableConcept? additiveCodeableConcept,
-    Reference? additiveReference,
+    CodeableConcept? additiveXSpecimenDefinitionAdditive,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -994,9 +966,9 @@ class SpecimenDefinitionAdditive extends BackboneElement {
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
-      additiveCodeableConcept:
-          additiveCodeableConcept ?? this.additiveCodeableConcept,
-      additiveReference: additiveReference ?? this.additiveReference,
+      additiveXSpecimenDefinitionAdditive:
+          additiveXSpecimenDefinitionAdditive ??
+              this.additiveXSpecimenDefinitionAdditive,
     );
   }
 }

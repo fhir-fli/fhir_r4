@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'consent.g.dart';
+
 /// [Consent]
 /// A record of a healthcare consumer’s choices, which permits or denies
 /// identified recipient(s) or recipient role(s) to perform one or more
@@ -28,8 +30,7 @@ class Consent extends DomainResource {
     this.dateTime,
     this.performer,
     this.organization,
-    this.sourceAttachment,
-    this.sourceReference,
+    this.sourceXConsentConsent,
     this.policy,
     this.policyRule,
     this.verification,
@@ -150,14 +151,9 @@ class Consent extends DomainResource {
               )
               .toList()
           : null,
-      sourceAttachment: json['sourceAttachment'] != null
+      sourceXConsentConsent: json['sourceXConsentConsent'] != null
           ? Attachment.fromJson(
-              json['sourceAttachment'] as Map<String, dynamic>,
-            )
-          : null,
-      sourceReference: json['sourceReference'] != null
-          ? Reference.fromJson(
-              json['sourceReference'] as Map<String, dynamic>,
+              json['sourceXConsentConsent'] as Map<String, dynamic>,
             )
           : null,
       policy: json['policy'] != null
@@ -272,19 +268,12 @@ class Consent extends DomainResource {
   /// which it is executed.
   final List<Reference>? organization;
 
-  /// [sourceAttachment]
+  /// [sourceXConsentConsent]
   /// The source on which this consent statement is based. The source might
   /// be a scanned original paper form, or a reference to a consent that
   /// links back to such a source, a reference to a document repository (e.g.
   /// XDS) that stores the original consent document.
-  final Attachment? sourceAttachment;
-
-  /// [sourceReference]
-  /// The source on which this consent statement is based. The source might
-  /// be a scanned original paper form, or a reference to a consent that
-  /// links back to such a source, a reference to a document repository (e.g.
-  /// XDS) that stores the original consent document.
-  final Reference? sourceReference;
+  final Attachment? sourceXConsentConsent;
 
   /// [policy]
   /// The references to the policies that are included in this consent scope.
@@ -367,12 +356,8 @@ class Consent extends DomainResource {
       json['organization'] = organization!.map((e) => e.toJson()).toList();
     }
 
-    if (sourceAttachment != null) {
-      json['sourceAttachment'] = sourceAttachment!.toJson();
-    }
-
-    if (sourceReference != null) {
-      json['sourceReference'] = sourceReference!.toJson();
+    if (sourceXConsentConsent != null) {
+      json['sourceXConsentConsent'] = sourceXConsentConsent!.toJson();
     }
 
     if (policy != null && policy!.isNotEmpty) {
@@ -414,8 +399,7 @@ class Consent extends DomainResource {
     FhirDateTime? dateTime,
     List<Reference>? performer,
     List<Reference>? organization,
-    Attachment? sourceAttachment,
-    Reference? sourceReference,
+    Attachment? sourceXConsentConsent,
     List<ConsentPolicy>? policy,
     CodeableConcept? policyRule,
     List<ConsentVerification>? verification,
@@ -442,8 +426,8 @@ class Consent extends DomainResource {
       dateTime: dateTime ?? this.dateTime,
       performer: performer ?? this.performer,
       organization: organization ?? this.organization,
-      sourceAttachment: sourceAttachment ?? this.sourceAttachment,
-      sourceReference: sourceReference ?? this.sourceReference,
+      sourceXConsentConsent:
+          sourceXConsentConsent ?? this.sourceXConsentConsent,
       policy: policy ?? this.policy,
       policyRule: policyRule ?? this.policyRule,
       verification: verification ?? this.verification,

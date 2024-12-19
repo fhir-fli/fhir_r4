@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'value_set.g.dart';
+
 /// [ValueSet]
 /// A ValueSet resource instance specifies a set of codes drawn from one or
 /// more code systems, intended for use in a particular context. Value sets
@@ -1651,13 +1653,7 @@ class ValueSetParameter extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.name,
-    this.valueString,
-    this.valueBoolean,
-    this.valueInteger,
-    this.valueDecimal,
-    this.valueUri,
-    this.valueCode,
-    this.valueDateTime,
+    this.valueXValueSetParameter,
     super.disallowExtensions,
   });
 
@@ -1691,52 +1687,13 @@ class ValueSetParameter extends BackboneElement {
         'value': json['name'],
         '_value': json['_name'],
       }),
-      valueString: (json['valueString'] != null || json['_valueString'] != null)
+      valueXValueSetParameter: (json['valueXValueSetParameter'] != null ||
+              json['_valueXValueSetParameter'] != null)
           ? FhirString.fromJson({
-              'value': json['valueString'],
-              '_value': json['_valueString'],
+              'value': json['valueXValueSetParameter'],
+              '_value': json['_valueXValueSetParameter'],
             })
           : null,
-      valueBoolean:
-          (json['valueBoolean'] != null || json['_valueBoolean'] != null)
-              ? FhirBoolean.fromJson({
-                  'value': json['valueBoolean'],
-                  '_value': json['_valueBoolean'],
-                })
-              : null,
-      valueInteger:
-          (json['valueInteger'] != null || json['_valueInteger'] != null)
-              ? FhirInteger.fromJson({
-                  'value': json['valueInteger'],
-                  '_value': json['_valueInteger'],
-                })
-              : null,
-      valueDecimal:
-          (json['valueDecimal'] != null || json['_valueDecimal'] != null)
-              ? FhirDecimal.fromJson({
-                  'value': json['valueDecimal'],
-                  '_value': json['_valueDecimal'],
-                })
-              : null,
-      valueUri: (json['valueUri'] != null || json['_valueUri'] != null)
-          ? FhirUri.fromJson({
-              'value': json['valueUri'],
-              '_value': json['_valueUri'],
-            })
-          : null,
-      valueCode: (json['valueCode'] != null || json['_valueCode'] != null)
-          ? FhirCode.fromJson({
-              'value': json['valueCode'],
-              '_value': json['_valueCode'],
-            })
-          : null,
-      valueDateTime:
-          (json['valueDateTime'] != null || json['_valueDateTime'] != null)
-              ? FhirDateTime.fromJson({
-                  'value': json['valueDateTime'],
-                  '_value': json['_valueDateTime'],
-                })
-              : null,
     );
   }
 
@@ -1788,33 +1745,9 @@ class ValueSetParameter extends BackboneElement {
   /// parameters used to control the expansion process.
   final FhirString name;
 
-  /// [valueString]
+  /// [valueXValueSetParameter]
   /// The value of the parameter.
-  final FhirString? valueString;
-
-  /// [valueBoolean]
-  /// The value of the parameter.
-  final FhirBoolean? valueBoolean;
-
-  /// [valueInteger]
-  /// The value of the parameter.
-  final FhirInteger? valueInteger;
-
-  /// [valueDecimal]
-  /// The value of the parameter.
-  final FhirDecimal? valueDecimal;
-
-  /// [valueUri]
-  /// The value of the parameter.
-  final FhirUri? valueUri;
-
-  /// [valueCode]
-  /// The value of the parameter.
-  final FhirCode? valueCode;
-
-  /// [valueDateTime]
-  /// The value of the parameter.
-  final FhirDateTime? valueDateTime;
+  final FhirString? valueXValueSetParameter;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1838,13 +1771,7 @@ class ValueSetParameter extends BackboneElement {
     }
 
     addField('name', name);
-    addField('valueString', valueString);
-    addField('valueBoolean', valueBoolean);
-    addField('valueInteger', valueInteger);
-    addField('valueDecimal', valueDecimal);
-    addField('valueUri', valueUri);
-    addField('valueCode', valueCode);
-    addField('valueDateTime', valueDateTime);
+    addField('valueXValueSetParameter', valueXValueSetParameter);
     return json;
   }
 
@@ -1856,13 +1783,7 @@ class ValueSetParameter extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirString? name,
-    FhirString? valueString,
-    FhirBoolean? valueBoolean,
-    FhirInteger? valueInteger,
-    FhirDecimal? valueDecimal,
-    FhirUri? valueUri,
-    FhirCode? valueCode,
-    FhirDateTime? valueDateTime,
+    FhirString? valueXValueSetParameter,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1873,13 +1794,8 @@ class ValueSetParameter extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       name: name ?? this.name,
-      valueString: valueString ?? this.valueString,
-      valueBoolean: valueBoolean ?? this.valueBoolean,
-      valueInteger: valueInteger ?? this.valueInteger,
-      valueDecimal: valueDecimal ?? this.valueDecimal,
-      valueUri: valueUri ?? this.valueUri,
-      valueCode: valueCode ?? this.valueCode,
-      valueDateTime: valueDateTime ?? this.valueDateTime,
+      valueXValueSetParameter:
+          valueXValueSetParameter ?? this.valueXValueSetParameter,
     );
   }
 }

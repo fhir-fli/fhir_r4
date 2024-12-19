@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'medication_knowledge.g.dart';
+
 /// [MedicationKnowledge]
 /// Information about a medication that is used to support knowledge.
 class MedicationKnowledge extends DomainResource {
@@ -973,8 +975,7 @@ class MedicationKnowledgeIngredient extends BackboneElement {
     super.id,
     super.extension_,
     super.modifierExtension,
-    this.itemCodeableConcept,
-    this.itemReference,
+    required this.itemXMedicationKnowledgeIngredient,
     this.isActive,
     this.strength,
     super.disallowExtensions,
@@ -1006,16 +1007,9 @@ class MedicationKnowledgeIngredient extends BackboneElement {
               )
               .toList()
           : null,
-      itemCodeableConcept: json['itemCodeableConcept'] != null
-          ? CodeableConcept.fromJson(
-              json['itemCodeableConcept'] as Map<String, dynamic>,
-            )
-          : null,
-      itemReference: json['itemReference'] != null
-          ? Reference.fromJson(
-              json['itemReference'] as Map<String, dynamic>,
-            )
-          : null,
+      itemXMedicationKnowledgeIngredient: CodeableConcept.fromJson(
+        json['itemXMedicationKnowledgeIngredient'] as Map<String, dynamic>,
+      ),
       isActive: (json['isActive'] != null || json['_isActive'] != null)
           ? FhirBoolean.fromJson({
               'value': json['isActive'],
@@ -1072,15 +1066,10 @@ class MedicationKnowledgeIngredient extends BackboneElement {
   @override
   String get fhirType => 'MedicationKnowledgeIngredient';
 
-  /// [itemCodeableConcept]
+  /// [itemXMedicationKnowledgeIngredient]
   /// The actual ingredient - either a substance (simple ingredient) or
   /// another medication.
-  final CodeableConcept? itemCodeableConcept;
-
-  /// [itemReference]
-  /// The actual ingredient - either a substance (simple ingredient) or
-  /// another medication.
-  final Reference? itemReference;
+  final CodeableConcept itemXMedicationKnowledgeIngredient;
 
   /// [isActive]
   /// Indication of whether this ingredient affects the therapeutic action of
@@ -1114,13 +1103,8 @@ class MedicationKnowledgeIngredient extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    if (itemCodeableConcept != null) {
-      json['itemCodeableConcept'] = itemCodeableConcept!.toJson();
-    }
-
-    if (itemReference != null) {
-      json['itemReference'] = itemReference!.toJson();
-    }
+    json['itemXMedicationKnowledgeIngredient'] =
+        itemXMedicationKnowledgeIngredient.toJson();
 
     addField('isActive', isActive);
     if (strength != null) {
@@ -1137,8 +1121,7 @@ class MedicationKnowledgeIngredient extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    CodeableConcept? itemCodeableConcept,
-    Reference? itemReference,
+    CodeableConcept? itemXMedicationKnowledgeIngredient,
     FhirBoolean? isActive,
     Ratio? strength,
     Map<String, Object?>? userData,
@@ -1150,8 +1133,8 @@ class MedicationKnowledgeIngredient extends BackboneElement {
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
-      itemCodeableConcept: itemCodeableConcept ?? this.itemCodeableConcept,
-      itemReference: itemReference ?? this.itemReference,
+      itemXMedicationKnowledgeIngredient: itemXMedicationKnowledgeIngredient ??
+          this.itemXMedicationKnowledgeIngredient,
       isActive: isActive ?? this.isActive,
       strength: strength ?? this.strength,
     );
@@ -1494,8 +1477,7 @@ class MedicationKnowledgeAdministrationGuidelines extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.dosage,
-    this.indicationCodeableConcept,
-    this.indicationReference,
+    this.indicationXMedicationKnowledgeAdministrationGuidelines,
     this.patientCharacteristics,
     super.disallowExtensions,
   });
@@ -1535,16 +1517,13 @@ class MedicationKnowledgeAdministrationGuidelines extends BackboneElement {
               )
               .toList()
           : null,
-      indicationCodeableConcept: json['indicationCodeableConcept'] != null
-          ? CodeableConcept.fromJson(
-              json['indicationCodeableConcept'] as Map<String, dynamic>,
-            )
-          : null,
-      indicationReference: json['indicationReference'] != null
-          ? Reference.fromJson(
-              json['indicationReference'] as Map<String, dynamic>,
-            )
-          : null,
+      indicationXMedicationKnowledgeAdministrationGuidelines:
+          json['indicationXMedicationKnowledgeAdministrationGuidelines'] != null
+              ? CodeableConcept.fromJson(
+                  json['indicationXMedicationKnowledgeAdministrationGuidelines']
+                      as Map<String, dynamic>,
+                )
+              : null,
       patientCharacteristics: json['patientCharacteristics'] != null
           ? (json['patientCharacteristics'] as List<dynamic>)
               .map<MedicationKnowledgePatientCharacteristics>(
@@ -1603,15 +1582,10 @@ class MedicationKnowledgeAdministrationGuidelines extends BackboneElement {
   /// Dosage for the medication for the specific guidelines.
   final List<MedicationKnowledgeDosage>? dosage;
 
-  /// [indicationCodeableConcept]
+  /// [indicationXMedicationKnowledgeAdministrationGuidelines]
   /// Indication for use that apply to the specific administration
   /// guidelines.
-  final CodeableConcept? indicationCodeableConcept;
-
-  /// [indicationReference]
-  /// Indication for use that apply to the specific administration
-  /// guidelines.
-  final Reference? indicationReference;
+  final CodeableConcept? indicationXMedicationKnowledgeAdministrationGuidelines;
 
   /// [patientCharacteristics]
   /// Characteristics of the patient that are relevant to the administration
@@ -1643,12 +1617,9 @@ class MedicationKnowledgeAdministrationGuidelines extends BackboneElement {
       json['dosage'] = dosage!.map((e) => e.toJson()).toList();
     }
 
-    if (indicationCodeableConcept != null) {
-      json['indicationCodeableConcept'] = indicationCodeableConcept!.toJson();
-    }
-
-    if (indicationReference != null) {
-      json['indicationReference'] = indicationReference!.toJson();
+    if (indicationXMedicationKnowledgeAdministrationGuidelines != null) {
+      json['indicationXMedicationKnowledgeAdministrationGuidelines'] =
+          indicationXMedicationKnowledgeAdministrationGuidelines!.toJson();
     }
 
     if (patientCharacteristics != null && patientCharacteristics!.isNotEmpty) {
@@ -1668,8 +1639,7 @@ class MedicationKnowledgeAdministrationGuidelines extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<MedicationKnowledgeDosage>? dosage,
-    CodeableConcept? indicationCodeableConcept,
-    Reference? indicationReference,
+    CodeableConcept? indicationXMedicationKnowledgeAdministrationGuidelines,
     List<MedicationKnowledgePatientCharacteristics>? patientCharacteristics,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -1681,9 +1651,9 @@ class MedicationKnowledgeAdministrationGuidelines extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       dosage: dosage ?? this.dosage,
-      indicationCodeableConcept:
-          indicationCodeableConcept ?? this.indicationCodeableConcept,
-      indicationReference: indicationReference ?? this.indicationReference,
+      indicationXMedicationKnowledgeAdministrationGuidelines:
+          indicationXMedicationKnowledgeAdministrationGuidelines ??
+              this.indicationXMedicationKnowledgeAdministrationGuidelines,
       patientCharacteristics:
           patientCharacteristics ?? this.patientCharacteristics,
     );
@@ -1862,8 +1832,7 @@ class MedicationKnowledgePatientCharacteristics extends BackboneElement {
     super.id,
     super.extension_,
     super.modifierExtension,
-    this.characteristicCodeableConcept,
-    this.characteristicQuantity,
+    required this.characteristicXMedicationKnowledgePatientCharacteristics,
     this.value,
     super.disallowExtensions,
   });
@@ -1894,17 +1863,11 @@ class MedicationKnowledgePatientCharacteristics extends BackboneElement {
               )
               .toList()
           : null,
-      characteristicCodeableConcept:
-          json['characteristicCodeableConcept'] != null
-              ? CodeableConcept.fromJson(
-                  json['characteristicCodeableConcept'] as Map<String, dynamic>,
-                )
-              : null,
-      characteristicQuantity: json['characteristicQuantity'] != null
-          ? Quantity.fromJson(
-              json['characteristicQuantity'] as Map<String, dynamic>,
-            )
-          : null,
+      characteristicXMedicationKnowledgePatientCharacteristics:
+          CodeableConcept.fromJson(
+        json['characteristicXMedicationKnowledgePatientCharacteristics']
+            as Map<String, dynamic>,
+      ),
       value: parsePrimitiveList<FhirString>(
         json['value'] as List<dynamic>?,
         json['_value'] as List<dynamic>?,
@@ -1955,15 +1918,11 @@ class MedicationKnowledgePatientCharacteristics extends BackboneElement {
   @override
   String get fhirType => 'MedicationKnowledgePatientCharacteristics';
 
-  /// [characteristicCodeableConcept]
+  /// [characteristicXMedicationKnowledgePatientCharacteristics]
   /// Specific characteristic that is relevant to the administration
   /// guideline (e.g. height, weight, gender).
-  final CodeableConcept? characteristicCodeableConcept;
-
-  /// [characteristicQuantity]
-  /// Specific characteristic that is relevant to the administration
-  /// guideline (e.g. height, weight, gender).
-  final Quantity? characteristicQuantity;
+  final CodeableConcept
+      characteristicXMedicationKnowledgePatientCharacteristics;
 
   /// [value]
   /// The specific characteristic (e.g. height, weight, gender, etc.).
@@ -1990,14 +1949,8 @@ class MedicationKnowledgePatientCharacteristics extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    if (characteristicCodeableConcept != null) {
-      json['characteristicCodeableConcept'] =
-          characteristicCodeableConcept!.toJson();
-    }
-
-    if (characteristicQuantity != null) {
-      json['characteristicQuantity'] = characteristicQuantity!.toJson();
-    }
+    json['characteristicXMedicationKnowledgePatientCharacteristics'] =
+        characteristicXMedicationKnowledgePatientCharacteristics.toJson();
 
     if (value != null && value!.isNotEmpty) {
       final fieldJson0 = value!.map((e) => e.toJson()).toList();
@@ -2018,8 +1971,7 @@ class MedicationKnowledgePatientCharacteristics extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    CodeableConcept? characteristicCodeableConcept,
-    Quantity? characteristicQuantity,
+    CodeableConcept? characteristicXMedicationKnowledgePatientCharacteristics,
     List<FhirString>? value,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -2030,10 +1982,9 @@ class MedicationKnowledgePatientCharacteristics extends BackboneElement {
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
-      characteristicCodeableConcept:
-          characteristicCodeableConcept ?? this.characteristicCodeableConcept,
-      characteristicQuantity:
-          characteristicQuantity ?? this.characteristicQuantity,
+      characteristicXMedicationKnowledgePatientCharacteristics:
+          characteristicXMedicationKnowledgePatientCharacteristics ??
+              this.characteristicXMedicationKnowledgePatientCharacteristics,
       value: value ?? this.value,
     );
   }
@@ -2376,10 +2327,7 @@ class MedicationKnowledgeDrugCharacteristic extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.type,
-    this.valueCodeableConcept,
-    this.valueString,
-    this.valueQuantity,
-    this.valueBase64Binary,
+    this.valueXMedicationKnowledgeDrugCharacteristic,
     super.disallowExtensions,
   });
 
@@ -2414,29 +2362,13 @@ class MedicationKnowledgeDrugCharacteristic extends BackboneElement {
               json['type'] as Map<String, dynamic>,
             )
           : null,
-      valueCodeableConcept: json['valueCodeableConcept'] != null
-          ? CodeableConcept.fromJson(
-              json['valueCodeableConcept'] as Map<String, dynamic>,
-            )
-          : null,
-      valueString: (json['valueString'] != null || json['_valueString'] != null)
-          ? FhirString.fromJson({
-              'value': json['valueString'],
-              '_value': json['_valueString'],
-            })
-          : null,
-      valueQuantity: json['valueQuantity'] != null
-          ? Quantity.fromJson(
-              json['valueQuantity'] as Map<String, dynamic>,
-            )
-          : null,
-      valueBase64Binary: (json['valueBase64Binary'] != null ||
-              json['_valueBase64Binary'] != null)
-          ? FhirBase64Binary.fromJson({
-              'value': json['valueBase64Binary'],
-              '_value': json['_valueBase64Binary'],
-            })
-          : null,
+      valueXMedicationKnowledgeDrugCharacteristic:
+          json['valueXMedicationKnowledgeDrugCharacteristic'] != null
+              ? CodeableConcept.fromJson(
+                  json['valueXMedicationKnowledgeDrugCharacteristic']
+                      as Map<String, dynamic>,
+                )
+              : null,
     );
   }
 
@@ -2487,21 +2419,9 @@ class MedicationKnowledgeDrugCharacteristic extends BackboneElement {
   /// described (for example, colour, shape, imprint).
   final CodeableConcept? type;
 
-  /// [valueCodeableConcept]
+  /// [valueXMedicationKnowledgeDrugCharacteristic]
   /// Description of the characteristic.
-  final CodeableConcept? valueCodeableConcept;
-
-  /// [valueString]
-  /// Description of the characteristic.
-  final FhirString? valueString;
-
-  /// [valueQuantity]
-  /// Description of the characteristic.
-  final Quantity? valueQuantity;
-
-  /// [valueBase64Binary]
-  /// Description of the characteristic.
-  final FhirBase64Binary? valueBase64Binary;
+  final CodeableConcept? valueXMedicationKnowledgeDrugCharacteristic;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2528,16 +2448,11 @@ class MedicationKnowledgeDrugCharacteristic extends BackboneElement {
       json['type'] = type!.toJson();
     }
 
-    if (valueCodeableConcept != null) {
-      json['valueCodeableConcept'] = valueCodeableConcept!.toJson();
+    if (valueXMedicationKnowledgeDrugCharacteristic != null) {
+      json['valueXMedicationKnowledgeDrugCharacteristic'] =
+          valueXMedicationKnowledgeDrugCharacteristic!.toJson();
     }
 
-    addField('valueString', valueString);
-    if (valueQuantity != null) {
-      json['valueQuantity'] = valueQuantity!.toJson();
-    }
-
-    addField('valueBase64Binary', valueBase64Binary);
     return json;
   }
 
@@ -2549,10 +2464,7 @@ class MedicationKnowledgeDrugCharacteristic extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     CodeableConcept? type,
-    CodeableConcept? valueCodeableConcept,
-    FhirString? valueString,
-    Quantity? valueQuantity,
-    FhirBase64Binary? valueBase64Binary,
+    CodeableConcept? valueXMedicationKnowledgeDrugCharacteristic,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2563,10 +2475,9 @@ class MedicationKnowledgeDrugCharacteristic extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
-      valueCodeableConcept: valueCodeableConcept ?? this.valueCodeableConcept,
-      valueString: valueString ?? this.valueString,
-      valueQuantity: valueQuantity ?? this.valueQuantity,
-      valueBase64Binary: valueBase64Binary ?? this.valueBase64Binary,
+      valueXMedicationKnowledgeDrugCharacteristic:
+          valueXMedicationKnowledgeDrugCharacteristic ??
+              this.valueXMedicationKnowledgeDrugCharacteristic,
     );
   }
 }

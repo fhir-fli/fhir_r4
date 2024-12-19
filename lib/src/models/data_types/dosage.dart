@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'dosage.g.dart';
+
 /// [Dosage]
 /// Indicates how the medication is/was taken or should be taken by the
 /// patient.
@@ -18,8 +20,7 @@ class Dosage extends BackboneType {
     this.additionalInstruction,
     this.patientInstruction,
     this.timing,
-    this.asNeededBoolean,
-    this.asNeededCodeableConcept,
+    this.asNeededXDosageDosage,
     this.site,
     this.route,
     this.method,
@@ -89,17 +90,12 @@ class Dosage extends BackboneType {
               json['timing'] as Map<String, dynamic>,
             )
           : null,
-      asNeededBoolean:
-          (json['asNeededBoolean'] != null || json['_asNeededBoolean'] != null)
-              ? FhirBoolean.fromJson({
-                  'value': json['asNeededBoolean'],
-                  '_value': json['_asNeededBoolean'],
-                })
-              : null,
-      asNeededCodeableConcept: json['asNeededCodeableConcept'] != null
-          ? CodeableConcept.fromJson(
-              json['asNeededCodeableConcept'] as Map<String, dynamic>,
-            )
+      asNeededXDosageDosage: (json['asNeededXDosageDosage'] != null ||
+              json['_asNeededXDosageDosage'] != null)
+          ? FhirBoolean.fromJson({
+              'value': json['asNeededXDosageDosage'],
+              '_value': json['_asNeededXDosageDosage'],
+            })
           : null,
       site: json['site'] != null
           ? CodeableConcept.fromJson(
@@ -209,17 +205,11 @@ class Dosage extends BackboneType {
   /// When medication should be administered.
   final Timing? timing;
 
-  /// [asNeededBoolean]
+  /// [asNeededXDosageDosage]
   /// Indicates whether the Medication is only taken when needed within a
   /// specific dosing schedule (Boolean option), or it indicates the
   /// precondition for taking the Medication (CodeableConcept).
-  final FhirBoolean? asNeededBoolean;
-
-  /// [asNeededCodeableConcept]
-  /// Indicates whether the Medication is only taken when needed within a
-  /// specific dosing schedule (Boolean option), or it indicates the
-  /// precondition for taking the Medication (CodeableConcept).
-  final CodeableConcept? asNeededCodeableConcept;
+  final FhirBoolean? asNeededXDosageDosage;
 
   /// [site]
   /// Body site to administer to.
@@ -282,11 +272,7 @@ class Dosage extends BackboneType {
       json['timing'] = timing!.toJson();
     }
 
-    addField('asNeededBoolean', asNeededBoolean);
-    if (asNeededCodeableConcept != null) {
-      json['asNeededCodeableConcept'] = asNeededCodeableConcept!.toJson();
-    }
-
+    addField('asNeededXDosageDosage', asNeededXDosageDosage);
     if (site != null) {
       json['site'] = site!.toJson();
     }
@@ -330,8 +316,7 @@ class Dosage extends BackboneType {
     List<CodeableConcept>? additionalInstruction,
     FhirString? patientInstruction,
     Timing? timing,
-    FhirBoolean? asNeededBoolean,
-    CodeableConcept? asNeededCodeableConcept,
+    FhirBoolean? asNeededXDosageDosage,
     CodeableConcept? site,
     CodeableConcept? route,
     CodeableConcept? method,
@@ -354,9 +339,8 @@ class Dosage extends BackboneType {
           additionalInstruction ?? this.additionalInstruction,
       patientInstruction: patientInstruction ?? this.patientInstruction,
       timing: timing ?? this.timing,
-      asNeededBoolean: asNeededBoolean ?? this.asNeededBoolean,
-      asNeededCodeableConcept:
-          asNeededCodeableConcept ?? this.asNeededCodeableConcept,
+      asNeededXDosageDosage:
+          asNeededXDosageDosage ?? this.asNeededXDosageDosage,
       site: site ?? this.site,
       route: route ?? this.route,
       method: method ?? this.method,
@@ -379,11 +363,8 @@ class DosageDoseAndRate extends Element {
     super.id,
     super.extension_,
     this.type,
-    this.doseRange,
-    this.doseQuantity,
-    this.rateRatio,
-    this.rateRange,
-    this.rateQuantity,
+    this.doseXDosageDoseAndRate,
+    this.rateXDosageDoseAndRate,
     super.disallowExtensions,
   });
 
@@ -409,29 +390,14 @@ class DosageDoseAndRate extends Element {
               json['type'] as Map<String, dynamic>,
             )
           : null,
-      doseRange: json['doseRange'] != null
+      doseXDosageDoseAndRate: json['doseXDosageDoseAndRate'] != null
           ? Range.fromJson(
-              json['doseRange'] as Map<String, dynamic>,
+              json['doseXDosageDoseAndRate'] as Map<String, dynamic>,
             )
           : null,
-      doseQuantity: json['doseQuantity'] != null
-          ? Quantity.fromJson(
-              json['doseQuantity'] as Map<String, dynamic>,
-            )
-          : null,
-      rateRatio: json['rateRatio'] != null
+      rateXDosageDoseAndRate: json['rateXDosageDoseAndRate'] != null
           ? Ratio.fromJson(
-              json['rateRatio'] as Map<String, dynamic>,
-            )
-          : null,
-      rateRange: json['rateRange'] != null
-          ? Range.fromJson(
-              json['rateRange'] as Map<String, dynamic>,
-            )
-          : null,
-      rateQuantity: json['rateQuantity'] != null
-          ? Quantity.fromJson(
-              json['rateQuantity'] as Map<String, dynamic>,
+              json['rateXDosageDoseAndRate'] as Map<String, dynamic>,
             )
           : null,
     );
@@ -483,25 +449,13 @@ class DosageDoseAndRate extends Element {
   /// The kind of dose or rate specified, for example, ordered or calculated.
   final CodeableConcept? type;
 
-  /// [doseRange]
+  /// [doseXDosageDoseAndRate]
   /// Amount of medication per dose.
-  final Range? doseRange;
+  final Range? doseXDosageDoseAndRate;
 
-  /// [doseQuantity]
-  /// Amount of medication per dose.
-  final Quantity? doseQuantity;
-
-  /// [rateRatio]
+  /// [rateXDosageDoseAndRate]
   /// Amount of medication per unit of time.
-  final Ratio? rateRatio;
-
-  /// [rateRange]
-  /// Amount of medication per unit of time.
-  final Range? rateRange;
-
-  /// [rateQuantity]
-  /// Amount of medication per unit of time.
-  final Quantity? rateQuantity;
+  final Ratio? rateXDosageDoseAndRate;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -523,24 +477,12 @@ class DosageDoseAndRate extends Element {
       json['type'] = type!.toJson();
     }
 
-    if (doseRange != null) {
-      json['doseRange'] = doseRange!.toJson();
+    if (doseXDosageDoseAndRate != null) {
+      json['doseXDosageDoseAndRate'] = doseXDosageDoseAndRate!.toJson();
     }
 
-    if (doseQuantity != null) {
-      json['doseQuantity'] = doseQuantity!.toJson();
-    }
-
-    if (rateRatio != null) {
-      json['rateRatio'] = rateRatio!.toJson();
-    }
-
-    if (rateRange != null) {
-      json['rateRange'] = rateRange!.toJson();
-    }
-
-    if (rateQuantity != null) {
-      json['rateQuantity'] = rateQuantity!.toJson();
+    if (rateXDosageDoseAndRate != null) {
+      json['rateXDosageDoseAndRate'] = rateXDosageDoseAndRate!.toJson();
     }
 
     return json;
@@ -553,11 +495,8 @@ class DosageDoseAndRate extends Element {
     FhirString? id,
     List<FhirExtension>? extension_,
     CodeableConcept? type,
-    Range? doseRange,
-    Quantity? doseQuantity,
-    Ratio? rateRatio,
-    Range? rateRange,
-    Quantity? rateQuantity,
+    Range? doseXDosageDoseAndRate,
+    Ratio? rateXDosageDoseAndRate,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -567,11 +506,10 @@ class DosageDoseAndRate extends Element {
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       type: type ?? this.type,
-      doseRange: doseRange ?? this.doseRange,
-      doseQuantity: doseQuantity ?? this.doseQuantity,
-      rateRatio: rateRatio ?? this.rateRatio,
-      rateRange: rateRange ?? this.rateRange,
-      rateQuantity: rateQuantity ?? this.rateQuantity,
+      doseXDosageDoseAndRate:
+          doseXDosageDoseAndRate ?? this.doseXDosageDoseAndRate,
+      rateXDosageDoseAndRate:
+          rateXDosageDoseAndRate ?? this.rateXDosageDoseAndRate,
     );
   }
 }

@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'questionnaire.g.dart';
+
 /// [Questionnaire]
 /// A structured set of questions intended to guide the collection of
 /// answers from end-users. Questionnaires provide detailed control over
@@ -959,16 +961,7 @@ class QuestionnaireEnableWhen extends BackboneElement {
     super.modifierExtension,
     required this.question,
     required this.operator_,
-    this.answerBoolean,
-    this.answerDecimal,
-    this.answerInteger,
-    this.answerDate,
-    this.answerDateTime,
-    this.answerTime,
-    this.answerString,
-    this.answerCoding,
-    this.answerQuantity,
-    this.answerReference,
+    required this.answerXQuestionnaireEnableWhen,
     super.disallowExtensions,
   });
 
@@ -1006,68 +999,10 @@ class QuestionnaireEnableWhen extends BackboneElement {
         'value': json['operator'],
         '_value': json['_operator'],
       }),
-      answerBoolean:
-          (json['answerBoolean'] != null || json['_answerBoolean'] != null)
-              ? FhirBoolean.fromJson({
-                  'value': json['answerBoolean'],
-                  '_value': json['_answerBoolean'],
-                })
-              : null,
-      answerDecimal:
-          (json['answerDecimal'] != null || json['_answerDecimal'] != null)
-              ? FhirDecimal.fromJson({
-                  'value': json['answerDecimal'],
-                  '_value': json['_answerDecimal'],
-                })
-              : null,
-      answerInteger:
-          (json['answerInteger'] != null || json['_answerInteger'] != null)
-              ? FhirInteger.fromJson({
-                  'value': json['answerInteger'],
-                  '_value': json['_answerInteger'],
-                })
-              : null,
-      answerDate: (json['answerDate'] != null || json['_answerDate'] != null)
-          ? FhirDate.fromJson({
-              'value': json['answerDate'],
-              '_value': json['_answerDate'],
-            })
-          : null,
-      answerDateTime:
-          (json['answerDateTime'] != null || json['_answerDateTime'] != null)
-              ? FhirDateTime.fromJson({
-                  'value': json['answerDateTime'],
-                  '_value': json['_answerDateTime'],
-                })
-              : null,
-      answerTime: (json['answerTime'] != null || json['_answerTime'] != null)
-          ? FhirTime.fromJson({
-              'value': json['answerTime'],
-              '_value': json['_answerTime'],
-            })
-          : null,
-      answerString:
-          (json['answerString'] != null || json['_answerString'] != null)
-              ? FhirString.fromJson({
-                  'value': json['answerString'],
-                  '_value': json['_answerString'],
-                })
-              : null,
-      answerCoding: json['answerCoding'] != null
-          ? Coding.fromJson(
-              json['answerCoding'] as Map<String, dynamic>,
-            )
-          : null,
-      answerQuantity: json['answerQuantity'] != null
-          ? Quantity.fromJson(
-              json['answerQuantity'] as Map<String, dynamic>,
-            )
-          : null,
-      answerReference: json['answerReference'] != null
-          ? Reference.fromJson(
-              json['answerReference'] as Map<String, dynamic>,
-            )
-          : null,
+      answerXQuestionnaireEnableWhen: FhirBoolean.fromJson({
+        'value': json['answerXQuestionnaireEnableWhen'],
+        '_value': json['_answerXQuestionnaireEnableWhen'],
+      }),
     );
   }
 
@@ -1122,55 +1057,10 @@ class QuestionnaireEnableWhen extends BackboneElement {
   /// Specifies the criteria by which the question is enabled.
   final QuestionnaireItemOperator operator_;
 
-  /// [answerBoolean]
+  /// [answerXQuestionnaireEnableWhen]
   /// A value that the referenced question is tested using the specified
   /// operator in order for the item to be enabled.
-  final FhirBoolean? answerBoolean;
-
-  /// [answerDecimal]
-  /// A value that the referenced question is tested using the specified
-  /// operator in order for the item to be enabled.
-  final FhirDecimal? answerDecimal;
-
-  /// [answerInteger]
-  /// A value that the referenced question is tested using the specified
-  /// operator in order for the item to be enabled.
-  final FhirInteger? answerInteger;
-
-  /// [answerDate]
-  /// A value that the referenced question is tested using the specified
-  /// operator in order for the item to be enabled.
-  final FhirDate? answerDate;
-
-  /// [answerDateTime]
-  /// A value that the referenced question is tested using the specified
-  /// operator in order for the item to be enabled.
-  final FhirDateTime? answerDateTime;
-
-  /// [answerTime]
-  /// A value that the referenced question is tested using the specified
-  /// operator in order for the item to be enabled.
-  final FhirTime? answerTime;
-
-  /// [answerString]
-  /// A value that the referenced question is tested using the specified
-  /// operator in order for the item to be enabled.
-  final FhirString? answerString;
-
-  /// [answerCoding]
-  /// A value that the referenced question is tested using the specified
-  /// operator in order for the item to be enabled.
-  final Coding? answerCoding;
-
-  /// [answerQuantity]
-  /// A value that the referenced question is tested using the specified
-  /// operator in order for the item to be enabled.
-  final Quantity? answerQuantity;
-
-  /// [answerReference]
-  /// A value that the referenced question is tested using the specified
-  /// operator in order for the item to be enabled.
-  final Reference? answerReference;
+  final FhirBoolean answerXQuestionnaireEnableWhen;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1195,25 +1085,7 @@ class QuestionnaireEnableWhen extends BackboneElement {
 
     addField('question', question);
     addField('operator', operator_);
-    addField('answerBoolean', answerBoolean);
-    addField('answerDecimal', answerDecimal);
-    addField('answerInteger', answerInteger);
-    addField('answerDate', answerDate);
-    addField('answerDateTime', answerDateTime);
-    addField('answerTime', answerTime);
-    addField('answerString', answerString);
-    if (answerCoding != null) {
-      json['answerCoding'] = answerCoding!.toJson();
-    }
-
-    if (answerQuantity != null) {
-      json['answerQuantity'] = answerQuantity!.toJson();
-    }
-
-    if (answerReference != null) {
-      json['answerReference'] = answerReference!.toJson();
-    }
-
+    addField('answerXQuestionnaireEnableWhen', answerXQuestionnaireEnableWhen);
     return json;
   }
 
@@ -1226,16 +1098,7 @@ class QuestionnaireEnableWhen extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     FhirString? question,
     QuestionnaireItemOperator? operator_,
-    FhirBoolean? answerBoolean,
-    FhirDecimal? answerDecimal,
-    FhirInteger? answerInteger,
-    FhirDate? answerDate,
-    FhirDateTime? answerDateTime,
-    FhirTime? answerTime,
-    FhirString? answerString,
-    Coding? answerCoding,
-    Quantity? answerQuantity,
-    Reference? answerReference,
+    FhirBoolean? answerXQuestionnaireEnableWhen,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1247,16 +1110,8 @@ class QuestionnaireEnableWhen extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       question: question ?? this.question,
       operator_: operator_ ?? this.operator_,
-      answerBoolean: answerBoolean ?? this.answerBoolean,
-      answerDecimal: answerDecimal ?? this.answerDecimal,
-      answerInteger: answerInteger ?? this.answerInteger,
-      answerDate: answerDate ?? this.answerDate,
-      answerDateTime: answerDateTime ?? this.answerDateTime,
-      answerTime: answerTime ?? this.answerTime,
-      answerString: answerString ?? this.answerString,
-      answerCoding: answerCoding ?? this.answerCoding,
-      answerQuantity: answerQuantity ?? this.answerQuantity,
-      answerReference: answerReference ?? this.answerReference,
+      answerXQuestionnaireEnableWhen:
+          answerXQuestionnaireEnableWhen ?? this.answerXQuestionnaireEnableWhen,
     );
   }
 }
@@ -1271,12 +1126,7 @@ class QuestionnaireAnswerOption extends BackboneElement {
     super.id,
     super.extension_,
     super.modifierExtension,
-    this.valueInteger,
-    this.valueDate,
-    this.valueTime,
-    this.valueString,
-    this.valueCoding,
-    this.valueReference,
+    required this.valueXQuestionnaireAnswerOption,
     this.initialSelected,
     super.disallowExtensions,
   });
@@ -1307,41 +1157,10 @@ class QuestionnaireAnswerOption extends BackboneElement {
               )
               .toList()
           : null,
-      valueInteger:
-          (json['valueInteger'] != null || json['_valueInteger'] != null)
-              ? FhirInteger.fromJson({
-                  'value': json['valueInteger'],
-                  '_value': json['_valueInteger'],
-                })
-              : null,
-      valueDate: (json['valueDate'] != null || json['_valueDate'] != null)
-          ? FhirDate.fromJson({
-              'value': json['valueDate'],
-              '_value': json['_valueDate'],
-            })
-          : null,
-      valueTime: (json['valueTime'] != null || json['_valueTime'] != null)
-          ? FhirTime.fromJson({
-              'value': json['valueTime'],
-              '_value': json['_valueTime'],
-            })
-          : null,
-      valueString: (json['valueString'] != null || json['_valueString'] != null)
-          ? FhirString.fromJson({
-              'value': json['valueString'],
-              '_value': json['_valueString'],
-            })
-          : null,
-      valueCoding: json['valueCoding'] != null
-          ? Coding.fromJson(
-              json['valueCoding'] as Map<String, dynamic>,
-            )
-          : null,
-      valueReference: json['valueReference'] != null
-          ? Reference.fromJson(
-              json['valueReference'] as Map<String, dynamic>,
-            )
-          : null,
+      valueXQuestionnaireAnswerOption: FhirInteger.fromJson({
+        'value': json['valueXQuestionnaireAnswerOption'],
+        '_value': json['_valueXQuestionnaireAnswerOption'],
+      }),
       initialSelected:
           (json['initialSelected'] != null || json['_initialSelected'] != null)
               ? FhirBoolean.fromJson({
@@ -1394,29 +1213,9 @@ class QuestionnaireAnswerOption extends BackboneElement {
   @override
   String get fhirType => 'QuestionnaireAnswerOption';
 
-  /// [valueInteger]
+  /// [valueXQuestionnaireAnswerOption]
   /// A potential answer that's allowed as the answer to this question.
-  final FhirInteger? valueInteger;
-
-  /// [valueDate]
-  /// A potential answer that's allowed as the answer to this question.
-  final FhirDate? valueDate;
-
-  /// [valueTime]
-  /// A potential answer that's allowed as the answer to this question.
-  final FhirTime? valueTime;
-
-  /// [valueString]
-  /// A potential answer that's allowed as the answer to this question.
-  final FhirString? valueString;
-
-  /// [valueCoding]
-  /// A potential answer that's allowed as the answer to this question.
-  final Coding? valueCoding;
-
-  /// [valueReference]
-  /// A potential answer that's allowed as the answer to this question.
-  final Reference? valueReference;
+  final FhirInteger valueXQuestionnaireAnswerOption;
 
   /// [initialSelected]
   /// Indicates whether the answer value is selected when the list of
@@ -1444,18 +1243,8 @@ class QuestionnaireAnswerOption extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('valueInteger', valueInteger);
-    addField('valueDate', valueDate);
-    addField('valueTime', valueTime);
-    addField('valueString', valueString);
-    if (valueCoding != null) {
-      json['valueCoding'] = valueCoding!.toJson();
-    }
-
-    if (valueReference != null) {
-      json['valueReference'] = valueReference!.toJson();
-    }
-
+    addField(
+        'valueXQuestionnaireAnswerOption', valueXQuestionnaireAnswerOption);
     addField('initialSelected', initialSelected);
     return json;
   }
@@ -1467,12 +1256,7 @@ class QuestionnaireAnswerOption extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    FhirInteger? valueInteger,
-    FhirDate? valueDate,
-    FhirTime? valueTime,
-    FhirString? valueString,
-    Coding? valueCoding,
-    Reference? valueReference,
+    FhirInteger? valueXQuestionnaireAnswerOption,
     FhirBoolean? initialSelected,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -1483,12 +1267,8 @@ class QuestionnaireAnswerOption extends BackboneElement {
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
-      valueInteger: valueInteger ?? this.valueInteger,
-      valueDate: valueDate ?? this.valueDate,
-      valueTime: valueTime ?? this.valueTime,
-      valueString: valueString ?? this.valueString,
-      valueCoding: valueCoding ?? this.valueCoding,
-      valueReference: valueReference ?? this.valueReference,
+      valueXQuestionnaireAnswerOption: valueXQuestionnaireAnswerOption ??
+          this.valueXQuestionnaireAnswerOption,
       initialSelected: initialSelected ?? this.initialSelected,
     );
   }
@@ -1505,18 +1285,7 @@ class QuestionnaireInitial extends BackboneElement {
     super.id,
     super.extension_,
     super.modifierExtension,
-    this.valueBoolean,
-    this.valueDecimal,
-    this.valueInteger,
-    this.valueDate,
-    this.valueDateTime,
-    this.valueTime,
-    this.valueString,
-    this.valueUri,
-    this.valueAttachment,
-    this.valueCoding,
-    this.valueQuantity,
-    this.valueReference,
+    required this.valueXQuestionnaireInitial,
     super.disallowExtensions,
   });
 
@@ -1546,78 +1315,10 @@ class QuestionnaireInitial extends BackboneElement {
               )
               .toList()
           : null,
-      valueBoolean:
-          (json['valueBoolean'] != null || json['_valueBoolean'] != null)
-              ? FhirBoolean.fromJson({
-                  'value': json['valueBoolean'],
-                  '_value': json['_valueBoolean'],
-                })
-              : null,
-      valueDecimal:
-          (json['valueDecimal'] != null || json['_valueDecimal'] != null)
-              ? FhirDecimal.fromJson({
-                  'value': json['valueDecimal'],
-                  '_value': json['_valueDecimal'],
-                })
-              : null,
-      valueInteger:
-          (json['valueInteger'] != null || json['_valueInteger'] != null)
-              ? FhirInteger.fromJson({
-                  'value': json['valueInteger'],
-                  '_value': json['_valueInteger'],
-                })
-              : null,
-      valueDate: (json['valueDate'] != null || json['_valueDate'] != null)
-          ? FhirDate.fromJson({
-              'value': json['valueDate'],
-              '_value': json['_valueDate'],
-            })
-          : null,
-      valueDateTime:
-          (json['valueDateTime'] != null || json['_valueDateTime'] != null)
-              ? FhirDateTime.fromJson({
-                  'value': json['valueDateTime'],
-                  '_value': json['_valueDateTime'],
-                })
-              : null,
-      valueTime: (json['valueTime'] != null || json['_valueTime'] != null)
-          ? FhirTime.fromJson({
-              'value': json['valueTime'],
-              '_value': json['_valueTime'],
-            })
-          : null,
-      valueString: (json['valueString'] != null || json['_valueString'] != null)
-          ? FhirString.fromJson({
-              'value': json['valueString'],
-              '_value': json['_valueString'],
-            })
-          : null,
-      valueUri: (json['valueUri'] != null || json['_valueUri'] != null)
-          ? FhirUri.fromJson({
-              'value': json['valueUri'],
-              '_value': json['_valueUri'],
-            })
-          : null,
-      valueAttachment: json['valueAttachment'] != null
-          ? Attachment.fromJson(
-              json['valueAttachment'] as Map<String, dynamic>,
-            )
-          : null,
-      valueCoding: json['valueCoding'] != null
-          ? Coding.fromJson(
-              json['valueCoding'] as Map<String, dynamic>,
-            )
-          : null,
-      valueQuantity: json['valueQuantity'] != null
-          ? Quantity.fromJson(
-              json['valueQuantity'] as Map<String, dynamic>,
-            )
-          : null,
-      valueReference: json['valueReference'] != null
-          ? Reference.fromJson(
-              json['valueReference'] as Map<String, dynamic>,
-            )
-          : null,
+      valueXQuestionnaireInitial: FhirBoolean.fromJson({
+        'value': json['valueXQuestionnaireInitial'],
+        '_value': json['_valueXQuestionnaireInitial'],
+      }),
     );
   }
 
@@ -1663,53 +1364,9 @@ class QuestionnaireInitial extends BackboneElement {
   @override
   String get fhirType => 'QuestionnaireInitial';
 
-  /// [valueBoolean]
+  /// [valueXQuestionnaireInitial]
   /// The actual value to for an initial answer.
-  final FhirBoolean? valueBoolean;
-
-  /// [valueDecimal]
-  /// The actual value to for an initial answer.
-  final FhirDecimal? valueDecimal;
-
-  /// [valueInteger]
-  /// The actual value to for an initial answer.
-  final FhirInteger? valueInteger;
-
-  /// [valueDate]
-  /// The actual value to for an initial answer.
-  final FhirDate? valueDate;
-
-  /// [valueDateTime]
-  /// The actual value to for an initial answer.
-  final FhirDateTime? valueDateTime;
-
-  /// [valueTime]
-  /// The actual value to for an initial answer.
-  final FhirTime? valueTime;
-
-  /// [valueString]
-  /// The actual value to for an initial answer.
-  final FhirString? valueString;
-
-  /// [valueUri]
-  /// The actual value to for an initial answer.
-  final FhirUri? valueUri;
-
-  /// [valueAttachment]
-  /// The actual value to for an initial answer.
-  final Attachment? valueAttachment;
-
-  /// [valueCoding]
-  /// The actual value to for an initial answer.
-  final Coding? valueCoding;
-
-  /// [valueQuantity]
-  /// The actual value to for an initial answer.
-  final Quantity? valueQuantity;
-
-  /// [valueReference]
-  /// The actual value to for an initial answer.
-  final Reference? valueReference;
+  final FhirBoolean valueXQuestionnaireInitial;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1732,30 +1389,7 @@ class QuestionnaireInitial extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('valueBoolean', valueBoolean);
-    addField('valueDecimal', valueDecimal);
-    addField('valueInteger', valueInteger);
-    addField('valueDate', valueDate);
-    addField('valueDateTime', valueDateTime);
-    addField('valueTime', valueTime);
-    addField('valueString', valueString);
-    addField('valueUri', valueUri);
-    if (valueAttachment != null) {
-      json['valueAttachment'] = valueAttachment!.toJson();
-    }
-
-    if (valueCoding != null) {
-      json['valueCoding'] = valueCoding!.toJson();
-    }
-
-    if (valueQuantity != null) {
-      json['valueQuantity'] = valueQuantity!.toJson();
-    }
-
-    if (valueReference != null) {
-      json['valueReference'] = valueReference!.toJson();
-    }
-
+    addField('valueXQuestionnaireInitial', valueXQuestionnaireInitial);
     return json;
   }
 
@@ -1766,18 +1400,7 @@ class QuestionnaireInitial extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    FhirBoolean? valueBoolean,
-    FhirDecimal? valueDecimal,
-    FhirInteger? valueInteger,
-    FhirDate? valueDate,
-    FhirDateTime? valueDateTime,
-    FhirTime? valueTime,
-    FhirString? valueString,
-    FhirUri? valueUri,
-    Attachment? valueAttachment,
-    Coding? valueCoding,
-    Quantity? valueQuantity,
-    Reference? valueReference,
+    FhirBoolean? valueXQuestionnaireInitial,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1787,18 +1410,8 @@ class QuestionnaireInitial extends BackboneElement {
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
-      valueBoolean: valueBoolean ?? this.valueBoolean,
-      valueDecimal: valueDecimal ?? this.valueDecimal,
-      valueInteger: valueInteger ?? this.valueInteger,
-      valueDate: valueDate ?? this.valueDate,
-      valueDateTime: valueDateTime ?? this.valueDateTime,
-      valueTime: valueTime ?? this.valueTime,
-      valueString: valueString ?? this.valueString,
-      valueUri: valueUri ?? this.valueUri,
-      valueAttachment: valueAttachment ?? this.valueAttachment,
-      valueCoding: valueCoding ?? this.valueCoding,
-      valueQuantity: valueQuantity ?? this.valueQuantity,
-      valueReference: valueReference ?? this.valueReference,
+      valueXQuestionnaireInitial:
+          valueXQuestionnaireInitial ?? this.valueXQuestionnaireInitial,
     );
   }
 }

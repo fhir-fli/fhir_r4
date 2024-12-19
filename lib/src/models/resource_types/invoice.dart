@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'invoice.g.dart';
+
 /// [Invoice]
 /// Invoice containing collected ChargeItems from an Account with
 /// calculated individual and total price for Billing purpose.
@@ -647,8 +649,7 @@ class InvoiceLineItem extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     this.sequence,
-    this.chargeItemReference,
-    this.chargeItemCodeableConcept,
+    required this.chargeItemXInvoiceLineItem,
     this.priceComponent,
     super.disallowExtensions,
   });
@@ -685,16 +686,9 @@ class InvoiceLineItem extends BackboneElement {
               '_value': json['_sequence'],
             })
           : null,
-      chargeItemReference: json['chargeItemReference'] != null
-          ? Reference.fromJson(
-              json['chargeItemReference'] as Map<String, dynamic>,
-            )
-          : null,
-      chargeItemCodeableConcept: json['chargeItemCodeableConcept'] != null
-          ? CodeableConcept.fromJson(
-              json['chargeItemCodeableConcept'] as Map<String, dynamic>,
-            )
-          : null,
+      chargeItemXInvoiceLineItem: Reference.fromJson(
+        json['chargeItemXInvoiceLineItem'] as Map<String, dynamic>,
+      ),
       priceComponent: json['priceComponent'] != null
           ? (json['priceComponent'] as List<dynamic>)
               .map<InvoicePriceComponent>(
@@ -753,19 +747,12 @@ class InvoiceLineItem extends BackboneElement {
   /// Sequence in which the items appear on the invoice.
   final FhirPositiveInt? sequence;
 
-  /// [chargeItemReference]
+  /// [chargeItemXInvoiceLineItem]
   /// The ChargeItem contains information such as the billing code, date,
   /// amount etc. If no further details are required for the lineItem, inline
   /// billing codes can be added using the CodeableConcept data type instead
   /// of the Reference.
-  final Reference? chargeItemReference;
-
-  /// [chargeItemCodeableConcept]
-  /// The ChargeItem contains information such as the billing code, date,
-  /// amount etc. If no further details are required for the lineItem, inline
-  /// billing codes can be added using the CodeableConcept data type instead
-  /// of the Reference.
-  final CodeableConcept? chargeItemCodeableConcept;
+  final Reference chargeItemXInvoiceLineItem;
 
   /// [priceComponent]
   /// The price for a ChargeItem may be calculated as a base price with
@@ -798,13 +785,7 @@ class InvoiceLineItem extends BackboneElement {
     }
 
     addField('sequence', sequence);
-    if (chargeItemReference != null) {
-      json['chargeItemReference'] = chargeItemReference!.toJson();
-    }
-
-    if (chargeItemCodeableConcept != null) {
-      json['chargeItemCodeableConcept'] = chargeItemCodeableConcept!.toJson();
-    }
+    json['chargeItemXInvoiceLineItem'] = chargeItemXInvoiceLineItem.toJson();
 
     if (priceComponent != null && priceComponent!.isNotEmpty) {
       json['priceComponent'] = priceComponent!.map((e) => e.toJson()).toList();
@@ -821,8 +802,7 @@ class InvoiceLineItem extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirPositiveInt? sequence,
-    Reference? chargeItemReference,
-    CodeableConcept? chargeItemCodeableConcept,
+    Reference? chargeItemXInvoiceLineItem,
     List<InvoicePriceComponent>? priceComponent,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -834,9 +814,8 @@ class InvoiceLineItem extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       sequence: sequence ?? this.sequence,
-      chargeItemReference: chargeItemReference ?? this.chargeItemReference,
-      chargeItemCodeableConcept:
-          chargeItemCodeableConcept ?? this.chargeItemCodeableConcept,
+      chargeItemXInvoiceLineItem:
+          chargeItemXInvoiceLineItem ?? this.chargeItemXInvoiceLineItem,
       priceComponent: priceComponent ?? this.priceComponent,
     );
   }

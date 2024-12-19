@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'charge_item.g.dart';
+
 /// [ChargeItem]
 /// The resource ChargeItem describes the provision of healthcare provider
 /// products for a certain patient, therefore referring not only to the
@@ -30,9 +32,7 @@ class ChargeItem extends DomainResource {
     required this.code,
     required this.subject,
     this.context,
-    this.occurrenceDateTime,
-    this.occurrencePeriod,
-    this.occurrenceTiming,
+    this.occurrenceXChargeItemChargeItem,
     this.performer,
     this.performingOrganization,
     this.requestingOrganization,
@@ -46,8 +46,7 @@ class ChargeItem extends DomainResource {
     this.enteredDate,
     this.reason,
     this.service,
-    this.productReference,
-    this.productCodeableConcept,
+    this.productXChargeItemChargeItem,
     this.account,
     this.note,
     this.supportingInformation,
@@ -156,23 +155,14 @@ class ChargeItem extends DomainResource {
               json['context'] as Map<String, dynamic>,
             )
           : null,
-      occurrenceDateTime: (json['occurrenceDateTime'] != null ||
-              json['_occurrenceDateTime'] != null)
-          ? FhirDateTime.fromJson({
-              'value': json['occurrenceDateTime'],
-              '_value': json['_occurrenceDateTime'],
-            })
-          : null,
-      occurrencePeriod: json['occurrencePeriod'] != null
-          ? Period.fromJson(
-              json['occurrencePeriod'] as Map<String, dynamic>,
-            )
-          : null,
-      occurrenceTiming: json['occurrenceTiming'] != null
-          ? Timing.fromJson(
-              json['occurrenceTiming'] as Map<String, dynamic>,
-            )
-          : null,
+      occurrenceXChargeItemChargeItem:
+          (json['occurrenceXChargeItemChargeItem'] != null ||
+                  json['_occurrenceXChargeItemChargeItem'] != null)
+              ? FhirDateTime.fromJson({
+                  'value': json['occurrenceXChargeItemChargeItem'],
+                  '_value': json['_occurrenceXChargeItemChargeItem'],
+                })
+              : null,
       performer: json['performer'] != null
           ? (json['performer'] as List<dynamic>)
               .map<ChargeItemPerformer>(
@@ -259,14 +249,9 @@ class ChargeItem extends DomainResource {
               )
               .toList()
           : null,
-      productReference: json['productReference'] != null
+      productXChargeItemChargeItem: json['productXChargeItemChargeItem'] != null
           ? Reference.fromJson(
-              json['productReference'] as Map<String, dynamic>,
-            )
-          : null,
-      productCodeableConcept: json['productCodeableConcept'] != null
-          ? CodeableConcept.fromJson(
-              json['productCodeableConcept'] as Map<String, dynamic>,
+              json['productXChargeItemChargeItem'] as Map<String, dynamic>,
             )
           : null,
       account: json['account'] != null
@@ -378,17 +363,9 @@ class ChargeItem extends DomainResource {
   /// event.
   final Reference? context;
 
-  /// [occurrenceDateTime]
+  /// [occurrenceXChargeItemChargeItem]
   /// Date/time(s) or duration when the charged service was applied.
-  final FhirDateTime? occurrenceDateTime;
-
-  /// [occurrencePeriod]
-  /// Date/time(s) or duration when the charged service was applied.
-  final Period? occurrencePeriod;
-
-  /// [occurrenceTiming]
-  /// Date/time(s) or duration when the charged service was applied.
-  final Timing? occurrenceTiming;
+  final FhirDateTime? occurrenceXChargeItemChargeItem;
 
   /// [performer]
   /// Indicates who or what performed or participated in the charged service.
@@ -446,15 +423,10 @@ class ChargeItem extends DomainResource {
   /// Indicated the rendered service that caused this charge.
   final List<Reference>? service;
 
-  /// [productReference]
+  /// [productXChargeItemChargeItem]
   /// Identifies the device, food, drug or other product being charged either
   /// by type code or reference to an instance.
-  final Reference? productReference;
-
-  /// [productCodeableConcept]
-  /// Identifies the device, food, drug or other product being charged either
-  /// by type code or reference to an instance.
-  final CodeableConcept? productCodeableConcept;
+  final Reference? productXChargeItemChargeItem;
 
   /// [account]
   /// Account into which this ChargeItems belongs.
@@ -539,15 +511,8 @@ class ChargeItem extends DomainResource {
       json['context'] = context!.toJson();
     }
 
-    addField('occurrenceDateTime', occurrenceDateTime);
-    if (occurrencePeriod != null) {
-      json['occurrencePeriod'] = occurrencePeriod!.toJson();
-    }
-
-    if (occurrenceTiming != null) {
-      json['occurrenceTiming'] = occurrenceTiming!.toJson();
-    }
-
+    addField(
+        'occurrenceXChargeItemChargeItem', occurrenceXChargeItemChargeItem);
     if (performer != null && performer!.isNotEmpty) {
       json['performer'] = performer!.map((e) => e.toJson()).toList();
     }
@@ -591,12 +556,9 @@ class ChargeItem extends DomainResource {
       json['service'] = service!.map((e) => e.toJson()).toList();
     }
 
-    if (productReference != null) {
-      json['productReference'] = productReference!.toJson();
-    }
-
-    if (productCodeableConcept != null) {
-      json['productCodeableConcept'] = productCodeableConcept!.toJson();
+    if (productXChargeItemChargeItem != null) {
+      json['productXChargeItemChargeItem'] =
+          productXChargeItemChargeItem!.toJson();
     }
 
     if (account != null && account!.isNotEmpty) {
@@ -635,9 +597,7 @@ class ChargeItem extends DomainResource {
     CodeableConcept? code,
     Reference? subject,
     Reference? context,
-    FhirDateTime? occurrenceDateTime,
-    Period? occurrencePeriod,
-    Timing? occurrenceTiming,
+    FhirDateTime? occurrenceXChargeItemChargeItem,
     List<ChargeItemPerformer>? performer,
     Reference? performingOrganization,
     Reference? requestingOrganization,
@@ -651,8 +611,7 @@ class ChargeItem extends DomainResource {
     FhirDateTime? enteredDate,
     List<CodeableConcept>? reason,
     List<Reference>? service,
-    Reference? productReference,
-    CodeableConcept? productCodeableConcept,
+    Reference? productXChargeItemChargeItem,
     List<Reference>? account,
     List<Annotation>? note,
     List<Reference>? supportingInformation,
@@ -678,9 +637,8 @@ class ChargeItem extends DomainResource {
       code: code ?? this.code,
       subject: subject ?? this.subject,
       context: context ?? this.context,
-      occurrenceDateTime: occurrenceDateTime ?? this.occurrenceDateTime,
-      occurrencePeriod: occurrencePeriod ?? this.occurrencePeriod,
-      occurrenceTiming: occurrenceTiming ?? this.occurrenceTiming,
+      occurrenceXChargeItemChargeItem: occurrenceXChargeItemChargeItem ??
+          this.occurrenceXChargeItemChargeItem,
       performer: performer ?? this.performer,
       performingOrganization:
           performingOrganization ?? this.performingOrganization,
@@ -696,9 +654,8 @@ class ChargeItem extends DomainResource {
       enteredDate: enteredDate ?? this.enteredDate,
       reason: reason ?? this.reason,
       service: service ?? this.service,
-      productReference: productReference ?? this.productReference,
-      productCodeableConcept:
-          productCodeableConcept ?? this.productCodeableConcept,
+      productXChargeItemChargeItem:
+          productXChargeItemChargeItem ?? this.productXChargeItemChargeItem,
       account: account ?? this.account,
       note: note ?? this.note,
       supportingInformation:

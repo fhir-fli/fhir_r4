@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'administrable_product_definition.g.dart';
+
 /// [AdministrableProductDefinition]
 /// A medicinal product in the final form which is suitable for
 /// administering to a patient (after any mixing of multiple components,
@@ -425,11 +427,7 @@ class AdministrableProductDefinitionProperty extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.type,
-    this.valueCodeableConcept,
-    this.valueQuantity,
-    this.valueDate,
-    this.valueBoolean,
-    this.valueAttachment,
+    this.valueXAdministrableProductDefinitionProperty,
     this.status,
     super.disallowExtensions,
   });
@@ -463,34 +461,13 @@ class AdministrableProductDefinitionProperty extends BackboneElement {
       type: CodeableConcept.fromJson(
         json['type'] as Map<String, dynamic>,
       ),
-      valueCodeableConcept: json['valueCodeableConcept'] != null
-          ? CodeableConcept.fromJson(
-              json['valueCodeableConcept'] as Map<String, dynamic>,
-            )
-          : null,
-      valueQuantity: json['valueQuantity'] != null
-          ? Quantity.fromJson(
-              json['valueQuantity'] as Map<String, dynamic>,
-            )
-          : null,
-      valueDate: (json['valueDate'] != null || json['_valueDate'] != null)
-          ? FhirDate.fromJson({
-              'value': json['valueDate'],
-              '_value': json['_valueDate'],
-            })
-          : null,
-      valueBoolean:
-          (json['valueBoolean'] != null || json['_valueBoolean'] != null)
-              ? FhirBoolean.fromJson({
-                  'value': json['valueBoolean'],
-                  '_value': json['_valueBoolean'],
-                })
+      valueXAdministrableProductDefinitionProperty:
+          json['valueXAdministrableProductDefinitionProperty'] != null
+              ? CodeableConcept.fromJson(
+                  json['valueXAdministrableProductDefinitionProperty']
+                      as Map<String, dynamic>,
+                )
               : null,
-      valueAttachment: json['valueAttachment'] != null
-          ? Attachment.fromJson(
-              json['valueAttachment'] as Map<String, dynamic>,
-            )
-          : null,
       status: json['status'] != null
           ? CodeableConcept.fromJson(
               json['status'] as Map<String, dynamic>,
@@ -545,25 +522,9 @@ class AdministrableProductDefinitionProperty extends BackboneElement {
   /// A code expressing the type of characteristic.
   final CodeableConcept type;
 
-  /// [valueCodeableConcept]
+  /// [valueXAdministrableProductDefinitionProperty]
   /// A value for the characteristic.
-  final CodeableConcept? valueCodeableConcept;
-
-  /// [valueQuantity]
-  /// A value for the characteristic.
-  final Quantity? valueQuantity;
-
-  /// [valueDate]
-  /// A value for the characteristic.
-  final FhirDate? valueDate;
-
-  /// [valueBoolean]
-  /// A value for the characteristic.
-  final FhirBoolean? valueBoolean;
-
-  /// [valueAttachment]
-  /// A value for the characteristic.
-  final Attachment? valueAttachment;
+  final CodeableConcept? valueXAdministrableProductDefinitionProperty;
 
   /// [status]
   /// The status of characteristic e.g. assigned or pending.
@@ -592,18 +553,9 @@ class AdministrableProductDefinitionProperty extends BackboneElement {
 
     json['type'] = type.toJson();
 
-    if (valueCodeableConcept != null) {
-      json['valueCodeableConcept'] = valueCodeableConcept!.toJson();
-    }
-
-    if (valueQuantity != null) {
-      json['valueQuantity'] = valueQuantity!.toJson();
-    }
-
-    addField('valueDate', valueDate);
-    addField('valueBoolean', valueBoolean);
-    if (valueAttachment != null) {
-      json['valueAttachment'] = valueAttachment!.toJson();
+    if (valueXAdministrableProductDefinitionProperty != null) {
+      json['valueXAdministrableProductDefinitionProperty'] =
+          valueXAdministrableProductDefinitionProperty!.toJson();
     }
 
     if (status != null) {
@@ -621,11 +573,7 @@ class AdministrableProductDefinitionProperty extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     CodeableConcept? type,
-    CodeableConcept? valueCodeableConcept,
-    Quantity? valueQuantity,
-    FhirDate? valueDate,
-    FhirBoolean? valueBoolean,
-    Attachment? valueAttachment,
+    CodeableConcept? valueXAdministrableProductDefinitionProperty,
     CodeableConcept? status,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -637,11 +585,9 @@ class AdministrableProductDefinitionProperty extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
-      valueCodeableConcept: valueCodeableConcept ?? this.valueCodeableConcept,
-      valueQuantity: valueQuantity ?? this.valueQuantity,
-      valueDate: valueDate ?? this.valueDate,
-      valueBoolean: valueBoolean ?? this.valueBoolean,
-      valueAttachment: valueAttachment ?? this.valueAttachment,
+      valueXAdministrableProductDefinitionProperty:
+          valueXAdministrableProductDefinitionProperty ??
+              this.valueXAdministrableProductDefinitionProperty,
       status: status ?? this.status,
     );
   }

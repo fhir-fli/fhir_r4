@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
+part 'patient.g.dart';
+
 /// [Patient]
 /// Demographics and other administrative information about an individual
 /// or animal receiving care or other health-related services.
@@ -24,12 +26,10 @@ class Patient extends DomainResource {
     this.telecom,
     this.gender,
     this.birthDate,
-    this.deceasedBoolean,
-    this.deceasedDateTime,
+    this.deceasedXPatientPatient,
     this.address,
     this.maritalStatus,
-    this.multipleBirthBoolean,
-    this.multipleBirthInteger,
+    this.multipleBirthXPatientPatient,
     this.photo,
     this.contact,
     this.communication,
@@ -143,18 +143,11 @@ class Patient extends DomainResource {
               '_value': json['_birthDate'],
             })
           : null,
-      deceasedBoolean:
-          (json['deceasedBoolean'] != null || json['_deceasedBoolean'] != null)
-              ? FhirBoolean.fromJson({
-                  'value': json['deceasedBoolean'],
-                  '_value': json['_deceasedBoolean'],
-                })
-              : null,
-      deceasedDateTime: (json['deceasedDateTime'] != null ||
-              json['_deceasedDateTime'] != null)
-          ? FhirDateTime.fromJson({
-              'value': json['deceasedDateTime'],
-              '_value': json['_deceasedDateTime'],
+      deceasedXPatientPatient: (json['deceasedXPatientPatient'] != null ||
+              json['_deceasedXPatientPatient'] != null)
+          ? FhirBoolean.fromJson({
+              'value': json['deceasedXPatientPatient'],
+              '_value': json['_deceasedXPatientPatient'],
             })
           : null,
       address: json['address'] != null
@@ -171,20 +164,14 @@ class Patient extends DomainResource {
               json['maritalStatus'] as Map<String, dynamic>,
             )
           : null,
-      multipleBirthBoolean: (json['multipleBirthBoolean'] != null ||
-              json['_multipleBirthBoolean'] != null)
-          ? FhirBoolean.fromJson({
-              'value': json['multipleBirthBoolean'],
-              '_value': json['_multipleBirthBoolean'],
-            })
-          : null,
-      multipleBirthInteger: (json['multipleBirthInteger'] != null ||
-              json['_multipleBirthInteger'] != null)
-          ? FhirInteger.fromJson({
-              'value': json['multipleBirthInteger'],
-              '_value': json['_multipleBirthInteger'],
-            })
-          : null,
+      multipleBirthXPatientPatient:
+          (json['multipleBirthXPatientPatient'] != null ||
+                  json['_multipleBirthXPatientPatient'] != null)
+              ? FhirBoolean.fromJson({
+                  'value': json['multipleBirthXPatientPatient'],
+                  '_value': json['_multipleBirthXPatientPatient'],
+                })
+              : null,
       photo: json['photo'] != null
           ? (json['photo'] as List<dynamic>)
               .map<Attachment>(
@@ -314,13 +301,9 @@ class Patient extends DomainResource {
   /// The date of birth for the individual.
   final FhirDate? birthDate;
 
-  /// [deceasedBoolean]
+  /// [deceasedXPatientPatient]
   /// Indicates if the individual is deceased or not.
-  final FhirBoolean? deceasedBoolean;
-
-  /// [deceasedDateTime]
-  /// Indicates if the individual is deceased or not.
-  final FhirDateTime? deceasedDateTime;
+  final FhirBoolean? deceasedXPatientPatient;
 
   /// [address]
   /// An address for the individual.
@@ -330,15 +313,10 @@ class Patient extends DomainResource {
   /// This field contains a patient's most recent marital (civil) status.
   final CodeableConcept? maritalStatus;
 
-  /// [multipleBirthBoolean]
+  /// [multipleBirthXPatientPatient]
   /// Indicates whether the patient is part of a multiple (boolean) or
   /// indicates the actual birth order (integer).
-  final FhirBoolean? multipleBirthBoolean;
-
-  /// [multipleBirthInteger]
-  /// Indicates whether the patient is part of a multiple (boolean) or
-  /// indicates the actual birth order (integer).
-  final FhirInteger? multipleBirthInteger;
+  final FhirBoolean? multipleBirthXPatientPatient;
 
   /// [photo]
   /// Image of the patient.
@@ -416,8 +394,7 @@ class Patient extends DomainResource {
 
     addField('gender', gender);
     addField('birthDate', birthDate);
-    addField('deceasedBoolean', deceasedBoolean);
-    addField('deceasedDateTime', deceasedDateTime);
+    addField('deceasedXPatientPatient', deceasedXPatientPatient);
     if (address != null && address!.isNotEmpty) {
       json['address'] = address!.map((e) => e.toJson()).toList();
     }
@@ -426,8 +403,7 @@ class Patient extends DomainResource {
       json['maritalStatus'] = maritalStatus!.toJson();
     }
 
-    addField('multipleBirthBoolean', multipleBirthBoolean);
-    addField('multipleBirthInteger', multipleBirthInteger);
+    addField('multipleBirthXPatientPatient', multipleBirthXPatientPatient);
     if (photo != null && photo!.isNotEmpty) {
       json['photo'] = photo!.map((e) => e.toJson()).toList();
     }
@@ -474,12 +450,10 @@ class Patient extends DomainResource {
     List<ContactPoint>? telecom,
     AdministrativeGender? gender,
     FhirDate? birthDate,
-    FhirBoolean? deceasedBoolean,
-    FhirDateTime? deceasedDateTime,
+    FhirBoolean? deceasedXPatientPatient,
     List<Address>? address,
     CodeableConcept? maritalStatus,
-    FhirBoolean? multipleBirthBoolean,
-    FhirInteger? multipleBirthInteger,
+    FhirBoolean? multipleBirthXPatientPatient,
     List<Attachment>? photo,
     List<PatientContact>? contact,
     List<PatientCommunication>? communication,
@@ -506,12 +480,12 @@ class Patient extends DomainResource {
       telecom: telecom ?? this.telecom,
       gender: gender ?? this.gender,
       birthDate: birthDate ?? this.birthDate,
-      deceasedBoolean: deceasedBoolean ?? this.deceasedBoolean,
-      deceasedDateTime: deceasedDateTime ?? this.deceasedDateTime,
+      deceasedXPatientPatient:
+          deceasedXPatientPatient ?? this.deceasedXPatientPatient,
       address: address ?? this.address,
       maritalStatus: maritalStatus ?? this.maritalStatus,
-      multipleBirthBoolean: multipleBirthBoolean ?? this.multipleBirthBoolean,
-      multipleBirthInteger: multipleBirthInteger ?? this.multipleBirthInteger,
+      multipleBirthXPatientPatient:
+          multipleBirthXPatientPatient ?? this.multipleBirthXPatientPatient,
       photo: photo ?? this.photo,
       contact: contact ?? this.contact,
       communication: communication ?? this.communication,
