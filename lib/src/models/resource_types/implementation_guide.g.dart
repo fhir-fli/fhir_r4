@@ -80,15 +80,15 @@ class ReferenceNameImplementationGuidePage extends Reference
 /// If true or a reference, indicates the resource is an example instance.
 /// If a reference is present, indicates that the example is an example of
 /// the specified profile.
-sealed class ExampleXImplementationGuideResource {}
+sealed class ExampleXImplementationGuideResource1 {}
 
 /// If true or a reference, indicates the resource is an example instance.
 /// If a reference is present, indicates that the example is an example of
 /// the specified profile.
-class BooleanExampleImplementationGuideResource extends FhirBoolean
-    implements ExampleXImplementationGuideResource {
-  /// Constructor for [BooleanExampleImplementationGuideResource]
-  BooleanExampleImplementationGuideResource(
+class BooleanExampleImplementationGuideResource1 extends FhirBoolean
+    implements ExampleXImplementationGuideResource1 {
+  /// Constructor for [BooleanExampleImplementationGuideResource1]
+  BooleanExampleImplementationGuideResource1(
     super.input, {
     super.element,
     super.id,
@@ -96,19 +96,19 @@ class BooleanExampleImplementationGuideResource extends FhirBoolean
   });
 
   /// Factory constructor for super class
-  factory BooleanExampleImplementationGuideResource.fromJson(
+  factory BooleanExampleImplementationGuideResource1.fromJson(
     Map<String, dynamic> json,
   ) =>
-      FhirBoolean.fromJson(json) as BooleanExampleImplementationGuideResource;
+      FhirBoolean.fromJson(json) as BooleanExampleImplementationGuideResource1;
 }
 
 /// If true or a reference, indicates the resource is an example instance.
 /// If a reference is present, indicates that the example is an example of
 /// the specified profile.
-class CanonicalExampleImplementationGuideResource extends FhirCanonical
-    implements ExampleXImplementationGuideResource {
-  /// Constructor for [CanonicalExampleImplementationGuideResource]
-  CanonicalExampleImplementationGuideResource(
+class CanonicalExampleImplementationGuideResource1 extends FhirCanonical
+    implements ExampleXImplementationGuideResource1 {
+  /// Constructor for [CanonicalExampleImplementationGuideResource1]
+  CanonicalExampleImplementationGuideResource1(
     super.input, {
     super.element,
     super.id,
@@ -116,9 +116,9 @@ class CanonicalExampleImplementationGuideResource extends FhirCanonical
   });
 
   /// Factory constructor for super class
-  factory CanonicalExampleImplementationGuideResource.fromJson(
+  factory CanonicalExampleImplementationGuideResource1.fromJson(
     Map<String, dynamic> json,
   ) =>
       FhirCanonical.fromJson(json)
-          as CanonicalExampleImplementationGuideResource;
+          as CanonicalExampleImplementationGuideResource1;
 }

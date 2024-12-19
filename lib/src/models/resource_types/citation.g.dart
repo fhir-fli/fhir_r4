@@ -52,13 +52,13 @@ class AttachmentTargetCitationRelatesTo extends Attachment
 }
 
 /// The article or artifact that the cited artifact is related to.
-sealed class TargetXCitationRelatesTo {}
+sealed class TargetXCitationRelatesTo1 {}
 
 /// The article or artifact that the cited artifact is related to.
-class UriTargetCitationRelatesTo extends FhirUri
-    implements TargetXCitationRelatesTo {
-  /// Constructor for [UriTargetCitationRelatesTo]
-  UriTargetCitationRelatesTo(
+class UriTargetCitationRelatesTo1 extends FhirUri
+    implements TargetXCitationRelatesTo1 {
+  /// Constructor for [UriTargetCitationRelatesTo1]
+  UriTargetCitationRelatesTo1(
     super.input, {
     super.element,
     super.id,
@@ -66,38 +66,38 @@ class UriTargetCitationRelatesTo extends FhirUri
   });
 
   /// Factory constructor for super class
-  factory UriTargetCitationRelatesTo.fromJson(
+  factory UriTargetCitationRelatesTo1.fromJson(
     Map<String, dynamic> json,
   ) =>
-      FhirUri.fromJson(json) as UriTargetCitationRelatesTo;
+      FhirUri.fromJson(json) as UriTargetCitationRelatesTo1;
 }
 
 /// The article or artifact that the cited artifact is related to.
-class IdentifierTargetCitationRelatesTo extends Identifier
-    implements TargetXCitationRelatesTo {
+class IdentifierTargetCitationRelatesTo1 extends Identifier
+    implements TargetXCitationRelatesTo1 {
   /// Factory constructor for super class
-  factory IdentifierTargetCitationRelatesTo.fromJson(
+  factory IdentifierTargetCitationRelatesTo1.fromJson(
     Map<String, dynamic> json,
   ) =>
-      Identifier.fromJson(json) as IdentifierTargetCitationRelatesTo;
+      Identifier.fromJson(json) as IdentifierTargetCitationRelatesTo1;
 }
 
 /// The article or artifact that the cited artifact is related to.
-class ReferenceTargetCitationRelatesTo extends Reference
-    implements TargetXCitationRelatesTo {
+class ReferenceTargetCitationRelatesTo1 extends Reference
+    implements TargetXCitationRelatesTo1 {
   /// Factory constructor for super class
-  factory ReferenceTargetCitationRelatesTo.fromJson(
+  factory ReferenceTargetCitationRelatesTo1.fromJson(
     Map<String, dynamic> json,
   ) =>
-      Reference.fromJson(json) as ReferenceTargetCitationRelatesTo;
+      Reference.fromJson(json) as ReferenceTargetCitationRelatesTo1;
 }
 
 /// The article or artifact that the cited artifact is related to.
-class AttachmentTargetCitationRelatesTo extends Attachment
-    implements TargetXCitationRelatesTo {
+class AttachmentTargetCitationRelatesTo1 extends Attachment
+    implements TargetXCitationRelatesTo1 {
   /// Factory constructor for super class
-  factory AttachmentTargetCitationRelatesTo.fromJson(
+  factory AttachmentTargetCitationRelatesTo1.fromJson(
     Map<String, dynamic> json,
   ) =>
-      Attachment.fromJson(json) as AttachmentTargetCitationRelatesTo;
+      Attachment.fromJson(json) as AttachmentTargetCitationRelatesTo1;
 }

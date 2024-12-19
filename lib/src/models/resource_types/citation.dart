@@ -2677,7 +2677,7 @@ class CitationRelatesTo1 extends BackboneElement {
     super.modifierExtension,
     required this.relationshipType,
     this.targetClassifier,
-    required this.targetXCitationRelatesTo,
+    required this.targetXCitationRelatesTo1,
     super.disallowExtensions,
   });
 
@@ -2719,7 +2719,7 @@ class CitationRelatesTo1 extends BackboneElement {
               )
               .toList()
           : null,
-      targetXCitationRelatesTo: FhirUri.fromJson({
+      targetXCitationRelatesTo1: FhirUri.fromJson({
         'value': json['targetXCitationRelatesTo'],
         '_value': json['_targetXCitationRelatesTo'],
       }),
@@ -2776,9 +2776,9 @@ class CitationRelatesTo1 extends BackboneElement {
   /// The clasification of the related artifact.
   final List<CodeableConcept>? targetClassifier;
 
-  /// [targetXCitationRelatesTo]
+  /// [targetXCitationRelatesTo1]
   /// The article or artifact that the cited artifact is related to.
-  final FhirUri targetXCitationRelatesTo;
+  final FhirUri targetXCitationRelatesTo1;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2808,7 +2808,7 @@ class CitationRelatesTo1 extends BackboneElement {
           targetClassifier!.map((e) => e.toJson()).toList();
     }
 
-    addField('targetXCitationRelatesTo', targetXCitationRelatesTo);
+    addField('targetXCitationRelatesTo1', targetXCitationRelatesTo1);
     return json;
   }
 
@@ -2821,7 +2821,7 @@ class CitationRelatesTo1 extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     CodeableConcept? relationshipType,
     List<CodeableConcept>? targetClassifier,
-    FhirUri? targetXCitationRelatesTo,
+    FhirUri? targetXCitationRelatesTo1,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2833,8 +2833,8 @@ class CitationRelatesTo1 extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       relationshipType: relationshipType ?? this.relationshipType,
       targetClassifier: targetClassifier ?? this.targetClassifier,
-      targetXCitationRelatesTo:
-          targetXCitationRelatesTo ?? this.targetXCitationRelatesTo,
+      targetXCitationRelatesTo1:
+          targetXCitationRelatesTo1 ?? this.targetXCitationRelatesTo1,
     );
   }
 }
