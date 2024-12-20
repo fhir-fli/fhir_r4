@@ -148,12 +148,17 @@ class DiagnosticReport extends DomainResource {
               json['encounter'] as Map<String, dynamic>,
             )
           : null,
-      effectiveXDiagnosticReportDiagnosticReport:
-          (json['effectiveXDiagnosticReportDiagnosticReport'] != null ||
-                  json['_effectiveXDiagnosticReportDiagnosticReport'] != null)
-              ? FhirDateTime.fromJson({
-                  'value': json['effectiveXDiagnosticReportDiagnosticReport'],
-                  '_value': json['_effectiveXDiagnosticReportDiagnosticReport'],
+      effectiveXDiagnosticReportDiagnosticReport: json['effectiveDateTime'] !=
+                  null ||
+              json['_effectiveDateTime'] != null
+          ? DateTimeEffectiveDiagnosticReportDiagnosticReport.fromJson({
+              'value': json['effectiveDateTime'],
+              '_value': json['_effectiveDateTime'],
+            })
+          : json['effectivePeriod'] != null || json['_effectivePeriod'] != null
+              ? PeriodEffectiveDiagnosticReportDiagnosticReport.fromJson({
+                  'value': json['effectivePeriod'],
+                  '_value': json['_effectivePeriod'],
                 })
               : null,
       issued: (json['issued'] != null || json['_issued'] != null)
@@ -324,7 +329,8 @@ class DiagnosticReport extends DomainResource {
   /// subject of the report is a patient, this is usually either the time of
   /// the procedure or of specimen collection(s), but very often the source
   /// of the date/time is not known, only the date/time itself.
-  final FhirDateTime? effectiveXDiagnosticReportDiagnosticReport;
+  final EffectiveXDiagnosticReportDiagnosticReport?
+      effectiveXDiagnosticReportDiagnosticReport;
 
   /// [issued]
   /// The date and time that this version of the report was made available to
@@ -496,7 +502,8 @@ class DiagnosticReport extends DomainResource {
     CodeableConcept? code,
     Reference? subject,
     Reference? encounter,
-    FhirDateTime? effectiveXDiagnosticReportDiagnosticReport,
+    EffectiveXDiagnosticReportDiagnosticReport?
+        effectiveXDiagnosticReportDiagnosticReport,
     FhirInstant? issued,
     List<Reference>? performer,
     List<Reference>? resultsInterpreter,

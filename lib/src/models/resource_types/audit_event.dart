@@ -1354,10 +1354,16 @@ class AuditEventDetail extends BackboneElement {
         'value': json['type'],
         '_value': json['_type'],
       }),
-      valueXAuditEventDetail: FhirString.fromJson({
-        'value': json['valueXAuditEventDetail'],
-        '_value': json['_valueXAuditEventDetail'],
-      }),
+      valueXAuditEventDetail:
+          json['valueString'] != null || json['_valueString'] != null
+              ? StringValueAuditEventDetail.fromJson({
+                  'value': json['valueString'],
+                  '_value': json['_valueString'],
+                })
+              : Base64BinaryValueAuditEventDetail.fromJson({
+                  'value': json['valueBase64Binary'],
+                  '_value': json['_valueBase64Binary'],
+                }),
     );
   }
 
@@ -1409,7 +1415,7 @@ class AuditEventDetail extends BackboneElement {
 
   /// [valueXAuditEventDetail]
   /// The value of the extra detail.
-  final FhirString valueXAuditEventDetail;
+  final ValueXAuditEventDetail valueXAuditEventDetail;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1445,7 +1451,7 @@ class AuditEventDetail extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirString? type,
-    FhirString? valueXAuditEventDetail,
+    ValueXAuditEventDetail? valueXAuditEventDetail,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,

@@ -5,7 +5,7 @@ part of 'message_header.dart';
 /// have the system value
 /// "http://terminology.hl7.org/CodeSystem/message-events". Alternatively
 /// uri to the EventDefinition.
-sealed class EventXMessageHeaderMessageHeader {}
+sealed class EventXMessageHeaderMessageHeader extends DataType {}
 
 /// Code that identifies the event this message represents and connects it
 /// with its definition. Events defined as part of the FHIR specification

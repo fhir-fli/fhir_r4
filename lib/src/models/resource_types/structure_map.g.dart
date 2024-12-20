@@ -1,7 +1,7 @@
 part of 'structure_map.dart';
 
 /// A value to use if there is no existing value in the source object.
-sealed class DefaultValueXStructureMapSource {}
+sealed class DefaultValueXStructureMapSource extends DataType {}
 
 /// A value to use if there is no existing value in the source object.
 class Base64BinaryDefaultValueStructureMapSource extends FhirBase64Binary
@@ -707,7 +707,7 @@ class MetaDefaultValueStructureMapSource extends FhirMeta
 }
 
 /// Parameter value - variable or literal.
-sealed class ValueXStructureMapParameter {}
+sealed class ValueXStructureMapParameter extends DataType {}
 
 /// Parameter value - variable or literal.
 class IdValueStructureMapParameter extends FhirId

@@ -2,7 +2,8 @@ part of 'coverage_eligibility_response.dart';
 
 /// The date or dates when the enclosed suite of services were performed or
 /// completed.
-sealed class ServicedXCoverageEligibilityResponseCoverageEligibilityResponse {}
+sealed class ServicedXCoverageEligibilityResponseCoverageEligibilityResponse
+    extends DataType {}
 
 /// The date or dates when the enclosed suite of services were performed or
 /// completed.
@@ -53,7 +54,7 @@ class PeriodServicedCoverageEligibilityResponseCoverageEligibilityResponse
 }
 
 /// The quantity of the benefit which is permitted under the coverage.
-sealed class AllowedXCoverageEligibilityResponseBenefit {}
+sealed class AllowedXCoverageEligibilityResponseBenefit extends DataType {}
 
 /// The quantity of the benefit which is permitted under the coverage.
 class UnsignedIntAllowedCoverageEligibilityResponseBenefit
@@ -105,7 +106,7 @@ class MoneyAllowedCoverageEligibilityResponseBenefit extends Money
 }
 
 /// The quantity of the benefit which have been consumed to date.
-sealed class UsedXCoverageEligibilityResponseBenefit {}
+sealed class UsedXCoverageEligibilityResponseBenefit extends DataType {}
 
 /// The quantity of the benefit which have been consumed to date.
 class UnsignedIntUsedCoverageEligibilityResponseBenefit extends FhirUnsignedInt

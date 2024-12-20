@@ -183,17 +183,292 @@ class ElementDefinition extends BackboneType {
               )
               .toList()
           : null,
-      defaultValueXElementDefinitionElementDefinition:
-          (json['defaultValueXElementDefinitionElementDefinition'] != null ||
-                  json['_defaultValueXElementDefinitionElementDefinition'] !=
-                      null)
-              ? FhirBase64Binary.fromJson({
-                  'value':
-                      json['defaultValueXElementDefinitionElementDefinition'],
-                  '_value':
-                      json['_defaultValueXElementDefinitionElementDefinition'],
+      defaultValueXElementDefinitionElementDefinition: json['defaultValueBase64Binary'] != null ||
+              json['_defaultValueBase64Binary'] != null
+          ? Base64BinaryDefaultValueElementDefinitionElementDefinition.fromJson({
+              'value': json['defaultValueBase64Binary'],
+              '_value': json['_defaultValueBase64Binary'],
+            })
+          : json['defaultValueBoolean'] != null ||
+                  json['_defaultValueBoolean'] != null
+              ? BooleanDefaultValueElementDefinitionElementDefinition.fromJson({
+                  'value': json['defaultValueBoolean'],
+                  '_value': json['_defaultValueBoolean'],
                 })
-              : null,
+              : json['defaultValueCanonical'] != null ||
+                      json['_defaultValueCanonical'] != null
+                  ? CanonicalDefaultValueElementDefinitionElementDefinition.fromJson({
+                      'value': json['defaultValueCanonical'],
+                      '_value': json['_defaultValueCanonical'],
+                    })
+                  : json['defaultValueCode'] != null ||
+                          json['_defaultValueCode'] != null
+                      ? CodeDefaultValueElementDefinitionElementDefinition.fromJson({
+                          'value': json['defaultValueCode'],
+                          '_value': json['_defaultValueCode'],
+                        })
+                      : json['defaultValueDate'] != null ||
+                              json['_defaultValueDate'] != null
+                          ? DateDefaultValueElementDefinitionElementDefinition.fromJson({
+                              'value': json['defaultValueDate'],
+                              '_value': json['_defaultValueDate'],
+                            })
+                          : json['defaultValueDateTime'] != null ||
+                                  json['_defaultValueDateTime'] != null
+                              ? DateTimeDefaultValueElementDefinitionElementDefinition.fromJson({
+                                  'value': json['defaultValueDateTime'],
+                                  '_value': json['_defaultValueDateTime'],
+                                })
+                              : json['defaultValueDecimal'] != null ||
+                                      json['_defaultValueDecimal'] != null
+                                  ? DecimalDefaultValueElementDefinitionElementDefinition.fromJson({
+                                      'value': json['defaultValueDecimal'],
+                                      '_value': json['_defaultValueDecimal'],
+                                    })
+                                  : json['defaultValueId'] != null ||
+                                          json['_defaultValueId'] != null
+                                      ? IdDefaultValueElementDefinitionElementDefinition.fromJson({
+                                          'value': json['defaultValueId'],
+                                          '_value': json['_defaultValueId'],
+                                        })
+                                      : json['defaultValueInstant'] != null ||
+                                              json['_defaultValueInstant'] !=
+                                                  null
+                                          ? InstantDefaultValueElementDefinitionElementDefinition.fromJson({
+                                              'value':
+                                                  json['defaultValueInstant'],
+                                              '_value':
+                                                  json['_defaultValueInstant'],
+                                            })
+                                          : json['defaultValueInteger'] != null ||
+                                                  json['_defaultValueInteger'] !=
+                                                      null
+                                              ? IntegerDefaultValueElementDefinitionElementDefinition.fromJson({
+                                                  'value': json[
+                                                      'defaultValueInteger'],
+                                                  '_value': json[
+                                                      '_defaultValueInteger'],
+                                                })
+                                              : json['defaultValueMarkdown'] != null ||
+                                                      json['_defaultValueMarkdown'] != null
+                                                  ? MarkdownDefaultValueElementDefinitionElementDefinition.fromJson({
+                                                      'value': json[
+                                                          'defaultValueMarkdown'],
+                                                      '_value': json[
+                                                          '_defaultValueMarkdown'],
+                                                    })
+                                                  : json['defaultValueOid'] != null || json['_defaultValueOid'] != null
+                                                      ? OidDefaultValueElementDefinitionElementDefinition.fromJson({
+                                                          'value': json[
+                                                              'defaultValueOid'],
+                                                          '_value': json[
+                                                              '_defaultValueOid'],
+                                                        })
+                                                      : json['defaultValuePositiveInt'] != null || json['_defaultValuePositiveInt'] != null
+                                                          ? PositiveIntDefaultValueElementDefinitionElementDefinition.fromJson({
+                                                              'value': json[
+                                                                  'defaultValuePositiveInt'],
+                                                              '_value': json[
+                                                                  '_defaultValuePositiveInt'],
+                                                            })
+                                                          : json['defaultValueString'] != null || json['_defaultValueString'] != null
+                                                              ? StringDefaultValueElementDefinitionElementDefinition.fromJson({
+                                                                  'value': json[
+                                                                      'defaultValueString'],
+                                                                  '_value': json[
+                                                                      '_defaultValueString'],
+                                                                })
+                                                              : json['defaultValueTime'] != null || json['_defaultValueTime'] != null
+                                                                  ? TimeDefaultValueElementDefinitionElementDefinition.fromJson({
+                                                                      'value': json[
+                                                                          'defaultValueTime'],
+                                                                      '_value':
+                                                                          json[
+                                                                              '_defaultValueTime'],
+                                                                    })
+                                                                  : json['defaultValueUnsignedInt'] != null || json['_defaultValueUnsignedInt'] != null
+                                                                      ? UnsignedIntDefaultValueElementDefinitionElementDefinition.fromJson({
+                                                                          'value':
+                                                                              json['defaultValueUnsignedInt'],
+                                                                          '_value':
+                                                                              json['_defaultValueUnsignedInt'],
+                                                                        })
+                                                                      : json['defaultValueUri'] != null || json['_defaultValueUri'] != null
+                                                                          ? UriDefaultValueElementDefinitionElementDefinition.fromJson({
+                                                                              'value': json['defaultValueUri'],
+                                                                              '_value': json['_defaultValueUri'],
+                                                                            })
+                                                                          : json['defaultValueUrl'] != null || json['_defaultValueUrl'] != null
+                                                                              ? UrlDefaultValueElementDefinitionElementDefinition.fromJson({
+                                                                                  'value': json['defaultValueUrl'],
+                                                                                  '_value': json['_defaultValueUrl'],
+                                                                                })
+                                                                              : json['defaultValueUuid'] != null || json['_defaultValueUuid'] != null
+                                                                                  ? UuidDefaultValueElementDefinitionElementDefinition.fromJson({
+                                                                                      'value': json['defaultValueUuid'],
+                                                                                      '_value': json['_defaultValueUuid'],
+                                                                                    })
+                                                                                  : json['defaultValueAddress'] != null || json['_defaultValueAddress'] != null
+                                                                                      ? AddressDefaultValueElementDefinitionElementDefinition.fromJson({
+                                                                                          'value': json['defaultValueAddress'],
+                                                                                          '_value': json['_defaultValueAddress'],
+                                                                                        })
+                                                                                      : json['defaultValueAge'] != null || json['_defaultValueAge'] != null
+                                                                                          ? AgeDefaultValueElementDefinitionElementDefinition.fromJson({
+                                                                                              'value': json['defaultValueAge'],
+                                                                                              '_value': json['_defaultValueAge'],
+                                                                                            })
+                                                                                          : json['defaultValueAnnotation'] != null || json['_defaultValueAnnotation'] != null
+                                                                                              ? AnnotationDefaultValueElementDefinitionElementDefinition.fromJson({
+                                                                                                  'value': json['defaultValueAnnotation'],
+                                                                                                  '_value': json['_defaultValueAnnotation'],
+                                                                                                })
+                                                                                              : json['defaultValueAttachment'] != null || json['_defaultValueAttachment'] != null
+                                                                                                  ? AttachmentDefaultValueElementDefinitionElementDefinition.fromJson({
+                                                                                                      'value': json['defaultValueAttachment'],
+                                                                                                      '_value': json['_defaultValueAttachment'],
+                                                                                                    })
+                                                                                                  : json['defaultValueCodeableConcept'] != null || json['_defaultValueCodeableConcept'] != null
+                                                                                                      ? CodeableConceptDefaultValueElementDefinitionElementDefinition.fromJson({
+                                                                                                          'value': json['defaultValueCodeableConcept'],
+                                                                                                          '_value': json['_defaultValueCodeableConcept'],
+                                                                                                        })
+                                                                                                      : json['defaultValueCodeableReference'] != null || json['_defaultValueCodeableReference'] != null
+                                                                                                          ? CodeableReferenceDefaultValueElementDefinitionElementDefinition.fromJson({
+                                                                                                              'value': json['defaultValueCodeableReference'],
+                                                                                                              '_value': json['_defaultValueCodeableReference'],
+                                                                                                            })
+                                                                                                          : json['defaultValueCoding'] != null || json['_defaultValueCoding'] != null
+                                                                                                              ? CodingDefaultValueElementDefinitionElementDefinition.fromJson({
+                                                                                                                  'value': json['defaultValueCoding'],
+                                                                                                                  '_value': json['_defaultValueCoding'],
+                                                                                                                })
+                                                                                                              : json['defaultValueContactPoint'] != null || json['_defaultValueContactPoint'] != null
+                                                                                                                  ? ContactPointDefaultValueElementDefinitionElementDefinition.fromJson({
+                                                                                                                      'value': json['defaultValueContactPoint'],
+                                                                                                                      '_value': json['_defaultValueContactPoint'],
+                                                                                                                    })
+                                                                                                                  : json['defaultValueCount'] != null || json['_defaultValueCount'] != null
+                                                                                                                      ? CountDefaultValueElementDefinitionElementDefinition.fromJson({
+                                                                                                                          'value': json['defaultValueCount'],
+                                                                                                                          '_value': json['_defaultValueCount'],
+                                                                                                                        })
+                                                                                                                      : json['defaultValueDistance'] != null || json['_defaultValueDistance'] != null
+                                                                                                                          ? DistanceDefaultValueElementDefinitionElementDefinition.fromJson({
+                                                                                                                              'value': json['defaultValueDistance'],
+                                                                                                                              '_value': json['_defaultValueDistance'],
+                                                                                                                            })
+                                                                                                                          : json['defaultValueDuration'] != null || json['_defaultValueDuration'] != null
+                                                                                                                              ? DurationDefaultValueElementDefinitionElementDefinition.fromJson({
+                                                                                                                                  'value': json['defaultValueDuration'],
+                                                                                                                                  '_value': json['_defaultValueDuration'],
+                                                                                                                                })
+                                                                                                                              : json['defaultValueHumanName'] != null || json['_defaultValueHumanName'] != null
+                                                                                                                                  ? HumanNameDefaultValueElementDefinitionElementDefinition.fromJson({
+                                                                                                                                      'value': json['defaultValueHumanName'],
+                                                                                                                                      '_value': json['_defaultValueHumanName'],
+                                                                                                                                    })
+                                                                                                                                  : json['defaultValueIdentifier'] != null || json['_defaultValueIdentifier'] != null
+                                                                                                                                      ? IdentifierDefaultValueElementDefinitionElementDefinition.fromJson({
+                                                                                                                                          'value': json['defaultValueIdentifier'],
+                                                                                                                                          '_value': json['_defaultValueIdentifier'],
+                                                                                                                                        })
+                                                                                                                                      : json['defaultValueMoney'] != null || json['_defaultValueMoney'] != null
+                                                                                                                                          ? MoneyDefaultValueElementDefinitionElementDefinition.fromJson({
+                                                                                                                                              'value': json['defaultValueMoney'],
+                                                                                                                                              '_value': json['_defaultValueMoney'],
+                                                                                                                                            })
+                                                                                                                                          : json['defaultValuePeriod'] != null || json['_defaultValuePeriod'] != null
+                                                                                                                                              ? PeriodDefaultValueElementDefinitionElementDefinition.fromJson({
+                                                                                                                                                  'value': json['defaultValuePeriod'],
+                                                                                                                                                  '_value': json['_defaultValuePeriod'],
+                                                                                                                                                })
+                                                                                                                                              : json['defaultValueQuantity'] != null || json['_defaultValueQuantity'] != null
+                                                                                                                                                  ? QuantityDefaultValueElementDefinitionElementDefinition.fromJson({
+                                                                                                                                                      'value': json['defaultValueQuantity'],
+                                                                                                                                                      '_value': json['_defaultValueQuantity'],
+                                                                                                                                                    })
+                                                                                                                                                  : json['defaultValueRange'] != null || json['_defaultValueRange'] != null
+                                                                                                                                                      ? RangeDefaultValueElementDefinitionElementDefinition.fromJson({
+                                                                                                                                                          'value': json['defaultValueRange'],
+                                                                                                                                                          '_value': json['_defaultValueRange'],
+                                                                                                                                                        })
+                                                                                                                                                      : json['defaultValueRatio'] != null || json['_defaultValueRatio'] != null
+                                                                                                                                                          ? RatioDefaultValueElementDefinitionElementDefinition.fromJson({
+                                                                                                                                                              'value': json['defaultValueRatio'],
+                                                                                                                                                              '_value': json['_defaultValueRatio'],
+                                                                                                                                                            })
+                                                                                                                                                          : json['defaultValueRatioRange'] != null || json['_defaultValueRatioRange'] != null
+                                                                                                                                                              ? RatioRangeDefaultValueElementDefinitionElementDefinition.fromJson({
+                                                                                                                                                                  'value': json['defaultValueRatioRange'],
+                                                                                                                                                                  '_value': json['_defaultValueRatioRange'],
+                                                                                                                                                                })
+                                                                                                                                                              : json['defaultValueReference'] != null || json['_defaultValueReference'] != null
+                                                                                                                                                                  ? ReferenceDefaultValueElementDefinitionElementDefinition.fromJson({
+                                                                                                                                                                      'value': json['defaultValueReference'],
+                                                                                                                                                                      '_value': json['_defaultValueReference'],
+                                                                                                                                                                    })
+                                                                                                                                                                  : json['defaultValueSampledData'] != null || json['_defaultValueSampledData'] != null
+                                                                                                                                                                      ? SampledDataDefaultValueElementDefinitionElementDefinition.fromJson({
+                                                                                                                                                                          'value': json['defaultValueSampledData'],
+                                                                                                                                                                          '_value': json['_defaultValueSampledData'],
+                                                                                                                                                                        })
+                                                                                                                                                                      : json['defaultValueSignature'] != null || json['_defaultValueSignature'] != null
+                                                                                                                                                                          ? SignatureDefaultValueElementDefinitionElementDefinition.fromJson({
+                                                                                                                                                                              'value': json['defaultValueSignature'],
+                                                                                                                                                                              '_value': json['_defaultValueSignature'],
+                                                                                                                                                                            })
+                                                                                                                                                                          : json['defaultValueTiming'] != null || json['_defaultValueTiming'] != null
+                                                                                                                                                                              ? TimingDefaultValueElementDefinitionElementDefinition.fromJson({
+                                                                                                                                                                                  'value': json['defaultValueTiming'],
+                                                                                                                                                                                  '_value': json['_defaultValueTiming'],
+                                                                                                                                                                                })
+                                                                                                                                                                              : json['defaultValueContactDetail'] != null || json['_defaultValueContactDetail'] != null
+                                                                                                                                                                                  ? ContactDetailDefaultValueElementDefinitionElementDefinition.fromJson({
+                                                                                                                                                                                      'value': json['defaultValueContactDetail'],
+                                                                                                                                                                                      '_value': json['_defaultValueContactDetail'],
+                                                                                                                                                                                    })
+                                                                                                                                                                                  : json['defaultValueContributor'] != null || json['_defaultValueContributor'] != null
+                                                                                                                                                                                      ? ContributorDefaultValueElementDefinitionElementDefinition.fromJson({
+                                                                                                                                                                                          'value': json['defaultValueContributor'],
+                                                                                                                                                                                          '_value': json['_defaultValueContributor'],
+                                                                                                                                                                                        })
+                                                                                                                                                                                      : json['defaultValueDataRequirement'] != null || json['_defaultValueDataRequirement'] != null
+                                                                                                                                                                                          ? DataRequirementDefaultValueElementDefinitionElementDefinition.fromJson({
+                                                                                                                                                                                              'value': json['defaultValueDataRequirement'],
+                                                                                                                                                                                              '_value': json['_defaultValueDataRequirement'],
+                                                                                                                                                                                            })
+                                                                                                                                                                                          : json['defaultValueExpression'] != null || json['_defaultValueExpression'] != null
+                                                                                                                                                                                              ? ExpressionDefaultValueElementDefinitionElementDefinition.fromJson({
+                                                                                                                                                                                                  'value': json['defaultValueExpression'],
+                                                                                                                                                                                                  '_value': json['_defaultValueExpression'],
+                                                                                                                                                                                                })
+                                                                                                                                                                                              : json['defaultValueParameterDefinition'] != null || json['_defaultValueParameterDefinition'] != null
+                                                                                                                                                                                                  ? ParameterDefinitionDefaultValueElementDefinitionElementDefinition.fromJson({
+                                                                                                                                                                                                      'value': json['defaultValueParameterDefinition'],
+                                                                                                                                                                                                      '_value': json['_defaultValueParameterDefinition'],
+                                                                                                                                                                                                    })
+                                                                                                                                                                                                  : json['defaultValueRelatedArtifact'] != null || json['_defaultValueRelatedArtifact'] != null
+                                                                                                                                                                                                      ? RelatedArtifactDefaultValueElementDefinitionElementDefinition.fromJson({
+                                                                                                                                                                                                          'value': json['defaultValueRelatedArtifact'],
+                                                                                                                                                                                                          '_value': json['_defaultValueRelatedArtifact'],
+                                                                                                                                                                                                        })
+                                                                                                                                                                                                      : json['defaultValueTriggerDefinition'] != null || json['_defaultValueTriggerDefinition'] != null
+                                                                                                                                                                                                          ? TriggerDefinitionDefaultValueElementDefinitionElementDefinition.fromJson({
+                                                                                                                                                                                                              'value': json['defaultValueTriggerDefinition'],
+                                                                                                                                                                                                              '_value': json['_defaultValueTriggerDefinition'],
+                                                                                                                                                                                                            })
+                                                                                                                                                                                                          : json['defaultValueUsageContext'] != null || json['_defaultValueUsageContext'] != null
+                                                                                                                                                                                                              ? UsageContextDefaultValueElementDefinitionElementDefinition.fromJson({
+                                                                                                                                                                                                                  'value': json['defaultValueUsageContext'],
+                                                                                                                                                                                                                  '_value': json['_defaultValueUsageContext'],
+                                                                                                                                                                                                                })
+                                                                                                                                                                                                              : json['defaultValueDosage'] != null || json['_defaultValueDosage'] != null
+                                                                                                                                                                                                                  ? DosageDefaultValueElementDefinitionElementDefinition.fromJson({
+                                                                                                                                                                                                                      'value': json['defaultValueDosage'],
+                                                                                                                                                                                                                      '_value': json['_defaultValueDosage'],
+                                                                                                                                                                                                                    })
+                                                                                                                                                                                                                  : null,
       meaningWhenMissing: (json['meaningWhenMissing'] != null ||
               json['_meaningWhenMissing'] != null)
           ? FhirMarkdown.fromJson({
@@ -208,22 +483,575 @@ class ElementDefinition extends BackboneType {
                   '_value': json['_orderMeaning'],
                 })
               : null,
-      fixedXElementDefinitionElementDefinition:
-          (json['fixedXElementDefinitionElementDefinition'] != null ||
-                  json['_fixedXElementDefinitionElementDefinition'] != null)
-              ? FhirBase64Binary.fromJson({
-                  'value': json['fixedXElementDefinitionElementDefinition'],
-                  '_value': json['_fixedXElementDefinitionElementDefinition'],
+      fixedXElementDefinitionElementDefinition: json['fixedBase64Binary'] != null ||
+              json['_fixedBase64Binary'] != null
+          ? Base64BinaryFixedElementDefinitionElementDefinition.fromJson({
+              'value': json['fixedBase64Binary'],
+              '_value': json['_fixedBase64Binary'],
+            })
+          : json['fixedBoolean'] != null || json['_fixedBoolean'] != null
+              ? BooleanFixedElementDefinitionElementDefinition.fromJson({
+                  'value': json['fixedBoolean'],
+                  '_value': json['_fixedBoolean'],
                 })
-              : null,
-      patternXElementDefinitionElementDefinition:
-          (json['patternXElementDefinitionElementDefinition'] != null ||
-                  json['_patternXElementDefinitionElementDefinition'] != null)
-              ? FhirBase64Binary.fromJson({
-                  'value': json['patternXElementDefinitionElementDefinition'],
-                  '_value': json['_patternXElementDefinitionElementDefinition'],
+              : json['fixedCanonical'] != null ||
+                      json['_fixedCanonical'] != null
+                  ? CanonicalFixedElementDefinitionElementDefinition.fromJson({
+                      'value': json['fixedCanonical'],
+                      '_value': json['_fixedCanonical'],
+                    })
+                  : json['fixedCode'] != null || json['_fixedCode'] != null
+                      ? CodeFixedElementDefinitionElementDefinition.fromJson({
+                          'value': json['fixedCode'],
+                          '_value': json['_fixedCode'],
+                        })
+                      : json['fixedDate'] != null || json['_fixedDate'] != null
+                          ? DateFixedElementDefinitionElementDefinition.fromJson({
+                              'value': json['fixedDate'],
+                              '_value': json['_fixedDate'],
+                            })
+                          : json['fixedDateTime'] != null ||
+                                  json['_fixedDateTime'] != null
+                              ? DateTimeFixedElementDefinitionElementDefinition.fromJson({
+                                  'value': json['fixedDateTime'],
+                                  '_value': json['_fixedDateTime'],
+                                })
+                              : json['fixedDecimal'] != null ||
+                                      json['_fixedDecimal'] != null
+                                  ? DecimalFixedElementDefinitionElementDefinition.fromJson({
+                                      'value': json['fixedDecimal'],
+                                      '_value': json['_fixedDecimal'],
+                                    })
+                                  : json['fixedId'] != null ||
+                                          json['_fixedId'] != null
+                                      ? IdFixedElementDefinitionElementDefinition.fromJson({
+                                          'value': json['fixedId'],
+                                          '_value': json['_fixedId'],
+                                        })
+                                      : json['fixedInstant'] != null ||
+                                              json['_fixedInstant'] != null
+                                          ? InstantFixedElementDefinitionElementDefinition.fromJson({
+                                              'value': json['fixedInstant'],
+                                              '_value': json['_fixedInstant'],
+                                            })
+                                          : json['fixedInteger'] != null ||
+                                                  json['_fixedInteger'] != null
+                                              ? IntegerFixedElementDefinitionElementDefinition.fromJson({
+                                                  'value': json['fixedInteger'],
+                                                  '_value':
+                                                      json['_fixedInteger'],
+                                                })
+                                              : json['fixedMarkdown'] != null ||
+                                                      json['_fixedMarkdown'] !=
+                                                          null
+                                                  ? MarkdownFixedElementDefinitionElementDefinition.fromJson({
+                                                      'value':
+                                                          json['fixedMarkdown'],
+                                                      '_value': json[
+                                                          '_fixedMarkdown'],
+                                                    })
+                                                  : json['fixedOid'] != null ||
+                                                          json['_fixedOid'] !=
+                                                              null
+                                                      ? OidFixedElementDefinitionElementDefinition.fromJson({
+                                                          'value':
+                                                              json['fixedOid'],
+                                                          '_value':
+                                                              json['_fixedOid'],
+                                                        })
+                                                      : json['fixedPositiveInt'] != null ||
+                                                              json['_fixedPositiveInt'] !=
+                                                                  null
+                                                          ? PositiveIntFixedElementDefinitionElementDefinition.fromJson({
+                                                              'value': json[
+                                                                  'fixedPositiveInt'],
+                                                              '_value': json[
+                                                                  '_fixedPositiveInt'],
+                                                            })
+                                                          : json['fixedString'] != null ||
+                                                                  json['_fixedString'] != null
+                                                              ? StringFixedElementDefinitionElementDefinition.fromJson({
+                                                                  'value': json[
+                                                                      'fixedString'],
+                                                                  '_value': json[
+                                                                      '_fixedString'],
+                                                                })
+                                                              : json['fixedTime'] != null || json['_fixedTime'] != null
+                                                                  ? TimeFixedElementDefinitionElementDefinition.fromJson({
+                                                                      'value': json[
+                                                                          'fixedTime'],
+                                                                      '_value':
+                                                                          json[
+                                                                              '_fixedTime'],
+                                                                    })
+                                                                  : json['fixedUnsignedInt'] != null || json['_fixedUnsignedInt'] != null
+                                                                      ? UnsignedIntFixedElementDefinitionElementDefinition.fromJson({
+                                                                          'value':
+                                                                              json['fixedUnsignedInt'],
+                                                                          '_value':
+                                                                              json['_fixedUnsignedInt'],
+                                                                        })
+                                                                      : json['fixedUri'] != null || json['_fixedUri'] != null
+                                                                          ? UriFixedElementDefinitionElementDefinition.fromJson({
+                                                                              'value': json['fixedUri'],
+                                                                              '_value': json['_fixedUri'],
+                                                                            })
+                                                                          : json['fixedUrl'] != null || json['_fixedUrl'] != null
+                                                                              ? UrlFixedElementDefinitionElementDefinition.fromJson({
+                                                                                  'value': json['fixedUrl'],
+                                                                                  '_value': json['_fixedUrl'],
+                                                                                })
+                                                                              : json['fixedUuid'] != null || json['_fixedUuid'] != null
+                                                                                  ? UuidFixedElementDefinitionElementDefinition.fromJson({
+                                                                                      'value': json['fixedUuid'],
+                                                                                      '_value': json['_fixedUuid'],
+                                                                                    })
+                                                                                  : json['fixedAddress'] != null || json['_fixedAddress'] != null
+                                                                                      ? AddressFixedElementDefinitionElementDefinition.fromJson({
+                                                                                          'value': json['fixedAddress'],
+                                                                                          '_value': json['_fixedAddress'],
+                                                                                        })
+                                                                                      : json['fixedAge'] != null || json['_fixedAge'] != null
+                                                                                          ? AgeFixedElementDefinitionElementDefinition.fromJson({
+                                                                                              'value': json['fixedAge'],
+                                                                                              '_value': json['_fixedAge'],
+                                                                                            })
+                                                                                          : json['fixedAnnotation'] != null || json['_fixedAnnotation'] != null
+                                                                                              ? AnnotationFixedElementDefinitionElementDefinition.fromJson({
+                                                                                                  'value': json['fixedAnnotation'],
+                                                                                                  '_value': json['_fixedAnnotation'],
+                                                                                                })
+                                                                                              : json['fixedAttachment'] != null || json['_fixedAttachment'] != null
+                                                                                                  ? AttachmentFixedElementDefinitionElementDefinition.fromJson({
+                                                                                                      'value': json['fixedAttachment'],
+                                                                                                      '_value': json['_fixedAttachment'],
+                                                                                                    })
+                                                                                                  : json['fixedCodeableConcept'] != null || json['_fixedCodeableConcept'] != null
+                                                                                                      ? CodeableConceptFixedElementDefinitionElementDefinition.fromJson({
+                                                                                                          'value': json['fixedCodeableConcept'],
+                                                                                                          '_value': json['_fixedCodeableConcept'],
+                                                                                                        })
+                                                                                                      : json['fixedCodeableReference'] != null || json['_fixedCodeableReference'] != null
+                                                                                                          ? CodeableReferenceFixedElementDefinitionElementDefinition.fromJson({
+                                                                                                              'value': json['fixedCodeableReference'],
+                                                                                                              '_value': json['_fixedCodeableReference'],
+                                                                                                            })
+                                                                                                          : json['fixedCoding'] != null || json['_fixedCoding'] != null
+                                                                                                              ? CodingFixedElementDefinitionElementDefinition.fromJson({
+                                                                                                                  'value': json['fixedCoding'],
+                                                                                                                  '_value': json['_fixedCoding'],
+                                                                                                                })
+                                                                                                              : json['fixedContactPoint'] != null || json['_fixedContactPoint'] != null
+                                                                                                                  ? ContactPointFixedElementDefinitionElementDefinition.fromJson({
+                                                                                                                      'value': json['fixedContactPoint'],
+                                                                                                                      '_value': json['_fixedContactPoint'],
+                                                                                                                    })
+                                                                                                                  : json['fixedCount'] != null || json['_fixedCount'] != null
+                                                                                                                      ? CountFixedElementDefinitionElementDefinition.fromJson({
+                                                                                                                          'value': json['fixedCount'],
+                                                                                                                          '_value': json['_fixedCount'],
+                                                                                                                        })
+                                                                                                                      : json['fixedDistance'] != null || json['_fixedDistance'] != null
+                                                                                                                          ? DistanceFixedElementDefinitionElementDefinition.fromJson({
+                                                                                                                              'value': json['fixedDistance'],
+                                                                                                                              '_value': json['_fixedDistance'],
+                                                                                                                            })
+                                                                                                                          : json['fixedDuration'] != null || json['_fixedDuration'] != null
+                                                                                                                              ? DurationFixedElementDefinitionElementDefinition.fromJson({
+                                                                                                                                  'value': json['fixedDuration'],
+                                                                                                                                  '_value': json['_fixedDuration'],
+                                                                                                                                })
+                                                                                                                              : json['fixedHumanName'] != null || json['_fixedHumanName'] != null
+                                                                                                                                  ? HumanNameFixedElementDefinitionElementDefinition.fromJson({
+                                                                                                                                      'value': json['fixedHumanName'],
+                                                                                                                                      '_value': json['_fixedHumanName'],
+                                                                                                                                    })
+                                                                                                                                  : json['fixedIdentifier'] != null || json['_fixedIdentifier'] != null
+                                                                                                                                      ? IdentifierFixedElementDefinitionElementDefinition.fromJson({
+                                                                                                                                          'value': json['fixedIdentifier'],
+                                                                                                                                          '_value': json['_fixedIdentifier'],
+                                                                                                                                        })
+                                                                                                                                      : json['fixedMoney'] != null || json['_fixedMoney'] != null
+                                                                                                                                          ? MoneyFixedElementDefinitionElementDefinition.fromJson({
+                                                                                                                                              'value': json['fixedMoney'],
+                                                                                                                                              '_value': json['_fixedMoney'],
+                                                                                                                                            })
+                                                                                                                                          : json['fixedPeriod'] != null || json['_fixedPeriod'] != null
+                                                                                                                                              ? PeriodFixedElementDefinitionElementDefinition.fromJson({
+                                                                                                                                                  'value': json['fixedPeriod'],
+                                                                                                                                                  '_value': json['_fixedPeriod'],
+                                                                                                                                                })
+                                                                                                                                              : json['fixedQuantity'] != null || json['_fixedQuantity'] != null
+                                                                                                                                                  ? QuantityFixedElementDefinitionElementDefinition.fromJson({
+                                                                                                                                                      'value': json['fixedQuantity'],
+                                                                                                                                                      '_value': json['_fixedQuantity'],
+                                                                                                                                                    })
+                                                                                                                                                  : json['fixedRange'] != null || json['_fixedRange'] != null
+                                                                                                                                                      ? RangeFixedElementDefinitionElementDefinition.fromJson({
+                                                                                                                                                          'value': json['fixedRange'],
+                                                                                                                                                          '_value': json['_fixedRange'],
+                                                                                                                                                        })
+                                                                                                                                                      : json['fixedRatio'] != null || json['_fixedRatio'] != null
+                                                                                                                                                          ? RatioFixedElementDefinitionElementDefinition.fromJson({
+                                                                                                                                                              'value': json['fixedRatio'],
+                                                                                                                                                              '_value': json['_fixedRatio'],
+                                                                                                                                                            })
+                                                                                                                                                          : json['fixedRatioRange'] != null || json['_fixedRatioRange'] != null
+                                                                                                                                                              ? RatioRangeFixedElementDefinitionElementDefinition.fromJson({
+                                                                                                                                                                  'value': json['fixedRatioRange'],
+                                                                                                                                                                  '_value': json['_fixedRatioRange'],
+                                                                                                                                                                })
+                                                                                                                                                              : json['fixedReference'] != null || json['_fixedReference'] != null
+                                                                                                                                                                  ? ReferenceFixedElementDefinitionElementDefinition.fromJson({
+                                                                                                                                                                      'value': json['fixedReference'],
+                                                                                                                                                                      '_value': json['_fixedReference'],
+                                                                                                                                                                    })
+                                                                                                                                                                  : json['fixedSampledData'] != null || json['_fixedSampledData'] != null
+                                                                                                                                                                      ? SampledDataFixedElementDefinitionElementDefinition.fromJson({
+                                                                                                                                                                          'value': json['fixedSampledData'],
+                                                                                                                                                                          '_value': json['_fixedSampledData'],
+                                                                                                                                                                        })
+                                                                                                                                                                      : json['fixedSignature'] != null || json['_fixedSignature'] != null
+                                                                                                                                                                          ? SignatureFixedElementDefinitionElementDefinition.fromJson({
+                                                                                                                                                                              'value': json['fixedSignature'],
+                                                                                                                                                                              '_value': json['_fixedSignature'],
+                                                                                                                                                                            })
+                                                                                                                                                                          : json['fixedTiming'] != null || json['_fixedTiming'] != null
+                                                                                                                                                                              ? TimingFixedElementDefinitionElementDefinition.fromJson({
+                                                                                                                                                                                  'value': json['fixedTiming'],
+                                                                                                                                                                                  '_value': json['_fixedTiming'],
+                                                                                                                                                                                })
+                                                                                                                                                                              : json['fixedContactDetail'] != null || json['_fixedContactDetail'] != null
+                                                                                                                                                                                  ? ContactDetailFixedElementDefinitionElementDefinition.fromJson({
+                                                                                                                                                                                      'value': json['fixedContactDetail'],
+                                                                                                                                                                                      '_value': json['_fixedContactDetail'],
+                                                                                                                                                                                    })
+                                                                                                                                                                                  : json['fixedContributor'] != null || json['_fixedContributor'] != null
+                                                                                                                                                                                      ? ContributorFixedElementDefinitionElementDefinition.fromJson({
+                                                                                                                                                                                          'value': json['fixedContributor'],
+                                                                                                                                                                                          '_value': json['_fixedContributor'],
+                                                                                                                                                                                        })
+                                                                                                                                                                                      : json['fixedDataRequirement'] != null || json['_fixedDataRequirement'] != null
+                                                                                                                                                                                          ? DataRequirementFixedElementDefinitionElementDefinition.fromJson({
+                                                                                                                                                                                              'value': json['fixedDataRequirement'],
+                                                                                                                                                                                              '_value': json['_fixedDataRequirement'],
+                                                                                                                                                                                            })
+                                                                                                                                                                                          : json['fixedExpression'] != null || json['_fixedExpression'] != null
+                                                                                                                                                                                              ? ExpressionFixedElementDefinitionElementDefinition.fromJson({
+                                                                                                                                                                                                  'value': json['fixedExpression'],
+                                                                                                                                                                                                  '_value': json['_fixedExpression'],
+                                                                                                                                                                                                })
+                                                                                                                                                                                              : json['fixedParameterDefinition'] != null || json['_fixedParameterDefinition'] != null
+                                                                                                                                                                                                  ? ParameterDefinitionFixedElementDefinitionElementDefinition.fromJson({
+                                                                                                                                                                                                      'value': json['fixedParameterDefinition'],
+                                                                                                                                                                                                      '_value': json['_fixedParameterDefinition'],
+                                                                                                                                                                                                    })
+                                                                                                                                                                                                  : json['fixedRelatedArtifact'] != null || json['_fixedRelatedArtifact'] != null
+                                                                                                                                                                                                      ? RelatedArtifactFixedElementDefinitionElementDefinition.fromJson({
+                                                                                                                                                                                                          'value': json['fixedRelatedArtifact'],
+                                                                                                                                                                                                          '_value': json['_fixedRelatedArtifact'],
+                                                                                                                                                                                                        })
+                                                                                                                                                                                                      : json['fixedTriggerDefinition'] != null || json['_fixedTriggerDefinition'] != null
+                                                                                                                                                                                                          ? TriggerDefinitionFixedElementDefinitionElementDefinition.fromJson({
+                                                                                                                                                                                                              'value': json['fixedTriggerDefinition'],
+                                                                                                                                                                                                              '_value': json['_fixedTriggerDefinition'],
+                                                                                                                                                                                                            })
+                                                                                                                                                                                                          : json['fixedUsageContext'] != null || json['_fixedUsageContext'] != null
+                                                                                                                                                                                                              ? UsageContextFixedElementDefinitionElementDefinition.fromJson({
+                                                                                                                                                                                                                  'value': json['fixedUsageContext'],
+                                                                                                                                                                                                                  '_value': json['_fixedUsageContext'],
+                                                                                                                                                                                                                })
+                                                                                                                                                                                                              : json['fixedDosage'] != null || json['_fixedDosage'] != null
+                                                                                                                                                                                                                  ? DosageFixedElementDefinitionElementDefinition.fromJson({
+                                                                                                                                                                                                                      'value': json['fixedDosage'],
+                                                                                                                                                                                                                      '_value': json['_fixedDosage'],
+                                                                                                                                                                                                                    })
+                                                                                                                                                                                                                  : null,
+      patternXElementDefinitionElementDefinition: json['patternBase64Binary'] != null ||
+              json['_patternBase64Binary'] != null
+          ? Base64BinaryPatternElementDefinitionElementDefinition.fromJson({
+              'value': json['patternBase64Binary'],
+              '_value': json['_patternBase64Binary'],
+            })
+          : json['patternBoolean'] != null || json['_patternBoolean'] != null
+              ? BooleanPatternElementDefinitionElementDefinition.fromJson({
+                  'value': json['patternBoolean'],
+                  '_value': json['_patternBoolean'],
                 })
-              : null,
+              : json['patternCanonical'] != null ||
+                      json['_patternCanonical'] != null
+                  ? CanonicalPatternElementDefinitionElementDefinition.fromJson({
+                      'value': json['patternCanonical'],
+                      '_value': json['_patternCanonical'],
+                    })
+                  : json['patternCode'] != null || json['_patternCode'] != null
+                      ? CodePatternElementDefinitionElementDefinition.fromJson({
+                          'value': json['patternCode'],
+                          '_value': json['_patternCode'],
+                        })
+                      : json['patternDate'] != null ||
+                              json['_patternDate'] != null
+                          ? DatePatternElementDefinitionElementDefinition.fromJson({
+                              'value': json['patternDate'],
+                              '_value': json['_patternDate'],
+                            })
+                          : json['patternDateTime'] != null ||
+                                  json['_patternDateTime'] != null
+                              ? DateTimePatternElementDefinitionElementDefinition.fromJson({
+                                  'value': json['patternDateTime'],
+                                  '_value': json['_patternDateTime'],
+                                })
+                              : json['patternDecimal'] != null ||
+                                      json['_patternDecimal'] != null
+                                  ? DecimalPatternElementDefinitionElementDefinition.fromJson({
+                                      'value': json['patternDecimal'],
+                                      '_value': json['_patternDecimal'],
+                                    })
+                                  : json['patternId'] != null ||
+                                          json['_patternId'] != null
+                                      ? IdPatternElementDefinitionElementDefinition.fromJson({
+                                          'value': json['patternId'],
+                                          '_value': json['_patternId'],
+                                        })
+                                      : json['patternInstant'] != null ||
+                                              json['_patternInstant'] != null
+                                          ? InstantPatternElementDefinitionElementDefinition.fromJson({
+                                              'value': json['patternInstant'],
+                                              '_value': json['_patternInstant'],
+                                            })
+                                          : json['patternInteger'] != null ||
+                                                  json['_patternInteger'] !=
+                                                      null
+                                              ? IntegerPatternElementDefinitionElementDefinition.fromJson({
+                                                  'value':
+                                                      json['patternInteger'],
+                                                  '_value':
+                                                      json['_patternInteger'],
+                                                })
+                                              : json['patternMarkdown'] != null ||
+                                                      json['_patternMarkdown'] !=
+                                                          null
+                                                  ? MarkdownPatternElementDefinitionElementDefinition.fromJson({
+                                                      'value': json[
+                                                          'patternMarkdown'],
+                                                      '_value': json[
+                                                          '_patternMarkdown'],
+                                                    })
+                                                  : json['patternOid'] != null ||
+                                                          json['_patternOid'] !=
+                                                              null
+                                                      ? OidPatternElementDefinitionElementDefinition.fromJson({
+                                                          'value': json[
+                                                              'patternOid'],
+                                                          '_value': json[
+                                                              '_patternOid'],
+                                                        })
+                                                      : json['patternPositiveInt'] != null ||
+                                                              json['_patternPositiveInt'] != null
+                                                          ? PositiveIntPatternElementDefinitionElementDefinition.fromJson({
+                                                              'value': json[
+                                                                  'patternPositiveInt'],
+                                                              '_value': json[
+                                                                  '_patternPositiveInt'],
+                                                            })
+                                                          : json['patternString'] != null || json['_patternString'] != null
+                                                              ? StringPatternElementDefinitionElementDefinition.fromJson({
+                                                                  'value': json[
+                                                                      'patternString'],
+                                                                  '_value': json[
+                                                                      '_patternString'],
+                                                                })
+                                                              : json['patternTime'] != null || json['_patternTime'] != null
+                                                                  ? TimePatternElementDefinitionElementDefinition.fromJson({
+                                                                      'value': json[
+                                                                          'patternTime'],
+                                                                      '_value':
+                                                                          json[
+                                                                              '_patternTime'],
+                                                                    })
+                                                                  : json['patternUnsignedInt'] != null || json['_patternUnsignedInt'] != null
+                                                                      ? UnsignedIntPatternElementDefinitionElementDefinition.fromJson({
+                                                                          'value':
+                                                                              json['patternUnsignedInt'],
+                                                                          '_value':
+                                                                              json['_patternUnsignedInt'],
+                                                                        })
+                                                                      : json['patternUri'] != null || json['_patternUri'] != null
+                                                                          ? UriPatternElementDefinitionElementDefinition.fromJson({
+                                                                              'value': json['patternUri'],
+                                                                              '_value': json['_patternUri'],
+                                                                            })
+                                                                          : json['patternUrl'] != null || json['_patternUrl'] != null
+                                                                              ? UrlPatternElementDefinitionElementDefinition.fromJson({
+                                                                                  'value': json['patternUrl'],
+                                                                                  '_value': json['_patternUrl'],
+                                                                                })
+                                                                              : json['patternUuid'] != null || json['_patternUuid'] != null
+                                                                                  ? UuidPatternElementDefinitionElementDefinition.fromJson({
+                                                                                      'value': json['patternUuid'],
+                                                                                      '_value': json['_patternUuid'],
+                                                                                    })
+                                                                                  : json['patternAddress'] != null || json['_patternAddress'] != null
+                                                                                      ? AddressPatternElementDefinitionElementDefinition.fromJson({
+                                                                                          'value': json['patternAddress'],
+                                                                                          '_value': json['_patternAddress'],
+                                                                                        })
+                                                                                      : json['patternAge'] != null || json['_patternAge'] != null
+                                                                                          ? AgePatternElementDefinitionElementDefinition.fromJson({
+                                                                                              'value': json['patternAge'],
+                                                                                              '_value': json['_patternAge'],
+                                                                                            })
+                                                                                          : json['patternAnnotation'] != null || json['_patternAnnotation'] != null
+                                                                                              ? AnnotationPatternElementDefinitionElementDefinition.fromJson({
+                                                                                                  'value': json['patternAnnotation'],
+                                                                                                  '_value': json['_patternAnnotation'],
+                                                                                                })
+                                                                                              : json['patternAttachment'] != null || json['_patternAttachment'] != null
+                                                                                                  ? AttachmentPatternElementDefinitionElementDefinition.fromJson({
+                                                                                                      'value': json['patternAttachment'],
+                                                                                                      '_value': json['_patternAttachment'],
+                                                                                                    })
+                                                                                                  : json['patternCodeableConcept'] != null || json['_patternCodeableConcept'] != null
+                                                                                                      ? CodeableConceptPatternElementDefinitionElementDefinition.fromJson({
+                                                                                                          'value': json['patternCodeableConcept'],
+                                                                                                          '_value': json['_patternCodeableConcept'],
+                                                                                                        })
+                                                                                                      : json['patternCodeableReference'] != null || json['_patternCodeableReference'] != null
+                                                                                                          ? CodeableReferencePatternElementDefinitionElementDefinition.fromJson({
+                                                                                                              'value': json['patternCodeableReference'],
+                                                                                                              '_value': json['_patternCodeableReference'],
+                                                                                                            })
+                                                                                                          : json['patternCoding'] != null || json['_patternCoding'] != null
+                                                                                                              ? CodingPatternElementDefinitionElementDefinition.fromJson({
+                                                                                                                  'value': json['patternCoding'],
+                                                                                                                  '_value': json['_patternCoding'],
+                                                                                                                })
+                                                                                                              : json['patternContactPoint'] != null || json['_patternContactPoint'] != null
+                                                                                                                  ? ContactPointPatternElementDefinitionElementDefinition.fromJson({
+                                                                                                                      'value': json['patternContactPoint'],
+                                                                                                                      '_value': json['_patternContactPoint'],
+                                                                                                                    })
+                                                                                                                  : json['patternCount'] != null || json['_patternCount'] != null
+                                                                                                                      ? CountPatternElementDefinitionElementDefinition.fromJson({
+                                                                                                                          'value': json['patternCount'],
+                                                                                                                          '_value': json['_patternCount'],
+                                                                                                                        })
+                                                                                                                      : json['patternDistance'] != null || json['_patternDistance'] != null
+                                                                                                                          ? DistancePatternElementDefinitionElementDefinition.fromJson({
+                                                                                                                              'value': json['patternDistance'],
+                                                                                                                              '_value': json['_patternDistance'],
+                                                                                                                            })
+                                                                                                                          : json['patternDuration'] != null || json['_patternDuration'] != null
+                                                                                                                              ? DurationPatternElementDefinitionElementDefinition.fromJson({
+                                                                                                                                  'value': json['patternDuration'],
+                                                                                                                                  '_value': json['_patternDuration'],
+                                                                                                                                })
+                                                                                                                              : json['patternHumanName'] != null || json['_patternHumanName'] != null
+                                                                                                                                  ? HumanNamePatternElementDefinitionElementDefinition.fromJson({
+                                                                                                                                      'value': json['patternHumanName'],
+                                                                                                                                      '_value': json['_patternHumanName'],
+                                                                                                                                    })
+                                                                                                                                  : json['patternIdentifier'] != null || json['_patternIdentifier'] != null
+                                                                                                                                      ? IdentifierPatternElementDefinitionElementDefinition.fromJson({
+                                                                                                                                          'value': json['patternIdentifier'],
+                                                                                                                                          '_value': json['_patternIdentifier'],
+                                                                                                                                        })
+                                                                                                                                      : json['patternMoney'] != null || json['_patternMoney'] != null
+                                                                                                                                          ? MoneyPatternElementDefinitionElementDefinition.fromJson({
+                                                                                                                                              'value': json['patternMoney'],
+                                                                                                                                              '_value': json['_patternMoney'],
+                                                                                                                                            })
+                                                                                                                                          : json['patternPeriod'] != null || json['_patternPeriod'] != null
+                                                                                                                                              ? PeriodPatternElementDefinitionElementDefinition.fromJson({
+                                                                                                                                                  'value': json['patternPeriod'],
+                                                                                                                                                  '_value': json['_patternPeriod'],
+                                                                                                                                                })
+                                                                                                                                              : json['patternQuantity'] != null || json['_patternQuantity'] != null
+                                                                                                                                                  ? QuantityPatternElementDefinitionElementDefinition.fromJson({
+                                                                                                                                                      'value': json['patternQuantity'],
+                                                                                                                                                      '_value': json['_patternQuantity'],
+                                                                                                                                                    })
+                                                                                                                                                  : json['patternRange'] != null || json['_patternRange'] != null
+                                                                                                                                                      ? RangePatternElementDefinitionElementDefinition.fromJson({
+                                                                                                                                                          'value': json['patternRange'],
+                                                                                                                                                          '_value': json['_patternRange'],
+                                                                                                                                                        })
+                                                                                                                                                      : json['patternRatio'] != null || json['_patternRatio'] != null
+                                                                                                                                                          ? RatioPatternElementDefinitionElementDefinition.fromJson({
+                                                                                                                                                              'value': json['patternRatio'],
+                                                                                                                                                              '_value': json['_patternRatio'],
+                                                                                                                                                            })
+                                                                                                                                                          : json['patternRatioRange'] != null || json['_patternRatioRange'] != null
+                                                                                                                                                              ? RatioRangePatternElementDefinitionElementDefinition.fromJson({
+                                                                                                                                                                  'value': json['patternRatioRange'],
+                                                                                                                                                                  '_value': json['_patternRatioRange'],
+                                                                                                                                                                })
+                                                                                                                                                              : json['patternReference'] != null || json['_patternReference'] != null
+                                                                                                                                                                  ? ReferencePatternElementDefinitionElementDefinition.fromJson({
+                                                                                                                                                                      'value': json['patternReference'],
+                                                                                                                                                                      '_value': json['_patternReference'],
+                                                                                                                                                                    })
+                                                                                                                                                                  : json['patternSampledData'] != null || json['_patternSampledData'] != null
+                                                                                                                                                                      ? SampledDataPatternElementDefinitionElementDefinition.fromJson({
+                                                                                                                                                                          'value': json['patternSampledData'],
+                                                                                                                                                                          '_value': json['_patternSampledData'],
+                                                                                                                                                                        })
+                                                                                                                                                                      : json['patternSignature'] != null || json['_patternSignature'] != null
+                                                                                                                                                                          ? SignaturePatternElementDefinitionElementDefinition.fromJson({
+                                                                                                                                                                              'value': json['patternSignature'],
+                                                                                                                                                                              '_value': json['_patternSignature'],
+                                                                                                                                                                            })
+                                                                                                                                                                          : json['patternTiming'] != null || json['_patternTiming'] != null
+                                                                                                                                                                              ? TimingPatternElementDefinitionElementDefinition.fromJson({
+                                                                                                                                                                                  'value': json['patternTiming'],
+                                                                                                                                                                                  '_value': json['_patternTiming'],
+                                                                                                                                                                                })
+                                                                                                                                                                              : json['patternContactDetail'] != null || json['_patternContactDetail'] != null
+                                                                                                                                                                                  ? ContactDetailPatternElementDefinitionElementDefinition.fromJson({
+                                                                                                                                                                                      'value': json['patternContactDetail'],
+                                                                                                                                                                                      '_value': json['_patternContactDetail'],
+                                                                                                                                                                                    })
+                                                                                                                                                                                  : json['patternContributor'] != null || json['_patternContributor'] != null
+                                                                                                                                                                                      ? ContributorPatternElementDefinitionElementDefinition.fromJson({
+                                                                                                                                                                                          'value': json['patternContributor'],
+                                                                                                                                                                                          '_value': json['_patternContributor'],
+                                                                                                                                                                                        })
+                                                                                                                                                                                      : json['patternDataRequirement'] != null || json['_patternDataRequirement'] != null
+                                                                                                                                                                                          ? DataRequirementPatternElementDefinitionElementDefinition.fromJson({
+                                                                                                                                                                                              'value': json['patternDataRequirement'],
+                                                                                                                                                                                              '_value': json['_patternDataRequirement'],
+                                                                                                                                                                                            })
+                                                                                                                                                                                          : json['patternExpression'] != null || json['_patternExpression'] != null
+                                                                                                                                                                                              ? ExpressionPatternElementDefinitionElementDefinition.fromJson({
+                                                                                                                                                                                                  'value': json['patternExpression'],
+                                                                                                                                                                                                  '_value': json['_patternExpression'],
+                                                                                                                                                                                                })
+                                                                                                                                                                                              : json['patternParameterDefinition'] != null || json['_patternParameterDefinition'] != null
+                                                                                                                                                                                                  ? ParameterDefinitionPatternElementDefinitionElementDefinition.fromJson({
+                                                                                                                                                                                                      'value': json['patternParameterDefinition'],
+                                                                                                                                                                                                      '_value': json['_patternParameterDefinition'],
+                                                                                                                                                                                                    })
+                                                                                                                                                                                                  : json['patternRelatedArtifact'] != null || json['_patternRelatedArtifact'] != null
+                                                                                                                                                                                                      ? RelatedArtifactPatternElementDefinitionElementDefinition.fromJson({
+                                                                                                                                                                                                          'value': json['patternRelatedArtifact'],
+                                                                                                                                                                                                          '_value': json['_patternRelatedArtifact'],
+                                                                                                                                                                                                        })
+                                                                                                                                                                                                      : json['patternTriggerDefinition'] != null || json['_patternTriggerDefinition'] != null
+                                                                                                                                                                                                          ? TriggerDefinitionPatternElementDefinitionElementDefinition.fromJson({
+                                                                                                                                                                                                              'value': json['patternTriggerDefinition'],
+                                                                                                                                                                                                              '_value': json['_patternTriggerDefinition'],
+                                                                                                                                                                                                            })
+                                                                                                                                                                                                          : json['patternUsageContext'] != null || json['_patternUsageContext'] != null
+                                                                                                                                                                                                              ? UsageContextPatternElementDefinitionElementDefinition.fromJson({
+                                                                                                                                                                                                                  'value': json['patternUsageContext'],
+                                                                                                                                                                                                                  '_value': json['_patternUsageContext'],
+                                                                                                                                                                                                                })
+                                                                                                                                                                                                              : json['patternDosage'] != null || json['_patternDosage'] != null
+                                                                                                                                                                                                                  ? DosagePatternElementDefinitionElementDefinition.fromJson({
+                                                                                                                                                                                                                      'value': json['patternDosage'],
+                                                                                                                                                                                                                      '_value': json['_patternDosage'],
+                                                                                                                                                                                                                    })
+                                                                                                                                                                                                                  : null,
       example: json['example'] != null
           ? (json['example'] as List<dynamic>)
               .map<ElementDefinitionExample>(
@@ -233,24 +1061,128 @@ class ElementDefinition extends BackboneType {
               )
               .toList()
           : null,
-      minValueXElementDefinitionElementDefinition:
-          (json['minValueXElementDefinitionElementDefinition'] != null ||
-                  json['_minValueXElementDefinitionElementDefinition'] != null)
-              ? FhirDate.fromJson({
-                  'value': json['minValueXElementDefinitionElementDefinition'],
-                  '_value':
-                      json['_minValueXElementDefinitionElementDefinition'],
+      minValueXElementDefinitionElementDefinition: json['minValueDate'] != null ||
+              json['_minValueDate'] != null
+          ? DateMinValueElementDefinitionElementDefinition.fromJson({
+              'value': json['minValueDate'],
+              '_value': json['_minValueDate'],
+            })
+          : json['minValueDateTime'] != null ||
+                  json['_minValueDateTime'] != null
+              ? DateTimeMinValueElementDefinitionElementDefinition.fromJson({
+                  'value': json['minValueDateTime'],
+                  '_value': json['_minValueDateTime'],
                 })
-              : null,
-      maxValueXElementDefinitionElementDefinition:
-          (json['maxValueXElementDefinitionElementDefinition'] != null ||
-                  json['_maxValueXElementDefinitionElementDefinition'] != null)
-              ? FhirDate.fromJson({
-                  'value': json['maxValueXElementDefinitionElementDefinition'],
-                  '_value':
-                      json['_maxValueXElementDefinitionElementDefinition'],
+              : json['minValueInstant'] != null ||
+                      json['_minValueInstant'] != null
+                  ? InstantMinValueElementDefinitionElementDefinition.fromJson({
+                      'value': json['minValueInstant'],
+                      '_value': json['_minValueInstant'],
+                    })
+                  : json['minValueTime'] != null ||
+                          json['_minValueTime'] != null
+                      ? TimeMinValueElementDefinitionElementDefinition.fromJson({
+                          'value': json['minValueTime'],
+                          '_value': json['_minValueTime'],
+                        })
+                      : json['minValueDecimal'] != null ||
+                              json['_minValueDecimal'] != null
+                          ? DecimalMinValueElementDefinitionElementDefinition.fromJson({
+                              'value': json['minValueDecimal'],
+                              '_value': json['_minValueDecimal'],
+                            })
+                          : json['minValueInteger'] != null ||
+                                  json['_minValueInteger'] != null
+                              ? IntegerMinValueElementDefinitionElementDefinition
+                                  .fromJson({
+                                  'value': json['minValueInteger'],
+                                  '_value': json['_minValueInteger'],
+                                })
+                              : json['minValuePositiveInt'] != null ||
+                                      json['_minValuePositiveInt'] != null
+                                  ? PositiveIntMinValueElementDefinitionElementDefinition
+                                      .fromJson({
+                                      'value': json['minValuePositiveInt'],
+                                      '_value': json['_minValuePositiveInt'],
+                                    })
+                                  : json['minValueUnsignedInt'] != null ||
+                                          json['_minValueUnsignedInt'] != null
+                                      ? UnsignedIntMinValueElementDefinitionElementDefinition
+                                          .fromJson({
+                                          'value': json['minValueUnsignedInt'],
+                                          '_value':
+                                              json['_minValueUnsignedInt'],
+                                        })
+                                      : json['minValueQuantity'] != null ||
+                                              json['_minValueQuantity'] != null
+                                          ? QuantityMinValueElementDefinitionElementDefinition
+                                              .fromJson({
+                                              'value': json['minValueQuantity'],
+                                              '_value':
+                                                  json['_minValueQuantity'],
+                                            })
+                                          : null,
+      maxValueXElementDefinitionElementDefinition: json['maxValueDate'] != null ||
+              json['_maxValueDate'] != null
+          ? DateMaxValueElementDefinitionElementDefinition.fromJson({
+              'value': json['maxValueDate'],
+              '_value': json['_maxValueDate'],
+            })
+          : json['maxValueDateTime'] != null ||
+                  json['_maxValueDateTime'] != null
+              ? DateTimeMaxValueElementDefinitionElementDefinition.fromJson({
+                  'value': json['maxValueDateTime'],
+                  '_value': json['_maxValueDateTime'],
                 })
-              : null,
+              : json['maxValueInstant'] != null ||
+                      json['_maxValueInstant'] != null
+                  ? InstantMaxValueElementDefinitionElementDefinition.fromJson({
+                      'value': json['maxValueInstant'],
+                      '_value': json['_maxValueInstant'],
+                    })
+                  : json['maxValueTime'] != null ||
+                          json['_maxValueTime'] != null
+                      ? TimeMaxValueElementDefinitionElementDefinition.fromJson({
+                          'value': json['maxValueTime'],
+                          '_value': json['_maxValueTime'],
+                        })
+                      : json['maxValueDecimal'] != null ||
+                              json['_maxValueDecimal'] != null
+                          ? DecimalMaxValueElementDefinitionElementDefinition.fromJson({
+                              'value': json['maxValueDecimal'],
+                              '_value': json['_maxValueDecimal'],
+                            })
+                          : json['maxValueInteger'] != null ||
+                                  json['_maxValueInteger'] != null
+                              ? IntegerMaxValueElementDefinitionElementDefinition
+                                  .fromJson({
+                                  'value': json['maxValueInteger'],
+                                  '_value': json['_maxValueInteger'],
+                                })
+                              : json['maxValuePositiveInt'] != null ||
+                                      json['_maxValuePositiveInt'] != null
+                                  ? PositiveIntMaxValueElementDefinitionElementDefinition
+                                      .fromJson({
+                                      'value': json['maxValuePositiveInt'],
+                                      '_value': json['_maxValuePositiveInt'],
+                                    })
+                                  : json['maxValueUnsignedInt'] != null ||
+                                          json['_maxValueUnsignedInt'] != null
+                                      ? UnsignedIntMaxValueElementDefinitionElementDefinition
+                                          .fromJson({
+                                          'value': json['maxValueUnsignedInt'],
+                                          '_value':
+                                              json['_maxValueUnsignedInt'],
+                                        })
+                                      : json['maxValueQuantity'] != null ||
+                                              json['_maxValueQuantity'] != null
+                                          ? QuantityMaxValueElementDefinitionElementDefinition
+                                              .fromJson({
+                                              'value': json['maxValueQuantity'],
+                                              '_value':
+                                                  json['_maxValueQuantity'],
+                                            })
+                                          : null,
       maxLength: (json['maxLength'] != null || json['_maxLength'] != null)
           ? FhirInteger.fromJson({
               'value': json['maxLength'],
@@ -470,7 +1402,8 @@ class ElementDefinition extends BackboneType {
   /// [defaultValueXElementDefinitionElementDefinition]
   /// The value that should be used if there is no value stated in the
   /// instance (e.g. 'if not otherwise specified, the abstract is false').
-  final FhirBase64Binary? defaultValueXElementDefinitionElementDefinition;
+  final DefaultValueXElementDefinitionElementDefinition?
+      defaultValueXElementDefinitionElementDefinition;
 
   /// [meaningWhenMissing]
   /// The Implicit meaning that is to be understood when this element is
@@ -488,7 +1421,8 @@ class ElementDefinition extends BackboneType {
   /// the instance. For purposes of comparison, non-significant whitespace is
   /// ignored, and all values must be an exact match (case and accent
   /// sensitive). Missing elements/attributes must also be missing.
-  final FhirBase64Binary? fixedXElementDefinitionElementDefinition;
+  final FixedXElementDefinitionElementDefinition?
+      fixedXElementDefinitionElementDefinition;
 
   /// [patternXElementDefinitionElementDefinition]
   /// Specifies a value that the value in the instance SHALL follow - that
@@ -510,7 +1444,8 @@ class ElementDefinition extends BackboneType {
   /// 1. If primitive: it must match exactly the pattern value
   /// 2. If a complex object: it must match (recursively) the pattern value
   /// 3. If an array: it must match (recursively) the pattern value.
-  final FhirBase64Binary? patternXElementDefinitionElementDefinition;
+  final PatternXElementDefinitionElementDefinition?
+      patternXElementDefinitionElementDefinition;
 
   /// [example]
   /// A sample value for this element demonstrating the type of information
@@ -521,13 +1456,15 @@ class ElementDefinition extends BackboneType {
   /// The minimum allowed value for the element. The value is inclusive. This
   /// is allowed for the types date, dateTime, instant, time, decimal,
   /// integer, and Quantity.
-  final FhirDate? minValueXElementDefinitionElementDefinition;
+  final MinValueXElementDefinitionElementDefinition?
+      minValueXElementDefinitionElementDefinition;
 
   /// [maxValueXElementDefinitionElementDefinition]
   /// The maximum allowed value for the element. The value is inclusive. This
   /// is allowed for the types date, dateTime, instant, time, decimal,
   /// integer, and Quantity.
-  final FhirDate? maxValueXElementDefinitionElementDefinition;
+  final MaxValueXElementDefinitionElementDefinition?
+      maxValueXElementDefinitionElementDefinition;
 
   /// [maxLength]
   /// Indicates the maximum length in characters that is permitted to be
@@ -715,14 +1652,19 @@ class ElementDefinition extends BackboneType {
     ElementDefinitionBase? base,
     FhirUri? contentReference,
     List<ElementDefinitionType>? type,
-    FhirBase64Binary? defaultValueXElementDefinitionElementDefinition,
+    DefaultValueXElementDefinitionElementDefinition?
+        defaultValueXElementDefinitionElementDefinition,
     FhirMarkdown? meaningWhenMissing,
     FhirString? orderMeaning,
-    FhirBase64Binary? fixedXElementDefinitionElementDefinition,
-    FhirBase64Binary? patternXElementDefinitionElementDefinition,
+    FixedXElementDefinitionElementDefinition?
+        fixedXElementDefinitionElementDefinition,
+    PatternXElementDefinitionElementDefinition?
+        patternXElementDefinitionElementDefinition,
     List<ElementDefinitionExample>? example,
-    FhirDate? minValueXElementDefinitionElementDefinition,
-    FhirDate? maxValueXElementDefinitionElementDefinition,
+    MinValueXElementDefinitionElementDefinition?
+        minValueXElementDefinitionElementDefinition,
+    MaxValueXElementDefinitionElementDefinition?
+        maxValueXElementDefinitionElementDefinition,
     FhirInteger? maxLength,
     List<FhirId>? condition,
     List<ElementDefinitionConstraint>? constraint,
@@ -1529,10 +2471,292 @@ class ElementDefinitionExample extends Element {
         'value': json['label'],
         '_value': json['_label'],
       }),
-      valueXElementDefinitionExample: FhirBase64Binary.fromJson({
-        'value': json['valueXElementDefinitionExample'],
-        '_value': json['_valueXElementDefinitionExample'],
-      }),
+      valueXElementDefinitionExample: json['valueBase64Binary'] != null ||
+              json['_valueBase64Binary'] != null
+          ? Base64BinaryValueElementDefinitionExample.fromJson({
+              'value': json['valueBase64Binary'],
+              '_value': json['_valueBase64Binary'],
+            })
+          : json['valueBoolean'] != null || json['_valueBoolean'] != null
+              ? BooleanValueElementDefinitionExample.fromJson({
+                  'value': json['valueBoolean'],
+                  '_value': json['_valueBoolean'],
+                })
+              : json['valueCanonical'] != null ||
+                      json['_valueCanonical'] != null
+                  ? CanonicalValueElementDefinitionExample.fromJson({
+                      'value': json['valueCanonical'],
+                      '_value': json['_valueCanonical'],
+                    })
+                  : json['valueCode'] != null || json['_valueCode'] != null
+                      ? CodeValueElementDefinitionExample.fromJson({
+                          'value': json['valueCode'],
+                          '_value': json['_valueCode'],
+                        })
+                      : json['valueDate'] != null || json['_valueDate'] != null
+                          ? DateValueElementDefinitionExample.fromJson({
+                              'value': json['valueDate'],
+                              '_value': json['_valueDate'],
+                            })
+                          : json['valueDateTime'] != null ||
+                                  json['_valueDateTime'] != null
+                              ? DateTimeValueElementDefinitionExample.fromJson({
+                                  'value': json['valueDateTime'],
+                                  '_value': json['_valueDateTime'],
+                                })
+                              : json['valueDecimal'] != null ||
+                                      json['_valueDecimal'] != null
+                                  ? DecimalValueElementDefinitionExample.fromJson({
+                                      'value': json['valueDecimal'],
+                                      '_value': json['_valueDecimal'],
+                                    })
+                                  : json['valueId'] != null ||
+                                          json['_valueId'] != null
+                                      ? IdValueElementDefinitionExample.fromJson({
+                                          'value': json['valueId'],
+                                          '_value': json['_valueId'],
+                                        })
+                                      : json['valueInstant'] != null ||
+                                              json['_valueInstant'] != null
+                                          ? InstantValueElementDefinitionExample.fromJson({
+                                              'value': json['valueInstant'],
+                                              '_value': json['_valueInstant'],
+                                            })
+                                          : json['valueInteger'] != null ||
+                                                  json['_valueInteger'] != null
+                                              ? IntegerValueElementDefinitionExample.fromJson({
+                                                  'value': json['valueInteger'],
+                                                  '_value':
+                                                      json['_valueInteger'],
+                                                })
+                                              : json['valueMarkdown'] != null ||
+                                                      json['_valueMarkdown'] !=
+                                                          null
+                                                  ? MarkdownValueElementDefinitionExample.fromJson({
+                                                      'value':
+                                                          json['valueMarkdown'],
+                                                      '_value': json[
+                                                          '_valueMarkdown'],
+                                                    })
+                                                  : json['valueOid'] != null ||
+                                                          json['_valueOid'] !=
+                                                              null
+                                                      ? OidValueElementDefinitionExample.fromJson({
+                                                          'value':
+                                                              json['valueOid'],
+                                                          '_value':
+                                                              json['_valueOid'],
+                                                        })
+                                                      : json['valuePositiveInt'] !=
+                                                                  null ||
+                                                              json['_valuePositiveInt'] !=
+                                                                  null
+                                                          ? PositiveIntValueElementDefinitionExample.fromJson({
+                                                              'value': json[
+                                                                  'valuePositiveInt'],
+                                                              '_value': json[
+                                                                  '_valuePositiveInt'],
+                                                            })
+                                                          : json['valueString'] !=
+                                                                      null ||
+                                                                  json['_valueString'] !=
+                                                                      null
+                                                              ? StringValueElementDefinitionExample.fromJson({
+                                                                  'value': json[
+                                                                      'valueString'],
+                                                                  '_value': json[
+                                                                      '_valueString'],
+                                                                })
+                                                              : json['valueTime'] != null ||
+                                                                      json['_valueTime'] != null
+                                                                  ? TimeValueElementDefinitionExample.fromJson({
+                                                                      'value': json[
+                                                                          'valueTime'],
+                                                                      '_value':
+                                                                          json[
+                                                                              '_valueTime'],
+                                                                    })
+                                                                  : json['valueUnsignedInt'] != null || json['_valueUnsignedInt'] != null
+                                                                      ? UnsignedIntValueElementDefinitionExample.fromJson({
+                                                                          'value':
+                                                                              json['valueUnsignedInt'],
+                                                                          '_value':
+                                                                              json['_valueUnsignedInt'],
+                                                                        })
+                                                                      : json['valueUri'] != null || json['_valueUri'] != null
+                                                                          ? UriValueElementDefinitionExample.fromJson({
+                                                                              'value': json['valueUri'],
+                                                                              '_value': json['_valueUri'],
+                                                                            })
+                                                                          : json['valueUrl'] != null || json['_valueUrl'] != null
+                                                                              ? UrlValueElementDefinitionExample.fromJson({
+                                                                                  'value': json['valueUrl'],
+                                                                                  '_value': json['_valueUrl'],
+                                                                                })
+                                                                              : json['valueUuid'] != null || json['_valueUuid'] != null
+                                                                                  ? UuidValueElementDefinitionExample.fromJson({
+                                                                                      'value': json['valueUuid'],
+                                                                                      '_value': json['_valueUuid'],
+                                                                                    })
+                                                                                  : json['valueAddress'] != null || json['_valueAddress'] != null
+                                                                                      ? AddressValueElementDefinitionExample.fromJson({
+                                                                                          'value': json['valueAddress'],
+                                                                                          '_value': json['_valueAddress'],
+                                                                                        })
+                                                                                      : json['valueAge'] != null || json['_valueAge'] != null
+                                                                                          ? AgeValueElementDefinitionExample.fromJson({
+                                                                                              'value': json['valueAge'],
+                                                                                              '_value': json['_valueAge'],
+                                                                                            })
+                                                                                          : json['valueAnnotation'] != null || json['_valueAnnotation'] != null
+                                                                                              ? AnnotationValueElementDefinitionExample.fromJson({
+                                                                                                  'value': json['valueAnnotation'],
+                                                                                                  '_value': json['_valueAnnotation'],
+                                                                                                })
+                                                                                              : json['valueAttachment'] != null || json['_valueAttachment'] != null
+                                                                                                  ? AttachmentValueElementDefinitionExample.fromJson({
+                                                                                                      'value': json['valueAttachment'],
+                                                                                                      '_value': json['_valueAttachment'],
+                                                                                                    })
+                                                                                                  : json['valueCodeableConcept'] != null || json['_valueCodeableConcept'] != null
+                                                                                                      ? CodeableConceptValueElementDefinitionExample.fromJson({
+                                                                                                          'value': json['valueCodeableConcept'],
+                                                                                                          '_value': json['_valueCodeableConcept'],
+                                                                                                        })
+                                                                                                      : json['valueCodeableReference'] != null || json['_valueCodeableReference'] != null
+                                                                                                          ? CodeableReferenceValueElementDefinitionExample.fromJson({
+                                                                                                              'value': json['valueCodeableReference'],
+                                                                                                              '_value': json['_valueCodeableReference'],
+                                                                                                            })
+                                                                                                          : json['valueCoding'] != null || json['_valueCoding'] != null
+                                                                                                              ? CodingValueElementDefinitionExample.fromJson({
+                                                                                                                  'value': json['valueCoding'],
+                                                                                                                  '_value': json['_valueCoding'],
+                                                                                                                })
+                                                                                                              : json['valueContactPoint'] != null || json['_valueContactPoint'] != null
+                                                                                                                  ? ContactPointValueElementDefinitionExample.fromJson({
+                                                                                                                      'value': json['valueContactPoint'],
+                                                                                                                      '_value': json['_valueContactPoint'],
+                                                                                                                    })
+                                                                                                                  : json['valueCount'] != null || json['_valueCount'] != null
+                                                                                                                      ? CountValueElementDefinitionExample.fromJson({
+                                                                                                                          'value': json['valueCount'],
+                                                                                                                          '_value': json['_valueCount'],
+                                                                                                                        })
+                                                                                                                      : json['valueDistance'] != null || json['_valueDistance'] != null
+                                                                                                                          ? DistanceValueElementDefinitionExample.fromJson({
+                                                                                                                              'value': json['valueDistance'],
+                                                                                                                              '_value': json['_valueDistance'],
+                                                                                                                            })
+                                                                                                                          : json['valueDuration'] != null || json['_valueDuration'] != null
+                                                                                                                              ? DurationValueElementDefinitionExample.fromJson({
+                                                                                                                                  'value': json['valueDuration'],
+                                                                                                                                  '_value': json['_valueDuration'],
+                                                                                                                                })
+                                                                                                                              : json['valueHumanName'] != null || json['_valueHumanName'] != null
+                                                                                                                                  ? HumanNameValueElementDefinitionExample.fromJson({
+                                                                                                                                      'value': json['valueHumanName'],
+                                                                                                                                      '_value': json['_valueHumanName'],
+                                                                                                                                    })
+                                                                                                                                  : json['valueIdentifier'] != null || json['_valueIdentifier'] != null
+                                                                                                                                      ? IdentifierValueElementDefinitionExample.fromJson({
+                                                                                                                                          'value': json['valueIdentifier'],
+                                                                                                                                          '_value': json['_valueIdentifier'],
+                                                                                                                                        })
+                                                                                                                                      : json['valueMoney'] != null || json['_valueMoney'] != null
+                                                                                                                                          ? MoneyValueElementDefinitionExample.fromJson({
+                                                                                                                                              'value': json['valueMoney'],
+                                                                                                                                              '_value': json['_valueMoney'],
+                                                                                                                                            })
+                                                                                                                                          : json['valuePeriod'] != null || json['_valuePeriod'] != null
+                                                                                                                                              ? PeriodValueElementDefinitionExample.fromJson({
+                                                                                                                                                  'value': json['valuePeriod'],
+                                                                                                                                                  '_value': json['_valuePeriod'],
+                                                                                                                                                })
+                                                                                                                                              : json['valueQuantity'] != null || json['_valueQuantity'] != null
+                                                                                                                                                  ? QuantityValueElementDefinitionExample.fromJson({
+                                                                                                                                                      'value': json['valueQuantity'],
+                                                                                                                                                      '_value': json['_valueQuantity'],
+                                                                                                                                                    })
+                                                                                                                                                  : json['valueRange'] != null || json['_valueRange'] != null
+                                                                                                                                                      ? RangeValueElementDefinitionExample.fromJson({
+                                                                                                                                                          'value': json['valueRange'],
+                                                                                                                                                          '_value': json['_valueRange'],
+                                                                                                                                                        })
+                                                                                                                                                      : json['valueRatio'] != null || json['_valueRatio'] != null
+                                                                                                                                                          ? RatioValueElementDefinitionExample.fromJson({
+                                                                                                                                                              'value': json['valueRatio'],
+                                                                                                                                                              '_value': json['_valueRatio'],
+                                                                                                                                                            })
+                                                                                                                                                          : json['valueRatioRange'] != null || json['_valueRatioRange'] != null
+                                                                                                                                                              ? RatioRangeValueElementDefinitionExample.fromJson({
+                                                                                                                                                                  'value': json['valueRatioRange'],
+                                                                                                                                                                  '_value': json['_valueRatioRange'],
+                                                                                                                                                                })
+                                                                                                                                                              : json['valueReference'] != null || json['_valueReference'] != null
+                                                                                                                                                                  ? ReferenceValueElementDefinitionExample.fromJson({
+                                                                                                                                                                      'value': json['valueReference'],
+                                                                                                                                                                      '_value': json['_valueReference'],
+                                                                                                                                                                    })
+                                                                                                                                                                  : json['valueSampledData'] != null || json['_valueSampledData'] != null
+                                                                                                                                                                      ? SampledDataValueElementDefinitionExample.fromJson({
+                                                                                                                                                                          'value': json['valueSampledData'],
+                                                                                                                                                                          '_value': json['_valueSampledData'],
+                                                                                                                                                                        })
+                                                                                                                                                                      : json['valueSignature'] != null || json['_valueSignature'] != null
+                                                                                                                                                                          ? SignatureValueElementDefinitionExample.fromJson({
+                                                                                                                                                                              'value': json['valueSignature'],
+                                                                                                                                                                              '_value': json['_valueSignature'],
+                                                                                                                                                                            })
+                                                                                                                                                                          : json['valueTiming'] != null || json['_valueTiming'] != null
+                                                                                                                                                                              ? TimingValueElementDefinitionExample.fromJson({
+                                                                                                                                                                                  'value': json['valueTiming'],
+                                                                                                                                                                                  '_value': json['_valueTiming'],
+                                                                                                                                                                                })
+                                                                                                                                                                              : json['valueContactDetail'] != null || json['_valueContactDetail'] != null
+                                                                                                                                                                                  ? ContactDetailValueElementDefinitionExample.fromJson({
+                                                                                                                                                                                      'value': json['valueContactDetail'],
+                                                                                                                                                                                      '_value': json['_valueContactDetail'],
+                                                                                                                                                                                    })
+                                                                                                                                                                                  : json['valueContributor'] != null || json['_valueContributor'] != null
+                                                                                                                                                                                      ? ContributorValueElementDefinitionExample.fromJson({
+                                                                                                                                                                                          'value': json['valueContributor'],
+                                                                                                                                                                                          '_value': json['_valueContributor'],
+                                                                                                                                                                                        })
+                                                                                                                                                                                      : json['valueDataRequirement'] != null || json['_valueDataRequirement'] != null
+                                                                                                                                                                                          ? DataRequirementValueElementDefinitionExample.fromJson({
+                                                                                                                                                                                              'value': json['valueDataRequirement'],
+                                                                                                                                                                                              '_value': json['_valueDataRequirement'],
+                                                                                                                                                                                            })
+                                                                                                                                                                                          : json['valueExpression'] != null || json['_valueExpression'] != null
+                                                                                                                                                                                              ? ExpressionValueElementDefinitionExample.fromJson({
+                                                                                                                                                                                                  'value': json['valueExpression'],
+                                                                                                                                                                                                  '_value': json['_valueExpression'],
+                                                                                                                                                                                                })
+                                                                                                                                                                                              : json['valueParameterDefinition'] != null || json['_valueParameterDefinition'] != null
+                                                                                                                                                                                                  ? ParameterDefinitionValueElementDefinitionExample.fromJson({
+                                                                                                                                                                                                      'value': json['valueParameterDefinition'],
+                                                                                                                                                                                                      '_value': json['_valueParameterDefinition'],
+                                                                                                                                                                                                    })
+                                                                                                                                                                                                  : json['valueRelatedArtifact'] != null || json['_valueRelatedArtifact'] != null
+                                                                                                                                                                                                      ? RelatedArtifactValueElementDefinitionExample.fromJson({
+                                                                                                                                                                                                          'value': json['valueRelatedArtifact'],
+                                                                                                                                                                                                          '_value': json['_valueRelatedArtifact'],
+                                                                                                                                                                                                        })
+                                                                                                                                                                                                      : json['valueTriggerDefinition'] != null || json['_valueTriggerDefinition'] != null
+                                                                                                                                                                                                          ? TriggerDefinitionValueElementDefinitionExample.fromJson({
+                                                                                                                                                                                                              'value': json['valueTriggerDefinition'],
+                                                                                                                                                                                                              '_value': json['_valueTriggerDefinition'],
+                                                                                                                                                                                                            })
+                                                                                                                                                                                                          : json['valueUsageContext'] != null || json['_valueUsageContext'] != null
+                                                                                                                                                                                                              ? UsageContextValueElementDefinitionExample.fromJson({
+                                                                                                                                                                                                                  'value': json['valueUsageContext'],
+                                                                                                                                                                                                                  '_value': json['_valueUsageContext'],
+                                                                                                                                                                                                                })
+                                                                                                                                                                                                              : DosageValueElementDefinitionExample.fromJson({
+                                                                                                                                                                                                                  'value': json['valueDosage'],
+                                                                                                                                                                                                                  '_value': json['_valueDosage'],
+                                                                                                                                                                                                                }),
     );
   }
 
@@ -1585,7 +2809,7 @@ class ElementDefinitionExample extends Element {
   /// [valueXElementDefinitionExample]
   /// The actual value for the element, which must be one of the types
   /// allowed for this element.
-  final FhirBase64Binary valueXElementDefinitionExample;
+  final ValueXElementDefinitionExample valueXElementDefinitionExample;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1615,7 +2839,7 @@ class ElementDefinitionExample extends Element {
     FhirString? id,
     List<FhirExtension>? extension_,
     FhirString? label,
-    FhirBase64Binary? valueXElementDefinitionExample,
+    ValueXElementDefinitionExample? valueXElementDefinitionExample,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,

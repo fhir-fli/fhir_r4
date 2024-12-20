@@ -2,7 +2,7 @@ part of 'communication.dart';
 
 /// A communicated content (or for multi-part communications, one portion
 /// of the communication).
-sealed class ContentXCommunicationPayload {}
+sealed class ContentXCommunicationPayload extends DataType {}
 
 /// A communicated content (or for multi-part communications, one portion
 /// of the communication).

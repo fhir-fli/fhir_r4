@@ -2,7 +2,7 @@ part of 'group.dart';
 
 /// The value of the trait that holds (or does not hold - see 'exclude')
 /// for members of the group.
-sealed class ValueXGroupCharacteristic {}
+sealed class ValueXGroupCharacteristic extends DataType {}
 
 /// The value of the trait that holds (or does not hold - see 'exclude')
 /// for members of the group.

@@ -179,13 +179,29 @@ class ActivityDefinition extends CanonicalResource {
                   '_value': json['_experimental'],
                 })
               : null,
-      subjectXActivityDefinitionActivityDefinition:
-          json['subjectXActivityDefinitionActivityDefinition'] != null
-              ? CodeableConcept.fromJson(
-                  json['subjectXActivityDefinitionActivityDefinition']
-                      as Map<String, dynamic>,
-                )
-              : null,
+      subjectXActivityDefinitionActivityDefinition: json[
+                      'subjectCodeableConcept'] !=
+                  null ||
+              json['_subjectCodeableConcept'] != null
+          ? CodeableConceptSubjectActivityDefinitionActivityDefinition
+              .fromJson({
+              'value': json['subjectCodeableConcept'],
+              '_value': json['_subjectCodeableConcept'],
+            })
+          : json['subjectReference'] != null ||
+                  json['_subjectReference'] != null
+              ? ReferenceSubjectActivityDefinitionActivityDefinition.fromJson({
+                  'value': json['subjectReference'],
+                  '_value': json['_subjectReference'],
+                })
+              : json['subjectSubjectType'] != null ||
+                      json['_subjectSubjectType'] != null
+                  ? SubjectTypeSubjectActivityDefinitionActivityDefinition
+                      .fromJson({
+                      'value': json['subjectSubjectType'],
+                      '_value': json['_subjectSubjectType'],
+                    })
+                  : null,
       date: (json['date'] != null || json['_date'] != null)
           ? FhirDateTime.fromJson({
               'value': json['date'],
@@ -363,13 +379,45 @@ class ActivityDefinition extends CanonicalResource {
                   '_value': json['_doNotPerform'],
                 })
               : null,
-      timingXActivityDefinitionActivityDefinition:
-          json['timingXActivityDefinitionActivityDefinition'] != null
-              ? Timing.fromJson(
-                  json['timingXActivityDefinitionActivityDefinition']
-                      as Map<String, dynamic>,
-                )
-              : null,
+      timingXActivityDefinitionActivityDefinition: json['timingTiming'] !=
+                  null ||
+              json['_timingTiming'] != null
+          ? TimingTimingActivityDefinitionActivityDefinition.fromJson({
+              'value': json['timingTiming'],
+              '_value': json['_timingTiming'],
+            })
+          : json['timingDateTime'] != null || json['_timingDateTime'] != null
+              ? DateTimeTimingActivityDefinitionActivityDefinition.fromJson({
+                  'value': json['timingDateTime'],
+                  '_value': json['_timingDateTime'],
+                })
+              : json['timingAge'] != null || json['_timingAge'] != null
+                  ? AgeTimingActivityDefinitionActivityDefinition.fromJson({
+                      'value': json['timingAge'],
+                      '_value': json['_timingAge'],
+                    })
+                  : json['timingPeriod'] != null ||
+                          json['_timingPeriod'] != null
+                      ? PeriodTimingActivityDefinitionActivityDefinition
+                          .fromJson({
+                          'value': json['timingPeriod'],
+                          '_value': json['_timingPeriod'],
+                        })
+                      : json['timingRange'] != null ||
+                              json['_timingRange'] != null
+                          ? RangeTimingActivityDefinitionActivityDefinition
+                              .fromJson({
+                              'value': json['timingRange'],
+                              '_value': json['_timingRange'],
+                            })
+                          : json['timingDuration'] != null ||
+                                  json['_timingDuration'] != null
+                              ? DurationTimingActivityDefinitionActivityDefinition
+                                  .fromJson({
+                                  'value': json['timingDuration'],
+                                  '_value': json['_timingDuration'],
+                                })
+                              : null,
       location: json['location'] != null
           ? Reference.fromJson(
               json['location'] as Map<String, dynamic>,
@@ -385,12 +433,19 @@ class ActivityDefinition extends CanonicalResource {
               .toList()
           : null,
       productXActivityDefinitionActivityDefinition:
-          json['productXActivityDefinitionActivityDefinition'] != null
-              ? Reference.fromJson(
-                  json['productXActivityDefinitionActivityDefinition']
-                      as Map<String, dynamic>,
-                )
-              : null,
+          json['productReference'] != null || json['_productReference'] != null
+              ? ReferenceProductActivityDefinitionActivityDefinition.fromJson({
+                  'value': json['productReference'],
+                  '_value': json['_productReference'],
+                })
+              : json['productCodeableConcept'] != null ||
+                      json['_productCodeableConcept'] != null
+                  ? CodeableConceptProductActivityDefinitionActivityDefinition
+                      .fromJson({
+                      'value': json['productCodeableConcept'],
+                      '_value': json['_productCodeableConcept'],
+                    })
+                  : null,
       quantity: json['quantity'] != null
           ? Quantity.fromJson(
               json['quantity'] as Map<String, dynamic>,
@@ -530,7 +585,8 @@ class ActivityDefinition extends CanonicalResource {
   /// reference a MedicinalProductDefinition, SubstanceDefinition,
   /// AdministrableProductDefinition, ManufacturedItemDefinition, or
   /// PackagedProductDefinition resource.
-  final CodeableConcept? subjectXActivityDefinitionActivityDefinition;
+  final SubjectXActivityDefinitionActivityDefinition?
+      subjectXActivityDefinitionActivityDefinition;
 
   /// [purpose]
   /// Explanation of why this activity definition is needed and why it has
@@ -639,7 +695,8 @@ class ActivityDefinition extends CanonicalResource {
   /// [timingXActivityDefinitionActivityDefinition]
   /// The period, timing or frequency upon which the described activity is to
   /// occur.
-  final Timing? timingXActivityDefinitionActivityDefinition;
+  final TimingXActivityDefinitionActivityDefinition?
+      timingXActivityDefinitionActivityDefinition;
 
   /// [location]
   /// Identifies the facility where the activity will occur; e.g. home,
@@ -653,7 +710,8 @@ class ActivityDefinition extends CanonicalResource {
   /// [productXActivityDefinitionActivityDefinition]
   /// Identifies the food, drug or other product being consumed or supplied
   /// in the activity.
-  final Reference? productXActivityDefinitionActivityDefinition;
+  final ProductXActivityDefinitionActivityDefinition?
+      productXActivityDefinitionActivityDefinition;
 
   /// [quantity]
   /// Identifies the quantity expected to be consumed at once (per dose, per
@@ -891,7 +949,8 @@ class ActivityDefinition extends CanonicalResource {
     FhirString? subtitle,
     PublicationStatus? status,
     FhirBoolean? experimental,
-    CodeableConcept? subjectXActivityDefinitionActivityDefinition,
+    SubjectXActivityDefinitionActivityDefinition?
+        subjectXActivityDefinitionActivityDefinition,
     FhirDateTime? date,
     FhirString? publisher,
     List<ContactDetail>? contact,
@@ -917,10 +976,12 @@ class ActivityDefinition extends CanonicalResource {
     RequestIntent? intent,
     RequestPriority? priority,
     FhirBoolean? doNotPerform,
-    Timing? timingXActivityDefinitionActivityDefinition,
+    TimingXActivityDefinitionActivityDefinition?
+        timingXActivityDefinitionActivityDefinition,
     Reference? location,
     List<ActivityDefinitionParticipant>? participant,
-    Reference? productXActivityDefinitionActivityDefinition,
+    ProductXActivityDefinitionActivityDefinition?
+        productXActivityDefinitionActivityDefinition,
     Quantity? quantity,
     List<Dosage>? dosage,
     List<CodeableConcept>? bodySite,

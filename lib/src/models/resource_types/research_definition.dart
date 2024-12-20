@@ -174,12 +174,21 @@ class ResearchDefinition extends DomainResource {
                   '_value': json['_experimental'],
                 })
               : null,
-      subjectXResearchDefinitionResearchDefinition:
-          json['subjectXResearchDefinitionResearchDefinition'] != null
-              ? CodeableConcept.fromJson(
-                  json['subjectXResearchDefinitionResearchDefinition']
-                      as Map<String, dynamic>,
-                )
+      subjectXResearchDefinitionResearchDefinition: json[
+                      'subjectCodeableConcept'] !=
+                  null ||
+              json['_subjectCodeableConcept'] != null
+          ? CodeableConceptSubjectResearchDefinitionResearchDefinition
+              .fromJson({
+              'value': json['subjectCodeableConcept'],
+              '_value': json['_subjectCodeableConcept'],
+            })
+          : json['subjectReference'] != null ||
+                  json['_subjectReference'] != null
+              ? ReferenceSubjectResearchDefinitionResearchDefinition.fromJson({
+                  'value': json['subjectReference'],
+                  '_value': json['_subjectReference'],
+                })
               : null,
       date: (json['date'] != null || json['_date'] != null)
           ? FhirDateTime.fromJson({
@@ -455,7 +464,8 @@ class ResearchDefinition extends DomainResource {
   /// The intended subjects for the ResearchDefinition. If this element is
   /// not provided, a Patient subject is assumed, but the subject of the
   /// ResearchDefinition can be anything.
-  final CodeableConcept? subjectXResearchDefinitionResearchDefinition;
+  final SubjectXResearchDefinitionResearchDefinition?
+      subjectXResearchDefinitionResearchDefinition;
 
   /// [date]
   /// The date (and optionally time) when the research definition was
@@ -742,7 +752,8 @@ class ResearchDefinition extends DomainResource {
     FhirString? subtitle,
     PublicationStatus? status,
     FhirBoolean? experimental,
-    CodeableConcept? subjectXResearchDefinitionResearchDefinition,
+    SubjectXResearchDefinitionResearchDefinition?
+        subjectXResearchDefinitionResearchDefinition,
     FhirDateTime? date,
     FhirString? publisher,
     List<ContactDetail>? contact,

@@ -1,7 +1,7 @@
 part of 'regulated_authorization.dart';
 
 /// Relevant date for this case.
-sealed class DateXRegulatedAuthorizationCase {}
+sealed class DateXRegulatedAuthorizationCase extends DataType {}
 
 /// Relevant date for this case.
 class PeriodDateRegulatedAuthorizationCase extends Period

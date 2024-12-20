@@ -2,7 +2,8 @@ part of 'immunization_recommendation.dart';
 
 /// Nominal position of the recommended dose in a series (e.g. dose 2 is
 /// the next recommended dose).
-sealed class DoseNumberXImmunizationRecommendationRecommendation {}
+sealed class DoseNumberXImmunizationRecommendationRecommendation
+    extends DataType {}
 
 /// Nominal position of the recommended dose in a series (e.g. dose 2 is
 /// the next recommended dose).
@@ -47,7 +48,8 @@ class StringDoseNumberImmunizationRecommendationRecommendation
 }
 
 /// The recommended number of doses to achieve immunity.
-sealed class SeriesDosesXImmunizationRecommendationRecommendation {}
+sealed class SeriesDosesXImmunizationRecommendationRecommendation
+    extends DataType {}
 
 /// The recommended number of doses to achieve immunity.
 class PositiveIntSeriesDosesImmunizationRecommendationRecommendation

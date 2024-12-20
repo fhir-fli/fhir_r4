@@ -1,7 +1,7 @@
 part of 'value_set.dart';
 
 /// The value of the parameter.
-sealed class ValueXValueSetParameter {}
+sealed class ValueXValueSetParameter extends DataType {}
 
 /// The value of the parameter.
 class StringValueValueSetParameter extends FhirString

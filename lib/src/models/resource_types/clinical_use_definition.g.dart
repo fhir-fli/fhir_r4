@@ -4,7 +4,7 @@ part of 'clinical_use_definition.dart';
 /// the indicated condition e.g. Adult patients suffering from myocardial
 /// infarction (from a few days until less than 35 days), ischaemic stroke
 /// (from 7 days until less than 6 months).
-sealed class DurationXClinicalUseDefinitionIndication {}
+sealed class DurationXClinicalUseDefinitionIndication extends DataType {}
 
 /// Timing or duration information, that may be associated with use with
 /// the indicated condition e.g. Adult patients suffering from myocardial
@@ -42,7 +42,7 @@ class StringDurationClinicalUseDefinitionIndication extends FhirString
 }
 
 /// The specific medication, food or laboratory test that interacts.
-sealed class ItemXClinicalUseDefinitionInteractant {}
+sealed class ItemXClinicalUseDefinitionInteractant extends DataType {}
 
 /// The specific medication, food or laboratory test that interacts.
 class ReferenceItemClinicalUseDefinitionInteractant extends Reference

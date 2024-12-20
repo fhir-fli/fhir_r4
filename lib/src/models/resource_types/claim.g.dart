@@ -1,7 +1,7 @@
 part of 'claim.dart';
 
 /// The date when or period to which this information refers.
-sealed class TimingXClaimSupportingInfo {}
+sealed class TimingXClaimSupportingInfo extends DataType {}
 
 /// The date when or period to which this information refers.
 class DateTimingClaimSupportingInfo extends FhirDate
@@ -48,7 +48,7 @@ class PeriodTimingClaimSupportingInfo extends Period
 /// Additional data or information such as resources, documents, images
 /// etc. including references to the data or the actual inclusion of the
 /// data.
-sealed class ValueXClaimSupportingInfo {}
+sealed class ValueXClaimSupportingInfo extends DataType {}
 
 /// Additional data or information such as resources, documents, images
 /// etc. including references to the data or the actual inclusion of the
@@ -128,7 +128,7 @@ class ReferenceValueClaimSupportingInfo extends Reference
 
 /// The nature of illness or problem in a coded form or as a reference to
 /// an external defined Condition.
-sealed class DiagnosisXClaimDiagnosis {}
+sealed class DiagnosisXClaimDiagnosis extends DataType {}
 
 /// The nature of illness or problem in a coded form or as a reference to
 /// an external defined Condition.
@@ -154,7 +154,7 @@ class ReferenceDiagnosisClaimDiagnosis extends Reference
 
 /// The code or reference to a Procedure resource which identifies the
 /// clinical intervention performed.
-sealed class ProcedureXClaimProcedure {}
+sealed class ProcedureXClaimProcedure extends DataType {}
 
 /// The code or reference to a Procedure resource which identifies the
 /// clinical intervention performed.
@@ -179,7 +179,7 @@ class ReferenceProcedureClaimProcedure extends Reference
 }
 
 /// The physical location of the accident event.
-sealed class LocationXClaimAccident {}
+sealed class LocationXClaimAccident extends DataType {}
 
 /// The physical location of the accident event.
 class AddressLocationClaimAccident extends Address
@@ -203,7 +203,7 @@ class ReferenceLocationClaimAccident extends Reference
 
 /// The date or dates when the service or product was supplied, performed
 /// or completed.
-sealed class ServicedXClaimItem {}
+sealed class ServicedXClaimItem extends DataType {}
 
 /// The date or dates when the service or product was supplied, performed
 /// or completed.
@@ -247,7 +247,7 @@ class PeriodServicedClaimItem extends Period implements ServicedXClaimItem {
 }
 
 /// Where the product or service was provided.
-sealed class LocationXClaimItem {}
+sealed class LocationXClaimItem extends DataType {}
 
 /// Where the product or service was provided.
 class CodeableConceptLocationClaimItem extends CodeableConcept

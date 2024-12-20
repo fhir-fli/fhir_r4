@@ -138,11 +138,17 @@ class Goal extends DomainResource {
       subject: Reference.fromJson(
         json['subject'] as Map<String, dynamic>,
       ),
-      startXGoalGoal:
-          (json['startXGoalGoal'] != null || json['_startXGoalGoal'] != null)
-              ? GoalStartEvent.fromJson({
-                  'value': json['startXGoalGoal'],
-                  '_value': json['_startXGoalGoal'],
+      startXGoalGoal: json['startGoalStartEvent'] != null ||
+              json['_startGoalStartEvent'] != null
+          ? GoalStartEventStartGoalGoal.fromJson({
+              'value': json['startGoalStartEvent'],
+              '_value': json['_startGoalStartEvent'],
+            })
+          : json['startCodeableConcept'] != null ||
+                  json['_startCodeableConcept'] != null
+              ? CodeableConceptStartGoalGoal.fromJson({
+                  'value': json['startCodeableConcept'],
+                  '_value': json['_startCodeableConcept'],
                 })
               : null,
       target: json['target'] != null
@@ -290,7 +296,7 @@ class Goal extends DomainResource {
 
   /// [startXGoalGoal]
   /// The date or event after which the goal should begin being pursued.
-  final GoalStartEvent? startXGoalGoal;
+  final StartXGoalGoal? startXGoalGoal;
 
   /// [target]
   /// Indicates what should be done by when.
@@ -434,7 +440,7 @@ class Goal extends DomainResource {
     CodeableConcept? priority,
     CodeableConcept? description,
     Reference? subject,
-    GoalStartEvent? startXGoalGoal,
+    StartXGoalGoal? startXGoalGoal,
     List<GoalTarget>? target,
     FhirDate? statusDate,
     FhirString? statusReason,
@@ -524,16 +530,57 @@ class GoalTarget extends BackboneElement {
               json['measure'] as Map<String, dynamic>,
             )
           : null,
-      detailXGoalTarget: json['detailXGoalTarget'] != null
-          ? Quantity.fromJson(
-              json['detailXGoalTarget'] as Map<String, dynamic>,
-            )
-          : null,
-      dueXGoalTarget:
-          (json['dueXGoalTarget'] != null || json['_dueXGoalTarget'] != null)
-              ? FhirDate.fromJson({
-                  'value': json['dueXGoalTarget'],
-                  '_value': json['_dueXGoalTarget'],
+      detailXGoalTarget:
+          json['detailQuantity'] != null || json['_detailQuantity'] != null
+              ? QuantityDetailGoalTarget.fromJson({
+                  'value': json['detailQuantity'],
+                  '_value': json['_detailQuantity'],
+                })
+              : json['detailRange'] != null || json['_detailRange'] != null
+                  ? RangeDetailGoalTarget.fromJson({
+                      'value': json['detailRange'],
+                      '_value': json['_detailRange'],
+                    })
+                  : json['detailCodeableConcept'] != null ||
+                          json['_detailCodeableConcept'] != null
+                      ? CodeableConceptDetailGoalTarget.fromJson({
+                          'value': json['detailCodeableConcept'],
+                          '_value': json['_detailCodeableConcept'],
+                        })
+                      : json['detailString'] != null ||
+                              json['_detailString'] != null
+                          ? StringDetailGoalTarget.fromJson({
+                              'value': json['detailString'],
+                              '_value': json['_detailString'],
+                            })
+                          : json['detailBoolean'] != null ||
+                                  json['_detailBoolean'] != null
+                              ? BooleanDetailGoalTarget.fromJson({
+                                  'value': json['detailBoolean'],
+                                  '_value': json['_detailBoolean'],
+                                })
+                              : json['detailInteger'] != null ||
+                                      json['_detailInteger'] != null
+                                  ? IntegerDetailGoalTarget.fromJson({
+                                      'value': json['detailInteger'],
+                                      '_value': json['_detailInteger'],
+                                    })
+                                  : json['detailRatio'] != null ||
+                                          json['_detailRatio'] != null
+                                      ? RatioDetailGoalTarget.fromJson({
+                                          'value': json['detailRatio'],
+                                          '_value': json['_detailRatio'],
+                                        })
+                                      : null,
+      dueXGoalTarget: json['dueDate'] != null || json['_dueDate'] != null
+          ? DateDueGoalTarget.fromJson({
+              'value': json['dueDate'],
+              '_value': json['_dueDate'],
+            })
+          : json['dueDuration'] != null || json['_dueDuration'] != null
+              ? DurationDueGoalTarget.fromJson({
+                  'value': json['dueDuration'],
+                  '_value': json['_dueDuration'],
                 })
               : null,
     );
@@ -593,12 +640,12 @@ class GoalTarget extends BackboneElement {
   /// indicates that the goal is achieved at any focus value at or below the
   /// high value. Similarly, if the high value is missing, it indicates that
   /// the goal is achieved at any focus value at or above the low value.
-  final Quantity? detailXGoalTarget;
+  final DetailXGoalTarget? detailXGoalTarget;
 
   /// [dueXGoalTarget]
   /// Indicates either the date or the duration after start by which the goal
   /// should be met.
-  final FhirDate? dueXGoalTarget;
+  final DueXGoalTarget? dueXGoalTarget;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -641,8 +688,8 @@ class GoalTarget extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     CodeableConcept? measure,
-    Quantity? detailXGoalTarget,
-    FhirDate? dueXGoalTarget,
+    DetailXGoalTarget? detailXGoalTarget,
+    DueXGoalTarget? dueXGoalTarget,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,

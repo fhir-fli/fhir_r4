@@ -172,11 +172,19 @@ class Measure extends CanonicalResource {
                   '_value': json['_experimental'],
                 })
               : null,
-      subjectXMeasureMeasure: json['subjectXMeasureMeasure'] != null
-          ? CodeableConcept.fromJson(
-              json['subjectXMeasureMeasure'] as Map<String, dynamic>,
-            )
-          : null,
+      subjectXMeasureMeasure: json['subjectCodeableConcept'] != null ||
+              json['_subjectCodeableConcept'] != null
+          ? CodeableConceptSubjectMeasureMeasure.fromJson({
+              'value': json['subjectCodeableConcept'],
+              '_value': json['_subjectCodeableConcept'],
+            })
+          : json['subjectReference'] != null ||
+                  json['_subjectReference'] != null
+              ? ReferenceSubjectMeasureMeasure.fromJson({
+                  'value': json['subjectReference'],
+                  '_value': json['_subjectReference'],
+                })
+              : null,
       date: (json['date'] != null || json['_date'] != null)
           ? FhirDateTime.fromJson({
               'value': json['date'],
@@ -475,7 +483,7 @@ class Measure extends CanonicalResource {
   /// The intended subjects for the measure. If this element is not provided,
   /// a Patient subject is assumed, but the subject of the measure can be
   /// anything.
-  final CodeableConcept? subjectXMeasureMeasure;
+  final SubjectXMeasureMeasure? subjectXMeasureMeasure;
 
   /// [purpose]
   /// Explanation of why this measure is needed and why it has been designed
@@ -787,7 +795,7 @@ class Measure extends CanonicalResource {
     FhirString? subtitle,
     PublicationStatus? status,
     FhirBoolean? experimental,
-    CodeableConcept? subjectXMeasureMeasure,
+    SubjectXMeasureMeasure? subjectXMeasureMeasure,
     FhirDateTime? date,
     FhirString? publisher,
     List<ContactDetail>? contact,

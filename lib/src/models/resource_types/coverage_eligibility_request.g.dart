@@ -2,7 +2,8 @@ part of 'coverage_eligibility_request.dart';
 
 /// The date or dates when the enclosed suite of services were performed or
 /// completed.
-sealed class ServicedXCoverageEligibilityRequestCoverageEligibilityRequest {}
+sealed class ServicedXCoverageEligibilityRequestCoverageEligibilityRequest
+    extends DataType {}
 
 /// The date or dates when the enclosed suite of services were performed or
 /// completed.
@@ -54,7 +55,7 @@ class PeriodServicedCoverageEligibilityRequestCoverageEligibilityRequest
 
 /// The nature of illness or problem in a coded form or as a reference to
 /// an external defined Condition.
-sealed class DiagnosisXCoverageEligibilityRequestDiagnosis {}
+sealed class DiagnosisXCoverageEligibilityRequestDiagnosis extends DataType {}
 
 /// The nature of illness or problem in a coded form or as a reference to
 /// an external defined Condition.

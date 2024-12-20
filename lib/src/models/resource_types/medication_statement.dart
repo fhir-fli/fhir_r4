@@ -166,11 +166,19 @@ class MedicationStatement extends DomainResource {
               json['category'] as Map<String, dynamic>,
             )
           : null,
-      medicationXMedicationStatementMedicationStatement:
-          CodeableConcept.fromJson(
-        json['medicationXMedicationStatementMedicationStatement']
-            as Map<String, dynamic>,
-      ),
+      medicationXMedicationStatementMedicationStatement: json[
+                      'medicationCodeableConcept'] !=
+                  null ||
+              json['_medicationCodeableConcept'] != null
+          ? CodeableConceptMedicationMedicationStatementMedicationStatement
+              .fromJson({
+              'value': json['medicationCodeableConcept'],
+              '_value': json['_medicationCodeableConcept'],
+            })
+          : ReferenceMedicationMedicationStatementMedicationStatement.fromJson({
+              'value': json['medicationReference'],
+              '_value': json['_medicationReference'],
+            }),
       subject: Reference.fromJson(
         json['subject'] as Map<String, dynamic>,
       ),
@@ -179,15 +187,18 @@ class MedicationStatement extends DomainResource {
               json['context'] as Map<String, dynamic>,
             )
           : null,
-      effectiveXMedicationStatementMedicationStatement:
-          (json['effectiveXMedicationStatementMedicationStatement'] != null ||
-                  json['_effectiveXMedicationStatementMedicationStatement'] !=
-                      null)
-              ? FhirDateTime.fromJson({
-                  'value':
-                      json['effectiveXMedicationStatementMedicationStatement'],
-                  '_value':
-                      json['_effectiveXMedicationStatementMedicationStatement'],
+      effectiveXMedicationStatementMedicationStatement: json[
+                      'effectiveDateTime'] !=
+                  null ||
+              json['_effectiveDateTime'] != null
+          ? DateTimeEffectiveMedicationStatementMedicationStatement.fromJson({
+              'value': json['effectiveDateTime'],
+              '_value': json['_effectiveDateTime'],
+            })
+          : json['effectivePeriod'] != null || json['_effectivePeriod'] != null
+              ? PeriodEffectiveMedicationStatementMedicationStatement.fromJson({
+                  'value': json['effectivePeriod'],
+                  '_value': json['_effectivePeriod'],
                 })
               : null,
       dateAsserted:
@@ -330,7 +341,8 @@ class MedicationStatement extends DomainResource {
   /// a resource representing the details of the medication or a simple
   /// attribute carrying a code that identifies the medication from a known
   /// list of medications.
-  final CodeableConcept medicationXMedicationStatementMedicationStatement;
+  final MedicationXMedicationStatementMedicationStatement
+      medicationXMedicationStatementMedicationStatement;
 
   /// [subject]
   /// The person, animal or group who is/was taking the medication.
@@ -345,7 +357,8 @@ class MedicationStatement extends DomainResource {
   /// The interval of time during which it is being asserted that the patient
   /// is/was/will be taking the medication (or was not taking, when the
   /// MedicationStatement.taken element is No).
-  final FhirDateTime? effectiveXMedicationStatementMedicationStatement;
+  final EffectiveXMedicationStatementMedicationStatement?
+      effectiveXMedicationStatementMedicationStatement;
 
   /// [dateAsserted]
   /// The date when the medication statement was asserted by the information
@@ -498,10 +511,12 @@ class MedicationStatement extends DomainResource {
     MedicationStatementStatusCodes? status,
     List<CodeableConcept>? statusReason,
     CodeableConcept? category,
-    CodeableConcept? medicationXMedicationStatementMedicationStatement,
+    MedicationXMedicationStatementMedicationStatement?
+        medicationXMedicationStatementMedicationStatement,
     Reference? subject,
     Reference? context,
-    FhirDateTime? effectiveXMedicationStatementMedicationStatement,
+    EffectiveXMedicationStatementMedicationStatement?
+        effectiveXMedicationStatementMedicationStatement,
     FhirDateTime? dateAsserted,
     Reference? informationSource,
     List<Reference>? derivedFrom,

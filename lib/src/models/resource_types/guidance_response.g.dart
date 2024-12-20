@@ -2,7 +2,7 @@ part of 'guidance_response.dart';
 
 /// An identifier, CodeableConcept or canonical reference to the guidance
 /// that was requested.
-sealed class ModuleXGuidanceResponseGuidanceResponse {}
+sealed class ModuleXGuidanceResponseGuidanceResponse extends DataType {}
 
 /// An identifier, CodeableConcept or canonical reference to the guidance
 /// that was requested.

@@ -1,7 +1,7 @@
 part of 'message_definition.dart';
 
 /// Event code or link to the EventDefinition.
-sealed class EventXMessageDefinitionMessageDefinition {}
+sealed class EventXMessageDefinitionMessageDefinition extends DataType {}
 
 /// Event code or link to the EventDefinition.
 class CodingEventMessageDefinitionMessageDefinition extends Coding

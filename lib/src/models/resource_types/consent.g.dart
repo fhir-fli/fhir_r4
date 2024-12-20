@@ -4,7 +4,7 @@ part of 'consent.dart';
 /// be a scanned original paper form, or a reference to a consent that
 /// links back to such a source, a reference to a document repository (e.g.
 /// XDS) that stores the original consent document.
-sealed class SourceXConsentConsent {}
+sealed class SourceXConsentConsent extends DataType {}
 
 /// The source on which this consent statement is based. The source might
 /// be a scanned original paper form, or a reference to a consent that

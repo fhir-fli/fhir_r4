@@ -201,13 +201,23 @@ class ServiceRequest extends DomainResource {
               )
               .toList()
           : null,
-      quantityXServiceRequestServiceRequest:
-          json['quantityXServiceRequestServiceRequest'] != null
-              ? Quantity.fromJson(
-                  json['quantityXServiceRequestServiceRequest']
-                      as Map<String, dynamic>,
-                )
-              : null,
+      quantityXServiceRequestServiceRequest: json['quantityQuantity'] != null ||
+              json['_quantityQuantity'] != null
+          ? QuantityQuantityServiceRequestServiceRequest.fromJson({
+              'value': json['quantityQuantity'],
+              '_value': json['_quantityQuantity'],
+            })
+          : json['quantityRatio'] != null || json['_quantityRatio'] != null
+              ? RatioQuantityServiceRequestServiceRequest.fromJson({
+                  'value': json['quantityRatio'],
+                  '_value': json['_quantityRatio'],
+                })
+              : json['quantityRange'] != null || json['_quantityRange'] != null
+                  ? RangeQuantityServiceRequestServiceRequest.fromJson({
+                      'value': json['quantityRange'],
+                      '_value': json['_quantityRange'],
+                    })
+                  : null,
       subject: Reference.fromJson(
         json['subject'] as Map<String, dynamic>,
       ),
@@ -217,19 +227,36 @@ class ServiceRequest extends DomainResource {
             )
           : null,
       occurrenceXServiceRequestServiceRequest:
-          (json['occurrenceXServiceRequestServiceRequest'] != null ||
-                  json['_occurrenceXServiceRequestServiceRequest'] != null)
-              ? FhirDateTime.fromJson({
-                  'value': json['occurrenceXServiceRequestServiceRequest'],
-                  '_value': json['_occurrenceXServiceRequestServiceRequest'],
+          json['occurrenceDateTime'] != null ||
+                  json['_occurrenceDateTime'] != null
+              ? DateTimeOccurrenceServiceRequestServiceRequest.fromJson({
+                  'value': json['occurrenceDateTime'],
+                  '_value': json['_occurrenceDateTime'],
                 })
-              : null,
-      asNeededXServiceRequestServiceRequest:
-          (json['asNeededXServiceRequestServiceRequest'] != null ||
-                  json['_asNeededXServiceRequestServiceRequest'] != null)
-              ? FhirBoolean.fromJson({
-                  'value': json['asNeededXServiceRequestServiceRequest'],
-                  '_value': json['_asNeededXServiceRequestServiceRequest'],
+              : json['occurrencePeriod'] != null ||
+                      json['_occurrencePeriod'] != null
+                  ? PeriodOccurrenceServiceRequestServiceRequest.fromJson({
+                      'value': json['occurrencePeriod'],
+                      '_value': json['_occurrencePeriod'],
+                    })
+                  : json['occurrenceTiming'] != null ||
+                          json['_occurrenceTiming'] != null
+                      ? TimingOccurrenceServiceRequestServiceRequest.fromJson({
+                          'value': json['occurrenceTiming'],
+                          '_value': json['_occurrenceTiming'],
+                        })
+                      : null,
+      asNeededXServiceRequestServiceRequest: json['asNeededBoolean'] != null ||
+              json['_asNeededBoolean'] != null
+          ? BooleanAsNeededServiceRequestServiceRequest.fromJson({
+              'value': json['asNeededBoolean'],
+              '_value': json['_asNeededBoolean'],
+            })
+          : json['asNeededCodeableConcept'] != null ||
+                  json['_asNeededCodeableConcept'] != null
+              ? CodeableConceptAsNeededServiceRequestServiceRequest.fromJson({
+                  'value': json['asNeededCodeableConcept'],
+                  '_value': json['_asNeededCodeableConcept'],
                 })
               : null,
       authoredOn: (json['authoredOn'] != null || json['_authoredOn'] != null)
@@ -473,7 +500,8 @@ class ServiceRequest extends DomainResource {
   /// An amount of service being requested which can be a quantity ( for
   /// example $1,500 home modification), a ratio ( for example, 20 half day
   /// visits per month), or a range (2.0 to 1.8 Gy per fraction).
-  final Quantity? quantityXServiceRequestServiceRequest;
+  final QuantityXServiceRequestServiceRequest?
+      quantityXServiceRequestServiceRequest;
 
   /// [subject]
   /// On whom or what the service is to be performed. This is usually a human
@@ -489,12 +517,14 @@ class ServiceRequest extends DomainResource {
 
   /// [occurrenceXServiceRequestServiceRequest]
   /// The date/time at which the requested service should occur.
-  final FhirDateTime? occurrenceXServiceRequestServiceRequest;
+  final OccurrenceXServiceRequestServiceRequest?
+      occurrenceXServiceRequestServiceRequest;
 
   /// [asNeededXServiceRequestServiceRequest]
   /// If a CodeableConcept is present, it indicates the pre-condition for
   /// performing the service. For example "pain", "on flare-up", etc.
-  final FhirBoolean? asNeededXServiceRequestServiceRequest;
+  final AsNeededXServiceRequestServiceRequest?
+      asNeededXServiceRequestServiceRequest;
 
   /// [authoredOn]
   /// When the request transitioned to being actionable.
@@ -761,11 +791,14 @@ class ServiceRequest extends DomainResource {
     FhirBoolean? doNotPerform,
     CodeableConcept? code,
     List<CodeableConcept>? orderDetail,
-    Quantity? quantityXServiceRequestServiceRequest,
+    QuantityXServiceRequestServiceRequest?
+        quantityXServiceRequestServiceRequest,
     Reference? subject,
     Reference? encounter,
-    FhirDateTime? occurrenceXServiceRequestServiceRequest,
-    FhirBoolean? asNeededXServiceRequestServiceRequest,
+    OccurrenceXServiceRequestServiceRequest?
+        occurrenceXServiceRequestServiceRequest,
+    AsNeededXServiceRequestServiceRequest?
+        asNeededXServiceRequestServiceRequest,
     FhirDateTime? authoredOn,
     Reference? requester,
     CodeableConcept? performerType,

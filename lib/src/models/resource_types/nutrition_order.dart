@@ -1660,12 +1660,17 @@ class NutritionOrderAdministration extends BackboneElement {
             )
           : null,
       rateXNutritionOrderAdministration:
-          json['rateXNutritionOrderAdministration'] != null
-              ? Quantity.fromJson(
-                  json['rateXNutritionOrderAdministration']
-                      as Map<String, dynamic>,
-                )
-              : null,
+          json['rateQuantity'] != null || json['_rateQuantity'] != null
+              ? QuantityRateNutritionOrderAdministration.fromJson({
+                  'value': json['rateQuantity'],
+                  '_value': json['_rateQuantity'],
+                })
+              : json['rateRatio'] != null || json['_rateRatio'] != null
+                  ? RatioRateNutritionOrderAdministration.fromJson({
+                      'value': json['rateRatio'],
+                      '_value': json['_rateRatio'],
+                    })
+                  : null,
     );
   }
 
@@ -1724,7 +1729,7 @@ class NutritionOrderAdministration extends BackboneElement {
   /// [rateXNutritionOrderAdministration]
   /// The rate of administration of formula via a feeding pump, e.g. 60 mL
   /// per hour, according to the specified schedule.
-  final Quantity? rateXNutritionOrderAdministration;
+  final RateXNutritionOrderAdministration? rateXNutritionOrderAdministration;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1772,7 +1777,7 @@ class NutritionOrderAdministration extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     Timing? schedule,
     Quantity? quantity,
-    Quantity? rateXNutritionOrderAdministration,
+    RateXNutritionOrderAdministration? rateXNutritionOrderAdministration,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,

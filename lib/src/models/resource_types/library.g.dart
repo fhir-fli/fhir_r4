@@ -2,7 +2,7 @@ part of 'library.dart';
 
 /// A code or group definition that describes the intended subject of the
 /// contents of the library.
-sealed class SubjectXLibraryLibrary {}
+sealed class SubjectXLibraryLibrary extends DataType {}
 
 /// A code or group definition that describes the intended subject of the
 /// contents of the library.

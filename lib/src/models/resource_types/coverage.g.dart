@@ -1,7 +1,7 @@
 part of 'coverage.dart';
 
 /// The amount due from the patient for the cost category.
-sealed class ValueXCoverageCostToBeneficiary {}
+sealed class ValueXCoverageCostToBeneficiary extends DataType {}
 
 /// The amount due from the patient for the cost category.
 class QuantityValueCoverageCostToBeneficiary extends Quantity

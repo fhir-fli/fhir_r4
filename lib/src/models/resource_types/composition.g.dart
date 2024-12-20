@@ -1,7 +1,7 @@
 part of 'composition.dart';
 
 /// The target composition/document of this relationship.
-sealed class TargetXCompositionRelatesTo {}
+sealed class TargetXCompositionRelatesTo extends DataType {}
 
 /// The target composition/document of this relationship.
 class IdentifierTargetCompositionRelatesTo extends Identifier

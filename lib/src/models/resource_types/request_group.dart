@@ -652,13 +652,41 @@ class RequestGroupAction extends BackboneElement {
               )
               .toList()
           : null,
-      timingXRequestGroupAction: (json['timingXRequestGroupAction'] != null ||
-              json['_timingXRequestGroupAction'] != null)
-          ? FhirDateTime.fromJson({
-              'value': json['timingXRequestGroupAction'],
-              '_value': json['_timingXRequestGroupAction'],
+      timingXRequestGroupAction: json['timingDateTime'] != null ||
+              json['_timingDateTime'] != null
+          ? DateTimeTimingRequestGroupAction.fromJson({
+              'value': json['timingDateTime'],
+              '_value': json['_timingDateTime'],
             })
-          : null,
+          : json['timingAge'] != null || json['_timingAge'] != null
+              ? AgeTimingRequestGroupAction.fromJson({
+                  'value': json['timingAge'],
+                  '_value': json['_timingAge'],
+                })
+              : json['timingPeriod'] != null || json['_timingPeriod'] != null
+                  ? PeriodTimingRequestGroupAction.fromJson({
+                      'value': json['timingPeriod'],
+                      '_value': json['_timingPeriod'],
+                    })
+                  : json['timingDuration'] != null ||
+                          json['_timingDuration'] != null
+                      ? DurationTimingRequestGroupAction.fromJson({
+                          'value': json['timingDuration'],
+                          '_value': json['_timingDuration'],
+                        })
+                      : json['timingRange'] != null ||
+                              json['_timingRange'] != null
+                          ? RangeTimingRequestGroupAction.fromJson({
+                              'value': json['timingRange'],
+                              '_value': json['_timingRange'],
+                            })
+                          : json['timingTiming'] != null ||
+                                  json['_timingTiming'] != null
+                              ? TimingTimingRequestGroupAction.fromJson({
+                                  'value': json['timingTiming'],
+                                  '_value': json['_timingTiming'],
+                                })
+                              : null,
       participant: json['participant'] != null
           ? (json['participant'] as List<dynamic>)
               .map<Reference>(
@@ -816,7 +844,7 @@ class RequestGroupAction extends BackboneElement {
 
   /// [timingXRequestGroupAction]
   /// An optional value describing when the action should be performed.
-  final FhirDateTime? timingXRequestGroupAction;
+  final TimingXRequestGroupAction? timingXRequestGroupAction;
 
   /// [participant]
   /// The participant that should perform or be responsible for this action.
@@ -938,7 +966,7 @@ class RequestGroupAction extends BackboneElement {
     List<RelatedArtifact>? documentation,
     List<RequestGroupCondition>? condition,
     List<RequestGroupRelatedAction>? relatedAction,
-    FhirDateTime? timingXRequestGroupAction,
+    TimingXRequestGroupAction? timingXRequestGroupAction,
     List<Reference>? participant,
     CodeableConcept? type,
     ActionGroupingBehavior? groupingBehavior,
@@ -1191,12 +1219,17 @@ class RequestGroupRelatedAction extends BackboneElement {
         '_value': json['_relationship'],
       }),
       offsetXRequestGroupRelatedAction:
-          json['offsetXRequestGroupRelatedAction'] != null
-              ? FhirDuration.fromJson(
-                  json['offsetXRequestGroupRelatedAction']
-                      as Map<String, dynamic>,
-                )
-              : null,
+          json['offsetDuration'] != null || json['_offsetDuration'] != null
+              ? DurationOffsetRequestGroupRelatedAction.fromJson({
+                  'value': json['offsetDuration'],
+                  '_value': json['_offsetDuration'],
+                })
+              : json['offsetRange'] != null || json['_offsetRange'] != null
+                  ? RangeOffsetRequestGroupRelatedAction.fromJson({
+                      'value': json['offsetRange'],
+                      '_value': json['_offsetRange'],
+                    })
+                  : null,
     );
   }
 
@@ -1253,7 +1286,7 @@ class RequestGroupRelatedAction extends BackboneElement {
   /// [offsetXRequestGroupRelatedAction]
   /// A duration or range of durations to apply to the relationship. For
   /// example, 30-60 minutes before.
-  final FhirDuration? offsetXRequestGroupRelatedAction;
+  final OffsetXRequestGroupRelatedAction? offsetXRequestGroupRelatedAction;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1295,7 +1328,7 @@ class RequestGroupRelatedAction extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     FhirId? actionId,
     ActionRelationshipType? relationship,
-    FhirDuration? offsetXRequestGroupRelatedAction,
+    OffsetXRequestGroupRelatedAction? offsetXRequestGroupRelatedAction,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,

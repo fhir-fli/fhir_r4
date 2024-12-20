@@ -165,9 +165,16 @@ class DeviceRequest extends DomainResource {
               '_value': json['_priority'],
             })
           : null,
-      codeXDeviceRequestDeviceRequest: Reference.fromJson(
-        json['codeXDeviceRequestDeviceRequest'] as Map<String, dynamic>,
-      ),
+      codeXDeviceRequestDeviceRequest:
+          json['codeReference'] != null || json['_codeReference'] != null
+              ? ReferenceCodeDeviceRequestDeviceRequest.fromJson({
+                  'value': json['codeReference'],
+                  '_value': json['_codeReference'],
+                })
+              : CodeableConceptCodeDeviceRequestDeviceRequest.fromJson({
+                  'value': json['codeCodeableConcept'],
+                  '_value': json['_codeCodeableConcept'],
+                }),
       parameter: json['parameter'] != null
           ? (json['parameter'] as List<dynamic>)
               .map<DeviceRequestParameter>(
@@ -186,13 +193,25 @@ class DeviceRequest extends DomainResource {
             )
           : null,
       occurrenceXDeviceRequestDeviceRequest:
-          (json['occurrenceXDeviceRequestDeviceRequest'] != null ||
-                  json['_occurrenceXDeviceRequestDeviceRequest'] != null)
-              ? FhirDateTime.fromJson({
-                  'value': json['occurrenceXDeviceRequestDeviceRequest'],
-                  '_value': json['_occurrenceXDeviceRequestDeviceRequest'],
+          json['occurrenceDateTime'] != null ||
+                  json['_occurrenceDateTime'] != null
+              ? DateTimeOccurrenceDeviceRequestDeviceRequest.fromJson({
+                  'value': json['occurrenceDateTime'],
+                  '_value': json['_occurrenceDateTime'],
                 })
-              : null,
+              : json['occurrencePeriod'] != null ||
+                      json['_occurrencePeriod'] != null
+                  ? PeriodOccurrenceDeviceRequestDeviceRequest.fromJson({
+                      'value': json['occurrencePeriod'],
+                      '_value': json['_occurrencePeriod'],
+                    })
+                  : json['occurrenceTiming'] != null ||
+                          json['_occurrenceTiming'] != null
+                      ? TimingOccurrenceDeviceRequestDeviceRequest.fromJson({
+                          'value': json['occurrenceTiming'],
+                          '_value': json['_occurrenceTiming'],
+                        })
+                      : null,
       authoredOn: (json['authoredOn'] != null || json['_authoredOn'] != null)
           ? FhirDateTime.fromJson({
               'value': json['authoredOn'],
@@ -358,7 +377,7 @@ class DeviceRequest extends DomainResource {
 
   /// [codeXDeviceRequestDeviceRequest]
   /// The details of the device to be used.
-  final Reference codeXDeviceRequestDeviceRequest;
+  final CodeXDeviceRequestDeviceRequest codeXDeviceRequestDeviceRequest;
 
   /// [parameter]
   /// Specific parameters for the ordered item. For example, the prism value
@@ -379,7 +398,8 @@ class DeviceRequest extends DomainResource {
   /// allows many different expressions, for example. "Every 8 hours"; "Three
   /// times a day"; "1/2 an hour before breakfast for 10 days from 23-Dec
   /// 2011:"; "15 Oct 2013, 17 Oct 2013 and 1 Nov 2013".
-  final FhirDateTime? occurrenceXDeviceRequestDeviceRequest;
+  final OccurrenceXDeviceRequestDeviceRequest?
+      occurrenceXDeviceRequestDeviceRequest;
 
   /// [authoredOn]
   /// When the request transitioned to being actionable.
@@ -580,11 +600,12 @@ class DeviceRequest extends DomainResource {
     RequestStatus? status,
     RequestIntent? intent,
     RequestPriority? priority,
-    Reference? codeXDeviceRequestDeviceRequest,
+    CodeXDeviceRequestDeviceRequest? codeXDeviceRequestDeviceRequest,
     List<DeviceRequestParameter>? parameter,
     Reference? subject,
     Reference? encounter,
-    FhirDateTime? occurrenceXDeviceRequestDeviceRequest,
+    OccurrenceXDeviceRequestDeviceRequest?
+        occurrenceXDeviceRequestDeviceRequest,
     FhirDateTime? authoredOn,
     Reference? requester,
     CodeableConcept? performerType,
@@ -688,11 +709,29 @@ class DeviceRequestParameter extends BackboneElement {
               json['code'] as Map<String, dynamic>,
             )
           : null,
-      valueXDeviceRequestParameter: json['valueXDeviceRequestParameter'] != null
-          ? CodeableConcept.fromJson(
-              json['valueXDeviceRequestParameter'] as Map<String, dynamic>,
-            )
-          : null,
+      valueXDeviceRequestParameter: json['valueCodeableConcept'] != null ||
+              json['_valueCodeableConcept'] != null
+          ? CodeableConceptValueDeviceRequestParameter.fromJson({
+              'value': json['valueCodeableConcept'],
+              '_value': json['_valueCodeableConcept'],
+            })
+          : json['valueQuantity'] != null || json['_valueQuantity'] != null
+              ? QuantityValueDeviceRequestParameter.fromJson({
+                  'value': json['valueQuantity'],
+                  '_value': json['_valueQuantity'],
+                })
+              : json['valueRange'] != null || json['_valueRange'] != null
+                  ? RangeValueDeviceRequestParameter.fromJson({
+                      'value': json['valueRange'],
+                      '_value': json['_valueRange'],
+                    })
+                  : json['valueBoolean'] != null ||
+                          json['_valueBoolean'] != null
+                      ? BooleanValueDeviceRequestParameter.fromJson({
+                          'value': json['valueBoolean'],
+                          '_value': json['_valueBoolean'],
+                        })
+                      : null,
     );
   }
 
@@ -744,7 +783,7 @@ class DeviceRequestParameter extends BackboneElement {
 
   /// [valueXDeviceRequestParameter]
   /// The value of the device detail.
-  final CodeableConcept? valueXDeviceRequestParameter;
+  final ValueXDeviceRequestParameter? valueXDeviceRequestParameter;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -787,7 +826,7 @@ class DeviceRequestParameter extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     CodeableConcept? code,
-    CodeableConcept? valueXDeviceRequestParameter,
+    ValueXDeviceRequestParameter? valueXDeviceRequestParameter,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,

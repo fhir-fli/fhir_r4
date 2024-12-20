@@ -962,10 +962,290 @@ class TaskInput extends BackboneElement {
       type: CodeableConcept.fromJson(
         json['type'] as Map<String, dynamic>,
       ),
-      valueXTaskInput: FhirBase64Binary.fromJson({
-        'value': json['valueXTaskInput'],
-        '_value': json['_valueXTaskInput'],
-      }),
+      valueXTaskInput: json['valueBase64Binary'] != null ||
+              json['_valueBase64Binary'] != null
+          ? Base64BinaryValueTaskInput.fromJson({
+              'value': json['valueBase64Binary'],
+              '_value': json['_valueBase64Binary'],
+            })
+          : json['valueBoolean'] != null || json['_valueBoolean'] != null
+              ? BooleanValueTaskInput.fromJson({
+                  'value': json['valueBoolean'],
+                  '_value': json['_valueBoolean'],
+                })
+              : json['valueCanonical'] != null ||
+                      json['_valueCanonical'] != null
+                  ? CanonicalValueTaskInput.fromJson({
+                      'value': json['valueCanonical'],
+                      '_value': json['_valueCanonical'],
+                    })
+                  : json['valueCode'] != null || json['_valueCode'] != null
+                      ? CodeValueTaskInput.fromJson({
+                          'value': json['valueCode'],
+                          '_value': json['_valueCode'],
+                        })
+                      : json['valueDate'] != null || json['_valueDate'] != null
+                          ? DateValueTaskInput.fromJson({
+                              'value': json['valueDate'],
+                              '_value': json['_valueDate'],
+                            })
+                          : json['valueDateTime'] != null ||
+                                  json['_valueDateTime'] != null
+                              ? DateTimeValueTaskInput.fromJson({
+                                  'value': json['valueDateTime'],
+                                  '_value': json['_valueDateTime'],
+                                })
+                              : json['valueDecimal'] != null ||
+                                      json['_valueDecimal'] != null
+                                  ? DecimalValueTaskInput.fromJson({
+                                      'value': json['valueDecimal'],
+                                      '_value': json['_valueDecimal'],
+                                    })
+                                  : json['valueId'] != null ||
+                                          json['_valueId'] != null
+                                      ? IdValueTaskInput.fromJson({
+                                          'value': json['valueId'],
+                                          '_value': json['_valueId'],
+                                        })
+                                      : json['valueInstant'] != null ||
+                                              json['_valueInstant'] != null
+                                          ? InstantValueTaskInput.fromJson({
+                                              'value': json['valueInstant'],
+                                              '_value': json['_valueInstant'],
+                                            })
+                                          : json['valueInteger'] != null ||
+                                                  json['_valueInteger'] != null
+                                              ? IntegerValueTaskInput.fromJson({
+                                                  'value': json['valueInteger'],
+                                                  '_value':
+                                                      json['_valueInteger'],
+                                                })
+                                              : json['valueMarkdown'] != null ||
+                                                      json['_valueMarkdown'] !=
+                                                          null
+                                                  ? MarkdownValueTaskInput.fromJson({
+                                                      'value':
+                                                          json['valueMarkdown'],
+                                                      '_value': json[
+                                                          '_valueMarkdown'],
+                                                    })
+                                                  : json['valueOid'] != null ||
+                                                          json['_valueOid'] !=
+                                                              null
+                                                      ? OidValueTaskInput.fromJson({
+                                                          'value':
+                                                              json['valueOid'],
+                                                          '_value':
+                                                              json['_valueOid'],
+                                                        })
+                                                      : json['valuePositiveInt'] !=
+                                                                  null ||
+                                                              json['_valuePositiveInt'] !=
+                                                                  null
+                                                          ? PositiveIntValueTaskInput.fromJson({
+                                                              'value': json[
+                                                                  'valuePositiveInt'],
+                                                              '_value': json[
+                                                                  '_valuePositiveInt'],
+                                                            })
+                                                          : json['valueString'] !=
+                                                                      null ||
+                                                                  json['_valueString'] !=
+                                                                      null
+                                                              ? StringValueTaskInput.fromJson({
+                                                                  'value': json[
+                                                                      'valueString'],
+                                                                  '_value': json[
+                                                                      '_valueString'],
+                                                                })
+                                                              : json['valueTime'] !=
+                                                                          null ||
+                                                                      json['_valueTime'] !=
+                                                                          null
+                                                                  ? TimeValueTaskInput.fromJson({
+                                                                      'value': json[
+                                                                          'valueTime'],
+                                                                      '_value':
+                                                                          json[
+                                                                              '_valueTime'],
+                                                                    })
+                                                                  : json['valueUnsignedInt'] != null ||
+                                                                          json['_valueUnsignedInt'] != null
+                                                                      ? UnsignedIntValueTaskInput.fromJson({
+                                                                          'value':
+                                                                              json['valueUnsignedInt'],
+                                                                          '_value':
+                                                                              json['_valueUnsignedInt'],
+                                                                        })
+                                                                      : json['valueUri'] != null || json['_valueUri'] != null
+                                                                          ? UriValueTaskInput.fromJson({
+                                                                              'value': json['valueUri'],
+                                                                              '_value': json['_valueUri'],
+                                                                            })
+                                                                          : json['valueUrl'] != null || json['_valueUrl'] != null
+                                                                              ? UrlValueTaskInput.fromJson({
+                                                                                  'value': json['valueUrl'],
+                                                                                  '_value': json['_valueUrl'],
+                                                                                })
+                                                                              : json['valueUuid'] != null || json['_valueUuid'] != null
+                                                                                  ? UuidValueTaskInput.fromJson({
+                                                                                      'value': json['valueUuid'],
+                                                                                      '_value': json['_valueUuid'],
+                                                                                    })
+                                                                                  : json['valueAddress'] != null || json['_valueAddress'] != null
+                                                                                      ? AddressValueTaskInput.fromJson({
+                                                                                          'value': json['valueAddress'],
+                                                                                          '_value': json['_valueAddress'],
+                                                                                        })
+                                                                                      : json['valueAge'] != null || json['_valueAge'] != null
+                                                                                          ? AgeValueTaskInput.fromJson({
+                                                                                              'value': json['valueAge'],
+                                                                                              '_value': json['_valueAge'],
+                                                                                            })
+                                                                                          : json['valueAnnotation'] != null || json['_valueAnnotation'] != null
+                                                                                              ? AnnotationValueTaskInput.fromJson({
+                                                                                                  'value': json['valueAnnotation'],
+                                                                                                  '_value': json['_valueAnnotation'],
+                                                                                                })
+                                                                                              : json['valueAttachment'] != null || json['_valueAttachment'] != null
+                                                                                                  ? AttachmentValueTaskInput.fromJson({
+                                                                                                      'value': json['valueAttachment'],
+                                                                                                      '_value': json['_valueAttachment'],
+                                                                                                    })
+                                                                                                  : json['valueCodeableConcept'] != null || json['_valueCodeableConcept'] != null
+                                                                                                      ? CodeableConceptValueTaskInput.fromJson({
+                                                                                                          'value': json['valueCodeableConcept'],
+                                                                                                          '_value': json['_valueCodeableConcept'],
+                                                                                                        })
+                                                                                                      : json['valueCoding'] != null || json['_valueCoding'] != null
+                                                                                                          ? CodingValueTaskInput.fromJson({
+                                                                                                              'value': json['valueCoding'],
+                                                                                                              '_value': json['_valueCoding'],
+                                                                                                            })
+                                                                                                          : json['valueContactPoint'] != null || json['_valueContactPoint'] != null
+                                                                                                              ? ContactPointValueTaskInput.fromJson({
+                                                                                                                  'value': json['valueContactPoint'],
+                                                                                                                  '_value': json['_valueContactPoint'],
+                                                                                                                })
+                                                                                                              : json['valueCount'] != null || json['_valueCount'] != null
+                                                                                                                  ? CountValueTaskInput.fromJson({
+                                                                                                                      'value': json['valueCount'],
+                                                                                                                      '_value': json['_valueCount'],
+                                                                                                                    })
+                                                                                                                  : json['valueDistance'] != null || json['_valueDistance'] != null
+                                                                                                                      ? DistanceValueTaskInput.fromJson({
+                                                                                                                          'value': json['valueDistance'],
+                                                                                                                          '_value': json['_valueDistance'],
+                                                                                                                        })
+                                                                                                                      : json['valueDuration'] != null || json['_valueDuration'] != null
+                                                                                                                          ? DurationValueTaskInput.fromJson({
+                                                                                                                              'value': json['valueDuration'],
+                                                                                                                              '_value': json['_valueDuration'],
+                                                                                                                            })
+                                                                                                                          : json['valueHumanName'] != null || json['_valueHumanName'] != null
+                                                                                                                              ? HumanNameValueTaskInput.fromJson({
+                                                                                                                                  'value': json['valueHumanName'],
+                                                                                                                                  '_value': json['_valueHumanName'],
+                                                                                                                                })
+                                                                                                                              : json['valueIdentifier'] != null || json['_valueIdentifier'] != null
+                                                                                                                                  ? IdentifierValueTaskInput.fromJson({
+                                                                                                                                      'value': json['valueIdentifier'],
+                                                                                                                                      '_value': json['_valueIdentifier'],
+                                                                                                                                    })
+                                                                                                                                  : json['valueMoney'] != null || json['_valueMoney'] != null
+                                                                                                                                      ? MoneyValueTaskInput.fromJson({
+                                                                                                                                          'value': json['valueMoney'],
+                                                                                                                                          '_value': json['_valueMoney'],
+                                                                                                                                        })
+                                                                                                                                      : json['valuePeriod'] != null || json['_valuePeriod'] != null
+                                                                                                                                          ? PeriodValueTaskInput.fromJson({
+                                                                                                                                              'value': json['valuePeriod'],
+                                                                                                                                              '_value': json['_valuePeriod'],
+                                                                                                                                            })
+                                                                                                                                          : json['valueQuantity'] != null || json['_valueQuantity'] != null
+                                                                                                                                              ? QuantityValueTaskInput.fromJson({
+                                                                                                                                                  'value': json['valueQuantity'],
+                                                                                                                                                  '_value': json['_valueQuantity'],
+                                                                                                                                                })
+                                                                                                                                              : json['valueRange'] != null || json['_valueRange'] != null
+                                                                                                                                                  ? RangeValueTaskInput.fromJson({
+                                                                                                                                                      'value': json['valueRange'],
+                                                                                                                                                      '_value': json['_valueRange'],
+                                                                                                                                                    })
+                                                                                                                                                  : json['valueRatio'] != null || json['_valueRatio'] != null
+                                                                                                                                                      ? RatioValueTaskInput.fromJson({
+                                                                                                                                                          'value': json['valueRatio'],
+                                                                                                                                                          '_value': json['_valueRatio'],
+                                                                                                                                                        })
+                                                                                                                                                      : json['valueReference'] != null || json['_valueReference'] != null
+                                                                                                                                                          ? ReferenceValueTaskInput.fromJson({
+                                                                                                                                                              'value': json['valueReference'],
+                                                                                                                                                              '_value': json['_valueReference'],
+                                                                                                                                                            })
+                                                                                                                                                          : json['valueSampledData'] != null || json['_valueSampledData'] != null
+                                                                                                                                                              ? SampledDataValueTaskInput.fromJson({
+                                                                                                                                                                  'value': json['valueSampledData'],
+                                                                                                                                                                  '_value': json['_valueSampledData'],
+                                                                                                                                                                })
+                                                                                                                                                              : json['valueSignature'] != null || json['_valueSignature'] != null
+                                                                                                                                                                  ? SignatureValueTaskInput.fromJson({
+                                                                                                                                                                      'value': json['valueSignature'],
+                                                                                                                                                                      '_value': json['_valueSignature'],
+                                                                                                                                                                    })
+                                                                                                                                                                  : json['valueTiming'] != null || json['_valueTiming'] != null
+                                                                                                                                                                      ? TimingValueTaskInput.fromJson({
+                                                                                                                                                                          'value': json['valueTiming'],
+                                                                                                                                                                          '_value': json['_valueTiming'],
+                                                                                                                                                                        })
+                                                                                                                                                                      : json['valueContactDetail'] != null || json['_valueContactDetail'] != null
+                                                                                                                                                                          ? ContactDetailValueTaskInput.fromJson({
+                                                                                                                                                                              'value': json['valueContactDetail'],
+                                                                                                                                                                              '_value': json['_valueContactDetail'],
+                                                                                                                                                                            })
+                                                                                                                                                                          : json['valueContributor'] != null || json['_valueContributor'] != null
+                                                                                                                                                                              ? ContributorValueTaskInput.fromJson({
+                                                                                                                                                                                  'value': json['valueContributor'],
+                                                                                                                                                                                  '_value': json['_valueContributor'],
+                                                                                                                                                                                })
+                                                                                                                                                                              : json['valueDataRequirement'] != null || json['_valueDataRequirement'] != null
+                                                                                                                                                                                  ? DataRequirementValueTaskInput.fromJson({
+                                                                                                                                                                                      'value': json['valueDataRequirement'],
+                                                                                                                                                                                      '_value': json['_valueDataRequirement'],
+                                                                                                                                                                                    })
+                                                                                                                                                                                  : json['valueExpression'] != null || json['_valueExpression'] != null
+                                                                                                                                                                                      ? ExpressionValueTaskInput.fromJson({
+                                                                                                                                                                                          'value': json['valueExpression'],
+                                                                                                                                                                                          '_value': json['_valueExpression'],
+                                                                                                                                                                                        })
+                                                                                                                                                                                      : json['valueParameterDefinition'] != null || json['_valueParameterDefinition'] != null
+                                                                                                                                                                                          ? ParameterDefinitionValueTaskInput.fromJson({
+                                                                                                                                                                                              'value': json['valueParameterDefinition'],
+                                                                                                                                                                                              '_value': json['_valueParameterDefinition'],
+                                                                                                                                                                                            })
+                                                                                                                                                                                          : json['valueRelatedArtifact'] != null || json['_valueRelatedArtifact'] != null
+                                                                                                                                                                                              ? RelatedArtifactValueTaskInput.fromJson({
+                                                                                                                                                                                                  'value': json['valueRelatedArtifact'],
+                                                                                                                                                                                                  '_value': json['_valueRelatedArtifact'],
+                                                                                                                                                                                                })
+                                                                                                                                                                                              : json['valueTriggerDefinition'] != null || json['_valueTriggerDefinition'] != null
+                                                                                                                                                                                                  ? TriggerDefinitionValueTaskInput.fromJson({
+                                                                                                                                                                                                      'value': json['valueTriggerDefinition'],
+                                                                                                                                                                                                      '_value': json['_valueTriggerDefinition'],
+                                                                                                                                                                                                    })
+                                                                                                                                                                                                  : json['valueUsageContext'] != null || json['_valueUsageContext'] != null
+                                                                                                                                                                                                      ? UsageContextValueTaskInput.fromJson({
+                                                                                                                                                                                                          'value': json['valueUsageContext'],
+                                                                                                                                                                                                          '_value': json['_valueUsageContext'],
+                                                                                                                                                                                                        })
+                                                                                                                                                                                                      : json['valueDosage'] != null || json['_valueDosage'] != null
+                                                                                                                                                                                                          ? DosageValueTaskInput.fromJson({
+                                                                                                                                                                                                              'value': json['valueDosage'],
+                                                                                                                                                                                                              '_value': json['_valueDosage'],
+                                                                                                                                                                                                            })
+                                                                                                                                                                                                          : MetaValueTaskInput.fromJson({
+                                                                                                                                                                                                              'value': json['valueMeta'],
+                                                                                                                                                                                                              '_value': json['_valueMeta'],
+                                                                                                                                                                                                            }),
     );
   }
 
@@ -1018,7 +1298,7 @@ class TaskInput extends BackboneElement {
 
   /// [valueXTaskInput]
   /// The value of the input parameter as a basic type.
-  final FhirBase64Binary valueXTaskInput;
+  final ValueXTaskInput valueXTaskInput;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1055,7 +1335,7 @@ class TaskInput extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     CodeableConcept? type,
-    FhirBase64Binary? valueXTaskInput,
+    ValueXTaskInput? valueXTaskInput,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1115,10 +1395,289 @@ class TaskOutput extends BackboneElement {
       type: CodeableConcept.fromJson(
         json['type'] as Map<String, dynamic>,
       ),
-      valueXTaskOutput: FhirBase64Binary.fromJson({
-        'value': json['valueXTaskOutput'],
-        '_value': json['_valueXTaskOutput'],
-      }),
+      valueXTaskOutput: json['valueBase64Binary'] != null ||
+              json['_valueBase64Binary'] != null
+          ? Base64BinaryValueTaskOutput.fromJson({
+              'value': json['valueBase64Binary'],
+              '_value': json['_valueBase64Binary'],
+            })
+          : json['valueBoolean'] != null || json['_valueBoolean'] != null
+              ? BooleanValueTaskOutput.fromJson({
+                  'value': json['valueBoolean'],
+                  '_value': json['_valueBoolean'],
+                })
+              : json['valueCanonical'] != null ||
+                      json['_valueCanonical'] != null
+                  ? CanonicalValueTaskOutput.fromJson({
+                      'value': json['valueCanonical'],
+                      '_value': json['_valueCanonical'],
+                    })
+                  : json['valueCode'] != null || json['_valueCode'] != null
+                      ? CodeValueTaskOutput.fromJson({
+                          'value': json['valueCode'],
+                          '_value': json['_valueCode'],
+                        })
+                      : json['valueDate'] != null || json['_valueDate'] != null
+                          ? DateValueTaskOutput.fromJson({
+                              'value': json['valueDate'],
+                              '_value': json['_valueDate'],
+                            })
+                          : json['valueDateTime'] != null ||
+                                  json['_valueDateTime'] != null
+                              ? DateTimeValueTaskOutput.fromJson({
+                                  'value': json['valueDateTime'],
+                                  '_value': json['_valueDateTime'],
+                                })
+                              : json['valueDecimal'] != null ||
+                                      json['_valueDecimal'] != null
+                                  ? DecimalValueTaskOutput.fromJson({
+                                      'value': json['valueDecimal'],
+                                      '_value': json['_valueDecimal'],
+                                    })
+                                  : json['valueId'] != null ||
+                                          json['_valueId'] != null
+                                      ? IdValueTaskOutput.fromJson({
+                                          'value': json['valueId'],
+                                          '_value': json['_valueId'],
+                                        })
+                                      : json['valueInstant'] != null ||
+                                              json['_valueInstant'] != null
+                                          ? InstantValueTaskOutput.fromJson({
+                                              'value': json['valueInstant'],
+                                              '_value': json['_valueInstant'],
+                                            })
+                                          : json['valueInteger'] != null ||
+                                                  json['_valueInteger'] != null
+                                              ? IntegerValueTaskOutput.fromJson({
+                                                  'value': json['valueInteger'],
+                                                  '_value':
+                                                      json['_valueInteger'],
+                                                })
+                                              : json['valueMarkdown'] != null ||
+                                                      json['_valueMarkdown'] !=
+                                                          null
+                                                  ? MarkdownValueTaskOutput.fromJson({
+                                                      'value':
+                                                          json['valueMarkdown'],
+                                                      '_value': json[
+                                                          '_valueMarkdown'],
+                                                    })
+                                                  : json['valueOid'] != null ||
+                                                          json['_valueOid'] !=
+                                                              null
+                                                      ? OidValueTaskOutput.fromJson({
+                                                          'value':
+                                                              json['valueOid'],
+                                                          '_value':
+                                                              json['_valueOid'],
+                                                        })
+                                                      : json['valuePositiveInt'] !=
+                                                                  null ||
+                                                              json['_valuePositiveInt'] !=
+                                                                  null
+                                                          ? PositiveIntValueTaskOutput.fromJson({
+                                                              'value': json[
+                                                                  'valuePositiveInt'],
+                                                              '_value': json[
+                                                                  '_valuePositiveInt'],
+                                                            })
+                                                          : json['valueString'] !=
+                                                                      null ||
+                                                                  json['_valueString'] !=
+                                                                      null
+                                                              ? StringValueTaskOutput
+                                                                  .fromJson({
+                                                                  'value': json[
+                                                                      'valueString'],
+                                                                  '_value': json[
+                                                                      '_valueString'],
+                                                                })
+                                                              : json['valueTime'] !=
+                                                                          null ||
+                                                                      json['_valueTime'] != null
+                                                                  ? TimeValueTaskOutput.fromJson({
+                                                                      'value': json[
+                                                                          'valueTime'],
+                                                                      '_value':
+                                                                          json[
+                                                                              '_valueTime'],
+                                                                    })
+                                                                  : json['valueUnsignedInt'] != null || json['_valueUnsignedInt'] != null
+                                                                      ? UnsignedIntValueTaskOutput.fromJson({
+                                                                          'value':
+                                                                              json['valueUnsignedInt'],
+                                                                          '_value':
+                                                                              json['_valueUnsignedInt'],
+                                                                        })
+                                                                      : json['valueUri'] != null || json['_valueUri'] != null
+                                                                          ? UriValueTaskOutput.fromJson({
+                                                                              'value': json['valueUri'],
+                                                                              '_value': json['_valueUri'],
+                                                                            })
+                                                                          : json['valueUrl'] != null || json['_valueUrl'] != null
+                                                                              ? UrlValueTaskOutput.fromJson({
+                                                                                  'value': json['valueUrl'],
+                                                                                  '_value': json['_valueUrl'],
+                                                                                })
+                                                                              : json['valueUuid'] != null || json['_valueUuid'] != null
+                                                                                  ? UuidValueTaskOutput.fromJson({
+                                                                                      'value': json['valueUuid'],
+                                                                                      '_value': json['_valueUuid'],
+                                                                                    })
+                                                                                  : json['valueAddress'] != null || json['_valueAddress'] != null
+                                                                                      ? AddressValueTaskOutput.fromJson({
+                                                                                          'value': json['valueAddress'],
+                                                                                          '_value': json['_valueAddress'],
+                                                                                        })
+                                                                                      : json['valueAge'] != null || json['_valueAge'] != null
+                                                                                          ? AgeValueTaskOutput.fromJson({
+                                                                                              'value': json['valueAge'],
+                                                                                              '_value': json['_valueAge'],
+                                                                                            })
+                                                                                          : json['valueAnnotation'] != null || json['_valueAnnotation'] != null
+                                                                                              ? AnnotationValueTaskOutput.fromJson({
+                                                                                                  'value': json['valueAnnotation'],
+                                                                                                  '_value': json['_valueAnnotation'],
+                                                                                                })
+                                                                                              : json['valueAttachment'] != null || json['_valueAttachment'] != null
+                                                                                                  ? AttachmentValueTaskOutput.fromJson({
+                                                                                                      'value': json['valueAttachment'],
+                                                                                                      '_value': json['_valueAttachment'],
+                                                                                                    })
+                                                                                                  : json['valueCodeableConcept'] != null || json['_valueCodeableConcept'] != null
+                                                                                                      ? CodeableConceptValueTaskOutput.fromJson({
+                                                                                                          'value': json['valueCodeableConcept'],
+                                                                                                          '_value': json['_valueCodeableConcept'],
+                                                                                                        })
+                                                                                                      : json['valueCoding'] != null || json['_valueCoding'] != null
+                                                                                                          ? CodingValueTaskOutput.fromJson({
+                                                                                                              'value': json['valueCoding'],
+                                                                                                              '_value': json['_valueCoding'],
+                                                                                                            })
+                                                                                                          : json['valueContactPoint'] != null || json['_valueContactPoint'] != null
+                                                                                                              ? ContactPointValueTaskOutput.fromJson({
+                                                                                                                  'value': json['valueContactPoint'],
+                                                                                                                  '_value': json['_valueContactPoint'],
+                                                                                                                })
+                                                                                                              : json['valueCount'] != null || json['_valueCount'] != null
+                                                                                                                  ? CountValueTaskOutput.fromJson({
+                                                                                                                      'value': json['valueCount'],
+                                                                                                                      '_value': json['_valueCount'],
+                                                                                                                    })
+                                                                                                                  : json['valueDistance'] != null || json['_valueDistance'] != null
+                                                                                                                      ? DistanceValueTaskOutput.fromJson({
+                                                                                                                          'value': json['valueDistance'],
+                                                                                                                          '_value': json['_valueDistance'],
+                                                                                                                        })
+                                                                                                                      : json['valueDuration'] != null || json['_valueDuration'] != null
+                                                                                                                          ? DurationValueTaskOutput.fromJson({
+                                                                                                                              'value': json['valueDuration'],
+                                                                                                                              '_value': json['_valueDuration'],
+                                                                                                                            })
+                                                                                                                          : json['valueHumanName'] != null || json['_valueHumanName'] != null
+                                                                                                                              ? HumanNameValueTaskOutput.fromJson({
+                                                                                                                                  'value': json['valueHumanName'],
+                                                                                                                                  '_value': json['_valueHumanName'],
+                                                                                                                                })
+                                                                                                                              : json['valueIdentifier'] != null || json['_valueIdentifier'] != null
+                                                                                                                                  ? IdentifierValueTaskOutput.fromJson({
+                                                                                                                                      'value': json['valueIdentifier'],
+                                                                                                                                      '_value': json['_valueIdentifier'],
+                                                                                                                                    })
+                                                                                                                                  : json['valueMoney'] != null || json['_valueMoney'] != null
+                                                                                                                                      ? MoneyValueTaskOutput.fromJson({
+                                                                                                                                          'value': json['valueMoney'],
+                                                                                                                                          '_value': json['_valueMoney'],
+                                                                                                                                        })
+                                                                                                                                      : json['valuePeriod'] != null || json['_valuePeriod'] != null
+                                                                                                                                          ? PeriodValueTaskOutput.fromJson({
+                                                                                                                                              'value': json['valuePeriod'],
+                                                                                                                                              '_value': json['_valuePeriod'],
+                                                                                                                                            })
+                                                                                                                                          : json['valueQuantity'] != null || json['_valueQuantity'] != null
+                                                                                                                                              ? QuantityValueTaskOutput.fromJson({
+                                                                                                                                                  'value': json['valueQuantity'],
+                                                                                                                                                  '_value': json['_valueQuantity'],
+                                                                                                                                                })
+                                                                                                                                              : json['valueRange'] != null || json['_valueRange'] != null
+                                                                                                                                                  ? RangeValueTaskOutput.fromJson({
+                                                                                                                                                      'value': json['valueRange'],
+                                                                                                                                                      '_value': json['_valueRange'],
+                                                                                                                                                    })
+                                                                                                                                                  : json['valueRatio'] != null || json['_valueRatio'] != null
+                                                                                                                                                      ? RatioValueTaskOutput.fromJson({
+                                                                                                                                                          'value': json['valueRatio'],
+                                                                                                                                                          '_value': json['_valueRatio'],
+                                                                                                                                                        })
+                                                                                                                                                      : json['valueReference'] != null || json['_valueReference'] != null
+                                                                                                                                                          ? ReferenceValueTaskOutput.fromJson({
+                                                                                                                                                              'value': json['valueReference'],
+                                                                                                                                                              '_value': json['_valueReference'],
+                                                                                                                                                            })
+                                                                                                                                                          : json['valueSampledData'] != null || json['_valueSampledData'] != null
+                                                                                                                                                              ? SampledDataValueTaskOutput.fromJson({
+                                                                                                                                                                  'value': json['valueSampledData'],
+                                                                                                                                                                  '_value': json['_valueSampledData'],
+                                                                                                                                                                })
+                                                                                                                                                              : json['valueSignature'] != null || json['_valueSignature'] != null
+                                                                                                                                                                  ? SignatureValueTaskOutput.fromJson({
+                                                                                                                                                                      'value': json['valueSignature'],
+                                                                                                                                                                      '_value': json['_valueSignature'],
+                                                                                                                                                                    })
+                                                                                                                                                                  : json['valueTiming'] != null || json['_valueTiming'] != null
+                                                                                                                                                                      ? TimingValueTaskOutput.fromJson({
+                                                                                                                                                                          'value': json['valueTiming'],
+                                                                                                                                                                          '_value': json['_valueTiming'],
+                                                                                                                                                                        })
+                                                                                                                                                                      : json['valueContactDetail'] != null || json['_valueContactDetail'] != null
+                                                                                                                                                                          ? ContactDetailValueTaskOutput.fromJson({
+                                                                                                                                                                              'value': json['valueContactDetail'],
+                                                                                                                                                                              '_value': json['_valueContactDetail'],
+                                                                                                                                                                            })
+                                                                                                                                                                          : json['valueContributor'] != null || json['_valueContributor'] != null
+                                                                                                                                                                              ? ContributorValueTaskOutput.fromJson({
+                                                                                                                                                                                  'value': json['valueContributor'],
+                                                                                                                                                                                  '_value': json['_valueContributor'],
+                                                                                                                                                                                })
+                                                                                                                                                                              : json['valueDataRequirement'] != null || json['_valueDataRequirement'] != null
+                                                                                                                                                                                  ? DataRequirementValueTaskOutput.fromJson({
+                                                                                                                                                                                      'value': json['valueDataRequirement'],
+                                                                                                                                                                                      '_value': json['_valueDataRequirement'],
+                                                                                                                                                                                    })
+                                                                                                                                                                                  : json['valueExpression'] != null || json['_valueExpression'] != null
+                                                                                                                                                                                      ? ExpressionValueTaskOutput.fromJson({
+                                                                                                                                                                                          'value': json['valueExpression'],
+                                                                                                                                                                                          '_value': json['_valueExpression'],
+                                                                                                                                                                                        })
+                                                                                                                                                                                      : json['valueParameterDefinition'] != null || json['_valueParameterDefinition'] != null
+                                                                                                                                                                                          ? ParameterDefinitionValueTaskOutput.fromJson({
+                                                                                                                                                                                              'value': json['valueParameterDefinition'],
+                                                                                                                                                                                              '_value': json['_valueParameterDefinition'],
+                                                                                                                                                                                            })
+                                                                                                                                                                                          : json['valueRelatedArtifact'] != null || json['_valueRelatedArtifact'] != null
+                                                                                                                                                                                              ? RelatedArtifactValueTaskOutput.fromJson({
+                                                                                                                                                                                                  'value': json['valueRelatedArtifact'],
+                                                                                                                                                                                                  '_value': json['_valueRelatedArtifact'],
+                                                                                                                                                                                                })
+                                                                                                                                                                                              : json['valueTriggerDefinition'] != null || json['_valueTriggerDefinition'] != null
+                                                                                                                                                                                                  ? TriggerDefinitionValueTaskOutput.fromJson({
+                                                                                                                                                                                                      'value': json['valueTriggerDefinition'],
+                                                                                                                                                                                                      '_value': json['_valueTriggerDefinition'],
+                                                                                                                                                                                                    })
+                                                                                                                                                                                                  : json['valueUsageContext'] != null || json['_valueUsageContext'] != null
+                                                                                                                                                                                                      ? UsageContextValueTaskOutput.fromJson({
+                                                                                                                                                                                                          'value': json['valueUsageContext'],
+                                                                                                                                                                                                          '_value': json['_valueUsageContext'],
+                                                                                                                                                                                                        })
+                                                                                                                                                                                                      : json['valueDosage'] != null || json['_valueDosage'] != null
+                                                                                                                                                                                                          ? DosageValueTaskOutput.fromJson({
+                                                                                                                                                                                                              'value': json['valueDosage'],
+                                                                                                                                                                                                              '_value': json['_valueDosage'],
+                                                                                                                                                                                                            })
+                                                                                                                                                                                                          : MetaValueTaskOutput.fromJson({
+                                                                                                                                                                                                              'value': json['valueMeta'],
+                                                                                                                                                                                                              '_value': json['_valueMeta'],
+                                                                                                                                                                                                            }),
     );
   }
 
@@ -1170,7 +1729,7 @@ class TaskOutput extends BackboneElement {
 
   /// [valueXTaskOutput]
   /// The value of the Output parameter as a basic type.
-  final FhirBase64Binary valueXTaskOutput;
+  final ValueXTaskOutput valueXTaskOutput;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1207,7 +1766,7 @@ class TaskOutput extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     CodeableConcept? type,
-    FhirBase64Binary? valueXTaskOutput,
+    ValueXTaskOutput? valueXTaskOutput,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,

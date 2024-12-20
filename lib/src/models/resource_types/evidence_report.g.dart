@@ -1,7 +1,7 @@
 part of 'evidence_report.dart';
 
 /// Citation Resource or display of suggested citation for this report.
-sealed class CiteAsXEvidenceReportEvidenceReport {}
+sealed class CiteAsXEvidenceReportEvidenceReport extends DataType {}
 
 /// Citation Resource or display of suggested citation for this report.
 class ReferenceCiteAsEvidenceReportEvidenceReport extends Reference
@@ -32,7 +32,7 @@ class MarkdownCiteAsEvidenceReportEvidenceReport extends FhirMarkdown
 }
 
 /// Characteristic value.
-sealed class ValueXEvidenceReportCharacteristic {}
+sealed class ValueXEvidenceReportCharacteristic extends DataType {}
 
 /// Characteristic value.
 class ReferenceValueEvidenceReportCharacteristic extends Reference
@@ -94,7 +94,7 @@ class RangeValueEvidenceReportCharacteristic extends Range
 }
 
 /// The target composition/document of this relationship.
-sealed class TargetXEvidenceReportRelatesTo {}
+sealed class TargetXEvidenceReportRelatesTo extends DataType {}
 
 /// The target composition/document of this relationship.
 class IdentifierTargetEvidenceReportRelatesTo extends Identifier

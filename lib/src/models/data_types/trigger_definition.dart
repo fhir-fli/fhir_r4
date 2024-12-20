@@ -49,13 +49,30 @@ class TriggerDefinition extends DataType {
               '_value': json['_name'],
             })
           : null,
-      timingXTriggerDefinitionTriggerDefinition:
-          json['timingXTriggerDefinitionTriggerDefinition'] != null
-              ? Timing.fromJson(
-                  json['timingXTriggerDefinitionTriggerDefinition']
-                      as Map<String, dynamic>,
-                )
-              : null,
+      timingXTriggerDefinitionTriggerDefinition: json['timingTiming'] != null ||
+              json['_timingTiming'] != null
+          ? TimingTimingTriggerDefinitionTriggerDefinition.fromJson({
+              'value': json['timingTiming'],
+              '_value': json['_timingTiming'],
+            })
+          : json['timingReference'] != null || json['_timingReference'] != null
+              ? ReferenceTimingTriggerDefinitionTriggerDefinition.fromJson({
+                  'value': json['timingReference'],
+                  '_value': json['_timingReference'],
+                })
+              : json['timingDate'] != null || json['_timingDate'] != null
+                  ? DateTimingTriggerDefinitionTriggerDefinition.fromJson({
+                      'value': json['timingDate'],
+                      '_value': json['_timingDate'],
+                    })
+                  : json['timingDateTime'] != null ||
+                          json['_timingDateTime'] != null
+                      ? DateTimeTimingTriggerDefinitionTriggerDefinition
+                          .fromJson({
+                          'value': json['timingDateTime'],
+                          '_value': json['_timingDateTime'],
+                        })
+                      : null,
       data: json['data'] != null
           ? (json['data'] as List<dynamic>)
               .map<DataRequirement>(
@@ -127,7 +144,8 @@ class TriggerDefinition extends DataType {
 
   /// [timingXTriggerDefinitionTriggerDefinition]
   /// The timing of the event (if this is a periodic trigger).
-  final Timing? timingXTriggerDefinitionTriggerDefinition;
+  final TimingXTriggerDefinitionTriggerDefinition?
+      timingXTriggerDefinitionTriggerDefinition;
 
   /// [data]
   /// The triggering data of the event (if this is a data trigger). If more
@@ -183,7 +201,8 @@ class TriggerDefinition extends DataType {
     List<FhirExtension>? extension_,
     TriggerType? type,
     FhirString? name,
-    Timing? timingXTriggerDefinitionTriggerDefinition,
+    TimingXTriggerDefinitionTriggerDefinition?
+        timingXTriggerDefinitionTriggerDefinition,
     List<DataRequirement>? data,
     FhirExpression? condition,
     Map<String, Object?>? userData,

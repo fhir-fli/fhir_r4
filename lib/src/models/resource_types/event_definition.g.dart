@@ -2,7 +2,7 @@ part of 'event_definition.dart';
 
 /// A code or group definition that describes the intended subject of the
 /// event definition.
-sealed class SubjectXEventDefinitionEventDefinition {}
+sealed class SubjectXEventDefinitionEventDefinition extends DataType {}
 
 /// A code or group definition that describes the intended subject of the
 /// event definition.

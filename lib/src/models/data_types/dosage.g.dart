@@ -3,7 +3,7 @@ part of 'dosage.dart';
 /// Indicates whether the Medication is only taken when needed within a
 /// specific dosing schedule (Boolean option), or it indicates the
 /// precondition for taking the Medication (CodeableConcept).
-sealed class AsNeededXDosageDosage {}
+sealed class AsNeededXDosageDosage extends DataType {}
 
 /// Indicates whether the Medication is only taken when needed within a
 /// specific dosing schedule (Boolean option), or it indicates the
@@ -38,7 +38,7 @@ class CodeableConceptAsNeededDosageDosage extends CodeableConcept
 }
 
 /// Amount of medication per dose.
-sealed class DoseXDosageDoseAndRate {}
+sealed class DoseXDosageDoseAndRate extends DataType {}
 
 /// Amount of medication per dose.
 class RangeDoseDosageDoseAndRate extends Range
@@ -61,7 +61,7 @@ class QuantityDoseDosageDoseAndRate extends Quantity
 }
 
 /// Amount of medication per unit of time.
-sealed class RateXDosageDoseAndRate {}
+sealed class RateXDosageDoseAndRate extends DataType {}
 
 /// Amount of medication per unit of time.
 class RatioRateDosageDoseAndRate extends Ratio

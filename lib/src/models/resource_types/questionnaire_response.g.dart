@@ -2,7 +2,7 @@ part of 'questionnaire_response.dart';
 
 /// The answer (or one of the answers) provided by the respondent to the
 /// question.
-sealed class ValueXQuestionnaireResponseAnswer {}
+sealed class ValueXQuestionnaireResponseAnswer extends DataType {}
 
 /// The answer (or one of the answers) provided by the respondent to the
 /// question.

@@ -145,15 +145,18 @@ class ClinicalImpression extends DomainResource {
               json['encounter'] as Map<String, dynamic>,
             )
           : null,
-      effectiveXClinicalImpressionClinicalImpression:
-          (json['effectiveXClinicalImpressionClinicalImpression'] != null ||
-                  json['_effectiveXClinicalImpressionClinicalImpression'] !=
-                      null)
-              ? FhirDateTime.fromJson({
-                  'value':
-                      json['effectiveXClinicalImpressionClinicalImpression'],
-                  '_value':
-                      json['_effectiveXClinicalImpressionClinicalImpression'],
+      effectiveXClinicalImpressionClinicalImpression: json[
+                      'effectiveDateTime'] !=
+                  null ||
+              json['_effectiveDateTime'] != null
+          ? DateTimeEffectiveClinicalImpressionClinicalImpression.fromJson({
+              'value': json['effectiveDateTime'],
+              '_value': json['_effectiveDateTime'],
+            })
+          : json['effectivePeriod'] != null || json['_effectivePeriod'] != null
+              ? PeriodEffectiveClinicalImpressionClinicalImpression.fromJson({
+                  'value': json['effectivePeriod'],
+                  '_value': json['_effectivePeriod'],
                 })
               : null,
       date: (json['date'] != null || json['_date'] != null)
@@ -325,7 +328,8 @@ class ClinicalImpression extends DomainResource {
 
   /// [effectiveXClinicalImpressionClinicalImpression]
   /// The point in time or period over which the subject was assessed.
-  final FhirDateTime? effectiveXClinicalImpressionClinicalImpression;
+  final EffectiveXClinicalImpressionClinicalImpression?
+      effectiveXClinicalImpressionClinicalImpression;
 
   /// [date]
   /// Indicates when the documentation of the assessment was complete.
@@ -516,7 +520,8 @@ class ClinicalImpression extends DomainResource {
     FhirString? description,
     Reference? subject,
     Reference? encounter,
-    FhirDateTime? effectiveXClinicalImpressionClinicalImpression,
+    EffectiveXClinicalImpressionClinicalImpression?
+        effectiveXClinicalImpressionClinicalImpression,
     FhirDateTime? date,
     Reference? assessor,
     Reference? previous,

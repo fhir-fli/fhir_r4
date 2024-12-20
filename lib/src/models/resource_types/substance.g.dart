@@ -1,7 +1,7 @@
 part of 'substance.dart';
 
 /// Another substance that is a component of this substance.
-sealed class SubstanceXSubstanceIngredient {}
+sealed class SubstanceXSubstanceIngredient extends DataType {}
 
 /// Another substance that is a component of this substance.
 class CodeableConceptSubstanceSubstanceIngredient extends CodeableConcept

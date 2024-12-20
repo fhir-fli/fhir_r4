@@ -987,11 +987,24 @@ class CarePlanDetail extends BackboneElement {
                   '_value': json['_doNotPerform'],
                 })
               : null,
-      scheduledXCarePlanDetail: json['scheduledXCarePlanDetail'] != null
-          ? Timing.fromJson(
-              json['scheduledXCarePlanDetail'] as Map<String, dynamic>,
-            )
-          : null,
+      scheduledXCarePlanDetail: json['scheduledTiming'] != null ||
+              json['_scheduledTiming'] != null
+          ? TimingScheduledCarePlanDetail.fromJson({
+              'value': json['scheduledTiming'],
+              '_value': json['_scheduledTiming'],
+            })
+          : json['scheduledPeriod'] != null || json['_scheduledPeriod'] != null
+              ? PeriodScheduledCarePlanDetail.fromJson({
+                  'value': json['scheduledPeriod'],
+                  '_value': json['_scheduledPeriod'],
+                })
+              : json['scheduledString'] != null ||
+                      json['_scheduledString'] != null
+                  ? StringScheduledCarePlanDetail.fromJson({
+                      'value': json['scheduledString'],
+                      '_value': json['_scheduledString'],
+                    })
+                  : null,
       location: json['location'] != null
           ? Reference.fromJson(
               json['location'] as Map<String, dynamic>,
@@ -1006,11 +1019,19 @@ class CarePlanDetail extends BackboneElement {
               )
               .toList()
           : null,
-      productXCarePlanDetail: json['productXCarePlanDetail'] != null
-          ? CodeableConcept.fromJson(
-              json['productXCarePlanDetail'] as Map<String, dynamic>,
-            )
-          : null,
+      productXCarePlanDetail: json['productCodeableConcept'] != null ||
+              json['_productCodeableConcept'] != null
+          ? CodeableConceptProductCarePlanDetail.fromJson({
+              'value': json['productCodeableConcept'],
+              '_value': json['_productCodeableConcept'],
+            })
+          : json['productReference'] != null ||
+                  json['_productReference'] != null
+              ? ReferenceProductCarePlanDetail.fromJson({
+                  'value': json['productReference'],
+                  '_value': json['_productReference'],
+                })
+              : null,
       dailyAmount: json['dailyAmount'] != null
           ? Quantity.fromJson(
               json['dailyAmount'] as Map<String, dynamic>,
@@ -1133,7 +1154,7 @@ class CarePlanDetail extends BackboneElement {
   /// [scheduledXCarePlanDetail]
   /// The period, timing or frequency upon which the described activity is to
   /// occur.
-  final Timing? scheduledXCarePlanDetail;
+  final ScheduledXCarePlanDetail? scheduledXCarePlanDetail;
 
   /// [location]
   /// Identifies the facility where the activity will occur; e.g. home,
@@ -1147,7 +1168,7 @@ class CarePlanDetail extends BackboneElement {
   /// [productXCarePlanDetail]
   /// Identifies the food, drug or other product to be consumed or supplied
   /// in the activity.
-  final CodeableConcept? productXCarePlanDetail;
+  final ProductXCarePlanDetail? productXCarePlanDetail;
 
   /// [dailyAmount]
   /// Identifies the quantity expected to be consumed in a given day.
@@ -1274,10 +1295,10 @@ class CarePlanDetail extends BackboneElement {
     CarePlanActivityStatus? status,
     CodeableConcept? statusReason,
     FhirBoolean? doNotPerform,
-    Timing? scheduledXCarePlanDetail,
+    ScheduledXCarePlanDetail? scheduledXCarePlanDetail,
     Reference? location,
     List<Reference>? performer,
-    CodeableConcept? productXCarePlanDetail,
+    ProductXCarePlanDetail? productXCarePlanDetail,
     Quantity? dailyAmount,
     Quantity? quantity,
     FhirString? description,

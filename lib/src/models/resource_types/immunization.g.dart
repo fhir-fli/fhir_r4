@@ -1,7 +1,7 @@
 part of 'immunization.dart';
 
 /// Date vaccine administered or was to be administered.
-sealed class OccurrenceXImmunizationImmunization {}
+sealed class OccurrenceXImmunizationImmunization extends DataType {}
 
 /// Date vaccine administered or was to be administered.
 class DateTimeOccurrenceImmunizationImmunization extends FhirDateTime
@@ -54,7 +54,7 @@ class StringOccurrenceImmunizationImmunization extends FhirString
 }
 
 /// Nominal position in a series.
-sealed class DoseNumberXImmunizationProtocolApplied {}
+sealed class DoseNumberXImmunizationProtocolApplied extends DataType {}
 
 /// Nominal position in a series.
 class PositiveIntDoseNumberImmunizationProtocolApplied extends FhirPositiveInt
@@ -94,7 +94,7 @@ class StringDoseNumberImmunizationProtocolApplied extends FhirString
 }
 
 /// The recommended number of doses to achieve immunity.
-sealed class SeriesDosesXImmunizationProtocolApplied {}
+sealed class SeriesDosesXImmunizationProtocolApplied extends DataType {}
 
 /// The recommended number of doses to achieve immunity.
 class PositiveIntSeriesDosesImmunizationProtocolApplied extends FhirPositiveInt

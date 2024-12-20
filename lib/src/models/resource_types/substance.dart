@@ -541,9 +541,16 @@ class SubstanceIngredient extends BackboneElement {
               json['quantity'] as Map<String, dynamic>,
             )
           : null,
-      substanceXSubstanceIngredient: CodeableConcept.fromJson(
-        json['substanceXSubstanceIngredient'] as Map<String, dynamic>,
-      ),
+      substanceXSubstanceIngredient: json['substanceCodeableConcept'] != null ||
+              json['_substanceCodeableConcept'] != null
+          ? CodeableConceptSubstanceSubstanceIngredient.fromJson({
+              'value': json['substanceCodeableConcept'],
+              '_value': json['_substanceCodeableConcept'],
+            })
+          : ReferenceSubstanceSubstanceIngredient.fromJson({
+              'value': json['substanceReference'],
+              '_value': json['_substanceReference'],
+            }),
     );
   }
 
@@ -595,7 +602,7 @@ class SubstanceIngredient extends BackboneElement {
 
   /// [substanceXSubstanceIngredient]
   /// Another substance that is a component of this substance.
-  final CodeableConcept substanceXSubstanceIngredient;
+  final SubstanceXSubstanceIngredient substanceXSubstanceIngredient;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -636,7 +643,7 @@ class SubstanceIngredient extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     Ratio? quantity,
-    CodeableConcept? substanceXSubstanceIngredient,
+    SubstanceXSubstanceIngredient? substanceXSubstanceIngredient,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,

@@ -130,12 +130,24 @@ class DeviceUseStatement extends DomainResource {
               .toList()
           : null,
       timingXDeviceUseStatementDeviceUseStatement:
-          json['timingXDeviceUseStatementDeviceUseStatement'] != null
-              ? Timing.fromJson(
-                  json['timingXDeviceUseStatementDeviceUseStatement']
-                      as Map<String, dynamic>,
-                )
-              : null,
+          json['timingTiming'] != null || json['_timingTiming'] != null
+              ? TimingTimingDeviceUseStatementDeviceUseStatement.fromJson({
+                  'value': json['timingTiming'],
+                  '_value': json['_timingTiming'],
+                })
+              : json['timingPeriod'] != null || json['_timingPeriod'] != null
+                  ? PeriodTimingDeviceUseStatementDeviceUseStatement.fromJson({
+                      'value': json['timingPeriod'],
+                      '_value': json['_timingPeriod'],
+                    })
+                  : json['timingDateTime'] != null ||
+                          json['_timingDateTime'] != null
+                      ? DateTimeTimingDeviceUseStatementDeviceUseStatement
+                          .fromJson({
+                          'value': json['timingDateTime'],
+                          '_value': json['_timingDateTime'],
+                        })
+                      : null,
       recordedOn: (json['recordedOn'] != null || json['_recordedOn'] != null)
           ? FhirDateTime.fromJson({
               'value': json['recordedOn'],
@@ -254,7 +266,8 @@ class DeviceUseStatement extends DomainResource {
 
   /// [timingXDeviceUseStatementDeviceUseStatement]
   /// How often the device was used.
-  final Timing? timingXDeviceUseStatementDeviceUseStatement;
+  final TimingXDeviceUseStatementDeviceUseStatement?
+      timingXDeviceUseStatementDeviceUseStatement;
 
   /// [recordedOn]
   /// The time at which the statement was made/recorded.
@@ -389,7 +402,8 @@ class DeviceUseStatement extends DomainResource {
     DeviceUseStatementStatus? status,
     Reference? subject,
     List<Reference>? derivedFrom,
-    Timing? timingXDeviceUseStatementDeviceUseStatement,
+    TimingXDeviceUseStatementDeviceUseStatement?
+        timingXDeviceUseStatementDeviceUseStatement,
     FhirDateTime? recordedOn,
     Reference? source,
     Reference? device,

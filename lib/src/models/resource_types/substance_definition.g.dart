@@ -1,7 +1,7 @@
 part of 'substance_definition.dart';
 
 /// Quantitative value for this moiety.
-sealed class AmountXSubstanceDefinitionMoiety {}
+sealed class AmountXSubstanceDefinitionMoiety extends DataType {}
 
 /// Quantitative value for this moiety.
 class QuantityAmountSubstanceDefinitionMoiety extends Quantity
@@ -32,7 +32,7 @@ class StringAmountSubstanceDefinitionMoiety extends FhirString
 }
 
 /// A value for the property.
-sealed class ValueXSubstanceDefinitionProperty {}
+sealed class ValueXSubstanceDefinitionProperty extends DataType {}
 
 /// A value for the property.
 class CodeableConceptValueSubstanceDefinitionProperty extends CodeableConcept
@@ -117,7 +117,8 @@ class AttachmentValueSubstanceDefinitionProperty extends Attachment
 
 /// A pointer to another substance, as a resource or just a
 /// representational code.
-sealed class SubstanceDefinitionXSubstanceDefinitionRelationship {}
+sealed class SubstanceDefinitionXSubstanceDefinitionRelationship
+    extends DataType {}
 
 /// A pointer to another substance, as a resource or just a
 /// representational code.
@@ -148,7 +149,7 @@ class CodeableConceptSubstanceDefinitionSubstanceDefinitionRelationship
 /// A numeric factor for the relationship, for instance to express that the
 /// salt of a substance has some percentage of the active substance in
 /// relation to some other.
-sealed class AmountXSubstanceDefinitionRelationship {}
+sealed class AmountXSubstanceDefinitionRelationship extends DataType {}
 
 /// A numeric factor for the relationship, for instance to express that the
 /// salt of a substance has some percentage of the active substance in

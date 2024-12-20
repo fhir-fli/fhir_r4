@@ -7,7 +7,7 @@ part of 'plan_definition.dart';
 /// MedicinalProductDefinition, SubstanceDefinition,
 /// AdministrableProductDefinition, ManufacturedItemDefinition, or
 /// PackagedProductDefinition resource.
-sealed class SubjectXPlanDefinitionPlanDefinition {}
+sealed class SubjectXPlanDefinitionPlanDefinition extends DataType {}
 
 /// A code, group definition, or canonical reference that describes or
 /// identifies the intended subject of the plan definition. Canonical
@@ -66,7 +66,7 @@ class SubjectTypeSubjectPlanDefinitionPlanDefinition extends SubjectType
 /// indicates that the goal is achieved at any value at or below the high
 /// value. Similarly, if the high value is missing, it indicates that the
 /// goal is achieved at any value at or above the low value.
-sealed class DetailXPlanDefinitionTarget {}
+sealed class DetailXPlanDefinitionTarget extends DataType {}
 
 /// The target value of the measure to be achieved to signify fulfillment
 /// of the goal, e.g. 150 pounds or 7.0%, or in the case of pharmaceutical
@@ -124,7 +124,7 @@ class CodeableConceptDetailPlanDefinitionTarget extends CodeableConcept
 /// MedicinalProductDefinition, SubstanceDefinition,
 /// AdministrableProductDefinition, ManufacturedItemDefinition, or
 /// PackagedProductDefinition resource.
-sealed class SubjectXPlanDefinitionAction {}
+sealed class SubjectXPlanDefinitionAction extends DataType {}
 
 /// A code, group definition, or canonical reference that describes the
 /// intended subject of the action and its children, if any. Canonical
@@ -176,7 +176,7 @@ class SubjectTypeSubjectPlanDefinitionAction extends SubjectType
 }
 
 /// An optional value describing when the action should be performed.
-sealed class TimingXPlanDefinitionAction {}
+sealed class TimingXPlanDefinitionAction extends DataType {}
 
 /// An optional value describing when the action should be performed.
 class DateTimeTimingPlanDefinitionAction extends FhirDateTime
@@ -263,7 +263,7 @@ class TimingTimingPlanDefinitionAction extends Timing
 /// A reference to an ActivityDefinition that describes the action to be
 /// taken in detail, or a PlanDefinition that describes a series of actions
 /// to be taken.
-sealed class DefinitionXPlanDefinitionAction {}
+sealed class DefinitionXPlanDefinitionAction extends DataType {}
 
 /// A reference to an ActivityDefinition that describes the action to be
 /// taken in detail, or a PlanDefinition that describes a series of actions
@@ -307,7 +307,7 @@ class UriDefinitionPlanDefinitionAction extends FhirUri
 
 /// A duration or range of durations to apply to the relationship. For
 /// example, 30-60 minutes before.
-sealed class OffsetXPlanDefinitionRelatedAction {}
+sealed class OffsetXPlanDefinitionRelatedAction extends DataType {}
 
 /// A duration or range of durations to apply to the relationship. For
 /// example, 30-60 minutes before.

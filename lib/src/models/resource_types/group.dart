@@ -410,9 +410,31 @@ class GroupCharacteristic extends BackboneElement {
       code: CodeableConcept.fromJson(
         json['code'] as Map<String, dynamic>,
       ),
-      valueXGroupCharacteristic: CodeableConcept.fromJson(
-        json['valueXGroupCharacteristic'] as Map<String, dynamic>,
-      ),
+      valueXGroupCharacteristic: json['valueCodeableConcept'] != null ||
+              json['_valueCodeableConcept'] != null
+          ? CodeableConceptValueGroupCharacteristic.fromJson({
+              'value': json['valueCodeableConcept'],
+              '_value': json['_valueCodeableConcept'],
+            })
+          : json['valueBoolean'] != null || json['_valueBoolean'] != null
+              ? BooleanValueGroupCharacteristic.fromJson({
+                  'value': json['valueBoolean'],
+                  '_value': json['_valueBoolean'],
+                })
+              : json['valueQuantity'] != null || json['_valueQuantity'] != null
+                  ? QuantityValueGroupCharacteristic.fromJson({
+                      'value': json['valueQuantity'],
+                      '_value': json['_valueQuantity'],
+                    })
+                  : json['valueRange'] != null || json['_valueRange'] != null
+                      ? RangeValueGroupCharacteristic.fromJson({
+                          'value': json['valueRange'],
+                          '_value': json['_valueRange'],
+                        })
+                      : ReferenceValueGroupCharacteristic.fromJson({
+                          'value': json['valueReference'],
+                          '_value': json['_valueReference'],
+                        }),
       exclude: FhirBoolean.fromJson({
         'value': json['exclude'],
         '_value': json['_exclude'],
@@ -474,7 +496,7 @@ class GroupCharacteristic extends BackboneElement {
   /// [valueXGroupCharacteristic]
   /// The value of the trait that holds (or does not hold - see 'exclude')
   /// for members of the group.
-  final CodeableConcept valueXGroupCharacteristic;
+  final ValueXGroupCharacteristic valueXGroupCharacteristic;
 
   /// [exclude]
   /// If true, indicates the characteristic is one that is NOT held by
@@ -527,7 +549,7 @@ class GroupCharacteristic extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     CodeableConcept? code,
-    CodeableConcept? valueXGroupCharacteristic,
+    ValueXGroupCharacteristic? valueXGroupCharacteristic,
     FhirBoolean? exclude,
     Period? period,
     Map<String, Object?>? userData,

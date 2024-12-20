@@ -132,21 +132,39 @@ class MedicationDispense extends DomainResource {
         '_value': json['_status'],
       }),
       statusReasonXMedicationDispenseMedicationDispense:
-          json['statusReasonXMedicationDispenseMedicationDispense'] != null
-              ? CodeableConcept.fromJson(
-                  json['statusReasonXMedicationDispenseMedicationDispense']
-                      as Map<String, dynamic>,
-                )
-              : null,
+          json['statusReasonCodeableConcept'] != null ||
+                  json['_statusReasonCodeableConcept'] != null
+              ? CodeableConceptStatusReasonMedicationDispenseMedicationDispense
+                  .fromJson({
+                  'value': json['statusReasonCodeableConcept'],
+                  '_value': json['_statusReasonCodeableConcept'],
+                })
+              : json['statusReasonReference'] != null ||
+                      json['_statusReasonReference'] != null
+                  ? ReferenceStatusReasonMedicationDispenseMedicationDispense
+                      .fromJson({
+                      'value': json['statusReasonReference'],
+                      '_value': json['_statusReasonReference'],
+                    })
+                  : null,
       category: json['category'] != null
           ? CodeableConcept.fromJson(
               json['category'] as Map<String, dynamic>,
             )
           : null,
-      medicationXMedicationDispenseMedicationDispense: CodeableConcept.fromJson(
-        json['medicationXMedicationDispenseMedicationDispense']
-            as Map<String, dynamic>,
-      ),
+      medicationXMedicationDispenseMedicationDispense: json[
+                      'medicationCodeableConcept'] !=
+                  null ||
+              json['_medicationCodeableConcept'] != null
+          ? CodeableConceptMedicationMedicationDispenseMedicationDispense
+              .fromJson({
+              'value': json['medicationCodeableConcept'],
+              '_value': json['_medicationCodeableConcept'],
+            })
+          : ReferenceMedicationMedicationDispenseMedicationDispense.fromJson({
+              'value': json['medicationReference'],
+              '_value': json['_medicationReference'],
+            }),
       subject: json['subject'] != null
           ? Reference.fromJson(
               json['subject'] as Map<String, dynamic>,
@@ -337,7 +355,8 @@ class MedicationDispense extends DomainResource {
 
   /// [statusReasonXMedicationDispenseMedicationDispense]
   /// Indicates the reason why a dispense was not performed.
-  final CodeableConcept? statusReasonXMedicationDispenseMedicationDispense;
+  final StatusReasonXMedicationDispenseMedicationDispense?
+      statusReasonXMedicationDispenseMedicationDispense;
 
   /// [category]
   /// Indicates the type of medication dispense (for example, where the
@@ -350,7 +369,8 @@ class MedicationDispense extends DomainResource {
   /// a resource representing the details of the medication or a simple
   /// attribute carrying a code that identifies the medication from a known
   /// list of medications.
-  final CodeableConcept medicationXMedicationDispenseMedicationDispense;
+  final MedicationXMedicationDispenseMedicationDispense
+      medicationXMedicationDispenseMedicationDispense;
 
   /// [subject]
   /// A link to a resource representing the person or the group to whom the
@@ -586,9 +606,11 @@ class MedicationDispense extends DomainResource {
     List<Identifier>? identifier,
     List<Reference>? partOf,
     MedicationDispenseStatusCodes? status,
-    CodeableConcept? statusReasonXMedicationDispenseMedicationDispense,
+    StatusReasonXMedicationDispenseMedicationDispense?
+        statusReasonXMedicationDispenseMedicationDispense,
     CodeableConcept? category,
-    CodeableConcept? medicationXMedicationDispenseMedicationDispense,
+    MedicationXMedicationDispenseMedicationDispense?
+        medicationXMedicationDispenseMedicationDispense,
     Reference? subject,
     Reference? context,
     List<Reference>? supportingInformation,

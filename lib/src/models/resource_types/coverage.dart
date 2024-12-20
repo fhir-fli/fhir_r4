@@ -707,9 +707,16 @@ class CoverageCostToBeneficiary extends BackboneElement {
               json['type'] as Map<String, dynamic>,
             )
           : null,
-      valueXCoverageCostToBeneficiary: Quantity.fromJson(
-        json['valueXCoverageCostToBeneficiary'] as Map<String, dynamic>,
-      ),
+      valueXCoverageCostToBeneficiary:
+          json['valueQuantity'] != null || json['_valueQuantity'] != null
+              ? QuantityValueCoverageCostToBeneficiary.fromJson({
+                  'value': json['valueQuantity'],
+                  '_value': json['_valueQuantity'],
+                })
+              : MoneyValueCoverageCostToBeneficiary.fromJson({
+                  'value': json['valueMoney'],
+                  '_value': json['_valueMoney'],
+                }),
       exception: json['exception'] != null
           ? (json['exception'] as List<dynamic>)
               .map<CoverageException>(
@@ -770,7 +777,7 @@ class CoverageCostToBeneficiary extends BackboneElement {
 
   /// [valueXCoverageCostToBeneficiary]
   /// The amount due from the patient for the cost category.
-  final Quantity valueXCoverageCostToBeneficiary;
+  final ValueXCoverageCostToBeneficiary valueXCoverageCostToBeneficiary;
 
   /// [exception]
   /// A suite of codes indicating exceptions or reductions to patient costs
@@ -820,7 +827,7 @@ class CoverageCostToBeneficiary extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     CodeableConcept? type,
-    Quantity? valueXCoverageCostToBeneficiary,
+    ValueXCoverageCostToBeneficiary? valueXCoverageCostToBeneficiary,
     List<CoverageException>? exception,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,

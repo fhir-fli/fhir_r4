@@ -2,7 +2,7 @@ part of 'element_definition.dart';
 
 /// The value that should be used if there is no value stated in the
 /// instance (e.g. 'if not otherwise specified, the abstract is false').
-sealed class DefaultValueXElementDefinitionElementDefinition {}
+sealed class DefaultValueXElementDefinitionElementDefinition extends DataType {}
 
 /// The value that should be used if there is no value stated in the
 /// instance (e.g. 'if not otherwise specified, the abstract is false').
@@ -835,7 +835,7 @@ class DosageDefaultValueElementDefinitionElementDefinition extends Dosage
 /// the instance. For purposes of comparison, non-significant whitespace is
 /// ignored, and all values must be an exact match (case and accent
 /// sensitive). Missing elements/attributes must also be missing.
-sealed class FixedXElementDefinitionElementDefinition {}
+sealed class FixedXElementDefinitionElementDefinition extends DataType {}
 
 /// Specifies a value that SHALL be exactly the value for this element in
 /// the instance. For purposes of comparison, non-significant whitespace is
@@ -1753,7 +1753,7 @@ class DosageFixedElementDefinitionElementDefinition extends Dosage
 /// 1. If primitive: it must match exactly the pattern value
 /// 2. If a complex object: it must match (recursively) the pattern value
 /// 3. If an array: it must match (recursively) the pattern value.
-sealed class PatternXElementDefinitionElementDefinition {}
+sealed class PatternXElementDefinitionElementDefinition extends DataType {}
 
 /// Specifies a value that the value in the instance SHALL follow - that
 /// is, any value in the pattern must be found in the instance. Other
@@ -3424,7 +3424,7 @@ class DosagePatternElementDefinitionElementDefinition extends Dosage
 /// The minimum allowed value for the element. The value is inclusive. This
 /// is allowed for the types date, dateTime, instant, time, decimal,
 /// integer, and Quantity.
-sealed class MinValueXElementDefinitionElementDefinition {}
+sealed class MinValueXElementDefinitionElementDefinition extends DataType {}
 
 /// The minimum allowed value for the element. The value is inclusive. This
 /// is allowed for the types date, dateTime, instant, time, decimal,
@@ -3652,7 +3652,7 @@ class QuantityMinValueElementDefinitionElementDefinition extends Quantity
 /// The maximum allowed value for the element. The value is inclusive. This
 /// is allowed for the types date, dateTime, instant, time, decimal,
 /// integer, and Quantity.
-sealed class MaxValueXElementDefinitionElementDefinition {}
+sealed class MaxValueXElementDefinitionElementDefinition extends DataType {}
 
 /// The maximum allowed value for the element. The value is inclusive. This
 /// is allowed for the types date, dateTime, instant, time, decimal,
@@ -3879,7 +3879,7 @@ class QuantityMaxValueElementDefinitionElementDefinition extends Quantity
 
 /// The actual value for the element, which must be one of the types
 /// allowed for this element.
-sealed class ValueXElementDefinitionExample {}
+sealed class ValueXElementDefinitionExample extends DataType {}
 
 /// The actual value for the element, which must be one of the types
 /// allowed for this element.

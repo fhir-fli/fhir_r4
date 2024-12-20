@@ -4,7 +4,7 @@ part of 'invoice.dart';
 /// amount etc. If no further details are required for the lineItem, inline
 /// billing codes can be added using the CodeableConcept data type instead
 /// of the Reference.
-sealed class ChargeItemXInvoiceLineItem {}
+sealed class ChargeItemXInvoiceLineItem extends DataType {}
 
 /// The ChargeItem contains information such as the billing code, date,
 /// amount etc. If no further details are required for the lineItem, inline

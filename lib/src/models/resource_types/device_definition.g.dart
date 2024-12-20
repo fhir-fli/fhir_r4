@@ -1,7 +1,7 @@
 part of 'device_definition.dart';
 
 /// A name of the manufacturer.
-sealed class ManufacturerXDeviceDefinitionDeviceDefinition {}
+sealed class ManufacturerXDeviceDefinitionDeviceDefinition extends DataType {}
 
 /// A name of the manufacturer.
 class StringManufacturerDeviceDefinitionDeviceDefinition extends FhirString

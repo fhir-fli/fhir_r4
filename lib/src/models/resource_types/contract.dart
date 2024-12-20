@@ -249,11 +249,18 @@ class Contract extends DomainResource {
               json['scope'] as Map<String, dynamic>,
             )
           : null,
-      topicXContractContract: json['topicXContractContract'] != null
-          ? CodeableConcept.fromJson(
-              json['topicXContractContract'] as Map<String, dynamic>,
-            )
-          : null,
+      topicXContractContract: json['topicCodeableConcept'] != null ||
+              json['_topicCodeableConcept'] != null
+          ? CodeableConceptTopicContractContract.fromJson({
+              'value': json['topicCodeableConcept'],
+              '_value': json['_topicCodeableConcept'],
+            })
+          : json['topicReference'] != null || json['_topicReference'] != null
+              ? ReferenceTopicContractContract.fromJson({
+                  'value': json['topicReference'],
+                  '_value': json['_topicReference'],
+                })
+              : null,
       type: json['type'] != null
           ? CodeableConcept.fromJson(
               json['type'] as Map<String, dynamic>,
@@ -337,12 +344,19 @@ class Contract extends DomainResource {
               .toList()
           : null,
       legallyBindingXContractContract:
-          json['legallyBindingXContractContract'] != null
-              ? Attachment.fromJson(
-                  json['legallyBindingXContractContract']
-                      as Map<String, dynamic>,
-                )
-              : null,
+          json['legallyBindingAttachment'] != null ||
+                  json['_legallyBindingAttachment'] != null
+              ? AttachmentLegallyBindingContractContract.fromJson({
+                  'value': json['legallyBindingAttachment'],
+                  '_value': json['_legallyBindingAttachment'],
+                })
+              : json['legallyBindingReference'] != null ||
+                      json['_legallyBindingReference'] != null
+                  ? ReferenceLegallyBindingContractContract.fromJson({
+                      'value': json['legallyBindingReference'],
+                      '_value': json['_legallyBindingReference'],
+                    })
+                  : null,
     );
   }
 
@@ -505,7 +519,7 @@ class Contract extends DomainResource {
   /// [topicXContractContract]
   /// Narrows the range of legal concerns to focus on the achievement of
   /// specific contractual objectives.
-  final CodeableConcept? topicXContractContract;
+  final TopicXContractContract? topicXContractContract;
 
   /// [type]
   /// A high-level category for the legal instrument, whether constructed as
@@ -577,7 +591,7 @@ class Contract extends DomainResource {
   /// representation of the Contract, which is considered the "source of
   /// truth" and which would be the basis for legal action related to
   /// enforcement of this Contract.
-  final Attachment? legallyBindingXContractContract;
+  final LegallyBindingXContractContract? legallyBindingXContractContract;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -765,7 +779,7 @@ class Contract extends DomainResource {
     List<FhirString>? alias,
     Reference? author,
     CodeableConcept? scope,
-    CodeableConcept? topicXContractContract,
+    TopicXContractContract? topicXContractContract,
     CodeableConcept? type,
     List<CodeableConcept>? subType,
     ContractContentDefinition? contentDefinition,
@@ -776,7 +790,7 @@ class Contract extends DomainResource {
     List<ContractFriendly>? friendly,
     List<ContractLegal>? legal,
     List<ContractRule>? rule,
-    Attachment? legallyBindingXContractContract,
+    LegallyBindingXContractContract? legallyBindingXContractContract,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1124,11 +1138,18 @@ class ContractTerm extends BackboneElement {
               json['applies'] as Map<String, dynamic>,
             )
           : null,
-      topicXContractTerm: json['topicXContractTerm'] != null
-          ? CodeableConcept.fromJson(
-              json['topicXContractTerm'] as Map<String, dynamic>,
-            )
-          : null,
+      topicXContractTerm: json['topicCodeableConcept'] != null ||
+              json['_topicCodeableConcept'] != null
+          ? CodeableConceptTopicContractTerm.fromJson({
+              'value': json['topicCodeableConcept'],
+              '_value': json['_topicCodeableConcept'],
+            })
+          : json['topicReference'] != null || json['_topicReference'] != null
+              ? ReferenceTopicContractTerm.fromJson({
+                  'value': json['topicReference'],
+                  '_value': json['_topicReference'],
+                })
+              : null,
       type: json['type'] != null
           ? CodeableConcept.fromJson(
               json['type'] as Map<String, dynamic>,
@@ -1244,7 +1265,7 @@ class ContractTerm extends BackboneElement {
 
   /// [topicXContractTerm]
   /// The entity that the term applies to.
-  final CodeableConcept? topicXContractTerm;
+  final TopicXContractTerm? topicXContractTerm;
 
   /// [type]
   /// A legal clause or condition contained within a contract that requires
@@ -1358,7 +1379,7 @@ class ContractTerm extends BackboneElement {
     Identifier? identifier,
     FhirDateTime? issued,
     Period? applies,
-    CodeableConcept? topicXContractTerm,
+    TopicXContractTerm? topicXContractTerm,
     CodeableConcept? type,
     CodeableConcept? subType,
     FhirString? text,
@@ -2113,10 +2134,84 @@ class ContractAnswer extends BackboneElement {
               )
               .toList()
           : null,
-      valueXContractAnswer: FhirBoolean.fromJson({
-        'value': json['valueXContractAnswer'],
-        '_value': json['_valueXContractAnswer'],
-      }),
+      valueXContractAnswer: json['valueBoolean'] != null ||
+              json['_valueBoolean'] != null
+          ? BooleanValueContractAnswer.fromJson({
+              'value': json['valueBoolean'],
+              '_value': json['_valueBoolean'],
+            })
+          : json['valueDecimal'] != null || json['_valueDecimal'] != null
+              ? DecimalValueContractAnswer.fromJson({
+                  'value': json['valueDecimal'],
+                  '_value': json['_valueDecimal'],
+                })
+              : json['valueInteger'] != null || json['_valueInteger'] != null
+                  ? IntegerValueContractAnswer.fromJson({
+                      'value': json['valueInteger'],
+                      '_value': json['_valueInteger'],
+                    })
+                  : json['valueDate'] != null || json['_valueDate'] != null
+                      ? DateValueContractAnswer.fromJson({
+                          'value': json['valueDate'],
+                          '_value': json['_valueDate'],
+                        })
+                      : json['valueDateTime'] != null ||
+                              json['_valueDateTime'] != null
+                          ? DateTimeValueContractAnswer.fromJson({
+                              'value': json['valueDateTime'],
+                              '_value': json['_valueDateTime'],
+                            })
+                          : json['valueTime'] != null ||
+                                  json['_valueTime'] != null
+                              ? TimeValueContractAnswer.fromJson({
+                                  'value': json['valueTime'],
+                                  '_value': json['_valueTime'],
+                                })
+                              : json['valueString'] != null ||
+                                      json['_valueString'] != null
+                                  ? StringValueContractAnswer.fromJson({
+                                      'value': json['valueString'],
+                                      '_value': json['_valueString'],
+                                    })
+                                  : json['valueUri'] != null ||
+                                          json['_valueUri'] != null
+                                      ? UriValueContractAnswer.fromJson({
+                                          'value': json['valueUri'],
+                                          '_value': json['_valueUri'],
+                                        })
+                                      : json['valueAttachment'] != null ||
+                                              json['_valueAttachment'] != null
+                                          ? AttachmentValueContractAnswer
+                                              .fromJson({
+                                              'value': json['valueAttachment'],
+                                              '_value':
+                                                  json['_valueAttachment'],
+                                            })
+                                          : json['valueCoding'] != null ||
+                                                  json['_valueCoding'] != null
+                                              ? CodingValueContractAnswer
+                                                  .fromJson({
+                                                  'value': json['valueCoding'],
+                                                  '_value':
+                                                      json['_valueCoding'],
+                                                })
+                                              : json['valueQuantity'] != null ||
+                                                      json['_valueQuantity'] !=
+                                                          null
+                                                  ? QuantityValueContractAnswer
+                                                      .fromJson({
+                                                      'value':
+                                                          json['valueQuantity'],
+                                                      '_value': json[
+                                                          '_valueQuantity'],
+                                                    })
+                                                  : ReferenceValueContractAnswer
+                                                      .fromJson({
+                                                      'value': json[
+                                                          'valueReference'],
+                                                      '_value': json[
+                                                          '_valueReference'],
+                                                    }),
     );
   }
 
@@ -2167,7 +2262,7 @@ class ContractAnswer extends BackboneElement {
   /// of values to be agreed to, e.g., the period of participation, the date
   /// of occupancy of a rental, warrently duration, or whether biospecimen
   /// may be used for further research.
-  final FhirBoolean valueXContractAnswer;
+  final ValueXContractAnswer valueXContractAnswer;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2201,7 +2296,7 @@ class ContractAnswer extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    FhirBoolean? valueXContractAnswer,
+    ValueXContractAnswer? valueXContractAnswer,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2865,11 +2960,18 @@ class ContractValuedItem extends BackboneElement {
               )
               .toList()
           : null,
-      entityXContractValuedItem: json['entityXContractValuedItem'] != null
-          ? CodeableConcept.fromJson(
-              json['entityXContractValuedItem'] as Map<String, dynamic>,
-            )
-          : null,
+      entityXContractValuedItem: json['entityCodeableConcept'] != null ||
+              json['_entityCodeableConcept'] != null
+          ? CodeableConceptEntityContractValuedItem.fromJson({
+              'value': json['entityCodeableConcept'],
+              '_value': json['_entityCodeableConcept'],
+            })
+          : json['entityReference'] != null || json['_entityReference'] != null
+              ? ReferenceEntityContractValuedItem.fromJson({
+                  'value': json['entityReference'],
+                  '_value': json['_entityReference'],
+                })
+              : null,
       identifier: json['identifier'] != null
           ? Identifier.fromJson(
               json['identifier'] as Map<String, dynamic>,
@@ -2988,7 +3090,7 @@ class ContractValuedItem extends BackboneElement {
 
   /// [entityXContractValuedItem]
   /// Specific type of Contract Valued Item that may be priced.
-  final CodeableConcept? entityXContractValuedItem;
+  final EntityXContractValuedItem? entityXContractValuedItem;
 
   /// [identifier]
   /// Identifies a Contract Valued Item instance.
@@ -3138,7 +3240,7 @@ class ContractValuedItem extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    CodeableConcept? entityXContractValuedItem,
+    EntityXContractValuedItem? entityXContractValuedItem,
     Identifier? identifier,
     FhirDateTime? effectiveTime,
     Quantity? quantity,
@@ -3281,13 +3383,25 @@ class ContractAction extends BackboneElement {
         json['_contextLinkId'] as List<dynamic>?,
         fromJson: FhirString.fromJson,
       ),
-      occurrenceXContractAction: (json['occurrenceXContractAction'] != null ||
-              json['_occurrenceXContractAction'] != null)
-          ? FhirDateTime.fromJson({
-              'value': json['occurrenceXContractAction'],
-              '_value': json['_occurrenceXContractAction'],
+      occurrenceXContractAction: json['occurrenceDateTime'] != null ||
+              json['_occurrenceDateTime'] != null
+          ? DateTimeOccurrenceContractAction.fromJson({
+              'value': json['occurrenceDateTime'],
+              '_value': json['_occurrenceDateTime'],
             })
-          : null,
+          : json['occurrencePeriod'] != null ||
+                  json['_occurrencePeriod'] != null
+              ? PeriodOccurrenceContractAction.fromJson({
+                  'value': json['occurrencePeriod'],
+                  '_value': json['_occurrencePeriod'],
+                })
+              : json['occurrenceTiming'] != null ||
+                      json['_occurrenceTiming'] != null
+                  ? TimingOccurrenceContractAction.fromJson({
+                      'value': json['occurrenceTiming'],
+                      '_value': json['_occurrenceTiming'],
+                    })
+                  : null,
       requester: json['requester'] != null
           ? (json['requester'] as List<dynamic>)
               .map<Reference>(
@@ -3452,7 +3566,7 @@ class ContractAction extends BackboneElement {
 
   /// [occurrenceXContractAction]
   /// When action happens.
-  final FhirDateTime? occurrenceXContractAction;
+  final OccurrenceXContractAction? occurrenceXContractAction;
 
   /// [requester]
   /// Who or what initiated the action and has responsibility for its
@@ -3657,7 +3771,7 @@ class ContractAction extends BackboneElement {
     CodeableConcept? status,
     Reference? context,
     List<FhirString>? contextLinkId,
-    FhirDateTime? occurrenceXContractAction,
+    OccurrenceXContractAction? occurrenceXContractAction,
     List<Reference>? requester,
     List<FhirString>? requesterLinkId,
     List<CodeableConcept>? performerType,
@@ -4090,9 +4204,16 @@ class ContractFriendly extends BackboneElement {
               )
               .toList()
           : null,
-      contentXContractFriendly: Attachment.fromJson(
-        json['contentXContractFriendly'] as Map<String, dynamic>,
-      ),
+      contentXContractFriendly: json['contentAttachment'] != null ||
+              json['_contentAttachment'] != null
+          ? AttachmentContentContractFriendly.fromJson({
+              'value': json['contentAttachment'],
+              '_value': json['_contentAttachment'],
+            })
+          : ReferenceContentContractFriendly.fromJson({
+              'value': json['contentReference'],
+              '_value': json['_contentReference'],
+            }),
     );
   }
 
@@ -4142,7 +4263,7 @@ class ContractFriendly extends BackboneElement {
   /// Human readable rendering of this Contract in a format and
   /// representation intended to enhance comprehension and ensure
   /// understandability.
-  final Attachment contentXContractFriendly;
+  final ContentXContractFriendly contentXContractFriendly;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4177,7 +4298,7 @@ class ContractFriendly extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    Attachment? contentXContractFriendly,
+    ContentXContractFriendly? contentXContractFriendly,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -4233,9 +4354,16 @@ class ContractLegal extends BackboneElement {
               )
               .toList()
           : null,
-      contentXContractLegal: Attachment.fromJson(
-        json['contentXContractLegal'] as Map<String, dynamic>,
-      ),
+      contentXContractLegal: json['contentAttachment'] != null ||
+              json['_contentAttachment'] != null
+          ? AttachmentContentContractLegal.fromJson({
+              'value': json['contentAttachment'],
+              '_value': json['_contentAttachment'],
+            })
+          : ReferenceContentContractLegal.fromJson({
+              'value': json['contentReference'],
+              '_value': json['_contentReference'],
+            }),
     );
   }
 
@@ -4283,7 +4411,7 @@ class ContractLegal extends BackboneElement {
 
   /// [contentXContractLegal]
   /// Contract legal text in human renderable form.
-  final Attachment contentXContractLegal;
+  final ContentXContractLegal contentXContractLegal;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4318,7 +4446,7 @@ class ContractLegal extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    Attachment? contentXContractLegal,
+    ContentXContractLegal? contentXContractLegal,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -4375,9 +4503,16 @@ class ContractRule extends BackboneElement {
               )
               .toList()
           : null,
-      contentXContractRule: Attachment.fromJson(
-        json['contentXContractRule'] as Map<String, dynamic>,
-      ),
+      contentXContractRule: json['contentAttachment'] != null ||
+              json['_contentAttachment'] != null
+          ? AttachmentContentContractRule.fromJson({
+              'value': json['contentAttachment'],
+              '_value': json['_contentAttachment'],
+            })
+          : ReferenceContentContractRule.fromJson({
+              'value': json['contentReference'],
+              '_value': json['_contentReference'],
+            }),
     );
   }
 
@@ -4426,7 +4561,7 @@ class ContractRule extends BackboneElement {
   /// [contentXContractRule]
   /// Computable Contract conveyed using a policy rule language (e.g. XACML,
   /// DKAL, SecPal).
-  final Attachment contentXContractRule;
+  final ContentXContractRule contentXContractRule;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4461,7 +4596,7 @@ class ContractRule extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    Attachment? contentXContractRule,
+    ContentXContractRule? contentXContractRule,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,

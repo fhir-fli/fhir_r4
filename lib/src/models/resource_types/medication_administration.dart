@@ -145,11 +145,20 @@ class MedicationAdministration extends DomainResource {
               json['category'] as Map<String, dynamic>,
             )
           : null,
-      medicationXMedicationAdministrationMedicationAdministration:
-          CodeableConcept.fromJson(
-        json['medicationXMedicationAdministrationMedicationAdministration']
-            as Map<String, dynamic>,
-      ),
+      medicationXMedicationAdministrationMedicationAdministration: json[
+                      'medicationCodeableConcept'] !=
+                  null ||
+              json['_medicationCodeableConcept'] != null
+          ? CodeableConceptMedicationMedicationAdministrationMedicationAdministration
+              .fromJson({
+              'value': json['medicationCodeableConcept'],
+              '_value': json['_medicationCodeableConcept'],
+            })
+          : ReferenceMedicationMedicationAdministrationMedicationAdministration
+              .fromJson({
+              'value': json['medicationReference'],
+              '_value': json['_medicationReference'],
+            }),
       subject: Reference.fromJson(
         json['subject'] as Map<String, dynamic>,
       ),
@@ -167,13 +176,20 @@ class MedicationAdministration extends DomainResource {
               )
               .toList()
           : null,
-      effectiveXMedicationAdministrationMedicationAdministration:
-          FhirDateTime.fromJson({
-        'value':
-            json['effectiveXMedicationAdministrationMedicationAdministration'],
-        '_value':
-            json['_effectiveXMedicationAdministrationMedicationAdministration'],
-      }),
+      effectiveXMedicationAdministrationMedicationAdministration: json[
+                      'effectiveDateTime'] !=
+                  null ||
+              json['_effectiveDateTime'] != null
+          ? DateTimeEffectiveMedicationAdministrationMedicationAdministration
+              .fromJson({
+              'value': json['effectiveDateTime'],
+              '_value': json['_effectiveDateTime'],
+            })
+          : PeriodEffectiveMedicationAdministrationMedicationAdministration
+              .fromJson({
+              'value': json['effectivePeriod'],
+              '_value': json['_effectivePeriod'],
+            }),
       performer: json['performer'] != null
           ? (json['performer'] as List<dynamic>)
               .map<MedicationAdministrationPerformer>(
@@ -322,7 +338,7 @@ class MedicationAdministration extends DomainResource {
   /// to a resource representing the details of the medication or a simple
   /// attribute carrying a code that identifies the medication from a known
   /// list of medications.
-  final CodeableConcept
+  final MedicationXMedicationAdministrationMedicationAdministration
       medicationXMedicationAdministrationMedicationAdministration;
 
   /// [subject]
@@ -344,7 +360,8 @@ class MedicationAdministration extends DomainResource {
   /// administration took place (or did not take place, when the 'notGiven'
   /// attribute is true). For many administrations, such as swallowing a
   /// tablet the use of dateTime is more appropriate.
-  final FhirDateTime effectiveXMedicationAdministrationMedicationAdministration;
+  final EffectiveXMedicationAdministrationMedicationAdministration
+      effectiveXMedicationAdministrationMedicationAdministration;
 
   /// [performer]
   /// Indicates who or what performed the medication administration and how
@@ -516,12 +533,13 @@ class MedicationAdministration extends DomainResource {
     MedicationAdministrationStatusCodes? status,
     List<CodeableConcept>? statusReason,
     CodeableConcept? category,
-    CodeableConcept?
+    MedicationXMedicationAdministrationMedicationAdministration?
         medicationXMedicationAdministrationMedicationAdministration,
     Reference? subject,
     Reference? context,
     List<Reference>? supportingInformation,
-    FhirDateTime? effectiveXMedicationAdministrationMedicationAdministration,
+    EffectiveXMedicationAdministrationMedicationAdministration?
+        effectiveXMedicationAdministrationMedicationAdministration,
     List<MedicationAdministrationPerformer>? performer,
     List<CodeableConcept>? reasonCode,
     List<Reference>? reasonReference,
@@ -803,12 +821,17 @@ class MedicationAdministrationDosage extends BackboneElement {
             )
           : null,
       rateXMedicationAdministrationDosage:
-          json['rateXMedicationAdministrationDosage'] != null
-              ? Ratio.fromJson(
-                  json['rateXMedicationAdministrationDosage']
-                      as Map<String, dynamic>,
-                )
-              : null,
+          json['rateRatio'] != null || json['_rateRatio'] != null
+              ? RatioRateMedicationAdministrationDosage.fromJson({
+                  'value': json['rateRatio'],
+                  '_value': json['_rateRatio'],
+                })
+              : json['rateQuantity'] != null || json['_rateQuantity'] != null
+                  ? QuantityRateMedicationAdministrationDosage.fromJson({
+                      'value': json['rateQuantity'],
+                      '_value': json['_rateQuantity'],
+                    })
+                  : null,
     );
   }
 
@@ -891,7 +914,8 @@ class MedicationAdministrationDosage extends BackboneElement {
   /// 100 ml per 1 hour or 100 ml/hr. May also be expressed as a rate per
   /// unit of time, e.g. 500 ml per 2 hours. Other examples: 200 mcg/min or
   /// 200 mcg/1 minute; 1 liter/8 hours.
-  final Ratio? rateXMedicationAdministrationDosage;
+  final RateXMedicationAdministrationDosage?
+      rateXMedicationAdministrationDosage;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -951,7 +975,7 @@ class MedicationAdministrationDosage extends BackboneElement {
     CodeableConcept? route,
     CodeableConcept? method,
     Quantity? dose,
-    Ratio? rateXMedicationAdministrationDosage,
+    RateXMedicationAdministrationDosage? rateXMedicationAdministrationDosage,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,

@@ -2,7 +2,7 @@ part of 'allergy_intolerance.dart';
 
 /// Estimated or actual date, date-time, or age when allergy or intolerance
 /// was identified.
-sealed class OnsetXAllergyIntoleranceAllergyIntolerance {}
+sealed class OnsetXAllergyIntoleranceAllergyIntolerance extends DataType {}
 
 /// Estimated or actual date, date-time, or age when allergy or intolerance
 /// was identified.

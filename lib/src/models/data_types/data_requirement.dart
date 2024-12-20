@@ -52,12 +52,19 @@ class DataRequirement extends DataType {
         fromJson: FhirCanonical.fromJson,
       ),
       subjectXDataRequirementDataRequirement:
-          json['subjectXDataRequirementDataRequirement'] != null
-              ? CodeableConcept.fromJson(
-                  json['subjectXDataRequirementDataRequirement']
-                      as Map<String, dynamic>,
-                )
-              : null,
+          json['subjectCodeableConcept'] != null ||
+                  json['_subjectCodeableConcept'] != null
+              ? CodeableConceptSubjectDataRequirementDataRequirement.fromJson({
+                  'value': json['subjectCodeableConcept'],
+                  '_value': json['_subjectCodeableConcept'],
+                })
+              : json['subjectReference'] != null ||
+                      json['_subjectReference'] != null
+                  ? ReferenceSubjectDataRequirementDataRequirement.fromJson({
+                      'value': json['subjectReference'],
+                      '_value': json['_subjectReference'],
+                    })
+                  : null,
       mustSupport: parsePrimitiveList<FhirString>(
         json['mustSupport'] as List<dynamic>?,
         json['_mustSupport'] as List<dynamic>?,
@@ -155,7 +162,8 @@ class DataRequirement extends DataType {
   /// [subjectXDataRequirementDataRequirement]
   /// The intended subjects of the data requirement. If this element is not
   /// provided, a Patient subject is assumed.
-  final CodeableConcept? subjectXDataRequirementDataRequirement;
+  final SubjectXDataRequirementDataRequirement?
+      subjectXDataRequirementDataRequirement;
 
   /// [mustSupport]
   /// Indicates that specific elements of the type are referenced by the
@@ -256,7 +264,8 @@ class DataRequirement extends DataType {
     List<FhirExtension>? extension_,
     FHIRAllTypes? type,
     List<FhirCanonical>? profile,
-    CodeableConcept? subjectXDataRequirementDataRequirement,
+    SubjectXDataRequirementDataRequirement?
+        subjectXDataRequirementDataRequirement,
     List<FhirString>? mustSupport,
     List<DataRequirementCodeFilter>? codeFilter,
     List<DataRequirementDateFilter>? dateFilter,
@@ -523,14 +532,23 @@ class DataRequirementDateFilter extends Element {
               '_value': json['_searchParam'],
             })
           : null,
-      valueXDataRequirementDateFilter:
-          (json['valueXDataRequirementDateFilter'] != null ||
-                  json['_valueXDataRequirementDateFilter'] != null)
-              ? FhirDateTime.fromJson({
-                  'value': json['valueXDataRequirementDateFilter'],
-                  '_value': json['_valueXDataRequirementDateFilter'],
+      valueXDataRequirementDateFilter: json['valueDateTime'] != null ||
+              json['_valueDateTime'] != null
+          ? DateTimeValueDataRequirementDateFilter.fromJson({
+              'value': json['valueDateTime'],
+              '_value': json['_valueDateTime'],
+            })
+          : json['valuePeriod'] != null || json['_valuePeriod'] != null
+              ? PeriodValueDataRequirementDateFilter.fromJson({
+                  'value': json['valuePeriod'],
+                  '_value': json['_valuePeriod'],
                 })
-              : null,
+              : json['valueDuration'] != null || json['_valueDuration'] != null
+                  ? DurationValueDataRequirementDateFilter.fromJson({
+                      'value': json['valueDuration'],
+                      '_value': json['_valueDuration'],
+                    })
+                  : null,
     );
   }
 
@@ -601,7 +619,7 @@ class DataRequirementDateFilter extends Element {
   /// the filter will return only those data items that are equal to the
   /// specified dateTime. If a Duration is specified, the filter will return
   /// only those data items that fall within Duration before now.
-  final FhirDateTime? valueXDataRequirementDateFilter;
+  final ValueXDataRequirementDateFilter? valueXDataRequirementDateFilter;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -634,7 +652,7 @@ class DataRequirementDateFilter extends Element {
     List<FhirExtension>? extension_,
     FhirString? path,
     FhirString? searchParam,
-    FhirDateTime? valueXDataRequirementDateFilter,
+    ValueXDataRequirementDateFilter? valueXDataRequirementDateFilter,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,

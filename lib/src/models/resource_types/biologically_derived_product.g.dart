@@ -1,7 +1,7 @@
 part of 'biologically_derived_product.dart';
 
 /// Time of product collection.
-sealed class CollectedXBiologicallyDerivedProductCollection {}
+sealed class CollectedXBiologicallyDerivedProductCollection extends DataType {}
 
 /// Time of product collection.
 class DateTimeCollectedBiologicallyDerivedProductCollection extends FhirDateTime
@@ -48,7 +48,7 @@ class PeriodCollectedBiologicallyDerivedProductCollection extends Period
 }
 
 /// Time of processing.
-sealed class TimeXBiologicallyDerivedProductProcessing {}
+sealed class TimeXBiologicallyDerivedProductProcessing extends DataType {}
 
 /// Time of processing.
 class DateTimeTimeBiologicallyDerivedProductProcessing extends FhirDateTime
@@ -94,7 +94,7 @@ class PeriodTimeBiologicallyDerivedProductProcessing extends Period
 }
 
 /// Time of manipulation.
-sealed class TimeXBiologicallyDerivedProductManipulation {}
+sealed class TimeXBiologicallyDerivedProductManipulation extends DataType {}
 
 /// Time of manipulation.
 class DateTimeTimeBiologicallyDerivedProductManipulation extends FhirDateTime

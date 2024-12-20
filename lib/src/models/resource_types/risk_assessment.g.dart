@@ -1,7 +1,7 @@
 part of 'risk_assessment.dart';
 
 /// The date (and possibly time) the risk assessment was performed.
-sealed class OccurrenceXRiskAssessmentRiskAssessment {}
+sealed class OccurrenceXRiskAssessmentRiskAssessment extends DataType {}
 
 /// The date (and possibly time) the risk assessment was performed.
 class DateTimeOccurrenceRiskAssessmentRiskAssessment extends FhirDateTime
@@ -47,7 +47,7 @@ class PeriodOccurrenceRiskAssessmentRiskAssessment extends Period
 }
 
 /// Indicates how likely the outcome is (in the specified timeframe).
-sealed class ProbabilityXRiskAssessmentPrediction {}
+sealed class ProbabilityXRiskAssessmentPrediction extends DataType {}
 
 /// Indicates how likely the outcome is (in the specified timeframe).
 class DecimalProbabilityRiskAssessmentPrediction extends FhirDecimal
@@ -79,7 +79,7 @@ class RangeProbabilityRiskAssessmentPrediction extends Range
 
 /// Indicates the period of time or age range of the subject to which the
 /// specified probability applies.
-sealed class WhenXRiskAssessmentPrediction {}
+sealed class WhenXRiskAssessmentPrediction extends DataType {}
 
 /// Indicates the period of time or age range of the subject to which the
 /// specified probability applies.

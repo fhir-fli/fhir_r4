@@ -695,10 +695,31 @@ class EvidenceVariableCharacteristic extends BackboneElement {
               '_value': json['_description'],
             })
           : null,
-      definitionXEvidenceVariableCharacteristic: Reference.fromJson(
-        json['definitionXEvidenceVariableCharacteristic']
-            as Map<String, dynamic>,
-      ),
+      definitionXEvidenceVariableCharacteristic:
+          json['definitionReference'] != null ||
+                  json['_definitionReference'] != null
+              ? ReferenceDefinitionEvidenceVariableCharacteristic.fromJson({
+                  'value': json['definitionReference'],
+                  '_value': json['_definitionReference'],
+                })
+              : json['definitionCanonical'] != null ||
+                      json['_definitionCanonical'] != null
+                  ? CanonicalDefinitionEvidenceVariableCharacteristic.fromJson({
+                      'value': json['definitionCanonical'],
+                      '_value': json['_definitionCanonical'],
+                    })
+                  : json['definitionCodeableConcept'] != null ||
+                          json['_definitionCodeableConcept'] != null
+                      ? CodeableConceptDefinitionEvidenceVariableCharacteristic
+                          .fromJson({
+                          'value': json['definitionCodeableConcept'],
+                          '_value': json['_definitionCodeableConcept'],
+                        })
+                      : ExpressionDefinitionEvidenceVariableCharacteristic
+                          .fromJson({
+                          'value': json['definitionExpression'],
+                          '_value': json['_definitionExpression'],
+                        }),
       method: json['method'] != null
           ? CodeableConcept.fromJson(
               json['method'] as Map<String, dynamic>,
@@ -782,7 +803,8 @@ class EvidenceVariableCharacteristic extends BackboneElement {
   /// medication, or observation), Expressions ( using an expression language
   /// such as FHIRPath or CQL) or DataRequirements (such as Diabetes
   /// diagnosis onset in the last year).
-  final Reference definitionXEvidenceVariableCharacteristic;
+  final DefinitionXEvidenceVariableCharacteristic
+      definitionXEvidenceVariableCharacteristic;
 
   /// [method]
   /// Method used for describing characteristic.
@@ -857,7 +879,8 @@ class EvidenceVariableCharacteristic extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirString? description,
-    Reference? definitionXEvidenceVariableCharacteristic,
+    DefinitionXEvidenceVariableCharacteristic?
+        definitionXEvidenceVariableCharacteristic,
     CodeableConcept? method,
     Reference? device,
     FhirBoolean? exclude,
@@ -1130,12 +1153,23 @@ class EvidenceVariableCategory extends BackboneElement {
               '_value': json['_name'],
             })
           : null,
-      valueXEvidenceVariableCategory: json['valueXEvidenceVariableCategory'] !=
-              null
-          ? CodeableConcept.fromJson(
-              json['valueXEvidenceVariableCategory'] as Map<String, dynamic>,
-            )
-          : null,
+      valueXEvidenceVariableCategory: json['valueCodeableConcept'] != null ||
+              json['_valueCodeableConcept'] != null
+          ? CodeableConceptValueEvidenceVariableCategory.fromJson({
+              'value': json['valueCodeableConcept'],
+              '_value': json['_valueCodeableConcept'],
+            })
+          : json['valueQuantity'] != null || json['_valueQuantity'] != null
+              ? QuantityValueEvidenceVariableCategory.fromJson({
+                  'value': json['valueQuantity'],
+                  '_value': json['_valueQuantity'],
+                })
+              : json['valueRange'] != null || json['_valueRange'] != null
+                  ? RangeValueEvidenceVariableCategory.fromJson({
+                      'value': json['valueRange'],
+                      '_value': json['_valueRange'],
+                    })
+                  : null,
     );
   }
 
@@ -1187,7 +1221,7 @@ class EvidenceVariableCategory extends BackboneElement {
 
   /// [valueXEvidenceVariableCategory]
   /// Value or set of values that define the grouping.
-  final CodeableConcept? valueXEvidenceVariableCategory;
+  final ValueXEvidenceVariableCategory? valueXEvidenceVariableCategory;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1227,7 +1261,7 @@ class EvidenceVariableCategory extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirString? name,
-    CodeableConcept? valueXEvidenceVariableCategory,
+    ValueXEvidenceVariableCategory? valueXEvidenceVariableCategory,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,

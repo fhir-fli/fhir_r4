@@ -1,7 +1,7 @@
 part of 'family_member_history.dart';
 
 /// The actual or approximate date of birth of the relative.
-sealed class BornXFamilyMemberHistoryFamilyMemberHistory {}
+sealed class BornXFamilyMemberHistoryFamilyMemberHistory extends DataType {}
 
 /// The actual or approximate date of birth of the relative.
 class PeriodBornFamilyMemberHistoryFamilyMemberHistory extends Period
@@ -66,7 +66,7 @@ class StringBornFamilyMemberHistoryFamilyMemberHistory extends FhirString
 
 /// The age of the relative at the time the family member history is
 /// recorded.
-sealed class AgeXFamilyMemberHistoryFamilyMemberHistory {}
+sealed class AgeXFamilyMemberHistoryFamilyMemberHistory extends DataType {}
 
 /// The age of the relative at the time the family member history is
 /// recorded.
@@ -112,7 +112,7 @@ class StringAgeFamilyMemberHistoryFamilyMemberHistory extends FhirString
 
 /// Deceased flag or the actual or approximate age of the relative at the
 /// time of death for the family member history record.
-sealed class DeceasedXFamilyMemberHistoryFamilyMemberHistory {}
+sealed class DeceasedXFamilyMemberHistoryFamilyMemberHistory extends DataType {}
 
 /// Deceased flag or the actual or approximate age of the relative at the
 /// time of death for the family member history record.
@@ -214,7 +214,7 @@ class StringDeceasedFamilyMemberHistoryFamilyMemberHistory extends FhirString
 /// Either the age of onset, range of approximate age or descriptive string
 /// can be recorded. For conditions with multiple occurrences, this
 /// describes the first known occurrence.
-sealed class OnsetXFamilyMemberHistoryCondition {}
+sealed class OnsetXFamilyMemberHistoryCondition extends DataType {}
 
 /// Either the age of onset, range of approximate age or descriptive string
 /// can be recorded. For conditions with multiple occurrences, this

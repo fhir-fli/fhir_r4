@@ -517,12 +517,17 @@ class RegulatedAuthorizationCase extends BackboneElement {
             )
           : null,
       dateXRegulatedAuthorizationCase:
-          json['dateXRegulatedAuthorizationCase'] != null
-              ? Period.fromJson(
-                  json['dateXRegulatedAuthorizationCase']
-                      as Map<String, dynamic>,
-                )
-              : null,
+          json['datePeriod'] != null || json['_datePeriod'] != null
+              ? PeriodDateRegulatedAuthorizationCase.fromJson({
+                  'value': json['datePeriod'],
+                  '_value': json['_datePeriod'],
+                })
+              : json['dateDateTime'] != null || json['_dateDateTime'] != null
+                  ? DateTimeDateRegulatedAuthorizationCase.fromJson({
+                      'value': json['dateDateTime'],
+                      '_value': json['_dateDateTime'],
+                    })
+                  : null,
       application: json['application'] != null
           ? (json['application'] as List<dynamic>)
               .map<RegulatedAuthorizationCase>(
@@ -591,7 +596,7 @@ class RegulatedAuthorizationCase extends BackboneElement {
 
   /// [dateXRegulatedAuthorizationCase]
   /// Relevant date for this case.
-  final Period? dateXRegulatedAuthorizationCase;
+  final DateXRegulatedAuthorizationCase? dateXRegulatedAuthorizationCase;
 
   /// [application]
   /// A regulatory submission from an organization to a regulator, as part of
@@ -656,7 +661,7 @@ class RegulatedAuthorizationCase extends BackboneElement {
     Identifier? identifier,
     CodeableConcept? type,
     CodeableConcept? status,
-    Period? dateXRegulatedAuthorizationCase,
+    DateXRegulatedAuthorizationCase? dateXRegulatedAuthorizationCase,
     List<RegulatedAuthorizationCase>? application,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,

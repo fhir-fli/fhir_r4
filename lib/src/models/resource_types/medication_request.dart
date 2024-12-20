@@ -162,19 +162,32 @@ class MedicationRequest extends DomainResource {
                   '_value': json['_doNotPerform'],
                 })
               : null,
-      reportedXMedicationRequestMedicationRequest:
-          (json['reportedXMedicationRequestMedicationRequest'] != null ||
-                  json['_reportedXMedicationRequestMedicationRequest'] != null)
-              ? FhirBoolean.fromJson({
-                  'value': json['reportedXMedicationRequestMedicationRequest'],
-                  '_value':
-                      json['_reportedXMedicationRequestMedicationRequest'],
+      reportedXMedicationRequestMedicationRequest: json['reportedBoolean'] !=
+                  null ||
+              json['_reportedBoolean'] != null
+          ? BooleanReportedMedicationRequestMedicationRequest.fromJson({
+              'value': json['reportedBoolean'],
+              '_value': json['_reportedBoolean'],
+            })
+          : json['reportedReference'] != null ||
+                  json['_reportedReference'] != null
+              ? ReferenceReportedMedicationRequestMedicationRequest.fromJson({
+                  'value': json['reportedReference'],
+                  '_value': json['_reportedReference'],
                 })
               : null,
-      medicationXMedicationRequestMedicationRequest: CodeableConcept.fromJson(
-        json['medicationXMedicationRequestMedicationRequest']
-            as Map<String, dynamic>,
-      ),
+      medicationXMedicationRequestMedicationRequest:
+          json['medicationCodeableConcept'] != null ||
+                  json['_medicationCodeableConcept'] != null
+              ? CodeableConceptMedicationMedicationRequestMedicationRequest
+                  .fromJson({
+                  'value': json['medicationCodeableConcept'],
+                  '_value': json['_medicationCodeableConcept'],
+                })
+              : ReferenceMedicationMedicationRequestMedicationRequest.fromJson({
+                  'value': json['medicationReference'],
+                  '_value': json['_medicationReference'],
+                }),
       subject: Reference.fromJson(
         json['subject'] as Map<String, dynamic>,
       ),
@@ -412,14 +425,16 @@ class MedicationRequest extends DomainResource {
   /// Indicates if this record was captured as a secondary 'reported' record
   /// rather than as an original primary source-of-truth record. It may also
   /// indicate the source of the report.
-  final FhirBoolean? reportedXMedicationRequestMedicationRequest;
+  final ReportedXMedicationRequestMedicationRequest?
+      reportedXMedicationRequestMedicationRequest;
 
   /// [medicationXMedicationRequestMedicationRequest]
   /// Identifies the medication being requested. This is a link to a resource
   /// that represents the medication which may be the details of the
   /// medication or simply an attribute carrying a code that identifies the
   /// medication from a known list of medications.
-  final CodeableConcept medicationXMedicationRequestMedicationRequest;
+  final MedicationXMedicationRequestMedicationRequest
+      medicationXMedicationRequestMedicationRequest;
 
   /// [subject]
   /// A link to a resource representing the person or set of individuals to
@@ -726,8 +741,10 @@ class MedicationRequest extends DomainResource {
     List<CodeableConcept>? category,
     RequestPriority? priority,
     FhirBoolean? doNotPerform,
-    FhirBoolean? reportedXMedicationRequestMedicationRequest,
-    CodeableConcept? medicationXMedicationRequestMedicationRequest,
+    ReportedXMedicationRequestMedicationRequest?
+        reportedXMedicationRequestMedicationRequest,
+    MedicationXMedicationRequestMedicationRequest?
+        medicationXMedicationRequestMedicationRequest,
     Reference? subject,
     Reference? encounter,
     List<Reference>? supportingInformation,
@@ -1270,10 +1287,16 @@ class MedicationRequestSubstitution extends BackboneElement {
               )
               .toList()
           : null,
-      allowedXMedicationRequestSubstitution: FhirBoolean.fromJson({
-        'value': json['allowedXMedicationRequestSubstitution'],
-        '_value': json['_allowedXMedicationRequestSubstitution'],
-      }),
+      allowedXMedicationRequestSubstitution:
+          json['allowedBoolean'] != null || json['_allowedBoolean'] != null
+              ? BooleanAllowedMedicationRequestSubstitution.fromJson({
+                  'value': json['allowedBoolean'],
+                  '_value': json['_allowedBoolean'],
+                })
+              : CodeableConceptAllowedMedicationRequestSubstitution.fromJson({
+                  'value': json['allowedCodeableConcept'],
+                  '_value': json['_allowedCodeableConcept'],
+                }),
       reason: json['reason'] != null
           ? CodeableConcept.fromJson(
               json['reason'] as Map<String, dynamic>,
@@ -1327,7 +1350,8 @@ class MedicationRequestSubstitution extends BackboneElement {
   /// [allowedXMedicationRequestSubstitution]
   /// True if the prescriber allows a different drug to be dispensed from
   /// what was prescribed.
-  final FhirBoolean allowedXMedicationRequestSubstitution;
+  final AllowedXMedicationRequestSubstitution
+      allowedXMedicationRequestSubstitution;
 
   /// [reason]
   /// Indicates the reason for the substitution, or why substitution must or
@@ -1371,7 +1395,8 @@ class MedicationRequestSubstitution extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    FhirBoolean? allowedXMedicationRequestSubstitution,
+    AllowedXMedicationRequestSubstitution?
+        allowedXMedicationRequestSubstitution,
     CodeableConcept? reason,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,

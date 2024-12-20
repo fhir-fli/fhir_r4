@@ -3,7 +3,7 @@ part of 'medication_request.dart';
 /// Indicates if this record was captured as a secondary 'reported' record
 /// rather than as an original primary source-of-truth record. It may also
 /// indicate the source of the report.
-sealed class ReportedXMedicationRequestMedicationRequest {}
+sealed class ReportedXMedicationRequestMedicationRequest extends DataType {}
 
 /// Indicates if this record was captured as a secondary 'reported' record
 /// rather than as an original primary source-of-truth record. It may also
@@ -43,7 +43,7 @@ class ReferenceReportedMedicationRequestMedicationRequest extends Reference
 /// that represents the medication which may be the details of the
 /// medication or simply an attribute carrying a code that identifies the
 /// medication from a known list of medications.
-sealed class MedicationXMedicationRequestMedicationRequest {}
+sealed class MedicationXMedicationRequestMedicationRequest extends DataType {}
 
 /// Identifies the medication being requested. This is a link to a resource
 /// that represents the medication which may be the details of the
@@ -76,7 +76,7 @@ class ReferenceMedicationMedicationRequestMedicationRequest extends Reference
 
 /// True if the prescriber allows a different drug to be dispensed from
 /// what was prescribed.
-sealed class AllowedXMedicationRequestSubstitution {}
+sealed class AllowedXMedicationRequestSubstitution extends DataType {}
 
 /// True if the prescriber allows a different drug to be dispensed from
 /// what was prescribed.

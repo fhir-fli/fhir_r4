@@ -122,15 +122,19 @@ class DeviceDefinition extends DomainResource {
               )
               .toList()
           : null,
-      manufacturerXDeviceDefinitionDeviceDefinition:
-          (json['manufacturerXDeviceDefinitionDeviceDefinition'] != null ||
-                  json['_manufacturerXDeviceDefinitionDeviceDefinition'] !=
-                      null)
-              ? FhirString.fromJson({
-                  'value':
-                      json['manufacturerXDeviceDefinitionDeviceDefinition'],
-                  '_value':
-                      json['_manufacturerXDeviceDefinitionDeviceDefinition'],
+      manufacturerXDeviceDefinitionDeviceDefinition: json[
+                      'manufacturerString'] !=
+                  null ||
+              json['_manufacturerString'] != null
+          ? StringManufacturerDeviceDefinitionDeviceDefinition.fromJson({
+              'value': json['manufacturerString'],
+              '_value': json['_manufacturerString'],
+            })
+          : json['manufacturerReference'] != null ||
+                  json['_manufacturerReference'] != null
+              ? ReferenceManufacturerDeviceDefinitionDeviceDefinition.fromJson({
+                  'value': json['manufacturerReference'],
+                  '_value': json['_manufacturerReference'],
                 })
               : null,
       deviceName: json['deviceName'] != null
@@ -331,7 +335,8 @@ class DeviceDefinition extends DomainResource {
 
   /// [manufacturerXDeviceDefinitionDeviceDefinition]
   /// A name of the manufacturer.
-  final FhirString? manufacturerXDeviceDefinitionDeviceDefinition;
+  final ManufacturerXDeviceDefinitionDeviceDefinition?
+      manufacturerXDeviceDefinitionDeviceDefinition;
 
   /// [deviceName]
   /// A name given to the device to identify it.
@@ -554,7 +559,8 @@ class DeviceDefinition extends DomainResource {
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
     List<DeviceDefinitionUdiDeviceIdentifier>? udiDeviceIdentifier,
-    FhirString? manufacturerXDeviceDefinitionDeviceDefinition,
+    ManufacturerXDeviceDefinitionDeviceDefinition?
+        manufacturerXDeviceDefinitionDeviceDefinition,
     List<DeviceDefinitionDeviceName>? deviceName,
     FhirString? modelNumber,
     CodeableConcept? type,

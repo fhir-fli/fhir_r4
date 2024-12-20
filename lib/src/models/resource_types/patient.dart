@@ -143,13 +143,19 @@ class Patient extends DomainResource {
               '_value': json['_birthDate'],
             })
           : null,
-      deceasedXPatientPatient: (json['deceasedXPatientPatient'] != null ||
-              json['_deceasedXPatientPatient'] != null)
-          ? FhirBoolean.fromJson({
-              'value': json['deceasedXPatientPatient'],
-              '_value': json['_deceasedXPatientPatient'],
-            })
-          : null,
+      deceasedXPatientPatient:
+          json['deceasedBoolean'] != null || json['_deceasedBoolean'] != null
+              ? BooleanDeceasedPatientPatient.fromJson({
+                  'value': json['deceasedBoolean'],
+                  '_value': json['_deceasedBoolean'],
+                })
+              : json['deceasedDateTime'] != null ||
+                      json['_deceasedDateTime'] != null
+                  ? DateTimeDeceasedPatientPatient.fromJson({
+                      'value': json['deceasedDateTime'],
+                      '_value': json['_deceasedDateTime'],
+                    })
+                  : null,
       address: json['address'] != null
           ? (json['address'] as List<dynamic>)
               .map<Address>(
@@ -164,12 +170,17 @@ class Patient extends DomainResource {
               json['maritalStatus'] as Map<String, dynamic>,
             )
           : null,
-      multipleBirthXPatientPatient:
-          (json['multipleBirthXPatientPatient'] != null ||
-                  json['_multipleBirthXPatientPatient'] != null)
-              ? FhirBoolean.fromJson({
-                  'value': json['multipleBirthXPatientPatient'],
-                  '_value': json['_multipleBirthXPatientPatient'],
+      multipleBirthXPatientPatient: json['multipleBirthBoolean'] != null ||
+              json['_multipleBirthBoolean'] != null
+          ? BooleanMultipleBirthPatientPatient.fromJson({
+              'value': json['multipleBirthBoolean'],
+              '_value': json['_multipleBirthBoolean'],
+            })
+          : json['multipleBirthInteger'] != null ||
+                  json['_multipleBirthInteger'] != null
+              ? IntegerMultipleBirthPatientPatient.fromJson({
+                  'value': json['multipleBirthInteger'],
+                  '_value': json['_multipleBirthInteger'],
                 })
               : null,
       photo: json['photo'] != null
@@ -303,7 +314,7 @@ class Patient extends DomainResource {
 
   /// [deceasedXPatientPatient]
   /// Indicates if the individual is deceased or not.
-  final FhirBoolean? deceasedXPatientPatient;
+  final DeceasedXPatientPatient? deceasedXPatientPatient;
 
   /// [address]
   /// An address for the individual.
@@ -316,7 +327,7 @@ class Patient extends DomainResource {
   /// [multipleBirthXPatientPatient]
   /// Indicates whether the patient is part of a multiple (boolean) or
   /// indicates the actual birth order (integer).
-  final FhirBoolean? multipleBirthXPatientPatient;
+  final MultipleBirthXPatientPatient? multipleBirthXPatientPatient;
 
   /// [photo]
   /// Image of the patient.
@@ -450,10 +461,10 @@ class Patient extends DomainResource {
     List<ContactPoint>? telecom,
     AdministrativeGender? gender,
     FhirDate? birthDate,
-    FhirBoolean? deceasedXPatientPatient,
+    DeceasedXPatientPatient? deceasedXPatientPatient,
     List<Address>? address,
     CodeableConcept? maritalStatus,
-    FhirBoolean? multipleBirthXPatientPatient,
+    MultipleBirthXPatientPatient? multipleBirthXPatientPatient,
     List<Attachment>? photo,
     List<PatientContact>? contact,
     List<PatientCommunication>? communication,

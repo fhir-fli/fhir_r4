@@ -2,7 +2,7 @@ part of 'data_requirement.dart';
 
 /// The intended subjects of the data requirement. If this element is not
 /// provided, a Patient subject is assumed.
-sealed class SubjectXDataRequirementDataRequirement {}
+sealed class SubjectXDataRequirementDataRequirement extends DataType {}
 
 /// The intended subjects of the data requirement. If this element is not
 /// provided, a Patient subject is assumed.
@@ -34,7 +34,7 @@ class ReferenceSubjectDataRequirementDataRequirement extends Reference
 /// the filter will return only those data items that are equal to the
 /// specified dateTime. If a Duration is specified, the filter will return
 /// only those data items that fall within Duration before now.
-sealed class ValueXDataRequirementDateFilter {}
+sealed class ValueXDataRequirementDateFilter extends DataType {}
 
 /// The value of the filter. If period is specified, the filter will return
 /// only those data items that fall within the bounds determined by the

@@ -41,9 +41,26 @@ class UsageContext extends DataType {
       code: Coding.fromJson(
         json['code'] as Map<String, dynamic>,
       ),
-      valueXUsageContextUsageContext: CodeableConcept.fromJson(
-        json['valueXUsageContextUsageContext'] as Map<String, dynamic>,
-      ),
+      valueXUsageContextUsageContext: json['valueCodeableConcept'] != null ||
+              json['_valueCodeableConcept'] != null
+          ? CodeableConceptValueUsageContextUsageContext.fromJson({
+              'value': json['valueCodeableConcept'],
+              '_value': json['_valueCodeableConcept'],
+            })
+          : json['valueQuantity'] != null || json['_valueQuantity'] != null
+              ? QuantityValueUsageContextUsageContext.fromJson({
+                  'value': json['valueQuantity'],
+                  '_value': json['_valueQuantity'],
+                })
+              : json['valueRange'] != null || json['_valueRange'] != null
+                  ? RangeValueUsageContextUsageContext.fromJson({
+                      'value': json['valueRange'],
+                      '_value': json['_valueRange'],
+                    })
+                  : ReferenceValueUsageContextUsageContext.fromJson({
+                      'value': json['valueReference'],
+                      '_value': json['_valueReference'],
+                    }),
     );
   }
 
@@ -97,7 +114,7 @@ class UsageContext extends DataType {
   /// [valueXUsageContextUsageContext]
   /// A value that defines the context specified in this context of use. The
   /// interpretation of the value is defined by the code.
-  final CodeableConcept valueXUsageContextUsageContext;
+  final ValueXUsageContextUsageContext valueXUsageContextUsageContext;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -130,7 +147,7 @@ class UsageContext extends DataType {
     FhirString? id,
     List<FhirExtension>? extension_,
     Coding? code,
-    CodeableConcept? valueXUsageContextUsageContext,
+    ValueXUsageContextUsageContext? valueXUsageContextUsageContext,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,

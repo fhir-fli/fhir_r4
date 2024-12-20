@@ -1,7 +1,7 @@
 part of 'task.dart';
 
 /// The value of the input parameter as a basic type.
-sealed class ValueXTaskInput {}
+sealed class ValueXTaskInput extends DataType {}
 
 /// The value of the input parameter as a basic type.
 class Base64BinaryValueTaskInput extends FhirBase64Binary
@@ -659,7 +659,7 @@ class MetaValueTaskInput extends FhirMeta implements ValueXTaskInput {
 }
 
 /// The value of the Output parameter as a basic type.
-sealed class ValueXTaskOutput {}
+sealed class ValueXTaskOutput extends DataType {}
 
 /// The value of the Output parameter as a basic type.
 class Base64BinaryValueTaskOutput extends FhirBase64Binary

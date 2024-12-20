@@ -1687,13 +1687,46 @@ class ValueSetParameter extends BackboneElement {
         'value': json['name'],
         '_value': json['_name'],
       }),
-      valueXValueSetParameter: (json['valueXValueSetParameter'] != null ||
-              json['_valueXValueSetParameter'] != null)
-          ? FhirString.fromJson({
-              'value': json['valueXValueSetParameter'],
-              '_value': json['_valueXValueSetParameter'],
+      valueXValueSetParameter: json['valueString'] != null ||
+              json['_valueString'] != null
+          ? StringValueValueSetParameter.fromJson({
+              'value': json['valueString'],
+              '_value': json['_valueString'],
             })
-          : null,
+          : json['valueBoolean'] != null || json['_valueBoolean'] != null
+              ? BooleanValueValueSetParameter.fromJson({
+                  'value': json['valueBoolean'],
+                  '_value': json['_valueBoolean'],
+                })
+              : json['valueInteger'] != null || json['_valueInteger'] != null
+                  ? IntegerValueValueSetParameter.fromJson({
+                      'value': json['valueInteger'],
+                      '_value': json['_valueInteger'],
+                    })
+                  : json['valueDecimal'] != null ||
+                          json['_valueDecimal'] != null
+                      ? DecimalValueValueSetParameter.fromJson({
+                          'value': json['valueDecimal'],
+                          '_value': json['_valueDecimal'],
+                        })
+                      : json['valueUri'] != null || json['_valueUri'] != null
+                          ? UriValueValueSetParameter.fromJson({
+                              'value': json['valueUri'],
+                              '_value': json['_valueUri'],
+                            })
+                          : json['valueCode'] != null ||
+                                  json['_valueCode'] != null
+                              ? CodeValueValueSetParameter.fromJson({
+                                  'value': json['valueCode'],
+                                  '_value': json['_valueCode'],
+                                })
+                              : json['valueDateTime'] != null ||
+                                      json['_valueDateTime'] != null
+                                  ? DateTimeValueValueSetParameter.fromJson({
+                                      'value': json['valueDateTime'],
+                                      '_value': json['_valueDateTime'],
+                                    })
+                                  : null,
     );
   }
 
@@ -1747,7 +1780,7 @@ class ValueSetParameter extends BackboneElement {
 
   /// [valueXValueSetParameter]
   /// The value of the parameter.
-  final FhirString? valueXValueSetParameter;
+  final ValueXValueSetParameter? valueXValueSetParameter;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1783,7 +1816,7 @@ class ValueSetParameter extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirString? name,
-    FhirString? valueXValueSetParameter,
+    ValueXValueSetParameter? valueXValueSetParameter,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,

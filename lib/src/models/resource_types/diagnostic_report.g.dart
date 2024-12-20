@@ -4,7 +4,7 @@ part of 'diagnostic_report.dart';
 /// subject of the report is a patient, this is usually either the time of
 /// the procedure or of specimen collection(s), but very often the source
 /// of the date/time is not known, only the date/time itself.
-sealed class EffectiveXDiagnosticReportDiagnosticReport {}
+sealed class EffectiveXDiagnosticReportDiagnosticReport extends DataType {}
 
 /// The time or time-period the observed values are related to. When the
 /// subject of the report is a patient, this is usually either the time of

@@ -1,7 +1,8 @@
 part of 'communication_request.dart';
 
 /// The time when this communication is to occur.
-sealed class OccurrenceXCommunicationRequestCommunicationRequest {}
+sealed class OccurrenceXCommunicationRequestCommunicationRequest
+    extends DataType {}
 
 /// The time when this communication is to occur.
 class DateTimeOccurrenceCommunicationRequestCommunicationRequest
@@ -50,7 +51,7 @@ class PeriodOccurrenceCommunicationRequestCommunicationRequest extends Period
 
 /// The communicated content (or for multi-part communications, one portion
 /// of the communication).
-sealed class ContentXCommunicationRequestPayload {}
+sealed class ContentXCommunicationRequestPayload extends DataType {}
 
 /// The communicated content (or for multi-part communications, one portion
 /// of the communication).

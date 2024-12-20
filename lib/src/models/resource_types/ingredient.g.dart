@@ -6,7 +6,7 @@ part of 'ingredient.dart';
 /// e.g. a strength per tablet size, perhaps 'per 20mg' (the size of the
 /// tablet). It is not generally normalized as a unitary unit, which would
 /// be 'per mg').
-sealed class PresentationXIngredientStrength {}
+sealed class PresentationXIngredientStrength extends DataType {}
 
 /// The quantity of substance in the unit of presentation, or in the volume
 /// (or mass) of the single pharmaceutical product or manufactured item.
@@ -39,7 +39,7 @@ class RatioRangePresentationIngredientStrength extends RatioRange
 }
 
 /// The strength per unitary volume (or mass).
-sealed class ConcentrationXIngredientStrength {}
+sealed class ConcentrationXIngredientStrength extends DataType {}
 
 /// The strength per unitary volume (or mass).
 class RatioConcentrationIngredientStrength extends Ratio
@@ -62,7 +62,7 @@ class RatioRangeConcentrationIngredientStrength extends RatioRange
 }
 
 /// Strength expressed in terms of a reference substance.
-sealed class StrengthXIngredientReferenceStrength {}
+sealed class StrengthXIngredientReferenceStrength extends DataType {}
 
 /// Strength expressed in terms of a reference substance.
 class RatioStrengthIngredientReferenceStrength extends Ratio

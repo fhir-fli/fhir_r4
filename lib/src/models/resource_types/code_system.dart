@@ -1416,10 +1416,44 @@ class CodeSystemProperty1 extends BackboneElement {
         'value': json['code'],
         '_value': json['_code'],
       }),
-      valueXCodeSystemProperty: FhirCode.fromJson({
-        'value': json['valueXCodeSystemProperty'],
-        '_value': json['_valueXCodeSystemProperty'],
-      }),
+      valueXCodeSystemProperty:
+          json['valueCode'] != null || json['_valueCode'] != null
+              ? CodeValueCodeSystemProperty.fromJson({
+                  'value': json['valueCode'],
+                  '_value': json['_valueCode'],
+                })
+              : json['valueCoding'] != null || json['_valueCoding'] != null
+                  ? CodingValueCodeSystemProperty.fromJson({
+                      'value': json['valueCoding'],
+                      '_value': json['_valueCoding'],
+                    })
+                  : json['valueString'] != null || json['_valueString'] != null
+                      ? StringValueCodeSystemProperty.fromJson({
+                          'value': json['valueString'],
+                          '_value': json['_valueString'],
+                        })
+                      : json['valueInteger'] != null ||
+                              json['_valueInteger'] != null
+                          ? IntegerValueCodeSystemProperty.fromJson({
+                              'value': json['valueInteger'],
+                              '_value': json['_valueInteger'],
+                            })
+                          : json['valueBoolean'] != null ||
+                                  json['_valueBoolean'] != null
+                              ? BooleanValueCodeSystemProperty.fromJson({
+                                  'value': json['valueBoolean'],
+                                  '_value': json['_valueBoolean'],
+                                })
+                              : json['valueDateTime'] != null ||
+                                      json['_valueDateTime'] != null
+                                  ? DateTimeValueCodeSystemProperty.fromJson({
+                                      'value': json['valueDateTime'],
+                                      '_value': json['_valueDateTime'],
+                                    })
+                                  : DecimalValueCodeSystemProperty.fromJson({
+                                      'value': json['valueDecimal'],
+                                      '_value': json['_valueDecimal'],
+                                    }),
     );
   }
 
@@ -1471,7 +1505,7 @@ class CodeSystemProperty1 extends BackboneElement {
 
   /// [valueXCodeSystemProperty]
   /// The value of this property.
-  final FhirCode valueXCodeSystemProperty;
+  final ValueXCodeSystemProperty valueXCodeSystemProperty;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1507,7 +1541,7 @@ class CodeSystemProperty1 extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirCode? code,
-    FhirCode? valueXCodeSystemProperty,
+    ValueXCodeSystemProperty? valueXCodeSystemProperty,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,

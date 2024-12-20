@@ -1,7 +1,7 @@
 part of 'parameters.dart';
 
 /// Conveys the content if the parameter is a data type.
-sealed class ValueXParametersParameter {}
+sealed class ValueXParametersParameter extends DataType {}
 
 /// Conveys the content if the parameter is a data type.
 class Base64BinaryValueParametersParameter extends FhirBase64Binary

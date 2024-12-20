@@ -198,20 +198,28 @@ class ConceptMap extends CanonicalResource {
               '_value': json['_copyright'],
             })
           : null,
-      sourceXConceptMapConceptMap:
-          (json['sourceXConceptMapConceptMap'] != null ||
-                  json['_sourceXConceptMapConceptMap'] != null)
-              ? FhirUri.fromJson({
-                  'value': json['sourceXConceptMapConceptMap'],
-                  '_value': json['_sourceXConceptMapConceptMap'],
+      sourceXConceptMapConceptMap: json['sourceUri'] != null ||
+              json['_sourceUri'] != null
+          ? UriSourceConceptMapConceptMap.fromJson({
+              'value': json['sourceUri'],
+              '_value': json['_sourceUri'],
+            })
+          : json['sourceCanonical'] != null || json['_sourceCanonical'] != null
+              ? CanonicalSourceConceptMapConceptMap.fromJson({
+                  'value': json['sourceCanonical'],
+                  '_value': json['_sourceCanonical'],
                 })
               : null,
-      targetXConceptMapConceptMap:
-          (json['targetXConceptMapConceptMap'] != null ||
-                  json['_targetXConceptMapConceptMap'] != null)
-              ? FhirUri.fromJson({
-                  'value': json['targetXConceptMapConceptMap'],
-                  '_value': json['_targetXConceptMapConceptMap'],
+      targetXConceptMapConceptMap: json['targetUri'] != null ||
+              json['_targetUri'] != null
+          ? UriTargetConceptMapConceptMap.fromJson({
+              'value': json['targetUri'],
+              '_value': json['_targetUri'],
+            })
+          : json['targetCanonical'] != null || json['_targetCanonical'] != null
+              ? CanonicalTargetConceptMapConceptMap.fromJson({
+                  'value': json['targetCanonical'],
+                  '_value': json['_targetCanonical'],
                 })
               : null,
       group: json['group'] != null
@@ -298,14 +306,14 @@ class ConceptMap extends CanonicalResource {
   /// [sourceXConceptMapConceptMap]
   /// Identifier for the source value set that contains the concepts that are
   /// being mapped and provides context for the mappings.
-  final FhirUri? sourceXConceptMapConceptMap;
+  final SourceXConceptMapConceptMap? sourceXConceptMapConceptMap;
 
   /// [targetXConceptMapConceptMap]
   /// The target value set provides context for the mappings. Note that the
   /// mapping is made between concepts, not between value sets, but the value
   /// set provides important context about how the concept mapping choices
   /// are made.
-  final FhirUri? targetXConceptMapConceptMap;
+  final TargetXConceptMapConceptMap? targetXConceptMapConceptMap;
 
   /// [group]
   /// A group of mappings that all have the same source and target system.
@@ -410,8 +418,8 @@ class ConceptMap extends CanonicalResource {
     List<CodeableConcept>? jurisdiction,
     FhirMarkdown? purpose,
     FhirMarkdown? copyright,
-    FhirUri? sourceXConceptMapConceptMap,
-    FhirUri? targetXConceptMapConceptMap,
+    SourceXConceptMapConceptMap? sourceXConceptMapConceptMap,
+    TargetXConceptMapConceptMap? targetXConceptMapConceptMap,
     List<ConceptMapGroup>? group,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,

@@ -1,7 +1,7 @@
 part of 'patient.dart';
 
 /// Indicates if the individual is deceased or not.
-sealed class DeceasedXPatientPatient {}
+sealed class DeceasedXPatientPatient extends DataType {}
 
 /// Indicates if the individual is deceased or not.
 class BooleanDeceasedPatientPatient extends FhirBoolean
@@ -55,7 +55,7 @@ class DateTimeDeceasedPatientPatient extends FhirDateTime
 
 /// Indicates whether the patient is part of a multiple (boolean) or
 /// indicates the actual birth order (integer).
-sealed class MultipleBirthXPatientPatient {}
+sealed class MultipleBirthXPatientPatient extends DataType {}
 
 /// Indicates whether the patient is part of a multiple (boolean) or
 /// indicates the actual birth order (integer).

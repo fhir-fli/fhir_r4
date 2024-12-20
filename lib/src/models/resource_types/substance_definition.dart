@@ -640,12 +640,17 @@ class SubstanceDefinitionMoiety extends BackboneElement {
             })
           : null,
       amountXSubstanceDefinitionMoiety:
-          json['amountXSubstanceDefinitionMoiety'] != null
-              ? Quantity.fromJson(
-                  json['amountXSubstanceDefinitionMoiety']
-                      as Map<String, dynamic>,
-                )
-              : null,
+          json['amountQuantity'] != null || json['_amountQuantity'] != null
+              ? QuantityAmountSubstanceDefinitionMoiety.fromJson({
+                  'value': json['amountQuantity'],
+                  '_value': json['_amountQuantity'],
+                })
+              : json['amountString'] != null || json['_amountString'] != null
+                  ? StringAmountSubstanceDefinitionMoiety.fromJson({
+                      'value': json['amountString'],
+                      '_value': json['_amountString'],
+                    })
+                  : null,
       measurementType: json['measurementType'] != null
           ? CodeableConcept.fromJson(
               json['measurementType'] as Map<String, dynamic>,
@@ -723,7 +728,7 @@ class SubstanceDefinitionMoiety extends BackboneElement {
 
   /// [amountXSubstanceDefinitionMoiety]
   /// Quantitative value for this moiety.
-  final Quantity? amountXSubstanceDefinitionMoiety;
+  final AmountXSubstanceDefinitionMoiety? amountXSubstanceDefinitionMoiety;
 
   /// [measurementType]
   /// The measurement type of the quantitative value. In capturing the actual
@@ -796,7 +801,7 @@ class SubstanceDefinitionMoiety extends BackboneElement {
     CodeableConcept? stereochemistry,
     CodeableConcept? opticalActivity,
     FhirString? molecularFormula,
-    Quantity? amountXSubstanceDefinitionMoiety,
+    AmountXSubstanceDefinitionMoiety? amountXSubstanceDefinitionMoiety,
     CodeableConcept? measurementType,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -864,13 +869,36 @@ class SubstanceDefinitionProperty extends BackboneElement {
       type: CodeableConcept.fromJson(
         json['type'] as Map<String, dynamic>,
       ),
-      valueXSubstanceDefinitionProperty:
-          json['valueXSubstanceDefinitionProperty'] != null
-              ? CodeableConcept.fromJson(
-                  json['valueXSubstanceDefinitionProperty']
-                      as Map<String, dynamic>,
-                )
-              : null,
+      valueXSubstanceDefinitionProperty: json['valueCodeableConcept'] != null ||
+              json['_valueCodeableConcept'] != null
+          ? CodeableConceptValueSubstanceDefinitionProperty.fromJson({
+              'value': json['valueCodeableConcept'],
+              '_value': json['_valueCodeableConcept'],
+            })
+          : json['valueQuantity'] != null || json['_valueQuantity'] != null
+              ? QuantityValueSubstanceDefinitionProperty.fromJson({
+                  'value': json['valueQuantity'],
+                  '_value': json['_valueQuantity'],
+                })
+              : json['valueDate'] != null || json['_valueDate'] != null
+                  ? DateValueSubstanceDefinitionProperty.fromJson({
+                      'value': json['valueDate'],
+                      '_value': json['_valueDate'],
+                    })
+                  : json['valueBoolean'] != null ||
+                          json['_valueBoolean'] != null
+                      ? BooleanValueSubstanceDefinitionProperty.fromJson({
+                          'value': json['valueBoolean'],
+                          '_value': json['_valueBoolean'],
+                        })
+                      : json['valueAttachment'] != null ||
+                              json['_valueAttachment'] != null
+                          ? AttachmentValueSubstanceDefinitionProperty
+                              .fromJson({
+                              'value': json['valueAttachment'],
+                              '_value': json['_valueAttachment'],
+                            })
+                          : null,
     );
   }
 
@@ -922,7 +950,7 @@ class SubstanceDefinitionProperty extends BackboneElement {
 
   /// [valueXSubstanceDefinitionProperty]
   /// A value for the property.
-  final CodeableConcept? valueXSubstanceDefinitionProperty;
+  final ValueXSubstanceDefinitionProperty? valueXSubstanceDefinitionProperty;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -963,7 +991,7 @@ class SubstanceDefinitionProperty extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     CodeableConcept? type,
-    CodeableConcept? valueXSubstanceDefinitionProperty,
+    ValueXSubstanceDefinitionProperty? valueXSubstanceDefinitionProperty,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2389,12 +2417,22 @@ class SubstanceDefinitionRelationship extends BackboneElement {
               )
               .toList()
           : null,
-      substanceDefinitionXSubstanceDefinitionRelationship:
-          json['substanceDefinitionXSubstanceDefinitionRelationship'] != null
-              ? Reference.fromJson(
-                  json['substanceDefinitionXSubstanceDefinitionRelationship']
-                      as Map<String, dynamic>,
-                )
+      substanceDefinitionXSubstanceDefinitionRelationship: json[
+                      'substanceDefinitionReference'] !=
+                  null ||
+              json['_substanceDefinitionReference'] != null
+          ? ReferenceSubstanceDefinitionSubstanceDefinitionRelationship
+              .fromJson({
+              'value': json['substanceDefinitionReference'],
+              '_value': json['_substanceDefinitionReference'],
+            })
+          : json['substanceDefinitionCodeableConcept'] != null ||
+                  json['_substanceDefinitionCodeableConcept'] != null
+              ? CodeableConceptSubstanceDefinitionSubstanceDefinitionRelationship
+                  .fromJson({
+                  'value': json['substanceDefinitionCodeableConcept'],
+                  '_value': json['_substanceDefinitionCodeableConcept'],
+                })
               : null,
       type: CodeableConcept.fromJson(
         json['type'] as Map<String, dynamic>,
@@ -2405,13 +2443,23 @@ class SubstanceDefinitionRelationship extends BackboneElement {
               '_value': json['_isDefining'],
             })
           : null,
-      amountXSubstanceDefinitionRelationship:
-          json['amountXSubstanceDefinitionRelationship'] != null
-              ? Quantity.fromJson(
-                  json['amountXSubstanceDefinitionRelationship']
-                      as Map<String, dynamic>,
-                )
-              : null,
+      amountXSubstanceDefinitionRelationship: json['amountQuantity'] != null ||
+              json['_amountQuantity'] != null
+          ? QuantityAmountSubstanceDefinitionRelationship.fromJson({
+              'value': json['amountQuantity'],
+              '_value': json['_amountQuantity'],
+            })
+          : json['amountRatio'] != null || json['_amountRatio'] != null
+              ? RatioAmountSubstanceDefinitionRelationship.fromJson({
+                  'value': json['amountRatio'],
+                  '_value': json['_amountRatio'],
+                })
+              : json['amountString'] != null || json['_amountString'] != null
+                  ? StringAmountSubstanceDefinitionRelationship.fromJson({
+                      'value': json['amountString'],
+                      '_value': json['_amountString'],
+                    })
+                  : null,
       ratioHighLimitAmount: json['ratioHighLimitAmount'] != null
           ? Ratio.fromJson(
               json['ratioHighLimitAmount'] as Map<String, dynamic>,
@@ -2479,7 +2527,8 @@ class SubstanceDefinitionRelationship extends BackboneElement {
   /// [substanceDefinitionXSubstanceDefinitionRelationship]
   /// A pointer to another substance, as a resource or just a
   /// representational code.
-  final Reference? substanceDefinitionXSubstanceDefinitionRelationship;
+  final SubstanceDefinitionXSubstanceDefinitionRelationship?
+      substanceDefinitionXSubstanceDefinitionRelationship;
 
   /// [type]
   /// For example "salt to parent", "active moiety", "starting material",
@@ -2496,7 +2545,8 @@ class SubstanceDefinitionRelationship extends BackboneElement {
   /// A numeric factor for the relationship, for instance to express that the
   /// salt of a substance has some percentage of the active substance in
   /// relation to some other.
-  final Quantity? amountXSubstanceDefinitionRelationship;
+  final AmountXSubstanceDefinitionRelationship?
+      amountXSubstanceDefinitionRelationship;
 
   /// [ratioHighLimitAmount]
   /// For use when the numeric has an uncertain range.
@@ -2567,10 +2617,12 @@ class SubstanceDefinitionRelationship extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    Reference? substanceDefinitionXSubstanceDefinitionRelationship,
+    SubstanceDefinitionXSubstanceDefinitionRelationship?
+        substanceDefinitionXSubstanceDefinitionRelationship,
     CodeableConcept? type,
     FhirBoolean? isDefining,
-    Quantity? amountXSubstanceDefinitionRelationship,
+    AmountXSubstanceDefinitionRelationship?
+        amountXSubstanceDefinitionRelationship,
     Ratio? ratioHighLimitAmount,
     CodeableConcept? comparator,
     List<Reference>? source,

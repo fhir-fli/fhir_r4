@@ -39,13 +39,295 @@ class FhirExtension extends DataType {
         'value': json['url'],
         '_value': json['_url'],
       }),
-      valueXExtensionExtension: (json['valueXExtensionExtension'] != null ||
-              json['_valueXExtensionExtension'] != null)
-          ? FhirBase64Binary.fromJson({
-              'value': json['valueXExtensionExtension'],
-              '_value': json['_valueXExtensionExtension'],
+      valueXExtensionExtension: json['valueBase64Binary'] != null ||
+              json['_valueBase64Binary'] != null
+          ? Base64BinaryValueExtensionExtension.fromJson({
+              'value': json['valueBase64Binary'],
+              '_value': json['_valueBase64Binary'],
             })
-          : null,
+          : json['valueBoolean'] != null || json['_valueBoolean'] != null
+              ? BooleanValueExtensionExtension.fromJson({
+                  'value': json['valueBoolean'],
+                  '_value': json['_valueBoolean'],
+                })
+              : json['valueCanonical'] != null ||
+                      json['_valueCanonical'] != null
+                  ? CanonicalValueExtensionExtension.fromJson({
+                      'value': json['valueCanonical'],
+                      '_value': json['_valueCanonical'],
+                    })
+                  : json['valueCode'] != null || json['_valueCode'] != null
+                      ? CodeValueExtensionExtension.fromJson({
+                          'value': json['valueCode'],
+                          '_value': json['_valueCode'],
+                        })
+                      : json['valueDate'] != null || json['_valueDate'] != null
+                          ? DateValueExtensionExtension.fromJson({
+                              'value': json['valueDate'],
+                              '_value': json['_valueDate'],
+                            })
+                          : json['valueDateTime'] != null ||
+                                  json['_valueDateTime'] != null
+                              ? DateTimeValueExtensionExtension.fromJson({
+                                  'value': json['valueDateTime'],
+                                  '_value': json['_valueDateTime'],
+                                })
+                              : json['valueDecimal'] != null ||
+                                      json['_valueDecimal'] != null
+                                  ? DecimalValueExtensionExtension.fromJson({
+                                      'value': json['valueDecimal'],
+                                      '_value': json['_valueDecimal'],
+                                    })
+                                  : json['valueId'] != null ||
+                                          json['_valueId'] != null
+                                      ? IdValueExtensionExtension.fromJson({
+                                          'value': json['valueId'],
+                                          '_value': json['_valueId'],
+                                        })
+                                      : json['valueInstant'] != null ||
+                                              json['_valueInstant'] != null
+                                          ? InstantValueExtensionExtension.fromJson({
+                                              'value': json['valueInstant'],
+                                              '_value': json['_valueInstant'],
+                                            })
+                                          : json['valueInteger'] != null ||
+                                                  json['_valueInteger'] != null
+                                              ? IntegerValueExtensionExtension.fromJson({
+                                                  'value': json['valueInteger'],
+                                                  '_value':
+                                                      json['_valueInteger'],
+                                                })
+                                              : json['valueMarkdown'] != null ||
+                                                      json['_valueMarkdown'] !=
+                                                          null
+                                                  ? MarkdownValueExtensionExtension.fromJson({
+                                                      'value':
+                                                          json['valueMarkdown'],
+                                                      '_value': json[
+                                                          '_valueMarkdown'],
+                                                    })
+                                                  : json['valueOid'] != null ||
+                                                          json['_valueOid'] !=
+                                                              null
+                                                      ? OidValueExtensionExtension.fromJson({
+                                                          'value':
+                                                              json['valueOid'],
+                                                          '_value':
+                                                              json['_valueOid'],
+                                                        })
+                                                      : json['valuePositiveInt'] !=
+                                                                  null ||
+                                                              json['_valuePositiveInt'] !=
+                                                                  null
+                                                          ? PositiveIntValueExtensionExtension.fromJson({
+                                                              'value': json[
+                                                                  'valuePositiveInt'],
+                                                              '_value': json[
+                                                                  '_valuePositiveInt'],
+                                                            })
+                                                          : json['valueString'] !=
+                                                                      null ||
+                                                                  json['_valueString'] !=
+                                                                      null
+                                                              ? StringValueExtensionExtension.fromJson({
+                                                                  'value': json[
+                                                                      'valueString'],
+                                                                  '_value': json[
+                                                                      '_valueString'],
+                                                                })
+                                                              : json['valueTime'] !=
+                                                                          null ||
+                                                                      json['_valueTime'] != null
+                                                                  ? TimeValueExtensionExtension.fromJson({
+                                                                      'value': json[
+                                                                          'valueTime'],
+                                                                      '_value':
+                                                                          json[
+                                                                              '_valueTime'],
+                                                                    })
+                                                                  : json['valueUnsignedInt'] != null || json['_valueUnsignedInt'] != null
+                                                                      ? UnsignedIntValueExtensionExtension.fromJson({
+                                                                          'value':
+                                                                              json['valueUnsignedInt'],
+                                                                          '_value':
+                                                                              json['_valueUnsignedInt'],
+                                                                        })
+                                                                      : json['valueUri'] != null || json['_valueUri'] != null
+                                                                          ? UriValueExtensionExtension.fromJson({
+                                                                              'value': json['valueUri'],
+                                                                              '_value': json['_valueUri'],
+                                                                            })
+                                                                          : json['valueUrl'] != null || json['_valueUrl'] != null
+                                                                              ? UrlValueExtensionExtension.fromJson({
+                                                                                  'value': json['valueUrl'],
+                                                                                  '_value': json['_valueUrl'],
+                                                                                })
+                                                                              : json['valueUuid'] != null || json['_valueUuid'] != null
+                                                                                  ? UuidValueExtensionExtension.fromJson({
+                                                                                      'value': json['valueUuid'],
+                                                                                      '_value': json['_valueUuid'],
+                                                                                    })
+                                                                                  : json['valueAddress'] != null || json['_valueAddress'] != null
+                                                                                      ? AddressValueExtensionExtension.fromJson({
+                                                                                          'value': json['valueAddress'],
+                                                                                          '_value': json['_valueAddress'],
+                                                                                        })
+                                                                                      : json['valueAge'] != null || json['_valueAge'] != null
+                                                                                          ? AgeValueExtensionExtension.fromJson({
+                                                                                              'value': json['valueAge'],
+                                                                                              '_value': json['_valueAge'],
+                                                                                            })
+                                                                                          : json['valueAnnotation'] != null || json['_valueAnnotation'] != null
+                                                                                              ? AnnotationValueExtensionExtension.fromJson({
+                                                                                                  'value': json['valueAnnotation'],
+                                                                                                  '_value': json['_valueAnnotation'],
+                                                                                                })
+                                                                                              : json['valueAttachment'] != null || json['_valueAttachment'] != null
+                                                                                                  ? AttachmentValueExtensionExtension.fromJson({
+                                                                                                      'value': json['valueAttachment'],
+                                                                                                      '_value': json['_valueAttachment'],
+                                                                                                    })
+                                                                                                  : json['valueCodeableConcept'] != null || json['_valueCodeableConcept'] != null
+                                                                                                      ? CodeableConceptValueExtensionExtension.fromJson({
+                                                                                                          'value': json['valueCodeableConcept'],
+                                                                                                          '_value': json['_valueCodeableConcept'],
+                                                                                                        })
+                                                                                                      : json['valueCodeableReference'] != null || json['_valueCodeableReference'] != null
+                                                                                                          ? CodeableReferenceValueExtensionExtension.fromJson({
+                                                                                                              'value': json['valueCodeableReference'],
+                                                                                                              '_value': json['_valueCodeableReference'],
+                                                                                                            })
+                                                                                                          : json['valueCoding'] != null || json['_valueCoding'] != null
+                                                                                                              ? CodingValueExtensionExtension.fromJson({
+                                                                                                                  'value': json['valueCoding'],
+                                                                                                                  '_value': json['_valueCoding'],
+                                                                                                                })
+                                                                                                              : json['valueContactPoint'] != null || json['_valueContactPoint'] != null
+                                                                                                                  ? ContactPointValueExtensionExtension.fromJson({
+                                                                                                                      'value': json['valueContactPoint'],
+                                                                                                                      '_value': json['_valueContactPoint'],
+                                                                                                                    })
+                                                                                                                  : json['valueCount'] != null || json['_valueCount'] != null
+                                                                                                                      ? CountValueExtensionExtension.fromJson({
+                                                                                                                          'value': json['valueCount'],
+                                                                                                                          '_value': json['_valueCount'],
+                                                                                                                        })
+                                                                                                                      : json['valueDistance'] != null || json['_valueDistance'] != null
+                                                                                                                          ? DistanceValueExtensionExtension.fromJson({
+                                                                                                                              'value': json['valueDistance'],
+                                                                                                                              '_value': json['_valueDistance'],
+                                                                                                                            })
+                                                                                                                          : json['valueDuration'] != null || json['_valueDuration'] != null
+                                                                                                                              ? DurationValueExtensionExtension.fromJson({
+                                                                                                                                  'value': json['valueDuration'],
+                                                                                                                                  '_value': json['_valueDuration'],
+                                                                                                                                })
+                                                                                                                              : json['valueHumanName'] != null || json['_valueHumanName'] != null
+                                                                                                                                  ? HumanNameValueExtensionExtension.fromJson({
+                                                                                                                                      'value': json['valueHumanName'],
+                                                                                                                                      '_value': json['_valueHumanName'],
+                                                                                                                                    })
+                                                                                                                                  : json['valueIdentifier'] != null || json['_valueIdentifier'] != null
+                                                                                                                                      ? IdentifierValueExtensionExtension.fromJson({
+                                                                                                                                          'value': json['valueIdentifier'],
+                                                                                                                                          '_value': json['_valueIdentifier'],
+                                                                                                                                        })
+                                                                                                                                      : json['valueMoney'] != null || json['_valueMoney'] != null
+                                                                                                                                          ? MoneyValueExtensionExtension.fromJson({
+                                                                                                                                              'value': json['valueMoney'],
+                                                                                                                                              '_value': json['_valueMoney'],
+                                                                                                                                            })
+                                                                                                                                          : json['valuePeriod'] != null || json['_valuePeriod'] != null
+                                                                                                                                              ? PeriodValueExtensionExtension.fromJson({
+                                                                                                                                                  'value': json['valuePeriod'],
+                                                                                                                                                  '_value': json['_valuePeriod'],
+                                                                                                                                                })
+                                                                                                                                              : json['valueQuantity'] != null || json['_valueQuantity'] != null
+                                                                                                                                                  ? QuantityValueExtensionExtension.fromJson({
+                                                                                                                                                      'value': json['valueQuantity'],
+                                                                                                                                                      '_value': json['_valueQuantity'],
+                                                                                                                                                    })
+                                                                                                                                                  : json['valueRange'] != null || json['_valueRange'] != null
+                                                                                                                                                      ? RangeValueExtensionExtension.fromJson({
+                                                                                                                                                          'value': json['valueRange'],
+                                                                                                                                                          '_value': json['_valueRange'],
+                                                                                                                                                        })
+                                                                                                                                                      : json['valueRatio'] != null || json['_valueRatio'] != null
+                                                                                                                                                          ? RatioValueExtensionExtension.fromJson({
+                                                                                                                                                              'value': json['valueRatio'],
+                                                                                                                                                              '_value': json['_valueRatio'],
+                                                                                                                                                            })
+                                                                                                                                                          : json['valueRatioRange'] != null || json['_valueRatioRange'] != null
+                                                                                                                                                              ? RatioRangeValueExtensionExtension.fromJson({
+                                                                                                                                                                  'value': json['valueRatioRange'],
+                                                                                                                                                                  '_value': json['_valueRatioRange'],
+                                                                                                                                                                })
+                                                                                                                                                              : json['valueReference'] != null || json['_valueReference'] != null
+                                                                                                                                                                  ? ReferenceValueExtensionExtension.fromJson({
+                                                                                                                                                                      'value': json['valueReference'],
+                                                                                                                                                                      '_value': json['_valueReference'],
+                                                                                                                                                                    })
+                                                                                                                                                                  : json['valueSampledData'] != null || json['_valueSampledData'] != null
+                                                                                                                                                                      ? SampledDataValueExtensionExtension.fromJson({
+                                                                                                                                                                          'value': json['valueSampledData'],
+                                                                                                                                                                          '_value': json['_valueSampledData'],
+                                                                                                                                                                        })
+                                                                                                                                                                      : json['valueSignature'] != null || json['_valueSignature'] != null
+                                                                                                                                                                          ? SignatureValueExtensionExtension.fromJson({
+                                                                                                                                                                              'value': json['valueSignature'],
+                                                                                                                                                                              '_value': json['_valueSignature'],
+                                                                                                                                                                            })
+                                                                                                                                                                          : json['valueTiming'] != null || json['_valueTiming'] != null
+                                                                                                                                                                              ? TimingValueExtensionExtension.fromJson({
+                                                                                                                                                                                  'value': json['valueTiming'],
+                                                                                                                                                                                  '_value': json['_valueTiming'],
+                                                                                                                                                                                })
+                                                                                                                                                                              : json['valueContactDetail'] != null || json['_valueContactDetail'] != null
+                                                                                                                                                                                  ? ContactDetailValueExtensionExtension.fromJson({
+                                                                                                                                                                                      'value': json['valueContactDetail'],
+                                                                                                                                                                                      '_value': json['_valueContactDetail'],
+                                                                                                                                                                                    })
+                                                                                                                                                                                  : json['valueContributor'] != null || json['_valueContributor'] != null
+                                                                                                                                                                                      ? ContributorValueExtensionExtension.fromJson({
+                                                                                                                                                                                          'value': json['valueContributor'],
+                                                                                                                                                                                          '_value': json['_valueContributor'],
+                                                                                                                                                                                        })
+                                                                                                                                                                                      : json['valueDataRequirement'] != null || json['_valueDataRequirement'] != null
+                                                                                                                                                                                          ? DataRequirementValueExtensionExtension.fromJson({
+                                                                                                                                                                                              'value': json['valueDataRequirement'],
+                                                                                                                                                                                              '_value': json['_valueDataRequirement'],
+                                                                                                                                                                                            })
+                                                                                                                                                                                          : json['valueExpression'] != null || json['_valueExpression'] != null
+                                                                                                                                                                                              ? ExpressionValueExtensionExtension.fromJson({
+                                                                                                                                                                                                  'value': json['valueExpression'],
+                                                                                                                                                                                                  '_value': json['_valueExpression'],
+                                                                                                                                                                                                })
+                                                                                                                                                                                              : json['valueParameterDefinition'] != null || json['_valueParameterDefinition'] != null
+                                                                                                                                                                                                  ? ParameterDefinitionValueExtensionExtension.fromJson({
+                                                                                                                                                                                                      'value': json['valueParameterDefinition'],
+                                                                                                                                                                                                      '_value': json['_valueParameterDefinition'],
+                                                                                                                                                                                                    })
+                                                                                                                                                                                                  : json['valueRelatedArtifact'] != null || json['_valueRelatedArtifact'] != null
+                                                                                                                                                                                                      ? RelatedArtifactValueExtensionExtension.fromJson({
+                                                                                                                                                                                                          'value': json['valueRelatedArtifact'],
+                                                                                                                                                                                                          '_value': json['_valueRelatedArtifact'],
+                                                                                                                                                                                                        })
+                                                                                                                                                                                                      : json['valueTriggerDefinition'] != null || json['_valueTriggerDefinition'] != null
+                                                                                                                                                                                                          ? TriggerDefinitionValueExtensionExtension.fromJson({
+                                                                                                                                                                                                              'value': json['valueTriggerDefinition'],
+                                                                                                                                                                                                              '_value': json['_valueTriggerDefinition'],
+                                                                                                                                                                                                            })
+                                                                                                                                                                                                          : json['valueUsageContext'] != null || json['_valueUsageContext'] != null
+                                                                                                                                                                                                              ? UsageContextValueExtensionExtension.fromJson({
+                                                                                                                                                                                                                  'value': json['valueUsageContext'],
+                                                                                                                                                                                                                  '_value': json['_valueUsageContext'],
+                                                                                                                                                                                                                })
+                                                                                                                                                                                                              : json['valueDosage'] != null || json['_valueDosage'] != null
+                                                                                                                                                                                                                  ? DosageValueExtensionExtension.fromJson({
+                                                                                                                                                                                                                      'value': json['valueDosage'],
+                                                                                                                                                                                                                      '_value': json['_valueDosage'],
+                                                                                                                                                                                                                    })
+                                                                                                                                                                                                                  : null,
     );
   }
 
@@ -99,7 +381,7 @@ class FhirExtension extends DataType {
   /// [valueXExtensionExtension]
   /// Value of extension - must be one of a constrained set of the data types
   /// (see [Extensibility](extensibility.html) for a list).
-  final FhirBase64Binary? valueXExtensionExtension;
+  final ValueXExtensionExtension? valueXExtensionExtension;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -129,7 +411,7 @@ class FhirExtension extends DataType {
     FhirString? id,
     List<FhirExtension>? extension_,
     FhirString? url,
-    FhirBase64Binary? valueXExtensionExtension,
+    ValueXExtensionExtension? valueXExtensionExtension,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,

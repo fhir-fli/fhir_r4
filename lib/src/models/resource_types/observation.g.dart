@@ -5,7 +5,7 @@ part of 'observation.dart';
 /// the "physiologically relevant time". This is usually either the time of
 /// the procedure or of specimen collection, but very often the source of
 /// the date/time is not known, only the date/time itself.
-sealed class EffectiveXObservationObservation {}
+sealed class EffectiveXObservationObservation extends DataType {}
 
 /// The time or time-period the observed value is asserted as being true.
 /// For biological subjects - e.g. human patients - this is usually called
@@ -109,7 +109,7 @@ class InstantEffectiveObservationObservation extends FhirInstant
 
 /// The information determined as a result of making the observation, if
 /// the information has a simple value.
-sealed class ValueXObservationObservation {}
+sealed class ValueXObservationObservation extends DataType {}
 
 /// The information determined as a result of making the observation, if
 /// the information has a simple value.
@@ -289,7 +289,7 @@ class PeriodValueObservationObservation extends Period
 
 /// The information determined as a result of making the observation, if
 /// the information has a simple value.
-sealed class ValueXObservationComponent {}
+sealed class ValueXObservationComponent extends DataType {}
 
 /// The information determined as a result of making the observation, if
 /// the information has a simple value.

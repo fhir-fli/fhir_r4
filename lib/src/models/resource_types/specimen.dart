@@ -488,12 +488,16 @@ class SpecimenCollection extends BackboneElement {
               json['collector'] as Map<String, dynamic>,
             )
           : null,
-      collectedXSpecimenCollection:
-          (json['collectedXSpecimenCollection'] != null ||
-                  json['_collectedXSpecimenCollection'] != null)
-              ? FhirDateTime.fromJson({
-                  'value': json['collectedXSpecimenCollection'],
-                  '_value': json['_collectedXSpecimenCollection'],
+      collectedXSpecimenCollection: json['collectedDateTime'] != null ||
+              json['_collectedDateTime'] != null
+          ? DateTimeCollectedSpecimenCollection.fromJson({
+              'value': json['collectedDateTime'],
+              '_value': json['_collectedDateTime'],
+            })
+          : json['collectedPeriod'] != null || json['_collectedPeriod'] != null
+              ? PeriodCollectedSpecimenCollection.fromJson({
+                  'value': json['collectedPeriod'],
+                  '_value': json['_collectedPeriod'],
                 })
               : null,
       duration: json['duration'] != null
@@ -517,12 +521,19 @@ class SpecimenCollection extends BackboneElement {
             )
           : null,
       fastingStatusXSpecimenCollection:
-          json['fastingStatusXSpecimenCollection'] != null
-              ? CodeableConcept.fromJson(
-                  json['fastingStatusXSpecimenCollection']
-                      as Map<String, dynamic>,
-                )
-              : null,
+          json['fastingStatusCodeableConcept'] != null ||
+                  json['_fastingStatusCodeableConcept'] != null
+              ? CodeableConceptFastingStatusSpecimenCollection.fromJson({
+                  'value': json['fastingStatusCodeableConcept'],
+                  '_value': json['_fastingStatusCodeableConcept'],
+                })
+              : json['fastingStatusDuration'] != null ||
+                      json['_fastingStatusDuration'] != null
+                  ? DurationFastingStatusSpecimenCollection.fromJson({
+                      'value': json['fastingStatusDuration'],
+                      '_value': json['_fastingStatusDuration'],
+                    })
+                  : null,
     );
   }
 
@@ -575,7 +586,7 @@ class SpecimenCollection extends BackboneElement {
   /// [collectedXSpecimenCollection]
   /// Time when specimen was collected from subject - the physiologically
   /// relevant time.
-  final FhirDateTime? collectedXSpecimenCollection;
+  final CollectedXSpecimenCollection? collectedXSpecimenCollection;
 
   /// [duration]
   /// The span of time over which the collection of a specimen occurred.
@@ -600,7 +611,7 @@ class SpecimenCollection extends BackboneElement {
   /// [fastingStatusXSpecimenCollection]
   /// Abstinence or reduction from some or all food, drink, or both, for a
   /// period of time prior to sample collection.
-  final CodeableConcept? fastingStatusXSpecimenCollection;
+  final FastingStatusXSpecimenCollection? fastingStatusXSpecimenCollection;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -660,12 +671,12 @@ class SpecimenCollection extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     Reference? collector,
-    FhirDateTime? collectedXSpecimenCollection,
+    CollectedXSpecimenCollection? collectedXSpecimenCollection,
     FhirDuration? duration,
     Quantity? quantity,
     CodeableConcept? method,
     CodeableConcept? bodySite,
-    CodeableConcept? fastingStatusXSpecimenCollection,
+    FastingStatusXSpecimenCollection? fastingStatusXSpecimenCollection,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -751,13 +762,18 @@ class SpecimenProcessing extends BackboneElement {
               )
               .toList()
           : null,
-      timeXSpecimenProcessing: (json['timeXSpecimenProcessing'] != null ||
-              json['_timeXSpecimenProcessing'] != null)
-          ? FhirDateTime.fromJson({
-              'value': json['timeXSpecimenProcessing'],
-              '_value': json['_timeXSpecimenProcessing'],
-            })
-          : null,
+      timeXSpecimenProcessing:
+          json['timeDateTime'] != null || json['_timeDateTime'] != null
+              ? DateTimeTimeSpecimenProcessing.fromJson({
+                  'value': json['timeDateTime'],
+                  '_value': json['_timeDateTime'],
+                })
+              : json['timePeriod'] != null || json['_timePeriod'] != null
+                  ? PeriodTimeSpecimenProcessing.fromJson({
+                      'value': json['timePeriod'],
+                      '_value': json['_timePeriod'],
+                    })
+                  : null,
     );
   }
 
@@ -819,7 +835,7 @@ class SpecimenProcessing extends BackboneElement {
   /// A record of the time or period when the specimen processing occurred.
   /// For example the time of sample fixation or the period of time the
   /// sample was in formalin.
-  final FhirDateTime? timeXSpecimenProcessing;
+  final TimeXSpecimenProcessing? timeXSpecimenProcessing;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -865,7 +881,7 @@ class SpecimenProcessing extends BackboneElement {
     FhirString? description,
     CodeableConcept? procedure,
     List<Reference>? additive,
-    FhirDateTime? timeXSpecimenProcessing,
+    TimeXSpecimenProcessing? timeXSpecimenProcessing,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -960,11 +976,19 @@ class SpecimenContainer extends BackboneElement {
               json['specimenQuantity'] as Map<String, dynamic>,
             )
           : null,
-      additiveXSpecimenContainer: json['additiveXSpecimenContainer'] != null
-          ? CodeableConcept.fromJson(
-              json['additiveXSpecimenContainer'] as Map<String, dynamic>,
-            )
-          : null,
+      additiveXSpecimenContainer: json['additiveCodeableConcept'] != null ||
+              json['_additiveCodeableConcept'] != null
+          ? CodeableConceptAdditiveSpecimenContainer.fromJson({
+              'value': json['additiveCodeableConcept'],
+              '_value': json['_additiveCodeableConcept'],
+            })
+          : json['additiveReference'] != null ||
+                  json['_additiveReference'] != null
+              ? ReferenceAdditiveSpecimenContainer.fromJson({
+                  'value': json['additiveReference'],
+                  '_value': json['_additiveReference'],
+                })
+              : null,
     );
   }
 
@@ -1037,7 +1061,7 @@ class SpecimenContainer extends BackboneElement {
   /// [additiveXSpecimenContainer]
   /// Introduced substance to preserve, maintain or enhance the specimen.
   /// Examples: Formalin, Citrate, EDTA.
-  final CodeableConcept? additiveXSpecimenContainer;
+  final AdditiveXSpecimenContainer? additiveXSpecimenContainer;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1096,7 +1120,7 @@ class SpecimenContainer extends BackboneElement {
     CodeableConcept? type,
     Quantity? capacity,
     Quantity? specimenQuantity,
-    CodeableConcept? additiveXSpecimenContainer,
+    AdditiveXSpecimenContainer? additiveXSpecimenContainer,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,

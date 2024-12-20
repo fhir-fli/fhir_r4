@@ -161,12 +161,19 @@ class EventDefinition extends CanonicalResource {
                 })
               : null,
       subjectXEventDefinitionEventDefinition:
-          json['subjectXEventDefinitionEventDefinition'] != null
-              ? CodeableConcept.fromJson(
-                  json['subjectXEventDefinitionEventDefinition']
-                      as Map<String, dynamic>,
-                )
-              : null,
+          json['subjectCodeableConcept'] != null ||
+                  json['_subjectCodeableConcept'] != null
+              ? CodeableConceptSubjectEventDefinitionEventDefinition.fromJson({
+                  'value': json['subjectCodeableConcept'],
+                  '_value': json['_subjectCodeableConcept'],
+                })
+              : json['subjectReference'] != null ||
+                      json['_subjectReference'] != null
+                  ? ReferenceSubjectEventDefinitionEventDefinition.fromJson({
+                      'value': json['subjectReference'],
+                      '_value': json['_subjectReference'],
+                    })
+                  : null,
       date: (json['date'] != null || json['_date'] != null)
           ? FhirDateTime.fromJson({
               'value': json['date'],
@@ -381,7 +388,8 @@ class EventDefinition extends CanonicalResource {
   /// [subjectXEventDefinitionEventDefinition]
   /// A code or group definition that describes the intended subject of the
   /// event definition.
-  final CodeableConcept? subjectXEventDefinitionEventDefinition;
+  final SubjectXEventDefinitionEventDefinition?
+      subjectXEventDefinitionEventDefinition;
 
   /// [purpose]
   /// Explanation of why this event definition is needed and why it has been
@@ -581,7 +589,8 @@ class EventDefinition extends CanonicalResource {
     FhirString? subtitle,
     PublicationStatus? status,
     FhirBoolean? experimental,
-    CodeableConcept? subjectXEventDefinitionEventDefinition,
+    SubjectXEventDefinitionEventDefinition?
+        subjectXEventDefinitionEventDefinition,
     FhirDateTime? date,
     FhirString? publisher,
     List<ContactDetail>? contact,

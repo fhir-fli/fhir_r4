@@ -47,11 +47,19 @@ class Population extends BackboneType {
               )
               .toList()
           : null,
-      ageXPopulationPopulation: json['ageXPopulationPopulation'] != null
-          ? Range.fromJson(
-              json['ageXPopulationPopulation'] as Map<String, dynamic>,
-            )
-          : null,
+      ageXPopulationPopulation:
+          json['ageRange'] != null || json['_ageRange'] != null
+              ? RangeAgePopulationPopulation.fromJson({
+                  'value': json['ageRange'],
+                  '_value': json['_ageRange'],
+                })
+              : json['ageCodeableConcept'] != null ||
+                      json['_ageCodeableConcept'] != null
+                  ? CodeableConceptAgePopulationPopulation.fromJson({
+                      'value': json['ageCodeableConcept'],
+                      '_value': json['_ageCodeableConcept'],
+                    })
+                  : null,
       gender: json['gender'] != null
           ? CodeableConcept.fromJson(
               json['gender'] as Map<String, dynamic>,
@@ -114,7 +122,7 @@ class Population extends BackboneType {
 
   /// [ageXPopulationPopulation]
   /// The age of the specific population.
-  final Range? ageXPopulationPopulation;
+  final AgeXPopulationPopulation? ageXPopulationPopulation;
 
   /// [gender]
   /// The gender of the specific population.
@@ -176,7 +184,7 @@ class Population extends BackboneType {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    Range? ageXPopulationPopulation,
+    AgeXPopulationPopulation? ageXPopulationPopulation,
     CodeableConcept? gender,
     CodeableConcept? race,
     CodeableConcept? physiologicalCondition,

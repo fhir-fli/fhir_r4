@@ -127,16 +127,20 @@ class CoverageEligibilityRequest extends DomainResource {
       patient: Reference.fromJson(
         json['patient'] as Map<String, dynamic>,
       ),
-      servicedXCoverageEligibilityRequestCoverageEligibilityRequest:
-          (json['servicedXCoverageEligibilityRequestCoverageEligibilityRequest'] !=
-                      null ||
-                  json['_servicedXCoverageEligibilityRequestCoverageEligibilityRequest'] !=
-                      null)
-              ? FhirDate.fromJson({
-                  'value': json[
-                      'servicedXCoverageEligibilityRequestCoverageEligibilityRequest'],
-                  '_value': json[
-                      '_servicedXCoverageEligibilityRequestCoverageEligibilityRequest'],
+      servicedXCoverageEligibilityRequestCoverageEligibilityRequest: json[
+                      'servicedDate'] !=
+                  null ||
+              json['_servicedDate'] != null
+          ? DateServicedCoverageEligibilityRequestCoverageEligibilityRequest
+              .fromJson({
+              'value': json['servicedDate'],
+              '_value': json['_servicedDate'],
+            })
+          : json['servicedPeriod'] != null || json['_servicedPeriod'] != null
+              ? PeriodServicedCoverageEligibilityRequestCoverageEligibilityRequest
+                  .fromJson({
+                  'value': json['servicedPeriod'],
+                  '_value': json['_servicedPeriod'],
                 })
               : null,
       created: FhirDateTime.fromJson({
@@ -261,7 +265,8 @@ class CoverageEligibilityRequest extends DomainResource {
   /// [servicedXCoverageEligibilityRequestCoverageEligibilityRequest]
   /// The date or dates when the enclosed suite of services were performed or
   /// completed.
-  final FhirDate? servicedXCoverageEligibilityRequestCoverageEligibilityRequest;
+  final ServicedXCoverageEligibilityRequestCoverageEligibilityRequest?
+      servicedXCoverageEligibilityRequestCoverageEligibilityRequest;
 
   /// [created]
   /// The date when this resource was created.
@@ -404,7 +409,8 @@ class CoverageEligibilityRequest extends DomainResource {
     CodeableConcept? priority,
     List<EligibilityRequestPurpose>? purpose,
     Reference? patient,
-    FhirDate? servicedXCoverageEligibilityRequestCoverageEligibilityRequest,
+    ServicedXCoverageEligibilityRequestCoverageEligibilityRequest?
+        servicedXCoverageEligibilityRequestCoverageEligibilityRequest,
     FhirDateTime? created,
     Reference? enterer,
     Reference? provider,
@@ -1149,12 +1155,21 @@ class CoverageEligibilityRequestDiagnosis extends BackboneElement {
               )
               .toList()
           : null,
-      diagnosisXCoverageEligibilityRequestDiagnosis:
-          json['diagnosisXCoverageEligibilityRequestDiagnosis'] != null
-              ? CodeableConcept.fromJson(
-                  json['diagnosisXCoverageEligibilityRequestDiagnosis']
-                      as Map<String, dynamic>,
-                )
+      diagnosisXCoverageEligibilityRequestDiagnosis: json[
+                      'diagnosisCodeableConcept'] !=
+                  null ||
+              json['_diagnosisCodeableConcept'] != null
+          ? CodeableConceptDiagnosisCoverageEligibilityRequestDiagnosis
+              .fromJson({
+              'value': json['diagnosisCodeableConcept'],
+              '_value': json['_diagnosisCodeableConcept'],
+            })
+          : json['diagnosisReference'] != null ||
+                  json['_diagnosisReference'] != null
+              ? ReferenceDiagnosisCoverageEligibilityRequestDiagnosis.fromJson({
+                  'value': json['diagnosisReference'],
+                  '_value': json['_diagnosisReference'],
+                })
               : null,
     );
   }
@@ -1204,7 +1219,8 @@ class CoverageEligibilityRequestDiagnosis extends BackboneElement {
   /// [diagnosisXCoverageEligibilityRequestDiagnosis]
   /// The nature of illness or problem in a coded form or as a reference to
   /// an external defined Condition.
-  final CodeableConcept? diagnosisXCoverageEligibilityRequestDiagnosis;
+  final DiagnosisXCoverageEligibilityRequestDiagnosis?
+      diagnosisXCoverageEligibilityRequestDiagnosis;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1242,7 +1258,8 @@ class CoverageEligibilityRequestDiagnosis extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    CodeableConcept? diagnosisXCoverageEligibilityRequestDiagnosis,
+    DiagnosisXCoverageEligibilityRequestDiagnosis?
+        diagnosisXCoverageEligibilityRequestDiagnosis,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,

@@ -2,7 +2,7 @@ part of 'medication_knowledge.dart';
 
 /// The actual ingredient - either a substance (simple ingredient) or
 /// another medication.
-sealed class ItemXMedicationKnowledgeIngredient {}
+sealed class ItemXMedicationKnowledgeIngredient extends DataType {}
 
 /// The actual ingredient - either a substance (simple ingredient) or
 /// another medication.
@@ -29,7 +29,8 @@ class ReferenceItemMedicationKnowledgeIngredient extends Reference
 
 /// Indication for use that apply to the specific administration
 /// guidelines.
-sealed class IndicationXMedicationKnowledgeAdministrationGuidelines {}
+sealed class IndicationXMedicationKnowledgeAdministrationGuidelines
+    extends DataType {}
 
 /// Indication for use that apply to the specific administration
 /// guidelines.
@@ -59,7 +60,8 @@ class ReferenceIndicationMedicationKnowledgeAdministrationGuidelines
 
 /// Specific characteristic that is relevant to the administration
 /// guideline (e.g. height, weight, gender).
-sealed class CharacteristicXMedicationKnowledgePatientCharacteristics {}
+sealed class CharacteristicXMedicationKnowledgePatientCharacteristics
+    extends DataType {}
 
 /// Specific characteristic that is relevant to the administration
 /// guideline (e.g. height, weight, gender).
@@ -88,7 +90,7 @@ class QuantityCharacteristicMedicationKnowledgePatientCharacteristics
 }
 
 /// Description of the characteristic.
-sealed class ValueXMedicationKnowledgeDrugCharacteristic {}
+sealed class ValueXMedicationKnowledgeDrugCharacteristic extends DataType {}
 
 /// Description of the characteristic.
 class CodeableConceptValueMedicationKnowledgeDrugCharacteristic

@@ -2,7 +2,7 @@ part of 'questionnaire.dart';
 
 /// A value that the referenced question is tested using the specified
 /// operator in order for the item to be enabled.
-sealed class AnswerXQuestionnaireEnableWhen {}
+sealed class AnswerXQuestionnaireEnableWhen extends DataType {}
 
 /// A value that the referenced question is tested using the specified
 /// operator in order for the item to be enabled.
@@ -199,7 +199,7 @@ class ReferenceAnswerQuestionnaireEnableWhen extends Reference
 }
 
 /// A potential answer that's allowed as the answer to this question.
-sealed class ValueXQuestionnaireAnswerOption {}
+sealed class ValueXQuestionnaireAnswerOption extends DataType {}
 
 /// A potential answer that's allowed as the answer to this question.
 class IntegerValueQuestionnaireAnswerOption extends FhirInteger
@@ -308,7 +308,7 @@ class ReferenceValueQuestionnaireAnswerOption extends Reference
 }
 
 /// The actual value to for an initial answer.
-sealed class ValueXQuestionnaireInitial {}
+sealed class ValueXQuestionnaireInitial extends DataType {}
 
 /// The actual value to for an initial answer.
 class BooleanValueQuestionnaireInitial extends FhirBoolean

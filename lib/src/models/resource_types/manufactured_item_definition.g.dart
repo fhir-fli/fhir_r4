@@ -1,7 +1,7 @@
 part of 'manufactured_item_definition.dart';
 
 /// A value for the characteristic.
-sealed class ValueXManufacturedItemDefinitionProperty {}
+sealed class ValueXManufacturedItemDefinitionProperty extends DataType {}
 
 /// A value for the characteristic.
 class CodeableConceptValueManufacturedItemDefinitionProperty

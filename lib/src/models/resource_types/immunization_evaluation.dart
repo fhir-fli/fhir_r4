@@ -153,28 +153,38 @@ class ImmunizationEvaluation extends DomainResource {
               '_value': json['_series'],
             })
           : null,
-      doseNumberXImmunizationEvaluationImmunizationEvaluation: (json[
-                      'doseNumberXImmunizationEvaluationImmunizationEvaluation'] !=
+      doseNumberXImmunizationEvaluationImmunizationEvaluation: json[
+                      'doseNumberPositiveInt'] !=
                   null ||
-              json['_doseNumberXImmunizationEvaluationImmunizationEvaluation'] !=
-                  null)
-          ? FhirPositiveInt.fromJson({
-              'value': json[
-                  'doseNumberXImmunizationEvaluationImmunizationEvaluation'],
-              '_value': json[
-                  '_doseNumberXImmunizationEvaluationImmunizationEvaluation'],
+              json['_doseNumberPositiveInt'] != null
+          ? PositiveIntDoseNumberImmunizationEvaluationImmunizationEvaluation
+              .fromJson({
+              'value': json['doseNumberPositiveInt'],
+              '_value': json['_doseNumberPositiveInt'],
             })
-          : null,
-      seriesDosesXImmunizationEvaluationImmunizationEvaluation:
-          (json['seriesDosesXImmunizationEvaluationImmunizationEvaluation'] !=
-                      null ||
-                  json['_seriesDosesXImmunizationEvaluationImmunizationEvaluation'] !=
-                      null)
-              ? FhirPositiveInt.fromJson({
-                  'value': json[
-                      'seriesDosesXImmunizationEvaluationImmunizationEvaluation'],
-                  '_value': json[
-                      '_seriesDosesXImmunizationEvaluationImmunizationEvaluation'],
+          : json['doseNumberString'] != null ||
+                  json['_doseNumberString'] != null
+              ? StringDoseNumberImmunizationEvaluationImmunizationEvaluation
+                  .fromJson({
+                  'value': json['doseNumberString'],
+                  '_value': json['_doseNumberString'],
+                })
+              : null,
+      seriesDosesXImmunizationEvaluationImmunizationEvaluation: json[
+                      'seriesDosesPositiveInt'] !=
+                  null ||
+              json['_seriesDosesPositiveInt'] != null
+          ? PositiveIntSeriesDosesImmunizationEvaluationImmunizationEvaluation
+              .fromJson({
+              'value': json['seriesDosesPositiveInt'],
+              '_value': json['_seriesDosesPositiveInt'],
+            })
+          : json['seriesDosesString'] != null ||
+                  json['_seriesDosesString'] != null
+              ? StringSeriesDosesImmunizationEvaluationImmunizationEvaluation
+                  .fromJson({
+                  'value': json['seriesDosesString'],
+                  '_value': json['_seriesDosesString'],
                 })
               : null,
     );
@@ -273,12 +283,12 @@ class ImmunizationEvaluation extends DomainResource {
 
   /// [doseNumberXImmunizationEvaluationImmunizationEvaluation]
   /// Nominal position in a series.
-  final FhirPositiveInt?
+  final DoseNumberXImmunizationEvaluationImmunizationEvaluation?
       doseNumberXImmunizationEvaluationImmunizationEvaluation;
 
   /// [seriesDosesXImmunizationEvaluationImmunizationEvaluation]
   /// The recommended number of doses to achieve immunity.
-  final FhirPositiveInt?
+  final SeriesDosesXImmunizationEvaluationImmunizationEvaluation?
       seriesDosesXImmunizationEvaluationImmunizationEvaluation;
   @override
   Map<String, dynamic> toJson() {
@@ -372,8 +382,10 @@ class ImmunizationEvaluation extends DomainResource {
     List<CodeableConcept>? doseStatusReason,
     FhirString? description,
     FhirString? series,
-    FhirPositiveInt? doseNumberXImmunizationEvaluationImmunizationEvaluation,
-    FhirPositiveInt? seriesDosesXImmunizationEvaluationImmunizationEvaluation,
+    DoseNumberXImmunizationEvaluationImmunizationEvaluation?
+        doseNumberXImmunizationEvaluationImmunizationEvaluation,
+    SeriesDosesXImmunizationEvaluationImmunizationEvaluation?
+        seriesDosesXImmunizationEvaluationImmunizationEvaluation,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,

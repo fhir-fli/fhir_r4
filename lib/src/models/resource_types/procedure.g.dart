@@ -4,7 +4,7 @@ part of 'procedure.dart';
 /// was performed. Allows a period to support complex procedures that span
 /// more than one date, and also allows for the length of the procedure to
 /// be captured.
-sealed class PerformedXProcedureProcedure {}
+sealed class PerformedXProcedureProcedure extends DataType {}
 
 /// Estimated or actual date, date-time, period, or age when the procedure
 /// was performed. Allows a period to support complex procedures that span

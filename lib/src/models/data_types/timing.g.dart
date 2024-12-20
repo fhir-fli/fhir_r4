@@ -3,7 +3,7 @@ part of 'timing.dart';
 /// Either a duration for the length of the timing schedule, a range of
 /// possible length, or outer bounds for start and/or end limits of the
 /// timing schedule.
-sealed class BoundsXTimingRepeat {}
+sealed class BoundsXTimingRepeat extends DataType {}
 
 /// Either a duration for the length of the timing schedule, a range of
 /// possible length, or outer bounds for start and/or end limits of the

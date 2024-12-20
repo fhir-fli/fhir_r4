@@ -96,9 +96,16 @@ class MessageHeader extends DomainResource {
               )
               .toList()
           : null,
-      eventXMessageHeaderMessageHeader: Coding.fromJson(
-        json['eventXMessageHeaderMessageHeader'] as Map<String, dynamic>,
-      ),
+      eventXMessageHeaderMessageHeader:
+          json['eventCoding'] != null || json['_eventCoding'] != null
+              ? CodingEventMessageHeaderMessageHeader.fromJson({
+                  'value': json['eventCoding'],
+                  '_value': json['_eventCoding'],
+                })
+              : UriEventMessageHeaderMessageHeader.fromJson({
+                  'value': json['eventUri'],
+                  '_value': json['_eventUri'],
+                }),
       destination: json['destination'] != null
           ? (json['destination'] as List<dynamic>)
               .map<MessageHeaderDestination>(
@@ -207,7 +214,7 @@ class MessageHeader extends DomainResource {
   /// have the system value
   /// "http://terminology.hl7.org/CodeSystem/message-events". Alternatively
   /// uri to the EventDefinition.
-  final Coding eventXMessageHeaderMessageHeader;
+  final EventXMessageHeaderMessageHeader eventXMessageHeaderMessageHeader;
 
   /// [destination]
   /// The destination application which the message is intended for.
@@ -348,7 +355,7 @@ class MessageHeader extends DomainResource {
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    Coding? eventXMessageHeaderMessageHeader,
+    EventXMessageHeaderMessageHeader? eventXMessageHeaderMessageHeader,
     List<MessageHeaderDestination>? destination,
     Reference? sender,
     Reference? enterer,

@@ -1,7 +1,8 @@
 part of 'immunization_evaluation.dart';
 
 /// Nominal position in a series.
-sealed class DoseNumberXImmunizationEvaluationImmunizationEvaluation {}
+sealed class DoseNumberXImmunizationEvaluationImmunizationEvaluation
+    extends DataType {}
 
 /// Nominal position in a series.
 class PositiveIntDoseNumberImmunizationEvaluationImmunizationEvaluation
@@ -44,7 +45,8 @@ class StringDoseNumberImmunizationEvaluationImmunizationEvaluation
 }
 
 /// The recommended number of doses to achieve immunity.
-sealed class SeriesDosesXImmunizationEvaluationImmunizationEvaluation {}
+sealed class SeriesDosesXImmunizationEvaluationImmunizationEvaluation
+    extends DataType {}
 
 /// The recommended number of doses to achieve immunity.
 class PositiveIntSeriesDosesImmunizationEvaluationImmunizationEvaluation

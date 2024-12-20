@@ -686,9 +686,16 @@ class InvoiceLineItem extends BackboneElement {
               '_value': json['_sequence'],
             })
           : null,
-      chargeItemXInvoiceLineItem: Reference.fromJson(
-        json['chargeItemXInvoiceLineItem'] as Map<String, dynamic>,
-      ),
+      chargeItemXInvoiceLineItem: json['chargeItemReference'] != null ||
+              json['_chargeItemReference'] != null
+          ? ReferenceChargeItemInvoiceLineItem.fromJson({
+              'value': json['chargeItemReference'],
+              '_value': json['_chargeItemReference'],
+            })
+          : CodeableConceptChargeItemInvoiceLineItem.fromJson({
+              'value': json['chargeItemCodeableConcept'],
+              '_value': json['_chargeItemCodeableConcept'],
+            }),
       priceComponent: json['priceComponent'] != null
           ? (json['priceComponent'] as List<dynamic>)
               .map<InvoicePriceComponent>(
@@ -752,7 +759,7 @@ class InvoiceLineItem extends BackboneElement {
   /// amount etc. If no further details are required for the lineItem, inline
   /// billing codes can be added using the CodeableConcept data type instead
   /// of the Reference.
-  final Reference chargeItemXInvoiceLineItem;
+  final ChargeItemXInvoiceLineItem chargeItemXInvoiceLineItem;
 
   /// [priceComponent]
   /// The price for a ChargeItem may be calculated as a base price with
@@ -802,7 +809,7 @@ class InvoiceLineItem extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirPositiveInt? sequence,
-    Reference? chargeItemXInvoiceLineItem,
+    ChargeItemXInvoiceLineItem? chargeItemXInvoiceLineItem,
     List<InvoicePriceComponent>? priceComponent,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,

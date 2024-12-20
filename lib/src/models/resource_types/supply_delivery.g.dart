@@ -1,7 +1,7 @@
 part of 'supply_delivery.dart';
 
 /// The date or time(s) the activity occurred.
-sealed class OccurrenceXSupplyDeliverySupplyDelivery {}
+sealed class OccurrenceXSupplyDeliverySupplyDelivery extends DataType {}
 
 /// The date or time(s) the activity occurred.
 class DateTimeOccurrenceSupplyDeliverySupplyDelivery extends FhirDateTime
@@ -59,7 +59,7 @@ class TimingOccurrenceSupplyDeliverySupplyDelivery extends Timing
 /// Identifies the medication, substance or device being dispensed. This is
 /// either a link to a resource representing the details of the item or a
 /// code that identifies the item from a known list.
-sealed class ItemXSupplyDeliverySuppliedItem {}
+sealed class ItemXSupplyDeliverySuppliedItem extends DataType {}
 
 /// Identifies the medication, substance or device being dispensed. This is
 /// either a link to a resource representing the details of the item or a

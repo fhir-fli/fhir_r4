@@ -1,7 +1,7 @@
 part of 'trigger_definition.dart';
 
 /// The timing of the event (if this is a periodic trigger).
-sealed class TimingXTriggerDefinitionTriggerDefinition {}
+sealed class TimingXTriggerDefinitionTriggerDefinition extends DataType {}
 
 /// The timing of the event (if this is a periodic trigger).
 class TimingTimingTriggerDefinitionTriggerDefinition extends Timing

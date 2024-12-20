@@ -1,7 +1,7 @@
 part of 'explanation_of_benefit.dart';
 
 /// The date when or period to which this information refers.
-sealed class TimingXExplanationOfBenefitSupportingInfo {}
+sealed class TimingXExplanationOfBenefitSupportingInfo extends DataType {}
 
 /// The date when or period to which this information refers.
 class DateTimingExplanationOfBenefitSupportingInfo extends FhirDate
@@ -48,7 +48,7 @@ class PeriodTimingExplanationOfBenefitSupportingInfo extends Period
 /// Additional data or information such as resources, documents, images
 /// etc. including references to the data or the actual inclusion of the
 /// data.
-sealed class ValueXExplanationOfBenefitSupportingInfo {}
+sealed class ValueXExplanationOfBenefitSupportingInfo extends DataType {}
 
 /// Additional data or information such as resources, documents, images
 /// etc. including references to the data or the actual inclusion of the
@@ -133,7 +133,7 @@ class ReferenceValueExplanationOfBenefitSupportingInfo extends Reference
 
 /// The nature of illness or problem in a coded form or as a reference to
 /// an external defined Condition.
-sealed class DiagnosisXExplanationOfBenefitDiagnosis {}
+sealed class DiagnosisXExplanationOfBenefitDiagnosis extends DataType {}
 
 /// The nature of illness or problem in a coded form or as a reference to
 /// an external defined Condition.
@@ -161,7 +161,7 @@ class ReferenceDiagnosisExplanationOfBenefitDiagnosis extends Reference
 
 /// The code or reference to a Procedure resource which identifies the
 /// clinical intervention performed.
-sealed class ProcedureXExplanationOfBenefitProcedure {}
+sealed class ProcedureXExplanationOfBenefitProcedure extends DataType {}
 
 /// The code or reference to a Procedure resource which identifies the
 /// clinical intervention performed.
@@ -188,7 +188,7 @@ class ReferenceProcedureExplanationOfBenefitProcedure extends Reference
 }
 
 /// The physical location of the accident event.
-sealed class LocationXExplanationOfBenefitAccident {}
+sealed class LocationXExplanationOfBenefitAccident extends DataType {}
 
 /// The physical location of the accident event.
 class AddressLocationExplanationOfBenefitAccident extends Address
@@ -212,7 +212,7 @@ class ReferenceLocationExplanationOfBenefitAccident extends Reference
 
 /// The date or dates when the service or product was supplied, performed
 /// or completed.
-sealed class ServicedXExplanationOfBenefitItem {}
+sealed class ServicedXExplanationOfBenefitItem extends DataType {}
 
 /// The date or dates when the service or product was supplied, performed
 /// or completed.
@@ -259,7 +259,7 @@ class PeriodServicedExplanationOfBenefitItem extends Period
 }
 
 /// Where the product or service was provided.
-sealed class LocationXExplanationOfBenefitItem {}
+sealed class LocationXExplanationOfBenefitItem extends DataType {}
 
 /// Where the product or service was provided.
 class CodeableConceptLocationExplanationOfBenefitItem extends CodeableConcept
@@ -294,7 +294,7 @@ class ReferenceLocationExplanationOfBenefitItem extends Reference
 
 /// The date or dates when the service or product was supplied, performed
 /// or completed.
-sealed class ServicedXExplanationOfBenefitAddItem {}
+sealed class ServicedXExplanationOfBenefitAddItem extends DataType {}
 
 /// The date or dates when the service or product was supplied, performed
 /// or completed.
@@ -341,7 +341,7 @@ class PeriodServicedExplanationOfBenefitAddItem extends Period
 }
 
 /// Where the product or service was provided.
-sealed class LocationXExplanationOfBenefitAddItem {}
+sealed class LocationXExplanationOfBenefitAddItem extends DataType {}
 
 /// Where the product or service was provided.
 class CodeableConceptLocationExplanationOfBenefitAddItem extends CodeableConcept
@@ -375,7 +375,7 @@ class ReferenceLocationExplanationOfBenefitAddItem extends Reference
 }
 
 /// The quantity of the benefit which is permitted under the coverage.
-sealed class AllowedXExplanationOfBenefitFinancial {}
+sealed class AllowedXExplanationOfBenefitFinancial extends DataType {}
 
 /// The quantity of the benefit which is permitted under the coverage.
 class UnsignedIntAllowedExplanationOfBenefitFinancial extends FhirUnsignedInt
@@ -425,7 +425,7 @@ class MoneyAllowedExplanationOfBenefitFinancial extends Money
 }
 
 /// The quantity of the benefit which have been consumed to date.
-sealed class UsedXExplanationOfBenefitFinancial {}
+sealed class UsedXExplanationOfBenefitFinancial extends DataType {}
 
 /// The quantity of the benefit which have been consumed to date.
 class UnsignedIntUsedExplanationOfBenefitFinancial extends FhirUnsignedInt

@@ -2,7 +2,7 @@ part of 'care_plan.dart';
 
 /// The period, timing or frequency upon which the described activity is to
 /// occur.
-sealed class ScheduledXCarePlanDetail {}
+sealed class ScheduledXCarePlanDetail extends DataType {}
 
 /// The period, timing or frequency upon which the described activity is to
 /// occur.
@@ -47,7 +47,7 @@ class StringScheduledCarePlanDetail extends FhirString
 
 /// Identifies the food, drug or other product to be consumed or supplied
 /// in the activity.
-sealed class ProductXCarePlanDetail {}
+sealed class ProductXCarePlanDetail extends DataType {}
 
 /// Identifies the food, drug or other product to be consumed or supplied
 /// in the activity.

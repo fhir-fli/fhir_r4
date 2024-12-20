@@ -1270,13 +1270,18 @@ class ImplementationGuideResource extends BackboneElement {
             })
           : null,
       exampleXImplementationGuideResource:
-          (json['exampleXImplementationGuideResource'] != null ||
-                  json['_exampleXImplementationGuideResource'] != null)
-              ? FhirBoolean.fromJson({
-                  'value': json['exampleXImplementationGuideResource'],
-                  '_value': json['_exampleXImplementationGuideResource'],
+          json['exampleBoolean'] != null || json['_exampleBoolean'] != null
+              ? BooleanExampleImplementationGuideResource.fromJson({
+                  'value': json['exampleBoolean'],
+                  '_value': json['_exampleBoolean'],
                 })
-              : null,
+              : json['exampleCanonical'] != null ||
+                      json['_exampleCanonical'] != null
+                  ? CanonicalExampleImplementationGuideResource.fromJson({
+                      'value': json['exampleCanonical'],
+                      '_value': json['_exampleCanonical'],
+                    })
+                  : null,
       groupingId: (json['groupingId'] != null || json['_groupingId'] != null)
           ? FhirId.fromJson({
               'value': json['groupingId'],
@@ -1353,7 +1358,8 @@ class ImplementationGuideResource extends BackboneElement {
   /// If true or a reference, indicates the resource is an example instance.
   /// If a reference is present, indicates that the example is an example of
   /// the specified profile.
-  final FhirBoolean? exampleXImplementationGuideResource;
+  final ExampleXImplementationGuideResource?
+      exampleXImplementationGuideResource;
 
   /// [groupingId]
   /// Reference to the id of the grouping this resource appears in.
@@ -1393,7 +1399,7 @@ class ImplementationGuideResource extends BackboneElement {
     addField('name', name);
     addField('description', description);
     addField('exampleXImplementationGuideResource',
-        exampleXImplementationGuideResource,);
+        exampleXImplementationGuideResource);
     addField('groupingId', groupingId);
     return json;
   }
@@ -1409,7 +1415,7 @@ class ImplementationGuideResource extends BackboneElement {
     List<FHIRVersion>? fhirVersion,
     FhirString? name,
     FhirString? description,
-    FhirBoolean? exampleXImplementationGuideResource,
+    ExampleXImplementationGuideResource? exampleXImplementationGuideResource,
     FhirId? groupingId,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -1476,10 +1482,16 @@ class ImplementationGuidePage extends BackboneElement {
               )
               .toList()
           : null,
-      nameXImplementationGuidePage: FhirUrl.fromJson({
-        'value': json['nameXImplementationGuidePage'],
-        '_value': json['_nameXImplementationGuidePage'],
-      }),
+      nameXImplementationGuidePage:
+          json['nameUrl'] != null || json['_nameUrl'] != null
+              ? UrlNameImplementationGuidePage.fromJson({
+                  'value': json['nameUrl'],
+                  '_value': json['_nameUrl'],
+                })
+              : ReferenceNameImplementationGuidePage.fromJson({
+                  'value': json['nameReference'],
+                  '_value': json['_nameReference'],
+                }),
       title: FhirString.fromJson({
         'value': json['title'],
         '_value': json['_title'],
@@ -1544,7 +1556,7 @@ class ImplementationGuidePage extends BackboneElement {
 
   /// [nameXImplementationGuidePage]
   /// The source address for the page.
-  final FhirUrl nameXImplementationGuidePage;
+  final NameXImplementationGuidePage nameXImplementationGuidePage;
 
   /// [title]
   /// A short title used to represent this page in navigational structures
@@ -1597,7 +1609,7 @@ class ImplementationGuidePage extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    FhirUrl? nameXImplementationGuidePage,
+    NameXImplementationGuidePage? nameXImplementationGuidePage,
     FhirString? title,
     GuidePageGeneration? generation,
     List<ImplementationGuidePage>? page,
@@ -2182,7 +2194,7 @@ class ImplementationGuideResource1 extends BackboneElement {
     super.extension_,
     super.modifierExtension,
     required this.reference,
-    this.exampleXImplementationGuideResource1,
+    this.exampleXImplementationGuideResource,
     this.relativePath,
     super.disallowExtensions,
   });
@@ -2216,14 +2228,19 @@ class ImplementationGuideResource1 extends BackboneElement {
       reference: Reference.fromJson(
         json['reference'] as Map<String, dynamic>,
       ),
-      exampleXImplementationGuideResource1:
-          (json['exampleXImplementationGuideResource1'] != null ||
-                  json['_exampleXImplementationGuideResource1'] != null)
-              ? FhirBoolean.fromJson({
-                  'value': json['exampleXImplementationGuideResource1'],
-                  '_value': json['_exampleXImplementationGuideResource1'],
+      exampleXImplementationGuideResource:
+          json['exampleBoolean'] != null || json['_exampleBoolean'] != null
+              ? BooleanExampleImplementationGuideResource.fromJson({
+                  'value': json['exampleBoolean'],
+                  '_value': json['_exampleBoolean'],
                 })
-              : null,
+              : json['exampleCanonical'] != null ||
+                      json['_exampleCanonical'] != null
+                  ? CanonicalExampleImplementationGuideResource.fromJson({
+                      'value': json['exampleCanonical'],
+                      '_value': json['_exampleCanonical'],
+                    })
+                  : null,
       relativePath:
           (json['relativePath'] != null || json['_relativePath'] != null)
               ? FhirUrl.fromJson({
@@ -2280,11 +2297,12 @@ class ImplementationGuideResource1 extends BackboneElement {
   /// Where this resource is found.
   final Reference reference;
 
-  /// [exampleXImplementationGuideResource1]
+  /// [exampleXImplementationGuideResource]
   /// If true or a reference, indicates the resource is an example instance.
   /// If a reference is present, indicates that the example is an example of
   /// the specified profile.
-  final FhirBoolean? exampleXImplementationGuideResource1;
+  final ExampleXImplementationGuideResource?
+      exampleXImplementationGuideResource;
 
   /// [relativePath]
   /// The relative path for primary page for this resource within the IG.
@@ -2313,8 +2331,8 @@ class ImplementationGuideResource1 extends BackboneElement {
 
     json['reference'] = reference.toJson();
 
-    addField('exampleXImplementationGuideResource1',
-        exampleXImplementationGuideResource1,);
+    addField('exampleXImplementationGuideResource',
+        exampleXImplementationGuideResource);
     addField('relativePath', relativePath);
     return json;
   }
@@ -2327,7 +2345,7 @@ class ImplementationGuideResource1 extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     Reference? reference,
-    FhirBoolean? exampleXImplementationGuideResource1,
+    ExampleXImplementationGuideResource? exampleXImplementationGuideResource,
     FhirUrl? relativePath,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -2339,9 +2357,9 @@ class ImplementationGuideResource1 extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       reference: reference ?? this.reference,
-      exampleXImplementationGuideResource1:
-          exampleXImplementationGuideResource1 ??
-              this.exampleXImplementationGuideResource1,
+      exampleXImplementationGuideResource:
+          exampleXImplementationGuideResource ??
+              this.exampleXImplementationGuideResource,
       relativePath: relativePath ?? this.relativePath,
     );
   }

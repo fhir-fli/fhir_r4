@@ -126,13 +126,19 @@ class DetectedIssue extends DomainResource {
             )
           : null,
       identifiedXDetectedIssueDetectedIssue:
-          (json['identifiedXDetectedIssueDetectedIssue'] != null ||
-                  json['_identifiedXDetectedIssueDetectedIssue'] != null)
-              ? FhirDateTime.fromJson({
-                  'value': json['identifiedXDetectedIssueDetectedIssue'],
-                  '_value': json['_identifiedXDetectedIssueDetectedIssue'],
+          json['identifiedDateTime'] != null ||
+                  json['_identifiedDateTime'] != null
+              ? DateTimeIdentifiedDetectedIssueDetectedIssue.fromJson({
+                  'value': json['identifiedDateTime'],
+                  '_value': json['_identifiedDateTime'],
                 })
-              : null,
+              : json['identifiedPeriod'] != null ||
+                      json['_identifiedPeriod'] != null
+                  ? PeriodIdentifiedDetectedIssueDetectedIssue.fromJson({
+                      'value': json['identifiedPeriod'],
+                      '_value': json['_identifiedPeriod'],
+                    })
+                  : null,
       author: json['author'] != null
           ? Reference.fromJson(
               json['author'] as Map<String, dynamic>,
@@ -246,7 +252,8 @@ class DetectedIssue extends DomainResource {
 
   /// [identifiedXDetectedIssueDetectedIssue]
   /// The date or period when the detected issue was initially identified.
-  final FhirDateTime? identifiedXDetectedIssueDetectedIssue;
+  final IdentifiedXDetectedIssueDetectedIssue?
+      identifiedXDetectedIssueDetectedIssue;
 
   /// [author]
   /// Individual or device responsible for the issue being raised. For
@@ -371,7 +378,8 @@ class DetectedIssue extends DomainResource {
     CodeableConcept? code,
     DetectedIssueSeverity? severity,
     Reference? patient,
-    FhirDateTime? identifiedXDetectedIssueDetectedIssue,
+    IdentifiedXDetectedIssueDetectedIssue?
+        identifiedXDetectedIssueDetectedIssue,
     Reference? author,
     List<Reference>? implicated,
     List<DetectedIssueEvidence>? evidence,

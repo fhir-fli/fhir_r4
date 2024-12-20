@@ -2,7 +2,7 @@ part of 'claim_response.dart';
 
 /// The date or dates when the service or product was supplied, performed
 /// or completed.
-sealed class ServicedXClaimResponseAddItem {}
+sealed class ServicedXClaimResponseAddItem extends DataType {}
 
 /// The date or dates when the service or product was supplied, performed
 /// or completed.
@@ -49,7 +49,7 @@ class PeriodServicedClaimResponseAddItem extends Period
 }
 
 /// Where the product or service was provided.
-sealed class LocationXClaimResponseAddItem {}
+sealed class LocationXClaimResponseAddItem extends DataType {}
 
 /// Where the product or service was provided.
 class CodeableConceptLocationClaimResponseAddItem extends CodeableConcept

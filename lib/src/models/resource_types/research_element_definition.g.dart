@@ -3,7 +3,8 @@ part of 'research_element_definition.dart';
 /// The intended subjects for the ResearchElementDefinition. If this
 /// element is not provided, a Patient subject is assumed, but the subject
 /// of the ResearchElementDefinition can be anything.
-sealed class SubjectXResearchElementDefinitionResearchElementDefinition {}
+sealed class SubjectXResearchElementDefinitionResearchElementDefinition
+    extends DataType {}
 
 /// The intended subjects for the ResearchElementDefinition. If this
 /// element is not provided, a Patient subject is assumed, but the subject
@@ -37,7 +38,8 @@ class ReferenceSubjectResearchElementDefinitionResearchElementDefinition
 /// medication, or observation), Expressions ( using an expression language
 /// such as FHIRPath or CQL) or DataRequirements (such as Diabetes
 /// diagnosis onset in the last year).
-sealed class DefinitionXResearchElementDefinitionCharacteristic {}
+sealed class DefinitionXResearchElementDefinitionCharacteristic
+    extends DataType {}
 
 /// Define members of the research element using Codes (such as condition,
 /// medication, or observation), Expressions ( using an expression language
@@ -108,7 +110,8 @@ class DataRequirementDefinitionResearchElementDefinitionCharacteristic
 }
 
 /// Indicates what effective period the study covers.
-sealed class StudyEffectiveXResearchElementDefinitionCharacteristic {}
+sealed class StudyEffectiveXResearchElementDefinitionCharacteristic
+    extends DataType {}
 
 /// Indicates what effective period the study covers.
 class DateTimeStudyEffectiveResearchElementDefinitionCharacteristic
@@ -179,7 +182,8 @@ class TimingStudyEffectiveResearchElementDefinitionCharacteristic extends Timing
 }
 
 /// Indicates what effective period the study covers.
-sealed class ParticipantEffectiveXResearchElementDefinitionCharacteristic {}
+sealed class ParticipantEffectiveXResearchElementDefinitionCharacteristic
+    extends DataType {}
 
 /// Indicates what effective period the study covers.
 class DateTimeParticipantEffectiveResearchElementDefinitionCharacteristic

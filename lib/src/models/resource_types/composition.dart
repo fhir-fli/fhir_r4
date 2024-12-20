@@ -684,9 +684,16 @@ class CompositionRelatesTo extends BackboneElement {
         'value': json['code'],
         '_value': json['_code'],
       }),
-      targetXCompositionRelatesTo: Identifier.fromJson(
-        json['targetXCompositionRelatesTo'] as Map<String, dynamic>,
-      ),
+      targetXCompositionRelatesTo:
+          json['targetIdentifier'] != null || json['_targetIdentifier'] != null
+              ? IdentifierTargetCompositionRelatesTo.fromJson({
+                  'value': json['targetIdentifier'],
+                  '_value': json['_targetIdentifier'],
+                })
+              : ReferenceTargetCompositionRelatesTo.fromJson({
+                  'value': json['targetReference'],
+                  '_value': json['_targetReference'],
+                }),
     );
   }
 
@@ -739,7 +746,7 @@ class CompositionRelatesTo extends BackboneElement {
 
   /// [targetXCompositionRelatesTo]
   /// The target composition/document of this relationship.
-  final Identifier targetXCompositionRelatesTo;
+  final TargetXCompositionRelatesTo targetXCompositionRelatesTo;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -776,7 +783,7 @@ class CompositionRelatesTo extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     DocumentRelationshipType? code,
-    Identifier? targetXCompositionRelatesTo,
+    TargetXCompositionRelatesTo? targetXCompositionRelatesTo,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,

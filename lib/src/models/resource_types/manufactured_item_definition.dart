@@ -367,13 +367,38 @@ class ManufacturedItemDefinitionProperty extends BackboneElement {
       type: CodeableConcept.fromJson(
         json['type'] as Map<String, dynamic>,
       ),
-      valueXManufacturedItemDefinitionProperty:
-          json['valueXManufacturedItemDefinitionProperty'] != null
-              ? CodeableConcept.fromJson(
-                  json['valueXManufacturedItemDefinitionProperty']
-                      as Map<String, dynamic>,
-                )
-              : null,
+      valueXManufacturedItemDefinitionProperty: json['valueCodeableConcept'] !=
+                  null ||
+              json['_valueCodeableConcept'] != null
+          ? CodeableConceptValueManufacturedItemDefinitionProperty.fromJson({
+              'value': json['valueCodeableConcept'],
+              '_value': json['_valueCodeableConcept'],
+            })
+          : json['valueQuantity'] != null || json['_valueQuantity'] != null
+              ? QuantityValueManufacturedItemDefinitionProperty.fromJson({
+                  'value': json['valueQuantity'],
+                  '_value': json['_valueQuantity'],
+                })
+              : json['valueDate'] != null || json['_valueDate'] != null
+                  ? DateValueManufacturedItemDefinitionProperty.fromJson({
+                      'value': json['valueDate'],
+                      '_value': json['_valueDate'],
+                    })
+                  : json['valueBoolean'] != null ||
+                          json['_valueBoolean'] != null
+                      ? BooleanValueManufacturedItemDefinitionProperty
+                          .fromJson({
+                          'value': json['valueBoolean'],
+                          '_value': json['_valueBoolean'],
+                        })
+                      : json['valueAttachment'] != null ||
+                              json['_valueAttachment'] != null
+                          ? AttachmentValueManufacturedItemDefinitionProperty
+                              .fromJson({
+                              'value': json['valueAttachment'],
+                              '_value': json['_valueAttachment'],
+                            })
+                          : null,
     );
   }
 
@@ -425,7 +450,8 @@ class ManufacturedItemDefinitionProperty extends BackboneElement {
 
   /// [valueXManufacturedItemDefinitionProperty]
   /// A value for the characteristic.
-  final CodeableConcept? valueXManufacturedItemDefinitionProperty;
+  final ValueXManufacturedItemDefinitionProperty?
+      valueXManufacturedItemDefinitionProperty;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -466,7 +492,8 @@ class ManufacturedItemDefinitionProperty extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     CodeableConcept? type,
-    CodeableConcept? valueXManufacturedItemDefinitionProperty,
+    ValueXManufacturedItemDefinitionProperty?
+        valueXManufacturedItemDefinitionProperty,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,

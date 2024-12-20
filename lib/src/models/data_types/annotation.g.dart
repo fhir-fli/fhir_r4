@@ -1,7 +1,7 @@
 part of 'annotation.dart';
 
 /// The individual responsible for making the annotation.
-sealed class AuthorXAnnotationAnnotation {}
+sealed class AuthorXAnnotationAnnotation extends DataType {}
 
 /// The individual responsible for making the annotation.
 class ReferenceAuthorAnnotationAnnotation extends Reference

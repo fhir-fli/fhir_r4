@@ -2,7 +2,7 @@ part of 'concept_map.dart';
 
 /// Identifier for the source value set that contains the concepts that are
 /// being mapped and provides context for the mappings.
-sealed class SourceXConceptMapConceptMap {}
+sealed class SourceXConceptMapConceptMap extends DataType {}
 
 /// Identifier for the source value set that contains the concepts that are
 /// being mapped and provides context for the mappings.
@@ -46,7 +46,7 @@ class CanonicalSourceConceptMapConceptMap extends FhirCanonical
 /// mapping is made between concepts, not between value sets, but the value
 /// set provides important context about how the concept mapping choices
 /// are made.
-sealed class TargetXConceptMapConceptMap {}
+sealed class TargetXConceptMapConceptMap extends DataType {}
 
 /// The target value set provides context for the mappings. Note that the
 /// mapping is made between concepts, not between value sets, but the value

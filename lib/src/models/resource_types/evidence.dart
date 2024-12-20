@@ -137,11 +137,18 @@ class Evidence extends DomainResource {
               '_value': json['_title'],
             })
           : null,
-      citeAsXEvidenceEvidence: json['citeAsXEvidenceEvidence'] != null
-          ? Reference.fromJson(
-              json['citeAsXEvidenceEvidence'] as Map<String, dynamic>,
-            )
-          : null,
+      citeAsXEvidenceEvidence: json['citeAsReference'] != null ||
+              json['_citeAsReference'] != null
+          ? ReferenceCiteAsEvidenceEvidence.fromJson({
+              'value': json['citeAsReference'],
+              '_value': json['_citeAsReference'],
+            })
+          : json['citeAsMarkdown'] != null || json['_citeAsMarkdown'] != null
+              ? MarkdownCiteAsEvidenceEvidence.fromJson({
+                  'value': json['citeAsMarkdown'],
+                  '_value': json['_citeAsMarkdown'],
+                })
+              : null,
       status: PublicationStatus.fromJson({
         'value': json['status'],
         '_value': json['_status'],
@@ -369,7 +376,7 @@ class Evidence extends DomainResource {
 
   /// [citeAsXEvidenceEvidence]
   /// Citation Resource or display of suggested citation for this evidence.
-  final Reference? citeAsXEvidenceEvidence;
+  final CiteAsXEvidenceEvidence? citeAsXEvidenceEvidence;
 
   /// [status]
   /// The status of this summary. Enables tracking the life-cycle of the
@@ -597,7 +604,7 @@ class Evidence extends DomainResource {
     List<Identifier>? identifier,
     FhirString? version,
     FhirString? title,
-    Reference? citeAsXEvidenceEvidence,
+    CiteAsXEvidenceEvidence? citeAsXEvidenceEvidence,
     PublicationStatus? status,
     FhirDateTime? date,
     List<UsageContext>? useContext,

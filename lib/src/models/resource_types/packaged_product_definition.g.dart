@@ -5,7 +5,8 @@ part of 'packaged_product_definition.dart';
 /// measurement shall be specified in accordance with ISO 11240 and the
 /// resulting terminology The symbol and the symbol identifier shall be
 /// used.
-sealed class PeriodXPackagedProductDefinitionShelfLifeStorage {}
+sealed class PeriodXPackagedProductDefinitionShelfLifeStorage
+    extends DataType {}
 
 /// The shelf life time period can be specified using a numerical value for
 /// the period of time and its unit of time measurement The unit of
@@ -47,7 +48,7 @@ class StringPeriodPackagedProductDefinitionShelfLifeStorage extends FhirString
 }
 
 /// A value for the characteristic.
-sealed class ValueXPackagedProductDefinitionProperty {}
+sealed class ValueXPackagedProductDefinitionProperty extends DataType {}
 
 /// A value for the characteristic.
 class CodeableConceptValuePackagedProductDefinitionProperty

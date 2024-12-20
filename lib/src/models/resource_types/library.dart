@@ -168,11 +168,19 @@ class Library extends CanonicalResource {
       type: CodeableConcept.fromJson(
         json['type'] as Map<String, dynamic>,
       ),
-      subjectXLibraryLibrary: json['subjectXLibraryLibrary'] != null
-          ? CodeableConcept.fromJson(
-              json['subjectXLibraryLibrary'] as Map<String, dynamic>,
-            )
-          : null,
+      subjectXLibraryLibrary: json['subjectCodeableConcept'] != null ||
+              json['_subjectCodeableConcept'] != null
+          ? CodeableConceptSubjectLibraryLibrary.fromJson({
+              'value': json['subjectCodeableConcept'],
+              '_value': json['_subjectCodeableConcept'],
+            })
+          : json['subjectReference'] != null ||
+                  json['_subjectReference'] != null
+              ? ReferenceSubjectLibraryLibrary.fromJson({
+                  'value': json['subjectReference'],
+                  '_value': json['_subjectReference'],
+                })
+              : null,
       date: (json['date'] != null || json['_date'] != null)
           ? FhirDateTime.fromJson({
               'value': json['date'],
@@ -412,7 +420,7 @@ class Library extends CanonicalResource {
   /// [subjectXLibraryLibrary]
   /// A code or group definition that describes the intended subject of the
   /// contents of the library.
-  final CodeableConcept? subjectXLibraryLibrary;
+  final SubjectXLibraryLibrary? subjectXLibraryLibrary;
 
   /// [purpose]
   /// Explanation of why this library is needed and why it has been designed
@@ -633,7 +641,7 @@ class Library extends CanonicalResource {
     PublicationStatus? status,
     FhirBoolean? experimental,
     CodeableConcept? type,
-    CodeableConcept? subjectXLibraryLibrary,
+    SubjectXLibraryLibrary? subjectXLibraryLibrary,
     FhirDateTime? date,
     FhirString? publisher,
     List<ContactDetail>? contact,

@@ -222,10 +222,16 @@ class MessageDefinition extends CanonicalResource {
         json['_parent'] as List<dynamic>?,
         fromJson: FhirCanonical.fromJson,
       ),
-      eventXMessageDefinitionMessageDefinition: Coding.fromJson(
-        json['eventXMessageDefinitionMessageDefinition']
-            as Map<String, dynamic>,
-      ),
+      eventXMessageDefinitionMessageDefinition:
+          json['eventCoding'] != null || json['_eventCoding'] != null
+              ? CodingEventMessageDefinitionMessageDefinition.fromJson({
+                  'value': json['eventCoding'],
+                  '_value': json['_eventCoding'],
+                })
+              : UriEventMessageDefinitionMessageDefinition.fromJson({
+                  'value': json['eventUri'],
+                  '_value': json['_eventUri'],
+                }),
       category: (json['category'] != null || json['_category'] != null)
           ? MessageSignificanceCategory.fromJson({
               'value': json['category'],
@@ -350,7 +356,8 @@ class MessageDefinition extends CanonicalResource {
 
   /// [eventXMessageDefinitionMessageDefinition]
   /// Event code or link to the EventDefinition.
-  final Coding eventXMessageDefinitionMessageDefinition;
+  final EventXMessageDefinitionMessageDefinition
+      eventXMessageDefinitionMessageDefinition;
 
   /// [category]
   /// The impact of the content of the message.
@@ -515,7 +522,8 @@ class MessageDefinition extends CanonicalResource {
     FhirMarkdown? copyright,
     FhirCanonical? base,
     List<FhirCanonical>? parent,
-    Coding? eventXMessageDefinitionMessageDefinition,
+    EventXMessageDefinitionMessageDefinition?
+        eventXMessageDefinitionMessageDefinition,
     MessageSignificanceCategory? category,
     List<MessageDefinitionFocus>? focus,
     MessageheaderResponseRequest? responseRequired,

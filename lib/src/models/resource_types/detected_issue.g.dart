@@ -1,7 +1,7 @@
 part of 'detected_issue.dart';
 
 /// The date or period when the detected issue was initially identified.
-sealed class IdentifiedXDetectedIssueDetectedIssue {}
+sealed class IdentifiedXDetectedIssueDetectedIssue extends DataType {}
 
 /// The date or period when the detected issue was initially identified.
 class DateTimeIdentifiedDetectedIssueDetectedIssue extends FhirDateTime

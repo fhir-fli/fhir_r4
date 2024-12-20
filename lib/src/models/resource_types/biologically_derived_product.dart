@@ -449,15 +449,18 @@ class BiologicallyDerivedProductCollection extends BackboneElement {
               json['source'] as Map<String, dynamic>,
             )
           : null,
-      collectedXBiologicallyDerivedProductCollection:
-          (json['collectedXBiologicallyDerivedProductCollection'] != null ||
-                  json['_collectedXBiologicallyDerivedProductCollection'] !=
-                      null)
-              ? FhirDateTime.fromJson({
-                  'value':
-                      json['collectedXBiologicallyDerivedProductCollection'],
-                  '_value':
-                      json['_collectedXBiologicallyDerivedProductCollection'],
+      collectedXBiologicallyDerivedProductCollection: json[
+                      'collectedDateTime'] !=
+                  null ||
+              json['_collectedDateTime'] != null
+          ? DateTimeCollectedBiologicallyDerivedProductCollection.fromJson({
+              'value': json['collectedDateTime'],
+              '_value': json['_collectedDateTime'],
+            })
+          : json['collectedPeriod'] != null || json['_collectedPeriod'] != null
+              ? PeriodCollectedBiologicallyDerivedProductCollection.fromJson({
+                  'value': json['collectedPeriod'],
+                  '_value': json['_collectedPeriod'],
                 })
               : null,
     );
@@ -516,7 +519,8 @@ class BiologicallyDerivedProductCollection extends BackboneElement {
 
   /// [collectedXBiologicallyDerivedProductCollection]
   /// Time of product collection.
-  final FhirDateTime? collectedXBiologicallyDerivedProductCollection;
+  final CollectedXBiologicallyDerivedProductCollection?
+      collectedXBiologicallyDerivedProductCollection;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -561,7 +565,8 @@ class BiologicallyDerivedProductCollection extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     Reference? collector,
     Reference? source,
-    FhirDateTime? collectedXBiologicallyDerivedProductCollection,
+    CollectedXBiologicallyDerivedProductCollection?
+        collectedXBiologicallyDerivedProductCollection,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -642,13 +647,17 @@ class BiologicallyDerivedProductProcessing extends BackboneElement {
             )
           : null,
       timeXBiologicallyDerivedProductProcessing:
-          (json['timeXBiologicallyDerivedProductProcessing'] != null ||
-                  json['_timeXBiologicallyDerivedProductProcessing'] != null)
-              ? FhirDateTime.fromJson({
-                  'value': json['timeXBiologicallyDerivedProductProcessing'],
-                  '_value': json['_timeXBiologicallyDerivedProductProcessing'],
+          json['timeDateTime'] != null || json['_timeDateTime'] != null
+              ? DateTimeTimeBiologicallyDerivedProductProcessing.fromJson({
+                  'value': json['timeDateTime'],
+                  '_value': json['_timeDateTime'],
                 })
-              : null,
+              : json['timePeriod'] != null || json['_timePeriod'] != null
+                  ? PeriodTimeBiologicallyDerivedProductProcessing.fromJson({
+                      'value': json['timePeriod'],
+                      '_value': json['_timePeriod'],
+                    })
+                  : null,
     );
   }
 
@@ -708,7 +717,8 @@ class BiologicallyDerivedProductProcessing extends BackboneElement {
 
   /// [timeXBiologicallyDerivedProductProcessing]
   /// Time of processing.
-  final FhirDateTime? timeXBiologicallyDerivedProductProcessing;
+  final TimeXBiologicallyDerivedProductProcessing?
+      timeXBiologicallyDerivedProductProcessing;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -755,7 +765,8 @@ class BiologicallyDerivedProductProcessing extends BackboneElement {
     FhirString? description,
     CodeableConcept? procedure,
     Reference? additive,
-    FhirDateTime? timeXBiologicallyDerivedProductProcessing,
+    TimeXBiologicallyDerivedProductProcessing?
+        timeXBiologicallyDerivedProductProcessing,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -825,14 +836,17 @@ class BiologicallyDerivedProductManipulation extends BackboneElement {
             })
           : null,
       timeXBiologicallyDerivedProductManipulation:
-          (json['timeXBiologicallyDerivedProductManipulation'] != null ||
-                  json['_timeXBiologicallyDerivedProductManipulation'] != null)
-              ? FhirDateTime.fromJson({
-                  'value': json['timeXBiologicallyDerivedProductManipulation'],
-                  '_value':
-                      json['_timeXBiologicallyDerivedProductManipulation'],
+          json['timeDateTime'] != null || json['_timeDateTime'] != null
+              ? DateTimeTimeBiologicallyDerivedProductManipulation.fromJson({
+                  'value': json['timeDateTime'],
+                  '_value': json['_timeDateTime'],
                 })
-              : null,
+              : json['timePeriod'] != null || json['_timePeriod'] != null
+                  ? PeriodTimeBiologicallyDerivedProductManipulation.fromJson({
+                      'value': json['timePeriod'],
+                      '_value': json['_timePeriod'],
+                    })
+                  : null,
     );
   }
 
@@ -884,7 +898,8 @@ class BiologicallyDerivedProductManipulation extends BackboneElement {
 
   /// [timeXBiologicallyDerivedProductManipulation]
   /// Time of manipulation.
-  final FhirDateTime? timeXBiologicallyDerivedProductManipulation;
+  final TimeXBiologicallyDerivedProductManipulation?
+      timeXBiologicallyDerivedProductManipulation;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -921,7 +936,8 @@ class BiologicallyDerivedProductManipulation extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirString? description,
-    FhirDateTime? timeXBiologicallyDerivedProductManipulation,
+    TimeXBiologicallyDerivedProductManipulation?
+        timeXBiologicallyDerivedProductManipulation,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,

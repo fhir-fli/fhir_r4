@@ -175,14 +175,36 @@ class Procedure extends DomainResource {
               json['encounter'] as Map<String, dynamic>,
             )
           : null,
-      performedXProcedureProcedure:
-          (json['performedXProcedureProcedure'] != null ||
-                  json['_performedXProcedureProcedure'] != null)
-              ? FhirDateTime.fromJson({
-                  'value': json['performedXProcedureProcedure'],
-                  '_value': json['_performedXProcedureProcedure'],
+      performedXProcedureProcedure: json['performedDateTime'] != null ||
+              json['_performedDateTime'] != null
+          ? DateTimePerformedProcedureProcedure.fromJson({
+              'value': json['performedDateTime'],
+              '_value': json['_performedDateTime'],
+            })
+          : json['performedPeriod'] != null || json['_performedPeriod'] != null
+              ? PeriodPerformedProcedureProcedure.fromJson({
+                  'value': json['performedPeriod'],
+                  '_value': json['_performedPeriod'],
                 })
-              : null,
+              : json['performedString'] != null ||
+                      json['_performedString'] != null
+                  ? StringPerformedProcedureProcedure.fromJson({
+                      'value': json['performedString'],
+                      '_value': json['_performedString'],
+                    })
+                  : json['performedAge'] != null ||
+                          json['_performedAge'] != null
+                      ? AgePerformedProcedureProcedure.fromJson({
+                          'value': json['performedAge'],
+                          '_value': json['_performedAge'],
+                        })
+                      : json['performedRange'] != null ||
+                              json['_performedRange'] != null
+                          ? RangePerformedProcedureProcedure.fromJson({
+                              'value': json['performedRange'],
+                              '_value': json['_performedRange'],
+                            })
+                          : null,
       recorder: json['recorder'] != null
           ? Reference.fromJson(
               json['recorder'] as Map<String, dynamic>,
@@ -417,7 +439,7 @@ class Procedure extends DomainResource {
   /// was performed. Allows a period to support complex procedures that span
   /// more than one date, and also allows for the length of the procedure to
   /// be captured.
-  final FhirDateTime? performedXProcedureProcedure;
+  final PerformedXProcedureProcedure? performedXProcedureProcedure;
 
   /// [recorder]
   /// Individual who recorded the record and takes responsibility for its
@@ -676,7 +698,7 @@ class Procedure extends DomainResource {
     CodeableConcept? code,
     Reference? subject,
     Reference? encounter,
-    FhirDateTime? performedXProcedureProcedure,
+    PerformedXProcedureProcedure? performedXProcedureProcedure,
     Reference? recorder,
     Reference? asserter,
     List<ProcedurePerformer>? performer,

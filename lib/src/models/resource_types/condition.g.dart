@@ -2,7 +2,7 @@ part of 'condition.dart';
 
 /// Estimated or actual date or date-time the condition began, in the
 /// opinion of the clinician.
-sealed class OnsetXConditionCondition {}
+sealed class OnsetXConditionCondition extends DataType {}
 
 /// Estimated or actual date or date-time the condition began, in the
 /// opinion of the clinician.
@@ -93,7 +93,7 @@ class StringOnsetConditionCondition extends FhirString
 /// remission. This is called "abatement" because of the many overloaded
 /// connotations associated with "remission" or "resolution" - Conditions
 /// are never really resolved, but they can abate.
-sealed class AbatementXConditionCondition {}
+sealed class AbatementXConditionCondition extends DataType {}
 
 /// The date or estimated date that the condition resolved or went into
 /// remission. This is called "abatement" because of the many overloaded

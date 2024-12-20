@@ -141,13 +141,25 @@ class SupplyDelivery extends DomainResource {
             )
           : null,
       occurrenceXSupplyDeliverySupplyDelivery:
-          (json['occurrenceXSupplyDeliverySupplyDelivery'] != null ||
-                  json['_occurrenceXSupplyDeliverySupplyDelivery'] != null)
-              ? FhirDateTime.fromJson({
-                  'value': json['occurrenceXSupplyDeliverySupplyDelivery'],
-                  '_value': json['_occurrenceXSupplyDeliverySupplyDelivery'],
+          json['occurrenceDateTime'] != null ||
+                  json['_occurrenceDateTime'] != null
+              ? DateTimeOccurrenceSupplyDeliverySupplyDelivery.fromJson({
+                  'value': json['occurrenceDateTime'],
+                  '_value': json['_occurrenceDateTime'],
                 })
-              : null,
+              : json['occurrencePeriod'] != null ||
+                      json['_occurrencePeriod'] != null
+                  ? PeriodOccurrenceSupplyDeliverySupplyDelivery.fromJson({
+                      'value': json['occurrencePeriod'],
+                      '_value': json['_occurrencePeriod'],
+                    })
+                  : json['occurrenceTiming'] != null ||
+                          json['_occurrenceTiming'] != null
+                      ? TimingOccurrenceSupplyDeliverySupplyDelivery.fromJson({
+                          'value': json['occurrenceTiming'],
+                          '_value': json['_occurrenceTiming'],
+                        })
+                      : null,
       supplier: json['supplier'] != null
           ? Reference.fromJson(
               json['supplier'] as Map<String, dynamic>,
@@ -247,7 +259,8 @@ class SupplyDelivery extends DomainResource {
 
   /// [occurrenceXSupplyDeliverySupplyDelivery]
   /// The date or time(s) the activity occurred.
-  final FhirDateTime? occurrenceXSupplyDeliverySupplyDelivery;
+  final OccurrenceXSupplyDeliverySupplyDelivery?
+      occurrenceXSupplyDeliverySupplyDelivery;
 
   /// [supplier]
   /// The individual responsible for dispensing the medication, supplier or
@@ -360,7 +373,8 @@ class SupplyDelivery extends DomainResource {
     Reference? patient,
     CodeableConcept? type,
     SupplyDeliverySuppliedItem? suppliedItem,
-    FhirDateTime? occurrenceXSupplyDeliverySupplyDelivery,
+    OccurrenceXSupplyDeliverySupplyDelivery?
+        occurrenceXSupplyDeliverySupplyDelivery,
     Reference? supplier,
     Reference? destination,
     List<Reference>? receiver,
@@ -441,12 +455,17 @@ class SupplyDeliverySuppliedItem extends BackboneElement {
               json['quantity'] as Map<String, dynamic>,
             )
           : null,
-      itemXSupplyDeliverySuppliedItem:
-          json['itemXSupplyDeliverySuppliedItem'] != null
-              ? CodeableConcept.fromJson(
-                  json['itemXSupplyDeliverySuppliedItem']
-                      as Map<String, dynamic>,
-                )
+      itemXSupplyDeliverySuppliedItem: json['itemCodeableConcept'] != null ||
+              json['_itemCodeableConcept'] != null
+          ? CodeableConceptItemSupplyDeliverySuppliedItem.fromJson({
+              'value': json['itemCodeableConcept'],
+              '_value': json['_itemCodeableConcept'],
+            })
+          : json['itemReference'] != null || json['_itemReference'] != null
+              ? ReferenceItemSupplyDeliverySuppliedItem.fromJson({
+                  'value': json['itemReference'],
+                  '_value': json['_itemReference'],
+                })
               : null,
     );
   }
@@ -501,7 +520,7 @@ class SupplyDeliverySuppliedItem extends BackboneElement {
   /// Identifies the medication, substance or device being dispensed. This is
   /// either a link to a resource representing the details of the item or a
   /// code that identifies the item from a known list.
-  final CodeableConcept? itemXSupplyDeliverySuppliedItem;
+  final ItemXSupplyDeliverySuppliedItem? itemXSupplyDeliverySuppliedItem;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -544,7 +563,7 @@ class SupplyDeliverySuppliedItem extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     Quantity? quantity,
-    CodeableConcept? itemXSupplyDeliverySuppliedItem,
+    ItemXSupplyDeliverySuppliedItem? itemXSupplyDeliverySuppliedItem,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,

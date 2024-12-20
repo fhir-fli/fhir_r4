@@ -160,13 +160,18 @@ class Media extends DomainResource {
               json['encounter'] as Map<String, dynamic>,
             )
           : null,
-      createdXMediaMedia: (json['createdXMediaMedia'] != null ||
-              json['_createdXMediaMedia'] != null)
-          ? FhirDateTime.fromJson({
-              'value': json['createdXMediaMedia'],
-              '_value': json['_createdXMediaMedia'],
-            })
-          : null,
+      createdXMediaMedia:
+          json['createdDateTime'] != null || json['_createdDateTime'] != null
+              ? DateTimeCreatedMediaMedia.fromJson({
+                  'value': json['createdDateTime'],
+                  '_value': json['_createdDateTime'],
+                })
+              : json['createdPeriod'] != null || json['_createdPeriod'] != null
+                  ? PeriodCreatedMediaMedia.fromJson({
+                      'value': json['createdPeriod'],
+                      '_value': json['_createdPeriod'],
+                    })
+                  : null,
       issued: (json['issued'] != null || json['_issued'] != null)
           ? FhirInstant.fromJson({
               'value': json['issued'],
@@ -329,7 +334,7 @@ class Media extends DomainResource {
 
   /// [createdXMediaMedia]
   /// The date and time(s) at which the media was collected.
-  final FhirDateTime? createdXMediaMedia;
+  final CreatedXMediaMedia? createdXMediaMedia;
 
   /// [issued]
   /// The date and time this version of the media was made available to
@@ -510,7 +515,7 @@ class Media extends DomainResource {
     CodeableConcept? view,
     Reference? subject,
     Reference? encounter,
-    FhirDateTime? createdXMediaMedia,
+    CreatedXMediaMedia? createdXMediaMedia,
     FhirInstant? issued,
     Reference? operator_,
     List<CodeableConcept>? reasonCode,

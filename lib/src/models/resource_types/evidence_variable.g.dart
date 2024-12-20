@@ -4,7 +4,7 @@ part of 'evidence_variable.dart';
 /// medication, or observation), Expressions ( using an expression language
 /// such as FHIRPath or CQL) or DataRequirements (such as Diabetes
 /// diagnosis onset in the last year).
-sealed class DefinitionXEvidenceVariableCharacteristic {}
+sealed class DefinitionXEvidenceVariableCharacteristic extends DataType {}
 
 /// Define members of the evidence element using Codes (such as condition,
 /// medication, or observation), Expressions ( using an expression language
@@ -72,7 +72,7 @@ class ExpressionDefinitionEvidenceVariableCharacteristic extends FhirExpression
 }
 
 /// Value or set of values that define the grouping.
-sealed class ValueXEvidenceVariableCategory {}
+sealed class ValueXEvidenceVariableCategory extends DataType {}
 
 /// Value or set of values that define the grouping.
 class CodeableConceptValueEvidenceVariableCategory extends CodeableConcept

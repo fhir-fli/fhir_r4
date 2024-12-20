@@ -1,7 +1,7 @@
 part of 'population.dart';
 
 /// The age of the specific population.
-sealed class AgeXPopulationPopulation {}
+sealed class AgeXPopulationPopulation extends DataType {}
 
 /// The age of the specific population.
 class RangeAgePopulationPopulation extends Range

@@ -2,7 +2,7 @@ part of 'nutrition_order.dart';
 
 /// The rate of administration of formula via a feeding pump, e.g. 60 mL
 /// per hour, according to the specified schedule.
-sealed class RateXNutritionOrderAdministration {}
+sealed class RateXNutritionOrderAdministration extends DataType {}
 
 /// The rate of administration of formula via a feeding pump, e.g. 60 mL
 /// per hour, according to the specified schedule.

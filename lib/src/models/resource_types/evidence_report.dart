@@ -139,12 +139,17 @@ class EvidenceReport extends DomainResource {
               )
               .toList()
           : null,
-      citeAsXEvidenceReportEvidenceReport:
-          json['citeAsXEvidenceReportEvidenceReport'] != null
-              ? Reference.fromJson(
-                  json['citeAsXEvidenceReportEvidenceReport']
-                      as Map<String, dynamic>,
-                )
+      citeAsXEvidenceReportEvidenceReport: json['citeAsReference'] != null ||
+              json['_citeAsReference'] != null
+          ? ReferenceCiteAsEvidenceReportEvidenceReport.fromJson({
+              'value': json['citeAsReference'],
+              '_value': json['_citeAsReference'],
+            })
+          : json['citeAsMarkdown'] != null || json['_citeAsMarkdown'] != null
+              ? MarkdownCiteAsEvidenceReportEvidenceReport.fromJson({
+                  'value': json['citeAsMarkdown'],
+                  '_value': json['_citeAsMarkdown'],
+                })
               : null,
       type: json['type'] != null
           ? CodeableConcept.fromJson(
@@ -322,7 +327,8 @@ class EvidenceReport extends DomainResource {
 
   /// [citeAsXEvidenceReportEvidenceReport]
   /// Citation Resource or display of suggested citation for this report.
-  final Reference? citeAsXEvidenceReportEvidenceReport;
+  final CiteAsXEvidenceReportEvidenceReport?
+      citeAsXEvidenceReportEvidenceReport;
 
   /// [type]
   /// Specifies the kind of report, such as grouping of classifiers, search
@@ -501,7 +507,7 @@ class EvidenceReport extends DomainResource {
     List<UsageContext>? useContext,
     List<Identifier>? identifier,
     List<Identifier>? relatedIdentifier,
-    Reference? citeAsXEvidenceReportEvidenceReport,
+    CiteAsXEvidenceReportEvidenceReport? citeAsXEvidenceReportEvidenceReport,
     CodeableConcept? type,
     List<Annotation>? note,
     List<RelatedArtifact>? relatedArtifact,
@@ -767,9 +773,33 @@ class EvidenceReportCharacteristic extends BackboneElement {
       code: CodeableConcept.fromJson(
         json['code'] as Map<String, dynamic>,
       ),
-      valueXEvidenceReportCharacteristic: Reference.fromJson(
-        json['valueXEvidenceReportCharacteristic'] as Map<String, dynamic>,
-      ),
+      valueXEvidenceReportCharacteristic: json['valueReference'] != null ||
+              json['_valueReference'] != null
+          ? ReferenceValueEvidenceReportCharacteristic.fromJson({
+              'value': json['valueReference'],
+              '_value': json['_valueReference'],
+            })
+          : json['valueCodeableConcept'] != null ||
+                  json['_valueCodeableConcept'] != null
+              ? CodeableConceptValueEvidenceReportCharacteristic.fromJson({
+                  'value': json['valueCodeableConcept'],
+                  '_value': json['_valueCodeableConcept'],
+                })
+              : json['valueBoolean'] != null || json['_valueBoolean'] != null
+                  ? BooleanValueEvidenceReportCharacteristic.fromJson({
+                      'value': json['valueBoolean'],
+                      '_value': json['_valueBoolean'],
+                    })
+                  : json['valueQuantity'] != null ||
+                          json['_valueQuantity'] != null
+                      ? QuantityValueEvidenceReportCharacteristic.fromJson({
+                          'value': json['valueQuantity'],
+                          '_value': json['_valueQuantity'],
+                        })
+                      : RangeValueEvidenceReportCharacteristic.fromJson({
+                          'value': json['valueRange'],
+                          '_value': json['_valueRange'],
+                        }),
       exclude: (json['exclude'] != null || json['_exclude'] != null)
           ? FhirBoolean.fromJson({
               'value': json['exclude'],
@@ -832,7 +862,7 @@ class EvidenceReportCharacteristic extends BackboneElement {
 
   /// [valueXEvidenceReportCharacteristic]
   /// Characteristic value.
-  final Reference valueXEvidenceReportCharacteristic;
+  final ValueXEvidenceReportCharacteristic valueXEvidenceReportCharacteristic;
 
   /// [exclude]
   /// Is used to express not the characteristic.
@@ -884,7 +914,7 @@ class EvidenceReportCharacteristic extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     CodeableConcept? code,
-    Reference? valueXEvidenceReportCharacteristic,
+    ValueXEvidenceReportCharacteristic? valueXEvidenceReportCharacteristic,
     FhirBoolean? exclude,
     Period? period,
     Map<String, Object?>? userData,
@@ -951,9 +981,16 @@ class EvidenceReportRelatesTo extends BackboneElement {
         'value': json['code'],
         '_value': json['_code'],
       }),
-      targetXEvidenceReportRelatesTo: Identifier.fromJson(
-        json['targetXEvidenceReportRelatesTo'] as Map<String, dynamic>,
-      ),
+      targetXEvidenceReportRelatesTo:
+          json['targetIdentifier'] != null || json['_targetIdentifier'] != null
+              ? IdentifierTargetEvidenceReportRelatesTo.fromJson({
+                  'value': json['targetIdentifier'],
+                  '_value': json['_targetIdentifier'],
+                })
+              : ReferenceTargetEvidenceReportRelatesTo.fromJson({
+                  'value': json['targetReference'],
+                  '_value': json['_targetReference'],
+                }),
     );
   }
 
@@ -1006,7 +1043,7 @@ class EvidenceReportRelatesTo extends BackboneElement {
 
   /// [targetXEvidenceReportRelatesTo]
   /// The target composition/document of this relationship.
-  final Identifier targetXEvidenceReportRelatesTo;
+  final TargetXEvidenceReportRelatesTo targetXEvidenceReportRelatesTo;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1044,7 +1081,7 @@ class EvidenceReportRelatesTo extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     ReportRelationshipType? code,
-    Identifier? targetXEvidenceReportRelatesTo,
+    TargetXEvidenceReportRelatesTo? targetXEvidenceReportRelatesTo,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,

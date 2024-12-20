@@ -1,7 +1,7 @@
 part of 'request_group.dart';
 
 /// An optional value describing when the action should be performed.
-sealed class TimingXRequestGroupAction {}
+sealed class TimingXRequestGroupAction extends DataType {}
 
 /// An optional value describing when the action should be performed.
 class DateTimeTimingRequestGroupAction extends FhirDateTime
@@ -87,7 +87,7 @@ class TimingTimingRequestGroupAction extends Timing
 
 /// A duration or range of durations to apply to the relationship. For
 /// example, 30-60 minutes before.
-sealed class OffsetXRequestGroupRelatedAction {}
+sealed class OffsetXRequestGroupRelatedAction extends DataType {}
 
 /// A duration or range of durations to apply to the relationship. For
 /// example, 30-60 minutes before.

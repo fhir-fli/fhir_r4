@@ -3,7 +3,7 @@ part of 'measure.dart';
 /// The intended subjects for the measure. If this element is not provided,
 /// a Patient subject is assumed, but the subject of the measure can be
 /// anything.
-sealed class SubjectXMeasureMeasure {}
+sealed class SubjectXMeasureMeasure extends DataType {}
 
 /// The intended subjects for the measure. If this element is not provided,
 /// a Patient subject is assumed, but the subject of the measure can be

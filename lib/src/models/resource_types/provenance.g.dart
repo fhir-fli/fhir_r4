@@ -1,7 +1,7 @@
 part of 'provenance.dart';
 
 /// The period during which the activity occurred.
-sealed class OccurredXProvenanceProvenance {}
+sealed class OccurredXProvenanceProvenance extends DataType {}
 
 /// The period during which the activity occurred.
 class PeriodOccurredProvenanceProvenance extends Period

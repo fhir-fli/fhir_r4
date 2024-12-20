@@ -1,7 +1,7 @@
 part of 'goal.dart';
 
 /// The date or event after which the goal should begin being pursued.
-sealed class StartXGoalGoal {}
+sealed class StartXGoalGoal extends DataType {}
 
 /// The date or event after which the goal should begin being pursued.
 class GoalStartEventStartGoalGoal extends GoalStartEvent
@@ -29,7 +29,7 @@ class CodeableConceptStartGoalGoal extends CodeableConcept
 /// indicates that the goal is achieved at any focus value at or below the
 /// high value. Similarly, if the high value is missing, it indicates that
 /// the goal is achieved at any focus value at or above the low value.
-sealed class DetailXGoalTarget {}
+sealed class DetailXGoalTarget extends DataType {}
 
 /// The target value of the focus to be achieved to signify the fulfillment
 /// of the goal, e.g. 150 pounds, 7.0%. Either the high or low or both
@@ -156,7 +156,7 @@ class RatioDetailGoalTarget extends Ratio implements DetailXGoalTarget {
 
 /// Indicates either the date or the duration after start by which the goal
 /// should be met.
-sealed class DueXGoalTarget {}
+sealed class DueXGoalTarget extends DataType {}
 
 /// Indicates either the date or the duration after start by which the goal
 /// should be met.

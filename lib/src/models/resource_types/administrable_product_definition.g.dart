@@ -1,7 +1,7 @@
 part of 'administrable_product_definition.dart';
 
 /// A value for the characteristic.
-sealed class ValueXAdministrableProductDefinitionProperty {}
+sealed class ValueXAdministrableProductDefinitionProperty extends DataType {}
 
 /// A value for the characteristic.
 class CodeableConceptValueAdministrableProductDefinitionProperty

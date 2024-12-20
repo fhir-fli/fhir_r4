@@ -1,7 +1,7 @@
 part of 'code_system.dart';
 
 /// The value of this property.
-sealed class ValueXCodeSystemProperty {}
+sealed class ValueXCodeSystemProperty extends DataType {}
 
 /// The value of this property.
 class CodeValueCodeSystemProperty extends FhirCode

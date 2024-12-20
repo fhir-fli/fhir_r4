@@ -111,11 +111,18 @@ class Provenance extends DomainResource {
             .toList(),
       ),
       occurredXProvenanceProvenance:
-          json['occurredXProvenanceProvenance'] != null
-              ? Period.fromJson(
-                  json['occurredXProvenanceProvenance'] as Map<String, dynamic>,
-                )
-              : null,
+          json['occurredPeriod'] != null || json['_occurredPeriod'] != null
+              ? PeriodOccurredProvenanceProvenance.fromJson({
+                  'value': json['occurredPeriod'],
+                  '_value': json['_occurredPeriod'],
+                })
+              : json['occurredDateTime'] != null ||
+                      json['_occurredDateTime'] != null
+                  ? DateTimeOccurredProvenanceProvenance.fromJson({
+                      'value': json['occurredDateTime'],
+                      '_value': json['_occurredDateTime'],
+                    })
+                  : null,
       recorded: FhirInstant.fromJson({
         'value': json['recorded'],
         '_value': json['_recorded'],
@@ -224,7 +231,7 @@ class Provenance extends DomainResource {
 
   /// [occurredXProvenanceProvenance]
   /// The period during which the activity occurred.
-  final Period? occurredXProvenanceProvenance;
+  final OccurredXProvenanceProvenance? occurredXProvenanceProvenance;
 
   /// [recorded]
   /// The instant of time at which the activity was recorded.
@@ -358,7 +365,7 @@ class Provenance extends DomainResource {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<Reference>? target,
-    Period? occurredXProvenanceProvenance,
+    OccurredXProvenanceProvenance? occurredXProvenanceProvenance,
     FhirInstant? recorded,
     List<FhirUri>? policy,
     Reference? location,

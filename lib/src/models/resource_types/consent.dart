@@ -151,11 +151,18 @@ class Consent extends DomainResource {
               )
               .toList()
           : null,
-      sourceXConsentConsent: json['sourceXConsentConsent'] != null
-          ? Attachment.fromJson(
-              json['sourceXConsentConsent'] as Map<String, dynamic>,
-            )
-          : null,
+      sourceXConsentConsent: json['sourceAttachment'] != null ||
+              json['_sourceAttachment'] != null
+          ? AttachmentSourceConsentConsent.fromJson({
+              'value': json['sourceAttachment'],
+              '_value': json['_sourceAttachment'],
+            })
+          : json['sourceReference'] != null || json['_sourceReference'] != null
+              ? ReferenceSourceConsentConsent.fromJson({
+                  'value': json['sourceReference'],
+                  '_value': json['_sourceReference'],
+                })
+              : null,
       policy: json['policy'] != null
           ? (json['policy'] as List<dynamic>)
               .map<ConsentPolicy>(
@@ -273,7 +280,7 @@ class Consent extends DomainResource {
   /// be a scanned original paper form, or a reference to a consent that
   /// links back to such a source, a reference to a document repository (e.g.
   /// XDS) that stores the original consent document.
-  final Attachment? sourceXConsentConsent;
+  final SourceXConsentConsent? sourceXConsentConsent;
 
   /// [policy]
   /// The references to the policies that are included in this consent scope.
@@ -399,7 +406,7 @@ class Consent extends DomainResource {
     FhirDateTime? dateTime,
     List<Reference>? performer,
     List<Reference>? organization,
-    Attachment? sourceXConsentConsent,
+    SourceXConsentConsent? sourceXConsentConsent,
     List<ConsentPolicy>? policy,
     CodeableConcept? policyRule,
     List<ConsentVerification>? verification,

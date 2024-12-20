@@ -644,14 +644,88 @@ class QuestionnaireResponseAnswer extends BackboneElement {
               )
               .toList()
           : null,
-      valueXQuestionnaireResponseAnswer:
-          (json['valueXQuestionnaireResponseAnswer'] != null ||
-                  json['_valueXQuestionnaireResponseAnswer'] != null)
-              ? FhirBoolean.fromJson({
-                  'value': json['valueXQuestionnaireResponseAnswer'],
-                  '_value': json['_valueXQuestionnaireResponseAnswer'],
+      valueXQuestionnaireResponseAnswer: json['valueBoolean'] != null ||
+              json['_valueBoolean'] != null
+          ? BooleanValueQuestionnaireResponseAnswer.fromJson({
+              'value': json['valueBoolean'],
+              '_value': json['_valueBoolean'],
+            })
+          : json['valueDecimal'] != null || json['_valueDecimal'] != null
+              ? DecimalValueQuestionnaireResponseAnswer.fromJson({
+                  'value': json['valueDecimal'],
+                  '_value': json['_valueDecimal'],
                 })
-              : null,
+              : json['valueInteger'] != null || json['_valueInteger'] != null
+                  ? IntegerValueQuestionnaireResponseAnswer.fromJson({
+                      'value': json['valueInteger'],
+                      '_value': json['_valueInteger'],
+                    })
+                  : json['valueDate'] != null || json['_valueDate'] != null
+                      ? DateValueQuestionnaireResponseAnswer.fromJson({
+                          'value': json['valueDate'],
+                          '_value': json['_valueDate'],
+                        })
+                      : json['valueDateTime'] != null ||
+                              json['_valueDateTime'] != null
+                          ? DateTimeValueQuestionnaireResponseAnswer.fromJson({
+                              'value': json['valueDateTime'],
+                              '_value': json['_valueDateTime'],
+                            })
+                          : json['valueTime'] != null ||
+                                  json['_valueTime'] != null
+                              ? TimeValueQuestionnaireResponseAnswer.fromJson({
+                                  'value': json['valueTime'],
+                                  '_value': json['_valueTime'],
+                                })
+                              : json['valueString'] != null ||
+                                      json['_valueString'] != null
+                                  ? StringValueQuestionnaireResponseAnswer.fromJson({
+                                      'value': json['valueString'],
+                                      '_value': json['_valueString'],
+                                    })
+                                  : json['valueUri'] != null ||
+                                          json['_valueUri'] != null
+                                      ? UriValueQuestionnaireResponseAnswer
+                                          .fromJson({
+                                          'value': json['valueUri'],
+                                          '_value': json['_valueUri'],
+                                        })
+                                      : json['valueAttachment'] != null ||
+                                              json['_valueAttachment'] != null
+                                          ? AttachmentValueQuestionnaireResponseAnswer
+                                              .fromJson({
+                                              'value': json['valueAttachment'],
+                                              '_value':
+                                                  json['_valueAttachment'],
+                                            })
+                                          : json['valueCoding'] != null ||
+                                                  json['_valueCoding'] != null
+                                              ? CodingValueQuestionnaireResponseAnswer
+                                                  .fromJson({
+                                                  'value': json['valueCoding'],
+                                                  '_value':
+                                                      json['_valueCoding'],
+                                                })
+                                              : json['valueQuantity'] != null ||
+                                                      json['_valueQuantity'] !=
+                                                          null
+                                                  ? QuantityValueQuestionnaireResponseAnswer
+                                                      .fromJson({
+                                                      'value':
+                                                          json['valueQuantity'],
+                                                      '_value': json[
+                                                          '_valueQuantity'],
+                                                    })
+                                                  : json['valueReference'] != null ||
+                                                          json['_valueReference'] !=
+                                                              null
+                                                      ? ReferenceValueQuestionnaireResponseAnswer.fromJson({
+                                                          'value': json[
+                                                              'valueReference'],
+                                                          '_value': json[
+                                                              '_valueReference'],
+                                                        })
+                                                      : null,
       item: json['item'] != null
           ? (json['item'] as List<dynamic>)
               .map<QuestionnaireResponseItem>(
@@ -709,7 +783,7 @@ class QuestionnaireResponseAnswer extends BackboneElement {
   /// [valueXQuestionnaireResponseAnswer]
   /// The answer (or one of the answers) provided by the respondent to the
   /// question.
-  final FhirBoolean? valueXQuestionnaireResponseAnswer;
+  final ValueXQuestionnaireResponseAnswer? valueXQuestionnaireResponseAnswer;
 
   /// [item]
   /// Nested groups and/or questions found within this particular answer.
@@ -752,7 +826,7 @@ class QuestionnaireResponseAnswer extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    FhirBoolean? valueXQuestionnaireResponseAnswer,
+    ValueXQuestionnaireResponseAnswer? valueXQuestionnaireResponseAnswer,
     List<QuestionnaireResponseItem>? item,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,

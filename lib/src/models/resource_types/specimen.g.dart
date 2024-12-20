@@ -2,7 +2,7 @@ part of 'specimen.dart';
 
 /// Time when specimen was collected from subject - the physiologically
 /// relevant time.
-sealed class CollectedXSpecimenCollection {}
+sealed class CollectedXSpecimenCollection extends DataType {}
 
 /// Time when specimen was collected from subject - the physiologically
 /// relevant time.
@@ -50,7 +50,7 @@ class PeriodCollectedSpecimenCollection extends Period
 
 /// Abstinence or reduction from some or all food, drink, or both, for a
 /// period of time prior to sample collection.
-sealed class FastingStatusXSpecimenCollection {}
+sealed class FastingStatusXSpecimenCollection extends DataType {}
 
 /// Abstinence or reduction from some or all food, drink, or both, for a
 /// period of time prior to sample collection.
@@ -78,7 +78,7 @@ class DurationFastingStatusSpecimenCollection extends FhirDuration
 /// A record of the time or period when the specimen processing occurred.
 /// For example the time of sample fixation or the period of time the
 /// sample was in formalin.
-sealed class TimeXSpecimenProcessing {}
+sealed class TimeXSpecimenProcessing extends DataType {}
 
 /// A record of the time or period when the specimen processing occurred.
 /// For example the time of sample fixation or the period of time the
@@ -128,7 +128,7 @@ class PeriodTimeSpecimenProcessing extends Period
 
 /// Introduced substance to preserve, maintain or enhance the specimen.
 /// Examples: Formalin, Citrate, EDTA.
-sealed class AdditiveXSpecimenContainer {}
+sealed class AdditiveXSpecimenContainer extends DataType {}
 
 /// Introduced substance to preserve, maintain or enhance the specimen.
 /// Examples: Formalin, Citrate, EDTA.

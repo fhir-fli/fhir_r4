@@ -1,7 +1,7 @@
 part of 'medicinal_product_definition.dart';
 
 /// A value for the characteristic.
-sealed class ValueXMedicinalProductDefinitionCharacteristic {}
+sealed class ValueXMedicinalProductDefinitionCharacteristic extends DataType {}
 
 /// A value for the characteristic.
 class CodeableConceptValueMedicinalProductDefinitionCharacteristic

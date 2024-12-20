@@ -147,14 +147,37 @@ class AllergyIntolerance extends DomainResource {
               json['encounter'] as Map<String, dynamic>,
             )
           : null,
-      onsetXAllergyIntoleranceAllergyIntolerance:
-          (json['onsetXAllergyIntoleranceAllergyIntolerance'] != null ||
-                  json['_onsetXAllergyIntoleranceAllergyIntolerance'] != null)
-              ? FhirDateTime.fromJson({
-                  'value': json['onsetXAllergyIntoleranceAllergyIntolerance'],
-                  '_value': json['_onsetXAllergyIntoleranceAllergyIntolerance'],
+      onsetXAllergyIntoleranceAllergyIntolerance: json['onsetDateTime'] !=
+                  null ||
+              json['_onsetDateTime'] != null
+          ? DateTimeOnsetAllergyIntoleranceAllergyIntolerance.fromJson({
+              'value': json['onsetDateTime'],
+              '_value': json['_onsetDateTime'],
+            })
+          : json['onsetAge'] != null || json['_onsetAge'] != null
+              ? AgeOnsetAllergyIntoleranceAllergyIntolerance.fromJson({
+                  'value': json['onsetAge'],
+                  '_value': json['_onsetAge'],
                 })
-              : null,
+              : json['onsetPeriod'] != null || json['_onsetPeriod'] != null
+                  ? PeriodOnsetAllergyIntoleranceAllergyIntolerance.fromJson({
+                      'value': json['onsetPeriod'],
+                      '_value': json['_onsetPeriod'],
+                    })
+                  : json['onsetRange'] != null || json['_onsetRange'] != null
+                      ? RangeOnsetAllergyIntoleranceAllergyIntolerance
+                          .fromJson({
+                          'value': json['onsetRange'],
+                          '_value': json['_onsetRange'],
+                        })
+                      : json['onsetString'] != null ||
+                              json['_onsetString'] != null
+                          ? StringOnsetAllergyIntoleranceAllergyIntolerance
+                              .fromJson({
+                              'value': json['onsetString'],
+                              '_value': json['_onsetString'],
+                            })
+                          : null,
       recordedDate:
           (json['recordedDate'] != null || json['_recordedDate'] != null)
               ? FhirDateTime.fromJson({
@@ -302,7 +325,8 @@ class AllergyIntolerance extends DomainResource {
   /// [onsetXAllergyIntoleranceAllergyIntolerance]
   /// Estimated or actual date, date-time, or age when allergy or intolerance
   /// was identified.
-  final FhirDateTime? onsetXAllergyIntoleranceAllergyIntolerance;
+  final OnsetXAllergyIntoleranceAllergyIntolerance?
+      onsetXAllergyIntoleranceAllergyIntolerance;
 
   /// [recordedDate]
   /// The recordedDate represents when this particular AllergyIntolerance
@@ -446,7 +470,8 @@ class AllergyIntolerance extends DomainResource {
     CodeableConcept? code,
     Reference? patient,
     Reference? encounter,
-    FhirDateTime? onsetXAllergyIntoleranceAllergyIntolerance,
+    OnsetXAllergyIntoleranceAllergyIntolerance?
+        onsetXAllergyIntoleranceAllergyIntolerance,
     FhirDateTime? recordedDate,
     Reference? recorder,
     Reference? asserter,

@@ -1,7 +1,7 @@
 part of 'charge_item.dart';
 
 /// Date/time(s) or duration when the charged service was applied.
-sealed class OccurrenceXChargeItemChargeItem {}
+sealed class OccurrenceXChargeItemChargeItem extends DataType {}
 
 /// Date/time(s) or duration when the charged service was applied.
 class DateTimeOccurrenceChargeItemChargeItem extends FhirDateTime
@@ -57,7 +57,7 @@ class TimingOccurrenceChargeItemChargeItem extends Timing
 
 /// Identifies the device, food, drug or other product being charged either
 /// by type code or reference to an instance.
-sealed class ProductXChargeItemChargeItem {}
+sealed class ProductXChargeItemChargeItem extends DataType {}
 
 /// Identifies the device, food, drug or other product being charged either
 /// by type code or reference to an instance.

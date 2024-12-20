@@ -678,10 +678,22 @@ class CommunicationPayload extends BackboneElement {
               )
               .toList()
           : null,
-      contentXCommunicationPayload: FhirString.fromJson({
-        'value': json['contentXCommunicationPayload'],
-        '_value': json['_contentXCommunicationPayload'],
-      }),
+      contentXCommunicationPayload:
+          json['contentString'] != null || json['_contentString'] != null
+              ? StringContentCommunicationPayload.fromJson({
+                  'value': json['contentString'],
+                  '_value': json['_contentString'],
+                })
+              : json['contentAttachment'] != null ||
+                      json['_contentAttachment'] != null
+                  ? AttachmentContentCommunicationPayload.fromJson({
+                      'value': json['contentAttachment'],
+                      '_value': json['_contentAttachment'],
+                    })
+                  : ReferenceContentCommunicationPayload.fromJson({
+                      'value': json['contentReference'],
+                      '_value': json['_contentReference'],
+                    }),
     );
   }
 
@@ -730,7 +742,7 @@ class CommunicationPayload extends BackboneElement {
   /// [contentXCommunicationPayload]
   /// A communicated content (or for multi-part communications, one portion
   /// of the communication).
-  final FhirString contentXCommunicationPayload;
+  final ContentXCommunicationPayload contentXCommunicationPayload;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -764,7 +776,7 @@ class CommunicationPayload extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    FhirString? contentXCommunicationPayload,
+    ContentXCommunicationPayload? contentXCommunicationPayload,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,

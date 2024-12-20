@@ -1,7 +1,7 @@
 part of 'media.dart';
 
 /// The date and time(s) at which the media was collected.
-sealed class CreatedXMediaMedia {}
+sealed class CreatedXMediaMedia extends DataType {}
 
 /// The date and time(s) at which the media was collected.
 class DateTimeCreatedMediaMedia extends FhirDateTime

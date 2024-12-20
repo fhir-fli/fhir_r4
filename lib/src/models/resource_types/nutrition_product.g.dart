@@ -1,7 +1,7 @@
 part of 'nutrition_product.dart';
 
 /// The actual characteristic value corresponding to the type.
-sealed class ValueXNutritionProductProductCharacteristic {}
+sealed class ValueXNutritionProductProductCharacteristic extends DataType {}
 
 /// The actual characteristic value corresponding to the type.
 class CodeableConceptValueNutritionProductProductCharacteristic

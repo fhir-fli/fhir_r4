@@ -37,11 +37,18 @@ class Annotation extends DataType {
               )
               .toList()
           : null,
-      authorXAnnotationAnnotation: json['authorXAnnotationAnnotation'] != null
-          ? Reference.fromJson(
-              json['authorXAnnotationAnnotation'] as Map<String, dynamic>,
-            )
-          : null,
+      authorXAnnotationAnnotation:
+          json['authorReference'] != null || json['_authorReference'] != null
+              ? ReferenceAuthorAnnotationAnnotation.fromJson({
+                  'value': json['authorReference'],
+                  '_value': json['_authorReference'],
+                })
+              : json['authorString'] != null || json['_authorString'] != null
+                  ? StringAuthorAnnotationAnnotation.fromJson({
+                      'value': json['authorString'],
+                      '_value': json['_authorString'],
+                    })
+                  : null,
       time: (json['time'] != null || json['_time'] != null)
           ? FhirDateTime.fromJson({
               'value': json['time'],
@@ -99,7 +106,7 @@ class Annotation extends DataType {
 
   /// [authorXAnnotationAnnotation]
   /// The individual responsible for making the annotation.
-  final Reference? authorXAnnotationAnnotation;
+  final AuthorXAnnotationAnnotation? authorXAnnotationAnnotation;
 
   /// [time]
   /// Indicates when this particular annotation was made.
@@ -141,7 +148,7 @@ class Annotation extends DataType {
   Annotation copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
-    Reference? authorXAnnotationAnnotation,
+    AuthorXAnnotationAnnotation? authorXAnnotationAnnotation,
     FhirDateTime? time,
     FhirMarkdown? text,
     Map<String, Object?>? userData,

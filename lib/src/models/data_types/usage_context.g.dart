@@ -2,7 +2,7 @@ part of 'usage_context.dart';
 
 /// A value that defines the context specified in this context of use. The
 /// interpretation of the value is defined by the code.
-sealed class ValueXUsageContextUsageContext {}
+sealed class ValueXUsageContextUsageContext extends DataType {}
 
 /// A value that defines the context specified in this context of use. The
 /// interpretation of the value is defined by the code.

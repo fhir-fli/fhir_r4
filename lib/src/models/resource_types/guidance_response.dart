@@ -112,10 +112,21 @@ class GuidanceResponse extends DomainResource {
               )
               .toList()
           : null,
-      moduleXGuidanceResponseGuidanceResponse: FhirUri.fromJson({
-        'value': json['moduleXGuidanceResponseGuidanceResponse'],
-        '_value': json['_moduleXGuidanceResponseGuidanceResponse'],
-      }),
+      moduleXGuidanceResponseGuidanceResponse: json['moduleUri'] != null ||
+              json['_moduleUri'] != null
+          ? UriModuleGuidanceResponseGuidanceResponse.fromJson({
+              'value': json['moduleUri'],
+              '_value': json['_moduleUri'],
+            })
+          : json['moduleCanonical'] != null || json['_moduleCanonical'] != null
+              ? CanonicalModuleGuidanceResponseGuidanceResponse.fromJson({
+                  'value': json['moduleCanonical'],
+                  '_value': json['_moduleCanonical'],
+                })
+              : CodeableConceptModuleGuidanceResponseGuidanceResponse.fromJson({
+                  'value': json['moduleCodeableConcept'],
+                  '_value': json['_moduleCodeableConcept'],
+                }),
       status: GuidanceResponseStatus.fromJson({
         'value': json['status'],
         '_value': json['_status'],
@@ -257,7 +268,8 @@ class GuidanceResponse extends DomainResource {
   /// [moduleXGuidanceResponseGuidanceResponse]
   /// An identifier, CodeableConcept or canonical reference to the guidance
   /// that was requested.
-  final FhirUri moduleXGuidanceResponseGuidanceResponse;
+  final ModuleXGuidanceResponseGuidanceResponse
+      moduleXGuidanceResponseGuidanceResponse;
 
   /// [status]
   /// The status of the response. If the evaluation is completed
@@ -440,7 +452,8 @@ class GuidanceResponse extends DomainResource {
     List<FhirExtension>? modifierExtension,
     Identifier? requestIdentifier,
     List<Identifier>? identifier,
-    FhirUri? moduleXGuidanceResponseGuidanceResponse,
+    ModuleXGuidanceResponseGuidanceResponse?
+        moduleXGuidanceResponseGuidanceResponse,
     GuidanceResponseStatus? status,
     Reference? subject,
     Reference? encounter,

@@ -2,7 +2,7 @@ part of 'contract.dart';
 
 /// Narrows the range of legal concerns to focus on the achievement of
 /// specific contractual objectives.
-sealed class TopicXContractContract {}
+sealed class TopicXContractContract extends DataType {}
 
 /// Narrows the range of legal concerns to focus on the achievement of
 /// specific contractual objectives.
@@ -30,7 +30,7 @@ class ReferenceTopicContractContract extends Reference
 /// representation of the Contract, which is considered the "source of
 /// truth" and which would be the basis for legal action related to
 /// enforcement of this Contract.
-sealed class LegallyBindingXContractContract {}
+sealed class LegallyBindingXContractContract extends DataType {}
 
 /// Legally binding Contract: This is the signed and legally recognized
 /// representation of the Contract, which is considered the "source of
@@ -59,7 +59,7 @@ class ReferenceLegallyBindingContractContract extends Reference
 }
 
 /// The entity that the term applies to.
-sealed class TopicXContractTerm {}
+sealed class TopicXContractTerm extends DataType {}
 
 /// The entity that the term applies to.
 class CodeableConceptTopicContractTerm extends CodeableConcept
@@ -85,7 +85,7 @@ class ReferenceTopicContractTerm extends Reference
 /// of values to be agreed to, e.g., the period of participation, the date
 /// of occupancy of a rental, warrently duration, or whether biospecimen
 /// may be used for further research.
-sealed class ValueXContractAnswer {}
+sealed class ValueXContractAnswer extends DataType {}
 
 /// Response to an offer clause or question text, which enables selection
 /// of values to be agreed to, e.g., the period of participation, the date
@@ -331,7 +331,7 @@ class ReferenceValueContractAnswer extends Reference
 }
 
 /// Specific type of Contract Valued Item that may be priced.
-sealed class EntityXContractValuedItem {}
+sealed class EntityXContractValuedItem extends DataType {}
 
 /// Specific type of Contract Valued Item that may be priced.
 class CodeableConceptEntityContractValuedItem extends CodeableConcept
@@ -354,7 +354,7 @@ class ReferenceEntityContractValuedItem extends Reference
 }
 
 /// When action happens.
-sealed class OccurrenceXContractAction {}
+sealed class OccurrenceXContractAction extends DataType {}
 
 /// When action happens.
 class DateTimeOccurrenceContractAction extends FhirDateTime
@@ -411,7 +411,7 @@ class TimingOccurrenceContractAction extends Timing
 /// Human readable rendering of this Contract in a format and
 /// representation intended to enhance comprehension and ensure
 /// understandability.
-sealed class ContentXContractFriendly {}
+sealed class ContentXContractFriendly extends DataType {}
 
 /// Human readable rendering of this Contract in a format and
 /// representation intended to enhance comprehension and ensure
@@ -438,7 +438,7 @@ class ReferenceContentContractFriendly extends Reference
 }
 
 /// Contract legal text in human renderable form.
-sealed class ContentXContractLegal {}
+sealed class ContentXContractLegal extends DataType {}
 
 /// Contract legal text in human renderable form.
 class AttachmentContentContractLegal extends Attachment
@@ -462,7 +462,7 @@ class ReferenceContentContractLegal extends Reference
 
 /// Computable Contract conveyed using a policy rule language (e.g. XACML,
 /// DKAL, SecPal).
-sealed class ContentXContractRule {}
+sealed class ContentXContractRule extends DataType {}
 
 /// Computable Contract conveyed using a policy rule language (e.g. XACML,
 /// DKAL, SecPal).

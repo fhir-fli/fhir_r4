@@ -120,16 +120,20 @@ class CoverageEligibilityResponse extends DomainResource {
       patient: Reference.fromJson(
         json['patient'] as Map<String, dynamic>,
       ),
-      servicedXCoverageEligibilityResponseCoverageEligibilityResponse:
-          (json['servicedXCoverageEligibilityResponseCoverageEligibilityResponse'] !=
-                      null ||
-                  json['_servicedXCoverageEligibilityResponseCoverageEligibilityResponse'] !=
-                      null)
-              ? FhirDate.fromJson({
-                  'value': json[
-                      'servicedXCoverageEligibilityResponseCoverageEligibilityResponse'],
-                  '_value': json[
-                      '_servicedXCoverageEligibilityResponseCoverageEligibilityResponse'],
+      servicedXCoverageEligibilityResponseCoverageEligibilityResponse: json[
+                      'servicedDate'] !=
+                  null ||
+              json['_servicedDate'] != null
+          ? DateServicedCoverageEligibilityResponseCoverageEligibilityResponse
+              .fromJson({
+              'value': json['servicedDate'],
+              '_value': json['_servicedDate'],
+            })
+          : json['servicedPeriod'] != null || json['_servicedPeriod'] != null
+              ? PeriodServicedCoverageEligibilityResponseCoverageEligibilityResponse
+                  .fromJson({
+                  'value': json['servicedPeriod'],
+                  '_value': json['_servicedPeriod'],
                 })
               : null,
       created: FhirDateTime.fromJson({
@@ -255,7 +259,7 @@ class CoverageEligibilityResponse extends DomainResource {
   /// [servicedXCoverageEligibilityResponseCoverageEligibilityResponse]
   /// The date or dates when the enclosed suite of services were performed or
   /// completed.
-  final FhirDate?
+  final ServicedXCoverageEligibilityResponseCoverageEligibilityResponse?
       servicedXCoverageEligibilityResponseCoverageEligibilityResponse;
 
   /// [created]
@@ -397,7 +401,8 @@ class CoverageEligibilityResponse extends DomainResource {
     FinancialResourceStatusCodes? status,
     List<EligibilityResponsePurpose>? purpose,
     Reference? patient,
-    FhirDate? servicedXCoverageEligibilityResponseCoverageEligibilityResponse,
+    ServicedXCoverageEligibilityResponseCoverageEligibilityResponse?
+        servicedXCoverageEligibilityResponseCoverageEligibilityResponse,
     FhirDateTime? created,
     Reference? requestor,
     Reference? request,
@@ -1057,22 +1062,41 @@ class CoverageEligibilityResponseBenefit extends BackboneElement {
       type: CodeableConcept.fromJson(
         json['type'] as Map<String, dynamic>,
       ),
-      allowedXCoverageEligibilityResponseBenefit:
-          (json['allowedXCoverageEligibilityResponseBenefit'] != null ||
-                  json['_allowedXCoverageEligibilityResponseBenefit'] != null)
-              ? FhirUnsignedInt.fromJson({
-                  'value': json['allowedXCoverageEligibilityResponseBenefit'],
-                  '_value': json['_allowedXCoverageEligibilityResponseBenefit'],
+      allowedXCoverageEligibilityResponseBenefit: json['allowedUnsignedInt'] !=
+                  null ||
+              json['_allowedUnsignedInt'] != null
+          ? UnsignedIntAllowedCoverageEligibilityResponseBenefit.fromJson({
+              'value': json['allowedUnsignedInt'],
+              '_value': json['_allowedUnsignedInt'],
+            })
+          : json['allowedString'] != null || json['_allowedString'] != null
+              ? StringAllowedCoverageEligibilityResponseBenefit.fromJson({
+                  'value': json['allowedString'],
+                  '_value': json['_allowedString'],
                 })
-              : null,
+              : json['allowedMoney'] != null || json['_allowedMoney'] != null
+                  ? MoneyAllowedCoverageEligibilityResponseBenefit.fromJson({
+                      'value': json['allowedMoney'],
+                      '_value': json['_allowedMoney'],
+                    })
+                  : null,
       usedXCoverageEligibilityResponseBenefit:
-          (json['usedXCoverageEligibilityResponseBenefit'] != null ||
-                  json['_usedXCoverageEligibilityResponseBenefit'] != null)
-              ? FhirUnsignedInt.fromJson({
-                  'value': json['usedXCoverageEligibilityResponseBenefit'],
-                  '_value': json['_usedXCoverageEligibilityResponseBenefit'],
+          json['usedUnsignedInt'] != null || json['_usedUnsignedInt'] != null
+              ? UnsignedIntUsedCoverageEligibilityResponseBenefit.fromJson({
+                  'value': json['usedUnsignedInt'],
+                  '_value': json['_usedUnsignedInt'],
                 })
-              : null,
+              : json['usedString'] != null || json['_usedString'] != null
+                  ? StringUsedCoverageEligibilityResponseBenefit.fromJson({
+                      'value': json['usedString'],
+                      '_value': json['_usedString'],
+                    })
+                  : json['usedMoney'] != null || json['_usedMoney'] != null
+                      ? MoneyUsedCoverageEligibilityResponseBenefit.fromJson({
+                          'value': json['usedMoney'],
+                          '_value': json['_usedMoney'],
+                        })
+                      : null,
     );
   }
 
@@ -1124,11 +1148,13 @@ class CoverageEligibilityResponseBenefit extends BackboneElement {
 
   /// [allowedXCoverageEligibilityResponseBenefit]
   /// The quantity of the benefit which is permitted under the coverage.
-  final FhirUnsignedInt? allowedXCoverageEligibilityResponseBenefit;
+  final AllowedXCoverageEligibilityResponseBenefit?
+      allowedXCoverageEligibilityResponseBenefit;
 
   /// [usedXCoverageEligibilityResponseBenefit]
   /// The quantity of the benefit which have been consumed to date.
-  final FhirUnsignedInt? usedXCoverageEligibilityResponseBenefit;
+  final UsedXCoverageEligibilityResponseBenefit?
+      usedXCoverageEligibilityResponseBenefit;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1168,8 +1194,10 @@ class CoverageEligibilityResponseBenefit extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     CodeableConcept? type,
-    FhirUnsignedInt? allowedXCoverageEligibilityResponseBenefit,
-    FhirUnsignedInt? usedXCoverageEligibilityResponseBenefit,
+    AllowedXCoverageEligibilityResponseBenefit?
+        allowedXCoverageEligibilityResponseBenefit,
+    UsedXCoverageEligibilityResponseBenefit?
+        usedXCoverageEligibilityResponseBenefit,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,

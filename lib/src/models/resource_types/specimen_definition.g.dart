@@ -1,7 +1,7 @@
 part of 'specimen_definition.dart';
 
 /// The minimum volume to be conditioned in the container.
-sealed class MinimumVolumeXSpecimenDefinitionContainer {}
+sealed class MinimumVolumeXSpecimenDefinitionContainer extends DataType {}
 
 /// The minimum volume to be conditioned in the container.
 class QuantityMinimumVolumeSpecimenDefinitionContainer extends Quantity
@@ -35,7 +35,7 @@ class StringMinimumVolumeSpecimenDefinitionContainer extends FhirString
 
 /// Substance introduced in the kind of container to preserve, maintain or
 /// enhance the specimen. Examples: Formalin, Citrate, EDTA.
-sealed class AdditiveXSpecimenDefinitionAdditive {}
+sealed class AdditiveXSpecimenDefinitionAdditive extends DataType {}
 
 /// Substance introduced in the kind of container to preserve, maintain or
 /// enhance the specimen. Examples: Formalin, Citrate, EDTA.

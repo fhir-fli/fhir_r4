@@ -7,7 +7,7 @@ part of 'activity_definition.dart';
 /// reference a MedicinalProductDefinition, SubstanceDefinition,
 /// AdministrableProductDefinition, ManufacturedItemDefinition, or
 /// PackagedProductDefinition resource.
-sealed class SubjectXActivityDefinitionActivityDefinition {}
+sealed class SubjectXActivityDefinitionActivityDefinition extends DataType {}
 
 /// A code, group definition, or canonical reference that describes or
 /// identifies the intended subject of the activity being defined.
@@ -63,7 +63,7 @@ class SubjectTypeSubjectActivityDefinitionActivityDefinition extends SubjectType
 
 /// The period, timing or frequency upon which the described activity is to
 /// occur.
-sealed class TimingXActivityDefinitionActivityDefinition {}
+sealed class TimingXActivityDefinitionActivityDefinition extends DataType {}
 
 /// The period, timing or frequency upon which the described activity is to
 /// occur.
@@ -157,7 +157,7 @@ class DurationTimingActivityDefinitionActivityDefinition extends FhirDuration
 
 /// Identifies the food, drug or other product being consumed or supplied
 /// in the activity.
-sealed class ProductXActivityDefinitionActivityDefinition {}
+sealed class ProductXActivityDefinitionActivityDefinition extends DataType {}
 
 /// Identifies the food, drug or other product being consumed or supplied
 /// in the activity.

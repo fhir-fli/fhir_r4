@@ -1,7 +1,7 @@
 part of 'clinical_impression.dart';
 
 /// The point in time or period over which the subject was assessed.
-sealed class EffectiveXClinicalImpressionClinicalImpression {}
+sealed class EffectiveXClinicalImpressionClinicalImpression extends DataType {}
 
 /// The point in time or period over which the subject was assessed.
 class DateTimeEffectiveClinicalImpressionClinicalImpression extends FhirDateTime

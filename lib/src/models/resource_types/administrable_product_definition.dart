@@ -461,13 +461,40 @@ class AdministrableProductDefinitionProperty extends BackboneElement {
       type: CodeableConcept.fromJson(
         json['type'] as Map<String, dynamic>,
       ),
-      valueXAdministrableProductDefinitionProperty:
-          json['valueXAdministrableProductDefinitionProperty'] != null
-              ? CodeableConcept.fromJson(
-                  json['valueXAdministrableProductDefinitionProperty']
-                      as Map<String, dynamic>,
-                )
-              : null,
+      valueXAdministrableProductDefinitionProperty: json[
+                      'valueCodeableConcept'] !=
+                  null ||
+              json['_valueCodeableConcept'] != null
+          ? CodeableConceptValueAdministrableProductDefinitionProperty
+              .fromJson({
+              'value': json['valueCodeableConcept'],
+              '_value': json['_valueCodeableConcept'],
+            })
+          : json['valueQuantity'] != null || json['_valueQuantity'] != null
+              ? QuantityValueAdministrableProductDefinitionProperty.fromJson({
+                  'value': json['valueQuantity'],
+                  '_value': json['_valueQuantity'],
+                })
+              : json['valueDate'] != null || json['_valueDate'] != null
+                  ? DateValueAdministrableProductDefinitionProperty.fromJson({
+                      'value': json['valueDate'],
+                      '_value': json['_valueDate'],
+                    })
+                  : json['valueBoolean'] != null ||
+                          json['_valueBoolean'] != null
+                      ? BooleanValueAdministrableProductDefinitionProperty
+                          .fromJson({
+                          'value': json['valueBoolean'],
+                          '_value': json['_valueBoolean'],
+                        })
+                      : json['valueAttachment'] != null ||
+                              json['_valueAttachment'] != null
+                          ? AttachmentValueAdministrableProductDefinitionProperty
+                              .fromJson({
+                              'value': json['valueAttachment'],
+                              '_value': json['_valueAttachment'],
+                            })
+                          : null,
       status: json['status'] != null
           ? CodeableConcept.fromJson(
               json['status'] as Map<String, dynamic>,
@@ -524,7 +551,8 @@ class AdministrableProductDefinitionProperty extends BackboneElement {
 
   /// [valueXAdministrableProductDefinitionProperty]
   /// A value for the characteristic.
-  final CodeableConcept? valueXAdministrableProductDefinitionProperty;
+  final ValueXAdministrableProductDefinitionProperty?
+      valueXAdministrableProductDefinitionProperty;
 
   /// [status]
   /// The status of characteristic e.g. assigned or pending.
@@ -573,7 +601,8 @@ class AdministrableProductDefinitionProperty extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     CodeableConcept? type,
-    CodeableConcept? valueXAdministrableProductDefinitionProperty,
+    ValueXAdministrableProductDefinitionProperty?
+        valueXAdministrableProductDefinitionProperty,
     CodeableConcept? status,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,

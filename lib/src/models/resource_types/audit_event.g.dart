@@ -1,7 +1,7 @@
 part of 'audit_event.dart';
 
 /// The value of the extra detail.
-sealed class ValueXAuditEventDetail {}
+sealed class ValueXAuditEventDetail extends DataType {}
 
 /// The value of the extra detail.
 class StringValueAuditEventDetail extends FhirString

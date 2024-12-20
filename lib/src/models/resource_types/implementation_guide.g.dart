@@ -3,7 +3,7 @@ part of 'implementation_guide.dart';
 /// If true or a reference, indicates the resource is an example instance.
 /// If a reference is present, indicates that the example is an example of
 /// the specified profile.
-sealed class ExampleXImplementationGuideResource {}
+sealed class ExampleXImplementationGuideResource extends DataType {}
 
 /// If true or a reference, indicates the resource is an example instance.
 /// If a reference is present, indicates that the example is an example of
@@ -47,7 +47,7 @@ class CanonicalExampleImplementationGuideResource extends FhirCanonical
 }
 
 /// The source address for the page.
-sealed class NameXImplementationGuidePage {}
+sealed class NameXImplementationGuidePage extends DataType {}
 
 /// The source address for the page.
 class UrlNameImplementationGuidePage extends FhirUrl
@@ -80,14 +80,14 @@ class ReferenceNameImplementationGuidePage extends Reference
 /// If true or a reference, indicates the resource is an example instance.
 /// If a reference is present, indicates that the example is an example of
 /// the specified profile.
-sealed class ExampleXImplementationGuideResource1 {}
+sealed class ExampleXImplementationGuideResource1 extends DataType {}
 
 /// If true or a reference, indicates the resource is an example instance.
 /// If a reference is present, indicates that the example is an example of
 /// the specified profile.
 class BooleanExampleImplementationGuideResource1 extends FhirBoolean
     implements ExampleXImplementationGuideResource1 {
-  /// Constructor for [BooleanExampleImplementationGuideResource1]
+  /// Constructor for [BooleanExampleImplementationGuideResource]
   BooleanExampleImplementationGuideResource1(
     super.input, {
     super.element,

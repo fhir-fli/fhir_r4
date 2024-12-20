@@ -3,7 +3,7 @@ part of 'supply_request.dart';
 /// The item that is requested to be supplied. This is either a link to a
 /// resource representing the details of the item or a code that identifies
 /// the item from a known list.
-sealed class ItemXSupplyRequestSupplyRequest {}
+sealed class ItemXSupplyRequestSupplyRequest extends DataType {}
 
 /// The item that is requested to be supplied. This is either a link to a
 /// resource representing the details of the item or a code that identifies
@@ -31,7 +31,7 @@ class ReferenceItemSupplyRequestSupplyRequest extends Reference
 }
 
 /// When the request should be fulfilled.
-sealed class OccurrenceXSupplyRequestSupplyRequest {}
+sealed class OccurrenceXSupplyRequestSupplyRequest extends DataType {}
 
 /// When the request should be fulfilled.
 class DateTimeOccurrenceSupplyRequestSupplyRequest extends FhirDateTime
@@ -87,7 +87,7 @@ class TimingOccurrenceSupplyRequestSupplyRequest extends Timing
 }
 
 /// The value of the device detail.
-sealed class ValueXSupplyRequestParameter {}
+sealed class ValueXSupplyRequestParameter extends DataType {}
 
 /// The value of the device detail.
 class CodeableConceptValueSupplyRequestParameter extends CodeableConcept

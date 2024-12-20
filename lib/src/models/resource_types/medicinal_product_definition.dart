@@ -1862,13 +1862,40 @@ class MedicinalProductDefinitionCharacteristic extends BackboneElement {
       type: CodeableConcept.fromJson(
         json['type'] as Map<String, dynamic>,
       ),
-      valueXMedicinalProductDefinitionCharacteristic:
-          json['valueXMedicinalProductDefinitionCharacteristic'] != null
-              ? CodeableConcept.fromJson(
-                  json['valueXMedicinalProductDefinitionCharacteristic']
-                      as Map<String, dynamic>,
-                )
-              : null,
+      valueXMedicinalProductDefinitionCharacteristic: json[
+                      'valueCodeableConcept'] !=
+                  null ||
+              json['_valueCodeableConcept'] != null
+          ? CodeableConceptValueMedicinalProductDefinitionCharacteristic
+              .fromJson({
+              'value': json['valueCodeableConcept'],
+              '_value': json['_valueCodeableConcept'],
+            })
+          : json['valueQuantity'] != null || json['_valueQuantity'] != null
+              ? QuantityValueMedicinalProductDefinitionCharacteristic.fromJson({
+                  'value': json['valueQuantity'],
+                  '_value': json['_valueQuantity'],
+                })
+              : json['valueDate'] != null || json['_valueDate'] != null
+                  ? DateValueMedicinalProductDefinitionCharacteristic.fromJson({
+                      'value': json['valueDate'],
+                      '_value': json['_valueDate'],
+                    })
+                  : json['valueBoolean'] != null ||
+                          json['_valueBoolean'] != null
+                      ? BooleanValueMedicinalProductDefinitionCharacteristic
+                          .fromJson({
+                          'value': json['valueBoolean'],
+                          '_value': json['_valueBoolean'],
+                        })
+                      : json['valueAttachment'] != null ||
+                              json['_valueAttachment'] != null
+                          ? AttachmentValueMedicinalProductDefinitionCharacteristic
+                              .fromJson({
+                              'value': json['valueAttachment'],
+                              '_value': json['_valueAttachment'],
+                            })
+                          : null,
     );
   }
 
@@ -1920,7 +1947,8 @@ class MedicinalProductDefinitionCharacteristic extends BackboneElement {
 
   /// [valueXMedicinalProductDefinitionCharacteristic]
   /// A value for the characteristic.
-  final CodeableConcept? valueXMedicinalProductDefinitionCharacteristic;
+  final ValueXMedicinalProductDefinitionCharacteristic?
+      valueXMedicinalProductDefinitionCharacteristic;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1962,7 +1990,8 @@ class MedicinalProductDefinitionCharacteristic extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     CodeableConcept? type,
-    CodeableConcept? valueXMedicinalProductDefinitionCharacteristic,
+    ValueXMedicinalProductDefinitionCharacteristic?
+        valueXMedicinalProductDefinitionCharacteristic,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,

@@ -1,7 +1,7 @@
 part of 'device_request.dart';
 
 /// The details of the device to be used.
-sealed class CodeXDeviceRequestDeviceRequest {}
+sealed class CodeXDeviceRequestDeviceRequest extends DataType {}
 
 /// The details of the device to be used.
 class ReferenceCodeDeviceRequestDeviceRequest extends Reference
@@ -28,7 +28,7 @@ class CodeableConceptCodeDeviceRequestDeviceRequest extends CodeableConcept
 /// allows many different expressions, for example. "Every 8 hours"; "Three
 /// times a day"; "1/2 an hour before breakfast for 10 days from 23-Dec
 /// 2011:"; "15 Oct 2013, 17 Oct 2013 and 1 Nov 2013".
-sealed class OccurrenceXDeviceRequestDeviceRequest {}
+sealed class OccurrenceXDeviceRequestDeviceRequest extends DataType {}
 
 /// The timing schedule for the use of the device. The Schedule data type
 /// allows many different expressions, for example. "Every 8 hours"; "Three
@@ -93,7 +93,7 @@ class TimingOccurrenceDeviceRequestDeviceRequest extends Timing
 }
 
 /// The value of the device detail.
-sealed class ValueXDeviceRequestParameter {}
+sealed class ValueXDeviceRequestParameter extends DataType {}
 
 /// The value of the device detail.
 class CodeableConceptValueDeviceRequestParameter extends CodeableConcept

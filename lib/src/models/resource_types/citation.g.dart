@@ -1,7 +1,7 @@
 part of 'citation.dart';
 
 /// The article or artifact that the Citation Resource is related to.
-sealed class TargetXCitationRelatesTo {}
+sealed class TargetXCitationRelatesTo extends DataType {}
 
 /// The article or artifact that the Citation Resource is related to.
 class UriTargetCitationRelatesTo extends FhirUri
@@ -52,7 +52,7 @@ class AttachmentTargetCitationRelatesTo extends Attachment
 }
 
 /// The article or artifact that the cited artifact is related to.
-sealed class TargetXCitationRelatesTo1 {}
+sealed class TargetXCitationRelatesTo1 extends DataType {}
 
 /// The article or artifact that the cited artifact is related to.
 class UriTargetCitationRelatesTo1 extends FhirUri

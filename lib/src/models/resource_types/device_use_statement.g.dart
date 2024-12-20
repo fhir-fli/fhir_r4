@@ -1,7 +1,7 @@
 part of 'device_use_statement.dart';
 
 /// How often the device was used.
-sealed class TimingXDeviceUseStatementDeviceUseStatement {}
+sealed class TimingXDeviceUseStatementDeviceUseStatement extends DataType {}
 
 /// How often the device was used.
 class TimingTimingDeviceUseStatementDeviceUseStatement extends Timing

@@ -2,7 +2,7 @@ part of 'extension.dart';
 
 /// Value of extension - must be one of a constrained set of the data types
 /// (see [Extensibility](extensibility.html) for a list).
-sealed class ValueXExtensionExtension {}
+sealed class ValueXExtensionExtension extends DataType {}
 
 /// Value of extension - must be one of a constrained set of the data types
 /// (see [Extensibility](extensibility.html) for a list).

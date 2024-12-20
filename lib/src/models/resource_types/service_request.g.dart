@@ -3,7 +3,7 @@ part of 'service_request.dart';
 /// An amount of service being requested which can be a quantity ( for
 /// example $1,500 home modification), a ratio ( for example, 20 half day
 /// visits per month), or a range (2.0 to 1.8 Gy per fraction).
-sealed class QuantityXServiceRequestServiceRequest {}
+sealed class QuantityXServiceRequestServiceRequest extends DataType {}
 
 /// An amount of service being requested which can be a quantity ( for
 /// example $1,500 home modification), a ratio ( for example, 20 half day
@@ -42,7 +42,7 @@ class RangeQuantityServiceRequestServiceRequest extends Range
 }
 
 /// The date/time at which the requested service should occur.
-sealed class OccurrenceXServiceRequestServiceRequest {}
+sealed class OccurrenceXServiceRequestServiceRequest extends DataType {}
 
 /// The date/time at which the requested service should occur.
 class DateTimeOccurrenceServiceRequestServiceRequest extends FhirDateTime
@@ -99,7 +99,7 @@ class TimingOccurrenceServiceRequestServiceRequest extends Timing
 
 /// If a CodeableConcept is present, it indicates the pre-condition for
 /// performing the service. For example "pain", "on flare-up", etc.
-sealed class AsNeededXServiceRequestServiceRequest {}
+sealed class AsNeededXServiceRequestServiceRequest extends DataType {}
 
 /// If a CodeableConcept is present, it indicates the pre-condition for
 /// performing the service. For example "pain", "on flare-up", etc.

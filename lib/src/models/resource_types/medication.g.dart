@@ -2,7 +2,7 @@ part of 'medication.dart';
 
 /// The actual ingredient - either a substance (simple ingredient) or
 /// another medication of a medication.
-sealed class ItemXMedicationIngredient {}
+sealed class ItemXMedicationIngredient extends DataType {}
 
 /// The actual ingredient - either a substance (simple ingredient) or
 /// another medication of a medication.

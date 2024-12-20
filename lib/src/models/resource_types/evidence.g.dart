@@ -1,7 +1,7 @@
 part of 'evidence.dart';
 
 /// Citation Resource or display of suggested citation for this evidence.
-sealed class CiteAsXEvidenceEvidence {}
+sealed class CiteAsXEvidenceEvidence extends DataType {}
 
 /// Citation Resource or display of suggested citation for this evidence.
 class ReferenceCiteAsEvidenceEvidence extends Reference

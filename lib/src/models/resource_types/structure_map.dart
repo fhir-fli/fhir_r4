@@ -1352,14 +1352,291 @@ class StructureMapSource extends BackboneElement {
               '_value': json['_type'],
             })
           : null,
-      defaultValueXStructureMapSource:
-          (json['defaultValueXStructureMapSource'] != null ||
-                  json['_defaultValueXStructureMapSource'] != null)
-              ? FhirBase64Binary.fromJson({
-                  'value': json['defaultValueXStructureMapSource'],
-                  '_value': json['_defaultValueXStructureMapSource'],
+      defaultValueXStructureMapSource: json['defaultValueBase64Binary'] != null ||
+              json['_defaultValueBase64Binary'] != null
+          ? Base64BinaryDefaultValueStructureMapSource.fromJson({
+              'value': json['defaultValueBase64Binary'],
+              '_value': json['_defaultValueBase64Binary'],
+            })
+          : json['defaultValueBoolean'] != null ||
+                  json['_defaultValueBoolean'] != null
+              ? BooleanDefaultValueStructureMapSource.fromJson({
+                  'value': json['defaultValueBoolean'],
+                  '_value': json['_defaultValueBoolean'],
                 })
-              : null,
+              : json['defaultValueCanonical'] != null ||
+                      json['_defaultValueCanonical'] != null
+                  ? CanonicalDefaultValueStructureMapSource.fromJson({
+                      'value': json['defaultValueCanonical'],
+                      '_value': json['_defaultValueCanonical'],
+                    })
+                  : json['defaultValueCode'] != null ||
+                          json['_defaultValueCode'] != null
+                      ? CodeDefaultValueStructureMapSource.fromJson({
+                          'value': json['defaultValueCode'],
+                          '_value': json['_defaultValueCode'],
+                        })
+                      : json['defaultValueDate'] != null ||
+                              json['_defaultValueDate'] != null
+                          ? DateDefaultValueStructureMapSource.fromJson({
+                              'value': json['defaultValueDate'],
+                              '_value': json['_defaultValueDate'],
+                            })
+                          : json['defaultValueDateTime'] != null ||
+                                  json['_defaultValueDateTime'] != null
+                              ? DateTimeDefaultValueStructureMapSource.fromJson({
+                                  'value': json['defaultValueDateTime'],
+                                  '_value': json['_defaultValueDateTime'],
+                                })
+                              : json['defaultValueDecimal'] != null ||
+                                      json['_defaultValueDecimal'] != null
+                                  ? DecimalDefaultValueStructureMapSource.fromJson({
+                                      'value': json['defaultValueDecimal'],
+                                      '_value': json['_defaultValueDecimal'],
+                                    })
+                                  : json['defaultValueId'] != null ||
+                                          json['_defaultValueId'] != null
+                                      ? IdDefaultValueStructureMapSource.fromJson({
+                                          'value': json['defaultValueId'],
+                                          '_value': json['_defaultValueId'],
+                                        })
+                                      : json['defaultValueInstant'] != null ||
+                                              json['_defaultValueInstant'] !=
+                                                  null
+                                          ? InstantDefaultValueStructureMapSource.fromJson({
+                                              'value':
+                                                  json['defaultValueInstant'],
+                                              '_value':
+                                                  json['_defaultValueInstant'],
+                                            })
+                                          : json['defaultValueInteger'] != null ||
+                                                  json['_defaultValueInteger'] !=
+                                                      null
+                                              ? IntegerDefaultValueStructureMapSource.fromJson({
+                                                  'value': json[
+                                                      'defaultValueInteger'],
+                                                  '_value': json[
+                                                      '_defaultValueInteger'],
+                                                })
+                                              : json['defaultValueMarkdown'] != null ||
+                                                      json['_defaultValueMarkdown'] !=
+                                                          null
+                                                  ? MarkdownDefaultValueStructureMapSource.fromJson({
+                                                      'value': json[
+                                                          'defaultValueMarkdown'],
+                                                      '_value': json[
+                                                          '_defaultValueMarkdown'],
+                                                    })
+                                                  : json['defaultValueOid'] != null ||
+                                                          json['_defaultValueOid'] !=
+                                                              null
+                                                      ? OidDefaultValueStructureMapSource.fromJson({
+                                                          'value': json[
+                                                              'defaultValueOid'],
+                                                          '_value': json[
+                                                              '_defaultValueOid'],
+                                                        })
+                                                      : json['defaultValuePositiveInt'] != null ||
+                                                              json['_defaultValuePositiveInt'] != null
+                                                          ? PositiveIntDefaultValueStructureMapSource.fromJson({
+                                                              'value': json[
+                                                                  'defaultValuePositiveInt'],
+                                                              '_value': json[
+                                                                  '_defaultValuePositiveInt'],
+                                                            })
+                                                          : json['defaultValueString'] != null || json['_defaultValueString'] != null
+                                                              ? StringDefaultValueStructureMapSource.fromJson({
+                                                                  'value': json[
+                                                                      'defaultValueString'],
+                                                                  '_value': json[
+                                                                      '_defaultValueString'],
+                                                                })
+                                                              : json['defaultValueTime'] != null || json['_defaultValueTime'] != null
+                                                                  ? TimeDefaultValueStructureMapSource.fromJson({
+                                                                      'value': json[
+                                                                          'defaultValueTime'],
+                                                                      '_value':
+                                                                          json[
+                                                                              '_defaultValueTime'],
+                                                                    })
+                                                                  : json['defaultValueUnsignedInt'] != null || json['_defaultValueUnsignedInt'] != null
+                                                                      ? UnsignedIntDefaultValueStructureMapSource.fromJson({
+                                                                          'value':
+                                                                              json['defaultValueUnsignedInt'],
+                                                                          '_value':
+                                                                              json['_defaultValueUnsignedInt'],
+                                                                        })
+                                                                      : json['defaultValueUri'] != null || json['_defaultValueUri'] != null
+                                                                          ? UriDefaultValueStructureMapSource.fromJson({
+                                                                              'value': json['defaultValueUri'],
+                                                                              '_value': json['_defaultValueUri'],
+                                                                            })
+                                                                          : json['defaultValueUrl'] != null || json['_defaultValueUrl'] != null
+                                                                              ? UrlDefaultValueStructureMapSource.fromJson({
+                                                                                  'value': json['defaultValueUrl'],
+                                                                                  '_value': json['_defaultValueUrl'],
+                                                                                })
+                                                                              : json['defaultValueUuid'] != null || json['_defaultValueUuid'] != null
+                                                                                  ? UuidDefaultValueStructureMapSource.fromJson({
+                                                                                      'value': json['defaultValueUuid'],
+                                                                                      '_value': json['_defaultValueUuid'],
+                                                                                    })
+                                                                                  : json['defaultValueAddress'] != null || json['_defaultValueAddress'] != null
+                                                                                      ? AddressDefaultValueStructureMapSource.fromJson({
+                                                                                          'value': json['defaultValueAddress'],
+                                                                                          '_value': json['_defaultValueAddress'],
+                                                                                        })
+                                                                                      : json['defaultValueAge'] != null || json['_defaultValueAge'] != null
+                                                                                          ? AgeDefaultValueStructureMapSource.fromJson({
+                                                                                              'value': json['defaultValueAge'],
+                                                                                              '_value': json['_defaultValueAge'],
+                                                                                            })
+                                                                                          : json['defaultValueAnnotation'] != null || json['_defaultValueAnnotation'] != null
+                                                                                              ? AnnotationDefaultValueStructureMapSource.fromJson({
+                                                                                                  'value': json['defaultValueAnnotation'],
+                                                                                                  '_value': json['_defaultValueAnnotation'],
+                                                                                                })
+                                                                                              : json['defaultValueAttachment'] != null || json['_defaultValueAttachment'] != null
+                                                                                                  ? AttachmentDefaultValueStructureMapSource.fromJson({
+                                                                                                      'value': json['defaultValueAttachment'],
+                                                                                                      '_value': json['_defaultValueAttachment'],
+                                                                                                    })
+                                                                                                  : json['defaultValueCodeableConcept'] != null || json['_defaultValueCodeableConcept'] != null
+                                                                                                      ? CodeableConceptDefaultValueStructureMapSource.fromJson({
+                                                                                                          'value': json['defaultValueCodeableConcept'],
+                                                                                                          '_value': json['_defaultValueCodeableConcept'],
+                                                                                                        })
+                                                                                                      : json['defaultValueCoding'] != null || json['_defaultValueCoding'] != null
+                                                                                                          ? CodingDefaultValueStructureMapSource.fromJson({
+                                                                                                              'value': json['defaultValueCoding'],
+                                                                                                              '_value': json['_defaultValueCoding'],
+                                                                                                            })
+                                                                                                          : json['defaultValueContactPoint'] != null || json['_defaultValueContactPoint'] != null
+                                                                                                              ? ContactPointDefaultValueStructureMapSource.fromJson({
+                                                                                                                  'value': json['defaultValueContactPoint'],
+                                                                                                                  '_value': json['_defaultValueContactPoint'],
+                                                                                                                })
+                                                                                                              : json['defaultValueCount'] != null || json['_defaultValueCount'] != null
+                                                                                                                  ? CountDefaultValueStructureMapSource.fromJson({
+                                                                                                                      'value': json['defaultValueCount'],
+                                                                                                                      '_value': json['_defaultValueCount'],
+                                                                                                                    })
+                                                                                                                  : json['defaultValueDistance'] != null || json['_defaultValueDistance'] != null
+                                                                                                                      ? DistanceDefaultValueStructureMapSource.fromJson({
+                                                                                                                          'value': json['defaultValueDistance'],
+                                                                                                                          '_value': json['_defaultValueDistance'],
+                                                                                                                        })
+                                                                                                                      : json['defaultValueDuration'] != null || json['_defaultValueDuration'] != null
+                                                                                                                          ? DurationDefaultValueStructureMapSource.fromJson({
+                                                                                                                              'value': json['defaultValueDuration'],
+                                                                                                                              '_value': json['_defaultValueDuration'],
+                                                                                                                            })
+                                                                                                                          : json['defaultValueHumanName'] != null || json['_defaultValueHumanName'] != null
+                                                                                                                              ? HumanNameDefaultValueStructureMapSource.fromJson({
+                                                                                                                                  'value': json['defaultValueHumanName'],
+                                                                                                                                  '_value': json['_defaultValueHumanName'],
+                                                                                                                                })
+                                                                                                                              : json['defaultValueIdentifier'] != null || json['_defaultValueIdentifier'] != null
+                                                                                                                                  ? IdentifierDefaultValueStructureMapSource.fromJson({
+                                                                                                                                      'value': json['defaultValueIdentifier'],
+                                                                                                                                      '_value': json['_defaultValueIdentifier'],
+                                                                                                                                    })
+                                                                                                                                  : json['defaultValueMoney'] != null || json['_defaultValueMoney'] != null
+                                                                                                                                      ? MoneyDefaultValueStructureMapSource.fromJson({
+                                                                                                                                          'value': json['defaultValueMoney'],
+                                                                                                                                          '_value': json['_defaultValueMoney'],
+                                                                                                                                        })
+                                                                                                                                      : json['defaultValuePeriod'] != null || json['_defaultValuePeriod'] != null
+                                                                                                                                          ? PeriodDefaultValueStructureMapSource.fromJson({
+                                                                                                                                              'value': json['defaultValuePeriod'],
+                                                                                                                                              '_value': json['_defaultValuePeriod'],
+                                                                                                                                            })
+                                                                                                                                          : json['defaultValueQuantity'] != null || json['_defaultValueQuantity'] != null
+                                                                                                                                              ? QuantityDefaultValueStructureMapSource.fromJson({
+                                                                                                                                                  'value': json['defaultValueQuantity'],
+                                                                                                                                                  '_value': json['_defaultValueQuantity'],
+                                                                                                                                                })
+                                                                                                                                              : json['defaultValueRange'] != null || json['_defaultValueRange'] != null
+                                                                                                                                                  ? RangeDefaultValueStructureMapSource.fromJson({
+                                                                                                                                                      'value': json['defaultValueRange'],
+                                                                                                                                                      '_value': json['_defaultValueRange'],
+                                                                                                                                                    })
+                                                                                                                                                  : json['defaultValueRatio'] != null || json['_defaultValueRatio'] != null
+                                                                                                                                                      ? RatioDefaultValueStructureMapSource.fromJson({
+                                                                                                                                                          'value': json['defaultValueRatio'],
+                                                                                                                                                          '_value': json['_defaultValueRatio'],
+                                                                                                                                                        })
+                                                                                                                                                      : json['defaultValueReference'] != null || json['_defaultValueReference'] != null
+                                                                                                                                                          ? ReferenceDefaultValueStructureMapSource.fromJson({
+                                                                                                                                                              'value': json['defaultValueReference'],
+                                                                                                                                                              '_value': json['_defaultValueReference'],
+                                                                                                                                                            })
+                                                                                                                                                          : json['defaultValueSampledData'] != null || json['_defaultValueSampledData'] != null
+                                                                                                                                                              ? SampledDataDefaultValueStructureMapSource.fromJson({
+                                                                                                                                                                  'value': json['defaultValueSampledData'],
+                                                                                                                                                                  '_value': json['_defaultValueSampledData'],
+                                                                                                                                                                })
+                                                                                                                                                              : json['defaultValueSignature'] != null || json['_defaultValueSignature'] != null
+                                                                                                                                                                  ? SignatureDefaultValueStructureMapSource.fromJson({
+                                                                                                                                                                      'value': json['defaultValueSignature'],
+                                                                                                                                                                      '_value': json['_defaultValueSignature'],
+                                                                                                                                                                    })
+                                                                                                                                                                  : json['defaultValueTiming'] != null || json['_defaultValueTiming'] != null
+                                                                                                                                                                      ? TimingDefaultValueStructureMapSource.fromJson({
+                                                                                                                                                                          'value': json['defaultValueTiming'],
+                                                                                                                                                                          '_value': json['_defaultValueTiming'],
+                                                                                                                                                                        })
+                                                                                                                                                                      : json['defaultValueContactDetail'] != null || json['_defaultValueContactDetail'] != null
+                                                                                                                                                                          ? ContactDetailDefaultValueStructureMapSource.fromJson({
+                                                                                                                                                                              'value': json['defaultValueContactDetail'],
+                                                                                                                                                                              '_value': json['_defaultValueContactDetail'],
+                                                                                                                                                                            })
+                                                                                                                                                                          : json['defaultValueContributor'] != null || json['_defaultValueContributor'] != null
+                                                                                                                                                                              ? ContributorDefaultValueStructureMapSource.fromJson({
+                                                                                                                                                                                  'value': json['defaultValueContributor'],
+                                                                                                                                                                                  '_value': json['_defaultValueContributor'],
+                                                                                                                                                                                })
+                                                                                                                                                                              : json['defaultValueDataRequirement'] != null || json['_defaultValueDataRequirement'] != null
+                                                                                                                                                                                  ? DataRequirementDefaultValueStructureMapSource.fromJson({
+                                                                                                                                                                                      'value': json['defaultValueDataRequirement'],
+                                                                                                                                                                                      '_value': json['_defaultValueDataRequirement'],
+                                                                                                                                                                                    })
+                                                                                                                                                                                  : json['defaultValueExpression'] != null || json['_defaultValueExpression'] != null
+                                                                                                                                                                                      ? ExpressionDefaultValueStructureMapSource.fromJson({
+                                                                                                                                                                                          'value': json['defaultValueExpression'],
+                                                                                                                                                                                          '_value': json['_defaultValueExpression'],
+                                                                                                                                                                                        })
+                                                                                                                                                                                      : json['defaultValueParameterDefinition'] != null || json['_defaultValueParameterDefinition'] != null
+                                                                                                                                                                                          ? ParameterDefinitionDefaultValueStructureMapSource.fromJson({
+                                                                                                                                                                                              'value': json['defaultValueParameterDefinition'],
+                                                                                                                                                                                              '_value': json['_defaultValueParameterDefinition'],
+                                                                                                                                                                                            })
+                                                                                                                                                                                          : json['defaultValueRelatedArtifact'] != null || json['_defaultValueRelatedArtifact'] != null
+                                                                                                                                                                                              ? RelatedArtifactDefaultValueStructureMapSource.fromJson({
+                                                                                                                                                                                                  'value': json['defaultValueRelatedArtifact'],
+                                                                                                                                                                                                  '_value': json['_defaultValueRelatedArtifact'],
+                                                                                                                                                                                                })
+                                                                                                                                                                                              : json['defaultValueTriggerDefinition'] != null || json['_defaultValueTriggerDefinition'] != null
+                                                                                                                                                                                                  ? TriggerDefinitionDefaultValueStructureMapSource.fromJson({
+                                                                                                                                                                                                      'value': json['defaultValueTriggerDefinition'],
+                                                                                                                                                                                                      '_value': json['_defaultValueTriggerDefinition'],
+                                                                                                                                                                                                    })
+                                                                                                                                                                                                  : json['defaultValueUsageContext'] != null || json['_defaultValueUsageContext'] != null
+                                                                                                                                                                                                      ? UsageContextDefaultValueStructureMapSource.fromJson({
+                                                                                                                                                                                                          'value': json['defaultValueUsageContext'],
+                                                                                                                                                                                                          '_value': json['_defaultValueUsageContext'],
+                                                                                                                                                                                                        })
+                                                                                                                                                                                                      : json['defaultValueDosage'] != null || json['_defaultValueDosage'] != null
+                                                                                                                                                                                                          ? DosageDefaultValueStructureMapSource.fromJson({
+                                                                                                                                                                                                              'value': json['defaultValueDosage'],
+                                                                                                                                                                                                              '_value': json['_defaultValueDosage'],
+                                                                                                                                                                                                            })
+                                                                                                                                                                                                          : json['defaultValueMeta'] != null || json['_defaultValueMeta'] != null
+                                                                                                                                                                                                              ? MetaDefaultValueStructureMapSource.fromJson({
+                                                                                                                                                                                                                  'value': json['defaultValueMeta'],
+                                                                                                                                                                                                                  '_value': json['_defaultValueMeta'],
+                                                                                                                                                                                                                })
+                                                                                                                                                                                                              : null,
       element: (json['element'] != null || json['_element'] != null)
           ? FhirString.fromJson({
               'value': json['element'],
@@ -1463,7 +1740,7 @@ class StructureMapSource extends BackboneElement {
 
   /// [defaultValueXStructureMapSource]
   /// A value to use if there is no existing value in the source object.
-  final FhirBase64Binary? defaultValueXStructureMapSource;
+  final DefaultValueXStructureMapSource? defaultValueXStructureMapSource;
 
   /// [element]
   /// Optional field for this source.
@@ -1538,7 +1815,7 @@ class StructureMapSource extends BackboneElement {
     FhirInteger? min,
     FhirString? max,
     FhirString? type,
-    FhirBase64Binary? defaultValueXStructureMapSource,
+    DefaultValueXStructureMapSource? defaultValueXStructureMapSource,
     FhirString? element,
     StructureMapSourceListMode? listMode,
     FhirId? variable,
@@ -1862,10 +2139,32 @@ class StructureMapParameter extends BackboneElement {
               )
               .toList()
           : null,
-      valueXStructureMapParameter: FhirId.fromJson({
-        'value': json['valueXStructureMapParameter'],
-        '_value': json['_valueXStructureMapParameter'],
-      }),
+      valueXStructureMapParameter: json['valueId'] != null ||
+              json['_valueId'] != null
+          ? IdValueStructureMapParameter.fromJson({
+              'value': json['valueId'],
+              '_value': json['_valueId'],
+            })
+          : json['valueString'] != null || json['_valueString'] != null
+              ? StringValueStructureMapParameter.fromJson({
+                  'value': json['valueString'],
+                  '_value': json['_valueString'],
+                })
+              : json['valueBoolean'] != null || json['_valueBoolean'] != null
+                  ? BooleanValueStructureMapParameter.fromJson({
+                      'value': json['valueBoolean'],
+                      '_value': json['_valueBoolean'],
+                    })
+                  : json['valueInteger'] != null ||
+                          json['_valueInteger'] != null
+                      ? IntegerValueStructureMapParameter.fromJson({
+                          'value': json['valueInteger'],
+                          '_value': json['_valueInteger'],
+                        })
+                      : DecimalValueStructureMapParameter.fromJson({
+                          'value': json['valueDecimal'],
+                          '_value': json['_valueDecimal'],
+                        }),
     );
   }
 
@@ -1913,7 +2212,7 @@ class StructureMapParameter extends BackboneElement {
 
   /// [valueXStructureMapParameter]
   /// Parameter value - variable or literal.
-  final FhirId valueXStructureMapParameter;
+  final ValueXStructureMapParameter valueXStructureMapParameter;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1947,7 +2246,7 @@ class StructureMapParameter extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    FhirId? valueXStructureMapParameter,
+    ValueXStructureMapParameter? valueXStructureMapParameter,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,

@@ -155,14 +155,25 @@ class ChargeItem extends DomainResource {
               json['context'] as Map<String, dynamic>,
             )
           : null,
-      occurrenceXChargeItemChargeItem:
-          (json['occurrenceXChargeItemChargeItem'] != null ||
-                  json['_occurrenceXChargeItemChargeItem'] != null)
-              ? FhirDateTime.fromJson({
-                  'value': json['occurrenceXChargeItemChargeItem'],
-                  '_value': json['_occurrenceXChargeItemChargeItem'],
+      occurrenceXChargeItemChargeItem: json['occurrenceDateTime'] != null ||
+              json['_occurrenceDateTime'] != null
+          ? DateTimeOccurrenceChargeItemChargeItem.fromJson({
+              'value': json['occurrenceDateTime'],
+              '_value': json['_occurrenceDateTime'],
+            })
+          : json['occurrencePeriod'] != null ||
+                  json['_occurrencePeriod'] != null
+              ? PeriodOccurrenceChargeItemChargeItem.fromJson({
+                  'value': json['occurrencePeriod'],
+                  '_value': json['_occurrencePeriod'],
                 })
-              : null,
+              : json['occurrenceTiming'] != null ||
+                      json['_occurrenceTiming'] != null
+                  ? TimingOccurrenceChargeItemChargeItem.fromJson({
+                      'value': json['occurrenceTiming'],
+                      '_value': json['_occurrenceTiming'],
+                    })
+                  : null,
       performer: json['performer'] != null
           ? (json['performer'] as List<dynamic>)
               .map<ChargeItemPerformer>(
@@ -249,11 +260,19 @@ class ChargeItem extends DomainResource {
               )
               .toList()
           : null,
-      productXChargeItemChargeItem: json['productXChargeItemChargeItem'] != null
-          ? Reference.fromJson(
-              json['productXChargeItemChargeItem'] as Map<String, dynamic>,
-            )
-          : null,
+      productXChargeItemChargeItem:
+          json['productReference'] != null || json['_productReference'] != null
+              ? ReferenceProductChargeItemChargeItem.fromJson({
+                  'value': json['productReference'],
+                  '_value': json['_productReference'],
+                })
+              : json['productCodeableConcept'] != null ||
+                      json['_productCodeableConcept'] != null
+                  ? CodeableConceptProductChargeItemChargeItem.fromJson({
+                      'value': json['productCodeableConcept'],
+                      '_value': json['_productCodeableConcept'],
+                    })
+                  : null,
       account: json['account'] != null
           ? (json['account'] as List<dynamic>)
               .map<Reference>(
@@ -365,7 +384,7 @@ class ChargeItem extends DomainResource {
 
   /// [occurrenceXChargeItemChargeItem]
   /// Date/time(s) or duration when the charged service was applied.
-  final FhirDateTime? occurrenceXChargeItemChargeItem;
+  final OccurrenceXChargeItemChargeItem? occurrenceXChargeItemChargeItem;
 
   /// [performer]
   /// Indicates who or what performed or participated in the charged service.
@@ -426,7 +445,7 @@ class ChargeItem extends DomainResource {
   /// [productXChargeItemChargeItem]
   /// Identifies the device, food, drug or other product being charged either
   /// by type code or reference to an instance.
-  final Reference? productXChargeItemChargeItem;
+  final ProductXChargeItemChargeItem? productXChargeItemChargeItem;
 
   /// [account]
   /// Account into which this ChargeItems belongs.
@@ -597,7 +616,7 @@ class ChargeItem extends DomainResource {
     CodeableConcept? code,
     Reference? subject,
     Reference? context,
-    FhirDateTime? occurrenceXChargeItemChargeItem,
+    OccurrenceXChargeItemChargeItem? occurrenceXChargeItemChargeItem,
     List<ChargeItemPerformer>? performer,
     Reference? performingOrganization,
     Reference? requestingOrganization,
@@ -611,7 +630,7 @@ class ChargeItem extends DomainResource {
     FhirDateTime? enteredDate,
     List<CodeableConcept>? reason,
     List<Reference>? service,
-    Reference? productXChargeItemChargeItem,
+    ProductXChargeItemChargeItem? productXChargeItemChargeItem,
     List<Reference>? account,
     List<Annotation>? note,
     List<Reference>? supportingInformation,
