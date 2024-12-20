@@ -1399,7 +1399,7 @@ class ImplementationGuideResource extends BackboneElement {
     addField('name', name);
     addField('description', description);
     addField('exampleXImplementationGuideResource',
-        exampleXImplementationGuideResource);
+        exampleXImplementationGuideResource,);
     addField('groupingId', groupingId);
     return json;
   }
@@ -2230,13 +2230,13 @@ class ImplementationGuideResource1 extends BackboneElement {
       ),
       exampleXImplementationGuideResource:
           json['exampleBoolean'] != null || json['_exampleBoolean'] != null
-              ? BooleanExampleImplementationGuideResource.fromJson({
+              ? BooleanExampleImplementationGuideResource1.fromJson({
                   'value': json['exampleBoolean'],
                   '_value': json['_exampleBoolean'],
                 })
               : json['exampleCanonical'] != null ||
                       json['_exampleCanonical'] != null
-                  ? CanonicalExampleImplementationGuideResource.fromJson({
+                  ? CanonicalExampleImplementationGuideResource1.fromJson({
                       'value': json['exampleCanonical'],
                       '_value': json['_exampleCanonical'],
                     })
@@ -2301,7 +2301,7 @@ class ImplementationGuideResource1 extends BackboneElement {
   /// If true or a reference, indicates the resource is an example instance.
   /// If a reference is present, indicates that the example is an example of
   /// the specified profile.
-  final ExampleXImplementationGuideResource?
+  final ExampleXImplementationGuideResource1?
       exampleXImplementationGuideResource;
 
   /// [relativePath]
@@ -2332,7 +2332,7 @@ class ImplementationGuideResource1 extends BackboneElement {
     json['reference'] = reference.toJson();
 
     addField('exampleXImplementationGuideResource',
-        exampleXImplementationGuideResource);
+        exampleXImplementationGuideResource,);
     addField('relativePath', relativePath);
     return json;
   }
@@ -2345,7 +2345,7 @@ class ImplementationGuideResource1 extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     Reference? reference,
-    ExampleXImplementationGuideResource? exampleXImplementationGuideResource,
+    ExampleXImplementationGuideResource1? exampleXImplementationGuideResource,
     FhirUrl? relativePath,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,

@@ -87,7 +87,7 @@ sealed class ExampleXImplementationGuideResource1 extends DataType {}
 /// the specified profile.
 class BooleanExampleImplementationGuideResource1 extends FhirBoolean
     implements ExampleXImplementationGuideResource1 {
-  /// Constructor for [BooleanExampleImplementationGuideResource]
+  /// Constructor for [BooleanExampleImplementationGuideResource1]
   BooleanExampleImplementationGuideResource1(
     super.input, {
     super.element,
