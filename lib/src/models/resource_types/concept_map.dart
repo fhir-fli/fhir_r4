@@ -378,8 +378,8 @@ class ConceptMap extends CanonicalResource {
 
     addField('purpose', purpose);
     addField('copyright', copyright);
-    addField('sourceX', sourceX);
-    addField('targetX', targetX);
+    addField('source${sourceX!.fhirType.capitalize()}', sourceX);
+    addField('target${targetX!.fhirType.capitalize()}', targetX);
     if (group != null && group!.isNotEmpty) {
       json['group'] = group!.map((e) => e.toJson()).toList();
     }

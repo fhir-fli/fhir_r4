@@ -1799,7 +1799,8 @@ class StructureMapSource extends BackboneElement {
     addField('min', min);
     addField('max', max);
     addField('type', type);
-    addField('defaultValueX', defaultValueX);
+    addField(
+        'defaultValue${defaultValueX!.fhirType.capitalize()}', defaultValueX,);
     addField('element', element);
     addField('listMode', listMode);
     addField('variable', variable);
@@ -2238,7 +2239,7 @@ class StructureMapParameter extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('valueX', valueX);
+    addField('value${valueX.fhirType.capitalize()}', valueX);
     return json;
   }
 

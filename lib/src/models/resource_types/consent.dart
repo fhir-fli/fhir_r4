@@ -361,7 +361,7 @@ class Consent extends DomainResource {
     }
 
     if (sourceX != null) {
-      json['sourceX'] = sourceX!.toJson();
+      json['source${sourceX!.fhirType.capitalize()}'] = sourceX!.toJson();
     }
 
     if (policy != null && policy!.isNotEmpty) {

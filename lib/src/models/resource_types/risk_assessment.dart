@@ -391,7 +391,7 @@ class RiskAssessment extends DomainResource {
       json['encounter'] = encounter!.toJson();
     }
 
-    addField('occurrenceX', occurrenceX);
+    addField('occurrence${occurrenceX!.fhirType.capitalize()}', occurrenceX);
     if (condition != null) {
       json['condition'] = condition!.toJson();
     }
@@ -678,14 +678,14 @@ class RiskAssessmentPrediction extends BackboneElement {
       json['outcome'] = outcome!.toJson();
     }
 
-    addField('probabilityX', probabilityX);
+    addField('probability${probabilityX!.fhirType.capitalize()}', probabilityX);
     if (qualitativeRisk != null) {
       json['qualitativeRisk'] = qualitativeRisk!.toJson();
     }
 
     addField('relativeRisk', relativeRisk);
     if (whenX != null) {
-      json['whenX'] = whenX!.toJson();
+      json['when${whenX!.fhirType.capitalize()}'] = whenX!.toJson();
     }
 
     addField('rationale', rationale);

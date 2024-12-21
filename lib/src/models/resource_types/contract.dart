@@ -688,7 +688,7 @@ class Contract extends DomainResource {
     }
 
     if (topicX != null) {
-      json['topicX'] = topicX!.toJson();
+      json['topic${topicX!.fhirType.capitalize()}'] = topicX!.toJson();
     }
 
     if (type != null) {
@@ -733,7 +733,8 @@ class Contract extends DomainResource {
     }
 
     if (legallyBindingX != null) {
-      json['legallyBindingX'] = legallyBindingX!.toJson();
+      json['legallyBinding${legallyBindingX!.fhirType.capitalize()}'] =
+          legallyBindingX!.toJson();
     }
 
     return json;
@@ -1326,7 +1327,7 @@ class ContractTerm extends BackboneElement {
     }
 
     if (topicX != null) {
-      json['topicX'] = topicX!.toJson();
+      json['topic${topicX!.fhirType.capitalize()}'] = topicX!.toJson();
     }
 
     if (type != null) {
@@ -2269,7 +2270,7 @@ class ContractAnswer extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('valueX', valueX);
+    addField('value${valueX.fhirType.capitalize()}', valueX);
     return json;
   }
 
@@ -3164,7 +3165,7 @@ class ContractValuedItem extends BackboneElement {
     }
 
     if (entityX != null) {
-      json['entityX'] = entityX!.toJson();
+      json['entity${entityX!.fhirType.capitalize()}'] = entityX!.toJson();
     }
 
     if (identifier != null) {
@@ -3662,7 +3663,7 @@ class ContractAction extends BackboneElement {
       }
     }
 
-    addField('occurrenceX', occurrenceX);
+    addField('occurrence${occurrenceX!.fhirType.capitalize()}', occurrenceX);
     if (requester != null && requester!.isNotEmpty) {
       json['requester'] = requester!.map((e) => e.toJson()).toList();
     }
@@ -4264,7 +4265,7 @@ class ContractFriendly extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    json['contentX'] = contentX.toJson();
+    json['content${contentX.fhirType.capitalize()}'] = contentX.toJson();
 
     return json;
   }
@@ -4410,7 +4411,7 @@ class ContractLegal extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    json['contentX'] = contentX.toJson();
+    json['content${contentX.fhirType.capitalize()}'] = contentX.toJson();
 
     return json;
   }
@@ -4558,7 +4559,7 @@ class ContractRule extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    json['contentX'] = contentX.toJson();
+    json['content${contentX.fhirType.capitalize()}'] = contentX.toJson();
 
     return json;
   }

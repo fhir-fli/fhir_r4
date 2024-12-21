@@ -587,7 +587,7 @@ class ParametersParameter extends BackboneElement {
     }
 
     addField('name', name);
-    addField('valueX', valueX);
+    addField('value${valueX!.fhirType.capitalize()}', valueX);
     if (resource != null) {
       json['resource'] = resource!.toJson();
     }

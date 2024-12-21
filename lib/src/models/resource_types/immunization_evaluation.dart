@@ -340,8 +340,8 @@ class ImmunizationEvaluation extends DomainResource {
 
     addField('description', description);
     addField('series', series);
-    addField('doseNumberX', doseNumberX);
-    addField('seriesDosesX', seriesDosesX);
+    addField('doseNumber${doseNumberX!.fhirType.capitalize()}', doseNumberX);
+    addField('seriesDoses${seriesDosesX!.fhirType.capitalize()}', seriesDosesX);
     return json;
   }
 

@@ -626,7 +626,7 @@ class SubstanceIngredient extends BackboneElement {
       json['quantity'] = quantity!.toJson();
     }
 
-    json['substanceX'] = substanceX.toJson();
+    json['substance${substanceX.fhirType.capitalize()}'] = substanceX.toJson();
 
     return json;
   }

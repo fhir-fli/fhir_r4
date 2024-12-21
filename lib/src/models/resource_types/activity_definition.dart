@@ -785,7 +785,7 @@ class ActivityDefinition extends CanonicalResource {
     addField('status', status);
     addField('experimental', experimental);
     if (subjectX != null) {
-      json['subjectX'] = subjectX!.toJson();
+      json['subject${subjectX!.fhirType.capitalize()}'] = subjectX!.toJson();
     }
 
     addField('date', date);
@@ -855,7 +855,7 @@ class ActivityDefinition extends CanonicalResource {
     addField('priority', priority);
     addField('doNotPerform', doNotPerform);
     if (timingX != null) {
-      json['timingX'] = timingX!.toJson();
+      json['timing${timingX!.fhirType.capitalize()}'] = timingX!.toJson();
     }
 
     if (location != null) {
@@ -867,7 +867,7 @@ class ActivityDefinition extends CanonicalResource {
     }
 
     if (productX != null) {
-      json['productX'] = productX!.toJson();
+      json['product${productX!.fhirType.capitalize()}'] = productX!.toJson();
     }
 
     if (quantity != null) {

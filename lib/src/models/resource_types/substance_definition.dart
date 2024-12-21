@@ -774,7 +774,7 @@ class SubstanceDefinitionMoiety extends BackboneElement {
 
     addField('molecularFormula', molecularFormula);
     if (amountX != null) {
-      json['amountX'] = amountX!.toJson();
+      json['amount${amountX!.fhirType.capitalize()}'] = amountX!.toJson();
     }
 
     if (measurementType != null) {
@@ -968,7 +968,7 @@ class SubstanceDefinitionProperty extends BackboneElement {
     json['type'] = type.toJson();
 
     if (valueX != null) {
-      json['valueX'] = valueX!.toJson();
+      json['value${valueX!.fhirType.capitalize()}'] = valueX!.toJson();
     }
 
     return json;
@@ -2566,14 +2566,15 @@ class SubstanceDefinitionRelationship extends BackboneElement {
     }
 
     if (substanceDefinitionX != null) {
-      json['substanceDefinitionX'] = substanceDefinitionX!.toJson();
+      json['substanceDefinition${substanceDefinitionX!.fhirType.capitalize()}'] =
+          substanceDefinitionX!.toJson();
     }
 
     json['type'] = type.toJson();
 
     addField('isDefining', isDefining);
     if (amountX != null) {
-      json['amountX'] = amountX!.toJson();
+      json['amount${amountX!.fhirType.capitalize()}'] = amountX!.toJson();
     }
 
     if (ratioHighLimitAmount != null) {

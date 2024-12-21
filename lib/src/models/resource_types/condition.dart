@@ -453,8 +453,8 @@ class Condition extends DomainResource {
       json['encounter'] = encounter!.toJson();
     }
 
-    addField('onsetX', onsetX);
-    addField('abatementX', abatementX);
+    addField('onset${onsetX!.fhirType.capitalize()}', onsetX);
+    addField('abatement${abatementX!.fhirType.capitalize()}', abatementX);
     addField('recordedDate', recordedDate);
     if (recorder != null) {
       json['recorder'] = recorder!.toJson();

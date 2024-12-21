@@ -862,7 +862,7 @@ class NutritionProductProductCharacteristic extends BackboneElement {
 
     json['type'] = type.toJson();
 
-    json['valueX'] = valueX.toJson();
+    json['value${valueX.fhirType.capitalize()}'] = valueX.toJson();
 
     return json;
   }

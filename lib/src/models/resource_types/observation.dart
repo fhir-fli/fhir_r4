@@ -597,14 +597,14 @@ class Observation extends DomainResource {
       json['encounter'] = encounter!.toJson();
     }
 
-    addField('effectiveX', effectiveX);
+    addField('effective${effectiveX!.fhirType.capitalize()}', effectiveX);
     addField('issued', issued);
     if (performer != null && performer!.isNotEmpty) {
       json['performer'] = performer!.map((e) => e.toJson()).toList();
     }
 
     if (valueX != null) {
-      json['valueX'] = valueX!.toJson();
+      json['value${valueX!.fhirType.capitalize()}'] = valueX!.toJson();
     }
 
     if (dataAbsentReason != null) {
@@ -1212,7 +1212,7 @@ class ObservationComponent extends BackboneElement {
     json['code'] = code.toJson();
 
     if (valueX != null) {
-      json['valueX'] = valueX!.toJson();
+      json['value${valueX!.fhirType.capitalize()}'] = valueX!.toJson();
     }
 
     if (dataAbsentReason != null) {

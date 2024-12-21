@@ -494,14 +494,16 @@ class MedicationDispense extends DomainResource {
 
     addField('status', status);
     if (statusReasonX != null) {
-      json['statusReasonX'] = statusReasonX!.toJson();
+      json['statusReason${statusReasonX!.fhirType.capitalize()}'] =
+          statusReasonX!.toJson();
     }
 
     if (category != null) {
       json['category'] = category!.toJson();
     }
 
-    json['medicationX'] = medicationX.toJson();
+    json['medication${medicationX.fhirType.capitalize()}'] =
+        medicationX.toJson();
 
     if (subject != null) {
       json['subject'] = subject!.toJson();

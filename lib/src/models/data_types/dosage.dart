@@ -284,7 +284,7 @@ class Dosage extends BackboneType
       json['timing'] = timing!.toJson();
     }
 
-    addField('asNeededX', asNeededX);
+    addField('asNeeded${asNeededX!.fhirType.capitalize()}', asNeededX);
     if (site != null) {
       json['site'] = site!.toJson();
     }
@@ -504,11 +504,11 @@ class DosageDoseAndRate extends Element {
     }
 
     if (doseX != null) {
-      json['doseX'] = doseX!.toJson();
+      json['dose${doseX!.fhirType.capitalize()}'] = doseX!.toJson();
     }
 
     if (rateX != null) {
-      json['rateX'] = rateX!.toJson();
+      json['rate${rateX!.fhirType.capitalize()}'] = rateX!.toJson();
     }
 
     return json;

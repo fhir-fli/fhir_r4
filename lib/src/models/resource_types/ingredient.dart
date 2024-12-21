@@ -884,12 +884,14 @@ class IngredientStrength extends BackboneElement {
     }
 
     if (presentationX != null) {
-      json['presentationX'] = presentationX!.toJson();
+      json['presentation${presentationX!.fhirType.capitalize()}'] =
+          presentationX!.toJson();
     }
 
     addField('textPresentation', textPresentation);
     if (concentrationX != null) {
-      json['concentrationX'] = concentrationX!.toJson();
+      json['concentration${concentrationX!.fhirType.capitalize()}'] =
+          concentrationX!.toJson();
     }
 
     addField('textConcentration', textConcentration);
@@ -1104,7 +1106,7 @@ class IngredientReferenceStrength extends BackboneElement {
       json['substance'] = substance!.toJson();
     }
 
-    json['strengthX'] = strengthX.toJson();
+    json['strength${strengthX.fhirType.capitalize()}'] = strengthX.toJson();
 
     addField('measurementPoint', measurementPoint);
     if (country != null && country!.isNotEmpty) {

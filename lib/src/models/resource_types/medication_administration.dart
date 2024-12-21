@@ -449,7 +449,8 @@ class MedicationAdministration extends DomainResource {
       json['category'] = category!.toJson();
     }
 
-    json['medicationX'] = medicationX.toJson();
+    json['medication${medicationX.fhirType.capitalize()}'] =
+        medicationX.toJson();
 
     json['subject'] = subject.toJson();
 
@@ -462,7 +463,7 @@ class MedicationAdministration extends DomainResource {
           supportingInformation!.map((e) => e.toJson()).toList();
     }
 
-    addField('effectiveX', effectiveX);
+    addField('effective${effectiveX.fhirType.capitalize()}', effectiveX);
     if (performer != null && performer!.isNotEmpty) {
       json['performer'] = performer!.map((e) => e.toJson()).toList();
     }
@@ -931,7 +932,7 @@ class MedicationAdministrationDosage extends BackboneElement {
     }
 
     if (rateX != null) {
-      json['rateX'] = rateX!.toJson();
+      json['rate${rateX!.fhirType.capitalize()}'] = rateX!.toJson();
     }
 
     return json;

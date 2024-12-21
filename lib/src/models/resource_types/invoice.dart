@@ -789,7 +789,8 @@ class InvoiceLineItem extends BackboneElement {
     }
 
     addField('sequence', sequence);
-    json['chargeItemX'] = chargeItemX.toJson();
+    json['chargeItem${chargeItemX.fhirType.capitalize()}'] =
+        chargeItemX.toJson();
 
     if (priceComponent != null && priceComponent!.isNotEmpty) {
       json['priceComponent'] = priceComponent!.map((e) => e.toJson()).toList();

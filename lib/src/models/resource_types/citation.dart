@@ -1372,7 +1372,7 @@ class CitationRelatesTo extends BackboneElement {
           targetClassifier!.map((e) => e.toJson()).toList();
     }
 
-    addField('targetX', targetX);
+    addField('target${targetX.fhirType.capitalize()}', targetX);
     return json;
   }
 
@@ -2837,7 +2837,7 @@ class CitationRelatesTo1 extends BackboneElement {
           targetClassifier!.map((e) => e.toJson()).toList();
     }
 
-    addField('targetX', targetX);
+    addField('target${targetX.fhirType.capitalize()}', targetX);
     return json;
   }
 

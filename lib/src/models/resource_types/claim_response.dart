@@ -1812,9 +1812,9 @@ class ClaimResponseAddItem extends BackboneElement {
       json['programCode'] = programCode!.map((e) => e.toJson()).toList();
     }
 
-    addField('servicedX', servicedX);
+    addField('serviced${servicedX!.fhirType.capitalize()}', servicedX);
     if (locationX != null) {
-      json['locationX'] = locationX!.toJson();
+      json['location${locationX!.fhirType.capitalize()}'] = locationX!.toJson();
     }
 
     if (quantity != null) {

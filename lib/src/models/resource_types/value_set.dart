@@ -1801,7 +1801,7 @@ class ValueSetParameter extends BackboneElement {
     }
 
     addField('name', name);
-    addField('valueX', valueX);
+    addField('value${valueX!.fhirType.capitalize()}', valueX);
     return json;
   }
 

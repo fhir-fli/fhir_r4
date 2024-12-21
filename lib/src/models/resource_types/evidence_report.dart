@@ -436,7 +436,7 @@ class EvidenceReport extends DomainResource {
     }
 
     if (citeAsX != null) {
-      json['citeAsX'] = citeAsX!.toJson();
+      json['citeAs${citeAsX!.fhirType.capitalize()}'] = citeAsX!.toJson();
     }
 
     if (type != null) {
@@ -887,7 +887,7 @@ class EvidenceReportCharacteristic extends BackboneElement {
 
     json['code'] = code.toJson();
 
-    json['valueX'] = valueX.toJson();
+    json['value${valueX.fhirType.capitalize()}'] = valueX.toJson();
 
     addField('exclude', exclude);
     if (period != null) {
@@ -1056,7 +1056,7 @@ class EvidenceReportRelatesTo extends BackboneElement {
     }
 
     addField('code', code);
-    json['targetX'] = targetX.toJson();
+    json['target${targetX.fhirType.capitalize()}'] = targetX.toJson();
 
     return json;
   }

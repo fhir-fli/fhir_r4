@@ -1133,7 +1133,7 @@ class QuestionnaireEnableWhen extends BackboneElement {
 
     addField('question', question);
     addField('operator', operator_);
-    addField('answerX', answerX);
+    addField('answer${answerX.fhirType.capitalize()}', answerX);
     return json;
   }
 
@@ -1315,7 +1315,7 @@ class QuestionnaireAnswerOption extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('valueX', valueX);
+    addField('value${valueX.fhirType.capitalize()}', valueX);
     addField('initialSelected', initialSelected);
     return json;
   }
@@ -1527,7 +1527,7 @@ class QuestionnaireInitial extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('valueX', valueX);
+    addField('value${valueX.fhirType.capitalize()}', valueX);
     return json;
   }
 

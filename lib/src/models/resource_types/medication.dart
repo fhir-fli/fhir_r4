@@ -484,7 +484,7 @@ class MedicationIngredient extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    json['itemX'] = itemX.toJson();
+    json['item${itemX.fhirType.capitalize()}'] = itemX.toJson();
 
     addField('isActive', isActive);
     if (strength != null) {

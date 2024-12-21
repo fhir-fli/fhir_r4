@@ -403,7 +403,7 @@ class FhirExtension extends DataType {
     }
 
     addField('url', url);
-    addField('valueX', valueX);
+    addField('value${valueX!.fhirType.capitalize()}', valueX);
     return json;
   }
 

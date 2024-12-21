@@ -1526,7 +1526,7 @@ class CodeSystemProperty1 extends BackboneElement {
     }
 
     addField('code', code);
-    addField('valueX', valueX);
+    addField('value${valueX.fhirType.capitalize()}', valueX);
     return json;
   }
 

@@ -500,7 +500,7 @@ class CommunicationRequest extends DomainResource {
       json['payload'] = payload!.map((e) => e.toJson()).toList();
     }
 
-    addField('occurrenceX', occurrenceX);
+    addField('occurrence${occurrenceX!.fhirType.capitalize()}', occurrenceX);
     addField('authoredOn', authoredOn);
     if (requester != null) {
       json['requester'] = requester!.toJson();
@@ -730,7 +730,7 @@ class CommunicationRequestPayload extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('contentX', contentX);
+    addField('content${contentX.fhirType.capitalize()}', contentX);
     return json;
   }
 

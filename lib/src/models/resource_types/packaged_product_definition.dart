@@ -1123,7 +1123,7 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
     }
 
     if (periodX != null) {
-      json['periodX'] = periodX!.toJson();
+      json['period${periodX!.fhirType.capitalize()}'] = periodX!.toJson();
     }
 
     if (specialPrecautionsForStorage != null &&
@@ -1311,7 +1311,7 @@ class PackagedProductDefinitionProperty extends BackboneElement {
     json['type'] = type.toJson();
 
     if (valueX != null) {
-      json['valueX'] = valueX!.toJson();
+      json['value${valueX!.fhirType.capitalize()}'] = valueX!.toJson();
     }
 
     return json;

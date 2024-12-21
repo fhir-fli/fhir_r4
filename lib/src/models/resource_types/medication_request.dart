@@ -604,8 +604,9 @@ class MedicationRequest extends DomainResource {
 
     addField('priority', priority);
     addField('doNotPerform', doNotPerform);
-    addField('reportedX', reportedX);
-    json['medicationX'] = medicationX.toJson();
+    addField('reported${reportedX!.fhirType.capitalize()}', reportedX);
+    json['medication${medicationX.fhirType.capitalize()}'] =
+        medicationX.toJson();
 
     json['subject'] = subject.toJson();
 
@@ -1359,7 +1360,7 @@ class MedicationRequestSubstitution extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('allowedX', allowedX);
+    addField('allowed${allowedX.fhirType.capitalize()}', allowedX);
     if (reason != null) {
       json['reason'] = reason!.toJson();
     }

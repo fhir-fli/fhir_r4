@@ -332,7 +332,7 @@ class DetectedIssue extends DomainResource {
       json['patient'] = patient!.toJson();
     }
 
-    addField('identifiedX', identifiedX);
+    addField('identified${identifiedX!.fhirType.capitalize()}', identifiedX);
     if (author != null) {
       json['author'] = author!.toJson();
     }

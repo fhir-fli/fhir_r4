@@ -442,7 +442,8 @@ class MedicationStatement extends DomainResource {
       json['category'] = category!.toJson();
     }
 
-    json['medicationX'] = medicationX.toJson();
+    json['medication${medicationX.fhirType.capitalize()}'] =
+        medicationX.toJson();
 
     json['subject'] = subject.toJson();
 
@@ -450,7 +451,7 @@ class MedicationStatement extends DomainResource {
       json['context'] = context!.toJson();
     }
 
-    addField('effectiveX', effectiveX);
+    addField('effective${effectiveX!.fhirType.capitalize()}', effectiveX);
     addField('dateAsserted', dateAsserted);
     if (informationSource != null) {
       json['informationSource'] = informationSource!.toJson();

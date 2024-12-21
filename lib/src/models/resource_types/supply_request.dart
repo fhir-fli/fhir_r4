@@ -365,7 +365,7 @@ class SupplyRequest extends DomainResource {
     }
 
     addField('priority', priority);
-    json['itemX'] = itemX.toJson();
+    json['item${itemX.fhirType.capitalize()}'] = itemX.toJson();
 
     json['quantity'] = quantity.toJson();
 
@@ -373,7 +373,7 @@ class SupplyRequest extends DomainResource {
       json['parameter'] = parameter!.map((e) => e.toJson()).toList();
     }
 
-    addField('occurrenceX', occurrenceX);
+    addField('occurrence${occurrenceX!.fhirType.capitalize()}', occurrenceX);
     addField('authoredOn', authoredOn);
     if (requester != null) {
       json['requester'] = requester!.toJson();
@@ -612,7 +612,7 @@ class SupplyRequestParameter extends BackboneElement {
     }
 
     if (valueX != null) {
-      json['valueX'] = valueX!.toJson();
+      json['value${valueX!.fhirType.capitalize()}'] = valueX!.toJson();
     }
 
     return json;

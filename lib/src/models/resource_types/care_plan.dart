@@ -1247,7 +1247,8 @@ class CarePlanDetail extends BackboneElement {
 
     addField('doNotPerform', doNotPerform);
     if (scheduledX != null) {
-      json['scheduledX'] = scheduledX!.toJson();
+      json['scheduled${scheduledX!.fhirType.capitalize()}'] =
+          scheduledX!.toJson();
     }
 
     if (location != null) {
@@ -1259,7 +1260,7 @@ class CarePlanDetail extends BackboneElement {
     }
 
     if (productX != null) {
-      json['productX'] = productX!.toJson();
+      json['product${productX!.fhirType.capitalize()}'] = productX!.toJson();
     }
 
     if (dailyAmount != null) {

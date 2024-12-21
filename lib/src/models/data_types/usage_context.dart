@@ -141,7 +141,7 @@ class UsageContext extends DataType
 
     json['code'] = code.toJson();
 
-    json['valueX'] = valueX.toJson();
+    json['value${valueX.fhirType.capitalize()}'] = valueX.toJson();
 
     return json;
   }

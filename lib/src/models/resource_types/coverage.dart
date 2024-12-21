@@ -805,7 +805,7 @@ class CoverageCostToBeneficiary extends BackboneElement {
       json['type'] = type!.toJson();
     }
 
-    json['valueX'] = valueX.toJson();
+    json['value${valueX.fhirType.capitalize()}'] = valueX.toJson();
 
     if (exception != null && exception!.isNotEmpty) {
       json['exception'] = exception!.map((e) => e.toJson()).toList();

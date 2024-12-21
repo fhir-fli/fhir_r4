@@ -469,7 +469,7 @@ class ManufacturedItemDefinitionProperty extends BackboneElement {
     json['type'] = type.toJson();
 
     if (valueX != null) {
-      json['valueX'] = valueX!.toJson();
+      json['value${valueX!.fhirType.capitalize()}'] = valueX!.toJson();
     }
 
     return json;

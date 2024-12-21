@@ -438,7 +438,7 @@ class DiagnosticReport extends DomainResource {
       json['encounter'] = encounter!.toJson();
     }
 
-    addField('effectiveX', effectiveX);
+    addField('effective${effectiveX!.fhirType.capitalize()}', effectiveX);
     addField('issued', issued);
     if (performer != null && performer!.isNotEmpty) {
       json['performer'] = performer!.map((e) => e.toJson()).toList();

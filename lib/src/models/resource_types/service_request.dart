@@ -681,7 +681,7 @@ class ServiceRequest extends DomainResource {
     }
 
     if (quantityX != null) {
-      json['quantityX'] = quantityX!.toJson();
+      json['quantity${quantityX!.fhirType.capitalize()}'] = quantityX!.toJson();
     }
 
     json['subject'] = subject.toJson();
@@ -690,8 +690,8 @@ class ServiceRequest extends DomainResource {
       json['encounter'] = encounter!.toJson();
     }
 
-    addField('occurrenceX', occurrenceX);
-    addField('asNeededX', asNeededX);
+    addField('occurrence${occurrenceX!.fhirType.capitalize()}', occurrenceX);
+    addField('asNeeded${asNeededX!.fhirType.capitalize()}', asNeededX);
     addField('authoredOn', authoredOn);
     if (requester != null) {
       json['requester'] = requester!.toJson();

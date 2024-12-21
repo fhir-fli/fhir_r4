@@ -767,7 +767,7 @@ class CompositionRelatesTo extends BackboneElement {
     }
 
     addField('code', code);
-    json['targetX'] = targetX.toJson();
+    json['target${targetX.fhirType.capitalize()}'] = targetX.toJson();
 
     return json;
   }

@@ -503,7 +503,7 @@ class TimingRepeat extends Element {
     }
 
     if (boundsX != null) {
-      json['boundsX'] = boundsX!.toJson();
+      json['bounds${boundsX!.fhirType.capitalize()}'] = boundsX!.toJson();
     }
 
     addField('count', count);

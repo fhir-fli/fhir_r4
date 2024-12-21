@@ -545,7 +545,7 @@ class BiologicallyDerivedProductCollection extends BackboneElement {
       json['source'] = source!.toJson();
     }
 
-    addField('collectedX', collectedX);
+    addField('collected${collectedX!.fhirType.capitalize()}', collectedX);
     return json;
   }
 
@@ -737,7 +737,7 @@ class BiologicallyDerivedProductProcessing extends BackboneElement {
       json['additive'] = additive!.toJson();
     }
 
-    addField('timeX', timeX);
+    addField('time${timeX!.fhirType.capitalize()}', timeX);
     return json;
   }
 
@@ -903,7 +903,7 @@ class BiologicallyDerivedProductManipulation extends BackboneElement {
     }
 
     addField('description', description);
-    addField('timeX', timeX);
+    addField('time${timeX!.fhirType.capitalize()}', timeX);
     return json;
   }
 

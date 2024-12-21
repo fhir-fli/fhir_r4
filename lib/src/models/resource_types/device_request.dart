@@ -514,7 +514,7 @@ class DeviceRequest extends DomainResource {
     addField('status', status);
     addField('intent', intent);
     addField('priority', priority);
-    json['codeX'] = codeX.toJson();
+    json['code${codeX.fhirType.capitalize()}'] = codeX.toJson();
 
     if (parameter != null && parameter!.isNotEmpty) {
       json['parameter'] = parameter!.map((e) => e.toJson()).toList();
@@ -526,7 +526,7 @@ class DeviceRequest extends DomainResource {
       json['encounter'] = encounter!.toJson();
     }
 
-    addField('occurrenceX', occurrenceX);
+    addField('occurrence${occurrenceX!.fhirType.capitalize()}', occurrenceX);
     addField('authoredOn', authoredOn);
     if (requester != null) {
       json['requester'] = requester!.toJson();
@@ -797,7 +797,7 @@ class DeviceRequestParameter extends BackboneElement {
     }
 
     if (valueX != null) {
-      json['valueX'] = valueX!.toJson();
+      json['value${valueX!.fhirType.capitalize()}'] = valueX!.toJson();
     }
 
     return json;

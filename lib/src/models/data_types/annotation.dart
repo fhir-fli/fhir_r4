@@ -141,7 +141,7 @@ class Annotation extends DataType
     }
 
     if (authorX != null) {
-      json['authorX'] = authorX!.toJson();
+      json['author${authorX!.fhirType.capitalize()}'] = authorX!.toJson();
     }
 
     addField('time', time);

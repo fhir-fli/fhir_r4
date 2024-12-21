@@ -299,7 +299,7 @@ class MessageHeader extends DomainResource {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    json['eventX'] = eventX.toJson();
+    json['event${eventX.fhirType.capitalize()}'] = eventX.toJson();
 
     if (destination != null && destination!.isNotEmpty) {
       json['destination'] = destination!.map((e) => e.toJson()).toList();

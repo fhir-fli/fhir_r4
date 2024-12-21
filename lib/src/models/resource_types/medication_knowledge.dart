@@ -1107,7 +1107,7 @@ class MedicationKnowledgeIngredient extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    json['itemX'] = itemX.toJson();
+    json['item${itemX.fhirType.capitalize()}'] = itemX.toJson();
 
     addField('isActive', isActive);
     if (strength != null) {
@@ -1624,7 +1624,8 @@ class MedicationKnowledgeAdministrationGuidelines extends BackboneElement {
     }
 
     if (indicationX != null) {
-      json['indicationX'] = indicationX!.toJson();
+      json['indication${indicationX!.fhirType.capitalize()}'] =
+          indicationX!.toJson();
     }
 
     if (patientCharacteristics != null && patientCharacteristics!.isNotEmpty) {
@@ -1956,7 +1957,8 @@ class MedicationKnowledgePatientCharacteristics extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    json['characteristicX'] = characteristicX.toJson();
+    json['characteristic${characteristicX.fhirType.capitalize()}'] =
+        characteristicX.toJson();
 
     if (value != null && value!.isNotEmpty) {
       final fieldJson0 = value!.map((e) => e.toJson()).toList();
@@ -2469,7 +2471,7 @@ class MedicationKnowledgeDrugCharacteristic extends BackboneElement {
     }
 
     if (valueX != null) {
-      json['valueX'] = valueX!.toJson();
+      json['value${valueX!.fhirType.capitalize()}'] = valueX!.toJson();
     }
 
     return json;

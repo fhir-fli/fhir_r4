@@ -1390,8 +1390,8 @@ class ClaimSupportingInfo extends BackboneElement {
       json['code'] = code!.toJson();
     }
 
-    addField('timingX', timingX);
-    addField('valueX', valueX);
+    addField('timing${timingX!.fhirType.capitalize()}', timingX);
+    addField('value${valueX!.fhirType.capitalize()}', valueX);
     if (reason != null) {
       json['reason'] = reason!.toJson();
     }
@@ -1598,7 +1598,7 @@ class ClaimDiagnosis extends BackboneElement {
     }
 
     addField('sequence', sequence);
-    json['diagnosisX'] = diagnosisX.toJson();
+    json['diagnosis${diagnosisX.fhirType.capitalize()}'] = diagnosisX.toJson();
 
     if (type != null && type!.isNotEmpty) {
       json['type'] = type!.map((e) => e.toJson()).toList();
@@ -1820,7 +1820,7 @@ class ClaimProcedure extends BackboneElement {
     }
 
     addField('date', date);
-    json['procedureX'] = procedureX.toJson();
+    json['procedure${procedureX.fhirType.capitalize()}'] = procedureX.toJson();
 
     if (udi != null && udi!.isNotEmpty) {
       json['udi'] = udi!.map((e) => e.toJson()).toList();
@@ -2251,7 +2251,7 @@ class ClaimAccident extends BackboneElement {
     }
 
     if (locationX != null) {
-      json['locationX'] = locationX!.toJson();
+      json['location${locationX!.fhirType.capitalize()}'] = locationX!.toJson();
     }
 
     return json;
@@ -2707,9 +2707,9 @@ class ClaimItem extends BackboneElement {
       json['programCode'] = programCode!.map((e) => e.toJson()).toList();
     }
 
-    addField('servicedX', servicedX);
+    addField('serviced${servicedX!.fhirType.capitalize()}', servicedX);
     if (locationX != null) {
-      json['locationX'] = locationX!.toJson();
+      json['location${locationX!.fhirType.capitalize()}'] = locationX!.toJson();
     }
 
     if (quantity != null) {

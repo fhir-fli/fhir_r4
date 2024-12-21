@@ -1591,17 +1591,18 @@ class ElementDefinition extends BackboneType {
       json['type'] = type!.map((e) => e.toJson()).toList();
     }
 
-    addField('defaultValueX', defaultValueX);
+    addField(
+        'defaultValue${defaultValueX!.fhirType.capitalize()}', defaultValueX,);
     addField('meaningWhenMissing', meaningWhenMissing);
     addField('orderMeaning', orderMeaning);
-    addField('fixedX', fixedX);
-    addField('patternX', patternX);
+    addField('fixed${fixedX!.fhirType.capitalize()}', fixedX);
+    addField('pattern${patternX!.fhirType.capitalize()}', patternX);
     if (example != null && example!.isNotEmpty) {
       json['example'] = example!.map((e) => e.toJson()).toList();
     }
 
-    addField('minValueX', minValueX);
-    addField('maxValueX', maxValueX);
+    addField('minValue${minValueX!.fhirType.capitalize()}', minValueX);
+    addField('maxValue${maxValueX!.fhirType.capitalize()}', maxValueX);
     addField('maxLength', maxLength);
     if (condition != null && condition!.isNotEmpty) {
       final fieldJson2 = condition!.map((e) => e.toJson()).toList();
@@ -2819,7 +2820,7 @@ class ElementDefinitionExample extends Element {
     }
 
     addField('label', label);
-    addField('valueX', valueX);
+    addField('value${valueX.fhirType.capitalize()}', valueX);
     return json;
   }
 

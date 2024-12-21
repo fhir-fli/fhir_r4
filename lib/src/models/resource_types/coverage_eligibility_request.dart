@@ -351,7 +351,7 @@ class CoverageEligibilityRequest extends DomainResource {
 
     json['patient'] = patient.toJson();
 
-    addField('servicedX', servicedX);
+    addField('serviced${servicedX!.fhirType.capitalize()}', servicedX);
     addField('created', created);
     if (enterer != null) {
       json['enterer'] = enterer!.toJson();
@@ -1225,7 +1225,8 @@ class CoverageEligibilityRequestDiagnosis extends BackboneElement {
     }
 
     if (diagnosisX != null) {
-      json['diagnosisX'] = diagnosisX!.toJson();
+      json['diagnosis${diagnosisX!.fhirType.capitalize()}'] =
+          diagnosisX!.toJson();
     }
 
     return json;

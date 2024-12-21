@@ -844,7 +844,8 @@ class EvidenceVariableCharacteristic extends BackboneElement {
     }
 
     addField('description', description);
-    json['definitionX'] = definitionX.toJson();
+    json['definition${definitionX.fhirType.capitalize()}'] =
+        definitionX.toJson();
 
     if (method != null) {
       json['method'] = method!.toJson();
@@ -1234,7 +1235,7 @@ class EvidenceVariableCategory extends BackboneElement {
 
     addField('name', name);
     if (valueX != null) {
-      json['valueX'] = valueX!.toJson();
+      json['value${valueX!.fhirType.capitalize()}'] = valueX!.toJson();
     }
 
     return json;

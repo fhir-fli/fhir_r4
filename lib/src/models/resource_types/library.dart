@@ -548,7 +548,7 @@ class Library extends CanonicalResource {
     json['type'] = type.toJson();
 
     if (subjectX != null) {
-      json['subjectX'] = subjectX!.toJson();
+      json['subject${subjectX!.fhirType.capitalize()}'] = subjectX!.toJson();
     }
 
     addField('date', date);

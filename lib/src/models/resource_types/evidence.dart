@@ -519,7 +519,7 @@ class Evidence extends DomainResource {
     addField('version', version);
     addField('title', title);
     if (citeAsX != null) {
-      json['citeAsX'] = citeAsX!.toJson();
+      json['citeAs${citeAsX!.fhirType.capitalize()}'] = citeAsX!.toJson();
     }
 
     addField('status', status);

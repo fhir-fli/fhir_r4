@@ -349,7 +349,7 @@ class DeviceUseStatement extends DomainResource {
     }
 
     if (timingX != null) {
-      json['timingX'] = timingX!.toJson();
+      json['timing${timingX!.fhirType.capitalize()}'] = timingX!.toJson();
     }
 
     addField('recordedOn', recordedOn);

@@ -183,7 +183,7 @@ class TriggerDefinition extends DataType
     addField('type', type);
     addField('name', name);
     if (timingX != null) {
-      json['timingX'] = timingX!.toJson();
+      json['timing${timingX!.fhirType.capitalize()}'] = timingX!.toJson();
     }
 
     if (data != null && data!.isNotEmpty) {

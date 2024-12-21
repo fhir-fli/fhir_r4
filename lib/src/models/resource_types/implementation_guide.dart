@@ -1395,7 +1395,7 @@ class ImplementationGuideResource extends BackboneElement {
 
     addField('name', name);
     addField('description', description);
-    addField('exampleX', exampleX);
+    addField('example${exampleX!.fhirType.capitalize()}', exampleX);
     addField('groupingId', groupingId);
     return json;
   }
@@ -1584,7 +1584,7 @@ class ImplementationGuidePage extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('nameX', nameX);
+    addField('name${nameX.fhirType.capitalize()}', nameX);
     addField('title', title);
     addField('generation', generation);
     if (page != null && page!.isNotEmpty) {
@@ -2321,7 +2321,7 @@ class ImplementationGuideResource1 extends BackboneElement {
 
     json['reference'] = reference.toJson();
 
-    addField('exampleX', exampleX);
+    addField('example${exampleX!.fhirType.capitalize()}', exampleX);
     addField('relativePath', relativePath);
     return json;
   }

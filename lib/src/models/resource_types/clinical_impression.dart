@@ -441,7 +441,7 @@ class ClinicalImpression extends DomainResource {
       json['encounter'] = encounter!.toJson();
     }
 
-    addField('effectiveX', effectiveX);
+    addField('effective${effectiveX!.fhirType.capitalize()}', effectiveX);
     addField('date', date);
     if (assessor != null) {
       json['assessor'] = assessor!.toJson();

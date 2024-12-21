@@ -459,7 +459,7 @@ class Media extends DomainResource {
       json['encounter'] = encounter!.toJson();
     }
 
-    addField('createdX', createdX);
+    addField('created${createdX!.fhirType.capitalize()}', createdX);
     addField('issued', issued);
     if (operator_ != null) {
       json['operator'] = operator_!.toJson();

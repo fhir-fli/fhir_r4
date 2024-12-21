@@ -383,7 +383,7 @@ class GuidanceResponse extends DomainResource {
       json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
 
-    addField('moduleX', moduleX);
+    addField('module${moduleX.fhirType.capitalize()}', moduleX);
     addField('status', status);
     if (subject != null) {
       json['subject'] = subject!.toJson();

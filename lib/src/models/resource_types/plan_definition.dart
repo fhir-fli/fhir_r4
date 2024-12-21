@@ -563,7 +563,7 @@ class PlanDefinition extends CanonicalResource {
     addField('status', status);
     addField('experimental', experimental);
     if (subjectX != null) {
-      json['subjectX'] = subjectX!.toJson();
+      json['subject${subjectX!.fhirType.capitalize()}'] = subjectX!.toJson();
     }
 
     addField('date', date);
@@ -1143,7 +1143,7 @@ class PlanDefinitionTarget extends BackboneElement {
     }
 
     if (detailX != null) {
-      json['detailX'] = detailX!.toJson();
+      json['detail${detailX!.fhirType.capitalize()}'] = detailX!.toJson();
     }
 
     if (due != null) {
@@ -1726,7 +1726,7 @@ class PlanDefinitionAction extends BackboneElement {
     }
 
     if (subjectX != null) {
-      json['subjectX'] = subjectX!.toJson();
+      json['subject${subjectX!.fhirType.capitalize()}'] = subjectX!.toJson();
     }
 
     if (trigger != null && trigger!.isNotEmpty) {
@@ -1749,7 +1749,7 @@ class PlanDefinitionAction extends BackboneElement {
       json['relatedAction'] = relatedAction!.map((e) => e.toJson()).toList();
     }
 
-    addField('timingX', timingX);
+    addField('timing${timingX!.fhirType.capitalize()}', timingX);
     if (participant != null && participant!.isNotEmpty) {
       json['participant'] = participant!.map((e) => e.toJson()).toList();
     }
@@ -1763,7 +1763,7 @@ class PlanDefinitionAction extends BackboneElement {
     addField('requiredBehavior', requiredBehavior);
     addField('precheckBehavior', precheckBehavior);
     addField('cardinalityBehavior', cardinalityBehavior);
-    addField('definitionX', definitionX);
+    addField('definition${definitionX!.fhirType.capitalize()}', definitionX);
     addField('transform', transform);
     if (dynamicValue != null && dynamicValue!.isNotEmpty) {
       json['dynamicValue'] = dynamicValue!.map((e) => e.toJson()).toList();
@@ -2151,7 +2151,7 @@ class PlanDefinitionRelatedAction extends BackboneElement {
     addField('actionId', actionId);
     addField('relationship', relationship);
     if (offsetX != null) {
-      json['offsetX'] = offsetX!.toJson();
+      json['offset${offsetX!.fhirType.capitalize()}'] = offsetX!.toJson();
     }
 
     return json;

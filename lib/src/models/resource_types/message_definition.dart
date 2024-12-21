@@ -463,7 +463,7 @@ class MessageDefinition extends CanonicalResource {
       }
     }
 
-    json['eventX'] = eventX.toJson();
+    json['event${eventX.fhirType.capitalize()}'] = eventX.toJson();
 
     addField('category', category);
     if (focus != null && focus!.isNotEmpty) {

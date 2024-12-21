@@ -386,7 +386,7 @@ class Goal extends DomainResource {
 
     json['subject'] = subject.toJson();
 
-    addField('startX', startX);
+    addField('start${startX!.fhirType.capitalize()}', startX);
     if (target != null && target!.isNotEmpty) {
       json['target'] = target!.map((e) => e.toJson()).toList();
     }
@@ -666,10 +666,10 @@ class GoalTarget extends BackboneElement {
     }
 
     if (detailX != null) {
-      json['detailX'] = detailX!.toJson();
+      json['detail${detailX!.fhirType.capitalize()}'] = detailX!.toJson();
     }
 
-    addField('dueX', dueX);
+    addField('due${dueX!.fhirType.capitalize()}', dueX);
     return json;
   }
 

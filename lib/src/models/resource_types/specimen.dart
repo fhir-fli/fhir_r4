@@ -632,7 +632,7 @@ class SpecimenCollection extends BackboneElement {
       json['collector'] = collector!.toJson();
     }
 
-    addField('collectedX', collectedX);
+    addField('collected${collectedX!.fhirType.capitalize()}', collectedX);
     if (duration != null) {
       json['duration'] = duration!.toJson();
     }
@@ -650,7 +650,8 @@ class SpecimenCollection extends BackboneElement {
     }
 
     if (fastingStatusX != null) {
-      json['fastingStatusX'] = fastingStatusX!.toJson();
+      json['fastingStatus${fastingStatusX!.fhirType.capitalize()}'] =
+          fastingStatusX!.toJson();
     }
 
     return json;
@@ -856,7 +857,7 @@ class SpecimenProcessing extends BackboneElement {
       json['additive'] = additive!.map((e) => e.toJson()).toList();
     }
 
-    addField('timeX', timeX);
+    addField('time${timeX!.fhirType.capitalize()}', timeX);
     return json;
   }
 
@@ -1088,7 +1089,7 @@ class SpecimenContainer extends BackboneElement {
     }
 
     if (additiveX != null) {
-      json['additiveX'] = additiveX!.toJson();
+      json['additive${additiveX!.fhirType.capitalize()}'] = additiveX!.toJson();
     }
 
     return json;

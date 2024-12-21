@@ -154,7 +154,7 @@ class Population extends BackboneType {
     }
 
     if (ageX != null) {
-      json['ageX'] = ageX!.toJson();
+      json['age${ageX!.fhirType.capitalize()}'] = ageX!.toJson();
     }
 
     if (gender != null) {

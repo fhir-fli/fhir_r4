@@ -1324,7 +1324,7 @@ class TaskInput extends BackboneElement {
 
     json['type'] = type.toJson();
 
-    addField('valueX', valueX);
+    addField('value${valueX.fhirType.capitalize()}', valueX);
     return json;
   }
 
@@ -1757,7 +1757,7 @@ class TaskOutput extends BackboneElement {
 
     json['type'] = type.toJson();
 
-    addField('valueX', valueX);
+    addField('value${valueX.fhirType.capitalize()}', valueX);
     return json;
   }
 

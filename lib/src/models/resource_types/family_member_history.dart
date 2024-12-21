@@ -463,15 +463,15 @@ class FamilyMemberHistory extends DomainResource {
     }
 
     if (bornX != null) {
-      json['bornX'] = bornX!.toJson();
+      json['born${bornX!.fhirType.capitalize()}'] = bornX!.toJson();
     }
 
     if (ageX != null) {
-      json['ageX'] = ageX!.toJson();
+      json['age${ageX!.fhirType.capitalize()}'] = ageX!.toJson();
     }
 
     addField('estimatedAge', estimatedAge);
-    addField('deceasedX', deceasedX);
+    addField('deceased${deceasedX!.fhirType.capitalize()}', deceasedX);
     if (reasonCode != null && reasonCode!.isNotEmpty) {
       json['reasonCode'] = reasonCode!.map((e) => e.toJson()).toList();
     }
@@ -753,7 +753,7 @@ class FamilyMemberHistoryCondition extends BackboneElement {
 
     addField('contributedToDeath', contributedToDeath);
     if (onsetX != null) {
-      json['onsetX'] = onsetX!.toJson();
+      json['onset${onsetX!.fhirType.capitalize()}'] = onsetX!.toJson();
     }
 
     if (note != null && note!.isNotEmpty) {

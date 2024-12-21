@@ -522,7 +522,7 @@ class Immunization extends DomainResource {
       json['encounter'] = encounter!.toJson();
     }
 
-    addField('occurrenceX', occurrenceX);
+    addField('occurrence${occurrenceX.fhirType.capitalize()}', occurrenceX);
     addField('recorded', recorded);
     addField('primarySource', primarySource);
     if (reportOrigin != null) {
@@ -1389,8 +1389,8 @@ class ImmunizationProtocolApplied extends BackboneElement {
       json['targetDisease'] = targetDisease!.map((e) => e.toJson()).toList();
     }
 
-    addField('doseNumberX', doseNumberX);
-    addField('seriesDosesX', seriesDosesX);
+    addField('doseNumber${doseNumberX.fhirType.capitalize()}', doseNumberX);
+    addField('seriesDoses${seriesDosesX!.fhirType.capitalize()}', seriesDosesX);
     return json;
   }
 

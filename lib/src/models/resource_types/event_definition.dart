@@ -503,7 +503,7 @@ class EventDefinition extends CanonicalResource {
     addField('status', status);
     addField('experimental', experimental);
     if (subjectX != null) {
-      json['subjectX'] = subjectX!.toJson();
+      json['subject${subjectX!.fhirType.capitalize()}'] = subjectX!.toJson();
     }
 
     addField('date', date);

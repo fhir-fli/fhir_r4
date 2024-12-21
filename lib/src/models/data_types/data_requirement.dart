@@ -233,7 +233,7 @@ class DataRequirement extends DataType
     }
 
     if (subjectX != null) {
-      json['subjectX'] = subjectX!.toJson();
+      json['subject${subjectX!.fhirType.capitalize()}'] = subjectX!.toJson();
     }
 
     if (mustSupport != null && mustSupport!.isNotEmpty) {
@@ -638,7 +638,7 @@ class DataRequirementDateFilter extends Element {
 
     addField('path', path);
     addField('searchParam', searchParam);
-    addField('valueX', valueX);
+    addField('value${valueX!.fhirType.capitalize()}', valueX);
     return json;
   }
 

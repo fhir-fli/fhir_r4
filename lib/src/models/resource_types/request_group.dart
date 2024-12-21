@@ -920,7 +920,7 @@ class RequestGroupAction extends BackboneElement {
       json['relatedAction'] = relatedAction!.map((e) => e.toJson()).toList();
     }
 
-    addField('timingX', timingX);
+    addField('timing${timingX!.fhirType.capitalize()}', timingX);
     if (participant != null && participant!.isNotEmpty) {
       json['participant'] = participant!.map((e) => e.toJson()).toList();
     }
@@ -1304,7 +1304,7 @@ class RequestGroupRelatedAction extends BackboneElement {
     addField('actionId', actionId);
     addField('relationship', relationship);
     if (offsetX != null) {
-      json['offsetX'] = offsetX!.toJson();
+      json['offset${offsetX!.fhirType.capitalize()}'] = offsetX!.toJson();
     }
 
     return json;

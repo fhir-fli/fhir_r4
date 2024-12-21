@@ -528,7 +528,7 @@ class GroupCharacteristic extends BackboneElement {
 
     json['code'] = code.toJson();
 
-    json['valueX'] = valueX.toJson();
+    json['value${valueX.fhirType.capitalize()}'] = valueX.toJson();
 
     addField('exclude', exclude);
     if (period != null) {

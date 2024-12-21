@@ -761,7 +761,7 @@ class CommunicationPayload extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('contentX', contentX);
+    addField('content${contentX.fhirType.capitalize()}', contentX);
     return json;
   }
 

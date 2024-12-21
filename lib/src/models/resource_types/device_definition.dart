@@ -461,7 +461,8 @@ class DeviceDefinition extends DomainResource {
           udiDeviceIdentifier!.map((e) => e.toJson()).toList();
     }
 
-    addField('manufacturerX', manufacturerX);
+    addField(
+        'manufacturer${manufacturerX!.fhirType.capitalize()}', manufacturerX);
     if (deviceName != null && deviceName!.isNotEmpty) {
       json['deviceName'] = deviceName!.map((e) => e.toJson()).toList();
     }

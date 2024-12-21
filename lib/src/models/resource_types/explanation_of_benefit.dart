@@ -1684,8 +1684,8 @@ class ExplanationOfBenefitSupportingInfo extends BackboneElement {
       json['code'] = code!.toJson();
     }
 
-    addField('timingX', timingX);
-    addField('valueX', valueX);
+    addField('timing${timingX!.fhirType.capitalize()}', timingX);
+    addField('value${valueX!.fhirType.capitalize()}', valueX);
     if (reason != null) {
       json['reason'] = reason!.toJson();
     }
@@ -1892,7 +1892,7 @@ class ExplanationOfBenefitDiagnosis extends BackboneElement {
     }
 
     addField('sequence', sequence);
-    json['diagnosisX'] = diagnosisX.toJson();
+    json['diagnosis${diagnosisX.fhirType.capitalize()}'] = diagnosisX.toJson();
 
     if (type != null && type!.isNotEmpty) {
       json['type'] = type!.map((e) => e.toJson()).toList();
@@ -2114,7 +2114,7 @@ class ExplanationOfBenefitProcedure extends BackboneElement {
     }
 
     addField('date', date);
-    json['procedureX'] = procedureX.toJson();
+    json['procedure${procedureX.fhirType.capitalize()}'] = procedureX.toJson();
 
     if (udi != null && udi!.isNotEmpty) {
       json['udi'] = udi!.map((e) => e.toJson()).toList();
@@ -2484,7 +2484,7 @@ class ExplanationOfBenefitAccident extends BackboneElement {
     }
 
     if (locationX != null) {
-      json['locationX'] = locationX!.toJson();
+      json['location${locationX!.fhirType.capitalize()}'] = locationX!.toJson();
     }
 
     return json;
@@ -2966,9 +2966,9 @@ class ExplanationOfBenefitItem extends BackboneElement {
       json['programCode'] = programCode!.map((e) => e.toJson()).toList();
     }
 
-    addField('servicedX', servicedX);
+    addField('serviced${servicedX!.fhirType.capitalize()}', servicedX);
     if (locationX != null) {
-      json['locationX'] = locationX!.toJson();
+      json['location${locationX!.fhirType.capitalize()}'] = locationX!.toJson();
     }
 
     if (quantity != null) {
@@ -4396,9 +4396,9 @@ class ExplanationOfBenefitAddItem extends BackboneElement {
       json['programCode'] = programCode!.map((e) => e.toJson()).toList();
     }
 
-    addField('servicedX', servicedX);
+    addField('serviced${servicedX!.fhirType.capitalize()}', servicedX);
     if (locationX != null) {
-      json['locationX'] = locationX!.toJson();
+      json['location${locationX!.fhirType.capitalize()}'] = locationX!.toJson();
     }
 
     if (quantity != null) {
@@ -6035,8 +6035,8 @@ class ExplanationOfBenefitFinancial extends BackboneElement {
 
     json['type'] = type.toJson();
 
-    addField('allowedX', allowedX);
-    addField('usedX', usedX);
+    addField('allowed${allowedX!.fhirType.capitalize()}', allowedX);
+    addField('used${usedX!.fhirType.capitalize()}', usedX);
     return json;
   }
 

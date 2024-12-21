@@ -801,7 +801,7 @@ class QuestionnaireResponseAnswer extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    addField('valueX', valueX);
+    addField('value${valueX!.fhirType.capitalize()}', valueX);
     if (item != null && item!.isNotEmpty) {
       json['item'] = item!.map((e) => e.toJson()).toList();
     }

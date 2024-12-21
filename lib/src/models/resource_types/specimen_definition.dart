@@ -782,7 +782,8 @@ class SpecimenDefinitionContainer extends BackboneElement {
     }
 
     if (minimumVolumeX != null) {
-      json['minimumVolumeX'] = minimumVolumeX!.toJson();
+      json['minimumVolume${minimumVolumeX!.fhirType.capitalize()}'] =
+          minimumVolumeX!.toJson();
     }
 
     if (additive != null && additive!.isNotEmpty) {
@@ -950,7 +951,7 @@ class SpecimenDefinitionAdditive extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    json['additiveX'] = additiveX.toJson();
+    json['additive${additiveX.fhirType.capitalize()}'] = additiveX.toJson();
 
     return json;
   }

@@ -310,7 +310,7 @@ class Provenance extends DomainResource {
     }
 
     if (occurredX != null) {
-      json['occurredX'] = occurredX!.toJson();
+      json['occurred${occurredX!.fhirType.capitalize()}'] = occurredX!.toJson();
     }
 
     addField('recorded', recorded);

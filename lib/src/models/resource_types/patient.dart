@@ -403,7 +403,7 @@ class Patient extends DomainResource {
 
     addField('gender', gender);
     addField('birthDate', birthDate);
-    addField('deceasedX', deceasedX);
+    addField('deceased${deceasedX!.fhirType.capitalize()}', deceasedX);
     if (address != null && address!.isNotEmpty) {
       json['address'] = address!.map((e) => e.toJson()).toList();
     }
@@ -412,7 +412,8 @@ class Patient extends DomainResource {
       json['maritalStatus'] = maritalStatus!.toJson();
     }
 
-    addField('multipleBirthX', multipleBirthX);
+    addField('multipleBirth${multipleBirthX!.fhirType.capitalize()}',
+        multipleBirthX);
     if (photo != null && photo!.isNotEmpty) {
       json['photo'] = photo!.map((e) => e.toJson()).toList();
     }

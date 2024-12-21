@@ -331,7 +331,7 @@ class SupplyDelivery extends DomainResource {
       json['suppliedItem'] = suppliedItem!.toJson();
     }
 
-    addField('occurrenceX', occurrenceX);
+    addField('occurrence${occurrenceX!.fhirType.capitalize()}', occurrenceX);
     if (supplier != null) {
       json['supplier'] = supplier!.toJson();
     }
@@ -537,7 +537,7 @@ class SupplyDeliverySuppliedItem extends BackboneElement {
     }
 
     if (itemX != null) {
-      json['itemX'] = itemX!.toJson();
+      json['item${itemX!.fhirType.capitalize()}'] = itemX!.toJson();
     }
 
     return json;

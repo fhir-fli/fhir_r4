@@ -1436,7 +1436,7 @@ class AuditEventDetail extends BackboneElement {
     }
 
     addField('type', type);
-    addField('valueX', valueX);
+    addField('value${valueX.fhirType.capitalize()}', valueX);
     return json;
   }
 

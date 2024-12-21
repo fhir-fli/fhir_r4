@@ -637,7 +637,7 @@ class RegulatedAuthorizationCase extends BackboneElement {
     }
 
     if (dateX != null) {
-      json['dateX'] = dateX!.toJson();
+      json['date${dateX!.fhirType.capitalize()}'] = dateX!.toJson();
     }
 
     if (application != null && application!.isNotEmpty) {

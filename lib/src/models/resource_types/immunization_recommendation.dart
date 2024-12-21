@@ -574,8 +574,8 @@ class ImmunizationRecommendationRecommendation extends BackboneElement {
 
     addField('description', description);
     addField('series', series);
-    addField('doseNumberX', doseNumberX);
-    addField('seriesDosesX', seriesDosesX);
+    addField('doseNumber${doseNumberX!.fhirType.capitalize()}', doseNumberX);
+    addField('seriesDoses${seriesDosesX!.fhirType.capitalize()}', seriesDosesX);
     if (supportingImmunization != null && supportingImmunization!.isNotEmpty) {
       json['supportingImmunization'] =
           supportingImmunization!.map((e) => e.toJson()).toList();

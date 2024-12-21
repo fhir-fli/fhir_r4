@@ -524,7 +524,7 @@ class ChargeItem extends DomainResource {
       json['context'] = context!.toJson();
     }
 
-    addField('occurrenceX', occurrenceX);
+    addField('occurrence${occurrenceX!.fhirType.capitalize()}', occurrenceX);
     if (performer != null && performer!.isNotEmpty) {
       json['performer'] = performer!.map((e) => e.toJson()).toList();
     }
@@ -569,7 +569,7 @@ class ChargeItem extends DomainResource {
     }
 
     if (productX != null) {
-      json['productX'] = productX!.toJson();
+      json['product${productX!.fhirType.capitalize()}'] = productX!.toJson();
     }
 
     if (account != null && account!.isNotEmpty) {

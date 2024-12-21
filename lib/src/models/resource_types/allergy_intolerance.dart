@@ -419,7 +419,7 @@ class AllergyIntolerance extends DomainResource {
       json['encounter'] = encounter!.toJson();
     }
 
-    addField('onsetX', onsetX);
+    addField('onset${onsetX!.fhirType.capitalize()}', onsetX);
     addField('recordedDate', recordedDate);
     if (recorder != null) {
       json['recorder'] = recorder!.toJson();

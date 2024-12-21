@@ -635,7 +635,7 @@ class ResearchElementDefinition extends DomainResource {
     addField('status', status);
     addField('experimental', experimental);
     if (subjectX != null) {
-      json['subjectX'] = subjectX!.toJson();
+      json['subject${subjectX!.fhirType.capitalize()}'] = subjectX!.toJson();
     }
 
     addField('date', date);
@@ -1112,7 +1112,8 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    json['definitionX'] = definitionX.toJson();
+    json['definition${definitionX.fhirType.capitalize()}'] =
+        definitionX.toJson();
 
     if (usageContext != null && usageContext!.isNotEmpty) {
       json['usageContext'] = usageContext!.map((e) => e.toJson()).toList();
@@ -1124,7 +1125,8 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
     }
 
     addField('studyEffectiveDescription', studyEffectiveDescription);
-    addField('studyEffectiveX', studyEffectiveX);
+    addField('studyEffective${studyEffectiveX!.fhirType.capitalize()}',
+        studyEffectiveX);
     if (studyEffectiveTimeFromStart != null) {
       json['studyEffectiveTimeFromStart'] =
           studyEffectiveTimeFromStart!.toJson();
@@ -1133,7 +1135,9 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
     addField('studyEffectiveGroupMeasure', studyEffectiveGroupMeasure);
     addField(
         'participantEffectiveDescription', participantEffectiveDescription);
-    addField('participantEffectiveX', participantEffectiveX);
+    addField(
+        'participantEffective${participantEffectiveX!.fhirType.capitalize()}',
+        participantEffectiveX);
     if (participantEffectiveTimeFromStart != null) {
       json['participantEffectiveTimeFromStart'] =
           participantEffectiveTimeFromStart!.toJson();

@@ -986,7 +986,7 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
     }
 
     if (durationX != null) {
-      json['durationX'] = durationX!.toJson();
+      json['duration${durationX!.fhirType.capitalize()}'] = durationX!.toJson();
     }
 
     if (undesirableEffect != null && undesirableEffect!.isNotEmpty) {
@@ -1374,7 +1374,7 @@ class ClinicalUseDefinitionInteractant extends BackboneElement {
           modifierExtension!.map((e) => e.toJson()).toList();
     }
 
-    json['itemX'] = itemX.toJson();
+    json['item${itemX.fhirType.capitalize()}'] = itemX.toJson();
 
     return json;
   }

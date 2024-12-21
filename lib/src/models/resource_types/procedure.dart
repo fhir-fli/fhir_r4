@@ -601,7 +601,7 @@ class Procedure extends DomainResource {
       json['encounter'] = encounter!.toJson();
     }
 
-    addField('performedX', performedX);
+    addField('performed${performedX!.fhirType.capitalize()}', performedX);
     if (recorder != null) {
       json['recorder'] = recorder!.toJson();
     }

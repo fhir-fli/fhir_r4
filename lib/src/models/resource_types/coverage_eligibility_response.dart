@@ -347,7 +347,7 @@ class CoverageEligibilityResponse extends DomainResource {
 
     json['patient'] = patient.toJson();
 
-    addField('servicedX', servicedX);
+    addField('serviced${servicedX!.fhirType.capitalize()}', servicedX);
     addField('created', created);
     if (requestor != null) {
       json['requestor'] = requestor!.toJson();
@@ -1160,8 +1160,8 @@ class CoverageEligibilityResponseBenefit extends BackboneElement {
 
     json['type'] = type.toJson();
 
-    addField('allowedX', allowedX);
-    addField('usedX', usedX);
+    addField('allowed${allowedX!.fhirType.capitalize()}', allowedX);
+    addField('used${usedX!.fhirType.capitalize()}', usedX);
     return json;
   }
 

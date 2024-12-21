@@ -1757,7 +1757,7 @@ class NutritionOrderAdministration extends BackboneElement {
     }
 
     if (rateX != null) {
-      json['rateX'] = rateX!.toJson();
+      json['rate${rateX!.fhirType.capitalize()}'] = rateX!.toJson();
     }
 
     return json;
