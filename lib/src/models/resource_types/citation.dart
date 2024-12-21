@@ -527,9 +527,13 @@ class Citation extends DomainResource {
     final json = <String, dynamic>{};
     void addField(String key, FhirBase? field) {
       if (field != null) {
-        json[key] = field.toJson()['value'];
-        if (field.toJson()['_value'] != null) {
-          json['_$key'] = field.toJson()['_value'];
+        if (field is PrimitiveType) {
+          json[key] = field.toJson()['value'];
+          if (field.toJson()['_value'] != null) {
+            json['_$key'] = field.toJson()['_value'];
+          }
+        } else {
+          json[key] = field.toJson();
         }
       }
     }
@@ -879,9 +883,13 @@ class CitationSummary extends BackboneElement {
     final json = <String, dynamic>{};
     void addField(String key, FhirBase? field) {
       if (field != null) {
-        json[key] = field.toJson()['value'];
-        if (field.toJson()['_value'] != null) {
-          json['_$key'] = field.toJson()['_value'];
+        if (field is PrimitiveType) {
+          json[key] = field.toJson()['value'];
+          if (field.toJson()['_value'] != null) {
+            json['_$key'] = field.toJson()['_value'];
+          }
+        } else {
+          json[key] = field.toJson();
         }
       }
     }
@@ -1043,9 +1051,13 @@ class CitationClassification extends BackboneElement {
     final json = <String, dynamic>{};
     void addField(String key, FhirBase? field) {
       if (field != null) {
-        json[key] = field.toJson()['value'];
-        if (field.toJson()['_value'] != null) {
-          json['_$key'] = field.toJson()['_value'];
+        if (field is PrimitiveType) {
+          json[key] = field.toJson()['value'];
+          if (field.toJson()['_value'] != null) {
+            json['_$key'] = field.toJson()['_value'];
+          }
+        } else {
+          json[key] = field.toJson();
         }
       }
     }
@@ -1213,9 +1225,13 @@ class CitationStatusDate extends BackboneElement {
     final json = <String, dynamic>{};
     void addField(String key, FhirBase? field) {
       if (field != null) {
-        json[key] = field.toJson()['value'];
-        if (field.toJson()['_value'] != null) {
-          json['_$key'] = field.toJson()['_value'];
+        if (field is PrimitiveType) {
+          json[key] = field.toJson()['value'];
+          if (field.toJson()['_value'] != null) {
+            json['_$key'] = field.toJson()['_value'];
+          }
+        } else {
+          json[key] = field.toJson();
         }
       }
     }
@@ -1401,9 +1417,13 @@ class CitationRelatesTo extends BackboneElement {
     final json = <String, dynamic>{};
     void addField(String key, FhirBase? field) {
       if (field != null) {
-        json[key] = field.toJson()['value'];
-        if (field.toJson()['_value'] != null) {
-          json['_$key'] = field.toJson()['_value'];
+        if (field is PrimitiveType) {
+          json[key] = field.toJson()['value'];
+          if (field.toJson()['_value'] != null) {
+            json['_$key'] = field.toJson()['_value'];
+          }
+        } else {
+          json[key] = field.toJson();
         }
       }
     }
@@ -1747,9 +1767,13 @@ class CitationCitedArtifact extends BackboneElement {
     final json = <String, dynamic>{};
     void addField(String key, FhirBase? field) {
       if (field != null) {
-        json[key] = field.toJson()['value'];
-        if (field.toJson()['_value'] != null) {
-          json['_$key'] = field.toJson()['_value'];
+        if (field is PrimitiveType) {
+          json[key] = field.toJson()['value'];
+          if (field.toJson()['_value'] != null) {
+            json['_$key'] = field.toJson()['_value'];
+          }
+        } else {
+          json[key] = field.toJson();
         }
       }
     }
@@ -1989,9 +2013,13 @@ class CitationVersion extends BackboneElement {
     final json = <String, dynamic>{};
     void addField(String key, FhirBase? field) {
       if (field != null) {
-        json[key] = field.toJson()['value'];
-        if (field.toJson()['_value'] != null) {
-          json['_$key'] = field.toJson()['_value'];
+        if (field is PrimitiveType) {
+          json[key] = field.toJson()['value'];
+          if (field.toJson()['_value'] != null) {
+            json['_$key'] = field.toJson()['_value'];
+          }
+        } else {
+          json[key] = field.toJson();
         }
       }
     }
@@ -2156,9 +2184,13 @@ class CitationStatusDate1 extends BackboneElement {
     final json = <String, dynamic>{};
     void addField(String key, FhirBase? field) {
       if (field != null) {
-        json[key] = field.toJson()['value'];
-        if (field.toJson()['_value'] != null) {
-          json['_$key'] = field.toJson()['_value'];
+        if (field is PrimitiveType) {
+          json[key] = field.toJson()['value'];
+          if (field.toJson()['_value'] != null) {
+            json['_$key'] = field.toJson()['_value'];
+          }
+        } else {
+          json[key] = field.toJson();
         }
       }
     }
@@ -2334,9 +2366,13 @@ class CitationTitle extends BackboneElement {
     final json = <String, dynamic>{};
     void addField(String key, FhirBase? field) {
       if (field != null) {
-        json[key] = field.toJson()['value'];
-        if (field.toJson()['_value'] != null) {
-          json['_$key'] = field.toJson()['_value'];
+        if (field is PrimitiveType) {
+          json[key] = field.toJson()['value'];
+          if (field.toJson()['_value'] != null) {
+            json['_$key'] = field.toJson()['_value'];
+          }
+        } else {
+          json[key] = field.toJson();
         }
       }
     }
@@ -2520,9 +2556,13 @@ class CitationAbstract extends BackboneElement {
     final json = <String, dynamic>{};
     void addField(String key, FhirBase? field) {
       if (field != null) {
-        json[key] = field.toJson()['value'];
-        if (field.toJson()['_value'] != null) {
-          json['_$key'] = field.toJson()['_value'];
+        if (field is PrimitiveType) {
+          json[key] = field.toJson()['value'];
+          if (field.toJson()['_value'] != null) {
+            json['_$key'] = field.toJson()['_value'];
+          }
+        } else {
+          json[key] = field.toJson();
         }
       }
     }
@@ -2703,9 +2743,13 @@ class CitationPart extends BackboneElement {
     final json = <String, dynamic>{};
     void addField(String key, FhirBase? field) {
       if (field != null) {
-        json[key] = field.toJson()['value'];
-        if (field.toJson()['_value'] != null) {
-          json['_$key'] = field.toJson()['_value'];
+        if (field is PrimitiveType) {
+          json[key] = field.toJson()['value'];
+          if (field.toJson()['_value'] != null) {
+            json['_$key'] = field.toJson()['_value'];
+          }
+        } else {
+          json[key] = field.toJson();
         }
       }
     }
@@ -2895,9 +2939,13 @@ class CitationRelatesTo1 extends BackboneElement {
     final json = <String, dynamic>{};
     void addField(String key, FhirBase? field) {
       if (field != null) {
-        json[key] = field.toJson()['value'];
-        if (field.toJson()['_value'] != null) {
-          json['_$key'] = field.toJson()['_value'];
+        if (field is PrimitiveType) {
+          json[key] = field.toJson()['value'];
+          if (field.toJson()['_value'] != null) {
+            json['_$key'] = field.toJson()['_value'];
+          }
+        } else {
+          json[key] = field.toJson();
         }
       }
     }
@@ -3167,9 +3215,13 @@ class CitationPublicationForm extends BackboneElement {
     final json = <String, dynamic>{};
     void addField(String key, FhirBase? field) {
       if (field != null) {
-        json[key] = field.toJson()['value'];
-        if (field.toJson()['_value'] != null) {
-          json['_$key'] = field.toJson()['_value'];
+        if (field is PrimitiveType) {
+          json[key] = field.toJson()['value'];
+          if (field.toJson()['_value'] != null) {
+            json['_$key'] = field.toJson()['_value'];
+          }
+        } else {
+          json[key] = field.toJson();
         }
       }
     }
@@ -3422,9 +3474,13 @@ class CitationPublishedIn extends BackboneElement {
     final json = <String, dynamic>{};
     void addField(String key, FhirBase? field) {
       if (field != null) {
-        json[key] = field.toJson()['value'];
-        if (field.toJson()['_value'] != null) {
-          json['_$key'] = field.toJson()['_value'];
+        if (field is PrimitiveType) {
+          json[key] = field.toJson()['value'];
+          if (field.toJson()['_value'] != null) {
+            json['_$key'] = field.toJson()['_value'];
+          }
+        } else {
+          json[key] = field.toJson();
         }
       }
     }
@@ -3626,9 +3682,13 @@ class CitationPeriodicRelease extends BackboneElement {
     final json = <String, dynamic>{};
     void addField(String key, FhirBase? field) {
       if (field != null) {
-        json[key] = field.toJson()['value'];
-        if (field.toJson()['_value'] != null) {
-          json['_$key'] = field.toJson()['_value'];
+        if (field is PrimitiveType) {
+          json[key] = field.toJson()['value'];
+          if (field.toJson()['_value'] != null) {
+            json['_$key'] = field.toJson()['_value'];
+          }
+        } else {
+          json[key] = field.toJson();
         }
       }
     }
@@ -3848,9 +3908,13 @@ class CitationDateOfPublication extends BackboneElement {
     final json = <String, dynamic>{};
     void addField(String key, FhirBase? field) {
       if (field != null) {
-        json[key] = field.toJson()['value'];
-        if (field.toJson()['_value'] != null) {
-          json['_$key'] = field.toJson()['_value'];
+        if (field is PrimitiveType) {
+          json[key] = field.toJson()['value'];
+          if (field.toJson()['_value'] != null) {
+            json['_$key'] = field.toJson()['_value'];
+          }
+        } else {
+          json[key] = field.toJson();
         }
       }
     }
@@ -4036,9 +4100,13 @@ class CitationWebLocation extends BackboneElement {
     final json = <String, dynamic>{};
     void addField(String key, FhirBase? field) {
       if (field != null) {
-        json[key] = field.toJson()['value'];
-        if (field.toJson()['_value'] != null) {
-          json['_$key'] = field.toJson()['_value'];
+        if (field is PrimitiveType) {
+          json[key] = field.toJson()['value'];
+          if (field.toJson()['_value'] != null) {
+            json['_$key'] = field.toJson()['_value'];
+          }
+        } else {
+          json[key] = field.toJson();
         }
       }
     }
@@ -4213,9 +4281,13 @@ class CitationClassification1 extends BackboneElement {
     final json = <String, dynamic>{};
     void addField(String key, FhirBase? field) {
       if (field != null) {
-        json[key] = field.toJson()['value'];
-        if (field.toJson()['_value'] != null) {
-          json['_$key'] = field.toJson()['_value'];
+        if (field is PrimitiveType) {
+          json[key] = field.toJson()['value'];
+          if (field.toJson()['_value'] != null) {
+            json['_$key'] = field.toJson()['_value'];
+          }
+        } else {
+          json[key] = field.toJson();
         }
       }
     }
@@ -4416,9 +4488,13 @@ class CitationWhoClassified extends BackboneElement {
     final json = <String, dynamic>{};
     void addField(String key, FhirBase? field) {
       if (field != null) {
-        json[key] = field.toJson()['value'];
-        if (field.toJson()['_value'] != null) {
-          json['_$key'] = field.toJson()['_value'];
+        if (field is PrimitiveType) {
+          json[key] = field.toJson()['value'];
+          if (field.toJson()['_value'] != null) {
+            json['_$key'] = field.toJson()['_value'];
+          }
+        } else {
+          json[key] = field.toJson();
         }
       }
     }
@@ -4618,9 +4694,13 @@ class CitationContributorship extends BackboneElement {
     final json = <String, dynamic>{};
     void addField(String key, FhirBase? field) {
       if (field != null) {
-        json[key] = field.toJson()['value'];
-        if (field.toJson()['_value'] != null) {
-          json['_$key'] = field.toJson()['_value'];
+        if (field is PrimitiveType) {
+          json[key] = field.toJson()['value'];
+          if (field.toJson()['_value'] != null) {
+            json['_$key'] = field.toJson()['_value'];
+          }
+        } else {
+          json[key] = field.toJson();
         }
       }
     }
@@ -4919,9 +4999,13 @@ class CitationEntry extends BackboneElement {
     final json = <String, dynamic>{};
     void addField(String key, FhirBase? field) {
       if (field != null) {
-        json[key] = field.toJson()['value'];
-        if (field.toJson()['_value'] != null) {
-          json['_$key'] = field.toJson()['_value'];
+        if (field is PrimitiveType) {
+          json[key] = field.toJson()['value'];
+          if (field.toJson()['_value'] != null) {
+            json['_$key'] = field.toJson()['_value'];
+          }
+        } else {
+          json[key] = field.toJson();
         }
       }
     }
@@ -5161,9 +5245,13 @@ class CitationAffiliationInfo extends BackboneElement {
     final json = <String, dynamic>{};
     void addField(String key, FhirBase? field) {
       if (field != null) {
-        json[key] = field.toJson()['value'];
-        if (field.toJson()['_value'] != null) {
-          json['_$key'] = field.toJson()['_value'];
+        if (field is PrimitiveType) {
+          json[key] = field.toJson()['value'];
+          if (field.toJson()['_value'] != null) {
+            json['_$key'] = field.toJson()['_value'];
+          }
+        } else {
+          json[key] = field.toJson();
         }
       }
     }
@@ -5329,9 +5417,13 @@ class CitationContributionInstance extends BackboneElement {
     final json = <String, dynamic>{};
     void addField(String key, FhirBase? field) {
       if (field != null) {
-        json[key] = field.toJson()['value'];
-        if (field.toJson()['_value'] != null) {
-          json['_$key'] = field.toJson()['_value'];
+        if (field is PrimitiveType) {
+          json[key] = field.toJson()['value'];
+          if (field.toJson()['_value'] != null) {
+            json['_$key'] = field.toJson()['_value'];
+          }
+        } else {
+          json[key] = field.toJson();
         }
       }
     }
@@ -5512,9 +5604,13 @@ class CitationSummary1 extends BackboneElement {
     final json = <String, dynamic>{};
     void addField(String key, FhirBase? field) {
       if (field != null) {
-        json[key] = field.toJson()['value'];
-        if (field.toJson()['_value'] != null) {
-          json['_$key'] = field.toJson()['_value'];
+        if (field is PrimitiveType) {
+          json[key] = field.toJson()['value'];
+          if (field.toJson()['_value'] != null) {
+            json['_$key'] = field.toJson()['_value'];
+          }
+        } else {
+          json[key] = field.toJson();
         }
       }
     }

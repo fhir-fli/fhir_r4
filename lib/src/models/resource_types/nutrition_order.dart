@@ -345,9 +345,13 @@ class NutritionOrder extends DomainResource {
     final json = <String, dynamic>{};
     void addField(String key, FhirBase? field) {
       if (field != null) {
-        json[key] = field.toJson()['value'];
-        if (field.toJson()['_value'] != null) {
-          json['_$key'] = field.toJson()['_value'];
+        if (field is PrimitiveType) {
+          json[key] = field.toJson()['value'];
+          if (field.toJson()['_value'] != null) {
+            json['_$key'] = field.toJson()['_value'];
+          }
+        } else {
+          json[key] = field.toJson();
         }
       }
     }
@@ -705,9 +709,13 @@ class NutritionOrderOralDiet extends BackboneElement {
     final json = <String, dynamic>{};
     void addField(String key, FhirBase? field) {
       if (field != null) {
-        json[key] = field.toJson()['value'];
-        if (field.toJson()['_value'] != null) {
-          json['_$key'] = field.toJson()['_value'];
+        if (field is PrimitiveType) {
+          json[key] = field.toJson()['value'];
+          if (field.toJson()['_value'] != null) {
+            json['_$key'] = field.toJson()['_value'];
+          }
+        } else {
+          json[key] = field.toJson();
         }
       }
     }
@@ -894,9 +902,13 @@ class NutritionOrderNutrient extends BackboneElement {
     final json = <String, dynamic>{};
     void addField(String key, FhirBase? field) {
       if (field != null) {
-        json[key] = field.toJson()['value'];
-        if (field.toJson()['_value'] != null) {
-          json['_$key'] = field.toJson()['_value'];
+        if (field is PrimitiveType) {
+          json[key] = field.toJson()['value'];
+          if (field.toJson()['_value'] != null) {
+            json['_$key'] = field.toJson()['_value'];
+          }
+        } else {
+          json[key] = field.toJson();
         }
       }
     }
@@ -1060,9 +1072,13 @@ class NutritionOrderTexture extends BackboneElement {
     final json = <String, dynamic>{};
     void addField(String key, FhirBase? field) {
       if (field != null) {
-        json[key] = field.toJson()['value'];
-        if (field.toJson()['_value'] != null) {
-          json['_$key'] = field.toJson()['_value'];
+        if (field is PrimitiveType) {
+          json[key] = field.toJson()['value'];
+          if (field.toJson()['_value'] != null) {
+            json['_$key'] = field.toJson()['_value'];
+          }
+        } else {
+          json[key] = field.toJson();
         }
       }
     }
@@ -1265,9 +1281,13 @@ class NutritionOrderSupplement extends BackboneElement {
     final json = <String, dynamic>{};
     void addField(String key, FhirBase? field) {
       if (field != null) {
-        json[key] = field.toJson()['value'];
-        if (field.toJson()['_value'] != null) {
-          json['_$key'] = field.toJson()['_value'];
+        if (field is PrimitiveType) {
+          json[key] = field.toJson()['value'];
+          if (field.toJson()['_value'] != null) {
+            json['_$key'] = field.toJson()['_value'];
+          }
+        } else {
+          json[key] = field.toJson();
         }
       }
     }
@@ -1543,9 +1563,13 @@ class NutritionOrderEnteralFormula extends BackboneElement {
     final json = <String, dynamic>{};
     void addField(String key, FhirBase? field) {
       if (field != null) {
-        json[key] = field.toJson()['value'];
-        if (field.toJson()['_value'] != null) {
-          json['_$key'] = field.toJson()['_value'];
+        if (field is PrimitiveType) {
+          json[key] = field.toJson()['value'];
+          if (field.toJson()['_value'] != null) {
+            json['_$key'] = field.toJson()['_value'];
+          }
+        } else {
+          json[key] = field.toJson();
         }
       }
     }
@@ -1772,9 +1796,13 @@ class NutritionOrderAdministration extends BackboneElement {
     final json = <String, dynamic>{};
     void addField(String key, FhirBase? field) {
       if (field != null) {
-        json[key] = field.toJson()['value'];
-        if (field.toJson()['_value'] != null) {
-          json['_$key'] = field.toJson()['_value'];
+        if (field is PrimitiveType) {
+          json[key] = field.toJson()['value'];
+          if (field.toJson()['_value'] != null) {
+            json['_$key'] = field.toJson()['_value'];
+          }
+        } else {
+          json[key] = field.toJson();
         }
       }
     }

@@ -463,9 +463,13 @@ class Device extends DomainResource {
     final json = <String, dynamic>{};
     void addField(String key, FhirBase? field) {
       if (field != null) {
-        json[key] = field.toJson()['value'];
-        if (field.toJson()['_value'] != null) {
-          json['_$key'] = field.toJson()['_value'];
+        if (field is PrimitiveType) {
+          json[key] = field.toJson()['value'];
+          if (field.toJson()['_value'] != null) {
+            json['_$key'] = field.toJson()['_value'];
+          }
+        } else {
+          json[key] = field.toJson();
         }
       }
     }
@@ -871,9 +875,13 @@ class DeviceUdiCarrier extends BackboneElement {
     final json = <String, dynamic>{};
     void addField(String key, FhirBase? field) {
       if (field != null) {
-        json[key] = field.toJson()['value'];
-        if (field.toJson()['_value'] != null) {
-          json['_$key'] = field.toJson()['_value'];
+        if (field is PrimitiveType) {
+          json[key] = field.toJson()['value'];
+          if (field.toJson()['_value'] != null) {
+            json['_$key'] = field.toJson()['_value'];
+          }
+        } else {
+          json[key] = field.toJson();
         }
       }
     }
@@ -1061,9 +1069,13 @@ class DeviceDeviceName extends BackboneElement {
     final json = <String, dynamic>{};
     void addField(String key, FhirBase? field) {
       if (field != null) {
-        json[key] = field.toJson()['value'];
-        if (field.toJson()['_value'] != null) {
-          json['_$key'] = field.toJson()['_value'];
+        if (field is PrimitiveType) {
+          json[key] = field.toJson()['value'];
+          if (field.toJson()['_value'] != null) {
+            json['_$key'] = field.toJson()['_value'];
+          }
+        } else {
+          json[key] = field.toJson();
         }
       }
     }
@@ -1219,9 +1231,13 @@ class DeviceSpecialization extends BackboneElement {
     final json = <String, dynamic>{};
     void addField(String key, FhirBase? field) {
       if (field != null) {
-        json[key] = field.toJson()['value'];
-        if (field.toJson()['_value'] != null) {
-          json['_$key'] = field.toJson()['_value'];
+        if (field is PrimitiveType) {
+          json[key] = field.toJson()['value'];
+          if (field.toJson()['_value'] != null) {
+            json['_$key'] = field.toJson()['_value'];
+          }
+        } else {
+          json[key] = field.toJson();
         }
       }
     }
@@ -1390,9 +1406,13 @@ class DeviceVersion extends BackboneElement {
     final json = <String, dynamic>{};
     void addField(String key, FhirBase? field) {
       if (field != null) {
-        json[key] = field.toJson()['value'];
-        if (field.toJson()['_value'] != null) {
-          json['_$key'] = field.toJson()['_value'];
+        if (field is PrimitiveType) {
+          json[key] = field.toJson()['value'];
+          if (field.toJson()['_value'] != null) {
+            json['_$key'] = field.toJson()['_value'];
+          }
+        } else {
+          json[key] = field.toJson();
         }
       }
     }
@@ -1574,9 +1594,13 @@ class DeviceProperty extends BackboneElement {
     final json = <String, dynamic>{};
     void addField(String key, FhirBase? field) {
       if (field != null) {
-        json[key] = field.toJson()['value'];
-        if (field.toJson()['_value'] != null) {
-          json['_$key'] = field.toJson()['_value'];
+        if (field is PrimitiveType) {
+          json[key] = field.toJson()['value'];
+          if (field.toJson()['_value'] != null) {
+            json['_$key'] = field.toJson()['_value'];
+          }
+        } else {
+          json[key] = field.toJson();
         }
       }
     }

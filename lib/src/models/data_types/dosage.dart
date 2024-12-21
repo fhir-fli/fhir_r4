@@ -255,9 +255,13 @@ class Dosage extends BackboneType
     final json = <String, dynamic>{};
     void addField(String key, FhirBase? field) {
       if (field != null) {
-        json[key] = field.toJson()['value'];
-        if (field.toJson()['_value'] != null) {
-          json['_$key'] = field.toJson()['_value'];
+        if (field is PrimitiveType) {
+          json[key] = field.toJson()['value'];
+          if (field.toJson()['_value'] != null) {
+            json['_$key'] = field.toJson()['_value'];
+          }
+        } else {
+          json[key] = field.toJson();
         }
       }
     }
@@ -499,9 +503,13 @@ class DosageDoseAndRate extends Element {
     final json = <String, dynamic>{};
     void addField(String key, FhirBase? field) {
       if (field != null) {
-        json[key] = field.toJson()['value'];
-        if (field.toJson()['_value'] != null) {
-          json['_$key'] = field.toJson()['_value'];
+        if (field is PrimitiveType) {
+          json[key] = field.toJson()['value'];
+          if (field.toJson()['_value'] != null) {
+            json['_$key'] = field.toJson()['_value'];
+          }
+        } else {
+          json[key] = field.toJson();
         }
       }
     }

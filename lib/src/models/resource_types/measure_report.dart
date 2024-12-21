@@ -261,9 +261,13 @@ class MeasureReport extends DomainResource {
     final json = <String, dynamic>{};
     void addField(String key, FhirBase? field) {
       if (field != null) {
-        json[key] = field.toJson()['value'];
-        if (field.toJson()['_value'] != null) {
-          json['_$key'] = field.toJson()['_value'];
+        if (field is PrimitiveType) {
+          json[key] = field.toJson()['value'];
+          if (field.toJson()['_value'] != null) {
+            json['_$key'] = field.toJson()['_value'];
+          }
+        } else {
+          json[key] = field.toJson();
         }
       }
     }
@@ -533,9 +537,13 @@ class MeasureReportGroup extends BackboneElement {
     final json = <String, dynamic>{};
     void addField(String key, FhirBase? field) {
       if (field != null) {
-        json[key] = field.toJson()['value'];
-        if (field.toJson()['_value'] != null) {
-          json['_$key'] = field.toJson()['_value'];
+        if (field is PrimitiveType) {
+          json[key] = field.toJson()['value'];
+          if (field.toJson()['_value'] != null) {
+            json['_$key'] = field.toJson()['_value'];
+          }
+        } else {
+          json[key] = field.toJson();
         }
       }
     }
@@ -721,9 +729,13 @@ class MeasureReportPopulation extends BackboneElement {
     final json = <String, dynamic>{};
     void addField(String key, FhirBase? field) {
       if (field != null) {
-        json[key] = field.toJson()['value'];
-        if (field.toJson()['_value'] != null) {
-          json['_$key'] = field.toJson()['_value'];
+        if (field is PrimitiveType) {
+          json[key] = field.toJson()['value'];
+          if (field.toJson()['_value'] != null) {
+            json['_$key'] = field.toJson()['_value'];
+          }
+        } else {
+          json[key] = field.toJson();
         }
       }
     }
@@ -901,9 +913,13 @@ class MeasureReportStratifier extends BackboneElement {
     final json = <String, dynamic>{};
     void addField(String key, FhirBase? field) {
       if (field != null) {
-        json[key] = field.toJson()['value'];
-        if (field.toJson()['_value'] != null) {
-          json['_$key'] = field.toJson()['_value'];
+        if (field is PrimitiveType) {
+          json[key] = field.toJson()['value'];
+          if (field.toJson()['_value'] != null) {
+            json['_$key'] = field.toJson()['_value'];
+          }
+        } else {
+          json[key] = field.toJson();
         }
       }
     }
@@ -1099,9 +1115,13 @@ class MeasureReportStratum extends BackboneElement {
     final json = <String, dynamic>{};
     void addField(String key, FhirBase? field) {
       if (field != null) {
-        json[key] = field.toJson()['value'];
-        if (field.toJson()['_value'] != null) {
-          json['_$key'] = field.toJson()['_value'];
+        if (field is PrimitiveType) {
+          json[key] = field.toJson()['value'];
+          if (field.toJson()['_value'] != null) {
+            json['_$key'] = field.toJson()['_value'];
+          }
+        } else {
+          json[key] = field.toJson();
         }
       }
     }
@@ -1270,9 +1290,13 @@ class MeasureReportComponent extends BackboneElement {
     final json = <String, dynamic>{};
     void addField(String key, FhirBase? field) {
       if (field != null) {
-        json[key] = field.toJson()['value'];
-        if (field.toJson()['_value'] != null) {
-          json['_$key'] = field.toJson()['_value'];
+        if (field is PrimitiveType) {
+          json[key] = field.toJson()['value'];
+          if (field.toJson()['_value'] != null) {
+            json['_$key'] = field.toJson()['_value'];
+          }
+        } else {
+          json[key] = field.toJson();
         }
       }
     }
@@ -1442,9 +1466,13 @@ class MeasureReportPopulation1 extends BackboneElement {
     final json = <String, dynamic>{};
     void addField(String key, FhirBase? field) {
       if (field != null) {
-        json[key] = field.toJson()['value'];
-        if (field.toJson()['_value'] != null) {
-          json['_$key'] = field.toJson()['_value'];
+        if (field is PrimitiveType) {
+          json[key] = field.toJson()['value'];
+          if (field.toJson()['_value'] != null) {
+            json['_$key'] = field.toJson()['_value'];
+          }
+        } else {
+          json[key] = field.toJson();
         }
       }
     }

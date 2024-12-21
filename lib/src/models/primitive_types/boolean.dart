@@ -143,7 +143,7 @@ class FhirBoolean extends PrimitiveType<bool>
         '_value': booleans.map((boolean) => boolean.element?.toJson()).toList(),
       };
 
-        /// Returns the FHIR type as a [String]
+  /// Returns the FHIR type as a [String]
   @override
   String get fhirType => 'boolean';
 
