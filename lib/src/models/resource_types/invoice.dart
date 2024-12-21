@@ -2,8 +2,6 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-part 'invoice.g.dart';
-
 /// [Invoice]
 /// Invoice containing collected ChargeItems from an Account with
 /// calculated individual and total price for Billing purpose.
@@ -688,14 +686,11 @@ class InvoiceLineItem extends BackboneElement {
           : null,
       chargeItemXInvoiceLineItem: json['chargeItemReference'] != null ||
               json['_chargeItemReference'] != null
-          ? ReferenceChargeItemInvoiceLineItem.fromJson({
+          ? Reference.fromJson({
               'value': json['chargeItemReference'],
               '_value': json['_chargeItemReference'],
             })
-          : CodeableConceptChargeItemInvoiceLineItem.fromJson({
-              'value': json['chargeItemCodeableConcept'],
-              '_value': json['_chargeItemCodeableConcept'],
-            }),
+          : CodeableConcept.fromJson(json: json['chargeItemCodeableConcept']),
       priceComponent: json['priceComponent'] != null
           ? (json['priceComponent'] as List<dynamic>)
               .map<InvoicePriceComponent>(

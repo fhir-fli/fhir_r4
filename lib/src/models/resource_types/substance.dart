@@ -2,8 +2,6 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-part 'substance.g.dart';
-
 /// [Substance]
 /// A homogeneous material with a definite composition.
 class Substance extends DomainResource {
@@ -543,14 +541,11 @@ class SubstanceIngredient extends BackboneElement {
           : null,
       substanceXSubstanceIngredient: json['substanceCodeableConcept'] != null ||
               json['_substanceCodeableConcept'] != null
-          ? CodeableConceptSubstanceSubstanceIngredient.fromJson({
+          ? CodeableConcept.fromJson({
               'value': json['substanceCodeableConcept'],
               '_value': json['_substanceCodeableConcept'],
             })
-          : ReferenceSubstanceSubstanceIngredient.fromJson({
-              'value': json['substanceReference'],
-              '_value': json['_substanceReference'],
-            }),
+          : Reference.fromJson(json: json['substanceReference']),
     );
   }
 

@@ -2,8 +2,6 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-part 'composition.g.dart';
-
 /// [Composition]
 /// A set of healthcare-related information that is assembled together into
 /// a single logical package that provides a single coherent statement of
@@ -686,14 +684,11 @@ class CompositionRelatesTo extends BackboneElement {
       }),
       targetXCompositionRelatesTo:
           json['targetIdentifier'] != null || json['_targetIdentifier'] != null
-              ? IdentifierTargetCompositionRelatesTo.fromJson({
+              ? Identifier.fromJson({
                   'value': json['targetIdentifier'],
                   '_value': json['_targetIdentifier'],
                 })
-              : ReferenceTargetCompositionRelatesTo.fromJson({
-                  'value': json['targetReference'],
-                  '_value': json['_targetReference'],
-                }),
+              : Reference.fromJson(json: json['targetReference']),
     );
   }
 

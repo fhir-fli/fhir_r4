@@ -2,8 +2,6 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-part 'audit_event.g.dart';
-
 /// [AuditEvent]
 /// A record of an event made for purposes of maintaining a security log.
 /// Typical uses include detection of intrusion attempts and monitoring for
@@ -1356,11 +1354,11 @@ class AuditEventDetail extends BackboneElement {
       }),
       valueXAuditEventDetail:
           json['valueString'] != null || json['_valueString'] != null
-              ? StringValueAuditEventDetail.fromJson({
+              ? FhirString.fromJson({
                   'value': json['valueString'],
                   '_value': json['_valueString'],
                 })
-              : Base64BinaryValueAuditEventDetail.fromJson({
+              : FhirBase64Binary.fromJson({
                   'value': json['valueBase64Binary'],
                   '_value': json['_valueBase64Binary'],
                 }),

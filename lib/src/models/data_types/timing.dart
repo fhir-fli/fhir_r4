@@ -2,8 +2,6 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-part 'timing.g.dart';
-
 /// [Timing]
 /// Specifies an event that may occur multiple times. Timing schedules are
 /// used to record when things are planned, expected or requested to occur.
@@ -239,23 +237,20 @@ class TimingRepeat extends Element {
               )
               .toList()
           : null,
-      boundsXTimingRepeat: json['boundsDuration'] != null ||
-              json['_boundsDuration'] != null
-          ? DurationBoundsTimingRepeat.fromJson({
-              'value': json['boundsDuration'],
-              '_value': json['_boundsDuration'],
-            })
-          : json['boundsRange'] != null || json['_boundsRange'] != null
-              ? RangeBoundsTimingRepeat.fromJson({
-                  'value': json['boundsRange'],
-                  '_value': json['_boundsRange'],
+      boundsXTimingRepeat:
+          json['boundsDuration'] != null || json['_boundsDuration'] != null
+              ? FhirDuration.fromJson({
+                  'value': json['boundsDuration'],
+                  '_value': json['_boundsDuration'],
                 })
-              : json['boundsPeriod'] != null || json['_boundsPeriod'] != null
-                  ? PeriodBoundsTimingRepeat.fromJson({
-                      'value': json['boundsPeriod'],
-                      '_value': json['_boundsPeriod'],
+              : json['boundsRange'] != null || json['_boundsRange'] != null
+                  ? Range.fromJson({
+                      'value': json['boundsRange'],
+                      '_value': json['_boundsRange'],
                     })
-                  : null,
+                  : json['boundsPeriod'] != null
+                      ? Period.fromJson(json: json['boundsPeriod'])
+                      : null,
       count: (json['count'] != null || json['_count'] != null)
           ? FhirPositiveInt.fromJson({
               'value': json['count'],

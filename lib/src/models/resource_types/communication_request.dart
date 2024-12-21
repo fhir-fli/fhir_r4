@@ -2,8 +2,6 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-part 'communication_request.g.dart';
-
 /// [CommunicationRequest]
 /// A request to convey information; e.g. the CDS system proposes that an
 /// alert be sent to a responsible provider, the CDS system proposes that
@@ -35,7 +33,7 @@ class CommunicationRequest extends DomainResource {
     this.about,
     this.encounter,
     this.payload,
-    this.occurrenceXCommunicationRequestCommunicationRequest,
+    this.occurrenceXCommunicationRequest,
     this.authoredOn,
     this.requester,
     this.recipient,
@@ -205,22 +203,15 @@ class CommunicationRequest extends DomainResource {
               )
               .toList()
           : null,
-      occurrenceXCommunicationRequestCommunicationRequest:
-          json['occurrenceDateTime'] != null ||
-                  json['_occurrenceDateTime'] != null
-              ? DateTimeOccurrenceCommunicationRequestCommunicationRequest
-                  .fromJson({
-                  'value': json['occurrenceDateTime'],
-                  '_value': json['_occurrenceDateTime'],
-                })
-              : json['occurrencePeriod'] != null ||
-                      json['_occurrencePeriod'] != null
-                  ? PeriodOccurrenceCommunicationRequestCommunicationRequest
-                      .fromJson({
-                      'value': json['occurrencePeriod'],
-                      '_value': json['_occurrencePeriod'],
-                    })
-                  : null,
+      occurrenceXCommunicationRequest: json['occurrenceDateTime'] != null ||
+              json['_occurrenceDateTime'] != null
+          ? FhirDateTime.fromJson({
+              'value': json['occurrenceDateTime'],
+              '_value': json['_occurrenceDateTime'],
+            })
+          : json['occurrencePeriod'] != null
+              ? Period.fromJson(json: json['occurrencePeriod'])
+              : null,
       authoredOn: (json['authoredOn'] != null || json['_authoredOn'] != null)
           ? FhirDateTime.fromJson({
               'value': json['authoredOn'],
@@ -386,10 +377,9 @@ class CommunicationRequest extends DomainResource {
   /// recipient.
   final List<CommunicationRequestPayload>? payload;
 
-  /// [occurrenceXCommunicationRequestCommunicationRequest]
+  /// [occurrenceXCommunicationRequest]
   /// The time when this communication is to occur.
-  final OccurrenceXCommunicationRequestCommunicationRequest?
-      occurrenceXCommunicationRequestCommunicationRequest;
+  final OccurrenceXCommunicationRequest? occurrenceXCommunicationRequest;
 
   /// [authoredOn]
   /// For draft requests, indicates the date of initial creation. For
@@ -508,8 +498,8 @@ class CommunicationRequest extends DomainResource {
       json['payload'] = payload!.map((e) => e.toJson()).toList();
     }
 
-    addField('occurrenceXCommunicationRequestCommunicationRequest',
-        occurrenceXCommunicationRequestCommunicationRequest);
+    addField(
+        'occurrenceXCommunicationRequest', occurrenceXCommunicationRequest);
     addField('authoredOn', authoredOn);
     if (requester != null) {
       json['requester'] = requester!.toJson();
@@ -565,8 +555,7 @@ class CommunicationRequest extends DomainResource {
     List<Reference>? about,
     Reference? encounter,
     List<CommunicationRequestPayload>? payload,
-    OccurrenceXCommunicationRequestCommunicationRequest?
-        occurrenceXCommunicationRequestCommunicationRequest,
+    OccurrenceXCommunicationRequest? occurrenceXCommunicationRequest,
     FhirDateTime? authoredOn,
     Reference? requester,
     List<Reference>? recipient,
@@ -602,9 +591,8 @@ class CommunicationRequest extends DomainResource {
       about: about ?? this.about,
       encounter: encounter ?? this.encounter,
       payload: payload ?? this.payload,
-      occurrenceXCommunicationRequestCommunicationRequest:
-          occurrenceXCommunicationRequestCommunicationRequest ??
-              this.occurrenceXCommunicationRequestCommunicationRequest,
+      occurrenceXCommunicationRequest: occurrenceXCommunicationRequest ??
+          this.occurrenceXCommunicationRequest,
       authoredOn: authoredOn ?? this.authoredOn,
       requester: requester ?? this.requester,
       recipient: recipient ?? this.recipient,
@@ -659,20 +647,17 @@ class CommunicationRequestPayload extends BackboneElement {
           : null,
       contentXCommunicationRequestPayload:
           json['contentString'] != null || json['_contentString'] != null
-              ? StringContentCommunicationRequestPayload.fromJson({
+              ? FhirString.fromJson({
                   'value': json['contentString'],
                   '_value': json['_contentString'],
                 })
               : json['contentAttachment'] != null ||
                       json['_contentAttachment'] != null
-                  ? AttachmentContentCommunicationRequestPayload.fromJson({
+                  ? Attachment.fromJson({
                       'value': json['contentAttachment'],
                       '_value': json['_contentAttachment'],
                     })
-                  : ReferenceContentCommunicationRequestPayload.fromJson({
-                      'value': json['contentReference'],
-                      '_value': json['_contentReference'],
-                    }),
+                  : Reference.fromJson(json: json['contentReference']),
     );
   }
 

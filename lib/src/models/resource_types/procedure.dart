@@ -2,8 +2,6 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-part 'procedure.g.dart';
-
 /// [Procedure]
 /// An action that is or was performed on or for a patient. This can be a
 /// physical intervention like an operation, or less invasive like long
@@ -32,7 +30,7 @@ class Procedure extends DomainResource {
     this.code,
     required this.subject,
     this.encounter,
-    this.performedXProcedureProcedure,
+    this.performedXProcedure,
     this.recorder,
     this.asserter,
     this.performer,
@@ -175,35 +173,31 @@ class Procedure extends DomainResource {
               json['encounter'] as Map<String, dynamic>,
             )
           : null,
-      performedXProcedureProcedure: json['performedDateTime'] != null ||
+      performedXProcedure: json['performedDateTime'] != null ||
               json['_performedDateTime'] != null
-          ? DateTimePerformedProcedureProcedure.fromJson({
+          ? FhirDateTime.fromJson({
               'value': json['performedDateTime'],
               '_value': json['_performedDateTime'],
             })
           : json['performedPeriod'] != null || json['_performedPeriod'] != null
-              ? PeriodPerformedProcedureProcedure.fromJson({
+              ? Period.fromJson({
                   'value': json['performedPeriod'],
                   '_value': json['_performedPeriod'],
                 })
               : json['performedString'] != null ||
                       json['_performedString'] != null
-                  ? StringPerformedProcedureProcedure.fromJson({
+                  ? FhirString.fromJson({
                       'value': json['performedString'],
                       '_value': json['_performedString'],
                     })
                   : json['performedAge'] != null ||
                           json['_performedAge'] != null
-                      ? AgePerformedProcedureProcedure.fromJson({
+                      ? Age.fromJson({
                           'value': json['performedAge'],
                           '_value': json['_performedAge'],
                         })
-                      : json['performedRange'] != null ||
-                              json['_performedRange'] != null
-                          ? RangePerformedProcedureProcedure.fromJson({
-                              'value': json['performedRange'],
-                              '_value': json['_performedRange'],
-                            })
+                      : json['performedRange'] != null
+                          ? Range.fromJson(json: json['performedRange'])
                           : null,
       recorder: json['recorder'] != null
           ? Reference.fromJson(
@@ -434,12 +428,12 @@ class Procedure extends DomainResource {
   /// to which the creation of this record is tightly associated.
   final Reference? encounter;
 
-  /// [performedXProcedureProcedure]
+  /// [performedXProcedure]
   /// Estimated or actual date, date-time, period, or age when the procedure
   /// was performed. Allows a period to support complex procedures that span
   /// more than one date, and also allows for the length of the procedure to
   /// be captured.
-  final PerformedXProcedureProcedure? performedXProcedureProcedure;
+  final PerformedXProcedure? performedXProcedure;
 
   /// [recorder]
   /// Individual who recorded the record and takes responsibility for its
@@ -605,7 +599,7 @@ class Procedure extends DomainResource {
       json['encounter'] = encounter!.toJson();
     }
 
-    addField('performedXProcedureProcedure', performedXProcedureProcedure);
+    addField('performedXProcedure', performedXProcedure);
     if (recorder != null) {
       json['recorder'] = recorder!.toJson();
     }
@@ -698,7 +692,7 @@ class Procedure extends DomainResource {
     CodeableConcept? code,
     Reference? subject,
     Reference? encounter,
-    PerformedXProcedureProcedure? performedXProcedureProcedure,
+    PerformedXProcedure? performedXProcedure,
     Reference? recorder,
     Reference? asserter,
     List<ProcedurePerformer>? performer,
@@ -741,8 +735,7 @@ class Procedure extends DomainResource {
       code: code ?? this.code,
       subject: subject ?? this.subject,
       encounter: encounter ?? this.encounter,
-      performedXProcedureProcedure:
-          performedXProcedureProcedure ?? this.performedXProcedureProcedure,
+      performedXProcedure: performedXProcedure ?? this.performedXProcedure,
       recorder: recorder ?? this.recorder,
       asserter: asserter ?? this.asserter,
       performer: performer ?? this.performer,

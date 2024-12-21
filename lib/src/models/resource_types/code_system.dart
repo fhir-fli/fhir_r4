@@ -2,8 +2,6 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-part 'code_system.g.dart';
-
 /// [CodeSystem]
 /// The CodeSystem resource is used to declare the existence of and
 /// describe a code system or code system supplement and its key
@@ -1418,39 +1416,39 @@ class CodeSystemProperty1 extends BackboneElement {
       }),
       valueXCodeSystemProperty:
           json['valueCode'] != null || json['_valueCode'] != null
-              ? CodeValueCodeSystemProperty.fromJson({
+              ? FhirCode.fromJson({
                   'value': json['valueCode'],
                   '_value': json['_valueCode'],
                 })
               : json['valueCoding'] != null || json['_valueCoding'] != null
-                  ? CodingValueCodeSystemProperty.fromJson({
+                  ? Coding.fromJson({
                       'value': json['valueCoding'],
                       '_value': json['_valueCoding'],
                     })
                   : json['valueString'] != null || json['_valueString'] != null
-                      ? StringValueCodeSystemProperty.fromJson({
+                      ? FhirString.fromJson({
                           'value': json['valueString'],
                           '_value': json['_valueString'],
                         })
                       : json['valueInteger'] != null ||
                               json['_valueInteger'] != null
-                          ? IntegerValueCodeSystemProperty.fromJson({
+                          ? FhirInteger.fromJson({
                               'value': json['valueInteger'],
                               '_value': json['_valueInteger'],
                             })
                           : json['valueBoolean'] != null ||
                                   json['_valueBoolean'] != null
-                              ? BooleanValueCodeSystemProperty.fromJson({
+                              ? FhirBoolean.fromJson({
                                   'value': json['valueBoolean'],
                                   '_value': json['_valueBoolean'],
                                 })
                               : json['valueDateTime'] != null ||
                                       json['_valueDateTime'] != null
-                                  ? DateTimeValueCodeSystemProperty.fromJson({
+                                  ? FhirDateTime.fromJson({
                                       'value': json['valueDateTime'],
                                       '_value': json['_valueDateTime'],
                                     })
-                                  : DecimalValueCodeSystemProperty.fromJson({
+                                  : FhirDecimal.fromJson({
                                       'value': json['valueDecimal'],
                                       '_value': json['_valueDecimal'],
                                     }),

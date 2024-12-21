@@ -2,8 +2,6 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-part 'questionnaire.g.dart';
-
 /// [Questionnaire]
 /// A structured set of questions intended to guide the collection of
 /// answers from end-users. Questionnaires provide detailed control over
@@ -1001,64 +999,57 @@ class QuestionnaireEnableWhen extends BackboneElement {
       }),
       answerXQuestionnaireEnableWhen: json['answerBoolean'] != null ||
               json['_answerBoolean'] != null
-          ? BooleanAnswerQuestionnaireEnableWhen.fromJson({
+          ? FhirBoolean.fromJson({
               'value': json['answerBoolean'],
               '_value': json['_answerBoolean'],
             })
           : json['answerDecimal'] != null || json['_answerDecimal'] != null
-              ? DecimalAnswerQuestionnaireEnableWhen.fromJson({
+              ? FhirDecimal.fromJson({
                   'value': json['answerDecimal'],
                   '_value': json['_answerDecimal'],
                 })
               : json['answerInteger'] != null || json['_answerInteger'] != null
-                  ? IntegerAnswerQuestionnaireEnableWhen.fromJson({
+                  ? FhirInteger.fromJson({
                       'value': json['answerInteger'],
                       '_value': json['_answerInteger'],
                     })
                   : json['answerDate'] != null || json['_answerDate'] != null
-                      ? DateAnswerQuestionnaireEnableWhen.fromJson({
+                      ? FhirDate.fromJson({
                           'value': json['answerDate'],
                           '_value': json['_answerDate'],
                         })
                       : json['answerDateTime'] != null ||
                               json['_answerDateTime'] != null
-                          ? DateTimeAnswerQuestionnaireEnableWhen.fromJson({
+                          ? FhirDateTime.fromJson({
                               'value': json['answerDateTime'],
                               '_value': json['_answerDateTime'],
                             })
                           : json['answerTime'] != null ||
                                   json['_answerTime'] != null
-                              ? TimeAnswerQuestionnaireEnableWhen.fromJson({
+                              ? FhirTime.fromJson({
                                   'value': json['answerTime'],
                                   '_value': json['_answerTime'],
                                 })
                               : json['answerString'] != null ||
                                       json['_answerString'] != null
-                                  ? StringAnswerQuestionnaireEnableWhen
-                                      .fromJson({
+                                  ? FhirString.fromJson({
                                       'value': json['answerString'],
                                       '_value': json['_answerString'],
                                     })
                                   : json['answerCoding'] != null ||
                                           json['_answerCoding'] != null
-                                      ? CodingAnswerQuestionnaireEnableWhen
-                                          .fromJson({
+                                      ? Coding.fromJson({
                                           'value': json['answerCoding'],
                                           '_value': json['_answerCoding'],
                                         })
                                       : json['answerQuantity'] != null ||
                                               json['_answerQuantity'] != null
-                                          ? QuantityAnswerQuestionnaireEnableWhen
-                                              .fromJson({
+                                          ? Quantity.fromJson({
                                               'value': json['answerQuantity'],
                                               '_value': json['_answerQuantity'],
                                             })
-                                          : ReferenceAnswerQuestionnaireEnableWhen
-                                              .fromJson({
-                                              'value': json['answerReference'],
-                                              '_value':
-                                                  json['_answerReference'],
-                                            }),
+                                          : Reference.fromJson(
+                                              json: json['answerReference']),
     );
   }
 
@@ -1215,35 +1206,32 @@ class QuestionnaireAnswerOption extends BackboneElement {
           : null,
       valueXQuestionnaireAnswerOption: json['valueInteger'] != null ||
               json['_valueInteger'] != null
-          ? IntegerValueQuestionnaireAnswerOption.fromJson({
+          ? FhirInteger.fromJson({
               'value': json['valueInteger'],
               '_value': json['_valueInteger'],
             })
           : json['valueDate'] != null || json['_valueDate'] != null
-              ? DateValueQuestionnaireAnswerOption.fromJson({
+              ? FhirDate.fromJson({
                   'value': json['valueDate'],
                   '_value': json['_valueDate'],
                 })
               : json['valueTime'] != null || json['_valueTime'] != null
-                  ? TimeValueQuestionnaireAnswerOption.fromJson({
+                  ? FhirTime.fromJson({
                       'value': json['valueTime'],
                       '_value': json['_valueTime'],
                     })
                   : json['valueString'] != null || json['_valueString'] != null
-                      ? StringValueQuestionnaireAnswerOption.fromJson({
+                      ? FhirString.fromJson({
                           'value': json['valueString'],
                           '_value': json['_valueString'],
                         })
                       : json['valueCoding'] != null ||
                               json['_valueCoding'] != null
-                          ? CodingValueQuestionnaireAnswerOption.fromJson({
+                          ? Coding.fromJson({
                               'value': json['valueCoding'],
                               '_value': json['_valueCoding'],
                             })
-                          : ReferenceValueQuestionnaireAnswerOption.fromJson({
-                              'value': json['valueReference'],
-                              '_value': json['_valueReference'],
-                            }),
+                          : Reference.fromJson(json: json['valueReference']),
       initialSelected:
           (json['initialSelected'] != null || json['_initialSelected'] != null)
               ? FhirBoolean.fromJson({
@@ -1400,61 +1388,59 @@ class QuestionnaireInitial extends BackboneElement {
           : null,
       valueXQuestionnaireInitial: json['valueBoolean'] != null ||
               json['_valueBoolean'] != null
-          ? BooleanValueQuestionnaireInitial.fromJson({
+          ? FhirBoolean.fromJson({
               'value': json['valueBoolean'],
               '_value': json['_valueBoolean'],
             })
           : json['valueDecimal'] != null || json['_valueDecimal'] != null
-              ? DecimalValueQuestionnaireInitial.fromJson({
+              ? FhirDecimal.fromJson({
                   'value': json['valueDecimal'],
                   '_value': json['_valueDecimal'],
                 })
               : json['valueInteger'] != null || json['_valueInteger'] != null
-                  ? IntegerValueQuestionnaireInitial.fromJson({
+                  ? FhirInteger.fromJson({
                       'value': json['valueInteger'],
                       '_value': json['_valueInteger'],
                     })
                   : json['valueDate'] != null || json['_valueDate'] != null
-                      ? DateValueQuestionnaireInitial.fromJson({
+                      ? FhirDate.fromJson({
                           'value': json['valueDate'],
                           '_value': json['_valueDate'],
                         })
                       : json['valueDateTime'] != null ||
                               json['_valueDateTime'] != null
-                          ? DateTimeValueQuestionnaireInitial.fromJson({
+                          ? FhirDateTime.fromJson({
                               'value': json['valueDateTime'],
                               '_value': json['_valueDateTime'],
                             })
                           : json['valueTime'] != null ||
                                   json['_valueTime'] != null
-                              ? TimeValueQuestionnaireInitial.fromJson({
+                              ? FhirTime.fromJson({
                                   'value': json['valueTime'],
                                   '_value': json['_valueTime'],
                                 })
                               : json['valueString'] != null ||
                                       json['_valueString'] != null
-                                  ? StringValueQuestionnaireInitial.fromJson({
+                                  ? FhirString.fromJson({
                                       'value': json['valueString'],
                                       '_value': json['_valueString'],
                                     })
                                   : json['valueUri'] != null ||
                                           json['_valueUri'] != null
-                                      ? UriValueQuestionnaireInitial.fromJson({
+                                      ? FhirUri.fromJson({
                                           'value': json['valueUri'],
                                           '_value': json['_valueUri'],
                                         })
                                       : json['valueAttachment'] != null ||
                                               json['_valueAttachment'] != null
-                                          ? AttachmentValueQuestionnaireInitial
-                                              .fromJson({
+                                          ? Attachment.fromJson({
                                               'value': json['valueAttachment'],
                                               '_value':
                                                   json['_valueAttachment'],
                                             })
                                           : json['valueCoding'] != null ||
                                                   json['_valueCoding'] != null
-                                              ? CodingValueQuestionnaireInitial
-                                                  .fromJson({
+                                              ? Coding.fromJson({
                                                   'value': json['valueCoding'],
                                                   '_value':
                                                       json['_valueCoding'],
@@ -1462,20 +1448,15 @@ class QuestionnaireInitial extends BackboneElement {
                                               : json['valueQuantity'] != null ||
                                                       json['_valueQuantity'] !=
                                                           null
-                                                  ? QuantityValueQuestionnaireInitial
-                                                      .fromJson({
+                                                  ? Quantity.fromJson({
                                                       'value':
                                                           json['valueQuantity'],
                                                       '_value': json[
                                                           '_valueQuantity'],
                                                     })
-                                                  : ReferenceValueQuestionnaireInitial
-                                                      .fromJson({
-                                                      'value': json[
-                                                          'valueReference'],
-                                                      '_value': json[
-                                                          '_valueReference'],
-                                                    }),
+                                                  : Reference.fromJson(
+                                                      json: json[
+                                                          'valueReference']),
     );
   }
 

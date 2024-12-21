@@ -2,8 +2,6 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-part 'device_use_statement.g.dart';
-
 /// [DeviceUseStatement]
 /// A record of a device being used by a patient where the record is the
 /// result of a report from the patient or another clinician.
@@ -25,7 +23,7 @@ class DeviceUseStatement extends DomainResource {
     required this.status,
     required this.subject,
     this.derivedFrom,
-    this.timingXDeviceUseStatementDeviceUseStatement,
+    this.timingXDeviceUseStatement,
     this.recordedOn,
     this.source,
     required this.device,
@@ -129,21 +127,20 @@ class DeviceUseStatement extends DomainResource {
               )
               .toList()
           : null,
-      timingXDeviceUseStatementDeviceUseStatement:
+      timingXDeviceUseStatement:
           json['timingTiming'] != null || json['_timingTiming'] != null
-              ? TimingTimingDeviceUseStatementDeviceUseStatement.fromJson({
+              ? Timing.fromJson({
                   'value': json['timingTiming'],
                   '_value': json['_timingTiming'],
                 })
               : json['timingPeriod'] != null || json['_timingPeriod'] != null
-                  ? PeriodTimingDeviceUseStatementDeviceUseStatement.fromJson({
+                  ? Period.fromJson({
                       'value': json['timingPeriod'],
                       '_value': json['_timingPeriod'],
                     })
                   : json['timingDateTime'] != null ||
                           json['_timingDateTime'] != null
-                      ? DateTimeTimingDeviceUseStatementDeviceUseStatement
-                          .fromJson({
+                      ? FhirDateTime.fromJson({
                           'value': json['timingDateTime'],
                           '_value': json['_timingDateTime'],
                         })
@@ -264,10 +261,9 @@ class DeviceUseStatement extends DomainResource {
   /// DeviceUseStatement.
   final List<Reference>? derivedFrom;
 
-  /// [timingXDeviceUseStatementDeviceUseStatement]
+  /// [timingXDeviceUseStatement]
   /// How often the device was used.
-  final TimingXDeviceUseStatementDeviceUseStatement?
-      timingXDeviceUseStatementDeviceUseStatement;
+  final TimingXDeviceUseStatement? timingXDeviceUseStatement;
 
   /// [recordedOn]
   /// The time at which the statement was made/recorded.
@@ -353,9 +349,8 @@ class DeviceUseStatement extends DomainResource {
       json['derivedFrom'] = derivedFrom!.map((e) => e.toJson()).toList();
     }
 
-    if (timingXDeviceUseStatementDeviceUseStatement != null) {
-      json['timingXDeviceUseStatementDeviceUseStatement'] =
-          timingXDeviceUseStatementDeviceUseStatement!.toJson();
+    if (timingXDeviceUseStatement != null) {
+      json['timingXDeviceUseStatement'] = timingXDeviceUseStatement!.toJson();
     }
 
     addField('recordedOn', recordedOn);
@@ -402,8 +397,7 @@ class DeviceUseStatement extends DomainResource {
     DeviceUseStatementStatus? status,
     Reference? subject,
     List<Reference>? derivedFrom,
-    TimingXDeviceUseStatementDeviceUseStatement?
-        timingXDeviceUseStatementDeviceUseStatement,
+    TimingXDeviceUseStatement? timingXDeviceUseStatement,
     FhirDateTime? recordedOn,
     Reference? source,
     Reference? device,
@@ -430,9 +424,8 @@ class DeviceUseStatement extends DomainResource {
       status: status ?? this.status,
       subject: subject ?? this.subject,
       derivedFrom: derivedFrom ?? this.derivedFrom,
-      timingXDeviceUseStatementDeviceUseStatement:
-          timingXDeviceUseStatementDeviceUseStatement ??
-              this.timingXDeviceUseStatementDeviceUseStatement,
+      timingXDeviceUseStatement:
+          timingXDeviceUseStatement ?? this.timingXDeviceUseStatement,
       recordedOn: recordedOn ?? this.recordedOn,
       source: source ?? this.source,
       device: device ?? this.device,

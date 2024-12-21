@@ -2,8 +2,6 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-part 'allergy_intolerance.g.dart';
-
 /// [AllergyIntolerance]
 /// Risk of harmful or undesirable, physiological response which is unique
 /// to an individual and associated with exposure to a substance.
@@ -29,7 +27,7 @@ class AllergyIntolerance extends DomainResource {
     this.code,
     required this.patient,
     this.encounter,
-    this.onsetXAllergyIntoleranceAllergyIntolerance,
+    this.onsetXAllergyIntolerance,
     this.recordedDate,
     this.recorder,
     this.asserter,
@@ -147,33 +145,30 @@ class AllergyIntolerance extends DomainResource {
               json['encounter'] as Map<String, dynamic>,
             )
           : null,
-      onsetXAllergyIntoleranceAllergyIntolerance: json['onsetDateTime'] !=
-                  null ||
+      onsetXAllergyIntolerance: json['onsetDateTime'] != null ||
               json['_onsetDateTime'] != null
-          ? DateTimeOnsetAllergyIntoleranceAllergyIntolerance.fromJson({
+          ? FhirDateTime.fromJson({
               'value': json['onsetDateTime'],
               '_value': json['_onsetDateTime'],
             })
           : json['onsetAge'] != null || json['_onsetAge'] != null
-              ? AgeOnsetAllergyIntoleranceAllergyIntolerance.fromJson({
+              ? Age.fromJson({
                   'value': json['onsetAge'],
                   '_value': json['_onsetAge'],
                 })
               : json['onsetPeriod'] != null || json['_onsetPeriod'] != null
-                  ? PeriodOnsetAllergyIntoleranceAllergyIntolerance.fromJson({
+                  ? Period.fromJson({
                       'value': json['onsetPeriod'],
                       '_value': json['_onsetPeriod'],
                     })
                   : json['onsetRange'] != null || json['_onsetRange'] != null
-                      ? RangeOnsetAllergyIntoleranceAllergyIntolerance
-                          .fromJson({
+                      ? Range.fromJson({
                           'value': json['onsetRange'],
                           '_value': json['_onsetRange'],
                         })
                       : json['onsetString'] != null ||
                               json['_onsetString'] != null
-                          ? StringOnsetAllergyIntoleranceAllergyIntolerance
-                              .fromJson({
+                          ? FhirString.fromJson({
                               'value': json['onsetString'],
                               '_value': json['_onsetString'],
                             })
@@ -322,11 +317,10 @@ class AllergyIntolerance extends DomainResource {
   /// The encounter when the allergy or intolerance was asserted.
   final Reference? encounter;
 
-  /// [onsetXAllergyIntoleranceAllergyIntolerance]
+  /// [onsetXAllergyIntolerance]
   /// Estimated or actual date, date-time, or age when allergy or intolerance
   /// was identified.
-  final OnsetXAllergyIntoleranceAllergyIntolerance?
-      onsetXAllergyIntoleranceAllergyIntolerance;
+  final OnsetXAllergyIntolerance? onsetXAllergyIntolerance;
 
   /// [recordedDate]
   /// The recordedDate represents when this particular AllergyIntolerance
@@ -426,8 +420,7 @@ class AllergyIntolerance extends DomainResource {
       json['encounter'] = encounter!.toJson();
     }
 
-    addField('onsetXAllergyIntoleranceAllergyIntolerance',
-        onsetXAllergyIntoleranceAllergyIntolerance);
+    addField('onsetXAllergyIntolerance', onsetXAllergyIntolerance);
     addField('recordedDate', recordedDate);
     if (recorder != null) {
       json['recorder'] = recorder!.toJson();
@@ -470,8 +463,7 @@ class AllergyIntolerance extends DomainResource {
     CodeableConcept? code,
     Reference? patient,
     Reference? encounter,
-    OnsetXAllergyIntoleranceAllergyIntolerance?
-        onsetXAllergyIntoleranceAllergyIntolerance,
+    OnsetXAllergyIntolerance? onsetXAllergyIntolerance,
     FhirDateTime? recordedDate,
     Reference? recorder,
     Reference? asserter,
@@ -501,9 +493,8 @@ class AllergyIntolerance extends DomainResource {
       code: code ?? this.code,
       patient: patient ?? this.patient,
       encounter: encounter ?? this.encounter,
-      onsetXAllergyIntoleranceAllergyIntolerance:
-          onsetXAllergyIntoleranceAllergyIntolerance ??
-              this.onsetXAllergyIntoleranceAllergyIntolerance,
+      onsetXAllergyIntolerance:
+          onsetXAllergyIntolerance ?? this.onsetXAllergyIntolerance,
       recordedDate: recordedDate ?? this.recordedDate,
       recorder: recorder ?? this.recorder,
       asserter: asserter ?? this.asserter,

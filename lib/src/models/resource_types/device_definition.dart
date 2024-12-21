@@ -2,8 +2,6 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-part 'device_definition.g.dart';
-
 /// [DeviceDefinition]
 /// The characteristics, operational status and capabilities of a
 /// medical-related component of a medical device.
@@ -22,7 +20,7 @@ class DeviceDefinition extends DomainResource {
     super.modifierExtension,
     this.identifier,
     this.udiDeviceIdentifier,
-    this.manufacturerXDeviceDefinitionDeviceDefinition,
+    this.manufacturerXDeviceDefinition,
     this.deviceName,
     this.modelNumber,
     this.type,
@@ -122,20 +120,14 @@ class DeviceDefinition extends DomainResource {
               )
               .toList()
           : null,
-      manufacturerXDeviceDefinitionDeviceDefinition: json[
-                      'manufacturerString'] !=
-                  null ||
+      manufacturerXDeviceDefinition: json['manufacturerString'] != null ||
               json['_manufacturerString'] != null
-          ? StringManufacturerDeviceDefinitionDeviceDefinition.fromJson({
+          ? FhirString.fromJson({
               'value': json['manufacturerString'],
               '_value': json['_manufacturerString'],
             })
-          : json['manufacturerReference'] != null ||
-                  json['_manufacturerReference'] != null
-              ? ReferenceManufacturerDeviceDefinitionDeviceDefinition.fromJson({
-                  'value': json['manufacturerReference'],
-                  '_value': json['_manufacturerReference'],
-                })
+          : json['manufacturerReference'] != null
+              ? Reference.fromJson(json: json['manufacturerReference'])
               : null,
       deviceName: json['deviceName'] != null
           ? (json['deviceName'] as List<dynamic>)
@@ -333,10 +325,9 @@ class DeviceDefinition extends DomainResource {
   /// multiple jurisdictions it could have been sold.
   final List<DeviceDefinitionUdiDeviceIdentifier>? udiDeviceIdentifier;
 
-  /// [manufacturerXDeviceDefinitionDeviceDefinition]
+  /// [manufacturerXDeviceDefinition]
   /// A name of the manufacturer.
-  final ManufacturerXDeviceDefinitionDeviceDefinition?
-      manufacturerXDeviceDefinitionDeviceDefinition;
+  final ManufacturerXDeviceDefinition? manufacturerXDeviceDefinition;
 
   /// [deviceName]
   /// A name given to the device to identify it.
@@ -468,8 +459,7 @@ class DeviceDefinition extends DomainResource {
           udiDeviceIdentifier!.map((e) => e.toJson()).toList();
     }
 
-    addField('manufacturerXDeviceDefinitionDeviceDefinition',
-        manufacturerXDeviceDefinitionDeviceDefinition);
+    addField('manufacturerXDeviceDefinition', manufacturerXDeviceDefinition);
     if (deviceName != null && deviceName!.isNotEmpty) {
       json['deviceName'] = deviceName!.map((e) => e.toJson()).toList();
     }
@@ -559,8 +549,7 @@ class DeviceDefinition extends DomainResource {
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
     List<DeviceDefinitionUdiDeviceIdentifier>? udiDeviceIdentifier,
-    ManufacturerXDeviceDefinitionDeviceDefinition?
-        manufacturerXDeviceDefinitionDeviceDefinition,
+    ManufacturerXDeviceDefinition? manufacturerXDeviceDefinition,
     List<DeviceDefinitionDeviceName>? deviceName,
     FhirString? modelNumber,
     CodeableConcept? type,
@@ -596,9 +585,8 @@ class DeviceDefinition extends DomainResource {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       identifier: identifier ?? this.identifier,
       udiDeviceIdentifier: udiDeviceIdentifier ?? this.udiDeviceIdentifier,
-      manufacturerXDeviceDefinitionDeviceDefinition:
-          manufacturerXDeviceDefinitionDeviceDefinition ??
-              this.manufacturerXDeviceDefinitionDeviceDefinition,
+      manufacturerXDeviceDefinition:
+          manufacturerXDeviceDefinition ?? this.manufacturerXDeviceDefinition,
       deviceName: deviceName ?? this.deviceName,
       modelNumber: modelNumber ?? this.modelNumber,
       type: type ?? this.type,

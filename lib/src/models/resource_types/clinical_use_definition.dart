@@ -2,8 +2,6 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-part 'clinical_use_definition.g.dart';
-
 /// [ClinicalUseDefinition]
 /// A single issue - either an indication, contraindication, interaction or
 /// an undesirable effect for a medicinal product, medication, device or
@@ -843,12 +841,12 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
           : null,
       durationXClinicalUseDefinitionIndication: json['durationRange'] != null ||
               json['_durationRange'] != null
-          ? RangeDurationClinicalUseDefinitionIndication.fromJson({
+          ? Range.fromJson({
               'value': json['durationRange'],
               '_value': json['_durationRange'],
             })
           : json['durationString'] != null || json['_durationString'] != null
-              ? StringDurationClinicalUseDefinitionIndication.fromJson({
+              ? FhirString.fromJson({
                   'value': json['durationString'],
                   '_value': json['_durationString'],
                 })
@@ -1306,14 +1304,11 @@ class ClinicalUseDefinitionInteractant extends BackboneElement {
           : null,
       itemXClinicalUseDefinitionInteractant:
           json['itemReference'] != null || json['_itemReference'] != null
-              ? ReferenceItemClinicalUseDefinitionInteractant.fromJson({
+              ? Reference.fromJson({
                   'value': json['itemReference'],
                   '_value': json['_itemReference'],
                 })
-              : CodeableConceptItemClinicalUseDefinitionInteractant.fromJson({
-                  'value': json['itemCodeableConcept'],
-                  '_value': json['_itemCodeableConcept'],
-                }),
+              : CodeableConcept.fromJson(json: json['itemCodeableConcept']),
     );
   }
 

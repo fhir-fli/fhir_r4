@@ -2,8 +2,6 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-part 'medication.g.dart';
-
 /// [Medication]
 /// This resource is primarily used for the identification and definition
 /// of a medication for the purposes of prescribing, dispensing, and
@@ -386,14 +384,11 @@ class MedicationIngredient extends BackboneElement {
           : null,
       itemXMedicationIngredient: json['itemCodeableConcept'] != null ||
               json['_itemCodeableConcept'] != null
-          ? CodeableConceptItemMedicationIngredient.fromJson({
+          ? CodeableConcept.fromJson({
               'value': json['itemCodeableConcept'],
               '_value': json['_itemCodeableConcept'],
             })
-          : ReferenceItemMedicationIngredient.fromJson({
-              'value': json['itemReference'],
-              '_value': json['_itemReference'],
-            }),
+          : Reference.fromJson(json: json['itemReference']),
       isActive: (json['isActive'] != null || json['_isActive'] != null)
           ? FhirBoolean.fromJson({
               'value': json['isActive'],

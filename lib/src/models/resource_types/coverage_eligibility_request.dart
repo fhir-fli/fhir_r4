@@ -2,8 +2,6 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-part 'coverage_eligibility_request.g.dart';
-
 /// [CoverageEligibilityRequest]
 /// The CoverageEligibilityRequest provides patient and insurance coverage
 /// information to an insurer for them to respond, in the form of an
@@ -28,7 +26,7 @@ class CoverageEligibilityRequest extends DomainResource {
     this.priority,
     required this.purpose,
     required this.patient,
-    this.servicedXCoverageEligibilityRequestCoverageEligibilityRequest,
+    this.servicedXCoverageEligibilityRequest,
     required this.created,
     this.enterer,
     this.provider,
@@ -127,22 +125,15 @@ class CoverageEligibilityRequest extends DomainResource {
       patient: Reference.fromJson(
         json['patient'] as Map<String, dynamic>,
       ),
-      servicedXCoverageEligibilityRequestCoverageEligibilityRequest: json[
-                      'servicedDate'] !=
-                  null ||
-              json['_servicedDate'] != null
-          ? DateServicedCoverageEligibilityRequestCoverageEligibilityRequest
-              .fromJson({
-              'value': json['servicedDate'],
-              '_value': json['_servicedDate'],
-            })
-          : json['servicedPeriod'] != null || json['_servicedPeriod'] != null
-              ? PeriodServicedCoverageEligibilityRequestCoverageEligibilityRequest
-                  .fromJson({
-                  'value': json['servicedPeriod'],
-                  '_value': json['_servicedPeriod'],
+      servicedXCoverageEligibilityRequest:
+          json['servicedDate'] != null || json['_servicedDate'] != null
+              ? FhirDate.fromJson({
+                  'value': json['servicedDate'],
+                  '_value': json['_servicedDate'],
                 })
-              : null,
+              : json['servicedPeriod'] != null
+                  ? Period.fromJson(json: json['servicedPeriod'])
+                  : null,
       created: FhirDateTime.fromJson({
         'value': json['created'],
         '_value': json['_created'],
@@ -262,11 +253,11 @@ class CoverageEligibilityRequest extends DomainResource {
   /// eligibility is sought.
   final Reference patient;
 
-  /// [servicedXCoverageEligibilityRequestCoverageEligibilityRequest]
+  /// [servicedXCoverageEligibilityRequest]
   /// The date or dates when the enclosed suite of services were performed or
   /// completed.
-  final ServicedXCoverageEligibilityRequestCoverageEligibilityRequest?
-      servicedXCoverageEligibilityRequestCoverageEligibilityRequest;
+  final ServicedXCoverageEligibilityRequest?
+      servicedXCoverageEligibilityRequest;
 
   /// [created]
   /// The date when this resource was created.
@@ -360,8 +351,8 @@ class CoverageEligibilityRequest extends DomainResource {
 
     json['patient'] = patient.toJson();
 
-    addField('servicedXCoverageEligibilityRequestCoverageEligibilityRequest',
-        servicedXCoverageEligibilityRequestCoverageEligibilityRequest);
+    addField('servicedXCoverageEligibilityRequest',
+        servicedXCoverageEligibilityRequest);
     addField('created', created);
     if (enterer != null) {
       json['enterer'] = enterer!.toJson();
@@ -409,8 +400,7 @@ class CoverageEligibilityRequest extends DomainResource {
     CodeableConcept? priority,
     List<EligibilityRequestPurpose>? purpose,
     Reference? patient,
-    ServicedXCoverageEligibilityRequestCoverageEligibilityRequest?
-        servicedXCoverageEligibilityRequestCoverageEligibilityRequest,
+    ServicedXCoverageEligibilityRequest? servicedXCoverageEligibilityRequest,
     FhirDateTime? created,
     Reference? enterer,
     Reference? provider,
@@ -438,9 +428,9 @@ class CoverageEligibilityRequest extends DomainResource {
       priority: priority ?? this.priority,
       purpose: purpose ?? this.purpose,
       patient: patient ?? this.patient,
-      servicedXCoverageEligibilityRequestCoverageEligibilityRequest:
-          servicedXCoverageEligibilityRequestCoverageEligibilityRequest ??
-              this.servicedXCoverageEligibilityRequestCoverageEligibilityRequest,
+      servicedXCoverageEligibilityRequest:
+          servicedXCoverageEligibilityRequest ??
+              this.servicedXCoverageEligibilityRequest,
       created: created ?? this.created,
       enterer: enterer ?? this.enterer,
       provider: provider ?? this.provider,
@@ -1155,22 +1145,16 @@ class CoverageEligibilityRequestDiagnosis extends BackboneElement {
               )
               .toList()
           : null,
-      diagnosisXCoverageEligibilityRequestDiagnosis: json[
-                      'diagnosisCodeableConcept'] !=
-                  null ||
-              json['_diagnosisCodeableConcept'] != null
-          ? CodeableConceptDiagnosisCoverageEligibilityRequestDiagnosis
-              .fromJson({
-              'value': json['diagnosisCodeableConcept'],
-              '_value': json['_diagnosisCodeableConcept'],
-            })
-          : json['diagnosisReference'] != null ||
-                  json['_diagnosisReference'] != null
-              ? ReferenceDiagnosisCoverageEligibilityRequestDiagnosis.fromJson({
-                  'value': json['diagnosisReference'],
-                  '_value': json['_diagnosisReference'],
+      diagnosisXCoverageEligibilityRequestDiagnosis:
+          json['diagnosisCodeableConcept'] != null ||
+                  json['_diagnosisCodeableConcept'] != null
+              ? CodeableConcept.fromJson({
+                  'value': json['diagnosisCodeableConcept'],
+                  '_value': json['_diagnosisCodeableConcept'],
                 })
-              : null,
+              : json['diagnosisReference'] != null
+                  ? Reference.fromJson(json: json['diagnosisReference'])
+                  : null,
     );
   }
 

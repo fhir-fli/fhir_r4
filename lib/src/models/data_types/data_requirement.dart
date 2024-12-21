@@ -2,8 +2,6 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-part 'data_requirement.g.dart';
-
 /// [DataRequirement]
 /// Describes a required data item for evaluation in terms of the type of
 /// data, and optional code or date-based filters of the data.
@@ -16,7 +14,7 @@ class DataRequirement extends DataType {
     super.extension_,
     required this.type,
     this.profile,
-    this.subjectXDataRequirementDataRequirement,
+    this.subjectXDataRequirement,
     this.mustSupport,
     this.codeFilter,
     this.dateFilter,
@@ -51,20 +49,15 @@ class DataRequirement extends DataType {
         json['_profile'] as List<dynamic>?,
         fromJson: FhirCanonical.fromJson,
       ),
-      subjectXDataRequirementDataRequirement:
-          json['subjectCodeableConcept'] != null ||
-                  json['_subjectCodeableConcept'] != null
-              ? CodeableConceptSubjectDataRequirementDataRequirement.fromJson({
-                  'value': json['subjectCodeableConcept'],
-                  '_value': json['_subjectCodeableConcept'],
-                })
-              : json['subjectReference'] != null ||
-                      json['_subjectReference'] != null
-                  ? ReferenceSubjectDataRequirementDataRequirement.fromJson({
-                      'value': json['subjectReference'],
-                      '_value': json['_subjectReference'],
-                    })
-                  : null,
+      subjectXDataRequirement: json['subjectCodeableConcept'] != null ||
+              json['_subjectCodeableConcept'] != null
+          ? CodeableConcept.fromJson({
+              'value': json['subjectCodeableConcept'],
+              '_value': json['_subjectCodeableConcept'],
+            })
+          : json['subjectReference'] != null
+              ? Reference.fromJson(json: json['subjectReference'])
+              : null,
       mustSupport: parsePrimitiveList<FhirString>(
         json['mustSupport'] as List<dynamic>?,
         json['_mustSupport'] as List<dynamic>?,
@@ -159,11 +152,10 @@ class DataRequirement extends DataType {
   /// definition.
   final List<FhirCanonical>? profile;
 
-  /// [subjectXDataRequirementDataRequirement]
+  /// [subjectXDataRequirement]
   /// The intended subjects of the data requirement. If this element is not
   /// provided, a Patient subject is assumed.
-  final SubjectXDataRequirementDataRequirement?
-      subjectXDataRequirementDataRequirement;
+  final SubjectXDataRequirement? subjectXDataRequirement;
 
   /// [mustSupport]
   /// Indicates that specific elements of the type are referenced by the
@@ -227,9 +219,8 @@ class DataRequirement extends DataType {
       }
     }
 
-    if (subjectXDataRequirementDataRequirement != null) {
-      json['subjectXDataRequirementDataRequirement'] =
-          subjectXDataRequirementDataRequirement!.toJson();
+    if (subjectXDataRequirement != null) {
+      json['subjectXDataRequirement'] = subjectXDataRequirement!.toJson();
     }
 
     if (mustSupport != null && mustSupport!.isNotEmpty) {
@@ -264,8 +255,7 @@ class DataRequirement extends DataType {
     List<FhirExtension>? extension_,
     FHIRAllTypes? type,
     List<FhirCanonical>? profile,
-    SubjectXDataRequirementDataRequirement?
-        subjectXDataRequirementDataRequirement,
+    SubjectXDataRequirement? subjectXDataRequirement,
     List<FhirString>? mustSupport,
     List<DataRequirementCodeFilter>? codeFilter,
     List<DataRequirementDateFilter>? dateFilter,
@@ -281,9 +271,8 @@ class DataRequirement extends DataType {
       extension_: extension_ ?? this.extension_,
       type: type ?? this.type,
       profile: profile ?? this.profile,
-      subjectXDataRequirementDataRequirement:
-          subjectXDataRequirementDataRequirement ??
-              this.subjectXDataRequirementDataRequirement,
+      subjectXDataRequirement:
+          subjectXDataRequirement ?? this.subjectXDataRequirement,
       mustSupport: mustSupport ?? this.mustSupport,
       codeFilter: codeFilter ?? this.codeFilter,
       dateFilter: dateFilter ?? this.dateFilter,
@@ -532,23 +521,20 @@ class DataRequirementDateFilter extends Element {
               '_value': json['_searchParam'],
             })
           : null,
-      valueXDataRequirementDateFilter: json['valueDateTime'] != null ||
-              json['_valueDateTime'] != null
-          ? DateTimeValueDataRequirementDateFilter.fromJson({
-              'value': json['valueDateTime'],
-              '_value': json['_valueDateTime'],
-            })
-          : json['valuePeriod'] != null || json['_valuePeriod'] != null
-              ? PeriodValueDataRequirementDateFilter.fromJson({
-                  'value': json['valuePeriod'],
-                  '_value': json['_valuePeriod'],
+      valueXDataRequirementDateFilter:
+          json['valueDateTime'] != null || json['_valueDateTime'] != null
+              ? FhirDateTime.fromJson({
+                  'value': json['valueDateTime'],
+                  '_value': json['_valueDateTime'],
                 })
-              : json['valueDuration'] != null || json['_valueDuration'] != null
-                  ? DurationValueDataRequirementDateFilter.fromJson({
-                      'value': json['valueDuration'],
-                      '_value': json['_valueDuration'],
+              : json['valuePeriod'] != null || json['_valuePeriod'] != null
+                  ? Period.fromJson({
+                      'value': json['valuePeriod'],
+                      '_value': json['_valuePeriod'],
                     })
-                  : null,
+                  : json['valueDuration'] != null
+                      ? FhirDuration.fromJson(json: json['valueDuration'])
+                      : null,
     );
   }
 

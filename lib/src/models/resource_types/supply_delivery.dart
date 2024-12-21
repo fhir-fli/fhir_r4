@@ -2,8 +2,6 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-part 'supply_delivery.g.dart';
-
 /// [SupplyDelivery]
 /// Record of delivery of what is supplied.
 class SupplyDelivery extends DomainResource {
@@ -26,7 +24,7 @@ class SupplyDelivery extends DomainResource {
     this.patient,
     this.type,
     this.suppliedItem,
-    this.occurrenceXSupplyDeliverySupplyDelivery,
+    this.occurrenceXSupplyDelivery,
     this.supplier,
     this.destination,
     this.receiver,
@@ -140,26 +138,21 @@ class SupplyDelivery extends DomainResource {
               json['suppliedItem'] as Map<String, dynamic>,
             )
           : null,
-      occurrenceXSupplyDeliverySupplyDelivery:
-          json['occurrenceDateTime'] != null ||
-                  json['_occurrenceDateTime'] != null
-              ? DateTimeOccurrenceSupplyDeliverySupplyDelivery.fromJson({
-                  'value': json['occurrenceDateTime'],
-                  '_value': json['_occurrenceDateTime'],
+      occurrenceXSupplyDelivery: json['occurrenceDateTime'] != null ||
+              json['_occurrenceDateTime'] != null
+          ? FhirDateTime.fromJson({
+              'value': json['occurrenceDateTime'],
+              '_value': json['_occurrenceDateTime'],
+            })
+          : json['occurrencePeriod'] != null ||
+                  json['_occurrencePeriod'] != null
+              ? Period.fromJson({
+                  'value': json['occurrencePeriod'],
+                  '_value': json['_occurrencePeriod'],
                 })
-              : json['occurrencePeriod'] != null ||
-                      json['_occurrencePeriod'] != null
-                  ? PeriodOccurrenceSupplyDeliverySupplyDelivery.fromJson({
-                      'value': json['occurrencePeriod'],
-                      '_value': json['_occurrencePeriod'],
-                    })
-                  : json['occurrenceTiming'] != null ||
-                          json['_occurrenceTiming'] != null
-                      ? TimingOccurrenceSupplyDeliverySupplyDelivery.fromJson({
-                          'value': json['occurrenceTiming'],
-                          '_value': json['_occurrenceTiming'],
-                        })
-                      : null,
+              : json['occurrenceTiming'] != null
+                  ? Timing.fromJson(json: json['occurrenceTiming'])
+                  : null,
       supplier: json['supplier'] != null
           ? Reference.fromJson(
               json['supplier'] as Map<String, dynamic>,
@@ -257,10 +250,9 @@ class SupplyDelivery extends DomainResource {
   /// The item that is being delivered or has been supplied.
   final SupplyDeliverySuppliedItem? suppliedItem;
 
-  /// [occurrenceXSupplyDeliverySupplyDelivery]
+  /// [occurrenceXSupplyDelivery]
   /// The date or time(s) the activity occurred.
-  final OccurrenceXSupplyDeliverySupplyDelivery?
-      occurrenceXSupplyDeliverySupplyDelivery;
+  final OccurrenceXSupplyDelivery? occurrenceXSupplyDelivery;
 
   /// [supplier]
   /// The individual responsible for dispensing the medication, supplier or
@@ -337,8 +329,7 @@ class SupplyDelivery extends DomainResource {
       json['suppliedItem'] = suppliedItem!.toJson();
     }
 
-    addField('occurrenceXSupplyDeliverySupplyDelivery',
-        occurrenceXSupplyDeliverySupplyDelivery);
+    addField('occurrenceXSupplyDelivery', occurrenceXSupplyDelivery);
     if (supplier != null) {
       json['supplier'] = supplier!.toJson();
     }
@@ -373,8 +364,7 @@ class SupplyDelivery extends DomainResource {
     Reference? patient,
     CodeableConcept? type,
     SupplyDeliverySuppliedItem? suppliedItem,
-    OccurrenceXSupplyDeliverySupplyDelivery?
-        occurrenceXSupplyDeliverySupplyDelivery,
+    OccurrenceXSupplyDelivery? occurrenceXSupplyDelivery,
     Reference? supplier,
     Reference? destination,
     List<Reference>? receiver,
@@ -399,9 +389,8 @@ class SupplyDelivery extends DomainResource {
       patient: patient ?? this.patient,
       type: type ?? this.type,
       suppliedItem: suppliedItem ?? this.suppliedItem,
-      occurrenceXSupplyDeliverySupplyDelivery:
-          occurrenceXSupplyDeliverySupplyDelivery ??
-              this.occurrenceXSupplyDeliverySupplyDelivery,
+      occurrenceXSupplyDelivery:
+          occurrenceXSupplyDelivery ?? this.occurrenceXSupplyDelivery,
       supplier: supplier ?? this.supplier,
       destination: destination ?? this.destination,
       receiver: receiver ?? this.receiver,
@@ -457,15 +446,12 @@ class SupplyDeliverySuppliedItem extends BackboneElement {
           : null,
       itemXSupplyDeliverySuppliedItem: json['itemCodeableConcept'] != null ||
               json['_itemCodeableConcept'] != null
-          ? CodeableConceptItemSupplyDeliverySuppliedItem.fromJson({
+          ? CodeableConcept.fromJson({
               'value': json['itemCodeableConcept'],
               '_value': json['_itemCodeableConcept'],
             })
-          : json['itemReference'] != null || json['_itemReference'] != null
-              ? ReferenceItemSupplyDeliverySuppliedItem.fromJson({
-                  'value': json['itemReference'],
-                  '_value': json['_itemReference'],
-                })
+          : json['itemReference'] != null
+              ? Reference.fromJson(json: json['itemReference'])
               : null,
     );
   }

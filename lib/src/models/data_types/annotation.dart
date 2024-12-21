@@ -2,8 +2,6 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-part 'annotation.g.dart';
-
 /// [Annotation]
 /// A text note which also contains information about who made the
 /// statement and when.
@@ -14,7 +12,7 @@ class Annotation extends DataType {
   const Annotation({
     super.id,
     super.extension_,
-    this.authorXAnnotationAnnotation,
+    this.authorXAnnotation,
     this.time,
     required this.text,
     super.disallowExtensions,
@@ -37,14 +35,14 @@ class Annotation extends DataType {
               )
               .toList()
           : null,
-      authorXAnnotationAnnotation:
+      authorXAnnotation:
           json['authorReference'] != null || json['_authorReference'] != null
-              ? ReferenceAuthorAnnotationAnnotation.fromJson({
+              ? Reference.fromJson({
                   'value': json['authorReference'],
                   '_value': json['_authorReference'],
                 })
               : json['authorString'] != null || json['_authorString'] != null
-                  ? StringAuthorAnnotationAnnotation.fromJson({
+                  ? FhirString.fromJson({
                       'value': json['authorString'],
                       '_value': json['_authorString'],
                     })
@@ -104,9 +102,9 @@ class Annotation extends DataType {
   @override
   String get fhirType => 'Annotation';
 
-  /// [authorXAnnotationAnnotation]
+  /// [authorXAnnotation]
   /// The individual responsible for making the annotation.
-  final AuthorXAnnotationAnnotation? authorXAnnotationAnnotation;
+  final AuthorXAnnotation? authorXAnnotation;
 
   /// [time]
   /// Indicates when this particular annotation was made.
@@ -132,9 +130,8 @@ class Annotation extends DataType {
       json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
 
-    if (authorXAnnotationAnnotation != null) {
-      json['authorXAnnotationAnnotation'] =
-          authorXAnnotationAnnotation!.toJson();
+    if (authorXAnnotation != null) {
+      json['authorXAnnotation'] = authorXAnnotation!.toJson();
     }
 
     addField('time', time);
@@ -148,7 +145,7 @@ class Annotation extends DataType {
   Annotation copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
-    AuthorXAnnotationAnnotation? authorXAnnotationAnnotation,
+    AuthorXAnnotation? authorXAnnotation,
     FhirDateTime? time,
     FhirMarkdown? text,
     Map<String, Object?>? userData,
@@ -159,8 +156,7 @@ class Annotation extends DataType {
     return Annotation(
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
-      authorXAnnotationAnnotation:
-          authorXAnnotationAnnotation ?? this.authorXAnnotationAnnotation,
+      authorXAnnotation: authorXAnnotation ?? this.authorXAnnotation,
       time: time ?? this.time,
       text: text ?? this.text,
     );

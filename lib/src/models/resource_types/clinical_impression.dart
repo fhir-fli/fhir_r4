@@ -2,8 +2,6 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-part 'clinical_impression.g.dart';
-
 /// [ClinicalImpression]
 /// A record of a clinical assessment performed to determine what
 /// problem(s) may affect the patient and before planning the treatments or
@@ -33,7 +31,7 @@ class ClinicalImpression extends DomainResource {
     this.description,
     required this.subject,
     this.encounter,
-    this.effectiveXClinicalImpressionClinicalImpression,
+    this.effectiveXClinicalImpression,
     this.date,
     this.assessor,
     this.previous,
@@ -145,19 +143,14 @@ class ClinicalImpression extends DomainResource {
               json['encounter'] as Map<String, dynamic>,
             )
           : null,
-      effectiveXClinicalImpressionClinicalImpression: json[
-                      'effectiveDateTime'] !=
-                  null ||
+      effectiveXClinicalImpression: json['effectiveDateTime'] != null ||
               json['_effectiveDateTime'] != null
-          ? DateTimeEffectiveClinicalImpressionClinicalImpression.fromJson({
+          ? FhirDateTime.fromJson({
               'value': json['effectiveDateTime'],
               '_value': json['_effectiveDateTime'],
             })
-          : json['effectivePeriod'] != null || json['_effectivePeriod'] != null
-              ? PeriodEffectiveClinicalImpressionClinicalImpression.fromJson({
-                  'value': json['effectivePeriod'],
-                  '_value': json['_effectivePeriod'],
-                })
+          : json['effectivePeriod'] != null
+              ? Period.fromJson(json: json['effectivePeriod'])
               : null,
       date: (json['date'] != null || json['_date'] != null)
           ? FhirDateTime.fromJson({
@@ -326,10 +319,9 @@ class ClinicalImpression extends DomainResource {
   /// which the creation of this record is tightly associated.
   final Reference? encounter;
 
-  /// [effectiveXClinicalImpressionClinicalImpression]
+  /// [effectiveXClinicalImpression]
   /// The point in time or period over which the subject was assessed.
-  final EffectiveXClinicalImpressionClinicalImpression?
-      effectiveXClinicalImpressionClinicalImpression;
+  final EffectiveXClinicalImpression? effectiveXClinicalImpression;
 
   /// [date]
   /// Indicates when the documentation of the assessment was complete.
@@ -447,8 +439,7 @@ class ClinicalImpression extends DomainResource {
       json['encounter'] = encounter!.toJson();
     }
 
-    addField('effectiveXClinicalImpressionClinicalImpression',
-        effectiveXClinicalImpressionClinicalImpression);
+    addField('effectiveXClinicalImpression', effectiveXClinicalImpression);
     addField('date', date);
     if (assessor != null) {
       json['assessor'] = assessor!.toJson();
@@ -520,8 +511,7 @@ class ClinicalImpression extends DomainResource {
     FhirString? description,
     Reference? subject,
     Reference? encounter,
-    EffectiveXClinicalImpressionClinicalImpression?
-        effectiveXClinicalImpressionClinicalImpression,
+    EffectiveXClinicalImpression? effectiveXClinicalImpression,
     FhirDateTime? date,
     Reference? assessor,
     Reference? previous,
@@ -555,9 +545,8 @@ class ClinicalImpression extends DomainResource {
       description: description ?? this.description,
       subject: subject ?? this.subject,
       encounter: encounter ?? this.encounter,
-      effectiveXClinicalImpressionClinicalImpression:
-          effectiveXClinicalImpressionClinicalImpression ??
-              this.effectiveXClinicalImpressionClinicalImpression,
+      effectiveXClinicalImpression:
+          effectiveXClinicalImpression ?? this.effectiveXClinicalImpression,
       date: date ?? this.date,
       assessor: assessor ?? this.assessor,
       previous: previous ?? this.previous,

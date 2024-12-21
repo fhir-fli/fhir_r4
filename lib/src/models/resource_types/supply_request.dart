@@ -2,8 +2,6 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-part 'supply_request.g.dart';
-
 /// [SupplyRequest]
 /// A record of a request for a medication, substance or device used in the
 /// healthcare setting.
@@ -24,10 +22,10 @@ class SupplyRequest extends DomainResource {
     this.status,
     this.category,
     this.priority,
-    required this.itemXSupplyRequestSupplyRequest,
+    required this.itemXSupplyRequest,
     required this.quantity,
     this.parameter,
-    this.occurrenceXSupplyRequestSupplyRequest,
+    this.occurrenceXSupplyRequest,
     this.authoredOn,
     this.requester,
     this.supplier,
@@ -123,16 +121,13 @@ class SupplyRequest extends DomainResource {
               '_value': json['_priority'],
             })
           : null,
-      itemXSupplyRequestSupplyRequest: json['itemCodeableConcept'] != null ||
+      itemXSupplyRequest: json['itemCodeableConcept'] != null ||
               json['_itemCodeableConcept'] != null
-          ? CodeableConceptItemSupplyRequestSupplyRequest.fromJson({
+          ? CodeableConcept.fromJson({
               'value': json['itemCodeableConcept'],
               '_value': json['_itemCodeableConcept'],
             })
-          : ReferenceItemSupplyRequestSupplyRequest.fromJson({
-              'value': json['itemReference'],
-              '_value': json['_itemReference'],
-            }),
+          : Reference.fromJson(json: json['itemReference']),
       quantity: Quantity.fromJson(
         json['quantity'] as Map<String, dynamic>,
       ),
@@ -145,26 +140,21 @@ class SupplyRequest extends DomainResource {
               )
               .toList()
           : null,
-      occurrenceXSupplyRequestSupplyRequest:
-          json['occurrenceDateTime'] != null ||
-                  json['_occurrenceDateTime'] != null
-              ? DateTimeOccurrenceSupplyRequestSupplyRequest.fromJson({
-                  'value': json['occurrenceDateTime'],
-                  '_value': json['_occurrenceDateTime'],
+      occurrenceXSupplyRequest: json['occurrenceDateTime'] != null ||
+              json['_occurrenceDateTime'] != null
+          ? FhirDateTime.fromJson({
+              'value': json['occurrenceDateTime'],
+              '_value': json['_occurrenceDateTime'],
+            })
+          : json['occurrencePeriod'] != null ||
+                  json['_occurrencePeriod'] != null
+              ? Period.fromJson({
+                  'value': json['occurrencePeriod'],
+                  '_value': json['_occurrencePeriod'],
                 })
-              : json['occurrencePeriod'] != null ||
-                      json['_occurrencePeriod'] != null
-                  ? PeriodOccurrenceSupplyRequestSupplyRequest.fromJson({
-                      'value': json['occurrencePeriod'],
-                      '_value': json['_occurrencePeriod'],
-                    })
-                  : json['occurrenceTiming'] != null ||
-                          json['_occurrenceTiming'] != null
-                      ? TimingOccurrenceSupplyRequestSupplyRequest.fromJson({
-                          'value': json['occurrenceTiming'],
-                          '_value': json['_occurrenceTiming'],
-                        })
-                      : null,
+              : json['occurrenceTiming'] != null
+                  ? Timing.fromJson(json: json['occurrenceTiming'])
+                  : null,
       authoredOn: (json['authoredOn'] != null || json['_authoredOn'] != null)
           ? FhirDateTime.fromJson({
               'value': json['authoredOn'],
@@ -278,11 +268,11 @@ class SupplyRequest extends DomainResource {
   /// respect to other requests.
   final RequestPriority? priority;
 
-  /// [itemXSupplyRequestSupplyRequest]
+  /// [itemXSupplyRequest]
   /// The item that is requested to be supplied. This is either a link to a
   /// resource representing the details of the item or a code that identifies
   /// the item from a known list.
-  final ItemXSupplyRequestSupplyRequest itemXSupplyRequestSupplyRequest;
+  final ItemXSupplyRequest itemXSupplyRequest;
 
   /// [quantity]
   /// The amount that is being ordered of the indicated item.
@@ -293,10 +283,9 @@ class SupplyRequest extends DomainResource {
   /// indicated item.
   final List<SupplyRequestParameter>? parameter;
 
-  /// [occurrenceXSupplyRequestSupplyRequest]
+  /// [occurrenceXSupplyRequest]
   /// When the request should be fulfilled.
-  final OccurrenceXSupplyRequestSupplyRequest?
-      occurrenceXSupplyRequestSupplyRequest;
+  final OccurrenceXSupplyRequest? occurrenceXSupplyRequest;
 
   /// [authoredOn]
   /// When the request was made.
@@ -372,8 +361,7 @@ class SupplyRequest extends DomainResource {
     }
 
     addField('priority', priority);
-    json['itemXSupplyRequestSupplyRequest'] =
-        itemXSupplyRequestSupplyRequest.toJson();
+    json['itemXSupplyRequest'] = itemXSupplyRequest.toJson();
 
     json['quantity'] = quantity.toJson();
 
@@ -381,8 +369,7 @@ class SupplyRequest extends DomainResource {
       json['parameter'] = parameter!.map((e) => e.toJson()).toList();
     }
 
-    addField('occurrenceXSupplyRequestSupplyRequest',
-        occurrenceXSupplyRequestSupplyRequest);
+    addField('occurrenceXSupplyRequest', occurrenceXSupplyRequest);
     addField('authoredOn', authoredOn);
     if (requester != null) {
       json['requester'] = requester!.toJson();
@@ -428,11 +415,10 @@ class SupplyRequest extends DomainResource {
     SupplyRequestStatus? status,
     CodeableConcept? category,
     RequestPriority? priority,
-    ItemXSupplyRequestSupplyRequest? itemXSupplyRequestSupplyRequest,
+    ItemXSupplyRequest? itemXSupplyRequest,
     Quantity? quantity,
     List<SupplyRequestParameter>? parameter,
-    OccurrenceXSupplyRequestSupplyRequest?
-        occurrenceXSupplyRequestSupplyRequest,
+    OccurrenceXSupplyRequest? occurrenceXSupplyRequest,
     FhirDateTime? authoredOn,
     Reference? requester,
     List<Reference>? supplier,
@@ -458,13 +444,11 @@ class SupplyRequest extends DomainResource {
       status: status ?? this.status,
       category: category ?? this.category,
       priority: priority ?? this.priority,
-      itemXSupplyRequestSupplyRequest: itemXSupplyRequestSupplyRequest ??
-          this.itemXSupplyRequestSupplyRequest,
+      itemXSupplyRequest: itemXSupplyRequest ?? this.itemXSupplyRequest,
       quantity: quantity ?? this.quantity,
       parameter: parameter ?? this.parameter,
-      occurrenceXSupplyRequestSupplyRequest:
-          occurrenceXSupplyRequestSupplyRequest ??
-              this.occurrenceXSupplyRequestSupplyRequest,
+      occurrenceXSupplyRequest:
+          occurrenceXSupplyRequest ?? this.occurrenceXSupplyRequest,
       authoredOn: authoredOn ?? this.authoredOn,
       requester: requester ?? this.requester,
       supplier: supplier ?? this.supplier,
@@ -525,23 +509,23 @@ class SupplyRequestParameter extends BackboneElement {
           : null,
       valueXSupplyRequestParameter: json['valueCodeableConcept'] != null ||
               json['_valueCodeableConcept'] != null
-          ? CodeableConceptValueSupplyRequestParameter.fromJson({
+          ? CodeableConcept.fromJson({
               'value': json['valueCodeableConcept'],
               '_value': json['_valueCodeableConcept'],
             })
           : json['valueQuantity'] != null || json['_valueQuantity'] != null
-              ? QuantityValueSupplyRequestParameter.fromJson({
+              ? Quantity.fromJson({
                   'value': json['valueQuantity'],
                   '_value': json['_valueQuantity'],
                 })
               : json['valueRange'] != null || json['_valueRange'] != null
-                  ? RangeValueSupplyRequestParameter.fromJson({
+                  ? Range.fromJson({
                       'value': json['valueRange'],
                       '_value': json['_valueRange'],
                     })
                   : json['valueBoolean'] != null ||
                           json['_valueBoolean'] != null
-                      ? BooleanValueSupplyRequestParameter.fromJson({
+                      ? FhirBoolean.fromJson({
                           'value': json['valueBoolean'],
                           '_value': json['_valueBoolean'],
                         })

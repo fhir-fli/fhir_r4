@@ -2,8 +2,6 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-part 'citation.g.dart';
-
 /// [Citation]
 /// The Citation Resource enables reference to any knowledge artifact for
 /// purposes of identification and attribution. The Citation Resource
@@ -1271,26 +1269,23 @@ class CitationRelatesTo extends BackboneElement {
           : null,
       targetXCitationRelatesTo:
           json['targetUri'] != null || json['_targetUri'] != null
-              ? UriTargetCitationRelatesTo.fromJson({
+              ? FhirUri.fromJson({
                   'value': json['targetUri'],
                   '_value': json['_targetUri'],
                 })
               : json['targetIdentifier'] != null ||
                       json['_targetIdentifier'] != null
-                  ? IdentifierTargetCitationRelatesTo.fromJson({
+                  ? Identifier.fromJson({
                       'value': json['targetIdentifier'],
                       '_value': json['_targetIdentifier'],
                     })
                   : json['targetReference'] != null ||
                           json['_targetReference'] != null
-                      ? ReferenceTargetCitationRelatesTo.fromJson({
+                      ? Reference.fromJson({
                           'value': json['targetReference'],
                           '_value': json['_targetReference'],
                         })
-                      : AttachmentTargetCitationRelatesTo.fromJson({
-                          'value': json['targetAttachment'],
-                          '_value': json['_targetAttachment'],
-                        }),
+                      : Attachment.fromJson(json: json['targetAttachment']),
     );
   }
 
@@ -2739,28 +2734,23 @@ class CitationRelatesTo1 extends BackboneElement {
           : null,
       targetXCitationRelatesTo:
           json['targetUri'] != null || json['_targetUri'] != null
-              ? UriTargetCitationRelatesTo1.fromJson({
+              ? FhirUri.fromJson({
                   'value': json['targetUri'],
                   '_value': json['_targetUri'],
                 })
               : json['targetIdentifier'] != null ||
                       json['_targetIdentifier'] != null
-                  ? IdentifierTargetCitationRelatesTo1.fromJson({
+                  ? Identifier.fromJson({
                       'value': json['targetIdentifier'],
                       '_value': json['_targetIdentifier'],
                     })
                   : json['targetReference'] != null ||
                           json['_targetReference'] != null
-                      ? ReferenceTargetCitationRelatesTo1.fromJson({
+                      ? Reference.fromJson({
                           'value': json['targetReference'],
                           '_value': json['_targetReference'],
                         })
-                      : AttachmentTargetCitationRelatesTo1.fromJson(
-                          {
-                            'value': json['targetAttachment'],
-                            '_value': json['_targetAttachment'],
-                          },
-                        ),
+                      : Attachment.fromJson(json: json['targetAttachment']),
     );
   }
 
@@ -2816,7 +2806,7 @@ class CitationRelatesTo1 extends BackboneElement {
 
   /// [targetXCitationRelatesTo]
   /// The article or artifact that the cited artifact is related to.
-  final TargetXCitationRelatesTo1 targetXCitationRelatesTo;
+  final TargetXCitationRelatesTo targetXCitationRelatesTo;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2859,7 +2849,7 @@ class CitationRelatesTo1 extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     CodeableConcept? relationshipType,
     List<CodeableConcept>? targetClassifier,
-    TargetXCitationRelatesTo1? targetXCitationRelatesTo,
+    TargetXCitationRelatesTo? targetXCitationRelatesTo,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,

@@ -2,8 +2,6 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-part 'parameters.g.dart';
-
 /// [Parameters]
 /// This resource is a non-persisted resource used to pass information into
 /// and back from an [operation](operations.html). It has no other use, and
@@ -205,58 +203,58 @@ class ParametersParameter extends BackboneElement {
       }),
       valueXParametersParameter: json['valueBase64Binary'] != null ||
               json['_valueBase64Binary'] != null
-          ? Base64BinaryValueParametersParameter.fromJson({
+          ? FhirBase64Binary.fromJson({
               'value': json['valueBase64Binary'],
               '_value': json['_valueBase64Binary'],
             })
           : json['valueBoolean'] != null || json['_valueBoolean'] != null
-              ? BooleanValueParametersParameter.fromJson({
+              ? FhirBoolean.fromJson({
                   'value': json['valueBoolean'],
                   '_value': json['_valueBoolean'],
                 })
               : json['valueCanonical'] != null ||
                       json['_valueCanonical'] != null
-                  ? CanonicalValueParametersParameter.fromJson({
+                  ? FhirCanonical.fromJson({
                       'value': json['valueCanonical'],
                       '_value': json['_valueCanonical'],
                     })
                   : json['valueCode'] != null || json['_valueCode'] != null
-                      ? CodeValueParametersParameter.fromJson({
+                      ? FhirCode.fromJson({
                           'value': json['valueCode'],
                           '_value': json['_valueCode'],
                         })
                       : json['valueDate'] != null || json['_valueDate'] != null
-                          ? DateValueParametersParameter.fromJson({
+                          ? FhirDate.fromJson({
                               'value': json['valueDate'],
                               '_value': json['_valueDate'],
                             })
                           : json['valueDateTime'] != null ||
                                   json['_valueDateTime'] != null
-                              ? DateTimeValueParametersParameter.fromJson({
+                              ? FhirDateTime.fromJson({
                                   'value': json['valueDateTime'],
                                   '_value': json['_valueDateTime'],
                                 })
                               : json['valueDecimal'] != null ||
                                       json['_valueDecimal'] != null
-                                  ? DecimalValueParametersParameter.fromJson({
+                                  ? FhirDecimal.fromJson({
                                       'value': json['valueDecimal'],
                                       '_value': json['_valueDecimal'],
                                     })
                                   : json['valueId'] != null ||
                                           json['_valueId'] != null
-                                      ? IdValueParametersParameter.fromJson({
+                                      ? FhirId.fromJson({
                                           'value': json['valueId'],
                                           '_value': json['_valueId'],
                                         })
                                       : json['valueInstant'] != null ||
                                               json['_valueInstant'] != null
-                                          ? InstantValueParametersParameter.fromJson({
+                                          ? FhirInstant.fromJson({
                                               'value': json['valueInstant'],
                                               '_value': json['_valueInstant'],
                                             })
                                           : json['valueInteger'] != null ||
                                                   json['_valueInteger'] != null
-                                              ? IntegerValueParametersParameter.fromJson({
+                                              ? FhirInteger.fromJson({
                                                   'value': json['valueInteger'],
                                                   '_value':
                                                       json['_valueInteger'],
@@ -264,7 +262,7 @@ class ParametersParameter extends BackboneElement {
                                               : json['valueMarkdown'] != null ||
                                                       json['_valueMarkdown'] !=
                                                           null
-                                                  ? MarkdownValueParametersParameter.fromJson({
+                                                  ? FhirMarkdown.fromJson({
                                                       'value':
                                                           json['valueMarkdown'],
                                                       '_value': json[
@@ -273,7 +271,7 @@ class ParametersParameter extends BackboneElement {
                                                   : json['valueOid'] != null ||
                                                           json['_valueOid'] !=
                                                               null
-                                                      ? OidValueParametersParameter.fromJson({
+                                                      ? FhirOid.fromJson({
                                                           'value':
                                                               json['valueOid'],
                                                           '_value':
@@ -283,7 +281,7 @@ class ParametersParameter extends BackboneElement {
                                                                   null ||
                                                               json['_valuePositiveInt'] !=
                                                                   null
-                                                          ? PositiveIntValueParametersParameter.fromJson({
+                                                          ? FhirPositiveInt.fromJson({
                                                               'value': json[
                                                                   'valuePositiveInt'],
                                                               '_value': json[
@@ -293,7 +291,7 @@ class ParametersParameter extends BackboneElement {
                                                                       null ||
                                                                   json['_valueString'] !=
                                                                       null
-                                                              ? StringValueParametersParameter.fromJson({
+                                                              ? FhirString.fromJson({
                                                                   'value': json[
                                                                       'valueString'],
                                                                   '_value': json[
@@ -301,191 +299,192 @@ class ParametersParameter extends BackboneElement {
                                                                 })
                                                               : json['valueTime'] !=
                                                                           null ||
-                                                                      json['_valueTime'] != null
-                                                                  ? TimeValueParametersParameter.fromJson({
+                                                                      json['_valueTime'] !=
+                                                                          null
+                                                                  ? FhirTime.fromJson({
                                                                       'value': json[
                                                                           'valueTime'],
                                                                       '_value':
                                                                           json[
                                                                               '_valueTime'],
                                                                     })
-                                                                  : json['valueUnsignedInt'] != null || json['_valueUnsignedInt'] != null
-                                                                      ? UnsignedIntValueParametersParameter.fromJson({
+                                                                  : json['valueUnsignedInt'] !=
+                                                                              null ||
+                                                                          json['_valueUnsignedInt'] !=
+                                                                              null
+                                                                      ? FhirUnsignedInt.fromJson({
                                                                           'value':
                                                                               json['valueUnsignedInt'],
                                                                           '_value':
                                                                               json['_valueUnsignedInt'],
                                                                         })
                                                                       : json['valueUri'] != null || json['_valueUri'] != null
-                                                                          ? UriValueParametersParameter.fromJson({
+                                                                          ? FhirUri.fromJson({
                                                                               'value': json['valueUri'],
                                                                               '_value': json['_valueUri'],
                                                                             })
                                                                           : json['valueUrl'] != null || json['_valueUrl'] != null
-                                                                              ? UrlValueParametersParameter.fromJson({
+                                                                              ? FhirUrl.fromJson({
                                                                                   'value': json['valueUrl'],
                                                                                   '_value': json['_valueUrl'],
                                                                                 })
                                                                               : json['valueUuid'] != null || json['_valueUuid'] != null
-                                                                                  ? UuidValueParametersParameter.fromJson({
+                                                                                  ? FhirUuid.fromJson({
                                                                                       'value': json['valueUuid'],
                                                                                       '_value': json['_valueUuid'],
                                                                                     })
                                                                                   : json['valueAddress'] != null || json['_valueAddress'] != null
-                                                                                      ? AddressValueParametersParameter.fromJson({
+                                                                                      ? Address.fromJson({
                                                                                           'value': json['valueAddress'],
                                                                                           '_value': json['_valueAddress'],
                                                                                         })
                                                                                       : json['valueAge'] != null || json['_valueAge'] != null
-                                                                                          ? AgeValueParametersParameter.fromJson({
+                                                                                          ? Age.fromJson({
                                                                                               'value': json['valueAge'],
                                                                                               '_value': json['_valueAge'],
                                                                                             })
                                                                                           : json['valueAnnotation'] != null || json['_valueAnnotation'] != null
-                                                                                              ? AnnotationValueParametersParameter.fromJson({
+                                                                                              ? Annotation.fromJson({
                                                                                                   'value': json['valueAnnotation'],
                                                                                                   '_value': json['_valueAnnotation'],
                                                                                                 })
                                                                                               : json['valueAttachment'] != null || json['_valueAttachment'] != null
-                                                                                                  ? AttachmentValueParametersParameter.fromJson({
+                                                                                                  ? Attachment.fromJson({
                                                                                                       'value': json['valueAttachment'],
                                                                                                       '_value': json['_valueAttachment'],
                                                                                                     })
                                                                                                   : json['valueCodeableConcept'] != null || json['_valueCodeableConcept'] != null
-                                                                                                      ? CodeableConceptValueParametersParameter.fromJson({
+                                                                                                      ? CodeableConcept.fromJson({
                                                                                                           'value': json['valueCodeableConcept'],
                                                                                                           '_value': json['_valueCodeableConcept'],
                                                                                                         })
                                                                                                       : json['valueCoding'] != null || json['_valueCoding'] != null
-                                                                                                          ? CodingValueParametersParameter.fromJson({
+                                                                                                          ? Coding.fromJson({
                                                                                                               'value': json['valueCoding'],
                                                                                                               '_value': json['_valueCoding'],
                                                                                                             })
                                                                                                           : json['valueContactPoint'] != null || json['_valueContactPoint'] != null
-                                                                                                              ? ContactPointValueParametersParameter.fromJson({
+                                                                                                              ? ContactPoint.fromJson({
                                                                                                                   'value': json['valueContactPoint'],
                                                                                                                   '_value': json['_valueContactPoint'],
                                                                                                                 })
                                                                                                               : json['valueCount'] != null || json['_valueCount'] != null
-                                                                                                                  ? CountValueParametersParameter.fromJson({
+                                                                                                                  ? Count.fromJson({
                                                                                                                       'value': json['valueCount'],
                                                                                                                       '_value': json['_valueCount'],
                                                                                                                     })
                                                                                                                   : json['valueDistance'] != null || json['_valueDistance'] != null
-                                                                                                                      ? DistanceValueParametersParameter.fromJson({
+                                                                                                                      ? Distance.fromJson({
                                                                                                                           'value': json['valueDistance'],
                                                                                                                           '_value': json['_valueDistance'],
                                                                                                                         })
                                                                                                                       : json['valueDuration'] != null || json['_valueDuration'] != null
-                                                                                                                          ? DurationValueParametersParameter.fromJson({
+                                                                                                                          ? FhirDuration.fromJson({
                                                                                                                               'value': json['valueDuration'],
                                                                                                                               '_value': json['_valueDuration'],
                                                                                                                             })
                                                                                                                           : json['valueHumanName'] != null || json['_valueHumanName'] != null
-                                                                                                                              ? HumanNameValueParametersParameter.fromJson({
+                                                                                                                              ? HumanName.fromJson({
                                                                                                                                   'value': json['valueHumanName'],
                                                                                                                                   '_value': json['_valueHumanName'],
                                                                                                                                 })
                                                                                                                               : json['valueIdentifier'] != null || json['_valueIdentifier'] != null
-                                                                                                                                  ? IdentifierValueParametersParameter.fromJson({
+                                                                                                                                  ? Identifier.fromJson({
                                                                                                                                       'value': json['valueIdentifier'],
                                                                                                                                       '_value': json['_valueIdentifier'],
                                                                                                                                     })
                                                                                                                                   : json['valueMoney'] != null || json['_valueMoney'] != null
-                                                                                                                                      ? MoneyValueParametersParameter.fromJson({
+                                                                                                                                      ? Money.fromJson({
                                                                                                                                           'value': json['valueMoney'],
                                                                                                                                           '_value': json['_valueMoney'],
                                                                                                                                         })
                                                                                                                                       : json['valuePeriod'] != null || json['_valuePeriod'] != null
-                                                                                                                                          ? PeriodValueParametersParameter.fromJson({
+                                                                                                                                          ? Period.fromJson({
                                                                                                                                               'value': json['valuePeriod'],
                                                                                                                                               '_value': json['_valuePeriod'],
                                                                                                                                             })
                                                                                                                                           : json['valueQuantity'] != null || json['_valueQuantity'] != null
-                                                                                                                                              ? QuantityValueParametersParameter.fromJson({
+                                                                                                                                              ? Quantity.fromJson({
                                                                                                                                                   'value': json['valueQuantity'],
                                                                                                                                                   '_value': json['_valueQuantity'],
                                                                                                                                                 })
                                                                                                                                               : json['valueRange'] != null || json['_valueRange'] != null
-                                                                                                                                                  ? RangeValueParametersParameter.fromJson({
+                                                                                                                                                  ? Range.fromJson({
                                                                                                                                                       'value': json['valueRange'],
                                                                                                                                                       '_value': json['_valueRange'],
                                                                                                                                                     })
                                                                                                                                                   : json['valueRatio'] != null || json['_valueRatio'] != null
-                                                                                                                                                      ? RatioValueParametersParameter.fromJson({
+                                                                                                                                                      ? Ratio.fromJson({
                                                                                                                                                           'value': json['valueRatio'],
                                                                                                                                                           '_value': json['_valueRatio'],
                                                                                                                                                         })
                                                                                                                                                       : json['valueReference'] != null || json['_valueReference'] != null
-                                                                                                                                                          ? ReferenceValueParametersParameter.fromJson({
+                                                                                                                                                          ? Reference.fromJson({
                                                                                                                                                               'value': json['valueReference'],
                                                                                                                                                               '_value': json['_valueReference'],
                                                                                                                                                             })
                                                                                                                                                           : json['valueSampledData'] != null || json['_valueSampledData'] != null
-                                                                                                                                                              ? SampledDataValueParametersParameter.fromJson({
+                                                                                                                                                              ? SampledData.fromJson({
                                                                                                                                                                   'value': json['valueSampledData'],
                                                                                                                                                                   '_value': json['_valueSampledData'],
                                                                                                                                                                 })
                                                                                                                                                               : json['valueSignature'] != null || json['_valueSignature'] != null
-                                                                                                                                                                  ? SignatureValueParametersParameter.fromJson({
+                                                                                                                                                                  ? Signature.fromJson({
                                                                                                                                                                       'value': json['valueSignature'],
                                                                                                                                                                       '_value': json['_valueSignature'],
                                                                                                                                                                     })
                                                                                                                                                                   : json['valueTiming'] != null || json['_valueTiming'] != null
-                                                                                                                                                                      ? TimingValueParametersParameter.fromJson({
+                                                                                                                                                                      ? Timing.fromJson({
                                                                                                                                                                           'value': json['valueTiming'],
                                                                                                                                                                           '_value': json['_valueTiming'],
                                                                                                                                                                         })
                                                                                                                                                                       : json['valueContactDetail'] != null || json['_valueContactDetail'] != null
-                                                                                                                                                                          ? ContactDetailValueParametersParameter.fromJson({
+                                                                                                                                                                          ? ContactDetail.fromJson({
                                                                                                                                                                               'value': json['valueContactDetail'],
                                                                                                                                                                               '_value': json['_valueContactDetail'],
                                                                                                                                                                             })
                                                                                                                                                                           : json['valueContributor'] != null || json['_valueContributor'] != null
-                                                                                                                                                                              ? ContributorValueParametersParameter.fromJson({
+                                                                                                                                                                              ? Contributor.fromJson({
                                                                                                                                                                                   'value': json['valueContributor'],
                                                                                                                                                                                   '_value': json['_valueContributor'],
                                                                                                                                                                                 })
                                                                                                                                                                               : json['valueDataRequirement'] != null || json['_valueDataRequirement'] != null
-                                                                                                                                                                                  ? DataRequirementValueParametersParameter.fromJson({
+                                                                                                                                                                                  ? DataRequirement.fromJson({
                                                                                                                                                                                       'value': json['valueDataRequirement'],
                                                                                                                                                                                       '_value': json['_valueDataRequirement'],
                                                                                                                                                                                     })
                                                                                                                                                                                   : json['valueExpression'] != null || json['_valueExpression'] != null
-                                                                                                                                                                                      ? ExpressionValueParametersParameter.fromJson({
+                                                                                                                                                                                      ? FhirExpression.fromJson({
                                                                                                                                                                                           'value': json['valueExpression'],
                                                                                                                                                                                           '_value': json['_valueExpression'],
                                                                                                                                                                                         })
                                                                                                                                                                                       : json['valueParameterDefinition'] != null || json['_valueParameterDefinition'] != null
-                                                                                                                                                                                          ? ParameterDefinitionValueParametersParameter.fromJson({
+                                                                                                                                                                                          ? ParameterDefinition.fromJson({
                                                                                                                                                                                               'value': json['valueParameterDefinition'],
                                                                                                                                                                                               '_value': json['_valueParameterDefinition'],
                                                                                                                                                                                             })
                                                                                                                                                                                           : json['valueRelatedArtifact'] != null || json['_valueRelatedArtifact'] != null
-                                                                                                                                                                                              ? RelatedArtifactValueParametersParameter.fromJson({
+                                                                                                                                                                                              ? RelatedArtifact.fromJson({
                                                                                                                                                                                                   'value': json['valueRelatedArtifact'],
                                                                                                                                                                                                   '_value': json['_valueRelatedArtifact'],
                                                                                                                                                                                                 })
                                                                                                                                                                                               : json['valueTriggerDefinition'] != null || json['_valueTriggerDefinition'] != null
-                                                                                                                                                                                                  ? TriggerDefinitionValueParametersParameter.fromJson({
+                                                                                                                                                                                                  ? TriggerDefinition.fromJson({
                                                                                                                                                                                                       'value': json['valueTriggerDefinition'],
                                                                                                                                                                                                       '_value': json['_valueTriggerDefinition'],
                                                                                                                                                                                                     })
                                                                                                                                                                                                   : json['valueUsageContext'] != null || json['_valueUsageContext'] != null
-                                                                                                                                                                                                      ? UsageContextValueParametersParameter.fromJson({
+                                                                                                                                                                                                      ? UsageContext.fromJson({
                                                                                                                                                                                                           'value': json['valueUsageContext'],
                                                                                                                                                                                                           '_value': json['_valueUsageContext'],
                                                                                                                                                                                                         })
                                                                                                                                                                                                       : json['valueDosage'] != null || json['_valueDosage'] != null
-                                                                                                                                                                                                          ? DosageValueParametersParameter.fromJson({
+                                                                                                                                                                                                          ? Dosage.fromJson({
                                                                                                                                                                                                               'value': json['valueDosage'],
                                                                                                                                                                                                               '_value': json['_valueDosage'],
                                                                                                                                                                                                             })
-                                                                                                                                                                                                          : json['valueMeta'] != null || json['_valueMeta'] != null
-                                                                                                                                                                                                              ? MetaValueParametersParameter.fromJson({
-                                                                                                                                                                                                                  'value': json['valueMeta'],
-                                                                                                                                                                                                                  '_value': json['_valueMeta'],
-                                                                                                                                                                                                                })
+                                                                                                                                                                                                          : json['valueMeta'] != null
+                                                                                                                                                                                                              ? FhirMeta.fromJson(json: json['valueMeta'])
                                                                                                                                                                                                               : null,
       resource: json['resource'] != null
           ? Resource.fromJson(

@@ -2,8 +2,6 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-part 'medication_request.g.dart';
-
 /// [MedicationRequest]
 /// An order or request for both supply of the medication and the
 /// instructions for administration of the medication to a patient. The
@@ -31,8 +29,8 @@ class MedicationRequest extends DomainResource {
     this.category,
     this.priority,
     this.doNotPerform,
-    this.reportedXMedicationRequestMedicationRequest,
-    required this.medicationXMedicationRequestMedicationRequest,
+    this.reportedXMedicationRequest,
+    required this.medicationXMedicationRequest,
     required this.subject,
     this.encounter,
     this.supportingInformation,
@@ -162,32 +160,22 @@ class MedicationRequest extends DomainResource {
                   '_value': json['_doNotPerform'],
                 })
               : null,
-      reportedXMedicationRequestMedicationRequest: json['reportedBoolean'] !=
-                  null ||
-              json['_reportedBoolean'] != null
-          ? BooleanReportedMedicationRequestMedicationRequest.fromJson({
-              'value': json['reportedBoolean'],
-              '_value': json['_reportedBoolean'],
+      reportedXMedicationRequest:
+          json['reportedBoolean'] != null || json['_reportedBoolean'] != null
+              ? FhirBoolean.fromJson({
+                  'value': json['reportedBoolean'],
+                  '_value': json['_reportedBoolean'],
+                })
+              : json['reportedReference'] != null
+                  ? Reference.fromJson(json: json['reportedReference'])
+                  : null,
+      medicationXMedicationRequest: json['medicationCodeableConcept'] != null ||
+              json['_medicationCodeableConcept'] != null
+          ? CodeableConcept.fromJson({
+              'value': json['medicationCodeableConcept'],
+              '_value': json['_medicationCodeableConcept'],
             })
-          : json['reportedReference'] != null ||
-                  json['_reportedReference'] != null
-              ? ReferenceReportedMedicationRequestMedicationRequest.fromJson({
-                  'value': json['reportedReference'],
-                  '_value': json['_reportedReference'],
-                })
-              : null,
-      medicationXMedicationRequestMedicationRequest:
-          json['medicationCodeableConcept'] != null ||
-                  json['_medicationCodeableConcept'] != null
-              ? CodeableConceptMedicationMedicationRequestMedicationRequest
-                  .fromJson({
-                  'value': json['medicationCodeableConcept'],
-                  '_value': json['_medicationCodeableConcept'],
-                })
-              : ReferenceMedicationMedicationRequestMedicationRequest.fromJson({
-                  'value': json['medicationReference'],
-                  '_value': json['_medicationReference'],
-                }),
+          : Reference.fromJson(json: json['medicationReference']),
       subject: Reference.fromJson(
         json['subject'] as Map<String, dynamic>,
       ),
@@ -421,20 +409,18 @@ class MedicationRequest extends DomainResource {
   /// request not to occur.
   final FhirBoolean? doNotPerform;
 
-  /// [reportedXMedicationRequestMedicationRequest]
+  /// [reportedXMedicationRequest]
   /// Indicates if this record was captured as a secondary 'reported' record
   /// rather than as an original primary source-of-truth record. It may also
   /// indicate the source of the report.
-  final ReportedXMedicationRequestMedicationRequest?
-      reportedXMedicationRequestMedicationRequest;
+  final ReportedXMedicationRequest? reportedXMedicationRequest;
 
-  /// [medicationXMedicationRequestMedicationRequest]
+  /// [medicationXMedicationRequest]
   /// Identifies the medication being requested. This is a link to a resource
   /// that represents the medication which may be the details of the
   /// medication or simply an attribute carrying a code that identifies the
   /// medication from a known list of medications.
-  final MedicationXMedicationRequestMedicationRequest
-      medicationXMedicationRequestMedicationRequest;
+  final MedicationXMedicationRequest medicationXMedicationRequest;
 
   /// [subject]
   /// A link to a resource representing the person or set of individuals to
@@ -614,10 +600,9 @@ class MedicationRequest extends DomainResource {
 
     addField('priority', priority);
     addField('doNotPerform', doNotPerform);
-    addField('reportedXMedicationRequestMedicationRequest',
-        reportedXMedicationRequestMedicationRequest);
-    json['medicationXMedicationRequestMedicationRequest'] =
-        medicationXMedicationRequestMedicationRequest.toJson();
+    addField('reportedXMedicationRequest', reportedXMedicationRequest);
+    json['medicationXMedicationRequest'] =
+        medicationXMedicationRequest.toJson();
 
     json['subject'] = subject.toJson();
 
@@ -741,10 +726,8 @@ class MedicationRequest extends DomainResource {
     List<CodeableConcept>? category,
     RequestPriority? priority,
     FhirBoolean? doNotPerform,
-    ReportedXMedicationRequestMedicationRequest?
-        reportedXMedicationRequestMedicationRequest,
-    MedicationXMedicationRequestMedicationRequest?
-        medicationXMedicationRequestMedicationRequest,
+    ReportedXMedicationRequest? reportedXMedicationRequest,
+    MedicationXMedicationRequest? medicationXMedicationRequest,
     Reference? subject,
     Reference? encounter,
     List<Reference>? supportingInformation,
@@ -789,12 +772,10 @@ class MedicationRequest extends DomainResource {
       category: category ?? this.category,
       priority: priority ?? this.priority,
       doNotPerform: doNotPerform ?? this.doNotPerform,
-      reportedXMedicationRequestMedicationRequest:
-          reportedXMedicationRequestMedicationRequest ??
-              this.reportedXMedicationRequestMedicationRequest,
-      medicationXMedicationRequestMedicationRequest:
-          medicationXMedicationRequestMedicationRequest ??
-              this.medicationXMedicationRequestMedicationRequest,
+      reportedXMedicationRequest:
+          reportedXMedicationRequest ?? this.reportedXMedicationRequest,
+      medicationXMedicationRequest:
+          medicationXMedicationRequest ?? this.medicationXMedicationRequest,
       subject: subject ?? this.subject,
       encounter: encounter ?? this.encounter,
       supportingInformation:
@@ -1289,14 +1270,11 @@ class MedicationRequestSubstitution extends BackboneElement {
           : null,
       allowedXMedicationRequestSubstitution:
           json['allowedBoolean'] != null || json['_allowedBoolean'] != null
-              ? BooleanAllowedMedicationRequestSubstitution.fromJson({
+              ? FhirBoolean.fromJson({
                   'value': json['allowedBoolean'],
                   '_value': json['_allowedBoolean'],
                 })
-              : CodeableConceptAllowedMedicationRequestSubstitution.fromJson({
-                  'value': json['allowedCodeableConcept'],
-                  '_value': json['_allowedCodeableConcept'],
-                }),
+              : CodeableConcept.fromJson(json: json['allowedCodeableConcept']),
       reason: json['reason'] != null
           ? CodeableConcept.fromJson(
               json['reason'] as Map<String, dynamic>,

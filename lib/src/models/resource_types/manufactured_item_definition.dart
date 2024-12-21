@@ -2,8 +2,6 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-part 'manufactured_item_definition.g.dart';
-
 /// [ManufacturedItemDefinition]
 /// The definition and characteristics of a medicinal manufactured item,
 /// such as a tablet or capsule, as contained in a packaged medicinal
@@ -370,34 +368,28 @@ class ManufacturedItemDefinitionProperty extends BackboneElement {
       valueXManufacturedItemDefinitionProperty: json['valueCodeableConcept'] !=
                   null ||
               json['_valueCodeableConcept'] != null
-          ? CodeableConceptValueManufacturedItemDefinitionProperty.fromJson({
+          ? CodeableConcept.fromJson({
               'value': json['valueCodeableConcept'],
               '_value': json['_valueCodeableConcept'],
             })
           : json['valueQuantity'] != null || json['_valueQuantity'] != null
-              ? QuantityValueManufacturedItemDefinitionProperty.fromJson({
+              ? Quantity.fromJson({
                   'value': json['valueQuantity'],
                   '_value': json['_valueQuantity'],
                 })
               : json['valueDate'] != null || json['_valueDate'] != null
-                  ? DateValueManufacturedItemDefinitionProperty.fromJson({
+                  ? FhirDate.fromJson({
                       'value': json['valueDate'],
                       '_value': json['_valueDate'],
                     })
                   : json['valueBoolean'] != null ||
                           json['_valueBoolean'] != null
-                      ? BooleanValueManufacturedItemDefinitionProperty
-                          .fromJson({
+                      ? FhirBoolean.fromJson({
                           'value': json['valueBoolean'],
                           '_value': json['_valueBoolean'],
                         })
-                      : json['valueAttachment'] != null ||
-                              json['_valueAttachment'] != null
-                          ? AttachmentValueManufacturedItemDefinitionProperty
-                              .fromJson({
-                              'value': json['valueAttachment'],
-                              '_value': json['_valueAttachment'],
-                            })
+                      : json['valueAttachment'] != null
+                          ? Attachment.fromJson(json: json['valueAttachment'])
                           : null,
     );
   }

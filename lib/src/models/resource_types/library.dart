@@ -2,8 +2,6 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-part 'library.g.dart';
-
 /// [Library]
 /// The Library resource is a general-purpose container for knowledge asset
 /// definitions. It can be used to describe and expose existing knowledge
@@ -31,7 +29,7 @@ class Library extends CanonicalResource {
     required super.status,
     super.experimental,
     required this.type,
-    this.subjectXLibraryLibrary,
+    this.subjectXLibrary,
     super.date,
     super.publisher,
     super.contact,
@@ -168,18 +166,14 @@ class Library extends CanonicalResource {
       type: CodeableConcept.fromJson(
         json['type'] as Map<String, dynamic>,
       ),
-      subjectXLibraryLibrary: json['subjectCodeableConcept'] != null ||
+      subjectXLibrary: json['subjectCodeableConcept'] != null ||
               json['_subjectCodeableConcept'] != null
-          ? CodeableConceptSubjectLibraryLibrary.fromJson({
+          ? CodeableConcept.fromJson({
               'value': json['subjectCodeableConcept'],
               '_value': json['_subjectCodeableConcept'],
             })
-          : json['subjectReference'] != null ||
-                  json['_subjectReference'] != null
-              ? ReferenceSubjectLibraryLibrary.fromJson({
-                  'value': json['subjectReference'],
-                  '_value': json['_subjectReference'],
-                })
+          : json['subjectReference'] != null
+              ? Reference.fromJson(json: json['subjectReference'])
               : null,
       date: (json['date'] != null || json['_date'] != null)
           ? FhirDateTime.fromJson({
@@ -417,10 +411,10 @@ class Library extends CanonicalResource {
   /// Definition, Asset Collection, or Module Definition.
   final CodeableConcept type;
 
-  /// [subjectXLibraryLibrary]
+  /// [subjectXLibrary]
   /// A code or group definition that describes the intended subject of the
   /// contents of the library.
-  final SubjectXLibraryLibrary? subjectXLibraryLibrary;
+  final SubjectXLibrary? subjectXLibrary;
 
   /// [purpose]
   /// Explanation of why this library is needed and why it has been designed
@@ -551,8 +545,8 @@ class Library extends CanonicalResource {
     addField('experimental', experimental);
     json['type'] = type.toJson();
 
-    if (subjectXLibraryLibrary != null) {
-      json['subjectXLibraryLibrary'] = subjectXLibraryLibrary!.toJson();
+    if (subjectXLibrary != null) {
+      json['subjectXLibrary'] = subjectXLibrary!.toJson();
     }
 
     addField('date', date);
@@ -641,7 +635,7 @@ class Library extends CanonicalResource {
     PublicationStatus? status,
     FhirBoolean? experimental,
     CodeableConcept? type,
-    SubjectXLibraryLibrary? subjectXLibraryLibrary,
+    SubjectXLibrary? subjectXLibrary,
     FhirDateTime? date,
     FhirString? publisher,
     List<ContactDetail>? contact,
@@ -686,8 +680,7 @@ class Library extends CanonicalResource {
       status: status ?? this.status,
       experimental: experimental ?? this.experimental,
       type: type ?? this.type,
-      subjectXLibraryLibrary:
-          subjectXLibraryLibrary ?? this.subjectXLibraryLibrary,
+      subjectXLibrary: subjectXLibrary ?? this.subjectXLibrary,
       date: date ?? this.date,
       publisher: publisher ?? this.publisher,
       contact: contact ?? this.contact,

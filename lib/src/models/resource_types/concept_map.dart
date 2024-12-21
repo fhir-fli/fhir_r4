@@ -2,8 +2,6 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-part 'concept_map.g.dart';
-
 /// [ConceptMap]
 /// A statement of relationships from one set of concepts to one or more
 /// other concepts - either concepts in code systems, or data element/data
@@ -36,8 +34,8 @@ class ConceptMap extends CanonicalResource {
     super.jurisdiction,
     this.purpose,
     this.copyright,
-    this.sourceXConceptMapConceptMap,
-    this.targetXConceptMapConceptMap,
+    this.sourceXConceptMap,
+    this.targetXConceptMap,
     this.group,
   }) : super(
           resourceType: R4ResourceType.ConceptMap,
@@ -198,26 +196,24 @@ class ConceptMap extends CanonicalResource {
               '_value': json['_copyright'],
             })
           : null,
-      sourceXConceptMapConceptMap: json['sourceUri'] != null ||
-              json['_sourceUri'] != null
-          ? UriSourceConceptMapConceptMap.fromJson({
+      sourceXConceptMap: json['sourceUri'] != null || json['_sourceUri'] != null
+          ? FhirUri.fromJson({
               'value': json['sourceUri'],
               '_value': json['_sourceUri'],
             })
           : json['sourceCanonical'] != null || json['_sourceCanonical'] != null
-              ? CanonicalSourceConceptMapConceptMap.fromJson({
+              ? FhirCanonical.fromJson({
                   'value': json['sourceCanonical'],
                   '_value': json['_sourceCanonical'],
                 })
               : null,
-      targetXConceptMapConceptMap: json['targetUri'] != null ||
-              json['_targetUri'] != null
-          ? UriTargetConceptMapConceptMap.fromJson({
+      targetXConceptMap: json['targetUri'] != null || json['_targetUri'] != null
+          ? FhirUri.fromJson({
               'value': json['targetUri'],
               '_value': json['_targetUri'],
             })
           : json['targetCanonical'] != null || json['_targetCanonical'] != null
-              ? CanonicalTargetConceptMapConceptMap.fromJson({
+              ? FhirCanonical.fromJson({
                   'value': json['targetCanonical'],
                   '_value': json['_targetCanonical'],
                 })
@@ -303,17 +299,17 @@ class ConceptMap extends CanonicalResource {
   /// publishing of the concept map.
   final FhirMarkdown? copyright;
 
-  /// [sourceXConceptMapConceptMap]
+  /// [sourceXConceptMap]
   /// Identifier for the source value set that contains the concepts that are
   /// being mapped and provides context for the mappings.
-  final SourceXConceptMapConceptMap? sourceXConceptMapConceptMap;
+  final SourceXConceptMap? sourceXConceptMap;
 
-  /// [targetXConceptMapConceptMap]
+  /// [targetXConceptMap]
   /// The target value set provides context for the mappings. Note that the
   /// mapping is made between concepts, not between value sets, but the value
   /// set provides important context about how the concept mapping choices
   /// are made.
-  final TargetXConceptMapConceptMap? targetXConceptMapConceptMap;
+  final TargetXConceptMap? targetXConceptMap;
 
   /// [group]
   /// A group of mappings that all have the same source and target system.
@@ -382,8 +378,8 @@ class ConceptMap extends CanonicalResource {
 
     addField('purpose', purpose);
     addField('copyright', copyright);
-    addField('sourceXConceptMapConceptMap', sourceXConceptMapConceptMap);
-    addField('targetXConceptMapConceptMap', targetXConceptMapConceptMap);
+    addField('sourceXConceptMap', sourceXConceptMap);
+    addField('targetXConceptMap', targetXConceptMap);
     if (group != null && group!.isNotEmpty) {
       json['group'] = group!.map((e) => e.toJson()).toList();
     }
@@ -418,8 +414,8 @@ class ConceptMap extends CanonicalResource {
     List<CodeableConcept>? jurisdiction,
     FhirMarkdown? purpose,
     FhirMarkdown? copyright,
-    SourceXConceptMapConceptMap? sourceXConceptMapConceptMap,
-    TargetXConceptMapConceptMap? targetXConceptMapConceptMap,
+    SourceXConceptMap? sourceXConceptMap,
+    TargetXConceptMap? targetXConceptMap,
     List<ConceptMapGroup>? group,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -450,10 +446,8 @@ class ConceptMap extends CanonicalResource {
       jurisdiction: jurisdiction ?? this.jurisdiction,
       purpose: purpose ?? this.purpose,
       copyright: copyright ?? this.copyright,
-      sourceXConceptMapConceptMap:
-          sourceXConceptMapConceptMap ?? this.sourceXConceptMapConceptMap,
-      targetXConceptMapConceptMap:
-          targetXConceptMapConceptMap ?? this.targetXConceptMapConceptMap,
+      sourceXConceptMap: sourceXConceptMap ?? this.sourceXConceptMap,
+      targetXConceptMap: targetXConceptMap ?? this.targetXConceptMap,
       group: group ?? this.group,
     );
   }

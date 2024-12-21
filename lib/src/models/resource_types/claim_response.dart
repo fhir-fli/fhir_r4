@@ -2,8 +2,6 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-part 'claim_response.g.dart';
-
 /// [ClaimResponse]
 /// This resource provides the adjudication details from the processing of
 /// a Claim resource.
@@ -1538,35 +1536,28 @@ class ClaimResponseAddItem extends BackboneElement {
               )
               .toList()
           : null,
-      servicedXClaimResponseAddItem: json['servicedDate'] != null ||
-              json['_servicedDate'] != null
-          ? DateServicedClaimResponseAddItem.fromJson({
-              'value': json['servicedDate'],
-              '_value': json['_servicedDate'],
-            })
-          : json['servicedPeriod'] != null || json['_servicedPeriod'] != null
-              ? PeriodServicedClaimResponseAddItem.fromJson({
-                  'value': json['servicedPeriod'],
-                  '_value': json['_servicedPeriod'],
+      servicedXClaimResponseAddItem:
+          json['servicedDate'] != null || json['_servicedDate'] != null
+              ? FhirDate.fromJson({
+                  'value': json['servicedDate'],
+                  '_value': json['_servicedDate'],
                 })
-              : null,
+              : json['servicedPeriod'] != null
+                  ? Period.fromJson(json: json['servicedPeriod'])
+                  : null,
       locationXClaimResponseAddItem: json['locationCodeableConcept'] != null ||
               json['_locationCodeableConcept'] != null
-          ? CodeableConceptLocationClaimResponseAddItem.fromJson({
+          ? CodeableConcept.fromJson({
               'value': json['locationCodeableConcept'],
               '_value': json['_locationCodeableConcept'],
             })
           : json['locationAddress'] != null || json['_locationAddress'] != null
-              ? AddressLocationClaimResponseAddItem.fromJson({
+              ? Address.fromJson({
                   'value': json['locationAddress'],
                   '_value': json['_locationAddress'],
                 })
-              : json['locationReference'] != null ||
-                      json['_locationReference'] != null
-                  ? ReferenceLocationClaimResponseAddItem.fromJson({
-                      'value': json['locationReference'],
-                      '_value': json['_locationReference'],
-                    })
+              : json['locationReference'] != null
+                  ? Reference.fromJson(json: json['locationReference'])
                   : null,
       quantity: json['quantity'] != null
           ? Quantity.fromJson(

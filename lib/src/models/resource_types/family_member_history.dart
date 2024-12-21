@@ -2,8 +2,6 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-part 'family_member_history.g.dart';
-
 /// [FamilyMemberHistory]
 /// Significant health conditions for a person related to the patient
 /// relevant in the context of care for the patient.
@@ -30,10 +28,10 @@ class FamilyMemberHistory extends DomainResource {
     this.name,
     required this.relationship,
     this.sex,
-    this.bornXFamilyMemberHistoryFamilyMemberHistory,
-    this.ageXFamilyMemberHistoryFamilyMemberHistory,
+    this.bornXFamilyMemberHistory,
+    this.ageXFamilyMemberHistory,
     this.estimatedAge,
-    this.deceasedXFamilyMemberHistoryFamilyMemberHistory,
+    this.deceasedXFamilyMemberHistory,
     this.reasonCode,
     this.reasonReference,
     this.note,
@@ -151,36 +149,35 @@ class FamilyMemberHistory extends DomainResource {
               json['sex'] as Map<String, dynamic>,
             )
           : null,
-      bornXFamilyMemberHistoryFamilyMemberHistory: json['bornPeriod'] != null ||
-              json['_bornPeriod'] != null
-          ? PeriodBornFamilyMemberHistoryFamilyMemberHistory.fromJson({
-              'value': json['bornPeriod'],
-              '_value': json['_bornPeriod'],
-            })
-          : json['bornDate'] != null || json['_bornDate'] != null
-              ? DateBornFamilyMemberHistoryFamilyMemberHistory.fromJson({
-                  'value': json['bornDate'],
-                  '_value': json['_bornDate'],
+      bornXFamilyMemberHistory:
+          json['bornPeriod'] != null || json['_bornPeriod'] != null
+              ? Period.fromJson({
+                  'value': json['bornPeriod'],
+                  '_value': json['_bornPeriod'],
                 })
-              : json['bornString'] != null || json['_bornString'] != null
-                  ? StringBornFamilyMemberHistoryFamilyMemberHistory.fromJson({
-                      'value': json['bornString'],
-                      '_value': json['_bornString'],
+              : json['bornDate'] != null || json['_bornDate'] != null
+                  ? FhirDate.fromJson({
+                      'value': json['bornDate'],
+                      '_value': json['_bornDate'],
                     })
-                  : null,
-      ageXFamilyMemberHistoryFamilyMemberHistory: json['ageAge'] != null ||
-              json['_ageAge'] != null
-          ? AgeAgeFamilyMemberHistoryFamilyMemberHistory.fromJson({
+                  : json['bornString'] != null || json['_bornString'] != null
+                      ? FhirString.fromJson({
+                          'value': json['bornString'],
+                          '_value': json['_bornString'],
+                        })
+                      : null,
+      ageXFamilyMemberHistory: json['ageAge'] != null || json['_ageAge'] != null
+          ? Age.fromJson({
               'value': json['ageAge'],
               '_value': json['_ageAge'],
             })
           : json['ageRange'] != null || json['_ageRange'] != null
-              ? RangeAgeFamilyMemberHistoryFamilyMemberHistory.fromJson({
+              ? Range.fromJson({
                   'value': json['ageRange'],
                   '_value': json['_ageRange'],
                 })
               : json['ageString'] != null || json['_ageString'] != null
-                  ? StringAgeFamilyMemberHistoryFamilyMemberHistory.fromJson({
+                  ? FhirString.fromJson({
                       'value': json['ageString'],
                       '_value': json['_ageString'],
                     })
@@ -192,36 +189,31 @@ class FamilyMemberHistory extends DomainResource {
                   '_value': json['_estimatedAge'],
                 })
               : null,
-      deceasedXFamilyMemberHistoryFamilyMemberHistory: json[
-                      'deceasedBoolean'] !=
-                  null ||
+      deceasedXFamilyMemberHistory: json['deceasedBoolean'] != null ||
               json['_deceasedBoolean'] != null
-          ? BooleanDeceasedFamilyMemberHistoryFamilyMemberHistory.fromJson({
+          ? FhirBoolean.fromJson({
               'value': json['deceasedBoolean'],
               '_value': json['_deceasedBoolean'],
             })
           : json['deceasedAge'] != null || json['_deceasedAge'] != null
-              ? AgeDeceasedFamilyMemberHistoryFamilyMemberHistory.fromJson({
+              ? Age.fromJson({
                   'value': json['deceasedAge'],
                   '_value': json['_deceasedAge'],
                 })
               : json['deceasedRange'] != null || json['_deceasedRange'] != null
-                  ? RangeDeceasedFamilyMemberHistoryFamilyMemberHistory
-                      .fromJson({
+                  ? Range.fromJson({
                       'value': json['deceasedRange'],
                       '_value': json['_deceasedRange'],
                     })
                   : json['deceasedDate'] != null ||
                           json['_deceasedDate'] != null
-                      ? DateDeceasedFamilyMemberHistoryFamilyMemberHistory
-                          .fromJson({
+                      ? FhirDate.fromJson({
                           'value': json['deceasedDate'],
                           '_value': json['_deceasedDate'],
                         })
                       : json['deceasedString'] != null ||
                               json['_deceasedString'] != null
-                          ? StringDeceasedFamilyMemberHistoryFamilyMemberHistory
-                              .fromJson({
+                          ? FhirString.fromJson({
                               'value': json['deceasedString'],
                               '_value': json['_deceasedString'],
                             })
@@ -357,26 +349,23 @@ class FamilyMemberHistory extends DomainResource {
   /// The birth sex of the family member.
   final CodeableConcept? sex;
 
-  /// [bornXFamilyMemberHistoryFamilyMemberHistory]
+  /// [bornXFamilyMemberHistory]
   /// The actual or approximate date of birth of the relative.
-  final BornXFamilyMemberHistoryFamilyMemberHistory?
-      bornXFamilyMemberHistoryFamilyMemberHistory;
+  final BornXFamilyMemberHistory? bornXFamilyMemberHistory;
 
-  /// [ageXFamilyMemberHistoryFamilyMemberHistory]
+  /// [ageXFamilyMemberHistory]
   /// The age of the relative at the time the family member history is
   /// recorded.
-  final AgeXFamilyMemberHistoryFamilyMemberHistory?
-      ageXFamilyMemberHistoryFamilyMemberHistory;
+  final AgeXFamilyMemberHistory? ageXFamilyMemberHistory;
 
   /// [estimatedAge]
   /// If true, indicates that the age value specified is an estimated value.
   final FhirBoolean? estimatedAge;
 
-  /// [deceasedXFamilyMemberHistoryFamilyMemberHistory]
+  /// [deceasedXFamilyMemberHistory]
   /// Deceased flag or the actual or approximate age of the relative at the
   /// time of death for the family member history record.
-  final DeceasedXFamilyMemberHistoryFamilyMemberHistory?
-      deceasedXFamilyMemberHistoryFamilyMemberHistory;
+  final DeceasedXFamilyMemberHistory? deceasedXFamilyMemberHistory;
 
   /// [reasonCode]
   /// Describes why the family member history occurred in coded or textual
@@ -474,19 +463,16 @@ class FamilyMemberHistory extends DomainResource {
       json['sex'] = sex!.toJson();
     }
 
-    if (bornXFamilyMemberHistoryFamilyMemberHistory != null) {
-      json['bornXFamilyMemberHistoryFamilyMemberHistory'] =
-          bornXFamilyMemberHistoryFamilyMemberHistory!.toJson();
+    if (bornXFamilyMemberHistory != null) {
+      json['bornXFamilyMemberHistory'] = bornXFamilyMemberHistory!.toJson();
     }
 
-    if (ageXFamilyMemberHistoryFamilyMemberHistory != null) {
-      json['ageXFamilyMemberHistoryFamilyMemberHistory'] =
-          ageXFamilyMemberHistoryFamilyMemberHistory!.toJson();
+    if (ageXFamilyMemberHistory != null) {
+      json['ageXFamilyMemberHistory'] = ageXFamilyMemberHistory!.toJson();
     }
 
     addField('estimatedAge', estimatedAge);
-    addField('deceasedXFamilyMemberHistoryFamilyMemberHistory',
-        deceasedXFamilyMemberHistoryFamilyMemberHistory);
+    addField('deceasedXFamilyMemberHistory', deceasedXFamilyMemberHistory);
     if (reasonCode != null && reasonCode!.isNotEmpty) {
       json['reasonCode'] = reasonCode!.map((e) => e.toJson()).toList();
     }
@@ -529,13 +515,10 @@ class FamilyMemberHistory extends DomainResource {
     FhirString? name,
     CodeableConcept? relationship,
     CodeableConcept? sex,
-    BornXFamilyMemberHistoryFamilyMemberHistory?
-        bornXFamilyMemberHistoryFamilyMemberHistory,
-    AgeXFamilyMemberHistoryFamilyMemberHistory?
-        ageXFamilyMemberHistoryFamilyMemberHistory,
+    BornXFamilyMemberHistory? bornXFamilyMemberHistory,
+    AgeXFamilyMemberHistory? ageXFamilyMemberHistory,
     FhirBoolean? estimatedAge,
-    DeceasedXFamilyMemberHistoryFamilyMemberHistory?
-        deceasedXFamilyMemberHistoryFamilyMemberHistory,
+    DeceasedXFamilyMemberHistory? deceasedXFamilyMemberHistory,
     List<CodeableConcept>? reasonCode,
     List<Reference>? reasonReference,
     List<Annotation>? note,
@@ -565,16 +548,13 @@ class FamilyMemberHistory extends DomainResource {
       name: name ?? this.name,
       relationship: relationship ?? this.relationship,
       sex: sex ?? this.sex,
-      bornXFamilyMemberHistoryFamilyMemberHistory:
-          bornXFamilyMemberHistoryFamilyMemberHistory ??
-              this.bornXFamilyMemberHistoryFamilyMemberHistory,
-      ageXFamilyMemberHistoryFamilyMemberHistory:
-          ageXFamilyMemberHistoryFamilyMemberHistory ??
-              this.ageXFamilyMemberHistoryFamilyMemberHistory,
+      bornXFamilyMemberHistory:
+          bornXFamilyMemberHistory ?? this.bornXFamilyMemberHistory,
+      ageXFamilyMemberHistory:
+          ageXFamilyMemberHistory ?? this.ageXFamilyMemberHistory,
       estimatedAge: estimatedAge ?? this.estimatedAge,
-      deceasedXFamilyMemberHistoryFamilyMemberHistory:
-          deceasedXFamilyMemberHistoryFamilyMemberHistory ??
-              this.deceasedXFamilyMemberHistoryFamilyMemberHistory,
+      deceasedXFamilyMemberHistory:
+          deceasedXFamilyMemberHistory ?? this.deceasedXFamilyMemberHistory,
       reasonCode: reasonCode ?? this.reasonCode,
       reasonReference: reasonReference ?? this.reasonReference,
       note: note ?? this.note,
@@ -647,22 +627,22 @@ class FamilyMemberHistoryCondition extends BackboneElement {
           : null,
       onsetXFamilyMemberHistoryCondition: json['onsetAge'] != null ||
               json['_onsetAge'] != null
-          ? AgeOnsetFamilyMemberHistoryCondition.fromJson({
+          ? Age.fromJson({
               'value': json['onsetAge'],
               '_value': json['_onsetAge'],
             })
           : json['onsetRange'] != null || json['_onsetRange'] != null
-              ? RangeOnsetFamilyMemberHistoryCondition.fromJson({
+              ? Range.fromJson({
                   'value': json['onsetRange'],
                   '_value': json['_onsetRange'],
                 })
               : json['onsetPeriod'] != null || json['_onsetPeriod'] != null
-                  ? PeriodOnsetFamilyMemberHistoryCondition.fromJson({
+                  ? Period.fromJson({
                       'value': json['onsetPeriod'],
                       '_value': json['_onsetPeriod'],
                     })
                   : json['onsetString'] != null || json['_onsetString'] != null
-                      ? StringOnsetFamilyMemberHistoryCondition.fromJson({
+                      ? FhirString.fromJson({
                           'value': json['onsetString'],
                           '_value': json['_onsetString'],
                         })

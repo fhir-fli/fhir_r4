@@ -2,8 +2,6 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-part 'request_group.g.dart';
-
 /// [RequestGroup]
 /// A group of related requests that can be used to capture intended
 /// activities that have inter-dependencies such as "give this medication
@@ -654,38 +652,34 @@ class RequestGroupAction extends BackboneElement {
           : null,
       timingXRequestGroupAction: json['timingDateTime'] != null ||
               json['_timingDateTime'] != null
-          ? DateTimeTimingRequestGroupAction.fromJson({
+          ? FhirDateTime.fromJson({
               'value': json['timingDateTime'],
               '_value': json['_timingDateTime'],
             })
           : json['timingAge'] != null || json['_timingAge'] != null
-              ? AgeTimingRequestGroupAction.fromJson({
+              ? Age.fromJson({
                   'value': json['timingAge'],
                   '_value': json['_timingAge'],
                 })
               : json['timingPeriod'] != null || json['_timingPeriod'] != null
-                  ? PeriodTimingRequestGroupAction.fromJson({
+                  ? Period.fromJson({
                       'value': json['timingPeriod'],
                       '_value': json['_timingPeriod'],
                     })
                   : json['timingDuration'] != null ||
                           json['_timingDuration'] != null
-                      ? DurationTimingRequestGroupAction.fromJson({
+                      ? FhirDuration.fromJson({
                           'value': json['timingDuration'],
                           '_value': json['_timingDuration'],
                         })
                       : json['timingRange'] != null ||
                               json['_timingRange'] != null
-                          ? RangeTimingRequestGroupAction.fromJson({
+                          ? Range.fromJson({
                               'value': json['timingRange'],
                               '_value': json['_timingRange'],
                             })
-                          : json['timingTiming'] != null ||
-                                  json['_timingTiming'] != null
-                              ? TimingTimingRequestGroupAction.fromJson({
-                                  'value': json['timingTiming'],
-                                  '_value': json['_timingTiming'],
-                                })
+                          : json['timingTiming'] != null
+                              ? Timing.fromJson(json: json['timingTiming'])
                               : null,
       participant: json['participant'] != null
           ? (json['participant'] as List<dynamic>)
@@ -1220,15 +1214,12 @@ class RequestGroupRelatedAction extends BackboneElement {
       }),
       offsetXRequestGroupRelatedAction:
           json['offsetDuration'] != null || json['_offsetDuration'] != null
-              ? DurationOffsetRequestGroupRelatedAction.fromJson({
+              ? FhirDuration.fromJson({
                   'value': json['offsetDuration'],
                   '_value': json['_offsetDuration'],
                 })
-              : json['offsetRange'] != null || json['_offsetRange'] != null
-                  ? RangeOffsetRequestGroupRelatedAction.fromJson({
-                      'value': json['offsetRange'],
-                      '_value': json['_offsetRange'],
-                    })
+              : json['offsetRange'] != null
+                  ? Range.fromJson(json: json['offsetRange'])
                   : null,
     );
   }

@@ -2,8 +2,6 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-part 'dosage.g.dart';
-
 /// [Dosage]
 /// Indicates how the medication is/was taken or should be taken by the
 /// patient.
@@ -20,7 +18,7 @@ class Dosage extends BackboneType {
     this.additionalInstruction,
     this.patientInstruction,
     this.timing,
-    this.asNeededXDosageDosage,
+    this.asNeededXDosage,
     this.site,
     this.route,
     this.method,
@@ -90,19 +88,15 @@ class Dosage extends BackboneType {
               json['timing'] as Map<String, dynamic>,
             )
           : null,
-      asNeededXDosageDosage:
-          json['asNeededBoolean'] != null || json['_asNeededBoolean'] != null
-              ? BooleanAsNeededDosageDosage.fromJson({
-                  'value': json['asNeededBoolean'],
-                  '_value': json['_asNeededBoolean'],
-                })
-              : json['asNeededCodeableConcept'] != null ||
-                      json['_asNeededCodeableConcept'] != null
-                  ? CodeableConceptAsNeededDosageDosage.fromJson({
-                      'value': json['asNeededCodeableConcept'],
-                      '_value': json['_asNeededCodeableConcept'],
-                    })
-                  : null,
+      asNeededXDosage: json['asNeededBoolean'] != null ||
+              json['_asNeededBoolean'] != null
+          ? FhirBoolean.fromJson({
+              'value': json['asNeededBoolean'],
+              '_value': json['_asNeededBoolean'],
+            })
+          : json['asNeededCodeableConcept'] != null
+              ? CodeableConcept.fromJson(json: json['asNeededCodeableConcept'])
+              : null,
       site: json['site'] != null
           ? CodeableConcept.fromJson(
               json['site'] as Map<String, dynamic>,
@@ -211,11 +205,11 @@ class Dosage extends BackboneType {
   /// When medication should be administered.
   final Timing? timing;
 
-  /// [asNeededXDosageDosage]
+  /// [asNeededXDosage]
   /// Indicates whether the Medication is only taken when needed within a
   /// specific dosing schedule (Boolean option), or it indicates the
   /// precondition for taking the Medication (CodeableConcept).
-  final AsNeededXDosageDosage? asNeededXDosageDosage;
+  final AsNeededXDosage? asNeededXDosage;
 
   /// [site]
   /// Body site to administer to.
@@ -278,7 +272,7 @@ class Dosage extends BackboneType {
       json['timing'] = timing!.toJson();
     }
 
-    addField('asNeededXDosageDosage', asNeededXDosageDosage);
+    addField('asNeededXDosage', asNeededXDosage);
     if (site != null) {
       json['site'] = site!.toJson();
     }
@@ -322,7 +316,7 @@ class Dosage extends BackboneType {
     List<CodeableConcept>? additionalInstruction,
     FhirString? patientInstruction,
     Timing? timing,
-    AsNeededXDosageDosage? asNeededXDosageDosage,
+    AsNeededXDosage? asNeededXDosage,
     CodeableConcept? site,
     CodeableConcept? route,
     CodeableConcept? method,
@@ -345,8 +339,7 @@ class Dosage extends BackboneType {
           additionalInstruction ?? this.additionalInstruction,
       patientInstruction: patientInstruction ?? this.patientInstruction,
       timing: timing ?? this.timing,
-      asNeededXDosageDosage:
-          asNeededXDosageDosage ?? this.asNeededXDosageDosage,
+      asNeededXDosage: asNeededXDosage ?? this.asNeededXDosage,
       site: site ?? this.site,
       route: route ?? this.route,
       method: method ?? this.method,
@@ -398,33 +391,27 @@ class DosageDoseAndRate extends Element {
           : null,
       doseXDosageDoseAndRate:
           json['doseRange'] != null || json['_doseRange'] != null
-              ? RangeDoseDosageDoseAndRate.fromJson({
+              ? Range.fromJson({
                   'value': json['doseRange'],
                   '_value': json['_doseRange'],
                 })
-              : json['doseQuantity'] != null || json['_doseQuantity'] != null
-                  ? QuantityDoseDosageDoseAndRate.fromJson({
-                      'value': json['doseQuantity'],
-                      '_value': json['_doseQuantity'],
-                    })
+              : json['doseQuantity'] != null
+                  ? Quantity.fromJson(json: json['doseQuantity'])
                   : null,
-      rateXDosageDoseAndRate: json['rateRatio'] != null ||
-              json['_rateRatio'] != null
-          ? RatioRateDosageDoseAndRate.fromJson({
-              'value': json['rateRatio'],
-              '_value': json['_rateRatio'],
-            })
-          : json['rateRange'] != null || json['_rateRange'] != null
-              ? RangeRateDosageDoseAndRate.fromJson({
-                  'value': json['rateRange'],
-                  '_value': json['_rateRange'],
+      rateXDosageDoseAndRate:
+          json['rateRatio'] != null || json['_rateRatio'] != null
+              ? Ratio.fromJson({
+                  'value': json['rateRatio'],
+                  '_value': json['_rateRatio'],
                 })
-              : json['rateQuantity'] != null || json['_rateQuantity'] != null
-                  ? QuantityRateDosageDoseAndRate.fromJson({
-                      'value': json['rateQuantity'],
-                      '_value': json['_rateQuantity'],
+              : json['rateRange'] != null || json['_rateRange'] != null
+                  ? Range.fromJson({
+                      'value': json['rateRange'],
+                      '_value': json['_rateRange'],
                     })
-                  : null,
+                  : json['rateQuantity'] != null
+                      ? Quantity.fromJson(json: json['rateQuantity'])
+                      : null,
     );
   }
 

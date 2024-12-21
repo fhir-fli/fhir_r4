@@ -2,8 +2,6 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-part 'administrable_product_definition.g.dart';
-
 /// [AdministrableProductDefinition]
 /// A medicinal product in the final form which is suitable for
 /// administering to a patient (after any mixing of multiple components,
@@ -461,40 +459,33 @@ class AdministrableProductDefinitionProperty extends BackboneElement {
       type: CodeableConcept.fromJson(
         json['type'] as Map<String, dynamic>,
       ),
-      valueXAdministrableProductDefinitionProperty: json[
-                      'valueCodeableConcept'] !=
-                  null ||
-              json['_valueCodeableConcept'] != null
-          ? CodeableConceptValueAdministrableProductDefinitionProperty
-              .fromJson({
-              'value': json['valueCodeableConcept'],
-              '_value': json['_valueCodeableConcept'],
-            })
-          : json['valueQuantity'] != null || json['_valueQuantity'] != null
-              ? QuantityValueAdministrableProductDefinitionProperty.fromJson({
-                  'value': json['valueQuantity'],
-                  '_value': json['_valueQuantity'],
+      valueXAdministrableProductDefinitionProperty:
+          json['valueCodeableConcept'] != null ||
+                  json['_valueCodeableConcept'] != null
+              ? CodeableConcept.fromJson({
+                  'value': json['valueCodeableConcept'],
+                  '_value': json['_valueCodeableConcept'],
                 })
-              : json['valueDate'] != null || json['_valueDate'] != null
-                  ? DateValueAdministrableProductDefinitionProperty.fromJson({
-                      'value': json['valueDate'],
-                      '_value': json['_valueDate'],
+              : json['valueQuantity'] != null || json['_valueQuantity'] != null
+                  ? Quantity.fromJson({
+                      'value': json['valueQuantity'],
+                      '_value': json['_valueQuantity'],
                     })
-                  : json['valueBoolean'] != null ||
-                          json['_valueBoolean'] != null
-                      ? BooleanValueAdministrableProductDefinitionProperty
-                          .fromJson({
-                          'value': json['valueBoolean'],
-                          '_value': json['_valueBoolean'],
+                  : json['valueDate'] != null || json['_valueDate'] != null
+                      ? FhirDate.fromJson({
+                          'value': json['valueDate'],
+                          '_value': json['_valueDate'],
                         })
-                      : json['valueAttachment'] != null ||
-                              json['_valueAttachment'] != null
-                          ? AttachmentValueAdministrableProductDefinitionProperty
-                              .fromJson({
-                              'value': json['valueAttachment'],
-                              '_value': json['_valueAttachment'],
+                      : json['valueBoolean'] != null ||
+                              json['_valueBoolean'] != null
+                          ? FhirBoolean.fromJson({
+                              'value': json['valueBoolean'],
+                              '_value': json['_valueBoolean'],
                             })
-                          : null,
+                          : json['valueAttachment'] != null
+                              ? Attachment.fromJson(
+                                  json: json['valueAttachment'])
+                              : null,
       status: json['status'] != null
           ? CodeableConcept.fromJson(
               json['status'] as Map<String, dynamic>,

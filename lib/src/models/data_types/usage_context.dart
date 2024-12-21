@@ -2,8 +2,6 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-part 'usage_context.g.dart';
-
 /// [UsageContext]
 /// Specifies clinical/business/etc. metadata that can be used to retrieve,
 /// index and/or categorize an artifact. This metadata can either be
@@ -17,7 +15,7 @@ class UsageContext extends DataType {
     super.id,
     super.extension_,
     required this.code,
-    required this.valueXUsageContextUsageContext,
+    required this.valueXUsageContext,
     super.disallowExtensions,
   });
 
@@ -41,26 +39,23 @@ class UsageContext extends DataType {
       code: Coding.fromJson(
         json['code'] as Map<String, dynamic>,
       ),
-      valueXUsageContextUsageContext: json['valueCodeableConcept'] != null ||
+      valueXUsageContext: json['valueCodeableConcept'] != null ||
               json['_valueCodeableConcept'] != null
-          ? CodeableConceptValueUsageContextUsageContext.fromJson({
+          ? CodeableConcept.fromJson({
               'value': json['valueCodeableConcept'],
               '_value': json['_valueCodeableConcept'],
             })
           : json['valueQuantity'] != null || json['_valueQuantity'] != null
-              ? QuantityValueUsageContextUsageContext.fromJson({
+              ? Quantity.fromJson({
                   'value': json['valueQuantity'],
                   '_value': json['_valueQuantity'],
                 })
               : json['valueRange'] != null || json['_valueRange'] != null
-                  ? RangeValueUsageContextUsageContext.fromJson({
+                  ? Range.fromJson({
                       'value': json['valueRange'],
                       '_value': json['_valueRange'],
                     })
-                  : ReferenceValueUsageContextUsageContext.fromJson({
-                      'value': json['valueReference'],
-                      '_value': json['_valueReference'],
-                    }),
+                  : Reference.fromJson(json: json['valueReference']),
     );
   }
 
@@ -111,10 +106,10 @@ class UsageContext extends DataType {
   /// usage context.
   final Coding code;
 
-  /// [valueXUsageContextUsageContext]
+  /// [valueXUsageContext]
   /// A value that defines the context specified in this context of use. The
   /// interpretation of the value is defined by the code.
-  final ValueXUsageContextUsageContext valueXUsageContextUsageContext;
+  final ValueXUsageContext valueXUsageContext;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -134,8 +129,7 @@ class UsageContext extends DataType {
 
     json['code'] = code.toJson();
 
-    json['valueXUsageContextUsageContext'] =
-        valueXUsageContextUsageContext.toJson();
+    json['valueXUsageContext'] = valueXUsageContext.toJson();
 
     return json;
   }
@@ -147,7 +141,7 @@ class UsageContext extends DataType {
     FhirString? id,
     List<FhirExtension>? extension_,
     Coding? code,
-    ValueXUsageContextUsageContext? valueXUsageContextUsageContext,
+    ValueXUsageContext? valueXUsageContext,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -157,8 +151,7 @@ class UsageContext extends DataType {
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       code: code ?? this.code,
-      valueXUsageContextUsageContext:
-          valueXUsageContextUsageContext ?? this.valueXUsageContextUsageContext,
+      valueXUsageContext: valueXUsageContext ?? this.valueXUsageContext,
     );
   }
 }

@@ -2,8 +2,6 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-part 'group.g.dart';
-
 /// [FhirGroup]
 /// Represents a defined collection of entities that may be discussed or
 /// acted upon collectively but which are not expected to act collectively,
@@ -412,29 +410,26 @@ class GroupCharacteristic extends BackboneElement {
       ),
       valueXGroupCharacteristic: json['valueCodeableConcept'] != null ||
               json['_valueCodeableConcept'] != null
-          ? CodeableConceptValueGroupCharacteristic.fromJson({
+          ? CodeableConcept.fromJson({
               'value': json['valueCodeableConcept'],
               '_value': json['_valueCodeableConcept'],
             })
           : json['valueBoolean'] != null || json['_valueBoolean'] != null
-              ? BooleanValueGroupCharacteristic.fromJson({
+              ? FhirBoolean.fromJson({
                   'value': json['valueBoolean'],
                   '_value': json['_valueBoolean'],
                 })
               : json['valueQuantity'] != null || json['_valueQuantity'] != null
-                  ? QuantityValueGroupCharacteristic.fromJson({
+                  ? Quantity.fromJson({
                       'value': json['valueQuantity'],
                       '_value': json['_valueQuantity'],
                     })
                   : json['valueRange'] != null || json['_valueRange'] != null
-                      ? RangeValueGroupCharacteristic.fromJson({
+                      ? Range.fromJson({
                           'value': json['valueRange'],
                           '_value': json['_valueRange'],
                         })
-                      : ReferenceValueGroupCharacteristic.fromJson({
-                          'value': json['valueReference'],
-                          '_value': json['_valueReference'],
-                        }),
+                      : Reference.fromJson(json: json['valueReference']),
       exclude: FhirBoolean.fromJson({
         'value': json['exclude'],
         '_value': json['_exclude'],

@@ -2,8 +2,6 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-part 'immunization_recommendation.g.dart';
-
 /// [ImmunizationRecommendation]
 /// A patient's point-in-time set of recommendations (i.e. forecasting)
 /// according to a published schedule with optional supporting
@@ -387,15 +385,13 @@ class ImmunizationRecommendationRecommendation extends BackboneElement {
       doseNumberXImmunizationRecommendationRecommendation:
           json['doseNumberPositiveInt'] != null ||
                   json['_doseNumberPositiveInt'] != null
-              ? PositiveIntDoseNumberImmunizationRecommendationRecommendation
-                  .fromJson({
+              ? FhirPositiveInt.fromJson({
                   'value': json['doseNumberPositiveInt'],
                   '_value': json['_doseNumberPositiveInt'],
                 })
               : json['doseNumberString'] != null ||
                       json['_doseNumberString'] != null
-                  ? StringDoseNumberImmunizationRecommendationRecommendation
-                      .fromJson({
+                  ? FhirString.fromJson({
                       'value': json['doseNumberString'],
                       '_value': json['_doseNumberString'],
                     })
@@ -403,15 +399,13 @@ class ImmunizationRecommendationRecommendation extends BackboneElement {
       seriesDosesXImmunizationRecommendationRecommendation:
           json['seriesDosesPositiveInt'] != null ||
                   json['_seriesDosesPositiveInt'] != null
-              ? PositiveIntSeriesDosesImmunizationRecommendationRecommendation
-                  .fromJson({
+              ? FhirPositiveInt.fromJson({
                   'value': json['seriesDosesPositiveInt'],
                   '_value': json['_seriesDosesPositiveInt'],
                 })
               : json['seriesDosesString'] != null ||
                       json['_seriesDosesString'] != null
-                  ? StringSeriesDosesImmunizationRecommendationRecommendation
-                      .fromJson({
+                  ? FhirString.fromJson({
                       'value': json['seriesDosesString'],
                       '_value': json['_seriesDosesString'],
                     })

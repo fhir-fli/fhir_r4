@@ -2,8 +2,6 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-part 'substance_definition.g.dart';
-
 /// [SubstanceDefinition]
 /// The detailed description of a substance, typically at a level beyond
 /// what is used for prescribing.
@@ -641,12 +639,12 @@ class SubstanceDefinitionMoiety extends BackboneElement {
           : null,
       amountXSubstanceDefinitionMoiety:
           json['amountQuantity'] != null || json['_amountQuantity'] != null
-              ? QuantityAmountSubstanceDefinitionMoiety.fromJson({
+              ? Quantity.fromJson({
                   'value': json['amountQuantity'],
                   '_value': json['_amountQuantity'],
                 })
               : json['amountString'] != null || json['_amountString'] != null
-                  ? StringAmountSubstanceDefinitionMoiety.fromJson({
+                  ? FhirString.fromJson({
                       'value': json['amountString'],
                       '_value': json['_amountString'],
                     })
@@ -871,33 +869,28 @@ class SubstanceDefinitionProperty extends BackboneElement {
       ),
       valueXSubstanceDefinitionProperty: json['valueCodeableConcept'] != null ||
               json['_valueCodeableConcept'] != null
-          ? CodeableConceptValueSubstanceDefinitionProperty.fromJson({
+          ? CodeableConcept.fromJson({
               'value': json['valueCodeableConcept'],
               '_value': json['_valueCodeableConcept'],
             })
           : json['valueQuantity'] != null || json['_valueQuantity'] != null
-              ? QuantityValueSubstanceDefinitionProperty.fromJson({
+              ? Quantity.fromJson({
                   'value': json['valueQuantity'],
                   '_value': json['_valueQuantity'],
                 })
               : json['valueDate'] != null || json['_valueDate'] != null
-                  ? DateValueSubstanceDefinitionProperty.fromJson({
+                  ? FhirDate.fromJson({
                       'value': json['valueDate'],
                       '_value': json['_valueDate'],
                     })
                   : json['valueBoolean'] != null ||
                           json['_valueBoolean'] != null
-                      ? BooleanValueSubstanceDefinitionProperty.fromJson({
+                      ? FhirBoolean.fromJson({
                           'value': json['valueBoolean'],
                           '_value': json['_valueBoolean'],
                         })
-                      : json['valueAttachment'] != null ||
-                              json['_valueAttachment'] != null
-                          ? AttachmentValueSubstanceDefinitionProperty
-                              .fromJson({
-                              'value': json['valueAttachment'],
-                              '_value': json['_valueAttachment'],
-                            })
+                      : json['valueAttachment'] != null
+                          ? Attachment.fromJson(json: json['valueAttachment'])
                           : null,
     );
   }
@@ -2417,23 +2410,17 @@ class SubstanceDefinitionRelationship extends BackboneElement {
               )
               .toList()
           : null,
-      substanceDefinitionXSubstanceDefinitionRelationship: json[
-                      'substanceDefinitionReference'] !=
-                  null ||
-              json['_substanceDefinitionReference'] != null
-          ? ReferenceSubstanceDefinitionSubstanceDefinitionRelationship
-              .fromJson({
-              'value': json['substanceDefinitionReference'],
-              '_value': json['_substanceDefinitionReference'],
-            })
-          : json['substanceDefinitionCodeableConcept'] != null ||
-                  json['_substanceDefinitionCodeableConcept'] != null
-              ? CodeableConceptSubstanceDefinitionSubstanceDefinitionRelationship
-                  .fromJson({
-                  'value': json['substanceDefinitionCodeableConcept'],
-                  '_value': json['_substanceDefinitionCodeableConcept'],
+      substanceDefinitionXSubstanceDefinitionRelationship:
+          json['substanceDefinitionReference'] != null ||
+                  json['_substanceDefinitionReference'] != null
+              ? Reference.fromJson({
+                  'value': json['substanceDefinitionReference'],
+                  '_value': json['_substanceDefinitionReference'],
                 })
-              : null,
+              : json['substanceDefinitionCodeableConcept'] != null
+                  ? CodeableConcept.fromJson(
+                      json: json['substanceDefinitionCodeableConcept'])
+                  : null,
       type: CodeableConcept.fromJson(
         json['type'] as Map<String, dynamic>,
       ),
@@ -2445,17 +2432,17 @@ class SubstanceDefinitionRelationship extends BackboneElement {
           : null,
       amountXSubstanceDefinitionRelationship: json['amountQuantity'] != null ||
               json['_amountQuantity'] != null
-          ? QuantityAmountSubstanceDefinitionRelationship.fromJson({
+          ? Quantity.fromJson({
               'value': json['amountQuantity'],
               '_value': json['_amountQuantity'],
             })
           : json['amountRatio'] != null || json['_amountRatio'] != null
-              ? RatioAmountSubstanceDefinitionRelationship.fromJson({
+              ? Ratio.fromJson({
                   'value': json['amountRatio'],
                   '_value': json['_amountRatio'],
                 })
               : json['amountString'] != null || json['_amountString'] != null
-                  ? StringAmountSubstanceDefinitionRelationship.fromJson({
+                  ? FhirString.fromJson({
                       'value': json['amountString'],
                       '_value': json['_amountString'],
                     })

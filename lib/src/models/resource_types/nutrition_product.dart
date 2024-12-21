@@ -2,8 +2,6 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-part 'nutrition_product.g.dart';
-
 /// [NutritionProduct]
 /// A food or fluid product that is consumed by patients.
 class NutritionProduct extends DomainResource {
@@ -755,44 +753,40 @@ class NutritionProductProductCharacteristic extends BackboneElement {
       type: CodeableConcept.fromJson(
         json['type'] as Map<String, dynamic>,
       ),
-      valueXNutritionProductProductCharacteristic: json[
-                      'valueCodeableConcept'] !=
-                  null ||
-              json['_valueCodeableConcept'] != null
-          ? CodeableConceptValueNutritionProductProductCharacteristic.fromJson({
-              'value': json['valueCodeableConcept'],
-              '_value': json['_valueCodeableConcept'],
-            })
-          : json['valueString'] != null || json['_valueString'] != null
-              ? StringValueNutritionProductProductCharacteristic.fromJson({
-                  'value': json['valueString'],
-                  '_value': json['_valueString'],
+      valueXNutritionProductProductCharacteristic:
+          json['valueCodeableConcept'] != null ||
+                  json['_valueCodeableConcept'] != null
+              ? CodeableConcept.fromJson({
+                  'value': json['valueCodeableConcept'],
+                  '_value': json['_valueCodeableConcept'],
                 })
-              : json['valueQuantity'] != null || json['_valueQuantity'] != null
-                  ? QuantityValueNutritionProductProductCharacteristic
-                      .fromJson({
-                      'value': json['valueQuantity'],
-                      '_value': json['_valueQuantity'],
+              : json['valueString'] != null || json['_valueString'] != null
+                  ? FhirString.fromJson({
+                      'value': json['valueString'],
+                      '_value': json['_valueString'],
                     })
-                  : json['valueBase64Binary'] != null ||
-                          json['_valueBase64Binary'] != null
-                      ? Base64BinaryValueNutritionProductProductCharacteristic
-                          .fromJson({
-                          'value': json['valueBase64Binary'],
-                          '_value': json['_valueBase64Binary'],
+                  : json['valueQuantity'] != null ||
+                          json['_valueQuantity'] != null
+                      ? Quantity.fromJson({
+                          'value': json['valueQuantity'],
+                          '_value': json['_valueQuantity'],
                         })
-                      : json['valueAttachment'] != null ||
-                              json['_valueAttachment'] != null
-                          ? AttachmentValueNutritionProductProductCharacteristic
-                              .fromJson({
-                              'value': json['valueAttachment'],
-                              '_value': json['_valueAttachment'],
+                      : json['valueBase64Binary'] != null ||
+                              json['_valueBase64Binary'] != null
+                          ? FhirBase64Binary.fromJson({
+                              'value': json['valueBase64Binary'],
+                              '_value': json['_valueBase64Binary'],
                             })
-                          : BooleanValueNutritionProductProductCharacteristic
-                              .fromJson({
-                              'value': json['valueBoolean'],
-                              '_value': json['_valueBoolean'],
-                            }),
+                          : json['valueAttachment'] != null ||
+                                  json['_valueAttachment'] != null
+                              ? Attachment.fromJson({
+                                  'value': json['valueAttachment'],
+                                  '_value': json['_valueAttachment'],
+                                })
+                              : FhirBoolean.fromJson({
+                                  'value': json['valueBoolean'],
+                                  '_value': json['_valueBoolean'],
+                                }),
     );
   }
 

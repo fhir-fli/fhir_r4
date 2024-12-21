@@ -2,8 +2,6 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-part 'nutrition_order.g.dart';
-
 /// [NutritionOrder]
 /// A request to supply a diet, formula feeding (enteral) or oral
 /// nutritional supplement to a patient/resident.
@@ -1661,15 +1659,12 @@ class NutritionOrderAdministration extends BackboneElement {
           : null,
       rateXNutritionOrderAdministration:
           json['rateQuantity'] != null || json['_rateQuantity'] != null
-              ? QuantityRateNutritionOrderAdministration.fromJson({
+              ? Quantity.fromJson({
                   'value': json['rateQuantity'],
                   '_value': json['_rateQuantity'],
                 })
-              : json['rateRatio'] != null || json['_rateRatio'] != null
-                  ? RatioRateNutritionOrderAdministration.fromJson({
-                      'value': json['rateRatio'],
-                      '_value': json['_rateRatio'],
-                    })
+              : json['rateRatio'] != null
+                  ? Ratio.fromJson(json: json['rateRatio'])
                   : null,
     );
   }

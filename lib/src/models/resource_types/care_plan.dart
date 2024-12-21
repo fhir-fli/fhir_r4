@@ -2,8 +2,6 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-part 'care_plan.g.dart';
-
 /// [CarePlan]
 /// Describes the intention of how one or more practitioners intend to
 /// deliver care for a particular patient, group or community for a period
@@ -989,18 +987,18 @@ class CarePlanDetail extends BackboneElement {
               : null,
       scheduledXCarePlanDetail: json['scheduledTiming'] != null ||
               json['_scheduledTiming'] != null
-          ? TimingScheduledCarePlanDetail.fromJson({
+          ? Timing.fromJson({
               'value': json['scheduledTiming'],
               '_value': json['_scheduledTiming'],
             })
           : json['scheduledPeriod'] != null || json['_scheduledPeriod'] != null
-              ? PeriodScheduledCarePlanDetail.fromJson({
+              ? Period.fromJson({
                   'value': json['scheduledPeriod'],
                   '_value': json['_scheduledPeriod'],
                 })
               : json['scheduledString'] != null ||
                       json['_scheduledString'] != null
-                  ? StringScheduledCarePlanDetail.fromJson({
+                  ? FhirString.fromJson({
                       'value': json['scheduledString'],
                       '_value': json['_scheduledString'],
                     })
@@ -1021,16 +1019,12 @@ class CarePlanDetail extends BackboneElement {
           : null,
       productXCarePlanDetail: json['productCodeableConcept'] != null ||
               json['_productCodeableConcept'] != null
-          ? CodeableConceptProductCarePlanDetail.fromJson({
+          ? CodeableConcept.fromJson({
               'value': json['productCodeableConcept'],
               '_value': json['_productCodeableConcept'],
             })
-          : json['productReference'] != null ||
-                  json['_productReference'] != null
-              ? ReferenceProductCarePlanDetail.fromJson({
-                  'value': json['productReference'],
-                  '_value': json['_productReference'],
-                })
+          : json['productReference'] != null
+              ? Reference.fromJson(json: json['productReference'])
               : null,
       dailyAmount: json['dailyAmount'] != null
           ? Quantity.fromJson(

@@ -2,8 +2,6 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-part 'evidence_report.g.dart';
-
 /// [EvidenceReport]
 /// The EvidenceReport Resource is a specialized container for a collection
 /// of resources and codable concepts, adapted to support compositions of
@@ -27,7 +25,7 @@ class EvidenceReport extends DomainResource {
     this.useContext,
     this.identifier,
     this.relatedIdentifier,
-    this.citeAsXEvidenceReportEvidenceReport,
+    this.citeAsXEvidenceReport,
     this.type,
     this.note,
     this.relatedArtifact,
@@ -139,14 +137,14 @@ class EvidenceReport extends DomainResource {
               )
               .toList()
           : null,
-      citeAsXEvidenceReportEvidenceReport: json['citeAsReference'] != null ||
+      citeAsXEvidenceReport: json['citeAsReference'] != null ||
               json['_citeAsReference'] != null
-          ? ReferenceCiteAsEvidenceReportEvidenceReport.fromJson({
+          ? Reference.fromJson({
               'value': json['citeAsReference'],
               '_value': json['_citeAsReference'],
             })
           : json['citeAsMarkdown'] != null || json['_citeAsMarkdown'] != null
-              ? MarkdownCiteAsEvidenceReportEvidenceReport.fromJson({
+              ? FhirMarkdown.fromJson({
                   'value': json['citeAsMarkdown'],
                   '_value': json['_citeAsMarkdown'],
                 })
@@ -325,10 +323,9 @@ class EvidenceReport extends DomainResource {
   /// this EvidenceReport.
   final List<Identifier>? relatedIdentifier;
 
-  /// [citeAsXEvidenceReportEvidenceReport]
+  /// [citeAsXEvidenceReport]
   /// Citation Resource or display of suggested citation for this report.
-  final CiteAsXEvidenceReportEvidenceReport?
-      citeAsXEvidenceReportEvidenceReport;
+  final CiteAsXEvidenceReport? citeAsXEvidenceReport;
 
   /// [type]
   /// Specifies the kind of report, such as grouping of classifiers, search
@@ -438,9 +435,8 @@ class EvidenceReport extends DomainResource {
           relatedIdentifier!.map((e) => e.toJson()).toList();
     }
 
-    if (citeAsXEvidenceReportEvidenceReport != null) {
-      json['citeAsXEvidenceReportEvidenceReport'] =
-          citeAsXEvidenceReportEvidenceReport!.toJson();
+    if (citeAsXEvidenceReport != null) {
+      json['citeAsXEvidenceReport'] = citeAsXEvidenceReport!.toJson();
     }
 
     if (type != null) {
@@ -507,7 +503,7 @@ class EvidenceReport extends DomainResource {
     List<UsageContext>? useContext,
     List<Identifier>? identifier,
     List<Identifier>? relatedIdentifier,
-    CiteAsXEvidenceReportEvidenceReport? citeAsXEvidenceReportEvidenceReport,
+    CiteAsXEvidenceReport? citeAsXEvidenceReport,
     CodeableConcept? type,
     List<Annotation>? note,
     List<RelatedArtifact>? relatedArtifact,
@@ -539,9 +535,8 @@ class EvidenceReport extends DomainResource {
       useContext: useContext ?? this.useContext,
       identifier: identifier ?? this.identifier,
       relatedIdentifier: relatedIdentifier ?? this.relatedIdentifier,
-      citeAsXEvidenceReportEvidenceReport:
-          citeAsXEvidenceReportEvidenceReport ??
-              this.citeAsXEvidenceReportEvidenceReport,
+      citeAsXEvidenceReport:
+          citeAsXEvidenceReport ?? this.citeAsXEvidenceReport,
       type: type ?? this.type,
       note: note ?? this.note,
       relatedArtifact: relatedArtifact ?? this.relatedArtifact,
@@ -775,31 +770,28 @@ class EvidenceReportCharacteristic extends BackboneElement {
       ),
       valueXEvidenceReportCharacteristic: json['valueReference'] != null ||
               json['_valueReference'] != null
-          ? ReferenceValueEvidenceReportCharacteristic.fromJson({
+          ? Reference.fromJson({
               'value': json['valueReference'],
               '_value': json['_valueReference'],
             })
           : json['valueCodeableConcept'] != null ||
                   json['_valueCodeableConcept'] != null
-              ? CodeableConceptValueEvidenceReportCharacteristic.fromJson({
+              ? CodeableConcept.fromJson({
                   'value': json['valueCodeableConcept'],
                   '_value': json['_valueCodeableConcept'],
                 })
               : json['valueBoolean'] != null || json['_valueBoolean'] != null
-                  ? BooleanValueEvidenceReportCharacteristic.fromJson({
+                  ? FhirBoolean.fromJson({
                       'value': json['valueBoolean'],
                       '_value': json['_valueBoolean'],
                     })
                   : json['valueQuantity'] != null ||
                           json['_valueQuantity'] != null
-                      ? QuantityValueEvidenceReportCharacteristic.fromJson({
+                      ? Quantity.fromJson({
                           'value': json['valueQuantity'],
                           '_value': json['_valueQuantity'],
                         })
-                      : RangeValueEvidenceReportCharacteristic.fromJson({
-                          'value': json['valueRange'],
-                          '_value': json['_valueRange'],
-                        }),
+                      : Range.fromJson(json: json['valueRange']),
       exclude: (json['exclude'] != null || json['_exclude'] != null)
           ? FhirBoolean.fromJson({
               'value': json['exclude'],
@@ -983,14 +975,11 @@ class EvidenceReportRelatesTo extends BackboneElement {
       }),
       targetXEvidenceReportRelatesTo:
           json['targetIdentifier'] != null || json['_targetIdentifier'] != null
-              ? IdentifierTargetEvidenceReportRelatesTo.fromJson({
+              ? Identifier.fromJson({
                   'value': json['targetIdentifier'],
                   '_value': json['_targetIdentifier'],
                 })
-              : ReferenceTargetEvidenceReportRelatesTo.fromJson({
-                  'value': json['targetReference'],
-                  '_value': json['_targetReference'],
-                }),
+              : Reference.fromJson(json: json['targetReference']),
     );
   }
 

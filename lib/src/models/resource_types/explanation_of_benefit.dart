@@ -2,8 +2,6 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-part 'explanation_of_benefit.g.dart';
-
 /// [ExplanationOfBenefit]
 /// This resource provides: the claim details; adjudication details from
 /// the processing of a Claim; and optionally account balance information,
@@ -1544,46 +1542,37 @@ class ExplanationOfBenefitSupportingInfo extends BackboneElement {
           : null,
       timingXExplanationOfBenefitSupportingInfo:
           json['timingDate'] != null || json['_timingDate'] != null
-              ? DateTimingExplanationOfBenefitSupportingInfo.fromJson({
+              ? FhirDate.fromJson({
                   'value': json['timingDate'],
                   '_value': json['_timingDate'],
                 })
-              : json['timingPeriod'] != null || json['_timingPeriod'] != null
-                  ? PeriodTimingExplanationOfBenefitSupportingInfo.fromJson({
-                      'value': json['timingPeriod'],
-                      '_value': json['_timingPeriod'],
-                    })
+              : json['timingPeriod'] != null
+                  ? Period.fromJson(json: json['timingPeriod'])
                   : null,
       valueXExplanationOfBenefitSupportingInfo: json['valueBoolean'] != null ||
               json['_valueBoolean'] != null
-          ? BooleanValueExplanationOfBenefitSupportingInfo.fromJson({
+          ? FhirBoolean.fromJson({
               'value': json['valueBoolean'],
               '_value': json['_valueBoolean'],
             })
           : json['valueString'] != null || json['_valueString'] != null
-              ? StringValueExplanationOfBenefitSupportingInfo.fromJson({
+              ? FhirString.fromJson({
                   'value': json['valueString'],
                   '_value': json['_valueString'],
                 })
               : json['valueQuantity'] != null || json['_valueQuantity'] != null
-                  ? QuantityValueExplanationOfBenefitSupportingInfo.fromJson({
+                  ? Quantity.fromJson({
                       'value': json['valueQuantity'],
                       '_value': json['_valueQuantity'],
                     })
                   : json['valueAttachment'] != null ||
                           json['_valueAttachment'] != null
-                      ? AttachmentValueExplanationOfBenefitSupportingInfo
-                          .fromJson({
+                      ? Attachment.fromJson({
                           'value': json['valueAttachment'],
                           '_value': json['_valueAttachment'],
                         })
-                      : json['valueReference'] != null ||
-                              json['_valueReference'] != null
-                          ? ReferenceValueExplanationOfBenefitSupportingInfo
-                              .fromJson({
-                              'value': json['valueReference'],
-                              '_value': json['_valueReference'],
-                            })
+                      : json['valueReference'] != null
+                          ? Reference.fromJson(json: json['valueReference'])
                           : null,
       reason: json['reason'] != null
           ? Coding.fromJson(
@@ -1795,14 +1784,11 @@ class ExplanationOfBenefitDiagnosis extends BackboneElement {
       diagnosisXExplanationOfBenefitDiagnosis:
           json['diagnosisCodeableConcept'] != null ||
                   json['_diagnosisCodeableConcept'] != null
-              ? CodeableConceptDiagnosisExplanationOfBenefitDiagnosis.fromJson({
+              ? CodeableConcept.fromJson({
                   'value': json['diagnosisCodeableConcept'],
                   '_value': json['_diagnosisCodeableConcept'],
                 })
-              : ReferenceDiagnosisExplanationOfBenefitDiagnosis.fromJson({
-                  'value': json['diagnosisReference'],
-                  '_value': json['_diagnosisReference'],
-                }),
+              : Reference.fromJson(json: json['diagnosisReference']),
       type: json['type'] != null
           ? (json['type'] as List<dynamic>)
               .map<CodeableConcept>(
@@ -2032,14 +2018,11 @@ class ExplanationOfBenefitProcedure extends BackboneElement {
       procedureXExplanationOfBenefitProcedure:
           json['procedureCodeableConcept'] != null ||
                   json['_procedureCodeableConcept'] != null
-              ? CodeableConceptProcedureExplanationOfBenefitProcedure.fromJson({
+              ? CodeableConcept.fromJson({
                   'value': json['procedureCodeableConcept'],
                   '_value': json['_procedureCodeableConcept'],
                 })
-              : ReferenceProcedureExplanationOfBenefitProcedure.fromJson({
-                  'value': json['procedureReference'],
-                  '_value': json['_procedureReference'],
-                }),
+              : Reference.fromJson(json: json['procedureReference']),
       udi: json['udi'] != null
           ? (json['udi'] as List<dynamic>)
               .map<Reference>(
@@ -2421,16 +2404,12 @@ class ExplanationOfBenefitAccident extends BackboneElement {
           : null,
       locationXExplanationOfBenefitAccident:
           json['locationAddress'] != null || json['_locationAddress'] != null
-              ? AddressLocationExplanationOfBenefitAccident.fromJson({
+              ? Address.fromJson({
                   'value': json['locationAddress'],
                   '_value': json['_locationAddress'],
                 })
-              : json['locationReference'] != null ||
-                      json['_locationReference'] != null
-                  ? ReferenceLocationExplanationOfBenefitAccident.fromJson({
-                      'value': json['locationReference'],
-                      '_value': json['_locationReference'],
-                    })
+              : json['locationReference'] != null
+                  ? Reference.fromJson(json: json['locationReference'])
                   : null,
     );
   }
@@ -2674,36 +2653,29 @@ class ExplanationOfBenefitItem extends BackboneElement {
               )
               .toList()
           : null,
-      servicedXExplanationOfBenefitItem: json['servicedDate'] != null ||
-              json['_servicedDate'] != null
-          ? DateServicedExplanationOfBenefitItem.fromJson({
-              'value': json['servicedDate'],
-              '_value': json['_servicedDate'],
-            })
-          : json['servicedPeriod'] != null || json['_servicedPeriod'] != null
-              ? PeriodServicedExplanationOfBenefitItem.fromJson({
-                  'value': json['servicedPeriod'],
-                  '_value': json['_servicedPeriod'],
+      servicedXExplanationOfBenefitItem:
+          json['servicedDate'] != null || json['_servicedDate'] != null
+              ? FhirDate.fromJson({
+                  'value': json['servicedDate'],
+                  '_value': json['_servicedDate'],
                 })
-              : null,
+              : json['servicedPeriod'] != null
+                  ? Period.fromJson(json: json['servicedPeriod'])
+                  : null,
       locationXExplanationOfBenefitItem: json['locationCodeableConcept'] !=
                   null ||
               json['_locationCodeableConcept'] != null
-          ? CodeableConceptLocationExplanationOfBenefitItem.fromJson({
+          ? CodeableConcept.fromJson({
               'value': json['locationCodeableConcept'],
               '_value': json['_locationCodeableConcept'],
             })
           : json['locationAddress'] != null || json['_locationAddress'] != null
-              ? AddressLocationExplanationOfBenefitItem.fromJson({
+              ? Address.fromJson({
                   'value': json['locationAddress'],
                   '_value': json['_locationAddress'],
                 })
-              : json['locationReference'] != null ||
-                      json['_locationReference'] != null
-                  ? ReferenceLocationExplanationOfBenefitItem.fromJson({
-                      'value': json['locationReference'],
-                      '_value': json['_locationReference'],
-                    })
+              : json['locationReference'] != null
+                  ? Reference.fromJson(json: json['locationReference'])
                   : null,
       quantity: json['quantity'] != null
           ? Quantity.fromJson(
@@ -4169,36 +4141,29 @@ class ExplanationOfBenefitAddItem extends BackboneElement {
               )
               .toList()
           : null,
-      servicedXExplanationOfBenefitAddItem: json['servicedDate'] != null ||
-              json['_servicedDate'] != null
-          ? DateServicedExplanationOfBenefitAddItem.fromJson({
-              'value': json['servicedDate'],
-              '_value': json['_servicedDate'],
-            })
-          : json['servicedPeriod'] != null || json['_servicedPeriod'] != null
-              ? PeriodServicedExplanationOfBenefitAddItem.fromJson({
-                  'value': json['servicedPeriod'],
-                  '_value': json['_servicedPeriod'],
+      servicedXExplanationOfBenefitAddItem:
+          json['servicedDate'] != null || json['_servicedDate'] != null
+              ? FhirDate.fromJson({
+                  'value': json['servicedDate'],
+                  '_value': json['_servicedDate'],
                 })
-              : null,
+              : json['servicedPeriod'] != null
+                  ? Period.fromJson(json: json['servicedPeriod'])
+                  : null,
       locationXExplanationOfBenefitAddItem: json['locationCodeableConcept'] !=
                   null ||
               json['_locationCodeableConcept'] != null
-          ? CodeableConceptLocationExplanationOfBenefitAddItem.fromJson({
+          ? CodeableConcept.fromJson({
               'value': json['locationCodeableConcept'],
               '_value': json['_locationCodeableConcept'],
             })
           : json['locationAddress'] != null || json['_locationAddress'] != null
-              ? AddressLocationExplanationOfBenefitAddItem.fromJson({
+              ? Address.fromJson({
                   'value': json['locationAddress'],
                   '_value': json['_locationAddress'],
                 })
-              : json['locationReference'] != null ||
-                      json['_locationReference'] != null
-                  ? ReferenceLocationExplanationOfBenefitAddItem.fromJson({
-                      'value': json['locationReference'],
-                      '_value': json['_locationReference'],
-                    })
+              : json['locationReference'] != null
+                  ? Reference.fromJson(json: json['locationReference'])
                   : null,
       quantity: json['quantity'] != null
           ? Quantity.fromJson(
@@ -5991,35 +5956,29 @@ class ExplanationOfBenefitFinancial extends BackboneElement {
       type: CodeableConcept.fromJson(
         json['type'] as Map<String, dynamic>,
       ),
-      allowedXExplanationOfBenefitFinancial: json['allowedUnsignedInt'] !=
-                  null ||
-              json['_allowedUnsignedInt'] != null
-          ? UnsignedIntAllowedExplanationOfBenefitFinancial.fromJson({
-              'value': json['allowedUnsignedInt'],
-              '_value': json['_allowedUnsignedInt'],
-            })
-          : json['allowedString'] != null || json['_allowedString'] != null
-              ? StringAllowedExplanationOfBenefitFinancial.fromJson({
-                  'value': json['allowedString'],
-                  '_value': json['_allowedString'],
+      allowedXExplanationOfBenefitFinancial:
+          json['allowedUnsignedInt'] != null ||
+                  json['_allowedUnsignedInt'] != null
+              ? FhirUnsignedInt.fromJson({
+                  'value': json['allowedUnsignedInt'],
+                  '_value': json['_allowedUnsignedInt'],
                 })
-              : json['allowedMoney'] != null || json['_allowedMoney'] != null
-                  ? MoneyAllowedExplanationOfBenefitFinancial.fromJson({
-                      'value': json['allowedMoney'],
-                      '_value': json['_allowedMoney'],
+              : json['allowedString'] != null || json['_allowedString'] != null
+                  ? FhirString.fromJson({
+                      'value': json['allowedString'],
+                      '_value': json['_allowedString'],
                     })
-                  : null,
+                  : json['allowedMoney'] != null
+                      ? Money.fromJson(json: json['allowedMoney'])
+                      : null,
       usedXExplanationOfBenefitFinancial:
           json['usedUnsignedInt'] != null || json['_usedUnsignedInt'] != null
-              ? UnsignedIntUsedExplanationOfBenefitFinancial.fromJson({
+              ? FhirUnsignedInt.fromJson({
                   'value': json['usedUnsignedInt'],
                   '_value': json['_usedUnsignedInt'],
                 })
-              : json['usedMoney'] != null || json['_usedMoney'] != null
-                  ? MoneyUsedExplanationOfBenefitFinancial.fromJson({
-                      'value': json['usedMoney'],
-                      '_value': json['_usedMoney'],
-                    })
+              : json['usedMoney'] != null
+                  ? Money.fromJson(json: json['usedMoney'])
                   : null,
     );
   }

@@ -2,8 +2,6 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-part 'packaged_product_definition.g.dart';
-
 /// [PackagedProductDefinition]
 /// A medically related item or items, in a container or package.
 class PackagedProductDefinition extends DomainResource {
@@ -1011,20 +1009,18 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
               json['type'] as Map<String, dynamic>,
             )
           : null,
-      periodXPackagedProductDefinitionShelfLifeStorage: json[
-                      'periodDuration'] !=
-                  null ||
-              json['_periodDuration'] != null
-          ? DurationPeriodPackagedProductDefinitionShelfLifeStorage.fromJson({
-              'value': json['periodDuration'],
-              '_value': json['_periodDuration'],
-            })
-          : json['periodString'] != null || json['_periodString'] != null
-              ? StringPeriodPackagedProductDefinitionShelfLifeStorage.fromJson({
-                  'value': json['periodString'],
-                  '_value': json['_periodString'],
+      periodXPackagedProductDefinitionShelfLifeStorage:
+          json['periodDuration'] != null || json['_periodDuration'] != null
+              ? FhirDuration.fromJson({
+                  'value': json['periodDuration'],
+                  '_value': json['_periodDuration'],
                 })
-              : null,
+              : json['periodString'] != null || json['_periodString'] != null
+                  ? FhirString.fromJson({
+                      'value': json['periodString'],
+                      '_value': json['_periodString'],
+                    })
+                  : null,
       specialPrecautionsForStorage: json['specialPrecautionsForStorage'] != null
           ? (json['specialPrecautionsForStorage'] as List<dynamic>)
               .map<CodeableConcept>(
@@ -1220,33 +1216,28 @@ class PackagedProductDefinitionProperty extends BackboneElement {
       valueXPackagedProductDefinitionProperty: json['valueCodeableConcept'] !=
                   null ||
               json['_valueCodeableConcept'] != null
-          ? CodeableConceptValuePackagedProductDefinitionProperty.fromJson({
+          ? CodeableConcept.fromJson({
               'value': json['valueCodeableConcept'],
               '_value': json['_valueCodeableConcept'],
             })
           : json['valueQuantity'] != null || json['_valueQuantity'] != null
-              ? QuantityValuePackagedProductDefinitionProperty.fromJson({
+              ? Quantity.fromJson({
                   'value': json['valueQuantity'],
                   '_value': json['_valueQuantity'],
                 })
               : json['valueDate'] != null || json['_valueDate'] != null
-                  ? DateValuePackagedProductDefinitionProperty.fromJson({
+                  ? FhirDate.fromJson({
                       'value': json['valueDate'],
                       '_value': json['_valueDate'],
                     })
                   : json['valueBoolean'] != null ||
                           json['_valueBoolean'] != null
-                      ? BooleanValuePackagedProductDefinitionProperty.fromJson({
+                      ? FhirBoolean.fromJson({
                           'value': json['valueBoolean'],
                           '_value': json['_valueBoolean'],
                         })
-                      : json['valueAttachment'] != null ||
-                              json['_valueAttachment'] != null
-                          ? AttachmentValuePackagedProductDefinitionProperty
-                              .fromJson({
-                              'value': json['valueAttachment'],
-                              '_value': json['_valueAttachment'],
-                            })
+                      : json['valueAttachment'] != null
+                          ? Attachment.fromJson(json: json['valueAttachment'])
                           : null,
     );
   }

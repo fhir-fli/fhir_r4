@@ -2,8 +2,6 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-part 'evidence_variable.g.dart';
-
 /// [EvidenceVariable]
 /// The EvidenceVariable resource describes an element that knowledge
 /// (Evidence) is about.
@@ -695,31 +693,26 @@ class EvidenceVariableCharacteristic extends BackboneElement {
               '_value': json['_description'],
             })
           : null,
-      definitionXEvidenceVariableCharacteristic:
-          json['definitionReference'] != null ||
-                  json['_definitionReference'] != null
-              ? ReferenceDefinitionEvidenceVariableCharacteristic.fromJson({
-                  'value': json['definitionReference'],
-                  '_value': json['_definitionReference'],
+      definitionXEvidenceVariableCharacteristic: json['definitionReference'] !=
+                  null ||
+              json['_definitionReference'] != null
+          ? Reference.fromJson({
+              'value': json['definitionReference'],
+              '_value': json['_definitionReference'],
+            })
+          : json['definitionCanonical'] != null ||
+                  json['_definitionCanonical'] != null
+              ? FhirCanonical.fromJson({
+                  'value': json['definitionCanonical'],
+                  '_value': json['_definitionCanonical'],
                 })
-              : json['definitionCanonical'] != null ||
-                      json['_definitionCanonical'] != null
-                  ? CanonicalDefinitionEvidenceVariableCharacteristic.fromJson({
-                      'value': json['definitionCanonical'],
-                      '_value': json['_definitionCanonical'],
+              : json['definitionCodeableConcept'] != null ||
+                      json['_definitionCodeableConcept'] != null
+                  ? CodeableConcept.fromJson({
+                      'value': json['definitionCodeableConcept'],
+                      '_value': json['_definitionCodeableConcept'],
                     })
-                  : json['definitionCodeableConcept'] != null ||
-                          json['_definitionCodeableConcept'] != null
-                      ? CodeableConceptDefinitionEvidenceVariableCharacteristic
-                          .fromJson({
-                          'value': json['definitionCodeableConcept'],
-                          '_value': json['_definitionCodeableConcept'],
-                        })
-                      : ExpressionDefinitionEvidenceVariableCharacteristic
-                          .fromJson({
-                          'value': json['definitionExpression'],
-                          '_value': json['_definitionExpression'],
-                        }),
+                  : FhirExpression.fromJson(json: json['definitionExpression']),
       method: json['method'] != null
           ? CodeableConcept.fromJson(
               json['method'] as Map<String, dynamic>,
@@ -1155,20 +1148,17 @@ class EvidenceVariableCategory extends BackboneElement {
           : null,
       valueXEvidenceVariableCategory: json['valueCodeableConcept'] != null ||
               json['_valueCodeableConcept'] != null
-          ? CodeableConceptValueEvidenceVariableCategory.fromJson({
+          ? CodeableConcept.fromJson({
               'value': json['valueCodeableConcept'],
               '_value': json['_valueCodeableConcept'],
             })
           : json['valueQuantity'] != null || json['_valueQuantity'] != null
-              ? QuantityValueEvidenceVariableCategory.fromJson({
+              ? Quantity.fromJson({
                   'value': json['valueQuantity'],
                   '_value': json['_valueQuantity'],
                 })
-              : json['valueRange'] != null || json['_valueRange'] != null
-                  ? RangeValueEvidenceVariableCategory.fromJson({
-                      'value': json['valueRange'],
-                      '_value': json['_valueRange'],
-                    })
+              : json['valueRange'] != null
+                  ? Range.fromJson(json: json['valueRange'])
                   : null,
     );
   }

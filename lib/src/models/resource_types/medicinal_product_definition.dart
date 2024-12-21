@@ -2,8 +2,6 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-part 'medicinal_product_definition.g.dart';
-
 /// [MedicinalProductDefinition]
 /// A medicinal product, being a substance or combination of substances
 /// that is intended to treat, prevent or diagnose a disease, or to
@@ -1862,40 +1860,33 @@ class MedicinalProductDefinitionCharacteristic extends BackboneElement {
       type: CodeableConcept.fromJson(
         json['type'] as Map<String, dynamic>,
       ),
-      valueXMedicinalProductDefinitionCharacteristic: json[
-                      'valueCodeableConcept'] !=
-                  null ||
-              json['_valueCodeableConcept'] != null
-          ? CodeableConceptValueMedicinalProductDefinitionCharacteristic
-              .fromJson({
-              'value': json['valueCodeableConcept'],
-              '_value': json['_valueCodeableConcept'],
-            })
-          : json['valueQuantity'] != null || json['_valueQuantity'] != null
-              ? QuantityValueMedicinalProductDefinitionCharacteristic.fromJson({
-                  'value': json['valueQuantity'],
-                  '_value': json['_valueQuantity'],
+      valueXMedicinalProductDefinitionCharacteristic:
+          json['valueCodeableConcept'] != null ||
+                  json['_valueCodeableConcept'] != null
+              ? CodeableConcept.fromJson({
+                  'value': json['valueCodeableConcept'],
+                  '_value': json['_valueCodeableConcept'],
                 })
-              : json['valueDate'] != null || json['_valueDate'] != null
-                  ? DateValueMedicinalProductDefinitionCharacteristic.fromJson({
-                      'value': json['valueDate'],
-                      '_value': json['_valueDate'],
+              : json['valueQuantity'] != null || json['_valueQuantity'] != null
+                  ? Quantity.fromJson({
+                      'value': json['valueQuantity'],
+                      '_value': json['_valueQuantity'],
                     })
-                  : json['valueBoolean'] != null ||
-                          json['_valueBoolean'] != null
-                      ? BooleanValueMedicinalProductDefinitionCharacteristic
-                          .fromJson({
-                          'value': json['valueBoolean'],
-                          '_value': json['_valueBoolean'],
+                  : json['valueDate'] != null || json['_valueDate'] != null
+                      ? FhirDate.fromJson({
+                          'value': json['valueDate'],
+                          '_value': json['_valueDate'],
                         })
-                      : json['valueAttachment'] != null ||
-                              json['_valueAttachment'] != null
-                          ? AttachmentValueMedicinalProductDefinitionCharacteristic
-                              .fromJson({
-                              'value': json['valueAttachment'],
-                              '_value': json['_valueAttachment'],
+                      : json['valueBoolean'] != null ||
+                              json['_valueBoolean'] != null
+                          ? FhirBoolean.fromJson({
+                              'value': json['valueBoolean'],
+                              '_value': json['_valueBoolean'],
                             })
-                          : null,
+                          : json['valueAttachment'] != null
+                              ? Attachment.fromJson(
+                                  json: json['valueAttachment'])
+                              : null,
     );
   }
 

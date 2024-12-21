@@ -2,8 +2,6 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-part 'biologically_derived_product.g.dart';
-
 /// [BiologicallyDerivedProduct]
 /// A material substance originating from a biological entity intended to
 /// be transplanted or infused
@@ -449,20 +447,16 @@ class BiologicallyDerivedProductCollection extends BackboneElement {
               json['source'] as Map<String, dynamic>,
             )
           : null,
-      collectedXBiologicallyDerivedProductCollection: json[
-                      'collectedDateTime'] !=
-                  null ||
-              json['_collectedDateTime'] != null
-          ? DateTimeCollectedBiologicallyDerivedProductCollection.fromJson({
-              'value': json['collectedDateTime'],
-              '_value': json['_collectedDateTime'],
-            })
-          : json['collectedPeriod'] != null || json['_collectedPeriod'] != null
-              ? PeriodCollectedBiologicallyDerivedProductCollection.fromJson({
-                  'value': json['collectedPeriod'],
-                  '_value': json['_collectedPeriod'],
+      collectedXBiologicallyDerivedProductCollection:
+          json['collectedDateTime'] != null ||
+                  json['_collectedDateTime'] != null
+              ? FhirDateTime.fromJson({
+                  'value': json['collectedDateTime'],
+                  '_value': json['_collectedDateTime'],
                 })
-              : null,
+              : json['collectedPeriod'] != null
+                  ? Period.fromJson(json: json['collectedPeriod'])
+                  : null,
     );
   }
 
@@ -648,15 +642,12 @@ class BiologicallyDerivedProductProcessing extends BackboneElement {
           : null,
       timeXBiologicallyDerivedProductProcessing:
           json['timeDateTime'] != null || json['_timeDateTime'] != null
-              ? DateTimeTimeBiologicallyDerivedProductProcessing.fromJson({
+              ? FhirDateTime.fromJson({
                   'value': json['timeDateTime'],
                   '_value': json['_timeDateTime'],
                 })
-              : json['timePeriod'] != null || json['_timePeriod'] != null
-                  ? PeriodTimeBiologicallyDerivedProductProcessing.fromJson({
-                      'value': json['timePeriod'],
-                      '_value': json['_timePeriod'],
-                    })
+              : json['timePeriod'] != null
+                  ? Period.fromJson(json: json['timePeriod'])
                   : null,
     );
   }
@@ -837,15 +828,12 @@ class BiologicallyDerivedProductManipulation extends BackboneElement {
           : null,
       timeXBiologicallyDerivedProductManipulation:
           json['timeDateTime'] != null || json['_timeDateTime'] != null
-              ? DateTimeTimeBiologicallyDerivedProductManipulation.fromJson({
+              ? FhirDateTime.fromJson({
                   'value': json['timeDateTime'],
                   '_value': json['_timeDateTime'],
                 })
-              : json['timePeriod'] != null || json['_timePeriod'] != null
-                  ? PeriodTimeBiologicallyDerivedProductManipulation.fromJson({
-                      'value': json['timePeriod'],
-                      '_value': json['_timePeriod'],
-                    })
+              : json['timePeriod'] != null
+                  ? Period.fromJson(json: json['timePeriod'])
                   : null,
     );
   }

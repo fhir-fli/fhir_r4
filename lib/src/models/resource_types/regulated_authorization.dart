@@ -2,8 +2,6 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-part 'regulated_authorization.g.dart';
-
 /// [RegulatedAuthorization]
 /// Regulatory approval, clearance or licencing related to a regulated
 /// product, treatment, facility or activity that is cited in a guidance,
@@ -518,12 +516,12 @@ class RegulatedAuthorizationCase extends BackboneElement {
           : null,
       dateXRegulatedAuthorizationCase:
           json['datePeriod'] != null || json['_datePeriod'] != null
-              ? PeriodDateRegulatedAuthorizationCase.fromJson({
+              ? Period.fromJson({
                   'value': json['datePeriod'],
                   '_value': json['_datePeriod'],
                 })
               : json['dateDateTime'] != null || json['_dateDateTime'] != null
-                  ? DateTimeDateRegulatedAuthorizationCase.fromJson({
+                  ? FhirDateTime.fromJson({
                       'value': json['dateDateTime'],
                       '_value': json['_dateDateTime'],
                     })

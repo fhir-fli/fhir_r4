@@ -2,8 +2,6 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-part 'risk_assessment.g.dart';
-
 /// [RiskAssessment]
 /// An assessment of the likely outcome(s) for a patient or other subject
 /// as well as the likelihood of each outcome.
@@ -28,7 +26,7 @@ class RiskAssessment extends DomainResource {
     this.code,
     required this.subject,
     this.encounter,
-    this.occurrenceXRiskAssessmentRiskAssessment,
+    this.occurrenceXRiskAssessment,
     this.condition,
     this.performer,
     this.reasonCode,
@@ -140,20 +138,15 @@ class RiskAssessment extends DomainResource {
               json['encounter'] as Map<String, dynamic>,
             )
           : null,
-      occurrenceXRiskAssessmentRiskAssessment:
-          json['occurrenceDateTime'] != null ||
-                  json['_occurrenceDateTime'] != null
-              ? DateTimeOccurrenceRiskAssessmentRiskAssessment.fromJson({
-                  'value': json['occurrenceDateTime'],
-                  '_value': json['_occurrenceDateTime'],
-                })
-              : json['occurrencePeriod'] != null ||
-                      json['_occurrencePeriod'] != null
-                  ? PeriodOccurrenceRiskAssessmentRiskAssessment.fromJson({
-                      'value': json['occurrencePeriod'],
-                      '_value': json['_occurrencePeriod'],
-                    })
-                  : null,
+      occurrenceXRiskAssessment: json['occurrenceDateTime'] != null ||
+              json['_occurrenceDateTime'] != null
+          ? FhirDateTime.fromJson({
+              'value': json['occurrenceDateTime'],
+              '_value': json['_occurrenceDateTime'],
+            })
+          : json['occurrencePeriod'] != null
+              ? Period.fromJson(json: json['occurrencePeriod'])
+              : null,
       condition: json['condition'] != null
           ? Reference.fromJson(
               json['condition'] as Map<String, dynamic>,
@@ -294,10 +287,9 @@ class RiskAssessment extends DomainResource {
   /// The encounter where the assessment was performed.
   final Reference? encounter;
 
-  /// [occurrenceXRiskAssessmentRiskAssessment]
+  /// [occurrenceXRiskAssessment]
   /// The date (and possibly time) the risk assessment was performed.
-  final OccurrenceXRiskAssessmentRiskAssessment?
-      occurrenceXRiskAssessmentRiskAssessment;
+  final OccurrenceXRiskAssessment? occurrenceXRiskAssessment;
 
   /// [condition]
   /// For assessments or prognosis specific to a particular condition,
@@ -397,8 +389,7 @@ class RiskAssessment extends DomainResource {
       json['encounter'] = encounter!.toJson();
     }
 
-    addField('occurrenceXRiskAssessmentRiskAssessment',
-        occurrenceXRiskAssessmentRiskAssessment);
+    addField('occurrenceXRiskAssessment', occurrenceXRiskAssessment);
     if (condition != null) {
       json['condition'] = condition!.toJson();
     }
@@ -452,8 +443,7 @@ class RiskAssessment extends DomainResource {
     CodeableConcept? code,
     Reference? subject,
     Reference? encounter,
-    OccurrenceXRiskAssessmentRiskAssessment?
-        occurrenceXRiskAssessmentRiskAssessment,
+    OccurrenceXRiskAssessment? occurrenceXRiskAssessment,
     Reference? condition,
     Reference? performer,
     List<CodeableConcept>? reasonCode,
@@ -484,9 +474,8 @@ class RiskAssessment extends DomainResource {
       code: code ?? this.code,
       subject: subject ?? this.subject,
       encounter: encounter ?? this.encounter,
-      occurrenceXRiskAssessmentRiskAssessment:
-          occurrenceXRiskAssessmentRiskAssessment ??
-              this.occurrenceXRiskAssessmentRiskAssessment,
+      occurrenceXRiskAssessment:
+          occurrenceXRiskAssessment ?? this.occurrenceXRiskAssessment,
       condition: condition ?? this.condition,
       performer: performer ?? this.performer,
       reasonCode: reasonCode ?? this.reasonCode,
@@ -552,16 +541,12 @@ class RiskAssessmentPrediction extends BackboneElement {
       probabilityXRiskAssessmentPrediction:
           json['probabilityDecimal'] != null ||
                   json['_probabilityDecimal'] != null
-              ? DecimalProbabilityRiskAssessmentPrediction.fromJson({
+              ? FhirDecimal.fromJson({
                   'value': json['probabilityDecimal'],
                   '_value': json['_probabilityDecimal'],
                 })
-              : json['probabilityRange'] != null ||
-                      json['_probabilityRange'] != null
-                  ? RangeProbabilityRiskAssessmentPrediction.fromJson({
-                      'value': json['probabilityRange'],
-                      '_value': json['_probabilityRange'],
-                    })
+              : json['probabilityRange'] != null
+                  ? Range.fromJson(json: json['probabilityRange'])
                   : null,
       qualitativeRisk: json['qualitativeRisk'] != null
           ? CodeableConcept.fromJson(
@@ -577,15 +562,12 @@ class RiskAssessmentPrediction extends BackboneElement {
               : null,
       whenXRiskAssessmentPrediction:
           json['whenPeriod'] != null || json['_whenPeriod'] != null
-              ? PeriodWhenRiskAssessmentPrediction.fromJson({
+              ? Period.fromJson({
                   'value': json['whenPeriod'],
                   '_value': json['_whenPeriod'],
                 })
-              : json['whenRange'] != null || json['_whenRange'] != null
-                  ? RangeWhenRiskAssessmentPrediction.fromJson({
-                      'value': json['whenRange'],
-                      '_value': json['_whenRange'],
-                    })
+              : json['whenRange'] != null
+                  ? Range.fromJson(json: json['whenRange'])
                   : null,
       rationale: (json['rationale'] != null || json['_rationale'] != null)
           ? FhirString.fromJson({

@@ -2,8 +2,6 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-part 'value_set.g.dart';
-
 /// [ValueSet]
 /// A ValueSet resource instance specifies a set of codes drawn from one or
 /// more code systems, intended for use in a particular context. Value sets
@@ -1689,40 +1687,40 @@ class ValueSetParameter extends BackboneElement {
       }),
       valueXValueSetParameter: json['valueString'] != null ||
               json['_valueString'] != null
-          ? StringValueValueSetParameter.fromJson({
+          ? FhirString.fromJson({
               'value': json['valueString'],
               '_value': json['_valueString'],
             })
           : json['valueBoolean'] != null || json['_valueBoolean'] != null
-              ? BooleanValueValueSetParameter.fromJson({
+              ? FhirBoolean.fromJson({
                   'value': json['valueBoolean'],
                   '_value': json['_valueBoolean'],
                 })
               : json['valueInteger'] != null || json['_valueInteger'] != null
-                  ? IntegerValueValueSetParameter.fromJson({
+                  ? FhirInteger.fromJson({
                       'value': json['valueInteger'],
                       '_value': json['_valueInteger'],
                     })
                   : json['valueDecimal'] != null ||
                           json['_valueDecimal'] != null
-                      ? DecimalValueValueSetParameter.fromJson({
+                      ? FhirDecimal.fromJson({
                           'value': json['valueDecimal'],
                           '_value': json['_valueDecimal'],
                         })
                       : json['valueUri'] != null || json['_valueUri'] != null
-                          ? UriValueValueSetParameter.fromJson({
+                          ? FhirUri.fromJson({
                               'value': json['valueUri'],
                               '_value': json['_valueUri'],
                             })
                           : json['valueCode'] != null ||
                                   json['_valueCode'] != null
-                              ? CodeValueValueSetParameter.fromJson({
+                              ? FhirCode.fromJson({
                                   'value': json['valueCode'],
                                   '_value': json['_valueCode'],
                                 })
                               : json['valueDateTime'] != null ||
                                       json['_valueDateTime'] != null
-                                  ? DateTimeValueValueSetParameter.fromJson({
+                                  ? FhirDateTime.fromJson({
                                       'value': json['valueDateTime'],
                                       '_value': json['_valueDateTime'],
                                     })

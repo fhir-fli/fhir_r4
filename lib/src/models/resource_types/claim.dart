@@ -2,8 +2,6 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-part 'claim.g.dart';
-
 /// [Claim]
 /// A provider issued list of professional services and products which have
 /// been provided, or are to be provided, to a patient which is sent to an
@@ -1250,44 +1248,37 @@ class ClaimSupportingInfo extends BackboneElement {
           : null,
       timingXClaimSupportingInfo:
           json['timingDate'] != null || json['_timingDate'] != null
-              ? DateTimingClaimSupportingInfo.fromJson({
+              ? FhirDate.fromJson({
                   'value': json['timingDate'],
                   '_value': json['_timingDate'],
                 })
-              : json['timingPeriod'] != null || json['_timingPeriod'] != null
-                  ? PeriodTimingClaimSupportingInfo.fromJson({
-                      'value': json['timingPeriod'],
-                      '_value': json['_timingPeriod'],
-                    })
+              : json['timingPeriod'] != null
+                  ? Period.fromJson(json: json['timingPeriod'])
                   : null,
       valueXClaimSupportingInfo: json['valueBoolean'] != null ||
               json['_valueBoolean'] != null
-          ? BooleanValueClaimSupportingInfo.fromJson({
+          ? FhirBoolean.fromJson({
               'value': json['valueBoolean'],
               '_value': json['_valueBoolean'],
             })
           : json['valueString'] != null || json['_valueString'] != null
-              ? StringValueClaimSupportingInfo.fromJson({
+              ? FhirString.fromJson({
                   'value': json['valueString'],
                   '_value': json['_valueString'],
                 })
               : json['valueQuantity'] != null || json['_valueQuantity'] != null
-                  ? QuantityValueClaimSupportingInfo.fromJson({
+                  ? Quantity.fromJson({
                       'value': json['valueQuantity'],
                       '_value': json['_valueQuantity'],
                     })
                   : json['valueAttachment'] != null ||
                           json['_valueAttachment'] != null
-                      ? AttachmentValueClaimSupportingInfo.fromJson({
+                      ? Attachment.fromJson({
                           'value': json['valueAttachment'],
                           '_value': json['_valueAttachment'],
                         })
-                      : json['valueReference'] != null ||
-                              json['_valueReference'] != null
-                          ? ReferenceValueClaimSupportingInfo.fromJson({
-                              'value': json['valueReference'],
-                              '_value': json['_valueReference'],
-                            })
+                      : json['valueReference'] != null
+                          ? Reference.fromJson(json: json['valueReference'])
                           : null,
       reason: json['reason'] != null
           ? CodeableConcept.fromJson(
@@ -1490,14 +1481,11 @@ class ClaimDiagnosis extends BackboneElement {
       }),
       diagnosisXClaimDiagnosis: json['diagnosisCodeableConcept'] != null ||
               json['_diagnosisCodeableConcept'] != null
-          ? CodeableConceptDiagnosisClaimDiagnosis.fromJson({
+          ? CodeableConcept.fromJson({
               'value': json['diagnosisCodeableConcept'],
               '_value': json['_diagnosisCodeableConcept'],
             })
-          : ReferenceDiagnosisClaimDiagnosis.fromJson({
-              'value': json['diagnosisReference'],
-              '_value': json['_diagnosisReference'],
-            }),
+          : Reference.fromJson(json: json['diagnosisReference']),
       type: json['type'] != null
           ? (json['type'] as List<dynamic>)
               .map<CodeableConcept>(
@@ -1722,14 +1710,11 @@ class ClaimProcedure extends BackboneElement {
           : null,
       procedureXClaimProcedure: json['procedureCodeableConcept'] != null ||
               json['_procedureCodeableConcept'] != null
-          ? CodeableConceptProcedureClaimProcedure.fromJson({
+          ? CodeableConcept.fromJson({
               'value': json['procedureCodeableConcept'],
               '_value': json['_procedureCodeableConcept'],
             })
-          : ReferenceProcedureClaimProcedure.fromJson({
-              'value': json['procedureReference'],
-              '_value': json['_procedureReference'],
-            }),
+          : Reference.fromJson(json: json['procedureReference']),
       udi: json['udi'] != null
           ? (json['udi'] as List<dynamic>)
               .map<Reference>(
@@ -2168,16 +2153,12 @@ class ClaimAccident extends BackboneElement {
           : null,
       locationXClaimAccident:
           json['locationAddress'] != null || json['_locationAddress'] != null
-              ? AddressLocationClaimAccident.fromJson({
+              ? Address.fromJson({
                   'value': json['locationAddress'],
                   '_value': json['_locationAddress'],
                 })
-              : json['locationReference'] != null ||
-                      json['_locationReference'] != null
-                  ? ReferenceLocationClaimAccident.fromJson({
-                      'value': json['locationReference'],
-                      '_value': json['_locationReference'],
-                    })
+              : json['locationReference'] != null
+                  ? Reference.fromJson(json: json['locationReference'])
                   : null,
     );
   }
@@ -2415,35 +2396,28 @@ class ClaimItem extends BackboneElement {
               )
               .toList()
           : null,
-      servicedXClaimItem: json['servicedDate'] != null ||
-              json['_servicedDate'] != null
-          ? DateServicedClaimItem.fromJson({
-              'value': json['servicedDate'],
-              '_value': json['_servicedDate'],
-            })
-          : json['servicedPeriod'] != null || json['_servicedPeriod'] != null
-              ? PeriodServicedClaimItem.fromJson({
-                  'value': json['servicedPeriod'],
-                  '_value': json['_servicedPeriod'],
+      servicedXClaimItem:
+          json['servicedDate'] != null || json['_servicedDate'] != null
+              ? FhirDate.fromJson({
+                  'value': json['servicedDate'],
+                  '_value': json['_servicedDate'],
                 })
-              : null,
+              : json['servicedPeriod'] != null
+                  ? Period.fromJson(json: json['servicedPeriod'])
+                  : null,
       locationXClaimItem: json['locationCodeableConcept'] != null ||
               json['_locationCodeableConcept'] != null
-          ? CodeableConceptLocationClaimItem.fromJson({
+          ? CodeableConcept.fromJson({
               'value': json['locationCodeableConcept'],
               '_value': json['_locationCodeableConcept'],
             })
           : json['locationAddress'] != null || json['_locationAddress'] != null
-              ? AddressLocationClaimItem.fromJson({
+              ? Address.fromJson({
                   'value': json['locationAddress'],
                   '_value': json['_locationAddress'],
                 })
-              : json['locationReference'] != null ||
-                      json['_locationReference'] != null
-                  ? ReferenceLocationClaimItem.fromJson({
-                      'value': json['locationReference'],
-                      '_value': json['_locationReference'],
-                    })
+              : json['locationReference'] != null
+                  ? Reference.fromJson(json: json['locationReference'])
                   : null,
       quantity: json['quantity'] != null
           ? Quantity.fromJson(

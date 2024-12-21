@@ -2,8 +2,6 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-part 'goal.g.dart';
-
 /// [Goal]
 /// Describes the intended objective(s) for a patient, group or
 /// organization care, for example, weight loss, restoring an activity of
@@ -29,7 +27,7 @@ class Goal extends DomainResource {
     this.priority,
     required this.description,
     required this.subject,
-    this.startXGoalGoal,
+    this.startXGoal,
     this.target,
     this.statusDate,
     this.statusReason,
@@ -138,18 +136,14 @@ class Goal extends DomainResource {
       subject: Reference.fromJson(
         json['subject'] as Map<String, dynamic>,
       ),
-      startXGoalGoal: json['startGoalStartEvent'] != null ||
+      startXGoal: json['startGoalStartEvent'] != null ||
               json['_startGoalStartEvent'] != null
-          ? GoalStartEventStartGoalGoal.fromJson({
+          ? GoalStartEvent.fromJson({
               'value': json['startGoalStartEvent'],
               '_value': json['_startGoalStartEvent'],
             })
-          : json['startCodeableConcept'] != null ||
-                  json['_startCodeableConcept'] != null
-              ? CodeableConceptStartGoalGoal.fromJson({
-                  'value': json['startCodeableConcept'],
-                  '_value': json['_startCodeableConcept'],
-                })
+          : json['startCodeableConcept'] != null
+              ? CodeableConcept.fromJson(json: json['startCodeableConcept'])
               : null,
       target: json['target'] != null
           ? (json['target'] as List<dynamic>)
@@ -294,9 +288,9 @@ class Goal extends DomainResource {
   /// being established.
   final Reference subject;
 
-  /// [startXGoalGoal]
+  /// [startXGoal]
   /// The date or event after which the goal should begin being pursued.
-  final StartXGoalGoal? startXGoalGoal;
+  final StartXGoal? startXGoal;
 
   /// [target]
   /// Indicates what should be done by when.
@@ -390,7 +384,7 @@ class Goal extends DomainResource {
 
     json['subject'] = subject.toJson();
 
-    addField('startXGoalGoal', startXGoalGoal);
+    addField('startXGoal', startXGoal);
     if (target != null && target!.isNotEmpty) {
       json['target'] = target!.map((e) => e.toJson()).toList();
     }
@@ -440,7 +434,7 @@ class Goal extends DomainResource {
     CodeableConcept? priority,
     CodeableConcept? description,
     Reference? subject,
-    StartXGoalGoal? startXGoalGoal,
+    StartXGoal? startXGoal,
     List<GoalTarget>? target,
     FhirDate? statusDate,
     FhirString? statusReason,
@@ -470,7 +464,7 @@ class Goal extends DomainResource {
       priority: priority ?? this.priority,
       description: description ?? this.description,
       subject: subject ?? this.subject,
-      startXGoalGoal: startXGoalGoal ?? this.startXGoalGoal,
+      startXGoal: startXGoal ?? this.startXGoal,
       target: target ?? this.target,
       statusDate: statusDate ?? this.statusDate,
       statusReason: statusReason ?? this.statusReason,
@@ -530,58 +524,51 @@ class GoalTarget extends BackboneElement {
               json['measure'] as Map<String, dynamic>,
             )
           : null,
-      detailXGoalTarget:
-          json['detailQuantity'] != null || json['_detailQuantity'] != null
-              ? QuantityDetailGoalTarget.fromJson({
-                  'value': json['detailQuantity'],
-                  '_value': json['_detailQuantity'],
+      detailXGoalTarget: json['detailQuantity'] != null ||
+              json['_detailQuantity'] != null
+          ? Quantity.fromJson({
+              'value': json['detailQuantity'],
+              '_value': json['_detailQuantity'],
+            })
+          : json['detailRange'] != null || json['_detailRange'] != null
+              ? Range.fromJson({
+                  'value': json['detailRange'],
+                  '_value': json['_detailRange'],
                 })
-              : json['detailRange'] != null || json['_detailRange'] != null
-                  ? RangeDetailGoalTarget.fromJson({
-                      'value': json['detailRange'],
-                      '_value': json['_detailRange'],
+              : json['detailCodeableConcept'] != null ||
+                      json['_detailCodeableConcept'] != null
+                  ? CodeableConcept.fromJson({
+                      'value': json['detailCodeableConcept'],
+                      '_value': json['_detailCodeableConcept'],
                     })
-                  : json['detailCodeableConcept'] != null ||
-                          json['_detailCodeableConcept'] != null
-                      ? CodeableConceptDetailGoalTarget.fromJson({
-                          'value': json['detailCodeableConcept'],
-                          '_value': json['_detailCodeableConcept'],
+                  : json['detailString'] != null ||
+                          json['_detailString'] != null
+                      ? FhirString.fromJson({
+                          'value': json['detailString'],
+                          '_value': json['_detailString'],
                         })
-                      : json['detailString'] != null ||
-                              json['_detailString'] != null
-                          ? StringDetailGoalTarget.fromJson({
-                              'value': json['detailString'],
-                              '_value': json['_detailString'],
+                      : json['detailBoolean'] != null ||
+                              json['_detailBoolean'] != null
+                          ? FhirBoolean.fromJson({
+                              'value': json['detailBoolean'],
+                              '_value': json['_detailBoolean'],
                             })
-                          : json['detailBoolean'] != null ||
-                                  json['_detailBoolean'] != null
-                              ? BooleanDetailGoalTarget.fromJson({
-                                  'value': json['detailBoolean'],
-                                  '_value': json['_detailBoolean'],
+                          : json['detailInteger'] != null ||
+                                  json['_detailInteger'] != null
+                              ? FhirInteger.fromJson({
+                                  'value': json['detailInteger'],
+                                  '_value': json['_detailInteger'],
                                 })
-                              : json['detailInteger'] != null ||
-                                      json['_detailInteger'] != null
-                                  ? IntegerDetailGoalTarget.fromJson({
-                                      'value': json['detailInteger'],
-                                      '_value': json['_detailInteger'],
-                                    })
-                                  : json['detailRatio'] != null ||
-                                          json['_detailRatio'] != null
-                                      ? RatioDetailGoalTarget.fromJson({
-                                          'value': json['detailRatio'],
-                                          '_value': json['_detailRatio'],
-                                        })
-                                      : null,
+                              : json['detailRatio'] != null
+                                  ? Ratio.fromJson(json: json['detailRatio'])
+                                  : null,
       dueXGoalTarget: json['dueDate'] != null || json['_dueDate'] != null
-          ? DateDueGoalTarget.fromJson({
+          ? FhirDate.fromJson({
               'value': json['dueDate'],
               '_value': json['_dueDate'],
             })
-          : json['dueDuration'] != null || json['_dueDuration'] != null
-              ? DurationDueGoalTarget.fromJson({
-                  'value': json['dueDuration'],
-                  '_value': json['_dueDuration'],
-                })
+          : json['dueDuration'] != null
+              ? FhirDuration.fromJson(json: json['dueDuration'])
               : null,
     );
   }

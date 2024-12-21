@@ -2,8 +2,6 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-part 'condition.g.dart';
-
 /// [Condition]
 /// A clinical condition, problem, diagnosis, or other event, situation,
 /// issue, or clinical concept that has risen to a level of concern.
@@ -29,8 +27,8 @@ class Condition extends DomainResource {
     this.bodySite,
     required this.subject,
     this.encounter,
-    this.onsetXConditionCondition,
-    this.abatementXConditionCondition,
+    this.onsetXCondition,
+    this.abatementXCondition,
     this.recordedDate,
     this.recorder,
     this.asserter,
@@ -154,60 +152,60 @@ class Condition extends DomainResource {
               json['encounter'] as Map<String, dynamic>,
             )
           : null,
-      onsetXConditionCondition: json['onsetDateTime'] != null ||
+      onsetXCondition: json['onsetDateTime'] != null ||
               json['_onsetDateTime'] != null
-          ? DateTimeOnsetConditionCondition.fromJson({
+          ? FhirDateTime.fromJson({
               'value': json['onsetDateTime'],
               '_value': json['_onsetDateTime'],
             })
           : json['onsetAge'] != null || json['_onsetAge'] != null
-              ? AgeOnsetConditionCondition.fromJson({
+              ? Age.fromJson({
                   'value': json['onsetAge'],
                   '_value': json['_onsetAge'],
                 })
               : json['onsetPeriod'] != null || json['_onsetPeriod'] != null
-                  ? PeriodOnsetConditionCondition.fromJson({
+                  ? Period.fromJson({
                       'value': json['onsetPeriod'],
                       '_value': json['_onsetPeriod'],
                     })
                   : json['onsetRange'] != null || json['_onsetRange'] != null
-                      ? RangeOnsetConditionCondition.fromJson({
+                      ? Range.fromJson({
                           'value': json['onsetRange'],
                           '_value': json['_onsetRange'],
                         })
                       : json['onsetString'] != null ||
                               json['_onsetString'] != null
-                          ? StringOnsetConditionCondition.fromJson({
+                          ? FhirString.fromJson({
                               'value': json['onsetString'],
                               '_value': json['_onsetString'],
                             })
                           : null,
-      abatementXConditionCondition: json['abatementDateTime'] != null ||
+      abatementXCondition: json['abatementDateTime'] != null ||
               json['_abatementDateTime'] != null
-          ? DateTimeAbatementConditionCondition.fromJson({
+          ? FhirDateTime.fromJson({
               'value': json['abatementDateTime'],
               '_value': json['_abatementDateTime'],
             })
           : json['abatementAge'] != null || json['_abatementAge'] != null
-              ? AgeAbatementConditionCondition.fromJson({
+              ? Age.fromJson({
                   'value': json['abatementAge'],
                   '_value': json['_abatementAge'],
                 })
               : json['abatementPeriod'] != null ||
                       json['_abatementPeriod'] != null
-                  ? PeriodAbatementConditionCondition.fromJson({
+                  ? Period.fromJson({
                       'value': json['abatementPeriod'],
                       '_value': json['_abatementPeriod'],
                     })
                   : json['abatementRange'] != null ||
                           json['_abatementRange'] != null
-                      ? RangeAbatementConditionCondition.fromJson({
+                      ? Range.fromJson({
                           'value': json['abatementRange'],
                           '_value': json['_abatementRange'],
                         })
                       : json['abatementString'] != null ||
                               json['_abatementString'] != null
-                          ? StringAbatementConditionCondition.fromJson({
+                          ? FhirString.fromJson({
                               'value': json['abatementString'],
                               '_value': json['_abatementString'],
                             })
@@ -343,17 +341,17 @@ class Condition extends DomainResource {
   /// creation of this record is tightly associated.
   final Reference? encounter;
 
-  /// [onsetXConditionCondition]
+  /// [onsetXCondition]
   /// Estimated or actual date or date-time the condition began, in the
   /// opinion of the clinician.
-  final OnsetXConditionCondition? onsetXConditionCondition;
+  final OnsetXCondition? onsetXCondition;
 
-  /// [abatementXConditionCondition]
+  /// [abatementXCondition]
   /// The date or estimated date that the condition resolved or went into
   /// remission. This is called "abatement" because of the many overloaded
   /// connotations associated with "remission" or "resolution" - Conditions
   /// are never really resolved, but they can abate.
-  final AbatementXConditionCondition? abatementXConditionCondition;
+  final AbatementXCondition? abatementXCondition;
 
   /// [recordedDate]
   /// The recordedDate represents when this particular Condition record was
@@ -456,8 +454,8 @@ class Condition extends DomainResource {
       json['encounter'] = encounter!.toJson();
     }
 
-    addField('onsetXConditionCondition', onsetXConditionCondition);
-    addField('abatementXConditionCondition', abatementXConditionCondition);
+    addField('onsetXCondition', onsetXCondition);
+    addField('abatementXCondition', abatementXCondition);
     addField('recordedDate', recordedDate);
     if (recorder != null) {
       json['recorder'] = recorder!.toJson();
@@ -503,8 +501,8 @@ class Condition extends DomainResource {
     List<CodeableConcept>? bodySite,
     Reference? subject,
     Reference? encounter,
-    OnsetXConditionCondition? onsetXConditionCondition,
-    AbatementXConditionCondition? abatementXConditionCondition,
+    OnsetXCondition? onsetXCondition,
+    AbatementXCondition? abatementXCondition,
     FhirDateTime? recordedDate,
     Reference? recorder,
     Reference? asserter,
@@ -534,10 +532,8 @@ class Condition extends DomainResource {
       bodySite: bodySite ?? this.bodySite,
       subject: subject ?? this.subject,
       encounter: encounter ?? this.encounter,
-      onsetXConditionCondition:
-          onsetXConditionCondition ?? this.onsetXConditionCondition,
-      abatementXConditionCondition:
-          abatementXConditionCondition ?? this.abatementXConditionCondition,
+      onsetXCondition: onsetXCondition ?? this.onsetXCondition,
+      abatementXCondition: abatementXCondition ?? this.abatementXCondition,
       recordedDate: recordedDate ?? this.recordedDate,
       recorder: recorder ?? this.recorder,
       asserter: asserter ?? this.asserter,

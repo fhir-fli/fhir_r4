@@ -2,8 +2,6 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-part 'ingredient.g.dart';
-
 /// [Ingredient]
 /// An ingredient of a manufactured item or pharmaceutical product.
 class Ingredient extends DomainResource {
@@ -714,16 +712,12 @@ class IngredientStrength extends BackboneElement {
           : null,
       presentationXIngredientStrength: json['presentationRatio'] != null ||
               json['_presentationRatio'] != null
-          ? RatioPresentationIngredientStrength.fromJson({
+          ? Ratio.fromJson({
               'value': json['presentationRatio'],
               '_value': json['_presentationRatio'],
             })
-          : json['presentationRatioRange'] != null ||
-                  json['_presentationRatioRange'] != null
-              ? RatioRangePresentationIngredientStrength.fromJson({
-                  'value': json['presentationRatioRange'],
-                  '_value': json['_presentationRatioRange'],
-                })
+          : json['presentationRatioRange'] != null
+              ? RatioRange.fromJson(json: json['presentationRatioRange'])
               : null,
       textPresentation: (json['textPresentation'] != null ||
               json['_textPresentation'] != null)
@@ -734,16 +728,12 @@ class IngredientStrength extends BackboneElement {
           : null,
       concentrationXIngredientStrength: json['concentrationRatio'] != null ||
               json['_concentrationRatio'] != null
-          ? RatioConcentrationIngredientStrength.fromJson({
+          ? Ratio.fromJson({
               'value': json['concentrationRatio'],
               '_value': json['_concentrationRatio'],
             })
-          : json['concentrationRatioRange'] != null ||
-                  json['_concentrationRatioRange'] != null
-              ? RatioRangeConcentrationIngredientStrength.fromJson({
-                  'value': json['concentrationRatioRange'],
-                  '_value': json['_concentrationRatioRange'],
-                })
+          : json['concentrationRatioRange'] != null
+              ? RatioRange.fromJson(json: json['concentrationRatioRange'])
               : null,
       textConcentration: (json['textConcentration'] != null ||
               json['_textConcentration'] != null)
@@ -1006,14 +996,11 @@ class IngredientReferenceStrength extends BackboneElement {
           : null,
       strengthXIngredientReferenceStrength:
           json['strengthRatio'] != null || json['_strengthRatio'] != null
-              ? RatioStrengthIngredientReferenceStrength.fromJson({
+              ? Ratio.fromJson({
                   'value': json['strengthRatio'],
                   '_value': json['_strengthRatio'],
                 })
-              : RatioRangeStrengthIngredientReferenceStrength.fromJson({
-                  'value': json['strengthRatioRange'],
-                  '_value': json['_strengthRatioRange'],
-                }),
+              : RatioRange.fromJson(json: json['strengthRatioRange']),
       measurementPoint: (json['measurementPoint'] != null ||
               json['_measurementPoint'] != null)
           ? FhirString.fromJson({

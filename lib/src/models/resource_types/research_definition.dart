@@ -2,8 +2,6 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-part 'research_definition.g.dart';
-
 /// [ResearchDefinition]
 /// The ResearchDefinition resource describes the conditional state
 /// (population and any exposures being compared within the population) and
@@ -31,7 +29,7 @@ class ResearchDefinition extends DomainResource {
     this.subtitle,
     required this.status,
     this.experimental,
-    this.subjectXResearchDefinitionResearchDefinition,
+    this.subjectXResearchDefinition,
     this.date,
     this.publisher,
     this.contact,
@@ -174,21 +172,14 @@ class ResearchDefinition extends DomainResource {
                   '_value': json['_experimental'],
                 })
               : null,
-      subjectXResearchDefinitionResearchDefinition: json[
-                      'subjectCodeableConcept'] !=
-                  null ||
+      subjectXResearchDefinition: json['subjectCodeableConcept'] != null ||
               json['_subjectCodeableConcept'] != null
-          ? CodeableConceptSubjectResearchDefinitionResearchDefinition
-              .fromJson({
+          ? CodeableConcept.fromJson({
               'value': json['subjectCodeableConcept'],
               '_value': json['_subjectCodeableConcept'],
             })
-          : json['subjectReference'] != null ||
-                  json['_subjectReference'] != null
-              ? ReferenceSubjectResearchDefinitionResearchDefinition.fromJson({
-                  'value': json['subjectReference'],
-                  '_value': json['_subjectReference'],
-                })
+          : json['subjectReference'] != null
+              ? Reference.fromJson(json: json['subjectReference'])
               : null,
       date: (json['date'] != null || json['_date'] != null)
           ? FhirDateTime.fromJson({
@@ -460,12 +451,11 @@ class ResearchDefinition extends DomainResource {
   /// intended to be used for genuine usage.
   final FhirBoolean? experimental;
 
-  /// [subjectXResearchDefinitionResearchDefinition]
+  /// [subjectXResearchDefinition]
   /// The intended subjects for the ResearchDefinition. If this element is
   /// not provided, a Patient subject is assumed, but the subject of the
   /// ResearchDefinition can be anything.
-  final SubjectXResearchDefinitionResearchDefinition?
-      subjectXResearchDefinitionResearchDefinition;
+  final SubjectXResearchDefinition? subjectXResearchDefinition;
 
   /// [date]
   /// The date (and optionally time) when the research definition was
@@ -644,9 +634,8 @@ class ResearchDefinition extends DomainResource {
     addField('subtitle', subtitle);
     addField('status', status);
     addField('experimental', experimental);
-    if (subjectXResearchDefinitionResearchDefinition != null) {
-      json['subjectXResearchDefinitionResearchDefinition'] =
-          subjectXResearchDefinitionResearchDefinition!.toJson();
+    if (subjectXResearchDefinition != null) {
+      json['subjectXResearchDefinition'] = subjectXResearchDefinition!.toJson();
     }
 
     addField('date', date);
@@ -752,8 +741,7 @@ class ResearchDefinition extends DomainResource {
     FhirString? subtitle,
     PublicationStatus? status,
     FhirBoolean? experimental,
-    SubjectXResearchDefinitionResearchDefinition?
-        subjectXResearchDefinitionResearchDefinition,
+    SubjectXResearchDefinition? subjectXResearchDefinition,
     FhirDateTime? date,
     FhirString? publisher,
     List<ContactDetail>? contact,
@@ -801,9 +789,8 @@ class ResearchDefinition extends DomainResource {
       subtitle: subtitle ?? this.subtitle,
       status: status ?? this.status,
       experimental: experimental ?? this.experimental,
-      subjectXResearchDefinitionResearchDefinition:
-          subjectXResearchDefinitionResearchDefinition ??
-              this.subjectXResearchDefinitionResearchDefinition,
+      subjectXResearchDefinition:
+          subjectXResearchDefinition ?? this.subjectXResearchDefinition,
       date: date ?? this.date,
       publisher: publisher ?? this.publisher,
       contact: contact ?? this.contact,

@@ -2,8 +2,6 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-part 'specimen.g.dart';
-
 /// [Specimen]
 /// A sample to be used for analysis.
 class Specimen extends DomainResource {
@@ -490,15 +488,12 @@ class SpecimenCollection extends BackboneElement {
           : null,
       collectedXSpecimenCollection: json['collectedDateTime'] != null ||
               json['_collectedDateTime'] != null
-          ? DateTimeCollectedSpecimenCollection.fromJson({
+          ? FhirDateTime.fromJson({
               'value': json['collectedDateTime'],
               '_value': json['_collectedDateTime'],
             })
-          : json['collectedPeriod'] != null || json['_collectedPeriod'] != null
-              ? PeriodCollectedSpecimenCollection.fromJson({
-                  'value': json['collectedPeriod'],
-                  '_value': json['_collectedPeriod'],
-                })
+          : json['collectedPeriod'] != null
+              ? Period.fromJson(json: json['collectedPeriod'])
               : null,
       duration: json['duration'] != null
           ? FhirDuration.fromJson(
@@ -523,16 +518,12 @@ class SpecimenCollection extends BackboneElement {
       fastingStatusXSpecimenCollection:
           json['fastingStatusCodeableConcept'] != null ||
                   json['_fastingStatusCodeableConcept'] != null
-              ? CodeableConceptFastingStatusSpecimenCollection.fromJson({
+              ? CodeableConcept.fromJson({
                   'value': json['fastingStatusCodeableConcept'],
                   '_value': json['_fastingStatusCodeableConcept'],
                 })
-              : json['fastingStatusDuration'] != null ||
-                      json['_fastingStatusDuration'] != null
-                  ? DurationFastingStatusSpecimenCollection.fromJson({
-                      'value': json['fastingStatusDuration'],
-                      '_value': json['_fastingStatusDuration'],
-                    })
+              : json['fastingStatusDuration'] != null
+                  ? FhirDuration.fromJson(json: json['fastingStatusDuration'])
                   : null,
     );
   }
@@ -764,15 +755,12 @@ class SpecimenProcessing extends BackboneElement {
           : null,
       timeXSpecimenProcessing:
           json['timeDateTime'] != null || json['_timeDateTime'] != null
-              ? DateTimeTimeSpecimenProcessing.fromJson({
+              ? FhirDateTime.fromJson({
                   'value': json['timeDateTime'],
                   '_value': json['_timeDateTime'],
                 })
-              : json['timePeriod'] != null || json['_timePeriod'] != null
-                  ? PeriodTimeSpecimenProcessing.fromJson({
-                      'value': json['timePeriod'],
-                      '_value': json['_timePeriod'],
-                    })
+              : json['timePeriod'] != null
+                  ? Period.fromJson(json: json['timePeriod'])
                   : null,
     );
   }
@@ -978,16 +966,12 @@ class SpecimenContainer extends BackboneElement {
           : null,
       additiveXSpecimenContainer: json['additiveCodeableConcept'] != null ||
               json['_additiveCodeableConcept'] != null
-          ? CodeableConceptAdditiveSpecimenContainer.fromJson({
+          ? CodeableConcept.fromJson({
               'value': json['additiveCodeableConcept'],
               '_value': json['_additiveCodeableConcept'],
             })
-          : json['additiveReference'] != null ||
-                  json['_additiveReference'] != null
-              ? ReferenceAdditiveSpecimenContainer.fromJson({
-                  'value': json['additiveReference'],
-                  '_value': json['_additiveReference'],
-                })
+          : json['additiveReference'] != null
+              ? Reference.fromJson(json: json['additiveReference'])
               : null,
     );
   }

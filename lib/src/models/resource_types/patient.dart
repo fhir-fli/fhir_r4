@@ -2,8 +2,6 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-part 'patient.g.dart';
-
 /// [Patient]
 /// Demographics and other administrative information about an individual
 /// or animal receiving care or other health-related services.
@@ -26,10 +24,10 @@ class Patient extends DomainResource {
     this.telecom,
     this.gender,
     this.birthDate,
-    this.deceasedXPatientPatient,
+    this.deceasedXPatient,
     this.address,
     this.maritalStatus,
-    this.multipleBirthXPatientPatient,
+    this.multipleBirthXPatient,
     this.photo,
     this.contact,
     this.communication,
@@ -143,15 +141,15 @@ class Patient extends DomainResource {
               '_value': json['_birthDate'],
             })
           : null,
-      deceasedXPatientPatient:
+      deceasedXPatient:
           json['deceasedBoolean'] != null || json['_deceasedBoolean'] != null
-              ? BooleanDeceasedPatientPatient.fromJson({
+              ? FhirBoolean.fromJson({
                   'value': json['deceasedBoolean'],
                   '_value': json['_deceasedBoolean'],
                 })
               : json['deceasedDateTime'] != null ||
                       json['_deceasedDateTime'] != null
-                  ? DateTimeDeceasedPatientPatient.fromJson({
+                  ? FhirDateTime.fromJson({
                       'value': json['deceasedDateTime'],
                       '_value': json['_deceasedDateTime'],
                     })
@@ -170,15 +168,15 @@ class Patient extends DomainResource {
               json['maritalStatus'] as Map<String, dynamic>,
             )
           : null,
-      multipleBirthXPatientPatient: json['multipleBirthBoolean'] != null ||
+      multipleBirthXPatient: json['multipleBirthBoolean'] != null ||
               json['_multipleBirthBoolean'] != null
-          ? BooleanMultipleBirthPatientPatient.fromJson({
+          ? FhirBoolean.fromJson({
               'value': json['multipleBirthBoolean'],
               '_value': json['_multipleBirthBoolean'],
             })
           : json['multipleBirthInteger'] != null ||
                   json['_multipleBirthInteger'] != null
-              ? IntegerMultipleBirthPatientPatient.fromJson({
+              ? FhirInteger.fromJson({
                   'value': json['multipleBirthInteger'],
                   '_value': json['_multipleBirthInteger'],
                 })
@@ -312,9 +310,9 @@ class Patient extends DomainResource {
   /// The date of birth for the individual.
   final FhirDate? birthDate;
 
-  /// [deceasedXPatientPatient]
+  /// [deceasedXPatient]
   /// Indicates if the individual is deceased or not.
-  final DeceasedXPatientPatient? deceasedXPatientPatient;
+  final DeceasedXPatient? deceasedXPatient;
 
   /// [address]
   /// An address for the individual.
@@ -324,10 +322,10 @@ class Patient extends DomainResource {
   /// This field contains a patient's most recent marital (civil) status.
   final CodeableConcept? maritalStatus;
 
-  /// [multipleBirthXPatientPatient]
+  /// [multipleBirthXPatient]
   /// Indicates whether the patient is part of a multiple (boolean) or
   /// indicates the actual birth order (integer).
-  final MultipleBirthXPatientPatient? multipleBirthXPatientPatient;
+  final MultipleBirthXPatient? multipleBirthXPatient;
 
   /// [photo]
   /// Image of the patient.
@@ -405,7 +403,7 @@ class Patient extends DomainResource {
 
     addField('gender', gender);
     addField('birthDate', birthDate);
-    addField('deceasedXPatientPatient', deceasedXPatientPatient);
+    addField('deceasedXPatient', deceasedXPatient);
     if (address != null && address!.isNotEmpty) {
       json['address'] = address!.map((e) => e.toJson()).toList();
     }
@@ -414,7 +412,7 @@ class Patient extends DomainResource {
       json['maritalStatus'] = maritalStatus!.toJson();
     }
 
-    addField('multipleBirthXPatientPatient', multipleBirthXPatientPatient);
+    addField('multipleBirthXPatient', multipleBirthXPatient);
     if (photo != null && photo!.isNotEmpty) {
       json['photo'] = photo!.map((e) => e.toJson()).toList();
     }
@@ -461,10 +459,10 @@ class Patient extends DomainResource {
     List<ContactPoint>? telecom,
     AdministrativeGender? gender,
     FhirDate? birthDate,
-    DeceasedXPatientPatient? deceasedXPatientPatient,
+    DeceasedXPatient? deceasedXPatient,
     List<Address>? address,
     CodeableConcept? maritalStatus,
-    MultipleBirthXPatientPatient? multipleBirthXPatientPatient,
+    MultipleBirthXPatient? multipleBirthXPatient,
     List<Attachment>? photo,
     List<PatientContact>? contact,
     List<PatientCommunication>? communication,
@@ -491,12 +489,11 @@ class Patient extends DomainResource {
       telecom: telecom ?? this.telecom,
       gender: gender ?? this.gender,
       birthDate: birthDate ?? this.birthDate,
-      deceasedXPatientPatient:
-          deceasedXPatientPatient ?? this.deceasedXPatientPatient,
+      deceasedXPatient: deceasedXPatient ?? this.deceasedXPatient,
       address: address ?? this.address,
       maritalStatus: maritalStatus ?? this.maritalStatus,
-      multipleBirthXPatientPatient:
-          multipleBirthXPatientPatient ?? this.multipleBirthXPatientPatient,
+      multipleBirthXPatient:
+          multipleBirthXPatient ?? this.multipleBirthXPatient,
       photo: photo ?? this.photo,
       contact: contact ?? this.contact,
       communication: communication ?? this.communication,

@@ -2,8 +2,6 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-part 'implementation_guide.g.dart';
-
 /// [ImplementationGuide]
 /// A set of rules of how a particular interoperability or standards
 /// problem is solved - typically through the use of FHIR resources. This
@@ -1271,13 +1269,13 @@ class ImplementationGuideResource extends BackboneElement {
           : null,
       exampleXImplementationGuideResource:
           json['exampleBoolean'] != null || json['_exampleBoolean'] != null
-              ? BooleanExampleImplementationGuideResource.fromJson({
+              ? FhirBoolean.fromJson({
                   'value': json['exampleBoolean'],
                   '_value': json['_exampleBoolean'],
                 })
               : json['exampleCanonical'] != null ||
                       json['_exampleCanonical'] != null
-                  ? CanonicalExampleImplementationGuideResource.fromJson({
+                  ? FhirCanonical.fromJson({
                       'value': json['exampleCanonical'],
                       '_value': json['_exampleCanonical'],
                     })
@@ -1399,7 +1397,7 @@ class ImplementationGuideResource extends BackboneElement {
     addField('name', name);
     addField('description', description);
     addField('exampleXImplementationGuideResource',
-        exampleXImplementationGuideResource,);
+        exampleXImplementationGuideResource);
     addField('groupingId', groupingId);
     return json;
   }
@@ -1484,14 +1482,11 @@ class ImplementationGuidePage extends BackboneElement {
           : null,
       nameXImplementationGuidePage:
           json['nameUrl'] != null || json['_nameUrl'] != null
-              ? UrlNameImplementationGuidePage.fromJson({
+              ? FhirUrl.fromJson({
                   'value': json['nameUrl'],
                   '_value': json['_nameUrl'],
                 })
-              : ReferenceNameImplementationGuidePage.fromJson({
-                  'value': json['nameReference'],
-                  '_value': json['_nameReference'],
-                }),
+              : Reference.fromJson(json: json['nameReference']),
       title: FhirString.fromJson({
         'value': json['title'],
         '_value': json['_title'],
@@ -2230,13 +2225,13 @@ class ImplementationGuideResource1 extends BackboneElement {
       ),
       exampleXImplementationGuideResource:
           json['exampleBoolean'] != null || json['_exampleBoolean'] != null
-              ? BooleanExampleImplementationGuideResource1.fromJson({
+              ? FhirBoolean.fromJson({
                   'value': json['exampleBoolean'],
                   '_value': json['_exampleBoolean'],
                 })
               : json['exampleCanonical'] != null ||
                       json['_exampleCanonical'] != null
-                  ? CanonicalExampleImplementationGuideResource1.fromJson({
+                  ? FhirCanonical.fromJson({
                       'value': json['exampleCanonical'],
                       '_value': json['_exampleCanonical'],
                     })
@@ -2301,7 +2296,7 @@ class ImplementationGuideResource1 extends BackboneElement {
   /// If true or a reference, indicates the resource is an example instance.
   /// If a reference is present, indicates that the example is an example of
   /// the specified profile.
-  final ExampleXImplementationGuideResource1?
+  final ExampleXImplementationGuideResource?
       exampleXImplementationGuideResource;
 
   /// [relativePath]
@@ -2332,7 +2327,7 @@ class ImplementationGuideResource1 extends BackboneElement {
     json['reference'] = reference.toJson();
 
     addField('exampleXImplementationGuideResource',
-        exampleXImplementationGuideResource,);
+        exampleXImplementationGuideResource);
     addField('relativePath', relativePath);
     return json;
   }
@@ -2345,7 +2340,7 @@ class ImplementationGuideResource1 extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     Reference? reference,
-    ExampleXImplementationGuideResource1? exampleXImplementationGuideResource,
+    ExampleXImplementationGuideResource? exampleXImplementationGuideResource,
     FhirUrl? relativePath,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,

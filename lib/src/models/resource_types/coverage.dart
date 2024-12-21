@@ -2,8 +2,6 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-part 'coverage.g.dart';
-
 /// [Coverage]
 /// Financial instrument which may be used to reimburse or pay for health
 /// care products and services. Includes both insurance and self-payment.
@@ -709,14 +707,11 @@ class CoverageCostToBeneficiary extends BackboneElement {
           : null,
       valueXCoverageCostToBeneficiary:
           json['valueQuantity'] != null || json['_valueQuantity'] != null
-              ? QuantityValueCoverageCostToBeneficiary.fromJson({
+              ? Quantity.fromJson({
                   'value': json['valueQuantity'],
                   '_value': json['_valueQuantity'],
                 })
-              : MoneyValueCoverageCostToBeneficiary.fromJson({
-                  'value': json['valueMoney'],
-                  '_value': json['_valueMoney'],
-                }),
+              : Money.fromJson(json: json['valueMoney']),
       exception: json['exception'] != null
           ? (json['exception'] as List<dynamic>)
               .map<CoverageException>(

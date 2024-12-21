@@ -2,8 +2,6 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-part 'medication_administration.g.dart';
-
 /// [MedicationAdministration]
 /// Describes the event of a patient consuming or otherwise being
 /// administered a medication. This may be as simple as swallowing a tablet
@@ -29,11 +27,11 @@ class MedicationAdministration extends DomainResource {
     required this.status,
     this.statusReason,
     this.category,
-    required this.medicationXMedicationAdministrationMedicationAdministration,
+    required this.medicationXMedicationAdministration,
     required this.subject,
     this.context,
     this.supportingInformation,
-    required this.effectiveXMedicationAdministrationMedicationAdministration,
+    required this.effectiveXMedicationAdministration,
     this.performer,
     this.reasonCode,
     this.reasonReference,
@@ -145,20 +143,14 @@ class MedicationAdministration extends DomainResource {
               json['category'] as Map<String, dynamic>,
             )
           : null,
-      medicationXMedicationAdministrationMedicationAdministration: json[
-                      'medicationCodeableConcept'] !=
-                  null ||
-              json['_medicationCodeableConcept'] != null
-          ? CodeableConceptMedicationMedicationAdministrationMedicationAdministration
-              .fromJson({
-              'value': json['medicationCodeableConcept'],
-              '_value': json['_medicationCodeableConcept'],
-            })
-          : ReferenceMedicationMedicationAdministrationMedicationAdministration
-              .fromJson({
-              'value': json['medicationReference'],
-              '_value': json['_medicationReference'],
-            }),
+      medicationXMedicationAdministration:
+          json['medicationCodeableConcept'] != null ||
+                  json['_medicationCodeableConcept'] != null
+              ? CodeableConcept.fromJson({
+                  'value': json['medicationCodeableConcept'],
+                  '_value': json['_medicationCodeableConcept'],
+                })
+              : Reference.fromJson(json: json['medicationReference']),
       subject: Reference.fromJson(
         json['subject'] as Map<String, dynamic>,
       ),
@@ -176,20 +168,13 @@ class MedicationAdministration extends DomainResource {
               )
               .toList()
           : null,
-      effectiveXMedicationAdministrationMedicationAdministration: json[
-                      'effectiveDateTime'] !=
-                  null ||
+      effectiveXMedicationAdministration: json['effectiveDateTime'] != null ||
               json['_effectiveDateTime'] != null
-          ? DateTimeEffectiveMedicationAdministrationMedicationAdministration
-              .fromJson({
+          ? FhirDateTime.fromJson({
               'value': json['effectiveDateTime'],
               '_value': json['_effectiveDateTime'],
             })
-          : PeriodEffectiveMedicationAdministrationMedicationAdministration
-              .fromJson({
-              'value': json['effectivePeriod'],
-              '_value': json['_effectivePeriod'],
-            }),
+          : Period.fromJson(json: json['effectivePeriod']),
       performer: json['performer'] != null
           ? (json['performer'] as List<dynamic>)
               .map<MedicationAdministrationPerformer>(
@@ -333,13 +318,12 @@ class MedicationAdministration extends DomainResource {
   /// administered.
   final CodeableConcept? category;
 
-  /// [medicationXMedicationAdministrationMedicationAdministration]
+  /// [medicationXMedicationAdministration]
   /// Identifies the medication that was administered. This is either a link
   /// to a resource representing the details of the medication or a simple
   /// attribute carrying a code that identifies the medication from a known
   /// list of medications.
-  final MedicationXMedicationAdministrationMedicationAdministration
-      medicationXMedicationAdministrationMedicationAdministration;
+  final MedicationXMedicationAdministration medicationXMedicationAdministration;
 
   /// [subject]
   /// The person or animal or group receiving the medication.
@@ -355,13 +339,12 @@ class MedicationAdministration extends DomainResource {
   /// supports the administration of the medication.
   final List<Reference>? supportingInformation;
 
-  /// [effectiveXMedicationAdministrationMedicationAdministration]
+  /// [effectiveXMedicationAdministration]
   /// A specific date/time or interval of time during which the
   /// administration took place (or did not take place, when the 'notGiven'
   /// attribute is true). For many administrations, such as swallowing a
   /// tablet the use of dateTime is more appropriate.
-  final EffectiveXMedicationAdministrationMedicationAdministration
-      effectiveXMedicationAdministrationMedicationAdministration;
+  final EffectiveXMedicationAdministration effectiveXMedicationAdministration;
 
   /// [performer]
   /// Indicates who or what performed the medication administration and how
@@ -463,8 +446,8 @@ class MedicationAdministration extends DomainResource {
       json['category'] = category!.toJson();
     }
 
-    json['medicationXMedicationAdministrationMedicationAdministration'] =
-        medicationXMedicationAdministrationMedicationAdministration.toJson();
+    json['medicationXMedicationAdministration'] =
+        medicationXMedicationAdministration.toJson();
 
     json['subject'] = subject.toJson();
 
@@ -477,8 +460,8 @@ class MedicationAdministration extends DomainResource {
           supportingInformation!.map((e) => e.toJson()).toList();
     }
 
-    addField('effectiveXMedicationAdministrationMedicationAdministration',
-        effectiveXMedicationAdministrationMedicationAdministration);
+    addField('effectiveXMedicationAdministration',
+        effectiveXMedicationAdministration);
     if (performer != null && performer!.isNotEmpty) {
       json['performer'] = performer!.map((e) => e.toJson()).toList();
     }
@@ -533,13 +516,11 @@ class MedicationAdministration extends DomainResource {
     MedicationAdministrationStatusCodes? status,
     List<CodeableConcept>? statusReason,
     CodeableConcept? category,
-    MedicationXMedicationAdministrationMedicationAdministration?
-        medicationXMedicationAdministrationMedicationAdministration,
+    MedicationXMedicationAdministration? medicationXMedicationAdministration,
     Reference? subject,
     Reference? context,
     List<Reference>? supportingInformation,
-    EffectiveXMedicationAdministrationMedicationAdministration?
-        effectiveXMedicationAdministrationMedicationAdministration,
+    EffectiveXMedicationAdministration? effectiveXMedicationAdministration,
     List<MedicationAdministrationPerformer>? performer,
     List<CodeableConcept>? reasonCode,
     List<Reference>? reasonReference,
@@ -568,16 +549,15 @@ class MedicationAdministration extends DomainResource {
       status: status ?? this.status,
       statusReason: statusReason ?? this.statusReason,
       category: category ?? this.category,
-      medicationXMedicationAdministrationMedicationAdministration:
-          medicationXMedicationAdministrationMedicationAdministration ??
-              this.medicationXMedicationAdministrationMedicationAdministration,
+      medicationXMedicationAdministration:
+          medicationXMedicationAdministration ??
+              this.medicationXMedicationAdministration,
       subject: subject ?? this.subject,
       context: context ?? this.context,
       supportingInformation:
           supportingInformation ?? this.supportingInformation,
-      effectiveXMedicationAdministrationMedicationAdministration:
-          effectiveXMedicationAdministrationMedicationAdministration ??
-              this.effectiveXMedicationAdministrationMedicationAdministration,
+      effectiveXMedicationAdministration: effectiveXMedicationAdministration ??
+          this.effectiveXMedicationAdministration,
       performer: performer ?? this.performer,
       reasonCode: reasonCode ?? this.reasonCode,
       reasonReference: reasonReference ?? this.reasonReference,
@@ -822,15 +802,12 @@ class MedicationAdministrationDosage extends BackboneElement {
           : null,
       rateXMedicationAdministrationDosage:
           json['rateRatio'] != null || json['_rateRatio'] != null
-              ? RatioRateMedicationAdministrationDosage.fromJson({
+              ? Ratio.fromJson({
                   'value': json['rateRatio'],
                   '_value': json['_rateRatio'],
                 })
-              : json['rateQuantity'] != null || json['_rateQuantity'] != null
-                  ? QuantityRateMedicationAdministrationDosage.fromJson({
-                      'value': json['rateQuantity'],
-                      '_value': json['_rateQuantity'],
-                    })
+              : json['rateQuantity'] != null
+                  ? Quantity.fromJson(json: json['rateQuantity'])
                   : null,
     );
   }

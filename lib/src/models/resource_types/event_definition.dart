@@ -2,8 +2,6 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-part 'event_definition.g.dart';
-
 /// [EventDefinition]
 /// The EventDefinition resource provides a reusable description of when a
 /// particular event can occur.
@@ -28,7 +26,7 @@ class EventDefinition extends CanonicalResource {
     this.subtitle,
     required super.status,
     super.experimental,
-    this.subjectXEventDefinitionEventDefinition,
+    this.subjectXEventDefinition,
     super.date,
     super.publisher,
     super.contact,
@@ -160,20 +158,15 @@ class EventDefinition extends CanonicalResource {
                   '_value': json['_experimental'],
                 })
               : null,
-      subjectXEventDefinitionEventDefinition:
-          json['subjectCodeableConcept'] != null ||
-                  json['_subjectCodeableConcept'] != null
-              ? CodeableConceptSubjectEventDefinitionEventDefinition.fromJson({
-                  'value': json['subjectCodeableConcept'],
-                  '_value': json['_subjectCodeableConcept'],
-                })
-              : json['subjectReference'] != null ||
-                      json['_subjectReference'] != null
-                  ? ReferenceSubjectEventDefinitionEventDefinition.fromJson({
-                      'value': json['subjectReference'],
-                      '_value': json['_subjectReference'],
-                    })
-                  : null,
+      subjectXEventDefinition: json['subjectCodeableConcept'] != null ||
+              json['_subjectCodeableConcept'] != null
+          ? CodeableConcept.fromJson({
+              'value': json['subjectCodeableConcept'],
+              '_value': json['_subjectCodeableConcept'],
+            })
+          : json['subjectReference'] != null
+              ? Reference.fromJson(json: json['subjectReference'])
+              : null,
       date: (json['date'] != null || json['_date'] != null)
           ? FhirDateTime.fromJson({
               'value': json['date'],
@@ -385,11 +378,10 @@ class EventDefinition extends CanonicalResource {
   /// additional information about its content.
   final FhirString? subtitle;
 
-  /// [subjectXEventDefinitionEventDefinition]
+  /// [subjectXEventDefinition]
   /// A code or group definition that describes the intended subject of the
   /// event definition.
-  final SubjectXEventDefinitionEventDefinition?
-      subjectXEventDefinitionEventDefinition;
+  final SubjectXEventDefinition? subjectXEventDefinition;
 
   /// [purpose]
   /// Explanation of why this event definition is needed and why it has been
@@ -508,9 +500,8 @@ class EventDefinition extends CanonicalResource {
     addField('subtitle', subtitle);
     addField('status', status);
     addField('experimental', experimental);
-    if (subjectXEventDefinitionEventDefinition != null) {
-      json['subjectXEventDefinitionEventDefinition'] =
-          subjectXEventDefinitionEventDefinition!.toJson();
+    if (subjectXEventDefinition != null) {
+      json['subjectXEventDefinition'] = subjectXEventDefinition!.toJson();
     }
 
     addField('date', date);
@@ -589,8 +580,7 @@ class EventDefinition extends CanonicalResource {
     FhirString? subtitle,
     PublicationStatus? status,
     FhirBoolean? experimental,
-    SubjectXEventDefinitionEventDefinition?
-        subjectXEventDefinitionEventDefinition,
+    SubjectXEventDefinition? subjectXEventDefinition,
     FhirDateTime? date,
     FhirString? publisher,
     List<ContactDetail>? contact,
@@ -632,9 +622,8 @@ class EventDefinition extends CanonicalResource {
       subtitle: subtitle ?? this.subtitle,
       status: status ?? this.status,
       experimental: experimental ?? this.experimental,
-      subjectXEventDefinitionEventDefinition:
-          subjectXEventDefinitionEventDefinition ??
-              this.subjectXEventDefinitionEventDefinition,
+      subjectXEventDefinition:
+          subjectXEventDefinition ?? this.subjectXEventDefinition,
       date: date ?? this.date,
       publisher: publisher ?? this.publisher,
       contact: contact ?? this.contact,

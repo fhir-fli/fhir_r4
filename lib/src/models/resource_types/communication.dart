@@ -2,8 +2,6 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-part 'communication.g.dart';
-
 /// [Communication]
 /// An occurrence of information being transmitted; e.g. an alert that was
 /// sent to a responsible provider, a public health agency that was
@@ -680,20 +678,17 @@ class CommunicationPayload extends BackboneElement {
           : null,
       contentXCommunicationPayload:
           json['contentString'] != null || json['_contentString'] != null
-              ? StringContentCommunicationPayload.fromJson({
+              ? FhirString.fromJson({
                   'value': json['contentString'],
                   '_value': json['_contentString'],
                 })
               : json['contentAttachment'] != null ||
                       json['_contentAttachment'] != null
-                  ? AttachmentContentCommunicationPayload.fromJson({
+                  ? Attachment.fromJson({
                       'value': json['contentAttachment'],
                       '_value': json['_contentAttachment'],
                     })
-                  : ReferenceContentCommunicationPayload.fromJson({
-                      'value': json['contentReference'],
-                      '_value': json['_contentReference'],
-                    }),
+                  : Reference.fromJson(json: json['contentReference']),
     );
   }
 

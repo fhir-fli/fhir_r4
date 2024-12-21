@@ -2,8 +2,6 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-part 'medication_knowledge.g.dart';
-
 /// [MedicationKnowledge]
 /// Information about a medication that is used to support knowledge.
 class MedicationKnowledge extends DomainResource {
@@ -1009,14 +1007,11 @@ class MedicationKnowledgeIngredient extends BackboneElement {
           : null,
       itemXMedicationKnowledgeIngredient: json['itemCodeableConcept'] != null ||
               json['_itemCodeableConcept'] != null
-          ? CodeableConceptItemMedicationKnowledgeIngredient.fromJson({
+          ? CodeableConcept.fromJson({
               'value': json['itemCodeableConcept'],
               '_value': json['_itemCodeableConcept'],
             })
-          : ReferenceItemMedicationKnowledgeIngredient.fromJson({
-              'value': json['itemReference'],
-              '_value': json['_itemReference'],
-            }),
+          : Reference.fromJson(json: json['itemReference']),
       isActive: (json['isActive'] != null || json['_isActive'] != null)
           ? FhirBoolean.fromJson({
               'value': json['isActive'],
@@ -1524,23 +1519,16 @@ class MedicationKnowledgeAdministrationGuidelines extends BackboneElement {
               )
               .toList()
           : null,
-      indicationXMedicationKnowledgeAdministrationGuidelines: json[
-                      'indicationCodeableConcept'] !=
-                  null ||
-              json['_indicationCodeableConcept'] != null
-          ? CodeableConceptIndicationMedicationKnowledgeAdministrationGuidelines
-              .fromJson({
-              'value': json['indicationCodeableConcept'],
-              '_value': json['_indicationCodeableConcept'],
-            })
-          : json['indicationReference'] != null ||
-                  json['_indicationReference'] != null
-              ? ReferenceIndicationMedicationKnowledgeAdministrationGuidelines
-                  .fromJson({
-                  'value': json['indicationReference'],
-                  '_value': json['_indicationReference'],
+      indicationXMedicationKnowledgeAdministrationGuidelines:
+          json['indicationCodeableConcept'] != null ||
+                  json['_indicationCodeableConcept'] != null
+              ? CodeableConcept.fromJson({
+                  'value': json['indicationCodeableConcept'],
+                  '_value': json['_indicationCodeableConcept'],
                 })
-              : null,
+              : json['indicationReference'] != null
+                  ? Reference.fromJson(json: json['indicationReference'])
+                  : null,
       patientCharacteristics: json['patientCharacteristics'] != null
           ? (json['patientCharacteristics'] as List<dynamic>)
               .map<MedicationKnowledgePatientCharacteristics>(
@@ -1882,20 +1870,14 @@ class MedicationKnowledgePatientCharacteristics extends BackboneElement {
               )
               .toList()
           : null,
-      characteristicXMedicationKnowledgePatientCharacteristics: json[
-                      'characteristicCodeableConcept'] !=
-                  null ||
-              json['_characteristicCodeableConcept'] != null
-          ? CodeableConceptCharacteristicMedicationKnowledgePatientCharacteristics
-              .fromJson({
-              'value': json['characteristicCodeableConcept'],
-              '_value': json['_characteristicCodeableConcept'],
-            })
-          : QuantityCharacteristicMedicationKnowledgePatientCharacteristics
-              .fromJson({
-              'value': json['characteristicQuantity'],
-              '_value': json['_characteristicQuantity'],
-            }),
+      characteristicXMedicationKnowledgePatientCharacteristics:
+          json['characteristicCodeableConcept'] != null ||
+                  json['_characteristicCodeableConcept'] != null
+              ? CodeableConcept.fromJson({
+                  'value': json['characteristicCodeableConcept'],
+                  '_value': json['_characteristicCodeableConcept'],
+                })
+              : Quantity.fromJson(json: json['characteristicQuantity']),
       value: parsePrimitiveList<FhirString>(
         json['value'] as List<dynamic>?,
         json['_value'] as List<dynamic>?,
@@ -2391,33 +2373,31 @@ class MedicationKnowledgeDrugCharacteristic extends BackboneElement {
               json['type'] as Map<String, dynamic>,
             )
           : null,
-      valueXMedicationKnowledgeDrugCharacteristic: json[
-                      'valueCodeableConcept'] !=
-                  null ||
-              json['_valueCodeableConcept'] != null
-          ? CodeableConceptValueMedicationKnowledgeDrugCharacteristic.fromJson({
-              'value': json['valueCodeableConcept'],
-              '_value': json['_valueCodeableConcept'],
-            })
-          : json['valueString'] != null || json['_valueString'] != null
-              ? StringValueMedicationKnowledgeDrugCharacteristic.fromJson({
-                  'value': json['valueString'],
-                  '_value': json['_valueString'],
+      valueXMedicationKnowledgeDrugCharacteristic:
+          json['valueCodeableConcept'] != null ||
+                  json['_valueCodeableConcept'] != null
+              ? CodeableConcept.fromJson({
+                  'value': json['valueCodeableConcept'],
+                  '_value': json['_valueCodeableConcept'],
                 })
-              : json['valueQuantity'] != null || json['_valueQuantity'] != null
-                  ? QuantityValueMedicationKnowledgeDrugCharacteristic
-                      .fromJson({
-                      'value': json['valueQuantity'],
-                      '_value': json['_valueQuantity'],
+              : json['valueString'] != null || json['_valueString'] != null
+                  ? FhirString.fromJson({
+                      'value': json['valueString'],
+                      '_value': json['_valueString'],
                     })
-                  : json['valueBase64Binary'] != null ||
-                          json['_valueBase64Binary'] != null
-                      ? Base64BinaryValueMedicationKnowledgeDrugCharacteristic
-                          .fromJson({
-                          'value': json['valueBase64Binary'],
-                          '_value': json['_valueBase64Binary'],
+                  : json['valueQuantity'] != null ||
+                          json['_valueQuantity'] != null
+                      ? Quantity.fromJson({
+                          'value': json['valueQuantity'],
+                          '_value': json['_valueQuantity'],
                         })
-                      : null,
+                      : json['valueBase64Binary'] != null ||
+                              json['_valueBase64Binary'] != null
+                          ? FhirBase64Binary.fromJson({
+                              'value': json['valueBase64Binary'],
+                              '_value': json['_valueBase64Binary'],
+                            })
+                          : null,
     );
   }
 

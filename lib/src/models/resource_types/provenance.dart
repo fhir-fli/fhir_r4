@@ -2,8 +2,6 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-part 'provenance.g.dart';
-
 /// [Provenance]
 /// Provenance of a resource is a record that describes entities and
 /// processes involved in producing and delivering or otherwise influencing
@@ -30,7 +28,7 @@ class Provenance extends DomainResource {
     super.extension_,
     super.modifierExtension,
     required this.target,
-    this.occurredXProvenanceProvenance,
+    this.occurredXProvenance,
     required this.recorded,
     this.policy,
     this.location,
@@ -110,15 +108,15 @@ class Provenance extends DomainResource {
             )
             .toList(),
       ),
-      occurredXProvenanceProvenance:
+      occurredXProvenance:
           json['occurredPeriod'] != null || json['_occurredPeriod'] != null
-              ? PeriodOccurredProvenanceProvenance.fromJson({
+              ? Period.fromJson({
                   'value': json['occurredPeriod'],
                   '_value': json['_occurredPeriod'],
                 })
               : json['occurredDateTime'] != null ||
                       json['_occurredDateTime'] != null
-                  ? DateTimeOccurredProvenanceProvenance.fromJson({
+                  ? FhirDateTime.fromJson({
                       'value': json['occurredDateTime'],
                       '_value': json['_occurredDateTime'],
                     })
@@ -229,9 +227,9 @@ class Provenance extends DomainResource {
   /// target if multiple resources were created/updated by the same activity.
   final List<Reference> target;
 
-  /// [occurredXProvenanceProvenance]
+  /// [occurredXProvenance]
   /// The period during which the activity occurred.
-  final OccurredXProvenanceProvenance? occurredXProvenanceProvenance;
+  final OccurredXProvenance? occurredXProvenance;
 
   /// [recorded]
   /// The instant of time at which the activity was recorded.
@@ -311,9 +309,8 @@ class Provenance extends DomainResource {
       json['target'] = target.map((e) => e.toJson()).toList();
     }
 
-    if (occurredXProvenanceProvenance != null) {
-      json['occurredXProvenanceProvenance'] =
-          occurredXProvenanceProvenance!.toJson();
+    if (occurredXProvenance != null) {
+      json['occurredXProvenance'] = occurredXProvenance!.toJson();
     }
 
     addField('recorded', recorded);
@@ -365,7 +362,7 @@ class Provenance extends DomainResource {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<Reference>? target,
-    OccurredXProvenanceProvenance? occurredXProvenanceProvenance,
+    OccurredXProvenance? occurredXProvenance,
     FhirInstant? recorded,
     List<FhirUri>? policy,
     Reference? location,
@@ -389,8 +386,7 @@ class Provenance extends DomainResource {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       target: target ?? this.target,
-      occurredXProvenanceProvenance:
-          occurredXProvenanceProvenance ?? this.occurredXProvenanceProvenance,
+      occurredXProvenance: occurredXProvenance ?? this.occurredXProvenance,
       recorded: recorded ?? this.recorded,
       policy: policy ?? this.policy,
       location: location ?? this.location,

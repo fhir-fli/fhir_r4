@@ -2,8 +2,6 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-part 'activity_definition.g.dart';
-
 /// [ActivityDefinition]
 /// This resource allows for the definition of some activity to be
 /// performed, independent of a particular patient, practitioner, or other
@@ -29,7 +27,7 @@ class ActivityDefinition extends CanonicalResource {
     this.subtitle,
     required super.status,
     super.experimental,
-    this.subjectXActivityDefinitionActivityDefinition,
+    this.subjectXActivityDefinition,
     super.date,
     super.publisher,
     super.contact,
@@ -55,10 +53,10 @@ class ActivityDefinition extends CanonicalResource {
     this.intent,
     this.priority,
     this.doNotPerform,
-    this.timingXActivityDefinitionActivityDefinition,
+    this.timingXActivityDefinition,
     this.location,
     this.participant,
-    this.productXActivityDefinitionActivityDefinition,
+    this.productXActivityDefinition,
     this.quantity,
     this.dosage,
     this.bodySite,
@@ -179,28 +177,20 @@ class ActivityDefinition extends CanonicalResource {
                   '_value': json['_experimental'],
                 })
               : null,
-      subjectXActivityDefinitionActivityDefinition: json[
-                      'subjectCodeableConcept'] !=
-                  null ||
+      subjectXActivityDefinition: json['subjectCodeableConcept'] != null ||
               json['_subjectCodeableConcept'] != null
-          ? CodeableConceptSubjectActivityDefinitionActivityDefinition
-              .fromJson({
+          ? CodeableConcept.fromJson({
               'value': json['subjectCodeableConcept'],
               '_value': json['_subjectCodeableConcept'],
             })
           : json['subjectReference'] != null ||
                   json['_subjectReference'] != null
-              ? ReferenceSubjectActivityDefinitionActivityDefinition.fromJson({
+              ? Reference.fromJson({
                   'value': json['subjectReference'],
                   '_value': json['_subjectReference'],
                 })
-              : json['subjectSubjectType'] != null ||
-                      json['_subjectSubjectType'] != null
-                  ? SubjectTypeSubjectActivityDefinitionActivityDefinition
-                      .fromJson({
-                      'value': json['subjectSubjectType'],
-                      '_value': json['_subjectSubjectType'],
-                    })
+              : json['subjectSubjectType'] != null
+                  ? SubjectType.fromJson(json: json['subjectSubjectType'])
                   : null,
       date: (json['date'] != null || json['_date'] != null)
           ? FhirDateTime.fromJson({
@@ -379,44 +369,37 @@ class ActivityDefinition extends CanonicalResource {
                   '_value': json['_doNotPerform'],
                 })
               : null,
-      timingXActivityDefinitionActivityDefinition: json['timingTiming'] !=
-                  null ||
+      timingXActivityDefinition: json['timingTiming'] != null ||
               json['_timingTiming'] != null
-          ? TimingTimingActivityDefinitionActivityDefinition.fromJson({
+          ? Timing.fromJson({
               'value': json['timingTiming'],
               '_value': json['_timingTiming'],
             })
           : json['timingDateTime'] != null || json['_timingDateTime'] != null
-              ? DateTimeTimingActivityDefinitionActivityDefinition.fromJson({
+              ? FhirDateTime.fromJson({
                   'value': json['timingDateTime'],
                   '_value': json['_timingDateTime'],
                 })
               : json['timingAge'] != null || json['_timingAge'] != null
-                  ? AgeTimingActivityDefinitionActivityDefinition.fromJson({
+                  ? Age.fromJson({
                       'value': json['timingAge'],
                       '_value': json['_timingAge'],
                     })
                   : json['timingPeriod'] != null ||
                           json['_timingPeriod'] != null
-                      ? PeriodTimingActivityDefinitionActivityDefinition
-                          .fromJson({
+                      ? Period.fromJson({
                           'value': json['timingPeriod'],
                           '_value': json['_timingPeriod'],
                         })
                       : json['timingRange'] != null ||
                               json['_timingRange'] != null
-                          ? RangeTimingActivityDefinitionActivityDefinition
-                              .fromJson({
+                          ? Range.fromJson({
                               'value': json['timingRange'],
                               '_value': json['_timingRange'],
                             })
-                          : json['timingDuration'] != null ||
-                                  json['_timingDuration'] != null
-                              ? DurationTimingActivityDefinitionActivityDefinition
-                                  .fromJson({
-                                  'value': json['timingDuration'],
-                                  '_value': json['_timingDuration'],
-                                })
+                          : json['timingDuration'] != null
+                              ? FhirDuration.fromJson(
+                                  json: json['timingDuration'])
                               : null,
       location: json['location'] != null
           ? Reference.fromJson(
@@ -432,20 +415,15 @@ class ActivityDefinition extends CanonicalResource {
               )
               .toList()
           : null,
-      productXActivityDefinitionActivityDefinition:
-          json['productReference'] != null || json['_productReference'] != null
-              ? ReferenceProductActivityDefinitionActivityDefinition.fromJson({
-                  'value': json['productReference'],
-                  '_value': json['_productReference'],
-                })
-              : json['productCodeableConcept'] != null ||
-                      json['_productCodeableConcept'] != null
-                  ? CodeableConceptProductActivityDefinitionActivityDefinition
-                      .fromJson({
-                      'value': json['productCodeableConcept'],
-                      '_value': json['_productCodeableConcept'],
-                    })
-                  : null,
+      productXActivityDefinition: json['productReference'] != null ||
+              json['_productReference'] != null
+          ? Reference.fromJson({
+              'value': json['productReference'],
+              '_value': json['_productReference'],
+            })
+          : json['productCodeableConcept'] != null
+              ? CodeableConcept.fromJson(json: json['productCodeableConcept'])
+              : null,
       quantity: json['quantity'] != null
           ? Quantity.fromJson(
               json['quantity'] as Map<String, dynamic>,
@@ -577,7 +555,7 @@ class ActivityDefinition extends CanonicalResource {
   /// additional information about its content.
   final FhirString? subtitle;
 
-  /// [subjectXActivityDefinitionActivityDefinition]
+  /// [subjectXActivityDefinition]
   /// A code, group definition, or canonical reference that describes or
   /// identifies the intended subject of the activity being defined.
   /// Canonical references are allowed to support the definition of protocols
@@ -585,8 +563,7 @@ class ActivityDefinition extends CanonicalResource {
   /// reference a MedicinalProductDefinition, SubstanceDefinition,
   /// AdministrableProductDefinition, ManufacturedItemDefinition, or
   /// PackagedProductDefinition resource.
-  final SubjectXActivityDefinitionActivityDefinition?
-      subjectXActivityDefinitionActivityDefinition;
+  final SubjectXActivityDefinition? subjectXActivityDefinition;
 
   /// [purpose]
   /// Explanation of why this activity definition is needed and why it has
@@ -692,11 +669,10 @@ class ActivityDefinition extends CanonicalResource {
   /// action.
   final FhirBoolean? doNotPerform;
 
-  /// [timingXActivityDefinitionActivityDefinition]
+  /// [timingXActivityDefinition]
   /// The period, timing or frequency upon which the described activity is to
   /// occur.
-  final TimingXActivityDefinitionActivityDefinition?
-      timingXActivityDefinitionActivityDefinition;
+  final TimingXActivityDefinition? timingXActivityDefinition;
 
   /// [location]
   /// Identifies the facility where the activity will occur; e.g. home,
@@ -707,11 +683,10 @@ class ActivityDefinition extends CanonicalResource {
   /// Indicates who should participate in performing the action described.
   final List<ActivityDefinitionParticipant>? participant;
 
-  /// [productXActivityDefinitionActivityDefinition]
+  /// [productXActivityDefinition]
   /// Identifies the food, drug or other product being consumed or supplied
   /// in the activity.
-  final ProductXActivityDefinitionActivityDefinition?
-      productXActivityDefinitionActivityDefinition;
+  final ProductXActivityDefinition? productXActivityDefinition;
 
   /// [quantity]
   /// Identifies the quantity expected to be consumed at once (per dose, per
@@ -804,9 +779,8 @@ class ActivityDefinition extends CanonicalResource {
     addField('subtitle', subtitle);
     addField('status', status);
     addField('experimental', experimental);
-    if (subjectXActivityDefinitionActivityDefinition != null) {
-      json['subjectXActivityDefinitionActivityDefinition'] =
-          subjectXActivityDefinitionActivityDefinition!.toJson();
+    if (subjectXActivityDefinition != null) {
+      json['subjectXActivityDefinition'] = subjectXActivityDefinition!.toJson();
     }
 
     addField('date', date);
@@ -875,9 +849,8 @@ class ActivityDefinition extends CanonicalResource {
     addField('intent', intent);
     addField('priority', priority);
     addField('doNotPerform', doNotPerform);
-    if (timingXActivityDefinitionActivityDefinition != null) {
-      json['timingXActivityDefinitionActivityDefinition'] =
-          timingXActivityDefinitionActivityDefinition!.toJson();
+    if (timingXActivityDefinition != null) {
+      json['timingXActivityDefinition'] = timingXActivityDefinition!.toJson();
     }
 
     if (location != null) {
@@ -888,9 +861,8 @@ class ActivityDefinition extends CanonicalResource {
       json['participant'] = participant!.map((e) => e.toJson()).toList();
     }
 
-    if (productXActivityDefinitionActivityDefinition != null) {
-      json['productXActivityDefinitionActivityDefinition'] =
-          productXActivityDefinitionActivityDefinition!.toJson();
+    if (productXActivityDefinition != null) {
+      json['productXActivityDefinition'] = productXActivityDefinition!.toJson();
     }
 
     if (quantity != null) {
@@ -949,8 +921,7 @@ class ActivityDefinition extends CanonicalResource {
     FhirString? subtitle,
     PublicationStatus? status,
     FhirBoolean? experimental,
-    SubjectXActivityDefinitionActivityDefinition?
-        subjectXActivityDefinitionActivityDefinition,
+    SubjectXActivityDefinition? subjectXActivityDefinition,
     FhirDateTime? date,
     FhirString? publisher,
     List<ContactDetail>? contact,
@@ -976,12 +947,10 @@ class ActivityDefinition extends CanonicalResource {
     RequestIntent? intent,
     RequestPriority? priority,
     FhirBoolean? doNotPerform,
-    TimingXActivityDefinitionActivityDefinition?
-        timingXActivityDefinitionActivityDefinition,
+    TimingXActivityDefinition? timingXActivityDefinition,
     Reference? location,
     List<ActivityDefinitionParticipant>? participant,
-    ProductXActivityDefinitionActivityDefinition?
-        productXActivityDefinitionActivityDefinition,
+    ProductXActivityDefinition? productXActivityDefinition,
     Quantity? quantity,
     List<Dosage>? dosage,
     List<CodeableConcept>? bodySite,
@@ -1012,9 +981,8 @@ class ActivityDefinition extends CanonicalResource {
       subtitle: subtitle ?? this.subtitle,
       status: status ?? this.status,
       experimental: experimental ?? this.experimental,
-      subjectXActivityDefinitionActivityDefinition:
-          subjectXActivityDefinitionActivityDefinition ??
-              this.subjectXActivityDefinitionActivityDefinition,
+      subjectXActivityDefinition:
+          subjectXActivityDefinition ?? this.subjectXActivityDefinition,
       date: date ?? this.date,
       publisher: publisher ?? this.publisher,
       contact: contact ?? this.contact,
@@ -1040,14 +1008,12 @@ class ActivityDefinition extends CanonicalResource {
       intent: intent ?? this.intent,
       priority: priority ?? this.priority,
       doNotPerform: doNotPerform ?? this.doNotPerform,
-      timingXActivityDefinitionActivityDefinition:
-          timingXActivityDefinitionActivityDefinition ??
-              this.timingXActivityDefinitionActivityDefinition,
+      timingXActivityDefinition:
+          timingXActivityDefinition ?? this.timingXActivityDefinition,
       location: location ?? this.location,
       participant: participant ?? this.participant,
-      productXActivityDefinitionActivityDefinition:
-          productXActivityDefinitionActivityDefinition ??
-              this.productXActivityDefinitionActivityDefinition,
+      productXActivityDefinition:
+          productXActivityDefinition ?? this.productXActivityDefinition,
       quantity: quantity ?? this.quantity,
       dosage: dosage ?? this.dosage,
       bodySite: bodySite ?? this.bodySite,

@@ -2,8 +2,6 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-part 'specimen_definition.g.dart';
-
 /// [SpecimenDefinition]
 /// A kind of specimen with associated set of requirements.
 class SpecimenDefinition extends DomainResource {
@@ -641,13 +639,13 @@ class SpecimenDefinitionContainer extends BackboneElement {
       minimumVolumeXSpecimenDefinitionContainer:
           json['minimumVolumeQuantity'] != null ||
                   json['_minimumVolumeQuantity'] != null
-              ? QuantityMinimumVolumeSpecimenDefinitionContainer.fromJson({
+              ? Quantity.fromJson({
                   'value': json['minimumVolumeQuantity'],
                   '_value': json['_minimumVolumeQuantity'],
                 })
               : json['minimumVolumeString'] != null ||
                       json['_minimumVolumeString'] != null
-                  ? StringMinimumVolumeSpecimenDefinitionContainer.fromJson({
+                  ? FhirString.fromJson({
                       'value': json['minimumVolumeString'],
                       '_value': json['_minimumVolumeString'],
                     })
@@ -881,14 +879,11 @@ class SpecimenDefinitionAdditive extends BackboneElement {
       additiveXSpecimenDefinitionAdditive:
           json['additiveCodeableConcept'] != null ||
                   json['_additiveCodeableConcept'] != null
-              ? CodeableConceptAdditiveSpecimenDefinitionAdditive.fromJson({
+              ? CodeableConcept.fromJson({
                   'value': json['additiveCodeableConcept'],
                   '_value': json['_additiveCodeableConcept'],
                 })
-              : ReferenceAdditiveSpecimenDefinitionAdditive.fromJson({
-                  'value': json['additiveReference'],
-                  '_value': json['_additiveReference'],
-                }),
+              : Reference.fromJson(json: json['additiveReference']),
     );
   }
 

@@ -2,8 +2,6 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-part 'diagnostic_report.g.dart';
-
 /// [DiagnosticReport]
 /// The findings and interpretation of diagnostic tests performed on
 /// patients, groups of patients, devices, and locations, and/or specimens
@@ -31,7 +29,7 @@ class DiagnosticReport extends DomainResource {
     required this.code,
     this.subject,
     this.encounter,
-    this.effectiveXDiagnosticReportDiagnosticReport,
+    this.effectiveXDiagnosticReport,
     this.issued,
     this.performer,
     this.resultsInterpreter,
@@ -148,18 +146,14 @@ class DiagnosticReport extends DomainResource {
               json['encounter'] as Map<String, dynamic>,
             )
           : null,
-      effectiveXDiagnosticReportDiagnosticReport: json['effectiveDateTime'] !=
-                  null ||
+      effectiveXDiagnosticReport: json['effectiveDateTime'] != null ||
               json['_effectiveDateTime'] != null
-          ? DateTimeEffectiveDiagnosticReportDiagnosticReport.fromJson({
+          ? FhirDateTime.fromJson({
               'value': json['effectiveDateTime'],
               '_value': json['_effectiveDateTime'],
             })
-          : json['effectivePeriod'] != null || json['_effectivePeriod'] != null
-              ? PeriodEffectiveDiagnosticReportDiagnosticReport.fromJson({
-                  'value': json['effectivePeriod'],
-                  '_value': json['_effectivePeriod'],
-                })
+          : json['effectivePeriod'] != null
+              ? Period.fromJson(json: json['effectivePeriod'])
               : null,
       issued: (json['issued'] != null || json['_issued'] != null)
           ? FhirInstant.fromJson({
@@ -324,13 +318,12 @@ class DiagnosticReport extends DomainResource {
   /// interaction) which this DiagnosticReport is about.
   final Reference? encounter;
 
-  /// [effectiveXDiagnosticReportDiagnosticReport]
+  /// [effectiveXDiagnosticReport]
   /// The time or time-period the observed values are related to. When the
   /// subject of the report is a patient, this is usually either the time of
   /// the procedure or of specimen collection(s), but very often the source
   /// of the date/time is not known, only the date/time itself.
-  final EffectiveXDiagnosticReportDiagnosticReport?
-      effectiveXDiagnosticReportDiagnosticReport;
+  final EffectiveXDiagnosticReport? effectiveXDiagnosticReport;
 
   /// [issued]
   /// The date and time that this version of the report was made available to
@@ -443,8 +436,7 @@ class DiagnosticReport extends DomainResource {
       json['encounter'] = encounter!.toJson();
     }
 
-    addField('effectiveXDiagnosticReportDiagnosticReport',
-        effectiveXDiagnosticReportDiagnosticReport);
+    addField('effectiveXDiagnosticReport', effectiveXDiagnosticReport);
     addField('issued', issued);
     if (performer != null && performer!.isNotEmpty) {
       json['performer'] = performer!.map((e) => e.toJson()).toList();
@@ -502,8 +494,7 @@ class DiagnosticReport extends DomainResource {
     CodeableConcept? code,
     Reference? subject,
     Reference? encounter,
-    EffectiveXDiagnosticReportDiagnosticReport?
-        effectiveXDiagnosticReportDiagnosticReport,
+    EffectiveXDiagnosticReport? effectiveXDiagnosticReport,
     FhirInstant? issued,
     List<Reference>? performer,
     List<Reference>? resultsInterpreter,
@@ -535,9 +526,8 @@ class DiagnosticReport extends DomainResource {
       code: code ?? this.code,
       subject: subject ?? this.subject,
       encounter: encounter ?? this.encounter,
-      effectiveXDiagnosticReportDiagnosticReport:
-          effectiveXDiagnosticReportDiagnosticReport ??
-              this.effectiveXDiagnosticReportDiagnosticReport,
+      effectiveXDiagnosticReport:
+          effectiveXDiagnosticReport ?? this.effectiveXDiagnosticReport,
       issued: issued ?? this.issued,
       performer: performer ?? this.performer,
       resultsInterpreter: resultsInterpreter ?? this.resultsInterpreter,
