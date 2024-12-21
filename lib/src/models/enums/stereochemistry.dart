@@ -64,7 +64,10 @@ class Stereochemistry extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   Stereochemistry withElement(Element? newElement) {
-    return Stereochemistry._(value, element: newElement);
+    return Stereochemistry._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

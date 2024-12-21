@@ -76,7 +76,10 @@ class RiskProbability extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   RiskProbability withElement(Element? newElement) {
-    return RiskProbability._(value, element: newElement);
+    return RiskProbability._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

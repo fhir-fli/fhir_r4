@@ -84,7 +84,10 @@ class ExampleMessageReasonCodes extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   ExampleMessageReasonCodes withElement(Element? newElement) {
-    return ExampleMessageReasonCodes._(value, element: newElement);
+    return ExampleMessageReasonCodes._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

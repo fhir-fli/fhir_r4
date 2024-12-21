@@ -76,7 +76,10 @@ class AccountStatus extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   AccountStatus withElement(Element? newElement) {
-    return AccountStatus._(value, element: newElement);
+    return AccountStatus._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

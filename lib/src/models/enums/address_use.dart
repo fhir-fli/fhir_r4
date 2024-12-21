@@ -76,7 +76,10 @@ class AddressUse extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   AddressUse withElement(Element? newElement) {
-    return AddressUse._(value, element: newElement);
+    return AddressUse._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

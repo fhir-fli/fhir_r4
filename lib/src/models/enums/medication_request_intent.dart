@@ -97,7 +97,10 @@ class MedicationRequestIntent extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   MedicationRequestIntent withElement(Element? newElement) {
-    return MedicationRequestIntent._(value, element: newElement);
+    return MedicationRequestIntent._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

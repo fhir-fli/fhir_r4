@@ -75,7 +75,10 @@ class MedicationUsageCategoryCodes extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   MedicationUsageCategoryCodes withElement(Element? newElement) {
-    return MedicationUsageCategoryCodes._(value, element: newElement);
+    return MedicationUsageCategoryCodes._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

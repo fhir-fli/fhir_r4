@@ -94,7 +94,10 @@ class LegalStatusOfSupply extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   LegalStatusOfSupply withElement(Element? newElement) {
-    return LegalStatusOfSupply._(value, element: newElement);
+    return LegalStatusOfSupply._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

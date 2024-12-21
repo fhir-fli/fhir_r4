@@ -145,7 +145,10 @@ class TextureModifiedFoodTypeCodes extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   TextureModifiedFoodTypeCodes withElement(Element? newElement) {
-    return TextureModifiedFoodTypeCodes._(value, element: newElement);
+    return TextureModifiedFoodTypeCodes._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

@@ -107,7 +107,10 @@ class CoverageCopayTypeCodes extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   CoverageCopayTypeCodes withElement(Element? newElement) {
-    return CoverageCopayTypeCodes._(value, element: newElement);
+    return CoverageCopayTypeCodes._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

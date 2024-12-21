@@ -70,7 +70,10 @@ class GuidePageGeneration extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   GuidePageGeneration withElement(Element? newElement) {
-    return GuidePageGeneration._(value, element: newElement);
+    return GuidePageGeneration._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

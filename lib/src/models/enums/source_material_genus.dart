@@ -64,7 +64,10 @@ class SourceMaterialGenus extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   SourceMaterialGenus withElement(Element? newElement) {
-    return SourceMaterialGenus._(value, element: newElement);
+    return SourceMaterialGenus._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

@@ -508,7 +508,10 @@ class CombinedDoseForm extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   CombinedDoseForm withElement(Element? newElement) {
-    return CombinedDoseForm._(value, element: newElement);
+    return CombinedDoseForm._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

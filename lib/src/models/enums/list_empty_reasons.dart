@@ -82,7 +82,10 @@ class ListEmptyReasons extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   ListEmptyReasons withElement(Element? newElement) {
-    return ListEmptyReasons._(value, element: newElement);
+    return ListEmptyReasons._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

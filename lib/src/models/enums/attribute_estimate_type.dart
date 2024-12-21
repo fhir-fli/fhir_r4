@@ -112,7 +112,10 @@ class AttributeEstimateType extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   AttributeEstimateType withElement(Element? newElement) {
-    return AttributeEstimateType._(value, element: newElement);
+    return AttributeEstimateType._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

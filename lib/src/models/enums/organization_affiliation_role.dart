@@ -103,7 +103,10 @@ class OrganizationAffiliationRole extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   OrganizationAffiliationRole withElement(Element? newElement) {
-    return OrganizationAffiliationRole._(value, element: newElement);
+    return OrganizationAffiliationRole._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

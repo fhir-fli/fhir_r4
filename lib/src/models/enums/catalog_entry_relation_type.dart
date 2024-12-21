@@ -60,7 +60,10 @@ class CatalogEntryRelationType extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   CatalogEntryRelationType withElement(Element? newElement) {
-    return CatalogEntryRelationType._(value, element: newElement);
+    return CatalogEntryRelationType._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

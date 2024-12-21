@@ -68,7 +68,10 @@ class SubstanceRepresentationType extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   SubstanceRepresentationType withElement(Element? newElement) {
-    return SubstanceRepresentationType._(value, element: newElement);
+    return SubstanceRepresentationType._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

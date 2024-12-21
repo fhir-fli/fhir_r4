@@ -74,7 +74,10 @@ class AllergyIntoleranceCategory extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   AllergyIntoleranceCategory withElement(Element? newElement) {
-    return AllergyIntoleranceCategory._(value, element: newElement);
+    return AllergyIntoleranceCategory._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

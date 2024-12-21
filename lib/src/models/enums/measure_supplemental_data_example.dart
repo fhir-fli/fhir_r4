@@ -75,7 +75,10 @@ class MeasureSupplementalDataExample extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   MeasureSupplementalDataExample withElement(Element? newElement) {
-    return MeasureSupplementalDataExample._(value, element: newElement);
+    return MeasureSupplementalDataExample._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

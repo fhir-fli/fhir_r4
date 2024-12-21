@@ -274,7 +274,10 @@ class ServiceCategory extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   ServiceCategory withElement(Element? newElement) {
-    return ServiceCategory._(value, element: newElement);
+    return ServiceCategory._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

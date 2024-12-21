@@ -19348,7 +19348,10 @@ class SecurityRoleType extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   SecurityRoleType withElement(Element? newElement) {
-    return SecurityRoleType._(value, element: newElement);
+    return SecurityRoleType._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

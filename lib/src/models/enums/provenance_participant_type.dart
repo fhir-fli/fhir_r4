@@ -111,7 +111,10 @@ class ProvenanceParticipantType extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   ProvenanceParticipantType withElement(Element? newElement) {
-    return ProvenanceParticipantType._(value, element: newElement);
+    return ProvenanceParticipantType._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

@@ -86,8 +86,10 @@ class ImmunizationEvaluationDoseStatusReasonCodes
 
   /// Returns the enum value with an element attached
   ImmunizationEvaluationDoseStatusReasonCodes withElement(Element? newElement) {
-    return ImmunizationEvaluationDoseStatusReasonCodes._(value,
-        element: newElement);
+    return ImmunizationEvaluationDoseStatusReasonCodes._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

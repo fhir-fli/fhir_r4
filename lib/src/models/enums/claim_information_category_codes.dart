@@ -145,7 +145,10 @@ class ClaimInformationCategoryCodes extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   ClaimInformationCategoryCodes withElement(Element? newElement) {
-    return ClaimInformationCategoryCodes._(value, element: newElement);
+    return ClaimInformationCategoryCodes._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

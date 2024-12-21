@@ -76,7 +76,10 @@ class ParticipantType extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   ParticipantType withElement(Element? newElement) {
-    return ParticipantType._(value, element: newElement);
+    return ParticipantType._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

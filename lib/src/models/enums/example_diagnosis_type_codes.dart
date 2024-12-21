@@ -126,7 +126,10 @@ class ExampleDiagnosisTypeCodes extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   ExampleDiagnosisTypeCodes withElement(Element? newElement) {
-    return ExampleDiagnosisTypeCodes._(value, element: newElement);
+    return ExampleDiagnosisTypeCodes._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

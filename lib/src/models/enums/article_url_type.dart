@@ -142,7 +142,10 @@ class ArticleUrlType extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   ArticleUrlType withElement(Element? newElement) {
-    return ArticleUrlType._(value, element: newElement);
+    return ArticleUrlType._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

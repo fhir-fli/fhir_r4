@@ -58,7 +58,10 @@ class EnableWhenBehavior extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   EnableWhenBehavior withElement(Element? newElement) {
-    return EnableWhenBehavior._(value, element: newElement);
+    return EnableWhenBehavior._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

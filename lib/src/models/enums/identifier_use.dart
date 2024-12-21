@@ -76,7 +76,10 @@ class IdentifierUse extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   IdentifierUse withElement(Element? newElement) {
-    return IdentifierUse._(value, element: newElement);
+    return IdentifierUse._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

@@ -73,8 +73,10 @@ class MedicationAdministrationPerformerFunctionCodes
   /// Returns the enum value with an element attached
   MedicationAdministrationPerformerFunctionCodes withElement(
       Element? newElement) {
-    return MedicationAdministrationPerformerFunctionCodes._(value,
-        element: newElement);
+    return MedicationAdministrationPerformerFunctionCodes._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

@@ -64,7 +64,10 @@ class AggregationMode extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   AggregationMode withElement(Element? newElement) {
-    return AggregationMode._(value, element: newElement);
+    return AggregationMode._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

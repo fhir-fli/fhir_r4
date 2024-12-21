@@ -70,7 +70,10 @@ class PublicationStatus extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   PublicationStatus withElement(Element? newElement) {
-    return PublicationStatus._(value, element: newElement);
+    return PublicationStatus._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

@@ -64,7 +64,10 @@ class SequenceType extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   SequenceType withElement(Element? newElement) {
-    return SequenceType._(value, element: newElement);
+    return SequenceType._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

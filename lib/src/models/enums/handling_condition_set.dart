@@ -64,7 +64,10 @@ class HandlingConditionSet extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   HandlingConditionSet withElement(Element? newElement) {
-    return HandlingConditionSet._(value, element: newElement);
+    return HandlingConditionSet._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

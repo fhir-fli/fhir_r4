@@ -82,7 +82,10 @@ class UDIEntryType extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   UDIEntryType withElement(Element? newElement) {
-    return UDIEntryType._(value, element: newElement);
+    return UDIEntryType._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

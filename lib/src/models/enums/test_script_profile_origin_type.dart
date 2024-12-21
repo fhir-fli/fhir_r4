@@ -61,7 +61,10 @@ class TestScriptProfileOriginType extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   TestScriptProfileOriginType withElement(Element? newElement) {
-    return TestScriptProfileOriginType._(value, element: newElement);
+    return TestScriptProfileOriginType._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

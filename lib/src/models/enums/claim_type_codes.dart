@@ -76,7 +76,10 @@ class ClaimTypeCodes extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   ClaimTypeCodes withElement(Element? newElement) {
-    return ClaimTypeCodes._(value, element: newElement);
+    return ClaimTypeCodes._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

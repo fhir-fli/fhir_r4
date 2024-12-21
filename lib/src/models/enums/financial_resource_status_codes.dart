@@ -75,7 +75,10 @@ class FinancialResourceStatusCodes extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   FinancialResourceStatusCodes withElement(Element? newElement) {
-    return FinancialResourceStatusCodes._(value, element: newElement);
+    return FinancialResourceStatusCodes._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

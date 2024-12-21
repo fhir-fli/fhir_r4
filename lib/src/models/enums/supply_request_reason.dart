@@ -58,7 +58,10 @@ class SupplyRequestReason extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   SupplyRequestReason withElement(Element? newElement) {
-    return SupplyRequestReason._(value, element: newElement);
+    return SupplyRequestReason._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

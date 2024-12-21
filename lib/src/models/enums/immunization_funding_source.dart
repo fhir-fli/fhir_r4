@@ -59,7 +59,10 @@ class ImmunizationFundingSource extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   ImmunizationFundingSource withElement(Element? newElement) {
-    return ImmunizationFundingSource._(value, element: newElement);
+    return ImmunizationFundingSource._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

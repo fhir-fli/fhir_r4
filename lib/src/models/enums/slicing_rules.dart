@@ -64,7 +64,10 @@ class SlicingRules extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   SlicingRules withElement(Element? newElement) {
-    return SlicingRules._(value, element: newElement);
+    return SlicingRules._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

@@ -58,7 +58,10 @@ class IngredientFunction extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   IngredientFunction withElement(Element? newElement) {
-    return IngredientFunction._(value, element: newElement);
+    return IngredientFunction._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

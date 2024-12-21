@@ -70,7 +70,10 @@ class BindingStrength extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   BindingStrength withElement(Element? newElement) {
-    return BindingStrength._(value, element: newElement);
+    return BindingStrength._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

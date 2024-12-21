@@ -69,7 +69,10 @@ class ArtifactContributionInstanceType extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   ArtifactContributionInstanceType withElement(Element? newElement) {
-    return ArtifactContributionInstanceType._(value, element: newElement);
+    return ArtifactContributionInstanceType._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

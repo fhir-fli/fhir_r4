@@ -97,7 +97,10 @@ class ImmunizationEvaluationStatusCodes extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   ImmunizationEvaluationStatusCodes withElement(Element? newElement) {
-    return ImmunizationEvaluationStatusCodes._(value, element: newElement);
+    return ImmunizationEvaluationStatusCodes._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

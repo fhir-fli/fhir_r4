@@ -56,7 +56,10 @@ class ContractResourceDefinitionTypeCodes extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   ContractResourceDefinitionTypeCodes withElement(Element? newElement) {
-    return ContractResourceDefinitionTypeCodes._(value, element: newElement);
+    return ContractResourceDefinitionTypeCodes._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

@@ -52,7 +52,10 @@ class CommonTags extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   CommonTags withElement(Element? newElement) {
-    return CommonTags._(value, element: newElement);
+    return CommonTags._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

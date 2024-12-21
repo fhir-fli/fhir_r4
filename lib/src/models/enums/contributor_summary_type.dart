@@ -95,7 +95,10 @@ class ContributorSummaryType extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   ContributorSummaryType withElement(Element? newElement) {
-    return ContributorSummaryType._(value, element: newElement);
+    return ContributorSummaryType._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

@@ -58,7 +58,10 @@ class LocationMode extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   LocationMode withElement(Element? newElement) {
-    return LocationMode._(value, element: newElement);
+    return LocationMode._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

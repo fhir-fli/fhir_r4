@@ -142,7 +142,10 @@ class TimingAbbreviation extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   TimingAbbreviation withElement(Element? newElement) {
-    return TimingAbbreviation._(value, element: newElement);
+    return TimingAbbreviation._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

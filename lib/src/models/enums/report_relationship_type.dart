@@ -96,7 +96,10 @@ class ReportRelationshipType extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   ReportRelationshipType withElement(Element? newElement) {
-    return ReportRelationshipType._(value, element: newElement);
+    return ReportRelationshipType._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

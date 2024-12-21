@@ -46,5 +46,6 @@ extension ElementDefinitionExtension on ElementDefinition {
     return false;
   }
 
+  /// Returns the type of the element definition
   List<ElementDefinitionType> getType() => type ?? <ElementDefinitionType>[];
 }

@@ -118,7 +118,10 @@ class TaskStatus extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   TaskStatus withElement(Element? newElement) {
-    return TaskStatus._(value, element: newElement);
+    return TaskStatus._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

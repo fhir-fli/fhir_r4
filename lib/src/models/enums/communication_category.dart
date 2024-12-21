@@ -70,7 +70,10 @@ class CommunicationCategory extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   CommunicationCategory withElement(Element? newElement) {
-    return CommunicationCategory._(value, element: newElement);
+    return CommunicationCategory._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

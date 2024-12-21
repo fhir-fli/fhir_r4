@@ -154,7 +154,10 @@ class IdentifierTypeCodes extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   IdentifierTypeCodes withElement(Element? newElement) {
-    return IdentifierTypeCodes._(value, element: newElement);
+    return IdentifierTypeCodes._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

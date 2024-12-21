@@ -71,7 +71,10 @@ class ExampleProgramReasonCodes extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   ExampleProgramReasonCodes withElement(Element? newElement) {
-    return ExampleProgramReasonCodes._(value, element: newElement);
+    return ExampleProgramReasonCodes._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

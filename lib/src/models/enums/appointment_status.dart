@@ -106,7 +106,10 @@ class AppointmentStatus extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   AppointmentStatus withElement(Element? newElement) {
-    return AppointmentStatus._(value, element: newElement);
+    return AppointmentStatus._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

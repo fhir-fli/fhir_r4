@@ -88,7 +88,10 @@ class ProductCrossReferenceType extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   ProductCrossReferenceType withElement(Element? newElement) {
-    return ProductCrossReferenceType._(value, element: newElement);
+    return ProductCrossReferenceType._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

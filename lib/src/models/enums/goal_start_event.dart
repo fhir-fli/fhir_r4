@@ -70,7 +70,10 @@ class GoalStartEvent extends PrimitiveType<String> implements StartXGoal {
 
   /// Returns the enum value with an element attached
   GoalStartEvent withElement(Element? newElement) {
-    return GoalStartEvent._(value, element: newElement);
+    return GoalStartEvent._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

@@ -103,7 +103,10 @@ class ResearchStudyPrimaryPurposeType extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   ResearchStudyPrimaryPurposeType withElement(Element? newElement) {
-    return ResearchStudyPrimaryPurposeType._(value, element: newElement);
+    return ResearchStudyPrimaryPurposeType._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

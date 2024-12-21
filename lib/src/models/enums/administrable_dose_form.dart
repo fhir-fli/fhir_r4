@@ -1453,7 +1453,10 @@ class AdministrableDoseForm extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   AdministrableDoseForm withElement(Element? newElement) {
-    return AdministrableDoseForm._(value, element: newElement);
+    return AdministrableDoseForm._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

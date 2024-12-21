@@ -100,7 +100,10 @@ class BundleType extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   BundleType withElement(Element? newElement) {
-    return BundleType._(value, element: newElement);
+    return BundleType._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

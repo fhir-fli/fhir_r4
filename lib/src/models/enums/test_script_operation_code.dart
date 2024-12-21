@@ -324,7 +324,10 @@ class TestScriptOperationCode extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   TestScriptOperationCode withElement(Element? newElement) {
-    return TestScriptOperationCode._(value, element: newElement);
+    return TestScriptOperationCode._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

@@ -65,7 +65,10 @@ class MeasureStratifierExample extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   MeasureStratifierExample withElement(Element? newElement) {
-    return MeasureStratifierExample._(value, element: newElement);
+    return MeasureStratifierExample._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

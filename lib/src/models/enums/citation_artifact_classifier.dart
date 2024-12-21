@@ -212,7 +212,10 @@ class CitationArtifactClassifier extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   CitationArtifactClassifier withElement(Element? newElement) {
-    return CitationArtifactClassifier._(value, element: newElement);
+    return CitationArtifactClassifier._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

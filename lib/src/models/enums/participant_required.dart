@@ -64,7 +64,10 @@ class ParticipantRequired extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   ParticipantRequired withElement(Element? newElement) {
-    return ParticipantRequired._(value, element: newElement);
+    return ParticipantRequired._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

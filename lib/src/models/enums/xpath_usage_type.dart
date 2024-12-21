@@ -76,7 +76,10 @@ class XPathUsageType extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   XPathUsageType withElement(Element? newElement) {
-    return XPathUsageType._(value, element: newElement);
+    return XPathUsageType._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

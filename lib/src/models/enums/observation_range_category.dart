@@ -65,7 +65,10 @@ class ObservationRangeCategory extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   ObservationRangeCategory withElement(Element? newElement) {
-    return ObservationRangeCategory._(value, element: newElement);
+    return ObservationRangeCategory._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

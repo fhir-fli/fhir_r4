@@ -151,7 +151,10 @@ class ContributorSummaryStyle extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   ContributorSummaryStyle withElement(Element? newElement) {
-    return ContributorSummaryStyle._(value, element: newElement);
+    return ContributorSummaryStyle._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

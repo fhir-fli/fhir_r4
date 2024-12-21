@@ -82,7 +82,10 @@ class Status extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   Status withElement(Element? newElement) {
-    return Status._(value, element: newElement);
+    return Status._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

@@ -82,7 +82,10 @@ class ConsentState extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   ConsentState withElement(Element? newElement) {
-    return ConsentState._(value, element: newElement);
+    return ConsentState._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

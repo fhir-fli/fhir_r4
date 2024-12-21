@@ -58,7 +58,10 @@ class PaymentStatusCodes extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   PaymentStatusCodes withElement(Element? newElement) {
-    return PaymentStatusCodes._(value, element: newElement);
+    return PaymentStatusCodes._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

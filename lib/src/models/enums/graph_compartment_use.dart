@@ -58,7 +58,10 @@ class GraphCompartmentUse extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   GraphCompartmentUse withElement(Element? newElement) {
-    return GraphCompartmentUse._(value, element: newElement);
+    return GraphCompartmentUse._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

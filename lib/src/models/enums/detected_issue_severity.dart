@@ -64,7 +64,10 @@ class DetectedIssueSeverity extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   DetectedIssueSeverity withElement(Element? newElement) {
-    return DetectedIssueSeverity._(value, element: newElement);
+    return DetectedIssueSeverity._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

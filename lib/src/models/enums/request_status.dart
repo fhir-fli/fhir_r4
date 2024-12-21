@@ -88,7 +88,10 @@ class RequestStatus extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   RequestStatus withElement(Element? newElement) {
-    return RequestStatus._(value, element: newElement);
+    return RequestStatus._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

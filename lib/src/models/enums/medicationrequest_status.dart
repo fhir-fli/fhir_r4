@@ -96,7 +96,10 @@ class MedicationrequestStatus extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   MedicationrequestStatus withElement(Element? newElement) {
-    return MedicationrequestStatus._(value, element: newElement);
+    return MedicationrequestStatus._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

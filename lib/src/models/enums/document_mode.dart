@@ -58,7 +58,10 @@ class DocumentMode extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   DocumentMode withElement(Element? newElement) {
-    return DocumentMode._(value, element: newElement);
+    return DocumentMode._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

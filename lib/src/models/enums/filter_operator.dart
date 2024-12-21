@@ -100,7 +100,10 @@ class FilterOperator extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   FilterOperator withElement(Element? newElement) {
-    return FilterOperator._(value, element: newElement);
+    return FilterOperator._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

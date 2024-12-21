@@ -58,7 +58,10 @@ class OrientationType extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   OrientationType withElement(Element? newElement) {
-    return OrientationType._(value, element: newElement);
+    return OrientationType._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

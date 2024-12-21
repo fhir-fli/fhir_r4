@@ -70,7 +70,10 @@ class InteractionType extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   InteractionType withElement(Element? newElement) {
-    return InteractionType._(value, element: newElement);
+    return InteractionType._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

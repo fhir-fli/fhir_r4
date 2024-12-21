@@ -58,7 +58,10 @@ class FormCodes extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   FormCodes withElement(Element? newElement) {
-    return FormCodes._(value, element: newElement);
+    return FormCodes._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

@@ -94,7 +94,10 @@ class DeviceMetricColor extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   DeviceMetricColor withElement(Element? newElement) {
-    return DeviceMetricColor._(value, element: newElement);
+    return DeviceMetricColor._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

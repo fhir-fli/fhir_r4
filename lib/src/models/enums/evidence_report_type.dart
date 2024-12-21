@@ -70,7 +70,10 @@ class EvidenceReportType extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   EvidenceReportType withElement(Element? newElement) {
-    return EvidenceReportType._(value, element: newElement);
+    return EvidenceReportType._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

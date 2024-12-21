@@ -98,7 +98,10 @@ class ClinicalImpressionStatus extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   ClinicalImpressionStatus withElement(Element? newElement) {
-    return ClinicalImpressionStatus._(value, element: newElement);
+    return ClinicalImpressionStatus._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

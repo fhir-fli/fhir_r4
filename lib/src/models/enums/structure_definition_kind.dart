@@ -72,7 +72,10 @@ class StructureDefinitionKind extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   StructureDefinitionKind withElement(Element? newElement) {
-    return StructureDefinitionKind._(value, element: newElement);
+    return StructureDefinitionKind._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

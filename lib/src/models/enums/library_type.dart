@@ -70,7 +70,10 @@ class LibraryType extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   LibraryType withElement(Element? newElement) {
-    return LibraryType._(value, element: newElement);
+    return LibraryType._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

@@ -86,7 +86,10 @@ class InvoicePriceComponentType extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   InvoicePriceComponentType withElement(Element? newElement) {
-    return InvoicePriceComponentType._(value, element: newElement);
+    return InvoicePriceComponentType._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

@@ -135,7 +135,10 @@ class AdverseEventCategory extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   AdverseEventCategory withElement(Element? newElement) {
-    return AdverseEventCategory._(value, element: newElement);
+    return AdverseEventCategory._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

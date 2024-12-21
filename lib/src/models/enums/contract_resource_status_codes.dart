@@ -152,7 +152,10 @@ class ContractResourceStatusCodes extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   ContractResourceStatusCodes withElement(Element? newElement) {
-    return ContractResourceStatusCodes._(value, element: newElement);
+    return ContractResourceStatusCodes._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

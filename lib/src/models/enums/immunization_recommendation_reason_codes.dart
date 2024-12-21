@@ -63,7 +63,10 @@ class ImmunizationRecommendationReasonCodes extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   ImmunizationRecommendationReasonCodes withElement(Element? newElement) {
-    return ImmunizationRecommendationReasonCodes._(value, element: newElement);
+    return ImmunizationRecommendationReasonCodes._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

@@ -76,7 +76,10 @@ class ReferralMethod extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   ReferralMethod withElement(Element? newElement) {
-    return ReferralMethod._(value, element: newElement);
+    return ReferralMethod._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

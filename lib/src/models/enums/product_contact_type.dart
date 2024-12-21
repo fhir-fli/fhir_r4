@@ -76,7 +76,10 @@ class ProductContactType extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   ProductContactType withElement(Element? newElement) {
-    return ProductContactType._(value, element: newElement);
+    return ProductContactType._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

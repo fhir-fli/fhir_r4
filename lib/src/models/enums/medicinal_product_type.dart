@@ -59,7 +59,10 @@ class MedicinalProductType extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   MedicinalProductType withElement(Element? newElement) {
-    return MedicinalProductType._(value, element: newElement);
+    return MedicinalProductType._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

@@ -64,7 +64,10 @@ class QualityType extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   QualityType withElement(Element? newElement) {
-    return QualityType._(value, element: newElement);
+    return QualityType._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

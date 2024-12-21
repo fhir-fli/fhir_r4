@@ -77,7 +77,10 @@ class ExpressionLanguage extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   ExpressionLanguage withElement(Element? newElement) {
-    return ExpressionLanguage._(value, element: newElement);
+    return ExpressionLanguage._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

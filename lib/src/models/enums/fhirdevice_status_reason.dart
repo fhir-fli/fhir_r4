@@ -96,7 +96,10 @@ class FHIRDeviceStatusReason extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   FHIRDeviceStatusReason withElement(Element? newElement) {
-    return FHIRDeviceStatusReason._(value, element: newElement);
+    return FHIRDeviceStatusReason._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

@@ -76,7 +76,10 @@ class MeasureType extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   MeasureType withElement(Element? newElement) {
-    return MeasureType._(value, element: newElement);
+    return MeasureType._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

@@ -76,7 +76,10 @@ class ProductIntendedUse extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   ProductIntendedUse withElement(Element? newElement) {
-    return ProductIntendedUse._(value, element: newElement);
+    return ProductIntendedUse._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

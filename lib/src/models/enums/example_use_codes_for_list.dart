@@ -101,7 +101,10 @@ class ExampleUseCodesForList extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   ExampleUseCodesForList withElement(Element? newElement) {
-    return ExampleUseCodesForList._(value, element: newElement);
+    return ExampleUseCodesForList._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

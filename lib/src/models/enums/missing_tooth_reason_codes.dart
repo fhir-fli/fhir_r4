@@ -71,7 +71,10 @@ class MissingToothReasonCodes extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   MissingToothReasonCodes withElement(Element? newElement) {
-    return MissingToothReasonCodes._(value, element: newElement);
+    return MissingToothReasonCodes._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

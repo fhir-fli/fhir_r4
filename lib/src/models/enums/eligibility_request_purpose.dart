@@ -74,7 +74,10 @@ class EligibilityRequestPurpose extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   EligibilityRequestPurpose withElement(Element? newElement) {
-    return EligibilityRequestPurpose._(value, element: newElement);
+    return EligibilityRequestPurpose._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

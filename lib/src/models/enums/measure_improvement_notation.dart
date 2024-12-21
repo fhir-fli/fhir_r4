@@ -61,7 +61,10 @@ class MeasureImprovementNotation extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   MeasureImprovementNotation withElement(Element? newElement) {
-    return MeasureImprovementNotation._(value, element: newElement);
+    return MeasureImprovementNotation._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

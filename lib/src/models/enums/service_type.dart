@@ -3622,7 +3622,10 @@ class ServiceType extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   ServiceType withElement(Element? newElement) {
-    return ServiceType._(value, element: newElement);
+    return ServiceType._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

@@ -64,7 +64,10 @@ class GoalPriority extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   GoalPriority withElement(Element? newElement) {
-    return GoalPriority._(value, element: newElement);
+    return GoalPriority._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

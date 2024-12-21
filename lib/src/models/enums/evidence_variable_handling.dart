@@ -73,7 +73,10 @@ class EvidenceVariableHandling extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   EvidenceVariableHandling withElement(Element? newElement) {
-    return EvidenceVariableHandling._(value, element: newElement);
+    return EvidenceVariableHandling._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

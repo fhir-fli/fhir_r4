@@ -106,7 +106,10 @@ class ConceptMapEquivalence extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   ConceptMapEquivalence withElement(Element? newElement) {
-    return ConceptMapEquivalence._(value, element: newElement);
+    return ConceptMapEquivalence._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

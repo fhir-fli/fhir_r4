@@ -137,7 +137,10 @@ class SubstanceNameAuthority extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   SubstanceNameAuthority withElement(Element? newElement) {
-    return SubstanceNameAuthority._(value, element: newElement);
+    return SubstanceNameAuthority._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

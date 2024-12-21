@@ -19084,7 +19084,10 @@ class AuditEventSubType extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   AuditEventSubType withElement(Element? newElement) {
-    return AuditEventSubType._(value, element: newElement);
+    return AuditEventSubType._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

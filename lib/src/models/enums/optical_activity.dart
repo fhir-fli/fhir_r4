@@ -58,7 +58,10 @@ class OpticalActivity extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   OpticalActivity withElement(Element? newElement) {
-    return OpticalActivity._(value, element: newElement);
+    return OpticalActivity._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

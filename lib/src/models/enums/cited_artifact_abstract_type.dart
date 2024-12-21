@@ -123,7 +123,10 @@ class CitedArtifactAbstractType extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   CitedArtifactAbstractType withElement(Element? newElement) {
-    return CitedArtifactAbstractType._(value, element: newElement);
+    return CitedArtifactAbstractType._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

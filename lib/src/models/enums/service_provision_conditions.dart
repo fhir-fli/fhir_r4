@@ -65,7 +65,10 @@ class ServiceProvisionConditions extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   ServiceProvisionConditions withElement(Element? newElement) {
-    return ServiceProvisionConditions._(value, element: newElement);
+    return ServiceProvisionConditions._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

@@ -61,7 +61,10 @@ class SpecimenContainedPreference extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   SpecimenContainedPreference withElement(Element? newElement) {
-    return SpecimenContainedPreference._(value, element: newElement);
+    return SpecimenContainedPreference._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

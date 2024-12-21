@@ -76,7 +76,10 @@ class ActionReasonCode extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   ActionReasonCode withElement(Element? newElement) {
-    return ActionReasonCode._(value, element: newElement);
+    return ActionReasonCode._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

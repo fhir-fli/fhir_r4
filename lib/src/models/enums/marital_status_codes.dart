@@ -52,7 +52,10 @@ class MaritalStatusCodes extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   MaritalStatusCodes withElement(Element? newElement) {
-    return MaritalStatusCodes._(value, element: newElement);
+    return MaritalStatusCodes._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

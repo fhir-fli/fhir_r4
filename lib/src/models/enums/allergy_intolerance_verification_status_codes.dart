@@ -77,8 +77,10 @@ class AllergyIntoleranceVerificationStatusCodes extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   AllergyIntoleranceVerificationStatusCodes withElement(Element? newElement) {
-    return AllergyIntoleranceVerificationStatusCodes._(value,
-        element: newElement);
+    return AllergyIntoleranceVerificationStatusCodes._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

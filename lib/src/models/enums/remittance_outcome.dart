@@ -70,7 +70,10 @@ class RemittanceOutcome extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   RemittanceOutcome withElement(Element? newElement) {
-    return RemittanceOutcome._(value, element: newElement);
+    return RemittanceOutcome._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

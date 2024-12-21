@@ -137,7 +137,10 @@ class RequestResourceType extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   RequestResourceType withElement(Element? newElement) {
-    return RequestResourceType._(value, element: newElement);
+    return RequestResourceType._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

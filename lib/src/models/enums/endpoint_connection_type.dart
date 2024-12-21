@@ -131,7 +131,10 @@ class EndpointConnectionType extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   EndpointConnectionType withElement(Element? newElement) {
-    return EndpointConnectionType._(value, element: newElement);
+    return EndpointConnectionType._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

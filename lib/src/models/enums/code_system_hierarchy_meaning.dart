@@ -74,7 +74,10 @@ class CodeSystemHierarchyMeaning extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   CodeSystemHierarchyMeaning withElement(Element? newElement) {
-    return CodeSystemHierarchyMeaning._(value, element: newElement);
+    return CodeSystemHierarchyMeaning._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

@@ -68,7 +68,10 @@ class AllergyIntoleranceCriticality extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   AllergyIntoleranceCriticality withElement(Element? newElement) {
-    return AllergyIntoleranceCriticality._(value, element: newElement);
+    return AllergyIntoleranceCriticality._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

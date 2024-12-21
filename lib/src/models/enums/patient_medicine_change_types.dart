@@ -89,7 +89,10 @@ class PatientMedicineChangeTypes extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   PatientMedicineChangeTypes withElement(Element? newElement) {
-    return PatientMedicineChangeTypes._(value, element: newElement);
+    return PatientMedicineChangeTypes._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

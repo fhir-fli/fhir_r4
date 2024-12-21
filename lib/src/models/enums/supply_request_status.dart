@@ -88,7 +88,10 @@ class SupplyRequestStatus extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   SupplyRequestStatus withElement(Element? newElement) {
-    return SupplyRequestStatus._(value, element: newElement);
+    return SupplyRequestStatus._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

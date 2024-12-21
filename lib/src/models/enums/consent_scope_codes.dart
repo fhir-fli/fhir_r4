@@ -70,7 +70,10 @@ class ConsentScopeCodes extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   ConsentScopeCodes withElement(Element? newElement) {
-    return ConsentScopeCodes._(value, element: newElement);
+    return ConsentScopeCodes._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

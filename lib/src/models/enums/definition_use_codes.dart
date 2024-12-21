@@ -82,7 +82,10 @@ class DefinitionUseCodes extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   DefinitionUseCodes withElement(Element? newElement) {
-    return DefinitionUseCodes._(value, element: newElement);
+    return DefinitionUseCodes._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

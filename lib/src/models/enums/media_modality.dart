@@ -94,7 +94,10 @@ class MediaModality extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   MediaModality withElement(Element? newElement) {
-    return MediaModality._(value, element: newElement);
+    return MediaModality._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

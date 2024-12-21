@@ -76,7 +76,10 @@ class ExampleDiagnosisRelatedGroupCodes extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   ExampleDiagnosisRelatedGroupCodes withElement(Element? newElement) {
-    return ExampleDiagnosisRelatedGroupCodes._(value, element: newElement);
+    return ExampleDiagnosisRelatedGroupCodes._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

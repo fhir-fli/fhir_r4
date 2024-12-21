@@ -63,7 +63,10 @@ class ExampleCoverageFinancialExceptionCodes extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   ExampleCoverageFinancialExceptionCodes withElement(Element? newElement) {
-    return ExampleCoverageFinancialExceptionCodes._(value, element: newElement);
+    return ExampleCoverageFinancialExceptionCodes._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

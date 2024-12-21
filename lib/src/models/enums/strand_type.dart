@@ -58,7 +58,10 @@ class StrandType extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   StrandType withElement(Element? newElement) {
-    return StrandType._(value, element: newElement);
+    return StrandType._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

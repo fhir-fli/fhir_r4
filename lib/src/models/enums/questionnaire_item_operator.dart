@@ -89,7 +89,10 @@ class QuestionnaireItemOperator extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   QuestionnaireItemOperator withElement(Element? newElement) {
-    return QuestionnaireItemOperator._(value, element: newElement);
+    return QuestionnaireItemOperator._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

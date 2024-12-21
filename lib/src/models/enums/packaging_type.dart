@@ -658,7 +658,10 @@ class PackagingType extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   PackagingType withElement(Element? newElement) {
-    return PackagingType._(value, element: newElement);
+    return PackagingType._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

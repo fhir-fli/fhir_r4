@@ -112,7 +112,10 @@ class ObservationDataType extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   ObservationDataType withElement(Element? newElement) {
-    return ObservationDataType._(value, element: newElement);
+    return ObservationDataType._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

@@ -55,7 +55,10 @@ class ContractResourceAssetContextCodes extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   ContractResourceAssetContextCodes withElement(Element? newElement) {
-    return ContractResourceAssetContextCodes._(value, element: newElement);
+    return ContractResourceAssetContextCodes._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

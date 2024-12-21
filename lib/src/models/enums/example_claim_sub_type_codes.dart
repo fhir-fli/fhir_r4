@@ -59,7 +59,10 @@ class ExampleClaimSubTypeCodes extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   ExampleClaimSubTypeCodes withElement(Element? newElement) {
-    return ExampleClaimSubTypeCodes._(value, element: newElement);
+    return ExampleClaimSubTypeCodes._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

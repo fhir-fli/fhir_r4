@@ -103,7 +103,10 @@ class ActionRelationshipType extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   ActionRelationshipType withElement(Element? newElement) {
-    return ActionRelationshipType._(value, element: newElement);
+    return ActionRelationshipType._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

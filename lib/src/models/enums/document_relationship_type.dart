@@ -71,7 +71,10 @@ class DocumentRelationshipType extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   DocumentRelationshipType withElement(Element? newElement) {
-    return DocumentRelationshipType._(value, element: newElement);
+    return DocumentRelationshipType._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

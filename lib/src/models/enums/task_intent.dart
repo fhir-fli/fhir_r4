@@ -106,7 +106,10 @@ class TaskIntent extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   TaskIntent withElement(Element? newElement) {
-    return TaskIntent._(value, element: newElement);
+    return TaskIntent._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

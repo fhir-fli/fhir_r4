@@ -97,7 +97,10 @@ class FocusCharacteristicCode extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   FocusCharacteristicCode withElement(Element? newElement) {
-    return FocusCharacteristicCode._(value, element: newElement);
+    return FocusCharacteristicCode._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

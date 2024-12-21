@@ -84,7 +84,10 @@ class BiologicallyDerivedProductCategory extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   BiologicallyDerivedProductCategory withElement(Element? newElement) {
-    return BiologicallyDerivedProductCategory._(value, element: newElement);
+    return BiologicallyDerivedProductCategory._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

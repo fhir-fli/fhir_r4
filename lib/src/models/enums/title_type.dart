@@ -124,7 +124,10 @@ class TitleType extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   TitleType withElement(Element? newElement) {
-    return TitleType._(value, element: newElement);
+    return TitleType._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

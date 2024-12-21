@@ -58,7 +58,10 @@ class OperationKind extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   OperationKind withElement(Element? newElement) {
-    return OperationKind._(value, element: newElement);
+    return OperationKind._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

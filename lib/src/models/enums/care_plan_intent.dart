@@ -100,7 +100,10 @@ class CarePlanIntent extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   CarePlanIntent withElement(Element? newElement) {
-    return CarePlanIntent._(value, element: newElement);
+    return CarePlanIntent._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

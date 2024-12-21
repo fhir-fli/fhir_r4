@@ -76,7 +76,10 @@ class TestScriptProfileDestinationType extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   TestScriptProfileDestinationType withElement(Element? newElement) {
-    return TestScriptProfileDestinationType._(value, element: newElement);
+    return TestScriptProfileDestinationType._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

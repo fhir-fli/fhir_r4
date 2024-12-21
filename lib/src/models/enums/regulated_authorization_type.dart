@@ -67,7 +67,10 @@ class RegulatedAuthorizationType extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   RegulatedAuthorizationType withElement(Element? newElement) {
-    return RegulatedAuthorizationType._(value, element: newElement);
+    return RegulatedAuthorizationType._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

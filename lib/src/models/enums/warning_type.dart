@@ -106,7 +106,10 @@ class WarningType extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   WarningType withElement(Element? newElement) {
-    return WarningType._(value, element: newElement);
+    return WarningType._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

@@ -118,7 +118,10 @@ class OrganizationType extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   OrganizationType withElement(Element? newElement) {
-    return OrganizationType._(value, element: newElement);
+    return OrganizationType._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

@@ -58,7 +58,10 @@ class SubstanceNameDomain extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   SubstanceNameDomain withElement(Element? newElement) {
-    return SubstanceNameDomain._(value, element: newElement);
+    return SubstanceNameDomain._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

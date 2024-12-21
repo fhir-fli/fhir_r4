@@ -70,7 +70,10 @@ class IssueSeverity extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   IssueSeverity withElement(Element? newElement) {
-    return IssueSeverity._(value, element: newElement);
+    return IssueSeverity._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

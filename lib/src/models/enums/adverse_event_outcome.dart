@@ -82,7 +82,10 @@ class AdverseEventOutcome extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   AdverseEventOutcome withElement(Element? newElement) {
-    return AdverseEventOutcome._(value, element: newElement);
+    return AdverseEventOutcome._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

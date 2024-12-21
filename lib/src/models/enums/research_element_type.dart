@@ -64,7 +64,10 @@ class ResearchElementType extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   ResearchElementType withElement(Element? newElement) {
-    return ResearchElementType._(value, element: newElement);
+    return ResearchElementType._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

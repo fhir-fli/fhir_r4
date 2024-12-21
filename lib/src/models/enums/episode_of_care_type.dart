@@ -76,7 +76,10 @@ class EpisodeOfCareType extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   EpisodeOfCareType withElement(Element? newElement) {
-    return EpisodeOfCareType._(value, element: newElement);
+    return EpisodeOfCareType._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

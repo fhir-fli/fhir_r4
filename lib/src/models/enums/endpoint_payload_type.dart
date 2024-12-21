@@ -537,7 +537,10 @@ class EndpointPayloadType extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   EndpointPayloadType withElement(Element? newElement) {
-    return EndpointPayloadType._(value, element: newElement);
+    return EndpointPayloadType._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

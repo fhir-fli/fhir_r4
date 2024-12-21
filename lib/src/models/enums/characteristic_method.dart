@@ -52,7 +52,10 @@ class CharacteristicMethod extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   CharacteristicMethod withElement(Element? newElement) {
-    return CharacteristicMethod._(value, element: newElement);
+    return CharacteristicMethod._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

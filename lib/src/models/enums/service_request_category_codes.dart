@@ -82,7 +82,10 @@ class ServiceRequestCategoryCodes extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   ServiceRequestCategoryCodes withElement(Element? newElement) {
-    return ServiceRequestCategoryCodes._(value, element: newElement);
+    return ServiceRequestCategoryCodes._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

@@ -64,7 +64,10 @@ class Use extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   Use withElement(Element? newElement) {
-    return Use._(value, element: newElement);
+    return Use._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

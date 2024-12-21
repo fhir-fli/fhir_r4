@@ -130,7 +130,10 @@ class PediatricUse extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   PediatricUse withElement(Element? newElement) {
-    return PediatricUse._(value, element: newElement);
+    return PediatricUse._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

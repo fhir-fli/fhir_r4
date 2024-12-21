@@ -83,7 +83,10 @@ class ActionSelectionBehavior extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   ActionSelectionBehavior withElement(Element? newElement) {
-    return ActionSelectionBehavior._(value, element: newElement);
+    return ActionSelectionBehavior._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

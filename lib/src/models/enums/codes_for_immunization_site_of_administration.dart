@@ -63,8 +63,10 @@ class CodesForImmunizationSiteOfAdministration extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   CodesForImmunizationSiteOfAdministration withElement(Element? newElement) {
-    return CodesForImmunizationSiteOfAdministration._(value,
-        element: newElement);
+    return CodesForImmunizationSiteOfAdministration._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

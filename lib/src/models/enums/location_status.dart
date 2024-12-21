@@ -64,7 +64,10 @@ class LocationStatus extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   LocationStatus withElement(Element? newElement) {
-    return LocationStatus._(value, element: newElement);
+    return LocationStatus._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

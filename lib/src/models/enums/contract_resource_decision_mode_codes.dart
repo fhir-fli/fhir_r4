@@ -55,7 +55,10 @@ class ContractResourceDecisionModeCodes extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   ContractResourceDecisionModeCodes withElement(Element? newElement) {
-    return ContractResourceDecisionModeCodes._(value, element: newElement);
+    return ContractResourceDecisionModeCodes._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

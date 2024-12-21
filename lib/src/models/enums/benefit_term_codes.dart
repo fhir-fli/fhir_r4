@@ -64,7 +64,10 @@ class BenefitTermCodes extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   BenefitTermCodes withElement(Element? newElement) {
-    return BenefitTermCodes._(value, element: newElement);
+    return BenefitTermCodes._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

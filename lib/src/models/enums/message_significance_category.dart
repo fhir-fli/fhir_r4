@@ -68,7 +68,10 @@ class MessageSignificanceCategory extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   MessageSignificanceCategory withElement(Element? newElement) {
-    return MessageSignificanceCategory._(value, element: newElement);
+    return MessageSignificanceCategory._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

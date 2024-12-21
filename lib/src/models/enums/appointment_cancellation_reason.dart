@@ -271,7 +271,10 @@ class AppointmentCancellationReason extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   AppointmentCancellationReason withElement(Element? newElement) {
-    return AppointmentCancellationReason._(value, element: newElement);
+    return AppointmentCancellationReason._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

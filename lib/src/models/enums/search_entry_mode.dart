@@ -64,7 +64,10 @@ class SearchEntryMode extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   SearchEntryMode withElement(Element? newElement) {
-    return SearchEntryMode._(value, element: newElement);
+    return SearchEntryMode._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

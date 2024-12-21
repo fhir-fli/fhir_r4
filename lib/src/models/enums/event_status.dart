@@ -94,7 +94,10 @@ class EventStatus extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   EventStatus withElement(Element? newElement) {
-    return EventStatus._(value, element: newElement);
+    return EventStatus._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

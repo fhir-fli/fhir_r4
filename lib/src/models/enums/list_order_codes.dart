@@ -94,7 +94,10 @@ class ListOrderCodes extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   ListOrderCodes withElement(Element? newElement) {
-    return ListOrderCodes._(value, element: newElement);
+    return ListOrderCodes._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

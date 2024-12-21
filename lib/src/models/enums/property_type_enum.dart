@@ -88,7 +88,10 @@ class PropertyTypeEnum extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   PropertyTypeEnum withElement(Element? newElement) {
-    return PropertyTypeEnum._(value, element: newElement);
+    return PropertyTypeEnum._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

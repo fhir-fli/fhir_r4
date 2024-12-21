@@ -19150,7 +19150,10 @@ class AuditEventID extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   AuditEventID withElement(Element? newElement) {
-    return AuditEventID._(value, element: newElement);
+    return AuditEventID._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

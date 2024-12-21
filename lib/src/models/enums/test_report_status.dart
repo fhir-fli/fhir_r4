@@ -76,7 +76,10 @@ class TestReportStatus extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   TestReportStatus withElement(Element? newElement) {
-    return TestReportStatus._(value, element: newElement);
+    return TestReportStatus._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

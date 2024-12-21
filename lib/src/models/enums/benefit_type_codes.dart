@@ -118,7 +118,10 @@ class BenefitTypeCodes extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   BenefitTypeCodes withElement(Element? newElement) {
-    return BenefitTypeCodes._(value, element: newElement);
+    return BenefitTypeCodes._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

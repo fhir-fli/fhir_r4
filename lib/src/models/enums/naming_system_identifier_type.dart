@@ -71,7 +71,10 @@ class NamingSystemIdentifierType extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   NamingSystemIdentifierType withElement(Element? newElement) {
-    return NamingSystemIdentifierType._(value, element: newElement);
+    return NamingSystemIdentifierType._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

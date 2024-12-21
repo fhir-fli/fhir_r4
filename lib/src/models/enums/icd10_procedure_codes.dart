@@ -64,7 +64,10 @@ class ICD10ProcedureCodes extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   ICD10ProcedureCodes withElement(Element? newElement) {
-    return ICD10ProcedureCodes._(value, element: newElement);
+    return ICD10ProcedureCodes._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

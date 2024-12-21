@@ -106,7 +106,10 @@ class GuideParameterCode extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   GuideParameterCode withElement(Element? newElement) {
-    return GuideParameterCode._(value, element: newElement);
+    return GuideParameterCode._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

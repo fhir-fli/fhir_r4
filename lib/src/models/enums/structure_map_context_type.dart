@@ -59,7 +59,10 @@ class StructureMapContextType extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   StructureMapContextType withElement(Element? newElement) {
-    return StructureMapContextType._(value, element: newElement);
+    return StructureMapContextType._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

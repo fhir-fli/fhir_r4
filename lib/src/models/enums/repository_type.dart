@@ -76,7 +76,10 @@ class RepositoryType extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   RepositoryType withElement(Element? newElement) {
-    return RepositoryType._(value, element: newElement);
+    return RepositoryType._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

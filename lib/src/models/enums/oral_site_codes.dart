@@ -292,7 +292,10 @@ class OralSiteCodes extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   OralSiteCodes withElement(Element? newElement) {
-    return OralSiteCodes._(value, element: newElement);
+    return OralSiteCodes._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

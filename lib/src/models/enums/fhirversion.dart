@@ -208,7 +208,10 @@ class FHIRVersion extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   FHIRVersion withElement(Element? newElement) {
-    return FHIRVersion._(value, element: newElement);
+    return FHIRVersion._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

@@ -70,7 +70,10 @@ class AuditEventOutcome extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   AuditEventOutcome withElement(Element? newElement) {
-    return AuditEventOutcome._(value, element: newElement);
+    return AuditEventOutcome._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

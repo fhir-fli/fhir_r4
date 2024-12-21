@@ -95,7 +95,10 @@ class AdjudicationValueCodes extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   AdjudicationValueCodes withElement(Element? newElement) {
-    return AdjudicationValueCodes._(value, element: newElement);
+    return AdjudicationValueCodes._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

@@ -70,7 +70,10 @@ class PublishedInType extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   PublishedInType withElement(Element? newElement) {
-    return PublishedInType._(value, element: newElement);
+    return PublishedInType._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

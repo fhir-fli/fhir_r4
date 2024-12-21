@@ -82,7 +82,10 @@ class CommonUCUMCodesForAge extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   CommonUCUMCodesForAge withElement(Element? newElement) {
-    return CommonUCUMCodesForAge._(value, element: newElement);
+    return CommonUCUMCodesForAge._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

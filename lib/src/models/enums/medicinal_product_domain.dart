@@ -66,7 +66,10 @@ class MedicinalProductDomain extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   MedicinalProductDomain withElement(Element? newElement) {
-    return MedicinalProductDomain._(value, element: newElement);
+    return MedicinalProductDomain._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

@@ -132,7 +132,10 @@ class SubscriptionSearchModifier extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   SubscriptionSearchModifier withElement(Element? newElement) {
-    return SubscriptionSearchModifier._(value, element: newElement);
+    return SubscriptionSearchModifier._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

@@ -61,7 +61,10 @@ class CriteriaNotExistsBehavior extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   CriteriaNotExistsBehavior withElement(Element? newElement) {
-    return CriteriaNotExistsBehavior._(value, element: newElement);
+    return CriteriaNotExistsBehavior._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

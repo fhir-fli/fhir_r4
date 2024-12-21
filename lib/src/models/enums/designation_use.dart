@@ -58,7 +58,10 @@ class DesignationUse extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   DesignationUse withElement(Element? newElement) {
-    return DesignationUse._(value, element: newElement);
+    return DesignationUse._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

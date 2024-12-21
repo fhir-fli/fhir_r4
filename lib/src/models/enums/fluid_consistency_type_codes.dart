@@ -75,7 +75,10 @@ class FluidConsistencyTypeCodes extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   FluidConsistencyTypeCodes withElement(Element? newElement) {
-    return FluidConsistencyTypeCodes._(value, element: newElement);
+    return FluidConsistencyTypeCodes._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

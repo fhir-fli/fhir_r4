@@ -600,7 +600,10 @@ class FacilityTypeCodeValueSet extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   FacilityTypeCodeValueSet withElement(Element? newElement) {
-    return FacilityTypeCodeValueSet._(value, element: newElement);
+    return FacilityTypeCodeValueSet._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

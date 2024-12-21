@@ -178,7 +178,10 @@ class StatisticType extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   StatisticType withElement(Element? newElement) {
-    return StatisticType._(value, element: newElement);
+    return StatisticType._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

@@ -299,7 +299,10 @@ class EnteralFormulaTypeCodes extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   EnteralFormulaTypeCodes withElement(Element? newElement) {
-    return EnteralFormulaTypeCodes._(value, element: newElement);
+    return EnteralFormulaTypeCodes._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

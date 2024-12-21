@@ -100,7 +100,10 @@ class UsageContextType extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   UsageContextType withElement(Element? newElement) {
-    return UsageContextType._(value, element: newElement);
+    return UsageContextType._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

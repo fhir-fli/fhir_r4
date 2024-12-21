@@ -59,7 +59,10 @@ class AssertionDirectionType extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   AssertionDirectionType withElement(Element? newElement) {
-    return AssertionDirectionType._(value, element: newElement);
+    return AssertionDirectionType._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

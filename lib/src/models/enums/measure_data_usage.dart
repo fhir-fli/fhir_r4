@@ -58,7 +58,10 @@ class MeasureDataUsage extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   MeasureDataUsage withElement(Element? newElement) {
-    return MeasureDataUsage._(value, element: newElement);
+    return MeasureDataUsage._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

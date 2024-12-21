@@ -100,7 +100,10 @@ class SearchComparator extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   SearchComparator withElement(Element? newElement) {
-    return SearchComparator._(value, element: newElement);
+    return SearchComparator._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

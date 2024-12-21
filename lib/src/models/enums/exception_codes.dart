@@ -58,7 +58,10 @@ class ExceptionCodes extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   ExceptionCodes withElement(Element? newElement) {
-    return ExceptionCodes._(value, element: newElement);
+    return ExceptionCodes._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

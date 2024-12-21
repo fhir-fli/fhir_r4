@@ -68,7 +68,10 @@ class ClinicalUseDefinitionCategory extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   ClinicalUseDefinitionCategory withElement(Element? newElement) {
-    return ClinicalUseDefinitionCategory._(value, element: newElement);
+    return ClinicalUseDefinitionCategory._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

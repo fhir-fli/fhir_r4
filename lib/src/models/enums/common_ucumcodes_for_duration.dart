@@ -95,7 +95,10 @@ class CommonUCUMCodesForDuration extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   CommonUCUMCodesForDuration withElement(Element? newElement) {
-    return CommonUCUMCodesForDuration._(value, element: newElement);
+    return CommonUCUMCodesForDuration._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

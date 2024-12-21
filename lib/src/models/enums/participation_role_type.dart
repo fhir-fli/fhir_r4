@@ -19348,7 +19348,10 @@ class ParticipationRoleType extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   ParticipationRoleType withElement(Element? newElement) {
-    return ParticipationRoleType._(value, element: newElement);
+    return ParticipationRoleType._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

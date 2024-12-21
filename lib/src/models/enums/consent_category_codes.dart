@@ -124,7 +124,10 @@ class ConsentCategoryCodes extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   ConsentCategoryCodes withElement(Element? newElement) {
-    return ConsentCategoryCodes._(value, element: newElement);
+    return ConsentCategoryCodes._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

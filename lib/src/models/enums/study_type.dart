@@ -88,7 +88,10 @@ class StudyType extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   StudyType withElement(Element? newElement) {
-    return StudyType._(value, element: newElement);
+    return StudyType._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

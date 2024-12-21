@@ -59,7 +59,10 @@ class ActionPrecheckBehavior extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   ActionPrecheckBehavior withElement(Element? newElement) {
-    return ActionPrecheckBehavior._(value, element: newElement);
+    return ActionPrecheckBehavior._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

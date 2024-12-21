@@ -70,7 +70,10 @@ class CompositionStatus extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   CompositionStatus withElement(Element? newElement) {
-    return CompositionStatus._(value, element: newElement);
+    return CompositionStatus._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

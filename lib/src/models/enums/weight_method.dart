@@ -94,7 +94,10 @@ class WeightMethod extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   WeightMethod withElement(Element? newElement) {
-    return WeightMethod._(value, element: newElement);
+    return WeightMethod._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

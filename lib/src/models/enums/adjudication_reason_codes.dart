@@ -59,7 +59,10 @@ class AdjudicationReasonCodes extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   AdjudicationReasonCodes withElement(Element? newElement) {
-    return AdjudicationReasonCodes._(value, element: newElement);
+    return AdjudicationReasonCodes._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

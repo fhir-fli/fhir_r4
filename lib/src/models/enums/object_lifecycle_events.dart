@@ -298,7 +298,10 @@ class ObjectLifecycleEvents extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   ObjectLifecycleEvents withElement(Element? newElement) {
-    return ObjectLifecycleEvents._(value, element: newElement);
+    return ObjectLifecycleEvents._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

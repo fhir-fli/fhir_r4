@@ -136,7 +136,10 @@ class DataAbsentReason extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   DataAbsentReason withElement(Element? newElement) {
-    return DataAbsentReason._(value, element: newElement);
+    return DataAbsentReason._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

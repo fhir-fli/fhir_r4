@@ -938,7 +938,10 @@ class ConsentContentClass extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   ConsentContentClass withElement(Element? newElement) {
-    return ConsentContentClass._(value, element: newElement);
+    return ConsentContentClass._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

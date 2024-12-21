@@ -140,7 +140,10 @@ class MedicationRequestStatusReasonCodes extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   MedicationRequestStatusReasonCodes withElement(Element? newElement) {
-    return MedicationRequestStatusReasonCodes._(value, element: newElement);
+    return MedicationRequestStatusReasonCodes._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

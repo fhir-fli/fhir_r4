@@ -106,7 +106,10 @@ class AdmitSource extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   AdmitSource withElement(Element? newElement) {
-    return AdmitSource._(value, element: newElement);
+    return AdmitSource._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

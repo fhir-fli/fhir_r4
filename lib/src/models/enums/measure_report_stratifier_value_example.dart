@@ -77,7 +77,10 @@ class MeasureReportStratifierValueExample extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   MeasureReportStratifierValueExample withElement(Element? newElement) {
-    return MeasureReportStratifierValueExample._(value, element: newElement);
+    return MeasureReportStratifierValueExample._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

@@ -101,7 +101,10 @@ class AdverseEventSeriousness extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   AdverseEventSeriousness withElement(Element? newElement) {
-    return AdverseEventSeriousness._(value, element: newElement);
+    return AdverseEventSeriousness._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

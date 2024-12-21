@@ -96,7 +96,10 @@ class ProcedureCategoryCodesSNOMEDCT extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   ProcedureCategoryCodesSNOMEDCT withElement(Element? newElement) {
-    return ProcedureCategoryCodesSNOMEDCT._(value, element: newElement);
+    return ProcedureCategoryCodesSNOMEDCT._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

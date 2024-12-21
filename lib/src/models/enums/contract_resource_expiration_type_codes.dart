@@ -56,7 +56,10 @@ class ContractResourceExpirationTypeCodes extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   ContractResourceExpirationTypeCodes withElement(Element? newElement) {
-    return ContractResourceExpirationTypeCodes._(value, element: newElement);
+    return ContractResourceExpirationTypeCodes._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

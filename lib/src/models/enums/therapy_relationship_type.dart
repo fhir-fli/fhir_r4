@@ -110,7 +110,10 @@ class TherapyRelationshipType extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   TherapyRelationshipType withElement(Element? newElement) {
-    return TherapyRelationshipType._(value, element: newElement);
+    return TherapyRelationshipType._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

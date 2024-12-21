@@ -76,7 +76,10 @@ class SubstanceGrade extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   SubstanceGrade withElement(Element? newElement) {
-    return SubstanceGrade._(value, element: newElement);
+    return SubstanceGrade._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

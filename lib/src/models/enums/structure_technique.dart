@@ -76,7 +76,10 @@ class StructureTechnique extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   StructureTechnique withElement(Element? newElement) {
-    return StructureTechnique._(value, element: newElement);
+    return StructureTechnique._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

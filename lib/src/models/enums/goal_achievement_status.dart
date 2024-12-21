@@ -100,7 +100,10 @@ class GoalAchievementStatus extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   GoalAchievementStatus withElement(Element? newElement) {
-    return GoalAchievementStatus._(value, element: newElement);
+    return GoalAchievementStatus._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

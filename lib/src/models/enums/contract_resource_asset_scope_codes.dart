@@ -54,7 +54,10 @@ class ContractResourceAssetScopeCodes extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   ContractResourceAssetScopeCodes withElement(Element? newElement) {
-    return ContractResourceAssetScopeCodes._(value, element: newElement);
+    return ContractResourceAssetScopeCodes._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

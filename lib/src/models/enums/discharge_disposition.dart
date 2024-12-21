@@ -112,7 +112,10 @@ class DischargeDisposition extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   DischargeDisposition withElement(Element? newElement) {
-    return DischargeDisposition._(value, element: newElement);
+    return DischargeDisposition._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

@@ -83,7 +83,10 @@ class RestfulSecurityService extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   RestfulSecurityService withElement(Element? newElement) {
-    return RestfulSecurityService._(value, element: newElement);
+    return RestfulSecurityService._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

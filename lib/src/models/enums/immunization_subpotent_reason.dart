@@ -68,7 +68,10 @@ class ImmunizationSubpotentReason extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   ImmunizationSubpotentReason withElement(Element? newElement) {
-    return ImmunizationSubpotentReason._(value, element: newElement);
+    return ImmunizationSubpotentReason._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

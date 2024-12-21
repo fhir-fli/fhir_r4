@@ -88,7 +88,10 @@ class DiagnosisRole extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   DiagnosisRole withElement(Element? newElement) {
-    return DiagnosisRole._(value, element: newElement);
+    return DiagnosisRole._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

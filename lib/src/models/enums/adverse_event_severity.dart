@@ -64,7 +64,10 @@ class AdverseEventSeverity extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   AdverseEventSeverity withElement(Element? newElement) {
-    return AdverseEventSeverity._(value, element: newElement);
+    return AdverseEventSeverity._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

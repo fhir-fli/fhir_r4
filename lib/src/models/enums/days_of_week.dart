@@ -88,7 +88,10 @@ class DaysOfWeek extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   DaysOfWeek withElement(Element? newElement) {
-    return DaysOfWeek._(value, element: newElement);
+    return DaysOfWeek._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

@@ -70,7 +70,10 @@ class MedicationRequestCourseOfTherapyCodes extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   MedicationRequestCourseOfTherapyCodes withElement(Element? newElement) {
-    return MedicationRequestCourseOfTherapyCodes._(value, element: newElement);
+    return MedicationRequestCourseOfTherapyCodes._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

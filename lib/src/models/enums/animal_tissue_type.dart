@@ -1180,7 +1180,10 @@ class AnimalTissueType extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   AnimalTissueType withElement(Element? newElement) {
-    return AnimalTissueType._(value, element: newElement);
+    return AnimalTissueType._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

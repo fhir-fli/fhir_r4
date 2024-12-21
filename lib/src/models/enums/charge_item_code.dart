@@ -64,7 +64,10 @@ class ChargeItemCode extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   ChargeItemCode withElement(Element? newElement) {
-    return ChargeItemCode._(value, element: newElement);
+    return ChargeItemCode._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

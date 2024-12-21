@@ -107,8 +107,10 @@ class CoverageEligibilityResponseAuthSupportCodes
 
   /// Returns the enum value with an element attached
   CoverageEligibilityResponseAuthSupportCodes withElement(Element? newElement) {
-    return CoverageEligibilityResponseAuthSupportCodes._(value,
-        element: newElement);
+    return CoverageEligibilityResponseAuthSupportCodes._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

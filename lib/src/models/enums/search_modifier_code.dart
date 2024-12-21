@@ -118,7 +118,10 @@ class SearchModifierCode extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   SearchModifierCode withElement(Element? newElement) {
-    return SearchModifierCode._(value, element: newElement);
+    return SearchModifierCode._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

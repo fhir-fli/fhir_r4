@@ -106,7 +106,10 @@ class FlagCategory extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   FlagCategory withElement(Element? newElement) {
-    return FlagCategory._(value, element: newElement);
+    return FlagCategory._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

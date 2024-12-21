@@ -89,7 +89,10 @@ class CommunicationNotDoneReason extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   CommunicationNotDoneReason withElement(Element? newElement) {
-    return CommunicationNotDoneReason._(value, element: newElement);
+    return CommunicationNotDoneReason._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

@@ -130,7 +130,10 @@ class CitationSummaryStyle extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   CitationSummaryStyle withElement(Element? newElement) {
-    return CitationSummaryStyle._(value, element: newElement);
+    return CitationSummaryStyle._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

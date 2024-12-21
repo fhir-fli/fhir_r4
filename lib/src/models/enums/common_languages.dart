@@ -382,7 +382,10 @@ class CommonLanguages extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   CommonLanguages withElement(Element? newElement) {
-    return CommonLanguages._(value, element: newElement);
+    return CommonLanguages._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

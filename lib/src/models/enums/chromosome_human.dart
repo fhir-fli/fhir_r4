@@ -190,7 +190,10 @@ class ChromosomeHuman extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   ChromosomeHuman withElement(Element? newElement) {
-    return ChromosomeHuman._(value, element: newElement);
+    return ChromosomeHuman._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

@@ -77,7 +77,10 @@ class ReferenceHandlingPolicy extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   ReferenceHandlingPolicy withElement(Element? newElement) {
-    return ReferenceHandlingPolicy._(value, element: newElement);
+    return ReferenceHandlingPolicy._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

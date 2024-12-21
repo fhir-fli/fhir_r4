@@ -71,7 +71,10 @@ class EncounterLocationStatus extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   EncounterLocationStatus withElement(Element? newElement) {
-    return EncounterLocationStatus._(value, element: newElement);
+    return EncounterLocationStatus._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

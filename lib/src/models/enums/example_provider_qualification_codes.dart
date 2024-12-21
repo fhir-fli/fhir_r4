@@ -69,7 +69,10 @@ class ExampleProviderQualificationCodes extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   ExampleProviderQualificationCodes withElement(Element? newElement) {
-    return ExampleProviderQualificationCodes._(value, element: newElement);
+    return ExampleProviderQualificationCodes._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

@@ -75,7 +75,10 @@ class DeviceMetricOperationalStatus extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   DeviceMetricOperationalStatus withElement(Element? newElement) {
-    return DeviceMetricOperationalStatus._(value, element: newElement);
+    return DeviceMetricOperationalStatus._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

@@ -80,8 +80,10 @@ class ImmunizationRecommendationDateCriterionCodes
   /// Returns the enum value with an element attached
   ImmunizationRecommendationDateCriterionCodes withElement(
       Element? newElement) {
-    return ImmunizationRecommendationDateCriterionCodes._(value,
-        element: newElement);
+    return ImmunizationRecommendationDateCriterionCodes._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

@@ -64,7 +64,10 @@ class SubstanceNameType extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   SubstanceNameType withElement(Element? newElement) {
-    return SubstanceNameType._(value, element: newElement);
+    return SubstanceNameType._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

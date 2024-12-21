@@ -76,7 +76,10 @@ class SpecialArrangements extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   SpecialArrangements withElement(Element? newElement) {
-    return SpecialArrangements._(value, element: newElement);
+    return SpecialArrangements._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

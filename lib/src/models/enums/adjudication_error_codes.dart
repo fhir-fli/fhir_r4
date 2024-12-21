@@ -59,7 +59,10 @@ class AdjudicationErrorCodes extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   AdjudicationErrorCodes withElement(Element? newElement) {
-    return AdjudicationErrorCodes._(value, element: newElement);
+    return AdjudicationErrorCodes._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

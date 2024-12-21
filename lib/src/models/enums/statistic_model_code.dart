@@ -527,7 +527,10 @@ class StatisticModelCode extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   StatisticModelCode withElement(Element? newElement) {
-    return StatisticModelCode._(value, element: newElement);
+    return StatisticModelCode._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

@@ -852,7 +852,10 @@ class PracticeSettingCodeValueSet extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   PracticeSettingCodeValueSet withElement(Element? newElement) {
-    return PracticeSettingCodeValueSet._(value, element: newElement);
+    return PracticeSettingCodeValueSet._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

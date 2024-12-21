@@ -64,7 +64,10 @@ class WeightType extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   WeightType withElement(Element? newElement) {
-    return WeightType._(value, element: newElement);
+    return WeightType._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

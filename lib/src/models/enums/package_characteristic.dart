@@ -65,7 +65,10 @@ class PackageCharacteristic extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   PackageCharacteristic withElement(Element? newElement) {
-    return PackageCharacteristic._(value, element: newElement);
+    return PackageCharacteristic._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

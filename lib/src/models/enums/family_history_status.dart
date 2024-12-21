@@ -70,7 +70,10 @@ class FamilyHistoryStatus extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   FamilyHistoryStatus withElement(Element? newElement) {
-    return FamilyHistoryStatus._(value, element: newElement);
+    return FamilyHistoryStatus._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

@@ -110,7 +110,10 @@ class ImmunizationTargetDiseaseCodes extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   ImmunizationTargetDiseaseCodes withElement(Element? newElement) {
-    return ImmunizationTargetDiseaseCodes._(value, element: newElement);
+    return ImmunizationTargetDiseaseCodes._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

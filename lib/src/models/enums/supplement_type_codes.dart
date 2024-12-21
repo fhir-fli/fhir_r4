@@ -316,7 +316,10 @@ class SupplementTypeCodes extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   SupplementTypeCodes withElement(Element? newElement) {
-    return SupplementTypeCodes._(value, element: newElement);
+    return SupplementTypeCodes._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

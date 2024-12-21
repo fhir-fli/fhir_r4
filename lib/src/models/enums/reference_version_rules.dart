@@ -64,7 +64,10 @@ class ReferenceVersionRules extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   ReferenceVersionRules withElement(Element? newElement) {
-    return ReferenceVersionRules._(value, element: newElement);
+    return ReferenceVersionRules._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

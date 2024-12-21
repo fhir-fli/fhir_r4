@@ -82,7 +82,10 @@ class EnteralFormulaAdditiveTypeCode extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   EnteralFormulaAdditiveTypeCode withElement(Element? newElement) {
-    return EnteralFormulaAdditiveTypeCode._(value, element: newElement);
+    return EnteralFormulaAdditiveTypeCode._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

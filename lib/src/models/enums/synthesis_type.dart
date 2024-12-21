@@ -88,7 +88,10 @@ class SynthesisType extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   SynthesisType withElement(Element? newElement) {
-    return SynthesisType._(value, element: newElement);
+    return SynthesisType._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

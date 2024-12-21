@@ -54,7 +54,10 @@ class ContractResourcePartyRoleCodes extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   ContractResourcePartyRoleCodes withElement(Element? newElement) {
-    return ContractResourcePartyRoleCodes._(value, element: newElement);
+    return ContractResourcePartyRoleCodes._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

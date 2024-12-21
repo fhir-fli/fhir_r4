@@ -113,7 +113,10 @@ class ProvenanceActivityType extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   ProvenanceActivityType withElement(Element? newElement) {
-    return ProvenanceActivityType._(value, element: newElement);
+    return ProvenanceActivityType._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

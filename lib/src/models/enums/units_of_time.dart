@@ -88,7 +88,10 @@ class UnitsOfTime extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   UnitsOfTime withElement(Element? newElement) {
-    return UnitsOfTime._(value, element: newElement);
+    return UnitsOfTime._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

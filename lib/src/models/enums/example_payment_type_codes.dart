@@ -59,7 +59,10 @@ class ExamplePaymentTypeCodes extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   ExamplePaymentTypeCodes withElement(Element? newElement) {
-    return ExamplePaymentTypeCodes._(value, element: newElement);
+    return ExamplePaymentTypeCodes._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

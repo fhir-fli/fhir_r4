@@ -96,7 +96,10 @@ class SubstanceRepresentationFormat extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   SubstanceRepresentationFormat withElement(Element? newElement) {
-    return SubstanceRepresentationFormat._(value, element: newElement);
+    return SubstanceRepresentationFormat._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

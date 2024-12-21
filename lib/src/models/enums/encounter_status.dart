@@ -100,7 +100,10 @@ class EncounterStatus extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   EncounterStatus withElement(Element? newElement) {
-    return EncounterStatus._(value, element: newElement);
+    return EncounterStatus._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

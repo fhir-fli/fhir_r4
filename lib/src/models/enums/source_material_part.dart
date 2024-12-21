@@ -64,7 +64,10 @@ class SourceMaterialPart extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   SourceMaterialPart withElement(Element? newElement) {
-    return SourceMaterialPart._(value, element: newElement);
+    return SourceMaterialPart._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

@@ -72,7 +72,10 @@ class StructureMapTargetListMode extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   StructureMapTargetListMode withElement(Element? newElement) {
-    return StructureMapTargetListMode._(value, element: newElement);
+    return StructureMapTargetListMode._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

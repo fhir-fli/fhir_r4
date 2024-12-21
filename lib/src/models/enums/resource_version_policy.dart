@@ -64,7 +64,10 @@ class ResourceVersionPolicy extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   ResourceVersionPolicy withElement(Element? newElement) {
-    return ResourceVersionPolicy._(value, element: newElement);
+    return ResourceVersionPolicy._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

@@ -103,7 +103,10 @@ class ObservationCategoryCodes extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   ObservationCategoryCodes withElement(Element? newElement) {
-    return ObservationCategoryCodes._(value, element: newElement);
+    return ObservationCategoryCodes._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

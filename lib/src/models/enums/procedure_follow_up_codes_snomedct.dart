@@ -117,7 +117,10 @@ class ProcedureFollowUpCodesSNOMEDCT extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   ProcedureFollowUpCodesSNOMEDCT withElement(Element? newElement) {
-    return ProcedureFollowUpCodesSNOMEDCT._(value, element: newElement);
+    return ProcedureFollowUpCodesSNOMEDCT._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

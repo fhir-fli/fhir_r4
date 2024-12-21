@@ -82,7 +82,10 @@ class SubscriptionNotificationType extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   SubscriptionNotificationType withElement(Element? newElement) {
-    return SubscriptionNotificationType._(value, element: newElement);
+    return SubscriptionNotificationType._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

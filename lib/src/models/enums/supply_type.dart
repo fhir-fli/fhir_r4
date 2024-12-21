@@ -58,7 +58,10 @@ class SupplyType extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   SupplyType withElement(Element? newElement) {
-    return SupplyType._(value, element: newElement);
+    return SupplyType._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

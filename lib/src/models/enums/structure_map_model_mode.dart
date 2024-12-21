@@ -70,7 +70,10 @@ class StructureMapModelMode extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   StructureMapModelMode withElement(Element? newElement) {
-    return StructureMapModelMode._(value, element: newElement);
+    return StructureMapModelMode._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

@@ -223,7 +223,10 @@ class ReportSectionType extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   ReportSectionType withElement(Element? newElement) {
-    return ReportSectionType._(value, element: newElement);
+    return ReportSectionType._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

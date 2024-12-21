@@ -143,7 +143,10 @@ class ProductNamePartType extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   ProductNamePartType withElement(Element? newElement) {
-    return ProductNamePartType._(value, element: newElement);
+    return ProductNamePartType._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

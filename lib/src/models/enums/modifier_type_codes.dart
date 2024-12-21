@@ -82,7 +82,10 @@ class ModifierTypeCodes extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   ModifierTypeCodes withElement(Element? newElement) {
-    return ModifierTypeCodes._(value, element: newElement);
+    return ModifierTypeCodes._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

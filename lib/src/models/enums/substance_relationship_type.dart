@@ -80,7 +80,10 @@ class SubstanceRelationshipType extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   SubstanceRelationshipType withElement(Element? newElement) {
-    return SubstanceRelationshipType._(value, element: newElement);
+    return SubstanceRelationshipType._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

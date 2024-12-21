@@ -52,7 +52,10 @@ class SpecialMeasures extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   SpecialMeasures withElement(Element? newElement) {
-    return SpecialMeasures._(value, element: newElement);
+    return SpecialMeasures._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

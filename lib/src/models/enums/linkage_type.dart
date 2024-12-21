@@ -64,7 +64,10 @@ class LinkageType extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   LinkageType withElement(Element? newElement) {
-    return LinkageType._(value, element: newElement);
+    return LinkageType._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

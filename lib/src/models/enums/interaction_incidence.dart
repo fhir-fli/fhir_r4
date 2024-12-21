@@ -58,7 +58,10 @@ class InteractionIncidence extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   InteractionIncidence withElement(Element? newElement) {
-    return InteractionIncidence._(value, element: newElement);
+    return InteractionIncidence._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

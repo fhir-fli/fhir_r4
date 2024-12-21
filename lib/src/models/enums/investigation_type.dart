@@ -58,7 +58,10 @@ class InvestigationType extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   InvestigationType withElement(Element? newElement) {
-    return InvestigationType._(value, element: newElement);
+    return InvestigationType._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

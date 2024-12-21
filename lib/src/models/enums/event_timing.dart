@@ -202,7 +202,10 @@ class EventTiming extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   EventTiming withElement(Element? newElement) {
-    return EventTiming._(value, element: newElement);
+    return EventTiming._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

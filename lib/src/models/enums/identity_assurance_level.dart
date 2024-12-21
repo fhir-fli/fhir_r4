@@ -71,7 +71,10 @@ class IdentityAssuranceLevel extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   IdentityAssuranceLevel withElement(Element? newElement) {
-    return IdentityAssuranceLevel._(value, element: newElement);
+    return IdentityAssuranceLevel._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

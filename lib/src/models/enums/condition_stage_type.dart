@@ -58,7 +58,10 @@ class ConditionStageType extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   ConditionStageType withElement(Element? newElement) {
-    return ConditionStageType._(value, element: newElement);
+    return ConditionStageType._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

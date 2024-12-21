@@ -203,7 +203,10 @@ class MedicationKnowledgePackageTypeCodes extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   MedicationKnowledgePackageTypeCodes withElement(Element? newElement) {
-    return MedicationKnowledgePackageTypeCodes._(value, element: newElement);
+    return MedicationKnowledgePackageTypeCodes._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

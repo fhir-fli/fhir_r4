@@ -70,7 +70,10 @@ class LinkType extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   LinkType withElement(Element? newElement) {
-    return LinkType._(value, element: newElement);
+    return LinkType._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

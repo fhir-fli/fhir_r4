@@ -68,7 +68,10 @@ class ResearchStudyObjectiveType extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   ResearchStudyObjectiveType withElement(Element? newElement) {
-    return ResearchStudyObjectiveType._(value, element: newElement);
+    return ResearchStudyObjectiveType._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

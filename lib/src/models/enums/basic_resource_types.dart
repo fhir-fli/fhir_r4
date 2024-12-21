@@ -142,7 +142,10 @@ class BasicResourceTypes extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   BasicResourceTypes withElement(Element? newElement) {
-    return BasicResourceTypes._(value, element: newElement);
+    return BasicResourceTypes._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

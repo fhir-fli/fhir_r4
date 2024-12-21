@@ -92,7 +92,10 @@ class TestScriptRequestMethodCode extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   TestScriptRequestMethodCode withElement(Element? newElement) {
-    return TestScriptRequestMethodCode._(value, element: newElement);
+    return TestScriptRequestMethodCode._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

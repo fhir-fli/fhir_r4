@@ -73,7 +73,10 @@ class ExplanationOfBenefitStatus extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   ExplanationOfBenefitStatus withElement(Element? newElement) {
-    return ExplanationOfBenefitStatus._(value, element: newElement);
+    return ExplanationOfBenefitStatus._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

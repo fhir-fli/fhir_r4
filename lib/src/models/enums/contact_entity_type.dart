@@ -82,7 +82,10 @@ class ContactEntityType extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   ContactEntityType withElement(Element? newElement) {
-    return ContactEntityType._(value, element: newElement);
+    return ContactEntityType._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

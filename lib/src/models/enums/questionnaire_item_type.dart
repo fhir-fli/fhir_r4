@@ -148,7 +148,10 @@ class QuestionnaireItemType extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   QuestionnaireItemType withElement(Element? newElement) {
-    return QuestionnaireItemType._(value, element: newElement);
+    return QuestionnaireItemType._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

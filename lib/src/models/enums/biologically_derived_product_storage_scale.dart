@@ -70,7 +70,10 @@ class BiologicallyDerivedProductStorageScale extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   BiologicallyDerivedProductStorageScale withElement(Element? newElement) {
-    return BiologicallyDerivedProductStorageScale._(value, element: newElement);
+    return BiologicallyDerivedProductStorageScale._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

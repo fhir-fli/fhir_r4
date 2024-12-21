@@ -88,7 +88,10 @@ class ChargeItemStatus extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   ChargeItemStatus withElement(Element? newElement) {
-    return ChargeItemStatus._(value, element: newElement);
+    return ChargeItemStatus._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

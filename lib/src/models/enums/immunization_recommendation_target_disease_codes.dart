@@ -115,8 +115,10 @@ class ImmunizationRecommendationTargetDiseaseCodes
   /// Returns the enum value with an element attached
   ImmunizationRecommendationTargetDiseaseCodes withElement(
       Element? newElement) {
-    return ImmunizationRecommendationTargetDiseaseCodes._(value,
-        element: newElement);
+    return ImmunizationRecommendationTargetDiseaseCodes._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

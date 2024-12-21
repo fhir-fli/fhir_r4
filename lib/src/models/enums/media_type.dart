@@ -64,7 +64,10 @@ class MediaType extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   MediaType withElement(Element? newElement) {
-    return MediaType._(value, element: newElement);
+    return MediaType._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

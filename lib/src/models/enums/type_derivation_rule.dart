@@ -58,7 +58,10 @@ class TypeDerivationRule extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   TypeDerivationRule withElement(Element? newElement) {
-    return TypeDerivationRule._(value, element: newElement);
+    return TypeDerivationRule._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

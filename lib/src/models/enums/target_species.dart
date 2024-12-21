@@ -1246,7 +1246,10 @@ class TargetSpecies extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   TargetSpecies withElement(Element? newElement) {
-    return TargetSpecies._(value, element: newElement);
+    return TargetSpecies._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

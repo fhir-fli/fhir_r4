@@ -58,7 +58,10 @@ class ConsentProvisionType extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   ConsentProvisionType withElement(Element? newElement) {
-    return ConsentProvisionType._(value, element: newElement);
+    return ConsentProvisionType._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

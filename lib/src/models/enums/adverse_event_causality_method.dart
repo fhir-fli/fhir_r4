@@ -68,7 +68,10 @@ class AdverseEventCausalityMethod extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   AdverseEventCausalityMethod withElement(Element? newElement) {
-    return AdverseEventCausalityMethod._(value, element: newElement);
+    return AdverseEventCausalityMethod._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

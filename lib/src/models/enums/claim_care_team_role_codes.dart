@@ -71,7 +71,10 @@ class ClaimCareTeamRoleCodes extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   ClaimCareTeamRoleCodes withElement(Element? newElement) {
-    return ClaimCareTeamRoleCodes._(value, element: newElement);
+    return ClaimCareTeamRoleCodes._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

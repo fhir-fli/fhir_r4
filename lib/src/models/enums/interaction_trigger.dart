@@ -148,7 +148,10 @@ class InteractionTrigger extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   InteractionTrigger withElement(Element? newElement) {
-    return InteractionTrigger._(value, element: newElement);
+    return InteractionTrigger._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

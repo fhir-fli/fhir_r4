@@ -58,7 +58,10 @@ class UnitTypeCodes extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   UnitTypeCodes withElement(Element? newElement) {
-    return UnitTypeCodes._(value, element: newElement);
+    return UnitTypeCodes._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

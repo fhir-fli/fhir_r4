@@ -64,7 +64,10 @@ class DefinitionTopic extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   DefinitionTopic withElement(Element? newElement) {
-    return DefinitionTopic._(value, element: newElement);
+    return DefinitionTopic._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

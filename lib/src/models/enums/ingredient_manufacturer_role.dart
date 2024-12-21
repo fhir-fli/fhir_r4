@@ -67,7 +67,10 @@ class IngredientManufacturerRole extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   IngredientManufacturerRole withElement(Element? newElement) {
-    return IngredientManufacturerRole._(value, element: newElement);
+    return IngredientManufacturerRole._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

@@ -82,7 +82,10 @@ class SpecialCourtesy extends PrimitiveType<String> {
 
   /// Returns the enum value with an element attached
   SpecialCourtesy withElement(Element? newElement) {
-    return SpecialCourtesy._(value, element: newElement);
+    return SpecialCourtesy._(
+      value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
